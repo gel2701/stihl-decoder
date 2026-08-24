@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+:root {
+  --stihl-orange: #FF6600;
+  --stihl-dark: #121824;
+  --stihl-card: #1F2937;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--stihl-dark);
+  color: #F9FAFB;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Stihl Custom Glow & Accent */
+.stihl-orange-glow {
+  box-shadow: 0 0 25px -5px rgba(255, 102, 0, 0.35);
+}
+
+.stihl-border-glow:focus-within {
+  border-color: #FF6600;
+  box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6600;
+}
+
+/* Gietklok Dial Animation */
+#gussuhr-svg circle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

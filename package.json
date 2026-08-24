@@ -1,0 +1,26 @@
+{
+  "name": "stihl-decoder",
+  "version": "1.0.0",
+  "description": "STIHL Machine & Serienummer Decoder Tool - Onafhankelijke Stihl serienummer en gietnummer checker.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/decoder.test.js"
+  },
+  "keywords": [
+    "stihl",
+    "serienummer",
+    "decoder",
+    "chainsaw",
+    "kettingzaag",
+    "bosmaaier",
+    "teilenummer",
+    "gussuhr"
+  ],
+  "author": "Gellius Snippe",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
