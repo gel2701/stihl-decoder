@@ -4,7 +4,6 @@
 
 export function cleanInput(rawInput) {
   if (!rawInput) return '';
-  // Strip spaces, dashes, dots, underscores
   return rawInput.toString().replace(/[\s\-\._]/g, '').trim();
 }
 
@@ -14,16 +13,21 @@ export function decodeStihlCode(rawInput, database) {
   if (!cleaned) {
     return {
       success: false,
-      error: 'Voer een serienummer (9 cijfers) of onderdeelnummer (11 cijfers) in.'
+      error: 'Voer een serienummer (9 cijfers), onderdeelnummer (11 cijfers) of Stihl modelnaam in.'
     };
   }
 
-  // Check 1: 11-digit Part Number (Teilenummer) or 4-digit prefix match
+  // Check 1: Model Name decoding (e.g. "MS 261 C-M", "FS 130 R", "HS 82 R")
+  if (/^[A-Za-z]+\s*\d+/i.test(rawInput.trim())) {
+    return analyzeModelName(rawInput.trim(), database);
+  }
+
+  // Check 2: 11-digit Part Number (Teilenummer) or 4-digit prefix match
   if (cleaned.length === 11 || (cleaned.length >= 4 && isKnownPartFamily(cleaned, database))) {
     return analyzePartNumber(cleaned, database);
   }
 
-  // Check 2: 9-digit Serial Number (Seriennummer)
+  // Check 3: 9-digit Serial Number (Seriennummer)
   if (/^\d{9}$/.test(cleaned)) {
     return analyzeSerialNumber(cleaned, database);
   }
@@ -51,13 +55,45 @@ export function decodeStihlCode(rawInput, database) {
     success: false,
     input: rawInput,
     cleaned,
-    error: 'Onbekend formaat. Voer een 9-cijferig serienummer in of een 11-cijferig Stihl onderdeelnummer.'
+    error: 'Onbekend formaat. Voer een 9-cijferig serienummer in, een 11-cijferig Stihl onderdeelnummer of een modelnaam (bijv. MS 261 C-M).'
   };
 }
 
 function isKnownPartFamily(cleaned, database) {
   const prefix = cleaned.substring(0, 4);
   return database.part_family_prefixes && Boolean(database.part_family_prefixes[prefix]);
+}
+
+export function analyzeModelName(modelStr, database) {
+  const parts = modelStr.toUpperCase().split(/\s+/);
+  const prefixCode = parts[0];
+  
+  const prefixMeaning = database.prefix_meanings ? database.prefix_meanings[prefixCode] : null;
+  const decodedSuffixes = [];
+
+  // Extract letters after numbers
+  const match = modelStr.match(/^[A-Za-z]+\s*\d+[\s\-]*(.*)$/);
+  if (match && match[1]) {
+    const suffixPart = match[1].replace(/[\s\-]/g, '');
+    for (let char of suffixPart) {
+      if (database.model_suffixes && database.model_suffixes[char]) {
+        decodedSuffixes.push({
+          letter: char,
+          meaning: database.model_suffixes[char]
+        });
+      }
+    }
+  }
+
+  return {
+    success: true,
+    type: 'MODEL_DECODE',
+    input: modelStr,
+    prefixCode,
+    prefixMeaning: prefixMeaning || "Stihl machinetype aanduiding",
+    suffixes: decodedSuffixes,
+    notes: `Modelaanduiding ${modelStr} geanalyseerd.`
+  };
 }
 
 export function analyzeSerialNumber(serialStr, database) {
@@ -69,13 +105,11 @@ export function analyzeSerialNumber(serialStr, database) {
     details: "De eerste digit komt niet overeen met standaard Stihl fabriekscodes."
   };
 
-  // Search range match in serial_ranges
   let rangeMatch = null;
   if (database.serial_ranges && Array.isArray(database.serial_ranges)) {
     rangeMatch = database.serial_ranges.find(r => serialNum >= r.serial_start && serialNum <= r.serial_end);
   }
 
-  // Fallback: family prefix estimation if range match not explicit
   let familyInfo = null;
   let confidence = "Schatting (Generiek)";
   
@@ -86,7 +120,6 @@ export function analyzeSerialNumber(serialStr, database) {
     }
   }
 
-  // Year estimation logic based on 9-digit series progression if no exact range match
   let estimatedYears = null;
   if (rangeMatch) {
     estimatedYears = `${rangeMatch.year_start} - ${rangeMatch.year_end}`;
@@ -94,7 +127,6 @@ export function analyzeSerialNumber(serialStr, database) {
     estimatedYears = estimateYearBySerial(serialNum, factoryDigit);
   }
 
-  // Official Dutch Police Stop Heling register query link
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
   return {
@@ -117,7 +149,7 @@ export function analyzeSerialNumber(serialStr, database) {
     notes: rangeMatch ? rangeMatch.notes : `Gevalideerd 9-cijferig serienummer. Productieland: ${factoryInfo.country}.`,
     castingClockTip: "Verifieer het exacte productiejaar op de kunststof gietklok (Gussuhr) op de binnenzijde van het carter of de cilinderkap.",
     stopHelingUrl,
-    stopHelingTip: "Als u deze machine tweedehands koopt (bijv. Marktplaats), bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
+    stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
   };
 }
 
@@ -165,18 +197,18 @@ export function analyzePartNumber(partStr, database) {
 }
 
 function estimateYearBySerial(serialNum, factoryDigit) {
-  if (factoryDigit === '1') { // Germany
+  if (factoryDigit === '1') {
     if (serialNum < 120000000) return "Vóór 1988 (Klassieke 0-serie)";
     if (serialNum < 140000000) return "Ca. 1988 - 1996";
     if (serialNum < 160000000) return "Ca. 1997 - 2004";
     if (serialNum < 180000000) return "Ca. 2005 - 2015";
     if (serialNum < 195000000) return "Ca. 2016 - 2022";
     return "Ca. 2023 - Heden";
-  } else if (factoryDigit === '2') { // USA
+  } else if (factoryDigit === '2') {
     if (serialNum < 230000000) return "Ca. 1990 - 2000";
     if (serialNum < 270000000) return "Ca. 2001 - 2012";
     return "Ca. 2013 - Heden";
-  } else if (factoryDigit === '8') { // China Qingdao
+  } else if (factoryDigit === '8') {
     return "Ca. 2012 - Heden";
   }
   return "Bouwperiode inschatting gebaseerd op reeksverloop";

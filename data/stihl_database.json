@@ -37,14 +37,61 @@
     }
   },
 
+  "prefix_meanings": {
+    "MS": "Motorsäge (Kettingzaag op benzine)",
+    "MSA": "Motorsäge Akku (Accu Kettingzaag)",
+    "MSE": "Motorsäge Elektro (Elektrische Kettingzaag 230V)",
+    "FS": "Freischneider (Bosmaaier / Grastrimmer op benzine)",
+    "FSA": "Freischneider Akku (Accu Bosmaaier / Trimmer)",
+    "FSE": "Freischneider Elektro (Elektrische Trimmer 230V)",
+    "FC": "Faden-Cutter / Kantenmäher (Kantenmaaier op benzine)",
+    "FCA": "Faden-Cutter Akku (Accu Kantenmaaier)",
+    "HL": "Hoch-Heckenschere (Stok-heggenschaar op steel)",
+    "HLA": "Hoch-Heckenschere Akku (Accu Stok-heggenschaar)",
+    "HS": "Heckenschere (Standaard Heggenschaar op benzine)",
+    "HSA": "Heckenschere Akku (Accu Heggenschaar)",
+    "HSE": "Heckenschere Elektro (Elektrische Heggenschaar)",
+    "BG": "Blasgerät (Handgedragen Bladblazer op benzine)",
+    "BGA": "Blasgerät Akku (Accu Bladblazer)",
+    "BGE": "Blasgerät Elektro (Elektrische Bladblazer)",
+    "BR": "Blasgerät Rucksack (Ruggedragen Bladblazer op benzine)",
+    "SH": "Saug-Häcksler (Bladzuiger / Bladhakselaar op benzine)",
+    "SHA": "Saug-Häcksler Akku (Accu Bladzuiger)",
+    "SR": "Sprühgerät Rucksack (Ruggedragen Nevelspuit / Drukspuit)",
+    "TS": "Trennschleifer (Bandenzaag / Doorslijper op benzine)",
+    "TSA": "Trennschleifer Akku (Accu Doorslijper)",
+    "GS": "Gesteinssäge (Beton- & Steenkettingzaag)",
+    "HT": "Hochtaster (Stoksnoeier / Hoogwerksnoeier)",
+    "HTA": "Hochtaster Akku (Accu Stoksnoeier)",
+    "KM": "KombiMotor (KombiSystem basismotor)",
+    "KMA": "KombiMotor Akku (Accu KombiEngine)",
+    "MM": "MultiMotor (MultiSystem basismotor)"
+  },
+
+  "model_suffixes": {
+    "C": "Comfort-uitvoering (Basis aanduiding voor extra comfortfuncties zoals Ergostart of M-Tronic)",
+    "M": "M-Tronic (Volledig elektronisch motorbeheer, stelt ontsteking & brandstoftoevoer automatisch af)",
+    "E": "ErgoStart (Veersysteem op starterkoord voor moeiteloos starten zonder schokken)",
+    "B": "Snelspanner (Gereedschapsloos spannen van de zaagketting via een stelwiel)",
+    "Q": "QuickStop Super (Extra kettingrem geactiveerd zodra de achterste handgreep wordt losgelaten)",
+    "R": "Rundgriff (Ronde beugelhandgreep bij bosmaaiers; of Rückschnitt/Grof snoeien bij heggenscharen)",
+    "T": "Top-Handle (Bovenhandgreep voor professionele boomverzorgers in de boom; of Trimschnitt/Vormsnoei bij heggenscharen)",
+    "W": "Handvatverwarming (Elektrische verwarming in de handgrepen voor comfort in de winter)",
+    "V": "Vergaserheizung (Elektrische carburateurverwarming tegen bevriezen bij vorst)",
+    "i": "Injection (Elektronische brandstofinjectie zonder carburateur voor maximale acceleratie, bijv. MS 500i)",
+    "K": "Kurz (Korte uitvoering van steel of geleideblad)",
+    "S": "Super (Verhoogd motorvermogen of zwaardere professionele uitvoering)",
+    "Z": "Zündschutz / Spark Arrestor (Gespecialiseerde vonkenvanger uitlaat voor droge gebieden)"
+  },
+
   "part_family_prefixes": {
     "1106": {
       "model": "070 / 090 / 090 AV",
-      "type": "Kettingzaag (Extreem zwaar / Klassieker)",
+      "type": "Kettingzaag (Extreem zwaar)",
       "displacement": "106 cc - 137 cc",
       "power": "6.5 pk - 8.5 pk",
       "era": "1968 - 1990+",
-      "notes": "De zwaarste klassieke Stihl zaag. Populair voor mobiele zaagmolens (Alaskan saw mills)."
+      "notes": "De zwaarste klassieke Stihl zaag voor zaagmolens."
     },
     "1107": {
       "model": "Contra / Lightning",
@@ -52,7 +99,7 @@
       "displacement": "106 cc",
       "power": "6.0 pk",
       "era": "1959 - 1968",
-      "notes": "Werelds eerste directe-aandrijvingskettingzaag die de bosbouw voorgoed veranderde."
+      "notes": "Werelds eerste directe-aandrijvingskettingzaag uit 1959."
     },
     "1110": {
       "model": "041 AV / 041 Farm Boss",
@@ -60,63 +107,31 @@
       "displacement": "61 cc",
       "power": "3.7 pk",
       "era": "1967 - 1986",
-      "notes": "Legendarische robuuste zaag. Eerste Stihl zaag met AV (Anti-Vibratie) systeem."
-    },
-    "1113": {
-      "model": "030 / 031 / 032",
-      "type": "Kettingzaag (Klassieker)",
-      "displacement": "45 cc - 51 cc",
-      "power": "3.0 pk - 3.4 pk",
-      "era": "1971 - 1985",
-      "notes": "Populaire allround boerderijzaag uit de jaren 70."
-    },
-    "1114": {
-      "model": "020 / 020 AV / 020 Super",
-      "type": "Kettingzaag (Licht / Boomverzorging)",
-      "displacement": "35 cc - 38 cc",
-      "power": "2.0 pk - 2.3 pk",
-      "era": "1971 - 1992",
-      "notes": "Eerste compacte boomverzorgingszaag platform."
+      "notes": "Legendarische zaag met AV (Anti-Vibratie) systeem."
     },
     "1115": {
-      "model": "045 / 056 / 056 AV Super / Magnum",
+      "model": "045 / 056 AV Super & Magnum",
       "type": "Kettingzaag (Zware bosbouw)",
       "displacement": "75 cc - 94 cc",
       "power": "5.2 pk - 6.8 pk",
       "era": "1974 - 1988",
-      "notes": "Klassieke zware bosbouwzaag voor grote bomen."
-    },
-    "1117": {
-      "model": "042 / 048 / 048 AV",
-      "type": "Kettingzaag (Zware bosbouw)",
-      "displacement": "68 cc - 76 cc",
-      "power": "4.8 pk - 5.2 pk",
-      "era": "1978 - 1985",
-      "notes": "Bosbouwzaag met injectie-geïnspireerd carterontwerp."
+      "notes": "Klassieke zware bosbouwzaag."
     },
     "1118": {
-      "model": "028 / 028 AV / 028 WB / 028 Super",
+      "model": "028 / 028 Wood Boss / 028 Super",
       "type": "Kettingzaag (Middelzwaar)",
       "displacement": "43 cc - 51.5 cc",
       "power": "2.8 pk - 3.4 pk",
       "era": "1977 - 1990",
-      "notes": "Een van de meest verkochte boerderijzagen (Wood Boss) ooit."
+      "notes": "Een van de meest verkochte boerderijzagen ooit."
     },
     "1119": {
-      "model": "038 / 038 Super / 038 Magnum / MS 380 / MS 381 / MS 382",
+      "model": "038 / 038 Magnum / MS 380 / MS 381 / MS 382",
       "type": "Kettingzaag (Zware bosbouw)",
       "displacement": "61 cc - 72.2 cc",
       "power": "4.4 pk - 5.3 pk",
-      "era": "1980 - heden (export)",
-      "notes": "Onverwoestbare zaag, uiterst populair in tropische bosbouw en Latijns-Amerika."
-    },
-    "1120": {
-      "model": "009 / 010 / 011 / 012 / 012 AV",
-      "type": "Kettingzaag (Licht / Tuin & Erf)",
-      "displacement": "37 cc - 45 cc",
-      "power": "1.6 pk - 2.4 pk",
-      "era": "1980 - 1996",
-      "notes": "Karakteristiek handzaam haakzaag-ontwerp met reed-valve inlaat."
+      "era": "1980 - heden",
+      "notes": "Onverwoestbare tropenzaag."
     },
     "1121": {
       "model": "024 / 026 / MS 240 / MS 260",
@@ -124,7 +139,7 @@
       "displacement": "44.3 cc - 50.2 cc",
       "power": "2.9 pk - 3.5 pk",
       "era": "1988 - 2011",
-      "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld. Uiterst betrouwbaar."
+      "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld."
     },
     "1122": {
       "model": "064 / 066 / MS 650 / MS 660",
@@ -132,15 +147,15 @@
       "displacement": "85 cc - 91.6 cc",
       "power": "6.5 pk - 7.3 pk",
       "era": "1986 - 2014",
-      "notes": "Wereldstandaard zware velzaag voor dikke stammen en houtzagerijen."
+      "notes": "Wereldstandaard zware velzaag voor dikke stammen."
     },
     "1123": {
       "model": "021 / 023 / 025 / MS 210 / MS 230 / MS 250",
-      "type": "Kettingzaag (Compact / Consument)",
+      "type": "Kettingzaag (Compact)",
       "displacement": "35.2 cc - 45.4 cc",
       "power": "2.0 pk - 3.1 pk",
       "era": "1991 - 2014",
-      "notes": "Enorm populaire consumentenserie met kunststof clamshell motorhuis."
+      "notes": "Enorm populaire consumentenserie met clamshell motorhuis."
     },
     "1124": {
       "model": "084 / 088 / MS 880 / MS 881",
@@ -156,7 +171,7 @@
       "displacement": "56.4 cc - 61.5 cc",
       "power": "4.2 pk - 4.6 pk",
       "era": "1984 - 2003",
-      "notes": "Middelzware professionele bosbouwzaag met uitstekende gewicht-vermogensverhouding."
+      "notes": "Middelzware professionele bosbouwzaag."
     },
     "1127": {
       "model": "029 / 039 / MS 290 / MS 310 / MS 390",
@@ -164,7 +179,7 @@
       "displacement": "54.1 cc - 64.1 cc",
       "power": "3.8 pk - 4.6 pk",
       "era": "1993 - 2013",
-      "notes": "Populair 'Farm & Ranch' platform met kunststof motorcarter (Clamshell ontwerp)."
+      "notes": "Populair Farm & Ranch platform."
     },
     "1128": {
       "model": "044 / 046 / MS 440 / MS 460",
@@ -176,35 +191,27 @@
     },
     "1129": {
       "model": "020 T / MS 200 / MS 200 T",
-      "type": "Kettingzaag (Boomverzorging / Top-handle)",
+      "type": "Kettingzaag (Boomverzorging)",
       "displacement": "35.2 cc",
       "power": "2.3 pk",
       "era": "1996 - 2011",
-      "notes": "Heilige graal onder professionele boomverzorgers vanwege extreme felheid en licht gewicht."
+      "notes": "Heilige graal onder boomverzorgers voor felheid en licht gewicht."
     },
     "1130": {
       "model": "017 / 018 / MS 170 / MS 180",
-      "type": "Kettingzaag (Consument / Instap)",
+      "type": "Kettingzaag (Consument)",
       "displacement": "30.1 cc - 31.8 cc",
       "power": "1.7 pk - 2.0 pk",
       "era": "1995 - heden",
-      "notes": "Meest verkochte STIHL benzinekettingzaag ooit wereldwijd."
-    },
-    "1132": {
-      "model": "019 T / MS 190 T / MS 191 T",
-      "type": "Kettingzaag (Boomverzorging)",
-      "displacement": "35.2 cc - 46.5 cc",
-      "power": "1.9 pk - 2.4 pk",
-      "era": "1997 - 2002",
-      "notes": "Tussengeneratie tophandle zaag."
+      "notes": "Meest verkochte benzinekettingzaag ooit wereldwijd."
     },
     "1133": {
       "model": "MS 270 / MS 280 / MS 280 C-I",
-      "type": "Kettingzaag (Landbouw / Innovatie)",
+      "type": "Kettingzaag (IEM Carburateur)",
       "displacement": "50.0 cc - 54.7 cc",
       "power": "3.5 pk - 3.8 pk",
       "era": "2002 - 2011",
-      "notes": "Pionier met Intelligent Engine Management (IEM) / Microprocessor carburateur."
+      "notes": "Pionier met Intelligent Engine Management microprocessor."
     },
     "1135": {
       "model": "MS 341 / MS 361",
@@ -212,39 +219,15 @@
       "displacement": "59.0 cc",
       "power": "4.6 pk",
       "era": "2003 - 2011",
-      "notes": "Bekend om zijn snelle acceleratie en lage trillingen (2-MIX pionier)."
-    },
-    "1137": {
-      "model": "MS 192 T / MS 192 C-E",
-      "type": "Kettingzaag (Lichte boomverzorging)",
-      "displacement": "30.1 cc",
-      "power": "1.8 pk",
-      "era": "2005 - 2014",
-      "notes": "Ultra-lichte tophandle zaag (3.0 kg)."
-    },
-    "1138": {
-      "model": "MS 441 / MS 441 C-M",
-      "type": "Kettingzaag (Zware bosbouw)",
-      "displacement": "70.7 cc",
-      "power": "5.7 pk",
-      "era": "2006 - 2014",
-      "notes": "Eerste zware profzaag met 4-kanaals 2-MIX spoeling en optionele M-Tronic."
-    },
-    "1139": {
-      "model": "MS 171 / MS 181 / MS 211",
-      "type": "Kettingzaag (Compact modern)",
-      "displacement": "31.8 cc - 35.2 cc",
-      "power": "1.8 pk - 2.3 pk",
-      "era": "2008 - heden",
-      "notes": "Moderne 2-MIX opvolgers van de MS 170/180 serie."
+      "notes": "Bekend om snelle acceleratie en lage trillingen."
     },
     "1140": {
       "model": "MS 311 / MS 362 / MS 391 / MS 400 C-M",
-      "type": "Kettingzaag (Professioneel / Magnesium zuiger)",
+      "type": "Kettingzaag (Magnesium zuiger)",
       "displacement": "59.0 cc - 66.8 cc",
       "power": "4.2 pk - 5.4 pk",
       "era": "2010 - heden",
-      "notes": "De MS 400 C-M is 's werelds eerste kettingzaag met een lichtgewicht magnesium zuiger."
+      "notes": "'s Werelds eerste kettingzaag met magnesium zuiger."
     },
     "1141": {
       "model": "MS 261 / MS 271 / MS 291",
@@ -252,47 +235,15 @@
       "displacement": "50.2 cc - 55.5 cc",
       "power": "3.5 pk - 4.1 pk",
       "era": "2010 - heden",
-      "notes": "Vlaggenschip professionele 50cc zaag met M-Tronic 3.0 elektronisch beheer."
-    },
-    "1143": {
-      "model": "MS 231 / MS 251",
-      "type": "Kettingzaag (Compact / Allround)",
-      "displacement": "42.6 cc - 45.6 cc",
-      "power": "2.7 pk - 3.1 pk",
-      "era": "2011 - heden",
-      "notes": "Ideaal voor haardhout en erfonderhoud."
+      "notes": "Uitgerust met 2-MIX motor en M-Tronic elektronisch beheer."
     },
     "1144": {
       "model": "MS 661 / MS 661 C-M",
-      "type": "Kettingzaag (Extreem zwaar)",
+      "type": "Kettingzaag (TIMBERSPORTS®)",
       "displacement": "91.1 cc",
       "power": "7.3 pk",
       "era": "2014 - heden",
       "notes": "Officiële zaag van de STIHL TIMBERSPORTS® Series."
-    },
-    "1145": {
-      "model": "MS 201 / MS 201 T / MS 201 C-M",
-      "type": "Kettingzaag (Boomverzorging / Top-handle)",
-      "displacement": "35.2 cc",
-      "power": "2.4 pk",
-      "era": "2011 - heden",
-      "notes": "Lichte tophandle zaag voor professionele boomverzorgers met M-Tronic."
-    },
-    "1146": {
-      "model": "MS 150 T / MS 150 C-E / MS 151 T",
-      "type": "Kettingzaag (Ultra-lichtgewicht)",
-      "displacement": "23.6 cc",
-      "power": "1.4 pk - 1.5 pk",
-      "era": "2012 - heden",
-      "notes": "Extreem lichte boomzaag (2.6 kg) voor fijn snoeiwerk."
-    },
-    "1147": {
-      "model": "MS 193 T / MS 194 T",
-      "type": "Kettingzaag (Boomverzorging)",
-      "displacement": "30.1 cc - 31.8 cc",
-      "power": "1.8 pk - 1.9 pk",
-      "era": "2014 - heden",
-      "notes": "Allround tophandle zaag voor boompractitioners."
     },
     "1148": {
       "model": "MS 500i / MS 500i W",
@@ -300,151 +251,55 @@
       "displacement": "79.2 cc",
       "power": "6.8 pk",
       "era": "2019 - heden",
-      "notes": "'s Werelds eerste benzinekettingzaag met elektronische brandstofinjectie (Injection). Acceleratie 0-100 km/h in 0.25 sec!"
-    },
-    "4128": {
-      "model": "FS 160 / FS 180 / FS 220 / FS 280",
-      "type": "Bosmaaier (Zwaar zwaar)",
-      "displacement": "29.8 cc - 38.7 cc",
-      "power": "1.9 pk - 2.6 pk",
-      "era": "1987 - 2004",
-      "notes": "Klassieke zware bosmaaiers voor ruw terrein en riet."
+      "notes": "'s Werelds eerste benzinezaag met elektronische brandstofinjectie Injection."
     },
     "4134": {
-      "model": "FS 120 / FS 200 / FS 250 / FS 300 / FS 350 / FS 400 / FS 450 / FR 350 / FR 450",
-      "type": "Bosmaaier / Ruggedragen bosmaaier",
+      "model": "FS 120 / FS 200 / FS 250 / FS 350 / FS 450",
+      "type": "Bosmaaier (Zwaar)",
       "displacement": "30.8 cc - 44.3 cc",
       "power": "1.8 pk - 2.9 pk",
       "era": "1996 - 2015",
-      "notes": "Zware professionele bosmaaiers voor struikgewas en bosbeheer."
-    },
-    "4137": {
-      "model": "FS 75 / FS 80 / FS 85 / FC 75 / HL 75 / KW 85",
-      "type": "Bosmaaier / Kantenmaaier / Heggenschaar",
-      "displacement": "25.4 cc",
-      "power": "1.3 pk",
-      "era": "1996 - 2008",
-      "notes": "Klassiek licht professioneel platform met starre aandrijfas."
+      "notes": "Zware professionele bosmaaiers voor bosbeheer."
     },
     "4140": {
       "model": "FS 38 / FS 45 / FS 46 / FS 55 / HS 45",
-      "type": "Grastrimmer / Bosmaaier / Heggenschaar",
+      "type": "Grastrimmer / Bosmaaier",
       "displacement": "27.2 cc",
       "power": "0.9 pk - 1.0 pk",
       "era": "2001 - heden",
       "notes": "Meest bekende lichtgewicht consumententrimmer van STIHL."
     },
-    "4144": {
-      "model": "FS 40 / FS 50 / FS 56 / FS 70",
-      "type": "Grastrimmer / Bosmaaier (2-MIX)",
-      "displacement": "27.2 cc",
-      "power": "1.0 pk - 1.2 pk",
-      "era": "2008 - heden",
-      "notes": "Schone 2-MIX opvolger van de 4140 serie."
-    },
     "4147": {
       "model": "FS 260 / FS 360 / FS 410 / FS 460 / FS 490",
-      "type": "Bosmaaier (Professioneel modern)",
+      "type": "Bosmaaier (Prof modern)",
       "displacement": "41.6 cc - 51.6 cc",
       "power": "2.7 pk - 3.3 pk",
       "era": "2011 - heden",
-      "notes": "Moderne bosmaaiers met 4-punts antivibratiesysteem en 2-MIX motor."
-    },
-    "4148": {
-      "model": "FS 510 C-EM / FS 560 C-EM",
-      "type": "Bosmaaier (Extreem zwaar bosbeheer)",
-      "displacement": "57.1 cc",
-      "power": "3.8 pk",
-      "era": "2011 - heden",
-      "notes": "De krachtigste Stihl bosmaaier voor bosbouw en zware zaagbladen."
+      "notes": "Moderne bosmaaiers met 4-punts AV-systeem."
     },
     "4180": {
-      "model": "FS 87 / FS 90 / FS 100 / FS 110 / FS 130 / HT 101 / HT 131 / KM 90 / KM 110 / KM 130",
-      "type": "Bosmaaier / Hoogwerksnoeier / KombiMotor",
+      "model": "FS 87 / FS 90 / FS 100 / FS 130 / KM 130",
+      "type": "Bosmaaier / 4-Mix",
       "displacement": "28.4 cc - 36.3 cc",
       "power": "1.3 pk - 1.9 pk",
       "era": "2005 - 2018",
-      "notes": "Gepatenteerde 4-Mix® motorisering (4-takt motor draaiend op 2-takt mengsmering)."
-    },
-    "4201": {
-      "model": "TS 350 / TS 360 / TS 08",
-      "type": "Doorslijper / Bandenzaag (Klassieker)",
-      "displacement": "60 cc - 64 cc",
-      "power": "3.8 pk",
-      "era": "1975 - 2002",
-      "notes": "Klassieke wegenbouw doorslijper."
-    },
-    "4203": {
-      "model": "BR 320 / BR 400 / SR 320 / SR 400",
-      "type": "Ruggedragen Bladblazer / Vernevelaar",
-      "displacement": "56.5 cc",
-      "power": "3.0 pk - 3.5 pk",
-      "era": "1992 - 2003",
-      "notes": "Populaire zware blazers uit de jaren 90."
-    },
-    "4223": {
-      "model": "TS 400",
-      "type": "Doorslijper / Bandenzaag",
-      "displacement": "64.1 cc",
-      "power": "4.4 pk",
-      "era": "1996 - 2007",
-      "notes": "Eén van de meest gebruikte doorslijpers in de bouw- en infrasector ooit."
+      "notes": "Gepatenteerde 4-Mix® motorisering (4-takt op 2-takt mengsmering)."
     },
     "4224": {
       "model": "BR 340 / BR 420 / SR 340 / SR 420",
-      "type": "Ruggedragen Bladblazer / Vernevelaar",
+      "type": "Ruggedragen Bladblazer",
       "displacement": "56.5 cc",
       "power": "3.3 pk - 3.5 pk",
       "era": "1998 - 2012",
-      "notes": "Zeer robuuste blazers en nevelspuiten voor terreinbeheer en landbouw."
-    },
-    "4226": {
-      "model": "HS 75 / HS 80 / HS 85",
-      "type": "Heggenschaar (Professioneel)",
-      "displacement": "25.4 cc",
-      "power": "1.0 pk",
-      "era": "1997 - 2006",
-      "notes": "Professionele dubbelzijdig snijdende heggenschaar."
-    },
-    "4228": {
-      "model": "HS 81 / HS 82 / HS 86 / HS 87",
-      "type": "Heggenschaar (Professioneel modern)",
-      "displacement": "22.7 cc",
-      "power": "1.0 pk",
-      "era": "2006 - heden",
-      "notes": "Gespecialiseerde snoei- (R) en vormsnoei (T) heggenscharen."
-    },
-    "4229": {
-      "model": "BG 45 / BG 55 / BG 65 / BG 85 / SH 55 / SH 85",
-      "type": "Handgedragen Bladblazer / Bladzuiger",
-      "displacement": "27.2 cc",
-      "power": "0.9 pk - 1.1 pk",
-      "era": "2000 - 2012",
-      "notes": "Populaire handblazers voor particulier en hovenier."
+      "notes": "Zeer robuuste blazers en nevelspuiten."
     },
     "4238": {
       "model": "TS 410 / TS 420",
-      "type": "Bandenzagen / Doorslijper",
+      "type": "Doorslijper / Bandenzaag",
       "displacement": "66.7 cc",
       "power": "4.4 pk",
       "era": "2007 - heden",
-      "notes": "Wereldstandaard doorslijper met het innovatieve cycloon-luchtfiltersysteem."
-    },
-    "4241": {
-      "model": "BG 56 / BG 86 / SH 56 / SH 86",
-      "type": "Handgedragen Bladblazer / Bladzuiger",
-      "displacement": "27.2 cc (2-MIX)",
-      "power": "1.0 pk - 1.1 pk",
-      "era": "2012 - heden",
-      "notes": "Schone 2-Mix motor varianten van de handblazers."
-    },
-    "4243": {
-      "model": "TS 700 / TS 800",
-      "type": "Doorslijper (Extreem zwaar)",
-      "displacement": "98.5 cc",
-      "power": "6.8 pk",
-      "era": "2004 - heden",
-      "notes": "De grootste benzinedoorslijper van Stihl voor 350mm en 400mm doorslijpschijven."
+      "notes": "Wereldstandaard doorslijper met cycloon-luchtfilter."
     },
     "4282": {
       "model": "BR 500 / BR 550 / BR 600 / BR 700",
@@ -452,68 +307,19 @@
       "displacement": "64.8 cc (4-Mix)",
       "power": "4.0 pk",
       "era": "2006 - heden",
-      "notes": "Topklasse professionele rugblazer met extreem hoge blaaskracht."
-    },
-    "1250": {
-      "model": "MSA 120 C / MSA 140 C",
-      "type": "Accu Kettingzaag (COMPACT AK System)",
-      "displacement": "36V Li-Ion Accu",
-      "power": "AK 20 / AK 30",
-      "era": "2016 - heden",
-      "notes": "Populaire lichte accukettingzaag voor tuin- en haardhout."
-    },
-    "1251": {
-      "model": "MSA 160 C / MSA 200 C / MSA 220 C",
-      "type": "Accu Kettingzaag (PRO AP System)",
-      "displacement": "36V Li-Ion Accu",
-      "power": "AP 300 S / AP 500 S",
-      "era": "2010 - heden",
-      "notes": "Professionele accukettingzaag voor geluidsgevoelige zones en hoveniers."
+      "notes": "Topklasse professionele rugblazer met hoge blaaskracht."
     },
     "1252": {
       "model": "MSA 300 C-O",
-      "type": "Accu Kettingzaag (Extreem krachtig AP System)",
-      "displacement": "36V Li-Ion (AP 500 S)",
+      "type": "Accu Kettingzaag (3.0 kW AP System)",
+      "displacement": "36V Li-Ion",
       "power": "3.0 kW (4.1 pk)",
       "era": "2022 - heden",
-      "notes": "De krachtigste professionele accukettingzaag op de markt met LED oliesensor display."
+      "notes": "De krachtigste professionele accukettingzaag met LED oliesensor."
     }
   },
 
   "serial_ranges": [
-    {
-      "model": "STIHL 041 AV / Farm Boss",
-      "family_code": "1110",
-      "serial_start": 100000000,
-      "serial_end": 109999999,
-      "year_start": 1968,
-      "year_end": 1978,
-      "factory_digit": "1",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "Vroege serie 041 AV geproduceerd in Waiblingen, Duitsland."
-    },
-    {
-      "model": "STIHL 026 / MS 260 (Vroeg)",
-      "family_code": "1121",
-      "serial_start": 120000000,
-      "serial_end": 139999999,
-      "year_start": 1989,
-      "year_end": 1997,
-      "factory_digit": "1",
-      "confidence": "Exact",
-      "notes": "Eerste generatie 026 met metalen remhendel en klassieke carburateur kap."
-    },
-    {
-      "model": "STIHL MS 260 (Laat)",
-      "family_code": "1121",
-      "serial_start": 160000000,
-      "serial_end": 169999999,
-      "year_start": 2002,
-      "year_end": 2011,
-      "factory_digit": "1",
-      "confidence": "Exact",
-      "notes": "Laatste MS 260 serie voor introductie van de MS 261. Transparante brandstoftank."
-    },
     {
       "model": "STIHL MS 261 C-M (Generatie 1)",
       "family_code": "1141",
@@ -523,7 +329,7 @@
       "year_end": 2015,
       "factory_digit": "1",
       "confidence": "Exact",
-      "notes": "Eerste MS 261 met M-Tronic 2.1 elektronisch beheer, schuine koelribben kap."
+      "notes": "Eerste MS 261 met M-Tronic 2.1."
     },
     {
       "model": "STIHL MS 261 C-M (Generatie 2 / Facelift)",
@@ -534,51 +340,7 @@
       "year_end": 2021,
       "factory_digit": "1",
       "confidence": "Exact",
-      "notes": "Facelift versie: vlakkere cilinderkap, 300 gram gewichtsbesparing, M-Tronic 3.0."
-    },
-    {
-      "model": "STIHL MS 261 C-M (Generatie 3 / Huidig)",
-      "family_code": "1141",
-      "serial_start": 190000000,
-      "serial_end": 199999999,
-      "year_start": 2022,
-      "year_end": 2026,
-      "factory_digit": "1",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "Nieuwste serie met geoptimaliseerde zaagkettinggeleiding en M-Tronic kalibratiefunctie."
-    },
-    {
-      "model": "STIHL MS 500i (Injection)",
-      "family_code": "1148",
-      "serial_start": 195000000,
-      "serial_end": 199999999,
-      "year_start": 2019,
-      "year_end": 2026,
-      "factory_digit": "1",
-      "confidence": "Exact",
-      "notes": "Revolutionaire zaag met elektronische brandstofinjectie zonder carburateur."
-    },
-    {
-      "model": "STIHL MS 290 / MS 310 / MS 390 (VS Productie)",
-      "family_code": "1127",
-      "serial_start": 240000000,
-      "serial_end": 269999999,
-      "year_start": 1998,
-      "year_end": 2012,
-      "factory_digit": "2",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "Geproduceerd in Virginia Beach, VS. Zeer populair bij landbouwbedrijven."
-    },
-    {
-      "model": "STIHL BR 340 / BR 420 (Rugblazer)",
-      "family_code": "4224",
-      "serial_start": 145000000,
-      "serial_end": 159999999,
-      "year_start": 1999,
-      "year_end": 2009,
-      "factory_digit": "1",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "Klassieke 2-takt rugblazer. Walbro HD carburateur."
+      "notes": "Facelift versie: vlakkere kap, 300g lichter, M-Tronic 3.0."
     },
     {
       "model": "STIHL BR 600 (4-Mix Rugblazer)",
@@ -592,28 +354,6 @@
       "notes": "Krachtige 4-Mix rugblazer uit Virginia Beach, VS."
     },
     {
-      "model": "STIHL FS 130 / KM 130 (4-Mix Bosmaaier)",
-      "family_code": "4180",
-      "serial_start": 165000000,
-      "serial_end": 178000000,
-      "year_start": 2006,
-      "year_end": 2016,
-      "factory_digit": "1",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "4-Mix motor met kleppenstoters. Vereist specifieke klepspeling (0.10 mm)."
-    },
-    {
-      "model": "STIHL FS 120 / FS 250 (Brazilië Serie)",
-      "family_code": "4134",
-      "serial_start": 330000000,
-      "serial_end": 350000000,
-      "year_start": 2002,
-      "year_end": 2015,
-      "factory_digit": "3",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "Geproduceerd in São Leopoldo, Brazilië voor wereldwijde bosbouw."
-    },
-    {
       "model": "STIHL MS 170 / MS 180 (China Qingdao)",
       "family_code": "1130",
       "serial_start": 800000000,
@@ -622,7 +362,7 @@
       "year_end": 2025,
       "factory_digit": "8",
       "confidence": "Exact",
-      "notes": "Geproduceerd in de STIHL Qingdao fabriek (China) voor consumentenmarkt."
+      "notes": "Geproduceerd in de STIHL Qingdao fabriek (China)."
     }
   ]
 }
