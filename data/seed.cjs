@@ -46,9 +46,55 @@ const modelsData = [
     is_discontinued: 0
   },
   {
+    id: 'stihl_ms_260',
+    series_code: '1121',
+    model_name: 'MS 260 / 026 Pro',
+    category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt Klassiek)',
+    displacement_cc: 50.2,
+    power_kw: 2.6,
+    power_hp: 3.5,
+    weight_kg: 4.8,
+    spark_plug: 'NGK BPMR7A / Bosch WSR6F',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: '1 slag open (Handmatig)',
+    carb_l_setting: '1 slag open (Handmatig)',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: '.325"',
+    chain_gauge_mm: 1.6,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 1
+  },
+  {
+    id: 'stihl_ms_261',
+    series_code: '1141',
+    model_name: 'MS 261 Gen 1',
+    category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt 2-MIX)',
+    displacement_cc: 50.2,
+    power_kw: 2.8,
+    power_hp: 3.8,
+    weight_kg: 5.2,
+    spark_plug: 'NGK CMR6H',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: '1 slag open (V1 Carburateur)',
+    carb_l_setting: '1 slag open',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: '.325"',
+    chain_gauge_mm: 1.3,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 1
+  },
+  {
     id: 'stihl_ms_261_cm',
     series_code: '1141',
-    model_name: 'MS 261 C-M (M-Tronic)',
+    model_name: 'MS 261 C-M Gen 2 (Facelift)',
     category: 'Kettingzaag',
     fuel_type: 'PETROL_2STROKE',
     fuel_type_label: 'Benzine (2-Takt M-Tronic)',
@@ -62,6 +108,29 @@ const modelsData = [
     carb_l_setting: 'Elektronisch geregeld (M-Tronic)',
     carb_la_setting: 'Elektronisch geregeld (M-Tronic)',
     chain_pitch: '.325"',
+    chain_gauge_mm: 1.3,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 0
+  },
+  {
+    id: 'stihl_ms_201_tc_m',
+    series_code: '1145',
+    model_name: 'MS 201 TC-M (Tophandle)',
+    category: 'Kettingzaag (Boomverzorging)',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt M-Tronic)',
+    displacement_cc: 35.2,
+    power_kw: 1.8,
+    power_hp: 2.4,
+    weight_kg: 3.7,
+    spark_plug: 'NGK CMR6H',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: 'Elektronisch geregeld (M-Tronic)',
+    carb_l_setting: 'Elektronisch geregeld (M-Tronic)',
+    carb_la_setting: 'Elektronisch geregeld (M-Tronic)',
+    chain_pitch: '3/8" P',
     chain_gauge_mm: 1.3,
     oil_mix_ratio: '1:50',
     battery_system: null,
@@ -139,6 +208,64 @@ const modelsData = [
   }
 ];
 
+const serialBreakpointsData = [
+  {
+    model_id: "stihl_ms_260",
+    plant_code: "1",
+    serial_start: 145000000,
+    serial_end: 169999999,
+    year_start: 2001,
+    year_end: 2011,
+    generation_name: "MS 260 (Klassiek / Analoog)",
+    technical_changes: "Opvolger van 026. Handmatige carburateurafstelling (L/H), vast carter.",
+    confidence_level: "HIGH"
+  },
+  {
+    model_id: "stihl_ms_261",
+    plant_code: "1",
+    serial_start: 171000000,
+    serial_end: 179999999,
+    year_start: 2010,
+    year_end: 2016,
+    generation_name: "MS 261 / MS 261 C-M Gen 1",
+    technical_changes: "Introductie 1141 serie. Hoekige cilinderkap, vroege M-Tronic V1.0 of standaard carburateur.",
+    confidence_level: "HIGH"
+  },
+  {
+    model_id: "stihl_ms_261_cm",
+    plant_code: "1",
+    serial_start: 180000000,
+    serial_end: 199999999,
+    year_start: 2016,
+    year_end: null,
+    generation_name: "MS 261 C-M Gen 2 (Facelift / V2)",
+    technical_changes: "Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.",
+    confidence_level: "HIGH"
+  },
+  {
+    model_id: "stihl_ms_201_tc_m",
+    plant_code: "1",
+    serial_start: 175000000,
+    serial_end: 184999999,
+    year_start: 2011,
+    year_end: 2015,
+    generation_name: "MS 201 T (Pre-M-Tronic / V1)",
+    technical_changes: "Klassieke tophandle zaag, handmatige carburateurafstelling.",
+    confidence_level: "HIGH"
+  },
+  {
+    model_id: "stihl_ms_201_tc_m",
+    plant_code: "1",
+    serial_start: 185000000,
+    serial_end: 199999999,
+    year_start: 2015,
+    year_end: null,
+    generation_name: "MS 201 TC-M (M-Tronic)",
+    technical_changes: "Elektronisch motormanagement (M-Tronic), verbeterde acceleratie en spoeling.",
+    confidence_level: "HIGH"
+  }
+];
+
 function seedDatabase() {
   if (sqlite3) {
     if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
@@ -192,7 +319,30 @@ function seedDatabase() {
       ));
       stmtModel.finalize();
 
-      // 3. Theft Checks
+      // 3. Model Serial Ranges (Breakpoints)
+      db.run(`CREATE TABLE IF NOT EXISTS model_serial_ranges (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        model_id VARCHAR(50) NOT NULL,
+        plant_code CHAR(1) NOT NULL,
+        serial_start BIGINT NOT NULL,
+        serial_end BIGINT NOT NULL,
+        year_start INT NOT NULL,
+        year_end INT,
+        generation_name VARCHAR(100) NOT NULL,
+        technical_changes TEXT,
+        confidence_level VARCHAR(20) DEFAULT 'HIGH',
+        FOREIGN KEY (model_id) REFERENCES models(id)
+      )`);
+
+      db.run(`CREATE INDEX idx_serial_lookup ON model_serial_ranges (plant_code, serial_start, serial_end)`);
+
+      const stmtRange = db.prepare(`INSERT INTO model_serial_ranges (model_id, plant_code, serial_start, serial_end, year_start, year_end, generation_name, technical_changes, confidence_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      serialBreakpointsData.forEach(r => stmtRange.run(
+        r.model_id, r.plant_code, r.serial_start, r.serial_end, r.year_start, r.year_end, r.generation_name, r.technical_changes, r.confidence_level
+      ));
+      stmtRange.finalize();
+
+      // 4. Theft Checks
       db.run(`CREATE TABLE theft_checks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         serial_number VARCHAR(50) NOT NULL,
@@ -214,6 +364,7 @@ function seedDatabase() {
   const jsonDatabase = {
     plants: plantsData,
     models: modelsData,
+    model_serial_ranges: serialBreakpointsData,
     theft_checks: []
   };
 

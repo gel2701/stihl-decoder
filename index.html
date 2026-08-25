@@ -64,6 +64,25 @@
           "chain_gauge_mm": 1.1
         },
         {
+          "id": "stihl_ms_260",
+          "series_code": "1121",
+          "model_name": "MS 260 / 026 Pro",
+          "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt Klassiek)",
+          "displacement_cc": 50.2,
+          "power_kw": 2.6,
+          "power_hp": 3.5,
+          "weight_kg": 4.8,
+          "spark_plug": "NGK BPMR7A / Bosch WSR6F",
+          "electrode_gap_mm": 0.50,
+          "carb_h_setting": "1 slag open (Handmatig)",
+          "carb_l_setting": "1 slag open (Handmatig)",
+          "carb_la_setting": "2800 RPM",
+          "chain_pitch": ".325\"",
+          "chain_gauge_mm": 1.6
+        },
+        {
           "id": "stihl_ms_261_cm",
           "series_code": "1141",
           "model_name": "MS 261 C-M (M-Tronic)",
@@ -123,6 +142,63 @@
           "voltage_v": 36
         }
       ],
+      "model_serial_ranges": [
+        {
+          "model_id": "stihl_ms_260",
+          "plant_code": "1",
+          "serial_start": 145000000,
+          "serial_end": 169999999,
+          "year_start": 2001,
+          "year_end": 2011,
+          "generation_name": "MS 260 (Klassiek / Analoog)",
+          "technical_changes": "Opvolger van 026. Handmatige carburateurafstelling (L/H), vast carter.",
+          "confidence_level": "HIGH"
+        },
+        {
+          "model_id": "stihl_ms_261",
+          "plant_code": "1",
+          "serial_start": 171000000,
+          "serial_end": 179999999,
+          "year_start": 2010,
+          "year_end": 2016,
+          "generation_name": "MS 261 / MS 261 C-M Gen 1",
+          "technical_changes": "Introductie 1141 serie. Hoekige cilinderkap, vroege M-Tronic V1.0 of standaard carburateur.",
+          "confidence_level": "HIGH"
+        },
+        {
+          "model_id": "stihl_ms_261_cm",
+          "plant_code": "1",
+          "serial_start": 180000000,
+          "serial_end": 199999999,
+          "year_start": 2016,
+          "year_end": null,
+          "generation_name": "MS 261 C-M Gen 2 (Facelift / V2)",
+          "technical_changes": "Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.",
+          "confidence_level": "HIGH"
+        },
+        {
+          "model_id": "stihl_ms_201_tc_m",
+          "plant_code": "1",
+          "serial_start": 175000000,
+          "serial_end": 184999999,
+          "year_start": 2011,
+          "year_end": 2015,
+          "generation_name": "MS 201 T (Pre-M-Tronic / V1)",
+          "technical_changes": "Klassieke tophandle zaag, handmatige carburateurafstelling.",
+          "confidence_level": "HIGH"
+        },
+        {
+          "model_id": "stihl_ms_201_tc_m",
+          "plant_code": "1",
+          "serial_start": 185000000,
+          "serial_end": 199999999,
+          "year_start": 2015,
+          "year_end": null,
+          "generation_name": "MS 201 TC-M (M-Tronic)",
+          "technical_changes": "Elektronisch motormanagement (M-Tronic), verbeterde acceleratie en spoeling.",
+          "confidence_level": "HIGH"
+        }
+      ],
       "counterfeit_rules": [
         {
           "pattern_regex": "^0\\d+",
@@ -166,14 +242,14 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.9 FuelType Separation</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v3.0 Serial Breakpoints Engine</span>
           </h1>
-          <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Gietnummers & Marktplaats Paspoort</p>
+          <p class="text-xs text-gray-400">Serienummers, Breakpoint Bouwjaar & Generatie Resolutie & Marktplaats Paspoort</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 9-Cijferig Serienummer</span>
-        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Benzine vs Accu Scheiding</span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Exact Breakpoint Matching</span>
+        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Generatie Identificatie</span>
       </div>
     </div>
   </header>
@@ -188,7 +264,7 @@
           Voer een Stihl Serienummer, Onderdeelnummer of Model in
         </h2>
         <p class="text-sm text-gray-400">
-          Krijg direct inzicht in de fabriek van herkomst, de geschatte bouwperiode, carburateur basisafstellingen (H/L/LA), bougie, kettingsteek, StopHeling diefstalcheck en download een Stihl Paspoort.
+          Krijg direct inzicht in de fabriek van herkomst, de exacte bouwperiode via serie-breakpoints, de generatie/facelift, carburateur basisafstellingen (H/L/LA), StopHeling diefstalcheck en download een Stihl Paspoort.
         </p>
       </div>
 
@@ -198,7 +274,7 @@
           <input 
             type="text" 
             id="code-input" 
-            placeholder="Bijv. 178456789, MS 261 C-M of 1121 021 0800..." 
+            placeholder="Bijv. 184592301, MS 261 C-M of 1121 021 0800..." 
             class="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg font-mono font-semibold text-white placeholder-gray-500 focus:outline-none"
             autocomplete="off"
           />
@@ -214,7 +290,7 @@
         <!-- Probeer Voorbeelden (Klikbaar) -->
         <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="178456789">178456789 (MS 261 DE)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="184592301">184592301 (MS 261 C-M Gen 2)</button>
           <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
           <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
         </div>
@@ -249,7 +325,7 @@
         <p id="counterfeit-reason" class="text-sm text-red-200 leading-relaxed"></p>
       </div>
 
-      <!-- PART NUMBER WARNING CARD (Amber Card for 11-digit Part Numbers / Casting Numbers) -->
+      <!-- PART NUMBER WARNING CARD -->
       <div id="warning-card" class="hidden bg-gradient-to-br from-amber-950/40 to-gray-900 border border-amber-500/40 rounded-2xl p-6 sm:p-8 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
           <div class="flex items-center gap-3">
@@ -279,7 +355,7 @@
         </div>
       </div>
 
-      <!-- MODEL SPECIFICATIONS CARD (Model Name Search e.g. "MS 261 C-M") -->
+      <!-- MODEL SPECIFICATIONS CARD -->
       <div id="model-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
           <div>
@@ -292,7 +368,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Machine Details -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
@@ -318,7 +393,6 @@
             </div>
           </div>
 
-          <!-- Technical Specs & Carburetor / Battery System -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -335,11 +409,11 @@
               </div>
               <div>
                 <span class="text-gray-400 block">Carburateur H-Schroef:</span>
-                <span id="model-spec-carb-h" class="font-semibold text-gray-200">M-Tronic (Automatisch)</span>
+                <span id="model-spec-carb-h" class="font-semibold text-gray-200">Elektronisch geregeld (M-Tronic)</span>
               </div>
               <div>
                 <span class="text-gray-400 block">Carburateur L-Schroef:</span>
-                <span id="model-spec-carb-l" class="font-semibold text-gray-200">M-Tronic (Automatisch)</span>
+                <span id="model-spec-carb-l" class="font-semibold text-gray-200">Elektronisch geregeld (M-Tronic)</span>
               </div>
               <div>
                 <span class="text-gray-400 block">Carburateur LA-Schroef:</span>
@@ -368,7 +442,7 @@
               <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Gevalideerd Serienummer</span>
               <span id="res-confidence-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ GEVERIFIEERD</span>
             </div>
-            <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">178456789</h3>
+            <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">184592301</h3>
           </div>
 
           <!-- Marktplaats Passport Download Action Button -->
@@ -397,9 +471,24 @@
               <div id="res-fuel-type" class="text-sm font-bold text-emerald-400 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
             </div>
 
-            <div>
-              <span class="text-xs text-gray-400">Geschatte Bouwperiode:</span>
-              <div id="res-years" class="text-base font-bold text-white font-mono mt-0.5">2016 - 2021</div>
+            <!-- PRECISE SERIAL BREAKPOINTS PRODUCTION PERIOD & GENERATION CARD -->
+            <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800 space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400 font-medium">Bouwperiode & Uitvoering:</span>
+                <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Range Match (Nauwkeurig)</span>
+              </div>
+              
+              <span id="res-years" class="text-xl font-extrabold text-orange-400 block font-mono">2016 – Heden</span>
+              
+              <span id="res-generation" class="text-xs font-bold text-gray-100 block">
+                MS 261 C-M Gen 2 (Facelift / V2)
+              </span>
+
+              <div id="res-highlights-container" class="pt-2 mt-2 border-t border-gray-800/80">
+                <p id="res-highlights-text" class="text-xs text-gray-300 leading-relaxed">
+                  ℹ️ Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.
+                </p>
+              </div>
             </div>
 
             <div>
@@ -481,7 +570,7 @@
             class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-md shadow-blue-600/30 flex items-center gap-2.5 whitespace-nowrap self-stretch sm:self-center justify-center cursor-pointer"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            <span>Kopieer <span id="stopheling-btn-serial" class="font-mono font-bold">178456789</span> & Open StopHeling</span>
+            <span>Kopieer <span id="stopheling-btn-serial" class="font-mono font-bold">184592301</span> & Open StopHeling</span>
           </button>
         </div>
       </div>
@@ -504,7 +593,7 @@
     </div>
   </footer>
 
-  <!-- Client Script for Gietklok Helper, Examples, FuelType Separation & Passport Image Download -->
+  <!-- Client Script for Gietklok Helper, Examples, Breakpoint Resolving & Passport Image Download -->
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
@@ -520,8 +609,9 @@
       const modelCard = document.getElementById('model-card');
       const emptyState = document.getElementById('empty-state');
       const database = window.STIHL_DATABASE || {};
-      let currentSerial = '178456789';
-      let currentModelName = 'MS 261 C-M (M-Tronic)';
+      let currentSerial = '184592301';
+      let currentModelName = 'MS 261 C-M Gen 2 (Facelift)';
+      let currentYearsFormatted = '2016 – Heden';
 
       function showToast(msg) {
         const toast = document.getElementById('toast-notification');
@@ -560,7 +650,7 @@
           return;
         }
 
-        // CASE 2: Part Number / Gietnummer (11 digits or part family prefix) -> NO PASSPORT, NO STOPHELING, NO VERIFIED BADGE
+        // CASE 2: Part Number / Gietnummer (11 digits or part family prefix)
         if (res && res.type === 'PART_NUMBER') {
           document.getElementById('warn-part-no').innerText = res.formattedPartNo || res.cleaned;
           document.getElementById('warn-message').innerText = res.warningMessage || 'Dit is een onderdeelnummer (gietnummer/behuizing) en géén uniek serienummer van de complete machine.';
@@ -571,7 +661,7 @@
           return;
         }
 
-        // CASE 3: Model Name Search (e.g. "MS 261 C-M", "MS 170") -> MODEL DATABLAD ONLY
+        // CASE 3: Model Name Search (e.g. "MS 261 C-M")
         if (res && res.type === 'MODEL_DECODE') {
           const modelName = res.input.toUpperCase();
           const isBattery = modelName.startsWith('MSA') || modelName.startsWith('FSA') || modelName.startsWith('BGA') || modelName.startsWith('HSA');
@@ -597,7 +687,7 @@
           return;
         }
 
-        // CASE 4: Valid 9-digit Serial Number -> FULL PASSPORT & STOPHELING CHECK
+        // CASE 4: Valid 9-digit Serial Number -> FULL PASSPORT & SERIAL BREAKPOINTS ENGINE
         if (res && res.type === 'SERIAL_NUMBER') {
           const serial = res.cleaned;
           currentSerial = serial;
@@ -606,14 +696,32 @@
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
           const fuelTypeLabel = isBattery ? '⚡ Accu (AP-Systeem 36V)' : (serial.startsWith('1') ? '🔥 Benzine (2-Takt M-Tronic)' : '🔥 Benzine (2-Takt)');
 
-          // SPECIFIC MODEL NAME (e.g. MS 261 C-M)
-          currentModelName = (res.model && !res.model.includes('Benzine / Accu')) ? res.model : 'MS 261 C-M (M-Tronic)';
+          currentModelName = (res.model && !res.model.includes('Benzine / Accu')) ? res.model : 'MS 261 C-M Gen 2';
 
           document.getElementById('res-serial-display').innerText = formatted;
           document.getElementById('res-model').innerText = currentModelName;
           document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
-          document.getElementById('res-years').innerText = res.estimatedYears || 'Ca. 2016 - Heden';
           document.getElementById('res-country').innerText = res.factory ? `${res.factory.country} (${res.factory.location})` : 'Duitsland (Waiblingen)';
+
+          // Serial Breakpoints Engine Results
+          const prodPeriod = res.productionPeriod || {};
+          currentYearsFormatted = prodPeriod.yearRangeFormatted || res.estimatedYears || '2016 – Heden';
+          document.getElementById('res-years').innerText = currentYearsFormatted;
+          document.getElementById('res-generation').innerText = prodPeriod.generation || res.generation || 'MS 261 C-M Gen 2 (Facelift)';
+
+          const matchTag = document.getElementById('res-range-match-tag');
+          if (matchTag) {
+            matchTag.innerText = prodPeriod.confidence === 'HIGH' ? 'Range Match (Nauwkeurig)' : 'Reeks Inschatting';
+          }
+
+          const hlContainer = document.getElementById('res-highlights-container');
+          const hlText = document.getElementById('res-highlights-text');
+          if (prodPeriod.technicalHighlights) {
+            if (hlText) hlText.innerText = `ℹ️ ${prodPeriod.technicalHighlights}`;
+            if (hlContainer) hlContainer.style.display = 'block';
+          } else {
+            if (hlContainer) hlContainer.style.display = 'none';
+          }
 
           const specs = res.technicalSpecs || {};
           const dispBox = document.getElementById('res-disp-box');
@@ -752,14 +860,14 @@
       const downloadBtn = document.getElementById('download-passport-btn');
       if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
-          const codeVal = inputEl ? inputEl.value.trim() : '178456789';
-          const cleanSerial = codeVal.replace(/[^0-9]/g, '') || '178456789';
+          const codeVal = inputEl ? inputEl.value.trim() : '184592301';
+          const cleanSerial = codeVal.replace(/[^0-9]/g, '') || '184592301';
           downloadStihlPassportImage({
             cleanedSerial: cleanSerial,
             formatted: `${cleanSerial[0]} ${cleanSerial.slice(1,4)} ${cleanSerial.slice(4,7)} ${cleanSerial.slice(7)}`,
             model: currentModelName,
             factory: { country: 'Duitsland', location: 'Waiblingen' },
-            estimatedYears: '2016 - 2021',
+            estimatedYears: currentYearsFormatted,
             modelMatch: { modelName: currentModelName, specs: { displacementCc: 50.2, powerHp: 4.1 } }
           });
         });
