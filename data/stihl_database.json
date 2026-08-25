@@ -1,4 +1,327 @@
 {
+  "plants": [
+    {
+      "plant_code": "1",
+      "country_code": "DE",
+      "country_name": "Duitsland",
+      "plant_location": "Waiblingen / Prüm",
+      "notes": "Hoofdfabriek & Kenniscentrum van STIHL. Onderzoeks- en ontwikkelingscentrum, productie van motorblokken en gepatenteerde zaagkettingen."
+    },
+    {
+      "plant_code": "2",
+      "country_code": "US",
+      "country_name": "Verenigde Staten",
+      "plant_location": "Virginia Beach, Virginia",
+      "notes": "Grootste STIHL fabriek in de VS. Productie van benzine- en accumaaiers, trimmers, bladblazers en zaagkettingen."
+    },
+    {
+      "plant_code": "3",
+      "country_code": "BR",
+      "country_name": "Brazilië",
+      "plant_location": "São Leopoldo, Rio Grande do Sul",
+      "notes": "Belangrijke fabriek voor de productie van cilinders, krukassen en complete motoren."
+    },
+    {
+      "plant_code": "4",
+      "country_code": "AT",
+      "country_name": "Oostenrijk",
+      "plant_location": "Langkampfen, Tirol",
+      "notes": "Gespecialiseerd in accu-producten, grasmaaiers en tuinmachines."
+    },
+    {
+      "plant_code": "5",
+      "country_code": "US",
+      "country_name": "VS / Duitsland",
+      "plant_location": "Specifieke internationale productielijnen",
+      "notes": "Wisselende assemblage- en componentenlijnen in de VS en Duitsland."
+    },
+    {
+      "plant_code": "8",
+      "country_code": "CN",
+      "country_name": "China",
+      "plant_location": "Qingdao",
+      "notes": "STIHL Power Tools Qingdao voor consumenten- en semi-professionele gereedschappen."
+    },
+    {
+      "plant_code": "9",
+      "country_code": "BR",
+      "country_name": "Brazilië / Overige",
+      "plant_location": "Internationale assemblage",
+      "notes": "Assemblagefabrieken voor specifieke regionale markten."
+    }
+  ],
+  "models": [
+    {
+      "id": "stihl_ms_170",
+      "series_code": "1130",
+      "model_name": "MS 170",
+      "category": "Chainsaw",
+      "displacement_cc": 30.1,
+      "power_kw": 1.3,
+      "power_hp": 1.7,
+      "weight_kg": 4.1,
+      "spark_plug": "NGK CMR6H / Bosch USR7AC",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "Vaste sproeier (1)",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2800 RPM stationair",
+      "chain_pitch": "3/8\"P Picco Mini",
+      "chain_gauge_mm": 1.1,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_ms_180",
+      "series_code": "1130",
+      "model_name": "MS 180",
+      "category": "Chainsaw",
+      "displacement_cc": 31.8,
+      "power_kw": 1.5,
+      "power_hp": 2,
+      "weight_kg": 4.1,
+      "spark_plug": "NGK CMR6H / Bosch USR7AC",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "3/4 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2800 RPM stationair",
+      "chain_pitch": "3/8\"P Picco Micro",
+      "chain_gauge_mm": 1.3,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_026",
+      "series_code": "1121",
+      "model_name": "024 / 026 / MS 260",
+      "category": "Chainsaw",
+      "displacement_cc": 48.7,
+      "power_kw": 2.6,
+      "power_hp": 3.5,
+      "weight_kg": 4.8,
+      "spark_plug": "NGK BPMR7A / Bosch WSR6F",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "1 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2800 RPM (Standaard stationair)",
+      "chain_pitch": ".325\"",
+      "chain_gauge_mm": 1.6,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 1
+    },
+    {
+      "id": "stihl_ms_261_c_m",
+      "series_code": "1141",
+      "model_name": "MS 261 C-M",
+      "category": "Chainsaw",
+      "displacement_cc": 50.2,
+      "power_kw": 3,
+      "power_hp": 4.1,
+      "weight_kg": 4.9,
+      "spark_plug": "NGK CMR6H / Bosch USR7AC",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "M-Tronic (Elektronisch afgesteld)",
+      "carb_l_setting": "M-Tronic (Elektronisch afgesteld)",
+      "carb_la_setting": "M-Tronic (Elektronisch afgesteld)",
+      "chain_pitch": ".325\"",
+      "chain_gauge_mm": 1.3,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_ms_362_c_m",
+      "series_code": "1140",
+      "model_name": "MS 311 / MS 362 / MS 391 / MS 400 C-M",
+      "category": "Chainsaw",
+      "displacement_cc": 59,
+      "power_kw": 3.5,
+      "power_hp": 4.8,
+      "weight_kg": 5.6,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "M-Tronic (Elektronisch afgesteld)",
+      "carb_l_setting": "M-Tronic (Elektronisch afgesteld)",
+      "carb_la_setting": "M-Tronic (Elektronisch afgesteld)",
+      "chain_pitch": "3/8\"",
+      "chain_gauge_mm": 1.6,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_ms_500i",
+      "series_code": "1148",
+      "model_name": "MS 500i / MS 500i W",
+      "category": "Chainsaw",
+      "displacement_cc": 79.2,
+      "power_kw": 5,
+      "power_hp": 6.8,
+      "weight_kg": 6.2,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "Injection (Elektronische Brandstofinjectie)",
+      "carb_l_setting": "Injection (Elektronische Brandstofinjectie)",
+      "carb_la_setting": "Injection (Elektronische Brandstofinjectie)",
+      "chain_pitch": "3/8\"",
+      "chain_gauge_mm": 1.6,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_ms_661_c_m",
+      "series_code": "1144",
+      "model_name": "MS 661 / MS 661 C-M",
+      "category": "Chainsaw",
+      "displacement_cc": 91.1,
+      "power_kw": 5.4,
+      "power_hp": 7.3,
+      "weight_kg": 7.4,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "M-Tronic (Elektronisch afgesteld)",
+      "carb_l_setting": "M-Tronic (Elektronisch afgesteld)",
+      "carb_la_setting": "M-Tronic (Elektronisch afgesteld)",
+      "chain_pitch": "3/8\"",
+      "chain_gauge_mm": 1.6,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_br_600",
+      "series_code": "4282",
+      "model_name": "BR 500 / BR 550 / BR 600 / BR 700",
+      "category": "Blower",
+      "displacement_cc": 64.8,
+      "power_kw": 3,
+      "power_hp": 4,
+      "weight_kg": 10.2,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "1 1/2 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "3100 RPM stationair",
+      "chain_pitch": "N/A",
+      "chain_gauge_mm": 0,
+      "oil_mix_ratio": "1:50 (4-Mix Engine)",
+      "is_discontinued": 0
+    },
+    {
+      "id": "stihl_fs_130",
+      "series_code": "4180",
+      "model_name": "FS 87 / FS 90 / FS 100 / FS 130 / KM 130",
+      "category": "Brushcutter",
+      "displacement_cc": 36.3,
+      "power_kw": 1.4,
+      "power_hp": 1.9,
+      "weight_kg": 5.9,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "1 1/4 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2800 RPM stationair",
+      "chain_pitch": "N/A",
+      "chain_gauge_mm": 0,
+      "oil_mix_ratio": "1:50 (4-Mix Engine)",
+      "is_discontinued": 1
+    },
+    {
+      "id": "stihl_ts_420",
+      "series_code": "4238",
+      "model_name": "TS 410 / TS 420",
+      "category": "Cut-off Saw",
+      "displacement_cc": 66.7,
+      "power_kw": 3.2,
+      "power_hp": 4.4,
+      "weight_kg": 9.6,
+      "spark_plug": "NGK BPMR7A / Bosch WSR6F",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "1 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2500 RPM stationair",
+      "chain_pitch": "N/A",
+      "chain_gauge_mm": 0,
+      "oil_mix_ratio": "1:50",
+      "is_discontinued": 0
+    }
+  ],
+  "serial_breakpoints": [
+    {
+      "model_id": "stihl_ms_261_c_m",
+      "plant_code": "1",
+      "serial_start": 175000000,
+      "serial_end": 179999999,
+      "production_year_start": 2010,
+      "production_year_end": 2015,
+      "generation": "MS 261 Gen 1 (M-Tronic 2.1)",
+      "technical_bulletin_ref": "TI-2010-044"
+    },
+    {
+      "model_id": "stihl_ms_261_c_m",
+      "plant_code": "1",
+      "serial_start": 180000000,
+      "serial_end": 189999999,
+      "production_year_start": 2016,
+      "production_year_end": 2021,
+      "generation": "MS 261 Gen 2 (Facelift -300g, M-Tronic 3.0)",
+      "technical_bulletin_ref": "TI-2016-018"
+    },
+    {
+      "model_id": "stihl_br_600",
+      "plant_code": "2",
+      "serial_start": 270000000,
+      "serial_end": 289999999,
+      "production_year_start": 2007,
+      "production_year_end": 2017,
+      "generation": "BR 600 Gen 1 (Virginia Beach US)",
+      "technical_bulletin_ref": "TI-2007-009"
+    },
+    {
+      "model_id": "stihl_ms_170",
+      "plant_code": "8",
+      "serial_start": 800000000,
+      "serial_end": 899999999,
+      "production_year_start": 2012,
+      "production_year_end": 2025,
+      "generation": "MS 170 / 180 (Qingdao China Assembly)",
+      "technical_bulletin_ref": "TI-2012-088"
+    }
+  ],
+  "counterfeit_rules": [
+    {
+      "pattern_regex": "^0\\d+",
+      "risk_level": "DEFINITIVE_FAKE",
+      "reason": "Serienummers van STIHL beginnen nooit met een 0. Authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9.",
+      "affected_models": null
+    },
+    {
+      "pattern_regex": "^(?!^[1234589])\\d+",
+      "risk_level": "DEFINITIVE_FAKE",
+      "reason": "Ongeldige fabriekscode. Het eerste cijfer van een echt STIHL serienummer moet 1 (DE), 2 (US), 3 (BR), 4 (AT), 5 (US/DE), 8 (CN) of 9 (BR) zijn.",
+      "affected_models": null
+    },
+    {
+      "pattern_regex": "^\\d{1,8}$",
+      "risk_level": "HIGH",
+      "reason": "Serienummer is korter dan 9 cijfers. Authentieke STIHL serienummers hebben altijd exact 9 cijfers.",
+      "affected_models": null
+    },
+    {
+      "pattern_regex": "^\\d{10}$",
+      "risk_level": "HIGH",
+      "reason": "Invoer bevat 10 cijfers. Mogelijk een typefout of een namaaklabel (STIHL gebruikt 9 cijfers voor serienummers en 11 cijfers voor onderdeelnummers).",
+      "affected_models": null
+    },
+    {
+      "pattern_regex": "^\\d{12,}$",
+      "risk_level": "HIGH",
+      "reason": "Langer dan 11 cijfers. Geen geldig STIHL serienummer of onderdeelnummer.",
+      "affected_models": null
+    },
+    {
+      "pattern_regex": "^999999999$|^123456789$|^888888888$",
+      "risk_level": "DEFINITIVE_FAKE",
+      "reason": "Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen.",
+      "affected_models": "MS 660, MS 381, MS 070"
+    }
+  ],
   "factories": {
     "1": {
       "country": "Duitsland",
@@ -8,82 +331,24 @@
     "2": {
       "country": "Verenigde Staten",
       "location": "Virginia Beach, Virginia",
-      "details": "Grootste STIHL fabriek in de VS. Productie van benzine- en accumaaiers, trimmers, bladblazers en zaagkettingen voor de Amerikaanse en wereldwijde markt."
+      "details": "Grootste STIHL fabriek in de VS. Productie van benzine- en accumaaiers, trimmers, bladblazers en zaagkettingen."
     },
     "3": {
       "country": "Brazilië",
-      "location": "São Leopoldo, Rio Grande do Sul",
-      "details": "Belangrijke fabriek voor de productie van cilinders, krukassen en complete motoren voor Latijns-Amerika en export."
+      "location": "São Leopoldo",
+      "details": "Productie van cilinders, krukassen en complete motoren."
     },
     "4": {
       "country": "Oostenrijk",
-      "location": "Langkampfen, Tirol",
-      "details": "Voormalige Viking-fabriek. Nu STIHL Oostenrijk, gespecialiseerd in accu-producten, grasmaaiers en tuinmachines."
-    },
-    "5": {
-      "country": "VS / Duitsland",
-      "location": "Specifieke internationale productielijnen",
-      "details": "Wisselende assemblage- en componentenlijnen in de VS en Duitsland voor professionele reeksen."
+      "location": "Langkampfen (Viking/Stihl)",
+      "details": "Gespecialiseerd in accu-producten en grasmaaiers."
     },
     "8": {
       "country": "China",
       "location": "Qingdao",
-      "details": "STIHL Power Tools Qingdao (ANDREAS STIHL AG & Co. KG). Productie van consumenten- en semi-professionele benzine- en accugereedschappen."
-    },
-    "9": {
-      "country": "Brazilië / Overige",
-      "location": "Internationale assemblage & speciale series",
-      "details": "Assemblagefabrieken voor specifieke regionale markten en nevenproducten."
+      "details": "STIHL Power Tools Qingdao voor consumentengereedschappen."
     }
   },
-
-  "prefix_meanings": {
-    "MS": "Motorsäge (Kettingzaag op benzine)",
-    "MSA": "Motorsäge Akku (Accu Kettingzaag)",
-    "MSE": "Motorsäge Elektro (Elektrische Kettingzaag 230V)",
-    "FS": "Freischneider (Bosmaaier / Grastrimmer op benzine)",
-    "FSA": "Freischneider Akku (Accu Bosmaaier / Trimmer)",
-    "FSE": "Freischneider Elektro (Elektrische Trimmer 230V)",
-    "FC": "Faden-Cutter / Kantenmäher (Kantenmaaier op benzine)",
-    "FCA": "Faden-Cutter Akku (Accu Kantenmaaier)",
-    "HL": "Hoch-Heckenschere (Stok-heggenschaar op steel)",
-    "HLA": "Hoch-Heckenschere Akku (Accu Stok-heggenschaar)",
-    "HS": "Heckenschere (Standaard Heggenschaar op benzine)",
-    "HSA": "Heckenschere Akku (Accu Heggenschaar)",
-    "HSE": "Heckenschere Elektro (Elektrische Heggenschaar)",
-    "BG": "Blasgerät (Handgedragen Bladblazer op benzine)",
-    "BGA": "Blasgerät Akku (Accu Bladblazer)",
-    "BGE": "Blasgerät Elektro (Elektrische Bladblazer)",
-    "BR": "Blasgerät Rucksack (Ruggedragen Bladblazer op benzine)",
-    "SH": "Saug-Häcksler (Bladzuiger / Bladhakselaar op benzine)",
-    "SHA": "Saug-Häcksler Akku (Accu Bladzuiger)",
-    "SR": "Sprühgerät Rucksack (Ruggedragen Nevelspuit / Drukspuit)",
-    "TS": "Trennschleifer (Bandenzaag / Doorslijper op benzine)",
-    "TSA": "Trennschleifer Akku (Accu Doorslijper)",
-    "GS": "Gesteinssäge (Beton- & Steenkettingzaag)",
-    "HT": "Hochtaster (Stoksnoeier / Hoogwerksnoeier)",
-    "HTA": "Hochtaster Akku (Accu Stoksnoeier)",
-    "KM": "KombiMotor (KombiSystem basismotor)",
-    "KMA": "KombiMotor Akku (Accu KombiEngine)",
-    "MM": "MultiMotor (MultiSystem basismotor)"
-  },
-
-  "model_suffixes": {
-    "C": "Comfort-uitvoering (Basis aanduiding voor extra comfortfuncties zoals Ergostart of M-Tronic)",
-    "M": "M-Tronic (Volledig elektronisch motorbeheer, stelt ontsteking & brandstoftoevoer automatisch af)",
-    "E": "ErgoStart (Veersysteem op starterkoord voor moeiteloos starten zonder schokken)",
-    "B": "Snelspanner (Gereedschapsloos spannen van de zaagketting via een stelwiel)",
-    "Q": "QuickStop Super (Extra kettingrem geactiveerd zodra de achterste handgreep wordt losgelaten)",
-    "R": "Rundgriff (Ronde beugelhandgreep bij bosmaaiers; of Rückschnitt/Grof snoeien bij heggenscharen)",
-    "T": "Top-Handle (Bovenhandgreep voor professionele boomverzorgers in de boom; of Trimschnitt/Vormsnoei bij heggenscharen)",
-    "W": "Handvatverwarming (Elektrische verwarming in de handgrepen voor comfort in de winter)",
-    "V": "Vergaserheizung (Elektrische carburateurverwarming tegen bevriezen bij vorst)",
-    "i": "Injection (Elektronische brandstofinjectie zonder carburateur voor maximale acceleratie, bijv. MS 500i)",
-    "K": "Kurz (Korte uitvoering van steel of geleideblad)",
-    "S": "Super (Verhoogd motorvermogen of zwaardere professionele uitvoering)",
-    "Z": "Zündschutz / Spark Arrestor (Gespecialiseerde vonkenvanger uitlaat voor droge gebieden)"
-  },
-
   "part_family_prefixes": {
     "1106": {
       "model": "070 / 090 / 090 AV",
@@ -93,14 +358,6 @@
       "era": "1968 - 1990+",
       "notes": "De zwaarste klassieke Stihl zaag voor zaagmolens."
     },
-    "1107": {
-      "model": "Contra / Lightning",
-      "type": "Kettingzaag (Historische pionier)",
-      "displacement": "106 cc",
-      "power": "6.0 pk",
-      "era": "1959 - 1968",
-      "notes": "Werelds eerste directe-aandrijvingskettingzaag uit 1959."
-    },
     "1110": {
       "model": "041 AV / 041 Farm Boss",
       "type": "Kettingzaag (Klassieker)",
@@ -108,30 +365,6 @@
       "power": "3.7 pk",
       "era": "1967 - 1986",
       "notes": "Legendarische zaag met AV (Anti-Vibratie) systeem."
-    },
-    "1115": {
-      "model": "045 / 056 AV Super & Magnum",
-      "type": "Kettingzaag (Zware bosbouw)",
-      "displacement": "75 cc - 94 cc",
-      "power": "5.2 pk - 6.8 pk",
-      "era": "1974 - 1988",
-      "notes": "Klassieke zware bosbouwzaag."
-    },
-    "1118": {
-      "model": "028 / 028 Wood Boss / 028 Super",
-      "type": "Kettingzaag (Middelzwaar)",
-      "displacement": "43 cc - 51.5 cc",
-      "power": "2.8 pk - 3.4 pk",
-      "era": "1977 - 1990",
-      "notes": "Een van de meest verkochte boerderijzagen ooit."
-    },
-    "1119": {
-      "model": "038 / 038 Magnum / MS 380 / MS 381 / MS 382",
-      "type": "Kettingzaag (Zware bosbouw)",
-      "displacement": "61 cc - 72.2 cc",
-      "power": "4.4 pk - 5.3 pk",
-      "era": "1980 - heden",
-      "notes": "Onverwoestbare tropenzaag."
     },
     "1121": {
       "model": "024 / 026 / MS 240 / MS 260",
@@ -141,38 +374,6 @@
       "era": "1988 - 2011",
       "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld."
     },
-    "1122": {
-      "model": "064 / 066 / MS 650 / MS 660",
-      "type": "Kettingzaag (Extreem zwaar)",
-      "displacement": "85 cc - 91.6 cc",
-      "power": "6.5 pk - 7.3 pk",
-      "era": "1986 - 2014",
-      "notes": "Wereldstandaard zware velzaag voor dikke stammen."
-    },
-    "1123": {
-      "model": "021 / 023 / 025 / MS 210 / MS 230 / MS 250",
-      "type": "Kettingzaag (Compact)",
-      "displacement": "35.2 cc - 45.4 cc",
-      "power": "2.0 pk - 3.1 pk",
-      "era": "1991 - 2014",
-      "notes": "Enorm populaire consumentenserie met clamshell motorhuis."
-    },
-    "1124": {
-      "model": "084 / 088 / MS 880 / MS 881",
-      "type": "Kettingzaag (Zwaarste productiezaag)",
-      "displacement": "121.6 cc",
-      "power": "8.7 pk",
-      "era": "1987 - heden",
-      "notes": "De krachtigste in serie geproduceerde kettingzaag ter wereld."
-    },
-    "1125": {
-      "model": "034 / 036 / MS 360",
-      "type": "Kettingzaag (Professioneel)",
-      "displacement": "56.4 cc - 61.5 cc",
-      "power": "4.2 pk - 4.6 pk",
-      "era": "1984 - 2003",
-      "notes": "Middelzware professionele bosbouwzaag."
-    },
     "1127": {
       "model": "029 / 039 / MS 290 / MS 310 / MS 390",
       "type": "Kettingzaag (Landbouw / Semi-pro)",
@@ -181,22 +382,6 @@
       "era": "1993 - 2013",
       "notes": "Populair Farm & Ranch platform."
     },
-    "1128": {
-      "model": "044 / 046 / MS 440 / MS 460",
-      "type": "Kettingzaag (Zware bosbouw)",
-      "displacement": "70.7 cc - 76.5 cc",
-      "power": "5.2 pk - 6.0 pk",
-      "era": "1992 - 2012",
-      "notes": "Standaardwerkpaard voor zware houtkap."
-    },
-    "1129": {
-      "model": "020 T / MS 200 / MS 200 T",
-      "type": "Kettingzaag (Boomverzorging)",
-      "displacement": "35.2 cc",
-      "power": "2.3 pk",
-      "era": "1996 - 2011",
-      "notes": "Heilige graal onder boomverzorgers voor felheid en licht gewicht."
-    },
     "1130": {
       "model": "017 / 018 / MS 170 / MS 180",
       "type": "Kettingzaag (Consument)",
@@ -204,22 +389,6 @@
       "power": "1.7 pk - 2.0 pk",
       "era": "1995 - heden",
       "notes": "Meest verkochte benzinekettingzaag ooit wereldwijd."
-    },
-    "1133": {
-      "model": "MS 270 / MS 280 / MS 280 C-I",
-      "type": "Kettingzaag (IEM Carburateur)",
-      "displacement": "50.0 cc - 54.7 cc",
-      "power": "3.5 pk - 3.8 pk",
-      "era": "2002 - 2011",
-      "notes": "Pionier met Intelligent Engine Management microprocessor."
-    },
-    "1135": {
-      "model": "MS 341 / MS 361",
-      "type": "Kettingzaag (Professioneel)",
-      "displacement": "59.0 cc",
-      "power": "4.6 pk",
-      "era": "2003 - 2011",
-      "notes": "Bekend om snelle acceleratie en lage trillingen."
     },
     "1140": {
       "model": "MS 311 / MS 362 / MS 391 / MS 400 C-M",
@@ -253,29 +422,13 @@
       "era": "2019 - heden",
       "notes": "'s Werelds eerste benzinezaag met elektronische brandstofinjectie Injection."
     },
-    "4134": {
-      "model": "FS 120 / FS 200 / FS 250 / FS 350 / FS 450",
-      "type": "Bosmaaier (Zwaar)",
-      "displacement": "30.8 cc - 44.3 cc",
-      "power": "1.8 pk - 2.9 pk",
-      "era": "1996 - 2015",
-      "notes": "Zware professionele bosmaaiers voor bosbeheer."
-    },
-    "4140": {
-      "model": "FS 38 / FS 45 / FS 46 / FS 55 / HS 45",
-      "type": "Grastrimmer / Bosmaaier",
-      "displacement": "27.2 cc",
-      "power": "0.9 pk - 1.0 pk",
-      "era": "2001 - heden",
-      "notes": "Meest bekende lichtgewicht consumententrimmer van STIHL."
-    },
-    "4147": {
-      "model": "FS 260 / FS 360 / FS 410 / FS 460 / FS 490",
-      "type": "Bosmaaier (Prof modern)",
-      "displacement": "41.6 cc - 51.6 cc",
-      "power": "2.7 pk - 3.3 pk",
-      "era": "2011 - heden",
-      "notes": "Moderne bosmaaiers met 4-punts AV-systeem."
+    "1252": {
+      "model": "MSA 300 C-O",
+      "type": "Accu Kettingzaag (3.0 kW AP System)",
+      "displacement": "36V Li-Ion",
+      "power": "3.0 kW (4.1 pk)",
+      "era": "2022 - heden",
+      "notes": "De krachtigste professionele accukettingzaag met LED oliesensor."
     },
     "4180": {
       "model": "FS 87 / FS 90 / FS 100 / FS 130 / KM 130",
@@ -284,14 +437,6 @@
       "power": "1.3 pk - 1.9 pk",
       "era": "2005 - 2018",
       "notes": "Gepatenteerde 4-Mix® motorisering (4-takt op 2-takt mengsmering)."
-    },
-    "4224": {
-      "model": "BR 340 / BR 420 / SR 340 / SR 420",
-      "type": "Ruggedragen Bladblazer",
-      "displacement": "56.5 cc",
-      "power": "3.3 pk - 3.5 pk",
-      "era": "1998 - 2012",
-      "notes": "Zeer robuuste blazers en nevelspuiten."
     },
     "4238": {
       "model": "TS 410 / TS 420",
@@ -308,61 +453,6 @@
       "power": "4.0 pk",
       "era": "2006 - heden",
       "notes": "Topklasse professionele rugblazer met hoge blaaskracht."
-    },
-    "1252": {
-      "model": "MSA 300 C-O",
-      "type": "Accu Kettingzaag (3.0 kW AP System)",
-      "displacement": "36V Li-Ion",
-      "power": "3.0 kW (4.1 pk)",
-      "era": "2022 - heden",
-      "notes": "De krachtigste professionele accukettingzaag met LED oliesensor."
     }
-  },
-
-  "serial_ranges": [
-    {
-      "model": "STIHL MS 261 C-M (Generatie 1)",
-      "family_code": "1141",
-      "serial_start": 175000000,
-      "serial_end": 179999999,
-      "year_start": 2010,
-      "year_end": 2015,
-      "factory_digit": "1",
-      "confidence": "Exact",
-      "notes": "Eerste MS 261 met M-Tronic 2.1."
-    },
-    {
-      "model": "STIHL MS 261 C-M (Generatie 2 / Facelift)",
-      "family_code": "1141",
-      "serial_start": 180000000,
-      "serial_end": 189999999,
-      "year_start": 2016,
-      "year_end": 2021,
-      "factory_digit": "1",
-      "confidence": "Exact",
-      "notes": "Facelift versie: vlakkere kap, 300g lichter, M-Tronic 3.0."
-    },
-    {
-      "model": "STIHL BR 600 (4-Mix Rugblazer)",
-      "family_code": "4282",
-      "serial_start": 270000000,
-      "serial_end": 289999999,
-      "year_start": 2007,
-      "year_end": 2017,
-      "factory_digit": "2",
-      "confidence": "Hoge waarschijnlijkheid",
-      "notes": "Krachtige 4-Mix rugblazer uit Virginia Beach, VS."
-    },
-    {
-      "model": "STIHL MS 170 / MS 180 (China Qingdao)",
-      "family_code": "1130",
-      "serial_start": 800000000,
-      "serial_end": 899999999,
-      "year_start": 2012,
-      "year_end": 2025,
-      "factory_digit": "8",
-      "confidence": "Exact",
-      "notes": "Geproduceerd in de STIHL Qingdao fabriek (China)."
-    }
-  ]
+  }
 }

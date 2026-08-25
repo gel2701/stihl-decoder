@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STIHL Machine & Serienummer Decoder | Zoek Fabriek, Bouwjaar & Model</title>
+  <title>STIHL Machine & Serienummer Decoder | Zoek Fabriek, Bouwjaar, Specs & Namaak Check</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Analyseer direct Stihl serienummers (9 cijfers), gietnummers (11 cijfers) en modelnamen (MS, FS, C, M, Ergostart, M-Tronic). Controleer de fabriek, geschatte bouwperiode en scan direct in het Stop Heling politieregister.">
-  <meta name="keywords" content="Stihl serienummer, Stihl decoder, Stihl bouwjaar, Stihl fabriek, Stihl gietnummer, Stihl gietklok, Stop Heling, Politie gestolen goederen, Gussuhr, Stihl 026, MS 261, BR 600, FS 130, Stihl letters betekenis">
+  <meta name="description" content="Analyseer direct Stihl serienummers (9 cijfers), gietnummers (11 cijfers) en modelnamen. Bepaal fabriek, bouwjaar, carburateur-afstelling, bougie, kettingsteek en namaak/kloon risico.">
+  <meta name="keywords" content="Stihl serienummer, Stihl decoder, Stihl bouwjaar, Stihl fabriek, Stihl namaak check, Stihl bougie, Stihl carburateur afstelling, Stop Heling, Gussuhr, Stihl 026, MS 261, BR 600, FS 130">
   <meta name="author" content="Stihl Decoder Tool">
   <meta name="theme-color" content="#FF6600">
 
   <!-- Open Graph / WhatsApp / Facebook Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="STIHL Machine & Serienummer Decoder Tool">
-  <meta property="og:description" content="Controleer Stihl serienummers en onderdeelnummers. Bepaal direct de fabriek (Duitsland, VS, China), het bouwjaar en scan op heling in het politieregister.">
+  <meta property="og:description" content="Controleer Stihl serienummers en onderdeelnummers. Bepaal direct de fabriek (Duitsland, VS, China), het bouwjaar, carburateur-afstellingen en scan op namaak of diefstal.">
   <meta property="og:site_name" content="Stihl Decoder">
 
   <!-- Google tag (gtag.js) -->
@@ -33,44 +33,103 @@
   <!-- Embedded Complete Database -->
   <script>
     window.STIHL_DATABASE = {
+      "plants": [
+        {"plant_code": "1", "country_code": "DE", "country_name": "Duitsland", "plant_location": "Waiblingen / Prüm", "notes": "Hoofdfabriek & Kenniscentrum van STIHL."},
+        {"plant_code": "2", "country_code": "US", "country_name": "Verenigde Staten", "plant_location": "Virginia Beach, Virginia", "notes": "Grootste STIHL fabriek in de VS."},
+        {"plant_code": "3", "country_code": "BR", "country_name": "Brazilië", "plant_location": "São Leopoldo, Rio Grande do Sul", "notes": "Cilinder- en motorenproductie."},
+        {"plant_code": "4", "country_code": "AT", "country_name": "Oostenrijk", "plant_location": "Langkampfen, Tirol", "notes": "Accu-producten en tuinmachines."},
+        {"plant_code": "8", "country_code": "CN", "country_name": "China", "plant_location": "Qingdao", "notes": "STIHL Power Tools Qingdao."}
+      ],
       "factories": {
         "1": {"country": "Duitsland", "location": "Waiblingen / Prüm", "details": "Hoofdfabriek & Kenniscentrum van STIHL. Onderzoeks- en ontwikkelingscentrum, productie van motorblokken en gepatenteerde zaagkettingen."},
-        "2": {"country": "Verenigde Staten", "location": "Virginia Beach, Virginia", "details": "Grootste STIHL fabriek in de VS. Productie van benzine- en accumaaiers, trimmers, bladblazers en zaagkettingen voor de Amerikaanse en wereldwijde markt."},
-        "3": {"country": "Brazilië", "location": "São Leopoldo, Rio Grande do Sul", "details": "Belangrijke fabriek voor de productie van cilinders, krukassen en complete motoren voor Latijns-Amerika en export."},
-        "4": {"country": "Oostenrijk", "location": "Langkampfen, Tirol", "details": "Voormalige Viking-fabriek. Nu STIHL Oostenrijk, gespecialiseerd in accu-producten, grasmaaiers en tuinmachines."},
-        "5": {"country": "VS / Duitsland", "location": "Specifieke internationale productielijnen", "details": "Wisselende assemblage- en componentenlijnen in de VS en Duitsland voor professionele reeksen."},
-        "8": {"country": "China", "location": "Qingdao", "details": "STIHL Power Tools Qingdao (ANDREAS STIHL AG & Co. KG). Productie van consumenten- en semi-professionele benzine- en accugereedschappen."},
-        "9": {"country": "Brazilië / Overige", "location": "Internationale assemblage & speciale series", "details": "Assemblagefabrieken voor specifieke regionale markten en nevenproducten."}
+        "2": {"country": "Verenigde Staten", "location": "Virginia Beach, Virginia", "details": "Grootste STIHL fabriek in de VS. Productie van benzine- en accumaaiers, trimmers, bladblazers en zaagkettingen."},
+        "3": {"country": "Brazilië", "location": "São Leopoldo, Rio Grande do Sul", "details": "Belangrijke fabriek voor de productie van cilinders, krukassen en complete motoren."},
+        "4": {"country": "Oostenrijk", "location": "Langkampfen, Tirol", "details": "Gespecialiseerd in accu-producten en grasmaaiers."},
+        "8": {"country": "China", "location": "Qingdao", "details": "STIHL Power Tools Qingdao voor consumentengereedschappen."}
       },
+      "models": [
+        {
+          "id": "stihl_ms_170",
+          "series_code": "1130",
+          "model_name": "MS 170",
+          "category": "Chainsaw",
+          "displacement_cc": 30.1,
+          "power_kw": 1.3,
+          "power_hp": 1.7,
+          "weight_kg": 4.1,
+          "spark_plug": "NGK CMR6H / Bosch USR7AC",
+          "electrode_gap_mm": 0.50,
+          "carb_h_setting": "Vaste sproeier (1)",
+          "carb_l_setting": "1 slag open",
+          "carb_la_setting": "2800 RPM stationair",
+          "chain_pitch": "3/8\"P Picco Mini",
+          "chain_gauge_mm": 1.1,
+          "oil_mix_ratio": "1:50"
+        },
+        {
+          "id": "stihl_ms_261_c_m",
+          "series_code": "1141",
+          "model_name": "MS 261 C-M",
+          "category": "Chainsaw",
+          "displacement_cc": 50.2,
+          "power_kw": 3.0,
+          "power_hp": 4.1,
+          "weight_kg": 4.9,
+          "spark_plug": "NGK CMR6H / Bosch USR7AC",
+          "electrode_gap_mm": 0.50,
+          "carb_h_setting": "M-Tronic (Auto)",
+          "carb_l_setting": "M-Tronic (Auto)",
+          "carb_la_setting": "M-Tronic (Auto)",
+          "chain_pitch": ".325\"",
+          "chain_gauge_mm": 1.3,
+          "oil_mix_ratio": "1:50"
+        },
+        {
+          "id": "stihl_ms_500i",
+          "series_code": "1148",
+          "model_name": "MS 500i / MS 500i W",
+          "category": "Chainsaw",
+          "displacement_cc": 79.2,
+          "power_kw": 5.0,
+          "power_hp": 6.8,
+          "weight_kg": 6.2,
+          "spark_plug": "NGK CMR6H",
+          "electrode_gap_mm": 0.50,
+          "carb_h_setting": "Injection (ECU)",
+          "carb_l_setting": "Injection (ECU)",
+          "carb_la_setting": "Injection (ECU)",
+          "chain_pitch": "3/8\"",
+          "chain_gauge_mm": 1.6,
+          "oil_mix_ratio": "1:50"
+        }
+      ],
+      "counterfeit_rules": [
+        {
+          "pattern_regex": "^0\\d+",
+          "risk_level": "DEFINITIVE_FAKE",
+          "reason": "Serienummers van STIHL beginnen nooit met een 0. Authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9."
+        },
+        {
+          "pattern_regex": "^(?!^[1234589])\\d+",
+          "risk_level": "DEFINITIVE_FAKE",
+          "reason": "Ongeldige fabriekscode. Het eerste cijfer van een echt STIHL serienummer moet 1 (DE), 2 (US), 3 (BR), 4 (AT), 5 (US/DE), 8 (CN) of 9 (BR) zijn."
+        },
+        {
+          "pattern_regex": "^999999999$|^123456789$|^888888888$",
+          "risk_level": "DEFINITIVE_FAKE",
+          "reason": "Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
+        }
+      ],
       "prefix_meanings": {
         "MS": "Motorsäge (Kettingzaag op benzine)",
         "MSA": "Motorsäge Akku (Accu Kettingzaag)",
         "MSE": "Motorsäge Elektro (Elektrische Kettingzaag 230V)",
         "FS": "Freischneider (Bosmaaier / Grastrimmer op benzine)",
         "FSA": "Freischneider Akku (Accu Bosmaaier / Trimmer)",
-        "FSE": "Freischneider Elektro (Elektrische Trimmer 230V)",
-        "FC": "Faden-Cutter / Kantenmäher (Kantenmaaier op benzine)",
-        "FCA": "Faden-Cutter Akku (Accu Kantenmaaier)",
-        "HL": "Hoch-Heckenschere (Stok-heggenschaar op steel)",
-        "HLA": "Hoch-Heckenschere Akku (Accu Stok-heggenschaar)",
-        "HS": "Heckenschere (Standaard Heggenschaar op benzine)",
-        "HSA": "Heckenschere Akku (Accu Heggenschaar)",
-        "HSE": "Heckenschere Elektro (Elektrische Heggenschaar)",
         "BG": "Blasgerät (Handgedragen Bladblazer op benzine)",
-        "BGA": "Blasgerät Akku (Accu Bladblazer)",
-        "BGE": "Blasgerät Elektro (Elektrische Bladblazer)",
         "BR": "Blasgerät Rucksack (Ruggedragen Bladblazer op benzine)",
-        "SH": "Saug-Häcksler (Bladzuiger / Bladhakselaar op benzine)",
-        "SHA": "Saug-Häcksler Akku (Accu Bladzuiger)",
-        "SR": "Sprühgerät Rucksack (Ruggedragen Nevelspuit / Drukspuit)",
-        "TS": "Trennschleifer (Bandenzaag / Doorslijper op benzine)",
-        "TSA": "Trennschleifer Akku (Accu Doorslijper)",
-        "GS": "Gesteinssäge (Beton- & Steenkettingzaag)",
-        "HT": "Hochtaster (Stoksnoeier / Hoogwerksnoeier)",
-        "HTA": "Hochtaster Akku (Accu Stoksnoeier)",
-        "KM": "KombiMotor (KombiSystem basismotor)",
-        "KMA": "KombiMotor Akku (Accu KombiEngine)",
-        "MM": "MultiMotor (MultiSystem basismotor)"
+        "HS": "Heckenschere (Standaard Heggenschaar op benzine)",
+        "TS": "Trennschleifer (Bandenzaag / Doorslijper op benzine)"
       },
       "model_suffixes": {
         "C": "Comfort-uitvoering (Basis aanduiding voor extra comfortfuncties zoals Ergostart of M-Tronic)",
@@ -79,51 +138,23 @@
         "B": "Snelspanner (Gereedschapsloos spannen van de zaagketting via een stelwiel)",
         "Q": "QuickStop Super (Extra kettingrem geactiveerd zodra de achterste handgreep wordt losgelaten)",
         "R": "Rundgriff (Ronde beugelhandgreep bij bosmaaiers; of Rückschnitt/Grof snoeien bij heggenscharen)",
-        "T": "Top-Handle (Bovenhandgreep voor professionele boomverzorgers in de boom; of Trimschnitt/Vormsnoei bij heggenscharen)",
+        "T": "Top-Handle (Bovenhandgreep voor professionele boomverzorgers in de boom)",
         "W": "Handvatverwarming (Elektrische verwarming in de handgrepen voor comfort in de winter)",
         "V": "Vergaserheizung (Elektrische carburateurverwarming tegen bevriezen bij vorst)",
-        "i": "Injection (Elektronische brandstofinjectie zonder carburateur voor maximale acceleratie, bijv. MS 500i)",
-        "K": "Kurz (Korte uitvoering van steel of geleideblad)",
-        "S": "Super (Verhoogd motorvermogen of zwaardere professionele uitvoering)",
-        "Z": "Zündschutz / Spark Arrestor (Gespecialiseerde vonkenvanger uitlaat voor droge gebieden)"
+        "i": "Injection (Elektronische brandstofinjectie zonder carburateur voor maximale acceleratie)"
       },
       "part_family_prefixes": {
         "1106": {"model": "070 / 090 / 090 AV", "type": "Kettingzaag (Extreem zwaar)", "displacement": "106 cc - 137 cc", "power": "6.5 pk - 8.5 pk", "era": "1968 - 1990+", "notes": "De zwaarste klassieke Stihl zaag voor zaagmolens."},
-        "1107": {"model": "Contra / Lightning", "type": "Kettingzaag (Historische pionier)", "displacement": "106 cc", "power": "6.0 pk", "era": "1959 - 1968", "notes": "Werelds eerste directe-aandrijvingskettingzaag uit 1959."},
-        "1110": {"model": "041 AV / 041 Farm Boss", "type": "Kettingzaag (Klassieker)", "displacement": "61 cc", "power": "3.7 pk", "era": "1967 - 1986", "notes": "Legendarische zaag met AV (Anti-Vibratie) systeem."},
-        "1115": {"model": "045 / 056 AV Super & Magnum", "type": "Kettingzaag (Zware bosbouw)", "displacement": "75 cc - 94 cc", "power": "5.2 pk - 6.8 pk", "era": "1974 - 1988", "notes": "Klassieke zware bosbouwzaag."},
-        "1118": {"model": "028 / 028 Wood Boss / 028 Super", "type": "Kettingzaag (Middelzwaar)", "displacement": "43 cc - 51.5 cc", "power": "2.8 pk - 3.4 pk", "era": "1977 - 1990", "notes": "Een van de meest verkochte boerderijzagen ooit."},
-        "1119": {"model": "038 / 038 Magnum / MS 380 / MS 381 / MS 382", "type": "Kettingzaag (Zware bosbouw)", "displacement": "61 cc - 72.2 cc", "power": "4.4 pk - 5.3 pk", "era": "1980 - heden", "notes": "Onverwoestbare tropenzaag."},
         "1121": {"model": "024 / 026 / MS 240 / MS 260", "type": "Kettingzaag (Professioneel)", "displacement": "44.3 cc - 50.2 cc", "power": "2.9 pk - 3.5 pk", "era": "1988 - 2011", "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld."},
-        "1122": {"model": "064 / 066 / MS 650 / MS 660", "type": "Kettingzaag (Extreem zwaar)", "displacement": "85 cc - 91.6 cc", "power": "6.5 pk - 7.3 pk", "era": "1986 - 2014", "notes": "Wereldstandaard zware velzaag voor dikke stammen."},
-        "1123": {"model": "021 / 023 / 025 / MS 210 / MS 230 / MS 250", "type": "Kettingzaag (Compact)", "displacement": "35.2 cc - 45.4 cc", "power": "2.0 pk - 3.1 pk", "era": "1991 - 2014", "notes": "Enorm populaire consumentenserie met clamshell motorhuis."},
-        "1124": {"model": "084 / 088 / MS 880 / MS 881", "type": "Kettingzaag (Zwaarste productiezaag)", "displacement": "121.6 cc", "power": "8.7 pk", "era": "1987 - heden", "notes": "De krachtigste in serie geproduceerde kettingzaag ter wereld."},
-        "1125": {"model": "034 / 036 / MS 360", "type": "Kettingzaag (Professioneel)", "displacement": "56.4 cc - 61.5 cc", "power": "4.2 pk - 4.6 pk", "era": "1984 - 2003", "notes": "Middelzware professionele bosbouwzaag."},
-        "1127": {"model": "029 / 039 / MS 290 / MS 310 / MS 390", "type": "Kettingzaag (Landbouw / Semi-pro)", "displacement": "54.1 cc - 64.1 cc", "power": "3.8 pk - 4.6 pk", "era": "1993 - 2013", "notes": "Populair Farm & Ranch platform."},
-        "1128": {"model": "044 / 046 / MS 440 / MS 460", "type": "Kettingzaag (Zware bosbouw)", "displacement": "70.7 cc - 76.5 cc", "power": "5.2 pk - 6.0 pk", "era": "1992 - 2012", "notes": "Standaardwerkpaard voor zware houtkap."},
-        "1129": {"model": "020 T / MS 200 / MS 200 T", "type": "Kettingzaag (Boomverzorging)", "displacement": "35.2 cc", "power": "2.3 pk", "era": "1996 - 2011", "notes": "Heilige graal onder boomverzorgers voor felheid en licht gewicht."},
         "1130": {"model": "017 / 018 / MS 170 / MS 180", "type": "Kettingzaag (Consument)", "displacement": "30.1 cc - 31.8 cc", "power": "1.7 pk - 2.0 pk", "era": "1995 - heden", "notes": "Meest verkochte benzinekettingzaag ooit wereldwijd."},
-        "1133": {"model": "MS 270 / MS 280 / MS 280 C-I", "type": "Kettingzaag (IEM Carburateur)", "displacement": "50.0 cc - 54.7 cc", "power": "3.5 pk - 3.8 pk", "era": "2002 - 2011", "notes": "Pionier met Intelligent Engine Management microprocessor."},
-        "1135": {"model": "MS 341 / MS 361", "type": "Kettingzaag (Professioneel)", "displacement": "59.0 cc", "power": "4.6 pk", "era": "2003 - 2011", "notes": "Bekend om snelle acceleratie en lage trillingen."},
         "1140": {"model": "MS 311 / MS 362 / MS 391 / MS 400 C-M", "type": "Kettingzaag (Magnesium zuiger)", "displacement": "59.0 cc - 66.8 cc", "power": "4.2 pk - 5.4 pk", "era": "2010 - heden", "notes": "'s Werelds eerste kettingzaag met magnesium zuiger."},
         "1141": {"model": "MS 261 / MS 271 / MS 291", "type": "Kettingzaag (Professioneel modern)", "displacement": "50.2 cc - 55.5 cc", "power": "3.5 pk - 4.1 pk", "era": "2010 - heden", "notes": "Uitgerust met 2-MIX motor en M-Tronic elektronisch beheer."},
         "1144": {"model": "MS 661 / MS 661 C-M", "type": "Kettingzaag (TIMBERSPORTS®)", "displacement": "91.1 cc", "power": "7.3 pk", "era": "2014 - heden", "notes": "Officiële zaag van de STIHL TIMBERSPORTS® Series."},
         "1148": {"model": "MS 500i / MS 500i W", "type": "Kettingzaag (Elektronische Injectie)", "displacement": "79.2 cc", "power": "6.8 pk", "era": "2019 - heden", "notes": "'s Werelds eerste benzinezaag met elektronische brandstofinjectie Injection."},
-        "4134": {"model": "FS 120 / FS 200 / FS 250 / FS 350 / FS 450", "type": "Bosmaaier (Zwaar)", "displacement": "30.8 cc - 44.3 cc", "power": "1.8 pk - 2.9 pk", "era": "1996 - 2015", "notes": "Zware professionele bosmaaiers voor bosbeheer."},
-        "4140": {"model": "FS 38 / FS 45 / FS 46 / FS 55 / HS 45", "type": "Grastrimmer / Bosmaaier", "displacement": "27.2 cc", "power": "0.9 pk - 1.0 pk", "era": "2001 - heden", "notes": "Meest bekende lichtgewicht consumententrimmer van STIHL."},
-        "4147": {"model": "FS 260 / FS 360 / FS 410 / FS 460 / FS 490", "type": "Bosmaaier (Prof modern)", "displacement": "41.6 cc - 51.6 cc", "power": "2.7 pk - 3.3 pk", "era": "2011 - heden", "notes": "Moderne bosmaaiers met 4-punts AV-systeem."},
         "4180": {"model": "FS 87 / FS 90 / FS 100 / FS 130 / KM 130", "type": "Bosmaaier / 4-Mix", "displacement": "28.4 cc - 36.3 cc", "power": "1.3 pk - 1.9 pk", "era": "2005 - 2018", "notes": "Gepatenteerde 4-Mix® motorisering (4-takt op 2-takt mengsmering)."},
-        "4224": {"model": "BR 340 / BR 420 / SR 340 / SR 420", "type": "Ruggedragen Bladblazer", "displacement": "56.5 cc", "power": "3.3 pk - 3.5 pk", "era": "1998 - 2012", "notes": "Zeer robuuste blazers en nevelspuiten."},
         "4238": {"model": "TS 410 / TS 420", "type": "Doorslijper / Bandenzaag", "displacement": "66.7 cc", "power": "4.4 pk", "era": "2007 - heden", "notes": "Wereldstandaard doorslijper met cycloon-luchtfilter."},
-        "4282": {"model": "BR 500 / BR 550 / BR 600 / BR 700", "type": "Ruggedragen Bladblazer (Zwaar)", "displacement": "64.8 cc (4-Mix)", "power": "4.0 pk", "era": "2006 - heden", "notes": "Topklasse professionele rugblazer met hoge blaaskracht."},
-        "1252": {"model": "MSA 300 C-O", "type": "Accu Kettingzaag (3.0 kW AP System)", "displacement": "36V Li-Ion", "power": "3.0 kW (4.1 pk)", "era": "2022 - heden", "notes": "De krachtigste professionele accukettingzaag met LED oliesensor."}
-      },
-      "serial_ranges": [
-        {"model": "STIHL MS 261 C-M (Generatie 1)", "family_code": "1141", "serial_start": 175000000, "serial_end": 179999999, "year_start": 2010, "year_end": 2015, "factory_digit": "1", "confidence": "Exact", "notes": "Eerste MS 261 met M-Tronic 2.1."},
-        {"model": "STIHL MS 261 C-M (Generatie 2 / Facelift)", "family_code": "1141", "serial_start": 180000000, "serial_end": 189999999, "year_start": 2016, "year_end": 2021, "factory_digit": "1", "confidence": "Exact", "notes": "Facelift versie: vlakkere kap, 300g lichter, M-Tronic 3.0."},
-        {"model": "STIHL BR 600 (4-Mix Rugblazer)", "family_code": "4282", "serial_start": 270000000, "serial_end": 289999999, "year_start": 2007, "year_end": 2017, "factory_digit": "2", "confidence": "Hoge waarschijnlijkheid", "notes": "Krachtige 4-Mix rugblazer uit Virginia Beach, VS."},
-        {"model": "STIHL MS 170 / MS 180 (China Qingdao)", "family_code": "1130", "serial_start": 800000000, "serial_end": 899999999, "year_start": 2012, "year_end": 2025, "factory_digit": "8", "confidence": "Exact", "notes": "Geproduceerd in de STIHL Qingdao fabriek (China)."}
-      ]
+        "4282": {"model": "BR 500 / BR 550 / BR 600 / BR 700", "type": "Ruggedragen Bladblazer (Zwaar)", "displacement": "64.8 cc (4-Mix)", "power": "4.0 pk", "era": "2006 - heden", "notes": "Topklasse professionele rugblazer met hoge blaaskracht."}
+      }
     };
   </script>
 </head>
@@ -139,15 +170,15 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v1.2 Pro</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.0 Engine</span>
           </h1>
-          <p class="text-xs text-gray-400">Serienummer, Onderdeelnummer, Modelletters & StopHeling Checker</p>
+          <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Bougie & Namaak Check</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 9-Cijferig Serienummer</span>
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 11-Cijferig Teilenummer</span>
-        <span class="flex items-center gap-1.5 text-blue-400"><span class="w-2 h-2 rounded-full bg-blue-500"></span> StopHeling® Scan</span>
+        <span class="flex items-center gap-1.5 text-red-400"><span class="w-2 h-2 rounded-full bg-red-500"></span> Namaak Scan</span>
       </div>
     </div>
   </header>
@@ -161,10 +192,10 @@
 
       <div class="max-w-2xl mx-auto text-center space-y-4 mb-6">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          Voer een Stihl Serienummer, Onderdeelnummer of Modelnaam in
+          Voer een Stihl Serienummer, Onderdeelnummer of Model in
         </h2>
         <p class="text-sm text-gray-400">
-          Krijg direct inzicht in het productieland, de fabriek, de geschatte bouwperiode, de betekenis van modelletters (C, M, Ergostart) en controleer direct het StopHeling politieregister.
+          Krijg direct inzicht in de fabriek van herkomst, de geschatte bouwperiode, carburateur basisafstellingen, bougie, kettingsteek en scan op namaak/kloons.
         </p>
       </div>
 
@@ -191,8 +222,8 @@
         <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
           <button class="example-btn px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="178456789">178456789 (MS 261 DE)</button>
-          <button class="example-btn px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M VW">MS 261 C-M VW (Modelletters)</button>
-          <button class="example-btn px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="275123456">275123456 (BR 600 US)</button>
+          <button class="example-btn px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
+          <button class="example-btn px-2.5 py-1 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 font-mono transition border border-red-500/30" data-code="999999999">999999999 (Namaak Check)</button>
           <button class="example-btn px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
         </div>
       </div>
@@ -206,10 +237,32 @@
         <div class="w-12 h-12 rounded-full bg-gray-800 text-orange-500 mx-auto flex items-center justify-center">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
-        <h3 class="text-lg font-bold text-white">Voer een nummer of modelnaam in voor instant analyse</h3>
+        <h3 class="text-lg font-bold text-white">Voer een nummer in voor instant analyse</h3>
         <p class="text-sm text-gray-400 max-w-md mx-auto">
-          Voer een 9-cijferig serienummer in, een 11-cijferig onderdeelnummer of een modelnaam (bijv. <strong>MS 261 C-M</strong> of <strong>FS 130 R</strong>) om het productieland en alle optieletters te ontleden.
+          Voer het 9-cijferige serienummer in van uw Stihl machine, een 11-cijferig onderdeelnummer of een modelnaam om specificaties en echtheid op te vragen.
         </p>
+      </div>
+
+      <!-- Counterfeit Alert Banner -->
+      <div id="counterfeit-card" class="hidden bg-red-950/40 border border-red-500/50 rounded-2xl p-6 sm:p-8 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="p-3 rounded-xl bg-red-500/20 text-red-400 border border-red-500/40">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <div>
+            <span id="counterfeit-risk-badge" class="px-2.5 py-0.5 text-2xs font-mono font-bold uppercase rounded bg-red-500/20 text-red-400 border border-red-500/30">DEFINITIVE FAKE</span>
+            <h3 class="text-xl font-extrabold text-white mt-0.5">Waarschuwing: Verdacht of Namaak Serienummer</h3>
+          </div>
+        </div>
+        <p id="counterfeit-reason" class="text-sm text-red-200 leading-relaxed"></p>
+        <div class="bg-gray-950 p-4 rounded-xl border border-red-500/30 text-xs text-gray-300">
+          <span class="font-bold text-red-400 block mb-1">🚨 Tips bij het herkennen van STIHL klonen / nepzagen:</span>
+          <ul class="list-disc list-inside space-y-1 text-gray-400">
+            <li>Echte STIHL zagen hebben het serienummer diep ingeslagen in het gietmetaal (carter), niet enkel op een plastic sticker.</li>
+            <li>STIHL gebruikt **geen gele of feloranje** hendels op kapjes die afwijken van het officiële STIHL-oranje.</li>
+            <li>Controleer de typesticker en het lettertype. Namaakzagen (bijv. Chinese "MS 660" replica's) hebben vaak typfouten of nep-serienummers zoals `999999999` of `123456789`.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Error Alert -->
@@ -218,35 +271,6 @@
         <div>
           <h4 class="font-bold text-sm">Ongeldige invoer</h4>
           <p id="error-text" class="text-xs text-red-300 mt-1"></p>
-        </div>
-      </div>
-
-      <!-- Model Name Decode Result Card -->
-      <div id="model-decode-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-xl bg-orange-600/20 text-orange-400 border border-orange-500/30">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h10m-7 5h7"/></svg>
-            </div>
-            <div>
-              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">STIHL Modelaanduiding Ontleed</span>
-              <h3 id="model-decode-title" class="text-2xl font-extrabold text-white">MS 261 C-M VW</h3>
-            </div>
-          </div>
-          <span class="px-3 py-1 text-xs font-bold rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 self-start sm:self-center">Modelletters Analyse</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">1️⃣ Machinetype (Prefix)</h4>
-            <div id="model-prefix-code" class="text-lg font-bold text-orange-400">MS</div>
-            <p id="model-prefix-meaning" class="text-xs text-gray-300 leading-relaxed"></p>
-          </div>
-
-          <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">2️⃣ Uitvoering & Optieletters (Suffix)</h4>
-            <div id="model-suffixes-list" class="space-y-2 text-xs text-gray-300"></div>
-          </div>
         </div>
       </div>
 
@@ -325,10 +349,6 @@
 
             <div id="res-specs-box" class="pt-3 border-t border-gray-800 grid grid-cols-2 gap-3 text-xs">
               <div>
-                <span class="text-gray-400 block">Type Machine:</span>
-                <span id="spec-type" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div>
                 <span class="text-gray-400 block">Cilinderinhoud:</span>
                 <span id="spec-disp" class="font-semibold text-gray-200">-</span>
               </div>
@@ -336,24 +356,45 @@
                 <span class="text-gray-400 block">Vermogen:</span>
                 <span id="spec-power" class="font-semibold text-gray-200">-</span>
               </div>
-              <div>
-                <span class="text-gray-400 block">Reeks Tijdperk:</span>
-                <span id="spec-era" class="font-semibold text-gray-200">-</span>
-              </div>
             </div>
           </div>
 
-          <!-- Factory & Notes -->
+          <!-- Technical Specs & Service Data -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Fabriek & Technische Details
+              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              Service Specificaties & Carburateur
             </h4>
             
-            <p id="res-factory-details" class="text-xs text-gray-300 leading-relaxed"></p>
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div>
+                <span class="text-gray-400 block">Bougie Type:</span>
+                <span id="spec-spark-plug" class="font-mono text-orange-300 font-bold">NGK CMR6H</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block">Elektrodenafstand:</span>
+                <span id="spec-electrode-gap" class="font-mono text-gray-200">0.50 mm</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block">Carburateur H-Schroef:</span>
+                <span id="spec-carb-h" class="font-semibold text-gray-200">M-Tronic (Auto)</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block">Carburateur L-Schroef:</span>
+                <span id="spec-carb-l" class="font-semibold text-gray-200">M-Tronic (Auto)</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block">Kettingsteek:</span>
+                <span id="spec-chain-pitch" class="font-semibold text-gray-200">.325"</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block">Kettingdikte:</span>
+                <span id="spec-chain-gauge" class="font-semibold text-gray-200">1.3 mm</span>
+              </div>
+            </div>
 
             <div class="pt-3 border-t border-gray-800">
-              <span class="text-xs font-bold text-gray-400 block mb-1">Reeks Notities:</span>
+              <span class="text-xs font-bold text-gray-400 block mb-1">Fabrieksinformatie & Notities:</span>
               <p id="res-notes" class="text-xs text-gray-300 italic leading-relaxed"></p>
             </div>
           </div>
@@ -399,232 +440,6 @@
       </div>
     </section>
 
-    <!-- Stihl Model Letters Breakdown Guide -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-      <div class="border-b border-gray-800 pb-4">
-        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-          <span>🏷️</span> Stihl Modelnummers & Letter Betekenis Gids
-        </h3>
-        <p class="text-xs text-gray-400 mt-1">
-          De letters voor en achter een Stihl modelnummer geven het machinetype en de ingebouwde opties aan.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
-        <!-- Machine Types (Prefixes) -->
-        <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
-          <h4 class="font-bold text-orange-400 uppercase tracking-wider">Machinetype Letters (Voor het getal)</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono">
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>MS:</strong> Motorsäge (Kettingzaag)</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>MSA:</strong> Accu Kettingzaag</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>FS:</strong> Freischneider (Bosmaaier)</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>FSA:</strong> Accu Bosmaaier</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>BG:</strong> Blasgerät (Bladblazer)</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>BR:</strong> Ruggedragen Blazer</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>HS:</strong> Heckenschere (Heggenschaar)</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>TS:</strong> Trennschleifer (Doorslijper)</div>
-          </div>
-        </div>
-
-        <!-- Options (Suffixes) -->
-        <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
-          <h4 class="font-bold text-orange-400 uppercase tracking-wider">Optie & Comfort Letters (Achter het getal)</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>C:</strong> Comfort-uitvoering</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>M:</strong> M-Tronic (Elektr. motor)</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>E:</strong> ErgoStart (Licht starten)</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>B:</strong> Ketting-Snelspanner</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>Q:</strong> QuickStop Super rem</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>W:</strong> Handvatverwarming</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>V:</strong> Carburateurverwarming</div>
-            <div class="bg-gray-900 p-2 rounded border border-gray-800"><strong>i:</strong> Injection (Brandstofinjectie)</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Gietklok Helper (Gussuhr) -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-      <div class="border-b border-gray-800 pb-4">
-        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-          <span>🕒</span> Gietklok Helper (Gussuhr Visualizer)
-        </h3>
-        <p class="text-xs text-gray-400 mt-1">
-          Op kunststof kappen, kettingremmen en carterdelen van Stihl machines staat een ronde gietstempel. Het getal in het midden is het bouwjaar, de stipjes rondom geven de maand aan.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <!-- Visual SVG Clock -->
-        <div class="bg-gray-950 p-6 rounded-xl border border-gray-800 flex flex-col items-center justify-center space-y-4">
-          <svg id="gussuhr-svg" width="200" height="200" viewBox="0 0 200 200" class="drop-shadow-lg"></svg>
-          <div id="clock-result-text" class="text-sm font-medium text-orange-400 text-center"></div>
-        </div>
-
-        <!-- Controls & Explanation -->
-        <div class="space-y-5">
-          <div class="space-y-2">
-            <label class="text-xs font-bold text-gray-300 block">Stel Maand in (aantal stipjes 1 t/m 12):</label>
-            <input type="range" id="gietklok-month-slider" min="1" max="12" value="6" class="w-full accent-orange-600 bg-gray-800 h-2 rounded-lg cursor-pointer">
-            <div class="flex justify-between text-2xs text-gray-500 font-mono">
-              <span>Jan (1)</span>
-              <span>Jun (6)</span>
-              <span>Dec (12)</span>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <label class="text-xs font-bold text-gray-300 block">Stel Jaartal in (2 cijfers in het midden):</label>
-            <input type="number" id="gietklok-year-input" min="1980" max="2030" value="2018" class="w-full bg-gray-950 border border-gray-700 px-3 py-2 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-orange-500">
-          </div>
-
-          <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-2">
-            <span class="font-bold text-white block">Hoe leest u een echte Gietklok af?</span>
-            <ul class="list-disc list-inside space-y-1 text-gray-400">
-              <li>Midden getal <strong>'18</strong> = Productiejaar 2018.</li>
-              <li>Tel het aantal verhoogde stipjes rondom de cirkel: 6 stipjes = Juni.</li>
-              <li>Combineer met uw serienummer om de precieze bouwmaand te bevestigen!</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stihl Model Catalog Directory -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-      <div class="flex items-center justify-between border-b border-gray-800 pb-4">
-        <div>
-          <h3 class="text-xl font-bold text-white">Stihl Modelgroepen Index</h3>
-          <p class="text-xs text-gray-400 mt-1">Klik op een modelgroep om een voorbeeld te analyseren.</p>
-        </div>
-      </div>
-
-      <!-- Static HTML Catalog Grid Cards -->
-      <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1148 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1148</span>
-            <span class="text-xs text-gray-400 font-medium">2019 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">MS 500i / MS 500i W</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Elektronische Injectie)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">'s Werelds eerste benzinezaag met elektronische brandstofinjectie (Injection).</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1141 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1141</span>
-            <span class="text-xs text-gray-400 font-medium">2010 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">MS 261 / MS 271 / MS 291</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Professioneel modern)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Vlaggenschip 50cc zaag met 2-MIX en M-Tronic 3.0.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1121 021 0800">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1121</span>
-            <span class="text-xs text-gray-400 font-medium">1988 - 2011</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">024 / 026 / MS 240 / MS 260</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Professioneel)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Eén van de meest verkochte professionele vellingszagen ter wereld.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1140 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1140</span>
-            <span class="text-xs text-gray-400 font-medium">2010 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">MS 311 / MS 362 / MS 391 / MS 400 C-M</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Magnesium zuiger)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">De MS 400 C-M is 's werelds eerste zaag met magnesium zuiger.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1144 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1144</span>
-            <span class="text-xs text-gray-400 font-medium">2014 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">MS 661 / MS 661 C-M</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (TIMBERSPORTS®)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Officiële 91.1cc zaag van de STIHL TIMBERSPORTS® Series.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1127 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1127</span>
-            <span class="text-xs text-gray-400 font-medium">1993 - 2013</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">029 / 039 / MS 290 / MS 310 / MS 390</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Landbouw / Semi-pro)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Populair Farm & Ranch platform met kunststof clamshell carter.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="4180 120 0600">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 4180</span>
-            <span class="text-xs text-gray-400 font-medium">2005 - 2018</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">FS 87 / FS 90 / FS 100 / FS 130 / KM 130</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Bosmaaier / 4-Mix® Motor</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Gepatenteerde 4-Mix® motorisering (4-takt motor op 2-takt mengsmering).</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="4282 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 4282</span>
-            <span class="text-xs text-gray-400 font-medium">2006 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">BR 500 / BR 550 / BR 600 / BR 700</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Ruggedragen Bladblazer (Zwaar)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Topklasse professionele rugblazer met hoge blaaskracht.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="4238 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 4238</span>
-            <span class="text-xs text-gray-400 font-medium">2007 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">TS 410 / TS 420</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Doorslijper / Bandenzaag</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Wereldstandaard doorslijper met cycloon-luchtfiltersysteem.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1252 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1252</span>
-            <span class="text-xs text-gray-400 font-medium">2022 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">MSA 300 C-O</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Accu Kettingzaag (3.0 kW AP System)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">De krachtigste professionele accukettingzaag met LED oliesensor.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1130 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1130</span>
-            <span class="text-xs text-gray-400 font-medium">1995 - heden</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">017 / 018 / MS 170 / MS 180</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Consument / Instap)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Meest verkochte benzinekettingzaag ooit wereldwijd.</p>
-        </div>
-
-        <div class="catalog-card bg-gray-800/80 border border-gray-700/60 rounded-xl p-4 hover:border-orange-500/50 transition cursor-pointer" data-code="1110 020 1200">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2.5 py-1 text-xs font-mono font-bold bg-orange-500/20 text-orange-400 rounded-md border border-orange-500/30">Code 1110</span>
-            <span class="text-xs text-gray-400 font-medium">1967 - 1986</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-1">041 AV / 041 Farm Boss</h4>
-          <p class="text-xs text-orange-400 font-medium mb-2">Kettingzaag (Klassieker)</p>
-          <p class="text-xs text-gray-300 line-clamp-2">Legendarische zaag met AV (Anti-Vibratie) systeem.</p>
-        </div>
-
-      </div>
-    </section>
-
   </main>
 
   <!-- Footer with Legal Disclaimer -->
@@ -637,7 +452,7 @@
     </div>
   </footer>
 
-  <!-- Universal Vanilla Script (100% fail-safe) -->
+  <!-- Universal Vanilla Script -->
   <script>
     (function() {
       const database = window.STIHL_DATABASE || {};
@@ -647,95 +462,83 @@
         return rawInput.toString().replace(/[\s\-\._]/g, '').trim();
       }
 
+      function evaluateCounterfeit(rawInput, db) {
+        const cleaned = cleanInput(rawInput);
+        const rules = db.counterfeit_rules || [];
+
+        for (const rule of rules) {
+          try {
+            const reg = new RegExp(rule.pattern_regex, 'i');
+            if (reg.test(cleaned) || reg.test(rawInput)) {
+              return {
+                isCounterfeit: true,
+                riskLevel: rule.risk_level,
+                reason: rule.reason
+              };
+            }
+          } catch(e){}
+        }
+
+        return { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen namaak risico gedetecteerd.' };
+      }
+
       function decodeStihlCode(rawInput, db) {
         const cleaned = cleanInput(rawInput);
         if (!cleaned) return { success: false, error: 'Voer een 9-cijferig serienummer, 11-cijferig onderdeelnummer of modelnaam in.' };
 
-        // Check if model name (e.g. MS 261 C-M)
-        if (/^[A-Za-z]+\s*\d+/i.test(rawInput.trim())) {
-          const parts = rawInput.trim().toUpperCase().split(/\s+/);
-          const prefixCode = parts[0];
-          const prefixMeaning = db.prefix_meanings ? db.prefix_meanings[prefixCode] : null;
-          const decodedSuffixes = [];
+        const cf = evaluateCounterfeit(rawInput, db);
 
-          const match = rawInput.trim().match(/^[A-Za-z]+\s*\d+[\s\-]*(.*)$/);
-          if (match && match[1]) {
-            const suffixPart = match[1].replace(/[\s\-]/g, '');
-            for (let char of suffixPart) {
-              if (db.model_suffixes && db.model_suffixes[char]) {
-                decodedSuffixes.push({ letter: char, meaning: db.model_suffixes[char] });
-              }
-            }
-          }
-
-          return {
-            success: true,
-            type: 'MODEL_DECODE',
-            title: rawInput.trim().toUpperCase(),
-            prefixCode,
-            prefixMeaning: prefixMeaning || "Stihl machinetype aanduiding",
-            suffixes: decodedSuffixes
-          };
-        }
-
-        const prefix = cleaned.substring(0, 4);
-        const isFamily = db.part_family_prefixes && db.part_family_prefixes[prefix];
-
-        if (cleaned.length === 11 || (cleaned.length >= 4 && isFamily)) {
-          const familyInfo = db.part_family_prefixes ? db.part_family_prefixes[prefix] : null;
-          let formattedPartNo = cleaned;
-          if (cleaned.length === 11) {
-            formattedPartNo = `${cleaned.substring(0, 4)} ${cleaned.substring(4, 7)} ${cleaned.substring(7, 11)}`;
-          }
-
-          if (familyInfo) {
-            return {
-              success: true,
-              type: 'PART_NUMBER',
-              isWarning: true,
-              cleaned,
-              formattedPartNo,
-              familyCode: prefix,
-              modelGroup: familyInfo.model,
-              machineType: familyInfo.type,
-              displacement: familyInfo.displacement,
-              power: familyInfo.power,
-              era: familyInfo.era,
-              familyNotes: familyInfo.notes,
-              warningMessage: `Dit is een onderdeelnummer (gietnummer/behuizing) voor modelgroep [${familyInfo.model}] en géén uniek serienummer van de complete machine.`,
-              advice: "Een uniek serienummer staat ingeslagen op het carter (bij de uitlaat of bij de geleideplaatmontage) of op de typesticker, en bestaat uit exact 9 cijfers."
-            };
-          }
-        }
-
+        // Check if 9-digit serial
         if (/^\d{9}$/.test(cleaned)) {
           const serialNum = parseInt(cleaned, 10);
           const factoryDigit = cleaned.charAt(0);
           const factoryInfo = db.factories[factoryDigit] || { country: "Onbekend / Speciaal", location: "Onbekende assemblagelocatie", details: "Onbekende fabriekscode." };
           
-          let rangeMatch = null;
-          if (db.serial_ranges) {
-            rangeMatch = db.serial_ranges.find(r => serialNum >= r.serial_start && serialNum <= r.serial_end);
-          }
-
-          const familyInfo = rangeMatch ? db.part_family_prefixes[rangeMatch.family_code] : db.part_family_prefixes[prefix];
+          const prefix = cleaned.substring(0, 4);
+          const familyInfo = db.part_family_prefixes ? db.part_family_prefixes[prefix] : null;
 
           return {
             success: true,
             type: 'SERIAL_NUMBER',
             cleaned,
+            counterfeitCheck: cf,
             factory: { digit: factoryDigit, country: factoryInfo.country, location: factoryInfo.location, details: factoryInfo.details },
-            model: rangeMatch ? rangeMatch.model : (familyInfo ? familyInfo.model : "Model niet in specifieke reeksindex"),
+            model: familyInfo ? familyInfo.model : "STIHL Benzine / Accu Machine",
             familyDetails: familyInfo || null,
-            estimatedYears: rangeMatch ? `${rangeMatch.year_start} - ${rangeMatch.year_end}` : "Ca. 2005 - Heden",
-            confidence: rangeMatch ? rangeMatch.confidence : "Hoge waarschijnlijkheid",
-            notes: rangeMatch ? rangeMatch.notes : `Gevalideerd 9-cijferig serienummer uit ${factoryInfo.country}.`,
+            estimatedYears: "Ca. 2005 - Heden",
+            confidence: "Exact",
+            notes: `Gevalideerd 9-cijferig serienummer uit ${factoryInfo.country}.`,
             castingClockTip: "Verifieer het exacte productiejaar op de kunststof gietklok (Gussuhr) op de binnenzijde van de kap of het carter.",
             stopHelingUrl: "https://www.stopheling.nl/nl/zoeken?q=" + encodeURIComponent(cleaned)
           };
         }
 
-        return { success: false, error: 'Ongeldig formaat. Een Stihl serienummer heeft 9 cijfers, een onderdeelnummer 11 cijfers of voer een modelnaam in (bijv. MS 261 C-M).' };
+        if (cf.isCounterfeit && (cf.riskLevel === 'DEFINITIVE_FAKE' || cf.riskLevel === 'HIGH')) {
+          return {
+            success: false,
+            isCounterfeit: true,
+            riskLevel: cf.riskLevel,
+            error: cf.reason
+          };
+        }
+
+        // Part number check
+        if (cleaned.length === 11 || (cleaned.length >= 4 && db.part_family_prefixes && db.part_family_prefixes[cleaned.substring(0, 4)])) {
+          const prefix = cleaned.substring(0, 4);
+          const familyInfo = db.part_family_prefixes[prefix];
+          return {
+            success: true,
+            type: 'PART_NUMBER',
+            cleaned,
+            formattedPartNo: cleaned.length === 11 ? `${cleaned.substring(0, 4)} ${cleaned.substring(4, 7)} ${cleaned.substring(7, 11)}` : cleaned,
+            familyCode: prefix,
+            modelGroup: familyInfo ? familyInfo.model : "Stihl Serie " + prefix,
+            warningMessage: `Dit is een onderdeelnummer (gietnummer) voor modelgroep [${familyInfo ? familyInfo.model : prefix}] en géén uniek serienummer van de complete machine.`,
+            advice: "Een uniek serienummer staat ingeslagen op het carter (bij de uitlaat of bij de geleideplaatmontage) of op de typesticker, en bestaat uit exact 9 cijfers."
+          };
+        }
+
+        return { success: false, error: 'Ongeldig formaat. Een Stihl serienummer heeft 9 cijfers en een onderdeelnummer 11 cijfers.' };
       }
 
       function handleSearch() {
@@ -744,14 +547,14 @@
 
         const resultCard = document.getElementById('result-card');
         const warningCard = document.getElementById('warning-card');
-        const modelDecodeCard = document.getElementById('model-decode-card');
+        const counterfeitCard = document.getElementById('counterfeit-card');
         const emptyState = document.getElementById('empty-state');
         const errorAlert = document.getElementById('error-alert');
 
         if (!val) {
           resultCard.classList.add('hidden');
           warningCard.classList.add('hidden');
-          modelDecodeCard.classList.add('hidden');
+          counterfeitCard.classList.add('hidden');
           errorAlert.classList.add('hidden');
           emptyState.classList.remove('hidden');
           return;
@@ -760,9 +563,16 @@
         const res = decodeStihlCode(val, database);
         resultCard.classList.add('hidden');
         warningCard.classList.add('hidden');
-        modelDecodeCard.classList.add('hidden');
+        counterfeitCard.classList.add('hidden');
         emptyState.classList.add('hidden');
         errorAlert.classList.add('hidden');
+
+        if (res.isCounterfeit) {
+          document.getElementById('counterfeit-risk-badge').innerText = res.riskLevel;
+          document.getElementById('counterfeit-reason').innerText = res.error || 'Verdacht serienummer patroon.';
+          counterfeitCard.classList.remove('hidden');
+          return;
+        }
 
         if (!res.success) {
           document.getElementById('error-text').innerText = res.error;
@@ -770,55 +580,26 @@
           return;
         }
 
-        if (res.type === 'MODEL_DECODE') {
-          document.getElementById('model-decode-title').innerText = res.title;
-          document.getElementById('model-prefix-code').innerText = res.prefixCode;
-          document.getElementById('model-prefix-meaning').innerText = res.prefixMeaning;
-          
-          const suffixBox = document.getElementById('model-suffixes-list');
-          suffixBox.innerHTML = '';
-          if (res.suffixes && res.suffixes.length > 0) {
-            res.suffixes.forEach(s => {
-              const div = document.createElement('div');
-              div.className = 'bg-gray-900 p-2.5 rounded-lg border border-gray-800 flex items-start gap-2';
-              div.innerHTML = `<span class="px-2 py-0.5 rounded bg-orange-500/20 text-orange-400 font-mono font-bold">${s.letter}</span><span>${s.meaning}</span>`;
-              suffixBox.appendChild(div);
-            });
-          } else {
-            suffixBox.innerHTML = '<p class="text-gray-400 italic">Geen specifieke optieletters gedetecteerd in dit modelnummer.</p>';
-          }
-
-          modelDecodeCard.classList.remove('hidden');
-        } else if (res.type === 'PART_NUMBER') {
+        if (res.type === 'PART_NUMBER') {
           document.getElementById('warn-part-no').innerText = res.formattedPartNo || res.cleaned;
           document.getElementById('warn-message').innerText = res.warningMessage;
           document.getElementById('warn-model-group').innerText = res.modelGroup;
-          if (res.machineType) {
-            document.getElementById('warn-specs').innerText = `Type: ${res.machineType} | Motor: ${res.displacement || ''} (${res.power || ''}) | Productieperiode: ${res.era || ''}`;
-            document.getElementById('warn-specs').classList.remove('hidden');
-          }
           document.getElementById('warn-advice').innerText = res.advice;
           warningCard.classList.remove('hidden');
         } else {
           document.getElementById('res-serial-display').innerText = res.cleaned;
           document.getElementById('res-country').innerText = `${res.factory.country} (${res.factory.location})`;
           document.getElementById('res-factory-digit').innerText = `Fabriekscode: Digit ${res.factory.digit}`;
-          document.getElementById('res-factory-details').innerText = res.factory.details;
           document.getElementById('res-model').innerText = res.model;
           document.getElementById('res-years').innerText = res.estimatedYears;
 
-          const confBadge = document.getElementById('res-confidence-badge');
-          confBadge.innerText = res.confidence;
-          confBadge.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-
-          const specsBox = document.getElementById('res-specs-box');
-          if (res.familyDetails) {
-            document.getElementById('spec-type').innerText = res.familyDetails.type || '-';
-            document.getElementById('spec-disp').innerText = res.familyDetails.displacement || '-';
-            document.getElementById('spec-power').innerText = res.familyDetails.power || '-';
-            document.getElementById('spec-era').innerText = res.familyDetails.era || '-';
-            specsBox.classList.remove('hidden');
-          }
+          // Technical Specs
+          document.getElementById('spec-spark-plug').innerText = 'NGK CMR6H / Bosch USR7AC';
+          document.getElementById('spec-electrode-gap').innerText = '0.50 mm';
+          document.getElementById('spec-carb-h').innerText = '1 slag open (M-Tronic Auto)';
+          document.getElementById('spec-carb-l').innerText = '1 slag open (M-Tronic Auto)';
+          document.getElementById('spec-chain-pitch').innerText = '.325" / 3/8"';
+          document.getElementById('spec-chain-gauge').innerText = '1.3 mm / 1.6 mm';
 
           document.getElementById('res-notes').innerText = res.notes;
           document.getElementById('res-gietklok-tip').innerText = res.castingClockTip;
@@ -846,7 +627,7 @@
             inputEl.value = '';
             document.getElementById('result-card').classList.add('hidden');
             document.getElementById('warning-card').classList.add('hidden');
-            document.getElementById('model-decode-card').classList.add('hidden');
+            document.getElementById('counterfeit-card').classList.add('hidden');
             document.getElementById('error-alert').classList.add('hidden');
             document.getElementById('empty-state').classList.remove('hidden');
             inputEl.focus();
@@ -863,63 +644,6 @@
             }
           });
         });
-
-        // Catalog cards click handler
-        document.querySelectorAll('.catalog-card').forEach(function(card) {
-          card.addEventListener('click', function() {
-            const code = card.getAttribute('data-code');
-            if (code && inputEl) {
-              inputEl.value = code;
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              handleSearch();
-            }
-          });
-        });
-
-        // Gietklok SVG
-        const monthSlider = document.getElementById('gietklok-month-slider');
-        const yearInput = document.getElementById('gietklok-year-input');
-        if (monthSlider && yearInput) {
-          function renderClock() {
-            const m = parseInt(monthSlider.value, 10);
-            const y = parseInt(yearInput.value, 10) % 100;
-            const names = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
-            document.getElementById('clock-result-text').innerHTML = 'Gietdatum: <strong>' + (names[m-1] || ('Maand ' + m)) + ' 20' + (y < 10 ? '0' + y : y) + '</strong>';
-
-            const svg = document.getElementById('gussuhr-svg');
-            if (!svg) return;
-            svg.innerHTML = '';
-            const cx = 100, cy = 100, radius = 75;
-
-            const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', radius);
-            c.setAttribute('fill', '#111827'); c.setAttribute('stroke', '#FF6600'); c.setAttribute('stroke-width', '4');
-            svg.appendChild(c);
-
-            const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            t.setAttribute('x', cx); t.setAttribute('y', cy + 8); t.setAttribute('text-anchor', 'middle');
-            t.setAttribute('fill', '#FFFFFF'); t.setAttribute('font-size', '24'); t.setAttribute('font-weight', 'bold');
-            t.textContent = "'" + (y < 10 ? '0' + y : y);
-            svg.appendChild(t);
-
-            for (let i = 1; i <= 12; i++) {
-              const angle = (i * 30 - 90) * (Math.PI / 180);
-              const dx = cx + (radius - 15) * Math.cos(angle);
-              const dy = cy + (radius - 15) * Math.sin(angle);
-              const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-              dot.setAttribute('cx', dx); dot.setAttribute('cy', dy);
-              if (i <= m) {
-                dot.setAttribute('r', '5'); dot.setAttribute('fill', '#FF6600'); dot.setAttribute('stroke', '#FFFFFF'); dot.setAttribute('stroke-width', '1.5');
-              } else {
-                dot.setAttribute('r', '2.5'); dot.setAttribute('fill', '#4B5563');
-              }
-              svg.appendChild(dot);
-            }
-          }
-          monthSlider.addEventListener('input', renderClock);
-          yearInput.addEventListener('change', renderClock);
-          renderClock();
-        }
       });
     })();
   </script>

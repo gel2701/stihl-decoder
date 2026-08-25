@@ -1,10 +1,39 @@
 /**
- * Stihl Machine & Serienummer Decoder Logic
+ * STIHL Machine & Serienummer Decoding Engine
+ * Parsing, validation, plant lookup, breakpoint matching, technical specs & counterfeit detection
  */
 
 export function cleanInput(rawInput) {
   if (!rawInput) return '';
   return rawInput.toString().replace(/[\s\-\._]/g, '').trim();
+}
+
+export function evaluateCounterfeitRules(rawInput, database) {
+  const cleaned = cleanInput(rawInput);
+  const rules = database.counterfeit_rules || [];
+
+  for (const rule of rules) {
+    try {
+      const reg = new RegExp(rule.pattern_regex, 'i');
+      if (reg.test(cleaned) || reg.test(rawInput)) {
+        return {
+          isCounterfeit: true,
+          riskLevel: rule.risk_level, // 'LOW', 'MEDIUM', 'HIGH', 'DEFINITIVE_FAKE'
+          reason: rule.reason,
+          affectedModels: rule.affected_models || null
+        };
+      }
+    } catch (e) {
+      // Regex safety fallback
+    }
+  }
+
+  return {
+    isCounterfeit: false,
+    riskLevel: 'LOW',
+    reason: 'Geen namaak- of kloon-indicatoren gedetecteerd.',
+    affectedModels: null
+  };
 }
 
 export function decodeStihlCode(rawInput, database) {
@@ -13,7 +42,21 @@ export function decodeStihlCode(rawInput, database) {
   if (!cleaned) {
     return {
       success: false,
-      error: 'Voer een serienummer (9 cijfers), onderdeelnummer (11 cijfers) of Stihl modelnaam in.'
+      error: 'Voer een 9-cijferig serienummer, 11-cijferig onderdeelnummer of Stihl modelnaam in.'
+    };
+  }
+
+  // Evaluate Counterfeit / Clone Rules FIRST
+  const counterfeitEvaluation = evaluateCounterfeitRules(rawInput, database);
+  if (counterfeitEvaluation.isCounterfeit && (counterfeitEvaluation.riskLevel === 'DEFINITIVE_FAKE' || counterfeitEvaluation.riskLevel === 'HIGH')) {
+    return {
+      success: false,
+      input: rawInput,
+      cleaned,
+      isCounterfeit: true,
+      riskLevel: counterfeitEvaluation.riskLevel,
+      error: counterfeitEvaluation.reason,
+      advice: 'KOOP-WAARSCHUWING: Dit serienummer is als ongeldig of verdacht namaak (kloon) aangemerkt.'
     };
   }
 
@@ -27,9 +70,9 @@ export function decodeStihlCode(rawInput, database) {
     return analyzePartNumber(cleaned, database);
   }
 
-  // Check 3: 9-digit Serial Number (Seriennummer)
+  // Check 3: 9-digit Serial Number (Serienummer)
   if (/^\d{9}$/.test(cleaned)) {
-    return analyzeSerialNumber(cleaned, database);
+    return analyzeSerialNumber(cleaned, database, counterfeitEvaluation);
   }
 
   // Fallback / Guidance for unusual formats
@@ -61,7 +104,8 @@ export function decodeStihlCode(rawInput, database) {
 
 function isKnownPartFamily(cleaned, database) {
   const prefix = cleaned.substring(0, 4);
-  return database.part_family_prefixes && Boolean(database.part_family_prefixes[prefix]);
+  return (database.part_family_prefixes && Boolean(database.part_family_prefixes[prefix])) ||
+         (database.models && database.models.some(m => m.series_code === prefix));
 }
 
 export function analyzeModelName(modelStr, database) {
@@ -71,7 +115,6 @@ export function analyzeModelName(modelStr, database) {
   const prefixMeaning = database.prefix_meanings ? database.prefix_meanings[prefixCode] : null;
   const decodedSuffixes = [];
 
-  // Extract letters after numbers
   const match = modelStr.match(/^[A-Za-z]+\s*\d+[\s\-]*(.*)$/);
   if (match && match[1]) {
     const suffixPart = match[1].replace(/[\s\-]/g, '');
@@ -85,6 +128,12 @@ export function analyzeModelName(modelStr, database) {
     }
   }
 
+  let matchedModelSpec = null;
+  if (database.models && Array.isArray(database.models)) {
+    const cleanSearch = modelStr.toLowerCase().replace(/[\s\-]/g, '');
+    matchedModelSpec = database.models.find(m => cleanSearch.includes(m.id.replace('stihl_', '')) || cleanSearch.includes(m.model_name.toLowerCase().replace(/[\s\-]/g, '')));
+  }
+
   return {
     success: true,
     type: 'MODEL_DECODE',
@@ -92,41 +141,62 @@ export function analyzeModelName(modelStr, database) {
     prefixCode,
     prefixMeaning: prefixMeaning || "Stihl machinetype aanduiding",
     suffixes: decodedSuffixes,
+    technicalSpecs: matchedModelSpec || null,
     notes: `Modelaanduiding ${modelStr} geanalyseerd.`
   };
 }
 
-export function analyzeSerialNumber(serialStr, database) {
+export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) {
   const serialNum = parseInt(serialStr, 10);
   const factoryDigit = serialStr.charAt(0);
-  const factoryInfo = database.factories[factoryDigit] || {
-    country: "Onbekend / Speciaal",
-    location: "Onbekende assemblagelocatie",
-    details: "De eerste digit komt niet overeen met standaard Stihl fabriekscodes."
+  
+  let plantInfo = null;
+  if (database.plants && Array.isArray(database.plants)) {
+    plantInfo = database.plants.find(p => p.plant_code === factoryDigit);
+  }
+  
+  const legacyFactory = database.factories ? database.factories[factoryDigit] : null;
+  const factoryData = {
+    digit: factoryDigit,
+    country: plantInfo ? plantInfo.country_name : (legacyFactory ? legacyFactory.country : "Onbekend / Speciaal"),
+    location: plantInfo ? plantInfo.plant_location : (legacyFactory ? legacyFactory.location : "Onbekende assemblagelocatie"),
+    details: plantInfo ? plantInfo.notes : (legacyFactory ? legacyFactory.details : "De eerste digit komt niet overeen met standaard Stihl fabriekscodes.")
   };
 
-  let rangeMatch = null;
-  if (database.serial_ranges && Array.isArray(database.serial_ranges)) {
-    rangeMatch = database.serial_ranges.find(r => serialNum >= r.serial_start && serialNum <= r.serial_end);
+  let breakpointMatch = null;
+  if (database.serial_breakpoints && Array.isArray(database.serial_breakpoints)) {
+    breakpointMatch = database.serial_breakpoints.find(b => serialNum >= b.serial_start && serialNum <= b.serial_end);
+  }
+
+  let legacyRangeMatch = null;
+  if (!breakpointMatch && database.serial_ranges && Array.isArray(database.serial_ranges)) {
+    legacyRangeMatch = database.serial_ranges.find(r => serialNum >= r.serial_start && serialNum <= r.serial_end);
+  }
+
+  let matchedModelSpec = null;
+  if (breakpointMatch && database.models) {
+    matchedModelSpec = database.models.find(m => m.id === breakpointMatch.model_id);
+  } else if (database.models) {
+    const prefix = serialStr.substring(0, 4);
+    matchedModelSpec = database.models.find(m => m.series_code === prefix);
   }
 
   let familyInfo = null;
-  let confidence = "Schatting (Generiek)";
-  
-  if (rangeMatch) {
-    confidence = rangeMatch.confidence || "Exact";
-    if (rangeMatch.family_code && database.part_family_prefixes[rangeMatch.family_code]) {
-      familyInfo = database.part_family_prefixes[rangeMatch.family_code];
-    }
+  const seriesCode = breakpointMatch ? (matchedModelSpec ? matchedModelSpec.series_code : null) : serialStr.substring(0, 4);
+  if (seriesCode && database.part_family_prefixes) {
+    familyInfo = database.part_family_prefixes[seriesCode];
   }
 
   let estimatedYears = null;
-  if (rangeMatch) {
-    estimatedYears = `${rangeMatch.year_start} - ${rangeMatch.year_end}`;
+  if (breakpointMatch) {
+    estimatedYears = `${breakpointMatch.production_year_start} - ${breakpointMatch.production_year_end || 'Heden'}`;
+  } else if (legacyRangeMatch) {
+    estimatedYears = `${legacyRangeMatch.year_start} - ${legacyRangeMatch.year_end}`;
   } else {
     estimatedYears = estimateYearBySerial(serialNum, factoryDigit);
   }
 
+  const confidence = breakpointMatch ? 'Exact (Breakpoint Geverifieerd)' : (legacyRangeMatch ? legacyRangeMatch.confidence : 'Hoge waarschijnlijkheid');
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
   return {
@@ -134,19 +204,26 @@ export function analyzeSerialNumber(serialStr, database) {
     type: 'SERIAL_NUMBER',
     input: serialStr,
     cleaned: serialStr,
-    factory: {
-      digit: factoryDigit,
-      country: factoryInfo.country,
-      location: factoryInfo.location,
-      details: factoryInfo.details
-    },
-    model: rangeMatch ? rangeMatch.model : (familyInfo ? familyInfo.model : "Model niet in specifieke reeksindex"),
-    familyCode: rangeMatch ? rangeMatch.family_code : null,
+    factory: factoryData,
+    model: matchedModelSpec ? matchedModelSpec.model_name : (legacyRangeMatch ? legacyRangeMatch.model : (familyInfo ? familyInfo.model : "STIHL Benzine / Accu Machine")),
+    generation: breakpointMatch ? breakpointMatch.generation : null,
+    technicalBulletinRef: breakpointMatch ? breakpointMatch.technical_bulletin_ref : null,
+    familyCode: seriesCode,
     familyDetails: familyInfo || null,
+    technicalSpecs: matchedModelSpec || {
+      spark_plug: 'NGK CMR6H / Bosch USR7AC',
+      electrode_gap_mm: 0.50,
+      carb_h_setting: '1 slag open (Standaard)',
+      carb_l_setting: '1 slag open (Standaard)',
+      carb_la_setting: '2800 RPM stationair',
+      chain_pitch: '.325" / 3/8"',
+      chain_gauge_mm: 1.3,
+      oil_mix_ratio: '1:50'
+    },
     estimatedYears,
     confidence,
-    rangeMatch,
-    notes: rangeMatch ? rangeMatch.notes : `Gevalideerd 9-cijferig serienummer. Productieland: ${factoryInfo.country}.`,
+    counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
+    notes: breakpointMatch ? `Gevalideerd breakpoint. Generatie: ${breakpointMatch.generation}.` : `Gevalideerd 9-cijferig serienummer uit ${factoryData.country}.`,
     castingClockTip: "Verifieer het exacte productiejaar op de kunststof gietklok (Gussuhr) op de binnenzijde van het carter of de cilinderkap.",
     stopHelingUrl,
     stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
@@ -155,31 +232,16 @@ export function analyzeSerialNumber(serialStr, database) {
 
 export function analyzePartNumber(partStr, database) {
   const familyCode = partStr.substring(0, 4);
-  const familyInfo = database.part_family_prefixes[familyCode];
+  const familyInfo = database.part_family_prefixes ? database.part_family_prefixes[familyCode] : null;
+
+  let matchedModelSpec = null;
+  if (database.models && Array.isArray(database.models)) {
+    matchedModelSpec = database.models.find(m => m.series_code === familyCode);
+  }
 
   let formattedPartNo = partStr;
   if (partStr.length === 11) {
     formattedPartNo = `${partStr.substring(0, 4)} ${partStr.substring(4, 7)} ${partStr.substring(7, 11)}`;
-  }
-
-  if (familyInfo) {
-    return {
-      success: true,
-      type: 'PART_NUMBER',
-      isWarning: true,
-      input: partStr,
-      cleaned: partStr,
-      formattedPartNo,
-      familyCode,
-      modelGroup: familyInfo.model,
-      machineType: familyInfo.type,
-      displacement: familyInfo.displacement,
-      power: familyInfo.power,
-      era: familyInfo.era,
-      familyNotes: familyInfo.notes,
-      warningMessage: `Dit is een onderdeelnummer (gietnummer/behuizing) voor modelgroep [${familyInfo.model}] en géén uniek serienummer van de complete machine.`,
-      advice: "Een uniek serienummer staat ingeslagen op het carter (bij de uitlaat of bij de geleideplaatmontage) of op de typesticker, en bestaat uit exact 9 cijfers."
-    };
   }
 
   return {
@@ -190,9 +252,15 @@ export function analyzePartNumber(partStr, database) {
     cleaned: partStr,
     formattedPartNo,
     familyCode,
-    modelGroup: "Onbekende Stihl Modelgroep",
-    warningMessage: `Dit is een Stihl onderdeelnummer (code prefix ${familyCode}) en géén uniek serienummer van de complete machine.`,
-    advice: "Het unieke serienummer van de machine bestaat uit 9 cijfers."
+    modelGroup: matchedModelSpec ? matchedModelSpec.model_name : (familyInfo ? familyInfo.model : "STIHL Modelgroep " + familyCode),
+    machineType: matchedModelSpec ? matchedModelSpec.category : (familyInfo ? familyInfo.type : "Gietstuk / Onderdeel"),
+    displacement: matchedModelSpec ? `${matchedModelSpec.displacement_cc} cc` : (familyInfo ? familyInfo.displacement : null),
+    power: matchedModelSpec ? `${matchedModelSpec.power_kw} kW (${matchedModelSpec.power_hp} pk)` : (familyInfo ? familyInfo.power : null),
+    era: familyInfo ? familyInfo.era : "Productieserie",
+    familyNotes: familyInfo ? familyInfo.notes : null,
+    technicalSpecs: matchedModelSpec || null,
+    warningMessage: `Dit is een onderdeelnummer (gietnummer/behuizing) voor modelgroep [${matchedModelSpec ? matchedModelSpec.model_name : (familyInfo ? familyInfo.model : familyCode)}] en géén uniek serienummer van de complete machine.`,
+    advice: "Een uniek serienummer staat ingeslagen op het carter (bij de uitlaat of bij de geleideplaatmontage) of op de typesticker, en bestaat uit exact 9 cijfers."
   };
 }
 

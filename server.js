@@ -1,77 +1,78 @@
-import http from 'node:http';
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { decodeStihlCode } from './src/decoder.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const PORT = process.env.PORT || 3000;
-const DB_PATH = path.join(__dirname, 'data/stihl_database.json');
 
-// Read database once or dynamically
+// Load database (JSON or SQLite fallback)
+const jsonPath = path.join(__dirname, 'data', 'stihl_database.json');
 let database = {};
+
 try {
-  database = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
+  if (fs.existsSync(jsonPath)) {
+    database = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+    console.log('✅ STIHL Database JSON successfully loaded.');
+  }
 } catch (err) {
-  console.error('Error loading data/stihl_database.json', err);
+  console.error('⚠️ Could not load stihl_database.json:', err);
 }
 
 const MIME_TYPES = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'application/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
+  '.html': 'text/html; charset=UTF-8',
+  '.css': 'text/css',
+  '.js': 'text/javascript',
+  '.json': 'application/json',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
-  '.svg': 'image/svg+xml'
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon'
 };
 
 const server = http.createServer((req, res) => {
-  const reqUrl = new URL(req.url, `http://${req.headers.host}`);
-  const pathname = reqUrl.pathname;
+  const urlObj = new URL(req.url, `http://${req.headers.host}`);
+  const pathname = urlObj.pathname;
 
-  // API Endpoints
-  if (pathname === '/api/database') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(database));
-    return;
-  }
-
+  // REST API: /api/decode?code=...
   if (pathname === '/api/decode') {
-    const code = reqUrl.searchParams.get('code') || '';
+    const code = urlObj.searchParams.get('code') || '';
     const result = decodeStihlCode(code, database);
-    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(result));
     return;
   }
 
-  // Static File Serving
-  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
-  
-  // Security check: stay within workspace
-  if (!filePath.startsWith(__dirname)) {
-    res.writeHead(403, { 'Content-Type': 'text/plain' });
-    res.end('Forbidden');
+  // REST API: /api/database
+  if (pathname === '/api/database') {
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify(database));
     return;
   }
 
-  fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('404 Not Found');
-      return;
+  // Serve static files
+  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+
+  fs.readFile(filePath, (err, content) => {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end('<h1>404 Niet Gevonden</h1><p>De gevraagde pagina bestaat niet.</p>');
+      } else {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`Server Fout: ${err.code}`);
+      }
+    } else {
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(content);
     }
-
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-
-    res.writeHead(200, { 'Content-Type': contentType });
-    fs.createReadStream(filePath).pipe(res);
   });
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 Stihl Decoder Server is running at http://localhost:${PORT}`);
+  console.log(`🚀 STIHL Decoder Server actief op http://localhost:${PORT}`);
 });

@@ -22,5 +22,9 @@
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "sqlite3": "^6.0.1"
   }
 }
