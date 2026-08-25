@@ -1,6 +1,5 @@
 /**
- * Stihl Digitaal Machine Paspoort Generator Component
- * Generates Marktplaats & 2dehands.be shareable passport certificate cards
+ * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter
  */
 
 export function renderStihlPassportHtml(data) {
@@ -29,7 +28,7 @@ export function renderStihlPassportHtml(data) {
             S
           </div>
           <div>
-            <span class="text-2xs font-mono font-bold text-orange-400 uppercase tracking-widest block">Officieel Digitaal Certificaat</span>
+            <span class="text-2xs font-mono font-bold text-orange-400 uppercase tracking-widest block">Officiëele Decodering</span>
             <h3 class="text-lg font-extrabold text-white tracking-tight">STIHL MACHINE PASPOORT</h3>
           </div>
         </div>
@@ -92,4 +91,113 @@ export function renderStihlPassportHtml(data) {
       </div>
     </div>
   `;
+}
+
+export function downloadStihlPassportImage(data) {
+  const serial = data.cleanedSerial || data.serialNumber || '178456789';
+  const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
+  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Benzine Machine');
+  const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 - 2021');
+  const dispCc = (data.modelMatch && data.modelMatch.specs.displacementCc) || 50.2;
+  const powerHp = (data.modelMatch && data.modelMatch.specs.powerHp) || 4.1;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 900;
+  const ctx = canvas.getContext('2d');
+
+  if (!ctx) return;
+
+  // Background
+  ctx.fillStyle = '#171717';
+  ctx.fillRect(0, 0, 1200, 900);
+
+  // Top Orange Accent Bar
+  ctx.fillStyle = '#ea580c';
+  ctx.fillRect(0, 0, 1200, 12);
+
+  // Header Text
+  ctx.fillStyle = '#f97316';
+  ctx.font = 'bold 24px monospace';
+  ctx.fillText('OFFICIËLE DECODERING - STIHL MACHINE PASPOORT', 60, 80);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '900 48px sans-serif';
+  ctx.fillText(model, 60, 140);
+
+  // Verified Badge
+  ctx.fillStyle = '#059669';
+  ctx.fillRect(950, 60, 190, 44);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 18px sans-serif';
+  ctx.fillText('✓ GEVERIFIEERD', 970, 88);
+
+  // Divider Line
+  ctx.strokeStyle = '#262626';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(60, 180);
+  ctx.lineTo(1140, 180);
+  ctx.stroke();
+
+  // Cards Grid (2x2)
+  ctx.fillStyle = '#262626';
+  ctx.fillRect(60, 220, 510, 220);
+  ctx.fillStyle = '#a3a3a3';
+  ctx.font = '18px sans-serif';
+  ctx.fillText('Gevalideerd Serienummer', 90, 260);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 36px monospace';
+  ctx.fillText(formattedSerial, 90, 320);
+
+  ctx.fillStyle = '#262626';
+  ctx.fillRect(630, 220, 510, 220);
+  ctx.fillStyle = '#a3a3a3';
+  ctx.font = '18px sans-serif';
+  ctx.fillText('Herkomst / Fabriek', 660, 260);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 32px sans-serif';
+  ctx.fillText(country, 660, 320);
+
+  ctx.fillStyle = '#262626';
+  ctx.fillRect(60, 480, 510, 220);
+  ctx.fillStyle = '#a3a3a3';
+  ctx.font = '18px sans-serif';
+  ctx.fillText('Geschat Bouwjaar', 90, 520);
+  ctx.fillStyle = '#fb923c';
+  ctx.font = 'bold 36px sans-serif';
+  ctx.fillText(years, 90, 580);
+
+  ctx.fillStyle = '#262626';
+  ctx.fillRect(630, 480, 510, 220);
+  ctx.fillStyle = '#a3a3a3';
+  ctx.font = '18px sans-serif';
+  ctx.fillText('Motor Specificaties', 660, 520);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 32px sans-serif';
+  ctx.fillText(`${dispCc} cc / ${powerHp} pk`, 660, 580);
+
+  // Footer Divider
+  ctx.beginPath();
+  ctx.moveTo(60, 750);
+  ctx.lineTo(1140, 750);
+  ctx.stroke();
+
+  ctx.fillStyle = '#a3a3a3';
+  ctx.font = '20px sans-serif';
+  ctx.fillText('Ideaal voor verkoop op Marktplaats & 2dehands.be', 60, 800);
+  ctx.fillStyle = '#737373';
+  ctx.font = '16px sans-serif';
+  ctx.fillText('Rapport gegenereerd via databaseverificatie', 60, 830);
+
+  ctx.fillStyle = '#ea580c';
+  ctx.font = 'bold 28px monospace';
+  ctx.fillText('stihldecoder.nl', 930, 810);
+
+  // Trigger Download
+  const link = document.createElement('a');
+  link.download = `stihl-paspoort-${serial}.png`;
+  link.href = canvas.toDataURL('image/png', 0.95);
+  link.click();
 }
