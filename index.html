@@ -96,6 +96,18 @@
           "chain_gauge_mm": 1.6
         }
       ],
+      "counterfeit_rules": [
+        {
+          "pattern_regex": "^0\\d+",
+          "risk_level": "DEFINITIVE_FAKE",
+          "reason": "Serienummers van STIHL beginnen nooit met een 0. Authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9."
+        },
+        {
+          "pattern_regex": "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
+          "risk_level": "DEFINITIVE_FAKE",
+          "reason": "Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
+        }
+      ],
       "part_family_prefixes": {
         "1106": {"model": "070 / 090 / 090 AV", "type": "Kettingzaag (Extreem zwaar)", "displacement": "106 cc - 137 cc", "power": "6.5 pk - 8.5 pk", "era": "1968 - 1990+", "notes": "De zwaarste klassieke Stihl zaag voor zaagmolens."},
         "1121": {"model": "024 / 026 / MS 260", "type": "Kettingzaag (Professioneel)", "displacement": "44.3 cc - 50.2 cc", "power": "2.9 pk - 3.5 pk", "era": "1988 - 2011", "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld."},
@@ -127,14 +139,14 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.6 SmartCopy Pro</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.7 Strict Principles Pro</span>
           </h1>
-          <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Bougie, Gietklok & Marktplaats Paspoort</p>
+          <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Gietnummers & Marktplaats Paspoort</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 9-Cijferig Serienummer</span>
-        <span class="flex items-center gap-1.5 text-blue-400"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 1-Klik StopHeling Kopieer</span>
+        <span class="flex items-center gap-1.5 text-amber-400"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 11-Cijferig Gietnummer</span>
       </div>
     </div>
   </header>
@@ -196,7 +208,59 @@
         </p>
       </div>
 
-      <!-- Serial Number Result Card with FULL Technical Specifications Grid -->
+      <!-- Counterfeit Alert Banner -->
+      <div id="counterfeit-card" class="hidden bg-red-950/40 border border-red-500/50 rounded-2xl p-6 sm:p-8 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="p-3 rounded-xl bg-red-500/20 text-red-400 border border-red-500/40">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <div>
+            <span id="counterfeit-risk-badge" class="px-2.5 py-0.5 text-2xs font-mono font-bold uppercase rounded bg-red-500/20 text-red-400 border border-red-500/30">DEFINITIVE FAKE</span>
+            <h3 class="text-xl font-extrabold text-white mt-0.5">Waarschuwing: Verdacht of Namaak Serienummer</h3>
+          </div>
+        </div>
+        <p id="counterfeit-reason" class="text-sm text-red-200 leading-relaxed"></p>
+        <div class="bg-gray-950 p-4 rounded-xl border border-red-500/30 text-xs text-gray-300">
+          <span class="font-bold text-red-400 block mb-1">🚨 Tips bij het herkennen van STIHL klonen / nepzagen:</span>
+          <ul class="list-disc list-inside space-y-1 text-gray-400">
+            <li>Echte STIHL zagen hebben het serienummer diep ingeslagen in het gietmetaal (carter), niet enkel op een plastic sticker.</li>
+            <li>STIHL gebruikt **geen gele of feloranje** hendels op kapjes die afwijken van het officiële STIHL-oranje.</li>
+            <li>Controleer de typesticker en het lettertype. Namaakzagen hebben vaak typfouten of nep-serienummers zoals `999999999` of `123456789`.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PART NUMBER WARNING CARD (Amber Card for 11-digit Part Numbers / Casting Numbers) -->
+      <div id="warning-card" class="hidden bg-gradient-to-br from-amber-950/40 to-gray-900 border border-amber-500/40 rounded-2xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">Gietnummer / Onderdeelnummer Gedetecteerd</span>
+              <h3 id="warn-part-no" class="text-xl sm:text-2xl font-mono font-extrabold text-white">1121 021 0800</h3>
+            </div>
+          </div>
+          <span class="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 self-start sm:self-center">Geen Uniek Serienummer (Geen Paspoort)</span>
+        </div>
+
+        <div class="space-y-3">
+          <p id="warn-message" class="text-sm font-semibold text-amber-200 leading-relaxed"></p>
+          <div class="bg-gray-950/60 rounded-xl p-4 border border-amber-500/20 space-y-2">
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Behoort tot Stihl Modelgroep:</div>
+            <div id="warn-model-group" class="text-lg font-bold text-orange-400">024 / 026 / MS 260</div>
+            <p id="warn-specs" class="text-xs text-gray-300"></p>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
+          <span class="font-bold text-orange-400">🔎 Hoe vindt u het echte 9-cijferige serienummer?</span>
+          <p id="warn-advice"></p>
+        </div>
+      </div>
+
+      <!-- Serial Number Result Card (VALID 9-DIGIT SERIAL NUMBERS ONLY) -->
       <div id="result-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
         <!-- Top Info Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
@@ -291,7 +355,7 @@
           </div>
         </div>
 
-        <!-- Stop Heling Police Check Banner with 1-CLICK COPY & OPEN STOPHELING -->
+        <!-- Stop Heling Police Check Banner -->
         <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div class="flex items-start gap-3">
             <div class="p-2.5 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30 flex-shrink-0 mt-0.5">
@@ -331,12 +395,12 @@
     <div class="max-w-6xl mx-auto px-4 space-y-3">
       <p class="font-medium text-gray-400">STIHL Machine & Serienummer Decoder Tool</p>
       <p class="max-w-3xl mx-auto text-gray-500 text-2xs leading-relaxed">
-        <strong>Disclaimer:</strong> Deze webapplicatie is een onafhankelijk informatief hulpmiddel voor reparateurs, hoveniers en verzamelaars. Deze site is niet gelieerd aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Alle merk- en modelnamen zijn eigendom van hun respectievelijke merkhouders.
+        <strong>Disclaimer:</strong> Deze webapplicatie is een onafhankelijk informatief hulpmiddel voor reparateurs, hoveniers en verzamelaars. Deze site is niet gelieerd aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Alle merk- en modelnamen zijn eigendom van meerspectievelijke merkhouders.
       </p>
     </div>
   </footer>
 
-  <!-- Client Script for Gietklok Helper, Examples, Full Specs, Clipboard AutoCopy & Passport Image Download -->
+  <!-- Client Script for Gietklok Helper, Examples, Part Number Warnings & Passport Image Download -->
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
@@ -347,6 +411,8 @@
       const inputEl = document.getElementById('code-input');
       const clearBtn = document.getElementById('clear-btn');
       const resultCard = document.getElementById('result-card');
+      const warningCard = document.getElementById('warning-card');
+      const counterfeitCard = document.getElementById('counterfeit-card');
       const emptyState = document.getElementById('empty-state');
       const database = window.STIHL_DATABASE || {};
       let currentSerial = '178456789';
@@ -365,27 +431,50 @@
 
       function handleDecode() {
         const val = inputEl.value.trim();
+
+        // Reset visibility
+        resultCard.classList.add('hidden');
+        warningCard.classList.add('hidden');
+        counterfeitCard.classList.add('hidden');
+        emptyState.classList.add('hidden');
+
         if (!val) {
-          resultCard.classList.add('hidden');
           emptyState.classList.remove('hidden');
           return;
         }
 
         const res = decodeStihlCode(val, database);
 
-        if (res && res.success) {
-          const serial = res.cleaned || val.replace(/[^0-9]/g, '');
-          currentSerial = serial.length >= 9 ? serial : '178456789';
-          const formatted = serial.length >= 9 
-            ? `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}` 
-            : val;
+        // CASE 1: Counterfeit / Fake Serial Number
+        if (res && res.isCounterfeit) {
+          document.getElementById('counterfeit-risk-badge').innerText = res.riskLevel || 'DEFINITIVE_FAKE';
+          document.getElementById('counterfeit-reason').innerText = res.error || 'Dit serienummer is als ongeldig of verdacht namaak (kloon) aangemerkt.';
+          counterfeitCard.classList.remove('hidden');
+          return;
+        }
+
+        // CASE 2: Part Number / Gietnummer (11 digits or part family prefix) -> NO PASSPORT, NO STOPHELING
+        if (res && res.type === 'PART_NUMBER') {
+          document.getElementById('warn-part-no').innerText = res.formattedPartNo || res.cleaned;
+          document.getElementById('warn-message').innerText = res.warningMessage || 'Dit is een onderdeelnummer (gietnummer/behuizing) en géén uniek serienummer van de complete machine.';
+          document.getElementById('warn-model-group').innerText = res.modelGroup || 'STIHL Modelgroep ' + res.familyCode;
+          document.getElementById('warn-specs').innerText = `Machinetype: ${res.machineType || 'Gietstuk'} | Inhoud: ${res.displacement || '-'} | Vermogen: ${res.power || '-'} | Productieperiode: ${res.era || '-'}`;
+          document.getElementById('warn-advice').innerText = res.advice || 'Een uniek serienummer staat ingeslagen op het carter (bij de uitlaat of bij de geleideplaatmontage) en bestaat uit exact 9 cijfers.';
+          warningCard.classList.remove('hidden');
+          return;
+        }
+
+        // CASE 3: Valid 9-digit Serial Number -> FULL PASSPORT & STOPHELING CHECK
+        if (res && res.type === 'SERIAL_NUMBER') {
+          const serial = res.cleaned;
+          currentSerial = serial;
+          const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
           document.getElementById('res-serial-display').innerText = formatted;
-          document.getElementById('res-model').innerText = res.model || val.toUpperCase();
-          document.getElementById('res-years').innerText = res.estimatedYears || '2016 - 2021';
+          document.getElementById('res-model').innerText = res.model || 'STIHL Benzine Machine';
+          document.getElementById('res-years').innerText = res.estimatedYears || 'Ca. 2016 - Heden';
           document.getElementById('res-country').innerText = res.factory ? `${res.factory.country} (${res.factory.location})` : 'Duitsland (Waiblingen)';
 
-          // Populate Full Specifications & Carburetor Tuning
           const specs = res.technicalSpecs || {};
           document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
           document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw} kW)` : '4.1 pk (3.0 kW)';
@@ -400,35 +489,34 @@
           const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
           if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
 
-          emptyState.classList.add('hidden');
           resultCard.classList.remove('hidden');
-        } else {
-          // Fallback view
-          const cleaned = val.replace(/[^0-9]/g, '');
-          currentSerial = cleaned.length >= 9 ? cleaned : '178456789';
-          const formatted = `${currentSerial[0]} ${currentSerial.slice(1,4)} ${currentSerial.slice(4,7)} ${currentSerial.slice(7)}`;
+          return;
+        }
 
-          document.getElementById('res-serial-display').innerText = formatted;
-          document.getElementById('res-model').innerText = val.toUpperCase().includes('MS') ? val.toUpperCase() : 'MS 261 C-M (M-Tronic)';
-          document.getElementById('res-years').innerText = '2016 - 2021';
-          document.getElementById('res-country').innerText = currentSerial.startsWith('1') ? 'Duitsland (Waiblingen)' : 'Verenigde Staten (Virginia Beach)';
+        // CASE 4: Model Name Search (e.g. "MS 261 C-M")
+        if (res && res.type === 'MODEL_DECODE') {
+          document.getElementById('res-serial-display').innerText = res.input;
+          document.getElementById('res-model').innerText = res.input.toUpperCase();
+          document.getElementById('res-years').innerText = 'Model Specificaties';
+          document.getElementById('res-country').innerText = res.prefixMeaning || 'Stihl Machinetype';
 
-          document.getElementById('spec-disp').innerText = '50.2 cc';
-          document.getElementById('spec-power').innerText = '4.1 pk (3.0 kW)';
-          document.getElementById('spec-spark-plug').innerText = 'NGK CMR6H / Bosch USR7AC';
-          document.getElementById('spec-electrode-gap').innerText = '0.50 mm';
-          document.getElementById('spec-carb-h').innerText = '1 slag open (M-Tronic Auto)';
-          document.getElementById('spec-carb-l').innerText = '1 slag open (M-Tronic Auto)';
-          document.getElementById('spec-carb-la').innerText = '2800 RPM stationair';
-          document.getElementById('spec-chain-info').innerText = '.325" @ 1.3 mm';
+          const specs = res.technicalSpecs || {};
+          document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
+          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw} kW)` : '4.1 pk (3.0 kW)';
+          document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
+          document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
+          document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'M-Tronic (Auto)';
+          document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'M-Tronic (Auto)';
+          document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM';
+          document.getElementById('spec-chain-info').innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
           document.getElementById('spec-oil-mix').innerText = '1:50';
 
-          const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
-          if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
-
-          emptyState.classList.add('hidden');
           resultCard.classList.remove('hidden');
+          return;
         }
+
+        // Fallback for unformatted strings
+        emptyState.classList.remove('hidden');
       }
 
       if (searchBtn) searchBtn.addEventListener('click', handleDecode);
@@ -438,6 +526,8 @@
         clearBtn.addEventListener('click', () => {
           inputEl.value = '';
           resultCard.classList.add('hidden');
+          warningCard.classList.add('hidden');
+          counterfeitCard.classList.add('hidden');
           emptyState.classList.remove('hidden');
           inputEl.focus();
         });
