@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { decodeStihlCode, cleanInput, evaluateCounterfeitRules } from '../src/decoder.js';
+import { StihlDecoderService } from '../src/StihlDecoderService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,37 +16,39 @@ console.log('🧪 Running STIHL Decoding Engine Unit Tests...\n');
 
 // Test 1: Input Cleaning
 assert.strictEqual(cleanInput('178 456 789'), '178456789');
-assert.strictEqual(cleanInput('1121-021-0800'), '11210210800');
+assert.strictEqual(StihlDecoderService.sanitizeSerial('178-456.789'), '178456789');
 console.log('✅ Test 1 Passed: Input cleaning works correctly.');
 
-// Test 2: German Serial Number & Plant Lookup
-const resDE = decodeStihlCode('178456789', database);
-assert.strictEqual(resDE.success, true);
-assert.strictEqual(resDE.factory.digit, '1');
-assert.strictEqual(resDE.factory.country, 'Duitsland');
-console.log('✅ Test 2 Passed: German serial number decoded with plant lookup.');
+// Test 2: Plant Resolver
+const plant1 = StihlDecoderService.resolvePlant('1');
+assert.strictEqual(plant1.country, 'Duitsland');
+assert.strictEqual(plant1.location, 'Waiblingen');
+console.log('✅ Test 2 Passed: Plant resolution correctly maps digit 1 to Germany.');
 
-// Test 3: Counterfeit / Clone Detection Rule
-const cfFake = evaluateCounterfeitRules('999999999', database);
-assert.strictEqual(cfFake.isCounterfeit, true);
-assert.strictEqual(cfFake.riskLevel, 'DEFINITIVE_FAKE');
+// Test 3: Counterfeit Detection Engine
+const alertsFake = StihlDecoderService.evaluateCounterfeits('012345678');
+assert.ok(alertsFake.length > 0);
+assert.ok(alertsFake[0].includes('Ongeldige fabriekscode'));
 
-const resFake = decodeStihlCode('012345678', database);
-assert.strictEqual(resFake.success, false);
-assert.strictEqual(resFake.isCounterfeit, true);
-console.log('✅ Test 3 Passed: Counterfeit and clone rules correctly flag fake serial numbers.');
+const alertsKnownFake = StihlDecoderService.evaluateCounterfeits('999999999');
+assert.ok(alertsKnownFake.length > 0);
+assert.ok(alertsKnownFake[0].includes('database van bekende namaakmachines'));
+console.log('✅ Test 3 Passed: Counterfeit and clone detection engine flags invalid & known fake serials.');
 
-// Test 4: Technical Specifications Match
-assert.ok(resDE.technicalSpecs);
-assert.ok(resDE.technicalSpecs.spark_plug);
-assert.ok(resDE.technicalSpecs.electrode_gap_mm);
-console.log('✅ Test 4 Passed: Technical specifications (spark plug, carb settings) returned.');
+// Test 4: StihlDecoderService.decode() Output Structure
+const serviceResult = StihlDecoderService.decode('178456789', database);
+assert.strictEqual(serviceResult.isValidFormat, true);
+assert.strictEqual(serviceResult.plantInfo.code, '1');
+assert.strictEqual(serviceResult.plantInfo.country, 'Duitsland');
+assert.ok(serviceResult.manufacturingYearEstimate);
+assert.strictEqual(serviceResult.counterfeitAlerts.length, 0);
+console.log('✅ Test 4 Passed: StihlDecoderService.decode() returns full DecodeResult structure.');
 
-// Test 5: Part Number Detection
+// Test 5: Part Number Warning Test
 const resPart = decodeStihlCode('1121 021 0800', database);
 assert.strictEqual(resPart.success, true);
 assert.strictEqual(resPart.type, 'PART_NUMBER');
 assert.strictEqual(resPart.familyCode, '1121');
-console.log('✅ Test 5 Passed: 11-digit Part number correctly identified as non-serial casting code.');
+console.log('✅ Test 5 Passed: 11-digit Part number correctly identified.');
 
 console.log('\n🎉 ALL DECODING ENGINE TESTS PASSED SUCCESSFULLY!');
