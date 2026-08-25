@@ -121,14 +121,14 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.4 Full Specs Pro</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.5 StopHeling AutoFill</span>
           </h1>
           <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Bougie, Gietklok & Marktplaats Paspoort</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 9-Cijferig Serienummer</span>
-        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Volledige Specificaties</span>
+        <span class="flex items-center gap-1.5 text-blue-400"><span class="w-2 h-2 rounded-full bg-blue-500"></span> StopHeling AutoFill</span>
       </div>
     </div>
   </header>
@@ -285,7 +285,7 @@
           </div>
         </div>
 
-        <!-- Stop Heling Police Check Banner -->
+        <!-- Stop Heling Police Check Banner with DIRECT DYNAMIC SERIAL AUTOFILL LINK -->
         <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div class="flex items-start gap-3">
             <div class="p-2.5 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30 flex-shrink-0 mt-0.5">
@@ -297,19 +297,19 @@
                 <span class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Politie Register</span>
               </h5>
               <p class="text-xs text-gray-300 mt-1">
-                Als koper van tweedehands gereedschap heeft u een onderzoeksplicht. Controleer dit serienummer direct in het landelijke StopHeling register.
+                Uw serienummer is automatisch voor u ingevuld! Klik op de knop om direct het politieregister te openen met uw nummer ingevuld.
               </p>
             </div>
           </div>
 
           <a 
             id="stopheling-link-btn" 
-            href="https://www.stopheling.nl" 
+            href="https://www.stopheling.nl/nl/zoeken?q=178456789" 
             target="_blank" 
             rel="noopener noreferrer" 
             class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg transition shadow-md shadow-blue-600/30 flex items-center gap-2 whitespace-nowrap self-stretch sm:self-center justify-center cursor-pointer"
           >
-            <span>Scan in StopHeling</span>
+            <span>Scan met <span id="stopheling-btn-serial" class="font-mono font-bold">178456789</span></span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
         </div>
@@ -333,7 +333,7 @@
     </div>
   </footer>
 
-  <!-- Client Script for Gietklok Helper, Examples, Full Specs & Passport Image Download -->
+  <!-- Client Script for Gietklok Helper, Examples, Full Specs, Dynamic StopHeling Link & Passport Image Download -->
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
@@ -380,8 +380,16 @@
           document.getElementById('spec-chain-info').innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
           document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
 
+          // DYNAMIC AUTOFILL LINK TO STOP HELING POLITIE REGISTER
           const stopHelingLink = document.getElementById('stopheling-link-btn');
-          if (stopHelingLink) stopHelingLink.href = res.stopHelingUrl || `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serial)}`;
+          const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
+          const querySerial = serial.length >= 9 ? serial : '178456789';
+          if (stopHelingLink) {
+            stopHelingLink.href = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(querySerial)}`;
+          }
+          if (stopHelingBtnSerial) {
+            stopHelingBtnSerial.innerText = querySerial;
+          }
 
           emptyState.classList.add('hidden');
           resultCard.classList.remove('hidden');
@@ -406,6 +414,11 @@
           document.getElementById('spec-chain-info').innerText = '.325" @ 1.3 mm';
           document.getElementById('spec-oil-mix').innerText = '1:50';
 
+          const stopHelingLink = document.getElementById('stopheling-link-btn');
+          const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
+          if (stopHelingLink) stopHelingLink.href = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serial)}`;
+          if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = serial;
+
           emptyState.classList.add('hidden');
           resultCard.classList.remove('hidden');
         }
@@ -423,7 +436,7 @@
         });
       }
 
-      // Probeer Voorbeeld Knop Event Listeners (Klikbaar & Vul automatisch in)
+      // Probeer Voorbeeld Knop Event Listeners
       document.querySelectorAll('.example-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const code = btn.getAttribute('data-code');
