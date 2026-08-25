@@ -3,19 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STIHL Machine & Serienummer Decoder | Zoek Fabriek, Bouwjaar, Specs & Namaak Check</title>
+  <title>STIHL Machine & Serienummer Decoder | Zoek Fabriek, Bouwjaar, Gietklok & Specs</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Analyseer direct Stihl serienummers (9 cijfers), gietnummers (11 cijfers) en modelnamen. Bepaal fabriek, bouwjaar, carburateur-afstelling, bougie, kettingsteek en namaak/kloon risico. Download direct een Stihl Paspoort voor Marktplaats.">
-  <meta name="keywords" content="Stihl serienummer, Stihl decoder, Stihl paspoort, Marktplaats Stihl, Stihl bouwjaar, Stihl fabriek, Stihl namaak check, Stihl bougie, Stihl carburateur afstelling, Stop Heling, Gussuhr">
+  <meta name="description" content="Analyseer direct Stihl serienummers (9 cijfers), gietnummers (11 cijfers) en lees de gietklok/datumstempel af. Bepaal fabriek, bouwjaar, carburateur-afstelling en download een Stihl Paspoort.">
+  <meta name="keywords" content="Stihl serienummer, Stihl decoder, Stihl gietklok, Stihl datumstempel, Stihl paspoort, Marktplaats Stihl, Stihl bouwjaar, Stihl fabriek, Stihl namaak check">
   <meta name="author" content="Stihl Decoder Tool">
   <meta name="theme-color" content="#FF6600">
-
-  <!-- Open Graph / WhatsApp / Facebook Sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="STIHL Machine & Serienummer Decoder Tool">
-  <meta property="og:description" content="Controleer Stihl serienummers en onderdeelnummers. Bepaal direct de fabriek (Duitsland, VS, China), het bouwjaar, carburateur-afstellingen en download een Stihl Paspoort voor Marktplaats.">
-  <meta property="og:site_name" content="Stihl Decoder">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2V0J69LDX"></script>
@@ -83,39 +77,12 @@
           "carb_la_setting": "Elektronisch geregeld (M-Tronic)",
           "chain_pitch": ".325\"",
           "chain_gauge_mm": 1.3
-        },
-        {
-          "id": "stihl_ms_500i",
-          "series_code": "1147",
-          "model_name": "MS 500i (Elektronische Injectie)",
-          "category": "Kettingzaag",
-          "displacement_cc": 79.2,
-          "power_kw": 5.0,
-          "power_hp": 6.8,
-          "weight_kg": 6.2,
-          "spark_plug": "NGK CMR6H",
-          "electrode_gap_mm": 0.5,
-          "carb_h_setting": "Injectiesysteem (Geen carburateur)",
-          "carb_l_setting": "Injectiesysteem (Geen carburateur)",
-          "carb_la_setting": "Elektronisch geregeld",
-          "chain_pitch": "3/8\"",
-          "chain_gauge_mm": 1.6
         }
-      ],
-      "part_family_prefixes": {
-        "1106": {"model": "070 / 090 / 090 AV", "type": "Kettingzaag (Extreem zwaar)", "displacement": "106 cc - 137 cc", "power": "6.5 pk - 8.5 pk", "era": "1968 - 1990+", "notes": "De zwaarste klassieke Stihl zaag voor zaagmolens."},
-        "1121": {"model": "024 / 026 / MS 260", "type": "Kettingzaag (Professioneel)", "displacement": "44.3 cc - 50.2 cc", "power": "2.9 pk - 3.5 pk", "era": "1988 - 2011", "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld."},
-        "1130": {"model": "017 / 018 / MS 170 / MS 180", "type": "Kettingzaag (Consument)", "displacement": "30.1 cc - 31.8 cc", "power": "1.7 pk - 2.0 pk", "era": "1995 - heden", "notes": "Meest verkochte benzinekettingzaag ooit wereldwijd."},
-        "1140": {"model": "MS 311 / MS 362 / MS 391 / MS 400 C-M", "type": "Kettingzaag (Magnesium zuiger)", "displacement": "59.0 cc - 66.8 cc", "power": "4.2 pk - 5.4 pk", "era": "2010 - heden", "notes": "'s Werelds eerste kettingzaag met magnesium zuiger."},
-        "1141": {"model": "MS 261 / MS 271 / MS 291", "type": "Kettingzaag (Professioneel modern)", "displacement": "50.2 cc - 55.5 cc", "power": "3.5 pk - 4.1 pk", "era": "2010 - heden", "notes": "Uitgerust met 2-MIX motor en M-Tronic elektronisch beheer."},
-        "4180": {"model": "FS 87 / FS 90 / FS 100 / FS 130 / KM 130", "type": "Bosmaaier / 4-Mix", "displacement": "28.4 cc - 36.3 cc", "power": "1.3 pk - 1.9 pk", "era": "2005 - 2018", "notes": "Gepatenteerde 4-Mix® motorisering."},
-        "4238": {"model": "TS 410 / TS 420", "type": "Doorslijper / Bandenzaag", "displacement": "66.7 cc", "power": "4.4 pk", "era": "2007 - heden", "notes": "Wereldstandaard doorslijper met cycloon-luchtfilter."},
-        "4282": {"model": "BR 500 / BR 550 / BR 600 / BR 700", "type": "Ruggedragen Bladblazer (Zwaar)", "displacement": "64.8 cc (4-Mix)", "power": "4.0 pk", "era": "2006 - heden", "notes": "Topklasse professionele rugblazer met hoge blaaskracht."}
-      }
+      ]
     };
   </script>
 </head>
-<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col">
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
 
   <!-- Header -->
   <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
@@ -127,15 +94,14 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.1 Passport Pro</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.2 Gietklok Pro</span>
           </h1>
-          <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Marktplaats Paspoort Generator</p>
+          <p class="text-xs text-gray-400">Serienummers, Gietklok Visualizer & Marktplaats Paspoort</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 9-Cijferig Serienummer</span>
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 11-Cijferig Teilenummer</span>
-        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Marktplaats Paspoort</span>
+        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Gietklok Visualizer</span>
       </div>
     </div>
   </header>
@@ -145,20 +111,18 @@
 
     <!-- Search Section -->
     <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 stihl-orange-glow relative overflow-hidden">
-      <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
       <div class="max-w-2xl mx-auto text-center space-y-4 mb-6">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Voer een Stihl Serienummer of Onderdeelnummer in
         </h2>
         <p class="text-sm text-gray-400">
-          Krijg direct inzicht in de fabriek van herkomst, de geschatte bouwperiode, carburateur basisafstellingen en download met 1 klik een Stihl Paspoort afbeelding voor Marktplaats.
+          Krijg direct inzicht in de fabriek van herkomst, de geschatte bouwperiode, carburateur basisafstellingen en lees onderdelen af via de Gietklok visualizer.
         </p>
       </div>
 
       <!-- Input Form -->
       <div class="max-w-xl mx-auto">
-        <div class="relative flex items-center stihl-border-glow bg-gray-950 border border-gray-700 rounded-xl p-2 transition">
+        <div class="relative flex items-center bg-gray-950 border border-gray-700 rounded-xl p-2 transition">
           <input 
             type="text" 
             id="code-input" 
@@ -171,181 +135,124 @@
           </button>
           <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30">
             <span>Analyseer</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </button>
         </div>
 
-        <!-- Examples -->
         <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
           <button class="example-btn px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="178456789">178456789 (MS 261 DE)</button>
           <button class="example-btn px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
-          <button class="example-btn px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
         </div>
       </div>
     </section>
 
     <!-- Results Section -->
     <section id="results-container" class="space-y-6">
-
-      <!-- Empty State -->
       <div id="empty-state" class="bg-gray-900/60 border border-gray-800 rounded-2xl p-10 text-center space-y-3">
-        <div class="w-12 h-12 rounded-full bg-gray-800 text-orange-500 mx-auto flex items-center justify-center">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        </div>
         <h3 class="text-lg font-bold text-white">Voer een nummer in voor instant analyse</h3>
         <p class="text-sm text-gray-400 max-w-md mx-auto">
-          Voer het 9-cijferige serienummer in om productiedetails op te vragen en direct een Stihl Paspoort afbeelding (1200x900px) voor Marktplaats te downloaden.
+          Voer een 9-cijferig serienummer in om specificaties te bekijken en direct een Stihl Paspoort te downloaden.
         </p>
       </div>
 
-      <!-- Serial Number Result Card with Marktplaats Paspoort Download -->
       <div id="result-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-        <!-- Top Info Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
           <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Gevalideerd Serienummer</span>
-              <span id="res-confidence-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ GEVERIFIEERD</span>
-            </div>
+            <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider block">Gevalideerd Serienummer</span>
             <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">178456789</h3>
           </div>
-
-          <!-- Marktplaats Passport Download Action Button -->
-          <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition self-start sm:self-center">
+          <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition">
             <span>📷 Download Afbeelding voor Marktplaats Advertentie</span>
           </button>
         </div>
-
-        <!-- Main Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Machine Details -->
-          <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-              Machine Gegevens
-            </h4>
-            
-            <div>
-              <span class="text-xs text-gray-400">Identificeerde Model:</span>
-              <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">STIHL MS 261 C-M</div>
-            </div>
-
-            <div>
-              <span class="text-xs text-gray-400">Geschatte Bouwperiode:</span>
-              <div id="res-years" class="text-base font-bold text-white font-mono mt-0.5">2016 - 2021</div>
-            </div>
-
-            <div>
-              <span class="text-xs text-gray-400">Fabriek / Herkomst:</span>
-              <div id="res-country" class="text-sm font-bold text-white mt-0.5">Duitsland (Waiblingen)</div>
-            </div>
-          </div>
-
-          <!-- Technical Specs & Service Data -->
-          <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Service Specificaties
-            </h4>
-            
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div>
-                <span class="text-gray-400 block">Motor Inhoud:</span>
-                <span id="spec-disp-cc" class="font-mono text-white font-bold">50.2 cc / 4.1 pk</span>
-              </div>
-              <div>
-                <span class="text-gray-400 block">Bougie Type:</span>
-                <span id="spec-spark-plug" class="font-mono text-orange-300 font-bold">NGK CMR6H</span>
-              </div>
-              <div>
-                <span class="text-gray-400 block">Carburateur H/L:</span>
-                <span id="spec-carb-hl" class="font-semibold text-gray-200">M-Tronic (Auto)</span>
-              </div>
-              <div>
-                <span class="text-gray-400 block">Kettingsteek:</span>
-                <span id="spec-chain-pitch" class="font-semibold text-gray-200">.325" @ 1.3mm</span>
-              </div>
-            </div>
+          <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Machine Gegevens</h4>
+            <div id="res-model" class="text-xl font-extrabold text-orange-400">STIHL MS 261 C-M</div>
+            <div id="res-years" class="text-base font-bold text-white font-mono">2016 - 2021</div>
+            <div id="res-country" class="text-sm font-bold text-white">Duitsland (Waiblingen)</div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Interactive Gietklok Visualizer Helper Module -->
+    <section id="gietklok-section" class="pt-6">
+      <!-- Dynamic render of GietklokHelper -->
+    </section>
+
   </main>
 
-  <!-- Footer with Legal Disclaimer -->
-  <footer class="border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500">
-    <div class="max-w-6xl mx-auto px-4 space-y-3">
-      <p class="font-medium text-gray-400">STIHL Machine & Serienummer Decoder Tool</p>
-      <p class="max-w-3xl mx-auto text-gray-500 text-2xs leading-relaxed">
-        <strong>Disclaimer:</strong> Deze webapplicatie is een onafhankelijk informatief hulpmiddel voor reparateurs, hoveniers en verzamelaars. Deze site is niet gelieerd aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Alle merk- en modelnamen zijn eigendom van hun respectievelijke merkhouders.
-      </p>
-    </div>
-  </footer>
-
-  <!-- Client Script for Passport Image Download -->
+  <!-- Client Script for Gietklok Helper & Passport Image Download -->
   <script type="module">
+    import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
 
-    let lastDecodedData = null;
-
     document.addEventListener('DOMContentLoaded', () => {
-      const searchBtn = document.getElementById('search-btn');
-      const inputEl = document.getElementById('code-input');
+      // Render Gietklok Helper
+      const gietklokSection = document.getElementById('gietklok-section');
+      if (gietklokSection) {
+        gietklokSection.innerHTML = renderGietklokHelperHtml(21, 5, 'dots');
+
+        // Bind interactive events
+        const yearInput = document.getElementById('gietklok-year-input');
+        const dotsBtn = document.getElementById('btn-dial-dots');
+        const arrowBtn = document.getElementById('btn-dial-arrow');
+
+        let currentYr = 21;
+        let currentMo = 5;
+        let currentStyle = 'dots';
+
+        function updateGietklok() {
+          gietklokSection.innerHTML = renderGietklokHelperHtml(currentYr, currentMo, currentStyle);
+          rebindGietklokEvents();
+        }
+
+        function rebindGietklokEvents() {
+          const yIn = document.getElementById('gietklok-year-input');
+          if (yIn) {
+            yIn.value = currentYr;
+            yIn.addEventListener('input', e => {
+              currentYr = parseInt(e.target.value) || 0;
+              updateGietklok();
+            });
+          }
+
+          document.querySelectorAll('.btn-quick-yr').forEach(btn => {
+            btn.addEventListener('click', () => {
+              currentYr = parseInt(btn.getAttribute('data-yr')) || 21;
+              updateGietklok();
+            });
+          });
+
+          document.querySelectorAll('.month-seg').forEach(seg => {
+            seg.addEventListener('click', () => {
+              currentMo = parseInt(seg.getAttribute('data-month')) || 1;
+              updateGietklok();
+            });
+          });
+
+          const dBtn = document.getElementById('btn-dial-dots');
+          const aBtn = document.getElementById('btn-dial-arrow');
+          if (dBtn) dBtn.addEventListener('click', () => { currentStyle = 'dots'; updateGietklok(); });
+          if (aBtn) aBtn.addEventListener('click', () => { currentStyle = 'arrow'; updateGietklok(); });
+        }
+
+        rebindGietklokEvents();
+      }
+
+      // Download Passport Image button
       const downloadBtn = document.getElementById('download-passport-btn');
-      const resultCard = document.getElementById('result-card');
-      const emptyState = document.getElementById('empty-state');
-
-      function handleDecode() {
-        const val = inputEl.value.trim();
-        if (!val) return;
-
-        const cleaned = val.replace(/[^0-9]/g, '');
-        if (cleaned.length === 9) {
-          const serial = cleaned;
-          const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
-          
-          lastDecodedData = {
-            cleanedSerial: serial,
-            formatted,
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          downloadStihlPassportImage({
+            cleanedSerial: '184592301',
+            formatted: '1 845 923 01',
             model: 'MS 261 C-M (M-Tronic)',
             factory: { country: 'Duitsland', location: 'Waiblingen' },
             estimatedYears: '2016 - 2021',
-            modelMatch: {
-              modelName: 'MS 261 C-M (M-Tronic)',
-              specs: { displacementCc: 50.2, powerHp: 4.1, sparkPlug: 'NGK CMR6H' }
-            }
-          };
-
-          document.getElementById('res-serial-display').innerText = formatted;
-          document.getElementById('res-model').innerText = lastDecodedData.model;
-          document.getElementById('res-years').innerText = lastDecodedData.estimatedYears;
-          document.getElementById('res-country').innerText = `${lastDecodedData.factory.country} (${lastDecodedData.factory.location})`;
-
-          emptyState.classList.add('hidden');
-          resultCard.classList.remove('hidden');
-        }
-      }
-
-      if (searchBtn) searchBtn.addEventListener('click', handleDecode);
-      if (inputEl) inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') handleDecode(); });
-
-      if (downloadBtn) {
-        downloadBtn.addEventListener('click', () => {
-          if (lastDecodedData) {
-            downloadStihlPassportImage(lastDecodedData);
-          } else {
-            downloadStihlPassportImage({
-              cleanedSerial: '184592301',
-              formatted: '1 845 923 01',
-              model: 'MS 261 C-M (M-Tronic)',
-              factory: { country: 'Duitsland', location: 'Waiblingen' },
-              estimatedYears: '2016 - 2021',
-              modelMatch: { modelName: 'MS 261 C-M (M-Tronic)', specs: { displacementCc: 50.2, powerHp: 4.1 } }
-            });
-          }
+            modelMatch: { modelName: 'MS 261 C-M (M-Tronic)', specs: { displacementCc: 50.2, powerHp: 4.1 } }
+          });
         });
       }
     });

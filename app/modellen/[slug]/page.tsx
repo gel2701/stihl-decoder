@@ -1,5 +1,6 @@
 import React from 'react';
 import { generateModelJsonLd } from '../../../src/components/ModelJsonLd.js';
+import { GietklokHelper } from '../../../components/tools/GietklokHelper';
 
 interface PageProps {
   params: {
@@ -22,7 +23,7 @@ export default function ModelPage({ params }: PageProps) {
   });
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8 space-y-6 text-white font-sans">
+    <main className="max-w-4xl mx-auto px-4 py-8 space-y-8 text-white font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -33,7 +34,7 @@ export default function ModelPage({ params }: PageProps) {
         </span>
         <h1 className="text-3xl font-extrabold text-white">STIHL {modelName}</h1>
         <p className="text-sm text-gray-300 leading-relaxed">
-          Officiële gids voor de STIHL {modelName}. Bekijk carburateur basisafstellingen, bougiespecificaties, kettingsteek en controleer serienummers op echtheid.
+          Officiële gids voor de STIHL {modelName}. Bekijk carburateur basisafstellingen, bougiespecificaties, kettingsteek en lees de gietklok/datumstempel af om het bouwjaar te verifiëren.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-800 text-xs">
@@ -45,12 +46,17 @@ export default function ModelPage({ params }: PageProps) {
           </div>
           <div className="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
             <h3 className="font-bold text-orange-400 uppercase">Carburateur Basisafstelling</h3>
-            <div><span className="text-gray-400">H-Schroef:</span> <strong class="text-white">M-Tronic (Auto)</strong></div>
-            <div><span className="text-gray-400">L-Schroef:</span> <strong class="text-white">M-Tronic (Auto)</strong></div>
-            <div><span className="text-gray-400">LA-Schroef:</span> <strong class="text-white">M-Tronic (Auto)</strong></div>
+            <div><span className="text-gray-400">H-Schroef:</span> <strong className="text-white">M-Tronic (Auto)</strong></div>
+            <div><span className="text-gray-400">L-Schroef:</span> <strong className="text-white">M-Tronic (Auto)</strong></div>
+            <div><span className="text-gray-400">LA-Schroef:</span> <strong className="text-white">M-Tronic (Auto)</strong></div>
           </div>
         </div>
       </div>
+
+      {/* Gietklok Helper Module */}
+      <section className="pt-4">
+        <GietklokHelper />
+      </section>
     </main>
   );
 }
