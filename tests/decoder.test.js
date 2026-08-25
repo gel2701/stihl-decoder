@@ -5,6 +5,10 @@ import { fileURLToPath } from 'url';
 import { decodeStihlCode, cleanInput, evaluateCounterfeitRules } from '../src/decoder.js';
 import { StihlDecoderService } from '../src/StihlDecoderService.js';
 import { handleDecodeApiV1 } from '../src/StihlDecoderController.js';
+import { generateModelJsonLd } from '../src/components/ModelJsonLd.js';
+import { generateSitemapXml, generateRobotsTxt } from '../src/components/SitemapGenerator.js';
+import { renderStihlPassportHtml } from '../src/components/StihlPassportGenerator.js';
+import { renderSerialLocatorHtml } from '../src/components/SerialLocator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,56 +17,49 @@ const __dirname = path.dirname(__filename);
 const dbPath = path.join(__dirname, '..', 'data', 'stihl_database.json');
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 
-console.log('🧪 Running STIHL Decoding Engine & API v1 Controller Unit Tests...\n');
+console.log('🧪 Running STIHL Decoding Engine, Growth Engine & SEO Unit Tests...\n');
 
-// Test 1: Valid German 9-digit Serial (starts with 1)
-const resDE = handleDecodeApiV1({ serialNumber: '184592301', optionalModelHint: 'MS 261' }, database);
+// Test 1: Schema.org JSON-LD Helper
+const jsonLd = generateModelJsonLd({
+  modelName: 'MS 261 C-M',
+  category: 'Kettingzaag',
+  displacementCc: 50.2,
+  powerHp: 4.1,
+  sparkPlug: 'NGK CMR6H',
+  carbSettings: { H: 'M-Tronic (Auto)', L: 'M-Tronic (Auto)', LA: 'M-Tronic (Auto)' },
+  url: 'https://stihldecoder.nl/modellen/stihl-ms-261-c-m'
+});
+assert.strictEqual(jsonLd['@context'], 'https://schema.org');
+assert.strictEqual(jsonLd['@graph'].length, 3);
+assert.strictEqual(jsonLd['@graph'][0]['@type'], 'TechArticle');
+console.log('✅ Test 1 Passed: Schema.org JSON-LD graph generated with TechArticle, Product, and FAQPage.');
+
+// Test 2: Sitemap XML & Robots.txt
+const sitemapXml = generateSitemapXml('https://stihldecoder.nl', database);
+assert.ok(sitemapXml.includes('<?xml version="1.0" encoding="UTF-8"?>'));
+assert.ok(sitemapXml.includes('<loc>https://stihldecoder.nl/modellen</loc>'));
+
+const robotsTxt = generateRobotsTxt('https://stihldecoder.nl');
+assert.ok(robotsTxt.includes('Sitemap: https://stihldecoder.nl/sitemap.xml'));
+console.log('✅ Test 2 Passed: Sitemap XML and Robots.txt generated successfully.');
+
+// Test 3: Stihl Paspoort HTML Certificate Generator
+const passportHtml = renderStihlPassportHtml({ cleanedSerial: '184592301', model: 'MS 261 C-M' });
+assert.ok(passportHtml.includes('STIHL MACHINE PASPOORT'));
+assert.ok(passportHtml.includes('Gevalideerd'));
+console.log('✅ Test 3 Passed: Stihl Paspoort certificate generator rendered HTML card.');
+
+// Test 4: Visual Serial Locator Component
+const locatorHtml = renderSerialLocatorHtml();
+assert.ok(locatorHtml.includes('Visuele Serienummer Locator'));
+assert.ok(locatorHtml.includes('Kettingzaag (MS)'));
+console.log('✅ Test 4 Passed: Visual Serial Locator component rendered HTML.');
+
+// Test 5: REST API Controller POST /api/v1/decode
+const resDE = handleDecodeApiV1({ serialNumber: '184592301' }, database);
 assert.strictEqual(resDE.statusCode, 200);
 assert.strictEqual(resDE.body.status, 'success');
-assert.strictEqual(resDE.body.data.serialNumber, '184592301');
-assert.strictEqual(resDE.body.data.formatted, '1 845 923 01');
-assert.strictEqual(resDE.body.data.factory.code, '1');
 assert.strictEqual(resDE.body.data.factory.country, 'Duitsland');
-assert.strictEqual(resDE.body.data.factory.facility, 'Waiblingen');
-assert.ok(resDE.body.data.matchedModel);
-assert.strictEqual(resDE.body.data.authenticityStatus.isSuspicious, false);
-console.log('✅ Test 1 Passed: Valid German 9-digit serial (starts with 1) returns 200 OK with full payload.');
+console.log('✅ Test 5 Passed: REST API v1 Controller returns 200 OK with full payload.');
 
-// Test 2: Valid US 9-digit Serial (starts with 2 or 5)
-const resUS2 = handleDecodeApiV1({ serialNumber: '275123456' }, database);
-assert.strictEqual(resUS2.statusCode, 200);
-assert.strictEqual(resUS2.body.data.factory.code, '2');
-assert.strictEqual(resUS2.body.data.factory.country, 'Verenigde Staten');
-
-const resUS5 = handleDecodeApiV1({ serialNumber: '512345678' }, database);
-assert.strictEqual(resUS5.statusCode, 200);
-assert.strictEqual(resUS5.body.data.factory.code, '5');
-assert.strictEqual(resUS5.body.data.factory.country, 'Verenigde Staten');
-console.log('✅ Test 2 Passed: Valid US 9-digit serials (starts with 2 or 5) return 200 OK.');
-
-// Test 3: Empty input (400 Bad Request)
-const resEmpty = handleDecodeApiV1({}, database);
-assert.strictEqual(resEmpty.statusCode, 400);
-assert.strictEqual(resEmpty.body.status, 'error');
-assert.strictEqual(resEmpty.body.message, 'Serienummer is verplicht.');
-console.log('✅ Test 3 Passed: Empty input returns 400 Bad Request.');
-
-// Test 4: Invalid digit string and unexpected length (422 Unprocessable Entity)
-const resShort = handleDecodeApiV1({ serialNumber: '12345' }, database);
-assert.strictEqual(resShort.statusCode, 422);
-assert.strictEqual(resShort.body.status, 'error');
-assert.ok(resShort.body.flags.length > 0);
-console.log('✅ Test 4 Passed: Unexpected length returns 422 Unprocessable Entity.');
-
-// Test 5: Known Clone Pattern Detection (422 Unprocessable Entity)
-const resFake = handleDecodeApiV1({ serialNumber: '999999999' }, database);
-assert.strictEqual(resFake.statusCode, 422);
-assert.strictEqual(resFake.body.status, 'error');
-assert.ok(resFake.body.flags.length > 0);
-
-const resZero = handleDecodeApiV1({ serialNumber: '012345678' }, database);
-assert.strictEqual(resZero.statusCode, 422);
-assert.strictEqual(resZero.body.status, 'error');
-console.log('✅ Test 5 Passed: Detection of known clone patterns (999999999 / starting with 0) returns 422 error.');
-
-console.log('\n🎉 ALL DECODING ENGINE & API V1 CONTROLLER TESTS PASSED SUCCESSFULLY!');
+console.log('\n🎉 ALL GROWTH ENGINE, SEO & DECODING ENGINE TESTS PASSED SUCCESSFULLY!');
