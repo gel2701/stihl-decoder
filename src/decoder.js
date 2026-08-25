@@ -205,7 +205,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     input: serialStr,
     cleaned: serialStr,
     factory: factoryData,
-    model: matchedModelSpec ? matchedModelSpec.model_name : (legacyRangeMatch ? legacyRangeMatch.model : (familyInfo ? familyInfo.model : "STIHL Benzine / Accu Machine")),
+    model: matchedModelSpec ? matchedModelSpec.model_name : (legacyRangeMatch ? legacyRangeMatch.model : (familyInfo ? familyInfo.model : "STIHL Benzine Machine")),
     generation: breakpointMatch ? breakpointMatch.generation : null,
     technicalBulletinRef: breakpointMatch ? breakpointMatch.technical_bulletin_ref : null,
     familyCode: seriesCode,
