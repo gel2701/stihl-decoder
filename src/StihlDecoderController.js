@@ -1,6 +1,8 @@
 /**
- * REST API Controller for POST /api/v1/decode
+ * REST API Controller for POST /api/v1/decode with embedded StihlPassportGenerator payload
  */
+
+import { renderStihlPassportHtml } from './components/StihlPassportGenerator.js';
 
 export function handleDecodeApiV1(reqBody, database) {
   if (!reqBody || !reqBody.serialNumber || !reqBody.serialNumber.toString().trim()) {
@@ -134,6 +136,26 @@ export function handleDecodeApiV1(reqBody, database) {
     confidenceScore: 0.90
   };
 
+  const passportHtml = renderStihlPassportHtml({
+    cleanedSerial: cleaned,
+    formatted,
+    modelMatch: {
+      modelName: matchedModel.name,
+      specs: {
+        sparkPlug: matchedModel.specs.sparkPlug,
+        chainDetails: { pitch: matchedModel.specs.chainPitch }
+      }
+    },
+    plantInfo: {
+      country: factory.country,
+      location: factory.facility
+    },
+    manufacturingYearEstimate: {
+      yearStart: parseInt(estimatedProduction.year.split(' - ')[0], 10) || 2016,
+      yearEnd: estimatedProduction.year.includes('Heden') ? null : parseInt(estimatedProduction.year.split(' - ')[1], 10)
+    }
+  });
+
   return {
     statusCode: 200,
     body: {
@@ -147,7 +169,8 @@ export function handleDecodeApiV1(reqBody, database) {
         authenticityStatus: {
           isSuspicious: false,
           flags: []
-        }
+        },
+        passportCardHtml: passportHtml
       }
     }
   };
