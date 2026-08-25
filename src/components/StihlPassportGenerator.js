@@ -1,5 +1,5 @@
 /**
- * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Banner
+ * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification
  */
 
 export function renderStihlPassportHtml(data) {
@@ -73,7 +73,7 @@ export function renderStihlPassportHtml(data) {
       <div class="flex justify-between items-end border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400">
         <div>
           <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop & taxatie</p>
-          <p class="text-neutral-500">Politiedatabase check • Geen gestolen registratie bekend</p>
+          <p class="text-neutral-500">Politiedatabase check • ${isStolen ? 'GEREGISTREERD ALS GESTOLEN' : 'Geen gestolen registratie bekend'}</p>
         </div>
         <span class="font-mono font-black text-orange-500 text-sm">stihldecoder.nl</span>
       </div>
@@ -92,9 +92,15 @@ export function downloadStihlPassportImage(data) {
 
   const theftCheck = data.theftCheck || {
     isStolen: false,
-    checkedAt: new Date().toLocaleDateString('nl-NL'),
+    checkedAt: new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
     statusLabel: '✓ NIET ALS GESTOLEN GEREGISTREERD'
   };
+
+  // STRICT SECURITY GUARD: Block passport generation if marked as stolen
+  if (theftCheck.isStolen) {
+    alert('🚨 DOWNLOAD GEBLOKKEERD: Dit serienummer staat als gestolen geregistreerd in het StopHeling register van de politie.');
+    return;
+  }
 
   const canvas = document.createElement('canvas');
   canvas.width = 1200;
@@ -127,17 +133,10 @@ export function downloadStihlPassportImage(data) {
   ctx.font = 'bold 16px sans-serif';
   ctx.fillText('STIHL VERIFIED', 975, 76);
 
-  // Stop Heling Banner Box
-  if (theftCheck.isStolen) {
-    ctx.fillStyle = '#4c0519';
-    ctx.fillRect(60, 160, 1080, 80);
-    ctx.fillStyle = '#fda4af';
-  } else {
-    ctx.fillStyle = '#064e3b';
-    ctx.fillRect(60, 160, 1080, 80);
-    ctx.fillStyle = '#6ee7b7';
-  }
-  
+  // Stop Heling Banner Box (Green verified banner on image)
+  ctx.fillStyle = '#064e3b';
+  ctx.fillRect(60, 160, 1080, 80);
+  ctx.fillStyle = '#6ee7b7';
   ctx.font = 'bold 18px sans-serif';
   ctx.fillText('STOP HELING DIEFSTALCONTROLE', 90, 195);
   ctx.fillStyle = '#ffffff';
@@ -198,7 +197,7 @@ export function downloadStihlPassportImage(data) {
   ctx.fillText('Geverifieerd document voor verkoop & taxatie op Marktplaats & 2dehands.be', 60, 790);
   ctx.fillStyle = '#737373';
   ctx.font = '16px sans-serif';
-  ctx.fillText('Politiedatabase StopHeling check • Geen gestolen registratie bekend op datum van controle', 60, 825);
+  ctx.fillText(`Politiedatabase StopHeling check • Geen gestolen registratie bekend op datum van controle (${theftCheck.checkedAt})`, 60, 825);
 
   ctx.fillStyle = '#ea580c';
   ctx.font = 'bold 30px monospace';
