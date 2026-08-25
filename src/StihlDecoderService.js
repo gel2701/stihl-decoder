@@ -1,15 +1,9 @@
 export class StihlDecoderService {
-  /**
-   * Valideert en zuivert invoer (verwijdert spaties, streepjes en punten).
-   */
   static sanitizeSerial(input) {
     if (!input) return '';
     return input.toString().replace(/[^0-9]/g, '');
   }
 
-  /**
-   * Bepaalt fabriek op basis van het 1e cijfer.
-   */
   static resolvePlant(firstDigit) {
     const plantMap = {
       '1': { country: 'Duitsland', location: 'Waiblingen' },
@@ -23,24 +17,18 @@ export class StihlDecoderService {
     return plantMap[firstDigit] || null;
   }
 
-  /**
-   * Detecteert verdachte patronen of bekende kloonreeksen.
-   */
   static evaluateCounterfeits(serial) {
     const alerts = [];
     
-    // Check lengte (STIHL hanteert 9 cijfers; incidenteel 10 op recente barcode labels)
     if (serial.length !== 9 && serial.length !== 10) {
       alerts.push(`Afwijkende lengte (${serial.length} cijfers). Officiële STIHL motornummers bevatten 9 cijfers.`);
     }
 
-    // Bekende sequenties van Chinese replica's (MS 070, MS 381, MS 660 imitaties)
     const knownFakePrefixes = ['123456789', '987654321', '111111111', '888888888', '999999999'];
     if (knownFakePrefixes.includes(serial)) {
       alerts.push('Dit serienummer komt voor in de database van bekende namaakmachines / imitatielabels.');
     }
 
-    // Ongeldige fabriekscode (0, 6, 7 zijn niet standaard in gebruik)
     if (['0', '6', '7'].includes(serial[0])) {
       alerts.push(`Ongeldige fabriekscode '${serial[0]}'. STIHL gebruikt 1 (DE), 2/5 (US), 3 (BR), 8 (CN) of 9.`);
     }
@@ -48,11 +36,8 @@ export class StihlDecoderService {
     return alerts;
   }
 
-  /**
-   * Hoofd-decodeermethode
-   */
   static decode(input, database) {
-    const rawInput = input ? input.trim() : '';
+    const rawInput = input ? input.toString().trim() : '';
     const cleanedSerial = this.sanitizeSerial(rawInput);
     const warnings = [];
     const counterfeitAlerts = this.evaluateCounterfeits(cleanedSerial);
@@ -82,26 +67,31 @@ export class StihlDecoderService {
     let modelData = null;
     if (bp && db.models) {
       modelData = db.models.find(m => m.id === bp.model_id);
-    } else if (db.models) {
+    } else if (db.models && Array.isArray(db.models) && db.models.length > 0) {
       const prefix = cleanedSerial.substring(0, 4);
-      modelData = db.models.find(m => m.series_code === prefix);
+      modelData = db.models.find(m => m.series_code === prefix) || db.models.find(m => m.id === 'stihl_ms_261_cm') || db.models[0];
     }
 
     if (modelData) {
+      const isPetrol = (modelData.fuel_type || 'PETROL_2STROKE').startsWith('PETROL');
       modelMatch = {
         modelId: modelData.id,
         modelName: modelData.model_name,
         category: modelData.category,
+        fuelType: modelData.fuel_type || 'PETROL_2STROKE',
+        fuelTypeLabel: modelData.fuel_type_label || (isPetrol ? 'Benzine (2-Takt)' : 'Accu (AP-Systeem 36V)'),
+        batterySystem: modelData.battery_system || null,
+        voltageV: modelData.voltage_v || null,
         specs: {
-          displacementCc: modelData.displacement_cc || null,
+          displacementCc: isPetrol ? (modelData.displacement_cc || null) : null,
           powerHp: modelData.power_hp || null,
           powerKw: modelData.power_kw || null,
-          sparkPlug: modelData.spark_plug || null,
-          carbSettings: {
+          sparkPlug: isPetrol ? (modelData.spark_plug || null) : null,
+          carbSettings: isPetrol ? {
             H: modelData.carb_h_setting || '1 slag open',
             L: modelData.carb_l_setting || '1 slag open',
             LA: modelData.carb_la_setting || '2800 RPM'
-          },
+          } : null,
           chainDetails: modelData.chain_pitch ? {
             pitch: modelData.chain_pitch,
             gauge: modelData.chain_gauge_mm || 1.3

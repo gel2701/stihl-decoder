@@ -1,5 +1,5 @@
 /**
- * REST API Controller for POST /api/v1/decode with StopHelingService integration
+ * REST API Controller for POST /api/v1/decode with StopHelingService & FuelType Separation
  */
 
 import { renderStihlPassportHtml } from './components/StihlPassportGenerator.js';
@@ -19,7 +19,6 @@ export async function handleDecodeApiV1(reqBody, database) {
   const raw = reqBody.serialNumber.toString().trim();
   const cleaned = raw.replace(/[^0-9]/g, '');
 
-  // Check validity length
   if (!cleaned || (cleaned.length !== 9 && cleaned.length !== 10)) {
     return {
       statusCode: 422,
@@ -31,7 +30,6 @@ export async function handleDecodeApiV1(reqBody, database) {
     };
   }
 
-  // Counterfeit / Clone check
   const alerts = [];
   const knownFakePrefixes = ['123456789', '987654321', '111111111', '888888888', '999999999'];
   if (knownFakePrefixes.includes(cleaned)) {
@@ -53,13 +51,9 @@ export async function handleDecodeApiV1(reqBody, database) {
     };
   }
 
-  // Execute Stop Heling theft check in parallel
   const theftCheck = await StopHelingService.verifySerialNumber(cleaned);
-
-  // Format 184592301 -> "1 845 923 01"
   const formatted = `${cleaned[0]} ${cleaned.slice(1,4)} ${cleaned.slice(4,7)} ${cleaned.slice(7)}`;
 
-  // Resolve factory
   const plantMap = {
     '1': { code: '1', country: 'Duitsland', facility: 'Waiblingen' },
     '2': { code: '2', country: 'Verenigde Staten', facility: 'Virginia Beach 1' },
@@ -71,7 +65,6 @@ export async function handleDecodeApiV1(reqBody, database) {
   };
   const factory = plantMap[cleaned[0]] || { code: cleaned[0], country: 'Onbekend', facility: 'Onbekend' };
 
-  // Breakpoint & Model Lookup
   const serialNum = parseInt(cleaned, 10);
   const db = database || {};
 
@@ -92,41 +85,30 @@ export async function handleDecodeApiV1(reqBody, database) {
     modelData = db.models.find(m => m.id === 'stihl_ms_261_cm') || db.models[0];
   }
 
-  const matchedModel = modelData ? {
-    id: modelData.id,
-    name: modelData.model_name,
-    series: modelData.series_code || '1141',
-    category: modelData.category || 'Kettingzaag',
+  const isPetrol = (modelData ? (modelData.fuel_type || 'PETROL_2STROKE') : 'PETROL_2STROKE').startsWith('PETROL');
+
+  const matchedModel = {
+    id: modelData ? modelData.id : 'stihl_ms_261_cm',
+    name: modelData ? modelData.model_name : 'MS 261 C-M (M-Tronic)',
+    series: modelData ? (modelData.series_code || '1141') : '1141',
+    category: modelData ? modelData.category : 'Kettingzaag',
+    fuelType: modelData ? (modelData.fuel_type || 'PETROL_2STROKE') : 'PETROL_2STROKE',
+    fuelTypeLabel: modelData ? (modelData.fuel_type_label || (isPetrol ? 'Benzine (2-Takt)' : 'Accu (AP-Systeem 36V)')) : 'Benzine (2-Takt M-Tronic)',
+    batterySystem: modelData ? (modelData.battery_system || null) : null,
+    voltageV: modelData ? (modelData.voltage_v || null) : null,
     specs: {
-      engineCc: modelData.displacement_cc || 50.2,
-      powerHp: modelData.power_hp || 4.1,
-      powerKw: modelData.power_kw || 3.0,
-      sparkPlug: modelData.spark_plug || 'NGK CMR6H',
-      chainPitch: modelData.chain_pitch || '.325"',
-      chainGaugeMm: modelData.chain_gauge_mm || 1.3,
-      carbSettings: {
-        H: modelData.carb_h_setting || 'M-Tronic (Automatisch)',
-        L: modelData.carb_l_setting || 'M-Tronic (Automatisch)',
-        LA: modelData.carb_la_setting || 'M-Tronic (Automatisch)'
-      }
-    }
-  } : {
-    id: 'stihl_ms_261_cm',
-    name: 'MS 261 C-M (M-Tronic)',
-    series: '1141',
-    category: 'Kettingzaag',
-    specs: {
-      engineCc: 50.2,
-      powerHp: 4.1,
-      powerKw: 3.0,
-      sparkPlug: 'NGK CMR6H',
-      chainPitch: '.325"',
-      chainGaugeMm: 1.3,
-      carbSettings: {
-        H: 'M-Tronic (Automatisch)',
-        L: 'M-Tronic (Automatisch)',
-        LA: 'M-Tronic (Automatisch)'
-      }
+      displacementCc: isPetrol ? (modelData ? (modelData.displacement_cc || 50.2) : 50.2) : null,
+      engineCc: isPetrol ? (modelData ? (modelData.displacement_cc || 50.2) : 50.2) : null,
+      powerHp: modelData ? (modelData.power_hp || 4.1) : 4.1,
+      powerKw: modelData ? (modelData.power_kw || 3.0) : 3.0,
+      sparkPlug: isPetrol ? (modelData ? (modelData.spark_plug || 'NGK CMR6H') : 'NGK CMR6H') : null,
+      chainPitch: modelData ? (modelData.chain_pitch || '.325"') : '.325"',
+      chainGaugeMm: modelData ? (modelData.chain_gauge_mm || 1.3) : 1.3,
+      carbSettings: isPetrol ? {
+        H: modelData ? (modelData.carb_h_setting || 'M-Tronic (Automatisch)') : 'M-Tronic (Automatisch)',
+        L: modelData ? (modelData.carb_l_setting || 'M-Tronic (Automatisch)') : 'M-Tronic (Automatisch)',
+        LA: modelData ? (modelData.carb_la_setting || 'M-Tronic (Automatisch)') : 'M-Tronic (Automatisch)'
+      } : null
     }
   };
 
@@ -146,7 +128,7 @@ export async function handleDecodeApiV1(reqBody, database) {
     modelMatch: {
       modelName: matchedModel.name,
       specs: {
-        displacementCc: matchedModel.specs.engineCc,
+        displacementCc: matchedModel.specs.displacementCc,
         powerHp: matchedModel.specs.powerHp,
         sparkPlug: matchedModel.specs.sparkPlug,
         chainDetails: { pitch: matchedModel.specs.chainPitch }

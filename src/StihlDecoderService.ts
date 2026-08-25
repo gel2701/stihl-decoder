@@ -11,12 +11,16 @@ export interface DecodeResult {
     modelId: string;
     modelName: string;
     category: string;
+    fuelType: 'PETROL_2STROKE' | 'PETROL_4MIX' | 'BATTERY_AP' | 'BATTERY_AK' | 'BATTERY_AS' | 'ELECTRIC_CORDED';
+    fuelTypeLabel: string;
+    batterySystem?: string | null;
+    voltageV?: number | null;
     specs: {
       displacementCc: number | null;
       powerHp: number | null;
       powerKw: number | null;
       sparkPlug: string | null;
-      carbSettings: { H: string; L: string; LA: string };
+      carbSettings?: { H: string; L: string; LA: string } | null;
       chainDetails: { pitch: string; gauge: number } | null;
     };
   };
@@ -61,18 +65,15 @@ export class StihlDecoderService {
   public static evaluateCounterfeits(serial: string): string[] {
     const alerts: string[] = [];
     
-    // Check lengte (STIHL hanteert 9 cijfers; incidenteel 10 op recente barcode labels)
     if (serial.length !== 9 && serial.length !== 10) {
       alerts.push(`Afwijkende lengte (${serial.length} cijfers). Officiële STIHL motornummers bevatten 9 cijfers.`);
     }
 
-    // Bekende sequenties van Chinese replica's (MS 070, MS 381, MS 660 imitaties)
     const knownFakePrefixes = ['123456789', '987654321', '111111111', '888888888', '999999999'];
     if (knownFakePrefixes.includes(serial)) {
       alerts.push('Dit serienummer komt voor in de database van bekende namaakmachines / imitatielabels.');
     }
 
-    // Ongeldige fabriekscode (0, 6, 7 zijn niet standaard in gebruik)
     if (['0', '6', '7'].includes(serial[0])) {
       alerts.push(`Ongeldige fabriekscode '${serial[0]}'. STIHL gebruikt 1 (DE), 2/5 (US), 3 (BR), 8 (CN) of 9.`);
     }
@@ -106,7 +107,6 @@ export class StihlDecoderService {
     const db = database || {};
     const serialNum = parseInt(cleanedSerial, 10);
 
-    // Breakpoint lookup
     let bp = null;
     if (db.serial_breakpoints && Array.isArray(db.serial_breakpoints)) {
       bp = db.serial_breakpoints.find((b: any) => serialNum >= b.serial_start && serialNum <= b.serial_end);
@@ -121,20 +121,25 @@ export class StihlDecoderService {
     }
 
     if (modelData) {
+      const isPetrol = (modelData.fuel_type || 'PETROL_2STROKE').startsWith('PETROL');
       modelMatch = {
         modelId: modelData.id,
         modelName: modelData.model_name,
         category: modelData.category,
+        fuelType: modelData.fuel_type || 'PETROL_2STROKE',
+        fuelTypeLabel: modelData.fuel_type_label || (isPetrol ? 'Benzine (2-Takt)' : 'Accu (AP-Systeem 36V)'),
+        batterySystem: modelData.battery_system || null,
+        voltageV: modelData.voltage_v || null,
         specs: {
-          displacementCc: modelData.displacement_cc || null,
+          displacementCc: isPetrol ? (modelData.displacement_cc || null) : null,
           powerHp: modelData.power_hp || null,
           powerKw: modelData.power_kw || null,
-          sparkPlug: modelData.spark_plug || null,
-          carbSettings: {
+          sparkPlug: isPetrol ? (modelData.spark_plug || null) : null,
+          carbSettings: isPetrol ? {
             H: modelData.carb_h_setting || '1 slag open',
             L: modelData.carb_l_setting || '1 slag open',
             LA: modelData.carb_la_setting || '2800 RPM'
-          },
+          } : null,
           chainDetails: modelData.chain_pitch ? {
             pitch: modelData.chain_pitch,
             gauge: modelData.chain_gauge_mm || 1.3

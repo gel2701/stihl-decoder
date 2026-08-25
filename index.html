@@ -49,6 +49,8 @@
           "series_code": "1130",
           "model_name": "MS 170 / MS 170-D",
           "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt 1:50)",
           "displacement_cc": 30.1,
           "power_kw": 1.2,
           "power_hp": 1.6,
@@ -66,6 +68,8 @@
           "series_code": "1141",
           "model_name": "MS 261 C-M (M-Tronic)",
           "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt M-Tronic)",
           "displacement_cc": 50.2,
           "power_kw": 3.0,
           "power_hp": 4.1,
@@ -83,6 +87,8 @@
           "series_code": "1147",
           "model_name": "MS 500i (Elektronische Injectie)",
           "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt Injectie)",
           "displacement_cc": 79.2,
           "power_kw": 5.0,
           "power_hp": 6.8,
@@ -94,6 +100,27 @@
           "carb_la_setting": "Elektronisch geregeld",
           "chain_pitch": "3/8\"",
           "chain_gauge_mm": 1.6
+        },
+        {
+          "id": "stihl_msa_220_c",
+          "series_code": "1251",
+          "model_name": "MSA 220 C-B (Accu Zaag)",
+          "category": "Accu Kettingzaag",
+          "fuel_type": "BATTERY_AP",
+          "fuel_type_label": "Accu (AP-Systeem 36V)",
+          "displacement_cc": null,
+          "power_kw": 2.1,
+          "power_hp": 2.8,
+          "weight_kg": 3.6,
+          "spark_plug": null,
+          "electrode_gap_mm": null,
+          "carb_h_setting": null,
+          "carb_l_setting": null,
+          "carb_la_setting": null,
+          "chain_pitch": "3/8\" P",
+          "chain_gauge_mm": 1.1,
+          "battery_system": "STIHL AP-Systeem (Professioneel)",
+          "voltage_v": 36
         }
       ],
       "counterfeit_rules": [
@@ -139,14 +166,14 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.8 Strict Types Pro</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.9 FuelType Separation</span>
           </h1>
           <p class="text-xs text-gray-400">Serienummers, Carburateur Afstelling, Gietnummers & Marktplaats Paspoort</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 9-Cijferig Serienummer</span>
-        <span class="flex items-center gap-1.5 text-blue-400"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Model Datablad</span>
+        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Benzine vs Accu Scheiding</span>
       </div>
     </div>
   </header>
@@ -252,7 +279,7 @@
         </div>
       </div>
 
-      <!-- MODEL SPECIFICATIONS CARD (Model Name Search e.g. "MS 261 C-M" - NO SERIAL NUMBER, NO PASSPORT, NO STOPHELING) -->
+      <!-- MODEL SPECIFICATIONS CARD (Model Name Search e.g. "MS 261 C-M") -->
       <div id="model-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
           <div>
@@ -276,11 +303,11 @@
               <div id="model-card-name" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
             </div>
             <div>
-              <span class="text-xs text-gray-400">Categorie / Type:</span>
-              <div id="model-card-cat" class="text-sm font-bold text-white mt-0.5">Kettingzaag (Professioneel)</div>
+              <span class="text-xs text-gray-400">Aandrijving:</span>
+              <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
             </div>
             <div class="pt-3 border-t border-gray-800 grid grid-cols-2 gap-3 text-xs">
-              <div>
+              <div id="model-disp-box">
                 <span class="text-gray-400 block">Cilinderinhoud:</span>
                 <span id="model-spec-disp" class="font-semibold text-gray-200">50.2 cc</span>
               </div>
@@ -291,13 +318,13 @@
             </div>
           </div>
 
-          <!-- Technical Specs & Carburetor -->
+          <!-- Technical Specs & Carburetor / Battery System -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Service Specificaties & Carburateur
+              Service Specificaties & Aandrijving
             </h4>
-            <div class="grid grid-cols-2 gap-3 text-xs">
+            <div id="model-specs-grid-petrol" class="grid grid-cols-2 gap-3 text-xs">
               <div>
                 <span class="text-gray-400 block">Bougie Type:</span>
                 <span id="model-spec-spark-plug" class="font-mono text-orange-300 font-bold">NGK CMR6H / Bosch USR7AC</span>
@@ -362,7 +389,12 @@
             
             <div>
               <span class="text-xs text-gray-400">Geïdentificeerd Model:</span>
-              <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">STIHL MS 261 C-M</div>
+              <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
+            </div>
+
+            <div>
+              <span class="text-xs text-gray-400">Aandrijvingstype:</span>
+              <div id="res-fuel-type" class="text-sm font-bold text-emerald-400 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
             </div>
 
             <div>
@@ -376,7 +408,7 @@
             </div>
 
             <div class="pt-3 border-t border-gray-800 grid grid-cols-2 gap-3 text-xs">
-              <div>
+              <div id="res-disp-box">
                 <span class="text-gray-400 block">Cilinderinhoud:</span>
                 <span id="spec-disp" class="font-semibold text-gray-200">50.2 cc</span>
               </div>
@@ -391,35 +423,35 @@
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Service Specificaties & Carburateur
+              Service Specificaties & Aandrijving
             </h4>
             
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div>
+            <div id="specs-grid-container" class="grid grid-cols-2 gap-3 text-xs">
+              <div id="spec-spark-box">
                 <span class="text-gray-400 block">Bougie Type:</span>
                 <span id="spec-spark-plug" class="font-mono text-orange-300 font-bold">NGK CMR6H / Bosch USR7AC</span>
               </div>
-              <div>
+              <div id="spec-gap-box">
                 <span class="text-gray-400 block">Elektrodenafstand:</span>
                 <span id="spec-electrode-gap" class="font-mono text-gray-200">0.50 mm</span>
               </div>
-              <div>
+              <div id="spec-carb-h-box">
                 <span class="text-gray-400 block">Carburateur H-Schroef:</span>
                 <span id="spec-carb-h" class="font-semibold text-gray-200">M-Tronic (Automatisch)</span>
               </div>
-              <div>
+              <div id="spec-carb-l-box">
                 <span class="text-gray-400 block">Carburateur L-Schroef:</span>
                 <span id="spec-carb-l" class="font-semibold text-gray-200">M-Tronic (Automatisch)</span>
               </div>
-              <div>
+              <div id="spec-carb-la-box">
                 <span class="text-gray-400 block">Carburateur LA-Schroef:</span>
                 <span id="spec-carb-la" class="font-semibold text-gray-200">2800 RPM stationair</span>
               </div>
-              <div>
+              <div id="spec-chain-box">
                 <span class="text-gray-400 block">Kettingsteek & Dikte:</span>
                 <span id="spec-chain-info" class="font-semibold text-gray-200">.325" @ 1.3 mm</span>
               </div>
-              <div>
+              <div id="spec-oil-box">
                 <span class="text-gray-400 block">Mengsmering:</span>
                 <span id="spec-oil-mix" class="font-semibold text-gray-200">1:50 (STIHL HP Ultra)</span>
               </div>
@@ -472,7 +504,7 @@
     </div>
   </footer>
 
-  <!-- Client Script for Gietklok Helper, Examples, Part Number Warnings & Passport Image Download -->
+  <!-- Client Script for Gietklok Helper, Examples, FuelType Separation & Passport Image Download -->
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
@@ -489,6 +521,7 @@
       const emptyState = document.getElementById('empty-state');
       const database = window.STIHL_DATABASE || {};
       let currentSerial = '178456789';
+      let currentModelName = 'MS 261 C-M (M-Tronic)';
 
       function showToast(msg) {
         const toast = document.getElementById('toast-notification');
@@ -538,14 +571,19 @@
           return;
         }
 
-        // CASE 3: Model Name Search (e.g. "MS 261 C-M", "MS 170") -> MODEL DATABLAD ONLY (NO SERIAL HEADER, NO PASSPORT, NO STOPHELING)
+        // CASE 3: Model Name Search (e.g. "MS 261 C-M", "MS 170") -> MODEL DATABLAD ONLY
         if (res && res.type === 'MODEL_DECODE') {
           const modelName = res.input.toUpperCase();
+          const isBattery = modelName.startsWith('MSA') || modelName.startsWith('FSA') || modelName.startsWith('BGA') || modelName.startsWith('HSA');
+          
           document.getElementById('model-title-display').innerText = modelName;
           document.getElementById('model-card-name').innerText = modelName;
-          document.getElementById('model-card-cat').innerText = res.prefixMeaning || 'STIHL Benzine Machine';
+          document.getElementById('model-card-fuel').innerText = isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt M-Tronic)';
 
           const specs = res.technicalSpecs || {};
+          const dispBox = document.getElementById('model-disp-box');
+          if (dispBox) dispBox.style.display = isBattery ? 'none' : 'block';
+
           document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
           document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw} kW)` : '4.1 pk (3.0 kW)';
           document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
@@ -565,21 +603,55 @@
           currentSerial = serial;
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
+          const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
+          const fuelTypeLabel = isBattery ? '⚡ Accu (AP-Systeem 36V)' : (serial.startsWith('1') ? '🔥 Benzine (2-Takt M-Tronic)' : '🔥 Benzine (2-Takt)');
+
+          // SPECIFIC MODEL NAME (e.g. MS 261 C-M)
+          currentModelName = (res.model && !res.model.includes('Benzine / Accu')) ? res.model : 'MS 261 C-M (M-Tronic)';
+
           document.getElementById('res-serial-display').innerText = formatted;
-          document.getElementById('res-model').innerText = res.model || 'STIHL Benzine Machine';
+          document.getElementById('res-model').innerText = currentModelName;
+          document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
           document.getElementById('res-years').innerText = res.estimatedYears || 'Ca. 2016 - Heden';
           document.getElementById('res-country').innerText = res.factory ? `${res.factory.country} (${res.factory.location})` : 'Duitsland (Waiblingen)';
 
           const specs = res.technicalSpecs || {};
-          document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
+          const dispBox = document.getElementById('res-disp-box');
+          const sparkBox = document.getElementById('spec-spark-box');
+          const gapBox = document.getElementById('spec-gap-box');
+          const carbHBox = document.getElementById('spec-carb-h-box');
+          const carbLBox = document.getElementById('spec-carb-l-box');
+          const carbLABox = document.getElementById('spec-carb-la-box');
+          const oilBox = document.getElementById('spec-oil-box');
+
+          if (isBattery) {
+            if (dispBox) dispBox.style.display = 'none';
+            if (sparkBox) sparkBox.style.display = 'none';
+            if (gapBox) gapBox.style.display = 'none';
+            if (carbHBox) carbHBox.style.display = 'none';
+            if (carbLBox) carbLBox.style.display = 'none';
+            if (carbLABox) carbLABox.style.display = 'none';
+            if (oilBox) oilBox.style.display = 'none';
+          } else {
+            if (dispBox) dispBox.style.display = 'block';
+            if (sparkBox) sparkBox.style.display = 'block';
+            if (gapBox) gapBox.style.display = 'block';
+            if (carbHBox) carbHBox.style.display = 'block';
+            if (carbLBox) carbLBox.style.display = 'block';
+            if (carbLABox) carbLABox.style.display = 'block';
+            if (oilBox) oilBox.style.display = 'block';
+
+            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
+            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
+            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
+            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || '1 slag open (M-Tronic Auto)';
+            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || '1 slag open (M-Tronic Auto)';
+            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM stationair';
+            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
+          }
+
           document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw} kW)` : '4.1 pk (3.0 kW)';
-          document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
-          document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
-          document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || '1 slag open (M-Tronic Auto)';
-          document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || '1 slag open (M-Tronic Auto)';
-          document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM stationair';
           document.getElementById('spec-chain-info').innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
-          document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
 
           const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
           if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
@@ -685,10 +757,10 @@
           downloadStihlPassportImage({
             cleanedSerial: cleanSerial,
             formatted: `${cleanSerial[0]} ${cleanSerial.slice(1,4)} ${cleanSerial.slice(4,7)} ${cleanSerial.slice(7)}`,
-            model: codeVal.toUpperCase().includes('MS') ? codeVal.toUpperCase() : 'MS 261 C-M (M-Tronic)',
+            model: currentModelName,
             factory: { country: 'Duitsland', location: 'Waiblingen' },
             estimatedYears: '2016 - 2021',
-            modelMatch: { modelName: 'MS 261 C-M (M-Tronic)', specs: { displacementCc: 50.2, powerHp: 4.1 } }
+            modelMatch: { modelName: currentModelName, specs: { displacementCc: 50.2, powerHp: 4.1 } }
           });
         });
       }

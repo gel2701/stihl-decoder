@@ -27,6 +27,8 @@ const modelsData = [
     series_code: '1130',
     model_name: 'MS 170 / MS 170-D',
     category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
     displacement_cc: 30.1,
     power_kw: 1.2,
     power_hp: 1.6,
@@ -39,6 +41,8 @@ const modelsData = [
     chain_pitch: '3/8" P',
     chain_gauge_mm: 1.1,
     oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
     is_discontinued: 0
   },
   {
@@ -46,6 +50,8 @@ const modelsData = [
     series_code: '1141',
     model_name: 'MS 261 C-M (M-Tronic)',
     category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt M-Tronic)',
     displacement_cc: 50.2,
     power_kw: 3.0,
     power_hp: 4.1,
@@ -58,6 +64,77 @@ const modelsData = [
     chain_pitch: '.325"',
     chain_gauge_mm: 1.3,
     oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 0
+  },
+  {
+    id: 'stihl_ms_500i',
+    series_code: '1147',
+    model_name: 'MS 500i (Elektronische Injectie)',
+    category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt Injectie)',
+    displacement_cc: 79.2,
+    power_kw: 5.0,
+    power_hp: 6.8,
+    weight_kg: 6.2,
+    spark_plug: 'NGK CMR6H',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: 'Injectiesysteem (Geen carburateur)',
+    carb_l_setting: 'Injectiesysteem (Geen carburateur)',
+    carb_la_setting: 'Elektronisch geregeld',
+    chain_pitch: '3/8"',
+    chain_gauge_mm: 1.6,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 0
+  },
+  {
+    id: 'stihl_br_600',
+    series_code: '4282',
+    model_name: 'BR 600 (4-Mix Rugblazer)',
+    category: 'Bladblazer',
+    fuel_type: 'PETROL_4MIX',
+    fuel_type_label: 'Benzine (4-Mix Gepatenteerd)',
+    displacement_cc: 64.8,
+    power_kw: 3.0,
+    power_hp: 4.0,
+    weight_kg: 10.2,
+    spark_plug: 'NGK CMR6H',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: '1 slag open',
+    carb_l_setting: '1 slag open',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: null,
+    chain_gauge_mm: null,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 0
+  },
+  {
+    id: 'stihl_msa_220_c',
+    series_code: '1251',
+    model_name: 'MSA 220 C-B (Accu Zaag)',
+    category: 'Accu Kettingzaag',
+    fuel_type: 'BATTERY_AP',
+    fuel_type_label: 'Accu (AP-Systeem 36V)',
+    displacement_cc: null,
+    power_kw: 2.1,
+    power_hp: 2.8,
+    weight_kg: 3.6,
+    spark_plug: null,
+    electrode_gap_mm: null,
+    carb_h_setting: null,
+    carb_l_setting: null,
+    carb_la_setting: null,
+    chain_pitch: '3/8" P',
+    chain_gauge_mm: 1.1,
+    oil_mix_ratio: null,
+    battery_system: 'STIHL AP-Systeem (Professioneel)',
+    voltage_v: 36,
     is_discontinued: 0
   }
 ];
@@ -87,6 +164,8 @@ function seedDatabase() {
         series_code VARCHAR(10),
         model_name VARCHAR(100) NOT NULL,
         category VARCHAR(50) NOT NULL,
+        fuel_type VARCHAR(30) NOT NULL DEFAULT 'PETROL_2STROKE',
+        fuel_type_label VARCHAR(50),
         displacement_cc NUMERIC(5,1),
         power_kw NUMERIC(4,2),
         power_hp NUMERIC(4,2),
@@ -98,19 +177,22 @@ function seedDatabase() {
         carb_la_setting VARCHAR(50),
         chain_pitch VARCHAR(20),
         chain_gauge_mm NUMERIC(4,2),
-        oil_mix_ratio VARCHAR(20) DEFAULT '1:50',
+        oil_mix_ratio VARCHAR(20),
+        battery_system VARCHAR(100),
+        voltage_v INTEGER,
         is_discontinued BOOLEAN DEFAULT FALSE
       )`);
 
-      const stmtModel = db.prepare(`INSERT INTO models VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      const stmtModel = db.prepare(`INSERT INTO models VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       modelsData.forEach(m => stmtModel.run(
-        m.id, m.series_code, m.model_name, m.category, m.displacement_cc, m.power_kw, m.power_hp,
-        m.weight_kg, m.spark_plug, m.electrode_gap_mm, m.carb_h_setting, m.carb_l_setting,
-        m.carb_la_setting, m.chain_pitch, m.chain_gauge_mm, m.oil_mix_ratio, m.is_discontinued
+        m.id, m.series_code, m.model_name, m.category, m.fuel_type, m.fuel_type_label,
+        m.displacement_cc, m.power_kw, m.power_hp, m.weight_kg, m.spark_plug, m.electrode_gap_mm,
+        m.carb_h_setting, m.carb_l_setting, m.carb_la_setting, m.chain_pitch, m.chain_gauge_mm,
+        m.oil_mix_ratio, m.battery_system, m.voltage_v, m.is_discontinued
       ));
       stmtModel.finalize();
 
-      // 3. Theft Checks (Stop Heling Audit Log & Cache)
+      // 3. Theft Checks
       db.run(`CREATE TABLE theft_checks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         serial_number VARCHAR(50) NOT NULL,
