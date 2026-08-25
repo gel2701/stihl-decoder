@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { decodeStihlCode } from './src/decoder.js';
+import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,7 +37,28 @@ const server = http.createServer((req, res) => {
   const urlObj = new URL(req.url, `http://${req.headers.host}`);
   const pathname = urlObj.pathname;
 
-  // REST API: /api/decode?code=...
+  // REST API v1: POST /api/v1/decode
+  if (pathname === '/api/v1/decode' && req.method === 'POST') {
+    let bodyStr = '';
+    req.on('data', chunk => { bodyStr += chunk; });
+    req.on('end', () => {
+      let bodyObj = {};
+      try {
+        if (bodyStr) bodyObj = JSON.parse(bodyStr);
+      } catch (e) {
+        res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ status: 'error', message: 'Ongeldige JSON body.' }));
+        return;
+      }
+
+      const result = handleDecodeApiV1(bodyObj, database);
+      res.writeHead(result.statusCode, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify(result.body));
+    });
+    return;
+  }
+
+  // REST API: GET /api/decode?code=...
   if (pathname === '/api/decode') {
     const code = urlObj.searchParams.get('code') || '';
     const result = decodeStihlCode(code, database);
@@ -45,7 +67,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // REST API: /api/database
+  // REST API: GET /api/database
   if (pathname === '/api/database') {
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(database));
