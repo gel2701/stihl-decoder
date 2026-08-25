@@ -1,10 +1,11 @@
 /**
- * REST API Controller for POST /api/v1/decode with embedded StihlPassportGenerator payload
+ * REST API Controller for POST /api/v1/decode with StopHelingService integration
  */
 
 import { renderStihlPassportHtml } from './components/StihlPassportGenerator.js';
+import { StopHelingService } from './StopHelingService.js';
 
-export function handleDecodeApiV1(reqBody, database) {
+export async function handleDecodeApiV1(reqBody, database) {
   if (!reqBody || !reqBody.serialNumber || !reqBody.serialNumber.toString().trim()) {
     return {
       statusCode: 400,
@@ -51,6 +52,9 @@ export function handleDecodeApiV1(reqBody, database) {
       }
     };
   }
+
+  // Execute Stop Heling theft check in parallel
+  const theftCheck = await StopHelingService.verifySerialNumber(cleaned);
 
   // Format 184592301 -> "1 845 923 01"
   const formatted = `${cleaned[0]} ${cleaned.slice(1,4)} ${cleaned.slice(4,7)} ${cleaned.slice(7)}`;
@@ -142,6 +146,8 @@ export function handleDecodeApiV1(reqBody, database) {
     modelMatch: {
       modelName: matchedModel.name,
       specs: {
+        displacementCc: matchedModel.specs.engineCc,
+        powerHp: matchedModel.specs.powerHp,
         sparkPlug: matchedModel.specs.sparkPlug,
         chainDetails: { pitch: matchedModel.specs.chainPitch }
       }
@@ -153,7 +159,8 @@ export function handleDecodeApiV1(reqBody, database) {
     manufacturingYearEstimate: {
       yearStart: parseInt(estimatedProduction.year.split(' - ')[0], 10) || 2016,
       yearEnd: estimatedProduction.year.includes('Heden') ? null : parseInt(estimatedProduction.year.split(' - ')[1], 10)
-    }
+    },
+    theftCheck
   });
 
   return {
@@ -170,6 +177,7 @@ export function handleDecodeApiV1(reqBody, database) {
           isSuspicious: false,
           flags: []
         },
+        theftCheck,
         passportCardHtml: passportHtml
       }
     }
