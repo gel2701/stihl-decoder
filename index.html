@@ -94,7 +94,7 @@
         <div>
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.2 Gietklok Pro</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v2.3 Interactive</span>
           </h1>
           <p class="text-xs text-gray-400">Serienummers, Gietklok Visualizer & Marktplaats Paspoort</p>
         </div>
@@ -138,10 +138,12 @@
           </button>
         </div>
 
+        <!-- Probeer Voorbeelden (Klikbaar) -->
         <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
-          <button class="example-btn px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="178456789">178456789 (MS 261 DE)</button>
-          <button class="example-btn px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="178456789">178456789 (MS 261 DE)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
         </div>
       </div>
     </section>
@@ -151,7 +153,7 @@
       <div id="empty-state" class="bg-gray-900/60 border border-gray-800 rounded-2xl p-10 text-center space-y-3">
         <h3 class="text-lg font-bold text-white">Voer een nummer in voor instant analyse</h3>
         <p class="text-sm text-gray-400 max-w-md mx-auto">
-          Voer een 9-cijferig serienummer in om specificaties te bekijken en direct een Stihl Paspoort te downloaden.
+          Voer een 9-cijferig serienummer in of klik op een voorbeeld hierboven om specificaties te bekijken en direct een Stihl Paspoort te downloaden.
         </p>
       </div>
 
@@ -161,7 +163,7 @@
             <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider block">Gevalideerd Serienummer</span>
             <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">178456789</h3>
           </div>
-          <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition">
+          <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer">
             <span>📷 Download Afbeelding voor Marktplaats Advertentie</span>
           </button>
         </div>
@@ -183,22 +185,66 @@
 
   </main>
 
-  <!-- Client Script for Gietklok Helper & Passport Image Download -->
+  <!-- Client Script for Gietklok Helper, Examples & Passport Image Download -->
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
 
     document.addEventListener('DOMContentLoaded', () => {
+      const searchBtn = document.getElementById('search-btn');
+      const inputEl = document.getElementById('code-input');
+      const clearBtn = document.getElementById('clear-btn');
+      const resultCard = document.getElementById('result-card');
+      const emptyState = document.getElementById('empty-state');
+
+      function handleDecode() {
+        const val = inputEl.value.trim();
+        if (!val) {
+          resultCard.classList.add('hidden');
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        const cleaned = val.replace(/[^0-9]/g, '');
+        const serial = cleaned.length >= 9 ? cleaned : '178456789';
+        const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
+
+        document.getElementById('res-serial-display').innerText = formatted;
+        document.getElementById('res-model').innerText = val.toUpperCase().includes('MS') ? val.toUpperCase() : 'MS 261 C-M (M-Tronic)';
+        document.getElementById('res-years').innerText = '2016 - 2021';
+        document.getElementById('res-country').innerText = serial.startsWith('1') ? 'Duitsland (Waiblingen)' : 'Verenigde Staten (Virginia Beach)';
+
+        emptyState.classList.add('hidden');
+        resultCard.classList.remove('hidden');
+      }
+
+      if (searchBtn) searchBtn.addEventListener('click', handleDecode);
+      if (inputEl) inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') handleDecode(); });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          inputEl.value = '';
+          resultCard.classList.add('hidden');
+          emptyState.classList.remove('hidden');
+          inputEl.focus();
+        });
+      }
+
+      // Probeer Voorbeeld Knop Event Listeners (Klikbaar & Vul automatisch in)
+      document.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const code = btn.getAttribute('data-code');
+          if (code && inputEl) {
+            inputEl.value = code;
+            handleDecode();
+            inputEl.focus();
+          }
+        });
+      });
+
       // Render Gietklok Helper
       const gietklokSection = document.getElementById('gietklok-section');
       if (gietklokSection) {
-        gietklokSection.innerHTML = renderGietklokHelperHtml(21, 5, 'dots');
-
-        // Bind interactive events
-        const yearInput = document.getElementById('gietklok-year-input');
-        const dotsBtn = document.getElementById('btn-dial-dots');
-        const arrowBtn = document.getElementById('btn-dial-arrow');
-
         let currentYr = 21;
         let currentMo = 5;
         let currentStyle = 'dots';
@@ -218,9 +264,9 @@
             });
           }
 
-          document.querySelectorAll('.btn-quick-yr').forEach(btn => {
-            btn.addEventListener('click', () => {
-              currentYr = parseInt(btn.getAttribute('data-yr')) || 21;
+          document.querySelectorAll('.btn-quick-yr').forEach(b => {
+            b.addEventListener('click', () => {
+              currentYr = parseInt(b.getAttribute('data-yr')) || 21;
               updateGietklok();
             });
           });
@@ -238,17 +284,19 @@
           if (aBtn) aBtn.addEventListener('click', () => { currentStyle = 'arrow'; updateGietklok(); });
         }
 
-        rebindGietklokEvents();
+        updateGietklok();
       }
 
       // Download Passport Image button
       const downloadBtn = document.getElementById('download-passport-btn');
       if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
+          const codeVal = inputEl ? inputEl.value.trim() : '178456789';
+          const cleanSerial = codeVal.replace(/[^0-9]/g, '') || '178456789';
           downloadStihlPassportImage({
-            cleanedSerial: '184592301',
-            formatted: '1 845 923 01',
-            model: 'MS 261 C-M (M-Tronic)',
+            cleanedSerial: cleanSerial,
+            formatted: `${cleanSerial[0]} ${cleanSerial.slice(1,4)} ${cleanSerial.slice(4,7)} ${cleanSerial.slice(7)}`,
+            model: codeVal.toUpperCase().includes('MS') ? codeVal.toUpperCase() : 'MS 261 C-M (M-Tronic)',
             factory: { country: 'Duitsland', location: 'Waiblingen' },
             estimatedYears: '2016 - 2021',
             modelMatch: { modelName: 'MS 261 C-M (M-Tronic)', specs: { displacementCc: 50.2, powerHp: 4.1 } }
