@@ -119,7 +119,7 @@ const server = http.createServer((req, res) => {
 
   // 7. 301 Permanent Redirect for Legacy Routes (/modellen/* -> /:category/:slug/)
   if (pathname.startsWith('/modellen')) {
-    const parts = pathname.split('/').filter(Boolean); // ['modellen', 'kettingzagen', 'stihl-ms-261-c-m'] or ['modellen', 'stihl-ms-261-c-m']
+    const parts = pathname.split('/').filter(Boolean);
     let targetSlug = parts[parts.length - 1] || '';
     let targetModel = null;
 
@@ -144,7 +144,21 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 8. Intent Landing Pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/, /stihl-paspoort/, etc.)
+  // 8. Guides SSR Route (/gidsen/:slug/)
+  if (pathname.startsWith('/gidsen/')) {
+    const guideSlug = pathname.replace('/gidsen/', '').replace(/\/$/, '');
+    const guides = database.guides || [];
+    const guide = guides.find(g => g.slug === guideSlug);
+
+    if (guide) {
+      const html = renderGuidePageHtml(guide, database, BASE_URL);
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+      res.end(html);
+      return;
+    }
+  }
+
+  // 9. Intent Landing Pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/, /stihl-paspoort/, etc.)
   const cleanPath = pathname.replace(/^\//, '').replace(/\/$/, '');
   const intentPages = database.intent_pages || [];
   const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
@@ -156,7 +170,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 9. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
+  // 10. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
   if (cleanPath === 'onderdeelnummer') {
     const html = renderPartNumberHubHtml(database, BASE_URL);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
@@ -172,7 +186,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 10. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /bosmaaiers/fs-350/)
+  // 11. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /bosmaaiers/fs-350/)
   const pathParts = pathname.split('/').filter(Boolean);
   if (pathParts.length === 2 && KNOWN_CATEGORIES.includes(pathParts[0].toLowerCase())) {
     const catSlug = pathParts[0].toLowerCase();
@@ -194,7 +208,7 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // 11. Valuation Preview Routes (e.g. /waarde/ms-261/)
+  // 12. Valuation Preview Routes (e.g. /waarde/ms-261/)
   if (pathParts.length === 2 && pathParts[0].toLowerCase() === 'waarde') {
     const modelSlug = pathParts[1].toLowerCase();
     const models = database.models || [];
@@ -242,7 +256,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 12. Serve static files
+  // 13. Serve static files
   let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -267,6 +281,60 @@ function mCleanSlugEquals(m, cleanSlug) {
   const nameClean = (m.model_name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const slugClean = cleanSlug.replace(/[^a-z0-9]/g, '');
   return nameClean.includes(slugClean) || slugClean.includes(nameClean);
+}
+
+function renderGuidePageHtml(guide, database, baseUrl) {
+  const canonicalUrl = `${baseUrl}/gidsen/${guide.slug}/`;
+
+  return `<!DOCTYPE html>
+<html lang="nl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${guide.title} | STIHLDecoder Gidsen</title>
+  <meta name="description" content="${guide.description}">
+  <link rel="canonical" href="${canonicalUrl}">
+  <meta name="robots" content="index, follow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "${baseUrl}/" },
+          { "@type": "ListItem", "position": 2, "name": "${guide.title}", "item": "${canonicalUrl}" }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "headline": "${guide.title}",
+        "description": "${guide.description}",
+        "url": "${canonicalUrl}"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
+  <header class="border-b border-gray-800 bg-gray-900/80 p-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
+        STIHL Decoder
+      </a>
+      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Home</a>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
+      <h1 class="text-3xl font-extrabold text-white">${guide.title}</h1>
+      <p class="text-sm text-gray-300 leading-relaxed">${guide.description}</p>
+    </article>
+  </main>
+</body>
+</html>`;
 }
 
 function renderPartNumberHubHtml(database, baseUrl) {

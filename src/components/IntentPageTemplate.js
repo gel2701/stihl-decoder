@@ -30,6 +30,7 @@ export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihld
   });
 
   const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
+  const models = database.models || [];
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -108,6 +109,43 @@ export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihld
     <!-- Main Intent Body Content -->
     <section class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs text-gray-300 leading-relaxed">
       ${intent.contentHtml || `<p>${intent.description}</p>`}
+    </section>
+
+    <!-- Popular Models Grid Interlinking -->
+    <section class="space-y-3 pt-2">
+      <h3 class="text-sm font-bold text-white">Bekijk Geverifieerde STIHL Modellen:</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+        ${models.map(m => {
+          const cat = m.category_slug || 'kettingzagen';
+          const slg = m.slug || m.id.replace(/_/g, '-');
+          return `<a href="/${cat}/${slg}/" class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl hover:border-orange-500 text-gray-200 font-bold block">STIHL ${m.model_name}</a>`;
+        }).join('')}
+      </div>
+    </section>
+
+    <!-- Internal Linking Hub -->
+    <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
+      <h3 class="text-sm font-bold text-white">Relevante STIHL Gidsen & Kennisbank:</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
+        <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
+        <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
+        <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
+        <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
+        <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
+        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Machinepaspoort Maken</a>
+        <a href="/stihl-modellen/" class="hover:text-orange-400 hover:underline">→ STIHL Modellen</a>
+        <a href="/waar-staat-serienummer-stihl/" class="hover:text-orange-400 hover:underline">→ Waar staat het serienummer</a>
+        <a href="/stihl-serienummer-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Serienummer vs Bouwjaar</a>
+        <a href="/stihl-productiedatum/" class="hover:text-orange-400 hover:underline">→ Productiedatum Gids</a>
+        <a href="/stihl-model-herkennen/" class="hover:text-orange-400 hover:underline">→ Model Herkennen</a>
+        <a href="/stihl-typeplaatje/" class="hover:text-orange-400 hover:underline">→ Typeplaatje Aflezen</a>
+        <a href="/stihl-serienummer-ongeldig/" class="hover:text-orange-400 hover:underline">→ Verdacht Serienummer</a>
+        <a href="/stihl-tweedehands-checklist/" class="hover:text-orange-400 hover:underline">→ Tweedehands Checklist</a>
+        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids</a>
+        <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
+        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
+        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
+      </div>
     </section>
 
   </main>
