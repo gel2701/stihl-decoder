@@ -6,8 +6,12 @@ import { decodeStihlCode } from './src/decoder.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
 import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
+import { renderCategoryPageHtml } from './src/components/CategoryPageTemplate.js';
+import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplate.js';
+import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
+import { logStihlEvent } from './src/components/AnalyticsTracker.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -76,6 +80,7 @@ const server = http.createServer((req, res) => {
       }
 
       const result = handleDecodeApiV1(bodyObj, database);
+      logStihlEvent('decoder_used', { input: bodyObj.serial_number || bodyObj.code, result: result.status });
       res.writeHead(result.statusCode, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
       res.end(JSON.stringify(result.body));
     });
@@ -86,24 +91,56 @@ const server = http.createServer((req, res) => {
   if (pathname === '/api/decode') {
     const code = urlObj.searchParams.get('code') || '';
     const result = decodeStihlCode(code, database);
+    logStihlEvent('decoder_used', { input: code, success: result.success });
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(result));
     return;
   }
 
-  // 5. REST API: GET /api/database
-  if (pathname === '/api/database') {
-    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    res.end(JSON.stringify(database));
+  // 5. Category Landing Pages (e.g. /kettingzagen/, /bosmaaiers/, /bladblazers/, /heggenscharen/)
+  const cleanCategory = pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
+  if (KNOWN_CATEGORIES.includes(cleanCategory)) {
+    const categoryHtml = renderCategoryPageHtml(cleanCategory, database, BASE_URL);
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end(categoryHtml);
     return;
   }
 
-  // 6. Protected Internal Route: GET /admin/seo-audit
+  // 6. Comparison Engine Routes (/vergelijk/ or /vergelijk/:pair/)
+  if (pathname.startsWith('/vergelijk')) {
+    const pairSlug = pathname.replace('/vergelijk/', '').replace('/vergelijk', '').replace(/\/$/, '');
+    const html = renderComparisonPageHtml(pairSlug || 'ms-260-vs-ms-261', database, BASE_URL);
+    logStihlEvent('comparison_viewed', { pairSlug });
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end(html);
+    return;
+  }
+
+  // 7. Model Parts Compatibility Pages (e.g. /kettingzagen/ms-261/onderdelen/)
+  if (pathname.endsWith('/onderdelen/') || pathname.endsWith('/onderdelen')) {
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length >= 2 && KNOWN_CATEGORIES.includes(parts[0].toLowerCase())) {
+      const catSlug = parts[0].toLowerCase();
+      const modelSlug = parts[1].toLowerCase();
+      const models = database.models || [];
+      const targetModel = models.find(m => (m.slug || m.id.replace(/_/g, '-')).toLowerCase() === modelSlug);
+
+      if (targetModel) {
+        const partsHtml = renderModelPartsPageHtml(targetModel, database, BASE_URL);
+        logStihlEvent('part_search', { model: targetModel.model_name });
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end(partsHtml);
+        return;
+      }
+    }
+  }
+
+  // 8. Protected Internal Route: GET /admin/seo-audit
   if (pathname === '/admin/seo-audit' || pathname === '/admin/seo-audit/') {
     const apiKey = urlObj.searchParams.get('key') || req.headers['x-admin-key'];
     if (apiKey !== 'stihl-seo-admin-2026' && process.env.NODE_ENV === 'production') {
       res.writeHead(401, { 'Content-Type': 'application/json', 'X-Robots-Tag': 'noindex, nofollow' });
-      res.end(JSON.stringify({ error: 'Geen toegang tot admin audit. Geef de juiste sleutel op via ?key=...' }));
+      res.end(JSON.stringify({ error: 'Geen toegang tot admin audit.' }));
       return;
     }
 
@@ -117,7 +154,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 7. 301 Permanent Redirect for Legacy Routes (/modellen/* -> /:category/:slug/)
+  // 9. 301 Permanent Redirect for Legacy Routes (/modellen/* -> /:category/:slug/)
   if (pathname.startsWith('/modellen')) {
     const parts = pathname.split('/').filter(Boolean);
     let targetSlug = parts[parts.length - 1] || '';
@@ -127,7 +164,7 @@ const server = http.createServer((req, res) => {
       const cleanSlug = targetSlug.toLowerCase().replace(/^stihl-/, '');
       targetModel = database.models.find(m => {
         const mSlug = (m.slug || m.id).toLowerCase();
-        return mSlug === targetSlug.toLowerCase() || mSlug.replace(/^stihl-/, '') === cleanSlug || mCleanSlugEquals(m, cleanSlug);
+        return mSlug === targetSlug.toLowerCase() || mSlug.replace(/^stihl-/, '') === cleanSlug;
       });
     }
 
@@ -144,7 +181,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 8. Guides SSR Route (/gidsen/:slug/)
+  // 10. Guides SSR Route (/gidsen/:slug/)
   if (pathname.startsWith('/gidsen/')) {
     const guideSlug = pathname.replace('/gidsen/', '').replace(/\/$/, '');
     const guides = database.guides || [];
@@ -158,7 +195,7 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // 9. Intent Landing Pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/, /stihl-paspoort/, etc.)
+  // 11. Intent Landing Pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/, /stihl-paspoort/, etc.)
   const cleanPath = pathname.replace(/^\//, '').replace(/\/$/, '');
   const intentPages = database.intent_pages || [];
   const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
@@ -170,7 +207,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 10. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
+  // 12. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
   if (cleanPath === 'onderdeelnummer') {
     const html = renderPartNumberHubHtml(database, BASE_URL);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
@@ -186,7 +223,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 11. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /bosmaaiers/fs-350/)
+  // 13. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /bosmaaiers/fs-350/)
   const pathParts = pathname.split('/').filter(Boolean);
   if (pathParts.length === 2 && KNOWN_CATEGORIES.includes(pathParts[0].toLowerCase())) {
     const catSlug = pathParts[0].toLowerCase();
@@ -202,17 +239,20 @@ const server = http.createServer((req, res) => {
 
     if (targetModel) {
       const html = renderModelPageHtml(targetModel, database, BASE_URL);
+      logStihlEvent('model_identified', { model: targetModel.model_name });
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(html);
       return;
     }
   }
 
-  // 12. Valuation Preview Routes (e.g. /waarde/ms-261/)
+  // 14. Valuation Preview Routes (e.g. /waarde/ms-261/)
   if (pathParts.length === 2 && pathParts[0].toLowerCase() === 'waarde') {
     const modelSlug = pathParts[1].toLowerCase();
     const models = database.models || [];
     const targetModel = models.find(m => (m.slug || m.id).replace(/^stihl-/, '').toLowerCase() === modelSlug);
+
+    logStihlEvent('valuation_started', { model: modelSlug });
 
     const valuationHtml = `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -256,7 +296,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 13. Serve static files
+  // 15. Serve static files
   let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -277,12 +317,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-function mCleanSlugEquals(m, cleanSlug) {
-  const nameClean = (m.model_name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  const slugClean = cleanSlug.replace(/[^a-z0-9]/g, '');
-  return nameClean.includes(slugClean) || slugClean.includes(nameClean);
-}
-
 function renderGuidePageHtml(guide, database, baseUrl) {
   const canonicalUrl = `${baseUrl}/gidsen/${guide.slug}/`;
 
@@ -296,26 +330,6 @@ function renderGuidePageHtml(guide, database, baseUrl) {
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "${baseUrl}/" },
-          { "@type": "ListItem", "position": 2, "name": "${guide.title}", "item": "${canonicalUrl}" }
-        ]
-      },
-      {
-        "@type": "TechArticle",
-        "headline": "${guide.title}",
-        "description": "${guide.description}",
-        "url": "${canonicalUrl}"
-      }
-    ]
-  }
-  </script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">

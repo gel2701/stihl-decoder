@@ -1,54 +1,62 @@
 /**
- * Programmatic XML Sitemap & Robots.txt Generator for STIHLDecoder.nl
+ * Dynamic Sitemap.xml & Robots.txt Generator for STIHLDecoder.nl
+ * Phase 28 Category, Comparison & Model Parts Expansion
  */
 
 export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database = {}) {
   const models = database.models || [];
-  const guides = database.guides || [];
   const intentPages = database.intent_pages || [];
+  const guides = database.guides || [];
 
-  const staticRoutes = [
-    { loc: '/', priority: '1.0', changefreq: 'daily' }
-  ];
+  const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen'];
+  const comparisons = ['ms-260-vs-ms-261', 'ms-361-vs-ms-362', 'ms-170-vs-ms-180'];
 
-  // Clean category model routes (e.g. /kettingzagen/ms-261/)
-  const modelRoutes = models.map(m => {
-    const categorySlug = m.category_slug || 'kettingzagen';
-    const slug = m.slug || m.id.replace(/_/g, '-');
-    return {
-      loc: `/${categorySlug}/${slug}/`,
-      priority: '0.8',
-      changefreq: 'weekly'
-    };
+  const urls = [];
+
+  // 1. Homepage
+  urls.push({ loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' });
+
+  // 2. Category Hub Landing Pages
+  categories.forEach(cat => {
+    urls.push({ loc: `${baseUrl}/${cat}/`, priority: '0.9', changefreq: 'weekly' });
   });
 
-  // Intent landing pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/)
-  const intentRoutes = intentPages.map(ip => ({
-    loc: `/${ip.slug}/`,
-    priority: '0.9',
-    changefreq: 'weekly'
-  }));
+  // 3. Model Pages & Model Parts Pages
+  models.forEach(m => {
+    const catSlug = m.category_slug || 'kettingzagen';
+    const mSlug = m.slug || m.id.replace(/_/g, '-');
+    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/`, priority: '0.8', changefreq: 'weekly' });
+    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/onderdelen/`, priority: '0.7', changefreq: 'weekly' });
+  });
 
-  // Guide pages
-  const guideRoutes = guides.map(g => ({
-    loc: `/gidsen/${g.slug}/`,
-    priority: '0.8',
-    changefreq: 'monthly'
-  }));
+  // 4. Comparison Pages
+  comparisons.forEach(comp => {
+    urls.push({ loc: `${baseUrl}/vergelijk/${comp}/`, priority: '0.8', changefreq: 'weekly' });
+  });
 
-  const allRoutes = [...staticRoutes, ...intentRoutes, ...guideRoutes, ...modelRoutes];
+  // 5. Intent Landing Pages
+  intentPages.forEach(ip => {
+    urls.push({ loc: `${baseUrl}/${ip.slug}/`, priority: '0.8', changefreq: 'monthly' });
+  });
 
-  const xmlUrls = allRoutes.map(r => `
-  <url>
-    <loc>${baseUrl}${r.loc}</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>${r.changefreq}</changefreq>
-    <priority>${r.priority}</priority>
-  </url>`).join('');
+  // 6. Guides
+  guides.forEach(g => {
+    urls.push({ loc: `${baseUrl}/gidsen/${g.slug}/`, priority: '0.7', changefreq: 'monthly' });
+  });
+
+  // 7. Parts Hub
+  urls.push({ loc: `${baseUrl}/onderdeelnummer/`, priority: '0.7', changefreq: 'monthly' });
+
+  // Build XML string
+  const urlXml = urls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${xmlUrls}
+${urlXml}
 </urlset>`;
 }
 
@@ -58,6 +66,5 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: ${baseUrl}/sitemap.xml
-`;
+Sitemap: ${baseUrl}/sitemap.xml`;
 }

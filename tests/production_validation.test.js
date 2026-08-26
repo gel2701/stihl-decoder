@@ -9,22 +9,22 @@ const __dirname = path.dirname(__filename);
 const dbPath = path.join(__dirname, '..', 'data', 'stihl_database.json');
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 
-// Start server on port 3098 for clean test isolation
-process.env.PORT = '3098';
+// Start server on port 3099 for clean test isolation
+process.env.PORT = '3099';
 await import('../server.js');
 
 // Wait 500ms for server startup
 await new Promise(r => setTimeout(r, 500));
 
-console.log('🧪 Starting Phase 26 Production Audit & Validation Scan...\n');
+console.log('🧪 Starting Phase 28 Topical Authority & SEO Expansion Validation Scan...\n');
 
-const sitemapRes = await fetchUrl('http://localhost:3098/sitemap.xml');
+const sitemapRes = await fetchUrl('http://localhost:3099/sitemap.xml');
 const sitemapXml = sitemapRes.body;
 
 // Extract all <loc> URLs from sitemap
 const sitemapUrls = (sitemapXml.match(/<loc>(.*?)<\/loc>/g) || []).map(l => l.replace(/<\/?loc>/g, ''));
 
-console.log(`📡 Sitemap URLs count: ${sitemapUrls.length}`);
+console.log(`📡 Total Sitemap URLs count: ${sitemapUrls.length}`);
 
 // Audit Checks
 let localhostMatchesCount = 0;
@@ -44,7 +44,7 @@ internalLinksFound.add('/');
 
 for (const fullUrl of sitemapUrls) {
   const relPath = fullUrl.replace('https://stihldecoder.nl', '');
-  const localUrl = `http://localhost:3098${relPath}`;
+  const localUrl = `http://localhost:3099${relPath}`;
   const res = await fetchUrl(localUrl);
 
   let status = res.status;
@@ -52,6 +52,7 @@ for (const fullUrl of sitemapUrls) {
 
   if (status !== 200) {
     sitemapErrorsCount++;
+    console.error(`❌ Sitemap HTTP error ${status} on ${relPath}`);
   }
 
   // 1. Check Localhost / Dev strings in HTML or JSON-LD
@@ -109,25 +110,11 @@ for (const fullUrl of sitemapUrls) {
     }
   });
 
-  // Calculate Quality Score
-  let qualityScore = 0;
-  if (title && title.length >= 25) qualityScore += 10;
-  if (description && description.length >= 70) qualityScore += 10;
-  if (body.includes('<h1')) qualityScore += 10;
-  if (canonicalUrl === fullUrl) qualityScore += 10;
-  if (body.includes('BreadcrumbList')) qualityScore += 10;
-  if (body.includes('application/ld+json')) qualityScore += 10;
-  if (linksMatches.length >= 3) qualityScore += 10;
-  if (body.length >= 2000) qualityScore += 10;
-  if (status === 200) qualityScore += 10;
-  if (!body.includes('noindex')) qualityScore += 10;
-
   pageAuditList.push({
     url: fullUrl,
     status,
     title,
-    canonicalUrl,
-    qualityScore
+    canonicalUrl
   });
 }
 
@@ -141,7 +128,7 @@ for (const fullUrl of sitemapUrls) {
 }
 
 console.log('\n==================================================');
-console.log('PRODUCTION VALIDATION SUMMARY');
+console.log('PHASE 28 TOPICAL AUTHORITY AUDIT SUMMARY');
 console.log('==================================================');
 console.log(`- Sitemap URLs: ${sitemapUrls.length}`);
 console.log(`- Localhost Matches: ${localhostMatchesCount}`);
@@ -163,23 +150,6 @@ const isGo = (
 );
 
 console.log(`\n🚦 DECISION: ${isGo ? '✅ GO' : '❌ NO-GO'}\n`);
-
-fs.writeFileSync(
-  path.join(__dirname, 'production_audit_report.json'),
-  JSON.stringify({
-    decision: isGo ? 'GO' : 'NO-GO',
-    sitemapUrlsCount: sitemapUrls.length,
-    localhostMatchesCount,
-    canonicalErrorsCount,
-    noindexErrorsCount,
-    sitemapErrorsCount,
-    duplicateTitlesCount: duplicateTitles.length,
-    duplicateDescriptionsCount: duplicateDescriptions.length,
-    orphanPagesCount,
-    pageAuditList
-  }, null, 2),
-  'utf8'
-);
 
 process.exit(isGo ? 0 : 1);
 

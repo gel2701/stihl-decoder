@@ -1,6 +1,6 @@
 /**
  * Data-Driven Model Page SSR Template Renderer for STIHLDecoder.nl
- * Phase 27 Enriched Content Authority, Data Quality Badges & Model Comparisons
+ * Phase 28 Enriched Content Authority, Data Quality Badges & Model Comparisons
  */
 
 import { buildStructuredData } from './StructuredData.js';
@@ -81,9 +81,9 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     <!-- Header & H1 Title with Data Authority Badges -->
     <header class="space-y-3">
       <div class="flex flex-wrap gap-2 items-center">
-        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">
-          STIHL ${model.category || 'Modelgids'}
-        </span>
+        <a href="/${categorySlug}/" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 hover:underline">
+          STIHL ${model.category || 'Modelgids'} Categorie
+        </a>
         <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           Data Kwaliteit: ${model.data_confidence || 'HIGH'} (Geverifieerd)
@@ -203,7 +203,9 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
             <span>Modelvergelijking: STIHL ${model.model_name} vs STIHL ${comparisonPartner.model_name}</span>
           </h2>
-          <span class="text-xs text-orange-400 font-bold">Vergelijkende Analyse</span>
+          <a href="/vergelijk/${slug}-vs-${comparisonPartner.slug || comparisonPartner.id.replace(/_/g, '-')}/" class="text-xs text-orange-400 font-bold hover:underline">
+            Bekijk Uitgebreide Vergelijking →
+          </a>
         </div>
         <p class="text-xs text-gray-300">
           Twijfelt u tussen de STIHL ${model.model_name} en de STIHL ${comparisonPartner.model_name}? Bekijk de belangrijkste technische verschillen in vermogen, cilinderinhoud en gewicht:
@@ -227,24 +229,32 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       </section>
     ` : ''}
 
-    <!-- Serial Number Location Guide -->
-    <section class="space-y-3">
-      <h2 class="text-xl font-bold text-white">Waar staat het serienummer van de STIHL ${model.model_name}?</h2>
-      <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 text-xs text-gray-300 space-y-2">
-        <p>
-          Het 9-cijferige serienummer van de STIHL ${model.model_name} staat ingeslagen op twee primaire locaties:
-        </p>
-        <ul class="list-disc list-inside space-y-1 text-gray-200">
-          <li><strong>Carter Metaalstempel:</strong> Boven de uitlaat of bij de geleideplaatmontage op het carter gegraveerd.</li>
-          <li><strong>Typeplaatje / Sticker:</strong> Op het zwarte barcode-etiket aan de onder- of binnenzijde van de handgreep.</li>
-        </ul>
-      </div>
+    <!-- Conversion Funnel CTAs (FASE 28 3 Primary CTAs) -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+      <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
+        <span class="font-bold text-orange-400 text-sm block group-hover:underline">🛡️ 1. Maak Machinepaspoort</span>
+        <span class="text-gray-400 block text-2xs">Download geverifieerd Marktplaats certificaat</span>
+      </a>
+      <a href="/waarde/${slug}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
+        <span class="font-bold text-white text-sm block group-hover:underline">💶 2. Controleer Waarde</span>
+        <span class="text-gray-400 block text-2xs">Indicatieve tweedehands marktwaarde</span>
+      </a>
+      <a href="/${categorySlug}/${slug}/onderdelen/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
+        <span class="font-bold text-white text-sm block group-hover:underline">🔧 3. Bekijk Onderdelen</span>
+        <span class="text-gray-400 block text-2xs">Onderdeelnummers serie ${model.series_code || '1141'}</span>
+      </a>
     </section>
 
-    <!-- Internal Linking Hub (FASE 11 & FASE 26 Requirement) -->
+    <!-- Interlinking Hub -->
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
       <h3 class="text-sm font-bold text-white">Handige STIHL Links & Gidsen:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
+        <a href="/kettingzagen/" class="hover:text-orange-400 hover:underline">→ Kettingzagen Hub</a>
+        <a href="/bosmaaiers/" class="hover:text-orange-400 hover:underline">→ Bosmaaiers Hub</a>
+        <a href="/bladblazers/" class="hover:text-orange-400 hover:underline">→ Bladblazers Hub</a>
+        <a href="/${categorySlug}/${slug}/onderdelen/" class="hover:text-orange-400 hover:underline">→ STIHL ${model.model_name} Onderdelen</a>
+        <a href="/vergelijk/ms-260-vs-ms-261/" class="hover:text-orange-400 hover:underline">→ MS 260 vs MS 261</a>
+        <a href="/vergelijk/ms-361-vs-ms-362/" class="hover:text-orange-400 hover:underline">→ MS 361 vs MS 362</a>
         <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
         <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
         <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
@@ -253,33 +263,8 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Machinepaspoort Maken</a>
         <a href="/stihl-modellen/" class="hover:text-orange-400 hover:underline">→ STIHL Modellen</a>
         <a href="/waar-staat-serienummer-stihl/" class="hover:text-orange-400 hover:underline">→ Waar staat het serienummer</a>
-        <a href="/stihl-serienummer-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Serienummer vs Bouwjaar</a>
-        <a href="/stihl-productiedatum/" class="hover:text-orange-400 hover:underline">→ Productiedatum Gids</a>
-        <a href="/stihl-model-herkennen/" class="hover:text-orange-400 hover:underline">→ Model Herkennen</a>
-        <a href="/stihl-typeplaatje/" class="hover:text-orange-400 hover:underline">→ Typeplaatje Aflezen</a>
-        <a href="/stihl-serienummer-ongeldig/" class="hover:text-orange-400 hover:underline">→ Verdacht Serienummer</a>
-        <a href="/stihl-tweedehands-checklist/" class="hover:text-orange-400 hover:underline">→ Tweedehands Checklist</a>
-        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids</a>
         <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
-        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
-        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
       </div>
-    </section>
-
-    <!-- Conversion Funnel CTAs -->
-    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-      <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-orange-400 text-sm block group-hover:underline">🛡️ Maak Machinepaspoort</span>
-        <span class="text-gray-400 block text-2xs">Download geverifieerd Marktplaats certificaat</span>
-      </a>
-      <a href="/waarde/${slug}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-white text-sm block group-hover:underline">💶 Controleer Waarde</span>
-        <span class="text-gray-400 block text-2xs">Indicatieve tweedehands marktwaarde</span>
-      </a>
-      <a href="/onderdeelnummer/stihl-${model.series_code || '1141'}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-white text-sm block group-hover:underline">🔧 Bekijk Onderdelen</span>
-        <span class="text-gray-400 block text-2xs">Onderdeelnummers serie ${model.series_code || '1141'}</span>
-      </a>
     </section>
 
     <!-- Visible FAQs Section -->
@@ -294,7 +279,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <h4 class="font-bold text-white">Waar vind ik het 9-cijferige serienummer?</h4>
-          <p class="text-gray-300">Het serienummer staat ingeslagen in het metaal van het carter (boven de uitlaat of bij het kettingzaagblad) meegeschreven op de sticker onderaan het handvat.</p>
+          <p class="text-gray-300">Het serienummer staat ingeslagen in het metaal van het carter (boven de uitlaat of bij het kettingzaagblad) en op de sticker onderaan het handvat.</p>
         </div>
       </div>
     </section>
@@ -304,7 +289,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
   </main>
 
-  <!-- Footer with Clear E-E-A-T Disclaimer (FASE 27 - Section 12 Requirement) -->
+  <!-- Footer with Clear E-E-A-T Disclaimer -->
   <footer class="border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500 mt-12">
     <div class="max-w-6xl mx-auto px-4 space-y-3">
       <p class="font-medium text-gray-400">STIHL Machine & Serienummer Decoder Tool</p>
