@@ -24,6 +24,8 @@ const plantsData = [
 const modelsData = [
   {
     id: 'stihl_ms_170',
+    slug: 'stihl-ms-170',
+    category_slug: 'kettingzagen',
     series_code: '1130',
     model_name: 'MS 170 / MS 170-D',
     category: 'Kettingzaag',
@@ -47,6 +49,8 @@ const modelsData = [
   },
   {
     id: 'stihl_ms_260',
+    slug: 'stihl-ms-260',
+    category_slug: 'kettingzagen',
     series_code: '1121',
     model_name: 'MS 260 / 026 Pro',
     category: 'Kettingzaag',
@@ -70,6 +74,8 @@ const modelsData = [
   },
   {
     id: 'stihl_ms_261',
+    slug: 'stihl-ms-261',
+    category_slug: 'kettingzagen',
     series_code: '1141',
     model_name: 'MS 261 Gen 1',
     category: 'Kettingzaag',
@@ -93,6 +99,8 @@ const modelsData = [
   },
   {
     id: 'stihl_ms_261_cm',
+    slug: 'stihl-ms-261-c-m',
+    category_slug: 'kettingzagen',
     series_code: '1141',
     model_name: 'MS 261 C-M Gen 2 (Facelift)',
     category: 'Kettingzaag',
@@ -116,6 +124,8 @@ const modelsData = [
   },
   {
     id: 'stihl_ms_201_tc_m',
+    slug: 'stihl-ms-201-tc-m',
+    category_slug: 'kettingzagen',
     series_code: '1145',
     model_name: 'MS 201 TC-M (Tophandle)',
     category: 'Kettingzaag (Boomverzorging)',
@@ -139,6 +149,8 @@ const modelsData = [
   },
   {
     id: 'stihl_ms_500i',
+    slug: 'stihl-ms-500i',
+    category_slug: 'kettingzagen',
     series_code: '1147',
     model_name: 'MS 500i (Elektronische Injectie)',
     category: 'Kettingzaag',
@@ -162,6 +174,8 @@ const modelsData = [
   },
   {
     id: 'stihl_br_600',
+    slug: 'stihl-br-600',
+    category_slug: 'bladblazers',
     series_code: '4282',
     model_name: 'BR 600 (4-Mix Rugblazer)',
     category: 'Bladblazer',
@@ -185,6 +199,8 @@ const modelsData = [
   },
   {
     id: 'stihl_msa_220_c',
+    slug: 'stihl-msa-220-c',
+    category_slug: 'accu-kettingzagen',
     series_code: '1251',
     model_name: 'MSA 220 C-B (Accu Zaag)',
     category: 'Accu Kettingzaag',
@@ -205,6 +221,27 @@ const modelsData = [
     battery_system: 'STIHL AP-Systeem (Professioneel)',
     voltage_v: 36,
     is_discontinued: 0
+  }
+];
+
+const guidesData = [
+  {
+    slug: 'stihl-gietklok-aflezen',
+    title: 'STIHL Gietklok & Datumstempel Aflezen: Zo bepaalt u de exacte productiedatum',
+    description: 'Stapsgewijze handleiding voor het aflezen van de gietklok (Gussuhr) op het carter of de cilinderkap van uw STIHL machine.',
+    updatedAt: '2026-08-26'
+  },
+  {
+    slug: 'namaak-stihl-herkennen',
+    title: 'Namaak STIHL Herkennen: 5 Belangrijke Kenmerken van Replica & Kloon Zagen',
+    description: 'Hoe herkent u een imitatie STIHL zaag? Controleer het serienummer, het carter en de typeplaatjes tegen Chinese namaak.',
+    updatedAt: '2026-08-26'
+  },
+  {
+    slug: 'serienummer-locaties',
+    title: 'Waar staat het STIHL serienummer? Vind de 9-cijferige stempel op uw machine',
+    description: 'Overzicht van alle serienummer locaties op STIHL kettingzagen, bosmaaiers, bladblazers en doorslijpers.',
+    updatedAt: '2026-08-26'
   }
 ];
 
@@ -288,6 +325,8 @@ function seedDatabase() {
       // 2. Models
       db.run(`CREATE TABLE models (
         id VARCHAR(50) PRIMARY KEY,
+        slug VARCHAR(100) NOT NULL,
+        category_slug VARCHAR(100) NOT NULL DEFAULT 'kettingzagen',
         series_code VARCHAR(10),
         model_name VARCHAR(100) NOT NULL,
         category VARCHAR(50) NOT NULL,
@@ -310,9 +349,9 @@ function seedDatabase() {
         is_discontinued BOOLEAN DEFAULT FALSE
       )`);
 
-      const stmtModel = db.prepare(`INSERT INTO models VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      const stmtModel = db.prepare(`INSERT INTO models VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       modelsData.forEach(m => stmtModel.run(
-        m.id, m.series_code, m.model_name, m.category, m.fuel_type, m.fuel_type_label,
+        m.id, m.slug, m.category_slug, m.series_code, m.model_name, m.category, m.fuel_type, m.fuel_type_label,
         m.displacement_cc, m.power_kw, m.power_hp, m.weight_kg, m.spark_plug, m.electrode_gap_mm,
         m.carb_h_setting, m.carb_l_setting, m.carb_la_setting, m.chain_pitch, m.chain_gauge_mm,
         m.oil_mix_ratio, m.battery_system, m.voltage_v, m.is_discontinued
@@ -364,6 +403,7 @@ function seedDatabase() {
   const jsonDatabase = {
     plants: plantsData,
     models: modelsData,
+    guides: guidesData,
     model_serial_ranges: serialBreakpointsData,
     theft_checks: []
   };

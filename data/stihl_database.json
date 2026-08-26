@@ -53,6 +53,8 @@
   "models": [
     {
       "id": "stihl_ms_170",
+      "slug": "stihl-ms-170",
+      "category_slug": "kettingzagen",
       "series_code": "1130",
       "model_name": "MS 170 / MS 170-D",
       "category": "Kettingzaag",
@@ -76,6 +78,8 @@
     },
     {
       "id": "stihl_ms_260",
+      "slug": "stihl-ms-260",
+      "category_slug": "kettingzagen",
       "series_code": "1121",
       "model_name": "MS 260 / 026 Pro",
       "category": "Kettingzaag",
@@ -99,6 +103,8 @@
     },
     {
       "id": "stihl_ms_261",
+      "slug": "stihl-ms-261",
+      "category_slug": "kettingzagen",
       "series_code": "1141",
       "model_name": "MS 261 Gen 1",
       "category": "Kettingzaag",
@@ -122,6 +128,8 @@
     },
     {
       "id": "stihl_ms_261_cm",
+      "slug": "stihl-ms-261-c-m",
+      "category_slug": "kettingzagen",
       "series_code": "1141",
       "model_name": "MS 261 C-M Gen 2 (Facelift)",
       "category": "Kettingzaag",
@@ -145,6 +153,8 @@
     },
     {
       "id": "stihl_ms_201_tc_m",
+      "slug": "stihl-ms-201-tc-m",
+      "category_slug": "kettingzagen",
       "series_code": "1145",
       "model_name": "MS 201 TC-M (Tophandle)",
       "category": "Kettingzaag (Boomverzorging)",
@@ -168,6 +178,8 @@
     },
     {
       "id": "stihl_ms_500i",
+      "slug": "stihl-ms-500i",
+      "category_slug": "kettingzagen",
       "series_code": "1147",
       "model_name": "MS 500i (Elektronische Injectie)",
       "category": "Kettingzaag",
@@ -191,6 +203,8 @@
     },
     {
       "id": "stihl_br_600",
+      "slug": "stihl-br-600",
+      "category_slug": "bladblazers",
       "series_code": "4282",
       "model_name": "BR 600 (4-Mix Rugblazer)",
       "category": "Bladblazer",
@@ -214,6 +228,8 @@
     },
     {
       "id": "stihl_msa_220_c",
+      "slug": "stihl-msa-220-c",
+      "category_slug": "accu-kettingzagen",
       "series_code": "1251",
       "model_name": "MSA 220 C-B (Accu Zaag)",
       "category": "Accu Kettingzaag",
@@ -234,6 +250,26 @@
       "battery_system": "STIHL AP-Systeem (Professioneel)",
       "voltage_v": 36,
       "is_discontinued": 0
+    }
+  ],
+  "guides": [
+    {
+      "slug": "stihl-gietklok-aflezen",
+      "title": "STIHL Gietklok & Datumstempel Aflezen: Zo bepaalt u de exacte productiedatum",
+      "description": "Stapsgewijze handleiding voor het aflezen van de gietklok (Gussuhr) op het carter of de cilinderkap van uw STIHL machine.",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "slug": "namaak-stihl-herkennen",
+      "title": "Namaak STIHL Herkennen: 5 Belangrijke Kenmerken van Replica & Kloon Zagen",
+      "description": "Hoe herkent u een imitatie STIHL zaag? Controleer het serienummer, het carter en de typeplaatjes tegen Chinese namaak.",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "slug": "serienummer-locaties",
+      "title": "Waar staat het STIHL serienummer? Vind de 9-cijferige stempel op uw machine",
+      "description": "Overzicht van alle serienummer locaties op STIHL kettingzagen, bosmaaiers, bladblazers en doorslijpers.",
+      "updatedAt": "2026-08-26"
     }
   ],
   "model_serial_ranges": [

@@ -4,25 +4,30 @@
 
 export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database = {}) {
   const models = database.models || [];
-  
+  const guides = database.guides || [];
+
   const staticRoutes = [
     { loc: '/', priority: '1.0', changefreq: 'daily' },
-    { loc: '/modellen', priority: '0.9', changefreq: 'weekly' },
-    { loc: '/kennisbank/stihl-bouwjaar-controleren', priority: '0.8', changefreq: 'monthly' },
-    { loc: '/kennisbank/namaak-stihl-herkennen', priority: '0.8', changefreq: 'monthly' },
-    { loc: '/kennisbank/stihl-onderdeelnummer-vergelijken', priority: '0.8', changefreq: 'monthly' }
+    { loc: '/modellen', priority: '0.9', changefreq: 'weekly' }
   ];
 
+  const guideRoutes = guides.map(g => ({
+    loc: `/gidsen/${g.slug}`,
+    priority: '0.9',
+    changefreq: 'monthly'
+  }));
+
   const modelRoutes = models.map(m => {
-    const slug = (m.model_name || m.id).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const categorySlug = m.category_slug || 'kettingzagen';
+    const slug = m.slug || (m.model_name || m.id).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     return {
-      loc: `/modellen/stihl-${slug}`,
+      loc: `/modellen/${categorySlug}/${slug}`,
       priority: '0.8',
       changefreq: 'weekly'
     };
   });
 
-  const allRoutes = [...staticRoutes, ...modelRoutes];
+  const allRoutes = [...staticRoutes, ...guideRoutes, ...modelRoutes];
 
   const xmlUrls = allRoutes.map(r => `
   <url>
