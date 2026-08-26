@@ -47,12 +47,12 @@ const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggensc
 
 const server = http.createServer((req, res) => {
   const forwardedHost = (req.headers['x-forwarded-host'] || req.headers.host || PRIMARY_HOST).toLowerCase();
-  const forwardedProto = (req.headers['x-forwarded-proto'] || 'https').toLowerCase();
   const urlObj = new URL(req.url, `http://${forwardedHost}`);
   let pathname = urlObj.pathname;
 
-  // 0. Primary Canonical Host Enforcement & Query Parameter Preservation
-  if (forwardedHost.startsWith('www.') || forwardedProto === 'http') {
+  // 0. Emergency Fix: Host Canonical Enforcement (www -> non-www only)
+  // NEVER check x-forwarded-proto === 'http' because Render internal proxying causes infinite 301 loops!
+  if (forwardedHost.startsWith('www.')) {
     const targetUrl = `${PRIMARY_ORIGIN}${pathname}${urlObj.search}`;
     res.writeHead(301, { 'Location': targetUrl });
     res.end();
@@ -81,7 +81,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
-      commit: process.env.RENDER_GIT_COMMIT || '1aa6e28',
+      commit: process.env.RENDER_GIT_COMMIT || '15a4431',
       branch: process.env.RENDER_GIT_BRANCH || 'main',
       environment: process.env.NODE_ENV || 'production',
       database: {
