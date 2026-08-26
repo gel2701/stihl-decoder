@@ -45,7 +45,16 @@ const MIME_TYPES = {
 const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers'];
 
 const server = http.createServer((req, res) => {
-  const host = req.headers.host || 'stihldecoder.nl';
+  const host = (req.headers.host || 'stihldecoder.nl').toLowerCase();
+  
+  // 0. Primary Canonical Host Enforcement (301 Redirect www.stihldecoder.nl -> stihldecoder.nl)
+  if (host.startsWith('www.')) {
+    const cleanHost = host.replace(/^www\./, '');
+    res.writeHead(301, { 'Location': `https://${cleanHost}${req.url}` });
+    res.end();
+    return;
+  }
+
   const urlObj = new URL(req.url, `http://${host}`);
   let pathname = urlObj.pathname;
 
@@ -112,7 +121,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 6. Category Landing Pages (e.g. /kettingzagen/, /bosmaaiers/, /bladblazers/, /heggenscharen/, /doorslijpers/)
+  // 6. Category Landing Pages
   const cleanCategory = pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
   if (KNOWN_CATEGORIES.includes(cleanCategory)) {
     const categoryHtml = renderCategoryPageHtml(cleanCategory, database, BASE_URL);
@@ -238,7 +247,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 14. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /doorslijpers/ts-420/)
+  // 14. Scoped Clean Category Model Routes
   const pathParts = pathname.split('/').filter(Boolean);
   if (pathParts.length === 2 && KNOWN_CATEGORIES.includes(pathParts[0].toLowerCase())) {
     const catSlug = pathParts[0].toLowerCase();
@@ -261,7 +270,7 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // 15. Valuation Preview Routes (e.g. /waarde/ms-261/)
+  // 15. Valuation Preview Routes (/waarde/:slug/)
   if (pathParts.length === 2 && pathParts[0].toLowerCase() === 'waarde') {
     const modelSlug = pathParts[1].toLowerCase();
     const models = database.models || [];
