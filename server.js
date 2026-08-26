@@ -47,8 +47,14 @@ const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggensc
 
 const server = http.createServer((req, res) => {
   const forwardedHost = (req.headers['x-forwarded-host'] || req.headers.host || PRIMARY_HOST).toLowerCase();
+  const forwardedProto = (req.headers['x-forwarded-proto'] || 'https').toLowerCase();
   const urlObj = new URL(req.url, `http://${forwardedHost}`);
   let pathname = urlObj.pathname;
+
+  // Diagnostic Logging for Forensics (NO PII)
+  if (process.env.NODE_ENV === 'production' || process.env.DEBUG_REDIRECTS) {
+    console.log(`[HTTP-Request] host: "${req.headers.host}", x-forwarded-host: "${req.headers['x-forwarded-host']}", x-forwarded-proto: "${forwardedProto}", url: "${req.url}"`);
+  }
 
   // 0. Render Alignment: Node.js serves 200 OK directly for all incoming requests.
   // Host redirects (apex -> www) are handled cleanly by Render Edge CDN without application-level conflict.
@@ -75,7 +81,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
-      commit: process.env.RENDER_GIT_COMMIT || '5b4bdd4',
+      commit: process.env.RENDER_GIT_COMMIT || '7eff28d',
       branch: process.env.RENDER_GIT_BRANCH || 'main',
       environment: process.env.NODE_ENV || 'production',
       database: {
@@ -478,4 +484,9 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
 
 server.listen(PORT, () => {
   console.log(`🚀 STIHL Decoder Server actief op http://localhost:${PORT}`);
+  console.log(`   PRIMARY_HOST=${PRIMARY_HOST}`);
+  console.log(`   PRIMARY_ORIGIN=${PRIMARY_ORIGIN}`);
+  console.log(`   SITE_URL=${SITE_URL}`);
+  console.log(`   DATABASE_PATH=${getDatabasePath()}`);
+  console.log(`   NODE_ENV=${process.env.NODE_ENV || 'development'}`);
 });
