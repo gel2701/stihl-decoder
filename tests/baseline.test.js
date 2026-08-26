@@ -54,8 +54,8 @@ console.log('✅ Scenario 5 Passed: 10-digit number returns length error.');
 const resFake = decodeStihlCode('999999999', database);
 assert.strictEqual(resFake.success, false);
 assert.strictEqual(resFake.isCounterfeit, true);
-assert.strictEqual(resFake.riskLevel, 'DEFINITIVE_FAKE');
-console.log('✅ Scenario 6 Passed: Counterfeit rule flagged fake serial 999999999.');
+assert.strictEqual(resFake.riskLevel, 'SUSPECT_SERIAL');
+console.log('✅ Scenario 6 Passed: Counterfeit rule flagged fake serial 999999999 as SUSPECT_SERIAL.');
 
 // 7. StopHeling police check
 StopHelingService.verifySerialNumber('184592301').then(resStop => {

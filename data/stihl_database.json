@@ -56,7 +56,7 @@
       "slug": "ms-261",
       "category_slug": "kettingzagen",
       "series_code": "1141",
-      "model_name": "MS 261 C-M",
+      "model_name": "MS 261",
       "category": "Kettingzaag",
       "fuel_type": "PETROL_2STROKE",
       "fuel_type_label": "Benzine (2-Takt M-Tronic)",
@@ -81,7 +81,7 @@
       "slug": "ms-260",
       "category_slug": "kettingzagen",
       "series_code": "1121",
-      "model_name": "MS 260 / 026 Pro",
+      "model_name": "MS 260",
       "category": "Kettingzaag",
       "fuel_type": "PETROL_2STROKE",
       "fuel_type_label": "Benzine (2-Takt Klassiek)",
@@ -206,7 +206,7 @@
       "slug": "ms-362",
       "category_slug": "kettingzagen",
       "series_code": "1140",
-      "model_name": "MS 362 C-M",
+      "model_name": "MS 362",
       "category": "Kettingzaag",
       "fuel_type": "PETROL_2STROKE",
       "fuel_type_label": "Benzine (2-Takt M-Tronic)",
@@ -330,35 +330,115 @@
   "intent_pages": [
     {
       "slug": "stihl-serienummer-decoder",
-      "h1": "STIHL Serienummer Decoder & Bouwjaar Controleren",
+      "h1": "STIHL Serienummer Decoder & Machine Checker",
       "title": "STIHL Serienummer Decoder & Machine Checker",
-      "description": "De gratis onafhankelijke online STIHL serienummer decoder. Bepaal het bouwjaar, fabriek van herkomst en controleer op StopHeling diefstalregistratie.",
-      "intro": "Voer het 9-cijferige serienummer in van uw STIHL kettingzaag, bosmaaier of bladblazer om direct fabriek en productieperiode af te lezen.",
-      "contentHtml": "\n      <h3 class=\"text-sm font-bold text-white mb-2\">Hoe werkt de STIHL Serienummer Decoder?</h3>\n      <p class=\"mb-3\">Het 9-cijferige serienummer van een STIHL machine bevat waardevolle informatie over het land van assemblage en de productieperiode:</p>\n      <ul class=\"list-disc list-inside space-y-1 text-gray-200 mb-4\">\n        <li><strong>Eerste Cijfer (Fabriekscode):</strong> 1 = Waiblingen (Duitsland), 2/5 = Virginia Beach (VS), 3 = São Leopoldo (Brazilië), 8 = Qingdao (China).</li>\n        <li><strong>Numerieke Breakpoints:</strong> De opeenvolgende cijfers worden gecorreleerd met bekende model-breakpoints en generatiewijzigingen.</li>\n      </ul>\n    "
+      "description": "De gratis onafhankelijke online STIHL serienummer decoder. Bepaal het geschatte bouwjaar, fabriek van herkomst en controleer op StopHeling diefstalregistratie.",
+      "intro": "Voer het 9-cijferige serienummer in van uw STIHL kettingzaag, bosmaaier of bladblazer om direct fabriek en geschatte productieperiode af te lezen.",
+      "contentHtml": "\n      <h3 class=\"text-sm font-bold text-white mb-2\">Hoe werkt de STIHL Serienummer Decoder?</h3>\n      <p class=\"mb-3\">Het 9-cijferige serienummer van een STIHL machine bevat waardevolle informatie over het land van assemblage en de geschatte productieperiode:</p>\n      <ul class=\"list-disc list-inside space-y-1 text-gray-200 mb-4\">\n        <li><strong>Eerste Cijfer (Fabriekscode):</strong> 1 = Waiblingen (Duitsland), 2/5 = Virginia Beach (VS), 3 = São Leopoldo (Brazilië), 8 = Qingdao (China).</li>\n        <li><strong>Numerieke Breakpoints:</strong> De opeenvolgende cijfers worden gecorreleerd met bekende model-breakpoints en generatiewijzigingen.</li>\n      </ul>\n    "
+    },
+    {
+      "slug": "stihl-serienummer",
+      "h1": "STIHL Serienummer Aflezen & Betekenis",
+      "title": "STIHL Serienummer Aflezen & Betekenis",
+      "description": "Alles over het 9-cijferige STIHL serienummer: waar u het vindt, wat de cijfers betekenen en hoe u het kunt decoderen.",
+      "intro": "Het 9-cijferige serienummer is de unieke identiteit van elke authentieke STIHL machine.",
+      "contentHtml": "\n      <p class=\"mb-3\">Het serienummer staat ingeslagen op het carter in het metaal en op het barcode-etiket op het handvat.</p>\n    "
     },
     {
       "slug": "stihl-bouwjaar",
-      "h1": "STIHL Bouwjaar Bepalen & Controleren",
+      "h1": "STIHL Bouwjaar Controleren op Serienummer & Gietklok",
       "title": "STIHL Bouwjaar Controleren op Serienummer & Gietklok",
-      "description": "Hoe oud is uw STIHL machine? Leer hoe u het bouwjaar kunt achterhalen via het serienummer, de gietklok (Gussuhr) en het typeplaatje.",
-      "intro": "Het exacte of geschatte bouwjaar van een STIHL machine is op meerdere manieren te verifiëren.",
-      "contentHtml": "\n      <h3 class=\"text-sm font-bold text-white mb-2\">Twee Methoden om het Bouwjaar te Achterhalen</h3>\n      <ol class=\"list-decimal list-inside space-y-2 text-gray-200 mb-4\">\n        <li><strong>Via de Serienummer Breakpoint Engine:</strong> Voer het 9-cijferige serienummer in onze tool in voor de geschatte productieperiode.</li>\n        <li><strong>Via de Gietklok (Gussuhr):</strong> Bekijk het gegoten cirkeltje aan de binnenzijde van het carter of de cilinderkap. Het getal in het midden is het jaartal, de pijl wijst naar de maand.</li>\n      </ol>\n    "
+      "description": "Hoe oud is uw STIHL machine? Leer hoe u de geschatte productieperiode kunt achterhalen via het serienummer en de gietklok (Gussuhr).",
+      "intro": "De geschatte productieperiode van een STIHL machine is op meerdere manieren te verifiëren.",
+      "contentHtml": "\n      <h3 class=\"text-sm font-bold text-white mb-2\">Twee Methoden om de Productieperiode te Achterhalen</h3>\n      <ol class=\"list-decimal list-inside space-y-2 text-gray-200 mb-4\">\n        <li><strong>Via de Serienummer Breakpoint Engine:</strong> Voer het 9-cijferige serienummer in onze tool in voor de geschatte productieperiode.</li>\n        <li><strong>Via de Gietklok (Gussuhr):</strong> Bekijk het gegoten cirkeltje aan de binnenzijde van het carter of de cilinderkap. Het getal in het midden is het jaartal, de pijl wijst naar de maand.</li>\n      </ol>\n    "
     },
     {
       "slug": "stihl-diefstalcheck",
-      "h1": "STIHL Diefstalcheck & StopHeling Controle",
+      "h1": "STIHL Serienummer Diefstalcheck (StopHeling®)",
       "title": "STIHL Serienummer Diefstalcheck (StopHeling®)",
       "description": "Controleer tweedehands STIHL machines op diefstal in het landelijke StopHeling politieregister voordat u koopt.",
       "intro": "Koopt u een tweedehands STIHL machine via Marktplaats of 2dehands.be? Voer altijd een diefstalcheck uit.",
       "contentHtml": "\n      <p class=\"mb-3\">In Nederland bent u als koper wettelijk verplicht te controleren of een tweedehands machine niet als gestolen geregistreerd staat. STIHLDecoder integreert 1-click StopHeling kopieer functionaliteit en toont diefstalwaarschuwingen direct op het Stihl Paspoort.</p>\n    "
     },
     {
+      "slug": "stihl-waarde",
+      "h1": "STIHL Tweedehands Waardebepaling & Marktwaarde",
+      "title": "STIHL Tweedehands Waardebepaling & Taxatie",
+      "description": "Ontdek de geschatte tweedehands marktwaarde van uw STIHL kettingzaag of bosmaaier op basis van model, staat en opties.",
+      "intro": "Wat is een tweedehands STIHL machine waard op Marktplaats?",
+      "contentHtml": "\n      <p class=\"mb-3\">De marktwaarde van een STIHL machine wordt voornamelijk bepaald door de cilinderinhoud, de staat van het carter, compressie en of er een geverifieerd Stihl Paspoort aanwezig is.</p>\n    "
+    },
+    {
       "slug": "stihl-paspoort",
-      "h1": "STIHL Machine Paspoort Generator",
+      "h1": "STIHL Digitaal Machine Paspoort Maken",
       "title": "STIHL Digitaal Machine Paspoort Maken",
       "description": "Genereer een officieel STIHL Machine Paspoort met StopHeling diefstalstempel en QR-code voor verkoop op Marktplaats.",
       "intro": "Verhoog de verkoopwaarde en het vertrouwen van uw tweedehands STIHL machine met een digitaal gegarandeerd paspoort.",
       "contentHtml": "\n      <p class=\"mb-3\">Het STIHL Paspoort bevat alle geverifieerde gegevens in een strak 1200x900px formaat, inclusief politiedatabase check, snijgarnituur kettingmaat en een scanbare QR-code.</p>\n    "
+    },
+    {
+      "slug": "stihl-modellen",
+      "h1": "STIHL Modellen Overzicht & Categorieën",
+      "title": "STIHL Modellen Overzicht & Specificaties",
+      "description": "Compleet overzicht van alle STIHL kettingzagen, bosmaaiers, bladblazers en heggenscharen met fabrieksspecificaties.",
+      "intro": "Bekijk het overzicht van alle bekende STIHL modellen en hun technische specificaties.",
+      "contentHtml": "\n      <div class=\"grid grid-cols-2 gap-3 text-xs\">\n        <a href=\"/kettingzagen/ms-261/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL MS 261 C-M</a>\n        <a href=\"/kettingzagen/ms-260/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL MS 260</a>\n        <a href=\"/bosmaaiers/fs-350/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL FS 350</a>\n        <a href=\"/bladblazers/br-600/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL BR 600</a>\n      </div>\n    "
+    },
+    {
+      "slug": "waar-staat-serienummer-stihl",
+      "h1": "Waar staat het serienummer van een STIHL machine?",
+      "title": "Waar staat het serienummer van een STIHL machine?",
+      "description": "Vind de exacte locatie van het 9-cijferige serienummer op uw STIHL kettingzaag, bosmaaier of bladblazer.",
+      "intro": "Het serienummer op een STIHL machine staat ingeslagen in het gietmetaal en op de typeplaatjes sticker.",
+      "contentHtml": "\n      <ul class=\"list-disc list-inside space-y-2 text-gray-200\">\n        <li><strong>Kettingzagen:</strong> Boven de uitlaat of bij het zaagblad op het carter.</li>\n        <li><strong>Bosmaaiers:</strong> Op de aluminium behuizing nabij de starterkap.</li>\n        <li><strong>Bladblazers:</strong> Op de kunststof motorbehuizing onderaan.</li>\n      </ul>\n    "
+    },
+    {
+      "slug": "stihl-serienummer-bouwjaar",
+      "h1": "STIHL Serienummer vs. Bouwjaar Relatie",
+      "title": "STIHL Serienummer & Bouwjaar Relatie",
+      "description": "Hoe verhoudt het 9-cijferige serienummer zich tot de geschatte productieperiode van een STIHL machine?",
+      "intro": "Leer hoe serienummer-breakpoints gebruikt worden om de geschatte productieperiode van STIHL machines te bepalen.",
+      "contentHtml": "\n      <p class=\"mb-3\">STIHL gebruikt geen directe datumcode in het serienummer, maar numerieke reeksen per fabriek gecorreleerd met generatiewijzigingen.</p>\n    "
+    },
+    {
+      "slug": "stihl-productiedatum",
+      "h1": "STIHL Productiedatum Achterhalen",
+      "title": "STIHL Productiedatum Achterhalen",
+      "description": "Handleiding om de productiedatum van STIHL gereedschappen te verifiëren via gietklokstempels en breakpoint-analyse.",
+      "intro": "Achterhaal het fabricagejaar en de maand via gietstempels en serienummerbereik.",
+      "contentHtml": "\n      <p class=\"mb-3\">Bekijk de gietklok (Gussuhr) op de kunststof en aluminium carteronderdelen voor de exacte maandaanduiding van het gietproces.</p>\n    "
+    },
+    {
+      "slug": "stihl-model-herkennen",
+      "h1": "STIHL Model Herkennen & Type Identificatie",
+      "title": "STIHL Model Herkennen & Type Identificatie",
+      "description": "Hoe herkent u het juiste STIHL model aan de hand van gietnummers, serienummer en uiterlijke kenmerken?",
+      "intro": "Determineer welk STIHL model u bezit aan de hand van het seriegetal en cartervorm.",
+      "contentHtml": "\n      <p class=\"mb-3\">Het 4-cijferige onderdeelnummer prefix (bijv. 1141 voor MS 261 of 1121 voor MS 260) verraadt direct de motorfamilie.</p>\n    "
+    },
+    {
+      "slug": "stihl-typeplaatje",
+      "h1": "STIHL Typeplaatje & Barcode Sticker Aflezen",
+      "title": "STIHL Typeplaatje & Barcode Sticker Aflezen",
+      "description": "Uitleg over het STIHL typeplaatje, CE-markeringen, serienummers en de kenmerken van originele stickers.",
+      "intro": "Hoe leest u een STIHL typeplaatje correct af en herkent u een namaak sticker?",
+      "contentHtml": "\n      <p class=\"mb-3\">Originele STIHL typeplaatjes bevatten krasvaste zilveren of witte folie met scherpe thermische druk en een correct 9-cijferig serienummer.</p>\n    "
+    },
+    {
+      "slug": "stihl-serienummer-ongeldig",
+      "h1": "Verdacht STIHL Serienummer of Ongeldige Code",
+      "title": "Verdacht STIHL Serienummer of Ongeldige Code",
+      "description": "Wat te doen als uw STIHL serienummer als verdacht wordt aangemerkt door onze decoder?",
+      "intro": "Als een serienummer begint met een 0 of overeenkomt met een bekend testnummer, is extra voorzichtigheid geboden.",
+      "contentHtml": "\n      <p class=\"mb-3\">Serienummers van STIHL beginnen nooit met een 0. Het serienummer komt in dat geval niet overeen met bekende authentieke fabriekspatronen in onze database.</p>\n    "
+    },
+    {
+      "slug": "stihl-tweedehands-checklist",
+      "h1": "STIHL Tweedehands Koper Checklist",
+      "title": "STIHL Tweedehands Koper Checklist",
+      "description": "Stapsgewijze checklist voor het kopen van een tweedehands STIHL zaag of bosmaaier op Marktplaats of 2dehands.be.",
+      "intro": "Controleer deze 5 punten voor aankoop van een gebruikte STIHL machine.",
+      "contentHtml": "\n      <ol class=\"list-decimal list-inside space-y-2 text-gray-200\">\n        <li><strong>Serienummer Diefstalcheck:</strong> Controleer het nummer in het StopHeling politieregister.</li>\n        <li><strong>Carter Metaalstempel:</strong> Zorg dat het nummer op het carter overeenkomt met het typeplaatje.</li>\n        <li><strong>Compressie:</strong> Trek langzaam aan de starterkabel.</li>\n        <li><strong>Kettingrem:</strong> Test de mechanische werking van de beschermbeugel.</li>\n        <li><strong>Gietklok:</strong> Verifieer het bouwjaar van het carter.</li>\n      </ol>\n    "
     }
   ],
   "guides": [
@@ -384,13 +464,13 @@
   "counterfeit_rules": [
     {
       "pattern_regex": "^0\\d+",
-      "risk_level": "DEFINITIVE_FAKE",
-      "reason": "Serienummers van STIHL beginnen nooit met een 0. Authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9."
+      "risk_level": "SUSPECT_SERIAL",
+      "reason": "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database (authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9)."
     },
     {
       "pattern_regex": "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
-      "risk_level": "DEFINITIVE_FAKE",
-      "reason": "Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
+      "risk_level": "SUSPECT_SERIAL",
+      "reason": "Verdacht serienummer: Dit serienummer staat bekend als nep- / testnummer dat op imitaties gebruikt wordt."
     }
   ],
   "model_serial_ranges": [

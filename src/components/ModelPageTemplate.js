@@ -92,7 +92,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       <div class="flex items-center justify-between border-b border-gray-800 pb-3">
         <h2 class="text-lg font-bold text-orange-400 flex items-center gap-2">
           <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          Serienummer van jouw ${model.model_name} controleren:
+          Serienummer van jouw STIHL ${model.model_name} controleren:
         </h2>
         <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Instant Breakpoint Match</span>
       </div>
@@ -113,7 +113,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         </button>
       </form>
       <p class="text-xs text-gray-400">
-        💡 Vul een 9-cijferig serienummer in (bijv. ingeslagen op het carter) voor fabriek, bouwjaar en StopHeling diefstalcontrole.
+        💡 Vul een 9-cijferig serienummer in (bijv. ingeslagen op het carter) voor fabriek, geschatte productieperiode en StopHeling diefstalcontrole.
       </p>
     </section>
 
@@ -168,7 +168,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         Productieperiode & Serienummer Reeksen
       </h2>
       <p class="text-xs text-gray-300 leading-relaxed">
-        <strong>Geschatte productieperiode:</strong> Deze analyse is gebaseerd op bekende STIHL-serienummerreeksen en model-breakpoints per fabriek. Het serienummer vormt niet noodzakelijk een directe datumcode.
+        <strong>Geschatte productieperiode:</strong> De productieperiode wordt geschat op basis van bekende STIHL-serienummerreeksen en model-breakpoints per fabriek. Het serienummer vormt niet noodzakelijk een directe datumcode.
       </p>
 
       <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs space-y-2">
@@ -196,9 +196,22 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       </div>
     </section>
 
+    <!-- Internal Linking Hub (FASE 11 Requirement) -->
+    <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
+      <h3 class="text-sm font-bold text-white">Handige STIHL Links & Gidsen:</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
+        <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
+        <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
+        <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
+        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Machinepaspoort Maken</a>
+        <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
+        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids</a>
+      </div>
+    </section>
+
     <!-- Conversion Funnel CTAs -->
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-      <a href="/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
+      <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-orange-400 text-sm block group-hover:underline">🛡️ Maak Machinepaspoort</span>
         <span class="text-gray-400 block text-2xs">Download geverifieerd Marktplaats certificaat</span>
       </a>

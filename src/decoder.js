@@ -49,7 +49,7 @@ export function decodeStihlCode(rawInput, database) {
   }
 
   const counterfeitEvaluation = evaluateCounterfeitRules(rawInput, database);
-  if (counterfeitEvaluation.isCounterfeit && (counterfeitEvaluation.riskLevel === 'DEFINITIVE_FAKE' || counterfeitEvaluation.riskLevel === 'HIGH')) {
+  if (counterfeitEvaluation.isCounterfeit && (counterfeitEvaluation.riskLevel === 'DEFINITIVE_FAKE' || counterfeitEvaluation.riskLevel === 'HIGH' || counterfeitEvaluation.riskLevel === 'SUSPECT_SERIAL')) {
     return {
       success: false,
       input: rawInput,
@@ -57,7 +57,7 @@ export function decodeStihlCode(rawInput, database) {
       isCounterfeit: true,
       riskLevel: counterfeitEvaluation.riskLevel,
       error: counterfeitEvaluation.reason,
-      advice: 'KOOP-WAARSCHUWING: Dit serienummer is als ongeldig of verdacht namaak (kloon) aangemerkt.'
+      advice: 'KOOP-WAARSCHUWING: Dit serienummer is als verdacht (ongeldig of kloon) aangemerkt.'
     };
   }
 
