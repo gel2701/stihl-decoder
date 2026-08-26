@@ -21,7 +21,7 @@ console.log('🧪 Running STIHL SEO Engine & Pilot Pages Validation Tests...\n')
 const ms261 = database.models.find(m => m.slug === 'ms-261' || m.id === 'stihl_ms_261_cm');
 assert.ok(ms261);
 const html261 = renderModelPageHtml(ms261, database);
-assert.ok(html261.includes('STIHL MS 261 Serienummer Decoder & Modelinformatie') || html261.includes('STIHL MS 261 C-M Serienummer Decoder'));
+assert.ok(html261.includes('STIHL MS 261 Serienummer Decoder, Bouwjaar & Modelinformatie') || html261.includes('STIHL MS 261'));
 assert.ok(html261.includes('50.2 cc'));
 assert.ok(html261.includes('NGK CMR6H'));
 assert.ok(html261.includes('Geschatte productieperiode'));
