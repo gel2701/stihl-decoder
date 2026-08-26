@@ -1,5 +1,5 @@
 /**
- * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification, Chain Specs & QR Code
+ * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification, Chain Specs & Unobscured QR Code
  */
 
 export function renderStihlPassportHtml(data) {
@@ -80,18 +80,15 @@ export function renderStihlPassportHtml(data) {
         </div>
       </div>
 
-      <!-- Footer with Live Verification QR Code -->
-      <div class="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400">
-        <div>
-          <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop & taxatie op Marktplaats</p>
-          <p class="text-neutral-500">Scan QR-code met uw mobiel voor het live verificatierapport</p>
+      <!-- Footer with Unobscured Domain and QR Code -->
+      <div class="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400 gap-4">
+        <div class="space-y-0.5">
+          <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop op Marktplaats & 2dehands.be</p>
+          <span class="font-mono font-black text-orange-500 text-sm block">stihldecoder.nl</span>
+          <p class="text-neutral-500 text-3xs">Scan QR-code met uw mobiel voor het live verificatierapport</p>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="text-right">
-            <span class="font-mono font-black text-orange-500 text-sm block">stihldecoder.nl</span>
-            <span class="text-3xs text-neutral-500 font-mono">LIVE VERIFIED</span>
-          </div>
-          <img src="${qrUrl}" alt="Scan QR Verificatie" class="w-11 h-11 rounded-lg border border-neutral-700 bg-white p-0.5 flex-shrink-0" />
+        <div class="flex-shrink-0 flex items-center gap-2">
+          <img src="${qrUrl}" alt="Scan QR Verificatie" class="w-12 h-12 rounded-lg border border-neutral-700 bg-white p-0.5 shadow-md" />
         </div>
       </div>
     </div>
@@ -205,7 +202,7 @@ export function downloadStihlPassportImage(data) {
     ctx.font = 'bold 28px sans-serif';
     ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp} pk`, 645, 510);
 
-    // NEW: Snijgarnituur / Kettingmaat Full Row Card
+    // Snijgarnituur / Kettingmaat Full Row Card
     ctx.fillStyle = '#171717';
     ctx.fillRect(60, 580, 1080, 120);
     ctx.fillStyle = '#a3a3a3';
@@ -223,22 +220,25 @@ export function downloadStihlPassportImage(data) {
     ctx.lineTo(1140, 730);
     ctx.stroke();
 
+    // Footer Text Left (Explicitly unblocked layout)
     ctx.fillStyle = '#d4d4d4';
     ctx.font = 'bold 18px sans-serif';
-    ctx.fillText('Geverifieerd document voor verkoop & taxatie op Marktplaats & 2dehands.be', 60, 775);
+    ctx.fillText('Geverifieerd document voor verkoop op Marktplaats & 2dehands.be', 60, 765);
+
+    // Domain Name (Large, crisp orange monospace - 100% visible on left)
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 32px monospace';
+    ctx.fillText('stihldecoder.nl', 60, 810);
+
     ctx.fillStyle = '#737373';
     ctx.font = '15px sans-serif';
-    ctx.fillText(`Politiedatabase StopHeling check • Scan QR-code met uw telefoon voor live rapport`, 60, 810);
+    ctx.fillText(`Politiedatabase StopHeling check • Scan QR-code voor live rapport`, 60, 840);
 
-    ctx.fillStyle = '#ea580c';
-    ctx.font = 'bold 28px monospace';
-    ctx.fillText('stihldecoder.nl', 860, 785);
-
-    // Draw QR Code Image if loaded
+    // Draw QR Code Image cleanly on the far right (X=1040 to 1140)
     if (qrImageElement) {
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(1040, 745, 100, 100);
-      ctx.drawImage(qrImageElement, 1045, 750, 90, 90);
+      ctx.fillRect(1030, 745, 110, 110);
+      ctx.drawImage(qrImageElement, 1035, 750, 100, 100);
     }
 
     // Export PNG
