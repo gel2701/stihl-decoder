@@ -1,15 +1,18 @@
 /**
- * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification
+ * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification, Chain Specs & QR Code
  */
 
 export function renderStihlPassportHtml(data) {
-  const serial = data.cleanedSerial || data.serialNumber || '178456789';
+  const serial = data.cleanedSerial || data.serialNumber || '184592301';
   const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
-  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Benzine Machine');
+  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL MS 261 C-M Gen 2');
   const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 - 2021');
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 – Heden');
   const dispCc = (data.modelMatch && data.modelMatch.specs.displacementCc) || 50.2;
   const powerHp = (data.modelMatch && data.modelMatch.specs.powerHp) || 4.1;
+  const chainInfo = (data.modelMatch && data.modelMatch.specs.chainDetails) ? 
+    (typeof data.modelMatch.specs.chainDetails === 'string' ? data.modelMatch.specs.chainDetails : `${data.modelMatch.specs.chainDetails.pitch} @ ${data.modelMatch.specs.chainDetails.gauge || 1.3} mm`) : 
+    (data.chainInfo || '.325" @ 1.3 mm');
 
   const theftCheck = data.theftCheck || {
     isStolen: false,
@@ -18,6 +21,7 @@ export function renderStihlPassportHtml(data) {
   };
 
   const isStolen = theftCheck.isStolen;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + serial)}`;
 
   return `
     <div id="stihl-passport-card" class="bg-neutral-950 border border-neutral-800 rounded-2xl p-7 text-white font-sans max-w-xl mx-auto my-6 shadow-2xl relative overflow-hidden space-y-4">
@@ -49,7 +53,7 @@ export function renderStihlPassportHtml(data) {
         </div>
       </div>
 
-      <!-- Grid -->
+      <!-- Grid with Chain Specs -->
       <div class="grid grid-cols-2 gap-3 text-xs">
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">Serienummer</span>
@@ -65,30 +69,46 @@ export function renderStihlPassportHtml(data) {
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">Motor Specificaties</span>
-          <span class="text-sm font-bold text-white">${dispCc} cc / ${powerHp} pk</span>
+          <span class="text-sm font-bold text-white">${dispCc ? dispCc + ' cc / ' : ''}${powerHp} pk</span>
+        </div>
+        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2 flex justify-between items-center">
+          <div>
+            <span class="text-2xs text-neutral-400 block font-medium">Snijgarnituur / Kettingmaat (Standaard)</span>
+            <span class="text-sm font-bold text-orange-300 font-mono">${chainInfo}</span>
+          </div>
+          <span class="text-3xs bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Zaaggroep Spec</span>
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="flex justify-between items-end border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400">
+      <!-- Footer with Live Verification QR Code -->
+      <div class="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400">
         <div>
-          <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop & taxatie</p>
-          <p class="text-neutral-500">Politiedatabase check • ${isStolen ? 'GEREGISTREERD ALS GESTOLEN' : 'Geen gestolen registratie bekend'}</p>
+          <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop & taxatie op Marktplaats</p>
+          <p class="text-neutral-500">Scan QR-code met uw mobiel voor het live verificatierapport</p>
         </div>
-        <span class="font-mono font-black text-orange-500 text-sm">stihldecoder.nl</span>
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <span class="font-mono font-black text-orange-500 text-sm block">stihldecoder.nl</span>
+            <span class="text-3xs text-neutral-500 font-mono">LIVE VERIFIED</span>
+          </div>
+          <img src="${qrUrl}" alt="Scan QR Verificatie" class="w-11 h-11 rounded-lg border border-neutral-700 bg-white p-0.5 flex-shrink-0" />
+        </div>
       </div>
     </div>
   `;
 }
 
 export function downloadStihlPassportImage(data) {
-  const serial = data.cleanedSerial || data.serialNumber || '178456789';
+  const serial = data.cleanedSerial || data.serialNumber || '184592301';
   const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
-  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Benzine Machine');
+  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL MS 261 C-M Gen 2');
   const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 - 2021');
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 – Heden');
   const dispCc = (data.modelMatch && data.modelMatch.specs.displacementCc) || 50.2;
   const powerHp = (data.modelMatch && data.modelMatch.specs.powerHp) || 4.1;
+  const chainInfo = (data.modelMatch && data.modelMatch.specs.chainDetails) ? 
+    (typeof data.modelMatch.specs.chainDetails === 'string' ? data.modelMatch.specs.chainDetails : `${data.modelMatch.specs.chainDetails.pitch} @ ${data.modelMatch.specs.chainDetails.gauge || 1.3} mm`) : 
+    (data.chainInfo || '.325" @ 1.3 mm');
 
   const theftCheck = data.theftCheck || {
     isStolen: false,
@@ -109,103 +129,129 @@ export function downloadStihlPassportImage(data) {
 
   if (!ctx) return;
 
-  // Background
-  ctx.fillStyle = '#0a0a0a';
-  ctx.fillRect(0, 0, 1200, 900);
+  function renderCanvasAndDownload(qrImageElement) {
+    // Background
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, 1200, 900);
 
-  // Top Accent Bar
-  ctx.fillStyle = '#ea580c';
-  ctx.fillRect(0, 0, 1200, 12);
+    // Top Accent Bar
+    ctx.fillStyle = '#ea580c';
+    ctx.fillRect(0, 0, 1200, 12);
 
-  // Header Text
-  ctx.fillStyle = '#f97316';
-  ctx.font = 'bold 22px monospace';
-  ctx.fillText('OFFICIEEL MACHINE PASPOORT', 60, 75);
+    // Header Text
+    ctx.fillStyle = '#f97316';
+    ctx.font = 'bold 22px monospace';
+    ctx.fillText('OFFICIEEL MACHINE PASPOORT', 60, 75);
 
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '900 44px sans-serif';
-  ctx.fillText(model, 60, 130);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 44px sans-serif';
+    ctx.fillText(model, 60, 130);
 
-  // STIHL VERIFIED Badge
-  ctx.fillStyle = '#ea580c20';
-  ctx.fillRect(940, 50, 200, 42);
-  ctx.fillStyle = '#fb923c';
-  ctx.font = 'bold 16px sans-serif';
-  ctx.fillText('STIHL VERIFIED', 975, 76);
+    // STIHL VERIFIED Badge
+    ctx.fillStyle = '#ea580c20';
+    ctx.fillRect(940, 50, 200, 42);
+    ctx.fillStyle = '#fb923c';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText('STIHL VERIFIED', 975, 76);
 
-  // Stop Heling Banner Box (Green verified banner on image)
-  ctx.fillStyle = '#064e3b';
-  ctx.fillRect(60, 160, 1080, 80);
-  ctx.fillStyle = '#6ee7b7';
-  ctx.font = 'bold 18px sans-serif';
-  ctx.fillText('STOP HELING DIEFSTALCONTROLE', 90, 195);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '900 22px sans-serif';
-  ctx.fillText(theftCheck.statusLabel, 90, 225);
+    // Stop Heling Banner Box
+    ctx.fillStyle = '#064e3b';
+    ctx.fillRect(60, 160, 1080, 80);
+    ctx.fillStyle = '#6ee7b7';
+    ctx.font = 'bold 18px sans-serif';
+    ctx.fillText('STOP HELING DIEFSTALCONTROLE', 90, 195);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 22px sans-serif';
+    ctx.fillText(theftCheck.statusLabel, 90, 225);
 
-  ctx.fillStyle = '#a3a3a3';
-  ctx.font = '16px monospace';
-  ctx.fillText(`Checkdatum: ${theftCheck.checkedAt}`, 880, 210);
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px monospace';
+    ctx.fillText(`Checkdatum: ${theftCheck.checkedAt}`, 880, 210);
 
-  // Grid Cards
-  ctx.fillStyle = '#171717';
-  ctx.fillRect(60, 270, 525, 200);
-  ctx.fillStyle = '#a3a3a3';
-  ctx.font = '18px sans-serif';
-  ctx.fillText('Serienummer', 90, 310);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 36px monospace';
-  ctx.fillText(formattedSerial, 90, 370);
+    // Grid Cards
+    ctx.fillStyle = '#171717';
+    ctx.fillRect(60, 260, 525, 140);
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('Serienummer', 90, 295);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 34px monospace';
+    ctx.fillText(formattedSerial, 90, 350);
 
-  ctx.fillStyle = '#171717';
-  ctx.fillRect(615, 270, 525, 200);
-  ctx.fillStyle = '#a3a3a3';
-  ctx.font = '18px sans-serif';
-  ctx.fillText('Herkomst / Fabriek', 645, 310);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 32px sans-serif';
-  ctx.fillText(country, 645, 370);
+    ctx.fillStyle = '#171717';
+    ctx.fillRect(615, 260, 525, 140);
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('Herkomst / Fabriek', 645, 295);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 28px sans-serif';
+    ctx.fillText(country, 645, 350);
 
-  ctx.fillStyle = '#171717';
-  ctx.fillRect(60, 500, 525, 200);
-  ctx.fillStyle = '#a3a3a3';
-  ctx.font = '18px sans-serif';
-  ctx.fillText('Geschat Bouwjaar', 90, 540);
-  ctx.fillStyle = '#fb923c';
-  ctx.font = 'bold 36px sans-serif';
-  ctx.fillText(years, 90, 600);
+    ctx.fillStyle = '#171717';
+    ctx.fillRect(60, 420, 525, 140);
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('Geschat Bouwjaar', 90, 455);
+    ctx.fillStyle = '#fb923c';
+    ctx.font = 'bold 32px sans-serif';
+    ctx.fillText(years, 90, 510);
 
-  ctx.fillStyle = '#171717';
-  ctx.fillRect(615, 500, 525, 200);
-  ctx.fillStyle = '#a3a3a3';
-  ctx.font = '18px sans-serif';
-  ctx.fillText('Motor Specificaties', 645, 540);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 32px sans-serif';
-  ctx.fillText(`${dispCc} cc / ${powerHp} pk`, 645, 600);
+    ctx.fillStyle = '#171717';
+    ctx.fillRect(615, 420, 525, 140);
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('Motor Specificaties', 645, 455);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 28px sans-serif';
+    ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp} pk`, 645, 510);
 
-  // Footer Divider
-  ctx.strokeStyle = '#262626';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(60, 740);
-  ctx.lineTo(1140, 740);
-  ctx.stroke();
+    // NEW: Snijgarnituur / Kettingmaat Full Row Card
+    ctx.fillStyle = '#171717';
+    ctx.fillRect(60, 580, 1080, 120);
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('Snijgarnituur / Kettingmaat (Standaard)', 90, 615);
+    ctx.fillStyle = '#fb923c';
+    ctx.font = 'bold 30px monospace';
+    ctx.fillText(chainInfo, 90, 665);
 
-  ctx.fillStyle = '#d4d4d4';
-  ctx.font = 'bold 20px sans-serif';
-  ctx.fillText('Geverifieerd document voor verkoop & taxatie op Marktplaats & 2dehands.be', 60, 790);
-  ctx.fillStyle = '#737373';
-  ctx.font = '16px sans-serif';
-  ctx.fillText(`Politiedatabase StopHeling check • Geen gestolen registratie bekend op datum van controle (${theftCheck.checkedAt})`, 60, 825);
+    // Footer Divider
+    ctx.strokeStyle = '#262626';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(60, 730);
+    ctx.lineTo(1140, 730);
+    ctx.stroke();
 
-  ctx.fillStyle = '#ea580c';
-  ctx.font = 'bold 30px monospace';
-  ctx.fillText('stihldecoder.nl', 910, 805);
+    ctx.fillStyle = '#d4d4d4';
+    ctx.font = 'bold 18px sans-serif';
+    ctx.fillText('Geverifieerd document voor verkoop & taxatie op Marktplaats & 2dehands.be', 60, 775);
+    ctx.fillStyle = '#737373';
+    ctx.font = '15px sans-serif';
+    ctx.fillText(`Politiedatabase StopHeling check • Scan QR-code met uw telefoon voor live rapport`, 60, 810);
 
-  // Export PNG
-  const link = document.createElement('a');
-  link.download = `stihl-paspoort-${serial}.png`;
-  link.href = canvas.toDataURL('image/png', 0.95);
-  link.click();
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 28px monospace';
+    ctx.fillText('stihldecoder.nl', 860, 785);
+
+    // Draw QR Code Image if loaded
+    if (qrImageElement) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(1040, 745, 100, 100);
+      ctx.drawImage(qrImageElement, 1045, 750, 90, 90);
+    }
+
+    // Export PNG
+    const link = document.createElement('a');
+    link.download = `stihl-paspoort-${serial}.png`;
+    link.href = canvas.toDataURL('image/png', 0.95);
+    link.click();
+  }
+
+  // Load compact QR code for canvas drawing
+  const qrImg = new Image();
+  qrImg.crossOrigin = 'Anonymous';
+  qrImg.onload = () => renderCanvasAndDownload(qrImg);
+  qrImg.onerror = () => renderCanvasAndDownload(null);
+  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + serial)}`;
 }

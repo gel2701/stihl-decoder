@@ -7,7 +7,8 @@ export interface PassportData {
   country: string;
   productionYears: string;
   powerHp: number;
-  displacementCc: number;
+  displacementCc?: number | null;
+  chainInfo?: string;
   theftCheck: {
     isStolen: boolean;
     checkedAt: string;
@@ -32,13 +33,15 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
   };
 
   const isStolen = data.theftCheck ? data.theftCheck.isStolen : false;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + data.serialNumber)}`;
+  const chainText = data.chainInfo || '.325" @ 1.3 mm';
 
   return (
     <div className="flex flex-col items-center gap-4">
       {/* 4:3 Verhouding geoptimaliseerd voor Marktplaats foto's */}
       <div
         ref={passportRef}
-        className="w-[640px] h-[480px] bg-neutral-950 text-white p-7 rounded-2xl border border-neutral-800 flex flex-col justify-between shadow-2xl relative overflow-hidden font-sans"
+        className="w-[640px] h-[520px] bg-neutral-950 text-white p-7 rounded-2xl border border-neutral-800 flex flex-col justify-between shadow-2xl relative overflow-hidden font-sans"
       >
         {/* Subtiel gloei-effect */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -81,8 +84,8 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
           </div>
         </div>
 
-        {/* Technische Details Grid */}
-        <div className="grid grid-cols-2 gap-3.5 my-1">
+        {/* Technische Details Grid met Zaaggroep Spec */}
+        <div className="grid grid-cols-2 gap-3 my-1">
           <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
             <span className="text-[11px] text-neutral-400 block font-medium">Serienummer</span>
             <span className="font-mono text-lg font-bold text-white tracking-wider">{data.serialNumber}</span>
@@ -97,18 +100,28 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
           </div>
           <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
             <span className="text-[11px] text-neutral-400 block font-medium">Motor Specificaties</span>
-            <span className="text-base font-bold text-white">{data.displacementCc} cc / {data.powerHp} pk</span>
+            <span className="text-base font-bold text-white">{data.displacementCc ? `${data.displacementCc} cc / ` : ''}{data.powerHp} pk</span>
+          </div>
+          <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2 flex justify-between items-center">
+            <div>
+              <span className="text-[11px] text-neutral-400 block font-medium">Snijgarnituur / Kettingmaat (Standaard)</span>
+              <span className="text-sm font-bold text-orange-300 font-mono">{chainText}</span>
+            </div>
+            <span className="text-[10px] bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Zaaggroep Spec</span>
           </div>
         </div>
 
-        {/* Footer / Watermerk */}
-        <div className="flex justify-between items-end border-t border-neutral-800/80 pt-3 text-xs text-neutral-400">
+        {/* Footer / Watermerk met QR-code */}
+        <div className="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-xs text-neutral-400">
           <div>
             <p className="font-semibold text-neutral-300">Geverifieerd document voor verkoop & taxatie</p>
-            <p className="text-[10px] text-neutral-500">Politiedatabase check • Geen gestolen registratie bekend</p>
+            <p className="text-[10px] text-neutral-500">Scan QR-code voor live rapport op stihldecoder.nl</p>
           </div>
-          <div className="text-right">
-            <span className="font-mono font-black text-orange-500 text-base">stihldecoder.nl</span>
+          <div className="flex items-center gap-3">
+            <div className="text-right">
+              <span className="font-mono font-black text-orange-500 text-base block">stihldecoder.nl</span>
+            </div>
+            <img src={qrUrl} alt="Scan QR" className="w-10 h-10 rounded border border-neutral-700 bg-white p-0.5 flex-shrink-0" />
           </div>
         </div>
       </div>
@@ -118,7 +131,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
           onClick={downloadImage}
           className="px-6 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl shadow-lg flex items-center gap-2.5 transition active:scale-95 cursor-pointer"
         >
-          🛡️ Download Paspoort met Stop Heling Check
+          🛡️ Download Paspoort met Stop Heling Check & QR-code
         </button>
       ) : (
         <div className="px-6 py-3.5 bg-rose-950/60 border border-rose-500/50 text-rose-300 font-bold rounded-xl text-center text-xs">
