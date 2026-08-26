@@ -74,6 +74,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 2b. Dynamic Route: GET /api/version
+  if (pathname === '/api/version') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify({
+      repository: 'https://github.com/gel2701/stihl-decoder.git',
+      active_branch: 'main',
+      environment: 'production',
+      deployed_at: new Date().toISOString()
+    }));
+    return;
+  }
+
   // 3. REST API v1: POST /api/v1/decode
   if (pathname === '/api/v1/decode' && req.method === 'POST') {
     let bodyStr = '';

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-08-26T01:46:29.922Z",
+  "wordingAudit": {
+    "hasExactClaim": false,
+    "hasDefinitiveFake": false
+  },
+  "dataProvenanceSummary": {
+    "searchConsoleApiConnected": false,
+    "searchConsoleApiStatus": "NO_API_CONNECTION_YET (Wachten op Search Console Oauth)",
+    "realUserMetricsStatus": "TRACKING_IMPLEMENTED_NO_PRODUCTION_DATA",
+    "realRevenueStatus": "NO_REVENUE_YET (Payment Gateway not active)"
+  },
+  "realProductionMetrics": {
+    "status": "TRACKING_IMPLEMENTED_NO_PRODUCTION_DATA",
+    "totalRecordedEvents": 0,
+    "decoderUses": 0,
+    "modelsIdentified": 0,
+    "valuationStarts": 0,
+    "passportStarts": 0,
+    "passportCreations": 0,
+    "proClicks": 0,
+    "affiliateClicks": 0,
+    "repairLeads": 0,
+    "sellLeads": 0,
+    "message": "Wachten op live gebruikersdata (Nog geen gegevens beschikbaar)"
+  }
+}

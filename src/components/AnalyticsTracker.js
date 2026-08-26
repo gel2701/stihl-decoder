@@ -1,7 +1,15 @@
 /**
- * Centralized Event Enum & Privacy-Friendly Analytics Architecture for STIHLDecoder.nl
- * Phase 30 Event Enum Standardization & Conversion Funnel Tracking
+ * Persistent Event Logging & Bot Filtering Architecture for STIHLDecoder.nl
+ * Phase 31B Real Data Provenance, Bot Filtering & Persistent Log Storage
  */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const eventsFilePath = path.join(__dirname, '..', '..', 'data', 'events.json');
 
 export const EVENT_TYPES = {
   DECODER_USED: 'decoder_used',
@@ -23,29 +31,23 @@ export const EVENT_TYPES = {
   INTERNAL_MODEL_SEARCH: 'internal_model_search'
 };
 
-const internalSearchCounter = new Map();
-const conversionFunnelCounts = new Map();
+const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;
 
-// Initialize funnel counters
-Object.values(EVENT_TYPES).forEach(evt => conversionFunnelCounts.set(evt, 0));
+export function isBotUserAgent(userAgent = '') {
+  return BOT_USER_AGENTS_REGEX.test(userAgent);
+}
 
-export function logStihlEvent(eventName, payload = {}) {
+export function logStihlEvent(eventName, payload = {}, reqUserAgent = '') {
   const validEvents = Object.values(EVENT_TYPES);
   if (!validEvents.includes(eventName)) {
     console.warn(`[AnalyticsTracker] Invalid event name: ${eventName}`);
     return;
   }
 
-  // Increment funnel count
-  conversionFunnelCounts.set(eventName, (conversionFunnelCounts.get(eventName) || 0) + 1);
-
-  // Anonymized internal search logging (STRICT GDPR: No serial numbers stored)
-  if (eventName === EVENT_TYPES.INTERNAL_MODEL_SEARCH || eventName === EVENT_TYPES.MODEL_IDENTIFIED) {
-    const rawQuery = (payload.model || payload.query || '').trim().toUpperCase();
-    // Strictly ignore 9-digit numeric serials to prevent storing PII / serial numbers
-    if (rawQuery && !/^\d{9}$/.test(rawQuery)) {
-      internalSearchCounter.set(rawQuery, (internalSearchCounter.get(rawQuery) || 0) + 1);
-    }
+  // Filter out automated bots & test runners from production user metrics
+  if (isBotUserAgent(reqUserAgent || payload.userAgent || '')) {
+    console.log(`[EventTracked-BotFiltered] ${eventName} ignored (Bot UA detected)`);
+    return { status: 'BOT_FILTERED' };
   }
 
   // Sanitize payload to strip PII (No serial numbers, names, emails, IPs, phone numbers)
@@ -64,40 +66,81 @@ export function logStihlEvent(eventName, payload = {}) {
     ...sanitizedPayload
   };
 
-  console.log(`[EventTracked] ${eventName}`, JSON.stringify(eventData));
+  // Persistent File Storage append
+  try {
+    let currentEvents = [];
+    if (fs.existsSync(eventsFilePath)) {
+      const raw = fs.readFileSync(eventsFilePath, 'utf8');
+      if (raw) currentEvents = JSON.parse(raw);
+    }
+    currentEvents.push(eventData);
+    // Keep max 5000 events
+    if (currentEvents.length > 5000) currentEvents = currentEvents.slice(-5000);
+    fs.writeFileSync(eventsFilePath, JSON.stringify(currentEvents, null, 2), 'utf8');
+  } catch (err) {
+    // Fail silently in browser or read-only environments
+  }
+
+  console.log(`[EventTracked-Production] ${eventName}`, JSON.stringify(eventData));
   return eventData;
 }
 
 export function getConversionDashboardMetrics() {
-  const decoderUses = conversionFunnelCounts.get(EVENT_TYPES.DECODER_USED) || 0;
-  const modelsIdentified = conversionFunnelCounts.get(EVENT_TYPES.MODEL_IDENTIFIED) || 0;
-  const valuationStarts = conversionFunnelCounts.get(EVENT_TYPES.VALUATION_STARTED) || 0;
-  const passportStarts = conversionFunnelCounts.get(EVENT_TYPES.PASSPORT_STARTED) || 0;
-  const passportCreations = conversionFunnelCounts.get(EVENT_TYPES.PASSPORT_CREATED) || 0;
-  const proClicks = conversionFunnelCounts.get(EVENT_TYPES.PASSPORT_PRO_CLICK) || 0;
-  const affiliateClicks = conversionFunnelCounts.get(EVENT_TYPES.AFFILIATE_CLICK) || 0;
+  let storedEvents = [];
+  try {
+    if (fs.existsSync(eventsFilePath)) {
+      const raw = fs.readFileSync(eventsFilePath, 'utf8');
+      if (raw) storedEvents = JSON.parse(raw);
+    }
+  } catch (e) {}
 
-  const decoderConversionRate = decoderUses > 0 ? ((modelsIdentified / decoderUses) * 100).toFixed(1) : '0.0';
-  const passportConversionRate = decoderUses > 0 ? ((passportCreations / decoderUses) * 100).toFixed(1) : '0.0';
+  const realEventCount = storedEvents.length;
+  const status = realEventCount > 0 ? 'REAL_PRODUCTION_DATA' : 'TRACKING_IMPLEMENTED_NO_PRODUCTION_DATA';
+
+  const counts = {};
+  Object.values(EVENT_TYPES).forEach(evt => {
+    counts[evt] = storedEvents.filter(e => e.event === evt).length;
+  });
 
   return {
-    decoderUses,
-    modelsIdentified,
-    valuationStarts,
-    passportStarts,
-    passportCreations,
-    proClicks,
-    affiliateClicks,
-    decoderConversionRate: `${decoderConversionRate}%`,
-    passportConversionRate: `${passportConversionRate}%`
+    status,
+    totalRecordedEvents: realEventCount,
+    decoderUses: counts[EVENT_TYPES.DECODER_USED] || 0,
+    modelsIdentified: counts[EVENT_TYPES.MODEL_IDENTIFIED] || 0,
+    valuationStarts: counts[EVENT_TYPES.VALUATION_STARTED] || 0,
+    passportStarts: counts[EVENT_TYPES.PASSPORT_STARTED] || 0,
+    passportCreations: counts[EVENT_TYPES.PASSPORT_CREATED] || 0,
+    proClicks: counts[EVENT_TYPES.PASSPORT_PRO_CLICK] || 0,
+    affiliateClicks: counts[EVENT_TYPES.AFFILIATE_CLICK] || 0,
+    repairLeads: counts[EVENT_TYPES.REPAIR_LEAD_COMPLETED] || 0,
+    sellLeads: counts[EVENT_TYPES.SELL_LEAD_COMPLETED] || 0,
+    message: realEventCount === 0 ? 'Wachten op live gebruikersdata (Nog geen gegevens beschikbaar)' : 'Echte live gebruikersgegevens actief'
   };
 }
 
 export function getContentGapReport(databaseModels = []) {
+  let storedEvents = [];
+  try {
+    if (fs.existsSync(eventsFilePath)) {
+      const raw = fs.readFileSync(eventsFilePath, 'utf8');
+      if (raw) storedEvents = JSON.parse(raw);
+    }
+  } catch (e) {}
+
+  const modelSearches = storedEvents.filter(e => e.event === EVENT_TYPES.INTERNAL_MODEL_SEARCH || e.event === EVENT_TYPES.MODEL_IDENTIFIED);
+  const searchMap = new Map();
+
+  modelSearches.forEach(e => {
+    const rawQuery = (e.model || e.query || '').trim().toUpperCase();
+    if (rawQuery && !/^\d{9}$/.test(rawQuery)) {
+      searchMap.set(rawQuery, (searchMap.get(rawQuery) || 0) + 1);
+    }
+  });
+
   const publishedSlugs = new Set((databaseModels || []).map(m => (m.slug || m.id).toLowerCase()));
   const publishedNames = new Set((databaseModels || []).map(m => m.model_name.toUpperCase()));
 
-  const searchList = Array.from(internalSearchCounter.entries()).map(([query, count]) => ({
+  const searchList = Array.from(searchMap.entries()).map(([query, count]) => ({
     query,
     count,
     hasPage: publishedNames.has(query) || Array.from(publishedSlugs).some(s => s.includes(query.toLowerCase()))
@@ -106,7 +149,8 @@ export function getContentGapReport(databaseModels = []) {
   const unmappedSearches = searchList.filter(s => !s.hasPage).sort((a, b) => b.count - a.count);
 
   return {
-    totalRecordedSearches: Array.from(internalSearchCounter.values()).reduce((a, b) => a + b, 0),
+    dataProvenance: storedEvents.length > 0 ? 'REAL_PRODUCTION_DATA' : 'NO_DATA_YET',
+    totalRecordedSearches: modelSearches.length,
     topUnmappedModelSearches: unmappedSearches.slice(0, 10),
     topSearchedModelsOverall: searchList.sort((a, b) => b.count - a.count).slice(0, 10)
   };

@@ -49,15 +49,15 @@ export function decodeStihlCode(rawInput, database) {
   }
 
   const counterfeitEvaluation = evaluateCounterfeitRules(rawInput, database);
-  if (counterfeitEvaluation.isCounterfeit && (counterfeitEvaluation.riskLevel === 'DEFINITIVE_FAKE' || counterfeitEvaluation.riskLevel === 'HIGH' || counterfeitEvaluation.riskLevel === 'SUSPECT_SERIAL')) {
+  if (counterfeitEvaluation.isCounterfeit) {
     return {
       success: false,
       input: rawInput,
       cleaned,
       isCounterfeit: true,
-      riskLevel: counterfeitEvaluation.riskLevel,
+      riskLevel: counterfeitEvaluation.riskLevel || 'SUSPECT_SERIAL',
       error: counterfeitEvaluation.reason,
-      advice: 'KOOP-WAARSCHUWING: Dit serienummer is als verdacht (ongeldig of kloon) aangemerkt.'
+      advice: 'KOOP-WAARSCHUWING: Dit serienummer is als verdacht (ongeldig of kloon) aangemerkt. Deze melding is geen definitief bewijs dat een machine namaak is.'
     };
   }
 

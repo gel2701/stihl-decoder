@@ -215,13 +215,13 @@
       "counterfeit_rules": [
         {
           "pattern_regex": "^0\\d+",
-          "risk_level": "DEFINITIVE_FAKE",
-          "reason": "Serienummers van STIHL beginnen nooit met een 0. Authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9."
+          "risk_level": "SUSPECT_SERIAL",
+          "reason": "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database. Deze melding is geen definitief bewijs dat een machine namaak is."
         },
         {
           "pattern_regex": "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
-          "risk_level": "DEFINITIVE_FAKE",
-          "reason": "Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
+          "risk_level": "SUSPECT_SERIAL",
+          "reason": "Verdacht serienummer: Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
         }
       ],
       "part_family_prefixes": {
@@ -277,7 +277,7 @@
           Voer een Stihl Serienummer, Onderdeelnummer of Model in
         </h2>
         <p class="text-sm text-gray-400">
-          Krijg direct inzicht in de fabriek van herkomst, de exacte bouwperiode via serie-breakpoints, de generatie/facelift, carburateur basisafstellingen (H/L/LA), StopHeling diefstalcheck en download een Stihl Paspoort.
+          Krijg direct inzicht in de fabriek van herkomst, de geschatte productieperiode via bekende serie-breakpoints, de generatie/facelift, carburateur basisafstellingen (H/L/LA), StopHeling diefstalcheck en download een Stihl Paspoort.
         </p>
       </div>
 
@@ -331,7 +331,7 @@
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
           </div>
           <div>
-            <span id="counterfeit-risk-badge" class="px-2.5 py-0.5 text-2xs font-mono font-bold uppercase rounded bg-red-500/20 text-red-400 border border-red-500/30">DEFINITIVE FAKE</span>
+            <span id="counterfeit-risk-badge" class="px-2.5 py-0.5 text-2xs font-mono font-bold uppercase rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">VERDACHT SERIENUMMER</span>
             <h3 class="text-xl font-extrabold text-white mt-0.5">Waarschuwing: Verdacht of Namaak Serienummer</h3>
           </div>
         </div>
@@ -657,7 +657,7 @@
 
         // CASE 1: Counterfeit / Fake Serial Number
         if (res && res.isCounterfeit) {
-          document.getElementById('counterfeit-risk-badge').innerText = res.riskLevel || 'DEFINITIVE_FAKE';
+          document.getElementById('counterfeit-risk-badge').innerText = 'VERDACHT SERIENUMMER';
           document.getElementById('counterfeit-reason').innerText = res.error || 'Dit serienummer is als ongeldig of verdacht namaak (kloon) aangemerkt.';
           counterfeitCard.classList.remove('hidden');
           return;
