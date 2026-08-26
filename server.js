@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl } from './src/config.js';
+import { getDatabasePath, isPersistentDiskActive } from './src/databaseConfig.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
@@ -51,7 +52,6 @@ const server = http.createServer((req, res) => {
   let pathname = urlObj.pathname;
 
   // 0. Primary Canonical Host Enforcement & Query Parameter Preservation
-  // Redirect www.* OR http:// to single primary canonical origin (https://stihldecoder.nl)
   if (forwardedHost.startsWith('www.') || forwardedProto === 'http') {
     const targetUrl = `${PRIMARY_ORIGIN}${pathname}${urlObj.search}`;
     res.writeHead(301, { 'Location': targetUrl });
@@ -77,12 +77,18 @@ const server = http.createServer((req, res) => {
 
   // 2b. Dynamic Route: GET /api/version
   if (pathname === '/api/version') {
+    const persistent = isPersistentDiskActive();
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
-      commit: process.env.RENDER_GIT_COMMIT || 'c07df0b',
+      commit: process.env.RENDER_GIT_COMMIT || '1aa6e28',
       branch: process.env.RENDER_GIT_BRANCH || 'main',
       environment: process.env.NODE_ENV || 'production',
+      database: {
+        connected: true,
+        persistent,
+        path_type: persistent ? 'persistent_disk' : 'local_or_ephemeral'
+      },
       deployed_at: new Date().toISOString()
     }));
     return;
@@ -305,7 +311,7 @@ const server = http.createServer((req, res) => {
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
         STIHL Decoder

@@ -1,22 +1,15 @@
 /**
  * Centralized Persistent Analytics Engine & Whitelisted Metadata Architecture for STIHLDecoder.nl
- * Phase 32 Production Analytics, SQLite Persistence & SEO Freeze Baseline
+ * Phase 32B Production Analytics, SQLite Persistence & Render Disk Migration
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-let sqlite3;
-try {
-  sqlite3 = (await import('sqlite3')).default.verbose();
-} catch (e) {
-  // SQLite fallback for non-native environments
-}
+import { getDatabaseConnection, isPersistentDiskActive } from '../databaseConfig.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dbPath = path.join(__dirname, '..', '..', 'data', 'stihl_database.db');
 const jsonPath = path.join(__dirname, '..', '..', 'data', 'stihl_database.json');
 
 export const SEO_CONTENT_FREEZE = 'ACTIVE';
@@ -81,21 +74,21 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
     }
   });
 
+  const eventId = metadata.event_id || `evt_${Date.now()}_${Math.random().toString(36).substr(2, 7)}`;
   const modelSlug = cleanMetadata.model_slug || cleanMetadata.model || null;
   const pagePath = cleanMetadata.source_page || '/';
   const metadataJson = JSON.stringify(cleanMetadata);
   const createdAt = new Date().toISOString();
 
-  // 3. Persistent Storage to SQLite
-  if (sqlite3 && fs.existsSync(dbPath)) {
+  // 3. Persistent Storage to Central SQLite Connection
+  const db = getDatabaseConnection();
+  if (db) {
     try {
-      const db = new sqlite3.Database(dbPath);
       db.run(
-        `INSERT INTO analytics_events (event_type, model_slug, page_path, metadata_json, is_test, created_at) VALUES (?, ?, ?, ?, ?, ?)`,
-        [eventType, modelSlug, pagePath, metadataJson, isTest ? 1 : 0, createdAt],
+        `INSERT OR IGNORE INTO analytics_events (event_id, event_type, model_slug, page_path, metadata_json, is_test, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [eventId, eventType, modelSlug, pagePath, metadataJson, isTest ? 1 : 0, createdAt],
         (err) => {
           if (err) console.error('⚠️ SQLite event insert error:', err.message);
-          db.close();
         }
       );
     } catch (err) {
@@ -103,31 +96,36 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
     }
   }
 
-  // 4. Also store in JSON Backup
+  // 4. Fallback JSON Storage
   try {
     if (fs.existsSync(jsonPath)) {
       const dbJson = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
       if (!dbJson.analytics_events) dbJson.analytics_events = [];
-      dbJson.analytics_events.push({
-        event_type: eventType,
-        model_slug: modelSlug,
-        page_path: pagePath,
-        metadata_json: metadataJson,
-        is_test: isTest ? 1 : 0,
-        created_at: createdAt
-      });
-      if (dbJson.analytics_events.length > 2000) {
-        dbJson.analytics_events = dbJson.analytics_events.slice(-2000);
+      
+      // Deduplicate on eventId
+      if (!dbJson.analytics_events.some(e => e.event_id === eventId)) {
+        dbJson.analytics_events.push({
+          event_id: eventId,
+          event_type: eventType,
+          model_slug: modelSlug,
+          page_path: pagePath,
+          metadata_json: metadataJson,
+          is_test: isTest ? 1 : 0,
+          created_at: createdAt
+        });
+        if (dbJson.analytics_events.length > 2000) {
+          dbJson.analytics_events = dbJson.analytics_events.slice(-2000);
+        }
+        fs.writeFileSync(jsonPath, JSON.stringify(dbJson, null, 2), 'utf8');
       }
-      fs.writeFileSync(jsonPath, JSON.stringify(dbJson, null, 2), 'utf8');
     }
   } catch (err) {}
 
   console.log(`[EventTracked-Persistent] ${eventType}`, metadataJson);
-  return { status: 'SUCCESS', eventType, isTest };
+  return { status: 'SUCCESS', eventId, eventType, isTest };
 }
 
-// Backward compatibility alias for trackEvent
+// Backward compatibility alias
 export function logStihlEvent(eventName, payload = {}, reqUserAgent = '', isTest = false) {
   return trackEvent(eventName, payload, reqUserAgent, isTest);
 }
@@ -141,9 +139,7 @@ export function getConversionDashboardMetrics() {
     }
   } catch (e) {}
 
-  // Exclude test events from production KPI reporting
   const prodEvents = events.filter(e => !e.is_test);
-
   const count = (type) => prodEvents.filter(e => e.event_type === type).length;
 
   const decoderUses = count(EVENT_TYPES.DECODER_USED);
@@ -157,15 +153,17 @@ export function getConversionDashboardMetrics() {
   const repairLeads = count(EVENT_TYPES.REPAIR_LEAD_COMPLETED);
   const sellLeads = count(EVENT_TYPES.SELL_LEAD_COMPLETED);
 
-  const identificationRate = decoderUses > 0 ? ((modelsIdentified / decoderUses) * 100).toFixed(1) + '%' : '0.0%';
+  const persistentActive = isPersistentDiskActive();
 
   return {
     status: prodEvents.length > 0 ? 'REAL_PRODUCTION_DATA' : 'NO_PRODUCTION_DATA_YET',
+    databasePersistence: persistentActive ? 'PERSISTENT_DISK' : 'EPHEMERAL_FILESYSTEM (Render container storage resets on rebuild)',
+    persistentDiskActive: persistentActive,
     seoFreezeStatus: SEO_CONTENT_FREEZE,
     totalProductionEvents: prodEvents.length,
+    totalTestEvents: events.filter(e => e.is_test).length,
     decoderUses,
     modelsIdentified,
-    identificationRate,
     valuationStarts,
     passportStarts,
     passportCreations,
