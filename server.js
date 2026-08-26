@@ -2,6 +2,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl } from './src/config.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
@@ -16,7 +17,6 @@ import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
-const BASE_URL = 'https://stihldecoder.nl';
 
 // Load database (JSON or SQLite fallback)
 const jsonPath = path.join(__dirname, 'data', 'stihl_database.json');
@@ -45,22 +45,23 @@ const MIME_TYPES = {
 const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers'];
 
 const server = http.createServer((req, res) => {
-  const host = (req.headers.host || 'stihldecoder.nl').toLowerCase();
-  
-  // 0. Primary Canonical Host Enforcement (301 Redirect www.stihldecoder.nl -> stihldecoder.nl)
-  if (host.startsWith('www.')) {
-    const cleanHost = host.replace(/^www\./, '');
-    res.writeHead(301, { 'Location': `https://${cleanHost}${req.url}` });
+  const forwardedHost = (req.headers['x-forwarded-host'] || req.headers.host || PRIMARY_HOST).toLowerCase();
+  const forwardedProto = (req.headers['x-forwarded-proto'] || 'https').toLowerCase();
+  const urlObj = new URL(req.url, `http://${forwardedHost}`);
+  let pathname = urlObj.pathname;
+
+  // 0. Primary Canonical Host Enforcement & Query Parameter Preservation
+  // Redirect www.* OR http:// to single primary canonical origin (https://stihldecoder.nl)
+  if (forwardedHost.startsWith('www.') || forwardedProto === 'http') {
+    const targetUrl = `${PRIMARY_ORIGIN}${pathname}${urlObj.search}`;
+    res.writeHead(301, { 'Location': targetUrl });
     res.end();
     return;
   }
 
-  const urlObj = new URL(req.url, `http://${host}`);
-  let pathname = urlObj.pathname;
-
   // 1. Dynamic Route: GET /sitemap.xml
   if (pathname === '/sitemap.xml') {
-    const sitemapXml = generateSitemapXml(BASE_URL, database);
+    const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
     res.writeHead(200, { 'Content-Type': 'application/xml; charset=UTF-8', 'X-Robots-Tag': 'noindex' });
     res.end(sitemapXml);
     return;
@@ -68,7 +69,7 @@ const server = http.createServer((req, res) => {
 
   // 2. Dynamic Route: GET /robots.txt
   if (pathname === '/robots.txt') {
-    const robotsTxt = generateRobotsTxt(BASE_URL);
+    const robotsTxt = generateRobotsTxt(PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=UTF-8' });
     res.end(robotsTxt);
     return;
@@ -79,8 +80,9 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
-      active_branch: 'main',
-      environment: 'production',
+      commit: process.env.RENDER_GIT_COMMIT || 'c07df0b',
+      branch: process.env.RENDER_GIT_BRANCH || 'main',
+      environment: process.env.NODE_ENV || 'production',
       deployed_at: new Date().toISOString()
     }));
     return;
@@ -101,7 +103,7 @@ const server = http.createServer((req, res) => {
       }
 
       const result = handleDecodeApiV1(bodyObj, database);
-      logStihlEvent(EVENT_TYPES.DECODER_USED, { input: bodyObj.serial_number || bodyObj.code, result: result.status });
+      logStihlEvent(EVENT_TYPES.DECODER_USED, { input: bodyObj.serial_number || bodyObj.code, result: result.status }, req.headers['user-agent']);
       res.writeHead(result.statusCode, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
       res.end(JSON.stringify(result.body));
     });
@@ -110,14 +112,14 @@ const server = http.createServer((req, res) => {
 
   // 4. REST API Lead Submission MVP Routes
   if (pathname === '/api/v1/leads/repair' && req.method === 'POST') {
-    logStihlEvent(EVENT_TYPES.REPAIR_LEAD_COMPLETED);
+    logStihlEvent(EVENT_TYPES.REPAIR_LEAD_COMPLETED, {}, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end('<article style="background:#111;color:#fff;padding:2rem;font-family:sans-serif;"><h2>✅ Reparatie Aanvraag Ontvangen!</h2><p>Wij nemen binnen 24 uur contact met u op.</p><a href="/" style="color:#f97316;">← Terug naar Home</a></article>');
     return;
   }
 
   if (pathname === '/api/v1/leads/sell' && req.method === 'POST') {
-    logStihlEvent(EVENT_TYPES.SELL_LEAD_COMPLETED);
+    logStihlEvent(EVENT_TYPES.SELL_LEAD_COMPLETED, {}, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end('<article style="background:#111;color:#fff;padding:2rem;font-family:sans-serif;"><h2>✅ Verkoop Aanvraag Ontvangen!</h2><p>U ontvangt binnenkort een overnamebod op het opgegeven e-mailadres.</p><a href="/" style="color:#f97316;">← Terug naar Home</a></article>');
     return;
@@ -127,7 +129,7 @@ const server = http.createServer((req, res) => {
   if (pathname === '/api/decode') {
     const code = urlObj.searchParams.get('code') || '';
     const result = decodeStihlCode(code, database);
-    logStihlEvent(EVENT_TYPES.DECODER_USED, { input: code, success: result.success });
+    logStihlEvent(EVENT_TYPES.DECODER_USED, { input: code, success: result.success }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(result));
     return;
@@ -136,7 +138,7 @@ const server = http.createServer((req, res) => {
   // 6. Category Landing Pages
   const cleanCategory = pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
   if (KNOWN_CATEGORIES.includes(cleanCategory)) {
-    const categoryHtml = renderCategoryPageHtml(cleanCategory, database, BASE_URL);
+    const categoryHtml = renderCategoryPageHtml(cleanCategory, database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(categoryHtml);
     return;
@@ -145,8 +147,8 @@ const server = http.createServer((req, res) => {
   // 7. Comparison Engine Routes (/vergelijk/ or /vergelijk/:pair/)
   if (pathname.startsWith('/vergelijk')) {
     const pairSlug = pathname.replace('/vergelijk/', '').replace('/vergelijk', '').replace(/\/$/, '');
-    const html = renderComparisonPageHtml(pairSlug || 'ms-260-vs-ms-261', database, BASE_URL);
-    logStihlEvent(EVENT_TYPES.COMPARISON_VIEWED, { pairSlug });
+    const html = renderComparisonPageHtml(pairSlug || 'ms-260-vs-ms-261', database, PRIMARY_ORIGIN);
+    logStihlEvent(EVENT_TYPES.COMPARISON_VIEWED, { pairSlug }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
     return;
@@ -162,8 +164,8 @@ const server = http.createServer((req, res) => {
       const targetModel = models.find(m => (m.slug || m.id.replace(/_/g, '-')).toLowerCase() === modelSlug);
 
       if (targetModel) {
-        const partsHtml = renderModelPartsPageHtml(targetModel, database, BASE_URL);
-        logStihlEvent(EVENT_TYPES.PART_SEARCH, { model: targetModel.model_name });
+        const partsHtml = renderModelPartsPageHtml(targetModel, database, PRIMARY_ORIGIN);
+        logStihlEvent(EVENT_TYPES.PART_SEARCH, { model: targetModel.model_name }, req.headers['user-agent']);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
         res.end(partsHtml);
         return;
@@ -180,7 +182,7 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    const auditReport = generateSeoAuditReport(database, BASE_URL);
+    const auditReport = generateSeoAuditReport(database, PRIMARY_ORIGIN);
     res.writeHead(200, { 
       'Content-Type': 'application/json; charset=UTF-8', 
       'X-Robots-Tag': 'noindex, nofollow',
@@ -207,12 +209,12 @@ const server = http.createServer((req, res) => {
     if (targetModel) {
       const catSlug = targetModel.category_slug || 'kettingzagen';
       const mSlug = targetModel.slug || targetModel.id.replace(/_/g, '-');
-      res.writeHead(301, { 'Location': `/${catSlug}/${mSlug}/` });
+      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${catSlug}/${mSlug}/` });
       res.end();
       return;
     }
 
-    res.writeHead(301, { 'Location': '/' });
+    res.writeHead(301, { 'Location': PRIMARY_ORIGIN });
     res.end();
     return;
   }
@@ -224,7 +226,7 @@ const server = http.createServer((req, res) => {
     const guide = guides.find(g => g.slug === guideSlug);
 
     if (guide) {
-      const html = renderGuidePageHtml(guide, database, BASE_URL);
+      const html = renderGuidePageHtml(guide, database, PRIMARY_ORIGIN);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(html);
       return;
@@ -237,7 +239,7 @@ const server = http.createServer((req, res) => {
   const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
 
   if (matchedIntent) {
-    const html = renderIntentPageHtml(matchedIntent, database, BASE_URL);
+    const html = renderIntentPageHtml(matchedIntent, database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
     return;
@@ -245,7 +247,7 @@ const server = http.createServer((req, res) => {
 
   // 13. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
   if (cleanPath === 'onderdeelnummer') {
-    const html = renderPartNumberHubHtml(database, BASE_URL);
+    const html = renderPartNumberHubHtml(database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
     return;
@@ -253,7 +255,7 @@ const server = http.createServer((req, res) => {
 
   if (pathname.startsWith('/onderdeelnummer/')) {
     const seriesCode = cleanPath.replace('onderdeelnummer/', '').replace(/^stihl-/, '');
-    const html = renderPartNumberSeriesHtml(seriesCode, database, BASE_URL);
+    const html = renderPartNumberSeriesHtml(seriesCode, database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
     return;
@@ -274,8 +276,8 @@ const server = http.createServer((req, res) => {
     });
 
     if (targetModel) {
-      const html = renderModelPageHtml(targetModel, database, BASE_URL);
-      logStihlEvent(EVENT_TYPES.MODEL_IDENTIFIED, { model: targetModel.model_name });
+      const html = renderModelPageHtml(targetModel, database, PRIMARY_ORIGIN);
+      logStihlEvent(EVENT_TYPES.MODEL_IDENTIFIED, { model: targetModel.model_name }, req.headers['user-agent']);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(html);
       return;
@@ -288,7 +290,7 @@ const server = http.createServer((req, res) => {
     const models = database.models || [];
     const targetModel = models.find(m => (m.slug || m.id).replace(/^stihl-/, '').toLowerCase() === modelSlug);
 
-    logStihlEvent(EVENT_TYPES.VALUATION_STARTED, { model: modelSlug });
+    logStihlEvent(EVENT_TYPES.VALUATION_STARTED, { model: modelSlug }, req.headers['user-agent']);
 
     const valuationHtml = `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -297,7 +299,7 @@ const server = http.createServer((req, res) => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()} Marktwaarde & Taxatie | STIHLDecoder</title>
   <meta name="description" content="Indicatieve tweedehands marktwaarde en taxatie voor de STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()}.">
-  <link rel="canonical" href="${BASE_URL}/waarde/${modelSlug}/">
+  <link rel="canonical" href="${PRIMARY_ORIGIN}/waarde/${modelSlug}/">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
