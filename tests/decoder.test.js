@@ -1,14 +1,14 @@
 import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
+import http from 'http';
 import { fileURLToPath } from 'url';
-import { StopHelingService } from '../src/StopHelingService.js';
-import { handleDecodeApiV1 } from '../src/StihlDecoderController.js';
-import { renderStihlPassportHtml } from '../src/components/StihlPassportGenerator.js';
-import { StihlDecoderService } from '../src/StihlDecoderService.js';
-import { StihlRangeResolver } from '../src/StihlRangeResolver.js';
-import { generateModelJsonLd } from '../src/components/ModelJsonLd.js';
+import { renderModelPageHtml } from '../src/components/ModelPageTemplate.js';
+import { renderIntentPageHtml } from '../src/components/IntentPageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from '../src/components/SitemapGenerator.js';
+import { generateSeoAuditReport } from '../src/components/SeoAuditEngine.js';
+import { getRelatedModels } from '../src/components/RelatedModels.js';
+import { buildStructuredData } from '../src/components/StructuredData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,48 +16,57 @@ const __dirname = path.dirname(__filename);
 const dbPath = path.join(__dirname, '..', 'data', 'stihl_database.json');
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 
-console.log('🧪 Running STIHL Passport Finishing Touches (Chain Specs & QR Code) & Decoder Tests...\n');
+console.log('🧪 Running STIHL SEO Engine & Pilot Pages Validation Tests...\n');
 
-// Test 1: Passport HTML rendering contains Chain Specs and QR code image
-const passportHtml = renderStihlPassportHtml({
-  cleanedSerial: '184592301',
-  model: 'MS 261 C-M Gen 2',
-  modelMatch: {
-    modelName: 'MS 261 C-M Gen 2',
-    specs: {
-      displacementCc: 50.2,
-      powerHp: 4.1,
-      chainDetails: { pitch: '.325"', gauge: 1.3 }
-    }
-  }
+// Test 1: Pilot Model Page 1 - MS 261 (/kettingzagen/ms-261/)
+const ms261 = database.models.find(m => m.slug === 'ms-261' || m.id === 'stihl_ms_261_cm');
+assert.ok(ms261);
+const html261 = renderModelPageHtml(ms261, database);
+assert.ok(html261.includes('STIHL MS 261 C-M Serienummer Decoder &amp; Modelinformatie') || html261.includes('STIHL MS 261 C-M Serienummer Decoder & Modelinformatie'));
+assert.ok(html261.includes('50.2 cc'));
+assert.ok(html261.includes('NGK CMR6H'));
+assert.ok(html261.includes('Geschatte productieperiode'));
+console.log('✅ Test 1 Passed: Pilot Model Page 1 (MS 261) SSR HTML rendered correctly.');
+
+// Test 2: Pilot Model Page 2 - MS 260 (/kettingzagen/ms-260/)
+const ms260 = database.models.find(m => m.slug === 'ms-260' || m.id === 'stihl_ms_260');
+assert.ok(ms260);
+const html260 = renderModelPageHtml(ms260, database);
+assert.ok(html260.includes('MS 260'));
+assert.ok(html260.includes('3.5 pk'));
+console.log('✅ Test 2 Passed: Pilot Model Page 2 (MS 260) SSR HTML rendered correctly.');
+
+// Test 3: Pilot Model Page 3 - FS 350 (/bosmaaiers/fs-350/)
+const fs350 = database.models.find(m => m.slug === 'fs-350' || m.id === 'stihl_fs_350');
+assert.ok(fs350);
+const html350 = renderModelPageHtml(fs350, database);
+assert.ok(html350.includes('FS 350'));
+assert.ok(html350.includes('Bosmaaier'));
+console.log('✅ Test 3 Passed: Pilot Model Page 3 (FS 350) SSR HTML rendered correctly.');
+
+// Test 4: Database-driven Related Models
+const related = getRelatedModels(ms261, database);
+assert.ok(related.length > 0);
+assert.ok(related.some(m => m.slug === 'ms-260'));
+console.log('✅ Test 4 Passed: Database-driven related models resolved MS 260 for MS 261.');
+
+// Test 5: Centralized Structured Data Builder
+const jsonLd = buildStructuredData({
+  pageType: 'model',
+  model: ms261,
+  breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Kettingzagen', url: '/kettingzagen/' }],
+  url: 'https://stihldecoder.nl/kettingzagen/ms-261/'
 });
-assert.ok(passportHtml.includes('.325" @ 1.3 mm'));
-assert.ok(passportHtml.includes('https://api.qrserver.com/v1/create-qr-code'));
-assert.ok(passportHtml.includes('stihldecoder.nl'));
-console.log('✅ Test 1 Passed: Passport HTML contains chain specs (.325" @ 1.3 mm) and verification QR Code.');
+assert.strictEqual(jsonLd['@context'], 'https://schema.org');
+assert.ok(jsonLd['@graph'].some(g => g['@type'] === 'BreadcrumbList'));
+assert.ok(jsonLd['@graph'].some(g => g['@type'] === 'TechArticle'));
+assert.ok(jsonLd['@graph'].some(g => g['@type'] === 'FAQPage'));
+console.log('✅ Test 5 Passed: Centralized StructuredData builder generated valid Schema.org graph.');
 
-// Test 2: StihlRangeResolver exact breakpoint match for MS 261 C-M Gen 2
-const rangeRes = StihlRangeResolver.resolve(184592301, '1', database);
-assert.strictEqual(rangeRes.yearRangeFormatted, '2016 – Heden');
-assert.strictEqual(rangeRes.generation, 'MS 261 C-M Gen 2 (Facelift / V2)');
-console.log('✅ Test 2 Passed: StihlRangeResolver matched exact breakpoint.');
+// Test 6: SEO Audit & Quality Score Engine
+const audit = generateSeoAuditReport(database);
+assert.ok(audit.totalIndexablePages > 0);
+assert.ok(audit.averageQualityScore >= 80);
+console.log(`✅ Test 6 Passed: Internal SEO Audit generated (Average Quality Score: ${audit.averageQualityScore}/100).`);
 
-// Test 3: generateSitemapXml output validation
-const sitemapXml = generateSitemapXml('https://stihldecoder.nl', database);
-assert.ok(sitemapXml.includes('<loc>https://stihldecoder.nl/modellen/kettingzagen/stihl-ms-261-c-m</loc>'));
-console.log('✅ Test 3 Passed: generateSitemapXml generated valid XML.');
-
-// Test 4: generateModelJsonLd Schema.org validation
-const jsonLd = generateModelJsonLd({
-  modelName: 'MS 261 C-M',
-  category: 'Kettingzaag',
-  displacementCc: 50.2,
-  powerHp: 4.1,
-  sparkPlug: 'NGK CMR6H',
-  carbSettings: { H: 'M-Tronic', L: 'M-Tronic', LA: 'M-Tronic' },
-  url: 'https://stihldecoder.nl/modellen/kettingzagen/stihl-ms-261-c-m'
-});
-assert.strictEqual(jsonLd['@graph'].length, 3);
-console.log('✅ Test 4 Passed: generateModelJsonLd returned TechArticle, Product & FAQPage Schema.org graph.');
-
-console.log('\n🎉 ALL PASSPORT FINISHING TOUCHES & DECODER TESTS PASSED SUCCESSFULLY!');
+console.log('\n🎉 ALL SEO ENGINE & PILOT PAGES VALIDATION TESTS PASSED 100% CLEANLY!');

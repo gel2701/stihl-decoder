@@ -4,8 +4,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { decodeStihlCode } from './src/decoder.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
-import { generateModelJsonLd } from './src/components/ModelJsonLd.js';
+import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
+import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
+import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,174 +37,30 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
-const server = http.createServer((req, res) => {
-  const urlObj = new URL(req.url, `http://${req.headers.host}`);
-  const pathname = urlObj.pathname;
+const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen'];
 
-  // Dynamic Route: GET /sitemap.xml
+const server = http.createServer((req, res) => {
+  const host = req.headers.host || 'stihldecoder.nl';
+  const urlObj = new URL(req.url, `http://${host}`);
+  let pathname = urlObj.pathname;
+
+  // 1. Dynamic Route: GET /sitemap.xml
   if (pathname === '/sitemap.xml') {
-    const sitemapXml = generateSitemapXml(`https://${req.headers.host}`, database);
-    res.writeHead(200, { 'Content-Type': 'application/xml; charset=UTF-8' });
+    const sitemapXml = generateSitemapXml(`https://${host}`, database);
+    res.writeHead(200, { 'Content-Type': 'application/xml; charset=UTF-8', 'X-Robots-Tag': 'noindex' });
     res.end(sitemapXml);
     return;
   }
 
-  // Dynamic Route: GET /robots.txt
+  // 2. Dynamic Route: GET /robots.txt
   if (pathname === '/robots.txt') {
-    const robotsTxt = generateRobotsTxt(`https://${req.headers.host}`);
+    const robotsTxt = generateRobotsTxt(`https://${host}`);
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=UTF-8' });
     res.end(robotsTxt);
     return;
   }
 
-  // Dynamic Route: GET /gidsen/:slug
-  if (pathname.startsWith('/gidsen/')) {
-    const guideSlug = pathname.replace('/gidsen/', '');
-    const guides = database.guides || [];
-    const guide = guides.find(g => g.slug === guideSlug) || {
-      title: 'STIHL Handleiding & Kennisbank',
-      description: 'Officiële STIHL gids voor serienummers, gietklokken en onderdelen.'
-    };
-
-    const guideHtml = `<!DOCTYPE html>
-<html lang="nl" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${guide.title} | StihlDecoder Gidsen</title>
-  <meta name="description" content="${guide.description}">
-  <link rel="canonical" href="https://stihldecoder.nl${pathname}">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
-  <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
-        <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
-        STIHL Decoder
-      </a>
-      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Hoofdpagina</a>
-    </div>
-  </header>
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
-      <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">STIHL Kennisbank Gids</span>
-      <h1 class="text-3xl font-extrabold text-white">${guide.title}</h1>
-      <p class="text-base text-gray-300 leading-relaxed">${guide.description}</p>
-    </article>
-  </main>
-</body>
-</html>`;
-
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.end(guideHtml);
-    return;
-  }
-
-  // Dynamic SSR Route: GET /modellen / GET /modellen/:category/:slug / GET /modellen/:slug
-  if (pathname === '/modellen' || pathname.startsWith('/modellen/')) {
-    const parts = pathname.split('/').filter(Boolean);
-    let targetSlug = parts[parts.length - 1] || '';
-    if (targetSlug === 'modellen') targetSlug = '';
-    
-    let targetModel = null;
-    if (targetSlug && database.models) {
-      const cleanSlug = targetSlug.toLowerCase().replace(/^stihl-/, '');
-      targetModel = database.models.find(m => {
-        const mSlug = (m.slug || m.id).toLowerCase();
-        return mSlug === targetSlug || mSlug.replace(/^stihl-/, '') === cleanSlug;
-      });
-    }
-
-    const modelName = targetModel ? targetModel.model_name : 'MS 261 C-M';
-    const category = targetModel ? targetModel.category : 'Kettingzaag';
-    const categorySlug = targetModel ? (targetModel.category_slug || 'kettingzagen') : 'kettingzagen';
-    const displacement = targetModel ? targetModel.displacement_cc : 50.2;
-    const powerHp = targetModel ? targetModel.power_hp : 4.1;
-    const sparkPlug = targetModel ? targetModel.spark_plug : 'NGK CMR6H';
-    const carbH = targetModel ? targetModel.carb_h_setting : 'M-Tronic (Auto)';
-    const carbL = targetModel ? targetModel.carb_l_setting : 'M-Tronic (Auto)';
-    const carbLA = targetModel ? targetModel.carb_la_setting : 'M-Tronic (Auto)';
-
-    const canonicalUrl = `https://stihldecoder.nl/modellen/${categorySlug}/${targetModel ? targetModel.slug : 'stihl-ms-261-c-m'}`;
-
-    const jsonLdData = generateModelJsonLd({
-      modelName,
-      category,
-      displacementCc: displacement,
-      powerHp,
-      sparkPlug,
-      carbSettings: { H: carbH, L: carbL, LA: carbLA },
-      url: canonicalUrl
-    });
-
-    const htmlContent = `<!DOCTYPE html>
-<html lang="nl" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STIHL ${modelName} Bouwjaar, Serienummer & Specificaties | StihlDecoder</title>
-  <meta name="description" content="Controleer het bouwjaar, herkomstfabriek en specificaties van de STIHL ${modelName}. Inclusief carburateur basisafstelling (${carbH}), bougietype (${sparkPlug}) en serienummer locaties.">
-  <link rel="canonical" href="${canonicalUrl}">
-  <meta property="og:title" content="STIHL ${modelName} Bouwjaar, Serienummer & Specificaties | StihlDecoder">
-  <meta property="og:description" content="Controleer het bouwjaar, herkomstfabriek en specificaties van de STIHL ${modelName}.">
-  <meta property="og:url" content="${canonicalUrl}">
-  <meta property="og:type" content="article">
-  <meta property="og:locale" content="nl_NL">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script type="application/ld+json">${JSON.stringify(jsonLdData)}</script>
-</head>
-<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
-  <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
-        <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
-        STIHL Decoder
-      </a>
-      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Zoeken</a>
-    </div>
-  </header>
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
-      <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">STIHL ${category}</span>
-      <h1 class="text-3xl font-extrabold text-white">STIHL ${modelName} Bouwjaar & Specificaties</h1>
-      <p class="text-sm text-gray-300 leading-relaxed">
-        Officiële technische gids voor de STIHL ${modelName}. Bekijk carburateur basisafstellingen, bougiespecificaties, kettingsteek en controleer het serienummer van uw machine.
-      </p>
-
-      <section class="my-6 bg-gray-950 border border-gray-800 p-5 rounded-xl space-y-3">
-        <h2 class="text-base font-bold text-orange-400">Serienummer van jouw STIHL ${modelName} controleren:</h2>
-        <form action="/" method="GET" class="flex gap-2">
-          <input type="text" name="q" placeholder="Voer 9-cijferig serienummer in..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm text-white font-mono" />
-          <button type="submit" class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-5 py-2 rounded-lg">Controleer</button>
-        </form>
-      </section>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-800 text-xs">
-        <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
-          <h3 class="font-bold text-orange-400 uppercase">Motor Specificaties</h3>
-          <div><span class="text-gray-400">Cilinderinhoud:</span> <strong class="text-white">${displacement ? displacement + ' cc' : 'Accu'}</strong></div>
-          <div><span class="text-gray-400">Vermogen:</span> <strong class="text-white">${powerHp ? powerHp + ' pk' : '-'}</strong></div>
-          <div><span class="text-gray-400">Bougie:</span> <strong class="text-white">${sparkPlug || 'Geen (Accu)'}</strong></div>
-        </div>
-        <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
-          <h3 class="font-bold text-orange-400 uppercase">Carburateur Basisafstelling</h3>
-          <div><span class="text-gray-400">H-Schroef:</span> <strong class="text-white">${carbH || 'Elektronisch / Accu'}</strong></div>
-          <div><span class="text-gray-400">L-Schroef:</span> <strong class="text-white">${carbL || 'Elektronisch / Accu'}</strong></div>
-          <div><span class="text-gray-400">LA-Schroef:</span> <strong class="text-white">${carbLA || 'Elektronisch / Accu'}</strong></div>
-        </div>
-      </div>
-    </article>
-  </main>
-</body>
-</html>`;
-
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.end(htmlContent);
-    return;
-  }
-
-  // REST API v1: POST /api/v1/decode
+  // 3. REST API v1: POST /api/v1/decode
   if (pathname === '/api/v1/decode' && req.method === 'POST') {
     let bodyStr = '';
     req.on('data', chunk => { bodyStr += chunk; });
@@ -223,7 +81,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // REST API: GET /api/decode?code=...
+  // 4. REST API: GET /api/decode?code=...
   if (pathname === '/api/decode') {
     const code = urlObj.searchParams.get('code') || '';
     const result = decodeStihlCode(code, database);
@@ -232,14 +90,140 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // REST API: GET /api/database
+  // 5. REST API: GET /api/database
   if (pathname === '/api/database') {
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(database));
     return;
   }
 
-  // Serve static files
+  // 6. Protected Internal Route: GET /admin/seo-audit
+  if (pathname === '/admin/seo-audit' || pathname === '/admin/seo-audit/') {
+    const apiKey = urlObj.searchParams.get('key') || req.headers['x-admin-key'];
+    if (apiKey !== 'stihl-seo-admin-2026' && process.env.NODE_ENV === 'production') {
+      res.writeHead(401, { 'Content-Type': 'application/json', 'X-Robots-Tag': 'noindex, nofollow' });
+      res.end(JSON.stringify({ error: 'Geen toegang tot admin audit. Geef de juiste sleutel op via ?key=...' }));
+      return;
+    }
+
+    const auditReport = generateSeoAuditReport(database, `https://${host}`);
+    res.writeHead(200, { 
+      'Content-Type': 'application/json; charset=UTF-8', 
+      'X-Robots-Tag': 'noindex, nofollow',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify(auditReport, null, 2));
+    return;
+  }
+
+  // 7. 301 Permanent Redirect for Legacy Routes (/modellen/* -> /:category/:slug/)
+  if (pathname.startsWith('/modellen/') || pathname === '/modellen') {
+    const legacySlug = pathname.replace('/modellen/', '').replace('/modellen', '').replace(/^\//, '');
+    let targetModel = null;
+
+    if (legacySlug && database.models) {
+      const cleanSlug = legacySlug.toLowerCase().replace(/^stihl-/, '');
+      targetModel = database.models.find(m => {
+        const mSlug = (m.slug || m.id).toLowerCase();
+        return mSlug === legacySlug || mSlug.replace(/^stihl-/, '') === cleanSlug;
+      });
+    }
+
+    if (targetModel) {
+      const catSlug = targetModel.category_slug || 'kettingzagen';
+      const mSlug = targetModel.slug || targetModel.id.replace(/_/g, '-');
+      res.writeHead(301, { 'Location': `/${catSlug}/${mSlug}/` });
+      res.end();
+      return;
+    }
+
+    res.writeHead(301, { 'Location': '/' });
+    res.end();
+    return;
+  }
+
+  // 8. Intent Landing Pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/)
+  const cleanPath = pathname.replace(/^\//, '').replace(/\/$/, '');
+  const intentPages = database.intent_pages || [];
+  const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
+
+  if (matchedIntent) {
+    const html = renderIntentPageHtml(matchedIntent, database, `https://${host}`);
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end(html);
+    return;
+  }
+
+  // 9. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /bosmaaiers/fs-350/)
+  const pathParts = pathname.split('/').filter(Boolean);
+  if (pathParts.length === 2 && KNOWN_CATEGORIES.includes(pathParts[0].toLowerCase())) {
+    const catSlug = pathParts[0].toLowerCase();
+    const modelSlug = pathParts[1].toLowerCase();
+
+    const models = database.models || [];
+    const targetModel = models.find(m => {
+      const mSlug = (m.slug || m.id).toLowerCase();
+      const mCleanSlug = mSlug.replace(/^stihl-/, '');
+      return (m.category_slug === catSlug || catSlug === 'kettingzagen') && 
+             (mSlug === modelSlug || mCleanSlug === modelSlug || m.id === modelSlug);
+    });
+
+    if (targetModel) {
+      const html = renderModelPageHtml(targetModel, database, `https://${host}`);
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+      res.end(html);
+      return;
+    }
+  }
+
+  // 10. Valuation Preview Routes (e.g. /waarde/ms-261/)
+  if (pathParts.length === 2 && pathParts[0].toLowerCase() === 'waarde') {
+    const modelSlug = pathParts[1].toLowerCase();
+    const models = database.models || [];
+    const targetModel = models.find(m => (m.slug || m.id).replace(/^stihl-/, '').toLowerCase() === modelSlug);
+
+    const valuationHtml = `<!DOCTYPE html>
+<html lang="nl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()} Marktwaarde & Taxatie | STIHLDecoder</title>
+  <meta name="description" content="Indicatieve tweedehands marktwaarde en taxatie voor de STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()}.">
+  <link rel="canonical" href="https://${host}/waarde/${modelSlug}/">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
+  <header class="border-b border-gray-800 bg-gray-900/80 p-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
+        STIHL Decoder
+      </a>
+      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Zoeken</a>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
+      <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">Indicatieve Taxatie</span>
+      <h1 class="text-3xl font-extrabold text-white">STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()} Waardebepaling</h1>
+      <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
+        <span class="text-xs text-gray-400 block font-medium">Indicatieve Marktwaarde Range (Tweedehands):</span>
+        <span class="text-2xl font-black text-orange-400 font-mono">€250 - €550 (Afhankelijk van staat & bouwjaar)</span>
+        <p class="text-xs text-gray-400 pt-2 border-t border-gray-800">
+          💡 Maak een <strong>STIHL Machinepaspoort</strong> met serienummer-controle voor een geverifieerd Marktplaats verkooprapport.
+        </p>
+      </div>
+    </article>
+  </main>
+</body>
+</html>`;
+
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end(valuationHtml);
+    return;
+  }
+
+  // 11. Serve static files
   let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';

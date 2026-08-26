@@ -22,34 +22,37 @@ const plantsData = [
 ];
 
 const modelsData = [
+  // Pilot Model 1: MS 261
   {
-    id: 'stihl_ms_170',
-    slug: 'stihl-ms-170',
+    id: 'stihl_ms_261_cm',
+    slug: 'ms-261',
     category_slug: 'kettingzagen',
-    series_code: '1130',
-    model_name: 'MS 170 / MS 170-D',
+    series_code: '1141',
+    model_name: 'MS 261 C-M',
     category: 'Kettingzaag',
     fuel_type: 'PETROL_2STROKE',
-    fuel_type_label: 'Benzine (2-Takt 1:50)',
-    displacement_cc: 30.1,
-    power_kw: 1.2,
-    power_hp: 1.6,
-    weight_kg: 4.1,
-    spark_plug: 'Bosch WSR 6 F / NGK BPMR 7 A',
+    fuel_type_label: 'Benzine (2-Takt M-Tronic)',
+    displacement_cc: 50.2,
+    power_kw: 3.0,
+    power_hp: 4.1,
+    weight_kg: 4.9,
+    spark_plug: 'NGK CMR6H',
     electrode_gap_mm: 0.5,
-    carb_h_setting: 'Vast (Geen verstelling)',
-    carb_l_setting: 'Vast (Geen verstelling)',
-    carb_la_setting: 'Standaard stationair stelschroef',
-    chain_pitch: '3/8" P',
-    chain_gauge_mm: 1.1,
+    carb_h_setting: 'Elektronisch geregeld (M-Tronic)',
+    carb_l_setting: 'Elektronisch geregeld (M-Tronic)',
+    carb_la_setting: 'Elektronisch geregeld (M-Tronic)',
+    chain_pitch: '.325"',
+    chain_gauge_mm: 1.3,
     oil_mix_ratio: '1:50',
     battery_system: null,
     voltage_v: null,
     is_discontinued: 0
   },
+
+  // Pilot Model 2: MS 260
   {
     id: 'stihl_ms_260',
-    slug: 'stihl-ms-260',
+    slug: 'ms-260',
     category_slug: 'kettingzagen',
     series_code: '1121',
     model_name: 'MS 260 / 026 Pro',
@@ -72,76 +75,130 @@ const modelsData = [
     voltage_v: null,
     is_discontinued: 1
   },
+
+  // Pilot Model 3: FS 350
   {
-    id: 'stihl_ms_261',
-    slug: 'stihl-ms-261',
-    category_slug: 'kettingzagen',
-    series_code: '1141',
-    model_name: 'MS 261 Gen 1',
-    category: 'Kettingzaag',
+    id: 'stihl_fs_350',
+    slug: 'fs-350',
+    category_slug: 'bosmaaiers',
+    series_code: '4134',
+    model_name: 'FS 350',
+    category: 'Bosmaaier',
     fuel_type: 'PETROL_2STROKE',
-    fuel_type_label: 'Benzine (2-Takt 2-MIX)',
-    displacement_cc: 50.2,
-    power_kw: 2.8,
-    power_hp: 3.8,
-    weight_kg: 5.2,
-    spark_plug: 'NGK CMR6H',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    displacement_cc: 40.2,
+    power_kw: 1.6,
+    power_hp: 2.2,
+    weight_kg: 7.3,
+    spark_plug: 'NGK BPMR7A / Bosch WSR6F',
     electrode_gap_mm: 0.5,
-    carb_h_setting: '1 slag open (V1 Carburateur)',
+    carb_h_setting: '1 slag open',
     carb_l_setting: '1 slag open',
     carb_la_setting: '2800 RPM',
-    chain_pitch: '.325"',
-    chain_gauge_mm: 1.3,
+    chain_pitch: null,
+    chain_gauge_mm: null,
     oil_mix_ratio: '1:50',
     battery_system: null,
     voltage_v: null,
     is_discontinued: 1
   },
+
+  // Additional Kettingzagen
   {
-    id: 'stihl_ms_261_cm',
-    slug: 'stihl-ms-261-c-m',
+    id: 'stihl_ms_170',
+    slug: 'ms-170',
     category_slug: 'kettingzagen',
-    series_code: '1141',
-    model_name: 'MS 261 C-M Gen 2 (Facelift)',
+    series_code: '1130',
+    model_name: 'MS 170',
     category: 'Kettingzaag',
     fuel_type: 'PETROL_2STROKE',
-    fuel_type_label: 'Benzine (2-Takt M-Tronic)',
-    displacement_cc: 50.2,
-    power_kw: 3.0,
-    power_hp: 4.1,
-    weight_kg: 4.9,
-    spark_plug: 'NGK CMR6H',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    displacement_cc: 30.1,
+    power_kw: 1.2,
+    power_hp: 1.6,
+    weight_kg: 4.1,
+    spark_plug: 'Bosch WSR 6 F / NGK BPMR 7 A',
     electrode_gap_mm: 0.5,
-    carb_h_setting: 'Elektronisch geregeld (M-Tronic)',
-    carb_l_setting: 'Elektronisch geregeld (M-Tronic)',
-    carb_la_setting: 'Elektronisch geregeld (M-Tronic)',
-    chain_pitch: '.325"',
-    chain_gauge_mm: 1.3,
+    carb_h_setting: 'Vast (Geen verstelling)',
+    carb_l_setting: 'Vast (Geen verstelling)',
+    carb_la_setting: 'Standaard stationair',
+    chain_pitch: '3/8" P',
+    chain_gauge_mm: 1.1,
     oil_mix_ratio: '1:50',
     battery_system: null,
     voltage_v: null,
     is_discontinued: 0
   },
   {
-    id: 'stihl_ms_201_tc_m',
-    slug: 'stihl-ms-201-tc-m',
+    id: 'stihl_ms_180',
+    slug: 'ms-180',
     category_slug: 'kettingzagen',
-    series_code: '1145',
-    model_name: 'MS 201 TC-M (Tophandle)',
-    category: 'Kettingzaag (Boomverzorging)',
+    series_code: '1130',
+    model_name: 'MS 180',
+    category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    displacement_cc: 31.8,
+    power_kw: 1.4,
+    power_hp: 1.9,
+    weight_kg: 4.1,
+    spark_plug: 'NGK BPMR7A',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: 'Vast',
+    carb_l_setting: 'Vast',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: '3/8" P',
+    chain_gauge_mm: 1.1,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 0
+  },
+  {
+    id: 'stihl_ms_361',
+    slug: 'ms-361',
+    category_slug: 'kettingzagen',
+    series_code: '1135',
+    model_name: 'MS 361',
+    category: 'Kettingzaag',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt)',
+    displacement_cc: 59.0,
+    power_kw: 3.4,
+    power_hp: 4.6,
+    weight_kg: 5.6,
+    spark_plug: 'NGK BPMR7A',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: '1 slag open',
+    carb_l_setting: '1 slag open',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: '3/8"',
+    chain_gauge_mm: 1.6,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 1
+  },
+  {
+    id: 'stihl_ms_362',
+    slug: 'ms-362',
+    category_slug: 'kettingzagen',
+    series_code: '1140',
+    model_name: 'MS 362 C-M',
+    category: 'Kettingzaag',
     fuel_type: 'PETROL_2STROKE',
     fuel_type_label: 'Benzine (2-Takt M-Tronic)',
-    displacement_cc: 35.2,
-    power_kw: 1.8,
-    power_hp: 2.4,
-    weight_kg: 3.7,
+    displacement_cc: 59.0,
+    power_kw: 3.5,
+    power_hp: 4.8,
+    weight_kg: 5.6,
     spark_plug: 'NGK CMR6H',
     electrode_gap_mm: 0.5,
     carb_h_setting: 'Elektronisch geregeld (M-Tronic)',
     carb_l_setting: 'Elektronisch geregeld (M-Tronic)',
-    carb_la_setting: 'Elektronisch geregeld (M-Tronic)',
-    chain_pitch: '3/8" P',
-    chain_gauge_mm: 1.3,
+    carb_la_setting: '2800 RPM',
+    chain_pitch: '3/8"',
+    chain_gauge_mm: 1.6,
     oil_mix_ratio: '1:50',
     battery_system: null,
     voltage_v: null,
@@ -149,10 +206,10 @@ const modelsData = [
   },
   {
     id: 'stihl_ms_500i',
-    slug: 'stihl-ms-500i',
+    slug: 'ms-500i',
     category_slug: 'kettingzagen',
     series_code: '1147',
-    model_name: 'MS 500i (Elektronische Injectie)',
+    model_name: 'MS 500i',
     category: 'Kettingzaag',
     fuel_type: 'PETROL_2STROKE',
     fuel_type_label: 'Benzine (2-Takt Injectie)',
@@ -172,12 +229,41 @@ const modelsData = [
     voltage_v: null,
     is_discontinued: 0
   },
+
+  // Additional Bosmaaiers
+  {
+    id: 'stihl_fs_55',
+    slug: 'fs-55',
+    category_slug: 'bosmaaiers',
+    series_code: '4140',
+    model_name: 'FS 55',
+    category: 'Bosmaaier',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    displacement_cc: 27.2,
+    power_kw: 0.75,
+    power_hp: 1.0,
+    weight_kg: 4.9,
+    spark_plug: 'NGK BPMR7A',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: '1 slag open',
+    carb_l_setting: '1 slag open',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: null,
+    chain_gauge_mm: null,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
+    is_discontinued: 0
+  },
+
+  // Bladblazers
   {
     id: 'stihl_br_600',
-    slug: 'stihl-br-600',
+    slug: 'br-600',
     category_slug: 'bladblazers',
     series_code: '4282',
-    model_name: 'BR 600 (4-Mix Rugblazer)',
+    model_name: 'BR 600',
     category: 'Bladblazer',
     fuel_type: 'PETROL_4MIX',
     fuel_type_label: 'Benzine (4-Mix Gepatenteerd)',
@@ -197,30 +283,84 @@ const modelsData = [
     voltage_v: null,
     is_discontinued: 0
   },
+
+  // Heggenscharen
   {
-    id: 'stihl_msa_220_c',
-    slug: 'stihl-msa-220-c',
-    category_slug: 'accu-kettingzagen',
-    series_code: '1251',
-    model_name: 'MSA 220 C-B (Accu Zaag)',
-    category: 'Accu Kettingzaag',
-    fuel_type: 'BATTERY_AP',
-    fuel_type_label: 'Accu (AP-Systeem 36V)',
-    displacement_cc: null,
-    power_kw: 2.1,
-    power_hp: 2.8,
-    weight_kg: 3.6,
-    spark_plug: null,
-    electrode_gap_mm: null,
-    carb_h_setting: null,
-    carb_l_setting: null,
-    carb_la_setting: null,
-    chain_pitch: '3/8" P',
-    chain_gauge_mm: 1.1,
-    oil_mix_ratio: null,
-    battery_system: 'STIHL AP-Systeem (Professioneel)',
-    voltage_v: 36,
+    id: 'stihl_hs_45',
+    slug: 'hs-45',
+    category_slug: 'heggenscharen',
+    series_code: '4228',
+    model_name: 'HS 45',
+    category: 'Heggenschaar',
+    fuel_type: 'PETROL_2STROKE',
+    fuel_type_label: 'Benzine (2-Takt)',
+    displacement_cc: 27.2,
+    power_kw: 0.75,
+    power_hp: 1.0,
+    weight_kg: 4.7,
+    spark_plug: 'NGK BPMR7A',
+    electrode_gap_mm: 0.5,
+    carb_h_setting: '1 slag open',
+    carb_l_setting: '1 slag open',
+    carb_la_setting: '2800 RPM',
+    chain_pitch: null,
+    chain_gauge_mm: null,
+    oil_mix_ratio: '1:50',
+    battery_system: null,
+    voltage_v: null,
     is_discontinued: 0
+  }
+];
+
+const intentPagesData = [
+  {
+    slug: 'stihl-serienummer-decoder',
+    h1: 'STIHL Serienummer Decoder & Bouwjaar Controleren',
+    title: 'STIHL Serienummer Decoder & Machine Checker',
+    description: 'De gratis onafhankelijke online STIHL serienummer decoder. Bepaal het bouwjaar, fabriek van herkomst en controleer op StopHeling diefstalregistratie.',
+    intro: 'Voer het 9-cijferige serienummer in van uw STIHL kettingzaag, bosmaaier of bladblazer om direct fabriek en productieperiode af te lezen.',
+    contentHtml: `
+      <h3 class="text-sm font-bold text-white mb-2">Hoe werkt de STIHL Serienummer Decoder?</h3>
+      <p class="mb-3">Het 9-cijferige serienummer van een STIHL machine bevat waardevolle informatie over het land van assemblage en de productieperiode:</p>
+      <ul class="list-disc list-inside space-y-1 text-gray-200 mb-4">
+        <li><strong>Eerste Cijfer (Fabriekscode):</strong> 1 = Waiblingen (Duitsland), 2/5 = Virginia Beach (VS), 3 = São Leopoldo (Brazilië), 8 = Qingdao (China).</li>
+        <li><strong>Numerieke Breakpoints:</strong> De opeenvolgende cijfers worden gecorreleerd met bekende model-breakpoints en generatiewijzigingen.</li>
+      </ul>
+    `
+  },
+  {
+    slug: 'stihl-bouwjaar',
+    h1: 'STIHL Bouwjaar Bepalen & Controleren',
+    title: 'STIHL Bouwjaar Controleren op Serienummer & Gietklok',
+    description: 'Hoe oud is uw STIHL machine? Leer hoe u het bouwjaar kunt achterhalen via het serienummer, de gietklok (Gussuhr) en het typeplaatje.',
+    intro: 'Het exacte of geschatte bouwjaar van een STIHL machine is op meerdere manieren te verifiëren.',
+    contentHtml: `
+      <h3 class="text-sm font-bold text-white mb-2">Twee Methoden om het Bouwjaar te Achterhalen</h3>
+      <ol class="list-decimal list-inside space-y-2 text-gray-200 mb-4">
+        <li><strong>Via de Serienummer Breakpoint Engine:</strong> Voer het 9-cijferige serienummer in onze tool in voor de geschatte productieperiode.</li>
+        <li><strong>Via de Gietklok (Gussuhr):</strong> Bekijk het gegoten cirkeltje aan de binnenzijde van het carter of de cilinderkap. Het getal in het midden is het jaartal, de pijl wijst naar de maand.</li>
+      </ol>
+    `
+  },
+  {
+    slug: 'stihl-diefstalcheck',
+    h1: 'STIHL Diefstalcheck & StopHeling Controle',
+    title: 'STIHL Serienummer Diefstalcheck (StopHeling®)',
+    description: 'Controleer tweedehands STIHL machines op diefstal in het landelijke StopHeling politieregister voordat u koopt.',
+    intro: 'Koopt u een tweedehands STIHL machine via Marktplaats of 2dehands.be? Voer altijd een diefstalcheck uit.',
+    contentHtml: `
+      <p class="mb-3">In Nederland bent u als koper wettelijk verplicht te controleren of een tweedehands machine niet als gestolen geregistreerd staat. STIHLDecoder integreert 1-click StopHeling kopieer functionaliteit en toont diefstalwaarschuwingen direct op het Stihl Paspoort.</p>
+    `
+  },
+  {
+    slug: 'stihl-paspoort',
+    h1: 'STIHL Machine Paspoort Generator',
+    title: 'STIHL Digitaal Machine Paspoort Maken',
+    description: 'Genereer een officieel STIHL Machine Paspoort met StopHeling diefstalstempel en QR-code voor verkoop op Marktplaats.',
+    intro: 'Verhoog de verkoopwaarde en het vertrouwen van uw tweedehands STIHL machine met een digitaal gegarandeerd paspoort.',
+    contentHtml: `
+      <p class="mb-3">Het STIHL Paspoort bevat alle geverifieerde gegevens in een strak 1200x900px formaat, inclusief politiedatabase check, snijgarnituur kettingmaat en een scanbare QR-code.</p>
+    `
   }
 ];
 
@@ -245,6 +385,19 @@ const guidesData = [
   }
 ];
 
+const counterfeitRulesData = [
+  {
+    pattern_regex: "^0\\d+",
+    risk_level: "DEFINITIVE_FAKE",
+    reason: "Serienummers van STIHL beginnen nooit met een 0. Authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9."
+  },
+  {
+    pattern_regex: "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
+    risk_level: "DEFINITIVE_FAKE",
+    reason: "Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
+  }
+];
+
 const serialBreakpointsData = [
   {
     model_id: "stihl_ms_260",
@@ -258,7 +411,7 @@ const serialBreakpointsData = [
     confidence_level: "HIGH"
   },
   {
-    model_id: "stihl_ms_261",
+    model_id: "stihl_ms_261_cm",
     plant_code: "1",
     serial_start: 171000000,
     serial_end: 179999999,
@@ -277,28 +430,6 @@ const serialBreakpointsData = [
     year_end: null,
     generation_name: "MS 261 C-M Gen 2 (Facelift / V2)",
     technical_changes: "Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.",
-    confidence_level: "HIGH"
-  },
-  {
-    model_id: "stihl_ms_201_tc_m",
-    plant_code: "1",
-    serial_start: 175000000,
-    serial_end: 184999999,
-    year_start: 2011,
-    year_end: 2015,
-    generation_name: "MS 201 T (Pre-M-Tronic / V1)",
-    technical_changes: "Klassieke tophandle zaag, handmatige carburateurafstelling.",
-    confidence_level: "HIGH"
-  },
-  {
-    model_id: "stihl_ms_201_tc_m",
-    plant_code: "1",
-    serial_start: 185000000,
-    serial_end: 199999999,
-    year_start: 2015,
-    year_end: null,
-    generation_name: "MS 201 TC-M (M-Tronic)",
-    technical_changes: "Elektronisch motormanagement (M-Tronic), verbeterde acceleratie en spoeling.",
     confidence_level: "HIGH"
   }
 ];
@@ -403,7 +534,9 @@ function seedDatabase() {
   const jsonDatabase = {
     plants: plantsData,
     models: modelsData,
+    intent_pages: intentPagesData,
     guides: guidesData,
+    counterfeit_rules: counterfeitRulesData,
     model_serial_ranges: serialBreakpointsData,
     theft_checks: []
   };
