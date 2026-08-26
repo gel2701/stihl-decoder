@@ -1,0 +1,113 @@
+{
+  "timestamp": "2026-08-26T01:36:21.504Z",
+  "repository": "https://github.com/gel2701/stihl-decoder.git",
+  "branch": "main",
+  "passportProPrice": 4.99,
+  "gapReport": {
+    "totalRecordedSearches": 3,
+    "topUnmappedModelSearches": [
+      {
+        "query": "MS 462",
+        "count": 1,
+        "hasPage": false
+      },
+      {
+        "query": "FS 460",
+        "count": 1,
+        "hasPage": false
+      }
+    ],
+    "topSearchedModelsOverall": [
+      {
+        "query": "MS 261",
+        "count": 1,
+        "hasPage": true
+      },
+      {
+        "query": "MS 462",
+        "count": 1,
+        "hasPage": false
+      },
+      {
+        "query": "FS 460",
+        "count": 1,
+        "hasPage": false
+      }
+    ]
+  },
+  "adminAudit": {
+    "reportTimestamp": "2026-08-26T01:36:21.504Z",
+    "authoritativeRepository": "https://github.com/gel2701/stihl-decoder.git",
+    "activeBranch": "main",
+    "searchConsoleReadiness": {
+      "sitemapUrl": "https://stihldecoder.nl/sitemap.xml",
+      "robotsUrl": "https://stihldecoder.nl/robots.txt",
+      "canonicalFormat": "https://stihldecoder.nl/[category]/[slug]/",
+      "httpsOnly": true,
+      "status": "READINESS_PASS"
+    },
+    "monetizationSettings": {
+      "passportProPrice": 4.99,
+      "currency": "EUR",
+      "affiliateTrackingEnabled": true
+    },
+    "contentGapReport": {
+      "totalRecordedSearches": 3,
+      "topUnmappedModelSearches": [
+        {
+          "query": "MS 462",
+          "count": 1,
+          "hasPage": false
+        },
+        {
+          "query": "FS 460",
+          "count": 1,
+          "hasPage": false
+        }
+      ],
+      "topSearchedModelsOverall": [
+        {
+          "query": "MS 261",
+          "count": 1,
+          "hasPage": true
+        },
+        {
+          "query": "MS 462",
+          "count": 1,
+          "hasPage": false
+        },
+        {
+          "query": "FS 460",
+          "count": 1,
+          "hasPage": false
+        }
+      ]
+    },
+    "totalIndexablePages": 97,
+    "averageQualityScore": 98,
+    "searchPerformanceDataModel": {
+      "metricsSupported": [
+        "query",
+        "clicks",
+        "impressions",
+        "ctr",
+        "position"
+      ],
+      "optimizationPriorities": {
+        "priorityA": "Positie 4-15 met veel impressions (On-page SEO tuning)",
+        "priorityB": "Hoge impressions + lage CTR (Title & Meta description tuning)",
+        "priorityC": "Positie 15-30 (Interne linkkracht & verrijking)",
+        "priorityD": "0 impressions na 60 dagen (Zoekintentie herziening)"
+      }
+    },
+    "auditedPagesSummary": {
+      "homeCount": 1,
+      "categoryHubCount": 4,
+      "modelCount": 25,
+      "partsPagesCount": 25,
+      "valuationPagesCount": 25,
+      "comparisonCount": 3,
+      "intentPagesCount": 14
+    }
+  }
+}
