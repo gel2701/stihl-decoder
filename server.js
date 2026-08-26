@@ -50,14 +50,8 @@ const server = http.createServer((req, res) => {
   const urlObj = new URL(req.url, `http://${forwardedHost}`);
   let pathname = urlObj.pathname;
 
-  // 0. Emergency Fix: Host Canonical Enforcement (www -> non-www only)
-  // NEVER check x-forwarded-proto === 'http' because Render internal proxying causes infinite 301 loops!
-  if (forwardedHost.startsWith('www.')) {
-    const targetUrl = `${PRIMARY_ORIGIN}${pathname}${urlObj.search}`;
-    res.writeHead(301, { 'Location': targetUrl });
-    res.end();
-    return;
-  }
+  // 0. Render Alignment: Node.js serves 200 OK directly for all incoming requests.
+  // Host redirects (apex -> www) are handled cleanly by Render Edge CDN without application-level conflict.
 
   // 1. Dynamic Route: GET /sitemap.xml
   if (pathname === '/sitemap.xml') {
@@ -81,7 +75,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
-      commit: process.env.RENDER_GIT_COMMIT || '15a4431',
+      commit: process.env.RENDER_GIT_COMMIT || '5b4bdd4',
       branch: process.env.RENDER_GIT_BRANCH || 'main',
       environment: process.env.NODE_ENV || 'production',
       database: {
@@ -311,7 +305,7 @@ const server = http.createServer((req, res) => {
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
       <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
         STIHL Decoder
