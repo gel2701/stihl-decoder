@@ -1,6 +1,6 @@
 /**
  * Dynamic Sitemap.xml & Robots.txt Generator for STIHLDecoder.nl
- * Phase 28 Category, Comparison & Model Parts Expansion
+ * Phase 30 Strategic 5 Models & Troubleshooting Guides Integration
  */
 
 export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database = {}) {
@@ -8,7 +8,7 @@ export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database
   const intentPages = database.intent_pages || [];
   const guides = database.guides || [];
 
-  const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen'];
+  const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'doorslijpers'];
   const comparisons = ['ms-260-vs-ms-261', 'ms-361-vs-ms-362', 'ms-170-vs-ms-180'];
 
   const urls = [];

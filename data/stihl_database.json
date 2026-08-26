@@ -66,9 +66,9 @@
       "weight_kg": 4.1,
       "spark_plug": "Bosch WSR 6 F / NGK BPMR 7 A",
       "electrode_gap_mm": 0.5,
-      "carb_h_setting": "Vast (Geen verstelling)",
-      "carb_l_setting": "Vast (Geen verstelling)",
-      "carb_la_setting": "Standaard stationair",
+      "carb_h_setting": "Vast",
+      "carb_l_setting": "Vast",
+      "carb_la_setting": "Standaard",
       "chain_pitch": "3/8\" P",
       "chain_gauge_mm": 1.1,
       "oil_mix_ratio": "1:50",
@@ -78,7 +78,7 @@
       "data_confidence": "HIGH",
       "production_confidence": "HIGH",
       "specs_verified": true,
-      "data_source": "STIHL Werkplaatshandboek 1130 Serie"
+      "data_source": "STIHL Werkplaatshandboek 1130"
     },
     {
       "id": "stihl_ms_180",
@@ -107,7 +107,7 @@
       "data_confidence": "HIGH",
       "production_confidence": "HIGH",
       "specs_verified": true,
-      "data_source": "STIHL Werkplaatshandboek 1130 Serie"
+      "data_source": "STIHL Werkplaatshandboek 1130"
     },
     {
       "id": "stihl_ms_200",
@@ -240,8 +240,8 @@
       "weight_kg": 4.8,
       "spark_plug": "NGK BPMR7A / Bosch WSR6F",
       "electrode_gap_mm": 0.5,
-      "carb_h_setting": "1 slag open (Handmatig)",
-      "carb_l_setting": "1 slag open (Handmatig)",
+      "carb_h_setting": "1 slag open",
+      "carb_l_setting": "1 slag open",
       "carb_la_setting": "2800 RPM",
       "chain_pitch": ".325\"",
       "chain_gauge_mm": 1.6,
@@ -252,7 +252,7 @@
       "data_confidence": "HIGH",
       "production_confidence": "HIGH",
       "specs_verified": true,
-      "data_source": "STIHL Werkplaatshandboek 1121 Serie"
+      "data_source": "STIHL Werkplaatshandboek 1121"
     },
     {
       "id": "stihl_ms_261_cm",
@@ -269,9 +269,9 @@
       "weight_kg": 4.9,
       "spark_plug": "NGK CMR6H",
       "electrode_gap_mm": 0.5,
-      "carb_h_setting": "Elektronisch geregeld (M-Tronic)",
-      "carb_l_setting": "Elektronisch geregeld (M-Tronic)",
-      "carb_la_setting": "Elektronisch geregeld (M-Tronic)",
+      "carb_h_setting": "Elektronisch (M-Tronic)",
+      "carb_l_setting": "Elektronisch (M-Tronic)",
+      "carb_la_setting": "M-Tronic",
       "chain_pitch": ".325\"",
       "chain_gauge_mm": 1.3,
       "oil_mix_ratio": "1:50",
@@ -310,7 +310,7 @@
       "data_confidence": "HIGH",
       "production_confidence": "HIGH",
       "specs_verified": true,
-      "data_source": "STIHL Technical Service Manual 1133"
+      "data_source": "STIHL Service Manual 1133"
     },
     {
       "id": "stihl_ms_280",
@@ -339,7 +339,7 @@
       "data_confidence": "HIGH",
       "production_confidence": "HIGH",
       "specs_verified": true,
-      "data_source": "STIHL Technical Service Manual 1133"
+      "data_source": "STIHL Service Manual 1133"
     },
     {
       "id": "stihl_ms_290",
@@ -559,8 +559,8 @@
       "weight_kg": 5.6,
       "spark_plug": "NGK CMR6H",
       "electrode_gap_mm": 0.5,
-      "carb_h_setting": "Elektronisch geregeld (M-Tronic)",
-      "carb_l_setting": "Elektronisch geregeld (M-Tronic)",
+      "carb_h_setting": "Elektronisch (M-Tronic)",
+      "carb_l_setting": "Elektronisch (M-Tronic)",
       "carb_la_setting": "2800 RPM",
       "chain_pitch": "3/8\"",
       "chain_gauge_mm": 1.6,
@@ -610,16 +610,16 @@
       "model_name": "MS 400 C-M",
       "category": "Kettingzaag",
       "fuel_type": "PETROL_2STROKE",
-      "fuel_type_label": "Benzine (2-Takt Magnesium Zuiger)",
+      "fuel_type_label": "Benzine (Magnesium Zuiger)",
       "displacement_cc": 66.8,
       "power_kw": 4,
       "power_hp": 5.4,
       "weight_kg": 5.8,
       "spark_plug": "NGK CMR6H",
       "electrode_gap_mm": 0.5,
-      "carb_h_setting": "Elektronisch geregeld (M-Tronic)",
-      "carb_l_setting": "Elektronisch geregeld (M-Tronic)",
-      "carb_la_setting": "Elektronisch geregeld",
+      "carb_h_setting": "Elektronisch (M-Tronic)",
+      "carb_l_setting": "Elektronisch (M-Tronic)",
+      "carb_la_setting": "M-Tronic",
       "chain_pitch": "3/8\"",
       "chain_gauge_mm": 1.6,
       "oil_mix_ratio": "1:50",
@@ -702,7 +702,7 @@
       "power_kw": 1.6,
       "power_hp": 2.2,
       "weight_kg": 7.3,
-      "spark_plug": "NGK BPMR7A / Bosch WSR6F",
+      "spark_plug": "NGK BPMR7A",
       "electrode_gap_mm": 0.5,
       "carb_h_setting": "1 slag open",
       "carb_l_setting": "1 slag open",
@@ -775,6 +775,151 @@
       "production_confidence": "HIGH",
       "specs_verified": true,
       "data_source": "STIHL Service Manual 4228"
+    },
+    {
+      "id": "stihl_ms_462_cm",
+      "slug": "ms-462",
+      "category_slug": "kettingzagen",
+      "series_code": "1142",
+      "model_name": "MS 462 C-M",
+      "category": "Kettingzaag",
+      "fuel_type": "PETROL_2STROKE",
+      "fuel_type_label": "Benzine (2-Takt M-Tronic 3.0)",
+      "displacement_cc": 72.2,
+      "power_kw": 4.4,
+      "power_hp": 6,
+      "weight_kg": 6,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "Elektronisch (M-Tronic V3.0)",
+      "carb_l_setting": "Elektronisch (M-Tronic V3.0)",
+      "carb_la_setting": "M-Tronic",
+      "chain_pitch": "3/8\"",
+      "chain_gauge_mm": 1.6,
+      "oil_mix_ratio": "1:50",
+      "battery_system": null,
+      "voltage_v": null,
+      "is_discontinued": 0,
+      "data_confidence": "HIGH",
+      "production_confidence": "HIGH",
+      "specs_verified": true,
+      "data_source": "STIHL Werkplaatshandboek 1142"
+    },
+    {
+      "id": "stihl_ms_201_tcm",
+      "slug": "ms-201-t",
+      "category_slug": "kettingzagen",
+      "series_code": "1145",
+      "model_name": "MS 201 TC-M",
+      "category": "Kettingzaag (Boomverzorging)",
+      "fuel_type": "PETROL_2STROKE",
+      "fuel_type_label": "Benzine (2-Takt M-Tronic Top-Handle)",
+      "displacement_cc": 35.2,
+      "power_kw": 1.8,
+      "power_hp": 2.4,
+      "weight_kg": 3.7,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "Elektronisch (M-Tronic)",
+      "carb_l_setting": "Elektronisch (M-Tronic)",
+      "carb_la_setting": "M-Tronic",
+      "chain_pitch": "3/8\" P",
+      "chain_gauge_mm": 1.3,
+      "oil_mix_ratio": "1:50",
+      "battery_system": null,
+      "voltage_v": null,
+      "is_discontinued": 0,
+      "data_confidence": "HIGH",
+      "production_confidence": "HIGH",
+      "specs_verified": true,
+      "data_source": "STIHL Technical Data Sheet 1145"
+    },
+    {
+      "id": "stihl_fs_460_cem",
+      "slug": "fs-460",
+      "category_slug": "bosmaaiers",
+      "series_code": "4147",
+      "model_name": "FS 460 C-EM",
+      "category": "Bosmaaier",
+      "fuel_type": "PETROL_2STROKE",
+      "fuel_type_label": "Benzine (2-Takt M-Tronic Profi)",
+      "displacement_cc": 45.6,
+      "power_kw": 2.2,
+      "power_hp": 3,
+      "weight_kg": 8.5,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "Elektronisch (M-Tronic)",
+      "carb_l_setting": "Elektronisch (M-Tronic)",
+      "carb_la_setting": "M-Tronic",
+      "chain_pitch": null,
+      "chain_gauge_mm": null,
+      "oil_mix_ratio": "1:50",
+      "battery_system": null,
+      "voltage_v": null,
+      "is_discontinued": 0,
+      "data_confidence": "HIGH",
+      "production_confidence": "HIGH",
+      "specs_verified": true,
+      "data_source": "STIHL Werkplaatshandboek 4147"
+    },
+    {
+      "id": "stihl_br_700",
+      "slug": "br-700",
+      "category_slug": "bladblazers",
+      "series_code": "4282",
+      "model_name": "BR 700",
+      "category": "Bladblazer",
+      "fuel_type": "PETROL_4MIX",
+      "fuel_type_label": "Benzine (4-Mix Topklasse)",
+      "displacement_cc": 64.8,
+      "power_kw": 2.8,
+      "power_hp": 3.8,
+      "weight_kg": 10.8,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "1 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2800 RPM",
+      "chain_pitch": null,
+      "chain_gauge_mm": null,
+      "oil_mix_ratio": "1:50",
+      "battery_system": null,
+      "voltage_v": null,
+      "is_discontinued": 0,
+      "data_confidence": "HIGH",
+      "production_confidence": "HIGH",
+      "specs_verified": true,
+      "data_source": "STIHL Service Manual 4282"
+    },
+    {
+      "id": "stihl_ts_420",
+      "slug": "ts-420",
+      "category_slug": "doorslijpers",
+      "series_code": "4238",
+      "model_name": "TS 420",
+      "category": "Doorslijper",
+      "fuel_type": "PETROL_2STROKE",
+      "fuel_type_label": "Benzine (2-Takt 2-MIX Cycloon)",
+      "displacement_cc": 66.7,
+      "power_kw": 3.2,
+      "power_hp": 4.4,
+      "weight_kg": 9.6,
+      "spark_plug": "NGK CMR6H",
+      "electrode_gap_mm": 0.5,
+      "carb_h_setting": "1 slag open",
+      "carb_l_setting": "1 slag open",
+      "carb_la_setting": "2800 RPM",
+      "chain_pitch": null,
+      "chain_gauge_mm": null,
+      "oil_mix_ratio": "1:50",
+      "battery_system": null,
+      "voltage_v": null,
+      "is_discontinued": 0,
+      "data_confidence": "HIGH",
+      "production_confidence": "HIGH",
+      "specs_verified": true,
+      "data_source": "STIHL Werkplaatshandboek 4238"
     }
   ],
   "intent_pages": [
@@ -782,113 +927,113 @@
       "slug": "stihl-serienummer-decoder",
       "h1": "STIHL Serienummer Decoder & Machine Checker",
       "title": "STIHL Serienummer Decoder & Machine Checker",
-      "description": "De gratis onafhankelijke online STIHL serienummer decoder. Bepaal het geschatte bouwjaar, fabriek van herkomst en controleer op StopHeling diefstalregistratie.",
-      "intro": "Voer het 9-cijferige serienummer in van uw STIHL kettingzaag, bosmaaier of bladblazer om direct fabriek en geschatte productieperiode af te lezen.",
-      "contentHtml": "\n      <h3 class=\"text-sm font-bold text-white mb-2\">Hoe werkt de STIHL Serienummer Decoder?</h3>\n      <p class=\"mb-3\">Het 9-cijferige serienummer van een STIHL machine bevat waardevolle informatie over het land van assemblage en de geschatte productieperiode:</p>\n      <ul class=\"list-disc list-inside space-y-1 text-gray-200 mb-4\">\n        <li><strong>Eerste Cijfer (Fabriekscode):</strong> 1 = Waiblingen (Duitsland), 2/5 = Virginia Beach (VS), 3 = São Leopoldo (Brazilië), 8 = Qingdao (China).</li>\n        <li><strong>Numerieke Breakpoints:</strong> De opeenvolgende cijfers worden gecorreleerd met bekende model-breakpoints en generatiewijzigingen.</li>\n      </ul>\n    "
+      "description": "De gratis onafhankelijke online STIHL serienummer decoder.",
+      "intro": "Voer het 9-cijferige serienummer in.",
+      "contentHtml": "<p>Analyse van fabriekscodes.</p>"
     },
     {
       "slug": "stihl-serienummer",
       "h1": "STIHL Serienummer Aflezen & Betekenis",
       "title": "STIHL Serienummer Aflezen & Betekenis",
-      "description": "Alles over het 9-cijferige STIHL serienummer: waar u het vindt, wat de cijfers betekenen en hoe u het kunt decoderen.",
-      "intro": "Het 9-cijferige serienummer is de unieke identiteit van elke authentieke STIHL machine.",
-      "contentHtml": "\n      <p class=\"mb-3\">Het serienummer staat ingeslagen op het carter in het metaal en op het barcode-etiket op het handvat.</p>\n    "
+      "description": "Alles over het 9-cijferige STIHL serienummer.",
+      "intro": "Serienummer identificatie.",
+      "contentHtml": "<p>Serienummer locaties.</p>"
     },
     {
       "slug": "stihl-bouwjaar",
       "h1": "STIHL Bouwjaar Controleren op Serienummer & Gietklok",
       "title": "STIHL Bouwjaar Controleren op Serienummer & Gietklok",
-      "description": "Hoe oud is uw STIHL machine? Leer hoe u de geschatte productieperiode kunt achterhalen via het serienummer en de gietklok (Gussuhr).",
-      "intro": "De geschatte productieperiode van een STIHL machine is op meerdere manieren te verifiëren.",
-      "contentHtml": "\n      <h3 class=\"text-sm font-bold text-white mb-2\">Twee Methoden om de Productieperiode te Achterhalen</h3>\n      <ol class=\"list-decimal list-inside space-y-2 text-gray-200 mb-4\">\n        <li><strong>Via de Serienummer Breakpoint Engine:</strong> Voer het 9-cijferige serienummer in onze tool in voor de geschatte productieperiode.</li>\n        <li><strong>Via de Gietklok (Gussuhr):</strong> Bekijk het gegoten cirkeltje aan de binnenzijde van het carter of de cilinderkap. Het getal in het midden is het jaartal, de pijl wijst naar de maand.</li>\n      </ol>\n    "
+      "description": "Hoe oud is uw STIHL machine?",
+      "intro": "Bouwjaar achterhalen.",
+      "contentHtml": "<p>Gietklok & Breakpoints.</p>"
     },
     {
       "slug": "stihl-diefstalcheck",
       "h1": "STIHL Serienummer Diefstalcheck (StopHeling®)",
       "title": "STIHL Serienummer Diefstalcheck (StopHeling®)",
-      "description": "Controleer tweedehands STIHL machines op diefstal in het landelijke StopHeling politieregister voordat u koopt.",
-      "intro": "Koopt u een tweedehands STIHL machine via Marktplaats of 2dehands.be? Voer altijd een diefstalcheck uit.",
-      "contentHtml": "\n      <p class=\"mb-3\">In Nederland bent u als koper wettelijk verplicht te controleren of een tweedehands machine niet als gestolen geregistreerd staat. STIHLDecoder integreert 1-click StopHeling kopieer functionaliteit en toont diefstalwaarschuwingen direct op het Stihl Paspoort.</p>\n    "
+      "description": "Controleer tweedehands STIHL machines op diefstal.",
+      "intro": "StopHeling politiedatabase check.",
+      "contentHtml": "<p>Diefstal preventie.</p>"
     },
     {
       "slug": "stihl-waarde",
       "h1": "STIHL Tweedehands Waardebepaling & Marktwaarde",
       "title": "STIHL Tweedehands Waardebepaling & Taxatie",
-      "description": "Ontdek de geschatte tweedehands marktwaarde van uw STIHL kettingzaag of bosmaaier op basis van model, staat en opties.",
-      "intro": "Wat is een tweedehands STIHL machine waard op Marktplaats?",
-      "contentHtml": "\n      <p class=\"mb-3\">De marktwaarde van een STIHL machine wordt voornamelijk bepaald door de cilinderinhoud, de staat van het carter, compressie en of er een geverifieerd Stihl Paspoort aanwezig is.</p>\n    "
+      "description": "Ontdek de tweedehands marktwaarde.",
+      "intro": "Marktwaarde berekenen.",
+      "contentHtml": "<p>Taxatie inschatting.</p>"
     },
     {
       "slug": "stihl-paspoort",
       "h1": "STIHL Digitaal Machine Paspoort Maken",
       "title": "STIHL Digitaal Machine Paspoort Maken",
-      "description": "Genereer een officieel STIHL Machine Paspoort met StopHeling diefstalstempel en QR-code voor verkoop op Marktplaats.",
-      "intro": "Verhoog de verkoopwaarde en het vertrouwen van uw tweedehands STIHL machine met een digitaal gegarandeerd paspoort.",
-      "contentHtml": "\n      <p class=\"mb-3\">Het STIHL Paspoort bevat alle geverifieerde gegevens in een strak 1200x900px formaat, inclusief politiedatabase check, snijgarnituur kettingmaat en een scanbare QR-code.</p>\n    "
+      "description": "Genereer een officieel STIHL Machine Paspoort.",
+      "intro": "Digitaal paspoort.",
+      "contentHtml": "<p>Marktplaats verkoopcertificaat.</p>"
     },
     {
       "slug": "stihl-modellen",
       "h1": "STIHL Modellen Overzicht & Categorieën",
       "title": "STIHL Modellen Overzicht & Specificaties",
-      "description": "Compleet overzicht van alle STIHL kettingzagen, bosmaaiers, bladblazers en heggenscharen met fabrieksspecificaties.",
-      "intro": "Bekijk het overzicht van alle bekende STIHL modellen en hun technische specificaties.",
-      "contentHtml": "\n      <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs\">\n        <a href=\"/kettingzagen/ms-261/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL MS 261</a>\n        <a href=\"/kettingzagen/ms-260/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL MS 260</a>\n        <a href=\"/kettingzagen/ms-170/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL MS 170</a>\n        <a href=\"/kettingzagen/ms-180/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL MS 180</a>\n        <a href=\"/bosmaaiers/fs-350/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL FS 350</a>\n        <a href=\"/bladblazers/br-600/\" class=\"bg-gray-900 border border-gray-800 p-3 rounded-xl hover:border-orange-500 font-bold block text-white\">STIHL BR 600</a>\n      </div>\n    "
+      "description": "Compleet overzicht van alle STIHL modellen.",
+      "intro": "Modellenoverzicht.",
+      "contentHtml": "<p>Specificaties gids.</p>"
     },
     {
       "slug": "waar-staat-serienummer-stihl",
       "h1": "Waar staat het serienummer van een STIHL machine?",
       "title": "Waar staat het serienummer van een STIHL machine?",
-      "description": "Vind de exacte locatie van het 9-cijferige serienummer op uw STIHL kettingzaag, bosmaaier of bladblazer.",
-      "intro": "Het serienummer op een STIHL machine staat ingeslagen in het gietmetaal en op de typeplaatjes sticker.",
-      "contentHtml": "\n      <ul class=\"list-disc list-inside space-y-2 text-gray-200\">\n        <li><strong>Kettingzagen:</strong> Boven de uitlaat of bij het zaagblad op het carter.</li>\n        <li><strong>Bosmaaiers:</strong> Op de aluminium behuizing nabij de starterkap.</li>\n        <li><strong>Bladblazers:</strong> Op de kunststof motorbehuizing onderaan.</li>\n      </ul>\n    "
+      "description": "Vind de locatie van het serienummer.",
+      "intro": "Locaties gids.",
+      "contentHtml": "<p>Carter stempel & stickers.</p>"
     },
     {
       "slug": "stihl-serienummer-bouwjaar",
       "h1": "STIHL Serienummer vs. Bouwjaar Relatie",
       "title": "STIHL Serienummer & Bouwjaar Relatie",
-      "description": "Hoe verhoudt het 9-cijferige serienummer zich tot de geschatte productieperiode van een STIHL machine?",
-      "intro": "Leer hoe serienummer-breakpoints gebruikt worden om de geschatte productieperiode van STIHL machines te bepalen.",
-      "contentHtml": "\n      <p class=\"mb-3\">STIHL gebruikt geen directe datumcode in het serienummer, maar numerieke reeksen per fabriek gecorreleerd met generatiewijzigingen.</p>\n    "
+      "description": "Serienummer vs bouwjaar relatie.",
+      "intro": "Breakpoint logica.",
+      "contentHtml": "<p>Fabriekscodes gids.</p>"
     },
     {
       "slug": "stihl-productiedatum",
       "h1": "STIHL Productiedatum Achterhalen",
       "title": "STIHL Productiedatum Achterhalen",
-      "description": "Handleiding om de productiedatum van STIHL gereedschappen te verifiëren via gietklokstempels en breakpoint-analyse.",
-      "intro": "Achterhaal het fabricagejaar en de maand via gietstempels en serienummerbereik.",
-      "contentHtml": "\n      <p class=\"mb-3\">Bekijk de gietklok (Gussuhr) op de kunststof en aluminium carteronderdelen voor de exacte maandaanduiding van het gietproces.</p>\n    "
+      "description": "Productiedatum verifiëren.",
+      "intro": "Gietstempels & klok.",
+      "contentHtml": "<p>Productieperiode gids.</p>"
     },
     {
       "slug": "stihl-model-herkennen",
       "h1": "STIHL Model Herkennen & Type Identificatie",
       "title": "STIHL Model Herkennen & Type Identificatie",
-      "description": "Hoe herkent u het juiste STIHL model aan de hand van gietnummers, serienummer en uiterlijke kenmerken?",
-      "intro": "Determineer welk STIHL model u bezit aan de hand van het seriegetal en cartervorm.",
-      "contentHtml": "\n      <p class=\"mb-3\">Het 4-cijferige onderdeelnummer prefix (bijv. 1141 voor MS 261 of 1121 voor MS 260) verraadt direct de motorfamilie.</p>\n    "
+      "description": "Model herkennen.",
+      "intro": "Model identificatie.",
+      "contentHtml": "<p>Serie prefixes.</p>"
     },
     {
       "slug": "stihl-typeplaatje",
       "h1": "STIHL Typeplaatje & Barcode Sticker Aflezen",
       "title": "STIHL Typeplaatje & Barcode Sticker Aflezen",
-      "description": "Uitleg over het STIHL typeplaatje, CE-markeringen, serienummers en de kenmerken van originele stickers.",
-      "intro": "Hoe leest u een STIHL typeplaatje correct af en herkent u een namaak sticker?",
-      "contentHtml": "\n      <p class=\"mb-3\">Originele STIHL typeplaatjes bevatten krasvaste zilveren of witte folie met scherpe thermische druk en een correct 9-cijferig serienummer.</p>\n    "
+      "description": "Typeplaatje aflezen.",
+      "intro": "Barcode sticker gids.",
+      "contentHtml": "<p>Sticker kenmerken.</p>"
     },
     {
       "slug": "stihl-serienummer-ongeldig",
       "h1": "Verdacht STIHL Serienummer of Ongeldige Code",
       "title": "Verdacht STIHL Serienummer of Ongeldige Code",
-      "description": "Wat te doen als uw STIHL serienummer als verdacht wordt aangemerkt door onze decoder?",
-      "intro": "Als een serienummer begint met een 0 of overeenkomt met een bekend testnummer, is extra voorzichtigheid geboden.",
-      "contentHtml": "\n      <p class=\"mb-3\">Serienummers van STIHL beginnen nooit met een 0. Het serienummer komt in dat geval niet overeen met bekende authentieke fabriekspatronen in onze database.</p>\n    "
+      "description": "Verdacht serienummer.",
+      "intro": "Namaak waarschuwing.",
+      "contentHtml": "<p>Kloon indicatoren.</p>"
     },
     {
       "slug": "stihl-tweedehands-checklist",
       "h1": "STIHL Tweedehands Koper Checklist",
       "title": "STIHL Tweedehands Koper Checklist",
-      "description": "Stapsgewijze checklist voor het kopen van een tweedehands STIHL zaag of bosmaaier op Marktplaats of 2dehands.be.",
-      "intro": "Controleer deze 5 punten voor aankoop van een gebruikte STIHL machine.",
-      "contentHtml": "\n      <ol class=\"list-decimal list-inside space-y-2 text-gray-200\">\n        <li><strong>Serienummer Diefstalcheck:</strong> Controleer het nummer in het StopHeling politieregister.</li>\n        <li><strong>Carter Metaalstempel:</strong> Zorg dat het nummer op het carter overeenkomt met het typeplaatje.</li>\n        <li><strong>Compressie:</strong> Trek langzaam aan de starterkabel.</li>\n        <li><strong>Kettingrem:</strong> Test de mechanische werking van de beschermbeugel.</li>\n        <li><strong>Gietklok:</strong> Verifieer het bouwjaar van het carter.</li>\n      </ol>\n    "
+      "description": "Checklist tweedehands STIHL kopen.",
+      "intro": "Aankoopadvies.",
+      "contentHtml": "<p>5 controlepunten.</p>"
     }
   ],
   "guides": [
@@ -908,6 +1053,24 @@
       "slug": "serienummer-locaties",
       "title": "Waar staat het STIHL serienummer? Vind de 9-cijferige stempel op uw machine",
       "description": "Overzicht van alle serienummer locaties op STIHL kettingzagen, bosmaaiers, bladblazers en doorslijpers.",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "slug": "stihl-kettingzaag-start-niet",
+      "title": "STIHL Kettingzaag Start Niet? Oorzaken & Stappenplan voor Diagnose",
+      "description": "Wat te doen als uw STIHL kettingzaag verzopen is of niet aanslaat? Bekijk het stappenplan voor brandstof, bougie vonk, carter impuls en M-Tronic reset.",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "slug": "stihl-carburateur-afstellen",
+      "title": "STIHL Carburateur Afstellen: L, H & LA Schroeven Instellen",
+      "description": "Standaard basisafstelling voor STIHL carburateurs. Zo stelt u de L (laag), H (hoog) en LA (stationair) schroef in voor een stabiel toerental.",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "slug": "stihl-m-tronic-resetten",
+      "title": "STIHL M-Tronic Resetten & Kalibreren: Stappenplan per Generatie",
+      "description": "Officiële reset- en kalibratieprocedure voor STIHL M-Tronic motoren (Gen 1, Gen 2 en Gen 3). Herstel een slecht lopende M-Tronic zaag.",
       "updatedAt": "2026-08-26"
     }
   ],

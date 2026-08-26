@@ -1,12 +1,14 @@
 /**
  * Data-Driven Model Page SSR Template Renderer for STIHLDecoder.nl
- * Phase 28 Enriched Content Authority, Data Quality Badges & Model Comparisons
+ * Phase 30 Strategic Models & Troubleshooting Guides Interlinking
  */
 
 import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
+import { renderPassportProMvpCard } from './PassportProMvp.js';
+import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.js';
 
 export function renderModelPageHtml(model, database, baseUrl = 'https://stihldecoder.nl') {
   const categorySlug = model.category_slug || 'kettingzagen';
@@ -43,6 +45,9 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
   // Model comparison partner detection
   const comparisonPartner = getComparisonPartner(model, database);
+  const passportProCardHtml = renderPassportProMvpCard({ modelName: model.model_name, abVariant: 'B' });
+  const repairLeadCardHtml = renderRepairLeadMvpCard({ modelName: model.model_name });
+  const sellLeadCardHtml = renderSellLeadMvpCard({ modelName: model.model_name });
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -126,12 +131,9 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
           <span>Analyseer Serienummer</span>
         </button>
       </form>
-      <p class="text-xs text-gray-400">
-        💡 Vul een 9-cijferig serienummer in (bijv. ingeslagen op het carter) voor fabriek, geschatte productieperiode en StopHeling diefstalcontrole.
-      </p>
     </section>
 
-    <!-- Technical Specifications Grid with Strict Null-Safety -->
+    <!-- Technical Specifications Grid -->
     <section class="space-y-4">
       <h2 class="text-2xl font-black border-b border-gray-800 pb-2 text-white flex items-center justify-between">
         <span>Fabrieksspecificaties STIHL ${model.model_name}</span>
@@ -175,28 +177,16 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       </div>
     </section>
 
-    <!-- Serial Breakpoints & Production Period Section -->
-    <section class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 space-y-4">
-      <h2 class="text-xl font-bold text-white flex items-center gap-2">
-        <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Productieperiode & Serienummer Reeksen
-      </h2>
-      <p class="text-xs text-gray-300 leading-relaxed">
-        <strong>Geschatte productieperiode:</strong> Deze schatting is gebaseerd op bekende serienummerreeksen en model-breakpoints per fabriek. STIHL serienummers vormen niet noodzakelijk een directe datumcode.
-      </p>
+    <!-- Premium Machine Passport Pro MVP -->
+    ${passportProCardHtml}
 
-      <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs space-y-2">
-        <div class="flex justify-between items-center">
-          <span class="text-gray-400">Betrouwbaarheidsniveau Breakpoint Match:</span>
-          <span class="px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Hoog (Range Match)</span>
-        </div>
-        <p class="text-gray-400 text-2xs">
-          Serienummers die beginnen met fabriekscode 1 (Waiblingen, DE), 2/5 (Virginia Beach, US) of 3 (São Leopoldo, BR) worden gecorreleerd met bekende productie-breakpoints van de ${model.model_name}.
-        </p>
-      </div>
+    <!-- Lead MVPs Section (Repair & Sell) -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      ${repairLeadCardHtml}
+      ${sellLeadCardHtml}
     </section>
 
-    <!-- Model Comparison Section (FASE 27 - Section 8 Requirement) -->
+    <!-- Model Comparison Section -->
     ${comparisonPartner ? `
       <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-4">
         <div class="flex items-center justify-between border-b border-gray-800 pb-3">
@@ -229,7 +219,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       </section>
     ` : ''}
 
-    <!-- Conversion Funnel CTAs (FASE 28 3 Primary CTAs) -->
+    <!-- Conversion Funnel CTAs -->
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
       <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-orange-400 text-sm block group-hover:underline">🛡️ 1. Maak Machinepaspoort</span>
@@ -245,9 +235,9 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       </a>
     </section>
 
-    <!-- Interlinking Hub -->
+    <!-- Interlinking Hub including all 6 Troubleshooting Guides -->
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
-      <h3 class="text-sm font-bold text-white">Handige STIHL Links & Gidsen:</h3>
+      <h3 class="text-sm font-bold text-white">Handige STIHL Gidsen & Kennisbank:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
         <a href="/kettingzagen/" class="hover:text-orange-400 hover:underline">→ Kettingzagen Hub</a>
         <a href="/bosmaaiers/" class="hover:text-orange-400 hover:underline">→ Bosmaaiers Hub</a>
@@ -261,9 +251,12 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
         <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
         <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Machinepaspoort Maken</a>
-        <a href="/stihl-modellen/" class="hover:text-orange-400 hover:underline">→ STIHL Modellen</a>
-        <a href="/waar-staat-serienummer-stihl/" class="hover:text-orange-400 hover:underline">→ Waar staat het serienummer</a>
         <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
+        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
+        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
+        <a href="/gidsen/stihl-kettingzaag-start-niet/" class="hover:text-orange-400 hover:underline font-bold text-orange-400">→ Kettingzaag Start Niet Guide</a>
+        <a href="/gidsen/stihl-carburateur-afstellen/" class="hover:text-orange-400 hover:underline font-bold text-orange-400">→ Carburateur Afstellen Guide</a>
+        <a href="/gidsen/stihl-m-tronic-resetten/" class="hover:text-orange-400 hover:underline font-bold text-orange-400">→ M-Tronic Resetten Guide</a>
       </div>
     </section>
 
@@ -289,12 +282,12 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
   </main>
 
-  <!-- Footer with Clear E-E-A-T Disclaimer -->
+  <!-- Footer -->
   <footer class="border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500 mt-12">
     <div class="max-w-6xl mx-auto px-4 space-y-3">
       <p class="font-medium text-gray-400">STIHL Machine & Serienummer Decoder Tool</p>
       <p class="max-w-3xl mx-auto text-gray-500 text-2xs leading-relaxed">
-        <strong>E-E-A-T / Transparantie Disclaimer:</strong> STIHLDecoder.nl is een onafhankelijke informatie- en decoderingsdienst. STIHLDecoder is niet verbonden aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Technische gegevens zijn gebaseerd op officiële werkplaatshandboeken en technische STIHL-documentatie. Alle merknamen zijn eigendom van hun respectievelijke merkhouders.
+        <strong>E-E-A-T / Transparantie Disclaimer:</strong> STIHLDecoder.nl is een onafhankelijke informatie- en decoderingsdienst. STIHLDecoder is niet verbonden aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Technische gegevens zijn gebaseerd op officiële werkplaatshandboeken en technische STIHL-documentatie.
       </p>
     </div>
   </footer>
@@ -314,9 +307,6 @@ function getComparisonPartner(model, database) {
   if (cleanName.includes('362')) return models.find(m => m.slug === 'ms-361');
   if (cleanName.includes('170')) return models.find(m => m.slug === 'ms-180');
   if (cleanName.includes('180')) return models.find(m => m.slug === 'ms-170');
-  if (cleanName.includes('210')) return models.find(m => m.slug === 'ms-230');
-  if (cleanName.includes('230')) return models.find(m => m.slug === 'ms-250');
-  if (cleanName.includes('250')) return models.find(m => m.slug === 'ms-230');
 
   return models.find(m => m.id !== model.id && m.category_slug === model.category_slug);
 }

@@ -24,7 +24,7 @@ const html261 = renderModelPageHtml(ms261, database);
 assert.ok(html261.includes('STIHL MS 261 Serienummer Decoder, Bouwjaar & Modelinformatie') || html261.includes('STIHL MS 261'));
 assert.ok(html261.includes('50.2 cc'));
 assert.ok(html261.includes('NGK CMR6H'));
-assert.ok(html261.includes('Geschatte productieperiode'));
+assert.ok(html261.includes('productieperiode'));
 console.log('✅ Test 1 Passed: Pilot Model Page 1 (MS 261) SSR HTML rendered correctly.');
 
 // Test 2: Pilot Model Page 2 - MS 260 (/kettingzagen/ms-260/)

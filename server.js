@@ -11,7 +11,7 @@ import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplat
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
-import { logStihlEvent } from './src/components/AnalyticsTracker.js';
+import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,7 +42,7 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
-const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen'];
+const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers'];
 
 const server = http.createServer((req, res) => {
   const host = req.headers.host || 'stihldecoder.nl';
@@ -80,24 +80,39 @@ const server = http.createServer((req, res) => {
       }
 
       const result = handleDecodeApiV1(bodyObj, database);
-      logStihlEvent('decoder_used', { input: bodyObj.serial_number || bodyObj.code, result: result.status });
+      logStihlEvent(EVENT_TYPES.DECODER_USED, { input: bodyObj.serial_number || bodyObj.code, result: result.status });
       res.writeHead(result.statusCode, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
       res.end(JSON.stringify(result.body));
     });
     return;
   }
 
-  // 4. REST API: GET /api/decode?code=...
+  // 4. REST API Lead Submission MVP Routes
+  if (pathname === '/api/v1/leads/repair' && req.method === 'POST') {
+    logStihlEvent(EVENT_TYPES.REPAIR_LEAD_COMPLETED);
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end('<article style="background:#111;color:#fff;padding:2rem;font-family:sans-serif;"><h2>✅ Reparatie Aanvraag Ontvangen!</h2><p>Wij nemen binnen 24 uur contact met u op.</p><a href="/" style="color:#f97316;">← Terug naar Home</a></article>');
+    return;
+  }
+
+  if (pathname === '/api/v1/leads/sell' && req.method === 'POST') {
+    logStihlEvent(EVENT_TYPES.SELL_LEAD_COMPLETED);
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end('<article style="background:#111;color:#fff;padding:2rem;font-family:sans-serif;"><h2>✅ Verkoop Aanvraag Ontvangen!</h2><p>U ontvangt binnenkort een overnamebod op het opgegeven e-mailadres.</p><a href="/" style="color:#f97316;">← Terug naar Home</a></article>');
+    return;
+  }
+
+  // 5. REST API: GET /api/decode?code=...
   if (pathname === '/api/decode') {
     const code = urlObj.searchParams.get('code') || '';
     const result = decodeStihlCode(code, database);
-    logStihlEvent('decoder_used', { input: code, success: result.success });
+    logStihlEvent(EVENT_TYPES.DECODER_USED, { input: code, success: result.success });
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(result));
     return;
   }
 
-  // 5. Category Landing Pages (e.g. /kettingzagen/, /bosmaaiers/, /bladblazers/, /heggenscharen/)
+  // 6. Category Landing Pages (e.g. /kettingzagen/, /bosmaaiers/, /bladblazers/, /heggenscharen/, /doorslijpers/)
   const cleanCategory = pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
   if (KNOWN_CATEGORIES.includes(cleanCategory)) {
     const categoryHtml = renderCategoryPageHtml(cleanCategory, database, BASE_URL);
@@ -106,17 +121,17 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 6. Comparison Engine Routes (/vergelijk/ or /vergelijk/:pair/)
+  // 7. Comparison Engine Routes (/vergelijk/ or /vergelijk/:pair/)
   if (pathname.startsWith('/vergelijk')) {
     const pairSlug = pathname.replace('/vergelijk/', '').replace('/vergelijk', '').replace(/\/$/, '');
     const html = renderComparisonPageHtml(pairSlug || 'ms-260-vs-ms-261', database, BASE_URL);
-    logStihlEvent('comparison_viewed', { pairSlug });
+    logStihlEvent(EVENT_TYPES.COMPARISON_VIEWED, { pairSlug });
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
     return;
   }
 
-  // 7. Model Parts Compatibility Pages (e.g. /kettingzagen/ms-261/onderdelen/)
+  // 8. Model Parts Compatibility Pages (e.g. /kettingzagen/ms-261/onderdelen/)
   if (pathname.endsWith('/onderdelen/') || pathname.endsWith('/onderdelen')) {
     const parts = pathname.split('/').filter(Boolean);
     if (parts.length >= 2 && KNOWN_CATEGORIES.includes(parts[0].toLowerCase())) {
@@ -127,7 +142,7 @@ const server = http.createServer((req, res) => {
 
       if (targetModel) {
         const partsHtml = renderModelPartsPageHtml(targetModel, database, BASE_URL);
-        logStihlEvent('part_search', { model: targetModel.model_name });
+        logStihlEvent(EVENT_TYPES.PART_SEARCH, { model: targetModel.model_name });
         res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
         res.end(partsHtml);
         return;
@@ -135,7 +150,7 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // 8. Protected Internal Route: GET /admin/seo-audit
+  // 9. Protected Internal Route: GET /admin/seo-audit
   if (pathname === '/admin/seo-audit' || pathname === '/admin/seo-audit/') {
     const apiKey = urlObj.searchParams.get('key') || req.headers['x-admin-key'];
     if (apiKey !== 'stihl-seo-admin-2026' && process.env.NODE_ENV === 'production') {
@@ -154,7 +169,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 9. 301 Permanent Redirect for Legacy Routes (/modellen/* -> /:category/:slug/)
+  // 10. 301 Permanent Redirect for Legacy Routes (/modellen/* -> /:category/:slug/)
   if (pathname.startsWith('/modellen')) {
     const parts = pathname.split('/').filter(Boolean);
     let targetSlug = parts[parts.length - 1] || '';
@@ -181,7 +196,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 10. Guides SSR Route (/gidsen/:slug/)
+  // 11. Guides SSR Route (/gidsen/:slug/)
   if (pathname.startsWith('/gidsen/')) {
     const guideSlug = pathname.replace('/gidsen/', '').replace(/\/$/, '');
     const guides = database.guides || [];
@@ -195,7 +210,7 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // 11. Intent Landing Pages (e.g. /stihl-serienummer-decoder/, /stihl-bouwjaar/, /stihl-paspoort/, etc.)
+  // 12. Intent Landing Pages
   const cleanPath = pathname.replace(/^\//, '').replace(/\/$/, '');
   const intentPages = database.intent_pages || [];
   const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
@@ -207,7 +222,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 12. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
+  // 13. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
   if (cleanPath === 'onderdeelnummer') {
     const html = renderPartNumberHubHtml(database, BASE_URL);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
@@ -223,7 +238,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 13. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /bosmaaiers/fs-350/)
+  // 14. Scoped Clean Category Model Routes (e.g. /kettingzagen/ms-261/, /doorslijpers/ts-420/)
   const pathParts = pathname.split('/').filter(Boolean);
   if (pathParts.length === 2 && KNOWN_CATEGORIES.includes(pathParts[0].toLowerCase())) {
     const catSlug = pathParts[0].toLowerCase();
@@ -239,20 +254,20 @@ const server = http.createServer((req, res) => {
 
     if (targetModel) {
       const html = renderModelPageHtml(targetModel, database, BASE_URL);
-      logStihlEvent('model_identified', { model: targetModel.model_name });
+      logStihlEvent(EVENT_TYPES.MODEL_IDENTIFIED, { model: targetModel.model_name });
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(html);
       return;
     }
   }
 
-  // 14. Valuation Preview Routes (e.g. /waarde/ms-261/)
+  // 15. Valuation Preview Routes (e.g. /waarde/ms-261/)
   if (pathParts.length === 2 && pathParts[0].toLowerCase() === 'waarde') {
     const modelSlug = pathParts[1].toLowerCase();
     const models = database.models || [];
     const targetModel = models.find(m => (m.slug || m.id).replace(/^stihl-/, '').toLowerCase() === modelSlug);
 
-    logStihlEvent('valuation_started', { model: modelSlug });
+    logStihlEvent(EVENT_TYPES.VALUATION_STARTED, { model: modelSlug });
 
     const valuationHtml = `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -296,7 +311,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 15. Serve static files
+  // 16. Serve static files
   let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -333,7 +348,7 @@ function renderGuidePageHtml(guide, database, baseUrl) {
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
         STIHL Decoder
@@ -365,7 +380,7 @@ function renderPartNumberHubHtml(database, baseUrl) {
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
         STIHL Decoder
@@ -413,7 +428,7 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
         STIHL Decoder
