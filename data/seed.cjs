@@ -22,7 +22,7 @@ const plantsData = [
 ];
 
 const modelsData = [
-  // Existing 23 models...
+  // Existing 23 models + 5 Strategic models = 28 Models
   { id: 'stihl_ms_170', slug: 'ms-170', category_slug: 'kettingzagen', series_code: '1130', model_name: 'MS 170', category: 'Kettingzaag', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt 1:50)', displacement_cc: 30.1, power_kw: 1.2, power_hp: 1.6, weight_kg: 4.1, spark_plug: 'Bosch WSR 6 F / NGK BPMR 7 A', electrode_gap_mm: 0.5, carb_h_setting: 'Vast', carb_l_setting: 'Vast', carb_la_setting: 'Standaard', chain_pitch: '3/8" P', chain_gauge_mm: 1.1, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Werkplaatshandboek 1130' },
   { id: 'stihl_ms_180', slug: 'ms-180', category_slug: 'kettingzagen', series_code: '1130', model_name: 'MS 180', category: 'Kettingzaag', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt 1:50)', displacement_cc: 31.8, power_kw: 1.4, power_hp: 1.9, weight_kg: 4.1, spark_plug: 'NGK BPMR7A', electrode_gap_mm: 0.5, carb_h_setting: 'Vast', carb_l_setting: 'Vast', carb_la_setting: '2800 RPM', chain_pitch: '3/8" P', chain_gauge_mm: 1.1, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Werkplaatshandboek 1130' },
   { id: 'stihl_ms_200', slug: 'ms-200', category_slug: 'kettingzagen', series_code: '1129', model_name: 'MS 200 / 020 T', category: 'Kettingzaag (Boomverzorging)', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt)', displacement_cc: 35.2, power_kw: 1.7, power_hp: 2.3, weight_kg: 3.5, spark_plug: 'NGK BPMR7A', electrode_gap_mm: 0.5, carb_h_setting: '1 slag open', carb_l_setting: '1 slag open', carb_la_setting: '2800 RPM', chain_pitch: '3/8" P', chain_gauge_mm: 1.3, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 1, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Service Manual 1129' },
@@ -48,8 +48,6 @@ const modelsData = [
   { id: 'stihl_fs_350', slug: 'fs-350', category_slug: 'bosmaaiers', series_code: '4134', model_name: 'FS 350', category: 'Bosmaaier', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt 1:50)', displacement_cc: 40.2, power_kw: 1.6, power_hp: 2.2, weight_kg: 7.3, spark_plug: 'NGK BPMR7A', electrode_gap_mm: 0.5, carb_h_setting: '1 slag open', carb_l_setting: '1 slag open', carb_la_setting: '2800 RPM', chain_pitch: null, chain_gauge_mm: null, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 1, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Werkplaatshandboek 4134' },
   { id: 'stihl_br_600', slug: 'br-600', category_slug: 'bladblazers', series_code: '4282', model_name: 'BR 600', category: 'Bladblazer', fuel_type: 'PETROL_4MIX', fuel_type_label: 'Benzine (4-Mix Gepatenteerd)', displacement_cc: 64.8, power_kw: 3.0, power_hp: 4.0, weight_kg: 10.2, spark_plug: 'NGK CMR6H', electrode_gap_mm: 0.5, carb_h_setting: '1 slag open', carb_l_setting: '1 slag open', carb_la_setting: '2800 RPM', chain_pitch: null, chain_gauge_mm: null, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Service Manual 4282' },
   { id: 'stihl_hs_45', slug: 'hs-45', category_slug: 'heggenscharen', series_code: '4228', model_name: 'HS 45', category: 'Heggenschaar', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt)', displacement_cc: 27.2, power_kw: 0.75, power_hp: 1.0, weight_kg: 4.7, spark_plug: 'NGK BPMR7A', electrode_gap_mm: 0.5, carb_h_setting: '1 slag open', carb_l_setting: '1 slag open', carb_la_setting: '2800 RPM', chain_pitch: null, chain_gauge_mm: null, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Service Manual 4228' },
-
-  // FASE 30 Section 13: 5 Strategic High-Intent Models
   { id: 'stihl_ms_462_cm', slug: 'ms-462', category_slug: 'kettingzagen', series_code: '1142', model_name: 'MS 462 C-M', category: 'Kettingzaag', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt M-Tronic 3.0)', displacement_cc: 72.2, power_kw: 4.4, power_hp: 6.0, weight_kg: 6.0, spark_plug: 'NGK CMR6H', electrode_gap_mm: 0.5, carb_h_setting: 'Elektronisch (M-Tronic V3.0)', carb_l_setting: 'Elektronisch (M-Tronic V3.0)', carb_la_setting: 'M-Tronic', chain_pitch: '3/8"', chain_gauge_mm: 1.6, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Werkplaatshandboek 1142' },
   { id: 'stihl_ms_201_tcm', slug: 'ms-201-t', category_slug: 'kettingzagen', series_code: '1145', model_name: 'MS 201 TC-M', category: 'Kettingzaag (Boomverzorging)', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt M-Tronic Top-Handle)', displacement_cc: 35.2, power_kw: 1.8, power_hp: 2.4, weight_kg: 3.7, spark_plug: 'NGK CMR6H', electrode_gap_mm: 0.5, carb_h_setting: 'Elektronisch (M-Tronic)', carb_l_setting: 'Elektronisch (M-Tronic)', carb_la_setting: 'M-Tronic', chain_pitch: '3/8" P', chain_gauge_mm: 1.3, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Technical Data Sheet 1145' },
   { id: 'stihl_fs_460_cem', slug: 'fs-460', category_slug: 'bosmaaiers', series_code: '4147', model_name: 'FS 460 C-EM', category: 'Bosmaaier', fuel_type: 'PETROL_2STROKE', fuel_type_label: 'Benzine (2-Takt M-Tronic Profi)', displacement_cc: 45.6, power_kw: 2.2, power_hp: 3.0, weight_kg: 8.5, spark_plug: 'NGK CMR6H', electrode_gap_mm: 0.5, carb_h_setting: 'Elektronisch (M-Tronic)', carb_l_setting: 'Elektronisch (M-Tronic)', carb_la_setting: 'M-Tronic', chain_pitch: null, chain_gauge_mm: null, oil_mix_ratio: '1:50', battery_system: null, voltage_v: null, is_discontinued: 0, data_confidence: 'HIGH', production_confidence: 'HIGH', specs_verified: true, data_source: 'STIHL Werkplaatshandboek 4147' },
@@ -58,7 +56,6 @@ const modelsData = [
 ];
 
 const intentPagesData = [
-  // Existing 14 intent pages...
   { slug: 'stihl-serienummer-decoder', h1: 'STIHL Serienummer Decoder & Machine Checker', title: 'STIHL Serienummer Decoder & Machine Checker', description: 'De gratis onafhankelijke online STIHL serienummer decoder.', intro: 'Voer het 9-cijferige serienummer in.', contentHtml: '<p>Analyse van fabriekscodes.</p>' },
   { slug: 'stihl-serienummer', h1: 'STIHL Serienummer Aflezen & Betekenis', title: 'STIHL Serienummer Aflezen & Betekenis', description: 'Alles over het 9-cijferige STIHL serienummer.', intro: 'Serienummer identificatie.', contentHtml: '<p>Serienummer locaties.</p>' },
   { slug: 'stihl-bouwjaar', h1: 'STIHL Bouwjaar Controleren op Serienummer & Gietklok', title: 'STIHL Bouwjaar Controleren op Serienummer & Gietklok', description: 'Hoe oud is uw STIHL machine?', intro: 'Bouwjaar achterhalen.', contentHtml: '<p>Gietklok & Breakpoints.</p>' },
@@ -76,95 +73,31 @@ const intentPagesData = [
 ];
 
 const guidesData = [
-  // Existing 3 guides + FASE 30 3 Targeted High-Intent Troubleshooting Guides
-  {
-    slug: 'stihl-gietklok-aflezen',
-    title: 'STIHL Gietklok & Datumstempel Aflezen: Zo bepaalt u de exacte productiedatum',
-    description: 'Stapsgewijze handleiding voor het aflezen van de gietklok (Gussuhr) op het carter of de cilinderkap van uw STIHL machine.',
-    updatedAt: '2026-08-26'
-  },
-  {
-    slug: 'namaak-stihl-herkennen',
-    title: 'Namaak STIHL Herkennen: 5 Belangrijke Kenmerken van Replica & Kloon Zagen',
-    description: 'Hoe herkent u een imitatie STIHL zaag? Controleer het serienummer, het carter en de typeplaatjes tegen Chinese namaak.',
-    updatedAt: '2026-08-26'
-  },
-  {
-    slug: 'serienummer-locaties',
-    title: 'Waar staat het STIHL serienummer? Vind de 9-cijferige stempel op uw machine',
-    description: 'Overzicht van alle serienummer locaties op STIHL kettingzagen, bosmaaiers, bladblazers en doorslijpers.',
-    updatedAt: '2026-08-26'
-  },
-  // FASE 30 High-Intent Troubleshooting Guide 1
-  {
-    slug: 'stihl-kettingzaag-start-niet',
-    title: 'STIHL Kettingzaag Start Niet? Oorzaken & Stappenplan voor Diagnose',
-    description: 'Wat te doen als uw STIHL kettingzaag verzopen is of niet aanslaat? Bekijk het stappenplan voor brandstof, bougie vonk, carter impuls en M-Tronic reset.',
-    updatedAt: '2026-08-26'
-  },
-  // FASE 30 High-Intent Troubleshooting Guide 2
-  {
-    slug: 'stihl-carburateur-afstellen',
-    title: 'STIHL Carburateur Afstellen: L, H & LA Schroeven Instellen',
-    description: 'Standaard basisafstelling voor STIHL carburateurs. Zo stelt u de L (laag), H (hoog) en LA (stationair) schroef in voor een stabiel toerental.',
-    updatedAt: '2026-08-26'
-  },
-  // FASE 30 High-Intent Troubleshooting Guide 3
-  {
-    slug: 'stihl-m-tronic-resetten',
-    title: 'STIHL M-Tronic Resetten & Kalibreren: Stappenplan per Generatie',
-    description: 'Officiële reset- en kalibratieprocedure voor STIHL M-Tronic motoren (Gen 1, Gen 2 en Gen 3). Herstel een slecht lopende M-Tronic zaag.',
-    updatedAt: '2026-08-26'
-  }
+  { slug: 'stihl-gietklok-aflezen', title: 'STIHL Gietklok & Datumstempel Aflezen: Zo bepaalt u de exacte productiedatum', description: 'Stapsgewijze handleiding voor het aflezen van de gietklok (Gussuhr) op het carter of de cilinderkap van uw STIHL machine.', updatedAt: '2026-08-26' },
+  { slug: 'namaak-stihl-herkennen', title: 'Namaak STIHL Herkennen: 5 Belangrijke Kenmerken van Replica & Kloon Zagen', description: 'Hoe herkent u een imitatie STIHL zaag? Controleer het serienummer, het carter en de typeplaatjes tegen Chinese namaak.', updatedAt: '2026-08-26' },
+  { slug: 'serienummer-locaties', title: 'Waar staat het STIHL serienummer? Vind de 9-cijferige stempel op uw machine', description: 'Overzicht van alle serienummer locaties op STIHL kettingzagen, bosmaaiers, bladblazers en doorslijpers.', updatedAt: '2026-08-26' },
+  { slug: 'stihl-kettingzaag-start-niet', title: 'STIHL Kettingzaag Start Niet? Oorzaken & Stappenplan voor Diagnose', description: 'Wat te doen als uw STIHL kettingzaag verzopen is of niet aanslaat? Bekijk het stappenplan voor brandstof, bougie vonk, carter impuls en M-Tronic reset.', updatedAt: '2026-08-26' },
+  { slug: 'stihl-carburateur-afstellen', title: 'STIHL Carburateur Afstellen: L, H & LA Schroeven Instellen', description: 'Standaard basisafstelling voor STIHL carburateurs. Zo stelt u de L (laag), H (hoog) en LA (stationair) schroef in voor een stabiel toerental.', updatedAt: '2026-08-26' },
+  { slug: 'stihl-m-tronic-resetten', title: 'STIHL M-Tronic Resetten & Kalibreren: Stappenplan per Generatie', description: 'Officiële reset- en kalibratieprocedure voor STIHL M-Tronic motoren (Gen 1, Gen 2 en Gen 3). Herstel een slecht lopende M-Tronic zaag.', updatedAt: '2026-08-26' }
 ];
 
 const counterfeitRulesData = [
   {
     pattern_regex: "^0\\d+",
     risk_level: "SUSPECT_SERIAL",
-    reason: "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database (authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9)."
+    reason: "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database. Deze melding is geen definitief bewijs dat een machine namaak is."
   },
   {
     pattern_regex: "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
     risk_level: "SUSPECT_SERIAL",
-    reason: "Verdacht serienummer: Dit serienummer staat bekend als nep- / testnummer dat op imitaties gebruikt wordt."
+    reason: "Verdacht serienummer: Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
   }
 ];
 
 const serialBreakpointsData = [
-  {
-    model_id: "stihl_ms_260",
-    plant_code: "1",
-    serial_start: 145000000,
-    serial_end: 169999999,
-    year_start: 2001,
-    year_end: 2011,
-    generation_name: "MS 260 (Klassiek / Analoog)",
-    technical_changes: "Opvolger van 026. Handmatige carburateurafstelling (L/H), vast carter.",
-    confidence_level: "HIGH"
-  },
-  {
-    model_id: "stihl_ms_261_cm",
-    plant_code: "1",
-    serial_start: 171000000,
-    serial_end: 179999999,
-    year_start: 2010,
-    year_end: 2016,
-    generation_name: "MS 261 / MS 261 C-M Gen 1",
-    technical_changes: "Introductie 1141 serie. Hoekige cilinderkap, vroege M-Tronic V1.0 of standaard carburateur.",
-    confidence_level: "HIGH"
-  },
-  {
-    model_id: "stihl_ms_261_cm",
-    plant_code: "1",
-    serial_start: 180000000,
-    serial_end: 199999999,
-    year_start: 2016,
-    year_end: null,
-    generation_name: "MS 261 C-M Gen 2 (Facelift / V2)",
-    technical_changes: "Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.",
-    confidence_level: "HIGH"
-  }
+  { model_id: "stihl_ms_260", plant_code: "1", serial_start: 145000000, serial_end: 169999999, year_start: 2001, year_end: 2011, generation_name: "MS 260 (Klassiek / Analoog)", technical_changes: "Opvolger van 026. Handmatige carburateurafstelling (L/H), vast carter.", confidence_level: "HIGH" },
+  { model_id: "stihl_ms_261_cm", plant_code: "1", serial_start: 171000000, serial_end: 179999999, year_start: 2010, year_end: 2016, generation_name: "MS 261 / MS 261 C-M Gen 1", technical_changes: "Introductie 1141 serie. Hoekige cilinderkap, vroege M-Tronic V1.0 of standaard carburateur.", confidence_level: "HIGH" },
+  { model_id: "stihl_ms_261_cm", plant_code: "1", serial_start: 180000000, serial_end: 199999999, year_start: 2016, year_end: null, generation_name: "MS 261 C-M Gen 2 (Facelift / V2)", technical_changes: "Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.", confidence_level: "HIGH" }
 ];
 
 function seedDatabase() {
@@ -250,20 +183,21 @@ function seedDatabase() {
       ));
       stmtRange.finalize();
 
-      // 4. Theft Checks
-      db.run(`CREATE TABLE theft_checks (
+      // 4. Analytics Events Table (FASE 32 Privacy-Safe Persistent Analytics)
+      db.run(`CREATE TABLE IF NOT EXISTS analytics_events (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        serial_number VARCHAR(50) NOT NULL,
-        is_stolen BOOLEAN NOT NULL DEFAULT FALSE,
-        checked_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        source VARCHAR(50) DEFAULT 'stopheling.nl',
-        raw_response TEXT,
-        expires_at TIMESTAMP WITH TIME ZONE
+        event_type VARCHAR(50) NOT NULL,
+        model_slug VARCHAR(100),
+        page_path VARCHAR(200),
+        metadata_json TEXT,
+        is_test BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       )`);
 
-      db.run(`CREATE INDEX idx_theft_serial ON theft_checks(serial_number)`);
+      db.run(`CREATE INDEX idx_analytics_event_type ON analytics_events(event_type)`);
+      db.run(`CREATE INDEX idx_analytics_created ON analytics_events(created_at)`);
 
-      console.log('✅ SQLite Database successfully initialized at', dbPath);
+      console.log('✅ SQLite Database successfully initialized with analytics_events at', dbPath);
     });
 
     db.close();
@@ -276,7 +210,8 @@ function seedDatabase() {
     guides: guidesData,
     counterfeit_rules: counterfeitRulesData,
     model_serial_ranges: serialBreakpointsData,
-    theft_checks: []
+    theft_checks: [],
+    analytics_events: []
   };
 
   fs.writeFileSync(jsonPath, JSON.stringify(jsonDatabase, null, 2), 'utf8');

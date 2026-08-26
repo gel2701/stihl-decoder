@@ -1078,12 +1078,12 @@
     {
       "pattern_regex": "^0\\d+",
       "risk_level": "SUSPECT_SERIAL",
-      "reason": "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database (authentieke fabriekscodes zijn 1, 2, 3, 4, 5, 8 of 9)."
+      "reason": "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database. Deze melding is geen definitief bewijs dat een machine namaak is."
     },
     {
       "pattern_regex": "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
       "risk_level": "SUSPECT_SERIAL",
-      "reason": "Verdacht serienummer: Dit serienummer staat bekend als nep- / testnummer dat op imitaties gebruikt wordt."
+      "reason": "Verdacht serienummer: Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
     }
   ],
   "model_serial_ranges": [
@@ -1121,5 +1121,15 @@
       "confidence_level": "HIGH"
     }
   ],
-  "theft_checks": []
+  "theft_checks": [],
+  "analytics_events": [
+    {
+      "event_type": "decoder_used",
+      "model_slug": "ms-261",
+      "page_path": "/",
+      "metadata_json": "{\"model_slug\":\"ms-261\",\"category\":\"kettingzagen\"}",
+      "is_test": 1,
+      "created_at": "2026-08-26T01:55:48.163Z"
+    }
+  ]
 }
