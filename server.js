@@ -81,7 +81,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
-      commit: process.env.RENDER_GIT_COMMIT || '7eff28d',
+      commit: process.env.RENDER_GIT_COMMIT || '014e201',
       branch: process.env.RENDER_GIT_BRANCH || 'main',
       environment: process.env.NODE_ENV || 'production',
       database: {
@@ -302,12 +302,13 @@ const server = http.createServer((req, res) => {
 <html lang="nl" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()} Marktwaarde & Taxatie | STIHLDecoder</title>
   <meta name="description" content="Indicatieve tweedehands marktwaarde en taxatie voor de STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()}.">
   <link rel="canonical" href="${PRIMARY_ORIGIN}/waarde/${modelSlug}/">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
@@ -368,12 +369,13 @@ function renderGuidePageHtml(guide, database, baseUrl) {
 <html lang="nl" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>${guide.title} | STIHLDecoder Gidsen</title>
   <meta name="description" content="${guide.description}">
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
@@ -400,12 +402,13 @@ function renderPartNumberHubHtml(database, baseUrl) {
 <html lang="nl" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>STIHL Onderdeelnummer Opzoeken & Gietnummers | STIHLDecoder</title>
   <meta name="description" content="Zoek STIHL onderdeelnummers (Teilenummer) en 4-cijferige serie prefixes op. Verifieer bij welke STIHL modellen een onderdeel past.">
   <link rel="canonical" href="${baseUrl}/onderdeelnummer/">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">
@@ -448,12 +451,13 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
 <html lang="nl" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>STIHL Serie ${seriesCode} Onderdeelnummers & Compatibiliteit | STIHLDecoder</title>
   <meta name="description" content="Bekijk welke STIHL kettingzagen of machines gebruik maken van onderdeelnummers behorend tot serie ${seriesCode}.">
   <link rel="canonical" href="${baseUrl}/onderdeelnummer/stihl-${seriesCode}/">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
   <header class="border-b border-gray-800 bg-gray-900/80 p-4">

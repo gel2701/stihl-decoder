@@ -200,7 +200,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <p class="text-xs text-gray-300">
           Twijfelt u tussen de STIHL ${model.model_name} en de STIHL ${comparisonPartner.model_name}? Bekijk de belangrijkste technische verschillen in vermogen, cilinderinhoud en gewicht:
         </p>
-        <div class="grid grid-cols-2 gap-4 text-xs bg-gray-950 p-4 rounded-xl border border-gray-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-gray-950 p-4 rounded-xl border border-gray-800">
           <div class="space-y-1">
             <span class="font-bold text-orange-400 block font-mono">STIHL ${model.model_name}</span>
             <p class="text-gray-300">• Vermogen: ${model.power_hp} pk (${model.power_kw} kW)</p>

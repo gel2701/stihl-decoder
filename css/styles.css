@@ -6,14 +6,88 @@
   --stihl-card: #1F2937;
 }
 
-body {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   font-family: 'DM Sans', sans-serif;
   background-color: var(--stihl-dark);
   color: #F9FAFB;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .font-mono {
   font-family: 'JetBrains Mono', monospace;
+}
+
+/* Safe Area Inset Support & Responsive Layout Containers */
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* Input & Touch Target Rules (Min 16px font to prevent iOS auto-zoom, min 48px height) */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  font-size: 16px !important;
+  min-height: 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button,
+a.btn,
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Responsive Typography with Fluid clamp() */
+h1, .text-h1 {
+  font-size: clamp(1.65rem, 5.5vw, 2.5rem);
+  line-height: 1.25;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+h2, .text-h2 {
+  font-size: clamp(1.35rem, 4.5vw, 2.0rem);
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Responsive Tables & Card Wrappers */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+img, svg, canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Stihl Custom Glow & Accent */
