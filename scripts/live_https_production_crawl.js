@@ -2,10 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
+import { INDEXABLE_COMPARISONS, getSafeModelSlug } from '../src/publicationRules.js';
+
 const LIVE_ORIGIN = 'https://www.stihldecoder.nl';
 const APEX_ORIGIN = 'https://stihldecoder.nl';
 const OUTPUT_PATH = path.join(process.cwd(), 'data', 'phase34a_live_validation.json');
 const PRE_URLS_PATH = path.join(process.cwd(), 'data', 'phase34_pre_urls.json');
+const DB_PATH = path.join(process.cwd(), 'data', 'stihl_database.json');
 
 const seedPaths = [
   '/',
@@ -22,6 +25,17 @@ const seedPaths = [
   '/favicon.ico'
 ];
 
+const explicitRouteProbes = [
+  '/vergelijk/ms-170-vs-ms-180/',
+  '/vergelijk/ms-180-vs-ms-170/',
+  '/vergelijk/ms-210-vs-ms-170/',
+  '/vergelijk/fs-100-vs-fs-350/',
+  '/vergelijk/br-700-vs-br-600/'
+];
+
+const database = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
+const models = database.models || [];
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -29,7 +43,26 @@ function sleep(ms) {
 function normalizeUrl(input) {
   const url = new URL(input, LIVE_ORIGIN);
   url.hash = '';
+  url.search = '';
   return url.toString();
+}
+
+function pathToUrl(pathName) {
+  return normalizeUrl(`${LIVE_ORIGIN}${pathName}`);
+}
+
+function getKnownRouteCandidates() {
+  const valuationRoutes = models
+    .map((model) => getSafeModelSlug(model))
+    .filter(Boolean)
+    .map((slug) => `/waarde/${slug}/`);
+
+  const comparisonRoutes = INDEXABLE_COMPARISONS.flatMap((comparisonSlug) => {
+    const [leftSlug, rightSlug] = comparisonSlug.split('-vs-');
+    return [`/vergelijk/${comparisonSlug}/`, `/vergelijk/${rightSlug}-vs-${leftSlug}/`];
+  });
+
+  return [...new Set([...valuationRoutes, ...comparisonRoutes, ...explicitRouteProbes])];
 }
 
 async function fetchWithRedirects(inputUrl, maxRedirects = 5) {
@@ -40,7 +73,7 @@ async function fetchWithRedirects(inputUrl, maxRedirects = 5) {
     const response = await fetch(currentUrl, {
       redirect: 'manual',
       headers: {
-        'user-agent': 'STIHLDecoder Phase34A Validation Bot/1.0 (+https://www.stihldecoder.nl)'
+        'user-agent': 'STIHLDecoder Phase34B Validation Bot/1.0 (+https://www.stihldecoder.nl)'
       }
     });
 
@@ -119,7 +152,7 @@ function extractJsonLdTypes(body) {
     try {
       visit(JSON.parse(contentMatch[1].trim()));
     } catch {
-      // Ignore malformed JSON-LD blocks in reporting; validation status will expose symptoms.
+      // Ignore malformed JSON-LD in type summary.
     }
   }
 
@@ -143,23 +176,27 @@ function extractInternalLinks(body) {
       links.push(normalizeUrl(href));
     }
   }
-  return links;
+  return [...new Set(links)];
 }
 
-function summarizeHtml(url, finalResponse, redirectCount) {
+function summarizeResponse(requestedUrl, finalResponse, redirectCount) {
   const body = finalResponse.body;
-  const isHtml = (finalResponse.headers['content-type'] || '').includes('text/html');
+  const contentType = finalResponse.headers['content-type'] || null;
+  const isHtml = String(contentType).includes('text/html');
   const internalLinks = isHtml ? extractInternalLinks(body) : [];
+  const pathName = new URL(requestedUrl).pathname;
+  const robots = isHtml ? (extractMeta(body, 'robots') || finalResponse.headers['x-robots-tag'] || null) : (finalResponse.headers['x-robots-tag'] || null);
 
   return {
-    url,
+    url: requestedUrl,
+    path: pathName,
     http_status: finalResponse.status,
     final_url: finalResponse.url,
     redirect_count: redirectCount,
     title: isHtml ? extractTitle(body) : null,
     meta_description: isHtml ? extractMeta(body, 'description') : null,
     canonical: isHtml ? extractCanonical(body) : null,
-    robots: isHtml ? (extractMeta(body, 'robots') || finalResponse.headers['x-robots-tag'] || null) : (finalResponse.headers['x-robots-tag'] || null),
+    robots,
     h1: isHtml ? extractH1(body) : null,
     h1_count: isHtml ? (body.match(/<h1\b/gi) || []).length : 0,
     json_ld_types: isHtml ? extractJsonLdTypes(body) : [],
@@ -167,7 +204,7 @@ function summarizeHtml(url, finalResponse, redirectCount) {
     local_css: isHtml ? body.includes('/css/tailwind.css') : false,
     internal_link_count: internalLinks.length,
     internal_links: internalLinks,
-    content_type: finalResponse.headers['content-type'] || null
+    content_type: contentType
   };
 }
 
@@ -195,29 +232,60 @@ function buildSeoHash(entry) {
   })).digest('hex');
 }
 
+async function crawlUrlSet(urls) {
+  const queue = [...new Set(urls.map((value) => normalizeUrl(value)))];
+  const seen = new Set(queue);
+  const results = new Map();
+
+  while (queue.length > 0) {
+    const url = queue.shift();
+    const visited = await fetchWithRedirects(url);
+    const finalResponse = visited[visited.length - 1];
+    const summary = summarizeResponse(url, finalResponse, visited.length - 1);
+    results.set(url, summary);
+
+    if (!String(summary.content_type || '').includes('text/html')) {
+      continue;
+    }
+
+    for (const link of summary.internal_links) {
+      if (seen.has(link)) continue;
+      seen.add(link);
+      queue.push(link);
+    }
+  }
+
+  return results;
+}
+
 const preUrls = JSON.parse(fs.readFileSync(PRE_URLS_PATH, 'utf8'));
 
 console.log('🌐 Running true HTTPS production crawl against https://www.stihldecoder.nl ...');
 
 const seedResults = [];
 for (const pathName of seedPaths) {
-  const visited = await fetchWithRedirects(`${LIVE_ORIGIN}${pathName}`);
+  const visited = await fetchWithRedirects(pathToUrl(pathName));
   const finalResponse = visited[visited.length - 1];
-  seedResults.push(summarizeHtml(`${LIVE_ORIGIN}${pathName}`, finalResponse, visited.length - 1));
+  seedResults.push(summarizeResponse(pathToUrl(pathName), finalResponse, visited.length - 1));
 }
 
 const sitemapFetch = await fetchWithRedirects(`${LIVE_ORIGIN}/sitemap.xml`);
 const sitemapBody = sitemapFetch[sitemapFetch.length - 1].body;
 const sitemapUrls = [...sitemapBody.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => normalizeUrl(match[1]));
+const crawlCandidates = [
+  ...seedPaths.map(pathToUrl),
+  ...sitemapUrls,
+  ...getKnownRouteCandidates().map(pathToUrl)
+];
 
-const pageResults = [];
-for (const url of sitemapUrls) {
-  const visited = await fetchWithRedirects(url);
-  const finalResponse = visited[visited.length - 1];
-  pageResults.push(summarizeHtml(url, finalResponse, visited.length - 1));
-}
+const crawlResultsMap = await crawlUrlSet(crawlCandidates);
+const crawlResults = [...crawlResultsMap.values()].sort((a, b) => a.path.localeCompare(b.path));
+const pageResults = sitemapUrls
+  .map((url) => crawlResultsMap.get(url))
+  .filter(Boolean)
+  .sort((a, b) => a.path.localeCompare(b.path));
 
-const htmlPages = pageResults.filter((entry) => String(entry.content_type || '').includes('text/html'));
+const htmlPages = crawlResults.filter((entry) => String(entry.content_type || '').includes('text/html'));
 const uniqueInternalLinks = new Set();
 for (const entry of htmlPages) {
   for (const link of entry.internal_links) {
@@ -225,18 +293,24 @@ for (const entry of htmlPages) {
   }
 }
 
-const internalLinkAudit = [];
-for (const url of [...uniqueInternalLinks].sort()) {
-  const visited = await fetchWithRedirects(url);
-  const finalResponse = visited[visited.length - 1];
-  internalLinkAudit.push({
-    url,
-    final_url: finalResponse.url,
-    status: finalResponse.status,
-    redirect_count: visited.length - 1,
-    robots: extractMeta(finalResponse.body, 'robots') || finalResponse.headers['x-robots-tag'] || null
+const internalLinkAudit = [...uniqueInternalLinks]
+  .sort()
+  .map((url) => {
+    const entry = crawlResultsMap.get(url);
+    return entry ? {
+      url,
+      final_url: entry.final_url,
+      status: entry.http_status,
+      redirect_count: entry.redirect_count,
+      robots: entry.robots
+    } : {
+      url,
+      final_url: null,
+      status: 0,
+      redirect_count: 0,
+      robots: null
+    };
   });
-}
 
 const internalLinkSummary = internalLinkAudit.reduce((acc, entry) => {
   if (entry.status === 200) acc['200'] += 1;
@@ -252,15 +326,23 @@ for (const entry of htmlPages) {
   const sourceIndexable = !String(entry.robots || 'index, follow').toLowerCase().includes('noindex');
   if (!sourceIndexable) continue;
   for (const link of entry.internal_links) {
-    const target = internalLinkAudit.find((candidate) => candidate.url === link);
+    const target = crawlResultsMap.get(link);
     if (target && String(target.robots || '').toLowerCase().includes('noindex')) {
       indexableToNoindexLinks.push({ from: entry.url, to: link });
     }
   }
 }
 
+const discoveredIndexableUrls = htmlPages
+  .filter((entry) => entry.http_status === 200 && !String(entry.robots || 'index, follow').toLowerCase().includes('noindex'))
+  .map((entry) => ({
+    ...entry,
+    seo_hash: buildSeoHash(entry)
+  }))
+  .sort((a, b) => a.path.localeCompare(b.path));
+
 const websiteSchemaCount = (() => {
-  const home = pageResults.find((entry) => new URL(entry.url).pathname === '/');
+  const home = crawlResultsMap.get(`${LIVE_ORIGIN}/`);
   return home ? home.json_ld_types.filter((type) => type === 'WebSite').length : 0;
 })();
 
@@ -269,7 +351,6 @@ const wwwVisited = await fetchWithRedirects(`${LIVE_ORIGIN}/`);
 
 const inventory = pageResults.reduce((acc, entry) => {
   const bucket = classifyPath(new URL(entry.url).pathname);
-  if (!acc[bucket]) acc[bucket] = 0;
   if (bucket === 'VALUATION') {
     const isNoindex = String(entry.robots || '').toLowerCase().includes('noindex');
     acc[isNoindex ? 'VALUATION_NOINDEX' : 'VALUATION_INDEXABLE'] += 1;
@@ -290,6 +371,18 @@ const inventory = pageResults.reduce((acc, entry) => {
   OTHER: 0
 });
 
+const knownRouteAudit = getKnownRouteCandidates()
+  .map(pathToUrl)
+  .map((url) => {
+    const entry = crawlResultsMap.get(url);
+    return {
+      url,
+      status: entry?.http_status || 0,
+      final_url: entry?.final_url || null,
+      robots: entry?.robots || null
+    };
+  });
+
 const result = {
   generated_at: new Date().toISOString(),
   validation_target: LIVE_ORIGIN,
@@ -302,10 +395,17 @@ const result = {
     added: sitemapUrls.filter((url) => !preUrls.urls.includes(url)),
     removed: preUrls.urls.filter((url) => !sitemapUrls.includes(url))
   },
+  inventory,
   page_results: pageResults.map((entry) => ({
     ...entry,
     seo_hash: buildSeoHash(entry)
   })),
+  crawled_results: crawlResults.map((entry) => ({
+    ...entry,
+    seo_hash: buildSeoHash(entry)
+  })),
+  discovered_indexable_urls: discoveredIndexableUrls,
+  discovered_indexable_total: discoveredIndexableUrls.length,
   homepage_website_schema_count: websiteSchemaCount,
   topology: {
     www: {
@@ -320,13 +420,13 @@ const result = {
       redirect_chain: apexVisited.map((step) => ({ url: step.url, status: step.status, location: step.headers.location || null }))
     }
   },
-  inventory,
   internal_link_summary: {
     total_unique_internal_links: uniqueInternalLinks.size,
     ...internalLinkSummary
   },
   indexable_to_noindex_links: indexableToNoindexLinks,
   internal_link_audit: internalLinkAudit,
+  known_route_audit: knownRouteAudit,
   sitemap_urls: sitemapUrls
 };
 

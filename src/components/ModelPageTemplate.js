@@ -13,6 +13,9 @@ import { getModelVerificationSummary } from '../canonicalData.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import {
   getFuelDriveLabel,
+  getRegisteredComparisonForModel,
+  getRegisteredComparisons,
+  isPetrolModel,
   getSafeCategorySlug,
   getSafeModelPartsPath,
   getSafeModelPath,
@@ -54,15 +57,18 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const relatedModels = getRelatedModels(model, database);
   const relatedModelsHtml = renderRelatedModelsHtml(relatedModels);
 
-  const isPetrol = model.fuel_type ? (model.fuel_type.startsWith('PETROL') || model.fuel_type.startsWith('MIX')) : false;
+  const isPetrol = isPetrolModel(model);
   const isBattery = isBatteryModel(model);
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
   const fuelDriveLabel = getFuelDriveLabel(model);
   const valuationState = getValuationPublicationState(model);
 
   // Model comparison partner detection
-  const comparisonPartner = getComparisonPartner(model, database);
+  const registeredComparison = getRegisteredComparisonForModel(model, database);
+  const comparisonPartner = registeredComparison ? registeredComparison.partner : null;
   const comparisonPartnerPath = getSafeModelPath(comparisonPartner);
+  const comparisonSlug = registeredComparison ? registeredComparison.comparisonSlug : null;
+  const registeredComparisonLinks = getRegisteredComparisons(categorySlug).slice(0, 3);
   const passportProCardHtml = renderPassportProMvpCard({ modelName: model.model_name, abVariant: 'B' });
   const repairLeadCardHtml = renderRepairLeadMvpCard({ modelName: model.model_name });
   const sellLeadCardHtml = renderSellLeadMvpCard({ modelName: model.model_name });
@@ -139,7 +145,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
         <input 
           type="text" 
           name="q" 
-          placeholder="Voer het 9-cijferige serienummer in van uw ${model.model_name}..." 
+          placeholder="Voer het serienummer in van uw ${model.model_name}..." 
           class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
           autocomplete="off"
         />
@@ -210,13 +216,13 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
     </section>
 
     <!-- Model Comparison Section -->
-    ${comparisonPartner && comparisonPartnerPath ? `
+    ${comparisonPartner && comparisonPartnerPath && comparisonSlug ? `
       <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-4">
         <div class="flex items-center justify-between border-b border-gray-800 pb-3">
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
             <span>Modelvergelijking: STIHL ${model.model_name} vs STIHL ${comparisonPartner.model_name}</span>
           </h2>
-          <a href="/vergelijk/${slug}-vs-${comparisonPartner.slug || comparisonPartner.id.replace(/_/g, '-')}/" class="text-xs text-orange-400 font-bold hover:underline">
+          <a href="/vergelijk/${comparisonSlug}/" class="text-xs text-orange-400 font-bold hover:underline">
             Bekijk Uitgebreide Vergelijking →
           </a>
         </div>
@@ -254,7 +260,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </a>
       ${safePartsPath ? `<a href="${safePartsPath}" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-white text-sm block group-hover:underline">🔧 3. Bekijk Onderdelen</span>
-        <span class="text-gray-400 block text-2xs">${model.series_code ? `Onderdeelnummers serie ${model.series_code}` : 'Onderdeleninformatie'}</span>
+        <span class="text-gray-400 block text-2xs">${model.series_code ? `Modelgebonden onderdeleninformatie voor serie ${model.series_code}` : 'Onderdeleninformatie'}</span>
       </a>` : `<div class="bg-gray-900 border border-gray-800 p-4 rounded-xl text-center space-y-1">
         <span class="font-bold text-white text-sm block">🔧 3. Onderdelenroute onbekend</span>
         <span class="text-gray-400 block text-2xs">Categorie ontbreekt of is niet veilig publiceerbaar</span>
@@ -269,8 +275,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
         <a href="/bosmaaiers/" class="hover:text-orange-400 hover:underline">→ Bosmaaiers Hub</a>
         <a href="/bladblazers/" class="hover:text-orange-400 hover:underline">→ Bladblazers Hub</a>
         ${safePartsPath ? `<a href="${safePartsPath}" class="hover:text-orange-400 hover:underline">→ STIHL ${model.model_name} Onderdelen</a>` : ''}
-        <a href="/vergelijk/ms-260-vs-ms-261/" class="hover:text-orange-400 hover:underline">→ MS 260 vs MS 261</a>
-        <a href="/vergelijk/ms-361-vs-ms-362/" class="hover:text-orange-400 hover:underline">→ MS 361 vs MS 362</a>
+        ${registeredComparisonLinks.map((entry) => `<a href="/vergelijk/${entry.slug}/" class="hover:text-orange-400 hover:underline">→ ${entry.title}</a>`).join('')}
         <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
         <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
         <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
@@ -293,11 +298,11 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       <div class="space-y-3 text-xs">
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <h4 class="font-bold text-white">Hoe oud is mijn STIHL ${model.model_name}?</h4>
-          <p class="text-gray-300">Voer het 9-cijferige serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.</p>
+          <p class="text-gray-300">Voer het serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.</p>
         </div>
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-          <h4 class="font-bold text-white">Waar vind ik het 9-cijferige serienummer?</h4>
+          <h4 class="font-bold text-white">Waar vind ik het serienummer?</h4>
           <p class="text-gray-300">${getSerialLocationAnswer(categorySlug)}</p>
         </div>
       </div>
@@ -320,19 +325,4 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
 
 </body>
 </html>`;
-}
-
-function getComparisonPartner(model, database) {
-  const models = database.models || [];
-  const cleanName = (model.model_name || '').toLowerCase();
-  
-  if (cleanName.includes('260')) return models.find(m => m.slug === 'ms-261');
-  if (cleanName.includes('261')) return models.find(m => m.slug === 'ms-260');
-  if (cleanName.includes('360')) return models.find(m => m.slug === 'ms-361');
-  if (cleanName.includes('361')) return models.find(m => m.slug === 'ms-362');
-  if (cleanName.includes('362')) return models.find(m => m.slug === 'ms-361');
-  if (cleanName.includes('170')) return models.find(m => m.slug === 'ms-180');
-  if (cleanName.includes('180')) return models.find(m => m.slug === 'ms-170');
-
-  return models.find(m => m.id !== model.id && m.category_slug && m.category_slug === model.category_slug);
 }

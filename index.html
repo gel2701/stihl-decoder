@@ -47,7 +47,7 @@
             "name": "Hoe werkt het controleren van een STIHL serienummer?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Veel STIHL motornummers volgen een 9-cijferig formaat. Het eerste cijfer kan helpen bij het bepalen van de fabriek of regio van herkomst. De vervolgcijfers geven hooguit een breakpoint-gebaseerde indicatie van de productiereeks en niet automatisch een exact model of bouwjaar."
+              "text": "Veel STIHL machines gebruiken een cijferreeks als serienummer. Het eerste cijfer kan helpen bij het bepalen van de fabriek of regio van herkomst. De vervolgcijfers geven hooguit een breakpoint-gebaseerde indicatie van de productiereeks en niet automatisch een exact model of bouwjaar."
             }
           },
           {
@@ -200,7 +200,7 @@
         </div>
         <h3 class="text-lg font-bold text-white">Voer een nummer in voor instant analyse</h3>
         <p class="text-sm text-gray-400 max-w-md mx-auto">
-          Voer het 9-cijferige serienummer in van uw Stihl machine, een 11-cijferig onderdeelnummer of een modelnaam om specificaties en echtheid op te vragen.
+          Voer het serienummer in van uw Stihl machine, een 11-cijferig onderdeelnummer of een modelnaam om specificaties en echtheid op te vragen.
         </p>
       </div>
 
@@ -243,7 +243,7 @@
         </div>
 
         <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
-          <span class="font-bold text-orange-400">🔎 Hoe vindt u het echte 9-cijferige serienummer?</span>
+          <span class="font-bold text-orange-400">🔎 Hoe vindt u het echte serienummer?</span>
           <p id="warn-advice"></p>
         </div>
       </div>
@@ -322,7 +322,7 @@
 
         <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs text-gray-400">
           <span class="font-bold text-orange-400 block mb-1">💡 Let op: U bekijkt een algemeen model datablad.</span>
-          Voer het 9-cijferige serienummer in van uw specifieke machine om de fabriek van herkomst, de StopHeling-controlestatus en een onafhankelijk rapport op te vragen.
+          Voer het serienummer in van uw specifieke machine om de fabriek van herkomst, de StopHeling-controlestatus en een onafhankelijk rapport op te vragen.
         </div>
       </div>
 
@@ -511,9 +511,9 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
         <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
-          <h3 class="text-sm font-bold text-orange-400">1. Het 9-Cijferige Serienummer</h3>
+          <h3 class="text-sm font-bold text-orange-400">1. Het Serienummer op de Machine</h3>
           <p class="text-gray-400 leading-relaxed">
-            Iedere originele STIHL machine beschikt over een uniek 9-cijferig serienummer dat ingeslagen is in het metaal van het carter of op een barcode-typeplaatje staat vermeld. Het eerste cijfer kan informatie bevatten over de fabriek of regio van herkomst (zoals Duitsland, de VS, Brazilië, Zwitserland of China). De exacte herkomstzekerheid en productielocatie verschillen per serienummerreeks en bouwperiode.
+            Veel originele STIHL machines hebben een serienummer dat ingeslagen is in het metaal van het carter of op een barcode-typeplaatje staat vermeld. Het eerste cijfer kan informatie bevatten over de fabriek of regio van herkomst (zoals Duitsland, de VS, Brazilië, Zwitserland of China). De exacte herkomstzekerheid en productielocatie verschillen per serienummerreeks en bouwperiode.
           </p>
         </div>
 
@@ -536,7 +536,7 @@
               <span class="text-orange-400 text-sm group-open:rotate-180 transition">↓</span>
             </summary>
             <p class="mt-2 text-gray-400 leading-relaxed">
-              Kopieer het 9-cijferige serienummer van het typeplaatje of carter en open StopHeling.nl voor uw eigen controle. Als daar geen diefstalmelding zichtbaar is, kunt u dit als eigen notitie op het rapport aantekenen.
+              Kopieer het serienummer van het typeplaatje of carter en open StopHeling.nl voor uw eigen controle. Als daar geen diefstalmelding zichtbaar is, kunt u dit als eigen notitie op het rapport aantekenen.
             </p>
           </details>
 
@@ -711,7 +711,7 @@
           
           document.getElementById('model-title-display').innerText = modelName;
           document.getElementById('model-card-name').innerText = modelName;
-          document.getElementById('model-card-fuel').innerText = isBattery ? '⚡ Accu-aandrijving' : '🔥 Benzine-aandrijving';
+          document.getElementById('model-card-fuel').innerText = res.fuel_type_label || 'Niet vastgesteld';
 
           // ZERO GENERIC SPEC FALLBACK: Render only verified specifications; hide non-applicable or chain fields for non-chainsaws
           const specs = res.technicalSpecs || {};
@@ -744,14 +744,14 @@
           return;
         }
 
-        // CASE 4: Valid 9-digit Serial Number -> FULL PASSPORT & SERIAL BREAKPOINTS ENGINE
+        // CASE 4: Recognized Serial Number -> FULL PASSPORT & SERIAL BREAKPOINTS ENGINE
         if (res && res.type === 'SERIAL_NUMBER') {
           const serial = res.cleaned;
           currentSerial = serial;
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
-          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu-aandrijving' : '🔥 Benzine-aandrijving');
+          const fuelTypeLabel = res.fuel_type_label || 'Niet vastgesteld';
 
           currentModelName = (res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld';
 
@@ -822,23 +822,23 @@
             if (carbLABox) carbLABox.style.display = 'block';
             if (oilBox) oilBox.style.display = isChainsaw ? 'block' : 'none';
 
-            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
-            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
-            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
-            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || '1 slag open (M-Tronic Auto)';
-            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || '1 slag open (M-Tronic Auto)';
-            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM stationair';
-            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
+            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Broncontrole in behandeling';
+            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'Broncontrole in behandeling';
+            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Broncontrole in behandeling';
+            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Broncontrole in behandeling';
+            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Broncontrole in behandeling';
+            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || 'Broncontrole in behandeling';
+            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || 'Broncontrole in behandeling';
           }
 
-          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : '4.1 pk (3.0 kW)';
+          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Broncontrole in behandeling';
           
           const serialChainEl = document.getElementById('spec-chain-info');
           const serialChainContainer = serialChainEl ? serialChainEl.parentElement : null;
           if (serialChainContainer) {
             if (isChainsaw) {
               serialChainContainer.style.display = 'block';
-              serialChainEl.innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
+              serialChainEl.innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Broncontrole in behandeling'} mm` : 'Broncontrole in behandeling';
             } else {
               serialChainContainer.style.display = 'none';
             }

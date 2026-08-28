@@ -6,7 +6,7 @@ import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
-import { getSafeModelPath } from '../publicationRules.js';
+import { getRegisteredComparisons, getSafeModelPath } from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 
 export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY_ORIGIN) {
@@ -50,14 +50,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY
   const allModels = database.models || [];
   const categoryModels = allModels.filter(m => m.category_slug === categorySlug);
 
-  const categoryComparisons = {
-    'kettingzagen': [
-      { slug: 'ms-260-vs-ms-261', label: 'Klassiek vs M-Tronic', title: 'STIHL MS 260 vs MS 261' },
-      { slug: 'ms-361-vs-ms-362', label: 'Professionele Middenklasse', title: 'STIHL MS 361 vs MS 362' },
-      { slug: 'ms-170-vs-ms-180', label: 'Compacte Instapklasse', title: 'STIHL MS 170 vs MS 180' }
-    ]
-  };
-  const activeComparisons = categoryComparisons[categorySlug] || [];
+  const activeComparisons = getRegisteredComparisons(categorySlug);
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -121,7 +114,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY
         <input 
           type="text" 
           name="q" 
-          placeholder="Voer 9-cijferig serienummer in..." 
+          placeholder="Voer het serienummer in..." 
           class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
           autocomplete="off"
         />

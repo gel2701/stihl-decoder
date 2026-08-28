@@ -4,7 +4,7 @@
  */
 
 import { PRIMARY_ORIGIN } from '../config.js';
-import { getSafeCategorySlug, getSafeModelPartsPath, getSafeModelPath } from '../publicationRules.js';
+import { getSafeCategorySlug, getSafeModelPartsPath, getSafeModelPath, INDEXABLE_COMPARISONS } from '../publicationRules.js';
 
 export function collectSitemapDiagnostics(database = {}) {
   const models = database.models || [];
@@ -31,8 +31,6 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
   const guides = database.guides || [];
 
   const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'doorslijpers'];
-  const comparisons = ['ms-260-vs-ms-261', 'ms-361-vs-ms-362', 'ms-170-vs-ms-180'];
-
   const urls = [];
 
   // 1. Homepage
@@ -56,7 +54,7 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
   });
 
   // 4. Comparison Pages
-  comparisons.forEach(comp => {
+  INDEXABLE_COMPARISONS.forEach(comp => {
     urls.push({ loc: `${baseUrl}/vergelijk/${comp}/`, priority: '0.8', changefreq: 'weekly' });
   });
 

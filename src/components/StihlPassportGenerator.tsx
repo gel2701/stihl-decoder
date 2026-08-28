@@ -34,7 +34,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
   };
 
   const isSelfReported = data.theftCheck ? Boolean(data.theftCheck.userSelfReported) : false;
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + data.serialNumber)}`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://www.stihldecoder.nl/?s=' + data.serialNumber)}`;
   const chainText = data.chainInfo || '.325" @ 1.3 mm';
 
   return (

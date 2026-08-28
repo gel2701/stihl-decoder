@@ -97,7 +97,7 @@ export function renderIntentPageHtml(intent, database, baseUrl = PRIMARY_ORIGIN)
         <input 
           type="text" 
           name="q" 
-          placeholder="Voer het 9-cijferige serienummer in..." 
+          placeholder="Voer het serienummer in..." 
           class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
           autocomplete="off"
         />

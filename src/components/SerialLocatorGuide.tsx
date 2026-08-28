@@ -7,7 +7,7 @@ export const SerialLocatorGuide: React.FC = () => {
     ms: {
       title: 'Kettingzagen (MS-serie)',
       instruction: 'Ingeslagen in het carter boven de uitlaat / demper (niet het stickerlabel).',
-      details: 'Bij de meeste STIHL benzine-kettingzagen is het 9-cijferige serienummer diep ingeslagen in het magnesium carter vlak boven de uitlaatdemper of nabij de 2 zwaardmoeren.',
+      details: 'Bij de meeste STIHL benzine-kettingzagen is het serienummer diep ingeslagen in het magnesium carter vlak boven de uitlaatdemper of nabij de 2 zwaardmoeren.',
       icon: '🪓'
     },
     fs: {
@@ -39,7 +39,7 @@ export const SerialLocatorGuide: React.FC = () => {
           <span>📍</span> Visuele Serienummer Locator Gids
         </h3>
         <p className="text-xs text-gray-400 mt-1">
-          Selecteer uw machinetype om te zien waar het 9-cijferige serienummer fysiek ingeslagen is.
+          Selecteer uw machinetype om te zien waar het serienummer fysiek ingeslagen is.
         </p>
       </div>
 

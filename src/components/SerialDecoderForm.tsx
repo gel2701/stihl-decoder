@@ -8,7 +8,7 @@ export function SerialDecoderForm({ initialModelHint }: SerialDecoderFormProps) 
   return (
     <form action="/" method="GET" class="space-y-4">
       <p class="text-xs text-gray-400">
-        Vul hieronder het 9-cijferige serienummer in van uw {initialModelHint || 'STIHL machine'} om formaat- en herkomstsignalen op te vragen. Gebruik het typeplaatje of een primaire bron om model en bouwjaar te bevestigen:
+        Vul hieronder het serienummer in van uw {initialModelHint || 'STIHL machine'} om formaat- en herkomstsignalen op te vragen. Gebruik het typeplaatje of een primaire bron om model en bouwjaar te bevestigen:
       </p>
       <div class="flex flex-col sm:flex-row gap-3">
         <input

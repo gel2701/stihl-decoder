@@ -1,19 +1,20 @@
 /**
- * Centralized Affiliate Link Component for STIHLDecoder.nl
- * Phase 28 Affiliate-Ready Architecture
+ * Internal parts-search CTA for STIHLDecoder.nl.
+ * Uses descriptive search text unless a verified part number exists.
  */
 
-export function renderAffiliateLink({ partName, partNumber, category }) {
-  // Safe placeholder structure for future affiliate partner integration
-  const affiliateUrl = `https://stihldecoder.nl/onderdeelnummer/?part=${encodeURIComponent(partNumber)}&ref=stihldecoder`;
+export function renderAffiliateLink({ partName, partNumber = null, searchQuery = null, category }) {
+  const href = '/onderdeelnummer/';
+  const safePartNumber = typeof partNumber === 'string' && partNumber.trim() ? partNumber.trim() : null;
+  const safeSearchQuery = typeof searchQuery === 'string' && searchQuery.trim() ? searchQuery.trim() : partName;
 
   return `
-    <a 
-      href="${affiliateUrl}" 
-      rel="nofollow sponsored noopener" 
-      target="_blank" 
+    <a
+      href="${href}"
       class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-600/20 hover:bg-orange-600/30 text-orange-400 border border-orange-500/30 font-bold text-2xs transition group"
-      onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {partNumber: '${partNumber}', category: '${category}'});}"
+      data-search-query="${safeSearchQuery.replace(/"/g, '&quot;')}"
+      ${safePartNumber ? `data-part-number="${safePartNumber.replace(/"/g, '&quot;')}"` : ''}
+      onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {partNumber: ${safePartNumber ? `'${safePartNumber}'` : 'null'}, searchQuery: '${safeSearchQuery.replace(/'/g, "\\'")}', category: '${category}'});}"
     >
       <span>Zoek ${partName}</span>
       <span class="group-hover:translate-x-0.5 transition-transform">→</span>

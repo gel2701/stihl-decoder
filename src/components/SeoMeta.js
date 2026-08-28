@@ -4,7 +4,7 @@
 
 export function renderSeoMeta({ title, description, canonicalUrl, ogType = 'website', jsonLdData, robotsContent = 'index, follow' }) {
   const defaultTitle = 'STIHL Serienummer & Bouwjaar Decoder | STIHLDecoder';
-  const defaultDesc = 'Controleer het 9-cijferige serienummer van uw STIHL machine en bekijk de zichtbare bronstatus van modeldata, zonder ongefundeerde model- of bouwjaarclaims.';
+  const defaultDesc = 'Controleer het serienummer van uw STIHL machine en bekijk de zichtbare bronstatus van modeldata, zonder ongefundeerde model- of bouwjaarclaims.';
   
   const metaTitle = title || defaultTitle;
   const metaDesc = description || defaultDesc;

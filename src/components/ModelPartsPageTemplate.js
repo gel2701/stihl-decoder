@@ -28,7 +28,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     pageType: 'intent',
     intent: {
       title: `STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids`,
-      description: `Vind originele en vervangende onderdelen voor de STIHL ${model.model_name}. Carburateur sets, bougies, zaagkettingen, geleidebladen en carteronderdelen.`
+      description: `Bekijk zichtbare onderdeleninformatie en onderhoudscontext voor de STIHL ${model.model_name}. Controleer typeplaatje, uitvoering en bronstatus voordat u onderdelen bestelt.`
     },
     breadcrumbs,
     url: canonicalUrl
@@ -46,6 +46,10 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const verification = getModelVerificationSummary(model);
 
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
+  const hasSparkData = Boolean(model.spark_plug || model.electrode_gap_mm);
+  const hasChainData = Boolean(isChainsaw && (model.chain_pitch || model.chain_gauge_mm));
+  const hasCarbData = Boolean(model.carb_h_setting || model.carb_l_setting || model.carb_la_setting);
+  const hasFilterData = Boolean(model.air_filter || model.oil_mix_ratio);
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -101,7 +105,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+        ${hasSparkData ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Bougie & Ontsteking</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Elektrisch</span>
@@ -110,14 +114,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${model.electrode_gap_mm ? `${model.electrode_gap_mm} mm` : 'Niet vastgesteld'}</strong></p>
           <div class="pt-2">
             ${renderAffiliateLink({
-              partName: `Bougie ${model.spark_plug || 'onbekend'} voor STIHL ${model.model_name}`,
-              partNumber: model.spark_plug ? model.spark_plug.replace(/\s+/g, '') : `${model.series_code || model.slug || model.id}-SPARK`,
+              partName: `Bougie voor STIHL ${model.model_name}`,
+              searchQuery: `bougie STIHL ${model.model_name}`,
               category: 'spark_plug'
             })}
           </div>
-        </div>
+        </div>` : ''}
 
-        ${(isChainsaw && model.chain_pitch) ? `
+        ${hasChainData ? `
           <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
             <div class="flex justify-between items-center">
               <span class="font-bold text-white text-sm">Zaagketting & Geleideblad</span>
@@ -128,14 +132,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Zaagketting ${model.chain_pitch} voor STIHL ${model.model_name}`,
-                partNumber: `${model.series_code || model.slug || model.id}-CHAIN`,
+                searchQuery: `zaagketting STIHL ${model.model_name}`,
                 category: 'chain'
               })}
             </div>
           </div>
         ` : ''}
 
-        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+        ${hasCarbData ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Carburateur & Membraanset</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Brandstof</span>
@@ -145,13 +149,13 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Membraanset voor STIHL ${model.model_name}`,
-              partNumber: `${model.series_code || model.slug || model.id}-CARB`,
+              searchQuery: `carburateur STIHL ${model.model_name}`,
               category: 'carburetor'
             })}
           </div>
-        </div>
+        </div>` : ''}
 
-        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+        ${hasFilterData ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Luchtfilter & Olie-element</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Filter</span>
@@ -161,11 +165,11 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Luchtfilter voor STIHL ${model.model_name}`,
-              partNumber: `${model.series_code || model.slug || model.id}-AIRFILTER`,
+              searchQuery: `luchtfilter STIHL ${model.model_name}`,
               category: 'air_filter'
             })}
           </div>
-        </div>
+        </div>` : ''}
       </div>
     </section>
 
@@ -176,7 +180,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
         Belangrijk voor aankoop van onderdelen:
       </h3>
       <p>
-        Controleer altijd het 9-cijferige serienummer van uw STIHL ${model.model_name} op het carter voordat u onderdelen bestelt. Bij facelift- en M-Tronic generatiewijzigingen kunnen carteronderdelen en vliegwielen verschillen.
+        Controleer altijd het serienummer van uw STIHL ${model.model_name} op het carter of typeplaatje voordat u onderdelen bestelt. Bij facelift- en M-Tronic generatiewijzigingen kunnen carteronderdelen en vliegwielen verschillen.
       </p>
     </section>
 

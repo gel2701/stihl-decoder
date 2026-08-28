@@ -12,7 +12,7 @@ export function renderSerialLocatorHtml() {
               <span>📍</span> Visuele Serienummer Locator
             </h3>
             <p class="text-xs text-gray-400 mt-1">
-              Selecteer uw machinetype om te zien waar het 9-cijferige serienummer fysiek ingeslagen is op het gietstuk of carter.
+              Selecteer uw machinetype om te zien waar het serienummer fysiek ingeslagen is op het gietstuk of carter.
             </p>
           </div>
         </div>
@@ -52,9 +52,9 @@ export function renderSerialLocatorHtml() {
           <div class="w-16 h-16 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-3xl font-black">
             🔍
           </div>
-          <span class="text-xs font-mono font-bold text-white">9-Cijferig Serienummer Formaat</span>
+          <span class="text-xs font-mono font-bold text-white">Serienummerformaat</span>
           <p class="text-2xs text-gray-400 max-w-xs">
-            Let op: Het nummer is 9 cijfers lang (bijv. 178 456 789). Cijfers ingeslagen op gietstukken van 11 cijfers (bijv. 1121 021 0800) zijn onderdeelnummers.
+            Let op: veel STIHL machines gebruiken een cijferreeks als serienummer (bijv. 178 456 789). Cijfers ingeslagen op gietstukken van 11 cijfers (bijv. 1121 021 0800) zijn onderdeelnummers.
           </p>
         </div>
       </div>

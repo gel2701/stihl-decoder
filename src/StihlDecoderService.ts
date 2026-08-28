@@ -66,7 +66,7 @@ export class StihlDecoderService {
     const alerts: string[] = [];
     
     if (serial.length !== 9 && serial.length !== 10) {
-      alerts.push(`Afwijkende lengte (${serial.length} cijfers). Officiële STIHL motornummers bevatten 9 cijfers.`);
+      alerts.push(`Afwijkende lengte (${serial.length} cijfers). Veel STIHL machines gebruiken een 9-cijferige reeks; controleer altijd het typeplaatje en de context van de machine.`);
     }
 
     const knownFakePrefixes = ['123456789', '987654321', '111111111', '888888888', '999999999'];
@@ -121,14 +121,22 @@ export class StihlDecoderService {
     }
 
     if (modelData) {
-      const isPetrol = (modelData.fuel_type || 'PETROL_2STROKE').startsWith('PETROL');
-      const isBattery = (modelData.fuel_type || '').startsWith('BATTERY');
+      const fuelType = String(modelData.fuel_type || '').toUpperCase();
+      const isPetrol = fuelType === 'PETROL_2STROKE' || fuelType === 'PETROL_4MIX';
+      const isBattery = fuelType.startsWith('BATTERY');
+      const isElectric = fuelType.startsWith('ELECTRIC');
+      const fuelTypeLabel = modelData.fuel_type_label
+        || (fuelType === 'PETROL_2STROKE' ? 'Benzine-aandrijving (2-takt)' : null)
+        || (fuelType === 'PETROL_4MIX' ? 'Benzine-aandrijving (4-MIX)' : null)
+        || (isBattery ? 'Accu-aandrijving' : null)
+        || (isElectric ? 'Elektrische aandrijving' : null)
+        || 'Niet vastgesteld';
       modelMatch = {
         modelId: modelData.id,
         modelName: modelData.model_name,
         category: modelData.category,
         fuelType: modelData.fuel_type || 'PETROL_2STROKE',
-        fuelTypeLabel: modelData.fuel_type_label || (isPetrol ? 'Benzine-aandrijving' : (isBattery ? 'Accu-aandrijving' : 'Aandrijving niet vastgesteld')),
+        fuelTypeLabel,
         batterySystem: modelData.battery_system || null,
         voltageV: modelData.voltage_v || null,
         specs: {

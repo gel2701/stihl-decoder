@@ -25,7 +25,7 @@ export async function handleDecodeApiV1(reqBody, database) {
       statusCode: 422,
       body: {
         status: "error",
-        message: `Afwijkende lengte (${cleaned.length} cijfers). Officiële STIHL motornummers bevatten 9 cijfers.`,
+        message: `Afwijkende lengte (${cleaned.length} cijfers). Veel STIHL machines gebruiken een 9-cijferige reeks; controleer altijd het typeplaatje en de context van de machine.`,
         flags: [`Afwijkende lengte (${cleaned.length} cijfers)`]
       }
     };

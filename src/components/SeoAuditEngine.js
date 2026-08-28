@@ -7,7 +7,7 @@ import { PASSPORT_PRO_PRICE } from './ValuationEngine.js';
 import { getContentGapReport, getConversionDashboardMetrics } from './AnalyticsTracker.js';
 import { summarizeCanonicalDatabase } from '../canonicalData.js';
 import { collectSitemapDiagnostics } from './SitemapGenerator.js';
-import { getSafeModelPartsPath, getSafeModelPath } from '../publicationRules.js';
+import { getSafeModelPartsPath, getSafeModelPath, INDEXABLE_COMPARISONS } from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 
 export function generateSeoAuditReport(database = {}, baseUrl = PRIMARY_ORIGIN) {
@@ -16,7 +16,6 @@ export function generateSeoAuditReport(database = {}, baseUrl = PRIMARY_ORIGIN) 
   const canonicalSummary = summarizeCanonicalDatabase(database);
 
   const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'doorslijpers'];
-  const comparisons = ['ms-260-vs-ms-261', 'ms-361-vs-ms-362', 'ms-170-vs-ms-180'];
   const sitemapDiagnostics = collectSitemapDiagnostics(database);
 
   const auditedPages = [];

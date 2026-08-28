@@ -98,12 +98,12 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
         'name': `Hoe oud is mijn STIHL ${model.model_name}?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': `Voer het 9-cijferige serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.`
+          'text': `Voer het serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.`
         }
       },
       {
         '@type': 'Question',
-        'name': `Waar vind ik het 9-cijferige serienummer?`,
+        'name': `Waar vind ik het serienummer?`,
         'acceptedAnswer': {
           '@type': 'Answer',
           'text': getSerialLocationAnswer(categorySlug)

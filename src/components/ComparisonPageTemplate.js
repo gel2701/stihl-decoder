@@ -190,13 +190,13 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_O
     <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl space-y-3">
       <h3 class="text-base font-bold text-white">Serienummer van uw machine verifiëren?</h3>
       <p class="text-xs text-gray-300">
-        Voer het 9-cijferige serienummer in voor formaat- en herkomstcontrole. Gebruik daarnaast het typeplaatje om het exacte model te bevestigen.
+        Voer het serienummer in voor formaat- en herkomstcontrole. Gebruik daarnaast het typeplaatje om het exacte model te bevestigen.
       </p>
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
         <input 
           type="text" 
           name="q" 
-          placeholder="Voer 9-cijferig serienummer in..." 
+          placeholder="Voer het serienummer in..." 
           class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-xs placeholder-gray-500 focus:outline-none focus:border-orange-500"
           autocomplete="off"
         />

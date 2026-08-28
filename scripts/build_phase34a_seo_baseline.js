@@ -21,7 +21,11 @@ if (!fs.existsSync(LIVE_VALIDATION_PATH)) {
 }
 
 const liveValidation = JSON.parse(fs.readFileSync(LIVE_VALIDATION_PATH, 'utf8'));
-const htmlIndexableEntries = liveValidation.page_results.filter((entry) => {
+const crawlSource = Array.isArray(liveValidation.discovered_indexable_urls) && liveValidation.discovered_indexable_urls.length > 0
+  ? liveValidation.discovered_indexable_urls
+  : liveValidation.page_results;
+
+const htmlIndexableEntries = crawlSource.filter((entry) => {
   const robots = String(entry.robots || 'index, follow').toLowerCase();
   return String(entry.content_type || '').includes('text/html') && !robots.includes('noindex');
 });
@@ -50,7 +54,7 @@ const baselineEntries = htmlIndexableEntries.map((entry) => {
 }).sort((a, b) => a.path.localeCompare(b.path));
 
 const payload = {
-  baseline_name: 'FASE 34A SEO CONTENT FREEZE BASELINE',
+  baseline_name: 'FASE 34B SEO CONTENT FREEZE BASELINE',
   generated_at: new Date().toISOString(),
   source: 'live_https_production_crawl',
   validation_target: liveValidation.validation_target,
@@ -58,6 +62,8 @@ const payload = {
   sitemap_post_count: liveValidation.sitemap_url_count,
   url_added_count: liveValidation.url_delta.added.length,
   url_removed_count: liveValidation.url_delta.removed.length,
+  discovered_indexable_total: liveValidation.discovered_indexable_total || htmlIndexableEntries.length,
+  baseline_difference: Math.abs((liveValidation.discovered_indexable_total || htmlIndexableEntries.length) - baselineEntries.length),
   indexable_entries: baselineEntries.length,
   entries: baselineEntries
 };

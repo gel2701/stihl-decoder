@@ -15,7 +15,7 @@ import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplat
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
-import { getSafeCategorySlug, getSafeModelPath, getSafeModelPartsPath, getValuationPublicationState } from './src/publicationRules.js';
+import { getSafeCategorySlug, getSafeModelPath, getSafeModelPartsPath, getValuationPublicationState, resolveComparisonRoute } from './src/publicationRules.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -209,13 +209,18 @@ function checkRateLimit(req) {
   // 7. Comparison Engine Routes (/vergelijk/ or /vergelijk/:pair/)
   if (pathname.startsWith('/vergelijk')) {
     const pairSlug = pathname.replace('/vergelijk/', '').replace('/vergelijk', '').replace(/\/$/, '');
-    const comparisonModels = resolveComparisonModels(pairSlug, database);
-    if (!comparisonModels) {
+    const comparisonRoute = resolveComparisonRoute(pairSlug, database);
+    if (comparisonRoute.status === 'REDIRECT') {
+      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/vergelijk/${comparisonRoute.canonicalSlug}/` });
+      res.end();
+      return;
+    }
+    if (comparisonRoute.status !== 'CANONICAL') {
       renderNotFound(res);
       return;
     }
-    const html = renderComparisonPageHtml(pairSlug, database, PRIMARY_ORIGIN);
-    logStihlEvent(EVENT_TYPES.COMPARISON_VIEWED, { pairSlug }, req.headers['user-agent']);
+    const html = renderComparisonPageHtml(comparisonRoute.canonicalSlug, database, PRIMARY_ORIGIN);
+    logStihlEvent(EVENT_TYPES.COMPARISON_VIEWED, { pairSlug: comparisonRoute.canonicalSlug }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
     return;
@@ -406,6 +411,7 @@ function checkRateLimit(req) {
   <link rel="canonical" href="${PRIMARY_ORIGIN}/waarde/${modelSlug}/">
   <meta name="robots" content="${valuationState.robotsContent}">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
@@ -487,6 +493,7 @@ function renderGuidePageHtml(guide, database, baseUrl) {
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
@@ -520,6 +527,7 @@ function renderPartNumberHubHtml(database, baseUrl) {
   <link rel="canonical" href="${baseUrl}/onderdeelnummer/">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
@@ -569,6 +577,7 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
   <link rel="canonical" href="${baseUrl}/onderdeelnummer/stihl-${seriesCode}/">
   <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
@@ -616,15 +625,6 @@ function findModelBySlug(modelSlug, database) {
     const cleanSlug = slug.replace(/^stihl-/, '');
     return slug === modelSlug || cleanSlug === modelSlug || model.id.toLowerCase() === modelSlug;
   }) || null;
-}
-
-function resolveComparisonModels(pairSlug, database) {
-  if (!pairSlug || !pairSlug.includes('-vs-')) return null;
-  const [left, right] = pairSlug.split('-vs-').map((part) => part.trim().toLowerCase());
-  if (!left || !right) return null;
-  const modelA = findModelBySlug(left, database);
-  const modelB = findModelBySlug(right, database);
-  return modelA && modelB ? { modelA, modelB } : null;
 }
 
 function resolveStaticFilePath(pathname) {

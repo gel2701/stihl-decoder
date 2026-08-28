@@ -8,6 +8,7 @@ import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
+import { getFuelDriveLabel, getFuelTypeCode } from './publicationRules.js';
 
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
@@ -56,7 +57,7 @@ export function decodeStihlCode(inputStr, database = {}) {
     }
     return {
       success: false,
-      error: `Invoer bevat ${cleaned.length} cijfers. Een STIHL serienummer bestaat uit 9 cijfers.`
+      error: `Invoer bevat ${cleaned.length} cijfers. Veel STIHL machines gebruiken een 9-cijferige reeks, maar controleer altijd het typeplaatje en de context van de machine.`
     };
   }
 
@@ -127,6 +128,8 @@ export function analyzeModelQuery(modelStr, database) {
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
     sourceStatus,
     sourceStatusLabel,
+    fuel_type: matchedModelSpec ? getFuelTypeCode(matchedModelSpec) : 'UNKNOWN',
+    fuel_type_label: matchedModelSpec ? getFuelDriveLabel(matchedModelSpec) : 'Niet vastgesteld',
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     confidenceLabel: matchedModelSpec ? 'Direct Model Match' : 'Familie Overeenkomst',
     relationship: relationship ? {
@@ -203,10 +206,12 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     confidenceLabel: rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie',
     sourceStatus,
     sourceStatusLabel,
+    fuel_type: modelData ? getFuelTypeCode(modelData) : 'UNKNOWN',
+    fuel_type_label: modelData ? getFuelDriveLabel(modelData) : 'Niet vastgesteld',
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     technicalSpecs: sanitizedSpecs,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
-    notes: rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : `9-cijferig serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,
+    notes: rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,
     stopHelingUrl,
     stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
   };
