@@ -225,7 +225,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     <!-- Conversion Funnel CTAs -->
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
       <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-orange-400 text-sm block group-hover:underline">🛡️ 1. Maak Machinepaspoort</span>
+        <span class="font-bold text-orange-400 text-sm block group-hover:underline">📋 1. Maak Serienummer Rapport</span>
         <span class="text-gray-400 block text-2xs">Download een onafhankelijk verkooprapport</span>
       </a>
       <a href="/waarde/${slug}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
@@ -253,7 +253,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
         <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
         <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
-        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Machinepaspoort Maken</a>
+        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Serienummer Rapport Maken</a>
         <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
         <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
         <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>

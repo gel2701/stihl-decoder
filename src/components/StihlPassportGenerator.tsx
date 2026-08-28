@@ -10,7 +10,8 @@ export interface PassportData {
   displacementCc?: number | null;
   chainInfo?: string;
   theftCheck: {
-    isStolen: boolean;
+    isStolen?: boolean;
+    userSelfReported?: boolean;
     checkedAt: string;
     statusLabel: string;
   };
@@ -24,7 +25,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
     try {
       const dataUrl = await toPng(passportRef.current, { quality: 0.95, pixelRatio: 2 });
       const link = document.createElement('a');
-      link.download = `stihl-paspoort-${data.serialNumber}.png`;
+      link.download = `stihl-serienummer-rapport-${data.serialNumber}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -32,7 +33,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
     }
   };
 
-  const isStolen = data.theftCheck ? data.theftCheck.isStolen : false;
+  const isSelfReported = data.theftCheck ? Boolean(data.theftCheck.userSelfReported) : false;
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + data.serialNumber)}`;
   const chainText = data.chainInfo || '.325" @ 1.3 mm';
 
@@ -48,38 +49,34 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
         
         {/* Header */}
         <div className="flex justify-between items-start border-b border-neutral-800/80 pb-4">
-        <div>
-          <span className="text-[11px] font-mono uppercase tracking-widest text-orange-500 font-bold">
-              Onafhankelijk Machine Rapport
-          </span>
-          <h2 className="text-3xl font-black tracking-tight text-white mt-0.5">{data.modelName}</h2>
-        </div>
-        <div className="flex flex-col items-end gap-1">
-          <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wider">
-              BRONSTATUS ZICHTBAAR
-          </span>
-        </div>
+          <div>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-orange-500 font-bold">
+              Serienummer Rapport (indicatief)
+            </span>
+            <h2 className="text-3xl font-black tracking-tight text-white mt-0.5">{data.modelName}</h2>
+          </div>
+          <div className="flex flex-col items-end gap-1">
+            <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wider">
+              INDICATIEF OVERZICHT
+            </span>
+          </div>
         </div>
 
         {/* Stop Heling Veiligheidsbalk (Full Width Highlight) */}
-        <div className={`p-3 rounded-xl border flex items-center justify-between ${
-          isStolen 
-            ? 'bg-rose-950/40 border-rose-500/50 text-rose-300' 
-            : 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300'
-        }`}>
+        <div className="p-3 rounded-xl border flex items-center justify-between bg-neutral-900 border-neutral-700 text-neutral-300">
           <div className="flex items-center gap-2.5">
-            <span className="text-lg">{isStolen ? '🚨' : '🛡️'}</span>
+            <span className="text-lg">{isSelfReported ? '📋' : 'ℹ️'}</span>
             <div>
               <span className="text-xs font-bold uppercase tracking-wider block">
-                Stop Heling Diefstalcontrole
+                Stop Heling Diefstalcontrole Status
               </span>
-              <span className="text-sm font-black text-white">
-                {data.theftCheck ? data.theftCheck.statusLabel : '✓ NIET ALS GESTOLEN GEREGISTREERD'}
+              <span className="text-sm font-semibold text-white">
+                {data.theftCheck ? data.theftCheck.statusLabel : 'Niet gecontroleerd via StopHeling'}
               </span>
             </div>
           </div>
           <div className="text-right text-[11px] text-neutral-400">
-            <span>Checkdatum:</span>
+            <span>Datum:</span>
             <span className="font-mono text-white font-bold block">{data.theftCheck ? data.theftCheck.checkedAt : '26-08-2026'}</span>
           </div>
         </div>
@@ -107,14 +104,14 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
               <span className="text-[11px] text-neutral-400 block font-medium">Snijgarnituur / Kettingmaat (Standaard)</span>
               <span className="text-sm font-bold text-orange-300 font-mono">{chainText}</span>
             </div>
-            <span className="text-[10px] bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Zaaggroep Spec</span>
+            <span className="text-[10px] bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Indicatief overzicht</span>
           </div>
         </div>
 
         {/* Footer / Watermerk met QR-code */}
         <div className="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-xs text-neutral-400">
           <div>
-            <p className="font-semibold text-neutral-300">Onafhankelijk rapport voor serienummer- en bronstatuscontrole</p>
+            <p className="font-semibold text-neutral-300">Onafhankelijk rapport op basis van bekende serienummer- en herkomstdata</p>
             <p className="text-[10px] text-neutral-500">Scan QR-code voor live rapport en aanvullende handmatige controle</p>
           </div>
           <div className="flex items-center gap-3">
@@ -126,18 +123,12 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
         </div>
       </div>
 
-      {!isStolen ? (
-        <button
-          onClick={downloadImage}
-          className="px-6 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl shadow-lg flex items-center gap-2.5 transition active:scale-95 cursor-pointer"
-        >
-          🛡️ Download rapport met Stop Heling-statusveld & QR-code
-        </button>
-      ) : (
-        <div className="px-6 py-3.5 bg-rose-950/60 border border-rose-500/50 text-rose-300 font-bold rounded-xl text-center text-xs">
-          🚨 WAARSCHUWING: Download geblokkeerd voor als gestolen geregistreerde serienummers.
-        </div>
-      )}
+      <button
+        onClick={downloadImage}
+        className="px-6 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl shadow-lg flex items-center gap-2.5 transition active:scale-95 cursor-pointer"
+      >
+        📄 Download rapport met Stop Heling-statusveld & QR-code
+      </button>
     </div>
   );
 };

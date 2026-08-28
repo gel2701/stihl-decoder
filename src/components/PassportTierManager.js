@@ -12,20 +12,20 @@ export const PASSPORT_TIERS = {
       'Serienummer Fabrieksmatch',
       'Geschatte Productieperiode',
       'StopHeling Basischeck',
-      'Downloadbare Paspoort Afbeelding (PNG)'
+      'Downloadbare Rapport Afbeelding (PNG)'
     ]
   },
   PREMIUM: {
     id: 'premium',
-    name: 'Gecertificeerd Machinepaspoort Pro',
+    name: 'Serienummer Rapport Pro',
     price: 4.99,
     currency: 'EUR',
     features: [
       'Alles uit Gratis',
-      'QR-Code met Live Verificatie URL op stihldecoder.nl',
+      'QR-Code met Live Rapport URL op stihldecoder.nl',
       'Eigenaar Overdracht & Verkoop Historie',
       'Onderhoudshistorie & Reparatie Logboek',
-      'High-Res PDF Export met Officiële Stempel',
+      'High-Res PDF Export',
       'Marktplaats Direct Deelbare Link'
     ]
   }

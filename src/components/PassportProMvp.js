@@ -8,7 +8,7 @@ import { PASSPORT_PRO_PRICE } from './ValuationEngine.js';
 export function renderPassportProMvpCard({ modelName = 'STIHL Machine', abVariant = 'A' }) {
   const ctaText = abVariant === 'B' 
     ? 'Maak Professioneel Verkooprapport' 
-    : 'Maak Premium Machinepaspoort';
+    : 'Maak Premium Serienummer Rapport';
 
   return `
     <div class="bg-gradient-to-br from-gray-900 via-gray-900 to-orange-950/40 border border-orange-500/30 rounded-2xl p-6 shadow-xl space-y-4">
@@ -17,7 +17,7 @@ export function renderPassportProMvpCard({ modelName = 'STIHL Machine', abVarian
           <span class="px-2.5 py-0.5 rounded-full text-2xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block mb-1">
             PREMIUM RAPPORT
           </span>
-          <h3 class="text-lg font-bold text-white">Machinepaspoort Pro</h3>
+          <h3 class="text-lg font-bold text-white">Serienummer Rapport Pro</h3>
         </div>
         <span class="text-xl font-black text-orange-400 font-mono">€${PASSPORT_PRO_PRICE}</span>
       </div>

@@ -377,7 +377,7 @@ const server = http.createServer(async (req, res) => {
         <span class="text-xs text-gray-400 block font-medium">Indicatieve Marktwaarde Range (Tweedehands):</span>
         <span class="text-2xl font-black text-orange-400 font-mono">€250 - €550 (Afhankelijk van staat & bouwjaar)</span>
         <p class="text-xs text-gray-400 pt-2 border-t border-gray-800">
-          💡 Maak een <a href="/stihl-paspoort/" class="text-orange-400 underline">STIHL Machinepaspoort</a> met serienummer-controle voor een geverifieerd Marktplaats verkooprapport.
+          💡 Maak een <a href="/stihl-paspoort/" class="text-orange-400 underline">STIHL Serienummer Rapport (indicatief)</a> met serienummer-controle voor een Marktplaats verkoopoverzicht.
         </p>
       </div>
     </article>

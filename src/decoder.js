@@ -163,7 +163,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     }
   }
 
-  const modelName = modelData ? modelData.model_name : (rangeMatch ? (rangeMatch.model_name || 'STIHL Geverifieerde Machine') : 'MS 261 C-M Gen 2');
+  const modelName = modelData ? modelData.model_name : (rangeMatch ? (rangeMatch.model_name || 'STIHL Herkende Machine') : 'MS 261 C-M Gen 2');
   const category = modelData ? (modelData.category || modelData.category_slug) : 'Kettingzaag';
   const rawSpecs = modelData ? { ...modelData } : {};
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
@@ -186,7 +186,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
       yearRangeFormatted: estimatedYears,
       generation,
       confidence: 'MEDIUM',
-      technicalHighlights: modelData ? `Geverifieerde STIHL ${modelName} fabrieksserie op basis van serienummerbereik.` : 'Serie-identificatie op basis van bekende fabrieksbreakpoints.'
+      technicalHighlights: modelData ? `Bekende STIHL ${modelName} fabrieksserie op basis van serienummerbereik.` : 'Serie-identificatie op basis van bekende fabrieksbreakpoints.'
     },
     estimatedYears,
     generation,
@@ -214,7 +214,7 @@ export function analyzePartNumber(partStr, database) {
       status: 'NOT_FOUND',
       type: 'PART_NUMBER',
       input: partStr,
-      error: `Onbekende STIHL onderdeelreeks (${familyCode}). Voeg een bevestigd model of officieel onderdeelnummer toe.`
+      error: `Onbekende STIHL onderdeelreeks (${familyCode}). Voeg een bekend model of onderdeelnummer toe.`
     };
   }
 
