@@ -1,18 +1,42 @@
 /**
- * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification, Chain Specs & Unobscured QR Code
+ * Stihl Digitaal Machine Paspoort Generator Component & 1200x900px Canvas Exporter with Stop Heling Verification, Category Whitelisting & Unobscured QR Code
+ * Phase 33 Category Specification Whitelist & Leak Prevention
  */
+
+import { normalizeCategorySlug, CATEGORY_TYPES } from '../categoryWhitelist.js';
 
 export function renderStihlPassportHtml(data) {
   const serial = data.cleanedSerial || data.serialNumber || '184592301';
   const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
-  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL MS 261 C-M Gen 2');
+  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Machine');
+  const categoryStr = data.category || (data.modelMatch && data.modelMatch.category) || model;
+  const catSlug = normalizeCategorySlug(categoryStr, model);
+  const isChainsaw = (catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW);
+
   const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 – Heden');
-  const dispCc = (data.modelMatch && data.modelMatch.specs.displacementCc) || 50.2;
-  const powerHp = (data.modelMatch && data.modelMatch.specs.powerHp) || 4.1;
-  const chainInfo = (data.modelMatch && data.modelMatch.specs.chainDetails) ? 
-    (typeof data.modelMatch.specs.chainDetails === 'string' ? data.modelMatch.specs.chainDetails : `${data.modelMatch.specs.chainDetails.pitch} @ ${data.modelMatch.specs.chainDetails.gauge || 1.3} mm`) : 
-    (data.chainInfo || '.325" @ 1.3 mm');
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Geverifieerd');
+  const dispCc = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.displacementCc) || (data.technicalSpecs && data.technicalSpecs.displacement_cc);
+  const powerHp = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.powerHp) || (data.technicalSpecs && data.technicalSpecs.power_hp);
+
+  let categorySpecLabel = 'Machine Categorie & Uitvoering';
+  let categorySpecValue = 'Standaard STIHL Fabrieksuitvoering';
+
+  if (isChainsaw) {
+    categorySpecLabel = 'Snijgarnituur / Kettingmaat (Standaard)';
+    const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
+    categorySpecValue = chainDetails ? 
+      (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
+      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm');
+  } else if (catSlug === CATEGORY_TYPES.BLOWER) {
+    categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
+    categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
+  } else if (catSlug === CATEGORY_TYPES.BRUSHCUTTER) {
+    categorySpecLabel = 'Aandrijving & Bosmaaier Systeem';
+    categorySpecValue = 'STIHL Profi Bosmaaier / Trimmer Systeem';
+  } else if (catSlug === CATEGORY_TYPES.CUTOFF_SAW) {
+    categorySpecLabel = 'Aandrijving & Doorslijper Systeem';
+    categorySpecValue = 'STIHL Cycloon Luchtfiltersysteem Doorslijper';
+  }
 
   const theftCheck = data.theftCheck || {
     isStolen: false,
@@ -21,7 +45,7 @@ export function renderStihlPassportHtml(data) {
   };
 
   const isStolen = theftCheck.isStolen;
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + serial)}`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://www.stihldecoder.nl/?s=' + serial)}`;
 
   return `
     <div id="stihl-passport-card" class="bg-neutral-950 border border-neutral-800 rounded-2xl p-7 text-white font-sans max-w-xl mx-auto my-6 shadow-2xl relative overflow-hidden space-y-4">
@@ -53,7 +77,7 @@ export function renderStihlPassportHtml(data) {
         </div>
       </div>
 
-      <!-- Grid with Chain Specs -->
+      <!-- Grid with Category Specifications -->
       <div class="grid grid-cols-2 gap-3 text-xs">
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">Serienummer</span>
@@ -69,14 +93,14 @@ export function renderStihlPassportHtml(data) {
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">Motor Specificaties</span>
-          <span class="text-sm font-bold text-white">${dispCc ? dispCc + ' cc / ' : ''}${powerHp} pk</span>
+          <span class="text-sm font-bold text-white">${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Geverifieerd'}</span>
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2 flex justify-between items-center">
           <div>
-            <span class="text-2xs text-neutral-400 block font-medium">Snijgarnituur / Kettingmaat (Standaard)</span>
-            <span class="text-sm font-bold text-orange-300 font-mono">${chainInfo}</span>
+            <span class="text-2xs text-neutral-400 block font-medium">${categorySpecLabel}</span>
+            <span class="text-sm font-bold text-orange-300 font-mono">${categorySpecValue}</span>
           </div>
-          <span class="text-3xs bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Zaaggroep Spec</span>
+          <span class="text-3xs bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Geverifieerde Spec</span>
         </div>
       </div>
 
@@ -84,7 +108,7 @@ export function renderStihlPassportHtml(data) {
       <div class="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400 gap-4">
         <div class="space-y-0.5">
           <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop op Marktplaats & 2dehands.be</p>
-          <span class="font-mono font-black text-orange-500 text-sm block">stihldecoder.nl</span>
+          <span class="font-mono font-black text-orange-500 text-sm block">www.stihldecoder.nl</span>
           <p class="text-neutral-500 text-3xs">Scan QR-code met uw mobiel voor het live verificatierapport</p>
         </div>
         <div class="flex-shrink-0 flex items-center gap-2">
@@ -98,14 +122,35 @@ export function renderStihlPassportHtml(data) {
 export function downloadStihlPassportImage(data) {
   const serial = data.cleanedSerial || data.serialNumber || '184592301';
   const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
-  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL MS 261 C-M Gen 2');
+  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Machine');
+  const categoryStr = data.category || (data.modelMatch && data.modelMatch.category) || model;
+  const catSlug = normalizeCategorySlug(categoryStr, model);
+  const isChainsaw = (catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW);
+
   const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || '2016 – Heden');
-  const dispCc = (data.modelMatch && data.modelMatch.specs.displacementCc) || 50.2;
-  const powerHp = (data.modelMatch && data.modelMatch.specs.powerHp) || 4.1;
-  const chainInfo = (data.modelMatch && data.modelMatch.specs.chainDetails) ? 
-    (typeof data.modelMatch.specs.chainDetails === 'string' ? data.modelMatch.specs.chainDetails : `${data.modelMatch.specs.chainDetails.pitch} @ ${data.modelMatch.specs.chainDetails.gauge || 1.3} mm`) : 
-    (data.chainInfo || '.325" @ 1.3 mm');
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Geverifieerd');
+  const dispCc = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.displacementCc) || (data.technicalSpecs && data.technicalSpecs.displacement_cc);
+  const powerHp = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.powerHp) || (data.technicalSpecs && data.technicalSpecs.power_hp);
+
+  let categorySpecLabel = 'Machine Categorie & Uitvoering';
+  let categorySpecValue = 'Standaard STIHL Fabrieksuitvoering';
+
+  if (isChainsaw) {
+    categorySpecLabel = 'Snijgarnituur / Kettingmaat (Standaard)';
+    const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
+    categorySpecValue = chainDetails ? 
+      (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
+      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm');
+  } else if (catSlug === CATEGORY_TYPES.BLOWER) {
+    categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
+    categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
+  } else if (catSlug === CATEGORY_TYPES.BRUSHCUTTER) {
+    categorySpecLabel = 'Aandrijving & Bosmaaier Systeem';
+    categorySpecValue = 'STIHL Profi Bosmaaier / Trimmer Systeem';
+  } else if (catSlug === CATEGORY_TYPES.CUTOFF_SAW) {
+    categorySpecLabel = 'Aandrijving & Doorslijper Systeem';
+    categorySpecValue = 'STIHL Cycloon Luchtfiltersysteem Doorslijper';
+  }
 
   const theftCheck = data.theftCheck || {
     isStolen: false,
@@ -113,7 +158,6 @@ export function downloadStihlPassportImage(data) {
     statusLabel: '✓ NIET ALS GESTOLEN GEREGISTREERD'
   };
 
-  // STRICT SECURITY GUARD: Block passport generation if marked as stolen
   if (theftCheck.isStolen) {
     alert('🚨 DOWNLOAD GEBLOKKEERD: Dit serienummer staat als gestolen geregistreerd in het StopHeling register van de politie.');
     return;
@@ -200,17 +244,17 @@ export function downloadStihlPassportImage(data) {
     ctx.fillText('Motor Specificaties', 645, 455);
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 28px sans-serif';
-    ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp} pk`, 645, 510);
+    ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Geverifieerd'}`, 645, 510);
 
-    // Snijgarnituur / Kettingmaat Full Row Card
+    // Category Specific Full Row Card
     ctx.fillStyle = '#171717';
     ctx.fillRect(60, 580, 1080, 120);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText('Snijgarnituur / Kettingmaat (Standaard)', 90, 615);
+    ctx.fillText(categorySpecLabel, 90, 615);
     ctx.fillStyle = '#fb923c';
     ctx.font = 'bold 30px monospace';
-    ctx.fillText(chainInfo, 90, 665);
+    ctx.fillText(categorySpecValue, 90, 665);
 
     // Footer Divider
     ctx.strokeStyle = '#262626';
@@ -220,38 +264,34 @@ export function downloadStihlPassportImage(data) {
     ctx.lineTo(1140, 730);
     ctx.stroke();
 
-    // Footer Text Left (Explicitly unblocked layout)
-    ctx.fillStyle = '#d4d4d4';
-    ctx.font = 'bold 18px sans-serif';
-    ctx.fillText('Geverifieerd document voor verkoop op Marktplaats & 2dehands.be', 60, 765);
-
-    // Domain Name (Large, crisp orange monospace - 100% visible on left)
-    ctx.fillStyle = '#ea580c';
-    ctx.font = 'bold 32px monospace';
-    ctx.fillText('stihldecoder.nl', 60, 810);
-
+    // Footer Text & Domain
     ctx.fillStyle = '#737373';
-    ctx.font = '15px sans-serif';
-    ctx.fillText(`Politiedatabase StopHeling check • Scan QR-code voor live rapport`, 60, 840);
+    ctx.font = '16px sans-serif';
+    ctx.fillText('Geverifieerd document voor verkoop op Marktplaats & 2dehands.be', 60, 770);
+    ctx.fillStyle = '#f97316';
+    ctx.font = 'bold 24px monospace';
+    ctx.fillText('www.stihldecoder.nl', 60, 810);
+    ctx.fillStyle = '#525252';
+    ctx.font = '14px sans-serif';
+    ctx.fillText('Scan QR-code met uw mobiel voor het live verificatierapport', 60, 840);
 
-    // Draw QR Code Image cleanly on the far right (X=1040 to 1140)
+    // Draw QR Code
     if (qrImageElement) {
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(1030, 745, 110, 110);
-      ctx.drawImage(qrImageElement, 1035, 750, 100, 100);
+      ctx.fillRect(1000, 745, 140, 140);
+      ctx.drawImage(qrImageElement, 1010, 755, 120, 120);
     }
 
-    // Export PNG
     const link = document.createElement('a');
-    link.download = `stihl-paspoort-${serial}.png`;
-    link.href = canvas.toDataURL('image/png', 0.95);
+    link.download = `STIHL_Paspoort_${serial}_${model.replace(/\s+/g, '_')}.png`;
+    link.href = canvas.toDataURL('image/png');
     link.click();
   }
 
-  // Load compact QR code for canvas drawing
   const qrImg = new Image();
-  qrImg.crossOrigin = 'Anonymous';
+  qrImg.crossOrigin = 'anonymous';
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent('https://www.stihldecoder.nl/?s=' + serial)}`;
   qrImg.onload = () => renderCanvasAndDownload(qrImg);
   qrImg.onerror = () => renderCanvasAndDownload(null);
-  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent('https://stihldecoder.nl/?s=' + serial)}`;
+  qrImg.src = qrUrl;
 }

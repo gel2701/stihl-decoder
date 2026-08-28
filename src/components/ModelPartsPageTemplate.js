@@ -40,6 +40,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
 
   const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
 
+  const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
+
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
@@ -59,59 +61,56 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
         <div>
           <span class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">Onderdelen Gids</span>
           </span>
-          <p class="text-xs text-gray-400">Geverifieerde Onderdelen & Compatibiliteit</p>
+          <span class="text-2xs text-gray-400 block -mt-1 font-mono">Model Onderdelen Gids</span>
         </div>
       </a>
-      <a href="/${categorySlug}/${slug}/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar STIHL ${model.model_name} Modelgids</a>
+      <a href="/${categorySlug}/${slug}/" class="text-xs text-orange-400 font-bold hover:underline">
+        ← Terug naar STIHL ${model.model_name}
+      </a>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full space-y-8">
-    
-    <!-- Breadcrumbs -->
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-1 w-full space-y-8">
     ${breadcrumbsHtml}
 
-    <!-- Header & H1 Title -->
-    <header class="space-y-3">
+    <header class="space-y-3 border-b border-gray-800 pb-6">
       <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block">
-        Serie ${model.series_code || '1141'} Onderdelen
+        Onderdelen & Vervanging
       </span>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        STIHL ${model.model_name} Onderdelen & Vervangingsgids
+        STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Gids voor het selecteren van de juiste onderdelen voor uw STIHL ${model.model_name}. Onderdeelnummers behorende bij serie <strong>${model.series_code || '1141'}</strong>.
+        Bekijk de geverifieerde vervangingsonderdelen voor de STIHL ${model.model_name}. Vind de juiste bougie, luchtfilter, membraanset en slijtagedelen op basis van de fabrieksspecificaties.
       </p>
     </header>
 
-    <!-- Essential Maintenance Parts Grid -->
+    <!-- Essential Parts Grid -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-black border-b border-gray-800 pb-2 text-white flex items-center justify-between">
-        <span>Geverifieerde Onderdelen & Specificaties</span>
-        <span class="text-xs text-gray-400 font-normal">Serie ${model.series_code || '1141'}</span>
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span>Geverifieerde Vervangingsonderdelen STIHL ${model.model_name}</span>
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
         <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Bougie & Ontsteking</span>
-            <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Onderhoud</span>
+            <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Elektrisch</span>
           </div>
-          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white">${model.spark_plug || 'NGK CMR6H / BPMR7A'}</strong></p>
-          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white">${model.electrode_gap_mm || 0.5} mm</strong></p>
+          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${model.spark_plug || 'NGK BPMR7A / CMR6H'}</strong></p>
+          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${model.electrode_gap_mm ? `${model.electrode_gap_mm} mm` : '0.5 mm'}</strong></p>
           <div class="pt-2">
             ${renderAffiliateLink({
-              partName: `Bougie voor STIHL ${model.model_name}`,
-              partNumber: model.spark_plug || 'NGK BPMR7A',
+              partName: `Bougie ${model.spark_plug || 'NGK BPMR7A'} voor STIHL ${model.model_name}`,
+              partNumber: model.spark_plug ? model.spark_plug.replace(/\s+/g, '') : 'NGK-BPMR7A',
               category: 'spark_plug'
             })}
           </div>
         </div>
 
-        ${model.chain_pitch ? `
+        ${(isChainsaw && model.chain_pitch) ? `
           <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
             <div class="flex justify-between items-center">
               <span class="font-bold text-white text-sm">Zaagketting & Geleideblad</span>

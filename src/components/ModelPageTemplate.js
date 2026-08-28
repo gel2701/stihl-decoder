@@ -42,6 +42,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
   const isPetrol = (model.fuel_type || 'PETROL_2STROKE').startsWith('PETROL');
   const isBattery = (model.fuel_type || '').startsWith('BATTERY');
+  const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
 
   // Model comparison partner detection
   const comparisonPartner = getComparisonPartner(model, database);
@@ -163,7 +164,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
           </div>
         ` : ''}
 
-        ${model.chain_pitch ? `
+        ${(isChainsaw && model.chain_pitch) ? `
           <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
             <span class="text-gray-400 block">Kettingsteek & Dikte (Standaard):</span>
             <span class="text-base font-bold text-white font-mono">${model.chain_pitch} @ ${model.chain_gauge_mm ? `${model.chain_gauge_mm} mm` : 'Niet vastgesteld'}</span>
