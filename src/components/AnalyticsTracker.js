@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getDatabaseConnection, isPersistentDiskActive } from '../databaseConfig.js';
+import { getDatabaseConnection, getDatabaseHealthSnapshot, isPersistentDiskActive } from '../databaseConfig.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -79,65 +79,59 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
   const pagePath = cleanMetadata.source_page || '/';
   const metadataJson = JSON.stringify(cleanMetadata);
   const createdAt = new Date().toISOString();
+  const dbHealth = getDatabaseHealthSnapshot();
 
-  // 3. Persistent Storage to Central SQLite Connection
   const db = getDatabaseConnection();
-  if (db) {
-    try {
-      db.run(
-        `INSERT OR IGNORE INTO analytics_events (event_id, event_type, model_slug, page_path, metadata_json, is_test, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [eventId, eventType, modelSlug, pagePath, metadataJson, isTest ? 1 : 0, createdAt],
-        (err) => {
-          if (err) console.error('⚠️ SQLite event insert error:', err.message);
-        }
-      );
-    } catch (err) {
-      console.warn('⚠️ SQLite analytics fallback trigger:', err.message);
-    }
+  if (!db || !dbHealth.analyticsSchemaReady) {
+    console.warn('[AnalyticsTracker] SQLite analytics unavailable or schema not ready.');
+    return {
+      status: 'UNAVAILABLE',
+      eventId,
+      eventType,
+      reason: db ? 'SCHEMA_NOT_READY' : 'NO_DATABASE_CONNECTION'
+    };
   }
 
-  // 4. Fallback JSON Storage
+  try {
+    db.run(
+      `INSERT OR IGNORE INTO analytics_events (event_id, event_type, model_slug, page_path, metadata_json, is_test, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [eventId, eventType, modelSlug, pagePath, metadataJson, isTest ? 1 : 0, createdAt],
+      (err) => {
+        if (err) console.error('⚠️ SQLite event insert error:', err.message);
+      }
+    );
+  } catch (err) {
+    console.warn('⚠️ SQLite analytics write failed:', err.message);
+    return {
+      status: 'DB_WRITE_ERROR',
+      eventId,
+      eventType,
+      reason: err.message
+    };
+  }
+
+  console.log(`[EventTracked-Persistent] ${eventType}`, metadataJson);
+  return { status: 'QUEUED', eventId, eventType, isTest };
+}
+
+function readAnalyticsEventsFromJson() {
   try {
     if (fs.existsSync(jsonPath)) {
       const dbJson = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-      if (!dbJson.analytics_events) dbJson.analytics_events = [];
-      
-      // Deduplicate on eventId
-      if (!dbJson.analytics_events.some(e => e.event_id === eventId)) {
-        dbJson.analytics_events.push({
-          event_id: eventId,
-          event_type: eventType,
-          model_slug: modelSlug,
-          page_path: pagePath,
-          metadata_json: metadataJson,
-          is_test: isTest ? 1 : 0,
-          created_at: createdAt
-        });
-        if (dbJson.analytics_events.length > 2000) {
-          dbJson.analytics_events = dbJson.analytics_events.slice(-2000);
-        }
-        fs.writeFileSync(jsonPath, JSON.stringify(dbJson, null, 2), 'utf8');
-      }
+      return dbJson.analytics_events || [];
     }
-  } catch (err) {}
-
-  console.log(`[EventTracked-Persistent] ${eventType}`, metadataJson);
-  return { status: 'SUCCESS', eventId, eventType, isTest };
+  } catch (e) {}
+  return [];
 }
 
-// Backward compatibility alias
 export function logStihlEvent(eventName, payload = {}, reqUserAgent = '', isTest = false) {
   return trackEvent(eventName, payload, reqUserAgent, isTest);
 }
 
 export function getConversionDashboardMetrics() {
-  let events = [];
-  try {
-    if (fs.existsSync(jsonPath)) {
-      const dbJson = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-      events = dbJson.analytics_events || [];
-    }
-  } catch (e) {}
+  let events = readAnalyticsEventsFromJson();
+  const dbHealth = getDatabaseHealthSnapshot();
+  const persistentActive = isPersistentDiskActive();
 
   const prodEvents = events.filter(e => !e.is_test);
   const count = (type) => prodEvents.filter(e => e.event_type === type).length;
@@ -153,12 +147,11 @@ export function getConversionDashboardMetrics() {
   const repairLeads = count(EVENT_TYPES.REPAIR_LEAD_COMPLETED);
   const sellLeads = count(EVENT_TYPES.SELL_LEAD_COMPLETED);
 
-  const persistentActive = isPersistentDiskActive();
-
   return {
     status: prodEvents.length > 0 ? 'REAL_PRODUCTION_DATA' : 'NO_PRODUCTION_DATA_YET',
     databasePersistence: persistentActive ? 'PERSISTENT_DISK' : 'EPHEMERAL_FILESYSTEM (Render container storage resets on rebuild)',
     persistentDiskActive: persistentActive,
+    databaseHealth: dbHealth.analyticsSchemaReady ? 'READY' : 'MIGRATION_REQUIRED',
     seoFreezeStatus: SEO_CONTENT_FREEZE,
     totalProductionEvents: prodEvents.length,
     totalTestEvents: events.filter(e => e.is_test).length,
@@ -178,13 +171,7 @@ export function getConversionDashboardMetrics() {
 }
 
 export function getContentGapReport(databaseModels = []) {
-  let events = [];
-  try {
-    if (fs.existsSync(jsonPath)) {
-      const dbJson = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-      events = dbJson.analytics_events || [];
-    }
-  } catch (e) {}
+  let events = readAnalyticsEventsFromJson();
 
   const prodEvents = events.filter(e => !e.is_test);
   const searches = prodEvents.filter(e => e.event_type === EVENT_TYPES.INTERNAL_MODEL_SEARCH || e.event_type === EVENT_TYPES.MODEL_IDENTIFIED);

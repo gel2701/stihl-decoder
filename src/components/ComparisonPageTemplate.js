@@ -6,6 +6,7 @@
 import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
+import { getModelVerificationSummary } from '../canonicalData.js';
 
 export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://stihldecoder.nl') {
   const parts = pairSlug.split('-vs-');
@@ -13,11 +14,13 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
   const slugB = parts[1] ? parts[1].toLowerCase() : 'ms-261';
 
   const models = database.models || [];
-  const modelA = models.find(m => m.slug === slugA || m.id.replace(/_/g, '-') === slugA) || models.find(m => m.slug === 'ms-260');
-  const modelB = models.find(m => m.slug === slugB || m.id.replace(/_/g, '-') === slugB) || models.find(m => m.slug === 'ms-261');
+  const modelA = models.find(m => m.slug === slugA || m.id.replace(/_/g, '-') === slugA);
+  const modelB = models.find(m => m.slug === slugB || m.id.replace(/_/g, '-') === slugB);
 
   const nameA = modelA ? modelA.model_name : slugA.toUpperCase();
   const nameB = modelB ? modelB.model_name : slugB.toUpperCase();
+  const verificationA = modelA ? getModelVerificationSummary(modelA) : null;
+  const verificationB = modelB ? getModelVerificationSummary(modelB) : null;
 
   const canonicalUrl = `${baseUrl}/vergelijk/${slugA}-vs-${slugB}/`;
 
@@ -39,7 +42,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
 
   const seoMetaHtml = renderSeoMeta({
     title: `STIHL ${nameA} vs STIHL ${nameB} Vergelijking & Verschillen | STIHLDecoder`,
-    description: `Twijfelt u tussen de STIHL ${nameA} en de STIHL ${nameB}? Bekijk alle technische verschillen, gewicht, pk's, M-Tronic opties en tweedehands advies.`,
+    description: `Twijfelt u tussen de STIHL ${nameA} en de STIHL ${nameB}? Vergelijk zichtbare modeldata en bronstatus, en controleer de machine-uitvoering voordat u onderdelen of waardeclaims overneemt.`,
     canonicalUrl,
     ogType: 'article',
     jsonLdData
@@ -90,7 +93,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
         STIHL ${nameA} vs STIHL ${nameB}: Belangrijkste Verschillen
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Twijfelt u tussen een STIHL ${nameA} en een STIHL ${nameB}? Bekijk onze gedetailleerde vergelijking van technische specificaties, cilinderinhoud, gewicht, carburateurtechnologie en tweedehands verkoopwaarden op Marktplaats.
+        Twijfelt u tussen een STIHL ${nameA} en een STIHL ${nameB}? Bekijk onze vergelijking van zichtbare modeldata, technische verschillen en bronstatus. Controleer de uitvoering op typeplaatje of machine voordat u onderdelen of waardeclaims overneemt.
       </p>
     </header>
 
@@ -98,7 +101,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
     <section class="space-y-4">
       <h2 class="text-2xl font-black border-b border-gray-800 pb-2 text-white flex items-center justify-between">
         <span>Directe Vergelijkingstabel</span>
-        <span class="text-xs text-gray-400 font-normal">Geverifieerde Data</span>
+        <span class="text-xs text-gray-400 font-normal">Bronstatus zichtbaar per model</span>
       </h2>
 
       <div class="overflow-x-auto">
@@ -111,6 +114,11 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-800 text-gray-200">
+            <tr>
+              <td class="p-4 font-bold text-gray-400">Bronstatus</td>
+              <td class="p-4 font-bold text-white">${verificationA ? verificationA.badgeLabel : 'Bronstatus onbekend'}</td>
+              <td class="p-4 font-bold text-white">${verificationB ? verificationB.badgeLabel : 'Bronstatus onbekend'}</td>
+            </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Motorvermogen</td>
               <td class="p-4 font-bold text-white">${modelA.power_hp ? `${modelA.power_hp} pk (${modelA.power_kw} kW)` : 'Niet vastgesteld'}</td>
@@ -128,18 +136,18 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Carburateur / Systeem</td>
-              <td class="p-4 font-mono text-gray-300">${modelA.carb_h_setting || 'Standaard / M-Tronic'}</td>
-              <td class="p-4 font-mono text-gray-300">${modelB.carb_h_setting || 'Standaard / M-Tronic'}</td>
+              <td class="p-4 font-mono text-gray-300">${modelA.carb_h_setting || 'Niet vastgesteld'}</td>
+              <td class="p-4 font-mono text-gray-300">${modelB.carb_h_setting || 'Niet vastgesteld'}</td>
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Bougie & Afstand</td>
-              <td class="p-4">${modelA.spark_plug || 'NGK BPMR7A'}</td>
-              <td class="p-4">${modelB.spark_plug || 'NGK CMR6H'}</td>
+              <td class="p-4">${modelA.spark_plug || 'Niet vastgesteld'}</td>
+              <td class="p-4">${modelB.spark_plug || 'Niet vastgesteld'}</td>
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Kettingsteek / Dikte</td>
-              <td class="p-4 font-mono">${modelA.chain_pitch || '.325"'} @ ${modelA.chain_gauge_mm || 1.3} mm</td>
-              <td class="p-4 font-mono">${modelB.chain_pitch || '.325"'} @ ${modelB.chain_gauge_mm || 1.3} mm</td>
+              <td class="p-4 font-mono">${modelA.chain_pitch ? `${modelA.chain_pitch} @ ${modelA.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld'}</td>
+              <td class="p-4 font-mono">${modelB.chain_pitch ? `${modelB.chain_pitch} @ ${modelB.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld'}</td>
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Status & Uitvoering</td>
@@ -158,7 +166,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
         <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
           <h4 class="font-bold text-orange-400 text-sm">Wanneer kiest u voor de STIHL ${nameA}?</h4>
           <p>
-            De <strong>STIHL ${nameA}</strong> staat bekend om zijn betrouwbare ${modelA.displacement_cc || 50} cc motor. Met een gewicht van ${modelA.weight_kg || 4.8} kg is dit een uitstekende keuze voor wie zoekt naar bewezen robuuste techniek met handmatige afstelmogelijkheden.
+            De <strong>STIHL ${nameA}</strong> is vooral interessant als de bekende specificaties, onderhoudsstaat en beoogde toepassing beter bij uw gebruik passen. Controleer het typeplaatje en de feitelijke uitvoering voordat u onderdelen of waardeclaims overneemt.
           </p>
           <a href="/${modelA.category_slug || 'kettingzagen'}/${modelA.slug || slugA}/" class="text-orange-400 font-bold hover:underline inline-block pt-1">Bekijk STIHL ${nameA} Modelgids →</a>
         </div>
@@ -166,7 +174,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
         <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
           <h4 class="font-bold text-orange-400 text-sm">Wanneer kiest u voor de STIHL ${nameB}?</h4>
           <p>
-            De <strong>STIHL ${nameB}</strong> biedt een hoger vermogen van ${modelB.power_hp || 4.1} pk. Dit model is uitgerust met modernere motortechnologie (zoals M-Tronic of lichter vliegwiel) voor snellere gasrespons en maximale zaagprestaties.
+            De <strong>STIHL ${nameB}</strong> kan aantrekkelijk zijn wanneer de gedocumenteerde specificaties en onderdelenbeschikbaarheid beter aansluiten op uw werk. Gebruik deze vergelijking als vertrekpunt en verifieer de uitvoering op de machine zelf.
           </p>
           <a href="/${modelB.category_slug || 'kettingzagen'}/${modelB.slug || slugB}/" class="text-orange-400 font-bold hover:underline inline-block pt-1">Bekijk STIHL ${nameB} Modelgids →</a>
         </div>
@@ -177,7 +185,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
     <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl space-y-3">
       <h3 class="text-base font-bold text-white">Serienummer van uw machine verifiëren?</h3>
       <p class="text-xs text-gray-300">
-        Voer het 9-cijferige serienummer van uw STIHL zaag in om te bepalen of het om een ${nameA} of ${nameB} gaat.
+        Voer het 9-cijferige serienummer in voor formaat- en herkomstcontrole. Gebruik daarnaast het typeplaatje om het exacte model te bevestigen.
       </p>
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
         <input 

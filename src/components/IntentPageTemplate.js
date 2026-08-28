@@ -5,6 +5,7 @@
 import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
+import { getModelVerificationSummary } from '../canonicalData.js';
 
 export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihldecoder.nl') {
   const canonicalUrl = `${baseUrl}/${intent.slug}/`;
@@ -86,7 +87,7 @@ export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihld
           <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           Serienummer direct analyseren:
         </h2>
-        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Instant Checker</span>
+        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Formaat- en herkomstcheck</span>
       </div>
 
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
@@ -113,12 +114,13 @@ export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihld
 
     <!-- Popular Models Grid Interlinking -->
     <section class="space-y-3 pt-2">
-      <h3 class="text-sm font-bold text-white">Bekijk Geverifieerde STIHL Modellen:</h3>
+      <h3 class="text-sm font-bold text-white">Bekijk STIHL Modellen met zichtbare bronstatus:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
         ${models.map(m => {
           const cat = m.category_slug || 'kettingzagen';
           const slg = m.slug || m.id.replace(/_/g, '-');
-          return `<a href="/${cat}/${slg}/" class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl hover:border-orange-500 text-gray-200 font-bold block">STIHL ${m.model_name}</a>`;
+          const verification = getModelVerificationSummary(m);
+          return `<a href="/${cat}/${slg}/" class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl hover:border-orange-500 text-gray-200 font-bold block">STIHL ${m.model_name}<span class="block text-2xs text-gray-400 mt-1">${verification.badgeLabel}</span></a>`;
         }).join('')}
       </div>
     </section>

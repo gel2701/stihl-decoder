@@ -4,11 +4,11 @@
 
 export function renderSeoMeta({ title, description, canonicalUrl, ogType = 'website', jsonLdData }) {
   const defaultTitle = 'STIHL Serienummer & Bouwjaar Decoder | STIHLDecoder';
-  const defaultDesc = 'Controleer het 9-cijferige serienummer van uw STIHL kettingzaag, bosmaaier of bladblazer. Bepaal fabriek van herkomst, geschatte productieperiode, bougie en carburateurafstelling.';
+  const defaultDesc = 'Controleer het 9-cijferige serienummer van uw STIHL machine en bekijk de zichtbare bronstatus van modeldata, zonder ongefundeerde model- of bouwjaarclaims.';
   
   const metaTitle = title || defaultTitle;
   const metaDesc = description || defaultDesc;
-  const canonical = canonicalUrl || 'https://stihldecoder.nl/';
+  const canonical = canonicalUrl || 'https://www.stihldecoder.nl/';
 
   return `
     <meta charset="UTF-8">

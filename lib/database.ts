@@ -24,6 +24,10 @@ export interface ModelData {
   oilMixRatio: string | null;
   batterySystem: string | null;
   voltageV: number | null;
+  dataConfidence?: string | null;
+  dataStatus?: string | null;
+  sourceDocumentNumber?: string | null;
+  sourceLabel?: string | null;
   updatedAt?: string;
 }
 
@@ -32,6 +36,16 @@ export interface GuideData {
   title: string;
   description: string;
   updatedAt?: string;
+}
+
+export interface CanonicalMeta {
+  schema_version?: number;
+  canonical_store?: string;
+  canonical_file?: string;
+  sqlite_role?: string;
+  homepage_data_source?: string;
+  rebuilt_at?: string;
+  policy_note?: string;
 }
 
 function loadJsonDatabase() {
@@ -72,6 +86,10 @@ export async function getAllModels(): Promise<ModelData[]> {
     oilMixRatio: m.oil_mix_ratio || null,
     batterySystem: m.battery_system || null,
     voltageV: m.voltage_v || null,
+    dataConfidence: m.data_confidence || null,
+    dataStatus: m.data_status || null,
+    sourceDocumentNumber: m.provenance?.source_document_number || null,
+    sourceLabel: m.data_source || null,
     updatedAt: new Date().toISOString()
   }));
 }
@@ -89,4 +107,9 @@ export async function getAllGuides(): Promise<GuideData[]> {
     { slug: 'namaak-stihl-herkennen', title: 'Namaak STIHL Herkennen', description: 'Kloon en nep zagen herkennen' },
     { slug: 'serienummer-locaties', title: 'Serienummer Locaties', description: 'Waar vind u het serienummer' }
   ];
+}
+
+export async function getCanonicalMeta(): Promise<CanonicalMeta> {
+  const db = loadJsonDatabase();
+  return db.meta || {};
 }

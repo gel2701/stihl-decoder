@@ -57,8 +57,8 @@ console.log(`📡 Total Sitemap URLs: ${sitemapLocs.length}`);
 console.log(`📡 WWW Sitemap URLs: ${wwwMatches}`);
 console.log(`📡 Non-WWW Sitemap URLs: ${nonWwwMatches}`);
 
-const sitemapPass = (sitemapLocs.length === 90 && nonWwwMatches === 0 && wwwMatches === 90);
-console.log(`✅ Sitemap WWW Canonical Test: ${sitemapPass ? 'PASSED (90/90 URLs use https://www.stihldecoder.nl)' : 'FAILED'}`);
+const sitemapPass = (sitemapLocs.length > 0 && nonWwwMatches === 0 && wwwMatches === sitemapLocs.length);
+console.log(`✅ Sitemap WWW Canonical Test: ${sitemapPass ? `PASSED (${wwwMatches}/${sitemapLocs.length} URLs use https://www.stihldecoder.nl)` : 'FAILED'}`);
 
 // 5. Audit Model Page HTML Canonical Tag
 const modelRes = await fetchUrl('http://localhost:3096/kettingzagen/ms-261/');

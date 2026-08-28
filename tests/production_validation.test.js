@@ -2,6 +2,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PRIMARY_ORIGIN } from '../src/config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,7 +44,7 @@ const internalLinksFound = new Set();
 internalLinksFound.add('/');
 
 for (const fullUrl of sitemapUrls) {
-  const relPath = fullUrl.replace('https://stihldecoder.nl', '');
+  const relPath = fullUrl.replace(PRIMARY_ORIGIN, '');
   const localUrl = `http://localhost:3099${relPath}`;
   const res = await fetchUrl(localUrl);
 
@@ -120,7 +121,7 @@ for (const fullUrl of sitemapUrls) {
 
 // 6. Check Orphan Pages
 for (const fullUrl of sitemapUrls) {
-  const relPath = fullUrl.replace('https://stihldecoder.nl', '');
+  const relPath = fullUrl.replace(PRIMARY_ORIGIN, '');
   if (!internalLinksFound.has(relPath) && relPath !== '/') {
     orphanPagesCount++;
     console.warn(`⚠️ Orphan page detected: ${relPath}`);

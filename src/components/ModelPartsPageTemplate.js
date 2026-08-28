@@ -7,6 +7,7 @@ import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { renderAffiliateLink } from './AffiliateLink.js';
+import { getModelVerificationSummary } from '../canonicalData.js';
 
 export function renderModelPartsPageHtml(model, database, baseUrl = 'https://stihldecoder.nl') {
   const categorySlug = model.category_slug || 'kettingzagen';
@@ -32,13 +33,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
 
   const seoMetaHtml = renderSeoMeta({
     title: `STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids | STIHLDecoder`,
-    description: `Zoekt u onderdelen voor uw STIHL ${model.model_name}? Bekijk geverifieerde onderdeelnummers, bougiemodellen, kettingmaten en compatibele vervangingssets.`,
+    description: `Zoekt u onderdelen voor uw STIHL ${model.model_name}? Bekijk zichtbare modeldata, bronstatus en compatibele onderdelen als vertrekpunt voor een handmatige machinecheck.`,
     canonicalUrl,
     ogType: 'article',
     jsonLdData
   });
 
   const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
+  const verification = getModelVerificationSummary(model);
 
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
 
@@ -83,14 +85,15 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
         STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Bekijk de geverifieerde vervangingsonderdelen voor de STIHL ${model.model_name}. Vind de juiste bougie, luchtfilter, membraanset en slijtagedelen op basis van de fabrieksspecificaties.
+        Bekijk vervangingsonderdelen voor de STIHL ${model.model_name} op basis van de beschikbare repositorydata. Controleer altijd typeplaatje, uitvoering en bronstatus voordat u bestelt.
       </p>
     </header>
 
     <!-- Essential Parts Grid -->
     <section class="space-y-4">
       <h2 class="text-xl font-bold text-white flex items-center gap-2">
-        <span>Geverifieerde Vervangingsonderdelen STIHL ${model.model_name}</span>
+        <span>Onderdelenoverzicht STIHL ${model.model_name}</span>
+        <span class="text-2xs text-gray-400 font-normal">${verification.badgeLabel}</span>
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -99,12 +102,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
             <span class="font-bold text-white text-sm">Bougie & Ontsteking</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Elektrisch</span>
           </div>
-          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${model.spark_plug || 'NGK BPMR7A / CMR6H'}</strong></p>
-          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${model.electrode_gap_mm ? `${model.electrode_gap_mm} mm` : '0.5 mm'}</strong></p>
+          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${model.spark_plug || 'Niet vastgesteld'}</strong></p>
+          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${model.electrode_gap_mm ? `${model.electrode_gap_mm} mm` : 'Niet vastgesteld'}</strong></p>
           <div class="pt-2">
             ${renderAffiliateLink({
-              partName: `Bougie ${model.spark_plug || 'NGK BPMR7A'} voor STIHL ${model.model_name}`,
-              partNumber: model.spark_plug ? model.spark_plug.replace(/\s+/g, '') : 'NGK-BPMR7A',
+              partName: `Bougie ${model.spark_plug || 'onbekend'} voor STIHL ${model.model_name}`,
+              partNumber: model.spark_plug ? model.spark_plug.replace(/\s+/g, '') : `${model.series_code || model.slug || model.id}-SPARK`,
               category: 'spark_plug'
             })}
           </div>
@@ -117,11 +120,11 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Snijgarnituur</span>
             </div>
             <p class="text-gray-300">• Kettingsteek: <strong class="text-white font-mono">${model.chain_pitch}</strong></p>
-            <p class="text-gray-300">• Dikte Geleideblad: <strong class="text-white font-mono">${model.chain_gauge_mm || 1.3} mm</strong></p>
+            <p class="text-gray-300">• Dikte Geleideblad: <strong class="text-white font-mono">${model.chain_gauge_mm || 'Niet vastgesteld'}</strong></p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Zaagketting ${model.chain_pitch} voor STIHL ${model.model_name}`,
-                partNumber: `${model.series_code || '1141'}-CHAIN`,
+                partNumber: `${model.series_code || model.slug || model.id}-CHAIN`,
                 category: 'chain'
               })}
             </div>
@@ -133,12 +136,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
             <span class="font-bold text-white text-sm">Carburateur & Membraanset</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Brandstof</span>
           </div>
-          <p class="text-gray-300">• Type: <strong class="text-white">${model.carb_h_setting ? 'Handmatig (H/L Slag)' : 'Elektronisch geregeld (M-Tronic)'}</strong></p>
-          <p class="text-gray-300">• Basisafstelling: <strong class="text-orange-400 font-mono">${model.carb_h_setting || 'M-Tronic V2'}</strong></p>
+          <p class="text-gray-300">• Type: <strong class="text-white">${model.carb_h_setting ? 'Handmatig (H/L Slag)' : 'Niet vastgesteld'}</strong></p>
+          <p class="text-gray-300">• Basisafstelling: <strong class="text-orange-400 font-mono">${model.carb_h_setting || 'Niet vastgesteld'}</strong></p>
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Membraanset voor STIHL ${model.model_name}`,
-              partNumber: `${model.series_code || '1141'}-CARB`,
+              partNumber: `${model.series_code || model.slug || model.id}-CARB`,
               category: 'carburetor'
             })}
           </div>
@@ -149,12 +152,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
             <span class="font-bold text-white text-sm">Luchtfilter & Olie-element</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Filter</span>
           </div>
-          <p class="text-gray-300">• Filtertype: <strong class="text-white">HD2 Luchtfilter / Viltfilter</strong></p>
-          <p class="text-gray-300">• Mengverhouding Olie: <strong class="text-white">1:50 (STIHL HP Ultra)</strong></p>
+          <p class="text-gray-300">• Filtertype: <strong class="text-white">${model.air_filter || 'Niet vastgesteld'}</strong></p>
+          <p class="text-gray-300">• Mengverhouding Olie: <strong class="text-white">${model.oil_mix_ratio || 'Niet vastgesteld'}</strong></p>
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Luchtfilter voor STIHL ${model.model_name}`,
-              partNumber: `${model.series_code || '1141'}-AIRFILTER`,
+              partNumber: `${model.series_code || model.slug || model.id}-AIRFILTER`,
               category: 'air_filter'
             })}
           </div>

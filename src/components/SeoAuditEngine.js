@@ -5,10 +5,12 @@
 
 import { PASSPORT_PRO_PRICE } from './ValuationEngine.js';
 import { getContentGapReport, getConversionDashboardMetrics } from './AnalyticsTracker.js';
+import { summarizeCanonicalDatabase } from '../canonicalData.js';
 
 export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihldecoder.nl') {
   const models = database.models || [];
   const intentPages = database.intent_pages || [];
+  const canonicalSummary = summarizeCanonicalDatabase(database);
 
   const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'doorslijpers'];
   const comparisons = ['ms-260-vs-ms-261', 'ms-361-vs-ms-362', 'ms-170-vs-ms-180'];
@@ -81,13 +83,17 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
       searchConsoleApiConnected: false,
       searchConsoleApiStatus: 'NO_API_CONNECTION_YET (Wachten op Search Console Oauth)',
       realUserMetricsStatus: conversionMetrics.status,
-      realRevenueStatus: 'NO_REVENUE_YET (Payment Gateway not active)'
+      realRevenueStatus: 'NO_REVENUE_YET (Payment Gateway not active)',
+      canonicalStore: canonicalSummary.canonicalStore,
+      primarySourceLinkedModels: canonicalSummary.primarySourceLinkedModels,
+      primarySourcePendingModels: canonicalSummary.primarySourcePendingModels,
+      contentHash: canonicalSummary.manifestHash
     },
     searchConsoleReadiness: {
       sitemapUrl: `${baseUrl}/sitemap.xml`,
       robotsUrl: `${baseUrl}/robots.txt`,
       primaryCanonicalHost: baseUrl,
-      redirectSource: 'https://www.stihldecoder.nl (301 Permanent Redirect)',
+      redirectSource: 'https://www.stihldecoder.nl',
       status: 'READINESS_PASS'
     },
     realProductionMetrics: conversionMetrics,
@@ -99,13 +105,13 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
     },
     modelDataQuality: {
       total_models: models.length,
-      fully_verified: models.filter(m => m.specs_verified).length,
-      partially_verified: models.filter(m => !m.specs_verified && m.data_confidence === 'MEDIUM').length,
+      fully_verified: canonicalSummary.primarySourceLinkedModels,
+      partially_verified: 0,
       conflicting: 0,
-      unverified: models.filter(m => !m.specs_verified && m.data_confidence !== 'MEDIUM').length,
+      unverified: canonicalSummary.primarySourcePendingModels,
       total_fields: models.length * 7,
-      verified_fields: models.length * 7 - 6,
-      unknown_fields: 6
+      verified_fields: canonicalSummary.primarySourceLinkedModels * 7,
+      unknown_fields: canonicalSummary.primarySourcePendingModels * 7
     },
     totalIndexablePages,
     averageQualityScore

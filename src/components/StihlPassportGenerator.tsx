@@ -48,17 +48,17 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
         
         {/* Header */}
         <div className="flex justify-between items-start border-b border-neutral-800/80 pb-4">
-          <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-orange-500 font-bold">
-              Officieel Machine Paspoort
-            </span>
-            <h2 className="text-3xl font-black tracking-tight text-white mt-0.5">{data.modelName}</h2>
-          </div>
-          <div className="flex flex-col items-end gap-1">
-            <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wider">
-              STIHL VERIFIED
-            </span>
-          </div>
+        <div>
+          <span className="text-[11px] font-mono uppercase tracking-widest text-orange-500 font-bold">
+              Onafhankelijk Machine Rapport
+          </span>
+          <h2 className="text-3xl font-black tracking-tight text-white mt-0.5">{data.modelName}</h2>
+        </div>
+        <div className="flex flex-col items-end gap-1">
+          <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wider">
+              BRONSTATUS ZICHTBAAR
+          </span>
+        </div>
         </div>
 
         {/* Stop Heling Veiligheidsbalk (Full Width Highlight) */}
@@ -114,8 +114,8 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
         {/* Footer / Watermerk met QR-code */}
         <div className="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-xs text-neutral-400">
           <div>
-            <p className="font-semibold text-neutral-300">Geverifieerd document voor verkoop & taxatie</p>
-            <p className="text-[10px] text-neutral-500">Scan QR-code voor live rapport op stihldecoder.nl</p>
+            <p className="font-semibold text-neutral-300">Onafhankelijk rapport voor serienummer- en bronstatuscontrole</p>
+            <p className="text-[10px] text-neutral-500">Scan QR-code voor live rapport en aanvullende handmatige controle</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
@@ -131,7 +131,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
           onClick={downloadImage}
           className="px-6 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl shadow-lg flex items-center gap-2.5 transition active:scale-95 cursor-pointer"
         >
-          🛡️ Download Paspoort met Stop Heling Check & QR-code
+          🛡️ Download rapport met Stop Heling-statusveld & QR-code
         </button>
       ) : (
         <div className="px-6 py-3.5 bg-rose-950/60 border border-rose-500/50 text-rose-300 font-bold rounded-xl text-center text-xs">

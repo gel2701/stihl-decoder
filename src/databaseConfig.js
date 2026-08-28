@@ -20,11 +20,22 @@ const __dirname = path.dirname(__filename);
 // Central Database Path Resolution
 const PERSISTENT_DIR = process.env.RENDER_DISK_PATH || '/var/data';
 const PERSISTENT_DB_PATH = path.join(PERSISTENT_DIR, 'stihl_database.db');
-const LOCAL_FALLBACK_DB_PATH = path.join(__dirname, '..', '..', 'data', 'stihl_database.db');
+const LOCAL_FALLBACK_DB_PATH = path.join(__dirname, '..', 'data', 'stihl_database.db');
+const TEST_DB_PATH = path.join(__dirname, '..', 'data', 'test_stihl_database.db');
+const DB_SCHEMA_VERSION = 2;
+
+const dbHealthSnapshot = {
+  connected: false,
+  path: null,
+  persistent: false,
+  schemaVersion: DB_SCHEMA_VERSION,
+  analyticsSchemaReady: false,
+  lastError: null
+};
 
 export function getDatabasePath() {
   if (process.env.DATABASE_PATH) return process.env.DATABASE_PATH;
-  if (process.env.NODE_ENV === 'test') return path.join(__dirname, '..', '..', 'data', 'test_stihl_database.db');
+  if (process.env.NODE_ENV === 'test') return TEST_DB_PATH;
   
   // If Render Persistent Disk directory exists or is mounted, use /var/data/stihl_database.db
   if (fs.existsSync(PERSISTENT_DIR)) {
@@ -67,14 +78,20 @@ export function getDatabaseConnection() {
   }
 
   dbInstance = new sqlite3.Database(targetPath);
+  dbHealthSnapshot.path = targetPath;
+  dbHealthSnapshot.persistent = isPersistentDiskActive();
 
   // Configure Production Pragmas safely
   dbInstance.serialize(() => {
     dbInstance.run(`PRAGMA journal_mode = WAL;`);
     dbInstance.run(`PRAGMA foreign_keys = ON;`);
     dbInstance.run(`PRAGMA busy_timeout = 5000;`);
+    dbInstance.run(`CREATE TABLE IF NOT EXISTS schema_version (
+      version INTEGER NOT NULL,
+      updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );`);
+    dbInstance.run(`INSERT INTO schema_version (version) SELECT ${DB_SCHEMA_VERSION} WHERE NOT EXISTS (SELECT 1 FROM schema_version);`);
 
-    // Ensure analytics_events table exists idempotently (SAFE: NEVER DROPS TABLES)
     dbInstance.run(`CREATE TABLE IF NOT EXISTS analytics_events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       event_id TEXT UNIQUE,
@@ -90,6 +107,36 @@ export function getDatabaseConnection() {
     dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON analytics_events(created_at);`);
     dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_analytics_model_slug ON analytics_events(model_slug);`);
     dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_analytics_test ON analytics_events(is_test);`);
+    dbInstance.all(`PRAGMA table_info(analytics_events);`, (err, rows = []) => {
+      if (err) {
+        dbHealthSnapshot.lastError = err.message;
+        return;
+      }
+
+      const columnNames = new Set(rows.map((row) => row.name));
+      if (!columnNames.has('event_id')) {
+        dbInstance.run(`ALTER TABLE analytics_events ADD COLUMN event_id TEXT;`, (alterErr) => {
+          if (alterErr && !alterErr.message.includes('duplicate column name')) {
+            dbHealthSnapshot.lastError = alterErr.message;
+            return;
+          }
+          dbInstance.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_analytics_event_id ON analytics_events(event_id);`);
+          dbHealthSnapshot.analyticsSchemaReady = true;
+        });
+      } else {
+        dbInstance.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_analytics_event_id ON analytics_events(event_id);`);
+        dbHealthSnapshot.analyticsSchemaReady = true;
+      }
+    });
+  });
+
+  dbInstance.on('open', () => {
+    dbHealthSnapshot.connected = true;
+    dbHealthSnapshot.lastError = null;
+  });
+  dbInstance.on('error', (err) => {
+    dbHealthSnapshot.connected = false;
+    dbHealthSnapshot.lastError = err.message;
   });
 
   return dbInstance;
@@ -107,6 +154,9 @@ export function backupDatabase() {
   const backupFilePath = path.join(backupDir, `stihl_database-${timestampStr}.db`);
 
   try {
+    if (dbInstance) {
+      dbInstance.run(`PRAGMA wal_checkpoint(FULL);`);
+    }
     fs.copyFileSync(targetPath, backupFilePath);
 
     // Retention: Keep 7 most recent backups
@@ -125,4 +175,13 @@ export function backupDatabase() {
   } catch (err) {
     return { success: false, error: err.message };
   }
+}
+
+export function getDatabaseHealthSnapshot() {
+  return {
+    ...dbHealthSnapshot,
+    connected: Boolean(sqlite3) && (dbHealthSnapshot.connected || fs.existsSync(getDatabasePath())),
+    path: getDatabasePath(),
+    persistent: isPersistentDiskActive()
+  };
 }

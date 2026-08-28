@@ -32,8 +32,8 @@ export function ModelJsonLd({ model, baseUrl = 'https://stihldecoder.nl' }: Mode
     '@graph': [
       {
         '@type': 'TechArticle',
-        'headline': `STIHL ${model.name} Bouwjaar, Serienummer & Specificaties`,
-        'description': `Controleer het bouwjaar, herkomstfabriek en specificaties van de STIHL ${model.name}. Inclusief carburateur basisafstelling, bougietype en serienummer locaties.`,
+        'headline': `STIHL ${model.name} Modeldata, bronstatus & serienummergids`,
+        'description': `Bekijk zichtbare modeldata, bronstatus en serienummerlocaties voor de STIHL ${model.name}. Bevestig bouwjaar en uitvoering altijd met typeplaatje of primaire documentatie.`,
         'url': url,
         'inLanguage': 'nl-NL'
       },
@@ -41,7 +41,7 @@ export function ModelJsonLd({ model, baseUrl = 'https://stihldecoder.nl' }: Mode
         '@type': 'Product',
         'name': `STIHL ${model.name}`,
         'category': model.category || 'Kettingzaag',
-        'description': `STIHL ${model.name} ${model.category || 'machine'} met ${model.displacementCc || 50.2} cc cilinderinhoud en ${model.powerHp || 4.1} pk vermogen.`,
+        'description': `STIHL ${model.name} ${model.category || 'machine'} met zichtbare repositorydata over cilinderinhoud, vermogen en onderhoudspunten.`,
         'brand': {
           '@type': 'Brand',
           'name': 'STIHL'
@@ -60,10 +60,10 @@ export function ModelJsonLd({ model, baseUrl = 'https://stihldecoder.nl' }: Mode
           },
           {
             '@type': 'Question',
-            'name': `Wat is de standaard carburateur afstelling van de STIHL ${model.name}?`,
+            'name': `Wat is een bruikbare basisreferentie voor de carburateur van de STIHL ${model.name}?`,
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': `Standaard basisafstelling voor STIHL ${model.name}: H-schroef: ${carbH}, L-schroef: ${carbL}, LA-schroef: ${carbLA}.`
+              'text': `Repositoryreferentie voor STIHL ${model.name}: H-schroef: ${carbH}, L-schroef: ${carbL}, LA-schroef: ${carbLA}. Controleer de exacte afstelling altijd met het juiste typeplaatje en de primaire documentatie voor uw uitvoering.`
             }
           }
         ]

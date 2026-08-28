@@ -6,8 +6,11 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node tests/decoder.test.js",
-    "db:backup": "node scripts/db_backup.js"
+    "test": "node tests/run_all_tests.js",
+    "db:backup": "node scripts/db_backup.js",
+    "data:rebuild": "node scripts/rebuild_canonical_data.js",
+    "data:seed": "node data/seed.cjs",
+    "audit:source-integrity": "node scripts/phase33e_source_integrity_audit.js"
   },
   "keywords": [
     "stihl",

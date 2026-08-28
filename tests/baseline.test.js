@@ -18,9 +18,12 @@ console.log('🧪 Running Comprehensive Decoder Baseline Regression Test Suite..
 const res9digit = decodeStihlCode('184592301', database);
 assert.strictEqual(res9digit.success, true);
 assert.strictEqual(res9digit.type, 'SERIAL_NUMBER');
+assert.strictEqual(res9digit.status, 'FORMAT_VALIDATED');
 assert.strictEqual(res9digit.cleaned, '184592301');
 assert.strictEqual(res9digit.factory.country, 'Duitsland');
-assert.ok(res9digit.productionPeriod);
+assert.strictEqual(res9digit.productionPeriod, null);
+assert.strictEqual(res9digit.model, 'UNKNOWN');
+assert.strictEqual(res9digit.estimatedYears, 'UNKNOWN');
 console.log('✅ Scenario 1 Passed: 9-digit serial decoded successfully.');
 
 // 2. 11-digit part number
@@ -60,7 +63,7 @@ console.log('✅ Scenario 6 Passed: Counterfeit rule flagged fake serial 9999999
 // 7. StopHeling police check
 StopHelingService.verifySerialNumber('184592301').then(resStop => {
   assert.strictEqual(resStop.serialNumber, '184592301');
-  assert.strictEqual(typeof resStop.isStolen, 'boolean');
+  assert.ok(['CLEAR', 'STOLEN', 'UNVERIFIED'].includes(resStop.status));
   assert.ok(resStop.statusLabel);
   console.log('✅ Scenario 7 Passed: StopHeling police check service active.');
 

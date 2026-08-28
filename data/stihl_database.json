@@ -75,46 +75,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 1130",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 170 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1130",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 1130",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 1130",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 30.1,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 1.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 1.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.1,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "Bosch WSR 6 F / NGK BPMR 7 A",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Vast",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Vast",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "Standaard",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\" P",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.1,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1130"
     },
     {
@@ -141,46 +192,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 1130",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 180 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1130",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 1130",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 1130",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 31.8,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 1.4,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 1.9,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.1,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1130"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Vast",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Vast",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\" P",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.1,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1130",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1130"
     },
     {
@@ -207,46 +309,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1129",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 200 / 020 T Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1129",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1129",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1129",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 35.2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1129"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 1.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1129"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 2.3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1129"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 3.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1129"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1129"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\" P",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.3,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1129",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1129"
     },
     {
@@ -273,46 +426,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1123",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 210 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1123",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1123",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1123",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 35.3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 1.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\" P",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.3,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1123"
     },
     {
@@ -339,46 +543,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1123",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 230 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1123",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1123",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1123",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 40.2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 2.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": ".325\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.3,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1123"
     },
     {
@@ -405,46 +660,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1123",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 250 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1123",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1123",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1123",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 45.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2.3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 3.1,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1123"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": ".325\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.3,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1123",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1123"
     },
     {
@@ -471,46 +777,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 1121",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 260 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1121",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 1121",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 1121",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 50.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1121"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1121"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 3.5,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1121"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.8,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1121"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A / Bosch WSR6F",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1121"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": ".325\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1121",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1121"
     },
     {
@@ -537,51 +894,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Instruction Manual 0458-543-0121",
+      "data_confidence": "MEDIUM",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "0458-573-8621-D - STIHL MS 261 Instruction Manual",
       "provenance": {
         "source_type": "official_stihl_instruction_manual",
-        "source_title": "STIHL MS 261 C-M Instruction Manual",
-        "source_document_number": "0458-543-0121",
+        "source_title": "STIHL MS 261 Instruction Manual",
+        "source_document_number": "0458-573-8621-D",
         "source_revision": "Rev. 2021",
-        "source_year": 2021,
-        "models_mentioned": [
-          "MS 261",
-          "MS 261 C-M"
-        ],
-        "confidence": "HIGH"
+        "source_year": null,
+        "confidence": "MEDIUM",
+        "verification_status": "PRIMARY_SOURCE_LINKED",
+        "legacy_reference": null,
+        "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
       },
-      "data_status": "VERIFIED",
+      "data_status": "PRIMARY_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 50.2,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1141"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "power_kw": {
           "value": 3,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1141"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "power_hp": {
           "value": 4.1,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1141"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "weight_kg": {
           "value": 4.9,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1141"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1141"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_h_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_l_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_la_setting": {
+          "value": "M-Tronic",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_pitch": {
+          "value": ".325\"",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.3,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-573-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "PRIMARY_SOURCE_LINKED",
       "series_identification": "1141"
     },
     {
@@ -608,46 +1011,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1133",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 270 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1133",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1133",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1133",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 50,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 3.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": ".325\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1133"
     },
     {
@@ -674,46 +1128,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1133",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 280 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1133",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1133",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1133",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 54.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 3.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1133"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": ".325\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1133",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1133"
     },
     {
@@ -740,46 +1245,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1127",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 290 Farm Boss Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1127",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1127",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1127",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 56.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.1,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.9,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1127"
     },
     {
@@ -806,46 +1362,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1127",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 310 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1127",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1127",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1127",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 59,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.9,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1127"
     },
     {
@@ -872,46 +1479,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Manual 1140",
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "STIHL Service Manual 1140",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 311 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1140",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1140",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1140",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 59,
-          "status": "VERIFIED",
-          "source": "STIHL Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.1,
-          "status": "VERIFIED",
-          "source": "STIHL Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.2,
-          "status": "VERIFIED",
-          "source": "STIHL Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 6.2,
-          "status": "VERIFIED",
-          "source": "STIHL Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1140"
     },
     {
@@ -938,46 +1596,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1125",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 340 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1125",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1125",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1125",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 54,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.1,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1125"
     },
     {
@@ -1004,46 +1713,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Service Manual 1135",
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "STIHL Werkplaatshandboek 1135",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 341 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1135",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 1135",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 1135",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 59,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1135"
     },
     {
@@ -1070,46 +1830,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1125",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 360 / 036 Pro Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1125",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1125",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1125",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 61.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1125"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1125",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1125"
     },
     {
@@ -1136,46 +1947,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 1135",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 361 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1135",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 1135",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 1135",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 59,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.4,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1135"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1135",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1135"
     },
     {
@@ -1202,46 +2064,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1140",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 362 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1140",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1140",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1140",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 59,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1140"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1140"
     },
     {
@@ -1268,46 +2181,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1127",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 390 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1127",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1127",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1127",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 64.1,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.9,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1127"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1127",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1127"
     },
     {
@@ -1334,46 +2298,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Tech Spec 1140 MS 400",
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "STIHL Service Manual 1140",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 400 C-M Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1140",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1140",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1140",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 66.8,
-          "status": "VERIFIED",
-          "source": "STIHL Tech Spec 1140 MS 400"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 4,
-          "status": "VERIFIED",
-          "source": "STIHL Tech Spec 1140 MS 400"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 5.4,
-          "status": "VERIFIED",
-          "source": "STIHL Tech Spec 1140 MS 400"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 5.8,
-          "status": "VERIFIED",
-          "source": "STIHL Tech Spec 1140 MS 400"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Tech Spec 1140 MS 400"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "M-Tronic",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1140",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1140"
     },
     {
@@ -1400,46 +2415,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 1138",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 441 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1138",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 1138",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 1138",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 70.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1138"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 4.2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1138"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 5.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1138"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 6.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1138"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1138"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 1138",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1138"
     },
     {
@@ -1466,46 +2532,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Service Manual 1128",
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 460 / 046 Magnum Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1128",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "legacy_repository_entry",
+        "source_title": "Legacy repository entry awaiting primary source review",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "PRIMARY_SOURCE_PENDING",
+        "legacy_reference": "SCRIBD-393037970",
+        "note": "Synthetische of niet-gecontroleerde bronverwijzing verwijderd uit actieve claims."
       },
-      "data_status": "VERIFIED",
+      "data_status": "PRIMARY_SOURCE_PENDING",
       "field_verification": {
         "displacement_cc": {
           "value": 76.5,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1128"
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
         },
         "power_kw": {
           "value": 4.4,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1128"
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
         },
         "power_hp": {
           "value": 6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1128"
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
         },
         "weight_kg": {
           "value": 6.6,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1128"
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 1128"
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": null,
+          "note": "Waarde staat nog als repositorygegeven en wacht op primaire STIHL bronverwijzing."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "PRIMARY_SOURCE_PENDING",
       "series_identification": "1128"
     },
     {
@@ -1532,46 +2649,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 4134",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL FS 350 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-4134",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 4134",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 4134",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 40.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4134"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 1.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4134"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 2.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4134"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 7.3,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4134"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4134"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4134",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "4134"
     },
     {
@@ -1598,60 +2766,100 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Instruction Manual 0458-452-0121-J",
+      "data_confidence": "MEDIUM",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "0458-452-8621-J - STIHL BR 500 / BR 600 Instruction Manual",
       "provenance": {
         "source_type": "official_stihl_instruction_manual",
-        "source_title": "STIHL BR 600 Operating / Instruction Manual",
-        "source_document_number": "0458-452-0121-J",
+        "source_title": "STIHL BR 500 / BR 600 Instruction Manual",
+        "source_document_number": "0458-452-8621-J",
         "source_revision": "Rev. 2022-J",
-        "source_year": 2022,
-        "models_mentioned": [
-          "BR 600",
-          "BR 500",
-          "BR 550"
-        ],
-        "confidence": "HIGH"
+        "source_year": null,
+        "confidence": "MEDIUM",
+        "verification_status": "PRIMARY_SOURCE_LINKED",
+        "legacy_reference": null,
+        "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
       },
-      "data_status": "VERIFIED",
+      "data_status": "PRIMARY_SOURCE_LINKED",
       "blowing_force_n": 32,
       "max_air_velocity_ms": 106,
       "fuel_tank_l": 1.4,
       "field_verification": {
         "displacement_cc": {
           "value": 64.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "power_kw": {
           "value": 2.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "power_hp": {
           "value": 3.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "weight_kg": {
           "value": 10.3,
-          "status": "REVISION_DEPENDENT",
-          "historical_values": [
-            10.1,
-            10.3
-          ],
-          "note": "10.3 kg in actuele handleiding (0458-452-0121-J); 10.1 kg in eerdere productierevisies",
-          "source": "Official STIHL Instruction Manual 0458-452-0121-J (Rev. 2022)"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-452-8621-J",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "PRIMARY_SOURCE_LINKED",
       "series_identification": "4282"
     },
     {
@@ -1678,46 +2886,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 4228",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL HS 45 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-4228",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 4228",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 4228",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 27.2,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4228"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 0.75,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4228"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 1,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4228"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 4.7,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4228"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK BPMR7A",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4228"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4228",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "4228"
     },
     {
@@ -1744,46 +3003,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 1142",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 462 C-M Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1142",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 1142",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 1142",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 72.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1142"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 4.4,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1142"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1142"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1142"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 1142"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Elektronisch (M-Tronic V3.0)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Elektronisch (M-Tronic V3.0)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "M-Tronic",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\"",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.6,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 1142",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1142"
     },
     {
@@ -1810,46 +3120,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Technical Data Sheet 1145",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL MS 201 TC-M Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-1145",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_technical_data_sheet",
+        "source_title": "STIHL Technical Data Sheet 1145",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Technical Data Sheet 1145",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 35.2,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1145"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 1.8,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1145"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 2.4,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1145"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 3.7,
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1145"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Technical Data Sheet 1145"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "M-Tronic",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": "3/8\" P",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": 1.3,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Technical Data Sheet 1145",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "1145"
     },
     {
@@ -1876,46 +3237,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 4147",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL FS 460 C-EM Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-4147",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 4147",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 4147",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 45.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4147"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4147"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 3,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4147"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 8.5,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4147"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4147"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "Elektronisch (M-Tronic)",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "M-Tronic",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4147",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "4147"
     },
     {
@@ -1942,46 +3354,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Service Manual 4282",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL BR 700 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-4282",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_service_manual",
+        "source_title": "STIHL Service Manual 4282",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Service Manual 4282",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 64.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 2.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 3.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 10.8,
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Service Manual 4282"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Service Manual 4282",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "4282"
     },
     {
@@ -2008,46 +3471,97 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 0,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
+      "data_confidence": "LOW",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
       "data_source": "STIHL Werkplaatshandboek 4238",
       "provenance": {
-        "source_type": "official_stihl_documentation",
-        "source_title": "STIHL TS 420 Geverifieerde Fabriekscatalogus",
-        "source_document_number": "STIHL-DOC-4238",
-        "source_year": 2022,
-        "confidence": "HIGH"
+        "source_type": "series_workshop_manual",
+        "source_title": "STIHL Werkplaatshandboek 4238",
+        "source_document_number": null,
+        "source_revision": null,
+        "source_year": null,
+        "confidence": "LOW",
+        "verification_status": "SERIES_SOURCE_LINKED",
+        "legacy_reference": "STIHL Werkplaatshandboek 4238",
+        "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
       },
-      "data_status": "VERIFIED",
+      "data_status": "SERIES_SOURCE_LINKED",
       "field_verification": {
         "displacement_cc": {
           "value": 66.7,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4238"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_kw": {
           "value": 3.2,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4238"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "power_hp": {
           "value": 4.4,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4238"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "weight_kg": {
           "value": 9.6,
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4238"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         },
         "spark_plug": {
           "value": "NGK CMR6H",
-          "status": "VERIFIED",
-          "source": "STIHL Werkplaatshandboek 4238"
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_h_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_l_setting": {
+          "value": "1 slag open",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "SERIES_REFERENCE_LINKED",
+          "source": "STIHL Werkplaatshandboek 4238",
+          "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
         }
       },
-      "model_status": "CORE_SPECS_VERIFIED",
+      "model_status": "SERIES_SOURCE_LINKED",
       "series_identification": "4238"
     },
     {
@@ -2075,22 +3589,96 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Instruction Manual 0458-259-8621-D",
+      "data_confidence": "MEDIUM",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "0458-259-8621-D - STIHL FS 100 / FS 100 RX Instruction Manual",
       "provenance": {
         "source_type": "official_stihl_instruction_manual",
-        "source_title": "STIHL FS 100 Instruction Manual",
+        "source_title": "STIHL FS 100 / FS 100 RX Instruction Manual",
         "source_document_number": "0458-259-8621-D",
         "source_revision": "Rev. D",
         "source_year": 2014,
-        "models_mentioned": [
-          "FS 100",
-          "FS 100 R",
-          "FS 100 RX"
-        ],
-        "confidence": "HIGH"
+        "confidence": "MEDIUM",
+        "verification_status": "PRIMARY_SOURCE_LINKED",
+        "legacy_reference": null,
+        "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
+      },
+      "data_status": "PRIMARY_SOURCE_LINKED",
+      "model_status": "PRIMARY_SOURCE_LINKED",
+      "field_verification": {
+        "displacement_cc": {
+          "value": 31.4,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "power_kw": {
+          "value": 1.05,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "power_hp": {
+          "value": 1.4,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "weight_kg": {
+          "value": 5.8,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "spark_plug": {
+          "value": "NGK CMR6H",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_h_setting": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_l_setting": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM (Stationair)",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        }
       }
     },
     {
@@ -2118,22 +3706,96 @@
       "battery_system": null,
       "voltage_v": null,
       "is_discontinued": 1,
-      "data_confidence": "HIGH",
-      "production_confidence": "HIGH",
-      "specs_verified": true,
-      "data_source": "STIHL Instruction Manual 0458-259-8621-D",
+      "data_confidence": "MEDIUM",
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "data_source": "0458-259-8621-D - STIHL FS 100 / FS 100 RX Instruction Manual",
       "provenance": {
         "source_type": "official_stihl_instruction_manual",
-        "source_title": "STIHL FS 100 RX Instruction Manual",
+        "source_title": "STIHL FS 100 / FS 100 RX Instruction Manual",
         "source_document_number": "0458-259-8621-D",
         "source_revision": "Rev. D",
         "source_year": 2014,
-        "models_mentioned": [
-          "FS 100 RX",
-          "FS 100",
-          "FS 100 R"
-        ],
-        "confidence": "HIGH"
+        "confidence": "MEDIUM",
+        "verification_status": "PRIMARY_SOURCE_LINKED",
+        "legacy_reference": null,
+        "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
+      },
+      "data_status": "PRIMARY_SOURCE_LINKED",
+      "model_status": "PRIMARY_SOURCE_LINKED",
+      "field_verification": {
+        "displacement_cc": {
+          "value": 31.4,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "power_kw": {
+          "value": 1.05,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "power_hp": {
+          "value": 1.4,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "weight_kg": {
+          "value": 4.7,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "spark_plug": {
+          "value": "Bosch USR 7 AC / NGK CMR6H",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "electrode_gap_mm": {
+          "value": 0.5,
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_h_setting": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_l_setting": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "carb_la_setting": {
+          "value": "2800 RPM (Stationair)",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_pitch": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "chain_gauge_mm": {
+          "value": null,
+          "status": "PRIMARY_SOURCE_PENDING",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        },
+        "oil_mix_ratio": {
+          "value": "1:50",
+          "status": "DOCUMENT_LINKED",
+          "source": "0458-259-8621-D",
+          "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+        }
       }
     }
   ],
@@ -2445,5 +4107,14 @@
       "is_test": 0,
       "created_at": "2026-08-27T14:19:51.589Z"
     }
-  ]
+  ],
+  "meta": {
+    "schema_version": 3,
+    "canonical_store": "json",
+    "canonical_file": "data/stihl_database.json",
+    "sqlite_role": "analytics_and_optional_derived_exports",
+    "homepage_data_source": "/api/decode",
+    "rebuilt_at": "2026-08-28T13:44:07.784Z",
+    "policy_note": "Deze repository behandelt JSON als canonieke bron voor model- en contentdata. SQLite is afgeleid en niet de primaire bron voor modelclaims."
+  }
 }

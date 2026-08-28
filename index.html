@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>STIHL Machine & Serienummer Decoder | Zoek Fabriek, Bouwjaar, Specs & Gietklok</title>
-  <meta name="description" content="Analyseer direct Stihl serienummers (9 cijfers), gietnummers (11 cijfers) en lees de gietklok/datumstempel af. Bepaal fabriek, geschatte productieperiode, carburateur-afstelling en Stihl Paspoort.">
-  <link rel="canonical" href="https://stihldecoder.nl/">
+  <title>STIHL Machine & Serienummer Decoder | Serienummer, typeplaatje en bronstatus</title>
+  <meta name="description" content="Controleer STIHL serienummers en onderdeelnummers, bekijk herkomstsignalen en zie welke modeldata al aan primaire bronverwijzingen is gekoppeld.">
+  <link rel="canonical" href="https://www.stihldecoder.nl/">
   <meta name="robots" content="index, follow">
 
   <!-- Favicon & Web App Branding Assets -->
@@ -26,10 +26,10 @@
       {
         "@type": "WebApplication",
         "name": "STIHL Machine & Serienummer Decoder",
-        "url": "https://stihldecoder.nl/",
+        "url": "https://www.stihldecoder.nl/",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All",
-        "description": "Onafhankelijke online decoder om het bouwjaar, de herkomstfabriek en specificaties van STIHL machines te verifiëren."
+        "description": "Onafhankelijke online decoder voor serienummercontrole, typeplaatjecontrole en transparante bronstatus van STIHL modeldata."
       }
     ]
   }
@@ -48,203 +48,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/styles.css">
 
-  <!-- Embedded Complete Database -->
+  <!-- Canonical client config -->
   <script>
-    window.STIHL_DATABASE = {
-      "plants": [
-        {"plant_code": "1", "country_code": "DE", "country_name": "Duitsland", "plant_location": "Waiblingen"},
-        {"plant_code": "2", "country_code": "US", "country_name": "Verenigde Staten", "plant_location": "Virginia Beach 1"},
-        {"plant_code": "3", "country_code": "BR", "country_name": "Brazilië", "plant_location": "São Leopoldo"},
-        {"plant_code": "4", "country_code": "CH", "country_name": "Zwitserland", "plant_location": "Wil (Kettingen/Zwaarden)"},
-        {"plant_code": "5", "country_code": "US", "country_name": "Verenigde Staten", "plant_location": "Virginia Beach 2"},
-        {"plant_code": "8", "country_code": "CN", "country_name": "China", "plant_location": "Qingdao"}
-      ],
-      "factories": {
-        "1": {"country": "Duitsland", "location": "Waiblingen", "details": "Hoofdfabriek & Kenniscentrum van STIHL. Onderzoeks- en ontwikkelingscentrum, productie van motorblokken en gepatenteerde zaagkettingen."},
-        "2": {"country": "Verenigde Staten", "location": "Virginia Beach 1", "details": "Grootste STIHL fabriek in de VS. Productie van benzine- en accumaaiers, trimmers, bladblazers en zaagkettingen."},
-        "3": {"country": "Brazilië", "location": "São Leopoldo", "details": "Cilinder- en motorenproductie."},
-        "4": {"country": "Zwitserland", "location": "Wil (Kettingen/Zwaarden)", "details": "STIHL Kettenwerk zaagkettingen fabriek."},
-        "5": {"country": "Verenigde Staten", "location": "Virginia Beach 2", "details": "Gespecialiseerde assemblagefabriek VS."},
-        "8": {"country": "China", "location": "Qingdao", "details": "STIHL Power Tools Qingdao voor consumentengereedschappen."}
-      },
-      "models": [
-        {
-          "id": "stihl_ms_170",
-          "series_code": "1130",
-          "model_name": "MS 170 / MS 170-D",
-          "category": "Kettingzaag",
-          "fuel_type": "PETROL_2STROKE",
-          "fuel_type_label": "Benzine (2-Takt 1:50)",
-          "displacement_cc": 30.1,
-          "power_kw": 1.2,
-          "power_hp": 1.6,
-          "weight_kg": 4.1,
-          "spark_plug": "Bosch WSR 6 F / NGK BPMR 7 A",
-          "electrode_gap_mm": 0.50,
-          "carb_h_setting": "Vast (Geen verstelling)",
-          "carb_l_setting": "Vast (Geen verstelling)",
-          "carb_la_setting": "Standaard stationair stelschroef",
-          "chain_pitch": "3/8\" P",
-          "chain_gauge_mm": 1.1
-        },
-        {
-          "id": "stihl_ms_260",
-          "series_code": "1121",
-          "model_name": "MS 260 / 026 Pro",
-          "category": "Kettingzaag",
-          "fuel_type": "PETROL_2STROKE",
-          "fuel_type_label": "Benzine (2-Takt Klassiek)",
-          "displacement_cc": 50.2,
-          "power_kw": 2.6,
-          "power_hp": 3.5,
-          "weight_kg": 4.8,
-          "spark_plug": "NGK BPMR7A / Bosch WSR6F",
-          "electrode_gap_mm": 0.50,
-          "carb_h_setting": "1 slag open (Handmatig)",
-          "carb_l_setting": "1 slag open (Handmatig)",
-          "carb_la_setting": "2800 RPM",
-          "chain_pitch": ".325\"",
-          "chain_gauge_mm": 1.6
-        },
-        {
-          "id": "stihl_ms_261_cm",
-          "series_code": "1141",
-          "model_name": "MS 261 C-M (M-Tronic)",
-          "category": "Kettingzaag",
-          "fuel_type": "PETROL_2STROKE",
-          "fuel_type_label": "Benzine (2-Takt M-Tronic)",
-          "displacement_cc": 50.2,
-          "power_kw": 3.0,
-          "power_hp": 4.1,
-          "weight_kg": 4.9,
-          "spark_plug": "NGK CMR6H",
-          "electrode_gap_mm": 0.50,
-          "carb_h_setting": "Elektronisch geregeld (M-Tronic)",
-          "carb_l_setting": "Elektronisch geregeld (M-Tronic)",
-          "carb_la_setting": "Elektronisch geregeld (M-Tronic)",
-          "chain_pitch": ".325\"",
-          "chain_gauge_mm": 1.3
-        },
-        {
-          "id": "stihl_ms_500i",
-          "series_code": "1147",
-          "model_name": "MS 500i (Elektronische Injectie)",
-          "category": "Kettingzaag",
-          "fuel_type": "PETROL_2STROKE",
-          "fuel_type_label": "Benzine (2-Takt Injectie)",
-          "displacement_cc": 79.2,
-          "power_kw": 5.0,
-          "power_hp": 6.8,
-          "weight_kg": 6.2,
-          "spark_plug": "NGK CMR6H",
-          "electrode_gap_mm": 0.50,
-          "carb_h_setting": "Injectiesysteem (Geen carburateur)",
-          "carb_l_setting": "Injectiesysteem (Geen carburateur)",
-          "carb_la_setting": "Elektronisch geregeld",
-          "chain_pitch": "3/8\"",
-          "chain_gauge_mm": 1.6
-        },
-        {
-          "id": "stihl_msa_220_c",
-          "series_code": "1251",
-          "model_name": "MSA 220 C-B (Accu Zaag)",
-          "category": "Accu Kettingzaag",
-          "fuel_type": "BATTERY_AP",
-          "fuel_type_label": "Accu (AP-Systeem 36V)",
-          "displacement_cc": null,
-          "power_kw": 2.1,
-          "power_hp": 2.8,
-          "weight_kg": 3.6,
-          "spark_plug": null,
-          "electrode_gap_mm": null,
-          "carb_h_setting": null,
-          "carb_l_setting": null,
-          "carb_la_setting": null,
-          "chain_pitch": "3/8\" P",
-          "chain_gauge_mm": 1.1,
-          "battery_system": "STIHL AP-Systeem (Professioneel)",
-          "voltage_v": 36
-        }
-      ],
-      "model_serial_ranges": [
-        {
-          "model_id": "stihl_ms_260",
-          "plant_code": "1",
-          "serial_start": 145000000,
-          "serial_end": 169999999,
-          "year_start": 2001,
-          "year_end": 2011,
-          "generation_name": "MS 260 (Klassiek / Analoog)",
-          "technical_changes": "Opvolger van 026. Handmatige carburateurafstelling (L/H), vast carter.",
-          "confidence_level": "HIGH"
-        },
-        {
-          "model_id": "stihl_ms_261",
-          "plant_code": "1",
-          "serial_start": 171000000,
-          "serial_end": 179999999,
-          "year_start": 2010,
-          "year_end": 2016,
-          "generation_name": "MS 261 / MS 261 C-M Gen 1",
-          "technical_changes": "Introductie 1141 serie. Hoekige cilinderkap, vroege M-Tronic V1.0 of standaard carburateur.",
-          "confidence_level": "HIGH"
-        },
-        {
-          "model_id": "stihl_ms_261_cm",
-          "plant_code": "1",
-          "serial_start": 180000000,
-          "serial_end": 199999999,
-          "year_start": 2016,
-          "year_end": null,
-          "generation_name": "MS 261 C-M Gen 2 (Facelift / V2)",
-          "technical_changes": "Afgeschuinde cilinderkap, 300g lichter carter/vliegwiel, M-Tronic V2.1 / V3.0.",
-          "confidence_level": "HIGH"
-        },
-        {
-          "model_id": "stihl_ms_201_tc_m",
-          "plant_code": "1",
-          "serial_start": 175000000,
-          "serial_end": 184999999,
-          "year_start": 2011,
-          "year_end": 2015,
-          "generation_name": "MS 201 T (Pre-M-Tronic / V1)",
-          "technical_changes": "Klassieke tophandle zaag, handmatige carburateurafstelling.",
-          "confidence_level": "HIGH"
-        },
-        {
-          "model_id": "stihl_ms_201_tc_m",
-          "plant_code": "1",
-          "serial_start": 185000000,
-          "serial_end": 199999999,
-          "year_start": 2015,
-          "year_end": null,
-          "generation_name": "MS 201 TC-M (M-Tronic)",
-          "technical_changes": "Elektronisch motormanagement (M-Tronic), verbeterde acceleratie en spoeling.",
-          "confidence_level": "HIGH"
-        }
-      ],
-      "counterfeit_rules": [
-        {
-          "pattern_regex": "^0\\d+",
-          "risk_level": "SUSPECT_SERIAL",
-          "reason": "Verdacht serienummer: Het serienummer begint met een 0 en komt niet overeen met bekende authentieke patronen in onze database. Deze melding is geen definitief bewijs dat een machine namaak is."
-        },
-        {
-          "pattern_regex": "^999999999$|^123456789$|^987654321$|^111111111$|^888888888$",
-          "risk_level": "SUSPECT_SERIAL",
-          "reason": "Verdacht serienummer: Bekend nep- / test-serienummer dat veelvuldig op Chinese klonen (bijv. MS 660 / MS 381 namaakzagen) wordt ingeslagen."
-        }
-      ],
-      "part_family_prefixes": {
-        "1106": {"model": "070 / 090 / 090 AV", "type": "Kettingzaag (Extreem zwaar)", "displacement": "106 cc - 137 cc", "power": "6.5 pk - 8.5 pk", "era": "1968 - 1990+", "notes": "De zwaarste klassieke Stihl zaag voor zaagmolens."},
-        "1121": {"model": "024 / 026 / MS 260", "type": "Kettingzaag (Professioneel)", "displacement": "44.3 cc - 50.2 cc", "power": "2.9 pk - 3.5 pk", "era": "1988 - 2011", "notes": "Eén van de meest verkochte professionele vellingszagen ter wereld."},
-        "1130": {"model": "017 / 018 / MS 170 / MS 180", "type": "Kettingzaag (Consument)", "displacement": "30.1 cc - 31.8 cc", "power": "1.7 pk - 2.0 pk", "era": "1995 - heden", "notes": "Meest verkochte benzinekettingzaag ooit wereldwijd."},
-        "1140": {"model": "MS 311 / MS 362 / MS 391 / MS 400 C-M", "type": "Kettingzaag (Magnesium zuiger)", "displacement": "59.0 cc - 66.8 cc", "power": "4.2 pk - 5.4 pk", "era": "2010 - heden", "notes": "'s Werelds eerste kettingzaag met magnesium zuiger."},
-        "1141": {"model": "MS 261 / MS 271 / MS 291", "type": "Kettingzaag (Professioneel modern)", "displacement": "50.2 cc - 55.5 cc", "power": "3.5 pk - 4.1 pk", "era": "2010 - heden", "notes": "Uitgerust met 2-MIX motor en M-Tronic elektronisch beheer."},
-        "4180": {"model": "FS 87 / FS 90 / FS 100 / FS 130 / KM 130", "type": "Bosmaaier / 4-Mix", "displacement": "28.4 cc - 36.3 cc", "power": "1.3 pk - 1.9 pk", "era": "2005 - 2018", "notes": "Gepatenteerde 4-Mix® motorisering."},
-        "4238": {"model": "TS 410 / TS 420", "type": "Doorslijper / Bandenzaag", "displacement": "66.7 cc", "power": "4.4 pk", "era": "2007 - heden", "notes": "Wereldstandaard doorslijper met cycloon-luchtfilter."},
-        "4282": {"model": "BR 500 / BR 550 / BR 600 / BR 700", "type": "Ruggedragen Bladblazer (Zwaar)", "displacement": "64.8 cc (4-Mix)", "power": "4.0 pk", "era": "2006 - heden", "notes": "Topklasse professionele rugblazer met hoge blaaskracht."}
-      }
+    window.STIHL_CLIENT_CONFIG = {
+      decodeEndpoint: '/api/decode'
     };
   </script>
 </head>
@@ -268,7 +75,7 @@
             STIHL Decoder
             <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v3.0 Serial Breakpoints Engine</span>
           </h1>
-          <p class="text-xs text-gray-400">Serienummers, Breakpoint Bouwjaar & Generatie Resolutie & Marktplaats Paspoort</p>
+          <p class="text-xs text-gray-400">Serienummers, herkomstsignalen, bronstatus en onafhankelijk rapport</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
@@ -288,7 +95,7 @@
           Voer een Stihl Serienummer, Onderdeelnummer of Model in
         </h2>
         <p class="text-sm text-gray-400">
-          Krijg direct inzicht in de fabriek van herkomst, de geschatte productieperiode via bekende serie-breakpoints, de generatie/facelift, carburateur basisafstellingen (H/L/LA), StopHeling diefstalcheck en download een Stihl Paspoort.
+          Krijg direct inzicht in de fabriek van herkomst, de zichtbare bronstatus, bekende modeldata, StopHeling-controlestatus en een downloadbaar onafhankelijk rapport. Bevestig model, uitvoering en bouwjaar altijd met typeplaatje of primaire documentatie.
         </p>
       </div>
 
@@ -453,7 +260,7 @@
 
         <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs text-gray-400">
           <span class="font-bold text-orange-400 block mb-1">💡 Let op: U bekijkt een algemeen model datablad.</span>
-          Voer het 9-cijferige serienummer in van uw specifieke machine om de fabriek van herkomst, de geschatte bouwperiode, de StopHeling diefstalcontrole en het Stihl Paspoort op te vragen.
+          Voer het 9-cijferige serienummer in van uw specifieke machine om de fabriek van herkomst, de StopHeling-controlestatus en een onafhankelijk rapport op te vragen.
         </div>
       </div>
 
@@ -463,15 +270,15 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
           <div>
             <div class="flex items-center gap-2">
-              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Gevalideerd Serienummer</span>
-              <span id="res-confidence-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ GEVERIFIEERD</span>
+              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Serienummerformaat herkend</span>
+              <span id="res-confidence-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ FORMAAT GECONTROLEERD</span>
             </div>
             <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">184592301</h3>
           </div>
 
-          <!-- Marktplaats Passport Download Action Button -->
+          <!-- Independent report download action button -->
           <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer self-start sm:self-center">
-            <span>📷 Download Afbeelding voor Marktplaats Advertentie</span>
+            <span>📷 Download onafhankelijk rapport als afbeelding</span>
           </button>
         </div>
 
@@ -621,7 +428,6 @@
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
-    import { decodeStihlCode } from '/src/decoder.js';
 
     document.addEventListener('DOMContentLoaded', () => {
       const searchBtn = document.getElementById('search-btn');
@@ -632,10 +438,10 @@
       const counterfeitCard = document.getElementById('counterfeit-card');
       const modelCard = document.getElementById('model-card');
       const emptyState = document.getElementById('empty-state');
-      const database = window.STIHL_DATABASE || {};
       let currentSerial = '184592301';
-      let currentModelName = 'MS 261 C-M Gen 2 (Facelift)';
-      let currentYearsFormatted = '2016 – Heden';
+      let currentModelName = 'Niet vastgesteld';
+      let currentYearsFormatted = 'Niet vastgesteld';
+      const decodeEndpoint = window.STIHL_CLIENT_CONFIG?.decodeEndpoint || '/api/decode';
 
       function showToast(msg) {
         const toast = document.getElementById('toast-notification');
@@ -649,7 +455,7 @@
         }
       }
 
-      function handleDecode() {
+      async function handleDecode() {
         const val = inputEl.value.trim();
 
         // Reset visibility of all cards
@@ -664,7 +470,14 @@
           return;
         }
 
-        const res = decodeStihlCode(val, database);
+        let res = null;
+        try {
+          const response = await fetch(`${decodeEndpoint}?code=${encodeURIComponent(val)}`);
+          res = await response.json();
+        } catch (err) {
+          emptyState.classList.remove('hidden');
+          return;
+        }
 
         // CASE 1: Counterfeit / Fake Serial Number
         if (res && res.isCounterfeit) {
@@ -680,7 +493,7 @@
           document.getElementById('warn-message').innerText = res.warningMessage || 'Dit is een onderdeelnummer (gietnummer/behuizing) en géén uniek serienummer van de complete machine.';
           document.getElementById('warn-model-group').innerText = res.modelGroup || 'STIHL Modelgroep ' + res.familyCode;
           document.getElementById('warn-specs').innerText = `Machinetype: ${res.machineType || 'Gietstuk'} | Inhoud: ${res.displacement || '-'} | Vermogen: ${res.power || '-'} | Productieperiode: ${res.era || '-'}`;
-          document.getElementById('warn-advice').innerText = res.advice || 'Een uniek serienummer staat ingeslagen op het carter (bij de uitlaat of bij de geleideplaatmontage) en bestaat uit exact 9 cijfers.';
+          document.getElementById('warn-advice').innerText = res.advice || 'Een uniek serienummer staat ingeslagen op het carter of typeplaatje en moet apart worden gecontroleerd.';
           warningCard.classList.remove('hidden');
           return;
         }
@@ -692,7 +505,7 @@
           
           document.getElementById('model-title-display').innerText = modelName;
           document.getElementById('model-card-name').innerText = modelName;
-          document.getElementById('model-card-fuel').innerText = isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt M-Tronic)';
+          document.getElementById('model-card-fuel').innerText = isBattery ? '⚡ Accu-aandrijving' : '🔥 Benzine-aandrijving';
 
           // ZERO GENERIC SPEC FALLBACK: Render only verified specifications; hide non-applicable or chain fields for non-chainsaws
           const specs = res.technicalSpecs || {};
@@ -701,21 +514,21 @@
           const dispBox = document.getElementById('model-disp-box');
           if (dispBox) dispBox.style.display = specs.displacement_cc ? 'block' : 'none';
 
-          document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Nog niet geverifieerd';
-          document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Nog niet geverifieerd';
-          document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'NGK / STIHL Standaard';
-          document.getElementById('model-spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
+          document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Broncontrole in behandeling';
+          document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Broncontrole in behandeling';
+          document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'Broncontrole in behandeling';
+          document.getElementById('model-spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Broncontrole in behandeling';
           
-          document.getElementById('model-spec-carb-h').innerText = specs.carb_h_setting || 'Fabrieksafstelling';
-          document.getElementById('model-spec-carb-l').innerText = specs.carb_l_setting || 'Fabrieksafstelling';
-          document.getElementById('model-spec-carb-la').innerText = specs.carb_la_setting || (specs.idle_speed_rpm ? `${specs.idle_speed_rpm} RPM` : '2800 RPM');
+          document.getElementById('model-spec-carb-h').innerText = specs.carb_h_setting || 'Broncontrole in behandeling';
+          document.getElementById('model-spec-carb-l').innerText = specs.carb_l_setting || 'Broncontrole in behandeling';
+          document.getElementById('model-spec-carb-la').innerText = specs.carb_la_setting || 'Broncontrole in behandeling';
 
           const chainInfoEl = document.getElementById('model-spec-chain-info');
           const chainContainer = chainInfoEl ? chainInfoEl.parentElement : null;
           if (chainContainer) {
             if (isChainsaw && specs.chain_pitch) {
               chainContainer.style.display = 'block';
-              chainInfoEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm`;
+              chainInfoEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Broncontrole in behandeling'} mm`;
             } else {
               chainContainer.style.display = 'none';
             }
@@ -732,30 +545,29 @@
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
-          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt)');
+          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu-aandrijving' : '🔥 Niet afleidbaar uit alleen serienummer');
 
-          currentModelName = res.model || 'STIHL Geverifieerde Machine';
+          currentModelName = res.model || 'Niet vastgesteld';
 
           document.getElementById('res-serial-display').innerText = formatted;
           document.getElementById('res-model').innerText = currentModelName;
           document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
-          document.getElementById('res-country').innerText = res.factory ? `${res.factory.country} (${res.factory.location})` : 'Duitsland (Waiblingen)';
+          document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Onbekend'}${res.factory.location ? ` (${res.factory.location})` : ''}` : 'Onbekend';
 
-          // Serial Breakpoints Engine Results
           const prodPeriod = res.productionPeriod || {};
-          currentYearsFormatted = prodPeriod.yearRangeFormatted || res.estimatedYears || 'Geverifieerd';
+          currentYearsFormatted = res.estimatedYears || 'Niet afleidbaar uit alleen serienummer';
           document.getElementById('res-years').innerText = currentYearsFormatted;
-          document.getElementById('res-generation').innerText = prodPeriod.generation || res.generation || 'STIHL Fabrieksserie';
+          document.getElementById('res-generation').innerText = res.generation || 'Typeplaatje nodig voor model/generatie';
 
           const matchTag = document.getElementById('res-range-match-tag');
           if (matchTag) {
-            matchTag.innerText = prodPeriod.confidence === 'HIGH' ? 'Range Match (Nauwkeurig)' : 'Reeks Inschatting';
+            matchTag.innerText = 'Geen modelclaim uit serienummer';
           }
 
           const hlContainer = document.getElementById('res-highlights-container');
           const hlText = document.getElementById('res-highlights-text');
-          if (prodPeriod.technicalHighlights) {
-            if (hlText) hlText.innerText = `ℹ️ ${prodPeriod.technicalHighlights}`;
+          if (res.notes) {
+            if (hlText) hlText.innerText = `ℹ️ ${res.notes}`;
             if (hlContainer) hlContainer.style.display = 'block';
           } else {
             if (hlContainer) hlContainer.style.display = 'none';
@@ -789,23 +601,23 @@
             if (carbLABox) carbLABox.style.display = specs.carb_la_setting ? 'block' : 'none';
             if (oilBox) oilBox.style.display = isChainsaw ? 'block' : 'none';
 
-            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Geverifieerd';
-            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK / STIHL Standaard';
-            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
-            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Fabrieksafstelling';
-            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Fabrieksafstelling';
-            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM';
-            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
+            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Niet vastgesteld';
+            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'Niet vastgesteld';
+            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Niet vastgesteld';
+            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Niet vastgesteld';
+            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Niet vastgesteld';
+            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || 'Niet vastgesteld';
+            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || 'Niet vastgesteld';
           }
 
-          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Geverifieerd';
+          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Niet vastgesteld';
           
           const serialChainEl = document.getElementById('spec-chain-info');
           const serialChainContainer = serialChainEl ? serialChainEl.parentElement : null;
           if (serialChainContainer) {
             if (isChainsaw && specs.chain_pitch) {
               serialChainContainer.style.display = 'block';
-              serialChainEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm`;
+              serialChainEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Niet vastgesteld'} mm`;
             } else {
               serialChainContainer.style.display = 'none';
             }

@@ -13,8 +13,10 @@ export function renderStihlPassportHtml(data) {
   const catSlug = normalizeCategorySlug(categoryStr, model);
   const isChainsaw = (catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW);
 
-  const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Geverifieerd');
+  const plantCountry = data.plantInfo?.country || data.factory?.country || 'Onbekend';
+  const plantLocation = data.plantInfo?.location || data.factory?.location || data.factory?.facility;
+  const country = plantLocation ? `${plantCountry} (${plantLocation})` : plantCountry;
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Niet vastgesteld');
   const dispCc = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.displacementCc) || (data.technicalSpecs && data.technicalSpecs.displacement_cc);
   const powerHp = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.powerHp) || (data.technicalSpecs && data.technicalSpecs.power_hp);
 
@@ -26,7 +28,7 @@ export function renderStihlPassportHtml(data) {
     const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
     categorySpecValue = chainDetails ? 
       (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
-      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm');
+      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld');
   } else if (catSlug === CATEGORY_TYPES.BLOWER) {
     categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
     categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
@@ -39,12 +41,19 @@ export function renderStihlPassportHtml(data) {
   }
 
   const theftCheck = data.theftCheck || {
-    isStolen: false,
+    status: 'UNVERIFIED',
+    isStolen: null,
     checkedAt: new Date().toLocaleDateString('nl-NL'),
-    statusLabel: '✓ NIET ALS GESTOLEN GEREGISTREERD'
+    statusLabel: 'Niet gecontroleerd via StopHeling'
   };
 
-  const isStolen = theftCheck.isStolen;
+  const isStolen = theftCheck.status === 'STOLEN';
+  const isVerified = theftCheck.status === 'CLEAR';
+  const statusTone = isStolen
+    ? 'bg-rose-950/40 border-rose-500/50 text-rose-300'
+    : isVerified
+      ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300'
+      : 'bg-amber-950/30 border-amber-500/40 text-amber-200';
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://www.stihldecoder.nl/?s=' + serial)}`;
 
   return `
@@ -54,18 +63,18 @@ export function renderStihlPassportHtml(data) {
       <!-- Header -->
       <div class="flex justify-between items-start border-b border-neutral-800/80 pb-4">
         <div>
-          <span class="text-2xs font-mono uppercase tracking-widest text-orange-500 font-bold block">Officieel Machine Paspoort</span>
+          <span class="text-2xs font-mono uppercase tracking-widest text-orange-500 font-bold block">Machinepaspoort</span>
           <h2 class="text-2xl font-black tracking-tight text-white mt-0.5">${model}</h2>
         </div>
         <span class="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-2xs font-black tracking-wider">
-          STIHL VERIFIED
+          ${isVerified ? 'Controle afgerond' : 'Controle vereist'}
         </span>
       </div>
 
       <!-- Stop Heling Banner -->
-      <div class="p-3 rounded-xl border flex items-center justify-between ${isStolen ? 'bg-rose-950/40 border-rose-500/50 text-rose-300' : 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300'}">
+      <div class="p-3 rounded-xl border flex items-center justify-between ${statusTone}">
         <div class="flex items-center gap-2.5">
-          <span class="text-lg">${isStolen ? '🚨' : '🛡️'}</span>
+          <span class="text-lg">${isStolen ? '🚨' : (isVerified ? '🛡️' : '⚠️')}</span>
           <div>
             <span class="text-2xs font-bold uppercase tracking-wider block">Stop Heling Diefstalcontrole</span>
             <span class="text-xs font-black text-white">${theftCheck.statusLabel}</span>
@@ -93,23 +102,23 @@ export function renderStihlPassportHtml(data) {
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">Motor Specificaties</span>
-          <span class="text-sm font-bold text-white">${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Geverifieerd'}</span>
+          <span class="text-sm font-bold text-white">${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Niet vastgesteld'}</span>
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2 flex justify-between items-center">
           <div>
             <span class="text-2xs text-neutral-400 block font-medium">${categorySpecLabel}</span>
             <span class="text-sm font-bold text-orange-300 font-mono">${categorySpecValue}</span>
           </div>
-          <span class="text-3xs bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Geverifieerde Spec</span>
+          <span class="text-3xs bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">${isVerified ? 'Controlebron aanwezig' : 'Extra verificatie nodig'}</span>
         </div>
       </div>
 
       <!-- Footer with Unobscured Domain and QR Code -->
       <div class="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-3xs text-neutral-400 gap-4">
         <div class="space-y-0.5">
-          <p class="font-semibold text-neutral-300">Geverifieerd document voor verkoop op Marktplaats & 2dehands.be</p>
+          <p class="font-semibold text-neutral-300">Onafhankelijk controle-overzicht voor serienummer en herkomstsignalen</p>
           <span class="font-mono font-black text-orange-500 text-sm block">www.stihldecoder.nl</span>
-          <p class="text-neutral-500 text-3xs">Scan QR-code met uw mobiel voor het live verificatierapport</p>
+          <p class="text-neutral-500 text-3xs">Scan QR-code voor het live rapport en voer handmatige controle uit waar nodig</p>
         </div>
         <div class="flex-shrink-0 flex items-center gap-2">
           <img src="${qrUrl}" alt="Scan QR Verificatie" class="w-12 h-12 rounded-lg border border-neutral-700 bg-white p-0.5 shadow-md" />
@@ -127,8 +136,10 @@ export function downloadStihlPassportImage(data) {
   const catSlug = normalizeCategorySlug(categoryStr, model);
   const isChainsaw = (catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW);
 
-  const country = data.plantInfo ? `${data.plantInfo.country} (${data.plantInfo.location})` : (data.factory ? `${data.factory.country} (${data.factory.location})` : 'Duitsland (Waiblingen)');
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Geverifieerd');
+  const plantCountry = data.plantInfo?.country || data.factory?.country || 'Onbekend';
+  const plantLocation = data.plantInfo?.location || data.factory?.location || data.factory?.facility;
+  const country = plantLocation ? `${plantCountry} (${plantLocation})` : plantCountry;
+  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Niet vastgesteld');
   const dispCc = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.displacementCc) || (data.technicalSpecs && data.technicalSpecs.displacement_cc);
   const powerHp = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.powerHp) || (data.technicalSpecs && data.technicalSpecs.power_hp);
 
@@ -140,7 +151,7 @@ export function downloadStihlPassportImage(data) {
     const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
     categorySpecValue = chainDetails ? 
       (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
-      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm');
+      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld');
   } else if (catSlug === CATEGORY_TYPES.BLOWER) {
     categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
     categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
@@ -153,13 +164,14 @@ export function downloadStihlPassportImage(data) {
   }
 
   const theftCheck = data.theftCheck || {
-    isStolen: false,
+    status: 'UNVERIFIED',
+    isStolen: null,
     checkedAt: new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-    statusLabel: '✓ NIET ALS GESTOLEN GEREGISTREERD'
+    statusLabel: 'Niet gecontroleerd via StopHeling'
   };
 
-  if (theftCheck.isStolen) {
-    alert('🚨 DOWNLOAD GEBLOKKEERD: Dit serienummer staat als gestolen geregistreerd in het StopHeling register van de politie.');
+  if (theftCheck.status !== 'CLEAR') {
+    alert('Download geblokkeerd: alleen een aantoonbaar geslaagde StopHeling-controle mag als controlelabel worden geëxporteerd.');
     return;
   }
 
@@ -182,18 +194,18 @@ export function downloadStihlPassportImage(data) {
     // Header Text
     ctx.fillStyle = '#f97316';
     ctx.font = 'bold 22px monospace';
-    ctx.fillText('OFFICIEEL MACHINE PASPOORT', 60, 75);
+    ctx.fillText('ONAFHANKELIJK MACHINE RAPPORT', 60, 75);
 
     ctx.fillStyle = '#ffffff';
     ctx.font = '900 44px sans-serif';
     ctx.fillText(model, 60, 130);
 
-    // STIHL VERIFIED Badge
+    // Source-status badge
     ctx.fillStyle = '#ea580c20';
     ctx.fillRect(940, 50, 200, 42);
     ctx.fillStyle = '#fb923c';
     ctx.font = 'bold 16px sans-serif';
-    ctx.fillText('STIHL VERIFIED', 975, 76);
+    ctx.fillText('BRONSTATUS ZICHTBAAR', 958, 76);
 
     // Stop Heling Banner Box
     ctx.fillStyle = '#064e3b';
@@ -244,7 +256,7 @@ export function downloadStihlPassportImage(data) {
     ctx.fillText('Motor Specificaties', 645, 455);
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 28px sans-serif';
-    ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Geverifieerd'}`, 645, 510);
+    ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Niet vastgesteld'}`, 645, 510);
 
     // Category Specific Full Row Card
     ctx.fillStyle = '#171717';
@@ -267,13 +279,13 @@ export function downloadStihlPassportImage(data) {
     // Footer Text & Domain
     ctx.fillStyle = '#737373';
     ctx.font = '16px sans-serif';
-    ctx.fillText('Geverifieerd document voor verkoop op Marktplaats & 2dehands.be', 60, 770);
+    ctx.fillText('Onafhankelijk rapport voor serienummer-, herkomst- en bronstatuscontrole', 60, 770);
     ctx.fillStyle = '#f97316';
     ctx.font = 'bold 24px monospace';
     ctx.fillText('www.stihldecoder.nl', 60, 810);
     ctx.fillStyle = '#525252';
     ctx.font = '14px sans-serif';
-    ctx.fillText('Scan QR-code met uw mobiel voor het live verificatierapport', 60, 840);
+    ctx.fillText('Scan QR-code met uw mobiel voor het live rapport en aanvullende handmatige controle', 60, 840);
 
     // Draw QR Code
     if (qrImageElement) {

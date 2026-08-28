@@ -3,9 +3,9 @@
  */
 
 export function generateModelJsonLd({ modelName, category, displacementCc, powerHp, sparkPlug, carbSettings, url }) {
-  const carbH = (carbSettings && carbSettings.H) || '1 slag open';
-  const carbL = (carbSettings && carbSettings.L) || '1 slag open';
-  const carbLA = (carbSettings && carbSettings.LA) || 'Standaard stationair';
+  const carbH = (carbSettings && carbSettings.H) || 'Niet vastgesteld';
+  const carbL = (carbSettings && carbSettings.L) || 'Niet vastgesteld';
+  const carbLA = (carbSettings && carbSettings.LA) || 'Niet vastgesteld';
 
   return {
     '@context': 'https://schema.org',
@@ -21,7 +21,7 @@ export function generateModelJsonLd({ modelName, category, displacementCc, power
         '@type': 'Product',
         'name': `STIHL ${modelName}`,
         'category': category || 'Tuinmachine',
-        'description': `STIHL ${modelName} ${category || 'machine'} met ${displacementCc || 50.2} cc cilinderinhoud en ${powerHp || 4.1} pk vermogen.`,
+        'description': `STIHL ${modelName} ${category || 'machine'} met alleen documenteerbare specificaties uit de beschikbare brondata.`,
         'brand': {
           '@type': 'Brand',
           'name': 'STIHL'

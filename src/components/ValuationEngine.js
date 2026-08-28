@@ -25,7 +25,8 @@ export function calculateMarketValuation(model, condition = 'GOED') {
   const isMtronic = model ? (model.carb_h_setting || '').includes('M-Tronic') : false;
 
   // Determine Data Classification
-  const dataClassification = model && model.specs_verified ? DATA_CLASSIFICATION.CALCULATED_ESTIMATE : DATA_CLASSIFICATION.UNKNOWN;
+  const hasEnoughModelData = Boolean(model && (model.displacement_cc || model.power_hp || model.power_kw));
+  const dataClassification = hasEnoughModelData ? DATA_CLASSIFICATION.CALCULATED_ESTIMATE : DATA_CLASSIFICATION.UNKNOWN;
 
   // Base median market price estimation logic
   let baseMedian = Math.round(baseDisplacement * 6.5 + baseHp * 25);
@@ -39,20 +40,14 @@ export function calculateMarketValuation(model, condition = 'GOED') {
   const p25 = Math.round(adjustedMedian * 0.90);
   const p75 = Math.round(adjustedMedian * 1.10);
 
-  const sampleSize = Math.round(14 + (baseDisplacement % 12));
-
-  // Determine Valuation Confidence Level
-  let confidenceLevel = 'MEDIUM';
-  if (sampleSize >= 20) confidenceLevel = 'HIGH';
-  else if (sampleSize >= 8) confidenceLevel = 'MEDIUM';
-  else if (sampleSize >= 3) confidenceLevel = 'LOW';
-  else confidenceLevel = 'INSUFFICIENT_DATA';
+  const sampleSize = 0;
+  const confidenceLevel = hasEnoughModelData ? 'LOW' : 'INSUFFICIENT_DATA';
 
   const isRealData = dataClassification === DATA_CLASSIFICATION.REAL_MARKET_DATA;
   const headlineTerm = isRealData ? 'Tweedehands Marktwaarde' : 'Indicatieve Waarde-inschatting';
   const provenanceText = isRealData 
-    ? `Gebaseerd op ${sampleSize} geverifieerde marktwaarnemingen (Laatst bijgewerkt: augustus 2026).`
-    : `Indicatieve waarde-inschatting berekend op basis van cilinderinhoud, motorvermogen, staat van het carter en motortype.`;
+    ? `Gebaseerd op ${sampleSize} marktwaarnemingen (Laatst bijgewerkt: 28 augustus 2026).`
+    : `Indicatieve waarde-inschatting op basis van beperkte modeldata uit de repository. Dit is geen bewezen marktmeting, geen taxatierapport en geen vervanging voor een actuele marktanalyse.`;
 
   return {
     modelName: model ? model.model_name : 'STIHL Machine',
@@ -68,6 +63,6 @@ export function calculateMarketValuation(model, condition = 'GOED') {
     sampleSize,
     confidenceLevel,
     provenanceText,
-    lastUpdated: 'Augustus 2026'
+    lastUpdated: '28 augustus 2026'
   };
 }

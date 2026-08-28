@@ -2,8 +2,10 @@
  * Centralized Schema.org Structured Data Engine for STIHLDecoder.nl
  */
 
+import { PRIMARY_ORIGIN } from '../config.js';
+
 export function buildStructuredData({ pageType, model, guide, intent, breadcrumbs = [], url }) {
-  const baseUrl = 'https://stihldecoder.nl';
+  const baseUrl = PRIMARY_ORIGIN;
   const canonicalUrl = url || baseUrl;
   const graph = [];
 
@@ -29,7 +31,7 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
       'applicationCategory': 'UtilitiesApplication',
       'operatingSystem': 'All',
       'browserRequirements': 'Requires JavaScript and HTML5 support',
-      'description': 'Onafhankelijke online decoder om het bouwjaar, de herkomstfabriek en specificaties van STIHL machines te verifiëren.',
+      'description': 'Onafhankelijke online decoder voor serienummercontrole, typeplaatjecontrole en transparante bronstatus van STIHL modeldata.',
       'author': {
         '@type': 'Organization',
         'name': 'STIHLDecoder.nl',
@@ -44,7 +46,7 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
     graph.push({
       '@type': 'TechArticle',
       'headline': `STIHL ${model.model_name} Bouwjaar, Serienummer & Specificaties`,
-      'description': `Controleer het geschatte bouwjaar, herkomstfabriek en specificaties van de STIHL ${model.model_name}. Inclusief carburateur basisafstelling en serienummer locaties.`,
+      'description': `Bekijk de bekende modeldata van STIHL ${model.model_name} met zichtbare bronstatus en aanwijzingen voor serienummer- en typeplaatjecontrole.`,
       'url': canonicalUrl,
       'inLanguage': 'nl-NL'
     });
@@ -80,7 +82,7 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
         'name': `Wat is de carburateur basisafstelling voor de STIHL ${model.model_name}?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': `Standaardafstelling voor STIHL ${model.model_name}: H-schroef: ${model.carb_h_setting || '1 slag open'}, L-schroef: ${model.carb_l_setting || '1 slag open'}, LA-schroef: ${model.carb_la_setting || '2800 RPM'}.`
+          'text': `Bekende repositorywaarde voor STIHL ${model.model_name}: H-schroef: ${model.carb_h_setting || 'niet vastgesteld'}, L-schroef: ${model.carb_l_setting || 'niet vastgesteld'}, LA-schroef: ${model.carb_la_setting || 'niet vastgesteld'}. Controleer altijd de primaire handleiding of serviceliteratuur.`
         }
       });
     }

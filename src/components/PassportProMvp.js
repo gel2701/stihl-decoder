@@ -15,25 +15,25 @@ export function renderPassportProMvpCard({ modelName = 'STIHL Machine', abVarian
       <div class="flex justify-between items-start border-b border-gray-800 pb-3">
         <div>
           <span class="px-2.5 py-0.5 rounded-full text-2xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block mb-1">
-            PREMIUM CERTIFICAAT
+            PREMIUM RAPPORT
           </span>
-          <h3 class="text-lg font-bold text-white">Gecertificeerd Machinepaspoort Pro</h3>
+          <h3 class="text-lg font-bold text-white">Machinepaspoort Pro</h3>
         </div>
         <span class="text-xl font-black text-orange-400 font-mono">€${PASSPORT_PRO_PRICE}</span>
       </div>
 
       <p class="text-xs text-gray-300 leading-relaxed">
-        Verhoog de verkoopwaarde en het kopervertrouwen op Marktplaats voor uw <strong>${modelName}</strong>. Ontvang een geverifieerd PDF-certificaat en een scanbare QR-verificatie URL op stihldecoder.nl.
+        Maak voor uw <strong>${modelName}</strong> een onafhankelijk PDF-rapport met serienummer, typeplaatje-notities en een QR-link naar het live rapport. Dit product claimt geen officiële STIHL- of politiecertificering.
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-200">
         <div class="flex items-center gap-2">
           <span class="text-emerald-400 font-bold">✓</span>
-          <span>QR-code met Live Verificatie URL</span>
+          <span>QR-code met live rapport-URL</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-emerald-400 font-bold">✓</span>
-          <span>High-Res PDF Verkooprapport</span>
+          <span>High-res PDF verkooprapport</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-emerald-400 font-bold">✓</span>
@@ -41,7 +41,7 @@ export function renderPassportProMvpCard({ modelName = 'STIHL Machine', abVarian
         </div>
         <div class="flex items-center gap-2">
           <span class="text-emerald-400 font-bold">✓</span>
-          <span>StopHeling Politie Diefstalstempel</span>
+          <span>StopHeling statusveld indien controle slaagt</span>
         </div>
       </div>
 

@@ -24,41 +24,6 @@ export class StihlRangeResolver {
         };
       }
     }
-
-    if (plantCode === '1') {
-      if (numericSerial >= 180000000) {
-        return {
-          yearRangeFormatted: "2016 – Heden",
-          yearStart: 2016,
-          yearEnd: null,
-          generation: "Modern Productie-tijdperk (Facelift / M-Tronic V2+)",
-          confidence: 'MEDIUM'
-        };
-      } else if (numericSerial >= 170000000) {
-        return {
-          yearRangeFormatted: "2010 – 2016",
-          yearStart: 2010,
-          yearEnd: 2016,
-          generation: "Generatie 1 (2-MIX / Vroege M-Tronic)",
-          confidence: 'MEDIUM'
-        };
-      } else if (numericSerial >= 140000000) {
-        return {
-          yearRangeFormatted: "2000 – 2010",
-          yearStart: 2000,
-          yearEnd: 2010,
-          generation: "Klassiek Tijdperk (MS-Serie Introductie)",
-          confidence: 'MEDIUM'
-        };
-      }
-    }
-
-    return {
-      yearRangeFormatted: "Ca. 2011 – 2020",
-      yearStart: 2011,
-      yearEnd: 2020,
-      generation: "Standaard Productiereeks",
-      confidence: 'ESTIMATED'
-    };
+    return null;
   }
 }

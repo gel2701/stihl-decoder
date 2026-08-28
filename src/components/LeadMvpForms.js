@@ -54,7 +54,7 @@ export function renderSellLeadMvpCard({ modelName = 'STIHL Machine' }) {
         <span class="text-2xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Direct Inkoopaanbod</span>
       </div>
       <p class="text-gray-300 leading-relaxed">
-        Ontvang een vrijblijvend overname-bod van geverifieerde STIHL opkopers of vergelijkbare verzamelaars.
+        Ontvang een vrijblijvend overnamebod van geïnteresseerde opkopers of verzamelaars. Vergelijk voorwaarden altijd zelf voordat u akkoord gaat.
       </p>
       <form action="/api/v1/leads/sell" method="POST" class="space-y-2.5 pt-1" onsubmit="if(window.trackStihlEvent){window.trackStihlEvent('sell_lead_started', {model: '${modelName}'});}">
         <input type="hidden" name="model" value="${modelName}">

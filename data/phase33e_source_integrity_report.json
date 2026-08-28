@@ -1,0 +1,435 @@
+{
+  "generated_at": "2026-08-28T13:04:23.991Z",
+  "audit_mode": "report_only",
+  "canonical_file": "data/stihl_database.json",
+  "totals": {
+    "models": 32,
+    "primarySourceLinkedModels": 4,
+    "primarySourcePendingModels": 28,
+    "modelsWithErrors": 4,
+    "modelsWithWarnings": 0
+  },
+  "officialRegistry": [
+    {},
+    {},
+    {}
+  ],
+  "perModel": [
+    {
+      "slug": "ms-170",
+      "model_name": "MS 170",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-180",
+      "model_name": "MS 180",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-200",
+      "model_name": "MS 200 / 020 T",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-210",
+      "model_name": "MS 210",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-230",
+      "model_name": "MS 230",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-250",
+      "model_name": "MS 250",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-260",
+      "model_name": "MS 260",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-261",
+      "model_name": "MS 261",
+      "data_status": "PRIMARY_SOURCE_LINKED",
+      "data_source": "0458-573-8621-D - STIHL MS 261 Instruction Manual",
+      "findings": [
+        {
+          "severity": "error",
+          "code": "DOCUMENT_MODEL_MISMATCH",
+          "message": "Linked document undefined does not clearly mention this model."
+        }
+      ]
+    },
+    {
+      "slug": "ms-270",
+      "model_name": "MS 270",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-280",
+      "model_name": "MS 280",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-290",
+      "model_name": "MS 290 Farm Boss",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-310",
+      "model_name": "MS 310",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-311",
+      "model_name": "MS 311",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-340",
+      "model_name": "MS 340",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-341",
+      "model_name": "MS 341",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-360",
+      "model_name": "MS 360 / 036 Pro",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-361",
+      "model_name": "MS 361",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-362",
+      "model_name": "MS 362",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-390",
+      "model_name": "MS 390",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-400",
+      "model_name": "MS 400 C-M",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-441",
+      "model_name": "MS 441",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-460",
+      "model_name": "MS 460 / 046 Magnum",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "fs-350",
+      "model_name": "FS 350",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "br-600",
+      "model_name": "BR 600",
+      "data_status": "PRIMARY_SOURCE_LINKED",
+      "data_source": "0458-452-8621-J - STIHL BR 500 / BR 600 Instruction Manual",
+      "findings": [
+        {
+          "severity": "error",
+          "code": "DOCUMENT_MODEL_MISMATCH",
+          "message": "Linked document undefined does not clearly mention this model."
+        }
+      ]
+    },
+    {
+      "slug": "hs-45",
+      "model_name": "HS 45",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-462",
+      "model_name": "MS 462 C-M",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ms-201-t",
+      "model_name": "MS 201 TC-M",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "fs-460",
+      "model_name": "FS 460 C-EM",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "br-700",
+      "model_name": "BR 700",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "ts-420",
+      "model_name": "TS 420",
+      "data_status": "PRIMARY_SOURCE_PENDING",
+      "data_source": "Primaire STIHL bron nog niet gekoppeld",
+      "findings": [
+        {
+          "severity": "pending",
+          "code": "PRIMARY_SOURCE_PENDING",
+          "message": "Model has no linked primary source document in the canonical registry."
+        }
+      ]
+    },
+    {
+      "slug": "fs-100",
+      "model_name": "FS 100",
+      "data_status": "PRIMARY_SOURCE_LINKED",
+      "data_source": "0458-259-8621-D - STIHL FS 100 / FS 100 RX Instruction Manual",
+      "findings": [
+        {
+          "severity": "error",
+          "code": "DOCUMENT_MODEL_MISMATCH",
+          "message": "Linked document undefined does not clearly mention this model."
+        }
+      ]
+    },
+    {
+      "slug": "fs-100-rx",
+      "model_name": "FS 100 RX",
+      "data_status": "PRIMARY_SOURCE_LINKED",
+      "data_source": "0458-259-8621-D - STIHL FS 100 / FS 100 RX Instruction Manual",
+      "findings": [
+        {
+          "severity": "error",
+          "code": "DOCUMENT_MODEL_MISMATCH",
+          "message": "Linked document undefined does not clearly mention this model."
+        }
+      ]
+    }
+  ]
+}

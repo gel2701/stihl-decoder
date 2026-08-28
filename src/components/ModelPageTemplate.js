@@ -9,8 +9,10 @@ import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
 import { renderPassportProMvpCard } from './PassportProMvp.js';
 import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.js';
+import { getModelVerificationSummary } from '../canonicalData.js';
 
 export function renderModelPageHtml(model, database, baseUrl = 'https://stihldecoder.nl') {
+  const verification = getModelVerificationSummary(model);
   const categorySlug = model.category_slug || 'kettingzagen';
   const slug = model.slug || model.id.replace(/_/g, '-');
   const canonicalUrl = `${baseUrl}/${categorySlug}/${slug}/`;
@@ -30,7 +32,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
   const seoMetaHtml = renderSeoMeta({
     title: `STIHL ${model.model_name} Serienummer Decoder, Bouwjaar & Modelinformatie | STIHLDecoder`,
-    description: `Controleer het serienummer van je STIHL ${model.model_name}, ontdek het model en schat de productieperiode op basis van fabriekscodes. Bekijk technische gegevens en maak een digitaal machinepaspoort.`,
+    description: `Bekijk de bekende modeldata voor STIHL ${model.model_name}, inclusief bronstatus, onderdeleninformatie en aanwijzingen voor controle via typeplaatje en serienummer.`,
     canonicalUrl,
     ogType: 'article',
     jsonLdData
@@ -69,7 +71,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <div>
           <span class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">Geverifieerde Modelgids</span>
+            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">Modelgids met bronstatus</span>
           </span>
           <p class="text-xs text-gray-400">Serienummers, Specificaties & Waardebepaling</p>
         </div>
@@ -92,10 +94,10 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         </a>
         <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          Data Kwaliteit: ${model.data_confidence || 'HIGH'} (Geverifieerd)
+          Data Kwaliteit: ${verification.displayConfidence} (${verification.badgeLabel})
         </span>
         <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/30">
-          Bron: ${model.data_source || 'STIHL Service Documentatie'}
+          Bronstatus: ${verification.sourceLabel}
         </span>
       </div>
 
@@ -103,7 +105,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         STIHL ${model.model_name} Serienummer Decoder, Bouwjaar & Modelinformatie
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Bekijk de geverifieerde fabrieksspecificaties van de STIHL ${model.model_name}. Controleer serienummers op herkomst, geschatte productieperiode op basis van bekende serienummerreeksen, carburateur basisafstellingen, bougiemodel en kettingmaat.
+        Bekijk de momenteel bekende modeldata van de STIHL ${model.model_name}. Gebruik het serienummer voor formaat- en herkomstcontrole en bevestig model en uitvoering altijd via typeplaatje of primaire handleiding.
       </p>
     </header>
 
@@ -114,7 +116,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
           <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           Serienummer van jouw STIHL ${model.model_name} controleren:
         </h2>
-        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Instant Breakpoint Match</span>
+        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Serienummercontrole</span>
       </div>
 
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
@@ -138,7 +140,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     <section class="space-y-4">
       <h2 class="text-2xl font-black border-b border-gray-800 pb-2 text-white flex items-center justify-between">
         <span>Fabrieksspecificaties STIHL ${model.model_name}</span>
-        <span class="text-xs font-normal text-gray-400">Geverifieerde Documentatie</span>
+        <span class="text-xs font-normal text-gray-400">${verification.badgeLabel}</span>
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -224,7 +226,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
       <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-orange-400 text-sm block group-hover:underline">🛡️ 1. Maak Machinepaspoort</span>
-        <span class="text-gray-400 block text-2xs">Download geverifieerd Marktplaats certificaat</span>
+        <span class="text-gray-400 block text-2xs">Download een onafhankelijk verkooprapport</span>
       </a>
       <a href="/waarde/${slug}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-white text-sm block group-hover:underline">💶 2. Controleer Waarde</span>
@@ -268,7 +270,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       <div class="space-y-3 text-xs">
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <h4 class="font-bold text-white">Hoe oud is mijn STIHL ${model.model_name}?</h4>
-          <p class="text-gray-300">Voer het 9-cijferige serienummer in van uw ${model.model_name} in onze decoder om de geschatte productieperiode op basis van bekende serienummerreeksen af te lezen.</p>
+          <p class="text-gray-300">Voer het 9-cijferige serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.</p>
         </div>
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
@@ -288,7 +290,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     <div class="max-w-6xl mx-auto px-4 space-y-3">
       <p class="font-medium text-gray-400">STIHL Machine & Serienummer Decoder Tool</p>
       <p class="max-w-3xl mx-auto text-gray-500 text-2xs leading-relaxed">
-        <strong>E-E-A-T / Transparantie Disclaimer:</strong> STIHLDecoder.nl is een onafhankelijke informatie- en decoderingsdienst. STIHLDecoder is niet verbonden aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Technische gegevens zijn gebaseerd op officiële werkplaatshandboeken en technische STIHL-documentatie.
+        <strong>E-E-A-T / Transparantie Disclaimer:</strong> STIHLDecoder.nl is een onafhankelijke informatie- en decoderingsdienst. STIHLDecoder is niet verbonden aan, gesponsord door of goedgekeurd door ANDREAS STIHL AG & Co. KG. Niet ieder modelrecord heeft al een primaire STIHL bron op veldniveau; de bronstatus staat daarom per model zichtbaar vermeld.
       </p>
     </div>
   </footer>

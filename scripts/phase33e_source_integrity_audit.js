@@ -1,204 +1,130 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import {
+  OFFICIAL_PRIMARY_DOCUMENTS,
+  getModelVerificationSummary,
+  summarizeCanonicalDatabase
+} from '../src/canonicalData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
 const jsonPath = path.join(rootDir, 'data', 'stihl_database.json');
+const reportPath = path.join(rootDir, 'data', 'phase33e_source_integrity_report.json');
+
 const dbData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-const models = dbData.models || [];
+const models = Array.isArray(dbData.models) ? dbData.models : [];
 
-console.log('🔍 Executing Phase 33E Source Integrity & Document Verification Audit...\n');
-
-let totalModelsCount = models.length;
-let totalSourcesCount = 0;
-let validSourceLinksCount = 0;
-let invalidSourceLinksFound = 0;
-let invalidSourceLinksFixed = 0;
-
-const changeTable = [];
-
-// Official Primary Document Registry
-const OFFICIAL_DOCUMENTS = {
-  '0458-259-8621-D': {
-    document_number: '0458-259-8621-D',
-    document_title: 'STIHL FS 100 RX Instruction Manual',
-    document_type: 'Instruction Manual',
-    models_mentioned: ['FS 100 RX', 'FS 100', 'FS 100 R'],
-    revision: 'Rev. D',
-    publication_year: 2014,
-    market: 'Global / US'
-  },
-  '0458-452-0121-J': {
-    document_number: '0458-452-0121-J',
-    document_title: 'STIHL BR 600 Operating / Instruction Manual',
-    document_type: 'Instruction Manual',
-    models_mentioned: ['BR 600', 'BR 500', 'BR 550'],
-    revision: 'Rev. 2022-J',
-    publication_year: 2022,
-    market: 'Global'
-  },
-  '0458-543-0121': {
-    document_number: '0458-543-0121',
-    document_title: 'STIHL MS 261 C-M Instruction Manual',
-    document_type: 'Instruction Manual',
-    models_mentioned: ['MS 261', 'MS 261 C-M'],
-    revision: 'Rev. 2021',
-    publication_year: 2021,
-    market: 'Global'
-  },
-  '0458-350-0121': {
-    document_number: '0458-350-0121',
-    document_title: 'STIHL FS 350 / FS 400 / FS 450 Instruction Manual',
-    document_type: 'Instruction Manual',
-    models_mentioned: ['FS 350', 'FS 400', 'FS 450'],
-    revision: 'Rev. 2018',
-    publication_year: 2018,
-    market: 'Global'
+function modelMentionsPrimaryDoc(model, summary) {
+  if (!summary.hasPrimaryDocument || !summary.sourceDocumentNumber) {
+    return false;
   }
-};
 
-/**
- * Asserts whether a document officially covers a target model
- */
-export function assertSourceModelLink(docNumber, modelName) {
-  const doc = OFFICIAL_DOCUMENTS[docNumber];
-  if (!doc) return false;
-  return doc.models_mentioned.some(m => modelName.toUpperCase().includes(m.toUpperCase()) || m.toUpperCase().includes(modelName.toUpperCase()));
+  const doc = OFFICIAL_PRIMARY_DOCUMENTS[summary.sourceDocumentNumber];
+  if (!doc) {
+    return false;
+  }
+
+  const aliases = [
+    model.model_name,
+    model.slug,
+    ...(Array.isArray(model.aliases) ? model.aliases : [])
+  ]
+    .filter(Boolean)
+    .map((value) => String(value).toUpperCase());
+
+  return doc.models_mentioned.some((mentioned) => {
+    const target = String(mentioned).toUpperCase();
+    return aliases.some((alias) => alias.includes(target) || target.includes(alias));
+  });
 }
 
-models.forEach(m => {
-  totalSourcesCount++;
+function collectFindings(model) {
+  const summary = getModelVerificationSummary(model);
+  const findings = [];
 
-  // 1. Audit FS 100 RX & Remove Wrong Document 0458-434-0121
-  if (m.slug === 'fs-100-rx' || m.model_name === 'FS 100 RX') {
-    const oldDoc = m.provenance ? m.provenance.source_document_number : '0458-434-0121';
-    invalidSourceLinksFound++;
-    invalidSourceLinksFixed++;
-
-    m.weight_kg = 4.7;
-    m.spark_plug = 'Bosch USR 7 AC / NGK CMR6H';
-    m.data_source = 'STIHL Instruction Manual 0458-259-8621-D';
-    m.provenance = {
-      source_type: 'official_stihl_instruction_manual',
-      source_title: 'STIHL FS 100 RX Instruction Manual',
-      source_document_number: '0458-259-8621-D',
-      source_revision: 'Rev. D',
-      source_year: 2014,
-      models_mentioned: ['FS 100 RX', 'FS 100', 'FS 100 R'],
-      confidence: 'HIGH'
-    };
-
-    if (m.field_verification) {
-      m.field_verification.weight_kg = {
-        value: 4.7,
-        status: 'CONFIGURATION_DEPENDENT',
-        note: '4.7 kg droog gewicht compleet zonder snijgereedschap; 4.5 kg motorunit',
-        source: '0458-259-8621-D'
-      };
-      m.field_verification.spark_plug = {
-        value: 'Bosch USR 7 AC / NGK CMR6H',
-        status: 'APPROVED_ALTERNATIVES',
-        source: '0458-259-8621-D'
-      };
-    }
-
-    changeTable.push({
-      model: 'FS 100 RX',
-      field: 'source_document_number',
-      oldValue: oldDoc,
-      newValue: '0458-259-8621-D',
-      source: 'Official STIHL Registry',
-      reason: 'Removed mismatched document 0458-434-0121 and linked official FS 100 RX manual'
+  if (!summary.hasPrimaryDocument) {
+    findings.push({
+      severity: 'pending',
+      code: 'PRIMARY_SOURCE_PENDING',
+      message: 'Model has no linked primary source document in the canonical registry.'
     });
-    changeTable.push({
-      model: 'FS 100 RX',
-      field: 'weight_kg',
-      oldValue: '4.5 kg',
-      newValue: '4.7 kg (CONFIGURATION_DEPENDENT)',
-      source: '0458-259-8621-D',
-      reason: 'Corrected dry weight complete without cutting attachment per instruction manual'
+  }
+
+  if (summary.hasPrimaryDocument && !modelMentionsPrimaryDoc(model, summary)) {
+    findings.push({
+      severity: 'error',
+      code: 'DOCUMENT_MODEL_MISMATCH',
+      message: `Linked document ${summary.sourceDocumentNumber} does not clearly mention this model.`
     });
-    changeTable.push({
-      model: 'FS 100 RX',
-      field: 'spark_plug',
-      oldValue: 'NGK CMR6H',
-      newValue: 'Bosch USR 7 AC / NGK CMR6H',
-      source: '0458-259-8621-D',
-      reason: 'Added official factory Bosch USR 7 AC plug with NGK alternative'
+  }
+
+  if (model.specs_verified === true) {
+    findings.push({
+      severity: 'warning',
+      code: 'LEGACY_VERIFIED_FLAG',
+      message: 'Legacy specs_verified=true is still present while canonical policy uses field-level source status.'
     });
-
-    validSourceLinksCount++;
   }
-  // 2. Audit FS 100
-  else if (m.slug === 'fs-100' || m.model_name === 'FS 100') {
-    m.data_source = 'STIHL Instruction Manual 0458-259-8621-D';
-    m.provenance = {
-      source_type: 'official_stihl_instruction_manual',
-      source_title: 'STIHL FS 100 Instruction Manual',
-      source_document_number: '0458-259-8621-D',
-      source_revision: 'Rev. D',
-      source_year: 2014,
-      models_mentioned: ['FS 100', 'FS 100 R', 'FS 100 RX'],
-      confidence: 'HIGH'
-    };
-    validSourceLinksCount++;
-  }
-  // 3. Audit BR 600
-  else if (m.slug === 'br-600' || m.model_name === 'BR 600') {
-    m.data_source = 'STIHL Instruction Manual 0458-452-0121-J';
-    m.provenance = {
-      source_type: 'official_stihl_instruction_manual',
-      source_title: 'STIHL BR 600 Operating / Instruction Manual',
-      source_document_number: '0458-452-0121-J',
-      source_revision: 'Rev. 2022-J',
-      source_year: 2022,
-      models_mentioned: ['BR 600', 'BR 500', 'BR 550'],
-      confidence: 'HIGH'
-    };
-    validSourceLinksCount++;
-  }
-  // 4. Audit MS 261
-  else if (m.slug === 'ms-261' || m.model_name.includes('MS 261')) {
-    m.data_source = 'STIHL Instruction Manual 0458-543-0121';
-    m.provenance = {
-      source_type: 'official_stihl_instruction_manual',
-      source_title: 'STIHL MS 261 C-M Instruction Manual',
-      source_document_number: '0458-543-0121',
-      source_revision: 'Rev. 2021',
-      source_year: 2021,
-      models_mentioned: ['MS 261', 'MS 261 C-M'],
-      confidence: 'HIGH'
-    };
-    validSourceLinksCount++;
-  } else {
-    validSourceLinksCount++;
-  }
-});
 
-// Save updated database
-fs.writeFileSync(jsonPath, JSON.stringify(dbData, null, 2), 'utf8');
+  if ((model.production_confidence || '').toUpperCase() !== 'UNKNOWN') {
+    findings.push({
+      severity: 'warning',
+      code: 'PRODUCTION_CONFIDENCE_TOO_HIGH',
+      message: `production_confidence is ${model.production_confidence}; canonical policy expects UNKNOWN unless separately proven.`
+    });
+  }
 
-console.log(`====================================================================`);
-console.log(`FASE 33E SOURCE INTEGRITY AUDIT SUMMARY`);
-console.log(`====================================================================`);
-console.log(`TOTAL MODELS: ${totalModelsCount}`);
-console.log(`TOTAL SOURCES: ${totalSourcesCount}`);
-console.log(`VALID SOURCE LINKS: ${validSourceLinksCount}`);
-console.log(`INVALID SOURCE LINKS FOUND: ${invalidSourceLinksFound}`);
-console.log(`INVALID SOURCE LINKS FIXED: ${invalidSourceLinksFixed}`);
-console.log(``);
-console.log(`FS100 SOURCE: 0458-259-8621-D (VALID: YES)`);
-console.log(`FS100 RX SOURCE: 0458-259-8621-D (VALID: YES)`);
-console.log(`FS100 RX WEIGHT: 4.7 kg (CONFIGURATION_DEPENDENT)`);
-console.log(`FS100 RX SPARK PLUG: Bosch USR 7 AC / NGK CMR6H (APPROVED_ALTERNATIVES)`);
-console.log(`WRONG 0458-434-0121 LINK: REMOVED`);
-console.log(`====================================================================\n`);
+  return {
+    slug: model.slug,
+    model_name: model.model_name,
+    data_status: model.data_status || null,
+    data_source: model.data_source || null,
+    source_document_number: summary.sourceDocumentNumber,
+    findings
+  };
+}
 
-console.log(`MODEL | FIELD | OLD VALUE | NEW VALUE | SOURCE | REASON`);
-console.log(`--------------------------------------------------------------------`);
-changeTable.forEach(c => {
-  console.log(`${c.model} | ${c.field} | ${c.oldValue} | ${c.newValue} | ${c.source} | ${c.reason}`);
-});
+const perModel = models.map(collectFindings);
+const summary = summarizeCanonicalDatabase(dbData);
+const report = {
+  generated_at: new Date().toISOString(),
+  audit_mode: 'report_only',
+  canonical_file: path.relative(rootDir, jsonPath).replace(/\\/g, '/'),
+  canonical_hash: summary.hash,
+  totals: {
+    models: models.length,
+    primarySourceLinkedModels: summary.primarySourceLinkedModels,
+    primarySourcePendingModels: summary.primarySourcePendingModels,
+    modelsWithErrors: perModel.filter((entry) => entry.findings.some((finding) => finding.severity === 'error')).length,
+    modelsWithWarnings: perModel.filter((entry) => entry.findings.some((finding) => finding.severity === 'warning')).length
+  },
+  officialRegistry: Object.values(OFFICIAL_PRIMARY_DOCUMENTS).map((doc) => ({
+    document_number: doc.document_number,
+    document_title: doc.document_title,
+    models_mentioned: doc.models_mentioned
+  })),
+  perModel
+};
+
+fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
+
+const integrityFingerprint = crypto
+  .createHash('sha256')
+  .update(JSON.stringify(report.totals))
+  .digest('hex')
+  .slice(0, 12);
+
+console.log('Phase 33E source integrity audit completed.');
+console.log(`Mode: ${report.audit_mode}`);
+console.log(`Canonical file: ${report.canonical_file}`);
+console.log(`Models: ${report.totals.models}`);
+console.log(`Primary source linked: ${report.totals.primarySourceLinkedModels}`);
+console.log(`Primary source pending: ${report.totals.primarySourcePendingModels}`);
+console.log(`Models with errors: ${report.totals.modelsWithErrors}`);
+console.log(`Models with warnings: ${report.totals.modelsWithWarnings}`);
+console.log(`Integrity fingerprint: ${integrityFingerprint}`);
+console.log(`Report written to: ${path.relative(rootDir, reportPath).replace(/\\/g, '/')}`);

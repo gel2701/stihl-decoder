@@ -5,6 +5,7 @@
 import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
+import { getModelVerificationSummary } from '../canonicalData.js';
 
 export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https://stihldecoder.nl') {
   const categoryNames = {
@@ -27,7 +28,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
     pageType: 'intent',
     intent: {
       title: `${categoryTitle} Modellen Overzicht & Serienummer Decoder`,
-      description: `Bekijk het complete overzicht van alle ${categoryTitle} met geverifieerde fabrieksspecificaties, serienummer breakpoints, onderdelen en waardebepaling.`
+      description: `Bekijk het complete overzicht van alle ${categoryTitle} met zichtbare bronstatus, onderdeleninformatie en aanwijzingen voor serienummer- en typeplaatjecontrole.`
     },
     breadcrumbs,
     url: canonicalUrl
@@ -35,7 +36,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
 
   const seoMetaHtml = renderSeoMeta({
     title: `${categoryTitle} Modellen Overzicht & Serienummer Decoder | STIHLDecoder`,
-    description: `Compleet overzicht van alle ${categoryTitle}. Controleer serienummers, ontdek geschatte productieperioden, technische specificaties en marktwaarden.`,
+    description: `Compleet overzicht van alle ${categoryTitle}. Bekijk modeldata, bronstatus en controleer serienummers zonder meer zekerheid te claimen dan de bronlaag ondersteunt.`,
     canonicalUrl,
     ogType: 'website',
     jsonLdData
@@ -68,7 +69,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
             STIHL Decoder
             <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">Categorie Categoriehub</span>
           </span>
-          <p class="text-xs text-gray-400">Geverifieerd Modellenoverzicht</p>
+          <p class="text-xs text-gray-400">Canoniek modellenoverzicht</p>
         </div>
       </a>
       <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Zoeken</a>
@@ -84,13 +85,13 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
     <!-- Header & H1 Title -->
     <header class="space-y-3">
       <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block">
-        Geverifieerd Categorie Overzicht
+        Categorie Overzicht met bronstatus
       </span>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
         ${categoryTitle}: Modellen, Specificaties & Serienummers
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Bekijk alle bekende ${categoryTitle} in onze geverifieerde database. Selecteer een model voor gedetailleerde fabrieksspecificaties, serienummer-breakpoints, onderdelen-compatibiliteit en tweedehands waardebepaling.
+        Bekijk alle bekende ${categoryTitle} in onze canonieke database. Selecteer een model voor bronstatus, onderdeleninformatie en een voorzichtige interpretatie van de beschikbare modeldata.
       </p>
     </header>
 
@@ -101,7 +102,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
           <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           Direct Serienummer van een ${categoryTitle} controleren:
         </h2>
-        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Instant Checker</span>
+        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Formaat- en herkomstcheck</span>
       </div>
 
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
@@ -125,13 +126,14 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
     <section class="space-y-4">
       <h2 class="text-2xl font-black border-b border-gray-800 pb-2 text-white flex items-center justify-between">
         <span>Gepubliceerde ${categoryTitle}</span>
-        <span class="text-xs text-gray-400 font-normal">${categoryModels.length} Geverifieerde Modellen</span>
+        <span class="text-xs text-gray-400 font-normal">${categoryModels.length} Gepubliceerde modellen</span>
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         ${categoryModels.map(m => {
           const mSlug = m.slug || m.id.replace(/_/g, '-');
           const mCat = m.category_slug || categorySlug;
+          const verification = getModelVerificationSummary(m);
           return `
             <a href="/${mCat}/${mSlug}/" class="bg-gray-900/70 border border-gray-800 hover:border-orange-500 p-5 rounded-2xl transition space-y-3 block group">
               <div class="flex justify-between items-start">
@@ -142,6 +144,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
                 <p>• Vermogen: <strong class="text-gray-200">${m.power_hp ? `${m.power_hp} pk (${m.power_kw} kW)` : (m.power_kw ? `${m.power_kw} kW` : 'Niet vastgesteld')}</strong></p>
                 <p>• Cilinderinhoud: <strong class="text-gray-200">${m.displacement_cc ? `${m.displacement_cc} cc` : 'Niet vastgesteld'}</strong></p>
                 <p>• Gewicht: <strong class="text-gray-200">${m.weight_kg ? `${m.weight_kg} kg` : 'Niet vastgesteld'}</strong></p>
+                <p>• Bronstatus: <strong class="text-gray-200">${verification.badgeLabel}</strong></p>
               </div>
               <div class="pt-2 border-t border-gray-800 flex justify-between items-center text-2xs font-bold text-orange-400">
                 <span>Bekijk Modelgids & Serienummers</span>

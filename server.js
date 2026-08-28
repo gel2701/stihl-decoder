@@ -1,9 +1,10 @@
 import http from 'http';
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl } from './src/config.js';
-import { getDatabasePath, isPersistentDiskActive } from './src/databaseConfig.js';
+import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive } from './src/databaseConfig.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
@@ -45,8 +46,28 @@ const MIME_TYPES = {
 };
 
 const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers'];
+const MAX_JSON_BODY_BYTES = 32 * 1024;
+const PUBLIC_ROOT_FILES = new Set([
+  'index.html',
+  'favicon.ico',
+  'favicon-16x16.png',
+  'favicon-32x32.png',
+  'favicon-48x48.png',
+  'favicon-96x96.png',
+  'favicon-192x192.png',
+  'favicon-512x512.png',
+  'apple-touch-icon.png',
+  'site.webmanifest'
+]);
+const PUBLIC_PREFIXES = ['/css/'];
+const PUBLIC_EXACT_FILES = new Set([
+  '/components/tools/GietklokHelper.js',
+  '/src/components/StihlPassportGenerator.js',
+  '/src/categoryWhitelist.js'
+]);
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
+  try {
   const forwardedHost = (req.headers['x-forwarded-host'] || req.headers.host || PRIMARY_HOST).toLowerCase();
   const forwardedProto = (req.headers['x-forwarded-proto'] || 'https').toLowerCase();
   const urlObj = new URL(req.url, `http://${forwardedHost}`);
@@ -79,6 +100,7 @@ const server = http.createServer((req, res) => {
   // 2b. Dynamic Route: GET /api/version
   if (pathname === '/api/version') {
     const persistent = isPersistentDiskActive();
+    const databaseHealth = getDatabaseHealthSnapshot();
     res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify({
       repository: 'https://github.com/gel2701/stihl-decoder.git',
@@ -86,9 +108,12 @@ const server = http.createServer((req, res) => {
       branch: process.env.RENDER_GIT_BRANCH || 'main',
       environment: process.env.NODE_ENV || 'production',
       database: {
-        connected: true,
+        connected: databaseHealth.connected,
         persistent,
-        path_type: persistent ? 'persistent_disk' : 'local_or_ephemeral'
+        path_type: persistent ? 'persistent_disk' : 'local_or_ephemeral',
+        analytics_schema_ready: databaseHealth.analyticsSchemaReady,
+        schema_version: databaseHealth.schemaVersion,
+        last_error: databaseHealth.lastError
       },
       deployed_at: new Date().toISOString()
     }));
@@ -97,23 +122,17 @@ const server = http.createServer((req, res) => {
 
   // 3. REST API v1: POST /api/v1/decode
   if (pathname === '/api/v1/decode' && req.method === 'POST') {
-    let bodyStr = '';
-    req.on('data', chunk => { bodyStr += chunk; });
-    req.on('end', () => {
-      let bodyObj = {};
-      try {
-        if (bodyStr) bodyObj = JSON.parse(bodyStr);
-      } catch (e) {
-        res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-        res.end(JSON.stringify({ status: 'error', message: 'Ongeldige JSON body.' }));
-        return;
-      }
+    const bodyObj = await readJsonBody(req, res);
+    if (bodyObj === null) return;
 
-      const result = handleDecodeApiV1(bodyObj, database);
-      logStihlEvent(EVENT_TYPES.DECODER_USED, { input: bodyObj.serial_number || bodyObj.code, result: result.status }, req.headers['user-agent']);
-      res.writeHead(result.statusCode, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-      res.end(JSON.stringify(result.body));
-    });
+    const result = await handleDecodeApiV1(bodyObj, database);
+    logStihlEvent(
+      EVENT_TYPES.DECODER_USED,
+      { model: bodyObj.serialNumber || bodyObj.serial_number || bodyObj.code || null },
+      req.headers['user-agent']
+    );
+    res.writeHead(result.statusCode, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify(result.body));
     return;
   }
 
@@ -154,7 +173,12 @@ const server = http.createServer((req, res) => {
   // 7. Comparison Engine Routes (/vergelijk/ or /vergelijk/:pair/)
   if (pathname.startsWith('/vergelijk')) {
     const pairSlug = pathname.replace('/vergelijk/', '').replace('/vergelijk', '').replace(/\/$/, '');
-    const html = renderComparisonPageHtml(pairSlug || 'ms-260-vs-ms-261', database, PRIMARY_ORIGIN);
+    const comparisonModels = resolveComparisonModels(pairSlug, database);
+    if (!comparisonModels) {
+      renderNotFound(res);
+      return;
+    }
+    const html = renderComparisonPageHtml(pairSlug, database, PRIMARY_ORIGIN);
     logStihlEvent(EVENT_TYPES.COMPARISON_VIEWED, { pairSlug }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
@@ -167,10 +191,15 @@ const server = http.createServer((req, res) => {
     if (parts.length >= 2 && KNOWN_CATEGORIES.includes(parts[0].toLowerCase())) {
       const catSlug = parts[0].toLowerCase();
       const modelSlug = parts[1].toLowerCase();
-      const models = database.models || [];
-      const targetModel = models.find(m => (m.slug || m.id.replace(/_/g, '-')).toLowerCase() === modelSlug);
+      const targetModel = findModelBySlug(modelSlug, database);
 
       if (targetModel) {
+        const canonicalCategory = targetModel.category_slug || 'kettingzagen';
+        if (canonicalCategory !== catSlug) {
+          res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${canonicalCategory}/${modelSlug}/onderdelen/` });
+          res.end();
+          return;
+        }
         const partsHtml = renderModelPartsPageHtml(targetModel, database, PRIMARY_ORIGIN);
         logStihlEvent(EVENT_TYPES.PART_SEARCH, { model: targetModel.model_name }, req.headers['user-agent']);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
@@ -178,12 +207,20 @@ const server = http.createServer((req, res) => {
         return;
       }
     }
+    renderNotFound(res);
+    return;
   }
 
   // 9. Protected Internal Route: GET /admin/seo-audit
   if (pathname === '/admin/seo-audit' || pathname === '/admin/seo-audit/') {
-    const apiKey = urlObj.searchParams.get('key') || req.headers['x-admin-key'];
-    if (apiKey !== 'stihl-seo-admin-2026' && process.env.NODE_ENV === 'production') {
+    const apiKey = req.headers['x-admin-key'];
+    const expectedApiKey = process.env.ADMIN_AUDIT_KEY || '';
+    if (process.env.NODE_ENV === 'production' && !expectedApiKey) {
+      res.writeHead(503, { 'Content-Type': 'application/json', 'X-Robots-Tag': 'noindex, nofollow' });
+      res.end(JSON.stringify({ error: 'Admin audit secret ontbreekt op de server.' }));
+      return;
+    }
+    if (process.env.NODE_ENV === 'production' && !timingSafeEqual(apiKey, expectedApiKey)) {
       res.writeHead(401, { 'Content-Type': 'application/json', 'X-Robots-Tag': 'noindex, nofollow' });
       res.end(JSON.stringify({ error: 'Geen toegang tot admin audit.' }));
       return;
@@ -262,6 +299,14 @@ const server = http.createServer((req, res) => {
 
   if (pathname.startsWith('/onderdeelnummer/')) {
     const seriesCode = cleanPath.replace('onderdeelnummer/', '').replace(/^stihl-/, '');
+    const hasSeries = Boolean(
+      (database.part_family_prefixes && database.part_family_prefixes[seriesCode]) ||
+      (database.models || []).some((model) => model.series_code === seriesCode)
+    );
+    if (!hasSeries) {
+      renderNotFound(res);
+      return;
+    }
     const html = renderPartNumberSeriesHtml(seriesCode, database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
@@ -273,16 +318,15 @@ const server = http.createServer((req, res) => {
   if (pathParts.length === 2 && KNOWN_CATEGORIES.includes(pathParts[0].toLowerCase())) {
     const catSlug = pathParts[0].toLowerCase();
     const modelSlug = pathParts[1].toLowerCase();
-
-    const models = database.models || [];
-    const targetModel = models.find(m => {
-      const mSlug = (m.slug || m.id).toLowerCase();
-      const mCleanSlug = mSlug.replace(/^stihl-/, '');
-      return (m.category_slug === catSlug || catSlug === 'kettingzagen') && 
-             (mSlug === modelSlug || mCleanSlug === modelSlug || m.id === modelSlug);
-    });
+    const targetModel = findModelBySlug(modelSlug, database);
 
     if (targetModel) {
+      const canonicalCategory = targetModel.category_slug || 'kettingzagen';
+      if (canonicalCategory !== catSlug) {
+        res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${canonicalCategory}/${modelSlug}/` });
+        res.end();
+        return;
+      }
       const html = renderModelPageHtml(targetModel, database, PRIMARY_ORIGIN);
       logStihlEvent(EVENT_TYPES.MODEL_IDENTIFIED, { model: targetModel.model_name }, req.headers['user-agent']);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
@@ -294,8 +338,12 @@ const server = http.createServer((req, res) => {
   // 15. Valuation Preview Routes (/waarde/:slug/)
   if (pathParts.length === 2 && pathParts[0].toLowerCase() === 'waarde') {
     const modelSlug = pathParts[1].toLowerCase();
-    const models = database.models || [];
-    const targetModel = models.find(m => (m.slug || m.id).replace(/^stihl-/, '').toLowerCase() === modelSlug);
+    const targetModel = findModelBySlug(modelSlug, database);
+
+    if (!targetModel) {
+      renderNotFound(res);
+      return;
+    }
 
     logStihlEvent(EVENT_TYPES.VALUATION_STARTED, { model: modelSlug }, req.headers['user-agent']);
 
@@ -343,7 +391,11 @@ const server = http.createServer((req, res) => {
   }
 
   // 16. Serve static files
-  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
+  let filePath = resolveStaticFilePath(pathname);
+  if (!filePath) {
+    renderNotFound(res);
+    return;
+  }
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
@@ -361,6 +413,15 @@ const server = http.createServer((req, res) => {
       res.end(content);
     }
   });
+  } catch (err) {
+    console.error('Unhandled request error:', err);
+    if (!res.headersSent) {
+      res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
+      res.end(JSON.stringify({ status: 'error', message: 'Interne serverfout.' }));
+    } else {
+      res.end();
+    }
+  }
 });
 
 function renderGuidePageHtml(guide, database, baseUrl) {
@@ -495,3 +556,112 @@ server.listen(PORT, () => {
   console.log(`   DATABASE_PATH=${getDatabasePath()}`);
   console.log(`   NODE_ENV=${process.env.NODE_ENV || 'development'}`);
 });
+
+export { server };
+
+function findModelBySlug(modelSlug, database) {
+  const models = database.models || [];
+  return models.find((model) => {
+    const slug = (model.slug || model.id.replace(/_/g, '-')).toLowerCase();
+    const cleanSlug = slug.replace(/^stihl-/, '');
+    return slug === modelSlug || cleanSlug === modelSlug || model.id.toLowerCase() === modelSlug;
+  }) || null;
+}
+
+function resolveComparisonModels(pairSlug, database) {
+  if (!pairSlug || !pairSlug.includes('-vs-')) return null;
+  const [left, right] = pairSlug.split('-vs-').map((part) => part.trim().toLowerCase());
+  if (!left || !right) return null;
+  const modelA = findModelBySlug(left, database);
+  const modelB = findModelBySlug(right, database);
+  return modelA && modelB ? { modelA, modelB } : null;
+}
+
+function resolveStaticFilePath(pathname) {
+  if (pathname === '/') {
+    return path.join(__dirname, 'index.html');
+  }
+
+  if (PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
+    const resolved = path.resolve(path.join(__dirname, `.${pathname}`));
+    const allowedDir = path.resolve(path.join(__dirname, prefix.slice(1)));
+    return resolved.startsWith(allowedDir) ? resolved : null;
+  }
+
+  if (PUBLIC_EXACT_FILES.has(pathname)) {
+    return path.resolve(path.join(__dirname, `.${pathname}`));
+  }
+
+  const normalizedPath = pathname.replace(/^\//, '');
+  if (!PUBLIC_ROOT_FILES.has(normalizedPath)) {
+    return null;
+  }
+
+  return path.join(__dirname, normalizedPath);
+}
+
+function renderNotFound(res) {
+  res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+  res.end('<h1>404 Niet Gevonden</h1><p>De gevraagde pagina bestaat niet op STIHLDecoder.nl.</p>');
+}
+
+async function readJsonBody(req, res) {
+  let bodyStr = '';
+  let bodyTooLarge = false;
+
+  return await new Promise((resolve) => {
+    req.on('data', (chunk) => {
+      bodyStr += chunk;
+      if (bodyStr.length > MAX_JSON_BODY_BYTES) {
+        bodyTooLarge = true;
+        req.destroy();
+      }
+    });
+
+    req.on('close', () => {
+      if (bodyTooLarge && !res.headersSent) {
+        res.writeHead(413, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ status: 'error', message: 'Request body is te groot.' }));
+        resolve(null);
+      }
+    });
+
+    req.on('end', () => {
+      if (bodyTooLarge) {
+        resolve(null);
+        return;
+      }
+
+      try {
+        resolve(bodyStr ? JSON.parse(bodyStr) : {});
+      } catch (e) {
+        res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ status: 'error', message: 'Ongeldige JSON body.' }));
+        resolve(null);
+      }
+    });
+
+    req.on('error', () => {
+      if (!res.headersSent) {
+        res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ status: 'error', message: 'Kon request body niet lezen.' }));
+      }
+      resolve(null);
+    });
+  });
+}
+
+function timingSafeEqual(actualValue, expectedValue) {
+  if (typeof actualValue !== 'string' || typeof expectedValue !== 'string') {
+    return false;
+  }
+
+  const actual = Buffer.from(actualValue);
+  const expected = Buffer.from(expectedValue);
+
+  if (actual.length !== expected.length) {
+    return false;
+  }
+
+  return crypto.timingSafeEqual(actual, expected);
+}
