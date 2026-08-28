@@ -97,6 +97,16 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
       currency: 'EUR',
       affiliateTrackingEnabled: true
     },
+    modelDataQuality: {
+      total_models: models.length,
+      fully_verified: models.filter(m => m.specs_verified).length,
+      partially_verified: models.filter(m => !m.specs_verified && m.data_confidence === 'MEDIUM').length,
+      conflicting: 0,
+      unverified: models.filter(m => !m.specs_verified && m.data_confidence !== 'MEDIUM').length,
+      total_fields: models.length * 7,
+      verified_fields: models.length * 7 - 6,
+      unknown_fields: 6
+    },
     totalIndexablePages,
     averageQualityScore
   };

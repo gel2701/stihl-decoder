@@ -5,6 +5,7 @@
 
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWhitelist.js';
+import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
@@ -57,34 +58,26 @@ export function decodeStihlCode(inputStr, database = {}) {
 }
 
 export function analyzeModelQuery(modelStr, database) {
-  let matchedModelSpec = null;
-  const cleanModelInput = modelStr.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+  const norm = normalizeModelQuery(modelStr);
+  const matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
 
-  if (database.models && Array.isArray(database.models)) {
-    matchedModelSpec = database.models.find(m => {
-      const cleanDbName = m.model_name.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
-      const cleanDbSlug = (m.slug || m.id).replace(/[^A-Za-z0-9]/g, '').toLowerCase();
-      return cleanDbName === cleanModelInput || cleanDbSlug === cleanModelInput ||
-             cleanDbName.includes(cleanModelInput) || cleanModelInput.includes(cleanDbName);
-    });
-  }
-
-  const prefixCode = modelStr.trim().split(/[\s\d]/)[0].replace(/[^A-Za-z]/g, '').toUpperCase() || 'MS';
+  const prefixCode = norm.prefix || 'MS';
   const prefixMeaning = database.prefixes ? database.prefixes[prefixCode] : null;
 
   const rawSpecs = matchedModelSpec || {
-    displacement_cc: 50.2,
-    power_hp: 4.1,
-    power_kw: 3.0,
+    displacement_cc: norm.prefix === 'BR' ? 64.8 : 50.2,
+    power_hp: norm.prefix === 'BR' ? 3.8 : 4.1,
+    power_kw: norm.prefix === 'BR' ? 2.8 : 3.0,
     spark_plug: 'NGK CMR6H',
     electrode_gap_mm: 0.50,
-    carb_h_setting: 'Elektronisch geregeld (M-Tronic)',
-    carb_l_setting: 'Elektronisch geregeld (M-Tronic)',
+    carb_h_setting: '1 slag open (Standaard)',
+    carb_l_setting: '1 slag open (Standaard)',
     carb_la_setting: '2800 RPM'
   };
 
-  const category = matchedModelSpec ? (matchedModelSpec.category || matchedModelSpec.category_slug) : prefixCode;
-  const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, matchedModelSpec ? matchedModelSpec.model_name : modelStr);
+  const category = matchedModelSpec ? (matchedModelSpec.category || matchedModelSpec.category_slug) : (norm.prefix === 'BR' ? 'Bladblazer' : (norm.prefix === 'FS' ? 'Bosmaaier' : (norm.prefix === 'TS' ? 'Doorslijper' : 'Kettingzaag')));
+  const resolvedModelName = matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery;
+  const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
   return {
     success: true,
@@ -92,8 +85,9 @@ export function analyzeModelQuery(modelStr, database) {
     input: modelStr,
     prefixCode,
     prefixMeaning: prefixMeaning || 'STIHL Machinetype Aanduiding',
-    category: category || 'Algemeen',
-    model: matchedModelSpec ? matchedModelSpec.model_name : modelStr.toUpperCase(),
+    category,
+    model: resolvedModelName,
+    seriesCode: matchedModelSpec ? matchedModelSpec.series_code : (category === 'Bladblazer' ? '4282' : '1141'),
     technicalSpecs: sanitizedSpecs
   };
 }
