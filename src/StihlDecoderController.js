@@ -78,36 +78,34 @@ export async function handleDecodeApiV1(reqBody, database) {
     modelData = db.models.find(m => m.id === bp.model_id);
   } else if (db.models) {
     const prefix = cleaned.substring(0, 4);
-    modelData = db.models.find(m => m.series_code === prefix) || db.models.find(m => m.id === 'stihl_ms_261_cm');
+    modelData = db.models.find(m => m.series_code === prefix);
   }
 
-  if (!modelData && db.models && db.models.length > 0) {
-    modelData = db.models.find(m => m.id === 'stihl_ms_261_cm') || db.models[0];
-  }
-
-  const isPetrol = (modelData ? (modelData.fuel_type || 'PETROL_2STROKE') : 'PETROL_2STROKE').startsWith('PETROL');
+  const isPetrol = modelData ? (modelData.fuel_type || 'PETROL_2STROKE').startsWith('PETROL') : true;
+  const category = modelData ? (modelData.category || 'STIHL Machine') : 'ONBEKEND';
+  const isChainsaw = category.toLowerCase().includes('kettingzaag') || category.toLowerCase().includes('chainsaw');
 
   const matchedModel = {
-    id: modelData ? modelData.id : 'stihl_ms_261_cm',
-    name: modelData ? modelData.model_name : 'MS 261 C-M (M-Tronic)',
-    series: modelData ? (modelData.series_code || '1141') : '1141',
-    category: modelData ? modelData.category : 'Kettingzaag',
-    fuelType: modelData ? (modelData.fuel_type || 'PETROL_2STROKE') : 'PETROL_2STROKE',
-    fuelTypeLabel: modelData ? (modelData.fuel_type_label || (isPetrol ? 'Benzine (2-Takt)' : 'Accu (AP-Systeem 36V)')) : 'Benzine (2-Takt M-Tronic)',
-    batterySystem: modelData ? (modelData.battery_system || null) : null,
-    voltageV: modelData ? (modelData.voltage_v || null) : null,
+    id: modelData ? modelData.id : null,
+    name: modelData ? modelData.model_name : 'STIHL Machine',
+    series: modelData ? modelData.series_code : cleaned.substring(0, 4),
+    category,
+    fuelType: modelData ? modelData.fuel_type : 'PETROL_2STROKE',
+    fuelTypeLabel: modelData ? (modelData.fuel_type_label || (isPetrol ? 'Benzine (2-Takt)' : 'Accu (AP-Systeem 36V)')) : 'Geverifieerde STIHL Aandrijving',
+    batterySystem: modelData ? modelData.battery_system : null,
+    voltageV: modelData ? modelData.voltage_v : null,
     specs: {
-      displacementCc: isPetrol ? (modelData ? (modelData.displacement_cc || 50.2) : 50.2) : null,
-      engineCc: isPetrol ? (modelData ? (modelData.displacement_cc || 50.2) : 50.2) : null,
-      powerHp: modelData ? (modelData.power_hp || 4.1) : 4.1,
-      powerKw: modelData ? (modelData.power_kw || 3.0) : 3.0,
-      sparkPlug: isPetrol ? (modelData ? (modelData.spark_plug || 'NGK CMR6H') : 'NGK CMR6H') : null,
-      chainPitch: modelData ? (modelData.chain_pitch || '.325"') : '.325"',
-      chainGaugeMm: modelData ? (modelData.chain_gauge_mm || 1.3) : 1.3,
-      carbSettings: isPetrol ? {
-        H: modelData ? (modelData.carb_h_setting || 'M-Tronic (Automatisch)') : 'M-Tronic (Automatisch)',
-        L: modelData ? (modelData.carb_l_setting || 'M-Tronic (Automatisch)') : 'M-Tronic (Automatisch)',
-        LA: modelData ? (modelData.carb_la_setting || 'M-Tronic (Automatisch)') : 'M-Tronic (Automatisch)'
+      displacementCc: modelData ? modelData.displacement_cc : null,
+      engineCc: modelData ? modelData.displacement_cc : null,
+      powerHp: modelData ? modelData.power_hp : null,
+      powerKw: modelData ? modelData.power_kw : null,
+      sparkPlug: isPetrol ? (modelData ? modelData.spark_plug : null) : null,
+      chainPitch: (isChainsaw && modelData) ? modelData.chain_pitch : null,
+      chainGaugeMm: (isChainsaw && modelData) ? modelData.chain_gauge_mm : null,
+      carbSettings: (isPetrol && modelData) ? {
+        H: modelData.carb_h_setting || 'Fabrieksafstelling',
+        L: modelData.carb_l_setting || 'Fabrieksafstelling',
+        LA: modelData.carb_la_setting || '2800 RPM'
       } : null
     }
   };

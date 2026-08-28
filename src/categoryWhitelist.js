@@ -1,6 +1,6 @@
 /**
  * Category-Specific Specification Whitelist & Safety Enforcement for STIHLDecoder.nl
- * Phase 33 Category Field Leak Fix & Safety Rules
+ * Phase 33D Zero Generic Spec Fallback & Hard Category Safety Rules
  */
 
 export const CATEGORY_TYPES = {
@@ -9,7 +9,8 @@ export const CATEGORY_TYPES = {
   BRUSHCUTTER: 'bosmaaiers',
   HEDGE_TRIMMER: 'heggenscharen',
   CUTOFF_SAW: 'doorslijpers',
-  ACCU_CHAINSAW: 'accu-kettingzagen'
+  ACCU_CHAINSAW: 'accu-kettingzagen',
+  UNKNOWN: 'unknown'
 };
 
 // Chainsaw-Only Specification Fields (STRICTLY BLOCKED for non-chainsaws)
@@ -20,7 +21,8 @@ export const CHAINSAW_ONLY_FIELDS = [
   'bar_length',
   'guide_bar',
   'oil_tank',
-  'chain_oil'
+  'chain_oil',
+  'drive_links'
 ];
 
 // Blower-Only / Blower-Relevant Fields
@@ -67,7 +69,7 @@ export function normalizeCategorySlug(categoryNameOrSlug = '', modelNameOrId = '
     return CATEGORY_TYPES.CUTOFF_SAW;
   }
 
-  return 'algemeen';
+  return CATEGORY_TYPES.UNKNOWN;
 }
 
 /**
@@ -95,12 +97,10 @@ export function sanitizeModelSpecifications(specs = {}, categoryStr = '', modelN
     console.warn(`[CATEGORY_SPEC_CONFLICT] Model ${modelName} prefix TS conflicts with category ${categoryStr}`);
   }
 
-  // HARD SAFETY RULE: Block chainsaw-only fields for non-chainsaw categories
+  // HARD SAFETY RULE: Block chainsaw-only fields for non-chainsaw categories or UNKNOWN
   if (catSlug !== CATEGORY_TYPES.CHAINSAW && catSlug !== CATEGORY_TYPES.ACCU_CHAINSAW) {
     CHAINSAW_ONLY_FIELDS.forEach(field => {
-      if (cleanSpecs[field] !== undefined) {
-        delete cleanSpecs[field];
-      }
+      delete cleanSpecs[field];
     });
   }
 
@@ -126,4 +126,20 @@ export function sanitizeModelSpecifications(specs = {}, categoryStr = '', modelN
   }
 
   return cleanSpecs;
+}
+
+/**
+ * Single Central Function for all UI components to get safe, category-whitelisted specs
+ */
+export function getRenderableSpecs(specs = {}, categoryStr = '', modelName = '') {
+  const catSlug = normalizeCategorySlug(categoryStr, modelName);
+
+  // HARD SAFETY ASSERTION: If raw input specs contain chain fields for non-chainsaws, THROW ERROR!
+  if (catSlug !== CATEGORY_TYPES.CHAINSAW && catSlug !== CATEGORY_TYPES.ACCU_CHAINSAW) {
+    if (specs && (specs.chain_pitch || specs.chain_gauge_mm || specs.bar_length || specs.guide_bar)) {
+      throw new Error(`[CRITICAL_DATA_LEAK] Chainsaw specs leaked to non-chainsaw model ${modelName} (Category: ${categoryStr})`);
+    }
+  }
+
+  return sanitizeModelSpecifications(specs, categoryStr, modelName);
 }

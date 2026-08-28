@@ -75,18 +75,27 @@ export function analyzeModelQuery(modelStr, database) {
   const prefixCode = norm.prefix || (relationship ? '0' : 'MS');
   const prefixMeaning = database.prefixes ? database.prefixes[prefixCode] : null;
 
-  const rawSpecs = matchedModelSpec || {
-    displacement_cc: norm.prefix === 'BR' ? 64.8 : 50.2,
-    power_hp: norm.prefix === 'BR' ? 3.8 : 4.1,
-    power_kw: norm.prefix === 'BR' ? 2.8 : 3.0,
-    spark_plug: 'NGK CMR6H',
-    electrode_gap_mm: 0.50,
-    carb_h_setting: '1 slag open (Standaard)',
-    carb_l_setting: '1 slag open (Standaard)',
-    carb_la_setting: '2800 RPM'
-  };
+  // ZERO GENERIC SPEC FALLBACK: If no matched model spec or relationship exists, technicalSpecs is empty ({})!
+  const rawSpecs = matchedModelSpec ? { ...matchedModelSpec } : {};
 
-  const category = relationship ? relationship.category : (matchedModelSpec ? (matchedModelSpec.category || matchedModelSpec.category_slug) : (norm.prefix === 'BR' ? 'Bladblazer' : (norm.prefix === 'FS' ? 'Bosmaaier' : (norm.prefix === 'TS' ? 'Doorslijper' : 'Kettingzaag'))));
+  // Prefix-based category resolution (Defaults to UNKNOWN, NEVER to Kettingzaag)
+  let category = 'UNKNOWN';
+  if (relationship) {
+    category = relationship.category;
+  } else if (matchedModelSpec) {
+    category = matchedModelSpec.category || matchedModelSpec.category_slug;
+  } else if (norm.prefix === 'BR' || norm.prefix === 'BG' || norm.prefix === 'SH') {
+    category = 'Bladblazer';
+  } else if (norm.prefix === 'FS' || norm.prefix === 'FR') {
+    category = 'Bosmaaier';
+  } else if (norm.prefix === 'HS' || norm.prefix === 'HLA') {
+    category = 'Heggenschaar';
+  } else if (norm.prefix === 'TS') {
+    category = 'Doorslijper';
+  } else if (norm.prefix === 'MS') {
+    category = 'Kettingzaag';
+  }
+
   const resolvedModelName = relationship ? relationship.model_name : (matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery);
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 

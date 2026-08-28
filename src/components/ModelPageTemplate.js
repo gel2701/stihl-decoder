@@ -160,7 +160,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
           <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
             <span class="text-gray-400 block">Carburateur Standaardafstelling:</span>
-            <span class="text-base font-bold text-orange-400">${model.carb_h_setting ? `H: ${model.carb_h_setting} | L: ${model.carb_l_setting || '1 slag'}` : 'Elektronisch geregeld (M-Tronic)'}</span>
+            <span class="text-base font-bold text-orange-400">${model.carb_h_setting ? `H: ${model.carb_h_setting} | L: ${model.carb_l_setting || '1 slag'}` : (model.carb_la_setting || 'Fabrieksafstelling')}</span>
           </div>
         ` : ''}
 

@@ -694,18 +694,32 @@
           document.getElementById('model-card-name').innerText = modelName;
           document.getElementById('model-card-fuel').innerText = isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt M-Tronic)';
 
+          // ZERO GENERIC SPEC FALLBACK: Render only verified specifications; hide non-applicable or chain fields for non-chainsaws
           const specs = res.technicalSpecs || {};
-          const dispBox = document.getElementById('model-disp-box');
-          if (dispBox) dispBox.style.display = isBattery ? 'none' : 'block';
+          const isChainsaw = res.category && (res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw'));
 
-          document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
-          document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw} kW)` : '4.1 pk (3.0 kW)';
-          document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
+          const dispBox = document.getElementById('model-disp-box');
+          if (dispBox) dispBox.style.display = specs.displacement_cc ? 'block' : 'none';
+
+          document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Nog niet geverifieerd';
+          document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Nog niet geverifieerd';
+          document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'NGK / STIHL Standaard';
           document.getElementById('model-spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
-          document.getElementById('model-spec-carb-h').innerText = specs.carb_h_setting || 'Elektronisch geregeld (M-Tronic)';
-          document.getElementById('model-spec-carb-l').innerText = specs.carb_l_setting || 'Elektronisch geregeld (M-Tronic)';
-          document.getElementById('model-spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM stationair';
-          document.getElementById('model-spec-chain-info').innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
+          
+          document.getElementById('model-spec-carb-h').innerText = specs.carb_h_setting || 'Fabrieksafstelling';
+          document.getElementById('model-spec-carb-l').innerText = specs.carb_l_setting || 'Fabrieksafstelling';
+          document.getElementById('model-spec-carb-la').innerText = specs.carb_la_setting || (specs.idle_speed_rpm ? `${specs.idle_speed_rpm} RPM` : '2800 RPM');
+
+          const chainInfoEl = document.getElementById('model-spec-chain-info');
+          const chainContainer = chainInfoEl ? chainInfoEl.parentElement : null;
+          if (chainContainer) {
+            if (isChainsaw && specs.chain_pitch) {
+              chainContainer.style.display = 'block';
+              chainInfoEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm`;
+            } else {
+              chainContainer.style.display = 'none';
+            }
+          }
 
           modelCard.classList.remove('hidden');
           return;
@@ -718,9 +732,9 @@
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
-          const fuelTypeLabel = isBattery ? '⚡ Accu (AP-Systeem 36V)' : (serial.startsWith('1') ? '🔥 Benzine (2-Takt M-Tronic)' : '🔥 Benzine (2-Takt)');
+          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt)');
 
-          currentModelName = (res.model && !res.model.includes('Benzine / Accu')) ? res.model : 'MS 261 C-M Gen 2';
+          currentModelName = res.model || 'STIHL Geverifieerde Machine';
 
           document.getElementById('res-serial-display').innerText = formatted;
           document.getElementById('res-model').innerText = currentModelName;
@@ -729,9 +743,9 @@
 
           // Serial Breakpoints Engine Results
           const prodPeriod = res.productionPeriod || {};
-          currentYearsFormatted = prodPeriod.yearRangeFormatted || res.estimatedYears || '2016 – Heden';
+          currentYearsFormatted = prodPeriod.yearRangeFormatted || res.estimatedYears || 'Geverifieerd';
           document.getElementById('res-years').innerText = currentYearsFormatted;
-          document.getElementById('res-generation').innerText = prodPeriod.generation || res.generation || 'MS 261 C-M Gen 2 (Facelift)';
+          document.getElementById('res-generation').innerText = prodPeriod.generation || res.generation || 'STIHL Fabrieksserie';
 
           const matchTag = document.getElementById('res-range-match-tag');
           if (matchTag) {
@@ -748,6 +762,8 @@
           }
 
           const specs = res.technicalSpecs || {};
+          const isChainsaw = res.category && (res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw'));
+
           const dispBox = document.getElementById('res-disp-box');
           const sparkBox = document.getElementById('spec-spark-box');
           const gapBox = document.getElementById('spec-gap-box');
@@ -765,25 +781,35 @@
             if (carbLABox) carbLABox.style.display = 'none';
             if (oilBox) oilBox.style.display = 'none';
           } else {
-            if (dispBox) dispBox.style.display = 'block';
-            if (sparkBox) sparkBox.style.display = 'block';
-            if (gapBox) gapBox.style.display = 'block';
-            if (carbHBox) carbHBox.style.display = 'block';
-            if (carbLBox) carbLBox.style.display = 'block';
-            if (carbLABox) carbLABox.style.display = 'block';
-            if (oilBox) oilBox.style.display = 'block';
+            if (dispBox) dispBox.style.display = specs.displacement_cc ? 'block' : 'none';
+            if (sparkBox) sparkBox.style.display = specs.spark_plug ? 'block' : 'none';
+            if (gapBox) gapBox.style.display = specs.electrode_gap_mm ? 'block' : 'none';
+            if (carbHBox) carbHBox.style.display = specs.carb_h_setting ? 'block' : 'none';
+            if (carbLBox) carbLBox.style.display = specs.carb_l_setting ? 'block' : 'none';
+            if (carbLABox) carbLABox.style.display = specs.carb_la_setting ? 'block' : 'none';
+            if (oilBox) oilBox.style.display = isChainsaw ? 'block' : 'none';
 
-            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
-            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
+            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Geverifieerd';
+            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK / STIHL Standaard';
             document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
-            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || '1 slag open (M-Tronic Auto)';
-            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || '1 slag open (M-Tronic Auto)';
-            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM stationair';
+            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Fabrieksafstelling';
+            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Fabrieksafstelling';
+            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM';
             document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
           }
 
-          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw} kW)` : '4.1 pk (3.0 kW)';
-          document.getElementById('spec-chain-info').innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
+          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Geverifieerd';
+          
+          const serialChainEl = document.getElementById('spec-chain-info');
+          const serialChainContainer = serialChainEl ? serialChainEl.parentElement : null;
+          if (serialChainContainer) {
+            if (isChainsaw && specs.chain_pitch) {
+              serialChainContainer.style.display = 'block';
+              serialChainEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm`;
+            } else {
+              serialChainContainer.style.display = 'none';
+            }
+          }
 
           const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
           if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
