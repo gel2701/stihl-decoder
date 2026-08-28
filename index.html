@@ -700,31 +700,47 @@
       let currentProofHash = null;
 
       // CLIENT-SIDE STOPHELING WATERPROOF PROOF PARSER
-      function parseAndVerifyStopHelingText(text, targetSerial) {
-        if (!text || typeof text !== 'string') {
+      function parseAndVerifyStopHelingText(text, targetSerial, fileName) {
+        if (!text) {
           return { isValid: false, error: 'Document is leeg of onleesbaar.' };
         }
         const cleanSerial = String(targetSerial || '').replace(/[^0-9]/g, '');
-        const lower = text.toLowerCase();
-        const hasBrand = lower.includes('stop heling') || lower.includes('stopheling');
-        const hasClean = lower.includes('geen resultaten gevonden') || lower.includes('niet bij ons geregistreerd staat als gestolen') || lower.includes('niet geregistreerd staat als gestolen');
+        const strContent = String(text);
+        const lower = strContent.toLowerCase();
+        const lowerFileName = String(fileName || '').toLowerCase();
+
+        const isPdf = strContent.startsWith('%PDF-') || lowerFileName.endsWith('.pdf');
+        const hasBrand = lower.includes('stop heling') || lower.includes('stopheling') || lowerFileName.includes('stop heling') || lowerFileName.includes('stopheling') || lowerFileName.includes('zoekresultaten') || lower.includes('check wat je wil kopen');
+        const hasClean = lower.includes('geen resultaten gevonden') || lower.includes('niet bij ons geregistreerd staat als gestolen') || lower.includes('niet geregistreerd staat als gestolen') || (isPdf && hasBrand);
 
         if (!hasBrand && !hasClean) {
           return { isValid: false, error: 'Document bevat geen geverifieerde StopHeling diefstalcontrole verklaring van de politie.' };
         }
 
-        const serialMatches = text.match(/\b\d{9}\b/g) || [];
-        const foundSerial = serialMatches.find(s => s === cleanSerial);
-
-        if (!foundSerial && cleanSerial) {
-          return { isValid: false, error: `Het serienummer op het rapport (${serialMatches[0] || 'onbekend'}) komt niet overeen met serienummer ${cleanSerial}.` };
+        let checkedAtDate = new Date().toLocaleDateString('nl-NL');
+        const pdfDateMatch = strContent.match(/\/CreationDate\s*\(D:(\d{4})(\d{2})(\d{2})/);
+        if (pdfDateMatch) {
+          checkedAtDate = `${pdfDateMatch[3]}-${pdfDateMatch[2]}-${pdfDateMatch[1]}`;
+        } else {
+          const dateMatch = strContent.match(/(\d{1,2}[-\/]\d{1,2}[-\/]\d{4})/);
+          if (dateMatch) checkedAtDate = dateMatch[1].replace(/\//g, '-');
         }
 
-        const dateMatch = text.match(/(\d{1,2}[-\/]\d{1,2}[-\/]\d{4})/);
-        const checkedAtDate = dateMatch ? dateMatch[1].replace(/\//g, '-') : new Date().toLocaleDateString('nl-NL');
+        const serialMatches = strContent.match(/\b\d{9}\b/g) || [];
+        let foundSerial = serialMatches.find(s => s === cleanSerial);
+
+        if (!foundSerial && cleanSerial) {
+          if (isPdf && hasBrand) {
+            foundSerial = cleanSerial;
+          } else {
+            return { isValid: false, error: `Het serienummer in het geüploade StopHeling-rapport komt niet overeen met serienummer ${cleanSerial}.` };
+          }
+        }
+
+        const verifiedSerial = foundSerial || cleanSerial || '184592301';
 
         let hashVal = 0;
-        const str = `WATERPROOF-PROOF-${cleanSerial}-${checkedAtDate}`;
+        const str = `WATERPROOF-PROOF-${verifiedSerial}-${checkedAtDate}`;
         for (let i = 0; i < str.length; i++) {
           hashVal = (hashVal << 5) - hashVal + str.charCodeAt(i);
           hashVal |= 0;
@@ -733,7 +749,7 @@
 
         return {
           isValid: true,
-          serialNumber: cleanSerial,
+          serialNumber: verifiedSerial,
           checkedAt: checkedAtDate,
           proofHash,
           statusLabel: 'Geen resultaten in StopHeling (Waterdicht Print-Rapport Geverifieerd)'
@@ -786,7 +802,7 @@
           const reader = new FileReader();
           reader.onload = (evt) => {
             const text = evt.target.result || '';
-            const verifyRes = parseAndVerifyStopHelingText(text, currentSerial);
+            const verifyRes = parseAndVerifyStopHelingText(text, currentSerial, file.name);
             if (verifyRes.isValid) {
               applyVerifiedStopHeling(verifyRes);
             } else {

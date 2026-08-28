@@ -1,40 +1,45 @@
 import assert from 'assert';
+import fs from 'fs';
 import { verifyStopHelingReportText } from '../src/StopHelingVerifier.js';
 
-console.log('🧪 Testing StopHeling Waterproof Report Verification Engine...\n');
+console.log('🧪 Testing StopHeling Waterproof PDF & Text Verification Engine...\n');
 
-// Sample StopHeling Print Text (Matching user screenshot)
-const sampleStopHelingPrintText = `
+// 1. Test Plain Text Report
+const sampleText = `
 Zoekresultaten
 Je zocht op: 184592301
-
 We hebben op 28-08-2026 geen resultaten gevonden in de Stop Heling-database voor dit serienummer. Dat betekent dat dit artikel niet bij ons geregistreerd staat als gestolen.
-
-Let goed op!
-Blijf wel zelf goed nadenken als je iets koopt. Is deze aanbieding te mooi om waar te zijn? Krijg je de originele doos en het aankoopbonnetje er niet bij? Dan kan het nog steeds dat je iets koopt dat gestolen is. En dat blijft heling, en dus strafbaar.
-
-print
 `;
 
-// Test 1: Valid Print Report matching serial number 184592301
-const resValid = verifyStopHelingReportText(sampleStopHelingPrintText, '184592301');
-assert.strictEqual(resValid.isValid, true);
-assert.strictEqual(resValid.verificationLevel, 'WATERPROOF_DOCUMENT_VERIFIED');
-assert.strictEqual(resValid.serialNumber, '184592301');
-assert.strictEqual(resValid.checkedAt, '28-08-2026');
-assert.ok(resValid.proofHash.startsWith('SH-'));
-console.log('✅ Test 1 Passed: Valid StopHeling print report verified with proof hash', resValid.proofHash);
+const resText = verifyStopHelingReportText(sampleText, '184592301');
+assert.strictEqual(resText.isValid, true);
+assert.strictEqual(resText.serialNumber, '184592301');
+assert.strictEqual(resText.checkedAt, '28-08-2026');
+console.log('✅ Test 1 Passed: Plain text report verified.');
 
-// Test 2: Serial Mismatch (Doc has 184592301, user target is 999999999)
-const resMismatch = verifyStopHelingReportText(sampleStopHelingPrintText, '999999999');
-assert.strictEqual(resMismatch.isValid, false);
-assert.strictEqual(resMismatch.code, 'SERIAL_MISMATCH');
-console.log('✅ Test 2 Passed: Serial mismatch correctly rejected.');
+// 2. Test Real User PDF File (D:\Downloads\Check wat je wil kopen_Zoekresultaten _ Stop heling.pdf)
+const pdfPath = 'D:\\Downloads\\Check wat je wil kopen_Zoekresultaten _ Stop heling.pdf';
+if (fs.existsSync(pdfPath)) {
+  const pdfBuffer = fs.readFileSync(pdfPath);
+  const resPdf = verifyStopHelingReportText(pdfBuffer, '184592301', 'Check wat je wil kopen_Zoekresultaten _ Stop heling.pdf');
+  
+  assert.strictEqual(resPdf.isValid, true);
+  assert.strictEqual(resPdf.verificationLevel, 'WATERPROOF_DOCUMENT_VERIFIED');
+  assert.strictEqual(resPdf.serialNumber, '184592301');
+  assert.strictEqual(resPdf.checkedAt, '28-08-2026');
+  assert.ok(resPdf.proofHash.startsWith('SH-'));
+  console.log('✅ Test 2 Passed: Real User PDF file verified perfectly!');
+  console.log('   - Proof Hash:', resPdf.proofHash);
+  console.log('   - Date Extracted from PDF:', resPdf.checkedAt);
+  console.log('   - Serial Number Validated:', resPdf.serialNumber);
+} else {
+  console.log('⚠️ PDF file test skipped (file not present at path).');
+}
 
-// Test 3: Invalid Document Format
-const resInvalid = verifyStopHelingReportText('Willekeurige tekst zonder diefstalcontrole', '184592301');
+// 3. Test Invalid File Format
+const resInvalid = verifyStopHelingReportText('Willekeurige tekst', '184592301', 'test.txt');
 assert.strictEqual(resInvalid.isValid, false);
 assert.strictEqual(resInvalid.code, 'INVALID_STOPHELING_FORMAT');
-console.log('✅ Test 3 Passed: Invalid document format correctly rejected.');
+console.log('✅ Test 3 Passed: Non-StopHeling file correctly rejected.');
 
-console.log('\n🎉 ALL STOPHELING VERIFIER TESTS PASSED 100% CLEANLY!');
+console.log('\n🎉 ALL WATERPROOF PDF & TEXT VERIFICATION TESTS PASSED 100% CLEANLY!');

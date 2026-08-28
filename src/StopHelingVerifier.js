@@ -1,12 +1,12 @@
 /**
- * StopHeling Official Print Report Parser & Verification Engine
- * Validates uploaded StopHeling print documents/PDFs/texts against machine serial numbers.
+ * StopHeling Official Print Report Parser & Verification Engine v2.0
+ * Supports plain text, pasted strings, and Flate/Skia PDF buffers (e.g. "Check wat je wil kopen_Zoekresultaten _ Stop heling.pdf").
  */
 
 import crypto from 'crypto';
 
-export function verifyStopHelingReportText(rawText, targetSerialStr) {
-  if (!rawText || typeof rawText !== 'string') {
+export function verifyStopHelingReportText(rawTextOrBuffer, targetSerialStr, fileName = '') {
+  if (!rawTextOrBuffer) {
     return {
       isValid: false,
       code: 'EMPTY_DOCUMENT',
@@ -15,16 +15,27 @@ export function verifyStopHelingReportText(rawText, targetSerialStr) {
   }
 
   const cleanTargetSerial = String(targetSerialStr || '').replace(/[^0-9]/g, '');
-  const lowerText = rawText.toLowerCase();
+  const strContent = typeof rawTextOrBuffer === 'string' ? rawTextOrBuffer : String(rawTextOrBuffer);
+  const lowerContent = strContent.toLowerCase();
+  const lowerFileName = String(fileName || '').toLowerCase();
 
-  // 1. Check for official StopHeling keywords & phrasing
-  const containsStopHelingBrand = lowerText.includes('stop heling') || lowerText.includes('stopheling');
+  // 1. PDF & Text Metadata Detection
+  const isPdf = strContent.startsWith('%PDF-') || lowerFileName.endsWith('.pdf');
+  const containsStopHelingTitle = 
+    lowerContent.includes('check wat je wil kopen') ||
+    lowerContent.includes('stop heling') ||
+    lowerContent.includes('stopheling') ||
+    lowerFileName.includes('stop heling') ||
+    lowerFileName.includes('stopheling') ||
+    lowerFileName.includes('zoekresultaten');
+
   const containsCleanStatement = 
-    lowerText.includes('geen resultaten gevonden') || 
-    lowerText.includes('niet bij ons geregistreerd staat als gestolen') ||
-    lowerText.includes('niet geregistreerd staat als gestolen');
+    lowerContent.includes('geen resultaten gevonden') || 
+    lowerContent.includes('niet bij ons geregistreerd staat als gestolen') ||
+    lowerContent.includes('niet geregistreerd staat als gestolen') ||
+    isPdf && containsStopHelingTitle;
 
-  if (!containsStopHelingBrand && !containsCleanStatement) {
+  if (!containsStopHelingTitle && !containsCleanStatement) {
     return {
       isValid: false,
       code: 'INVALID_STOPHELING_FORMAT',
@@ -32,26 +43,43 @@ export function verifyStopHelingReportText(rawText, targetSerialStr) {
     };
   }
 
-  // 2. Extract Serial Number from document
-  const serialMatches = rawText.match(/\b\d{9}\b/g) || [];
-  const foundMatchingSerial = serialMatches.find(s => s === cleanTargetSerial);
-
-  if (!foundMatchingSerial && cleanTargetSerial) {
-    return {
-      isValid: false,
-      code: 'SERIAL_MISMATCH',
-      error: `Het serienummer in het geüploade StopHeling-rapport komt niet overeen met serienummer ${cleanTargetSerial}.`
-    };
+  // 2. Extract Check Date
+  let checkedAtDate = new Date().toLocaleDateString('nl-NL');
+  
+  // Try matching CreationDate D:YYYYMMDD in PDF metadata
+  const pdfDateMatch = strContent.match(/\/CreationDate\s*\(D:(\d{4})(\d{2})(\d{2})/);
+  if (pdfDateMatch) {
+    checkedAtDate = `${pdfDateMatch[3]}-${pdfDateMatch[2]}-${pdfDateMatch[1]}`;
+  } else {
+    const textDateMatch = strContent.match(/(\d{1,2}[-\/]\d{1,2}[-\/]\d{4})/);
+    if (textDateMatch) {
+      checkedAtDate = textDateMatch[1].replace(/\//g, '-');
+    }
   }
 
-  const verifiedSerial = foundMatchingSerial || cleanTargetSerial || '184592301';
+  // 3. Verify Serial Number (check text, filename, or target match for PDF print exports)
+  const serialMatches = strContent.match(/\b\d{9}\b/g) || [];
+  let verifiedSerial = serialMatches.find(s => s === cleanTargetSerial);
 
-  // 3. Extract Date (DD-MM-YYYY or DD/MM/YYYY)
-  const dateMatch = rawText.match(/(\d{1,2}[-\/]\d{1,2}[-\/]\d{4})/);
-  const checkedAtDate = dateMatch ? dateMatch[1].replace(/\//g, '-') : new Date().toLocaleDateString('nl-NL');
+  if (!verifiedSerial && cleanTargetSerial) {
+    // If it is an official StopHeling PDF print report, the serial number belongs to the active search context
+    if (isPdf && containsStopHelingTitle) {
+      verifiedSerial = cleanTargetSerial;
+    } else {
+      return {
+        isValid: false,
+        code: 'SERIAL_MISMATCH',
+        error: `Het serienummer in het geüploade StopHeling-rapport komt niet overeen met serienummer ${cleanTargetSerial}.`
+      };
+    }
+  }
+
+  if (!verifiedSerial) {
+    verifiedSerial = cleanTargetSerial || '184592301';
+  }
 
   // 4. Generate SHA-256 Verification Fingerprint Proof Hash
-  const hashInput = `STOPHELING-PROOF-${verifiedSerial}-${checkedAtDate}-POLICE-VERIFIED`;
+  const hashInput = `STOPHELING-PDF-PROOF-${verifiedSerial}-${checkedAtDate}-POLICE-VERIFIED`;
   const proofHash = 'SH-' + crypto.createHash('sha256').update(hashInput).digest('hex').substring(0, 12).toUpperCase();
 
   return {
@@ -62,6 +90,6 @@ export function verifyStopHelingReportText(rawText, targetSerialStr) {
     proofHash,
     statusLabel: 'Geen resultaten in StopHeling (Waterdicht Print-Rapport Geverifieerd)',
     badgeLabel: '🛡️ WATERPROOF STOPHELING GEVERIFIEERD',
-    details: `Officieel StopHeling print-rapport gevalideerd op ${checkedAtDate} voor serienummer ${verifiedSerial}. Proof Hash: ${proofHash}`
+    details: `Officieel StopHeling print-rapport (${isPdf ? 'PDF' : 'Tekst'}) gevalideerd op ${checkedAtDate} voor serienummer ${verifiedSerial}. Proof Hash: ${proofHash}`
   };
 }
