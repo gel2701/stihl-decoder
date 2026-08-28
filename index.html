@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>STIHL Machine & Serienummer Decoder | Serienummer, typeplaatje en bronstatus</title>
+  <title>STIHL Serienummer Decoder — Bouwjaar & Model Checker</title>
   <meta name="description" content="Controleer STIHL serienummers en onderdeelnummers, bekijk herkomstsignalen en zie welke modeldata al aan primaire bronverwijzingen is gekoppeld.">
   <link rel="canonical" href="https://www.stihldecoder.nl/">
   <meta name="robots" content="index, follow">
@@ -18,18 +18,55 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Schema.org WebApplication JSON-LD -->
+  <!-- Schema.org WebApplication & FAQPage JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "STIHL Machine & Serienummer Decoder",
+        "name": "STIHL Serienummer Decoder",
         "url": "https://www.stihldecoder.nl/",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All",
         "description": "Onafhankelijke online decoder voor serienummercontrole, typeplaatjecontrole en transparante bronstatus van STIHL modeldata."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Hoe werkt het controleren van een STIHL serienummer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een officieel STIHL serienummer bestaat uit 9 unieke cijfers. Het eerste cijfer geeft de fabriek van herkomst aan (zoals 1 voor Waiblingen Duitsland, 2 voor Virginia Beach USA, of 5 voor Qingdao China). De vervolgedigits bepalen het serienummerbereik en de bouwperiode (exact breakpoint matching)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat is het verschil tussen een serienummer, onderdeelnummer en gietklok?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een serienummer (9 cijfers) identificeert de complete machine uniek. Een onderdeelnummer (11 cijfers, bijv. 1121 021 0800) identificeert een specifiek vervangingsonderdeel of behuizing. Een gietklok op kunststof of magnesium gietstukken geeft de exacte maand en het jaar van fabricage van dat specifieke onderdeel aan."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat betekent Bronstatus: Gekoppeld aan primaire bron?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gekoppeld aan primaire bron betekent dat de getoonde model- en specificatiedata rechtstreeks geverifieerd is met officiële STIHL servicehandleidingen of onderdelencatalogi. Als de bronstatus 'Nog niet gekoppeld' toont, is de weergave gebaseerd op serienummer-breakpoints of een algemene schatting."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe controleer ik of een tweedehands STIHL machine niet gestolen is?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Via onze StopHeling-knop kopieert u het 9-cijferige serienummer met één klik en opent u StopHeling.nl (het officiële landelijke diefstalregister van de Nederlandse politie). Als het serienummer daar niet als gestolen geregistreerd staat, kunt u dit op uw rapport aantekenen."
+            }
+          }
+        ]
       }
     ]
   }
@@ -85,9 +122,9 @@
           S
         </div>
         <div>
-          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-            STIHL Decoder
-            <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">v3.0 Serial Breakpoints Engine</span>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white flex flex-col sm:flex-row sm:items-center gap-2">
+            <span>STIHL Serienummer Decoder — Model, Bouwjaar & Bronstatus Controleren</span>
+            <span class="text-2xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 w-max">v3.0 Serial Breakpoints Engine</span>
           </h1>
           <p class="text-xs text-gray-400">Serienummers, herkomstsignalen, bronstatus en onafhankelijk rapport</p>
         </div>
@@ -115,6 +152,7 @@
 
       <!-- Input Form -->
       <div class="max-w-xl mx-auto">
+        <label for="code-input" class="sr-only">STIHL Serienummer, Model of Onderdeelnummer</label>
         <div class="relative flex items-center bg-gray-950 border border-gray-700 rounded-xl p-2 transition">
           <input 
             type="text" 
@@ -123,10 +161,10 @@
             class="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg font-mono font-semibold text-white placeholder-gray-500 focus:outline-none"
             autocomplete="off"
           />
-          <button id="clear-btn" class="p-2 text-gray-400 hover:text-white transition" title="Wis invoer">
+          <button id="clear-btn" class="p-2 text-gray-400 hover:text-white transition" title="Wis invoer" aria-label="Wis invoer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
-          <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30 cursor-pointer">
+          <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30 cursor-pointer" aria-label="Serienummer of model analyseren">
             <span>Analyseer</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </button>
@@ -447,6 +485,80 @@
     <!-- Interactive Gietklok Visualizer Helper Module -->
     <section id="gietklok-section" class="pt-6">
       <!-- Dynamic render of GietklokHelper -->
+    </section>
+
+    <!-- SEO & FAQ Section -->
+    <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-8 text-gray-300">
+      <div class="space-y-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          STIHL Serienummer & Model Identificatie Gids
+        </h2>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Wilt u weten uit welk bouwjaar uw STIHL kettingzaag, bosmaaier of bladblazer komt, in welke fabriek de machine is geproduceerd of welk machinetype hoort bij een specifiek nummer? De <strong>STIHL Serienummer Decoder</strong> biedt directe helderheid op basis van transparante broncriteria en fabrikant-breakpoints.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+        <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
+          <h3 class="text-sm font-bold text-orange-400">1. Het 9-Cijferige Serienummer</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Iedere originele STIHL machine beschikt over een uniek 9-cijferig serienummer dat ingeslagen is in het metaal van het carter (nabij de uitlaat of uitwerpopening) of op een barcode-typeplaatje staat vermeld. Het eerste cijfer onthult de productielocatie:
+          </p>
+          <ul class="list-disc list-inside space-y-1 text-gray-300 font-mono text-2xs pt-1">
+            <li><strong>1...</strong> Waiblingen / Dieburg (Duitsland)</li>
+            <li><strong>2...</strong> Virginia Beach (Verenigde Staten)</li>
+            <li><strong>3...</strong> St. Niklaas (België - Logistiek/Montage)</li>
+            <li><strong>4...</strong> São Leopoldo (Brazilië)</li>
+            <li><strong>5...</strong> Qingdao (China)</li>
+            <li><strong>8...</strong> Lansingerland / Zenoah samenwerking</li>
+            <li><strong>9...</strong> Tirol / Langkampfen (Oostenrijk - VIKING/STIHL Accu)</li>
+          </ul>
+        </div>
+
+        <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
+          <h3 class="text-sm font-bold text-orange-400">2. Onderdeelnummers vs Gietnummers</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Een 11-cijferig nummer (bijv. <strong>1121 021 0800</strong>) is een <em>STIHL onderdeelnummer</em> (Teilenummer). De eerste vier cijfers vormen de familiecode (1121 = 024/026/MS 260 serie). Een gietnummer of gietklok op kunststof of magnesium gietdelen geeft met een pijl of stippen de exacte fabricagmaand en het jaar van dat losse onderdeel aan.
+          </p>
+        </div>
+      </div>
+
+      <!-- Accordion FAQ -->
+      <div class="space-y-4 pt-4 border-t border-gray-800">
+        <h3 class="text-lg font-bold text-white">Veelgestelde Vragen (FAQ)</h3>
+
+        <div class="space-y-3 text-xs">
+          <details class="bg-gray-950 rounded-xl p-4 border border-gray-800 cursor-pointer group">
+            <summary class="font-bold text-white flex justify-between items-center">
+              <span>Hoe controleer ik een tweedehands STIHL machine op diefstal via StopHeling?</span>
+              <span class="text-orange-400 text-sm group-open:rotate-180 transition">↓</span>
+            </summary>
+            <p class="mt-2 text-gray-400 leading-relaxed">
+              Kopieer het 9-cijferige serienummer van het typeplaatje of carter en open StopHeling.nl. Vul het nummer in het landelijke diefstalregister van de politie in. Als er geen diefstalmelding staat geregistreerd, kunt u dit op het rapport aantekenen.
+            </p>
+          </details>
+
+          <details class="bg-gray-950 rounded-xl p-4 border border-gray-800 cursor-pointer group">
+            <summary class="font-bold text-white flex justify-between items-center">
+              <span>Wat betekent "Bronstatus: Gekoppeld aan primaire bron"?</span>
+              <span class="text-orange-400 text-sm group-open:rotate-180 transition">↓</span>
+            </summary>
+            <p class="mt-2 text-gray-400 leading-relaxed">
+              De STIHL Decoder hanteert een strikt transparantiebeleid. "Gekoppeld aan primaire bron" betekent dat de specificaties en modeldata rechtstreeks zijn geverifieerd via een officiële STIHL Service Handleiding of Onderdelencatalogus met documentcode. Als het label "Nog niet gekoppeld" toont, is de weergave gebaseerd op serienummer-breakpoints of een algemene modelmatch.
+            </p>
+          </details>
+
+          <details class="bg-gray-950 rounded-xl p-4 border border-gray-800 cursor-pointer group">
+            <summary class="font-bold text-white flex justify-between items-center">
+              <span>Waarom heeft mijn STIHL kettingzaag geen serienummer op de sticker?</span>
+              <span class="text-orange-400 text-sm group-open:rotate-180 transition">↓</span>
+            </summary>
+            <p class="mt-2 text-gray-400 leading-relaxed">
+              Bij intensief gebruik kan de sticker vervagen of loslaten. STIHL slaat het serienummer bij benzine- en accumaachines echter ook altijd fysiek in het metalen carter of kunststof motorblok. Zoek nabij de uitlaat of de geleiderbladbevestiging naar de 9 ingeslagen cijfers.
+            </p>
+          </details>
+        </div>
+      </div>
     </section>
 
   </main>
