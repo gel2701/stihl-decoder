@@ -65,7 +65,12 @@ export function decodeStihlCode(inputStr, database = {}) {
 export function analyzeModelQuery(modelStr, database) {
   const norm = normalizeModelQuery(modelStr);
   const relationship = resolveModelRelationship(modelStr);
-  const matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
+
+  // STRICT RULE: If relationship exists, do NOT inherit matchedModelSpec from the successor/related model!
+  let matchedModelSpec = null;
+  if (!relationship) {
+    matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
+  }
 
   const prefixCode = norm.prefix || (relationship ? '0' : 'MS');
   const prefixMeaning = database.prefixes ? database.prefixes[prefixCode] : null;
@@ -97,6 +102,8 @@ export function analyzeModelQuery(modelStr, database) {
     relationship: relationship ? {
       type: relationship.relationship_type,
       relatedModel: relationship.related_model_name,
+      confidence: relationship.confidence || 'HIGH',
+      specInheritance: relationship.spec_inheritance || false,
       notes: relationship.notes
     } : null,
     technicalSpecs: sanitizedSpecs

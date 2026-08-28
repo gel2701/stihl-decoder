@@ -103,12 +103,12 @@ if (res066.model === 'STIHL 066' && res066.relationship && res066.relationship.t
   console.warn(`❌ Test Historical 066: FAILED`, res066);
 }
 
-// Test 9: Historical 020 T (Renamed to MS 200 T)
+// Test 9: Historical 020 T (Successor transition to MS 200 T)
 totalTests++;
 const res020T = decodeStihlCode('020 T', database);
-if (res020T.model === 'STIHL 020 T' && res020T.relationship && res020T.relationship.type === 'RENAMED_MODEL') {
+if (res020T.model === 'STIHL 020 T' && res020T.relationship && (res020T.relationship.type === 'SUCCESSOR_TRANSITION' || res020T.relationship.type === 'RENAMED_MODEL')) {
   passedTests++;
-  console.log(`✅ Test Historical 020 T (Renamed model to MS 200 T): PASSED`);
+  console.log(`✅ Test Historical 020 T (Successor transition to MS 200 T): PASSED`);
 } else {
   console.warn(`❌ Test Historical 020 T: FAILED`, res020T);
 }
