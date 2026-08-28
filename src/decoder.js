@@ -6,6 +6,7 @@
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWhitelist.js';
 import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
+import { resolveModelRelationship } from './modelRelationships.js';
 
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
@@ -14,9 +15,9 @@ export function decodeStihlCode(inputStr, database = {}) {
 
   const cleaned = inputStr.replace(/[^A-Za-z0-9]/g, '').trim();
 
-  // 1. Counterfeit Rule Evaluation
+  // 1. Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers)
   let counterfeitEvaluation = null;
-  if (database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
+  if (cleaned.length === 9 && database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
     for (const rule of database.counterfeit_rules) {
       const regex = new RegExp(rule.pattern_regex, 'i');
       if (regex.test(cleaned)) {
@@ -31,7 +32,7 @@ export function decodeStihlCode(inputStr, database = {}) {
   }
 
   // 2. Determine Input Type: 9-digit Serial Number vs 11-digit Part Number vs Model Query
-  if (counterfeitEvaluation && counterfeitEvaluation.isCounterfeit) {
+  if (cleaned.length === 9 && counterfeitEvaluation && counterfeitEvaluation.isCounterfeit) {
     return {
       success: false,
       isCounterfeit: true,
@@ -48,6 +49,10 @@ export function decodeStihlCode(inputStr, database = {}) {
     if (cleaned.length === 11) {
       return analyzePartNumber(cleaned, database);
     }
+    const rel = resolveModelRelationship(inputStr);
+    if (rel) {
+      return analyzeModelQuery(inputStr.trim(), database);
+    }
     return {
       success: false,
       error: `Invoer bevat ${cleaned.length} cijfers. Een STIHL serienummer bestaat uit 9 cijfers.`
@@ -59,9 +64,10 @@ export function decodeStihlCode(inputStr, database = {}) {
 
 export function analyzeModelQuery(modelStr, database) {
   const norm = normalizeModelQuery(modelStr);
+  const relationship = resolveModelRelationship(modelStr);
   const matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
 
-  const prefixCode = norm.prefix || 'MS';
+  const prefixCode = norm.prefix || (relationship ? '0' : 'MS');
   const prefixMeaning = database.prefixes ? database.prefixes[prefixCode] : null;
 
   const rawSpecs = matchedModelSpec || {
@@ -75,8 +81,8 @@ export function analyzeModelQuery(modelStr, database) {
     carb_la_setting: '2800 RPM'
   };
 
-  const category = matchedModelSpec ? (matchedModelSpec.category || matchedModelSpec.category_slug) : (norm.prefix === 'BR' ? 'Bladblazer' : (norm.prefix === 'FS' ? 'Bosmaaier' : (norm.prefix === 'TS' ? 'Doorslijper' : 'Kettingzaag')));
-  const resolvedModelName = matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery;
+  const category = relationship ? relationship.category : (matchedModelSpec ? (matchedModelSpec.category || matchedModelSpec.category_slug) : (norm.prefix === 'BR' ? 'Bladblazer' : (norm.prefix === 'FS' ? 'Bosmaaier' : (norm.prefix === 'TS' ? 'Doorslijper' : 'Kettingzaag'))));
+  const resolvedModelName = relationship ? relationship.model_name : (matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery);
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
   return {
@@ -87,7 +93,12 @@ export function analyzeModelQuery(modelStr, database) {
     prefixMeaning: prefixMeaning || 'STIHL Machinetype Aanduiding',
     category,
     model: resolvedModelName,
-    seriesCode: matchedModelSpec ? matchedModelSpec.series_code : (category === 'Bladblazer' ? '4282' : '1141'),
+    seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : (category === 'Bladblazer' ? '4282' : '1141')),
+    relationship: relationship ? {
+      type: relationship.relationship_type,
+      relatedModel: relationship.related_model_name,
+      notes: relationship.notes
+    } : null,
     technicalSpecs: sanitizedSpecs
   };
 }
