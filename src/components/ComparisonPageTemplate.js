@@ -30,7 +30,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_O
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: 'Vergelijkingen', url: '/vergelijk/' },
+    { name: 'Vergelijkingen', url: null },
     { name: `STIHL ${nameA} vs ${nameB}`, url: `/vergelijk/${slugA}-vs-${slugB}/` }
   ];
 
