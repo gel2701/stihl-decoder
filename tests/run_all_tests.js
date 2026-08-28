@@ -6,7 +6,8 @@ const testFiles = [
   'tests/render_www_alignment.test.js',
   'tests/production_validation.test.js',
   'tests/audit_remediation.test.js',
-  'tests/canonical_policy.test.js'
+  'tests/canonical_policy.test.js',
+  'tests/phase34_seo_integrity.test.js'
 ];
 
 let failures = 0;

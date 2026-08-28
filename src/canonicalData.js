@@ -55,6 +55,12 @@ export const SERIES_REFERENCE_DOCUMENTS = {
     sourceType: 'series_service_manual',
     models: ['MS 290', 'MS 310', 'MS 390']
   },
+  '1128': {
+    seriesCode: '1128',
+    title: 'STIHL Service Manual 1128',
+    sourceType: 'series_service_manual',
+    models: ['MS 460', '046 Magnum']
+  },
   '1140': {
     seriesCode: '1140',
     title: 'STIHL Service Manual 1140',
@@ -294,7 +300,7 @@ export function buildPublicCatalogSnapshot(database) {
       return {
         slug: model.slug || model.id.replace(/_/g, '-'),
         model_name: model.model_name,
-        category_slug: model.category_slug || 'kettingzagen',
+        category_slug: model.category_slug || 'UNKNOWN',
         series_code: model.series_code || null,
         data_status: summary.dataStatus,
         data_confidence: summary.displayConfidence

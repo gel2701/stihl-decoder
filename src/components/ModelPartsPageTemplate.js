@@ -8,17 +8,20 @@ import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { renderAffiliateLink } from './AffiliateLink.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
+import { getSafeCategorySlug, getSafeModelPath } from '../publicationRules.js';
+import { PRIMARY_ORIGIN } from '../config.js';
 
-export function renderModelPartsPageHtml(model, database, baseUrl = 'https://stihldecoder.nl') {
-  const categorySlug = model.category_slug || 'kettingzagen';
+export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
+  const categorySlug = getSafeCategorySlug(model);
   const slug = model.slug || model.id.replace(/_/g, '-');
-  const canonicalUrl = `${baseUrl}/${categorySlug}/${slug}/onderdelen/`;
+  const canonicalUrl = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/onderdelen/` : `${baseUrl}/onderdelen-onbekend/${slug}/`;
+  const modelPath = getSafeModelPath(model);
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: model.category || 'Modellen', url: `/${categorySlug}/` },
-    { name: `STIHL ${model.model_name}`, url: `/${categorySlug}/${slug}/` },
-    { name: 'Onderdelen & Vervanging', url: `/${categorySlug}/${slug}/onderdelen/` }
+    ...(categorySlug ? [{ name: model.category || 'Modellen', url: `/${categorySlug}/` }] : []),
+    { name: `STIHL ${model.model_name}`, url: modelPath || canonicalUrl.replace('/onderdelen/', '/') },
+    { name: 'Onderdelen & Vervanging', url: categorySlug ? `/${categorySlug}/${slug}/onderdelen/` : canonicalUrl.replace(baseUrl, '') }
   ];
 
   const jsonLdData = buildStructuredData({
@@ -68,7 +71,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
           <span class="text-2xs text-gray-400 block -mt-1 font-mono">Model Onderdelen Gids</span>
         </div>
       </a>
-      <a href="/${categorySlug}/${slug}/" class="text-xs text-orange-400 font-bold hover:underline">
+      <a href="${modelPath || '/'}" class="text-xs text-orange-400 font-bold hover:underline">
         ← Terug naar STIHL ${model.model_name}
       </a>
     </div>

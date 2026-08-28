@@ -16,6 +16,7 @@ const homepage = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
 
 const models = canonicalDatabase.models || [];
 const linkedModels = models.filter((model) => model.data_status === 'PRIMARY_SOURCE_LINKED');
+const seriesLinkedModels = models.filter((model) => model.data_status === 'SERIES_SOURCE_LINKED');
 const pendingModels = models.filter((model) => model.data_status === 'PRIMARY_SOURCE_PENDING');
 
 assert.ok(models.length > 0, 'canonical database should contain models');
@@ -23,6 +24,7 @@ assert.strictEqual(canonicalDatabase.meta?.canonical_store, 'json');
 assert.strictEqual(canonicalDatabase.meta?.sqlite_role, 'analytics_and_optional_derived_exports');
 
 assert.strictEqual(linkedModels.length, canonicalManifest.primary_source_linked_models);
+assert.strictEqual(seriesLinkedModels.length, canonicalManifest.series_source_linked_models);
 assert.strictEqual(pendingModels.length, canonicalManifest.primary_source_pending_models);
 
 for (const model of models) {

@@ -2,52 +2,57 @@
  * Schema.org JSON-LD Helper for Programmatic SEO
  */
 
-export function generateModelJsonLd({ modelName, category, displacementCc, powerHp, sparkPlug, carbSettings, url }) {
+export function generateModelJsonLd({ modelName, category, displacementCc, powerHp, sparkPlug, carbSettings, url, allowProduct = false, serialLocationText = 'Controleer het typeplaatje en de passende STIHL documentatie voor uw uitvoering.' }) {
   const carbH = (carbSettings && carbSettings.H) || 'Niet vastgesteld';
   const carbL = (carbSettings && carbSettings.L) || 'Niet vastgesteld';
   const carbLA = (carbSettings && carbSettings.LA) || 'Niet vastgesteld';
+  const graph = [
+    {
+      '@type': 'TechArticle',
+      'headline': `${modelName} Modeldata, bronstatus & serienummergids`,
+      'description': `Overzicht van zichtbare modeldata, onderhoudsreferenties en serienummercontrole voor de STIHL ${modelName}.`,
+      'url': url,
+      'inLanguage': 'nl-NL'
+    }
+  ];
 
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
+  if (allowProduct && (displacementCc || powerHp)) {
+    graph.push({
+      '@type': 'Product',
+      'name': `STIHL ${modelName}`,
+      'category': category || 'Tuinmachine',
+      'description': `STIHL ${modelName} ${category || 'machine'} met alleen documenteerbare specificaties uit de beschikbare brondata.`,
+      'brand': {
+        '@type': 'Brand',
+        'name': 'STIHL'
+      }
+    });
+  }
+
+  graph.push({
+    '@type': 'FAQPage',
+    'mainEntity': [
       {
-        '@type': 'TechArticle',
-        'headline': `${modelName} Specificaties, Bouwjaar & Serienummer Decodering`,
-        'description': `Complete technische specificaties, carburateur basisafstelling (${carbH} / ${carbL}) en serienummer herkenning voor de STIHL ${modelName}.`,
-        'url': url,
-        'inLanguage': 'nl-NL'
-      },
-      {
-        '@type': 'Product',
-        'name': `STIHL ${modelName}`,
-        'category': category || 'Tuinmachine',
-        'description': `STIHL ${modelName} ${category || 'machine'} met alleen documenteerbare specificaties uit de beschikbare brondata.`,
-        'brand': {
-          '@type': 'Brand',
-          'name': 'STIHL'
+        '@type': 'Question',
+        'name': `Waar vind ik het serienummer van de STIHL ${modelName}?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': serialLocationText
         }
       },
       {
-        '@type': 'FAQPage',
-        'mainEntity': [
-          {
-            '@type': 'Question',
-            'name': `Waar vind ik het serienummer van de STIHL ${modelName}?`,
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': `Het serienummer van de STIHL ${modelName} staat ingeslagen in het gietmetaal van het carter boven de uitlaat of nabij het geleideblad.`
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': `Wat is de standaard carburateurafstelling voor de STIHL ${modelName}?`,
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': `Standaard basisafstelling: H-schroef: ${carbH}, L-schroef: ${carbL}, LA-schroef: ${carbLA}.`
-            }
-          }
-        ]
+        '@type': 'Question',
+        'name': `Wat is een bruikbare basisreferentie voor de carburateur van de STIHL ${modelName}?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': `Repositoryreferentie: H-schroef: ${carbH}, L-schroef: ${carbL}, LA-schroef: ${carbLA}. Controleer de exacte afstelling altijd met het juiste typeplaatje en de primaire documentatie voor uw uitvoering.`
+        }
       }
     ]
+  });
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph
   };
 }

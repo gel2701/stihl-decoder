@@ -15,6 +15,7 @@ import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplat
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
+import { getSafeCategorySlug, getSafeModelPath, getSafeModelPartsPath, getValuationPublicationState } from './src/publicationRules.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -229,7 +230,11 @@ function checkRateLimit(req) {
       const targetModel = findModelBySlug(modelSlug, database);
 
       if (targetModel) {
-        const canonicalCategory = targetModel.category_slug || 'kettingzagen';
+        const canonicalCategory = getSafeCategorySlug(targetModel);
+        if (!canonicalCategory) {
+          renderNotFound(res);
+          return;
+        }
         if (canonicalCategory !== catSlug) {
           res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${canonicalCategory}/${modelSlug}/onderdelen/` });
           res.end();
@@ -286,9 +291,12 @@ function checkRateLimit(req) {
     }
 
     if (targetModel) {
-      const catSlug = targetModel.category_slug || 'kettingzagen';
-      const mSlug = targetModel.slug || targetModel.id.replace(/_/g, '-');
-      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${catSlug}/${mSlug}/` });
+      const safePath = getSafeModelPath(targetModel);
+      if (!safePath) {
+        renderNotFound(res);
+        return;
+      }
+      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}${safePath}` });
       res.end();
       return;
     }
@@ -356,7 +364,11 @@ function checkRateLimit(req) {
     const targetModel = findModelBySlug(modelSlug, database);
 
     if (targetModel) {
-      const canonicalCategory = targetModel.category_slug || 'kettingzagen';
+      const canonicalCategory = getSafeCategorySlug(targetModel);
+      if (!canonicalCategory) {
+        renderNotFound(res);
+        return;
+      }
       if (canonicalCategory !== catSlug) {
         res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${canonicalCategory}/${modelSlug}/` });
         res.end();
@@ -381,16 +393,18 @@ function checkRateLimit(req) {
     }
 
     logStihlEvent(EVENT_TYPES.VALUATION_STARTED, { model: modelSlug }, req.headers['user-agent']);
+    const valuationState = getValuationPublicationState(targetModel);
+    const modelPath = getSafeModelPath(targetModel);
 
     const valuationHtml = `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()} Marktwaarde & Taxatie | STIHLDecoder</title>
-  <meta name="description" content="Indicatieve tweedehands marktwaarde en taxatie voor de STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()}.">
+  <title>${valuationState.titleLabel} | STIHLDecoder</title>
+  <meta name="description" content="${valuationState.metaDescription}">
   <link rel="canonical" href="${PRIMARY_ORIGIN}/waarde/${modelSlug}/">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="${valuationState.robotsContent}">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -406,14 +420,15 @@ function checkRateLimit(req) {
   </header>
   <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
     <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
-      <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">Indicatieve Taxatie</span>
-      <h1 class="text-3xl font-extrabold text-white">STIHL ${targetModel ? targetModel.model_name : modelSlug.toUpperCase()} Waardebepaling</h1>
+      <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">Waardestatus</span>
+      <h1 class="text-3xl font-extrabold text-white">${valuationState.titleLabel}</h1>
       <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
-        <span class="text-xs text-gray-400 block font-medium">Indicatieve Marktwaarde Range (Tweedehands):</span>
-        <span class="text-2xl font-black text-orange-400 font-mono">€250 - €550 (Afhankelijk van staat & bouwjaar)</span>
+        <span class="text-xs text-gray-400 block font-medium">Publicatiestatus:</span>
+        <span class="text-xl font-black text-orange-400">Nog onvoldoende modelspecifieke marktdata</span>
         <p class="text-xs text-gray-400 pt-2 border-t border-gray-800">
-          💡 Maak een <a href="/stihl-paspoort/" class="text-orange-400 underline">STIHL Serienummer Rapport (indicatief)</a> met serienummer-controle voor een Marktplaats verkoopoverzicht.
+          Deze pagina blijft op <strong>${valuationState.robotsContent}</strong> totdat modelspecifieke marktwaarnemingen beschikbaar zijn. Gebruik het serienummer- en bronstatusrapport voor machine-identificatie, niet voor een prijsclaim.
         </p>
+        ${modelPath ? `<p class="text-xs text-gray-400">Bekijk eerst de <a href="${modelPath}" class="text-orange-400 underline">modelgids van STIHL ${targetModel.model_name}</a> voor bronstatus en technische context.</p>` : ''}
       </div>
     </article>
   </main>

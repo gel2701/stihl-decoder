@@ -10,17 +10,29 @@ import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
 import { renderPassportProMvpCard } from './PassportProMvp.js';
 import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
+import { PRIMARY_ORIGIN } from '../config.js';
+import {
+  getFuelDriveLabel,
+  getSafeCategorySlug,
+  getSafeModelPartsPath,
+  getSafeModelPath,
+  getSerialLocationAnswer,
+  getValuationPublicationState,
+  isBatteryModel
+} from '../publicationRules.js';
 
-export function renderModelPageHtml(model, database, baseUrl = 'https://stihldecoder.nl') {
+export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const verification = getModelVerificationSummary(model);
-  const categorySlug = model.category_slug || 'kettingzagen';
+  const categorySlug = getSafeCategorySlug(model);
   const slug = model.slug || model.id.replace(/_/g, '-');
-  const canonicalUrl = `${baseUrl}/${categorySlug}/${slug}/`;
+  const canonicalUrl = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/` : `${baseUrl}/modellen-onbekend/${slug}/`;
+  const safeModelPath = getSafeModelPath(model);
+  const safePartsPath = getSafeModelPartsPath(model);
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: model.category || 'Modellen', url: `/${categorySlug}/` },
-    { name: `STIHL ${model.model_name}`, url: `/${categorySlug}/${slug}/` }
+    ...(categorySlug ? [{ name: model.category || 'Modellen', url: `/${categorySlug}/` }] : []),
+    { name: `STIHL ${model.model_name}`, url: safeModelPath || canonicalUrl.replace(baseUrl, '') }
   ];
 
   const jsonLdData = buildStructuredData({
@@ -43,11 +55,14 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
   const relatedModelsHtml = renderRelatedModelsHtml(relatedModels);
 
   const isPetrol = model.fuel_type ? (model.fuel_type.startsWith('PETROL') || model.fuel_type.startsWith('MIX')) : false;
-  const isBattery = model.fuel_type ? model.fuel_type.startsWith('BATTERY') : false;
+  const isBattery = isBatteryModel(model);
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
+  const fuelDriveLabel = getFuelDriveLabel(model);
+  const valuationState = getValuationPublicationState(model);
 
   // Model comparison partner detection
   const comparisonPartner = getComparisonPartner(model, database);
+  const comparisonPartnerPath = getSafeModelPath(comparisonPartner);
   const passportProCardHtml = renderPassportProMvpCard({ modelName: model.model_name, abVariant: 'B' });
   const repairLeadCardHtml = renderRepairLeadMvpCard({ modelName: model.model_name });
   const sellLeadCardHtml = renderSellLeadMvpCard({ modelName: model.model_name });
@@ -90,9 +105,9 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     <!-- Header & H1 Title with Data Authority Badges -->
     <header class="space-y-3">
       <div class="flex flex-wrap gap-2 items-center">
-        <a href="/${categorySlug}/" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 hover:underline">
+        ${categorySlug ? `<a href="/${categorySlug}/" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 hover:underline">
           STIHL ${model.category || 'Modelgids'} Categorie
-        </a>
+        </a>` : `<span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-gray-800 text-gray-300 border border-gray-700">Categorie: UNKNOWN</span>`}
         <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           Data Kwaliteit: ${verification.displayConfidence} (${verification.badgeLabel})
@@ -152,7 +167,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Cilinderinhoud / Aandrijving:</span>
-          <span class="text-base font-bold text-white">${model.displacement_cc ? `${model.displacement_cc} cc` : (isBattery ? 'STIHL AP Accu 36V' : 'Nog niet geverifieerd')}</span>
+          <span class="text-base font-bold text-white">${model.displacement_cc ? `${model.displacement_cc} cc` : fuelDriveLabel}</span>
         </div>
 
         ${isPetrol ? `
@@ -195,7 +210,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
     </section>
 
     <!-- Model Comparison Section -->
-    ${comparisonPartner ? `
+    ${comparisonPartner && comparisonPartnerPath ? `
       <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-4">
         <div class="flex items-center justify-between border-b border-gray-800 pb-3">
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
@@ -216,7 +231,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
             <p class="text-gray-300">• Gewicht: ${model.weight_kg ? `${model.weight_kg} kg` : 'Niet vastgesteld'}</p>
           </div>
           <div class="space-y-1">
-            <a href="/${comparisonPartner.category_slug || 'kettingzagen'}/${comparisonPartner.slug || comparisonPartner.id.replace(/_/g, '-')}/" class="font-bold text-orange-400 block font-mono hover:underline">
+            <a href="${comparisonPartnerPath}" class="font-bold text-orange-400 block font-mono hover:underline">
               STIHL ${comparisonPartner.model_name} →
             </a>
             <p class="text-gray-300">• Vermogen: ${comparisonPartner.power_hp ? `${comparisonPartner.power_hp} pk (${comparisonPartner.power_kw} kW)` : (comparisonPartner.power_kw ? `${comparisonPartner.power_kw} kW` : 'Niet vastgesteld')}</p>
@@ -234,13 +249,16 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <span class="text-gray-400 block text-2xs">Download een onafhankelijk verkooprapport</span>
       </a>
       <a href="/waarde/${slug}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-white text-sm block group-hover:underline">💶 2. Controleer Waarde</span>
-        <span class="text-gray-400 block text-2xs">Indicatieve tweedehands marktwaarde</span>
+        <span class="font-bold text-white text-sm block group-hover:underline">💶 2. Waardestatus bekijken</span>
+        <span class="text-gray-400 block text-2xs">${valuationState.canIndex ? 'Modelspecifieke marktwaarde' : 'Nog onvoldoende modelspecifieke marktdata'}</span>
       </a>
-      <a href="/${categorySlug}/${slug}/onderdelen/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
+      ${safePartsPath ? `<a href="${safePartsPath}" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-white text-sm block group-hover:underline">🔧 3. Bekijk Onderdelen</span>
         <span class="text-gray-400 block text-2xs">${model.series_code ? `Onderdeelnummers serie ${model.series_code}` : 'Onderdeleninformatie'}</span>
-      </a>
+      </a>` : `<div class="bg-gray-900 border border-gray-800 p-4 rounded-xl text-center space-y-1">
+        <span class="font-bold text-white text-sm block">🔧 3. Onderdelenroute onbekend</span>
+        <span class="text-gray-400 block text-2xs">Categorie ontbreekt of is niet veilig publiceerbaar</span>
+      </div>`}
     </section>
 
     <!-- Interlinking Hub including all 6 Troubleshooting Guides -->
@@ -250,7 +268,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <a href="/kettingzagen/" class="hover:text-orange-400 hover:underline">→ Kettingzagen Hub</a>
         <a href="/bosmaaiers/" class="hover:text-orange-400 hover:underline">→ Bosmaaiers Hub</a>
         <a href="/bladblazers/" class="hover:text-orange-400 hover:underline">→ Bladblazers Hub</a>
-        <a href="/${categorySlug}/${slug}/onderdelen/" class="hover:text-orange-400 hover:underline">→ STIHL ${model.model_name} Onderdelen</a>
+        ${safePartsPath ? `<a href="${safePartsPath}" class="hover:text-orange-400 hover:underline">→ STIHL ${model.model_name} Onderdelen</a>` : ''}
         <a href="/vergelijk/ms-260-vs-ms-261/" class="hover:text-orange-400 hover:underline">→ MS 260 vs MS 261</a>
         <a href="/vergelijk/ms-361-vs-ms-362/" class="hover:text-orange-400 hover:underline">→ MS 361 vs MS 362</a>
         <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
@@ -280,19 +298,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <h4 class="font-bold text-white">Waar vind ik het 9-cijferige serienummer?</h4>
-          <p class="text-gray-300">${
-            categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen'
-              ? 'Het serienummer staat ingeslagen in het metaal van het carter (nabij de uitlaat of kettinggeleidebevestiging) en op de sticker.'
-              : categorySlug === 'bosmaaiers'
-              ? 'Het serienummer staat op het motortypeplaatje of ingeslagen op het carter van de bosmaaier.'
-              : categorySlug === 'bladblazers'
-              ? 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de bladblazer.'
-              : categorySlug === 'heggenscharen'
-              ? 'Het serienummer staat op het carter of typeplaatje van de heggenschaar.'
-              : categorySlug === 'doorslijpers'
-              ? 'Het serienummer staat ingeslagen op het motorhuis of typeplaatje van de doorslijper.'
-              : 'De exacte locatie van het serienummer verschilt per model. Controleer het typeplaatje en de STIHL handleiding.'
-          }</p>
+          <p class="text-gray-300">${getSerialLocationAnswer(categorySlug)}</p>
         </div>
       </div>
     </section>
@@ -328,5 +334,5 @@ function getComparisonPartner(model, database) {
   if (cleanName.includes('170')) return models.find(m => m.slug === 'ms-180');
   if (cleanName.includes('180')) return models.find(m => m.slug === 'ms-170');
 
-  return models.find(m => m.id !== model.id && m.category_slug === model.category_slug);
+  return models.find(m => m.id !== model.id && m.category_slug && m.category_slug === model.category_slug);
 }

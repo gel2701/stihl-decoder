@@ -4,6 +4,26 @@
  */
 
 import { PRIMARY_ORIGIN } from '../config.js';
+import { getSafeCategorySlug, getSafeModelPartsPath, getSafeModelPath } from '../publicationRules.js';
+
+export function collectSitemapDiagnostics(database = {}) {
+  const models = database.models || [];
+  const categoryMissingModels = [];
+
+  for (const model of models) {
+    if (!getSafeCategorySlug(model)) {
+      categoryMissingModels.push({
+        slug: model.slug || model.id?.replace(/_/g, '-') || null,
+        model_name: model.model_name || null,
+        reason: 'CATEGORY_MISSING'
+      });
+    }
+  }
+
+  return {
+    categoryMissingModels
+  };
+}
 
 export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
   const models = database.models || [];
@@ -25,11 +45,14 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
 
   // 3. Model Pages & Model Parts Pages
   models.forEach(m => {
-    const catSlug = m.category_slug || 'kettingzagen';
-    const mSlug = m.slug || m.id.replace(/_/g, '-');
+    const modelPath = getSafeModelPath(m);
+    const partsPath = getSafeModelPartsPath(m);
     const lastmod = m.content_updated_at || m.updated_at || null;
-    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/`, priority: '0.8', changefreq: 'weekly', lastmod });
-    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/onderdelen/`, priority: '0.7', changefreq: 'weekly', lastmod });
+    if (!modelPath || !partsPath) {
+      return;
+    }
+    urls.push({ loc: `${baseUrl}${modelPath}`, priority: '0.8', changefreq: 'weekly', lastmod });
+    urls.push({ loc: `${baseUrl}${partsPath}`, priority: '0.7', changefreq: 'weekly', lastmod });
   });
 
   // 4. Comparison Pages

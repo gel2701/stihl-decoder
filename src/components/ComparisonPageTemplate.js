@@ -7,8 +7,10 @@ import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
+import { getSafeModelPath } from '../publicationRules.js';
+import { PRIMARY_ORIGIN } from '../config.js';
 
-export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://stihldecoder.nl') {
+export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_ORIGIN) {
   const parts = pairSlug.split('-vs-');
   const slugA = parts[0] ? parts[0].toLowerCase() : 'ms-260';
   const slugB = parts[1] ? parts[1].toLowerCase() : 'ms-261';
@@ -21,6 +23,8 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
   const nameB = modelB ? modelB.model_name : slugB.toUpperCase();
   const verificationA = modelA ? getModelVerificationSummary(modelA) : null;
   const verificationB = modelB ? getModelVerificationSummary(modelB) : null;
+  const modelAPath = getSafeModelPath(modelA);
+  const modelBPath = getSafeModelPath(modelB);
 
   const canonicalUrl = `${baseUrl}/vergelijk/${slugA}-vs-${slugB}/`;
 
@@ -169,7 +173,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
           <p>
             De <strong>STIHL ${nameA}</strong> is vooral interessant als de bekende specificaties, onderhoudsstaat en beoogde toepassing beter bij uw gebruik passen. Controleer het typeplaatje en de feitelijke uitvoering voordat u onderdelen of waardeclaims overneemt.
           </p>
-          <a href="/${modelA.category_slug || 'kettingzagen'}/${modelA.slug || slugA}/" class="text-orange-400 font-bold hover:underline inline-block pt-1">Bekijk STIHL ${nameA} Modelgids →</a>
+          ${modelAPath ? `<a href="${modelAPath}" class="text-orange-400 font-bold hover:underline inline-block pt-1">Bekijk STIHL ${nameA} Modelgids →</a>` : '<span class="text-gray-400 inline-block pt-1">Veilige modelroute ontbreekt</span>'}
         </div>
 
         <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
@@ -177,7 +181,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = 'https://
           <p>
             De <strong>STIHL ${nameB}</strong> kan aantrekkelijk zijn wanneer de gedocumenteerde specificaties en onderdelenbeschikbaarheid beter aansluiten op uw werk. Gebruik deze vergelijking als vertrekpunt en verifieer de uitvoering op de machine zelf.
           </p>
-          <a href="/${modelB.category_slug || 'kettingzagen'}/${modelB.slug || slugB}/" class="text-orange-400 font-bold hover:underline inline-block pt-1">Bekijk STIHL ${nameB} Modelgids →</a>
+          ${modelBPath ? `<a href="${modelBPath}" class="text-orange-400 font-bold hover:underline inline-block pt-1">Bekijk STIHL ${nameB} Modelgids →</a>` : '<span class="text-gray-400 inline-block pt-1">Veilige modelroute ontbreekt</span>'}
         </div>
       </div>
     </section>

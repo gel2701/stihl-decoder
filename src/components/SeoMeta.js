@@ -2,7 +2,7 @@
  * Centralized SEO Meta Tag Builder for STIHLDecoder.nl
  */
 
-export function renderSeoMeta({ title, description, canonicalUrl, ogType = 'website', jsonLdData }) {
+export function renderSeoMeta({ title, description, canonicalUrl, ogType = 'website', jsonLdData, robotsContent = 'index, follow' }) {
   const defaultTitle = 'STIHL Serienummer & Bouwjaar Decoder | STIHLDecoder';
   const defaultDesc = 'Controleer het 9-cijferige serienummer van uw STIHL machine en bekijk de zichtbare bronstatus van modeldata, zonder ongefundeerde model- of bouwjaarclaims.';
   
@@ -16,7 +16,7 @@ export function renderSeoMeta({ title, description, canonicalUrl, ogType = 'webs
     <title>${metaTitle}</title>
     <meta name="description" content="${metaDesc}">
     <link rel="canonical" href="${canonical}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="${robotsContent}">
 
     <!-- Favicon & Web App Branding Assets -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">

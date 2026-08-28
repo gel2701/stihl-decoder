@@ -2,6 +2,8 @@
  * Database-driven Related Models Resolver & Component
  */
 
+import { getFuelDriveLabel, getSafeModelPath } from '../publicationRules.js';
+
 export function getRelatedModels(targetModel, database) {
   if (!targetModel || !database || !database.models) return [];
 
@@ -38,9 +40,10 @@ export function renderRelatedModelsHtml(relatedModels) {
   if (!relatedModels || relatedModels.length === 0) return '';
 
   const cards = relatedModels.map(m => {
-    const categorySlug = m.category_slug || 'kettingzagen';
-    const slug = m.slug || m.id.replace(/_/g, '-');
-    const url = `/${categorySlug}/${slug}/`;
+    const url = getSafeModelPath(m);
+    if (!url) {
+      return '';
+    }
 
     return `
       <a href="${url}" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 hover:border-orange-500/50 p-4 rounded-xl transition flex flex-col justify-between space-y-2 group">
@@ -49,12 +52,14 @@ export function renderRelatedModelsHtml(relatedModels) {
           <h4 class="text-base font-bold text-white group-hover:text-orange-400 transition mt-0.5">${m.model_name}</h4>
         </div>
         <div class="text-2xs text-gray-400 flex items-center justify-between pt-2 border-t border-gray-800/60">
-          <span>${m.displacement_cc ? m.displacement_cc + ' cc' : (m.battery_system ? 'Accu 36V' : '-')}</span>
+          <span>${m.displacement_cc ? m.displacement_cc + ' cc' : getFuelDriveLabel(m)}</span>
           <span class="font-bold text-gray-300">${m.power_hp ? m.power_hp + ' pk' : '-'}</span>
         </div>
       </a>
     `;
-  }).join('');
+  }).filter(Boolean).join('');
+
+  if (!cards) return '';
 
   return `
     <section class="space-y-4 pt-6 border-t border-gray-800">

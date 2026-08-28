@@ -18,11 +18,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Schema.org WebApplication & FAQPage JSON-LD -->
+  <!-- Schema.org WebSite, WebApplication & FAQPage JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.stihldecoder.nl/#website",
+        "url": "https://www.stihldecoder.nl/",
+        "name": "STIHLDecoder.nl",
+        "alternateName": ["STIHL Decoder", "stihldecoder.nl"],
+        "inLanguage": "nl-NL"
+      },
       {
         "@type": "WebApplication",
         "name": "STIHL Serienummer Decoder",
@@ -39,7 +47,7 @@
             "name": "Hoe werkt het controleren van een STIHL serienummer?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Een officieel STIHL serienummer bestaat uit 9 unieke cijfers. Het eerste cijfer kan helpen bij het bepalen van de fabriek of regio van herkomst. De vervolgedigits bepalen de bekende serienummerreeks en een breakpoint-gebaseerde indicatie van de bouwperiode."
+              "text": "Veel STIHL motornummers volgen een 9-cijferig formaat. Het eerste cijfer kan helpen bij het bepalen van de fabriek of regio van herkomst. De vervolgcijfers geven hooguit een breakpoint-gebaseerde indicatie van de productiereeks en niet automatisch een exact model of bouwjaar."
             }
           },
           {
@@ -47,15 +55,15 @@
             "name": "Wat is het verschil tussen een serienummer, onderdeelnummer en gietklok?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Een serienummer (9 cijfers) identificeert de complete machine uniek. Een onderdeelnummer (11 cijfers, bijv. 1121 021 0800) identificeert een specifiek vervangingsonderdeel of behuizing. Een gietklok op kunststof of magnesium gietstukken geeft de exacte maand en het jaar van fabricage van dat specifieke onderdeel aan."
+              "text": "Een serienummer verwijst naar de complete machine. Een onderdeelnummer (11 cijfers, bijv. 1121 021 0800) verwijst naar een vervangingsonderdeel of behuizing. Een gietklok op kunststof of magnesium gietstukken kan maand en jaar van dat losse onderdeel aangeven."
             }
           },
           {
             "@type": "Question",
-            "name": "Wat betekent Bronstatus: Gekoppeld aan primaire bron?",
+            "name": "Wat betekent bronstatus op STIHLDecoder?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Gekoppeld aan primaire bron betekent dat de getoonde model- en specificatiedata rechtstreeks geverifieerd is met officiële STIHL servicehandleidingen of onderdelencatalogi. Als de bronstatus 'Nog niet gekoppeld' toont, is de weergave gebaseerd op serienummer-breakpoints of een algemene schatting."
+              "text": "Bronstatus laat zien of modeldata aan een primaire handleiding, een familiehandboek of nog aan geen expliciete bron is gekoppeld. Een bronstring op zichzelf telt niet als volledig verificatiebewijs."
             }
           },
           {
@@ -63,7 +71,7 @@
             "name": "Hoe controleer ik of een tweedehands STIHL machine niet gestolen is?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Via onze StopHeling-knop kopieert u het 9-cijferige serienummer met één klik en opent u StopHeling.nl (het officiële landelijke diefstalregister van de Nederlandse politie). Als het serienummer daar niet als gestolen geregistreerd staat, kunt u dit op uw rapport aantekenen."
+              "text": "Via onze StopHeling-knop kunt u het serienummer kopiëren en StopHeling.nl openen voor uw eigen controle. STIHLDecoder voert die controle niet zelf uit en noteert hooguit een door de gebruiker bevestigde uitkomst."
             }
           }
         ]
@@ -125,15 +133,15 @@
         </div>
         <div>
           <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white flex flex-col sm:flex-row sm:items-center gap-2">
-            <span>STIHL Serienummer Decoder — Model, Bouwjaar & Bronstatus Controleren</span>
+            <span>STIHL Serienummer Decoder — Model, bouwperiode & bronstatus controleren</span>
             <span class="text-2xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 w-max">v3.0 Serial Breakpoints Engine</span>
           </h1>
           <p class="text-xs text-gray-400">Serienummers, herkomstsignalen, bronstatus en onafhankelijk rapport</p>
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Exact Breakpoint Matching</span>
-        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Generatie Identificatie</span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Breakpoint-gebaseerde serienummeranalyse</span>
+        <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Bronstatus zichtbaar</span>
       </div>
     </div>
   </header>
@@ -175,7 +183,7 @@
         <!-- Probeer Voorbeelden (Klikbaar) -->
         <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="184592301">184592301 (MS 261 C-M Gen 2)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="184592301">184592301 (voorbeeld serienummer)</button>
           <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
           <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
         </div>
@@ -360,7 +368,7 @@
             <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800 space-y-1.5">
               <div class="flex justify-between items-center">
                 <span class="text-xs text-gray-400 font-medium">Bouwperiode & Uitvoering:</span>
-                <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Range Match (Nauwkeurig)</span>
+                <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Breakpoint-gebaseerde indicatie</span>
               </div>
               
               <span id="res-years" class="text-xl font-extrabold text-orange-400 block font-mono">2016 – Heden</span>
@@ -449,7 +457,7 @@
               <div>
                 <h5 class="text-sm font-bold text-white flex items-center gap-2">
                   Controleer op Gestolen Eigendom (StopHeling®)
-                  <span id="stopheling-badge-status" class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Politie Register</span>
+                  <span id="stopheling-badge-status" class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Externe StopHeling-check</span>
                 </h5>
                 <p class="text-xs text-gray-300 mt-1">
                   Kopieer het serienummer om direct te zoeken in het landelijke StopHeling-register van de politie.
@@ -512,7 +520,7 @@
         <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
           <h3 class="text-sm font-bold text-orange-400">2. Onderdeelnummers vs Gietnummers</h3>
           <p class="text-gray-400 leading-relaxed">
-            Een 11-cijferig nummer (bijv. <strong>1121 021 0800</strong>) is een <em>STIHL onderdeelnummer</em> (Teilenummer). De eerste vier cijfers vormen de familiecode (1121 = 024/026/MS 260 serie). Een gietnummer of gietklok op kunststof of magnesium gietdelen geeft met een pijl of stippen de exacte fabricagmaand en het jaar van dat losse onderdeel aan.
+            Een 11-cijferig nummer (bijv. <strong>1121 021 0800</strong>) is een <em>STIHL onderdeelnummer</em> (Teilenummer). De eerste vier cijfers vormen de familiecode (1121 = 024/026/MS 260 serie). Een gietnummer of gietklok op kunststof of magnesium gietdelen kan met een pijl of stippen maand en jaar van dat losse onderdeel aangeven.
           </p>
         </div>
       </div>
@@ -528,17 +536,17 @@
               <span class="text-orange-400 text-sm group-open:rotate-180 transition">↓</span>
             </summary>
             <p class="mt-2 text-gray-400 leading-relaxed">
-              Kopieer het 9-cijferige serienummer van het typeplaatje of carter en open StopHeling.nl. Vul het nummer in het landelijke diefstalregister van de politie in. Als er geen diefstalmelding staat geregistreerd, kunt u dit op het rapport aantekenen.
+              Kopieer het 9-cijferige serienummer van het typeplaatje of carter en open StopHeling.nl voor uw eigen controle. Als daar geen diefstalmelding zichtbaar is, kunt u dit als eigen notitie op het rapport aantekenen.
             </p>
           </details>
 
           <details class="bg-gray-950 rounded-xl p-4 border border-gray-800 cursor-pointer group">
             <summary class="font-bold text-white flex justify-between items-center">
-              <span>Wat betekent "Bronstatus: Gekoppeld aan primaire bron"?</span>
+              <span>Wat betekent de bronstatus op STIHLDecoder?</span>
               <span class="text-orange-400 text-sm group-open:rotate-180 transition">↓</span>
             </summary>
             <p class="mt-2 text-gray-400 leading-relaxed">
-              De STIHL Decoder hanteert een strikt transparantiebeleid. "Gekoppeld aan primaire bron" betekent dat de specificaties en modeldata rechtstreeks zijn geverifieerd via een officiële STIHL Service Handleiding of Onderdelencatalogus met documentcode. Als het label "Nog niet gekoppeld" toont, is de weergave gebaseerd op serienummer-breakpoints of een algemene modelmatch.
+              STIHLDecoder hanteert een strikt transparantiebeleid. De bronstatus laat zien of data aan een primaire handleiding, een familiehandboek of nog aan geen expliciete bron is gekoppeld. Een bronstring alleen geldt niet als volledig verificatiebewijs.
             </p>
           </details>
 
@@ -743,9 +751,9 @@
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
-          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt)');
+          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu-aandrijving' : '🔥 Benzine-aandrijving');
 
-          currentModelName = (res.model && res.model !== 'UNKNOWN') ? res.model : 'MS 261 C-M Gen 2';
+          currentModelName = (res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld';
 
           document.getElementById('res-serial-display').innerText = formatted;
           document.getElementById('res-model').innerText = currentModelName;
@@ -753,23 +761,26 @@
           document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Duitsland'}${res.factory.location ? ` (${res.factory.location})` : ' (Waiblingen)'}` : 'Duitsland (Waiblingen)';
 
           const prodPeriod = res.productionPeriod || {};
-          currentYearsFormatted = res.estimatedYears && res.estimatedYears !== 'UNKNOWN' ? res.estimatedYears : (prodPeriod.yearRangeFormatted || '2016 – Heden');
+          currentYearsFormatted = res.estimatedYears && res.estimatedYears !== 'UNKNOWN' ? res.estimatedYears : (prodPeriod.yearRangeFormatted || 'Niet vastgesteld');
           document.getElementById('res-years').innerText = currentYearsFormatted;
-          document.getElementById('res-generation').innerText = res.generation && res.generation !== 'UNKNOWN' ? res.generation : 'MS 261 C-M Gen 2 (Facelift / V2)';
+          document.getElementById('res-generation').innerText = res.generation && res.generation !== 'UNKNOWN' ? res.generation : 'Niet vastgesteld';
 
           const matchTag = document.getElementById('res-range-match-tag');
           if (matchTag) {
-            matchTag.innerText = res.confidenceLabel || (res.confidence === 'HIGH' ? 'Breakpoint Match (Hoge Zekerheid)' : 'Serie Match (Middelgrote Zekerheid)');
+            matchTag.innerText = res.confidenceLabel || 'Breakpoint-gebaseerde indicatie';
           }
 
           const sourceStatusEl = document.getElementById('res-source-status-text');
           if (sourceStatusEl) {
             if (res.sourceStatus === 'PRIMARY_SOURCE_LINKED' || res.hasPrimaryDoc) {
               sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Gekoppeld aan primaire bron';
+              sourceStatusEl.innerText = 'Bronstatus: Primaire bron gekoppeld';
+            } else if (res.sourceStatus === 'SERIES_SOURCE_LINKED') {
+              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30';
+              sourceStatusEl.innerText = 'Bronstatus: Familiebron gekoppeld';
             } else {
               sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Nog niet gekoppeld (Breakpoint Match)';
+              sourceStatusEl.innerText = 'Bronstatus: Primaire bron ontbreekt';
             }
           }
 

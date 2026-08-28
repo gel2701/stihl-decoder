@@ -4,6 +4,7 @@
  */
 
 import { PRIMARY_ORIGIN } from '../config.js';
+import { getSerialLocationAnswer, getSafeCategorySlug, shouldPublishProductSchema } from '../publicationRules.js';
 
 export function buildStructuredData({ pageType, model, guide, intent, breadcrumbs = [], url }) {
   const baseUrl = PRIMARY_ORIGIN;
@@ -52,31 +53,23 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
 
   // 3. Model Page Schemas
   if (pageType === 'model' && model) {
-    const categorySlug = model.category_slug || 'kettingzagen';
-    const isBattery = model.fuel_type ? model.fuel_type.startsWith('BATTERY') : false;
+    const categorySlug = getSafeCategorySlug(model);
 
     // TechArticle Schema
     graph.push({
       '@type': 'TechArticle',
-      'headline': `STIHL ${model.model_name} Bouwjaar, Serienummer & Specificaties`,
+      'headline': `STIHL ${model.model_name} Modeldata, bronstatus & serienummergids`,
       'description': `Bekijk de bekende modeldata van STIHL ${model.model_name} met zichtbare bronstatus en aanwijzingen voor serienummer- en typeplaatjecontrole.`,
       'url': canonicalUrl,
       'inLanguage': 'nl-NL'
     });
 
-    // Product Schema Verification Gate (Addendum E & Rules 9, 10, 11)
-    // Only generate Product node if record is verified OR has concrete verified specs
-    const isVerifiedRecord = model.verification_status === 'MODEL_IDENTITY_VERIFIED' ||
-                             model.data_status === 'PRIMARY_SOURCE_LINKED' ||
-                             model.model_status === 'PRIMARY_SOURCE_LINKED' ||
-                             Boolean(model.data_source || (model.provenance && model.provenance.source_title));
-    const hasConcreteSpecs = Boolean(model.displacement_cc || model.power_hp || model.power_kw || isBattery);
-
-    if (isVerifiedRecord && hasConcreteSpecs) {
+    const productGate = shouldPublishProductSchema(model);
+    if (productGate.allowed) {
       const descParts = [`STIHL ${model.model_name}`];
       if (model.displacement_cc) {
         descParts.push(`met ${model.displacement_cc} cc motor`);
-      } else if (isBattery) {
+      } else if (model.battery_system || model.voltage_v) {
         descParts.push('met accu-aandrijving');
       }
 
@@ -99,20 +92,6 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
       });
     }
 
-    // Category-Aware FAQ Schema matching visible HTML 1-to-1 (Rules 7, 8 & Addendum F)
-    let serialLocationAnswer = 'De exacte locatie van het serienummer verschilt per model. Controleer het typeplaatje en de STIHL handleiding.';
-    if (categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen') {
-      serialLocationAnswer = 'Het serienummer staat ingeslagen in het metaal van het carter (nabij de uitlaat of kettinggeleidebevestiging) en op de sticker.';
-    } else if (categorySlug === 'bosmaaiers') {
-      serialLocationAnswer = 'Het serienummer staat op het motortypeplaatje of ingeslagen op het carter van de bosmaaier.';
-    } else if (categorySlug === 'bladblazers') {
-      serialLocationAnswer = 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de bladblazer.';
-    } else if (categorySlug === 'heggenscharen') {
-      serialLocationAnswer = 'Het serienummer staat op het carter of typeplaatje van de heggenschaar.';
-    } else if (categorySlug === 'doorslijpers') {
-      serialLocationAnswer = 'Het serienummer staat ingeslagen op het motorhuis of typeplaatje van de doorslijper.';
-    }
-
     const faqs = [
       {
         '@type': 'Question',
@@ -127,7 +106,7 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
         'name': `Waar vind ik het 9-cijferige serienummer?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': serialLocationAnswer
+          'text': getSerialLocationAnswer(categorySlug)
         }
       }
     ];

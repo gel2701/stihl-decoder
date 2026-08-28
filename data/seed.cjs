@@ -110,7 +110,7 @@ function recreateSqliteDatabase(database) {
       modelStmt.run(
         model.id,
         model.slug,
-        model.category_slug || 'kettingzagen',
+        model.category_slug || 'UNKNOWN',
         model.series_code || null,
         model.model_name,
         model.category || 'Onbekend',

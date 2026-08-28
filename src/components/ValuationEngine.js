@@ -54,7 +54,7 @@ export function calculateMarketValuation(model, condition = 'GOED') {
     condition: condObj.label,
     dataClassification,
     headlineTerm,
-    rangeString: `€${minPrice} – €${maxPrice}`,
+    rangeString: isRealData ? `€${minPrice} – €${maxPrice}` : null,
     medianPrice: adjustedMedian,
     p25,
     p75,

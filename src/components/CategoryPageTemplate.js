@@ -6,8 +6,10 @@ import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
+import { getSafeModelPath } from '../publicationRules.js';
+import { PRIMARY_ORIGIN } from '../config.js';
 
-export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https://stihldecoder.nl') {
+export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY_ORIGIN) {
   const categoryNames = {
     'kettingzagen': 'STIHL Kettingzagen',
     'bosmaaiers': 'STIHL Bosmaaiers',
@@ -46,7 +48,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
 
   // Filter models belonging to this category
   const allModels = database.models || [];
-  const categoryModels = allModels.filter(m => m.category_slug === categorySlug || (categorySlug === 'kettingzagen' && (!m.category_slug || m.category_slug === 'kettingzagen')));
+  const categoryModels = allModels.filter(m => m.category_slug === categorySlug);
 
   const categoryComparisons = {
     'kettingzagen': [
@@ -141,11 +143,13 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         ${categoryModels.map(m => {
-          const mSlug = m.slug || m.id.replace(/_/g, '-');
-          const mCat = m.category_slug || categorySlug;
+          const modelPath = getSafeModelPath(m);
           const verification = getModelVerificationSummary(m);
+          if (!modelPath) {
+            return '';
+          }
           return `
-            <a href="/${mCat}/${mSlug}/" class="bg-gray-900/70 border border-gray-800 hover:border-orange-500 p-5 rounded-2xl transition space-y-3 block group">
+            <a href="${modelPath}" class="bg-gray-900/70 border border-gray-800 hover:border-orange-500 p-5 rounded-2xl transition space-y-3 block group">
               <div class="flex justify-between items-start">
                 <span class="font-extrabold text-white text-lg group-hover:text-orange-400 font-mono">STIHL ${m.model_name}</span>
                 <span class="px-2 py-0.5 rounded text-2xs font-bold bg-orange-500/10 text-orange-400 border border-orange-500/20">${m.series_code ? `Serie ${m.series_code}` : 'Model'}</span>
@@ -162,7 +166,7 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
               </div>
             </a>
           `;
-        }).join('')}
+        }).filter(Boolean).join('')}
       </div>
     </section>
 

@@ -36,6 +36,7 @@ const manifest = {
   sqlite_role: normalizedDatabase.meta.sqlite_role,
   model_count: summary.modelCount,
   primary_source_linked_models: summary.primarySourceLinkedModels,
+  series_source_linked_models: summary.seriesSourceLinkedModels,
   primary_source_pending_models: summary.primarySourcePendingModels,
   content_hash_sha256: crypto
     .createHash('sha256')
@@ -51,5 +52,6 @@ console.log(JSON.stringify({
   manifest: manifestPath,
   modelCount: manifest.model_count,
   primarySourceLinkedModels: manifest.primary_source_linked_models,
+  seriesSourceLinkedModels: manifest.series_source_linked_models,
   primarySourcePendingModels: manifest.primary_source_pending_models
 }, null, 2));

@@ -6,8 +6,10 @@ import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
+import { getSafeModelPath } from '../publicationRules.js';
+import { PRIMARY_ORIGIN } from '../config.js';
 
-export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihldecoder.nl') {
+export function renderIntentPageHtml(intent, database, baseUrl = PRIMARY_ORIGIN) {
   const canonicalUrl = `${baseUrl}/${intent.slug}/`;
 
   const breadcrumbs = [
@@ -118,11 +120,13 @@ export function renderIntentPageHtml(intent, database, baseUrl = 'https://stihld
       <h3 class="text-sm font-bold text-white">Bekijk STIHL Modellen met zichtbare bronstatus:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
         ${models.map(m => {
-          const cat = m.category_slug || 'kettingzagen';
-          const slg = m.slug || m.id.replace(/_/g, '-');
           const verification = getModelVerificationSummary(m);
-          return `<a href="/${cat}/${slg}/" class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl hover:border-orange-500 text-gray-200 font-bold block">STIHL ${m.model_name}<span class="block text-2xs text-gray-400 mt-1">${verification.badgeLabel}</span></a>`;
-        }).join('')}
+          const modelPath = getSafeModelPath(m);
+          if (!modelPath) {
+            return '';
+          }
+          return `<a href="${modelPath}" class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl hover:border-orange-500 text-gray-200 font-bold block">STIHL ${m.model_name}<span class="block text-2xs text-gray-400 mt-1">${verification.badgeLabel}</span></a>`;
+        }).filter(Boolean).join('')}
       </div>
     </section>
 

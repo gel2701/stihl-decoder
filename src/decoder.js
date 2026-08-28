@@ -7,6 +7,7 @@ import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWh
 import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
+import { getModelVerificationSummary } from './canonicalData.js';
 
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
@@ -109,11 +110,11 @@ export function analyzeModelQuery(modelStr, database) {
   const resolvedModelName = relationship ? relationship.model_name : (matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery);
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
-  const hasPrimaryDoc = Boolean(matchedModelSpec && (matchedModelSpec.source_doc || matchedModelSpec.source_title || matchedModelSpec.primary_document || matchedModelSpec.service_manual_code));
-  const sourceStatus = hasPrimaryDoc ? 'PRIMARY_SOURCE_LINKED' : 'PRIMARY_SOURCE_PENDING';
-  const sourceStatusLabel = hasPrimaryDoc
-    ? 'Bronstatus: Gekoppeld aan primaire bron (Service Handleiding / Catalogus)'
-    : 'Bronstatus: Nog niet gekoppeld';
+  const verification = matchedModelSpec ? getModelVerificationSummary(matchedModelSpec) : null;
+  const sourceStatus = verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING';
+  const sourceStatusLabel = verification
+    ? `Bronstatus: ${verification.badgeLabel}`
+    : 'Bronstatus: Primaire bron ontbreekt';
 
   return {
     success: true,
@@ -126,7 +127,7 @@ export function analyzeModelQuery(modelStr, database) {
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
     sourceStatus,
     sourceStatusLabel,
-    hasPrimaryDoc,
+    hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     confidenceLabel: matchedModelSpec ? 'Direct Model Match' : 'Familie Overeenkomst',
     relationship: relationship ? {
       type: relationship.relationship_type,
@@ -171,15 +172,15 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
 
   const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? '2016 – Heden' : '2010 – Heden');
-  const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (STIHL Fabrieksserie)` : 'MS 261 C-M Gen 2 (Facelift)');
+  const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (seriereferentie)` : 'Niet vastgesteld');
 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
-  const hasPrimaryDoc = Boolean(modelData && (modelData.source_doc || modelData.source_title || modelData.primary_document || modelData.service_manual_code));
-  const sourceStatus = hasPrimaryDoc ? 'PRIMARY_SOURCE_LINKED' : 'PRIMARY_SOURCE_PENDING';
-  const sourceStatusLabel = hasPrimaryDoc
-    ? 'Bronstatus: Gekoppeld aan primaire bron (Service Handleiding / Catalogus)'
-    : 'Bronstatus: Nog niet gekoppeld (Breakpoint Match / Schatting op basis van serienummer)';
+  const verification = modelData ? getModelVerificationSummary(modelData) : null;
+  const sourceStatus = verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING';
+  const sourceStatusLabel = verification
+    ? `Bronstatus: ${verification.badgeLabel}`
+    : 'Bronstatus: Primaire bron ontbreekt';
 
   return {
     success: true,
@@ -198,14 +199,14 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     },
     estimatedYears,
     generation,
-    confidence: rangeMatch ? (rangeMatch.confidence || 'HIGH') : 'MEDIUM',
-    confidenceLabel: rangeMatch ? (rangeMatch.confidence === 'HIGH' ? 'Breakpoint Range Match (Hoge Zekerheid)' : 'Serie Match (Middelgrote Zekerheid)') : 'Fabriekscode Indicatie (Basis Zekerheid)',
+    confidence: rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW',
+    confidenceLabel: rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie',
     sourceStatus,
     sourceStatusLabel,
-    hasPrimaryDoc,
+    hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     technicalSpecs: sanitizedSpecs,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
-    notes: rangeMatch ? `Serienummer succesvol gematcht binnen bekende STIHL fabrieksreeks (${estimatedYears}).` : `9-cijferig serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,
+    notes: rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : `9-cijferig serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,
     stopHelingUrl,
     stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
   };

@@ -1,5 +1,6 @@
 /**
- * Live HTML Crawl & Page Hash Generator for FASE 34 SEO Baseline Snapshot
+ * Localhost preview crawl for SEO baseline development.
+ * This is NOT a live production validation crawl.
  */
 
 import http from 'http';
@@ -19,7 +20,7 @@ await new Promise(r => setTimeout(r, 600));
 const databasePath = path.join(process.cwd(), 'data', 'stihl_database.json');
 const database = JSON.parse(fs.readFileSync(databasePath, 'utf8'));
 
-console.log(`🚀 Live Crawl connected to test server on port ${PORT}...`);
+console.log(`🚀 Localhost preview crawl connected to test server on port ${PORT}...`);
 
 const urlsToCrawl = [
   '/',
@@ -81,6 +82,7 @@ console.table(crawlResults);
 const preUrlsData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'phase34_pre_urls.json'), 'utf8'));
 
 const baselineData = {
+  validation_mode: 'LOCALHOST_PREVIEW',
   baseline_status: 'SEO_CONTENT_FREEZE_ACTIVE',
   based_on_commit: '1f7dacb',
   created_at: new Date().toISOString(),

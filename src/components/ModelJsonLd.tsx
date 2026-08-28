@@ -1,4 +1,6 @@
 import React from 'react';
+import { getSerialLocationAnswer, getSafeCategorySlug, shouldPublishProductSchema } from '../publicationRules.js';
+import { PRIMARY_ORIGIN } from '../config.js';
 
 export interface ModelJsonLdProps {
   model: {
@@ -18,34 +20,37 @@ export interface ModelJsonLdProps {
   baseUrl?: string;
 }
 
-export function ModelJsonLd({ model, baseUrl = 'https://stihldecoder.nl' }: ModelJsonLdProps) {
-  const categorySlug = model.categorySlug || 'kettingzagen';
+export function ModelJsonLd({ model, baseUrl = PRIMARY_ORIGIN }: ModelJsonLdProps) {
+  const categorySlug = getSafeCategorySlug({
+    category_slug: model.categorySlug,
+    category: model.category
+  });
   const slug = model.slug || model.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const url = `${baseUrl}/modellen/${categorySlug}/${slug}`;
+  const url = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/` : `${baseUrl}/modellen-onbekend/${slug}/`;
 
-  const carbH = model.carbH || '1 slag open';
-  const carbL = model.carbL || '1 slag open';
-  const carbLA = model.carbLA || '2800 RPM stationair';
+  const carbH = model.carbH || 'Niet vastgesteld';
+  const carbL = model.carbL || 'Niet vastgesteld';
+  const carbLA = model.carbLA || 'Niet vastgesteld';
+  const serialLocationText = getSerialLocationAnswer(categorySlug);
+  const allowProduct = shouldPublishProductSchema({
+    model_name: model.name,
+    category_slug: categorySlug,
+    displacement_cc: model.displacementCc,
+    power_hp: model.powerHp,
+    power_kw: model.powerKw,
+    verification_status: 'UNVERIFIED',
+    field_verification: { has_primary_document: false }
+  });
 
   const jsonLdData = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'TechArticle',
-        'headline': `STIHL ${model.name} Modeldata, bronstatus & serienummergids`,
-        'description': `Bekijk zichtbare modeldata, bronstatus en serienummerlocaties voor de STIHL ${model.name}. Bevestig bouwjaar en uitvoering altijd met typeplaatje of primaire documentatie.`,
+        'headline': `STIHL ${model.name} modeldata, bronstatus en serienummercontrole`,
+        'description': `Bekijk zichtbare modeldata, bronstatus en serienummerlocaties voor de STIHL ${model.name}. Bevestig uitvoering en bouwperiode altijd met typeplaatje of primaire documentatie.`,
         'url': url,
         'inLanguage': 'nl-NL'
-      },
-      {
-        '@type': 'Product',
-        'name': `STIHL ${model.name}`,
-        'category': model.category || 'Kettingzaag',
-        'description': `STIHL ${model.name} ${model.category || 'machine'} met zichtbare repositorydata over cilinderinhoud, vermogen en onderhoudspunten.`,
-        'brand': {
-          '@type': 'Brand',
-          'name': 'STIHL'
-        }
       },
       {
         '@type': 'FAQPage',
@@ -55,7 +60,7 @@ export function ModelJsonLd({ model, baseUrl = 'https://stihldecoder.nl' }: Mode
             'name': `Waar staat het serienummer van een STIHL ${model.name}?`,
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': `Het 9-cijferige serienummer van de STIHL ${model.name} staat ingeslagen in het metaal van het carter (boven de uitlaat of bij de geleideplaatmontage) of op het typeplaatje.`
+              'text': serialLocationText
             }
           },
           {
@@ -70,6 +75,19 @@ export function ModelJsonLd({ model, baseUrl = 'https://stihldecoder.nl' }: Mode
       }
     ]
   };
+
+  if (allowProduct && (model.displacementCc || model.powerHp || model.powerKw)) {
+    jsonLdData['@graph'].splice(1, 0, {
+      '@type': 'Product',
+      'name': `STIHL ${model.name}`,
+      'category': model.category || 'Tuinmachine',
+      'description': `STIHL ${model.name} ${model.category || 'machine'} met alleen documenteerbare specificaties uit de beschikbare brondata.`,
+      'brand': {
+        '@type': 'Brand',
+        'name': 'STIHL'
+      }
+    });
+  }
 
   return (
     <script

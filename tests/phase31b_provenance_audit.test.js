@@ -16,10 +16,10 @@ console.log('🧪 Starting Phase 31B Real Data Provenance & Live Deployment Audi
 const indexPath = path.join(__dirname, '..', 'index.html');
 const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
-const hasExactClaim = indexHtml.includes('exacte bouwperiode via serie-breakpoints');
+const hasExactClaim = indexHtml.includes('exacte bouwperiode via serie-breakpoints') || indexHtml.includes('Exact Breakpoint Matching');
 const hasDefinitiveFake = indexHtml.includes('DEFINITIVE FAKE') || indexHtml.includes('DEFINITIVE_FAKE');
 
-console.log(`✅ Legacy Wording "exacte bouwperiode": ${hasExactClaim ? '❌ FOUND (ERROR)' : 'PASSED (Removed)'}`);
+console.log(`✅ Legacy Wording "exacte bouwperiode / exact breakpoint": ${hasExactClaim ? '❌ FOUND (ERROR)' : 'PASSED (Removed)'}`);
 console.log(`✅ Legacy Wording "DEFINITIVE FAKE": ${hasDefinitiveFake ? '❌ FOUND (ERROR)' : 'PASSED (Removed)'}`);
 
 if (hasExactClaim || hasDefinitiveFake) {

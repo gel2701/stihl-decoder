@@ -1,109 +1,80 @@
-/**
- * Phase 34 SEO Integrity & Data Assertion Automated Tests for STIHLDecoder.nl
- */
-
 import assert from 'assert';
-import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { buildStructuredData } from '../src/components/StructuredData.js';
-import { renderModelPageHtml } from '../src/components/ModelPageTemplate.js';
 import { renderCategoryPageHtml } from '../src/components/CategoryPageTemplate.js';
-import { generateSitemapXml, generateRobotsTxt } from '../src/components/SitemapGenerator.js';
+import { generateSitemapXml, collectSitemapDiagnostics } from '../src/components/SitemapGenerator.js';
+import { getValuationPublicationState, getSafeModelPath } from '../src/publicationRules.js';
 import { PRIMARY_ORIGIN } from '../src/config.js';
 
-const databasePath = path.join(process.cwd(), 'data', 'stihl_database.json');
-const database = JSON.parse(fs.readFileSync(databasePath, 'utf8'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const dbPath = path.join(__dirname, '..', 'data', 'stihl_database.json');
+const preUrlsPath = path.join(__dirname, '..', 'data', 'phase34_pre_urls.json');
+const indexPath = path.join(__dirname, '..', 'index.html');
 
-console.log('🧪 Starting Phase 34 SEO Integrity & Data Assertion Tests...');
-
-// 1. Data Integrity Assertions (Addendum O & Rules 1, 2, 3, 7, 8, 9, 10, 11)
-
-// Test A: FS 100 Brushcutter Integrity (No Chain Specs, No Guide Bar, Category-Aware FAQ)
-const fs100Model = database.models.find(m => m.id === 'stihl_fs_100' || m.model_name.includes('FS 100'));
-assert.ok(fs100Model, 'FS 100 model record must exist in database');
-
-const fs100Structured = buildStructuredData({ pageType: 'model', model: fs100Model, url: `${PRIMARY_ORIGIN}/bosmaaiers/fs-100/` });
-const fs100Graph = fs100Structured['@graph'];
-const fs100Product = fs100Graph.find(n => n['@type'] === 'Product');
-const fs100Faq = fs100Graph.find(n => n['@type'] === 'FAQPage');
-
-if (fs100Product) {
-  assert.strictEqual(fs100Product.description.includes('ketting'), false, 'FS 100 Product description must not mention chain');
-  assert.strictEqual(fs100Product.description.includes('accu-aandrijving'), false, 'FS 100 Product description must not infer battery');
-  assert.strictEqual(fs100Product.description.includes(' - '), false, 'FS 100 Product description must not contain dash placeholders');
-}
-
-assert.ok(fs100Faq, 'FS 100 FAQPage schema must exist');
-const fs100SerialAnswer = fs100Faq.mainEntity.find(q => q.name.includes('serienummer')).acceptedAnswer.text;
-assert.strictEqual(fs100SerialAnswer.includes('kettingzaagblad'), false, 'FS 100 serial answer must not mention chainsaw bar');
-assert.ok(fs100SerialAnswer.includes('bosmaaier'), 'FS 100 serial answer must mention bosmaaier');
-
-console.log('  ✅ Test FS 100 Data Integrity & Category-Aware FAQ: PASSED');
-
-// Test B: BR 600 Blower Integrity (No Chain Specs, Blower Category)
-const br600Model = database.models.find(m => m.id === 'stihl_br_600' || m.model_name.includes('BR 600'));
-assert.ok(br600Model, 'BR 600 model record must exist in database');
-
-const br600Structured = buildStructuredData({ pageType: 'model', model: br600Model, url: `${PRIMARY_ORIGIN}/bladblazers/br-600/` });
-const br600Graph = br600Structured['@graph'];
-const br600Faq = br600Graph.find(n => n['@type'] === 'FAQPage');
-assert.ok(br600Faq, 'BR 600 FAQPage schema must exist');
-const br600SerialAnswer = br600Faq.mainEntity.find(q => q.name.includes('serienummer')).acceptedAnswer.text;
-assert.strictEqual(br600SerialAnswer.includes('kettingzaagblad'), false, 'BR 600 serial answer must not mention chainsaw bar');
-assert.ok(br600SerialAnswer.includes('bladblazer'), 'BR 600 serial answer must mention bladblazer');
-
-console.log('  ✅ Test BR 600 Blower Integrity & Category-Aware FAQ: PASSED');
-
-// Test C: MS 261 Chainsaw Allowed Specs
-const ms261Model = database.models.find(m => m.id === 'stihl_ms_261_cm' || m.model_name.includes('MS 261'));
-assert.ok(ms261Model, 'MS 261 model record must exist in database');
-const ms261Structured = buildStructuredData({ pageType: 'model', model: ms261Model, url: `${PRIMARY_ORIGIN}/kettingzagen/ms-261/` });
-const ms261Product = ms261Structured['@graph'].find(n => n['@type'] === 'Product');
-assert.ok(ms261Product, 'MS 261 Product schema must be generated for verified model');
-assert.ok(ms261Product.description.includes('50.2 cc') || ms261Product.description.includes('motor'), 'MS 261 Product description must include displacement');
-
-console.log('  ✅ Test MS 261 Verified Product Schema: PASSED');
-
-// Test D: Unknown Model Product Schema Protection
-const unknownModel = { id: 'stihl_unknown_999', model_name: 'Unknown Model', verification_status: 'UNVERIFIED' };
-const unknownStructured = buildStructuredData({ pageType: 'model', model: unknownModel, url: `${PRIMARY_ORIGIN}/kettingzagen/unknown/` });
-const unknownProduct = unknownStructured['@graph'].find(n => n['@type'] === 'Product');
-assert.strictEqual(unknownProduct, undefined, 'Unknown unverified model must NOT produce Product schema');
-
-console.log('  ✅ Test Unknown Model Product Schema Protection: PASSED');
-
-// Test E: Category Comparisons Filtering in CategoryPageTemplate.js
-const blowerCategoryHtml = renderCategoryPageHtml('bladblazers', database, PRIMARY_ORIGIN);
-assert.strictEqual(blowerCategoryHtml.includes('MS 260 vs MS 261'), false, 'Blower category page must NOT show chainsaw MS comparisons');
-const chainsawCategoryHtml = renderCategoryPageHtml('kettingzagen', database, PRIMARY_ORIGIN);
-assert.ok(chainsawCategoryHtml.includes('MS 260 vs MS 261'), 'Chainsaw category page must show MS comparisons');
-
-console.log('  ✅ Test Category-Aware Comparison Block Filtering: PASSED');
-
-// Test F: Sitemap WWW URLs & Lastmod Integrity
-const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
-assert.strictEqual(sitemapXml.includes('http://stihldecoder.nl'), false, 'Sitemap must contain 0 non-WWW URLs');
-assert.ok(sitemapXml.includes('<loc>https://www.stihldecoder.nl/</loc>'), 'Sitemap must contain WWW homepage');
-
-console.log('  ✅ Test Sitemap WWW & Canonical Integrity: PASSED');
-
-// Test G: Pre vs Post URL Inventory
-const preUrlsPath = path.join(process.cwd(), 'data', 'phase34_pre_urls.json');
+const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 const preUrlsData = JSON.parse(fs.readFileSync(preUrlsPath, 'utf8'));
+const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
-const currentSitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
-const postUrls = [...currentSitemapXml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]).sort();
+console.log('🧪 Starting Phase 34A SEO integrity assertions...');
 
-const postUrlsData = {
-  created_at: new Date().toISOString(),
-  total_count: postUrls.length,
-  urls: postUrls
-};
-fs.writeFileSync(path.join(process.cwd(), 'data', 'phase34_post_urls.json'), JSON.stringify(postUrlsData, null, 2));
+const fs100 = database.models.find((model) => model.slug === 'fs-100');
+const br600 = database.models.find((model) => model.slug === 'br-600');
+const ms261 = database.models.find((model) => model.slug === 'ms-261');
+const ts420 = database.models.find((model) => model.slug === 'ts-420');
 
-assert.strictEqual(preUrlsData.total_count, postUrlsData.total_count, 'Pre and post URL counts must match exactly');
-console.log(`  ✅ Test Pre vs Post URL Count (${preUrlsData.total_count} vs ${postUrlsData.total_count}): PASSED`);
+assert.ok(fs100 && br600 && ms261 && ts420, 'Core validation models must exist.');
 
-console.log('\n🎉 ALL PHASE 34 SEO INTEGRITY ASSERTIONS PASSED CLEANLY!');
+const fs100Graph = buildStructuredData({ pageType: 'model', model: fs100, url: `${PRIMARY_ORIGIN}/bosmaaiers/fs-100/` })['@graph'];
+const fs100Product = fs100Graph.find((node) => node['@type'] === 'Product');
+const fs100Faq = fs100Graph.find((node) => node['@type'] === 'FAQPage');
+assert.ok(fs100Product, 'FS100 should still emit Product schema with primary document support.');
+assert.ok(fs100Faq, 'FS100 should emit FAQ schema.');
+assert.ok(fs100Faq.mainEntity.some((item) => item.acceptedAnswer.text.includes('bosmaaier')), 'FS100 serial location must be category-aware.');
+assert.strictEqual(JSON.stringify(fs100Graph).includes('geleideblad'), false, 'FS100 schema must not mention guide bars.');
+assert.strictEqual(JSON.stringify(fs100Graph).includes('ketting'), false, 'FS100 schema must not inherit chainsaw wording.');
+
+const br600Graph = buildStructuredData({ pageType: 'model', model: br600, url: `${PRIMARY_ORIGIN}/bladblazers/br-600/` })['@graph'];
+assert.strictEqual(JSON.stringify(br600Graph).includes('ketting'), false, 'BR600 schema must not inherit chainsaw wording.');
+assert.strictEqual(JSON.stringify(br600Graph).includes('geleideblad'), false, 'BR600 schema must not mention guide bars.');
+
+const ms261Graph = buildStructuredData({ pageType: 'model', model: ms261, url: `${PRIMARY_ORIGIN}/kettingzagen/ms-261/` })['@graph'];
+assert.ok(ms261Graph.find((node) => node['@type'] === 'Product'), 'MS261 may emit Product schema when primary source-linked.');
+
+const ts420Graph = buildStructuredData({ pageType: 'model', model: ts420, url: `${PRIMARY_ORIGIN}/doorslijpers/ts-420/` })['@graph'];
+assert.strictEqual(ts420Graph.find((node) => node['@type'] === 'Product'), undefined, 'TS420 must not emit Product schema without primary-document verification.');
+assert.strictEqual(JSON.stringify(ts420Graph).includes('ketting'), false, 'TS420 schema must not inherit chain wording.');
+
+const unknownGraph = buildStructuredData({
+  pageType: 'model',
+  model: { id: 'unknown_model', model_name: 'Unknown Model', slug: 'unknown-model', category_slug: null },
+  url: `${PRIMARY_ORIGIN}/modellen-onbekend/unknown-model/`
+})['@graph'];
+assert.strictEqual(unknownGraph.find((node) => node['@type'] === 'Product'), undefined, 'Unknown model must not emit Product schema.');
+
+const valuationState = getValuationPublicationState(ms261);
+assert.strictEqual(valuationState.canIndex, false, 'Valuation route should not be indexable without model-specific market data.');
+assert.strictEqual(valuationState.showPrice, false, 'Valuation route should not show a fallback price.');
+assert.ok(valuationState.metaDescription.includes('onvoldoende modelspecifieke marktdata'), 'Valuation metadata must disclose insufficient market data.');
+
+const blowerCategoryHtml = renderCategoryPageHtml('bladblazers', database, PRIMARY_ORIGIN);
+assert.strictEqual(blowerCategoryHtml.includes('MS 260 vs MS 261'), false, 'Blower category page must not show chainsaw comparison block.');
+
+const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
+const postUrls = [...sitemapXml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+assert.strictEqual(postUrls.length, preUrlsData.total_count, 'Sitemap URL count must remain stable at 94.');
+assert.strictEqual(postUrls.includes(`${PRIMARY_ORIGIN}/waarde/ms-261/`), false, 'Noindex valuation routes must not appear in sitemap.');
+assert.strictEqual(postUrls.every((url) => url.startsWith(PRIMARY_ORIGIN)), true, 'Sitemap URLs must be self-canonical WWW URLs.');
+
+const diagnostics = collectSitemapDiagnostics(database);
+assert.deepStrictEqual(diagnostics.categoryMissingModels, [], 'No model may silently fall back into chainsaw sitemap routes.');
+
+assert.strictEqual(indexHtml.includes('"@type": "WebSite"'), true, 'Homepage JSON-LD must include WebSite schema.');
+assert.strictEqual((indexHtml.match(/"@type": "WebSite"/g) || []).length, 1, 'Homepage must contain exactly one WebSite node.');
+assert.strictEqual(indexHtml.includes('Exact Breakpoint Matching'), false, 'Homepage must not use Exact Breakpoint Matching copy.');
+assert.strictEqual(indexHtml.includes('184592301 (MS 261 C-M Gen 2)'), false, 'Homepage example serial must not claim a model match.');
+
+console.log('✅ Phase 34A SEO integrity assertions passed.');

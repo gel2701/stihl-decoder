@@ -6,14 +6,18 @@
 import { PASSPORT_PRO_PRICE } from './ValuationEngine.js';
 import { getContentGapReport, getConversionDashboardMetrics } from './AnalyticsTracker.js';
 import { summarizeCanonicalDatabase } from '../canonicalData.js';
+import { collectSitemapDiagnostics } from './SitemapGenerator.js';
+import { getSafeModelPartsPath, getSafeModelPath } from '../publicationRules.js';
+import { PRIMARY_ORIGIN } from '../config.js';
 
-export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihldecoder.nl') {
+export function generateSeoAuditReport(database = {}, baseUrl = PRIMARY_ORIGIN) {
   const models = database.models || [];
   const intentPages = database.intent_pages || [];
   const canonicalSummary = summarizeCanonicalDatabase(database);
 
   const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'doorslijpers'];
   const comparisons = ['ms-260-vs-ms-261', 'ms-361-vs-ms-362', 'ms-170-vs-ms-180'];
+  const sitemapDiagnostics = collectSitemapDiagnostics(database);
 
   const auditedPages = [];
   let totalScore = 0;
@@ -44,11 +48,14 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
 
   // 3. Audit Model & Parts Pages
   models.forEach(m => {
-    const catSlug = m.category_slug || 'kettingzagen';
-    const mSlug = m.slug || m.id.replace(/_/g, '-');
+    const modelPath = getSafeModelPath(m);
+    const partsPath = getSafeModelPartsPath(m);
+    if (!modelPath || !partsPath) {
+      return;
+    }
 
     auditedPages.push({
-      url: `${baseUrl}/${catSlug}/${mSlug}/`,
+      url: `${baseUrl}${modelPath}`,
       type: 'model',
       title: `STIHL ${m.model_name} Serienummer Decoder & Bouwjaar`,
       qualityScore: 100,
@@ -58,7 +65,7 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
     totalScore += 100;
 
     auditedPages.push({
-      url: `${baseUrl}/${catSlug}/${mSlug}/onderdelen/`,
+      url: `${baseUrl}${partsPath}`,
       type: 'model_parts',
       title: `STIHL ${m.model_name} Onderdelen & Vervanging`,
       qualityScore: 98,
@@ -86,7 +93,9 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
       realRevenueStatus: 'NO_REVENUE_YET (Payment Gateway not active)',
       canonicalStore: canonicalSummary.canonicalStore,
       primarySourceLinkedModels: canonicalSummary.primarySourceLinkedModels,
+      seriesSourceLinkedModels: canonicalSummary.seriesSourceLinkedModels,
       primarySourcePendingModels: canonicalSummary.primarySourcePendingModels,
+      categoryMissingModels: sitemapDiagnostics.categoryMissingModels.length,
       contentHash: canonicalSummary.manifestHash
     },
     searchConsoleReadiness: {
@@ -106,11 +115,12 @@ export function generateSeoAuditReport(database = {}, baseUrl = 'https://stihlde
     modelDataQuality: {
       total_models: models.length,
       fully_verified: canonicalSummary.primarySourceLinkedModels,
-      partially_verified: 0,
+      partially_verified: canonicalSummary.seriesSourceLinkedModels,
       conflicting: 0,
       unverified: canonicalSummary.primarySourcePendingModels,
       total_fields: models.length * 7,
       verified_fields: canonicalSummary.primarySourceLinkedModels * 7,
+      partially_verified_fields: canonicalSummary.seriesSourceLinkedModels * 7,
       unknown_fields: canonicalSummary.primarySourcePendingModels * 7
     },
     totalIndexablePages,
