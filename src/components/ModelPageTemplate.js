@@ -57,6 +57,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 <head>
   ${seoMetaHtml}
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">

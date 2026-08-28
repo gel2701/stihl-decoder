@@ -49,6 +49,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = 'https://sti
 <head>
   ${seoMetaHtml}
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
