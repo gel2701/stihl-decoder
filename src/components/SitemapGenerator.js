@@ -1,9 +1,11 @@
 /**
  * Dynamic Sitemap.xml & Robots.txt Generator for STIHLDecoder.nl
- * Phase 30 Strategic 5 Models & Troubleshooting Guides Integration
+ * Phase 34 SEO Integrity & Sitemap Hardening
  */
 
-export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database = {}) {
+import { PRIMARY_ORIGIN } from '../config.js';
+
+export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
   const models = database.models || [];
   const intentPages = database.intent_pages || [];
   const guides = database.guides || [];
@@ -25,8 +27,9 @@ export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database
   models.forEach(m => {
     const catSlug = m.category_slug || 'kettingzagen';
     const mSlug = m.slug || m.id.replace(/_/g, '-');
-    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/`, priority: '0.8', changefreq: 'weekly' });
-    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/onderdelen/`, priority: '0.7', changefreq: 'weekly' });
+    const lastmod = m.content_updated_at || m.updated_at || null;
+    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/`, priority: '0.8', changefreq: 'weekly', lastmod });
+    urls.push({ loc: `${baseUrl}/${catSlug}/${mSlug}/onderdelen/`, priority: '0.7', changefreq: 'weekly', lastmod });
   });
 
   // 4. Comparison Pages
@@ -36,22 +39,24 @@ export function generateSitemapXml(baseUrl = 'https://stihldecoder.nl', database
 
   // 5. Intent Landing Pages
   intentPages.forEach(ip => {
-    urls.push({ loc: `${baseUrl}/${ip.slug}/`, priority: '0.8', changefreq: 'monthly' });
+    const lastmod = ip.updated_at || null;
+    urls.push({ loc: `${baseUrl}/${ip.slug}/`, priority: '0.8', changefreq: 'monthly', lastmod });
   });
 
   // 6. Guides
   guides.forEach(g => {
-    urls.push({ loc: `${baseUrl}/gidsen/${g.slug}/`, priority: '0.7', changefreq: 'monthly' });
+    const lastmod = g.updated_at || null;
+    urls.push({ loc: `${baseUrl}/gidsen/${g.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod });
   });
 
   // 7. Parts Hub
   urls.push({ loc: `${baseUrl}/onderdeelnummer/`, priority: '0.7', changefreq: 'monthly' });
 
-  // Build XML string
+  // Build XML string with lastmod support only when authentic timestamp exists
   const urlXml = urls.map(u => `  <url>
     <loc>${u.loc}</loc>
     <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
+    <priority>${u.priority}</priority>${u.lastmod ? `\n    <lastmod>${u.lastmod}</lastmod>` : ''}
   </url>`).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -60,7 +65,7 @@ ${urlXml}
 </urlset>`;
 }
 
-export function generateRobotsTxt(baseUrl = 'https://stihldecoder.nl') {
+export function generateRobotsTxt(baseUrl = PRIMARY_ORIGIN) {
   return `User-agent: *
 Allow: /
 Disallow: /admin/

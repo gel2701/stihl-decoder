@@ -69,17 +69,17 @@ export class StihlDecoderService {
       modelData = db.models.find(m => m.id === bp.model_id);
     } else if (db.models && Array.isArray(db.models) && db.models.length > 0) {
       const prefix = cleanedSerial.substring(0, 4);
-      modelData = db.models.find(m => m.series_code === prefix) || db.models.find(m => m.id === 'stihl_ms_261_cm') || db.models[0];
+      modelData = db.models.find(m => m.series_code === prefix) || null;
     }
 
     if (modelData) {
-      const isPetrol = (modelData.fuel_type || 'PETROL_2STROKE').startsWith('PETROL');
+      const isPetrol = modelData.fuel_type ? modelData.fuel_type.startsWith('PETROL') : false;
       modelMatch = {
         modelId: modelData.id,
         modelName: modelData.model_name,
         category: modelData.category,
-        fuelType: modelData.fuel_type || 'PETROL_2STROKE',
-        fuelTypeLabel: modelData.fuel_type_label || (isPetrol ? 'Benzine (2-Takt)' : 'Accu (AP-Systeem 36V)'),
+        fuelType: modelData.fuel_type || 'UNKNOWN',
+        fuelTypeLabel: modelData.fuel_type_label || (isPetrol ? 'Benzine' : (modelData.fuel_type === 'BATTERY' ? 'Accu' : 'Onbekend')),
         batterySystem: modelData.battery_system || null,
         voltageV: modelData.voltage_v || null,
         specs: {
@@ -87,14 +87,14 @@ export class StihlDecoderService {
           powerHp: modelData.power_hp || null,
           powerKw: modelData.power_kw || null,
           sparkPlug: isPetrol ? (modelData.spark_plug || null) : null,
-          carbSettings: isPetrol ? {
-            H: modelData.carb_h_setting || '1 slag open',
-            L: modelData.carb_l_setting || '1 slag open',
-            LA: modelData.carb_la_setting || '2800 RPM'
+          carbSettings: (isPetrol && (modelData.carb_h_setting || modelData.carb_l_setting)) ? {
+            H: modelData.carb_h_setting || null,
+            L: modelData.carb_l_setting || null,
+            LA: modelData.carb_la_setting || null
           } : null,
           chainDetails: modelData.chain_pitch ? {
             pitch: modelData.chain_pitch,
-            gauge: modelData.chain_gauge_mm || 1.3
+            gauge: modelData.chain_gauge_mm || null
           } : null
         }
       };

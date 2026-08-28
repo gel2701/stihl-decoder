@@ -165,16 +165,8 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     const prefix = serialStr.substring(0, 4);
     modelData = database.models.find(m => m.series_code === prefix);
   }
-  if (!modelData && database.models && database.models.length > 0) {
-    if (serialStr.startsWith('18') || serialStr.startsWith('17')) {
-      modelData = database.models.find(m => m.id === 'stihl_ms_261_cm') || database.models.find(m => m.series_code === '1141');
-    } else if (serialStr.startsWith('14') || serialStr.startsWith('15') || serialStr.startsWith('16')) {
-      modelData = database.models.find(m => m.id === 'stihl_ms_260') || database.models.find(m => m.series_code === '1121');
-    }
-  }
-
-  const modelName = modelData ? modelData.model_name : (rangeMatch ? (rangeMatch.model_name || 'STIHL Herkende Machine') : 'MS 261 C-M Gen 2');
-  const category = modelData ? (modelData.category || modelData.category_slug) : 'Kettingzaag';
+  const modelName = modelData ? modelData.model_name : (rangeMatch ? (rangeMatch.model_name || 'Onbekend Model') : 'Onbekend Model');
+  const category = modelData ? (modelData.category || modelData.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend');
   const rawSpecs = modelData ? { ...modelData } : {};
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
 

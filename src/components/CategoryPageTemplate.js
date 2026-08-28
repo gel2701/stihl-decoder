@@ -48,6 +48,15 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
   const allModels = database.models || [];
   const categoryModels = allModels.filter(m => m.category_slug === categorySlug || (categorySlug === 'kettingzagen' && (!m.category_slug || m.category_slug === 'kettingzagen')));
 
+  const categoryComparisons = {
+    'kettingzagen': [
+      { slug: 'ms-260-vs-ms-261', label: 'Klassiek vs M-Tronic', title: 'STIHL MS 260 vs MS 261' },
+      { slug: 'ms-361-vs-ms-362', label: 'Professionele Middenklasse', title: 'STIHL MS 361 vs MS 362' },
+      { slug: 'ms-170-vs-ms-180', label: 'Compacte Instapklasse', title: 'STIHL MS 170 vs MS 180' }
+    ]
+  };
+  const activeComparisons = categoryComparisons[categorySlug] || [];
+
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
@@ -158,23 +167,19 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = 'https:
     </section>
 
     <!-- Category Popular Comparisons -->
-    <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-4">
-      <h3 class="text-lg font-bold text-white">Populaire ${categoryTitle} Vergelijkingen:</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-        <a href="/vergelijk/ms-260-vs-ms-261/" class="bg-gray-950 p-4 rounded-xl border border-gray-800 hover:border-orange-500 block font-bold text-white">
-          <span class="text-orange-400 block font-mono text-xs">Klassiek vs M-Tronic</span>
-          STIHL MS 260 vs MS 261 →
-        </a>
-        <a href="/vergelijk/ms-361-vs-ms-362/" class="bg-gray-950 p-4 rounded-xl border border-gray-800 hover:border-orange-500 block font-bold text-white">
-          <span class="text-orange-400 block font-mono text-xs">Professionele Middenklasse</span>
-          STIHL MS 361 vs MS 362 →
-        </a>
-        <a href="/vergelijk/ms-170-vs-ms-180/" class="bg-gray-950 p-4 rounded-xl border border-gray-800 hover:border-orange-500 block font-bold text-white">
-          <span class="text-orange-400 block font-mono text-xs">Compacte Instapklasse</span>
-          STIHL MS 170 vs MS 180 →
-        </a>
-      </div>
-    </section>
+    ${activeComparisons.length > 0 ? `
+      <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-4">
+        <h3 class="text-lg font-bold text-white">Populaire ${categoryTitle} Vergelijkingen:</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          ${activeComparisons.map(c => `
+            <a href="/vergelijk/${c.slug}/" class="bg-gray-950 p-4 rounded-xl border border-gray-800 hover:border-orange-500 block font-bold text-white">
+              <span class="text-orange-400 block font-mono text-xs">${c.label}</span>
+              ${c.title} →
+            </a>
+          `).join('')}
+        </div>
+      </section>
+    ` : ''}
 
     <!-- Interlinking Hub -->
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">

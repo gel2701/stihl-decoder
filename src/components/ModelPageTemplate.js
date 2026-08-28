@@ -42,8 +42,8 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
   const relatedModels = getRelatedModels(model, database);
   const relatedModelsHtml = renderRelatedModelsHtml(relatedModels);
 
-  const isPetrol = (model.fuel_type || 'PETROL_2STROKE').startsWith('PETROL');
-  const isBattery = (model.fuel_type || '').startsWith('BATTERY');
+  const isPetrol = model.fuel_type ? (model.fuel_type.startsWith('PETROL') || model.fuel_type.startsWith('MIX')) : false;
+  const isBattery = model.fuel_type ? model.fuel_type.startsWith('BATTERY') : false;
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
 
   // Model comparison partner detection
@@ -147,36 +147,40 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Motorvermogen:</span>
-          <span class="text-base font-bold text-white">${model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Niet vastgesteld')}</span>
+          <span class="text-base font-bold text-white">${model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Nog niet geverifieerd')}</span>
         </div>
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Cilinderinhoud / Aandrijving:</span>
-          <span class="text-base font-bold text-white">${model.displacement_cc ? `${model.displacement_cc} cc` : (isBattery ? 'STIHL AP Accu 36V' : 'Niet vastgesteld')}</span>
+          <span class="text-base font-bold text-white">${model.displacement_cc ? `${model.displacement_cc} cc` : (isBattery ? 'STIHL AP Accu 36V' : 'Nog niet geverifieerd')}</span>
         </div>
 
         ${isPetrol ? `
-          <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-            <span class="text-gray-400 block">Bougie & Elektrodenafstand:</span>
-            <span class="text-base font-bold text-white">${model.spark_plug || 'NGK BPMR7A / CMR6H'} (${model.electrode_gap_mm ? `${model.electrode_gap_mm} mm` : '0.5 mm'})</span>
-          </div>
+          ${model.spark_plug ? `
+            <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
+              <span class="text-gray-400 block">Bougie & Elektrodenafstand:</span>
+              <span class="text-base font-bold text-white">${model.spark_plug}${model.electrode_gap_mm ? ` (${model.electrode_gap_mm} mm)` : ''}</span>
+            </div>
+          ` : ''}
 
-          <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-            <span class="text-gray-400 block">Carburateur Standaardafstelling:</span>
-            <span class="text-base font-bold text-orange-400">${model.carb_h_setting ? `H: ${model.carb_h_setting} | L: ${model.carb_l_setting || '1 slag'}` : (model.carb_la_setting || 'Fabrieksafstelling')}</span>
-          </div>
+          ${(model.carb_h_setting || model.carb_la_setting) ? `
+            <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
+              <span class="text-gray-400 block">Carburateur Standaardafstelling:</span>
+              <span class="text-base font-bold text-orange-400">${model.carb_h_setting ? `H: ${model.carb_h_setting}${model.carb_l_setting ? ` | L: ${model.carb_l_setting}` : ''}` : (model.carb_la_setting || '')}</span>
+            </div>
+          ` : ''}
         ` : ''}
 
         ${(isChainsaw && model.chain_pitch) ? `
           <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
             <span class="text-gray-400 block">Kettingsteek & Dikte (Standaard):</span>
-            <span class="text-base font-bold text-white font-mono">${model.chain_pitch} @ ${model.chain_gauge_mm ? `${model.chain_gauge_mm} mm` : 'Niet vastgesteld'}</span>
+            <span class="text-base font-bold text-white font-mono">${model.chain_pitch} @ ${model.chain_gauge_mm ? `${model.chain_gauge_mm} mm` : 'Nog niet geverifieerd'}</span>
           </div>
         ` : ''}
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Gewicht (Kaal motorblok):</span>
-          <span class="text-base font-bold text-white">${model.weight_kg ? `${model.weight_kg} kg` : 'Niet vastgesteld'}</span>
+          <span class="text-base font-bold text-white">${model.weight_kg ? `${model.weight_kg} kg` : 'Nog niet geverifieerd'}</span>
         </div>
       </div>
     </section>
@@ -207,17 +211,17 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-gray-950 p-4 rounded-xl border border-gray-800">
           <div class="space-y-1">
             <span class="font-bold text-orange-400 block font-mono">STIHL ${model.model_name}</span>
-            <p class="text-gray-300">• Vermogen: ${model.power_hp} pk (${model.power_kw} kW)</p>
-            <p class="text-gray-300">• Inhoud: ${model.displacement_cc} cc</p>
-            <p class="text-gray-300">• Gewicht: ${model.weight_kg} kg</p>
+            <p class="text-gray-300">• Vermogen: ${model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Niet vastgesteld')}</p>
+            <p class="text-gray-300">• Inhoud: ${model.displacement_cc ? `${model.displacement_cc} cc` : 'Niet vastgesteld'}</p>
+            <p class="text-gray-300">• Gewicht: ${model.weight_kg ? `${model.weight_kg} kg` : 'Niet vastgesteld'}</p>
           </div>
           <div class="space-y-1">
             <a href="/${comparisonPartner.category_slug || 'kettingzagen'}/${comparisonPartner.slug || comparisonPartner.id.replace(/_/g, '-')}/" class="font-bold text-orange-400 block font-mono hover:underline">
               STIHL ${comparisonPartner.model_name} →
             </a>
-            <p class="text-gray-300">• Vermogen: ${comparisonPartner.power_hp} pk (${comparisonPartner.power_kw} kW)</p>
-            <p class="text-gray-300">• Inhoud: ${comparisonPartner.displacement_cc} cc</p>
-            <p class="text-gray-300">• Gewicht: ${comparisonPartner.weight_kg} kg</p>
+            <p class="text-gray-300">• Vermogen: ${comparisonPartner.power_hp ? `${comparisonPartner.power_hp} pk (${comparisonPartner.power_kw} kW)` : (comparisonPartner.power_kw ? `${comparisonPartner.power_kw} kW` : 'Niet vastgesteld')}</p>
+            <p class="text-gray-300">• Inhoud: ${comparisonPartner.displacement_cc ? `${comparisonPartner.displacement_cc} cc` : 'Niet vastgesteld'}</p>
+            <p class="text-gray-300">• Gewicht: ${comparisonPartner.weight_kg ? `${comparisonPartner.weight_kg} kg` : 'Niet vastgesteld'}</p>
           </div>
         </div>
       </section>
@@ -235,7 +239,7 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
       </a>
       <a href="/${categorySlug}/${slug}/onderdelen/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-white text-sm block group-hover:underline">🔧 3. Bekijk Onderdelen</span>
-        <span class="text-gray-400 block text-2xs">Onderdeelnummers serie ${model.series_code || '1141'}</span>
+        <span class="text-gray-400 block text-2xs">${model.series_code ? `Onderdeelnummers serie ${model.series_code}` : 'Onderdeleninformatie'}</span>
       </a>
     </section>
 
@@ -276,7 +280,19 @@ export function renderModelPageHtml(model, database, baseUrl = 'https://stihldec
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <h4 class="font-bold text-white">Waar vind ik het 9-cijferige serienummer?</h4>
-          <p class="text-gray-300">Het serienummer staat ingeslagen in het metaal van het carter (boven de uitlaat of bij het kettingzaagblad) en op de sticker onderaan het handvat.</p>
+          <p class="text-gray-300">${
+            categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen'
+              ? 'Het serienummer staat ingeslagen in het metaal van het carter (nabij de uitlaat of kettinggeleidebevestiging) en op de sticker.'
+              : categorySlug === 'bosmaaiers'
+              ? 'Het serienummer staat op het motortypeplaatje of ingeslagen op het carter van de bosmaaier.'
+              : categorySlug === 'bladblazers'
+              ? 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de bladblazer.'
+              : categorySlug === 'heggenscharen'
+              ? 'Het serienummer staat op het carter of typeplaatje van de heggenschaar.'
+              : categorySlug === 'doorslijpers'
+              ? 'Het serienummer staat ingeslagen op het motorhuis of typeplaatje van de doorslijper.'
+              : 'De exacte locatie van het serienummer verschilt per model. Controleer het typeplaatje en de STIHL handleiding.'
+          }</p>
         </div>
       </div>
     </section>
