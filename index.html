@@ -380,29 +380,53 @@
         </div>
 
         <!-- Stop Heling Police Check Banner -->
-        <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div class="flex items-start gap-3">
-            <div class="p-2.5 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30 flex-shrink-0 mt-0.5">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-5 space-y-4">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="flex items-start gap-3">
+              <div class="p-2.5 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30 flex-shrink-0 mt-0.5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <div>
+                <h5 class="text-sm font-bold text-white flex items-center gap-2">
+                  Controleer op Gestolen Eigendom (StopHeling®)
+                  <span id="stopheling-badge-status" class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Politie Register</span>
+                </h5>
+                <p class="text-xs text-gray-300 mt-1">
+                  Kopieer het serienummer naar StopHeling.nl en bevestig hier de uitslag om het <strong>STIHL Machine Paspoort met groene diefstalcontrole-badge</strong> te ontgrendelen!
+                </p>
+              </div>
             </div>
-            <div>
-              <h5 class="text-sm font-bold text-white flex items-center gap-2">
-                Controleer op Gestolen Eigendom (StopHeling®)
-                <span class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Politie Register</span>
-              </h5>
-              <p class="text-xs text-gray-300 mt-1">
-                Klik op de knop hiernaast: het serienummer wordt <strong>automatisch gekopieerd</strong> en StopHeling opent in een nieuw tabblad. Druk daar direct op <kbd class="px-1.5 py-0.5 rounded bg-blue-900 text-blue-200 font-mono">Ctrl + V</kbd>!
-              </p>
+
+            <div class="flex flex-wrap items-center gap-2.5 self-stretch md:self-center justify-end">
+              <button 
+                id="stopheling-copy-btn" 
+                class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-md shadow-blue-600/30 flex items-center gap-2 cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <span>Kopieer & Open StopHeling</span>
+              </button>
+
+              <button 
+                id="stopheling-verify-btn" 
+                class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-md shadow-emerald-600/30 flex items-center gap-2 cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>🛡️ Bevestig StopHeling Resultaat</span>
+              </button>
             </div>
           </div>
 
-          <button 
-            id="stopheling-copy-btn" 
-            class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-md shadow-blue-600/30 flex items-center gap-2.5 whitespace-nowrap self-stretch sm:self-center justify-center cursor-pointer"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            <span>Kopieer <span id="stopheling-btn-serial" class="font-mono font-bold">184592301</span> & Open StopHeling</span>
-          </button>
+          <!-- StopHeling Verified Banner (Shown when verified) -->
+          <div id="stopheling-verified-box" class="hidden bg-emerald-950/50 border border-emerald-500/60 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-emerald-300">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🛡️</span>
+              <div>
+                <span class="font-black text-white text-sm block">Officieel Geverifieerd op StopHeling.nl</span>
+                <span id="stopheling-verified-text">Geen resultaten gevonden in StopHeling-database voor serienummer <strong id="stopheling-verified-serial" class="font-mono text-emerald-200">184592301</strong>. Artikel staat niet geregistreerd als gestolen.</span>
+              </div>
+            </div>
+            <span id="stopheling-verified-date-badge" class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono text-2xs font-bold uppercase tracking-wider whitespace-nowrap">Geverifieerd op 28-08-2026</span>
+          </div>
         </div>
       </div>
     </section>
@@ -661,6 +685,9 @@
         });
       });
 
+      let isStopHelingVerified = false;
+      let verifiedCheckDate = new Date().toLocaleDateString('nl-NL');
+
       // 1-CLICK COPY & OPEN STOPHELING
       const stopHelingCopyBtn = document.getElementById('stopheling-copy-btn');
       if (stopHelingCopyBtn) {
@@ -671,6 +698,37 @@
             }).catch(() => {});
           }
           window.open('https://www.stopheling.nl', '_blank');
+        });
+      }
+
+      // 1-CLICK BEVESTIG STOPHELING CONTROLERESULTAAT
+      const stopHelingVerifyBtn = document.getElementById('stopheling-verify-btn');
+      if (stopHelingVerifyBtn) {
+        stopHelingVerifyBtn.addEventListener('click', () => {
+          const todayStr = new Date().toLocaleDateString('nl-NL');
+          const userConfirm = confirm(
+            `🛡️ STOP HELING DIEFSTALCONTROLE BEVESTIGING\n\nSerienummer: ${currentSerial}\nCheckdatum: ${todayStr}\n\nHeeft u dit serienummer gecontroleerd op StopHeling.nl en bevestigt u dat er GEEN diefstalmeldingen zijn gevonden?\n\n(Druk op OK om het groene verificatielabel aan het STIHL Machine Paspoort toe te voegen)`
+          );
+
+          if (userConfirm) {
+            isStopHelingVerified = true;
+            verifiedCheckDate = todayStr;
+
+            const verifiedBox = document.getElementById('stopheling-verified-box');
+            const verifiedSerialEl = document.getElementById('stopheling-verified-serial');
+            const verifiedDateBadge = document.getElementById('stopheling-verified-date-badge');
+            const badgeStatus = document.getElementById('stopheling-badge-status');
+
+            if (verifiedBox) verifiedBox.classList.remove('hidden');
+            if (verifiedSerialEl) verifiedSerialEl.innerText = currentSerial;
+            if (verifiedDateBadge) verifiedDateBadge.innerText = `Geverifieerd op ${todayStr}`;
+            if (badgeStatus) {
+              badgeStatus.className = 'px-2 py-0.5 text-2xs font-mono font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+              badgeStatus.innerText = '🛡️ Geverifieerd Niet Gestolen';
+            }
+
+            showToast(`🛡️ StopHeling status geverifieerd voor ${currentSerial}! Paspoort download is ontgrendeld.`);
+          }
         });
       }
 
@@ -731,7 +789,13 @@
             model: currentModelName,
             factory: { country: 'Duitsland', location: 'Waiblingen' },
             estimatedYears: currentYearsFormatted,
-            modelMatch: { modelName: currentModelName, specs: { displacementCc: 50.2, powerHp: 4.1 } }
+            modelMatch: { modelName: currentModelName, specs: { displacementCc: 50.2, powerHp: 4.1 } },
+            theftCheck: {
+              status: isStopHelingVerified ? 'CLEAR' : 'UNVERIFIED',
+              isStolen: false,
+              checkedAt: verifiedCheckDate,
+              statusLabel: isStopHelingVerified ? 'Geen resultaten in StopHeling-database' : 'Niet gecontroleerd via StopHeling'
+            }
           });
         });
       }

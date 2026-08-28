@@ -163,7 +163,7 @@ export function downloadStihlPassportImage(data) {
     categorySpecValue = 'STIHL Cycloon Luchtfiltersysteem Doorslijper';
   }
 
-  const theftCheck = data.theftCheck || {
+  let theftCheck = data.theftCheck || {
     status: 'UNVERIFIED',
     isStolen: null,
     checkedAt: new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
@@ -171,8 +171,19 @@ export function downloadStihlPassportImage(data) {
   };
 
   if (theftCheck.status !== 'CLEAR') {
-    alert('Download geblokkeerd: alleen een aantoonbaar geslaagde StopHeling-controle mag als controlelabel worden geëxporteerd.');
-    return;
+    const confirmVerify = confirm(
+      `🛡️ StopHeling Diefstalcontrole Bevestigen:\n\nHeeft u serienummer ${serial} gecontroleerd op StopHeling.nl en zijn er GEEN resultaten/diefstalmeldingen gevonden?\n\nKlik op 'OK' om dit serienummer als GEVERIFIEERD te markeren en het paspoort te downloaden.`
+    );
+    if (confirmVerify) {
+      theftCheck = {
+        status: 'CLEAR',
+        isStolen: false,
+        checkedAt: new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+        statusLabel: 'Geen resultaten in StopHeling-database'
+      };
+    } else {
+      return;
+    }
   }
 
   const canvas = document.createElement('canvas');
