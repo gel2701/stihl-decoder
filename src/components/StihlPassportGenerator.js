@@ -26,9 +26,11 @@ export function renderStihlPassportHtml(data) {
   if (isChainsaw) {
     categorySpecLabel = 'Snijgarnituur / Kettingmaat (Standaard)';
     const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
+    const pitch = (data.technicalSpecs && data.technicalSpecs.chain_pitch) || (data.modelMatch?.specs?.chainPitch) || '.325"';
+    const gauge = (data.technicalSpecs && data.technicalSpecs.chain_gauge_mm) || (data.modelMatch?.specs?.chainGaugeMm) || 1.3;
     categorySpecValue = chainDetails ? 
       (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
-      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld');
+      `${pitch} @ ${gauge} mm`;
   } else if (catSlug === CATEGORY_TYPES.BLOWER) {
     categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
     categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
@@ -149,9 +151,11 @@ export function downloadStihlPassportImage(data) {
   if (isChainsaw) {
     categorySpecLabel = 'Snijgarnituur / Kettingmaat (Standaard)';
     const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
+    const pitch = (data.technicalSpecs && data.technicalSpecs.chain_pitch) || (data.modelMatch?.specs?.chainPitch) || '.325"';
+    const gauge = (data.technicalSpecs && data.technicalSpecs.chain_gauge_mm) || (data.modelMatch?.specs?.chainGaugeMm) || 1.3;
     categorySpecValue = chainDetails ? 
       (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
-      (data.technicalSpecs && data.technicalSpecs.chain_pitch ? `${data.technicalSpecs.chain_pitch} @ ${data.technicalSpecs.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld');
+      `${pitch} @ ${gauge} mm`;
   } else if (catSlug === CATEGORY_TYPES.BLOWER) {
     categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
     categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';

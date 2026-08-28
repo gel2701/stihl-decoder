@@ -787,9 +787,26 @@
             cleanedSerial: cleanSerial,
             formatted: `${cleanSerial[0]} ${cleanSerial.slice(1,4)} ${cleanSerial.slice(4,7)} ${cleanSerial.slice(7)}`,
             model: currentModelName,
+            category: 'Kettingzaag',
             factory: { country: 'Duitsland', location: 'Waiblingen' },
             estimatedYears: currentYearsFormatted,
-            modelMatch: { modelName: currentModelName, specs: { displacementCc: 50.2, powerHp: 4.1 } },
+            technicalSpecs: {
+              displacement_cc: 50.2,
+              power_hp: 4.1,
+              power_kw: 3.0,
+              chain_pitch: '.325"',
+              chain_gauge_mm: 1.3
+            },
+            modelMatch: { 
+              modelName: currentModelName, 
+              category: 'Kettingzaag',
+              specs: { 
+                displacementCc: 50.2, 
+                powerHp: 4.1,
+                chainPitch: '.325"',
+                chainGaugeMm: 1.3
+              } 
+            },
             theftCheck: {
               status: isStopHelingVerified ? 'CLEAR' : 'UNVERIFIED',
               isStolen: false,
