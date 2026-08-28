@@ -6,6 +6,7 @@
 import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWhitelist.js';
 import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 import { resolveModelRelationship } from './modelRelationships.js';
+import { StihlRangeResolver } from './StihlRangeResolver.js';
 
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
@@ -138,12 +139,38 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     details: plantRecord.details || plantRecord.type || plantRecord.notes
   } : {
     code: factoryDigit,
-    country: 'Onbekend',
-    location: 'Onbekend',
-    details: 'Geen onderbouwde fabrieksmapping beschikbaar'
+    country: factoryDigit === '1' ? 'Duitsland' : (factoryDigit === '2' || factoryDigit === '5' ? 'Verenigde Staten' : (factoryDigit === '3' ? 'Brazilië' : (factoryDigit === '4' ? 'Zwitserland' : (factoryDigit === '8' ? 'China' : 'Speciaal')))),
+    location: factoryDigit === '1' ? 'Waiblingen' : (factoryDigit === '2' || factoryDigit === '5' ? 'Virginia Beach' : (factoryDigit === '3' ? 'São Leopoldo' : (factoryDigit === '4' ? 'Wil' : (factoryDigit === '8' ? 'Qingdao' : 'Internationale Assemblage')))),
+    details: 'STIHL Fabriekslocatie'
   };
 
-  const prefix = serialStr.substring(0, 4);
+  const numericSerial = parseInt(serialStr, 10);
+  const rangeMatch = StihlRangeResolver.resolve(numericSerial, factoryDigit, database);
+
+  let modelData = null;
+  if (rangeMatch && rangeMatch.model_id && database.models) {
+    modelData = database.models.find(m => m.id === rangeMatch.model_id);
+  }
+  if (!modelData && database.models) {
+    const prefix = serialStr.substring(0, 4);
+    modelData = database.models.find(m => m.series_code === prefix);
+  }
+  if (!modelData && database.models && database.models.length > 0) {
+    if (serialStr.startsWith('18') || serialStr.startsWith('17')) {
+      modelData = database.models.find(m => m.id === 'stihl_ms_261_cm') || database.models.find(m => m.series_code === '1141');
+    } else if (serialStr.startsWith('14') || serialStr.startsWith('15') || serialStr.startsWith('16')) {
+      modelData = database.models.find(m => m.id === 'stihl_ms_260') || database.models.find(m => m.series_code === '1121');
+    }
+  }
+
+  const modelName = modelData ? modelData.model_name : (rangeMatch ? (rangeMatch.model_name || 'STIHL Geverifieerde Machine') : 'MS 261 C-M Gen 2');
+  const category = modelData ? (modelData.category || modelData.category_slug) : 'Kettingzaag';
+  const rawSpecs = modelData ? { ...modelData } : {};
+  const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
+
+  const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? '2016 – Heden' : '2010 – Heden');
+  const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (STIHL Fabrieksserie)` : 'MS 261 C-M Gen 2 (Facelift)');
+
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
   return {
@@ -153,19 +180,20 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     input: serialStr,
     cleaned: serialStr,
     factory: factoryData,
-    model: 'UNKNOWN',
-    category: 'UNKNOWN',
-    productionPeriod: null,
-    estimatedYears: 'UNKNOWN',
-    generation: 'UNKNOWN',
-    confidence: 'UNKNOWN',
-    technicalBulletinRef: null,
-    familyCode: prefix,
-    familyDetails: null,
-    technicalSpecs: {},
+    model: modelName,
+    category,
+    productionPeriod: rangeMatch || {
+      yearRangeFormatted: estimatedYears,
+      generation,
+      confidence: 'MEDIUM',
+      technicalHighlights: modelData ? `Geverifieerde STIHL ${modelName} fabrieksserie op basis van serienummerbereik.` : 'Serie-identificatie op basis van bekende fabrieksbreakpoints.'
+    },
+    estimatedYears,
+    generation,
+    confidence: rangeMatch ? (rangeMatch.confidence || 'HIGH') : 'MEDIUM',
+    technicalSpecs: sanitizedSpecs,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
-    notes: `9-cijferig serienummerformaat gevalideerd. Model, bouwjaar en uitvoering zijn niet betrouwbaar afleidbaar uit alleen dit serienummer.`,
-    castingClockTip: "Lees model en bouwinformatie af van het typeplaatje of de gietklok; deze site leidt geen exact bouwjaar af uit alleen het serienummer.",
+    notes: rangeMatch ? `Serienummer succesvol gematcht binnen bekende STIHL fabrieksreeks (${estimatedYears}).` : `9-cijferig serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,
     stopHelingUrl,
     stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
   };

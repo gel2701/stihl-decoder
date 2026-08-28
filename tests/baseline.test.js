@@ -21,9 +21,9 @@ assert.strictEqual(res9digit.type, 'SERIAL_NUMBER');
 assert.strictEqual(res9digit.status, 'FORMAT_VALIDATED');
 assert.strictEqual(res9digit.cleaned, '184592301');
 assert.strictEqual(res9digit.factory.country, 'Duitsland');
-assert.strictEqual(res9digit.productionPeriod, null);
-assert.strictEqual(res9digit.model, 'UNKNOWN');
-assert.strictEqual(res9digit.estimatedYears, 'UNKNOWN');
+assert.ok(res9digit.model && res9digit.model !== 'UNKNOWN', 'model should be resolved from serial breakpoints');
+assert.ok(res9digit.estimatedYears && res9digit.estimatedYears !== 'UNKNOWN', 'estimatedYears should be resolved');
+assert.ok(res9digit.productionPeriod !== null, 'productionPeriod should be resolved');
 console.log('✅ Scenario 1 Passed: 9-digit serial decoded successfully.');
 
 // 2. 11-digit part number

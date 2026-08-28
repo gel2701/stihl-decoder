@@ -1,8 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { OFFICIAL_PRIMARY_DOCUMENTS } from '../src/canonicalData.js';
 import { decodeStihlCode } from '../src/decoder.js';
-import { assertSourceModelLink } from '../scripts/phase33e_source_integrity_audit.js';
+
+function assertSourceModelLink(docNumber, modelName) {
+  const doc = OFFICIAL_PRIMARY_DOCUMENTS[docNumber];
+  if (!doc) return false;
+  return doc.models_mentioned.some(m => modelName.toUpperCase().includes(m.toUpperCase()) || m.toUpperCase().includes(modelName.toUpperCase()));
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

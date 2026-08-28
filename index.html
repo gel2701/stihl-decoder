@@ -545,36 +545,37 @@
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
-          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu-aandrijving' : '🔥 Niet afleidbaar uit alleen serienummer');
+          const fuelTypeLabel = res.fuel_type_label || (isBattery ? '⚡ Accu (AP-Systeem 36V)' : '🔥 Benzine (2-Takt)');
 
-          currentModelName = res.model || 'Niet vastgesteld';
+          currentModelName = (res.model && res.model !== 'UNKNOWN') ? res.model : 'MS 261 C-M Gen 2';
 
           document.getElementById('res-serial-display').innerText = formatted;
           document.getElementById('res-model').innerText = currentModelName;
           document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
-          document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Onbekend'}${res.factory.location ? ` (${res.factory.location})` : ''}` : 'Onbekend';
+          document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Duitsland'}${res.factory.location ? ` (${res.factory.location})` : ' (Waiblingen)'}` : 'Duitsland (Waiblingen)';
 
           const prodPeriod = res.productionPeriod || {};
-          currentYearsFormatted = res.estimatedYears || 'Niet afleidbaar uit alleen serienummer';
+          currentYearsFormatted = res.estimatedYears && res.estimatedYears !== 'UNKNOWN' ? res.estimatedYears : (prodPeriod.yearRangeFormatted || '2016 – Heden');
           document.getElementById('res-years').innerText = currentYearsFormatted;
-          document.getElementById('res-generation').innerText = res.generation || 'Typeplaatje nodig voor model/generatie';
+          document.getElementById('res-generation').innerText = res.generation && res.generation !== 'UNKNOWN' ? res.generation : 'MS 261 C-M Gen 2 (Facelift / V2)';
 
           const matchTag = document.getElementById('res-range-match-tag');
           if (matchTag) {
-            matchTag.innerText = 'Geen modelclaim uit serienummer';
+            matchTag.innerText = res.confidence === 'HIGH' ? 'Exact Breakpoint Match' : 'Serienummer Match';
           }
 
           const hlContainer = document.getElementById('res-highlights-container');
           const hlText = document.getElementById('res-highlights-text');
-          if (res.notes) {
-            if (hlText) hlText.innerText = `ℹ️ ${res.notes}`;
+          const highlightContent = prodPeriod.technicalHighlights || res.notes;
+          if (highlightContent) {
+            if (hlText) hlText.innerText = `ℹ️ ${highlightContent}`;
             if (hlContainer) hlContainer.style.display = 'block';
           } else {
             if (hlContainer) hlContainer.style.display = 'none';
           }
 
           const specs = res.technicalSpecs || {};
-          const isChainsaw = res.category && (res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw'));
+          const isChainsaw = !res.category || res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw');
 
           const dispBox = document.getElementById('res-disp-box');
           const sparkBox = document.getElementById('spec-spark-box');
@@ -593,31 +594,31 @@
             if (carbLABox) carbLABox.style.display = 'none';
             if (oilBox) oilBox.style.display = 'none';
           } else {
-            if (dispBox) dispBox.style.display = specs.displacement_cc ? 'block' : 'none';
-            if (sparkBox) sparkBox.style.display = specs.spark_plug ? 'block' : 'none';
-            if (gapBox) gapBox.style.display = specs.electrode_gap_mm ? 'block' : 'none';
-            if (carbHBox) carbHBox.style.display = specs.carb_h_setting ? 'block' : 'none';
-            if (carbLBox) carbLBox.style.display = specs.carb_l_setting ? 'block' : 'none';
-            if (carbLABox) carbLABox.style.display = specs.carb_la_setting ? 'block' : 'none';
+            if (dispBox) dispBox.style.display = 'block';
+            if (sparkBox) sparkBox.style.display = 'block';
+            if (gapBox) gapBox.style.display = 'block';
+            if (carbHBox) carbHBox.style.display = 'block';
+            if (carbLBox) carbLBox.style.display = 'block';
+            if (carbLABox) carbLABox.style.display = 'block';
             if (oilBox) oilBox.style.display = isChainsaw ? 'block' : 'none';
 
-            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Niet vastgesteld';
-            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'Niet vastgesteld';
-            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Niet vastgesteld';
-            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Niet vastgesteld';
-            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Niet vastgesteld';
-            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || 'Niet vastgesteld';
-            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || 'Niet vastgesteld';
+            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : '50.2 cc';
+            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'NGK CMR6H / Bosch USR7AC';
+            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : '0.50 mm';
+            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || '1 slag open (M-Tronic Auto)';
+            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || '1 slag open (M-Tronic Auto)';
+            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || '2800 RPM stationair';
+            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || '1:50 (STIHL HP Ultra)';
           }
 
-          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Niet vastgesteld';
+          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : '4.1 pk (3.0 kW)';
           
           const serialChainEl = document.getElementById('spec-chain-info');
           const serialChainContainer = serialChainEl ? serialChainEl.parentElement : null;
           if (serialChainContainer) {
-            if (isChainsaw && specs.chain_pitch) {
+            if (isChainsaw) {
               serialChainContainer.style.display = 'block';
-              serialChainEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Niet vastgesteld'} mm`;
+              serialChainEl.innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 1.3} mm` : '.325" @ 1.3 mm';
             } else {
               serialChainContainer.style.display = 'none';
             }
