@@ -109,6 +109,12 @@ export function analyzeModelQuery(modelStr, database) {
   const resolvedModelName = relationship ? relationship.model_name : (matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery);
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
+  const hasPrimaryDoc = Boolean(matchedModelSpec && (matchedModelSpec.source_doc || matchedModelSpec.source_title || matchedModelSpec.primary_document || matchedModelSpec.service_manual_code));
+  const sourceStatus = hasPrimaryDoc ? 'PRIMARY_SOURCE_LINKED' : 'PRIMARY_SOURCE_PENDING';
+  const sourceStatusLabel = hasPrimaryDoc
+    ? 'Bronstatus: Gekoppeld aan primaire bron (Service Handleiding / Catalogus)'
+    : 'Bronstatus: Nog niet gekoppeld';
+
   return {
     success: true,
     type: 'MODEL_DECODE',
@@ -118,6 +124,10 @@ export function analyzeModelQuery(modelStr, database) {
     category,
     model: resolvedModelName,
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
+    sourceStatus,
+    sourceStatusLabel,
+    hasPrimaryDoc,
+    confidenceLabel: matchedModelSpec ? 'Direct Model Match' : 'Familie Overeenkomst',
     relationship: relationship ? {
       type: relationship.relationship_type,
       relatedModel: relationship.related_model_name,
@@ -173,6 +183,12 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
+  const hasPrimaryDoc = Boolean(modelData && (modelData.source_doc || modelData.source_title || modelData.primary_document || modelData.service_manual_code));
+  const sourceStatus = hasPrimaryDoc ? 'PRIMARY_SOURCE_LINKED' : 'PRIMARY_SOURCE_PENDING';
+  const sourceStatusLabel = hasPrimaryDoc
+    ? 'Bronstatus: Gekoppeld aan primaire bron (Service Handleiding / Catalogus)'
+    : 'Bronstatus: Nog niet gekoppeld (Breakpoint Match / Schatting op basis van serienummer)';
+
   return {
     success: true,
     status: 'FORMAT_VALIDATED',
@@ -191,6 +207,10 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     estimatedYears,
     generation,
     confidence: rangeMatch ? (rangeMatch.confidence || 'HIGH') : 'MEDIUM',
+    confidenceLabel: rangeMatch ? (rangeMatch.confidence === 'HIGH' ? 'Breakpoint Range Match (Hoge Zekerheid)' : 'Serie Match (Middelgrote Zekerheid)') : 'Fabriekscode Indicatie (Basis Zekerheid)',
+    sourceStatus,
+    sourceStatusLabel,
+    hasPrimaryDoc,
     technicalSpecs: sanitizedSpecs,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
     notes: rangeMatch ? `Serienummer succesvol gematcht binnen bekende STIHL fabrieksreeks (${estimatedYears}).` : `9-cijferig serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,

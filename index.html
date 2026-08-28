@@ -322,6 +322,12 @@
               </div>
             </div>
 
+            <!-- Bronstatus Indicator -->
+            <div id="res-source-status-box" class="bg-gray-900/90 p-3 rounded-xl border border-gray-800 flex justify-between items-center text-xs">
+              <span class="text-gray-400 font-medium">Bronstatus:</span>
+              <span id="res-source-status-text" class="text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Nog niet gekoppeld (Breakpoint Match)</span>
+            </div>
+
             <div>
               <span class="text-xs text-gray-400">Fabriek / Herkomst:</span>
               <div id="res-country" class="text-sm font-bold text-white mt-0.5">Duitsland (Waiblingen)</div>
@@ -578,7 +584,18 @@
 
           const matchTag = document.getElementById('res-range-match-tag');
           if (matchTag) {
-            matchTag.innerText = res.confidence === 'HIGH' ? 'Exact Breakpoint Match' : 'Serienummer Match';
+            matchTag.innerText = res.confidenceLabel || (res.confidence === 'HIGH' ? 'Breakpoint Match (Hoge Zekerheid)' : 'Serie Match (Middelgrote Zekerheid)');
+          }
+
+          const sourceStatusEl = document.getElementById('res-source-status-text');
+          if (sourceStatusEl) {
+            if (res.sourceStatus === 'PRIMARY_SOURCE_LINKED' || res.hasPrimaryDoc) {
+              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+              sourceStatusEl.innerText = 'Bronstatus: Gekoppeld aan primaire bron';
+            } else {
+              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
+              sourceStatusEl.innerText = 'Bronstatus: Nog niet gekoppeld (Breakpoint Match)';
+            }
           }
 
           const hlContainer = document.getElementById('res-highlights-container');

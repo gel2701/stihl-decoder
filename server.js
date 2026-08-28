@@ -120,10 +120,36 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 60;
+
+function checkRateLimit(req) {
+  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || (now - entry.startTime > RATE_LIMIT_WINDOW_MS)) {
+    rateLimitMap.set(ip, { count: 1, startTime: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > MAX_REQUESTS_PER_WINDOW;
+}
+
   // 3. REST API v1: POST /api/v1/decode
   if (pathname === '/api/v1/decode' && req.method === 'POST') {
+    if (checkRateLimit(req)) {
+      res.writeHead(429, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify({ success: false, error: 'Te veel verzoeken. Probeer het over een minuut opnieuw.' }));
+      return;
+    }
+
     const bodyObj = await readJsonBody(req, res);
     if (bodyObj === null) return;
+
+    if (bodyObj.serialNumber && typeof bodyObj.serialNumber === 'string') {
+      bodyObj.serialNumber = bodyObj.serialNumber.trim().substring(0, 50).replace(/[^a-zA-Z0-9\s\.\-_\/]/g, '');
+    }
 
     const result = await handleDecodeApiV1(bodyObj, database);
     logStihlEvent(
@@ -153,7 +179,16 @@ const server = http.createServer(async (req, res) => {
 
   // 5. REST API: GET /api/decode?code=...
   if (pathname === '/api/decode') {
-    const code = urlObj.searchParams.get('code') || '';
+    if (checkRateLimit(req)) {
+      res.writeHead(429, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify({ success: false, error: 'Te veel verzoeken. Probeer het over een minuut opnieuw.' }));
+      return;
+    }
+
+    let code = (urlObj.searchParams.get('code') || '').trim();
+    if (code.length > 50) code = code.substring(0, 50);
+    code = code.replace(/[^a-zA-Z0-9\s\.\-_\/]/g, '');
+
     const result = decodeStihlCode(code, database);
     logStihlEvent(EVENT_TYPES.DECODER_USED, { input: code, success: result.success }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
