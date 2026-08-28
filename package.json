@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/tailwind.css --minify",
+    "build": "npm run build:css",
     "test": "node tests/run_all_tests.js",
     "db:backup": "node scripts/db_backup.js",
     "data:rebuild": "node scripts/rebuild_canonical_data.js",
@@ -33,6 +35,8 @@
     "sqlite3": "^6.0.1"
   },
   "devDependencies": {
-    "sharp": "^0.35.4"
+    "@tailwindcss/cli": "^4.0.0",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3"
   }
 }

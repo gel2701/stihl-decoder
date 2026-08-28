@@ -2,7 +2,7 @@ services:
   - type: web
     name: stihl-decoder
     env: node
-    buildCommand: npm install
+    buildCommand: npm install && npm run build
     startCommand: node server.js
     plan: free
     autoDeploy: true
