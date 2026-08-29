@@ -1,0 +1,503 @@
+{
+  "generated_at": "2026-08-29T21:54:24.714Z",
+  "source_commit": "d8c23f1",
+  "models": [
+    {
+      "model": "026",
+      "variant": "026",
+      "authenticated_documents": [
+        {
+          "batch6_document_id": "e2a23382aaaffde7",
+          "path": "D:\\Downloads\\Stihl library\\Stihl library\\PDF\\ra\\RA_024_026_01.PDF",
+          "authenticity_status": "AUTHENTICATED_OFFICIAL",
+          "final_reason": "Legacy STIHL container structure plus preserved RA/TI identity and explicit linkage/supporting prior payload evidence."
+        }
+      ],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 48.72,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 2.4,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [
+        "TI_06_1995_30",
+        "TI_31_1995_30",
+        "TI_12_1996_30",
+        "TI_38_1996_30",
+        "TI_18_1997_30",
+        "TI_39_1997_30",
+        "TI_41_1998_30",
+        "TI_12_1999_30",
+        "TI_31_2000_30_01",
+        "TI_13_2001_02_01_01"
+      ],
+      "RA_TI_publications": [
+        "RA_024_026_01"
+      ],
+      "manual_documents": [
+        "batch3:2",
+        "batch3:9",
+        "batch3:10",
+        "batch3:11",
+        "batch3:5"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "best_source_chain": "TS_DATA_PLUS_AUTHENTICATED_LEGACY_MANUAL",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "036",
+      "variant": "036",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 61.53,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 3.3,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [
+        "TI_28_1995_30",
+        "TI_30_1995_30",
+        "TI_45_1995_30",
+        "TI_01_1996_30",
+        "TI_21_1996_30",
+        "TI_32_1996_30",
+        "TI_38_1996_30",
+        "TI_06_1997_30",
+        "TI_33_1997_30",
+        "TI_43_1997_30",
+        "TI_11_1998_30",
+        "TI_49_1998_30",
+        "TI_05_1999_30",
+        "TI_31_1999_30",
+        "TI_08_2000_30",
+        "TI_34_2000_30_02",
+        "TI_55_2000_30_01",
+        "TI_03_2001_02_01_01",
+        "TI_31_2001_03_01_01"
+      ],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:45"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [
+        "power_kw"
+      ],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "044",
+      "variant": "044",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 70.74,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 4,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [
+        "TI_07_1995_30",
+        "TI_20_1995_30",
+        "TI_03_1996_30",
+        "TI_05_1996_30",
+        "TI_19_1996_30",
+        "TI_25_1996_30",
+        "TI_43_1996_30",
+        "TI_09_1997_30",
+        "TI_47_1997_30",
+        "TI_03_1999_30",
+        "TI_35_1999_30",
+        "TI_11_2000_30",
+        "TI_44_2000_30_02",
+        "TI_06_2001_02_01_01"
+      ],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:78"
+      ],
+      "available_fields": [
+        "spark_plug"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "046",
+      "variant": "046",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 76.54,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 4.5,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [
+        "TI_46_1995_30",
+        "TI_05_1996_30",
+        "TI_25_1996_30",
+        "TI_43_1996_30",
+        "TI_09_1997_30",
+        "TI_47_1997_30",
+        "TI_03_1999_30",
+        "TI_28_1999_30",
+        "TI_11_2000_30",
+        "TI_44_2000_30_02",
+        "TI_05_2001_02_01_01"
+      ],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:78",
+        "batch3:13"
+      ],
+      "available_fields": [
+        "spark_plug"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [
+        "spark_plug"
+      ],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "ms-261",
+      "variant": "ms-261",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:49"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [
+        "power_kw",
+        "stroke_mm"
+      ],
+      "conflicted_fields": [
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "best_source_chain": "MANUAL_CANDIDATES_ONLY",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "fs-350",
+      "variant": "fs-350",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 36.32,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 1.6,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [
+        "TI_19_1998_30",
+        "TI_20_1998_30",
+        "TI_01_2000_30",
+        "TI_10_2000_30",
+        "TI_22_2001_02_01_01"
+      ],
+      "RA_TI_publications": [],
+      "manual_documents": [],
+      "available_fields": [],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "ts-420",
+      "variant": "ts-420",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:29"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "MANUAL_CANDIDATES_ONLY",
+      "recovery_priority": "TIER_A"
+    },
+    {
+      "model": "ms-260",
+      "variant": "ms-260",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 48.72,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 2.4,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:7",
+        "batch3:8"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [
+        "power_kw"
+      ],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "ms-360",
+      "variant": "ms-360",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 61.53,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 3.3,
+          "unit": "kW"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 61.53,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 3.3,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [],
+      "available_fields": [],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "ms-440",
+      "variant": "ms-440",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [],
+      "available_fields": [],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "NO_RECOVERABLE_CHAIN",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "ms-460",
+      "variant": "ms-460",
+      "authenticated_documents": [],
+      "TS_Data_sources": [
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 76.54,
+          "unit": "cc"
+        },
+        {
+          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+          "status": "GOLD_CANDIDATE",
+          "expected_value": 4.5,
+          "unit": "kW"
+        }
+      ],
+      "model_index_relations": [
+        "TI_37_2001_02_01_01",
+        "TI_16_2002_02_01_01"
+      ],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:11"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [
+        "power_kw",
+        "spark_plug"
+      ],
+      "best_source_chain": "TS_DATA_ONLY",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "fs-460",
+      "variant": "fs-460",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:68"
+      ],
+      "available_fields": [
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "MANUAL_CANDIDATES_ONLY",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "br-600",
+      "variant": "br-600",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [
+        "batch3:38"
+      ],
+      "available_fields": [
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [
+        "stroke_mm"
+      ],
+      "best_source_chain": "MANUAL_CANDIDATES_ONLY",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "fs-100",
+      "variant": "fs-100",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [],
+      "available_fields": [],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "NO_RECOVERABLE_CHAIN",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "fs-100-r",
+      "variant": "fs-100-r",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [],
+      "available_fields": [],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "NO_RECOVERABLE_CHAIN",
+      "recovery_priority": "TIER_B"
+    },
+    {
+      "model": "fs-100-rx",
+      "variant": "fs-100-rx",
+      "authenticated_documents": [],
+      "TS_Data_sources": [],
+      "model_index_relations": [],
+      "RA_TI_publications": [],
+      "manual_documents": [],
+      "available_fields": [],
+      "exact_scope_possible_fields": [],
+      "conflicted_fields": [],
+      "best_source_chain": "NO_RECOVERABLE_CHAIN",
+      "recovery_priority": "TIER_B"
+    }
+  ]
+}

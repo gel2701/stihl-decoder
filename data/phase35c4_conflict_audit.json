@@ -1,0 +1,559 @@
+{
+  "generated_at": "2026-08-29T21:54:24.711Z",
+  "source_commit": "d8c23f1",
+  "clusters": [
+    {
+      "cluster_id": "ecfb6107cbe01877",
+      "cluster_key": "026|power_kw|UNSPECIFIED|kW|US|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        2.1
+      ],
+      "sources": [
+        "batch3:2:power_kw:c17ffeea287341f0"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "c465a72c6ad3dc2e",
+      "cluster_key": "026|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 6,
+      "distinct_values": [
+        "208RA029",
+        "208RA026"
+      ],
+      "sources": [
+        "batch3:9:spark_plug:3696b9fe905e866f",
+        "batch3:10:spark_plug:39a6b2e04e4d2ad6",
+        "batch3:10:spark_plug:3efd5de7073c8645",
+        "batch3:11:spark_plug:3f5196618a93f998",
+        "batch3:9:spark_plug:a4979da092f581f8",
+        "batch3:5:spark_plug:d573672f5db79603"
+      ],
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "84138caf4261b804",
+      "cluster_key": "026|spark_plug|UNSPECIFIED|NONE|US|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "133RA129"
+      ],
+      "sources": [
+        "batch3:2:spark_plug:8a26d14b877e88c1"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "5aa7b59a0217fd06",
+      "cluster_key": "026|stroke_mm|UNSPECIFIED|mm|US|STANDARD",
+      "record_count": 3,
+      "distinct_values": [
+        0.5,
+        0.65,
+        30
+      ],
+      "sources": [
+        "batch3:2:stroke_mm:03029a31fdde7489",
+        "batch3:2:stroke_mm:78e4d91cc1466319",
+        "batch3:2:stroke_mm:fe31841b020df41a"
+      ],
+      "conflict_type": "INTRA_DOCUMENT_AMBIGUITY",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "5b8a7ba76f9d8056",
+      "cluster_key": "036|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        5.6,
+        3.3
+      ],
+      "sources": [
+        "batch3:45:power_kw:cbfe0fca4952c2d9",
+        "TS_DATA:036:power_kw:91fa930b31074eb2"
+      ],
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "0438b3bfcdf08277",
+      "cluster_key": "036|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "NGK BPMR 7 A"
+      ],
+      "sources": [
+        "batch3:45:spark_plug:0ba5ade6c41ed7e2"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "a74065b552079ae8",
+      "cluster_key": "036|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        43
+      ],
+      "sources": [
+        "batch3:45:stroke_mm:b7e90c845a6f22ee"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "183d06d455897537",
+      "cluster_key": "044|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "249RA048"
+      ],
+      "sources": [
+        "batch3:78:spark_plug:93ed4dc40d8fc098"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "8e3bf28f00ca3e5a",
+      "cluster_key": "046|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "249RA048"
+      ],
+      "sources": [
+        "batch3:78:spark_plug:32acfeaf3a99a2b8"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "f3e3ebcecbea47b9",
+      "cluster_key": "046|spark_plug|UNSPECIFIED|NONE|US|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        "Bosch WSR 6F NGK BPMR 7A",
+        "Bosch WSR 6F"
+      ],
+      "sources": [
+        "batch3:13:spark_plug:72326a3f87394bfe",
+        "batch3:13:spark_plug:8a31b1a9f1c0efa8"
+      ],
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "827c6aab1a093d49",
+      "cluster_key": "ms-261|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        2.8
+      ],
+      "sources": [
+        "batch3:49:power_kw:6ffe98ed22ee0d72"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "830599d76b59f26c",
+      "cluster_key": "ms-261|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        "NGK BPMR 7 A BOSCH WSR6F",
+        "NGK BPMR 7 A"
+      ],
+      "sources": [
+        "batch3:49:spark_plug:979226e2179d0f44",
+        "batch3:49:spark_plug:9e0ede16f13baa12"
+      ],
+      "conflict_type": "INTRA_DOCUMENT_AMBIGUITY",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "86e4636181dc724a",
+      "cluster_key": "ms-261|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        32,
+        2
+      ],
+      "sources": [
+        "batch3:49:stroke_mm:1ede93d8269ce9ad",
+        "batch3:49:stroke_mm:d33be5cb92f8b4d5"
+      ],
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "fef9218f3f7ca1e1",
+      "cluster_key": "ts-420|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        3.2
+      ],
+      "sources": [
+        "batch3:29:power_kw:3fb903eb0d007b97"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "b0cadc2f19c0183b",
+      "cluster_key": "ts-420|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "Bosch WSR6F"
+      ],
+      "sources": [
+        "batch3:29:spark_plug:f70f06b39f69272b"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "6624c7da6a2c123d",
+      "cluster_key": "ts-420|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        34
+      ],
+      "sources": [
+        "batch3:29:stroke_mm:a3e630237a5d9247"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "43acf8b91b501c6b",
+      "cluster_key": "ms-260|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 3,
+      "distinct_values": [
+        2.1,
+        2.4
+      ],
+      "sources": [
+        "batch3:7:power_kw:0d922fa160215dbb",
+        "batch3:8:power_kw:47df6c92cb3ea442",
+        "TS_DATA:ms-260:power_kw:330b6ddfc536f5fb"
+      ],
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "ccf589154ec439e4",
+      "cluster_key": "ms-260|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        "NGK BPMR 7 A"
+      ],
+      "sources": [
+        "batch3:8:spark_plug:9c954bb92e93bb6a",
+        "batch3:7:spark_plug:e78751bf6b47cc44"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "6ba9bb47b879cd95",
+      "cluster_key": "ms-260|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        30
+      ],
+      "sources": [
+        "batch3:7:stroke_mm:0f79d6e4d27aa780",
+        "batch3:8:stroke_mm:4cb8e527528fc862"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "08a5414ac88d9819",
+      "cluster_key": "ms-460|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        4.4,
+        4.5
+      ],
+      "sources": [
+        "batch3:11:power_kw:54ed7468c0c750f3",
+        "TS_DATA:ms-460:power_kw:0b06fe4491f63f64"
+      ],
+      "conflict_type": "INTRA_DOCUMENT_AMBIGUITY",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "a82f861633e0b36a",
+      "cluster_key": "ms-460|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 3,
+      "distinct_values": [
+        "208RA029",
+        "Bosch WSR 6F",
+        "Bosch WSR 6F NGK BPMR 7A"
+      ],
+      "sources": [
+        "batch3:11:spark_plug:5cb9202feaf18871",
+        "batch3:11:spark_plug:8efbf25399d379a1",
+        "batch3:11:spark_plug:db00103e5b819a26"
+      ],
+      "conflict_type": "INTRA_DOCUMENT_AMBIGUITY",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "45e7bd3797d851e0",
+      "cluster_key": "ms-460|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        36
+      ],
+      "sources": [
+        "batch3:11:stroke_mm:8a356b5d1cd6d0c8"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "d6c011e06950982a",
+      "cluster_key": "fs-460|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        1.7
+      ],
+      "sources": [
+        "batch3:68:power_kw:93f55babfcdce4da"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "3e5f7bc01b0057cd",
+      "cluster_key": "fs-460|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "NGK CMR 6 H NGK CMR 6 H NGK CMR 6 H"
+      ],
+      "sources": [
+        "batch3:68:spark_plug:04172d6f64c0e467"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "3dc4472135f6ca79",
+      "cluster_key": "fs-460|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        30
+      ],
+      "sources": [
+        "batch3:68:stroke_mm:1f4065cdbf4b32b0"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "35961fbc41a91cf4",
+      "cluster_key": "br-600|spark_plug|UNSPECIFIED|NONE|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        "NGK CMR 6 H NGK CMR 6 H NGK CMR 6 H"
+      ],
+      "sources": [
+        "batch3:38:spark_plug:22eee2e3a091eff9"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "7efda8dc192e539f",
+      "cluster_key": "br-600|stroke_mm|UNSPECIFIED|mm|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        33,
+        5
+      ],
+      "sources": [
+        "batch3:38:stroke_mm:7511e86049c112ca",
+        "batch3:38:stroke_mm:d0c8b2da9ececd77"
+      ],
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "cluster_id": "f3e6635683ce8c35",
+      "cluster_key": "026|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        48.72
+      ],
+      "sources": [
+        "TS_DATA:026:displacement_cc:7886be3d67551b1d"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "2c6d4825907277ef",
+      "cluster_key": "026|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        2.4
+      ],
+      "sources": [
+        "TS_DATA:026:power_kw:aaf8f08e0992daff"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "361b843bbd9a14c2",
+      "cluster_key": "036|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        61.53
+      ],
+      "sources": [
+        "TS_DATA:036:displacement_cc:4c8c964db5125e28"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "edf3fe16dfbb0ce8",
+      "cluster_key": "044|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        70.74
+      ],
+      "sources": [
+        "TS_DATA:044:displacement_cc:c99704920eb53b51"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "7fc15cbe0c4de098",
+      "cluster_key": "044|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        4
+      ],
+      "sources": [
+        "TS_DATA:044:power_kw:8a3ba924ef913e05"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "2a2987f5f08dbc98",
+      "cluster_key": "046|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        76.54
+      ],
+      "sources": [
+        "TS_DATA:046:displacement_cc:12a60efffdedcbf0"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "dbf9cf561b5d9fe4",
+      "cluster_key": "046|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        4.5
+      ],
+      "sources": [
+        "TS_DATA:046:power_kw:650119344842de3f"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "e5d0cf8c045b9f15",
+      "cluster_key": "fs-350|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        36.32
+      ],
+      "sources": [
+        "TS_DATA:fs-350:displacement_cc:a191c8fc148d5781"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "09781cbffd2e4bf3",
+      "cluster_key": "fs-350|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        1.6
+      ],
+      "sources": [
+        "TS_DATA:fs-350:power_kw:e5d972d0e804622a"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "5ede3dbdb150bb2f",
+      "cluster_key": "ms-260|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        48.72
+      ],
+      "sources": [
+        "TS_DATA:ms-260:displacement_cc:da10697338810b01"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "fc8a2d5d42d72b83",
+      "cluster_key": "ms-360|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        61.53
+      ],
+      "sources": [
+        "TS_DATA:ms-360:displacement_cc:4c87ac2a078a5a33",
+        "TS_DATA:ms-360:displacement_cc:4d30dae5d80e1ca8"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "bf08f87867105c4e",
+      "cluster_key": "ms-360|power_kw|UNSPECIFIED|kW|UNKNOWN|STANDARD",
+      "record_count": 2,
+      "distinct_values": [
+        3.3
+      ],
+      "sources": [
+        "TS_DATA:ms-360:power_kw:74620e31634d92b4",
+        "TS_DATA:ms-360:power_kw:fb567561ffcbf711"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    },
+    {
+      "cluster_id": "90a4cfc487e929de",
+      "cluster_key": "ms-460|displacement_cc|UNSPECIFIED|cc|UNKNOWN|STANDARD",
+      "record_count": 1,
+      "distinct_values": [
+        76.54
+      ],
+      "sources": [
+        "TS_DATA:ms-460:displacement_cc:f60c5d4e46c916e6"
+      ],
+      "conflict_type": "NO_CONFLICT",
+      "conflict_status": "CLEAR"
+    }
+  ]
+}

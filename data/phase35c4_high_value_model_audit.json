@@ -1,0 +1,232 @@
+{
+  "generated_at": "2026-08-29T21:54:24.734Z",
+  "source_commit": "d8c23f1",
+  "models": [
+    {
+      "model": "026",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 11,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 11
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "036",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 3,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 3
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "044",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 1,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 1
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "046",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 3,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 3
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "ms-261",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 3,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 5,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 5
+        }
+      ],
+      "status": "EXACT_SCOPE_BUT_NOT_VERIFIED"
+    },
+    {
+      "model": "fs-350",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
+    },
+    {
+      "model": "ts-420",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 3,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 3
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "ms-260",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 6,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 6
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "ms-360",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 4,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
+    },
+    {
+      "model": "ms-440",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
+    },
+    {
+      "model": "ms-460",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 2,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 5,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 5
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "fs-460",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 3,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 3
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "br-600",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 3,
+      "top_block_reasons": [
+        {
+          "reason": "DOCUMENT_NOT_AUTHENTICATED",
+          "count": 3
+        }
+      ],
+      "status": "BLOCKED"
+    },
+    {
+      "model": "fs-100",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
+    },
+    {
+      "model": "fs-100-r",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
+    },
+    {
+      "model": "fs-100-rx",
+      "authenticated_sources": 0,
+      "exact_scope_candidates": 0,
+      "gold_candidates": 0,
+      "gold_validated": 0,
+      "verified_facts": 0,
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
+    }
+  ]
+}

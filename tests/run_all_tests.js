@@ -13,7 +13,8 @@ const testFiles = [
   'tests/phase35c21_integrity_hotfix.test.js',
   'tests/phase35c3_legacy_library_graph.test.js',
   'tests/phase35c31_legacy_graph_validation_hotfix.test.js',
-  'tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js'
+  'tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js',
+  'tests/phase35c4_verified_fact_recovery.test.js'
 ];
 
 let failures = 0;
