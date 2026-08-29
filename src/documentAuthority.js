@@ -795,7 +795,7 @@ export function assessDocumentModelRelations({ title = '', metadataText = '', pa
 function inferScopeConfidence(relationStatus, { multiModelPage = false, explicitTable = false } = {}) {
   if (relationStatus === 'EXPLICIT_MODEL_MATCH') return 'EXACT_MODEL';
   if (relationStatus === 'EXPLICIT_MULTI_MODEL_MATCH') {
-    if (explicitTable) return 'MULTI_MODEL_TABLE';
+    if (explicitTable) return 'MULTI_MODEL_EXPLICIT_COLUMN';
     return multiModelPage ? 'UNRESOLVED' : 'EXACT_MODEL';
   }
   if (relationStatus === 'PROBABLE_MATCH') return 'SERIES_LEVEL';
@@ -810,7 +810,7 @@ function determineModelScopeStatus({ relationStatus, scopeConfidence, modelName,
   const exactMention = normalizedPage.includes(normalizedModel) || normalizedTitle.includes(normalizedModel);
 
   if (relationStatus === 'MODEL_CONFLICT') return 'CONFLICT';
-  if (scopeConfidence === 'MULTI_MODEL_TABLE') return 'MULTI_MODEL_EXPLICIT_COLUMN';
+  if (scopeConfidence === 'MULTI_MODEL_EXPLICIT_COLUMN') return 'MULTI_MODEL_EXPLICIT_COLUMN';
   if (isVariant && exactMention) return 'EXACT_VARIANT';
   if (scopeConfidence === 'EXACT_MODEL') return 'EXACT_MODEL';
   if (scopeConfidence === 'SERIES_LEVEL') return 'SERIES_LEVEL';
@@ -866,7 +866,7 @@ function determineVerificationStatus({ document, fieldName, relationStatus, scop
   if (!suitability || suitability === 'NONE') return 'UNVERIFIED';
   if (document.authenticity_status === 'PROBABLE_OFFICIAL') return 'OFFICIAL_INDIRECT';
   if (document.authenticity_status === 'ALTERED_OR_INCOMPLETE' && suitability === 'HIGH') return 'OFFICIAL_INDIRECT';
-  if (document.authenticity_status === 'AUTHENTICATED_OFFICIAL' && ['EXACT_MODEL', 'MULTI_MODEL_TABLE'].includes(scopeConfidence)) return 'VERIFIED';
+  if (document.authenticity_status === 'AUTHENTICATED_OFFICIAL' && ['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(scopeConfidence)) return 'VERIFIED';
   if (document.authenticity_status === 'AUTHENTICATED_OFFICIAL' && relationStatus === 'TITLE_ONLY_MATCH') return 'UNRESOLVED_MODEL_SCOPE';
   if (fieldName === 'technical_change_cutoff' && ['AUTHENTICATED_OFFICIAL', 'PROBABLE_OFFICIAL', 'ALTERED_OR_INCOMPLETE'].includes(document.authenticity_status)) {
     return document.authenticity_status === 'AUTHENTICATED_OFFICIAL' ? 'VERIFIED' : 'OFFICIAL_INDIRECT';
@@ -874,7 +874,7 @@ function determineVerificationStatus({ document, fieldName, relationStatus, scop
   return 'UNVERIFIED';
 }
 
-function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, rawUnit, page, verificationStatus, scopeConfidence, sourceEligibility, evidenceSnippet, pageText = '', contentLayer = null, extra = {} }) {
+function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, rawUnit, page, verificationStatus, scopeConfidence, sourceEligibility, evidenceSnippet, pageText = '', contentLayer = null, pageMeta = {}, extra = {} }) {
   const anomaly = typeof value === 'number' && !passesSanity(fieldName, value);
   const modelScope = determineModelScopeStatus({
     relationStatus: model.relation_status,
@@ -882,7 +882,7 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
     modelName: model.model_name,
     pageText,
     documentTitle: document.document_title || '',
-    multiModelPage: scopeConfidence === 'MULTI_MODEL_TABLE'
+    multiModelPage: scopeConfidence === 'MULTI_MODEL_EXPLICIT_COLUMN'
   });
   const blockReason = verificationStatus === 'VERIFIED' || verificationStatus === 'APPROVED_ALTERNATIVES'
     ? null
@@ -899,7 +899,18 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
       anomaly
     });
   return {
-    candidate_id: stableId([document.document_id, model.model_id, fieldName, String(value), page, document.revision]),
+    candidate_id: stableId([
+      document.document_id,
+      model.model_id,
+      fieldName,
+      String(value),
+      page,
+      document.revision,
+      pageMeta.line_number || null,
+      pageMeta.table_id || null,
+      pageMeta.row_label || null,
+      pageMeta.column_header || null
+    ]),
     model_id: model.model_id,
     variant_id: model.slug,
     field_name: fieldName,
@@ -913,7 +924,13 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
     document_number_base: document.document_number_base,
     revision: document.revision,
     page,
-    section: null,
+    pdf_page: pageMeta.pdf_page || page,
+    printed_page: pageMeta.printed_page || null,
+    section: pageMeta.section || null,
+    line_number: pageMeta.line_number || null,
+    table_id: pageMeta.table_id || null,
+    row_label: pageMeta.row_label || null,
+    column_header: pageMeta.column_header || null,
     market: document.market,
     source_class: document.source_class,
     document_type: document.document_type,
@@ -922,11 +939,13 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
     scope_confidence: scopeConfidence,
     model_scope: modelScope,
     variant_scope: modelScope === 'EXACT_VARIANT' ? model.model_name : null,
-    table_scope_confidence: scopeConfidence === 'MULTI_MODEL_TABLE' ? 'HIGH' : modelScope === 'EXACT_MODEL' || modelScope === 'EXACT_VARIANT' ? 'HIGH' : 'LOW',
+    table_scope_confidence: scopeConfidence === 'MULTI_MODEL_EXPLICIT_COLUMN' ? 'HIGH' : modelScope === 'EXACT_MODEL' || modelScope === 'EXACT_VARIANT' ? 'HIGH' : 'LOW',
     source_eligibility: sourceEligibility || 'NONE',
     model_relation_status: model.relation_status,
     page_locator_exists: Number.isInteger(page),
     content_layer: contentLayer,
+    selected_text_source: pageMeta.selected_text_source || contentLayer || null,
+    page_text_quality: pageMeta.page_text_quality || null,
     evidence_snippet: evidenceSnippet,
     extraction_quality: document.extraction_quality,
     measurement_definition: determineMeasurementDefinition(fieldName, evidenceSnippet),
@@ -937,11 +956,31 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
   };
 }
 
-function extractLineWindows(pageText) {
-  const lines = String(pageText || '').split(/[\r\n]+/).map((line) => normalizeText(line)).filter(Boolean);
-  return lines.map((line, index) => ({
-    line,
-    context: [lines[index - 2], lines[index - 1], lines[index], lines[index + 1], lines[index + 2], lines[index + 3]].filter(Boolean).join(' ')
+function extractLineWindows(page) {
+  const pageLines = Array.isArray(page?.lines) && page.lines.length > 0
+    ? page.lines.map((line, index) => ({
+      lineNumber: line.line_number || index + 1,
+      line: normalizeText(line.line_text || line.text || ''),
+      section: line.section_heading || page.section_heading || null
+    })).filter((line) => line.line)
+    : String(page?.page_text || '')
+      .split(/[\r\n]+/)
+      .map((line, index) => ({
+        lineNumber: index + 1,
+        line: normalizeText(line),
+        section: page?.section_heading || null
+      }))
+      .filter((line) => line.line);
+
+  return pageLines.map((entry, index) => ({
+    lineNumber: entry.lineNumber,
+    section: entry.section,
+    line: entry.line,
+    context: pageLines
+      .slice(Math.max(0, index - 2), Math.min(pageLines.length, index + 4))
+      .map((line) => line.line)
+      .filter(Boolean)
+      .join(' ')
   }));
 }
 
@@ -952,9 +991,21 @@ function parseMeasurement(context, labels, unitPattern) {
   return { raw: match[1].trim(), value: parseNumber(match[1]) };
 }
 
+function isValidSparkPlugValue(value) {
+  const normalized = normalizeText(value);
+  if (!normalized || normalized.length < 4 || normalized.length > 40) return false;
+  if (/^[0-9.,/\s-]+$/.test(normalized)) return false;
+  if (!/[A-Z]/i.test(normalized) || !/\d/.test(normalized)) return false;
+  if (/[;!?]/.test(normalized)) return false;
+  const compact = normalized.replace(/\s+/g, '');
+  return /^[A-Z0-9/-]+(?:\s+(?:or|\/)\s+[A-Z0-9/-]+)*$/i.test(compact.replace(/(or|\/)/gi, ' $1 '));
+}
+
 function parseSparkPlug(context) {
   const match = context.match(/(?:spark plug|bougie|zuendkerze|bujia|vela)[^:\n]*[: ]+([^\n]+?)(?=(electrode gap|air gap|idle speed|$))/i);
-  return match ? normalizeText(match[1]) : null;
+  if (!match) return null;
+  const value = normalizeText(match[1]);
+  return isValidSparkPlugValue(value) ? value : null;
 }
 
 function hasCarbContext(context) {
@@ -1047,7 +1098,12 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
     const normalizedPageText = normalizeText(pageText);
     if (!normalizedPageText) continue;
 
-    const windows = extractLineWindows(pageText);
+    const pageNumber = page.pdf_page_number || page.page_number;
+    const printedPage = page.printed_page_number || null;
+    const pageSection = page.section_heading || null;
+    const pageQuality = page.text_quality || null;
+    const selectedTextSource = page.selected_text_source || contentLayer || null;
+    const windows = extractLineWindows(page);
     const pageModels = extractModelsMentioned(pageText, relations.length > 0 ? buildScopedDictionary(relations) : knownModels);
     const applicableModels = pageModels.length > 0
       ? pageModels.map((entry) => ({ ...entry, relation_status: relationIndex.get(entry.model_id)?.relation_status || 'BODY_ONLY_MATCH' }))
@@ -1055,6 +1111,52 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
     if (applicableModels.length === 0) continue;
 
     const multiModelPage = applicableModels.length > 1;
+
+    for (const tableEntry of page.table_candidates || []) {
+      const relation = relationIndex.get(tableEntry.model_id) || applicableModels.find((entry) => entry.model_id === tableEntry.model_id);
+      if (!relation) continue;
+      const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.[tableEntry.field_name] || 'NONE';
+      const scopeConfidence = tableEntry.table_scope_confidence === 'HIGH'
+        ? 'MULTI_MODEL_EXPLICIT_COLUMN'
+        : inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: true });
+      const verificationStatus = determineVerificationStatus({
+        document,
+        fieldName: tableEntry.field_name,
+        relationStatus: relation.relation_status,
+        scopeConfidence,
+        suitability: sourceEligibility,
+        parsedOk: tableEntry.value != null,
+        page: pageNumber
+      });
+      extracted.push(buildFieldRecord({
+        document,
+        model: relation,
+        fieldName: tableEntry.field_name,
+        value: tableEntry.value,
+        unit: tableEntry.unit,
+        rawValue: tableEntry.raw_value,
+        rawUnit: tableEntry.unit,
+        page: pageNumber,
+        verificationStatus,
+        scopeConfidence,
+        sourceEligibility,
+        evidenceSnippet: String(tableEntry.evidence_snippet || '').slice(0, 240),
+        pageText,
+        contentLayer,
+        pageMeta: {
+          pdf_page: pageNumber,
+          printed_page: printedPage,
+          section: tableEntry.section || pageSection,
+          line_number: tableEntry.line_number || null,
+          table_id: tableEntry.table_id || null,
+          row_label: tableEntry.row_label || null,
+          column_header: tableEntry.column_header || null,
+          selected_text_source: selectedTextSource,
+          page_text_quality: pageQuality
+        },
+        extra: tableEntry.extra || {}
+      }));
+    }
 
     for (const window of windows) {
       const context = window.context;
@@ -1071,7 +1173,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
           unit: tableEntry.unit,
           rawValue: tableEntry.rawValue,
           rawUnit: tableEntry.unit,
-          page: page.page_number,
+          page: pageNumber,
           verificationStatus: determineVerificationStatus({
             document,
             fieldName: tableEntry.fieldName,
@@ -1079,13 +1181,21 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             scopeConfidence,
             suitability: sourceEligibility,
             parsedOk: tableEntry.value != null,
-            page: page.page_number
+            page: pageNumber
           }),
           scopeConfidence,
           sourceEligibility,
           evidenceSnippet: context.slice(0, 240),
           pageText,
-          contentLayer
+          contentLayer,
+          pageMeta: {
+            pdf_page: pageNumber,
+            printed_page: printedPage,
+            section: window.section || pageSection,
+            line_number: window.lineNumber,
+            selected_text_source: selectedTextSource,
+            page_text_quality: pageQuality
+          }
         }));
       }
 
@@ -1123,7 +1233,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit,
             rawValue: parsed.raw,
             rawUnit: unit,
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus: determineVerificationStatus({
               document,
               fieldName,
@@ -1131,13 +1241,21 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
               scopeConfidence,
               suitability: sourceEligibility,
               parsedOk: parsed.value != null,
-              page: page.page_number
+              page: pageNumber
             }),
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
             pageText,
-            contentLayer
+            contentLayer,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            }
           }));
         }
       }
@@ -1156,7 +1274,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit: null,
             rawValue: oilMixRatio[1],
             rawUnit: null,
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus: determineVerificationStatus({
               document,
               fieldName: 'oil_mix_ratio',
@@ -1164,12 +1282,20 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
               scopeConfidence,
               suitability: sourceEligibility,
               parsedOk: true,
-              page: page.page_number
+              page: pageNumber
             }),
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
-            contentLayer
+            contentLayer,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            }
           }));
         }
       }
@@ -1187,7 +1313,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
               scopeConfidence,
               suitability: sourceEligibility,
               parsedOk: true,
-              page: page.page_number
+              page: pageNumber
             });
           const verificationStatus = (sparkPlug.includes(' or ') || sparkPlug.includes('/')) && baseVerificationStatus === 'VERIFIED'
             ? 'APPROVED_ALTERNATIVES'
@@ -1200,13 +1326,21 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit: null,
             rawValue: sparkPlug,
             rawUnit: null,
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus,
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
             pageText,
-            contentLayer
+            contentLayer,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            }
           }));
         }
       }
@@ -1226,7 +1360,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit: 'mm',
             rawValue: electrodeGap[1],
             rawUnit: 'mm',
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus: determineVerificationStatus({
               document,
               fieldName: 'electrode_gap_mm',
@@ -1234,12 +1368,20 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
               scopeConfidence,
               suitability: sourceEligibility,
               parsedOk: value != null,
-              page: page.page_number
+              page: pageNumber
             }),
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
-            pageText
+            pageText,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            }
           }));
         }
       }
@@ -1265,7 +1407,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit,
             rawValue: value,
             rawUnit: unit,
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus: determineVerificationStatus({
               document,
               fieldName,
@@ -1273,13 +1415,21 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
               scopeConfidence,
               suitability: sourceEligibility,
               parsedOk: true,
-              page: page.page_number
+              page: pageNumber
             }),
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
             pageText,
             contentLayer,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            },
             extra: fieldName === 'carb_la_instruction' ? {} : { normalized_turns: value }
           }));
         }
@@ -1300,7 +1450,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit: null,
             rawValue: candidate.code,
             rawUnit: null,
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus: hasPartContext(context)
               ? determineVerificationStatus({
                 document,
@@ -1309,7 +1459,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
                 scopeConfidence,
                 suitability: sourceEligibility,
                 parsedOk: true,
-                page: page.page_number
+                page: pageNumber
             })
               : 'UNVERIFIED',
             scopeConfidence,
@@ -1317,12 +1467,20 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             evidenceSnippet: context.slice(0, 240),
             pageText,
             contentLayer,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            },
             extra: {
               description: normalizeText(context).slice(0, 100),
               assembly: hasPartContext(context) ? 'parts_list_context' : null,
               position_number: (context.match(/\bpos\.?\s*(\d{1,3})/i) || [])[1] || null,
               quantity: (context.match(/\bqty\.?\s*(\d{1,3})/i) || [])[1] || null,
-              model_scope: relation.model_name
+              model_scope_name: relation.model_name
             }
           }));
         }
@@ -1343,7 +1501,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             unit: null,
             rawValue: cutoff.text,
             rawUnit: null,
-            page: page.page_number,
+            page: pageNumber,
             verificationStatus: component
               ? determineVerificationStatus({
                 document,
@@ -1352,7 +1510,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
                 scopeConfidence,
                 suitability: sourceEligibility,
                 parsedOk: Boolean(serialBoundary),
-                page: page.page_number
+                page: pageNumber
             })
               : 'UNVERIFIED',
             scopeConfidence,
@@ -1360,6 +1518,14 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             evidenceSnippet: context.slice(0, 240),
             pageText,
             contentLayer,
+            pageMeta: {
+              pdf_page: pageNumber,
+              printed_page: printedPage,
+              section: window.section || pageSection,
+              line_number: window.lineNumber,
+              selected_text_source: selectedTextSource,
+              page_text_quality: pageQuality
+            },
             extra: {
               evidence_type: cutoff.evidence_type,
               component,

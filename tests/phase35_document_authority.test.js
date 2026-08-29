@@ -223,6 +223,16 @@ assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field
 assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field.field_name === 'electrode_gap_mm' && field.model_scope === 'EXACT_MODEL' && field.block_reason === null));
 assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field.field_name === 'spark_plug' && field.verification_status === 'APPROVED_ALTERNATIVES'));
 
+const invalidSparkPlugFields = dedupeFieldValues(extractTechnicalFields({
+  document: fs100Doc,
+  pages: [
+    { page_number: 5, page_text: 'FS 100 Spark Plug: 25,0 Electrode gap: 0.5 mm' },
+    { page_number: 6, page_text: 'FS 100 Spark Plug: sûreté Electrode gap: 0.5 mm' }
+  ],
+  knownModels
+}));
+assert.strictEqual(invalidSparkPlugFields.some((field) => field.field_name === 'spark_plug'), false);
+
 const wrongSourceDoc = {
   ...fs100Doc,
   document_id: 'doc-fs130',
@@ -334,6 +344,9 @@ const partFields = dedupeFieldValues(extractTechnicalFields({
 }));
 assert.ok(partFields.some((field) => field.field_name === 'part_number' && field.verification_status === 'VERIFIED'));
 assert.strictEqual(partFields.filter((field) => field.field_name === 'part_number' && field.verification_status === 'VERIFIED').length, 1);
+assert.ok(partFields.some((field) => field.field_name === 'part_number' && field.model_scope === 'EXACT_MODEL'));
+assert.ok(partFields.some((field) => field.field_name === 'part_number' && field.model_scope_name === 'BR 600'));
+assert.strictEqual(partFields.some((field) => field.field_name === 'part_number' && field.model_scope === 'BR 600'), false);
 
 assert.strictEqual(classifySerialEvidence('Replace ignition module before serial number 123456789 component update.'), 'TECHNICAL_CHANGE_CUTOFF');
 assert.strictEqual(classifySerialEvidence('Recall applies to serial number range 123456789 to 123456999.'), 'RECALL_SCOPE_CUTOFF');

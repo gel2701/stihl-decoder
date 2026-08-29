@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-08-29T08:23:21.744Z",
+  "status": "PARTIAL",
+  "fields": [
+    {
+      "field": "displacement_cc",
+      "sample_size": 0,
+      "correct": 0,
+      "false_positive": 0,
+      "model_scope_error": 0,
+      "page_mapping_error": 0,
+      "context_precision": "HIGH"
+    },
+    {
+      "field": "power_kw",
+      "sample_size": 20,
+      "correct": 0,
+      "false_positive": 20,
+      "model_scope_error": 20,
+      "page_mapping_error": 0,
+      "context_precision": "LOW"
+    },
+    {
+      "field": "weight_kg",
+      "sample_size": 20,
+      "correct": 1,
+      "false_positive": 19,
+      "model_scope_error": 19,
+      "page_mapping_error": 0,
+      "context_precision": "LOW"
+    },
+    {
+      "field": "spark_plug",
+      "sample_size": 20,
+      "correct": 0,
+      "false_positive": 20,
+      "model_scope_error": 20,
+      "page_mapping_error": 0,
+      "context_precision": "LOW"
+    },
+    {
+      "field": "electrode_gap_mm",
+      "sample_size": 0,
+      "correct": 0,
+      "false_positive": 0,
+      "model_scope_error": 0,
+      "page_mapping_error": 0,
+      "context_precision": "HIGH"
+    },
+    {
+      "field": "carb_h_setting",
+      "sample_size": 20,
+      "correct": 9,
+      "false_positive": 11,
+      "model_scope_error": 8,
+      "page_mapping_error": 0,
+      "context_precision": "LOW"
+    },
+    {
+      "field": "carb_l_setting",
+      "sample_size": 20,
+      "correct": 9,
+      "false_positive": 11,
+      "model_scope_error": 11,
+      "page_mapping_error": 0,
+      "context_precision": "LOW"
+    },
+    {
+      "field": "part_number",
+      "sample_size": 20,
+      "correct": 0,
+      "false_positive": 20,
+      "model_scope_error": 18,
+      "page_mapping_error": 0,
+      "context_precision": "LOW"
+    }
+  ]
+}

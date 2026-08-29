@@ -1,0 +1,1099 @@
+{
+  "phase": "FASE 35C.2 FINAL REPORT",
+  "SOURCE_COMMIT": "996ef14",
+  "PDF_EXTRACTION_ENGINE": "pdfjs-dist",
+  "PDF_EXTRACTION_ENGINE_VERSION": "6.2.108",
+  "BATCH3_PDF_DOCUMENTS": "78 / 78",
+  "TOTAL_PDF_PAGES": 6560,
+  "PAGES_WITH_NATIVE_TEXT": 6559,
+  "PAGES_WITHOUT_NATIVE_TEXT": 1,
+  "PAGES_OCR_REQUIRED": 1,
+  "PAGES_OCR_USED": 0,
+  "PAGE_COUNT_MISMATCH_DOCUMENTS": 9,
+  "NATIVE_TEXT_EXCELLENT": 6132,
+  "NATIVE_TEXT_GOOD": 197,
+  "NATIVE_TEXT_PARTIAL": 10,
+  "NATIVE_TEXT_POOR": 220,
+  "NATIVE_TEXT_NONE": 1,
+  "AUTHENTICATED_BEFORE": 5,
+  "AUTHENTICATED_AFTER": 78,
+  "PROBABLE_AFTER": 0,
+  "AUTHENTICITY_UPGRADES": 73,
+  "AUTHENTICITY_DOWNGRADES": 0,
+  "DOCUMENT_NUMBERS_RECOVERED": 78,
+  "REVISIONS_RECOVERED": 5,
+  "CONFIRMED_REVISION_GROUPS": 10,
+  "FIELD_CANDIDATES": 33260,
+  "SOURCE_ELIGIBLE": 32870,
+  "FIELDS_VERIFIED": 0,
+  "APPROVED_ALTERNATIVES": 0,
+  "OFFICIAL_INDIRECT": 0,
+  "BLOCKED": 33260,
+  "TOP_BLOCK_REASONS": [
+    [
+      "MODEL_SCOPE_UNRESOLVED",
+      24552
+    ],
+    [
+      "EXTRACTOR_PRECISION_TOO_LOW",
+      8674
+    ],
+    [
+      "SANITY_CHECK_FAILED",
+      34
+    ]
+  ],
+  "REAL_DOCUMENT_VERIFIED_TEST": "NO_REAL_DOCUMENT_SATISFIES_GATE",
+  "PDF_PAGE_MAPPING_TEST": "PASS",
+  "MULTI_MODEL_TABLE_TEST": "PASS",
+  "HEADER_FOOTER_TEST": "PASS",
+  "ROTATED_PAGE_TEST": "PASS",
+  "EMPTY_TEXT_PAGE_TEST": "PASS",
+  "CONFLICT_CLUSTERING_TEST": "PASS",
+  "CROSS_CORPUS_DUPLICATES": 1,
+  "CONFIRMED_DIFFERENT_REVISIONS": 0,
+  "INDIRECT_DISAGREEMENT_CLUSTERS": 0,
+  "VERIFIED_OFFICIAL_CONFLICT_CLUSTERS": 0,
+  "FALSE_PAIRWISE_CONFLICTS_REMOVED": 0,
+  "FS100_DOCUMENTS": 6,
+  "FS100_VERIFIED_FIELDS": 0,
+  "FS100_STATUS": "NO_VERIFIED_DATA",
+  "BR600_DOCUMENTS": 3,
+  "BR600_VERIFIED_FIELDS": 0,
+  "BR600_STATUS": "NO_VERIFIED_DATA",
+  "FAMILY_1125": "PARTIAL",
+  "FAMILY_1128": "PARTIAL",
+  "PRECISION_AUDIT": "PARTIAL",
+  "IDEMPOTENCY": "PASS",
+  "FAILURE_INJECTION": "PASS",
+  "PUBLIC_MODEL_DATA_MODIFIED": "0 / 0",
+  "SEO_CONTENT_MODIFIED": "0 / 0",
+  "SEO_CONTENT_FREEZE": "ACTIVE",
+  "TEST_SUITE": "PASS",
+  "FIELD_BREAKDOWN": [
+    {
+      "field": "carb_h_setting",
+      "extracted": 5319,
+      "source_eligible": 5319,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 5319,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "carb_l_setting",
+      "extracted": 6860,
+      "source_eligible": 6860,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 6860,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "carb_la_instruction",
+      "extracted": 19526,
+      "source_eligible": 19526,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 19526,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "idle_speed_rpm",
+      "extracted": 3,
+      "source_eligible": 3,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 3,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "part_number",
+      "extracted": 631,
+      "source_eligible": 631,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 631,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "power_hp",
+      "extracted": 3,
+      "source_eligible": 3,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 3,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "power_kw",
+      "extracted": 138,
+      "source_eligible": 138,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 138,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "pressure_bar",
+      "extracted": 390,
+      "source_eligible": 0,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 390,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "spark_plug",
+      "extracted": 204,
+      "source_eligible": 204,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 204,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "stroke_mm",
+      "extracted": 126,
+      "source_eligible": 126,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 126,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "torque_nm",
+      "extracted": 37,
+      "source_eligible": 37,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 37,
+      "conflict_cluster": 0
+    },
+    {
+      "field": "weight_kg",
+      "extracted": 23,
+      "source_eligible": 23,
+      "verified": 0,
+      "approved_alternatives": 0,
+      "indirect": 0,
+      "blocked": 23,
+      "conflict_cluster": 0
+    }
+  ],
+  "VERIFIED_SAMPLE": [],
+  "BLOCKED_SAMPLE": [
+    {
+      "MODEL": "020",
+      "FIELD": "part_number",
+      "VALUE": "5910-890-3100",
+      "DOCUMENT": "batch3:1",
+      "PAGE": 3,
+      "BLOCK_REASON": "EXTRACTOR_PRECISION_TOO_LOW",
+      "NEXT_ACTION": "Manual review required before any promotion decision."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_h_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_h_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_h_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_h_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "réservoir",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "réservoir",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "réservoir",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "réservoir",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_h_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_h_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_h_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_h_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_l_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_l_setting",
+      "VALUE": "4",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "l’huile",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "l’huile",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "l’huile",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "l’huile",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_h_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_h_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_h_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_h_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "011",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 2,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "stroke_mm",
+      "VALUE": 30,
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "stroke_mm",
+      "VALUE": 30,
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "stroke_mm",
+      "VALUE": 30,
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "power_kw",
+      "VALUE": 2.1,
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "power_kw",
+      "VALUE": 2.1,
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "power_kw",
+      "VALUE": 2.1,
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "richesse",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "richesse",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "richesse",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour Vis de réglage de richesse",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour Vis de réglage de richesse",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour Vis de réglage de richesse",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour Vis de réglage de richesse au ralenti L: Ouverte d’environ 1 tour",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour Vis de réglage de richesse au ralenti L: Ouverte d’environ 1 tour",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour Vis de réglage de richesse au ralenti L: Ouverte d’environ 1 tour",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar)",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar)",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar)",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar) Fonctionnement de l’aération",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar) Fonctionnement de l’aération",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar) Fonctionnement de l’aération",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "carburant",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "carburant",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "carburant",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "p+≤3 kPa (0,3 bar)",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "p+≤3 kPa (0,3 bar)",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "p+≤3 kPa (0,3 bar)",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_h_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_l_setting",
+      "VALUE": "1",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Essence de marque Huile de marque pour moteur deux-temps Taux de mélange: 1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Essence de marque Huile de marque pour moteur deux-temps Taux de mélange: 1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "Essence de marque Huile de marque pour moteur deux-temps Taux de mélange: 1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent 024, 026 3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent 024, 026 3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent 024, 026 3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "012",
+      "FIELD": "carb_l_setting",
+      "VALUE": "3",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 4,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "5",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "5",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "036",
+      "FIELD": "carb_l_setting",
+      "VALUE": "5",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "050",
+      "FIELD": "carb_l_setting",
+      "VALUE": "5",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "066",
+      "FIELD": "carb_l_setting",
+      "VALUE": "5",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "026",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "036",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "050",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "066",
+      "FIELD": "carb_l_setting",
+      "VALUE": "2",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    },
+    {
+      "MODEL": "024",
+      "FIELD": "carb_la_instruction",
+      "VALUE": "vissage,",
+      "DOCUMENT": "batch3:2",
+      "PAGE": 6,
+      "BLOCK_REASON": "MODEL_SCOPE_UNRESOLVED",
+      "NEXT_ACTION": "Find exact model heading, subsection, or single-model page context."
+    }
+  ],
+  "FINAL_STATUS": "PARTIAL PASS"
+}
