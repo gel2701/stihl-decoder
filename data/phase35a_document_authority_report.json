@@ -1,0 +1,1958 @@
+{
+  "generated_at": "2026-08-29T00:59:13.795Z",
+  "phase": "FASE 35A",
+  "source_commit": "40ea934",
+  "seo_content_freeze": "ACTIVE",
+  "backup_paths": {
+    "canonical": "data/backups/stihl_database-2026-08-29-phase35a-pre-validation.db",
+    "scribd": "data/backups/stihl_scribd_documentation-2026-08-29-phase35a-readonly.db"
+  },
+  "metrics": {
+    "total_documents": 1673,
+    "unique_documents": 1663,
+    "authenticated_official": 65,
+    "probable_official": 24,
+    "needs_review": 111,
+    "insufficient_extracted_text": 1067,
+    "text_extraction_failed": 326,
+    "non_official_confirmed": 69,
+    "duplicates": 10,
+    "possible_different_revisions": 15,
+    "confirmed_different_revisions": 0,
+    "document_model_matches": 195,
+    "document_model_mismatches": 1111,
+    "model_scope_unresolved": 1329,
+    "total_field_candidates_extracted": 8455,
+    "source_eligible_fields": 2645,
+    "fields_verified": 0,
+    "official_indirect": 1334,
+    "unverified": 7121,
+    "extraction_anomalies": 236,
+    "part_numbers_extracted": 782,
+    "part_numbers_from_authenticated_official": 0,
+    "part_numbers_from_probable_official": 56,
+    "part_numbers_unverified": 782,
+    "part_numbers_verified": 0,
+    "technical_change_cutoffs": 36,
+    "conflicts_logged": 8
+  },
+  "br600": {
+    "documents_found": 10,
+    "revisions_found": 10,
+    "fields_extracted": 39,
+    "result": "PASS"
+  },
+  "fs100": {
+    "documents_found": 0,
+    "authenticated": 0,
+    "fields_extracted": 23,
+    "result": "INSUFFICIENT EVIDENCE"
+  },
+  "fs100_wrong_source_test": "PASS",
+  "family_1125": {
+    "status": "INSUFFICIENT EVIDENCE",
+    "evidence": [
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "1011094680",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "140899194",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "140899194",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "212580260",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "212580260",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "266210089",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "272658177",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "272658177",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "283428866",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "300644073",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "300644073",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "314293979",
+        "document_number": null,
+        "page": 1,
+        "confidence": "EXPLICIT_MULTI_MODEL_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "314293979",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "319159652",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "325461778",
+        "document_number": null,
+        "page": 1,
+        "confidence": "EXPLICIT_MODEL_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "336021315",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "352646781",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "366823957",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "384785931",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "393037970",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "393037970",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "412349886",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "429929961",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "436546065",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "436546065",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "476621405",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "478257576",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "490855594",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "490855594",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "557485525",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "692459610",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "693774524",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "703649661",
+        "document_number": null,
+        "page": null,
+        "confidence": "MODEL_NOT_FOUND"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "703678897",
+        "document_number": null,
+        "page": null,
+        "confidence": "MODEL_NOT_FOUND"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "703679997",
+        "document_number": null,
+        "page": null,
+        "confidence": "MODEL_NOT_FOUND"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "719064265",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "774375780",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812224385",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812224385",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812227363",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812227363",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "913933924",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "914045904",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "034",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "922330466",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1125",
+        "model": "036",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "990032169",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      }
+    ]
+  },
+  "family_1128": {
+    "status": "INSUFFICIENT EVIDENCE",
+    "evidence": [
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "140899194",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "203541289",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "212580260",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "266210089",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "272658177",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "290449920",
+        "document_number": null,
+        "page": null,
+        "confidence": "MODEL_NOT_FOUND"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "300644073",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "317553541",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "319159652",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "339394784",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "339395037",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "352646781",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "366823957",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "374453438",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "384785931",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "384785931",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "392091827",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "392091827",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "393037773",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "393037970",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "412349886",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "412349886",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "420950768",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "420950768",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "429929961",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "436546065",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "457587643",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "457587643",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "460794770",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "476621405",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "498281043",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "557485525",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "561955475",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "57576996",
+        "document_number": null,
+        "page": 1,
+        "confidence": "EXPLICIT_MODEL_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "657829051",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "703205025",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "719064787",
+        "document_number": null,
+        "page": 1,
+        "confidence": "EXPLICIT_MODEL_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "769890628",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812224385",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812224385",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "812227363",
+        "document_number": null,
+        "page": 1,
+        "confidence": "BODY_ONLY_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "921807352",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "922100933",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "044",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "922213087",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      },
+      {
+        "series_code": "1128",
+        "model": "046",
+        "relationship": "SERIES_MEMBERSHIP",
+        "document_id": "997144896",
+        "document_number": null,
+        "page": null,
+        "confidence": "PROBABLE_MATCH"
+      }
+    ]
+  },
+  "impossible_duplicate_test": "PASS",
+  "duplicate_detection": "PASS",
+  "revision_detection": "PASS",
+  "model_mismatch_detection": "PASS",
+  "field_provenance": "PASS",
+  "technical_extraction": "PASS",
+  "database_backup": "PASS",
+  "destructive_reseed": "NO",
+  "public_model_data_modified": 0,
+  "seo_content_modified": 0,
+  "promotion_candidate_dataset": "CREATED",
+  "random_manual_audit": [
+    {
+      "document_id": "414153070",
+      "document_title": "Affidavit for Chainsaw Registration",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "BODY_ONLY_MATCH"
+      ],
+      "document_type": "DEALER_TRAINING_MATERIAL",
+      "revision_found": null
+    },
+    {
+      "document_id": "993075851",
+      "document_title": "Manual Stihl KA 85 R",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "705112704",
+      "document_title": "Janome HD1800 Sewing Machine Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "888756422",
+      "document_title": "SR 430, 450 Mistblower Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "INSTRUCTION_MANUAL",
+      "revision_found": "F"
+    },
+    {
+      "document_id": "871528731",
+      "document_title": "Liste des pièces pour FS 131-Z",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "2023"
+    },
+    {
+      "document_id": "59217450",
+      "document_title": "Turfco Slit Seeder Overview",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "362591684",
+      "document_title": "Ascutirea Lanturilor de Ferastrau PDF",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "683225917",
+      "document_title": "Catálogo STIHL 2023: Produtos e Certificações",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "2023"
+    },
+    {
+      "document_id": "376580943",
+      "document_title": "Catalogo Stihl Viking 2017-1",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "PARTS_LIST",
+      "revision_found": "2017"
+    },
+    {
+      "document_id": "380716913",
+      "document_title": "3 Motosierra Stihl Ms 381",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "659024462",
+      "document_title": "Peças de Reposição Motosserra MS 250",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MODEL_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "737859762",
+      "document_title": "Brother VX Series Sewing Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "BODY_ONLY_MATCH",
+        "BODY_ONLY_MATCH",
+        "BODY_ONLY_MATCH"
+      ],
+      "document_type": "REPAIR_MANUAL",
+      "revision_found": "1961"
+    },
+    {
+      "document_id": "919876762",
+      "document_title": "Componentes e Ferramentas MS 381",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "371458709",
+      "document_title": "Carburetor Repair Manual PDF",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "REPAIR_MANUAL",
+      "revision_found": null
+    },
+    {
+      "document_id": "933947598",
+      "document_title": "Stihl FS 160, 180, 220, 280",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "PROBABLE_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "992012633",
+      "document_title": "Bar and Chain Catalog 2024",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "PROBABLE_MATCH"
+      ],
+      "document_type": "CATALOGUE",
+      "revision_found": "2024"
+    },
+    {
+      "document_id": "882888042",
+      "document_title": "MS 780",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "350984004",
+      "document_title": "Curso para Operador de Motosserra",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "1926"
+    },
+    {
+      "document_id": "624287022",
+      "document_title": "STIHL Katalog 2022 PL",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "2022"
+    },
+    {
+      "document_id": "700399699",
+      "document_title": "Lista de Piezas MS 210 Stihl",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MODEL_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "931081222",
+      "document_title": "Manual de Instruções do Cortador STIHL",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "481476500",
+      "document_title": "Desmalezadoras: Guía de Equipos STIHL",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "958445860",
+      "document_title": "STIHL MS 200 T Chainsaw Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MODEL_MATCH"
+      ],
+      "document_type": "INSTRUCTION_MANUAL",
+      "revision_found": null
+    },
+    {
+      "document_id": "675498152",
+      "document_title": "Stihl Ms180 (1130) Ipl",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MULTI_MODEL_MATCH",
+        "PROBABLE_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "966747543",
+      "document_title": "STIHL MS 661 Repair Manual Guide",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "REPAIR_MANUAL",
+      "revision_found": null
+    }
+  ],
+  "targeted_manual_audit": [
+    {
+      "document_id": "1001134390",
+      "document_title": "Stihl - MS362 Parts List",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 362"
+      ]
+    },
+    {
+      "document_id": "1005869786",
+      "document_title": "Stihl MS 880 Parts List xnzjb4",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1008738745",
+      "document_title": "STIHL 028 038 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "FAILED",
+      "models_mentioned": [
+        "028",
+        "038"
+      ]
+    },
+    {
+      "document_id": "1009081559",
+      "document_title": "Manual de Taller Sthil MS 201 T",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 201 TC-M"
+      ]
+    },
+    {
+      "document_id": "1009082461",
+      "document_title": "Manual de Taller Sthil MS361, 341",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 361",
+        "MS 341"
+      ]
+    },
+    {
+      "document_id": "1009083424",
+      "document_title": "Manual de Taller Sthil MS660, 650",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1010394456",
+      "document_title": "Spare Parts List United States, English 02/25/2022",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1010394459",
+      "document_title": "MS 210 C-BE: Spare Parts List United States, English 11/18/2025",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 210"
+      ]
+    },
+    {
+      "document_id": "1010394462",
+      "document_title": "MS 192 TC",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024"
+      ]
+    },
+    {
+      "document_id": "1011094680",
+      "document_title": "Stihl 034",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "034"
+      ]
+    },
+    {
+      "document_id": "1017235047",
+      "document_title": "Stihl Fs 120 Service Manual: Quick Links",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "020"
+      ]
+    },
+    {
+      "document_id": "1021876562",
+      "document_title": "Zeichnung Stihl 009",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "TECHNICAL_INFORMATION",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "009"
+      ]
+    },
+    {
+      "document_id": "1024624512",
+      "document_title": "manuale Sthil 029 super",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1037309841",
+      "document_title": "Catalogo Herramientas Stihl 2024",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024"
+      ]
+    },
+    {
+      "document_id": "1043518646",
+      "document_title": "Despiece MS310 Stihl",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 310",
+        "MS 290 Farm Boss"
+      ]
+    },
+    {
+      "document_id": "1044052423",
+      "document_title": "BG_50_4140_Service_Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "041"
+      ]
+    },
+    {
+      "document_id": "1044575708",
+      "document_title": "FR-3001 - 41450113301 Id en",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "011",
+        "020"
+      ]
+    },
+    {
+      "document_id": "1044718052",
+      "document_title": "Catalogo Carsan Abril 2025",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1051266430",
+      "document_title": "Stihl Ms 720 Ipl",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1063249075",
+      "document_title": "Catalogo Bristol",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1063348650",
+      "document_title": "Despiece Motosierra Stihl Ms 382",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024"
+      ]
+    },
+    {
+      "document_id": "1063749296",
+      "document_title": "STIHL-MS-362-C-M",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 362"
+      ]
+    },
+    {
+      "document_id": "1063782499",
+      "document_title": "STIHL HS 81, 86 repair",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1065501823",
+      "document_title": "462 T.I. 83.2017",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1066705741",
+      "document_title": "Right Light RL4000",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1067804972",
+      "document_title": "SM-Stihl MS 210, MS 230, MS 250 Chainsaw",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 210",
+        "MS 230",
+        "MS 250"
+      ]
+    },
+    {
+      "document_id": "1068494382",
+      "document_title": "Service Manual Carburetor Stihl.en.Pt",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1068494421",
+      "document_title": "Service Manual Carburetor Stihl.pdf 20260325 123549 0000",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "026"
+      ]
+    },
+    {
+      "document_id": "1069846783",
+      "document_title": "Stihl FS 80 Brushcutter Spare Parts List",
+      "authenticity_status": "NEEDS_REVIEW",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "GOOD",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1079163141",
+      "document_title": "Stihl 064 service manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "064"
+      ]
+    },
+    {
+      "document_id": "140658237",
+      "document_title": "MS210 MS230 MS250 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 210",
+        "MS 230",
+        "MS 250"
+      ]
+    },
+    {
+      "document_id": "140899194",
+      "document_title": "Stihl 038 AV Parts and Diagrams",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "GOOD",
+      "models_mentioned": [
+        "038",
+        "MS 200 / 020 T",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 270",
+        "MS 362",
+        "MS 441",
+        "MS 460 / 046 Magnum",
+        "FS 350",
+        "009",
+        "010",
+        "011",
+        "012",
+        "020",
+        "026",
+        "028",
+        "034",
+        "036",
+        "041",
+        "044",
+        "050",
+        "051",
+        "064",
+        "066",
+        "070",
+        "084"
+      ]
+    },
+    {
+      "document_id": "143435702",
+      "document_title": "MS 250/250 C Parts Breakdown",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 250"
+      ]
+    },
+    {
+      "document_id": "160190551",
+      "document_title": "Peden Power Spare Parts Catalogue 2010",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "010"
+      ]
+    },
+    {
+      "document_id": "183336204",
+      "document_title": "Diaphragm Carburetors Catalog",
+      "authenticity_status": "NEEDS_REVIEW",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "183341838",
+      "document_title": "Stihl 031av Service Manual PDF",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "FAILED",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "190134377",
+      "document_title": "FS45 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "205682059",
+      "document_title": "STIHL 009, 010, 011 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "009",
+        "010",
+        "011"
+      ]
+    },
+    {
+      "document_id": "212580260",
+      "document_title": "Stihl Chainsaw 024,026 (German)",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024",
+        "026",
+        "MS 170",
+        "MS 260",
+        "FS 350",
+        "009",
+        "010",
+        "011",
+        "012",
+        "020",
+        "028",
+        "034",
+        "036",
+        "038",
+        "041",
+        "044",
+        "050",
+        "051",
+        "056",
+        "066"
+      ]
+    },
+    {
+      "document_id": "221467522",
+      "document_title": "Roçadeira Stihl FS 220 Manual",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "EXCELLENT",
+      "models_mentioned": [
+        "MS 260",
+        "MS 361",
+        "MS 462 C-M",
+        "TS 420",
+        "009",
+        "010",
+        "011",
+        "012",
+        "015",
+        "028",
+        "051",
+        "070",
+        "075"
+      ]
+    },
+    {
+      "document_id": "246231149",
+      "document_title": "Stihl MS180 PDF",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": [
+        "MS 180"
+      ]
+    },
+    {
+      "document_id": "246232151",
+      "document_title": "Technical Information: Replacement Ignition Systems For STIHL Chainsaws and Power Tools",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "TECHNICAL_INFORMATION",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "251653857",
+      "document_title": "Stihl Ms 020T 020",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "020",
+        "020 T"
+      ]
+    },
+    {
+      "document_id": "254132918",
+      "document_title": "Stihl 084 Parts Breakdown Guide",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": [
+        "084"
+      ]
+    },
+    {
+      "document_id": "263952354",
+      "document_title": "Stihl MS 381 Parts and Diagrams",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "266210089",
+      "document_title": "STIHL Catalogo2014",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 250",
+        "MS 260",
+        "MS 290 Farm Boss",
+        "MS 460 / 046 Magnum",
+        "010",
+        "012",
+        "015",
+        "024",
+        "034",
+        "046",
+        "050",
+        "051",
+        "066",
+        "075",
+        "076"
+      ]
+    },
+    {
+      "document_id": "272658177",
+      "document_title": "Stihl 08S Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 170",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 260",
+        "MS 270",
+        "MS 310",
+        "MS 361",
+        "MS 362",
+        "MS 460 / 046 Magnum",
+        "FS 350",
+        "009",
+        "010",
+        "011",
+        "012",
+        "015",
+        "028",
+        "034",
+        "036",
+        "044",
+        "048",
+        "051",
+        "066"
+      ]
+    },
+    {
+      "document_id": "274703169",
+      "document_title": "Stihl 028 AV",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "028"
+      ]
+    },
+    {
+      "document_id": "277501076",
+      "document_title": "Stihl MS 441 Parts and Diagrams",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 441",
+        "011",
+        "020",
+        "041",
+        "051"
+      ]
+    },
+    {
+      "document_id": "283428866",
+      "document_title": "Stihl FS 55",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 260",
+        "MS 361",
+        "MS 362",
+        "MS 460 / 046 Magnum",
+        "FS 350",
+        "HS 45",
+        "009",
+        "010",
+        "011",
+        "012",
+        "036",
+        "048",
+        "066"
+      ]
+    }
+  ],
+  "field_breakdown": [
+    {
+      "field": "displacement_cc",
+      "extracted": 13,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 13,
+      "conflict": 0
+    },
+    {
+      "field": "bore_mm",
+      "extracted": 39,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 39,
+      "conflict": 0
+    },
+    {
+      "field": "stroke_mm",
+      "extracted": 45,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 45,
+      "conflict": 0
+    },
+    {
+      "field": "power_kw",
+      "extracted": 394,
+      "verified": 0,
+      "indirect": 25,
+      "unverified": 369,
+      "conflict": 0
+    },
+    {
+      "field": "power_hp",
+      "extracted": 52,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 52,
+      "conflict": 0
+    },
+    {
+      "field": "weight_kg",
+      "extracted": 26,
+      "verified": 0,
+      "indirect": 15,
+      "unverified": 11,
+      "conflict": 0
+    },
+    {
+      "field": "idle_speed_rpm",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "spark_plug",
+      "extracted": 373,
+      "verified": 0,
+      "indirect": 70,
+      "unverified": 303,
+      "conflict": 0
+    },
+    {
+      "field": "electrode_gap_mm",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carburetor_model",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carb_h_setting",
+      "extracted": 2488,
+      "verified": 0,
+      "indirect": 280,
+      "unverified": 2208,
+      "conflict": 0
+    },
+    {
+      "field": "carb_l_setting",
+      "extracted": 2453,
+      "verified": 0,
+      "indirect": 216,
+      "unverified": 2237,
+      "conflict": 1
+    },
+    {
+      "field": "fuel_tank_l",
+      "extracted": 28,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 28,
+      "conflict": 0
+    },
+    {
+      "field": "oil_mix_ratio",
+      "extracted": 105,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 105,
+      "conflict": 0
+    },
+    {
+      "field": "chain_pitch",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "chain_gauge_mm",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "air_flow_m3_h",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "air_velocity_m_s",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "blowing_force_n",
+      "extracted": 0,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "part_number",
+      "extracted": 782,
+      "verified": 0,
+      "indirect": 636,
+      "unverified": 146,
+      "conflict": 7
+    },
+    {
+      "field": "technical_change_cutoff",
+      "extracted": 36,
+      "verified": 0,
+      "indirect": 0,
+      "unverified": 36,
+      "conflict": 0
+    }
+  ],
+  "document_type_breakdown": [
+    {
+      "type": "WORKSHOP_MANUAL",
+      "total": 21,
+      "authenticated": 1,
+      "probable": 4,
+      "review": 13,
+      "non_official": 3
+    },
+    {
+      "type": "SERVICE_MANUAL",
+      "total": 69,
+      "authenticated": 1,
+      "probable": 0,
+      "review": 67,
+      "non_official": 1
+    },
+    {
+      "type": "INSTRUCTION_MANUAL",
+      "total": 160,
+      "authenticated": 15,
+      "probable": 0,
+      "review": 142,
+      "non_official": 3
+    },
+    {
+      "type": "PARTS_LIST",
+      "total": 173,
+      "authenticated": 6,
+      "probable": 13,
+      "review": 148,
+      "non_official": 6
+    },
+    {
+      "type": "TECHNICAL_INFORMATION",
+      "total": 12,
+      "authenticated": 0,
+      "probable": 2,
+      "review": 9,
+      "non_official": 1
+    },
+    {
+      "type": "CATALOGUE",
+      "total": 69,
+      "authenticated": 4,
+      "probable": 1,
+      "review": 60,
+      "non_official": 4
+    },
+    {
+      "type": "OTHER",
+      "total": 1169,
+      "authenticated": 38,
+      "probable": 4,
+      "review": 1076,
+      "non_official": 51
+    }
+  ],
+  "final_status": "PASS"
+}

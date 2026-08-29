@@ -1,6 +1,29 @@
 {
-  "generated_at": "2026-08-29T00:21:25.726Z",
+  "generated_at": "2026-08-29T00:59:13.885Z",
   "duplicate_groups": [
+    {
+      "duplicate_group_id": "dup_d067d3f835bb",
+      "canonical_document_id": "814953767",
+      "canonical_document_number": "0458-208-8221-C",
+      "members": [
+        {
+          "document_id": "1071320397",
+          "document_title": "DVS_STIHL_ZBA_ZBA_0458-208-8221-E_ZBA_02_01",
+          "duplicate_status": "MISMATCHED_METADATA",
+          "revision": "E",
+          "market": "UNKNOWN",
+          "page_count": 104
+        },
+        {
+          "document_id": "814953767",
+          "document_title": "STIHL MS 250 Chainsaw Manual",
+          "duplicate_status": "CANONICAL",
+          "revision": "C",
+          "market": "UNKNOWN",
+          "page_count": 112
+        }
+      ]
+    },
     {
       "duplicate_group_id": "dup_af5108785aef",
       "canonical_document_id": "205682059",
@@ -17,29 +40,22 @@
         {
           "document_id": "359824077",
           "document_title": "STIHL 009, 010, 011 Service Manual",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 52
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "359824077",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "205682059"
         }
       ]
     },
     {
       "duplicate_group_id": "dup_f51178af4871",
-      "canonical_document_id": "388934757",
+      "canonical_document_id": "221467522",
       "canonical_document_number": "0800-707-5001",
       "members": [
         {
           "document_id": "221467522",
           "document_title": "Roçadeira Stihl FS 220 Manual",
-          "duplicate_status": "SAME_DOCUMENT_DIFFERENT_SCAN",
+          "duplicate_status": "CANONICAL",
           "revision": null,
           "market": "US",
           "page_count": 15
@@ -47,17 +63,10 @@
         {
           "document_id": "388934757",
           "document_title": "Stihl MS 210 - 230 - 250",
-          "duplicate_status": "CANONICAL",
+          "duplicate_status": "MISMATCHED_METADATA",
           "revision": null,
           "market": "US",
           "page_count": 60
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "221467522",
-          "duplicate_status": "SAME_DOCUMENT_DIFFERENT_SCAN",
-          "compared_to": "388934757"
         }
       ]
     },
@@ -77,17 +86,10 @@
         {
           "document_id": "354207121",
           "document_title": "Catálogo JLC: Motosierras y Accesorios",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 156
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "354207121",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "273067093"
         }
       ]
     },
@@ -112,13 +114,6 @@
           "market": "UNKNOWN",
           "page_count": 36
         }
-      ],
-      "relations": [
-        {
-          "document_id": "398011408",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "281822741"
-        }
       ]
     },
     {
@@ -137,47 +132,10 @@
         {
           "document_id": "339284482",
           "document_title": "Stihl Ts 410 420 Owners Instruction Manual",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 112
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "339284482",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "329266645"
-        }
-      ]
-    },
-    {
-      "duplicate_group_id": "dup_f89293e0105c",
-      "canonical_document_id": "544741706",
-      "canonical_document_number": null,
-      "members": [
-        {
-          "document_id": "336021315",
-          "document_title": "Stihl MS 210, 230, 250 Parts Manual",
-          "duplicate_status": "SAME_BASE_DOCUMENT_DIFFERENT_MARKET",
-          "revision": null,
-          "market": "US",
-          "page_count": 17
-        },
-        {
-          "document_id": "544741706",
-          "document_title": "Stihl MS 210, 230, 250 Parts Manual",
-          "duplicate_status": "CANONICAL",
-          "revision": null,
-          "market": "UNKNOWN",
-          "page_count": 17
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "336021315",
-          "duplicate_status": "SAME_BASE_DOCUMENT_DIFFERENT_MARKET",
-          "compared_to": "544741706"
         }
       ]
     },
@@ -197,17 +155,10 @@
         {
           "document_id": "98130538",
           "document_title": "Tillotson Carburetor Parts Catalog",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 16
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "98130538",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "355776494"
         }
       ]
     },
@@ -227,17 +178,10 @@
         {
           "document_id": "546027545",
           "document_title": "Stihl Re 109 - 119 - 129 Plus",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 40
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "546027545",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "371660959"
         }
       ]
     },
@@ -257,7 +201,7 @@
         {
           "document_id": "593624361",
           "document_title": "Stihl MS 290 - 310 - 390",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 56
@@ -265,22 +209,10 @@
         {
           "document_id": "620277389",
           "document_title": "Stihl MS 290 - 310 - 390",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 56
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "593624361",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "380161381"
-        },
-        {
-          "document_id": "620277389",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "380161381"
         }
       ]
     },
@@ -304,13 +236,6 @@
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 60
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "452893827",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "385455110"
         }
       ]
     },
@@ -338,7 +263,7 @@
         {
           "document_id": "467725325",
           "document_title": "Stihl FS 55",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 44
@@ -366,33 +291,6 @@
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 44
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "455476036",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "391815233"
-        },
-        {
-          "document_id": "467725325",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "391815233"
-        },
-        {
-          "document_id": "592127028",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "391815233"
-        },
-        {
-          "document_id": "606134543",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "391815233"
-        },
-        {
-          "document_id": "616799494",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "391815233"
         }
       ]
     },
@@ -412,17 +310,10 @@
         {
           "document_id": "605817491",
           "document_title": "Stihl BG 56 - 66 - 86 - SH 56 - 86",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 32
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "605817491",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "403673894"
         }
       ]
     },
@@ -442,7 +333,7 @@
         {
           "document_id": "461990031",
           "document_title": "Stihl FS 55",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 48
@@ -450,7 +341,7 @@
         {
           "document_id": "583635065",
           "document_title": "Stihl FS 55",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 48
@@ -458,27 +349,10 @@
         {
           "document_id": "905795850",
           "document_title": "Stihl Fs 55",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 48
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "461990031",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "439007114"
-        },
-        {
-          "document_id": "583635065",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "439007114"
-        },
-        {
-          "document_id": "905795850",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "439007114"
         }
       ]
     },
@@ -498,17 +372,10 @@
         {
           "document_id": "469982706",
           "document_title": "Massey Ferguson MF390 Manual PDF Download",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 2
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "469982706",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "469982705"
         }
       ]
     },
@@ -533,13 +400,6 @@
           "market": "UNKNOWN",
           "page_count": null
         }
-      ],
-      "relations": [
-        {
-          "document_id": "542609106",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "478726844"
-        }
       ]
     },
     {
@@ -558,17 +418,10 @@
         {
           "document_id": "758946297",
           "document_title": "0458-255-0121-B Zba 12 02",
-          "duplicate_status": "SAME_DOCUMENT_DIFFERENT_SCAN",
+          "duplicate_status": "MISMATCHED_METADATA",
           "revision": "B",
           "market": "UNKNOWN",
           "page_count": 44
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "758946297",
-          "duplicate_status": "SAME_DOCUMENT_DIFFERENT_SCAN",
-          "compared_to": "513798695"
         }
       ]
     },
@@ -592,13 +445,6 @@
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 50
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "749337099",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "653133044"
         }
       ]
     },
@@ -631,18 +477,6 @@
           "market": "UNKNOWN",
           "page_count": null
         }
-      ],
-      "relations": [
-        {
-          "document_id": "703678897",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "703649661"
-        },
-        {
-          "document_id": "704071855",
-          "duplicate_status": "EXACT_DUPLICATE",
-          "compared_to": "703649661"
-        }
       ]
     },
     {
@@ -661,17 +495,10 @@
         {
           "document_id": "890221838",
           "document_title": "9590 90cm SÃƒÂ Genspezi Schwert-Set Solid Drive Mit 2 VollmeiÃƒÂŸelketten 3 8' 114TG 1 6mm Passend fÃƒÂ",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 2
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "890221838",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "890221278"
         }
       ]
     },
@@ -691,17 +518,10 @@
         {
           "document_id": "966900999",
           "document_title": "STIHL MS 661 Repair Manual Guide",
-          "duplicate_status": "RELATED_DOCUMENT",
+          "duplicate_status": "POSSIBLE_DIFFERENT_REVISION",
           "revision": null,
           "market": "UNKNOWN",
           "page_count": 138
-        }
-      ],
-      "relations": [
-        {
-          "document_id": "966900999",
-          "duplicate_status": "RELATED_DOCUMENT",
-          "compared_to": "966747543"
         }
       ]
     }
