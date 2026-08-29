@@ -1,0 +1,603 @@
+{
+  "generated_at": "2026-08-29T05:42:43.771Z",
+  "phase": "FASE 35C FINAL REPORT",
+  "SOURCE_COMMIT": "ca5c545",
+  "CONTENT_COMMIT": "ca5c545",
+  "BATCH2_SOURCE": "C:/Users/GelliusSnippe/.agents/stihl_local_library.db",
+  "BATCH2_FILE_HASH": "519b5797bcc79994bd3702d9ca45be3fc7dcda707616e8df82972e51b787bf89",
+  "BATCH2_DATABASE_SIZE": 3493888,
+  "BATCH2_TOTAL_DOCUMENTS": 1790,
+  "BATCH2_TOTAL_PAGES": 1366,
+  "BATCH2_UNIQUE_DOCUMENTS": 939,
+  "BATCH2_AUTHENTICATED_OFFICIAL": 1,
+  "BATCH2_PROBABLE_OFFICIAL": 11,
+  "BATCH2_NEEDS_REVIEW": 19,
+  "BATCH2_INSUFFICIENT_TEXT": 317,
+  "BATCH2_TEXT_FAILED": 424,
+  "BATCH2_NON_OFFICIAL": 1018,
+  "BATCH2_EXCELLENT_TEXT": 478,
+  "BATCH2_GOOD_TEXT": 152,
+  "BATCH2_PARTIAL_TEXT": 37,
+  "BATCH2_POOR_TEXT": 699,
+  "BATCH2_FAILED_TEXT": 424,
+  "DUPLICATES_WITHIN_BATCH2": 87,
+  "DUPLICATES_AGAINST_BATCH1": 0,
+  "SAME_DOCUMENT_DIFFERENT_REVISION": 0,
+  "SAME_DOCUMENT_DIFFERENT_MARKET": 0,
+  "NEW_UNIQUE_OFFICIAL_DOCUMENTS": 1,
+  "REVISION_CANDIDATE_GROUPS": 0,
+  "CONFIRMED_DIFFERENT_REVISIONS": 0,
+  "MARKET_VARIANTS": 0,
+  "TRANSLATIONS": 0,
+  "TOTAL_FIELD_CANDIDATES": 5268,
+  "SOURCE_ELIGIBLE": 9,
+  "FIELDS_VERIFIED": 0,
+  "OFFICIAL_INDIRECT": 9,
+  "BLOCKED": 9,
+  "CONFLICTS": 1,
+  "PART_NUMBERS_EXTRACTED": 0,
+  "PART_NUMBERS_VERIFIED": 0,
+  "PART_COMPATIBILITY_VERIFIED": 0,
+  "TECHNICAL_CHANGE_CUTOFFS": 0,
+  "FS100_DOCUMENTS": 0,
+  "FS100_VERIFIED_FIELDS": 0,
+  "FS100_RESULT": "NO_VALID_DOCUMENT",
+  "BR600_DOCUMENTS": 0,
+  "BR600_VERIFIED_FIELDS": 0,
+  "BR600_REVISION_STATUS": "INSUFFICIENT_EVIDENCE",
+  "FAMILY_1125": "INSUFFICIENT_EVIDENCE",
+  "FAMILY_1128": "INSUFFICIENT_EVIDENCE",
+  "BATCH1_BATCH2_FACT_AGREEMENTS": 0,
+  "BATCH1_BATCH2_FACT_CONFLICTS": 0,
+  "UNRESOLVED_OFFICIAL_CONFLICTS": 0,
+  "VERIFIED_SAMPLE_AUDIT": "FAIL",
+  "PART_NUMBER_AUDIT": "FAIL",
+  "CARB_AUDIT": "FAIL",
+  "DOCUMENT_NUMBER_AUDIT": "PASS",
+  "CROSS_BATCH_DEDUP_TEST": "PASS",
+  "CROSS_BATCH_REVISION_TEST": "PASS",
+  "CONFLICT_PRESERVATION_TEST": "FAIL",
+  "HIGH_AUTHORITY_SCOPE_TEST": "PASS",
+  "IDEMPOTENCY_TEST": "PASS",
+  "PUBLIC_MODEL_DATA_MODIFIED": "0 / 0",
+  "SEO_CONTENT_MODIFIED": "0 / 0",
+  "SEO_CONTENT_FREEZE": "ACTIVE",
+  "DATABASE_BACKUP": "PASS",
+  "TEST_SUITE": "FAIL",
+  "FINAL_STATUS": "PARTIAL PASS",
+  "batch2_inventory": {
+    "total_documents": 1790,
+    "total_pages": 1366,
+    "total_text_characters": 657636,
+    "document_types": {
+      "html_technical_doc": 1473,
+      "pdf_repair_instruction": 317
+    },
+    "languages": {
+      "en": 1790
+    },
+    "markets": {
+      "UNKNOWN": 1778,
+      "US": 12
+    },
+    "document_number_coverage": 1,
+    "model_coverage": 1018,
+    "empty_or_failed_documents": 741
+  },
+  "field_breakdown": [
+    {
+      "field": "displacement_cc",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "bore_mm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "stroke_mm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "power_kw",
+      "extracted": 9,
+      "source_eligible": 9,
+      "verified": 0,
+      "indirect": 9,
+      "blocked": 9,
+      "conflict": 1
+    },
+    {
+      "field": "power_hp",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "weight_kg",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "idle_speed_rpm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "max_engine_speed_rpm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "spark_plug",
+      "extracted": 347,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "electrode_gap_mm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "ignition_timing",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carburetor_model",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carb_h_setting",
+      "extracted": 803,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carb_l_setting",
+      "extracted": 795,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carb_la_instruction",
+      "extracted": 3314,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "fuel_tank_l",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "oil_tank_l",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "oil_mix_ratio",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "chain_pitch",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "chain_gauge_mm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "air_flow_m3_h",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "maximum_air_flow_m3_h",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "air_velocity_m_s",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "blowing_force_n",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "torque_nm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "pressure_bar",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "vacuum_bar",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "part_number",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "technical_change_cutoff",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "recall_scope_cutoff",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    }
+  ],
+  "document_type_breakdown": [
+    {
+      "type": "UNKNOWN",
+      "total": 1044,
+      "authenticated": 1,
+      "probable": 0,
+      "review": 619,
+      "failed": 424
+    },
+    {
+      "type": "PARTS_LIST",
+      "total": 421,
+      "authenticated": 0,
+      "probable": 7,
+      "review": 414,
+      "failed": 0
+    },
+    {
+      "type": "WORKSHOP_MANUAL",
+      "total": 317,
+      "authenticated": 0,
+      "probable": 0,
+      "review": 0,
+      "failed": 317
+    },
+    {
+      "type": "INSTRUCTION_MANUAL",
+      "total": 4,
+      "authenticated": 0,
+      "probable": 4,
+      "review": 0,
+      "failed": 0
+    },
+    {
+      "type": "REPAIR_MANUAL",
+      "total": 2,
+      "authenticated": 0,
+      "probable": 0,
+      "review": 2,
+      "failed": 0
+    },
+    {
+      "type": "TECHNICAL_INFORMATION",
+      "total": 2,
+      "authenticated": 0,
+      "probable": 0,
+      "review": 2,
+      "failed": 0
+    }
+  ],
+  "precision_audits": {
+    "displacement_cc": {
+      "field": "displacement_cc",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "power_kw": {
+      "field": "power_kw",
+      "sample_size": 9,
+      "correct_context_validated": 0,
+      "false_positives": 9,
+      "context_precision_percent": 0
+    },
+    "weight_kg": {
+      "field": "weight_kg",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "spark_plug": {
+      "field": "spark_plug",
+      "sample_size": 100,
+      "correct_context_validated": 0,
+      "false_positives": 100,
+      "context_precision_percent": 0
+    },
+    "electrode_gap_mm": {
+      "field": "electrode_gap_mm",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "carb_h_setting": {
+      "field": "carb_h_setting",
+      "sample_size": 100,
+      "correct_context_validated": 0,
+      "false_positives": 100,
+      "context_precision_percent": 0
+    },
+    "carb_l_setting": {
+      "field": "carb_l_setting",
+      "sample_size": 100,
+      "correct_context_validated": 0,
+      "false_positives": 100,
+      "context_precision_percent": 0
+    },
+    "part_number": {
+      "field": "part_number",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "fuel_tank_l": {
+      "field": "fuel_tank_l",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "air_flow_m3_h": {
+      "field": "air_flow_m3_h",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "air_velocity_m_s": {
+      "field": "air_velocity_m_s",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "blowing_force_n": {
+      "field": "blowing_force_n",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    }
+  },
+  "top_verified_models": [
+    {
+      "model": "BR 600",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "FS 100",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "FS 100 RX",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "MS 261",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "MS 260",
+      "documents": 114,
+      "verified_fields": 0,
+      "revisions": 114,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "MS 360",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "MS 460",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "044",
+      "documents": 351,
+      "verified_fields": 0,
+      "revisions": 351,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "046",
+      "documents": 148,
+      "verified_fields": 0,
+      "revisions": 148,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "034",
+      "documents": 35,
+      "verified_fields": 0,
+      "revisions": 35,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "036",
+      "documents": 143,
+      "verified_fields": 0,
+      "revisions": 143,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "FS 350",
+      "documents": 225,
+      "verified_fields": 0,
+      "revisions": 225,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "FS 460",
+      "documents": 0,
+      "verified_fields": 0,
+      "revisions": 0,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "TS 420",
+      "documents": 3,
+      "verified_fields": 0,
+      "revisions": 3,
+      "status": "NO_VERIFIED_DATA"
+    },
+    {
+      "model": "HS 45",
+      "documents": 218,
+      "verified_fields": 0,
+      "revisions": 218,
+      "status": "NO_VERIFIED_DATA"
+    }
+  ],
+  "verified_candidate_sample": []
+}

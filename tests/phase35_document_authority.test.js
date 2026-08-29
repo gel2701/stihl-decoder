@@ -104,6 +104,19 @@ const emptyOcrOfficial = evaluateAuthenticity({
 });
 assert.notStrictEqual(emptyOcrOfficial.authenticity_status, 'NON_OFFICIAL_CONFIRMED');
 
+const archiveCopyOfficial = evaluateAuthenticity({
+  title: 'STIHL FS 100 Instruction Manual',
+  url: 'file:///archive/STIHL_FS100_0458-259-8621-D.pdf',
+  author: 'local_archive',
+  pageCount: 88,
+  combinedText: 'ANDREAS STIHL AG & Co. KG STIHL FS 100 0458 259 8621 D Operating Instructions',
+  documentNumbers: ['0458-259-8621-D'],
+  modelsMentioned: knownModels.filter((model) => model.slug === 'fs-100'),
+  extractionQuality: classifyExtractionQuality({ title: 'STIHL FS 100 Instruction Manual', pageCount: 88, pageTexts: ['ANDREAS STIHL AG & Co. KG FS 100 0458 259 8621 D'] }),
+  metadataSignals: { publisherMatch: true }
+});
+assert.strictEqual(archiveCopyOfficial.authenticity_status, 'AUTHENTICATED_OFFICIAL');
+
 const mismatchRelations = assessDocumentModelRelations({
   title: 'Stihl FS 130 Manual PDF',
   metadataText: 'service document',
@@ -129,6 +142,14 @@ assert.strictEqual(
     { normalized_document_number: '0458-111-1111-A', normalized_title: 'stihl ms 210 230 250', models_key: 'ms-210|ms-230|ms-250', page_count: 60, content_hash: 'y', market: 'BR' }
   ),
   'MISMATCHED_METADATA'
+);
+
+assert.strictEqual(
+  classifyDuplicateRelation(
+    { normalized_document_number: '0458-259-8621-D', normalized_title: 'stihl fs 100 instruction manual', models_key: 'fs-100', page_count: 88, content_hash: 'x', market: 'US' },
+    { normalized_document_number: '0458-259-8621-D', normalized_title: 'stihl fs 100 instruction manual archive copy', models_key: 'fs-100', page_count: 88, content_hash: 'y', market: 'US' }
+  ),
+  'SAME_DOCUMENT_DIFFERENT_SCAN'
 );
 
 const multiModelDocument = {

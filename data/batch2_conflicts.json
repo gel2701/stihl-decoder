@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-08-29T05:42:43.765Z",
+  "conflicts": [
+    {
+      "model": "historical_051",
+      "field": "power_kw",
+      "value_A": 1,
+      "document_A": "batch2:753",
+      "canonical_document_A": "canon_2670e89c1b8ac676",
+      "source_batch_A": "BATCH2_HIGH_AUTHORITY_STIHL",
+      "revision_A": null,
+      "market_A": "UNKNOWN",
+      "value_B": 1.6,
+      "document_B": "batch2:754",
+      "canonical_document_B": "canon_97c295f0fe955ee2",
+      "source_batch_B": "BATCH2_HIGH_AUTHORITY_STIHL",
+      "revision_B": null,
+      "market_B": "UNKNOWN",
+      "status": "CONFLICTING_OFFICIAL_DATA"
+    }
+  ]
+}
