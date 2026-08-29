@@ -190,6 +190,7 @@ assert.ok(archiveReport.compressed_file_hash);
 assert.ok(archiveReport.canonical_record_stream_hash);
 const archiveReport2 = await loadCandidateArchiveStreamReport(gzPath);
 assert.strictEqual(archiveReport.canonical_record_stream_hash, archiveReport2.canonical_record_stream_hash);
+assert.notStrictEqual(archiveReport.canonical_record_stream_hash, '563f2056fd389b7131413cdf72854a0a028c867a9eb28a29891f82442b5fa19d');
 
 let missingError = null;
 try {

@@ -1,6 +1,6 @@
 {
   "SOURCE_COMMIT": "0c575a0",
-  "WORKTREE_STATUS": "M data/stihl_database.db\n M tests/run_all_tests.js\n?? data/backups/\n?? scripts/phase35c32_validator_integrity_reproducibility_hotfix.js\n?? tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js",
+  "WORKTREE_STATUS": "M data/stihl_database.db\n M scripts/phase35c32_validator_integrity_reproducibility_hotfix.js\n M tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js\n?? data/backups/",
   "BATCH6_DOCUMENTS": 317,
   "SAME_SOURCE_REFERENCES": 317,
   "EXACT_FILE_DUPLICATES": 0,
@@ -25,8 +25,10 @@
   "LIMITED_SAMPLE_TEST": "PASS",
   "HIGH_PRECISION_TEST": "PASS",
   "BELOW_THRESHOLD_TEST": "PASS",
+  "TS_DATA_PARSER_TEST": "PASS",
   "TS_DATA_SPARK_GARBAGE": 0,
   "TS_DATA_CARB_GARBAGE": 0,
+  "TS700_REAL_CORPUS_TEST": "PASS",
   "TS700_REAL_CORPUS_CONFLICT": "YES",
   "CANDIDATE_SOURCE_PATH": "C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder\\data\\generated\\phase35c2_blocked_field_candidates.jsonl.gz",
   "CANDIDATE_ARCHIVE_SHA256": "40d225d63c6de1fbc79be96b6912144794ac80da8f2afcad646f0a3b95e0286b",

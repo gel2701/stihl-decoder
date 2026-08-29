@@ -34,6 +34,8 @@ const CANONICAL_DB_PATH = path.join(rootDir, 'data', 'stihl_database.db');
 const DEFAULT_CANDIDATE_ARCHIVE = path.join(rootDir, 'data', 'generated', 'phase35c2_blocked_field_candidates.jsonl.gz');
 const BUNDLED_PYTHON = 'C:/Users/GelliusSnippe/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
 const PAYLOAD_NORMALIZATION_VERSION = 'phase35c32-v1';
+const EXPECTED_CANDIDATE_RECORD_COUNT = 33260;
+const EXPECTED_CANDIDATE_STREAM_HASH = '563f2056fd389b7131413cdf72854a0a028c867a9eb28a29891f82442b5fa19d';
 const OUTPUTS = {
   finalReport: path.join(rootDir, 'data', 'phase35c32_final_report.json'),
   dedupAudit: path.join(rootDir, 'data', 'phase35c32_dedup_semantics_audit.json'),
@@ -800,10 +802,15 @@ async function buildArtifacts(batch6PayloadCache = null, candidateCache = null, 
     CANDIDATE_SOURCE_PATH: candidateReport.archive_path,
     CANDIDATE_ARCHIVE_SHA256: candidateReport.compressed_file_hash,
     CANDIDATE_RECORD_COUNT: candidateReport.record_count,
-    CANDIDATE_SOURCE_REPRODUCIBLE: candidateReport.record_count === phase35c2Summary.candidate_count ? 'PASS' : 'FAIL',
+    CANDIDATE_SOURCE_REPRODUCIBLE: candidateReport.record_count === EXPECTED_CANDIDATE_RECORD_COUNT
+      && candidateReport.canonical_record_stream_hash === EXPECTED_CANDIDATE_STREAM_HASH
+      ? 'PASS'
+      : 'FAIL',
     compressed_file_hash: candidateReport.compressed_file_hash,
     canonical_record_stream_hash: candidateReport.canonical_record_stream_hash,
-    summary_dataset_hash: phase35c2Summary.sha256_of_full_dataset || null
+    summary_dataset_hash: phase35c2Summary.sha256_of_full_dataset || null,
+    expected_record_count: EXPECTED_CANDIDATE_RECORD_COUNT,
+    expected_canonical_record_stream_hash: EXPECTED_CANDIDATE_STREAM_HASH
   };
 
   const validatorIntegrityReport = {
@@ -887,6 +894,8 @@ async function buildArtifacts(batch6PayloadCache = null, candidateCache = null, 
     validatorIntegrityReport.precision_tests.LIMITED_SAMPLE_TEST,
     validatorIntegrityReport.precision_tests.HIGH_PRECISION_TEST,
     validatorIntegrityReport.precision_tests.BELOW_THRESHOLD_TEST,
+    tsAudit.spark_garbage === 0 && tsAudit.carb_garbage === 0 ? 'PASS' : 'FAIL',
+    ts700Regression.conflict ? 'PASS' : 'FAIL',
     candidateSourceReport.CANDIDATE_SOURCE_REPRODUCIBLE,
     failureInjectionReport.FAILURE_INJECTION
   ].every((value) => value === 'PASS') ? 'PASS' : 'FAIL';
@@ -918,8 +927,10 @@ async function buildArtifacts(batch6PayloadCache = null, candidateCache = null, 
     LIMITED_SAMPLE_TEST: validatorIntegrityReport.precision_tests.LIMITED_SAMPLE_TEST,
     HIGH_PRECISION_TEST: validatorIntegrityReport.precision_tests.HIGH_PRECISION_TEST,
     BELOW_THRESHOLD_TEST: validatorIntegrityReport.precision_tests.BELOW_THRESHOLD_TEST,
+    TS_DATA_PARSER_TEST: tsAudit.spark_garbage === 0 && tsAudit.carb_garbage === 0 ? 'PASS' : 'FAIL',
     TS_DATA_SPARK_GARBAGE: tsAudit.spark_garbage,
     TS_DATA_CARB_GARBAGE: tsAudit.carb_garbage,
+    TS700_REAL_CORPUS_TEST: ts700Regression.conflict ? 'PASS' : 'FAIL',
     TS700_REAL_CORPUS_CONFLICT: ts700Regression.conflict ? 'YES' : 'NO',
     CANDIDATE_SOURCE_PATH: candidateReport.archive_path,
     CANDIDATE_ARCHIVE_SHA256: candidateReport.compressed_file_hash,
