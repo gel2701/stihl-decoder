@@ -1,0 +1,1734 @@
+{
+  "generated_at": "2026-08-29T13:28:17.155Z",
+  "source_batch": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+  "records": [
+    {
+      "gold_record_id": "15561c75d43fffa6",
+      "model": "009",
+      "variant": "009",
+      "field": "displacement_cc",
+      "expected_value": 36.62,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "d6ee3ba6fce31168",
+      "model": "009",
+      "variant": "009",
+      "field": "power_kw",
+      "expected_value": 1.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "ff0496eff8002849",
+      "model": "009",
+      "variant": "009",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "f3c4c531fe6eee6e",
+      "model": "009",
+      "variant": "009",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "223ae72815e2589d",
+      "model": "009",
+      "variant": "009",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "f3387cbaa7ecf8f3",
+      "model": "026",
+      "variant": "026",
+      "field": "displacement_cc",
+      "expected_value": 48.72,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "6c2e2dce2a90ae34",
+      "model": "026",
+      "variant": "026",
+      "field": "power_kw",
+      "expected_value": 2.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "3a4658bce01b8489",
+      "model": "026",
+      "variant": "026",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "5956ea12a535d409",
+      "model": "026",
+      "variant": "026",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "e9c579bfa58f4cec",
+      "model": "026",
+      "variant": "026",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "80727de9daf46727",
+      "model": "036",
+      "variant": "036",
+      "field": "displacement_cc",
+      "expected_value": 61.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "1cba6c72ab79e4c3",
+      "model": "036",
+      "variant": "036",
+      "field": "power_kw",
+      "expected_value": 3.3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "bf3b3e8dee2e4407",
+      "model": "036",
+      "variant": "036",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "db60aad2730b67b3",
+      "model": "036",
+      "variant": "036",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "0fb826c002835e04",
+      "model": "036",
+      "variant": "036",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "018af36a8fd40907",
+      "model": "044",
+      "variant": "044",
+      "field": "displacement_cc",
+      "expected_value": 70.74,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "bf4339a02a125bac",
+      "model": "044",
+      "variant": "044",
+      "field": "power_kw",
+      "expected_value": 4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "a49a111222377541",
+      "model": "044",
+      "variant": "044",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "7f75ba5c43aceb78",
+      "model": "044",
+      "variant": "044",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "a31f7b8ff7677db1",
+      "model": "044",
+      "variant": "044",
+      "field": "carb_h_setting",
+      "expected_value": 7,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "181a0ac008fd5503",
+      "model": "046",
+      "variant": "046",
+      "field": "displacement_cc",
+      "expected_value": 76.54,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "826ceb6b15decca3",
+      "model": "046",
+      "variant": "046",
+      "field": "power_kw",
+      "expected_value": 4.5,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "ec59fccfb4d61d17",
+      "model": "046",
+      "variant": "046",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "a1776e1f894c95fc",
+      "model": "046",
+      "variant": "046",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "c6a43639e9b17885",
+      "model": "046",
+      "variant": "046",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "d2ede97253771bd7",
+      "model": "066",
+      "variant": "066",
+      "field": "displacement_cc",
+      "expected_value": 91.65,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "0a7b5c0a2411fb61",
+      "model": "066",
+      "variant": "066",
+      "field": "power_kw",
+      "expected_value": 5.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "21887f2f1acebd40",
+      "model": "066",
+      "variant": "066",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "0997fbb41244f304",
+      "model": "066",
+      "variant": "066",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "a5d577f057e5bfb6",
+      "model": "066",
+      "variant": "066",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "8a5949cfe52eeb5f",
+      "model": "088",
+      "variant": "088",
+      "field": "displacement_cc",
+      "expected_value": 121.67,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "bbf89e632d7b9e7c",
+      "model": "088",
+      "variant": "088",
+      "field": "power_kw",
+      "expected_value": 6.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "dab1cdb670bdac59",
+      "model": "088",
+      "variant": "088",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "72c20ef647cce586",
+      "model": "088",
+      "variant": "088",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "3f7775c23b80d7af",
+      "model": "088",
+      "variant": "088",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "d199881a2b7a6d70",
+      "model": "fs-350",
+      "variant": "fs-350",
+      "field": "displacement_cc",
+      "expected_value": 36.32,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "50ae4738f7d51d87",
+      "model": "fs-350",
+      "variant": "fs-350",
+      "field": "power_kw",
+      "expected_value": 1.6,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "be6a95c811816741",
+      "model": "fs-350",
+      "variant": "fs-350",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK CHAMPION WSR 6 F BPMR 7 A RCJ 6 Y",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "d43d71324623de86",
+      "model": "fs-350",
+      "variant": "fs-350",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "2644fa1baa704e2c",
+      "model": "hs-45",
+      "variant": "hs-45",
+      "field": "displacement_cc",
+      "expected_value": 27.21,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\HS45_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "9792bb4cd9f5f71b",
+      "model": "hs-45",
+      "variant": "hs-45",
+      "field": "power_kw",
+      "expected_value": 0.75,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\HS45_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "7b4c8f97057e1052",
+      "model": "hs-45",
+      "variant": "hs-45",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK CHAMPION WSR 6 F BPMR 7 A RCJ 6 Y",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\HS45_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "6aa0cb5f8f603493",
+      "model": "hs-45",
+      "variant": "hs-45",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\HS45_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "124398ac22d0df56",
+      "model": "ms-170",
+      "variant": "ms-170",
+      "field": "displacement_cc",
+      "expected_value": 30.11,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "ee1f42e11e32479f",
+      "model": "ms-170",
+      "variant": "ms-170",
+      "field": "power_kw",
+      "expected_value": 1.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "4fff5091cc3190ce",
+      "model": "ms-170",
+      "variant": "ms-170",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "c785088676c9a27d",
+      "model": "ms-170",
+      "variant": "ms-170",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "a8024614174215f2",
+      "model": "ms-170",
+      "variant": "ms-170",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "2b267f704347f89a",
+      "model": "ms-180",
+      "variant": "ms-180",
+      "field": "displacement_cc",
+      "expected_value": 31.81,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "eacc69c82f4684d0",
+      "model": "ms-180",
+      "variant": "ms-180",
+      "field": "power_kw",
+      "expected_value": 1.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "4b3d1d124bb989c6",
+      "model": "ms-180",
+      "variant": "ms-180",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "50f2c8cb3b5d57a5",
+      "model": "ms-180",
+      "variant": "ms-180",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "4bab02ed24786532",
+      "model": "ms-180",
+      "variant": "ms-180",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "6f205e124436e99b",
+      "model": "ms-200",
+      "variant": "ms-200",
+      "field": "displacement_cc",
+      "expected_value": 35.22,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "9a1626421cc2b030",
+      "model": "ms-200",
+      "variant": "ms-200",
+      "field": "power_kw",
+      "expected_value": 1.6,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "f6c4e85c8213d408",
+      "model": "ms-200",
+      "variant": "ms-200",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "6224260278db2a27",
+      "model": "ms-200",
+      "variant": "ms-200",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "f680e3e5dcb91152",
+      "model": "ms-200",
+      "variant": "ms-200",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "d4a22d7d7602a3af",
+      "model": "ms-210",
+      "variant": "ms-210",
+      "field": "displacement_cc",
+      "expected_value": 35.22,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "54e9891bf113e0b4",
+      "model": "ms-210",
+      "variant": "ms-210",
+      "field": "power_kw",
+      "expected_value": 1.5,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "MATCHING_AUTHENTICATED_MANUAL_CANDIDATE"
+      ],
+      "status": "GOLD_VALIDATED"
+    },
+    {
+      "gold_record_id": "a2caedee25277e2a",
+      "model": "ms-210",
+      "variant": "ms-210",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "1543918e21f86410",
+      "model": "ms-210",
+      "variant": "ms-210",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "aa16501daa842ef9",
+      "model": "ms-210",
+      "variant": "ms-210",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "c430513e3f31ca50",
+      "model": "ms-230",
+      "variant": "ms-230",
+      "field": "displacement_cc",
+      "expected_value": 40.22,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "4cbb8f82f74c9c7f",
+      "model": "ms-230",
+      "variant": "ms-230",
+      "field": "power_kw",
+      "expected_value": 1.9,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "f8d749f8c1f8d061",
+      "model": "ms-230",
+      "variant": "ms-230",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "0779779b89c0c690",
+      "model": "ms-230",
+      "variant": "ms-230",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "110b72cc22151308",
+      "model": "ms-230",
+      "variant": "ms-230",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "46202ba799dae843",
+      "model": "ms-250",
+      "variant": "ms-250",
+      "field": "displacement_cc",
+      "expected_value": 45.12,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "1841fb6a5a14d931",
+      "model": "ms-250",
+      "variant": "ms-250",
+      "field": "power_kw",
+      "expected_value": 2.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "72f24ffa81429f70",
+      "model": "ms-250",
+      "variant": "ms-250",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "35fde5a567320ef2",
+      "model": "ms-250",
+      "variant": "ms-250",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "8358b87dbd3dcb5e",
+      "model": "ms-250",
+      "variant": "ms-250",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "355ae1973ba59e37",
+      "model": "ms-260",
+      "variant": "ms-260",
+      "field": "displacement_cc",
+      "expected_value": 48.72,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "c6ef727c618941f4",
+      "model": "ms-260",
+      "variant": "ms-260",
+      "field": "power_kw",
+      "expected_value": 2.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "0e0abac464f95a43",
+      "model": "ms-260",
+      "variant": "ms-260",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "25e0365d302c1f7f",
+      "model": "ms-260",
+      "variant": "ms-260",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "b21fd16e2d8aa7aa",
+      "model": "ms-260",
+      "variant": "ms-260",
+      "field": "carb_h_setting",
+      "expected_value": -1,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "39bd8af976303e5e",
+      "model": "ms-290",
+      "variant": "ms-290",
+      "field": "displacement_cc",
+      "expected_value": 56.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "86773cc4cea86993",
+      "model": "ms-290",
+      "variant": "ms-290",
+      "field": "power_kw",
+      "expected_value": 2.8,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "MATCHING_AUTHENTICATED_MANUAL_CANDIDATE"
+      ],
+      "status": "GOLD_VALIDATED"
+    },
+    {
+      "gold_record_id": "eb26986661030d19",
+      "model": "ms-290",
+      "variant": "ms-290",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "cf5d60ddc39b683d",
+      "model": "ms-290",
+      "variant": "ms-290",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "e551867ec21371da",
+      "model": "ms-290",
+      "variant": "ms-290",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "822ffcd4885e85ad",
+      "model": "ms-310",
+      "variant": "ms-310",
+      "field": "displacement_cc",
+      "expected_value": 59.03,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "f5aec1425192096d",
+      "model": "ms-310",
+      "variant": "ms-310",
+      "field": "power_kw",
+      "expected_value": 3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "MATCHING_AUTHENTICATED_MANUAL_CANDIDATE"
+      ],
+      "status": "GOLD_VALIDATED"
+    },
+    {
+      "gold_record_id": "88976d5e71143e19",
+      "model": "ms-310",
+      "variant": "ms-310",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "15140569b70289d6",
+      "model": "ms-310",
+      "variant": "ms-310",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "d2c0181ccf4fea0e",
+      "model": "ms-310",
+      "variant": "ms-310",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "60249890bd2a80fe",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "displacement_cc",
+      "expected_value": 61.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "33778b547db0632f",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "power_kw",
+      "expected_value": 3.3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "4e8e5a2ea164c75c",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "534cfbc46a0af8e0",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "201ab9247218dae0",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "cfa422efed82ac43",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "displacement_cc",
+      "expected_value": 61.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "60413619fbb47846",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "power_kw",
+      "expected_value": 3.3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "04cbecd4840a403a",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "598e464c7b6b871a",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "95d35ac5ee2a7bd1",
+      "model": "ms-360",
+      "variant": "ms-360",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "e12329b041223ca7",
+      "model": "ms-390",
+      "variant": "ms-390",
+      "field": "displacement_cc",
+      "expected_value": 64.13,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "04309f71b39ee06d",
+      "model": "ms-390",
+      "variant": "ms-390",
+      "field": "power_kw",
+      "expected_value": 3.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "752dd1eb3b842324",
+      "model": "ms-390",
+      "variant": "ms-390",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "8ab56ce8472acba8",
+      "model": "ms-390",
+      "variant": "ms-390",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "94219bb24f33778d",
+      "model": "ms-390",
+      "variant": "ms-390",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "d8ba0d73082784bc",
+      "model": "ms-460",
+      "variant": "ms-460",
+      "field": "displacement_cc",
+      "expected_value": 76.54,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "38e76b9aaee76abd",
+      "model": "ms-460",
+      "variant": "ms-460",
+      "field": "power_kw",
+      "expected_value": 4.5,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    },
+    {
+      "gold_record_id": "5969d9ff91ed9229",
+      "model": "ms-460",
+      "variant": "ms-460",
+      "field": "spark_plug",
+      "expected_value": "BOSCH NGK WSR 6 F BPMR 7 A",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "18d5d23b03f01926",
+      "model": "ms-460",
+      "variant": "ms-460",
+      "field": "spark_plug",
+      "expected_value": "mm in 0.5 0.02",
+      "unit": null,
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "CONFLICT"
+    },
+    {
+      "gold_record_id": "c0fe7f1c47dc21d7",
+      "model": "ms-460",
+      "variant": "ms-460",
+      "field": "carb_h_setting",
+      "expected_value": 11,
+      "unit": "turns",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "source_type": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "validation_evidence": [
+        "EXPLICIT_PAGE_HEADING",
+        "EXPLICIT_TABLE_COLUMN",
+        "TS_DATA_ONLY"
+      ],
+      "status": "GOLD_CANDIDATE"
+    }
+  ]
+}

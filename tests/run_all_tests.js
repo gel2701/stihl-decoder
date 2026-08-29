@@ -10,7 +10,8 @@ const testFiles = [
   'tests/phase34_seo_integrity.test.js',
   'tests/phase34b_cleanup.test.js',
   'tests/phase35_document_authority.test.js',
-  'tests/phase35c21_integrity_hotfix.test.js'
+  'tests/phase35c21_integrity_hotfix.test.js',
+  'tests/phase35c3_legacy_library_graph.test.js'
 ];
 
 let failures = 0;

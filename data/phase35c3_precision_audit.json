@@ -1,0 +1,134 @@
+{
+  "generated_at": "2026-08-29T13:28:17.155Z",
+  "source_batch": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+  "fields": [
+    {
+      "field": "power_kw",
+      "heuristic_context_precision": {
+        "candidate_count": 138,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 3,
+        "precision_percent": 100,
+        "context_precision": "HIGH",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "weight_kg",
+      "heuristic_context_precision": {
+        "candidate_count": 23,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "spark_plug",
+      "heuristic_context_precision": {
+        "candidate_count": 204,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "part_number",
+      "heuristic_context_precision": {
+        "candidate_count": 631,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "carb_h_setting",
+      "heuristic_context_precision": {
+        "candidate_count": 5319,
+        "sample_size": 20,
+        "precision_percent": 40,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "carb_l_setting",
+      "heuristic_context_precision": {
+        "candidate_count": 6860,
+        "sample_size": 20,
+        "precision_percent": 35,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "displacement_cc",
+      "heuristic_context_precision": {
+        "candidate_count": 0,
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "electrode_gap_mm",
+      "heuristic_context_precision": {
+        "candidate_count": 0,
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    }
+  ]
+}
