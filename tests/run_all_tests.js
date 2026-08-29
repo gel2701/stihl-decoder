@@ -8,7 +8,8 @@ const testFiles = [
   'tests/audit_remediation.test.js',
   'tests/canonical_policy.test.js',
   'tests/phase34_seo_integrity.test.js',
-  'tests/phase34b_cleanup.test.js'
+  'tests/phase34b_cleanup.test.js',
+  'tests/phase35_document_authority.test.js'
 ];
 
 let failures = 0;

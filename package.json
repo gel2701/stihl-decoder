@@ -13,6 +13,7 @@
     "data:rebuild": "node scripts/rebuild_canonical_data.js",
     "data:seed": "node data/seed.cjs",
     "audit:source-integrity": "node scripts/phase33e_source_integrity_audit.js",
+    "audit:document-authority": "node scripts/phase35_document_authority_validation.js",
     "audit:https-production": "node scripts/live_https_production_crawl.js",
     "baseline:seo": "node scripts/build_phase34a_seo_baseline.js",
     "freeze:test": "node scripts/verify_seo_freeze_negative.js"
