@@ -785,9 +785,12 @@ export function assessDocumentModelRelations({ title = '', metadataText = '', pa
   }];
 }
 
-function inferScopeConfidence(relationStatus, multiModelPage) {
+function inferScopeConfidence(relationStatus, { multiModelPage = false, explicitTable = false } = {}) {
   if (relationStatus === 'EXPLICIT_MODEL_MATCH') return 'EXACT_MODEL';
-  if (relationStatus === 'EXPLICIT_MULTI_MODEL_MATCH') return multiModelPage ? 'MULTI_MODEL_TABLE' : 'EXACT_MODEL';
+  if (relationStatus === 'EXPLICIT_MULTI_MODEL_MATCH') {
+    if (explicitTable) return 'MULTI_MODEL_TABLE';
+    return multiModelPage ? 'UNRESOLVED' : 'EXACT_MODEL';
+  }
   if (relationStatus === 'PROBABLE_MATCH') return 'SERIES_LEVEL';
   return 'UNRESOLVED';
 }
@@ -1017,7 +1020,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
 
       for (const tableEntry of parseMultiModelTableRow(window.line, applicableModels)) {
         const relation = relationIndex.get(tableEntry.model.model_id) || tableEntry.model;
-        const scopeConfidence = inferScopeConfidence(relation.relation_status, true);
+        const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: true });
         const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.[tableEntry.fieldName] || 'NONE';
         extracted.push(buildFieldRecord({
           document,
@@ -1068,7 +1071,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
         if (!parsed || parsed.value == null) continue;
         for (const model of applicableModels) {
           const relation = relationIndex.get(model.model_id) || model;
-          const scopeConfidence = inferScopeConfidence(relation.relation_status, multiModelPage);
+          const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: false });
           const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.[fieldName] || 'NONE';
           extracted.push(buildFieldRecord({
             document,
@@ -1100,7 +1103,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
       if (oilMixRatio) {
         for (const model of applicableModels) {
           const relation = relationIndex.get(model.model_id) || model;
-          const scopeConfidence = inferScopeConfidence(relation.relation_status, multiModelPage);
+          const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: false });
           const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.oil_mix_ratio || 'NONE';
           extracted.push(buildFieldRecord({
             document,
@@ -1131,7 +1134,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
       if (sparkPlug) {
         for (const model of applicableModels) {
           const relation = relationIndex.get(model.model_id) || model;
-          const scopeConfidence = inferScopeConfidence(relation.relation_status, multiModelPage);
+          const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: false });
           const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.spark_plug || 'NONE';
           const baseVerificationStatus = determineVerificationStatus({
               document,
@@ -1167,7 +1170,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
       if (electrodeGap) {
         for (const model of applicableModels) {
           const relation = relationIndex.get(model.model_id) || model;
-          const scopeConfidence = inferScopeConfidence(relation.relation_status, multiModelPage);
+          const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: false });
           const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.electrode_gap_mm || 'NONE';
           const value = parseNumber(electrodeGap[1]);
           extracted.push(buildFieldRecord({
@@ -1207,7 +1210,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
         if (!value) continue;
         for (const model of applicableModels) {
           const relation = relationIndex.get(model.model_id) || model;
-          const scopeConfidence = inferScopeConfidence(relation.relation_status, multiModelPage);
+          const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: false });
           const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.[fieldName] || 'NONE';
           extracted.push(buildFieldRecord({
             document,
@@ -1241,7 +1244,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
         if (candidate.kind !== 'PART_NUMBER') continue;
         for (const model of applicableModels) {
           const relation = relationIndex.get(model.model_id) || model;
-          const scopeConfidence = inferScopeConfidence(relation.relation_status, multiModelPage);
+          const scopeConfidence = inferScopeConfidence(relation.relation_status, { multiModelPage, explicitTable: false });
           const sourceEligibility = SOURCE_TYPE_SUITABILITY[document.document_type]?.part_number || 'NONE';
           extracted.push(buildFieldRecord({
             document,

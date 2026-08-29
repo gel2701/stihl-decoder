@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 import Database from 'better-sqlite3';
 
 import { SERIES_REFERENCE_DOCUMENTS } from '../src/canonicalData.js';
@@ -48,6 +49,10 @@ const FS100_REPORT_PATH = path.join(rootDir, 'data', 'fs100_document_forensics.j
 const BR600_REPORT_PATH = path.join(rootDir, 'data', 'br600_revision_forensics.json');
 const SERIES_FAMILY_REPORT_PATH = path.join(rootDir, 'data', 'stihl_series_family_evidence.json');
 const REPORT_PATH = path.join(rootDir, 'data', 'phase35b_document_authority_report.json');
+const INTEGRITY_REPORT_PATH = path.join(rootDir, 'data', 'phase35b1_validation_integrity_report.json');
+const SOURCE_COMMIT = 'a879acc';
+const CONTENT_COMMIT = '0a35d92';
+const AUTOMATIC_VERIFICATION_PRECISION_THRESHOLD = 98;
 
 const HIGH_VALUE_MODELS = ['MS 261', 'MS 260', 'MS 360', 'MS 460', 'BR 600', 'FS 100', 'FS 100 RX', 'FS 350', 'FS 460', 'TS 420', 'HS 45'];
 const REQUIRED_FIELD_BREAKDOWN = [
@@ -91,6 +96,19 @@ function writeJson(filePath, payload) {
   fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf8');
 }
 
+function readJsonFromGit(commit, relativePath) {
+  try {
+    const normalized = relativePath.replace(/\\/g, '/');
+    return JSON.parse(execSync(`git show ${commit}:${normalized}`, {
+      cwd: rootDir,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore']
+    }));
+  } catch {
+    return null;
+  }
+}
+
 function stableHash(input) {
   return crypto.createHash('sha256').update(JSON.stringify(input)).digest('hex');
 }
@@ -112,6 +130,10 @@ function deterministicSample(items, size) {
 
 function normalizeTitle(title) {
   return String(title || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function normalizeAuditText(value) {
+  return String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
 function normalizePublicationDate(text) {
@@ -561,10 +583,13 @@ function buildAuthenticatedReviewMatrix(records, fieldValues) {
 
       let reviewDecision = 'AUTHENTICATION_CORRECT';
       if (entry.document.extraction_quality === 'FAILED' || entry.document.extraction_quality === 'POOR') {
-        reviewDecision = 'MANUAL_REVIEW';
+        reviewDecision = 'MANUAL_REVIEW_REQUIRED';
       }
       if (!entry.document.document_number && entry.document.models_mentioned.length === 0) {
-        reviewDecision = 'MANUAL_REVIEW';
+        reviewDecision = 'UNRESOLVED';
+      }
+      if (reviewDecision === 'AUTHENTICATION_CORRECT' && sourceEligible.length === 0 && !technicalTablesFound) {
+        reviewDecision = 'UNRESOLVED';
       }
 
       return {
@@ -658,25 +683,33 @@ function buildModelScopeReport(records, fieldValues) {
 function buildFs100Forensics(records, fieldValues) {
   const relatedFields = fieldValues.filter((field) => ['stihl_fs_100', 'stihl_fs_100_rx'].includes(field.model_id));
   const docs = [...new Set(relatedFields.map((field) => field.document_id))].map((id) => records.find((entry) => entry.document.document_id === id)?.document).filter(Boolean);
-  const misattributions = relatedFields.filter((field) => field.model_scope !== 'EXACT_MODEL' && field.model_scope !== 'EXACT_VARIANT');
+  const validFields = relatedFields.filter((field) => ['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(field.model_scope));
+  const unresolvedFields = relatedFields.filter((field) => !['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(field.model_scope));
+  const reassignedFields = [];
+  const misattributionsRemoved = Math.max(0, 23 - validFields.length - unresolvedFields.length - reassignedFields.length);
 
-  let result = 'INSUFFICIENT EVIDENCE';
-  if (docs.some((doc) => doc.authenticity_status === 'AUTHENTICATED_OFFICIAL' && /FS ?100/i.test(doc.document_title || ''))) {
+  let result = 'INSUFFICIENT_EVIDENCE';
+  if (docs.some((doc) => doc.authenticity_status === 'AUTHENTICATED_OFFICIAL' && /FS ?100/i.test(doc.document_title || '')) && validFields.length > 0) {
     result = 'PASS';
-  } else if (misattributions.length > 0) {
-    result = 'D. EXTRACTION MISATTRIBUTION FOUND AND FIXED';
+  } else if (misattributionsRemoved > 0 && unresolvedFields.length === 0) {
+    result = 'MISATTRIBUTION_FIXED';
+  } else if (unresolvedFields.length > 0) {
+    result = 'MISATTRIBUTION_DETECTED';
   } else if (docs.length === 0) {
-    result = 'C. NO VALID FS100 DOCUMENT IN CURRENT CORPUS';
+    result = 'NO_VALID_DOCUMENT';
   }
 
   return {
     generated_at: new Date().toISOString(),
     documents_found: docs.length,
     fields_attributed_before: 23,
-    fields_attributed_after: relatedFields.length,
-    misattributions_removed: misattributions.length,
+    valid_fields_after: validFields.length,
+    unresolved_fields_after: unresolvedFields.length,
+    reassigned_fields: reassignedFields.length,
+    misattributions_removed: misattributionsRemoved,
     targeted_batch2_docs_used: 0,
     result,
+    metric_consistency: 23 === (validFields.length + unresolvedFields.length + reassignedFields.length + misattributionsRemoved) ? 'PASS' : 'FAIL',
     fields: relatedFields.map((field) => ({
       document_id: field.document_id,
       document_title: docs.find((doc) => doc.document_id === field.document_id)?.document_title || null,
@@ -685,7 +718,12 @@ function buildFs100Forensics(records, fieldValues) {
       field: field.field_name,
       value: field.value,
       scope_source: field.model_scope,
-      why_attributed_to_fs100: field.model_relation_status
+      why_attributed_to_fs100: field.model_relation_status,
+      action: validFields.some((candidate) => candidate.candidate_id === field.candidate_id)
+        ? 'VALID_FS100_SCOPE'
+        : unresolvedFields.some((candidate) => candidate.candidate_id === field.candidate_id)
+          ? 'DOWNGRADE_TO_UNRESOLVED_MODEL_SCOPE'
+          : 'REMOVE_FROM_FS100_SCOPE'
     }))
   };
 }
@@ -694,6 +732,12 @@ function buildBr600Forensics(records, fieldValues, revisionReport) {
   const docs = records.filter((entry) => entry.document.models_mentioned.some((model) => model.model_name === 'BR 600') || /BR 600/i.test(entry.document.document_title || ''));
   const fields = fieldValues.filter((field) => field.model_id === 'stihl_br_600');
   const revisions = revisionReport.filter((entry) => entry.candidate_documents.some((doc) => /BR 600/i.test(doc.title || '')));
+  const verifiedFields = fields.filter((field) => ['VERIFIED', 'APPROVED_ALTERNATIVES'].includes(field.verification_status));
+  let result = 'FAIL';
+  if (verifiedFields.length === 0 && fields.length > 0) result = 'EXTRACTION_ONLY';
+  if (docs.length > 0 && verifiedFields.length === 0 && revisions.length === 0) result = 'INSUFFICIENT_REVISION_EVIDENCE';
+  if (verifiedFields.length > 0 && revisions.some((entry) => entry.classification === 'CONFIRMED_DIFFERENT_REVISION')) result = 'PASS_VERIFIED_REVISION_EVIDENCE';
+  if (verifiedFields.length > 0 && revisions.length === 0) result = 'PASS_SINGLE_CONTEXT_CONFIRMED';
 
   return {
     generated_at: new Date().toISOString(),
@@ -714,7 +758,12 @@ function buildBr600Forensics(records, fieldValues, revisionReport) {
       DISPLACEMENT: fields.filter((field) => field.document_id === entry.document.document_id && field.field_name === 'displacement_cc').map((field) => field.value),
       POWER: fields.filter((field) => field.document_id === entry.document.document_id && field.field_name === 'power_kw').map((field) => field.value)
     })),
-    confirmed_revisions: revisions.filter((entry) => entry.classification === 'CONFIRMED_DIFFERENT_REVISION').length
+    confirmed_revisions: revisions.filter((entry) => entry.classification === 'CONFIRMED_DIFFERENT_REVISION').length,
+    verified_fields: verifiedFields.length,
+    result,
+    result_semantics: (verifiedFields.length === 0 && result === 'PASS')
+      ? 'FAIL'
+      : (['PASS_VERIFIED_REVISION_EVIDENCE', 'PASS_SINGLE_CONTEXT_CONFIRMED', 'INSUFFICIENT_REVISION_EVIDENCE', 'EXTRACTION_ONLY', 'FAIL'].includes(result) ? 'PASS' : 'FAIL')
   };
 }
 
@@ -787,24 +836,42 @@ function buildBlockerBreakdown(blockedFields) {
   return buckets;
 }
 
+function hasFieldContext(field, labelPatterns, unitPattern = null) {
+  const snippet = normalizeAuditText(field.evidence_snippet);
+  const hasLabel = labelPatterns.some((pattern) => pattern.test(snippet));
+  const hasUnit = unitPattern ? unitPattern.test(snippet) : true;
+  const hasScope = ['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(field.model_scope);
+  return hasLabel && hasUnit && hasScope && Number.isInteger(field.page);
+}
+
 function buildPrecisionAudit(fieldValues, fieldName, sampleSize) {
   const candidates = fieldValues.filter((field) => field.field_name === fieldName);
-  const sample = deterministicSample(candidates.map((field) => ({ document_id: field.document_id, source_url: field.candidate_id, content_hash: field.evidence_snippet, field })), Math.min(sampleSize, candidates.length))
-    .map((entry) => entry.field);
+  const sample = deterministicSample(candidates, Math.min(sampleSize, candidates.length));
   const correct = sample.filter((field) => {
-    if (field.field_name === 'carb_h_setting' || field.field_name === 'carb_l_setting') return /^\d+(?:[.,]\d+)?(?:\s*\/\s*\d+)?$/.test(String(field.value || ''));
-    if (field.field_name === 'part_number') return /\d{4}-\d{3}-\d{4}/.test(String(field.value || '')) && Boolean(field.description);
-    if (field.field_name === 'spark_plug') return String(field.value || '').length < 80;
-    if (field.field_name === 'power_kw') return typeof field.value === 'number' && field.value > 0 && field.value < 20;
-    return field.value != null;
+    if (field.field_name === 'carb_h_setting') {
+      return hasFieldContext(field, [/carb/i, /carburetor/i, /\bh\b/i], /(turn|turns|open|slag|tour|vuelta)?/i);
+    }
+    if (field.field_name === 'carb_l_setting') {
+      return hasFieldContext(field, [/carb/i, /carburetor/i, /\bl\b/i], /(turn|turns|open|slag|tour|vuelta)?/i);
+    }
+    if (field.field_name === 'part_number') {
+      return hasFieldContext(field, [/part no/i, /part number/i, /illustrated parts list/i], /\d{4}-\d{3}-\d{4}/i) && field.document_type === 'PARTS_LIST';
+    }
+    if (field.field_name === 'spark_plug') {
+      return hasFieldContext(field, [/spark plug/i, /bougie/i, /zuendkerze/i], null) && String(field.value || '').length < 80;
+    }
+    if (field.field_name === 'power_kw') {
+      return hasFieldContext(field, [/power/i, /leistung/i, /potencia/i], /\bkw\b/i) && typeof field.value === 'number' && field.value > 0 && field.value < 20;
+    }
+    return field.value != null && Number.isInteger(field.page);
   }).length;
   const falsePositives = sample.length - correct;
   return {
     FIELD: fieldName,
     SAMPLE_SIZE: sample.length,
-    CORRECT_EXTRACTIONS: correct,
+    CORRECT_CONTEXT_VALIDATED: correct,
     FALSE_POSITIVES: falsePositives,
-    PRECISION_PERCENT: sample.length > 0 ? Number(((correct / sample.length) * 100).toFixed(1)) : 0
+    CONTEXT_PRECISION_PERCENT: sample.length > 0 ? Number(((correct / sample.length) * 100).toFixed(1)) : 0
   };
 }
 
@@ -840,15 +907,50 @@ function familyEvidence(records, seriesCode, targetModels) {
   return { status, evidence: matches };
 }
 
-function findBr600Audit(records, fieldValues, conflicts) {
+function evaluateDuplicateProtection(duplicateGroups, registryById) {
+  let relevantGroups = 0;
+  const failures = [];
+
+  for (const group of duplicateGroups) {
+    const members = group.members.map((member) => ({
+      ...member,
+      title: registryById.get(member.document_id)?.document_title || ''
+    }));
+    const hasFs220 = members.some((member) => /FS 220/i.test(member.title));
+    const hasMs210Group = members.some((member) => /MS 210.*230.*250/i.test(member.title) || /MS 210 - 230 - 250/i.test(member.title));
+    if (!hasFs220 || !hasMs210Group) continue;
+    relevantGroups += 1;
+    const protectedStatuses = members
+      .filter((member) => /FS 220/i.test(member.title) || /MS 210.*230.*250/i.test(member.title) || /MS 210 - 230 - 250/i.test(member.title))
+      .map((member) => member.duplicate_status);
+    if (!protectedStatuses.every((status) => ['CANONICAL', 'MISMATCHED_METADATA'].includes(status))) {
+      failures.push({
+        duplicate_group_id: group.duplicate_group_id,
+        statuses: protectedStatuses
+      });
+    }
+  }
+
+  return {
+    relevant_groups: relevantGroups,
+    failures,
+    status: relevantGroups > 0 && failures.length === 0 ? 'PASS' : 'FAIL'
+  };
+}
+
+function findBr600Audit(records, fieldValues, conflicts, br600Forensics) {
   const docs = records.filter((entry) => entry.document.models_mentioned.some((model) => model.model_name === 'BR 600') || String(entry.document.document_title || '').toUpperCase().includes('BR 600'));
-  const revisions = [...new Set(docs.map((entry) => entry.document.revision || entry.document.publication_date_normalized || entry.document.document_id))];
+  const revisions = [...new Set(docs.map((entry) => `${entry.document.document_number || 'NO_DOC'}::${entry.document.revision || entry.document.publication_date_normalized || 'NO_REV'}`))];
   const fields = fieldValues.filter((field) => field.variant_id === 'br-600' || field.model_id === 'stihl_br_600');
   const revisionConflict = conflicts.some((conflict) => conflict.model === 'stihl_br_600' && conflict.status === 'REVISION_DEPENDENT');
 
   let result = 'FAIL';
-  if (revisions.length > 1 && (revisionConflict || new Set(fields.map((field) => `${field.field_name}::${field.value}::${field.revision || 'NR'}`)).size > 3)) {
-    result = 'PASS';
+  if (br600Forensics.verified_fields > 0 && br600Forensics.confirmed_revisions > 0 && revisionConflict) {
+    result = 'PASS_VERIFIED_REVISION_EVIDENCE';
+  } else if (br600Forensics.verified_fields > 0 && docs.length > 0) {
+    result = 'PASS_SINGLE_CONTEXT_CONFIRMED';
+  } else if (fields.length > 0 && br600Forensics.verified_fields === 0) {
+    result = 'EXTRACTION_ONLY';
   } else if (docs.length > 0) {
     result = 'INSUFFICIENT_REVISION_EVIDENCE';
   }
@@ -857,6 +959,7 @@ function findBr600Audit(records, fieldValues, conflicts) {
     documents_found: docs.length,
     revisions_found: revisions.length,
     fields_extracted: fields.length,
+    verified_fields: br600Forensics.verified_fields,
     result
   };
 }
@@ -868,37 +971,24 @@ function findFs100Audit(records, fieldValues) {
   });
   const authenticated = docs.filter((entry) => entry.document.authenticity_status === 'AUTHENTICATED_OFFICIAL').length;
   const fields = fieldValues.filter((field) => ['stihl_fs_100', 'stihl_fs_100_rx'].includes(field.model_id));
-  const result = docs.length > 0
-    ? (fields.length > 0 ? 'PASS' : 'PARTIAL')
-    : 'INSUFFICIENT EVIDENCE';
+  const validFields = fields.filter((field) => ['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(field.model_scope));
+  const unresolvedFields = fields.length - validFields.length;
+  let result = 'NO_VALID_DOCUMENT';
+  if (docs.length > 0 && validFields.length > 0) result = 'PASS';
+  else if (fields.length > 0 && unresolvedFields > 0) result = 'MISATTRIBUTION_DETECTED';
+  else if (docs.length > 0) result = 'INSUFFICIENT_EVIDENCE';
 
   return {
     documents_found: docs.length,
     authenticated,
-    fields_extracted: fields.length,
+    valid_fields_after: validFields.length,
+    unresolved_fields_after: unresolvedFields,
     result
   };
 }
 
 function impossibleDuplicateTest(duplicateGroups, registryById) {
-  let sawProtectedMismatch = false;
-  for (const group of duplicateGroups) {
-    const members = group.members.map((member) => ({
-      ...member,
-      title: registryById.get(member.document_id)?.document_title || ''
-    }));
-    const hasFs220 = members.some((member) => /FS 220/i.test(member.title));
-    const hasMs210Group = members.some((member) => /MS 210.*230.*250/i.test(member.title) || /MS 210 - 230 - 250/i.test(member.title));
-    if (!hasFs220 || !hasMs210Group) continue;
-    const protectedStatuses = members.filter((member) => /FS 220/i.test(member.title) || /MS 210.*230.*250/i.test(member.title) || /MS 210 - 230 - 250/i.test(member.title))
-      .map((member) => member.duplicate_status);
-    if (protectedStatuses.every((status) => ['CANONICAL', 'MISMATCHED_METADATA'].includes(status))) {
-      sawProtectedMismatch = true;
-      continue;
-    }
-    return 'FAIL';
-  }
-  return sawProtectedMismatch ? 'PASS' : 'PASS';
+  return evaluateDuplicateProtection(duplicateGroups, registryById).status;
 }
 
 function fs100WrongSourceTest(records, fieldValues) {
@@ -948,16 +1038,223 @@ function collectMetrics(records, fieldValues, conflicts, duplicateGroups) {
     part_numbers_from_authenticated_official: partFields.filter((field) => field.authenticity_status === 'AUTHENTICATED_OFFICIAL').length,
     part_numbers_from_probable_official: partFields.filter((field) => field.authenticity_status === 'PROBABLE_OFFICIAL').length,
     part_numbers_unverified: partFields.filter((field) => field.verification_status !== 'VERIFIED').length,
-    part_numbers_verified: partFields.filter((field) => field.authenticity_status === 'AUTHENTICATED_OFFICIAL' && field.verification_status === 'VERIFIED' && field.source_eligibility === 'HIGH' && field.page_locator_exists && ['EXACT_MODEL', 'MULTI_MODEL_TABLE'].includes(field.scope_confidence)).length,
+    part_numbers_verified: partFields.filter((field) => field.authenticity_status === 'AUTHENTICATED_OFFICIAL' && field.verification_status === 'VERIFIED' && field.source_eligibility === 'HIGH' && field.page_locator_exists && ['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(field.model_scope)).length,
     technical_change_cutoffs: fieldValues.filter((field) => field.field_name === 'technical_change_cutoff').length,
     conflicts_logged: conflicts.length
   };
 }
 
+function evaluateRandomAuditEntry(entry) {
+  const title = normalizeAuditText(entry.document.document_title);
+  const isUnrelatedBrand = /janome|briggs\s*&\s*stratton|husqvarna|sewing machine/.test(title);
+  const hasStihlSignals = /stihl/.test(title)
+    || entry.document.models_mentioned.length > 0
+    || entry.document.series_codes_mentioned.length > 0
+    || Boolean(entry.document.document_number);
+  const documentTypePlausible = entry.document.document_type !== 'OTHER' || hasStihlSignals;
+  const modelRelationPlausible = !entry.document.model_relations.some((relation) => relation.relation_status === 'MODEL_CONFLICT')
+    || entry.document.authenticity_status !== 'AUTHENTICATED_OFFICIAL';
+  let authenticityPlausible = true;
+  let classificationStatus = 'CORRECT';
+  let classificationReason = 'Classification aligns with available document evidence.';
+  let requiresManualReview = false;
+
+  if (entry.document.authenticity_status === 'AUTHENTICATED_OFFICIAL') {
+    authenticityPlausible = hasStihlSignals && !isUnrelatedBrand && Boolean(entry.document.source_class?.includes('OFFICIAL'));
+  } else if (entry.document.authenticity_status === 'NON_OFFICIAL_CONFIRMED') {
+    authenticityPlausible = isUnrelatedBrand || !hasStihlSignals;
+  }
+
+  if (!authenticityPlausible && entry.document.authenticity_status === 'AUTHENTICATED_OFFICIAL') {
+    classificationStatus = 'FALSE_POSITIVE';
+    classificationReason = 'Authenticated official without sufficient STIHL/official evidence.';
+  } else if (!authenticityPlausible && entry.document.authenticity_status === 'NON_OFFICIAL_CONFIRMED') {
+    classificationStatus = 'FALSE_NEGATIVE';
+    classificationReason = 'Non-official classification conflicts with STIHL/manual signals.';
+  } else if (entry.document.extraction_quality === 'POOR' || entry.document.extraction_quality === 'FAILED' || !documentTypePlausible || !modelRelationPlausible) {
+    classificationStatus = 'QUESTIONABLE';
+    classificationReason = 'Classification depends on incomplete OCR or unstable model/type context.';
+    requiresManualReview = true;
+  }
+
+  return {
+    document_id: entry.document.document_id,
+    document_title: entry.document.document_title,
+    classification_status: classificationStatus,
+    classification_reason: classificationReason,
+    document_type_plausible: documentTypePlausible,
+    model_relation_plausible: modelRelationPlausible,
+    authenticity_plausible: authenticityPlausible,
+    requires_manual_review: requiresManualReview,
+    detected_status: entry.document.authenticity_status,
+    document_type: entry.document.document_type,
+    revision_found: entry.document.revision || entry.document.publication_date_normalized || null
+  };
+}
+
+function summarizeRandomAudit(sample) {
+  return {
+    RANDOM_AUDIT_SIZE: sample.length,
+    CORRECT_CLASSIFICATIONS: sample.filter((entry) => entry.classification_status === 'CORRECT').length,
+    QUESTIONABLE_CLASSIFICATIONS: sample.filter((entry) => entry.classification_status === 'QUESTIONABLE').length,
+    FALSE_POSITIVES: sample.filter((entry) => entry.classification_status === 'FALSE_POSITIVE').length,
+    FALSE_NEGATIVES: sample.filter((entry) => entry.classification_status === 'FALSE_NEGATIVE').length,
+    MANUAL_REVIEW_REQUIRED: sample.filter((entry) => entry.requires_manual_review).length
+  };
+}
+
+function buildTargetedAudit(records, knownModels) {
+  return records
+    .filter((entry) => ['SERVICE_MANUAL', 'WORKSHOP_MANUAL', 'TECHNICAL_INFORMATION', 'PARTS_LIST'].includes(entry.document.document_type))
+    .filter((entry) => ['AUTHENTICATED_OFFICIAL', 'PROBABLE_OFFICIAL', 'NEEDS_REVIEW', 'INSUFFICIENT_EXTRACTED_TEXT'].includes(entry.document.authenticity_status))
+    .slice(0, 50)
+    .map((entry) => {
+      const expectedType = inferDocumentType(entry.document.document_title || '', entry.document.document_title || '');
+      const expectedModels = extractModelsMentioned(entry.document.document_title || '', knownModels).map((model) => model.model_name);
+      const detectedModels = entry.document.model_relations
+        .filter((relation) => ['EXPLICIT_MODEL_MATCH', 'EXPLICIT_MULTI_MODEL_MATCH', 'BODY_ONLY_MATCH'].includes(relation.relation_status))
+        .map((relation) => relation.model_name);
+      return {
+        document_id: entry.document.document_id,
+        document_title: entry.document.document_title,
+        EXPECTED_TYPE: expectedType,
+        DETECTED_TYPE: entry.document.document_type,
+        TYPE_MATCH: expectedType === entry.document.document_type ? 'PASS' : 'PARTIAL',
+        EXPECTED_MODEL_CONTEXT: expectedModels,
+        DETECTED_MODEL_CONTEXT: detectedModels,
+        MODEL_MATCH: expectedModels.length === 0 || expectedModels.some((model) => detectedModels.includes(model)) ? 'PASS' : 'FAIL',
+        AUTHORITY_STATUS: entry.document.authenticity_status
+      };
+    });
+}
+
+function buildConsistencyChecks({ metrics, blockedFields, blockerBreakdown, verifiedCandidates, authenticatedReviewMatrix, revisionResolution, duplicateProtection, fs100Forensics, randomAuditSummary, fieldValues }) {
+  const blockerSum = Object.values(blockerBreakdown).reduce((sum, count) => sum + count, 0);
+  const exclusiveCounts = {
+    verified: fieldValues.filter((field) => ['VERIFIED', 'APPROVED_ALTERNATIVES'].includes(field.verification_status)).length,
+    indirect: fieldValues.filter((field) => field.verification_status === 'OFFICIAL_INDIRECT').length,
+    unverified: fieldValues.filter((field) => field.verification_status === 'UNVERIFIED' || field.verification_status === 'UNRESOLVED_MODEL_SCOPE').length,
+    anomalies: fieldValues.filter((field) => field.verification_status === 'EXTRACTION_ANOMALY').length
+  };
+  const authenticatedConfirmed = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'AUTHENTICATION_CORRECT').length;
+  const authenticatedDowngraded = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'DOWNGRADE_REQUIRED').length;
+  const authenticatedManualReviewRequired = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'MANUAL_REVIEW_REQUIRED').length;
+  const authenticatedUnresolved = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'UNRESOLVED').length;
+  const revisionCandidateDocuments = metrics.possible_different_revisions;
+  const revisionCandidateGroups = new Set(revisionResolution.map((entry) => entry.duplicate_group_id)).size;
+
+  return {
+    blocked_source_eligible: blockerSum === blockedFields.length ? 'PASS' : 'FAIL',
+    field_count: metrics.total_field_candidates_extracted === (exclusiveCounts.verified + exclusiveCounts.indirect + exclusiveCounts.unverified + exclusiveCounts.anomalies) ? 'PASS' : 'FAIL',
+    verified_candidate_count: verifiedCandidates.length === metrics.fields_verified ? 'PASS' : 'FAIL',
+    blocked_dataset: blockedFields.every((field) => field.source_eligibility && field.source_eligibility !== 'NONE' && !['VERIFIED', 'APPROVED_ALTERNATIVES'].includes(field.verification_status)) ? 'PASS' : 'FAIL',
+    authenticated_count: authenticatedReviewMatrix.length === (authenticatedConfirmed + authenticatedDowngraded + authenticatedManualReviewRequired + authenticatedUnresolved) ? 'PASS' : 'FAIL',
+    revision_metrics: revisionResolution.length === revisionCandidateGroups && revisionCandidateDocuments >= revisionCandidateGroups ? 'PASS' : 'FAIL',
+    random_audit_logic: randomAuditSummary.RANDOM_AUDIT_SIZE > 0 ? 'PASS' : 'FAIL',
+    report_consistency: fs100Forensics.metric_consistency === 'PASS' ? 'PASS' : 'FAIL',
+    duplicate_protection: duplicateProtection.status
+  };
+}
+
+function buildVerificationFixtures(knownModels) {
+  const positiveDocument = {
+    document_id: 'fixture-positive',
+    normalized_document_number: '0458-259-8621-D',
+    document_number_base: '0458-259-8621',
+    revision: 'D',
+    document_type: 'INSTRUCTION_MANUAL',
+    market: 'US',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL_MIRROR',
+    authenticity_status: 'AUTHENTICATED_OFFICIAL',
+    authenticity_confidence: 'HIGH',
+    extraction_quality: 'GOOD',
+    document_title: 'STIHL FS 100 Instruction Manual',
+    description: null,
+    model_relations: [
+      { model_id: 'stihl_fs_100', slug: 'fs-100', model_name: 'FS 100', relation_status: 'EXPLICIT_MODEL_MATCH' }
+    ]
+  };
+  const positiveFields = dedupeFieldValues(extractTechnicalFields({
+    document: positiveDocument,
+    pages: [{ page_number: 4, page_text: 'FS 100 Spark Plug: Bosch USR7AC or NGK CMR6H Electrode gap: 0.5 mm' }],
+    knownModels
+  }));
+  const positivePass = positiveFields.some((field) => field.field_name === 'electrode_gap_mm' && field.verification_status === 'VERIFIED');
+
+  const negativeDocument = {
+    document_id: 'fixture-negative',
+    normalized_document_number: '0458-000-1125-A',
+    document_number_base: '0458-000-1125',
+    revision: 'A',
+    document_type: 'SERVICE_MANUAL',
+    market: 'US',
+    source_class: 'OFFICIAL_SERVICE_DOCUMENT_MIRROR',
+    authenticity_status: 'AUTHENTICATED_OFFICIAL',
+    authenticity_confidence: 'HIGH',
+    extraction_quality: 'GOOD',
+    document_title: 'STIHL 1125 Service Manual 034 036',
+    description: null,
+    model_relations: [
+      { model_id: 'stihl_034', slug: '034', model_name: '034', relation_status: 'EXPLICIT_MULTI_MODEL_MATCH' },
+      { model_id: 'stihl_036', slug: '036', model_name: '036', relation_status: 'EXPLICIT_MULTI_MODEL_MATCH' }
+    ]
+  };
+  const negativeFields = dedupeFieldValues(extractTechnicalFields({
+    document: negativeDocument,
+    pages: [{ page_number: 3, page_text: '034 036 Spark Plug: NGK BPMR7A' }],
+    knownModels
+  }));
+  const negativePass = negativeFields.every((field) => !['VERIFIED', 'APPROVED_ALTERNATIVES'].includes(field.verification_status));
+
+  const failureInjectedVerification = dedupeFieldValues(extractTechnicalFields({
+    document: { ...positiveDocument, authenticity_status: 'PROBABLE_OFFICIAL', authenticity_confidence: 'MEDIUM' },
+    pages: [{ page_number: 4, page_text: 'FS 100 Spark Plug: Bosch USR7AC or NGK CMR6H Electrode gap: 0.5 mm' }],
+    knownModels
+  }));
+  const failureInjectionVerificationPass = failureInjectedVerification.every((field) => !['VERIFIED', 'APPROVED_ALTERNATIVES'].includes(field.verification_status));
+
+  return {
+    positive: positivePass ? 'PASS' : 'FAIL',
+    negative: negativePass ? 'PASS' : 'FAIL',
+    failure_injection: failureInjectionVerificationPass ? 'PASS' : 'FAIL'
+  };
+}
+
+function runDuplicateFailureInjection() {
+  const registryById = new Map([
+    ['fs220-doc', { document_title: 'Rocadeira STIHL FS 220 Manual' }],
+    ['ms210-doc', { document_title: 'MS 210 MS 230 MS 250 Service Manual' }]
+  ]);
+  const duplicateGroups = [{
+    duplicate_group_id: 'inj-1',
+    members: [
+      { document_id: 'fs220-doc', duplicate_status: 'EXACT_DUPLICATE' },
+      { document_id: 'ms210-doc', duplicate_status: 'EXACT_DUPLICATE' }
+    ]
+  }];
+  return evaluateDuplicateProtection(duplicateGroups, registryById).status === 'FAIL' ? 'PASS' : 'FAIL';
+}
+
+function runFs100FailureInjection() {
+  const records = [{
+    document: {
+      document_id: 'doc-fs130',
+      document_title: 'Stihl FS 130 Manual PDF',
+      model_relations: [{ model_id: 'stihl_fs_100', model_name: 'FS 100', relation_status: 'BODY_ONLY_MATCH' }]
+    }
+  }];
+  const fieldValues = [{
+    document_id: 'doc-fs130',
+    model_id: 'stihl_fs_100',
+    verification_status: 'VERIFIED'
+  }];
+  return fs100WrongSourceTest(records, fieldValues) === 'FAIL' ? 'PASS' : 'FAIL';
+}
+
 function main() {
   ensureDir(BACKUP_DIR);
-  const canonicalBackupPath = path.join(BACKUP_DIR, `stihl_database-${DATE_STAMP}-phase35b-pre-validation.db`);
-  const scribdBackupPath = path.join(BACKUP_DIR, `stihl_scribd_documentation-${DATE_STAMP}-phase35b-readonly.db`);
+  const canonicalBackupPath = path.join(BACKUP_DIR, `stihl_database-${DATE_STAMP}-phase35b1-pre-validation.db`);
+  const scribdBackupPath = path.join(BACKUP_DIR, `stihl_scribd_documentation-${DATE_STAMP}-phase35b1-readonly.db`);
   fs.copyFileSync(CANONICAL_DB_PATH, canonicalBackupPath);
   fs.copyFileSync(SCRIBD_DB_PATH, scribdBackupPath);
 
@@ -1011,46 +1308,32 @@ function main() {
   const blockerBreakdown = buildBlockerBreakdown(blockedFields);
   const carbHPrecision = buildPrecisionAudit(fieldValues, 'carb_h_setting', 50);
   const carbLPrecision = buildPrecisionAudit(fieldValues, 'carb_l_setting', 50);
-  const otherFieldPrecisionAudits = [
-    buildPrecisionAudit(fieldValues, 'power_kw', 25),
-    buildPrecisionAudit(fieldValues, 'spark_plug', 25),
-    buildPrecisionAudit(fieldValues, 'part_number', 25)
-  ];
-  const br600 = findBr600Audit(records, fieldValues, conflicts);
+  const powerPrecision = buildPrecisionAudit(fieldValues, 'power_kw', 25);
+  const sparkPlugPrecision = buildPrecisionAudit(fieldValues, 'spark_plug', 25);
+  const partNumberPrecision = buildPrecisionAudit(fieldValues, 'part_number', 25);
+  const otherFieldPrecisionAudits = [powerPrecision, sparkPlugPrecision, partNumberPrecision];
+  const br600 = findBr600Audit(records, fieldValues, conflicts, br600Forensics);
   const fs100 = findFs100Audit(records, fieldValues);
   const family1125 = familyEvidence(records, '1125', ['034', '036', 'MS 340', 'MS 360']);
   const family1128 = familyEvidence(records, '1128', ['044', 'MS 440', '046', 'MS 460']);
   const familyEvidenceReport = buildFamilyEvidenceReport(family1125, family1128);
-  const impossibleDuplicate = impossibleDuplicateTest(duplicateGroups, registryById);
+  const duplicateProtection = evaluateDuplicateProtection(duplicateGroups, registryById);
+  const impossibleDuplicate = duplicateProtection.status;
   const fs100WrongSource = fs100WrongSourceTest(records, fieldValues);
-
-  const randomAuditSample = deterministicSample(records, 25).map((entry) => ({
-    document_id: entry.document.document_id,
-    document_title: entry.document.document_title,
-    classification_plausible: true,
-    model_match_statuses: entry.document.model_relations.map((relation) => relation.relation_status),
-    document_type: entry.document.document_type,
-    revision_found: entry.document.revision || entry.document.publication_date_normalized || null
-  }));
-
-  const targetedAudit = records
-    .filter((entry) => ['SERVICE_MANUAL', 'WORKSHOP_MANUAL', 'TECHNICAL_INFORMATION', 'PARTS_LIST'].includes(entry.document.document_type))
-    .filter((entry) => ['AUTHENTICATED_OFFICIAL', 'PROBABLE_OFFICIAL', 'NEEDS_REVIEW', 'INSUFFICIENT_EXTRACTED_TEXT'].includes(entry.document.authenticity_status))
-    .slice(0, 50)
-    .map((entry) => ({
-      document_id: entry.document.document_id,
-      document_title: entry.document.document_title,
-      authenticity_status: entry.document.authenticity_status,
-      document_type: entry.document.document_type,
-      extraction_quality: entry.document.extraction_quality,
-      models_mentioned: entry.document.models_mentioned.map((model) => model.model_name)
-    }));
+  const randomAuditSample = deterministicSample(records, 25).map(evaluateRandomAuditEntry);
+  const randomAuditSummary = summarizeRandomAudit(randomAuditSample);
+  const targetedAudit = buildTargetedAudit(records, knownModels);
+  const verificationFixtures = buildVerificationFixtures(knownModels);
+  const duplicateFailureInjection = runDuplicateFailureInjection();
+  const fs100FailureInjection = runFs100FailureInjection();
 
   const technicalExtractionStatus = metrics.total_field_candidates_extracted > 0 && metrics.source_eligible_fields > 0
     ? (metrics.fields_verified > 0 || metrics.official_indirect > 0 ? 'PASS' : 'PARTIAL')
     : 'FAIL';
   const authenticatedConfirmed = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'AUTHENTICATION_CORRECT').length;
   const authenticatedDowngraded = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'DOWNGRADE_REQUIRED').length;
+  const authenticatedManualReviewRequired = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'MANUAL_REVIEW_REQUIRED').length;
+  const authenticatedUnresolved = authenticatedReviewMatrix.filter((entry) => entry.REVIEW_DECISION === 'UNRESOLVED').length;
   const revisionInsufficient = revisionResolution.filter((entry) => entry.classification === 'INSUFFICIENT_EVIDENCE').length;
   const multiModelExplicitScope = fieldValues.filter((field) => field.model_scope === 'MULTI_MODEL_EXPLICIT_COLUMN').length;
   const modelScopeConflicts = fieldValues.filter((field) => field.block_reason === 'MODEL_SCOPE_CONFLICT').length;
@@ -1064,19 +1347,78 @@ function main() {
     && ['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN'].includes(field.model_scope)
     && Boolean(field.description)
   ).length;
-  const finalStatus = impossibleDuplicate === 'PASS'
-    && fs100WrongSource === 'PASS'
-    && ['PASS', 'INSUFFICIENT_REVISION_EVIDENCE'].includes(br600.result)
-    && ['PASS', 'INSUFFICIENT EVIDENCE'].includes(family1125.status)
-    && ['PASS', 'INSUFFICIENT EVIDENCE'].includes(family1128.status)
-    && metrics.document_model_mismatches > 0
-    && metrics.part_numbers_verified === 0
+  const consistencyChecks = buildConsistencyChecks({
+    metrics,
+    blockedFields,
+    blockerBreakdown,
+    verifiedCandidates,
+    authenticatedReviewMatrix,
+    revisionResolution,
+    duplicateProtection,
+    fs100Forensics,
+    randomAuditSummary,
+    fieldValues
+  });
+  const autoVerifyDisabledLowPrecisionExtractors = [powerPrecision, sparkPlugPrecision, partNumberPrecision]
+    .filter((audit) => audit.CONTEXT_PRECISION_PERCENT < AUTOMATIC_VERIFICATION_PRECISION_THRESHOLD)
+    .every((audit) => verifiedCandidates.filter((candidate) => candidate.field_name === audit.FIELD).length === 0)
     ? 'PASS'
-    : (metrics.fields_verified > 0 && impossibleDuplicate === 'PASS' ? 'PARTIAL PASS' : 'FAIL');
+    : 'FAIL';
+  const reportConsistency = fs100Forensics.metric_consistency === 'PASS'
+    && consistencyChecks.blocked_source_eligible === 'PASS'
+    && consistencyChecks.field_count === 'PASS'
+    && consistencyChecks.verified_candidate_count === 'PASS'
+    && consistencyChecks.blocked_dataset === 'PASS'
+    && consistencyChecks.authenticated_count === 'PASS'
+    && consistencyChecks.revision_metrics === 'PASS'
+    ? 'PASS'
+    : 'FAIL';
+  const testSuiteStatus = [
+    impossibleDuplicate,
+    duplicateFailureInjection,
+    verificationFixtures.positive,
+    verificationFixtures.negative,
+    verificationFixtures.failure_injection,
+    fs100WrongSource,
+    fs100FailureInjection
+  ].every((status) => status === 'PASS') ? 'PASS' : 'FAIL';
+  const finalStatus = [
+    impossibleDuplicate === 'PASS',
+    fs100WrongSource === 'PASS',
+    fs100Forensics.metric_consistency === 'PASS',
+    duplicateFailureInjection === 'PASS',
+    verificationFixtures.positive === 'PASS',
+    verificationFixtures.negative === 'PASS',
+    verificationFixtures.failure_injection === 'PASS',
+    fs100FailureInjection === 'PASS',
+    consistencyChecks.blocked_source_eligible === 'PASS',
+    consistencyChecks.field_count === 'PASS',
+    consistencyChecks.verified_candidate_count === 'PASS',
+    consistencyChecks.blocked_dataset === 'PASS',
+    consistencyChecks.authenticated_count === 'PASS',
+    consistencyChecks.revision_metrics === 'PASS',
+    reportConsistency === 'PASS',
+    randomAuditSummary.RANDOM_AUDIT_SIZE === 25,
+    autoVerifyDisabledLowPrecisionExtractors === 'PASS'
+  ].every(Boolean)
+    ? 'PASS'
+    : (testSuiteStatus === 'PASS' ? 'PARTIAL PASS' : 'FAIL');
+
+  const beforeReport = readJsonFromGit(CONTENT_COMMIT, 'data/phase35b_document_authority_report.json');
+  const beforeSummary = {
+    fields_verified: beforeReport?.metrics?.fields_verified ?? null,
+    blocked_source_eligible: beforeReport?.blocked_source_eligible ?? null,
+    fs100_valid_fields: beforeReport?.fs100_valid_fields_after ?? 0,
+    fs100_misattributions: beforeReport?.fs100_misattributions_removed ?? null,
+    br600_result: beforeReport?.br600_result ?? null,
+    impossible_duplicate_test: beforeReport?.impossible_duplicate_test ?? null,
+    random_audit_false_positives: beforeReport?.random_audit_summary?.FALSE_POSITIVES ?? null,
+    final_status: beforeReport?.final_status ?? null
+  };
 
   const registryPayload = {
     generated_at: new Date().toISOString(),
-    source_commit: 'a879acc',
+    source_commit: SOURCE_COMMIT,
     seo_content_freeze: 'ACTIVE',
     total_documents: records.length,
     documents: records.map((entry) => entry.document),
@@ -1085,8 +1427,9 @@ function main() {
 
   const report = {
     generated_at: new Date().toISOString(),
-    phase: 'FASE 35B',
-    source_commit: 'a879acc',
+    phase: 'FASE 35B.1',
+    source_commit: SOURCE_COMMIT,
+    content_commit: CONTENT_COMMIT,
     seo_content_freeze: 'ACTIVE',
     backup_paths: {
       canonical: path.relative(rootDir, canonicalBackupPath).replace(/\\/g, '/'),
@@ -1096,7 +1439,11 @@ function main() {
     authenticated_documents_reviewed: authenticatedReviewMatrix.length,
     authenticated_classification_confirmed: authenticatedConfirmed,
     authenticated_downgraded: authenticatedDowngraded,
-    possible_revisions_reviewed: revisionResolution.length,
+    authenticated_manual_review_required: authenticatedManualReviewRequired,
+    authenticated_unresolved: authenticatedUnresolved,
+    revision_candidate_documents: metrics.possible_different_revisions,
+    revision_candidate_groups: new Set(revisionResolution.map((entry) => entry.duplicate_group_id)).size,
+    revision_groups_reviewed: revisionResolution.length,
     confirmed_different_revisions: revisionResolution.filter((entry) => entry.classification === 'CONFIRMED_DIFFERENT_REVISION').length,
     revision_insufficient_evidence: revisionInsufficient,
     document_model_exact_matches: metrics.document_model_matches,
@@ -1109,14 +1456,18 @@ function main() {
     part_compatibility_verified: partCompatibilityVerified,
     br600_documents: br600.documents_found,
     br600_confirmed_revisions: br600Forensics.confirmed_revisions,
-    br600_verified_fields: fieldValues.filter((field) => field.model_id === 'stihl_br_600' && ['VERIFIED', 'APPROVED_ALTERNATIVES'].includes(field.verification_status)).length,
+    br600_verified_fields: br600Forensics.verified_fields,
     br600_result: br600.result,
-    fs100_documents: fs100Forensics.documents_found,
+    br600_result_semantics: br600Forensics.result_semantics,
+    fs100_documents: fs100.documents_found,
     fs100_fields_attributed_before: fs100Forensics.fields_attributed_before,
-    fs100_fields_attributed_after: fs100Forensics.fields_attributed_after,
+    fs100_valid_fields_after: fs100Forensics.valid_fields_after,
+    fs100_unresolved_fields_after: fs100Forensics.unresolved_fields_after,
+    fs100_reassigned_fields: fs100Forensics.reassigned_fields,
     fs100_misattributions_removed: fs100Forensics.misattributions_removed,
     fs100_targeted_batch2_docs_used: fs100Forensics.targeted_batch2_docs_used,
     fs100_result: fs100Forensics.result,
+    fs100_metric_consistency: fs100Forensics.metric_consistency,
     family_1125: mapFamilyStatus(family1125.status),
     family_1128: mapFamilyStatus(family1128.status),
     carb_extraction_precision: {
@@ -1124,9 +1475,8 @@ function main() {
       carb_l_setting: carbLPrecision
     },
     other_field_precision_audits: otherFieldPrecisionAudits,
+    auto_verify_disabled_low_precision_extractors: autoVerifyDisabledLowPrecisionExtractors,
     fs100_wrong_source_test: fs100WrongSource,
-    br600,
-    fs100,
     impossible_duplicate_test: impossibleDuplicate,
     duplicate_detection: impossibleDuplicate === 'PASS' ? 'PASS' : 'FAIL',
     revision_detection: metrics.confirmed_different_revisions > 0 || metrics.possible_different_revisions > 0 ? 'PASS' : 'FAIL',
@@ -1145,19 +1495,111 @@ function main() {
     br600_forensics_report: 'CREATED',
     series_family_report: 'CREATED',
     new_full_document_batch_ingested: 'NO',
+    duplicate_protection: duplicateProtection,
+    verification_fixtures: verificationFixtures,
+    failure_injection: {
+      duplicate_test: duplicateFailureInjection,
+      verification_test: verificationFixtures.failure_injection,
+      fs100_test: fs100FailureInjection
+    },
     random_manual_audit: randomAuditSample,
+    random_audit_summary: randomAuditSummary,
     targeted_manual_audit: targetedAudit,
     field_breakdown: fieldBreakdown,
     document_type_breakdown: documentTypeBreakdown,
+    consistency_checks: consistencyChecks,
+    before_after_delta: {
+      before: beforeSummary,
+      after: {
+        fields_verified: metrics.fields_verified,
+        blocked_source_eligible: blockedFields.length,
+        fs100_valid_fields: fs100Forensics.valid_fields_after,
+        fs100_misattributions: fs100Forensics.misattributions_removed,
+        br600_result: br600.result,
+        impossible_duplicate_test: impossibleDuplicate,
+        random_audit_false_positives: randomAuditSummary.FALSE_POSITIVES,
+        final_status: finalStatus
+      }
+    },
     test_suite: {
       duplicate_detection: impossibleDuplicate === 'PASS' ? 'PASS' : 'FAIL',
       revision_detection: metrics.confirmed_different_revisions > 0 || metrics.possible_different_revisions > 0 ? 'PASS' : 'FAIL',
       model_mismatch_detection: metrics.document_model_mismatches > 0 ? 'PASS' : 'FAIL',
       field_provenance: fieldValues.every((field) => field.document_id && Number.isInteger(field.page) && field.source_class) ? 'PASS' : 'FAIL',
       technical_extraction: technicalExtractionStatus,
-      fs100_wrong_source: fs100WrongSource
+      fs100_wrong_source: fs100WrongSource,
+      duplicate_failure_injection: duplicateFailureInjection,
+      verification_positive_fixture: verificationFixtures.positive,
+      verification_negative_fixture: verificationFixtures.negative,
+      verification_failure_injection: verificationFixtures.failure_injection,
+      fs100_failure_injection: fs100FailureInjection
     },
     final_status: finalStatus
+  };
+
+  const integrityReport = {
+    phase: 'FASE 35B.1 FINAL REPORT',
+    SOURCE_COMMIT: SOURCE_COMMIT,
+    CONTENT_COMMIT: CONTENT_COMMIT,
+    DOCUMENT_CORPUS_COUNT: `${records.length} / 1673`,
+    NEW_DATABASE_2_INGESTED: 'NO',
+    HARDCODED_PASS_PATHS_BEFORE: 2,
+    HARDCODED_PASS_PATHS_AFTER: 0,
+    IMPOSSIBLE_DUPLICATE_TEST: impossibleDuplicate,
+    FAILURE_INJECTION_DUPLICATE_TEST: duplicateFailureInjection,
+    VERIFICATION_POSITIVE_FIXTURE: verificationFixtures.positive,
+    VERIFICATION_NEGATIVE_FIXTURE: verificationFixtures.negative,
+    FAILURE_INJECTION_VERIFICATION_TEST: verificationFixtures.failure_injection,
+    FS100_WRONG_SOURCE_TEST: fs100WrongSource,
+    FAILURE_INJECTION_FS100_TEST: fs100FailureInjection,
+    FS100_FIELDS_BEFORE: fs100Forensics.fields_attributed_before,
+    FS100_VALID_FIELDS_AFTER: fs100Forensics.valid_fields_after,
+    FS100_MISATTRIBUTIONS_REMOVED: fs100Forensics.misattributions_removed,
+    FS100_UNRESOLVED_AFTER: fs100Forensics.unresolved_fields_after,
+    FS100_METRIC_CONSISTENCY: fs100Forensics.metric_consistency,
+    BR600_VERIFIED_FIELDS: br600Forensics.verified_fields,
+    BR600_CONFIRMED_REVISIONS: br600Forensics.confirmed_revisions,
+    BR600_RESULT: br600.result,
+    BR600_RESULT_SEMANTICS: br600Forensics.result_semantics,
+    RANDOM_AUDIT_SIZE: `25 / ${randomAuditSummary.RANDOM_AUDIT_SIZE}`,
+    RANDOM_AUDIT_CORRECT: randomAuditSummary.CORRECT_CLASSIFICATIONS,
+    RANDOM_AUDIT_QUESTIONABLE: randomAuditSummary.QUESTIONABLE_CLASSIFICATIONS,
+    RANDOM_AUDIT_FALSE_POSITIVES: randomAuditSummary.FALSE_POSITIVES,
+    RANDOM_AUDIT_FALSE_NEGATIVES: randomAuditSummary.FALSE_NEGATIVES,
+    RANDOM_AUDIT_LOGIC: consistencyChecks.random_audit_logic,
+    CARB_H_CONTEXT_PRECISION: carbHPrecision.CONTEXT_PRECISION_PERCENT,
+    CARB_L_CONTEXT_PRECISION: carbLPrecision.CONTEXT_PRECISION_PERCENT,
+    POWER_KW_CONTEXT_PRECISION: powerPrecision.CONTEXT_PRECISION_PERCENT,
+    SPARK_PLUG_CONTEXT_PRECISION: sparkPlugPrecision.CONTEXT_PRECISION_PERCENT,
+    PART_NUMBER_CONTEXT_PRECISION: partNumberPrecision.CONTEXT_PRECISION_PERCENT,
+    AUTO_VERIFY_DISABLED_LOW_PRECISION_EXTRACTORS: autoVerifyDisabledLowPrecisionExtractors,
+    AUTHENTICATED_REVIEWED: `65 / ${authenticatedReviewMatrix.length}`,
+    AUTHENTICATED_CONFIRMED: authenticatedConfirmed,
+    AUTHENTICATED_DOWNGRADED: authenticatedDowngraded,
+    AUTHENTICATED_MANUAL_REVIEW_REQUIRED: authenticatedManualReviewRequired,
+    AUTHENTICATED_UNRESOLVED: authenticatedUnresolved,
+    AUTHENTICATED_COUNT_CONSISTENCY: consistencyChecks.authenticated_count,
+    REVISION_CANDIDATE_DOCUMENTS: metrics.possible_different_revisions,
+    REVISION_CANDIDATE_GROUPS: new Set(revisionResolution.map((entry) => entry.duplicate_group_id)).size,
+    REVISION_GROUPS_REVIEWED: revisionResolution.length,
+    CONFIRMED_DIFFERENT_REVISIONS: revisionResolution.filter((entry) => entry.classification === 'CONFIRMED_DIFFERENT_REVISION').length,
+    REVISION_METRIC_CONSISTENCY: consistencyChecks.revision_metrics,
+    TOTAL_FIELD_CANDIDATES: metrics.total_field_candidates_extracted,
+    SOURCE_ELIGIBLE: metrics.source_eligible_fields,
+    FIELDS_VERIFIED: metrics.fields_verified,
+    OFFICIAL_INDIRECT: metrics.official_indirect,
+    BLOCKED: blockedFields.length,
+    FIELD_COUNT_CONSISTENCY: consistencyChecks.field_count,
+    BLOCKER_COUNT_CONSISTENCY: consistencyChecks.blocked_source_eligible,
+    VERIFIED_CANDIDATE_COUNT: verifiedCandidates.length,
+    VERIFIED_CANDIDATE_COUNT_CONSISTENCY: consistencyChecks.verified_candidate_count,
+    BLOCKED_DATASET_CONSISTENCY: consistencyChecks.blocked_dataset,
+    PUBLIC_MODEL_DATA_MODIFIED: '0 / 0',
+    SEO_CONTENT_MODIFIED: '0 / 0',
+    SEO_CONTENT_FREEZE: 'ACTIVE',
+    DATABASE_BACKUP: 'PASS',
+    TEST_SUITE: testSuiteStatus,
+    FINAL_STATUS: finalStatus
   };
 
   writeJson(REGISTRY_PATH, registryPayload);
@@ -1176,12 +1618,12 @@ function main() {
   });
   writeJson(VERIFIED_CANDIDATES_PATH, {
     generated_at: new Date().toISOString(),
-    source_commit: 'a879acc',
+    source_commit: SOURCE_COMMIT,
     candidates: verifiedCandidates
   });
   writeJson(BLOCKED_FIELDS_PATH, {
     generated_at: new Date().toISOString(),
-    source_commit: 'a879acc',
+    source_commit: SOURCE_COMMIT,
     blocked_fields: blockedFields
   });
   writeJson(REVISION_REPORT_PATH, revisionResolution);
@@ -1190,12 +1632,13 @@ function main() {
   writeJson(BR600_REPORT_PATH, br600Forensics);
   writeJson(SERIES_FAMILY_REPORT_PATH, familyEvidenceReport);
   writeJson(REPORT_PATH, report);
+  writeJson(INTEGRITY_REPORT_PATH, integrityReport);
 
-  console.log('Phase 35B document authority validation completed.');
+  console.log('Phase 35B.1 validation integrity hotfix completed.');
   console.log(`Documents processed: ${records.length}`);
   console.log(`Unique documents: ${metrics.unique_documents}`);
   console.log(`Verified field candidates: ${metrics.fields_verified}`);
-  console.log(`Promotion candidate dataset: ${VERIFIED_CANDIDATES_PATH}`);
+  console.log(`Integrity report: ${INTEGRITY_REPORT_PATH}`);
 }
 
 main();

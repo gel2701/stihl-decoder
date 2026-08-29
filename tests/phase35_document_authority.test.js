@@ -64,6 +64,20 @@ const falsePositive = evaluateAuthenticity({
 });
 assert.notStrictEqual(falsePositive.authenticity_status, 'AUTHENTICATED_OFFICIAL');
 
+const unrelatedManual = evaluateAuthenticity({
+  title: 'Janome Sewing Machine Manual',
+  url: 'https://www.scribd.com/document/55555/Janome-Sewing-Machine-Manual',
+  author: 'manual-uploader',
+  pageCount: 42,
+  combinedText: 'Janome sewing machine manual and maintenance guide. Sewing machine setup, bobbin service, stitch controls, feed dogs, and presser foot adjustment.',
+  documentNumbers: [],
+  modelsMentioned: [],
+  extractionQuality: classifyExtractionQuality({ title: 'Janome Sewing Machine Manual', pageCount: 42, pageTexts: ['Janome sewing machine manual', 'Bobbin case adjustment and stitch selector maintenance'] }),
+  metadataSignals: {}
+});
+assert.ok(['NON_OFFICIAL_CONFIRMED', 'INSUFFICIENT_EXTRACTED_TEXT'].includes(unrelatedManual.authenticity_status));
+assert.notStrictEqual(unrelatedManual.authenticity_status, 'AUTHENTICATED_OFFICIAL');
+
 const falseNegative = evaluateAuthenticity({
   title: 'STIHL FS 100 / FS 100 RX Instruction Manual',
   url: 'https://www.scribd.com/document/98765/0458-259-8621-D',
@@ -76,6 +90,19 @@ const falseNegative = evaluateAuthenticity({
   metadataSignals: { publisherMatch: true }
 });
 assert.notStrictEqual(falseNegative.authenticity_status, 'NON_OFFICIAL_CONFIRMED');
+
+const emptyOcrOfficial = evaluateAuthenticity({
+  title: 'STIHL BR 600 Instruction Manual',
+  url: 'https://www.scribd.com/document/11111/STIHL-BR-600-Instruction-Manual',
+  author: 'mirror-user',
+  pageCount: 80,
+  combinedText: '',
+  documentNumbers: ['0458-452-0121-A'],
+  modelsMentioned: knownModels.filter((model) => model.slug === 'br-600'),
+  extractionQuality: classifyExtractionQuality({ title: 'STIHL BR 600 Instruction Manual', pageCount: 80, pageTexts: [''] }),
+  metadataSignals: { publisherMatch: true }
+});
+assert.notStrictEqual(emptyOcrOfficial.authenticity_status, 'NON_OFFICIAL_CONFIRMED');
 
 const mismatchRelations = assessDocumentModelRelations({
   title: 'Stihl FS 130 Manual PDF',
@@ -133,6 +160,16 @@ const multiModelFields = dedupeFieldValues(extractTechnicalFields({
 assert.ok(multiModelFields.some((field) => field.model_id === 'stihl_034' && field.field_name === 'displacement_cc' && field.value === 56.5));
 assert.ok(multiModelFields.some((field) => field.model_id === 'stihl_036' && field.field_name === 'displacement_cc' && field.value === 61.5));
 assert.ok(multiModelFields.some((field) => field.model_id === 'stihl_034' && field.field_name === 'displacement_cc' && field.model_scope === 'MULTI_MODEL_EXPLICIT_COLUMN' && field.table_scope_confidence === 'HIGH' && field.verification_status === 'VERIFIED'));
+
+const unresolvedMultiModelFields = dedupeFieldValues(extractTechnicalFields({
+  document: multiModelDocument,
+  pages: [
+    { page_number: 6, page_text: '034 036 Spark Plug: NGK BPMR7A' }
+  ],
+  knownModels
+}));
+assert.ok(unresolvedMultiModelFields.every((field) => field.verification_status !== 'VERIFIED' && field.verification_status !== 'APPROVED_ALTERNATIVES'));
+assert.ok(unresolvedMultiModelFields.every((field) => field.model_scope === 'UNRESOLVED'));
 
 const fs100Doc = {
   document_id: 'doc-fs100',
