@@ -1,0 +1,881 @@
+{
+  "generated_at": "2026-08-29T12:44:38.389Z",
+  "total_count": 33260,
+  "sha256_of_full_dataset": "03b5782d2432a47f02e05ca7e21a9a7088c6be30be0f7583cabd42fe8620e4a4",
+  "schema_version": "35c21-blocked-summary-v1",
+  "block_reason_counts": {
+    "AUTHENTICITY_INSUFFICIENT": 33226,
+    "SANITY_CHECK_FAILED": 34
+  },
+  "field_counts": {
+    "part_number": 631,
+    "carb_h_setting": 5319,
+    "carb_l_setting": 6860,
+    "carb_la_instruction": 19526,
+    "stroke_mm": 126,
+    "power_kw": 138,
+    "pressure_bar": 390,
+    "spark_plug": 204,
+    "torque_nm": 37,
+    "idle_speed_rpm": 3,
+    "power_hp": 3,
+    "weight_kg": 23
+  },
+  "model_counts": {
+    "020": 8768,
+    "024": 1045,
+    "026": 550,
+    "011": 1644,
+    "012": 1507,
+    "036": 130,
+    "050": 824,
+    "066": 486,
+    "041": 976,
+    "044": 841,
+    "046": 274,
+    "048": 216,
+    "056": 264,
+    "070": 359,
+    "088": 784,
+    "075": 273,
+    "076": 260,
+    "010": 1295,
+    "051": 1334,
+    "009": 537,
+    "015": 508,
+    "064": 626,
+    "ms-270": 272,
+    "ms-280": 272,
+    "034": 712,
+    "028": 555,
+    "038": 126,
+    "ms-200": 414,
+    "084": 513,
+    "ms-260": 943,
+    "ms-460": 310,
+    "ms-210": 217,
+    "ms-230": 217,
+    "ms-250": 217,
+    "ms-341": 368,
+    "ms-361": 368,
+    "ms-290": 217,
+    "ms-310": 217,
+    "ms-390": 217,
+    "ms-441": 565,
+    "fs-350": 2,
+    "hs-45": 164,
+    "ts-420": 348,
+    "br-600": 200,
+    "ms-311": 321,
+    "ms-362": 478,
+    "ms-261": 596,
+    "ms-201-t": 507,
+    "fs-460": 421,
+    "020-t": 2
+  },
+  "sample": [
+    {
+      "model": "020",
+      "field": "part_number",
+      "value": "5910-890-3100",
+      "document": "batch3:1",
+      "page": 3,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_h_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_h_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_h_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_h_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "réservoir",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "réservoir",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_la_instruction",
+      "value": "réservoir",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "réservoir",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_h_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_h_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_h_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_h_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_l_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_l_setting",
+      "value": "4",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "l’huile",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "l’huile",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_la_instruction",
+      "value": "l’huile",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "l’huile",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_h_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_h_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_h_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_h_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "011",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 2,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "stroke_mm",
+      "value": 30,
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "stroke_mm",
+      "value": 30,
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "stroke_mm",
+      "value": 30,
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "power_kw",
+      "value": 2.1,
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "power_kw",
+      "value": 2.1,
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "power_kw",
+      "value": 2.1,
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "richesse",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "richesse",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "richesse",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour Vis de réglage de richesse",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour Vis de réglage de richesse",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour Vis de réglage de richesse",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour Vis de réglage de richesse au ralenti L: Ouverte d’environ 1 tour",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour Vis de réglage de richesse au ralenti L: Ouverte d’environ 1 tour",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour Vis de réglage de richesse au ralenti L: Ouverte d’environ 1 tour",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar)",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar)",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar)",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar) Fonctionnement de l’aération",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar) Fonctionnement de l’aération",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "Ouverte d’environ 1 tour (réglage standard) Contrôle d’étanchéité du carburateur avec surpression p+ = 8 kPa (0,8 bar) Fonctionnement de l’aération",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "carburant",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "carburant",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "carburant",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "p+≤3 kPa (0,3 bar)",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "p+≤3 kPa (0,3 bar)",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "p+≤3 kPa (0,3 bar)",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_h_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_l_setting",
+      "value": "1",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "Essence de marque Huile de marque pour moteur deux-temps Taux de mélange: 1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "Essence de marque Huile de marque pour moteur deux-temps Taux de mélange: 1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "Essence de marque Huile de marque pour moteur deux-temps Taux de mélange: 1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent 024, 026 3",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_la_instruction",
+      "value": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent 024, 026 3",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_la_instruction",
+      "value": "1:50en utilisant de l’huile STIHL pour moteur deux-temps 1:50 1:25en utilisant les autres huiles de marque pour moteur deux-temps Filtre à air: Filtre plat à grande surface de filtration, en deux pièces; en plus, préfiltre dans le couvercle du carter de carburateur * Système d’aération du réservoir monté jusqu’à présent 024, 026 3",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "012",
+      "field": "carb_l_setting",
+      "value": "3",
+      "document": "batch3:2",
+      "page": 4,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "5",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "5",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "036",
+      "field": "carb_l_setting",
+      "value": "5",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "050",
+      "field": "carb_l_setting",
+      "value": "5",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "066",
+      "field": "carb_l_setting",
+      "value": "5",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "026",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "036",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "050",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "066",
+      "field": "carb_l_setting",
+      "value": "2",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    },
+    {
+      "model": "024",
+      "field": "carb_la_instruction",
+      "value": "vissage,",
+      "document": "batch3:2",
+      "page": 6,
+      "block_reason": "AUTHENTICITY_INSUFFICIENT"
+    }
+  ],
+  "generation_command": "node scripts/phase35c21_integrity_hotfix.js",
+  "source_commit": "f85a917",
+  "candidate_count": 33260
+}

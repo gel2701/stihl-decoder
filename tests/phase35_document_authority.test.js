@@ -4,6 +4,7 @@ import {
   assessDocumentModelRelations,
   buildKnownModelDictionary,
   classifyCodeCandidate,
+  classifyStihlCode,
   classifyDuplicateRelation,
   classifyExtractionQuality,
   classifySerialEvidence,
@@ -329,6 +330,39 @@ const partContext = 'Illustrated parts list Pos. 1 Part no 1128 123 4567 Qty 1';
 assert.deepStrictEqual(extractPartNumbers(partContext), ['1128-123-4567']);
 assert.strictEqual(classifyCodeCandidate(partContext, '1128-123-4567'), 'PART_NUMBER');
 assert.strictEqual(classifyCodeCandidate('0458 259 8621 D STIHL Instruction Manual', '0458-259-8621-D'), 'DOCUMENT_NUMBER');
+assert.strictEqual(classifyStihlCode({
+  candidate: '0458-259-8621-D',
+  lineText: '0458-259-8621-D',
+  previousLine: 'STIHL Operating Instructions',
+  nextLine: 'Printed in USA',
+  pagePosition: 'FOOTER',
+  repeatedFooterCount: 5,
+  documentType: 'INSTRUCTION_MANUAL'
+}).code_type, 'PUBLICATION_NUMBER');
+assert.strictEqual(classifyStihlCode({
+  candidate: '1125-123-4567',
+  lineText: 'Part No. 1125-123-4567 Qty 1',
+  previousLine: 'Illustrated parts list',
+  nextLine: 'Position 1',
+  pagePosition: 'BODY',
+  documentType: 'PARTS_LIST'
+}).code_type, 'PART_NUMBER');
+assert.strictEqual(classifyStihlCode({
+  candidate: '5910-890-3100',
+  lineText: 'Special tool 5910-890-3100',
+  previousLine: 'Service procedure',
+  nextLine: 'Use for testing',
+  pagePosition: 'BODY',
+  documentType: 'SERVICE_MANUAL'
+}).code_type, 'SPECIAL_TOOL_NUMBER');
+assert.strictEqual(classifyStihlCode({
+  candidate: '0781-120-1109',
+  lineText: '0781-120-1109',
+  previousLine: '',
+  nextLine: '',
+  pagePosition: 'BODY',
+  documentType: 'SERVICE_MANUAL'
+}).code_type, 'AMBIGUOUS_CODE');
 
 const partFieldDoc = {
   ...br600Doc,
@@ -347,6 +381,32 @@ assert.strictEqual(partFields.filter((field) => field.field_name === 'part_numbe
 assert.ok(partFields.some((field) => field.field_name === 'part_number' && field.model_scope === 'EXACT_MODEL'));
 assert.ok(partFields.some((field) => field.field_name === 'part_number' && field.model_scope_name === 'BR 600'));
 assert.strictEqual(partFields.some((field) => field.field_name === 'part_number' && field.model_scope === 'BR 600'), false);
+
+const specialToolAuthenticity = evaluateAuthenticity({
+  title: 'STIHL Service Procedure',
+  url: 'file:///test/stihl-service.pdf',
+  author: 'batch3',
+  pageCount: 12,
+  combinedText: 'ANDREAS STIHL AG & Co. KG Special tool 5910-890-3100 repair procedure',
+  documentNumbers: [],
+  modelsMentioned: knownModels.filter((model) => model.slug === 'fs-100'),
+  extractionQuality: classifyExtractionQuality({ title: 'STIHL Service Procedure', pageCount: 12, pageTexts: ['ANDREAS STIHL AG & Co. KG Special tool 5910-890-3100 repair procedure'] }),
+  metadataSignals: { publisherMatch: true, manualStructure: false }
+});
+assert.notStrictEqual(specialToolAuthenticity.authenticity_status, 'AUTHENTICATED_OFFICIAL');
+
+const confirmedPublicationAuthenticity = evaluateAuthenticity({
+  title: 'STIHL FS 100 Instruction Manual',
+  url: 'file:///test/stihl-fs100.pdf',
+  author: 'batch3',
+  pageCount: 80,
+  combinedText: 'ANDREAS STIHL AG & Co. KG Operating Instructions Technical Data',
+  documentNumbers: ['0458-259-8621-D'],
+  modelsMentioned: knownModels.filter((model) => model.slug === 'fs-100'),
+  extractionQuality: classifyExtractionQuality({ title: 'STIHL FS 100 Instruction Manual', pageCount: 80, pageTexts: ['ANDREAS STIHL AG & Co. KG Operating Instructions Technical Data'] }),
+  metadataSignals: { publisherMatch: true, manualStructure: true }
+});
+assert.strictEqual(confirmedPublicationAuthenticity.authenticity_status, 'AUTHENTICATED_OFFICIAL');
 
 assert.strictEqual(classifySerialEvidence('Replace ignition module before serial number 123456789 component update.'), 'TECHNICAL_CHANGE_CUTOFF');
 assert.strictEqual(classifySerialEvidence('Recall applies to serial number range 123456789 to 123456999.'), 'RECALL_SCOPE_CUTOFF');

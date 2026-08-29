@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T08:23:20.716Z",
+  "generated_at": "2026-08-29T12:44:38.361Z",
   "documents": [
     {
       "document_id": "batch3:1",
@@ -10,7 +10,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2041",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -38,8 +39,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:2",
@@ -50,8 +59,9 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0811-611-8380-D",
-      "revision": "D",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
+      "revision": null,
       "models": [
         "020",
         "024",
@@ -80,9 +90,17 @@
         "076",
         "084"
       ],
-      "auth_before": "AUTHENTICATED_OFFICIAL",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": null
+      "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:3",
@@ -93,7 +111,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-890-4400",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -122,9 +141,17 @@
         "088",
         "084"
       ],
-      "auth_before": "AUTHENTICATED_OFFICIAL",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": null
+      "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:4",
@@ -135,7 +162,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-5903",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -166,8 +194,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:5",
@@ -178,7 +214,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-5903",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 270",
@@ -210,8 +247,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:6",
@@ -222,7 +267,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-890-2201",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 200 / 020 T",
@@ -255,8 +301,16 @@
         "026"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:7",
@@ -267,7 +321,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-165-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -299,8 +354,16 @@
         "076"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:8",
@@ -311,7 +374,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-165-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -343,8 +407,16 @@
         "076"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:9",
@@ -355,7 +427,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -386,8 +459,16 @@
         "064"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:10",
@@ -398,7 +479,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -429,8 +511,16 @@
         "064"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:11",
@@ -441,7 +531,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2104",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 460 / 046 Magnum",
@@ -473,8 +564,16 @@
         "066"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:12",
@@ -485,7 +584,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-890-2201",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -516,8 +616,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:13",
@@ -528,7 +636,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 210",
@@ -563,8 +672,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:14",
@@ -575,7 +692,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-209-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 290 Farm Boss",
@@ -608,8 +726,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:15",
@@ -620,7 +746,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-212-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 341",
@@ -650,8 +777,16 @@
         "070"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:16",
@@ -662,7 +797,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2104",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -694,8 +830,16 @@
         "075"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:17",
@@ -706,7 +850,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 441",
@@ -739,8 +884,16 @@
         "010"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:18",
@@ -751,7 +904,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-227-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -779,8 +933,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:19",
@@ -791,7 +953,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-227-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -822,8 +985,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:20",
@@ -834,8 +1005,9 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0816-610-1495-D",
-      "revision": "D",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
+      "revision": null,
       "models": [
         "020",
         "010",
@@ -865,9 +1037,17 @@
         "076",
         "084"
       ],
-      "auth_before": "AUTHENTICATED_OFFICIAL",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": null
+      "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:21",
@@ -878,7 +1058,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-253-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "HS 45",
@@ -896,8 +1077,16 @@
         "051"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:22",
@@ -908,7 +1097,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -930,8 +1120,16 @@
         "066"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:23",
@@ -942,7 +1140,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-279-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -956,8 +1155,16 @@
         "041"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:24",
@@ -968,7 +1175,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-284-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -995,8 +1203,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:25",
@@ -1007,7 +1223,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2104",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1031,8 +1248,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:26",
@@ -1043,7 +1268,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-295-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1060,8 +1286,16 @@
         "034"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:27",
@@ -1072,7 +1306,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-326-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1094,8 +1329,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:28",
@@ -1107,6 +1350,7 @@
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
       "document_number": "0455-143-0223",
+      "publication_confidence": "CONFIRMED",
       "revision": null,
       "models": [
         "020",
@@ -1136,9 +1380,17 @@
         "075",
         "084"
       ],
-      "auth_before": "AUTHENTICATED_OFFICIAL",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": null
+      "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": true,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:29",
@@ -1149,7 +1401,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1182,8 +1435,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:30",
@@ -1194,7 +1455,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2104",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1226,8 +1488,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:31",
@@ -1238,7 +1508,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2104",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1270,8 +1541,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:32",
@@ -1282,7 +1561,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1307,8 +1587,16 @@
         "066"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:33",
@@ -1319,7 +1607,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1345,8 +1634,16 @@
         "066"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:34",
@@ -1357,7 +1654,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-5903",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1374,8 +1672,16 @@
         "051"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:35",
@@ -1386,8 +1692,9 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1110-D",
-      "revision": "D",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
+      "revision": null,
       "models": [
         "020",
         "011",
@@ -1410,9 +1717,17 @@
         "066",
         "070"
       ],
-      "auth_before": "AUTHENTICATED_OFFICIAL",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": null
+      "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:36",
@@ -1423,7 +1738,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1455,8 +1771,16 @@
         "048"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:37",
@@ -1467,7 +1791,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-963-1008",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1499,8 +1824,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:38",
@@ -1511,7 +1844,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1543,8 +1877,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:39",
@@ -1555,7 +1897,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1585,8 +1928,16 @@
         "044"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:40",
@@ -1597,7 +1948,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1628,8 +1980,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:41",
@@ -1640,7 +2000,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-850-1300",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1671,8 +2032,16 @@
         "076"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:42",
@@ -1683,7 +2052,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-890-2201",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1715,8 +2085,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:43",
@@ -1727,7 +2105,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-890-2201",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1759,8 +2138,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:44",
@@ -1771,7 +2158,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-542-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 311",
@@ -1802,8 +2190,16 @@
         "051"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:45",
@@ -1814,7 +2210,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1111",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1846,8 +2243,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:46",
@@ -1858,7 +2263,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 362",
@@ -1890,8 +2296,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:47",
@@ -1902,7 +2316,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2041",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1933,8 +2348,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:48",
@@ -1945,7 +2368,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1109",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -1976,8 +2400,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:49",
@@ -1988,7 +2420,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 261",
@@ -2021,8 +2454,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:50",
@@ -2033,7 +2474,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2064,8 +2506,16 @@
         "064"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:51",
@@ -2076,7 +2526,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-577-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "MS 201 TC-M",
@@ -2109,8 +2560,16 @@
         "070"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:52",
@@ -2121,7 +2580,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2153,8 +2613,16 @@
         "048"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:53",
@@ -2165,7 +2633,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2197,8 +2666,16 @@
         "048"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:54",
@@ -2209,7 +2686,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-145-3516",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2240,8 +2718,16 @@
         "034"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:55",
@@ -2252,7 +2738,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-650-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2282,8 +2769,16 @@
         "048"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:56",
@@ -2294,7 +2789,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-145-3516",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2321,8 +2817,16 @@
         "015"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:57",
@@ -2333,7 +2837,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-671-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2364,8 +2869,16 @@
         "015"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:58",
@@ -2376,7 +2889,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-145-3516",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2405,8 +2919,16 @@
         "050"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:59",
@@ -2417,7 +2939,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-675-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2448,8 +2971,16 @@
         "009"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:60",
@@ -2460,7 +2991,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2041",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2491,8 +3023,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:61",
@@ -2503,7 +3043,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2041",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2535,8 +3076,16 @@
         "066"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:62",
@@ -2547,7 +3096,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1109",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "010",
@@ -2578,8 +3128,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:63",
@@ -2590,7 +3148,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1109",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "010",
@@ -2621,8 +3180,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:64",
@@ -2633,8 +3200,9 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-8100-D",
-      "revision": "D",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
+      "revision": null,
       "models": [
         "020",
         "012",
@@ -2664,8 +3232,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:65",
@@ -2676,8 +3252,9 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1109-R",
-      "revision": "R",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
+      "revision": null,
       "models": [
         "020",
         "012",
@@ -2707,8 +3284,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:66",
@@ -2719,7 +3304,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2751,8 +3337,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:67",
@@ -2763,7 +3357,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3711",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2795,8 +3390,16 @@
         "088"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:68",
@@ -2807,7 +3410,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1109",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2840,8 +3444,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:69",
@@ -2852,7 +3464,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-753-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2884,8 +3497,16 @@
         "046"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:70",
@@ -2896,7 +3517,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0812-542-2041",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2927,8 +3549,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:71",
@@ -2939,7 +3569,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0781-120-1109",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -2970,8 +3601,16 @@
         "056"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:72",
@@ -2982,7 +3621,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3014,8 +3654,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:73",
@@ -3026,7 +3674,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0730-411-7000",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3058,8 +3707,16 @@
         "076"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:74",
@@ -3070,7 +3727,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0797-010-2053",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3101,8 +3759,16 @@
         "051"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:75",
@@ -3113,7 +3779,8 @@
       "native_pages_empty": 1,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3145,8 +3812,16 @@
         "009"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:76",
@@ -3157,7 +3832,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3184,8 +3860,16 @@
         "034"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:77",
@@ -3196,7 +3880,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0000-893-3706",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3223,8 +3908,16 @@
         "034"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     },
     {
       "document_id": "batch3:78",
@@ -3235,7 +3928,8 @@
       "native_pages_empty": 0,
       "ocr_pages_used": 0,
       "extraction_quality": "EXCELLENT",
-      "document_number": "0455-933-0223",
+      "document_number": null,
+      "publication_confidence": "CANDIDATE",
       "revision": null,
       "models": [
         "020",
@@ -3267,8 +3961,16 @@
         "084"
       ],
       "auth_before": "INSUFFICIENT_EXTRACTED_TEXT",
-      "auth_after": "AUTHENTICATED_OFFICIAL",
-      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to AUTHENTICATED_OFFICIAL."
+      "auth_after": "PROBABLE_OFFICIAL",
+      "why_changed": "Native page evidence changed authority from INSUFFICIENT_EXTRACTED_TEXT to PROBABLE_OFFICIAL.",
+      "authenticity_evidence": {
+        "corporate_identity": true,
+        "confirmed_publication_number": false,
+        "manual_structure": true,
+        "copyright_footer": true,
+        "model_identity": true,
+        "text_quality": "EXCELLENT"
+      }
     }
   ]
 }

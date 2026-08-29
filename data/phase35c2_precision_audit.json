@@ -1,78 +1,163 @@
 {
-  "generated_at": "2026-08-29T08:23:21.744Z",
+  "generated_at": "2026-08-29T12:44:38.557Z",
   "status": "PARTIAL",
   "fields": [
     {
       "field": "displacement_cc",
+      "candidate_count": 0,
       "sample_size": 0,
+      "sample_strategy": "NO_CANDIDATES",
       "correct": 0,
       "false_positive": 0,
       "model_scope_error": 0,
       "page_mapping_error": 0,
-      "context_precision": "HIGH"
+      "value_parse_error": 0,
+      "context_error": 0,
+      "precision_percent": 0,
+      "context_precision": "NOT_EVALUATED",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "ZERO_SAMPLE",
+      "issue_breakdown": {}
     },
     {
       "field": "power_kw",
+      "candidate_count": 138,
       "sample_size": 20,
+      "sample_strategy": "STRATIFIED_SAMPLE",
       "correct": 0,
       "false_positive": 20,
       "model_scope_error": 20,
       "page_mapping_error": 0,
-      "context_precision": "LOW"
+      "value_parse_error": 0,
+      "context_error": 0,
+      "precision_percent": 0,
+      "context_precision": "LOW",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "PRECISION_BELOW_THRESHOLD",
+      "issue_breakdown": {
+        "WRONG_MODEL_SCOPE": 20
+      }
     },
     {
       "field": "weight_kg",
+      "candidate_count": 23,
       "sample_size": 20,
-      "correct": 1,
-      "false_positive": 19,
+      "sample_strategy": "STRATIFIED_SAMPLE",
+      "correct": 0,
+      "false_positive": 20,
       "model_scope_error": 19,
       "page_mapping_error": 0,
-      "context_precision": "LOW"
+      "value_parse_error": 15,
+      "context_error": 20,
+      "precision_percent": 0,
+      "context_precision": "LOW",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "PRECISION_BELOW_THRESHOLD",
+      "issue_breakdown": {
+        "MEASUREMENT_DEFINITION_UNRESOLVED": 20,
+        "WRONG_MODEL_SCOPE": 19,
+        "VALUE_PARSE_ERROR": 15
+      }
     },
     {
       "field": "spark_plug",
+      "candidate_count": 204,
       "sample_size": 20,
+      "sample_strategy": "STRATIFIED_SAMPLE",
       "correct": 0,
       "false_positive": 20,
       "model_scope_error": 20,
       "page_mapping_error": 0,
-      "context_precision": "LOW"
+      "value_parse_error": 2,
+      "context_error": 2,
+      "precision_percent": 0,
+      "context_precision": "LOW",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "PRECISION_BELOW_THRESHOLD",
+      "issue_breakdown": {
+        "WRONG_MODEL_SCOPE": 20,
+        "VALUE_PARSE_ERROR": 2,
+        "WRONG_FIELD_LABEL": 2
+      }
     },
     {
       "field": "electrode_gap_mm",
+      "candidate_count": 0,
       "sample_size": 0,
+      "sample_strategy": "NO_CANDIDATES",
       "correct": 0,
       "false_positive": 0,
       "model_scope_error": 0,
       "page_mapping_error": 0,
-      "context_precision": "HIGH"
+      "value_parse_error": 0,
+      "context_error": 0,
+      "precision_percent": 0,
+      "context_precision": "NOT_EVALUATED",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "ZERO_SAMPLE",
+      "issue_breakdown": {}
     },
     {
       "field": "carb_h_setting",
+      "candidate_count": 5319,
       "sample_size": 20,
-      "correct": 9,
-      "false_positive": 11,
+      "sample_strategy": "STRATIFIED_SAMPLE",
+      "correct": 8,
+      "false_positive": 12,
       "model_scope_error": 8,
       "page_mapping_error": 0,
-      "context_precision": "LOW"
+      "value_parse_error": 3,
+      "context_error": 5,
+      "precision_percent": 40,
+      "context_precision": "LOW",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "PRECISION_BELOW_THRESHOLD",
+      "issue_breakdown": {
+        "WRONG_MODEL_SCOPE": 8,
+        "WRONG_FIELD_LABEL": 5,
+        "VALUE_PARSE_ERROR": 3
+      }
     },
     {
       "field": "carb_l_setting",
+      "candidate_count": 6860,
       "sample_size": 20,
-      "correct": 9,
-      "false_positive": 11,
+      "sample_strategy": "STRATIFIED_SAMPLE",
+      "correct": 7,
+      "false_positive": 13,
       "model_scope_error": 11,
       "page_mapping_error": 0,
-      "context_precision": "LOW"
+      "value_parse_error": 0,
+      "context_error": 5,
+      "precision_percent": 35,
+      "context_precision": "LOW",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "PRECISION_BELOW_THRESHOLD",
+      "issue_breakdown": {
+        "WRONG_MODEL_SCOPE": 11,
+        "WRONG_FIELD_LABEL": 5
+      }
     },
     {
       "field": "part_number",
+      "candidate_count": 631,
       "sample_size": 20,
+      "sample_strategy": "STRATIFIED_SAMPLE",
       "correct": 0,
       "false_positive": 20,
       "model_scope_error": 18,
       "page_mapping_error": 0,
-      "context_precision": "LOW"
+      "value_parse_error": 20,
+      "context_error": 16,
+      "precision_percent": 0,
+      "context_precision": "LOW",
+      "auto_verify_eligible": false,
+      "eligibility_reason": "PRECISION_BELOW_THRESHOLD",
+      "issue_breakdown": {
+        "VALUE_PARSE_ERROR": 20,
+        "WRONG_FIELD_LABEL": 16,
+        "WRONG_MODEL_SCOPE": 18
+      }
     }
   ]
 }

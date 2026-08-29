@@ -79,6 +79,7 @@ const PART_CONTEXT_KEYWORDS = [
   'replacement part',
   'spare part',
   'ersatzteil',
+  'teiledaten',
   'repuesto',
   'quantity',
   'qty',
@@ -86,6 +87,39 @@ const PART_CONTEXT_KEYWORDS = [
   'spare parts list',
   'parts list',
   'position'
+];
+
+const SPECIAL_TOOL_CONTEXT_KEYWORDS = [
+  'special tool',
+  'service tool',
+  'repair tool',
+  'testing tool',
+  'assembly tool',
+  'montagewerkzeug',
+  'prüfgerät',
+  'prufgerat',
+  'tool no',
+  'tool number'
+];
+
+const ACCESSORY_CONTEXT_KEYWORDS = [
+  'grease',
+  'multifunction grease',
+  'threadlocking',
+  'thread locking',
+  'loctite',
+  'degreasing agent',
+  'cleaner',
+  'adhesive',
+  'fluid',
+  'spray'
+];
+
+const ORDER_CONTEXT_KEYWORDS = [
+  'order no',
+  'order number',
+  'ordering number',
+  'bestellnummer'
 ];
 
 const FIELD_LABELS = {
@@ -273,6 +307,21 @@ function hasPartContext(text) {
   return PART_CONTEXT_KEYWORDS.some((keyword) => normalized.includes(keyword));
 }
 
+function hasSpecialToolContext(text) {
+  const normalized = normalizeLooseText(text);
+  return SPECIAL_TOOL_CONTEXT_KEYWORDS.some((keyword) => normalized.includes(keyword));
+}
+
+function hasAccessoryContext(text) {
+  const normalized = normalizeLooseText(text);
+  return ACCESSORY_CONTEXT_KEYWORDS.some((keyword) => normalized.includes(keyword));
+}
+
+function hasOrderContext(text) {
+  const normalized = normalizeLooseText(text);
+  return ORDER_CONTEXT_KEYWORDS.some((keyword) => normalized.includes(keyword));
+}
+
 function hasDocumentContext(text) {
   return /(copyright|instruction manual|operating instructions|service manual|workshop manual|technical information|printed in|edition|zba|dvs)/i.test(String(text || ''));
 }
@@ -280,6 +329,17 @@ function hasDocumentContext(text) {
 export function normalizeDocumentNumber(raw) {
   if (!raw) return null;
   const candidate = String(raw).toUpperCase().match(/\b0\d{3}[\s-]?\d{3}[\s-]?\d{4}(?:[\s-]?[A-Z])?\b/);
+  if (!candidate) return null;
+  const clean = candidate[0].replace(/\s+/g, '-').replace(/-+/g, '-');
+  const parts = clean.split('-').filter(Boolean);
+  if (parts.length === 3) return `${parts[0]}-${parts[1]}-${parts[2]}`;
+  if (parts.length >= 4) return `${parts[0]}-${parts[1]}-${parts[2]}-${parts[3]}`;
+  return null;
+}
+
+function normalizeStihlLikeCode(raw) {
+  if (!raw) return null;
+  const candidate = String(raw).toUpperCase().match(/\b\d{4}[\s-]?\d{3}[\s-]?\d{4}(?:[\s-]?[A-Z])?\b/);
   if (!candidate) return null;
   const clean = candidate[0].replace(/\s+/g, '-').replace(/-+/g, '-');
   const parts = clean.split('-').filter(Boolean);
@@ -301,6 +361,18 @@ export function extractDocumentNumberCandidates(...inputs) {
     const matches = String(input || '').toUpperCase().match(DOCUMENT_NUMBER_REGEX) || [];
     for (const match of matches) {
       const normalized = normalizeDocumentNumber(match);
+      if (normalized) values.add(normalized);
+    }
+  }
+  return [...values];
+}
+
+export function extractStihlCodeCandidates(...inputs) {
+  const values = new Set();
+  for (const input of inputs) {
+    const matches = String(input || '').toUpperCase().match(STIHL_CODE_REGEX) || [];
+    for (const match of matches) {
+      const normalized = normalizeStihlLikeCode(match);
       if (normalized) values.add(normalized);
     }
   }
@@ -493,6 +565,8 @@ export function evaluateAuthenticity({
   const hasMirrorArtifacts = ALTERED_MIRROR_KEYWORDS.some((keyword) => normalizedText.includes(keyword) || normalizedTitle.includes(keyword));
   const hasNonOfficialSignals = NON_OFFICIAL_KEYWORDS.some((keyword) => normalizedText.includes(keyword) || normalizedTitle.includes(keyword));
   const quality = extractionQuality?.quality || 'FAILED';
+  const hasManualStructure = Boolean(metadataSignals.manualStructure)
+    || /(technical data|specifications|operating instructions|service manual|workshop manual|illustrated parts list|table of contents)/i.test(combinedText || '');
 
   if (hasNonOfficialSignals && !mentionsStihl) {
     return {
@@ -514,7 +588,7 @@ export function evaluateAuthenticity({
   }
   if (hasDocumentNumber) {
     score += 2;
-    notes.push(`STIHL-style document number found: ${documentNumbers.join(', ')}.`);
+    notes.push(`Confirmed publication number found: ${documentNumbers.join(', ')}.`);
   }
   if (officialKeywords.length > 0) {
     score += Math.min(2, officialKeywords.length);
@@ -532,6 +606,10 @@ export function evaluateAuthenticity({
     score += 1;
     notes.push('Publisher metadata aligns with STIHL manual structure.');
   }
+  if (hasManualStructure) {
+    score += 2;
+    notes.push('Manual structure signals detected.');
+  }
   if (hasMirrorArtifacts) {
     score -= 1;
     notes.push('Mirror or overlay artifacts detected.');
@@ -545,7 +623,13 @@ export function evaluateAuthenticity({
     notes.push('Uploader identity suggests a translation mirror.');
   }
 
-  const strongIdentitySignal = hasCorporateIdentity || hasDocumentNumber || strongIdentitySignals.length >= 2;
+  const strongIdentityComponents = [
+    hasCorporateIdentity,
+    hasDocumentNumber,
+    hasManualStructure,
+    strongIdentitySignals.length >= 2
+  ].filter(Boolean).length;
+  const strongIdentitySignal = strongIdentityComponents >= 2;
 
   if (!mentionsStihl && quality === 'FAILED') {
     return {
@@ -577,7 +661,7 @@ export function evaluateAuthenticity({
     };
   }
 
-  if (strongIdentitySignal && score >= 6) {
+  if (strongIdentitySignal && score >= 7 && (hasCorporateIdentity || hasDocumentNumber) && hasManualStructure) {
     return {
       authenticity_status: hasMirrorArtifacts ? 'ALTERED_OR_INCOMPLETE' : 'AUTHENTICATED_OFFICIAL',
       authenticity_confidence: hasMirrorArtifacts ? 'MEDIUM' : 'HIGH',
@@ -683,10 +767,185 @@ export function extractPartNumbers(text) {
   return [...new Set((String(text || '').match(STIHL_CODE_REGEX) || []).map((value) => value.replace(/\s+/g, '-')))];
 }
 
+export function classifyStihlCode({
+  candidate,
+  lineText = '',
+  previousLine = '',
+  nextLine = '',
+  sectionHeading = '',
+  documentType = 'UNKNOWN',
+  pagePosition = 'BODY',
+  repeatedFooterCount = 0
+} = {}) {
+  const normalizedCandidate = normalizeStihlLikeCode(candidate);
+  if (!normalizedCandidate) {
+    return {
+      normalized_code: null,
+      code_type: 'UNKNOWN_STIHL_CODE',
+      classification_score: 0,
+      publication_score: 0,
+      publication_confidence: 'NONE',
+      evidence: ['Code does not match normalized STIHL pattern.']
+    };
+  }
+
+  const line = normalizeText(lineText);
+  const context = [previousLine, lineText, nextLine, sectionHeading].map((value) => normalizeText(value)).filter(Boolean).join(' ');
+  const evidence = [];
+  let publicationScore = 0;
+  let partScore = 0;
+  let toolScore = 0;
+  let accessoryScore = 0;
+  let orderScore = 0;
+
+  if (pagePosition === 'COVER_OR_TITLE') {
+    publicationScore += 4;
+    evidence.push('Code appears on cover/title page.');
+  } else if (pagePosition === 'FOOTER') {
+    publicationScore += 2;
+    evidence.push('Code appears in footer position.');
+  }
+
+  if (repeatedFooterCount >= 3) {
+    publicationScore += 4;
+    evidence.push(`Code repeats in footer across ${repeatedFooterCount} pages.`);
+  }
+
+  if (hasDocumentContext(context)) {
+    publicationScore += 3;
+    evidence.push('Publication/manual context found near code.');
+  }
+
+  if (/(manual|operating instructions|service manual|workshop manual|technical information|document|zba|dvs)/i.test(context)) {
+    publicationScore += 2;
+    evidence.push('Manual identity keywords found near code.');
+  }
+
+  if (['INSTRUCTION_MANUAL', 'SERVICE_MANUAL', 'WORKSHOP_MANUAL', 'TECHNICAL_INFORMATION'].includes(documentType)) {
+    publicationScore += 1;
+  }
+
+  if (hasPartContext(context)) {
+    partScore += 6;
+    publicationScore -= 5;
+    evidence.push('Parts context found near code.');
+  }
+
+  if (hasSpecialToolContext(context)) {
+    toolScore += 6;
+    publicationScore -= 5;
+    evidence.push('Special-tool context found near code.');
+  }
+
+  if (hasAccessoryContext(context)) {
+    accessoryScore += 5;
+    publicationScore -= 4;
+    evidence.push('Accessory/consumable context found near code.');
+  }
+
+  if (hasOrderContext(context)) {
+    orderScore += 5;
+    publicationScore -= 4;
+    evidence.push('Order-number context found near code.');
+  }
+
+  if (/\b(qty|quantity|position|pos\.)\b/i.test(context)) {
+    partScore += 4;
+    publicationScore -= 4;
+  }
+
+  if (/(remove|install|grease|tighten|apply|cleaning|clean|adjustment|procedure)/i.test(context) && !hasDocumentContext(context)) {
+    publicationScore -= 2;
+    evidence.push('Inline procedure context lowers publication confidence.');
+  }
+
+  if (toolScore >= 6) {
+    return {
+      normalized_code: normalizedCandidate,
+      code_type: 'SPECIAL_TOOL_NUMBER',
+      classification_score: toolScore,
+      publication_score: publicationScore,
+      publication_confidence: 'NONE',
+      evidence
+    };
+  }
+
+  if (partScore >= 6) {
+    return {
+      normalized_code: normalizedCandidate,
+      code_type: 'PART_NUMBER',
+      classification_score: partScore,
+      publication_score: publicationScore,
+      publication_confidence: 'NONE',
+      evidence
+    };
+  }
+
+  if (accessoryScore >= 5) {
+    return {
+      normalized_code: normalizedCandidate,
+      code_type: 'ACCESSORY_NUMBER',
+      classification_score: accessoryScore,
+      publication_score: publicationScore,
+      publication_confidence: 'NONE',
+      evidence
+    };
+  }
+
+  if (orderScore >= 5) {
+    return {
+      normalized_code: normalizedCandidate,
+      code_type: 'ORDER_NUMBER',
+      classification_score: orderScore,
+      publication_score: publicationScore,
+      publication_confidence: 'NONE',
+      evidence
+    };
+  }
+
+  if (publicationScore >= 7) {
+    return {
+      normalized_code: normalizedCandidate,
+      code_type: 'PUBLICATION_NUMBER',
+      classification_score: publicationScore,
+      publication_score: publicationScore,
+      publication_confidence: 'CONFIRMED',
+      evidence
+    };
+  }
+
+  if (publicationScore >= 4) {
+    return {
+      normalized_code: normalizedCandidate,
+      code_type: 'PUBLICATION_NUMBER_CANDIDATE',
+      classification_score: publicationScore,
+      publication_score: publicationScore,
+      publication_confidence: 'CANDIDATE',
+      evidence
+    };
+  }
+
+  return {
+    normalized_code: normalizedCandidate,
+    code_type: 'AMBIGUOUS_CODE',
+    classification_score: publicationScore,
+    publication_score: publicationScore,
+    publication_confidence: 'CANDIDATE',
+    evidence: evidence.length > 0 ? evidence : ['No decisive publication, part, or tool context found.']
+  };
+}
+
 export function classifyCodeCandidate(text, candidate) {
-  const normalizedCandidate = normalizeDocumentNumber(candidate);
-  if (normalizedCandidate && hasDocumentContext(text) && !hasPartContext(text)) return 'DOCUMENT_NUMBER';
-  if (hasPartContext(text)) return 'PART_NUMBER';
+  const classification = classifyStihlCode({
+    candidate,
+    lineText: text,
+    documentType: 'UNKNOWN',
+    pagePosition: 'BODY',
+    repeatedFooterCount: 0
+  });
+  if (classification.code_type === 'PUBLICATION_NUMBER' || classification.code_type === 'PUBLICATION_NUMBER_CANDIDATE') return 'DOCUMENT_NUMBER';
+  if (classification.code_type === 'PART_NUMBER') return 'PART_NUMBER';
+  if (classification.code_type === 'SPECIAL_TOOL_NUMBER') return 'SPECIAL_TOOL_NUMBER';
   return 'UNKNOWN_CODE';
 }
 

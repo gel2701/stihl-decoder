@@ -9,7 +9,8 @@ const testFiles = [
   'tests/canonical_policy.test.js',
   'tests/phase34_seo_integrity.test.js',
   'tests/phase34b_cleanup.test.js',
-  'tests/phase35_document_authority.test.js'
+  'tests/phase35_document_authority.test.js',
+  'tests/phase35c21_integrity_hotfix.test.js'
 ];
 
 let failures = 0;
