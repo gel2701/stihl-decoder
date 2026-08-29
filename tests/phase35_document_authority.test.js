@@ -15,7 +15,7 @@ import {
   splitDocumentNumber
 } from '../src/documentAuthority.js';
 
-console.log('Starting Phase 35A document authority regression tests...');
+console.log('Starting Phase 35B document authority regression tests...');
 
 const databaseFixture = {
   models: [
@@ -132,6 +132,7 @@ const multiModelFields = dedupeFieldValues(extractTechnicalFields({
 }));
 assert.ok(multiModelFields.some((field) => field.model_id === 'stihl_034' && field.field_name === 'displacement_cc' && field.value === 56.5));
 assert.ok(multiModelFields.some((field) => field.model_id === 'stihl_036' && field.field_name === 'displacement_cc' && field.value === 61.5));
+assert.ok(multiModelFields.some((field) => field.model_id === 'stihl_034' && field.field_name === 'displacement_cc' && field.model_scope === 'MULTI_MODEL_EXPLICIT_COLUMN' && field.table_scope_confidence === 'HIGH' && field.verification_status === 'VERIFIED'));
 
 const fs100Doc = {
   document_id: 'doc-fs100',
@@ -161,6 +162,8 @@ const fs100Fields = dedupeFieldValues(extractTechnicalFields({
 }));
 assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field.field_name === 'spark_plug'));
 assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field.field_name === 'electrode_gap_mm' && field.verification_status === 'VERIFIED'));
+assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field.field_name === 'electrode_gap_mm' && field.model_scope === 'EXACT_MODEL' && field.block_reason === null));
+assert.ok(fs100Fields.some((field) => field.model_id === 'stihl_fs_100' && field.field_name === 'spark_plug' && field.verification_status === 'APPROVED_ALTERNATIVES'));
 
 const wrongSourceDoc = {
   ...fs100Doc,
@@ -178,6 +181,7 @@ const wrongSourceFields = dedupeFieldValues(extractTechnicalFields({
   knownModels
 }));
 assert.strictEqual(wrongSourceFields.some((field) => field.verification_status === 'VERIFIED'), false);
+assert.ok(wrongSourceFields.every((field) => field.block_reason === 'DOCUMENT_AUTHENTICITY_INSUFFICIENT' || field.block_reason === 'SOURCE_TYPE_UNSUITABLE' || field.verification_status === 'OFFICIAL_INDIRECT'));
 
 const br600Doc = {
   document_id: 'doc-br600',
@@ -246,4 +250,4 @@ const family1128Relations = assessDocumentModelRelations({
 assert.ok(family1128Relations.some((entry) => entry.model_name === '044'));
 assert.ok(family1128Relations.some((entry) => entry.model_name === 'MS 460'));
 
-console.log('Phase 35A document authority regression tests passed.');
+console.log('Phase 35B document authority regression tests passed.');

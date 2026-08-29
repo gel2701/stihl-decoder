@@ -792,6 +792,65 @@ function inferScopeConfidence(relationStatus, multiModelPage) {
   return 'UNRESOLVED';
 }
 
+function determineModelScopeStatus({ relationStatus, scopeConfidence, modelName, pageText, documentTitle, multiModelPage }) {
+  const normalizedPage = normalizeLooseText(pageText);
+  const normalizedTitle = normalizeLooseText(documentTitle);
+  const normalizedModel = normalizeLooseText(modelName);
+  const isVariant = /\b([a-z]{1,3}\s+\d+\s+[a-z]{1,3})\b/i.test(modelName) || /\bRX\b|\bR\b/i.test(modelName);
+  const exactMention = normalizedPage.includes(normalizedModel) || normalizedTitle.includes(normalizedModel);
+
+  if (relationStatus === 'MODEL_CONFLICT') return 'CONFLICT';
+  if (scopeConfidence === 'MULTI_MODEL_TABLE') return 'MULTI_MODEL_EXPLICIT_COLUMN';
+  if (isVariant && exactMention) return 'EXACT_VARIANT';
+  if (scopeConfidence === 'EXACT_MODEL') return 'EXACT_MODEL';
+  if (scopeConfidence === 'SERIES_LEVEL') return 'SERIES_LEVEL';
+  if (relationStatus === 'TITLE_ONLY_MATCH' || relationStatus === 'BODY_ONLY_MATCH') return multiModelPage ? 'UNRESOLVED' : 'DOCUMENT_LEVEL_ONLY';
+  return 'UNRESOLVED';
+}
+
+function determineMeasurementDefinition(fieldName, context) {
+  const normalized = normalizeLooseText(context);
+  if (fieldName === 'weight_kg') {
+    if (normalized.includes('dry weight')) return 'dry_weight';
+    if (normalized.includes('without cutting attachment')) return 'without_cutting_attachment';
+    if (normalized.includes('without bar and chain')) return 'without_bar_and_chain';
+    if (normalized.includes('with battery')) return 'with_battery';
+    if (normalized.includes('without battery')) return 'without_battery';
+    if (normalized.includes('empty tank')) return 'empty_tank';
+    if (normalized.includes('complete machine')) return 'complete_machine';
+    return 'UNSPECIFIED_WEIGHT_CONTEXT';
+  }
+  if (fieldName === 'air_flow_m3_h') return normalized.includes('maximum') ? 'maximum_air_flow' : 'air_flow';
+  return null;
+}
+
+function determineBlockReason({
+  document,
+  suitability,
+  modelScope,
+  relationStatus,
+  parsedOk,
+  page,
+  value,
+  fieldName,
+  context,
+  anomaly
+}) {
+  if (document.authenticity_status !== 'AUTHENTICATED_OFFICIAL') return 'DOCUMENT_AUTHENTICITY_INSUFFICIENT';
+  if (!suitability || suitability === 'NONE') return 'SOURCE_TYPE_UNSUITABLE';
+  if (!Number.isInteger(page)) return 'FIELD_CONTEXT_AMBIGUOUS';
+  if (!parsedOk) return 'VALUE_PARSE_AMBIGUOUS';
+  if (anomaly) return 'VALUE_SANITY_FAILED';
+  if (relationStatus === 'MODEL_CONFLICT') return 'MODEL_SCOPE_CONFLICT';
+  if (modelScope === 'UNRESOLVED') return 'MODEL_SCOPE_UNRESOLVED';
+  if (modelScope === 'DOCUMENT_LEVEL_ONLY') return 'FIELD_CONTEXT_AMBIGUOUS';
+  if (modelScope === 'SERIES_LEVEL') return fieldName === 'part_number' ? 'PART_COMPATIBILITY_UNRESOLVED' : 'MODEL_SCOPE_UNRESOLVED';
+  if (modelScope === 'MULTI_MODEL_EXPLICIT_COLUMN' && !/^\d/.test(String(value ?? ''))) return 'TABLE_COLUMN_AMBIGUOUS';
+  if (fieldName === 'weight_kg' && determineMeasurementDefinition(fieldName, context) === 'UNSPECIFIED_WEIGHT_CONTEXT') return 'MEASUREMENT_DEFINITION_MISSING';
+  if (document.extraction_quality === 'POOR' || document.extraction_quality === 'FAILED') return 'TEXT_QUALITY_TOO_LOW';
+  return null;
+}
+
 function determineVerificationStatus({ document, fieldName, relationStatus, scopeConfidence, suitability, parsedOk, page }) {
   if (!parsedOk || !Number.isInteger(page)) return 'UNVERIFIED';
   if (!suitability || suitability === 'NONE') return 'UNVERIFIED';
@@ -805,8 +864,30 @@ function determineVerificationStatus({ document, fieldName, relationStatus, scop
   return 'UNVERIFIED';
 }
 
-function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, rawUnit, page, verificationStatus, scopeConfidence, sourceEligibility, evidenceSnippet, extra = {} }) {
+function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, rawUnit, page, verificationStatus, scopeConfidence, sourceEligibility, evidenceSnippet, pageText = '', extra = {} }) {
   const anomaly = typeof value === 'number' && !passesSanity(fieldName, value);
+  const modelScope = determineModelScopeStatus({
+    relationStatus: model.relation_status,
+    scopeConfidence,
+    modelName: model.model_name,
+    pageText,
+    documentTitle: document.document_title || '',
+    multiModelPage: scopeConfidence === 'MULTI_MODEL_TABLE'
+  });
+  const blockReason = verificationStatus === 'VERIFIED' || verificationStatus === 'APPROVED_ALTERNATIVES'
+    ? null
+    : determineBlockReason({
+      document,
+      suitability: sourceEligibility,
+      modelScope,
+      relationStatus: model.relation_status,
+      parsedOk: value != null,
+      page,
+      value,
+      fieldName,
+      context: evidenceSnippet,
+      anomaly
+    });
   return {
     candidate_id: stableId([document.document_id, model.model_id, fieldName, String(value), page, document.revision]),
     model_id: model.model_id,
@@ -829,11 +910,17 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
     authenticity_status: document.authenticity_status,
     confidence: document.authenticity_confidence,
     scope_confidence: scopeConfidence,
+    model_scope: modelScope,
+    variant_scope: modelScope === 'EXACT_VARIANT' ? model.model_name : null,
+    table_scope_confidence: scopeConfidence === 'MULTI_MODEL_TABLE' ? 'HIGH' : modelScope === 'EXACT_MODEL' || modelScope === 'EXACT_VARIANT' ? 'HIGH' : 'LOW',
     source_eligibility: sourceEligibility || 'NONE',
     model_relation_status: model.relation_status,
     page_locator_exists: Number.isInteger(page),
     evidence_snippet: evidenceSnippet,
     extraction_quality: document.extraction_quality,
+    measurement_definition: determineMeasurementDefinition(fieldName, evidenceSnippet),
+    block_reason: anomaly ? 'VALUE_SANITY_FAILED' : blockReason,
+    promotion_status: 'NOT_PROMOTED',
     ocr_risk: /\b[OISB][0-9]{2,}|[0-9]{2,}[OISB]\b/.test(String(rawValue || '')),
     ...extra
   };
@@ -952,7 +1039,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
           }),
           scopeConfidence,
           sourceEligibility,
-          evidenceSnippet: context.slice(0, 240)
+          evidenceSnippet: context.slice(0, 240),
+          pageText
         }));
       }
 
@@ -1002,7 +1090,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             }),
             scopeConfidence,
             sourceEligibility,
-            evidenceSnippet: context.slice(0, 240)
+            evidenceSnippet: context.slice(0, 240),
+            pageText
           }));
         }
       }
@@ -1068,7 +1157,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             verificationStatus,
             scopeConfidence,
             sourceEligibility,
-            evidenceSnippet: context.slice(0, 240)
+            evidenceSnippet: context.slice(0, 240),
+            pageText
           }));
         }
       }
@@ -1100,7 +1190,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             }),
             scopeConfidence,
             sourceEligibility,
-            evidenceSnippet: context.slice(0, 240)
+            evidenceSnippet: context.slice(0, 240),
+            pageText
           }));
         }
       }
@@ -1139,6 +1230,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
+            pageText,
             extra: fieldName === 'carb_la_instruction' ? {} : { normalized_turns: value }
           }));
         }
@@ -1169,11 +1261,12 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
                 suitability: sourceEligibility,
                 parsedOk: true,
                 page: page.page_number
-              })
+            })
               : 'UNVERIFIED',
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
+            pageText,
             extra: {
               description: normalizeText(context).slice(0, 100),
               assembly: hasPartContext(context) ? 'parts_list_context' : null,
@@ -1210,11 +1303,12 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
                 suitability: sourceEligibility,
                 parsedOk: Boolean(serialBoundary),
                 page: page.page_number
-              })
+            })
               : 'UNVERIFIED',
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
+            pageText,
             extra: {
               evidence_type: cutoff.evidence_type,
               component,

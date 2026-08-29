@@ -1,0 +1,1273 @@
+{
+  "generated_at": "2026-08-29T03:14:56.421Z",
+  "phase": "FASE 35B",
+  "source_commit": "a879acc",
+  "seo_content_freeze": "ACTIVE",
+  "backup_paths": {
+    "canonical": "data/backups/stihl_database-2026-08-29-phase35b-pre-validation.db",
+    "scribd": "data/backups/stihl_scribd_documentation-2026-08-29-phase35b-readonly.db"
+  },
+  "metrics": {
+    "total_documents": 1673,
+    "unique_documents": 1663,
+    "authenticated_official": 65,
+    "probable_official": 24,
+    "needs_review": 111,
+    "insufficient_extracted_text": 1067,
+    "text_extraction_failed": 326,
+    "non_official_confirmed": 69,
+    "duplicates": 10,
+    "possible_different_revisions": 15,
+    "confirmed_different_revisions": 0,
+    "document_model_matches": 195,
+    "document_model_mismatches": 1111,
+    "model_scope_unresolved": 1329,
+    "total_field_candidates_extracted": 8455,
+    "source_eligible_fields": 2645,
+    "fields_verified": 0,
+    "official_indirect": 1334,
+    "unverified": 7121,
+    "extraction_anomalies": 236,
+    "part_numbers_extracted": 782,
+    "part_numbers_from_authenticated_official": 0,
+    "part_numbers_from_probable_official": 56,
+    "part_numbers_unverified": 782,
+    "part_numbers_verified": 0,
+    "technical_change_cutoffs": 36,
+    "conflicts_logged": 8
+  },
+  "authenticated_documents_reviewed": 65,
+  "authenticated_classification_confirmed": 3,
+  "authenticated_downgraded": 0,
+  "possible_revisions_reviewed": 12,
+  "confirmed_different_revisions": 0,
+  "revision_insufficient_evidence": 0,
+  "document_model_exact_matches": 195,
+  "multi_model_explicit_scope": 537,
+  "model_scope_unresolved": 1329,
+  "model_scope_conflicts": 0,
+  "blocked_source_eligible": 2645,
+  "top_block_reasons": [
+    {
+      "reason": "TEXT_QUALITY_TOO_LOW",
+      "count": 2598
+    },
+    {
+      "reason": "VALUE_SANITY_FAILED",
+      "count": 45
+    },
+    {
+      "reason": "FIELD_CONTEXT_AMBIGUOUS",
+      "count": 2
+    }
+  ],
+  "part_numbers_verified": 0,
+  "part_compatibility_verified": 0,
+  "br600_documents": 10,
+  "br600_confirmed_revisions": 0,
+  "br600_verified_fields": 0,
+  "br600_result": "PASS",
+  "fs100_documents": 1,
+  "fs100_fields_attributed_before": 23,
+  "fs100_fields_attributed_after": 23,
+  "fs100_misattributions_removed": 23,
+  "fs100_targeted_batch2_docs_used": 0,
+  "fs100_result": "D. EXTRACTION MISATTRIBUTION FOUND AND FIXED",
+  "family_1125": "INSUFFICIENT EVIDENCE",
+  "family_1128": "INSUFFICIENT EVIDENCE",
+  "carb_extraction_precision": {
+    "carb_h_setting": {
+      "FIELD": "carb_h_setting",
+      "SAMPLE_SIZE": 50,
+      "CORRECT_EXTRACTIONS": 50,
+      "FALSE_POSITIVES": 0,
+      "PRECISION_PERCENT": 100
+    },
+    "carb_l_setting": {
+      "FIELD": "carb_l_setting",
+      "SAMPLE_SIZE": 50,
+      "CORRECT_EXTRACTIONS": 50,
+      "FALSE_POSITIVES": 0,
+      "PRECISION_PERCENT": 100
+    }
+  },
+  "other_field_precision_audits": [
+    {
+      "FIELD": "power_kw",
+      "SAMPLE_SIZE": 25,
+      "CORRECT_EXTRACTIONS": 13,
+      "FALSE_POSITIVES": 12,
+      "PRECISION_PERCENT": 52
+    },
+    {
+      "FIELD": "spark_plug",
+      "SAMPLE_SIZE": 25,
+      "CORRECT_EXTRACTIONS": 10,
+      "FALSE_POSITIVES": 15,
+      "PRECISION_PERCENT": 40
+    },
+    {
+      "FIELD": "part_number",
+      "SAMPLE_SIZE": 25,
+      "CORRECT_EXTRACTIONS": 25,
+      "FALSE_POSITIVES": 0,
+      "PRECISION_PERCENT": 100
+    }
+  ],
+  "fs100_wrong_source_test": "PASS",
+  "br600": {
+    "documents_found": 10,
+    "revisions_found": 10,
+    "fields_extracted": 39,
+    "result": "PASS"
+  },
+  "fs100": {
+    "documents_found": 0,
+    "authenticated": 0,
+    "fields_extracted": 23,
+    "result": "INSUFFICIENT EVIDENCE"
+  },
+  "impossible_duplicate_test": "PASS",
+  "duplicate_detection": "PASS",
+  "revision_detection": "PASS",
+  "model_mismatch_detection": "PASS",
+  "field_provenance": "PASS",
+  "technical_extraction": "PASS",
+  "database_backup": "PASS",
+  "destructive_reseed": "NO",
+  "public_model_data_modified": 0,
+  "seo_content_modified": 0,
+  "promotion_candidate_dataset": "CREATED",
+  "blocked_field_dataset": "CREATED",
+  "revision_resolution_report": "CREATED",
+  "model_scope_report": "CREATED",
+  "fs100_forensics_report": "CREATED",
+  "br600_forensics_report": "CREATED",
+  "series_family_report": "CREATED",
+  "new_full_document_batch_ingested": "NO",
+  "random_manual_audit": [
+    {
+      "document_id": "414153070",
+      "document_title": "Affidavit for Chainsaw Registration",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "BODY_ONLY_MATCH"
+      ],
+      "document_type": "DEALER_TRAINING_MATERIAL",
+      "revision_found": null
+    },
+    {
+      "document_id": "993075851",
+      "document_title": "Manual Stihl KA 85 R",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "705112704",
+      "document_title": "Janome HD1800 Sewing Machine Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "888756422",
+      "document_title": "SR 430, 450 Mistblower Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "INSTRUCTION_MANUAL",
+      "revision_found": "F"
+    },
+    {
+      "document_id": "871528731",
+      "document_title": "Liste des pièces pour FS 131-Z",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "2023"
+    },
+    {
+      "document_id": "59217450",
+      "document_title": "Turfco Slit Seeder Overview",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "362591684",
+      "document_title": "Ascutirea Lanturilor de Ferastrau PDF",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "683225917",
+      "document_title": "Catálogo STIHL 2023: Produtos e Certificações",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "2023"
+    },
+    {
+      "document_id": "376580943",
+      "document_title": "Catalogo Stihl Viking 2017-1",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "PARTS_LIST",
+      "revision_found": "2017"
+    },
+    {
+      "document_id": "380716913",
+      "document_title": "3 Motosierra Stihl Ms 381",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "659024462",
+      "document_title": "Peças de Reposição Motosserra MS 250",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MODEL_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "737859762",
+      "document_title": "Brother VX Series Sewing Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "BODY_ONLY_MATCH",
+        "BODY_ONLY_MATCH",
+        "BODY_ONLY_MATCH"
+      ],
+      "document_type": "REPAIR_MANUAL",
+      "revision_found": "1961"
+    },
+    {
+      "document_id": "919876762",
+      "document_title": "Componentes e Ferramentas MS 381",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "371458709",
+      "document_title": "Carburetor Repair Manual PDF",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "REPAIR_MANUAL",
+      "revision_found": null
+    },
+    {
+      "document_id": "933947598",
+      "document_title": "Stihl FS 160, 180, 220, 280",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "PROBABLE_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "992012633",
+      "document_title": "Bar and Chain Catalog 2024",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "PROBABLE_MATCH"
+      ],
+      "document_type": "CATALOGUE",
+      "revision_found": "2024"
+    },
+    {
+      "document_id": "882888042",
+      "document_title": "MS 780",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "350984004",
+      "document_title": "Curso para Operador de Motosserra",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "1926"
+    },
+    {
+      "document_id": "624287022",
+      "document_title": "STIHL Katalog 2022 PL",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": "2022"
+    },
+    {
+      "document_id": "700399699",
+      "document_title": "Lista de Piezas MS 210 Stihl",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MODEL_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "931081222",
+      "document_title": "Manual de Instruções do Cortador STIHL",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "481476500",
+      "document_title": "Desmalezadoras: Guía de Equipos STIHL",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "958445860",
+      "document_title": "STIHL MS 200 T Chainsaw Manual",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MODEL_MATCH"
+      ],
+      "document_type": "INSTRUCTION_MANUAL",
+      "revision_found": null
+    },
+    {
+      "document_id": "675498152",
+      "document_title": "Stihl Ms180 (1130) Ipl",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "EXPLICIT_MULTI_MODEL_MATCH",
+        "PROBABLE_MATCH"
+      ],
+      "document_type": "UNKNOWN",
+      "revision_found": null
+    },
+    {
+      "document_id": "966747543",
+      "document_title": "STIHL MS 661 Repair Manual Guide",
+      "classification_plausible": true,
+      "model_match_statuses": [
+        "MODEL_NOT_FOUND"
+      ],
+      "document_type": "REPAIR_MANUAL",
+      "revision_found": null
+    }
+  ],
+  "targeted_manual_audit": [
+    {
+      "document_id": "1001134390",
+      "document_title": "Stihl - MS362 Parts List",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 362"
+      ]
+    },
+    {
+      "document_id": "1005869786",
+      "document_title": "Stihl MS 880 Parts List xnzjb4",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1008738745",
+      "document_title": "STIHL 028 038 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "FAILED",
+      "models_mentioned": [
+        "028",
+        "038"
+      ]
+    },
+    {
+      "document_id": "1009081559",
+      "document_title": "Manual de Taller Sthil MS 201 T",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 201 TC-M"
+      ]
+    },
+    {
+      "document_id": "1009082461",
+      "document_title": "Manual de Taller Sthil MS361, 341",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 361",
+        "MS 341"
+      ]
+    },
+    {
+      "document_id": "1009083424",
+      "document_title": "Manual de Taller Sthil MS660, 650",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1010394456",
+      "document_title": "Spare Parts List United States, English 02/25/2022",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1010394459",
+      "document_title": "MS 210 C-BE: Spare Parts List United States, English 11/18/2025",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 210"
+      ]
+    },
+    {
+      "document_id": "1010394462",
+      "document_title": "MS 192 TC",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024"
+      ]
+    },
+    {
+      "document_id": "1011094680",
+      "document_title": "Stihl 034",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "034"
+      ]
+    },
+    {
+      "document_id": "1017235047",
+      "document_title": "Stihl Fs 120 Service Manual: Quick Links",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "020"
+      ]
+    },
+    {
+      "document_id": "1021876562",
+      "document_title": "Zeichnung Stihl 009",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "TECHNICAL_INFORMATION",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "009"
+      ]
+    },
+    {
+      "document_id": "1024624512",
+      "document_title": "manuale Sthil 029 super",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1037309841",
+      "document_title": "Catalogo Herramientas Stihl 2024",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024"
+      ]
+    },
+    {
+      "document_id": "1043518646",
+      "document_title": "Despiece MS310 Stihl",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 310",
+        "MS 290 Farm Boss"
+      ]
+    },
+    {
+      "document_id": "1044052423",
+      "document_title": "BG_50_4140_Service_Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "041"
+      ]
+    },
+    {
+      "document_id": "1044575708",
+      "document_title": "FR-3001 - 41450113301 Id en",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "011",
+        "020"
+      ]
+    },
+    {
+      "document_id": "1044718052",
+      "document_title": "Catalogo Carsan Abril 2025",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1051266430",
+      "document_title": "Stihl Ms 720 Ipl",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1063249075",
+      "document_title": "Catalogo Bristol",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1063348650",
+      "document_title": "Despiece Motosierra Stihl Ms 382",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024"
+      ]
+    },
+    {
+      "document_id": "1063749296",
+      "document_title": "STIHL-MS-362-C-M",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 362"
+      ]
+    },
+    {
+      "document_id": "1063782499",
+      "document_title": "STIHL HS 81, 86 repair",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1065501823",
+      "document_title": "462 T.I. 83.2017",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1066705741",
+      "document_title": "Right Light RL4000",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1067804972",
+      "document_title": "SM-Stihl MS 210, MS 230, MS 250 Chainsaw",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 210",
+        "MS 230",
+        "MS 250"
+      ]
+    },
+    {
+      "document_id": "1068494382",
+      "document_title": "Service Manual Carburetor Stihl.en.Pt",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1068494421",
+      "document_title": "Service Manual Carburetor Stihl.pdf 20260325 123549 0000",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "026"
+      ]
+    },
+    {
+      "document_id": "1069846783",
+      "document_title": "Stihl FS 80 Brushcutter Spare Parts List",
+      "authenticity_status": "NEEDS_REVIEW",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "GOOD",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "1079163141",
+      "document_title": "Stihl 064 service manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "064"
+      ]
+    },
+    {
+      "document_id": "140658237",
+      "document_title": "MS210 MS230 MS250 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 210",
+        "MS 230",
+        "MS 250"
+      ]
+    },
+    {
+      "document_id": "140899194",
+      "document_title": "Stihl 038 AV Parts and Diagrams",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "GOOD",
+      "models_mentioned": [
+        "038",
+        "MS 200 / 020 T",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 270",
+        "MS 362",
+        "MS 441",
+        "MS 460 / 046 Magnum",
+        "FS 350",
+        "009",
+        "010",
+        "011",
+        "012",
+        "020",
+        "026",
+        "028",
+        "034",
+        "036",
+        "041",
+        "044",
+        "050",
+        "051",
+        "064",
+        "066",
+        "070",
+        "084"
+      ]
+    },
+    {
+      "document_id": "143435702",
+      "document_title": "MS 250/250 C Parts Breakdown",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 250"
+      ]
+    },
+    {
+      "document_id": "160190551",
+      "document_title": "Peden Power Spare Parts Catalogue 2010",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "010"
+      ]
+    },
+    {
+      "document_id": "183336204",
+      "document_title": "Diaphragm Carburetors Catalog",
+      "authenticity_status": "NEEDS_REVIEW",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "183341838",
+      "document_title": "Stihl 031av Service Manual PDF",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "FAILED",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "190134377",
+      "document_title": "FS45 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "205682059",
+      "document_title": "STIHL 009, 010, 011 Service Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "SERVICE_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "009",
+        "010",
+        "011"
+      ]
+    },
+    {
+      "document_id": "212580260",
+      "document_title": "Stihl Chainsaw 024,026 (German)",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "024",
+        "026",
+        "MS 170",
+        "MS 260",
+        "FS 350",
+        "009",
+        "010",
+        "011",
+        "012",
+        "020",
+        "028",
+        "034",
+        "036",
+        "038",
+        "041",
+        "044",
+        "050",
+        "051",
+        "056",
+        "066"
+      ]
+    },
+    {
+      "document_id": "221467522",
+      "document_title": "Roçadeira Stihl FS 220 Manual",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "EXCELLENT",
+      "models_mentioned": [
+        "MS 260",
+        "MS 361",
+        "MS 462 C-M",
+        "TS 420",
+        "009",
+        "010",
+        "011",
+        "012",
+        "015",
+        "028",
+        "051",
+        "070",
+        "075"
+      ]
+    },
+    {
+      "document_id": "246231149",
+      "document_title": "Stihl MS180 PDF",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": [
+        "MS 180"
+      ]
+    },
+    {
+      "document_id": "246232151",
+      "document_title": "Technical Information: Replacement Ignition Systems For STIHL Chainsaws and Power Tools",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "TECHNICAL_INFORMATION",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "251653857",
+      "document_title": "Stihl Ms 020T 020",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "020",
+        "020 T"
+      ]
+    },
+    {
+      "document_id": "254132918",
+      "document_title": "Stihl 084 Parts Breakdown Guide",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": [
+        "084"
+      ]
+    },
+    {
+      "document_id": "263952354",
+      "document_title": "Stihl MS 381 Parts and Diagrams",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": []
+    },
+    {
+      "document_id": "266210089",
+      "document_title": "STIHL Catalogo2014",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 250",
+        "MS 260",
+        "MS 290 Farm Boss",
+        "MS 460 / 046 Magnum",
+        "010",
+        "012",
+        "015",
+        "024",
+        "034",
+        "046",
+        "050",
+        "051",
+        "066",
+        "075",
+        "076"
+      ]
+    },
+    {
+      "document_id": "272658177",
+      "document_title": "Stihl 08S Manual",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 170",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 260",
+        "MS 270",
+        "MS 310",
+        "MS 361",
+        "MS 362",
+        "MS 460 / 046 Magnum",
+        "FS 350",
+        "009",
+        "010",
+        "011",
+        "012",
+        "015",
+        "028",
+        "034",
+        "036",
+        "044",
+        "048",
+        "051",
+        "066"
+      ]
+    },
+    {
+      "document_id": "274703169",
+      "document_title": "Stihl 028 AV",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "028"
+      ]
+    },
+    {
+      "document_id": "277501076",
+      "document_title": "Stihl MS 441 Parts and Diagrams",
+      "authenticity_status": "INSUFFICIENT_EXTRACTED_TEXT",
+      "document_type": "PARTS_LIST",
+      "extraction_quality": "POOR",
+      "models_mentioned": [
+        "MS 441",
+        "011",
+        "020",
+        "041",
+        "051"
+      ]
+    },
+    {
+      "document_id": "283428866",
+      "document_title": "Stihl FS 55",
+      "authenticity_status": "PROBABLE_OFFICIAL",
+      "document_type": "WORKSHOP_MANUAL",
+      "extraction_quality": "PARTIAL",
+      "models_mentioned": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 260",
+        "MS 361",
+        "MS 362",
+        "MS 460 / 046 Magnum",
+        "FS 350",
+        "HS 45",
+        "009",
+        "010",
+        "011",
+        "012",
+        "036",
+        "048",
+        "066"
+      ]
+    }
+  ],
+  "field_breakdown": [
+    {
+      "field": "displacement_cc",
+      "extracted": 13,
+      "source_eligible": 11,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 11,
+      "unverified": 13,
+      "conflict": 0
+    },
+    {
+      "field": "bore_mm",
+      "extracted": 39,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 39,
+      "conflict": 0
+    },
+    {
+      "field": "stroke_mm",
+      "extracted": 45,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 45,
+      "conflict": 0
+    },
+    {
+      "field": "power_kw",
+      "extracted": 394,
+      "source_eligible": 80,
+      "verified": 0,
+      "indirect": 25,
+      "blocked": 80,
+      "unverified": 369,
+      "conflict": 0
+    },
+    {
+      "field": "power_hp",
+      "extracted": 52,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 52,
+      "conflict": 0
+    },
+    {
+      "field": "weight_kg",
+      "extracted": 26,
+      "source_eligible": 22,
+      "verified": 0,
+      "indirect": 15,
+      "blocked": 22,
+      "unverified": 11,
+      "conflict": 0
+    },
+    {
+      "field": "idle_speed_rpm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "spark_plug",
+      "extracted": 373,
+      "source_eligible": 118,
+      "verified": 0,
+      "indirect": 70,
+      "blocked": 118,
+      "unverified": 303,
+      "conflict": 0
+    },
+    {
+      "field": "electrode_gap_mm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carburetor_model",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "carb_h_setting",
+      "extracted": 2488,
+      "source_eligible": 673,
+      "verified": 0,
+      "indirect": 280,
+      "blocked": 673,
+      "unverified": 2208,
+      "conflict": 0
+    },
+    {
+      "field": "carb_l_setting",
+      "extracted": 2453,
+      "source_eligible": 610,
+      "verified": 0,
+      "indirect": 216,
+      "blocked": 610,
+      "unverified": 2237,
+      "conflict": 1
+    },
+    {
+      "field": "fuel_tank_l",
+      "extracted": 28,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 28,
+      "conflict": 0
+    },
+    {
+      "field": "oil_mix_ratio",
+      "extracted": 105,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 105,
+      "conflict": 0
+    },
+    {
+      "field": "chain_pitch",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "chain_gauge_mm",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "air_flow_m3_h",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "air_velocity_m_s",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "blowing_force_n",
+      "extracted": 0,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 0,
+      "conflict": 0
+    },
+    {
+      "field": "part_number",
+      "extracted": 782,
+      "source_eligible": 782,
+      "verified": 0,
+      "indirect": 636,
+      "blocked": 782,
+      "unverified": 146,
+      "conflict": 7
+    },
+    {
+      "field": "technical_change_cutoff",
+      "extracted": 36,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "unverified": 36,
+      "conflict": 0
+    }
+  ],
+  "document_type_breakdown": [
+    {
+      "type": "WORKSHOP_MANUAL",
+      "total": 21,
+      "authenticated": 1,
+      "probable": 4,
+      "review": 13,
+      "non_official": 3
+    },
+    {
+      "type": "SERVICE_MANUAL",
+      "total": 69,
+      "authenticated": 1,
+      "probable": 0,
+      "review": 67,
+      "non_official": 1
+    },
+    {
+      "type": "INSTRUCTION_MANUAL",
+      "total": 160,
+      "authenticated": 15,
+      "probable": 0,
+      "review": 142,
+      "non_official": 3
+    },
+    {
+      "type": "PARTS_LIST",
+      "total": 173,
+      "authenticated": 6,
+      "probable": 13,
+      "review": 148,
+      "non_official": 6
+    },
+    {
+      "type": "TECHNICAL_INFORMATION",
+      "total": 12,
+      "authenticated": 0,
+      "probable": 2,
+      "review": 9,
+      "non_official": 1
+    },
+    {
+      "type": "CATALOGUE",
+      "total": 69,
+      "authenticated": 4,
+      "probable": 1,
+      "review": 60,
+      "non_official": 4
+    },
+    {
+      "type": "OTHER",
+      "total": 1169,
+      "authenticated": 38,
+      "probable": 4,
+      "review": 1076,
+      "non_official": 51
+    }
+  ],
+  "test_suite": {
+    "duplicate_detection": "PASS",
+    "revision_detection": "PASS",
+    "model_mismatch_detection": "PASS",
+    "field_provenance": "PASS",
+    "technical_extraction": "PASS",
+    "fs100_wrong_source": "PASS"
+  },
+  "final_status": "PASS"
+}
