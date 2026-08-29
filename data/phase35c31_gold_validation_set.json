@@ -1,0 +1,578 @@
+{
+  "generated_at": "2026-08-29T14:55:19.166Z",
+  "source_commit": "bd5a5f1",
+  "records": [
+    {
+      "gold_record_id": "8e336935bab70e38",
+      "model": "009",
+      "field": "displacement_cc",
+      "expected_value": 36.62,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "5bfcd120843097aa",
+      "model": "009",
+      "field": "power_kw",
+      "expected_value": 1.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\009_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "7886be3d67551b1d",
+      "model": "026",
+      "field": "displacement_cc",
+      "expected_value": 48.72,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "aaf8f08e0992daff",
+      "model": "026",
+      "field": "power_kw",
+      "expected_value": 2.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\026_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "4c8c964db5125e28",
+      "model": "036",
+      "field": "displacement_cc",
+      "expected_value": 61.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "91fa930b31074eb2",
+      "model": "036",
+      "field": "power_kw",
+      "expected_value": 3.3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\036_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "c99704920eb53b51",
+      "model": "044",
+      "field": "displacement_cc",
+      "expected_value": 70.74,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "8a3ba924ef913e05",
+      "model": "044",
+      "field": "power_kw",
+      "expected_value": 4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\044_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "12a60efffdedcbf0",
+      "model": "046",
+      "field": "displacement_cc",
+      "expected_value": 76.54,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "650119344842de3f",
+      "model": "046",
+      "field": "power_kw",
+      "expected_value": 4.5,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\046_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "83487777241bd585",
+      "model": "066",
+      "field": "displacement_cc",
+      "expected_value": 91.65,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "5f587d47d7e32131",
+      "model": "066",
+      "field": "power_kw",
+      "expected_value": 5.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\066_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "62bf150aa2e50db1",
+      "model": "088",
+      "field": "displacement_cc",
+      "expected_value": 121.67,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "8257763a59343cfc",
+      "model": "088",
+      "field": "power_kw",
+      "expected_value": 6.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\088_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "a191c8fc148d5781",
+      "model": "fs-350",
+      "field": "displacement_cc",
+      "expected_value": 36.32,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "e5d972d0e804622a",
+      "model": "fs-350",
+      "field": "power_kw",
+      "expected_value": 1.6,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "38349252e54d9954",
+      "model": "hs-45",
+      "field": "displacement_cc",
+      "expected_value": 27.21,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\HS45_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "c8c1eac32e49c6ee",
+      "model": "hs-45",
+      "field": "power_kw",
+      "expected_value": 0.75,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\HS45_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "67d86f36b3e65c89",
+      "model": "ms-170",
+      "field": "displacement_cc",
+      "expected_value": 30.11,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "cb3ed834ccb360ba",
+      "model": "ms-170",
+      "field": "power_kw",
+      "expected_value": 1.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms170_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "62e2d40727888409",
+      "model": "ms-180",
+      "field": "displacement_cc",
+      "expected_value": 31.81,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "181fb116f894f24b",
+      "model": "ms-180",
+      "field": "power_kw",
+      "expected_value": 1.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms180_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "dde6348c9ad63b42",
+      "model": "ms-200",
+      "field": "displacement_cc",
+      "expected_value": 35.22,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "8c715071546cec63",
+      "model": "ms-200",
+      "field": "power_kw",
+      "expected_value": 1.6,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms200t_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "fc31ac6b003aeb59",
+      "model": "ms-210",
+      "field": "displacement_cc",
+      "expected_value": 35.22,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "350ab9009ded4a5d",
+      "model": "ms-210",
+      "field": "power_kw",
+      "expected_value": 1.5,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms210_body.htm",
+      "status": "CONFLICT",
+      "validation_evidence": [
+        "MULTIPLE_INDEPENDENT_VALUES"
+      ],
+      "supporting_candidate_count": 1
+    },
+    {
+      "gold_record_id": "a094aa29265d609c",
+      "model": "ms-230",
+      "field": "displacement_cc",
+      "expected_value": 40.22,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "0d46eeb0d23b17a5",
+      "model": "ms-230",
+      "field": "power_kw",
+      "expected_value": 1.9,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms230_body.htm",
+      "status": "CONFLICT",
+      "validation_evidence": [
+        "MULTIPLE_INDEPENDENT_VALUES"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "0bbadccd68ba04f4",
+      "model": "ms-250",
+      "field": "displacement_cc",
+      "expected_value": 45.12,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "8c8706a4187ded23",
+      "model": "ms-250",
+      "field": "power_kw",
+      "expected_value": 2.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms250_body.htm",
+      "status": "CONFLICT",
+      "validation_evidence": [
+        "MULTIPLE_INDEPENDENT_VALUES"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "da10697338810b01",
+      "model": "ms-260",
+      "field": "displacement_cc",
+      "expected_value": 48.72,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "330b6ddfc536f5fb",
+      "model": "ms-260",
+      "field": "power_kw",
+      "expected_value": 2.4,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms260_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "ed849028cbfc8554",
+      "model": "ms-290",
+      "field": "displacement_cc",
+      "expected_value": 56.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "8181972270030b8f",
+      "model": "ms-290",
+      "field": "power_kw",
+      "expected_value": 2.8,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms290_body.htm",
+      "status": "CONFLICT",
+      "validation_evidence": [
+        "MULTIPLE_INDEPENDENT_VALUES"
+      ],
+      "supporting_candidate_count": 1
+    },
+    {
+      "gold_record_id": "30580caab7dd3567",
+      "model": "ms-310",
+      "field": "displacement_cc",
+      "expected_value": 59.03,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "34646c4cb9de02ad",
+      "model": "ms-310",
+      "field": "power_kw",
+      "expected_value": 3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms310_body.htm",
+      "status": "CONFLICT",
+      "validation_evidence": [
+        "MULTIPLE_INDEPENDENT_VALUES"
+      ],
+      "supporting_candidate_count": 1
+    },
+    {
+      "gold_record_id": "4c87ac2a078a5a33",
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "expected_value": 61.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "74620e31634d92b4",
+      "model": "ms-360",
+      "field": "power_kw",
+      "expected_value": 3.3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "4d30dae5d80e1ca8",
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "expected_value": 61.53,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "fb567561ffcbf711",
+      "model": "ms-360",
+      "field": "power_kw",
+      "expected_value": 3.3,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "2842c0532e346d69",
+      "model": "ms-390",
+      "field": "displacement_cc",
+      "expected_value": 64.13,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "023e6a3b0e4c8b6e",
+      "model": "ms-390",
+      "field": "power_kw",
+      "expected_value": 3.2,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms390_body.htm",
+      "status": "CONFLICT",
+      "validation_evidence": [
+        "MULTIPLE_INDEPENDENT_VALUES"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "f60c5d4e46c916e6",
+      "model": "ms-460",
+      "field": "displacement_cc",
+      "expected_value": 76.54,
+      "unit": "cc",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    },
+    {
+      "gold_record_id": "0b06fe4491f63f64",
+      "model": "ms-460",
+      "field": "power_kw",
+      "expected_value": 4.5,
+      "unit": "kW",
+      "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms460_body.htm",
+      "status": "GOLD_CANDIDATE",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW"
+      ],
+      "supporting_candidate_count": 0
+    }
+  ]
+}

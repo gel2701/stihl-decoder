@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-08-29T14:55:04.588Z",
+  "source_commit": "bd5a5f1",
+  "fields": [
+    {
+      "field": "power_kw",
+      "heuristic_context_precision": {
+        "candidate_count": 138,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "power_kw",
+        "sample_size": 22,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "weight_kg",
+      "heuristic_context_precision": {
+        "candidate_count": 23,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "weight_kg",
+        "sample_size": 0,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "spark_plug",
+      "heuristic_context_precision": {
+        "candidate_count": 204,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "spark_plug",
+        "sample_size": 0,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "part_number",
+      "heuristic_context_precision": {
+        "candidate_count": 631,
+        "sample_size": 20,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "part_number",
+        "sample_size": 0,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "carb_h_setting",
+      "heuristic_context_precision": {
+        "candidate_count": 5319,
+        "sample_size": 20,
+        "precision_percent": 40,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "carb_h_setting",
+        "sample_size": 0,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "carb_l_setting",
+      "heuristic_context_precision": {
+        "candidate_count": 6860,
+        "sample_size": 20,
+        "precision_percent": 35,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "carb_l_setting",
+        "sample_size": 0,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "displacement_cc",
+      "heuristic_context_precision": {
+        "candidate_count": 0,
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "displacement_cc",
+        "sample_size": 22,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "LOW",
+        "auto_verify_eligible": false
+      }
+    },
+    {
+      "field": "electrode_gap_mm",
+      "heuristic_context_precision": {
+        "candidate_count": 0,
+        "sample_size": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      },
+      "gold_validated_precision": {
+        "field": "electrode_gap_mm",
+        "sample_size": 0,
+        "correct_matches": 0,
+        "precision_percent": 0,
+        "context_precision": "NOT_EVALUATED",
+        "auto_verify_eligible": false
+      }
+    }
+  ]
+}
