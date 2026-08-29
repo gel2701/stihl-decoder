@@ -1,13 +1,17 @@
 {
-  "generated_at": "2026-08-29T21:54:24.734Z",
+  "generated_at": "2026-08-29T22:19:50.810Z",
   "source_commit": "d8c23f1",
-  "reviewed_candidate_count": 43,
+  "reviewed_candidate_count": 28,
   "verified_candidate_count": 0,
-  "blocked_candidate_count": 43,
+  "blocked_candidate_count": 28,
   "top_block_reasons": [
     {
       "reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "count": 43
+      "count": 21
+    },
+    {
+      "reason": "MODEL_SCOPE_UNRESOLVED",
+      "count": 7
     }
   ],
   "representative_samples": [
@@ -16,24 +20,10 @@
       "variant_id": "026",
       "field_name": "power_kw",
       "document_id": "batch3:2",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE"
-      ]
-    },
-    {
-      "candidate_id": "3696b9fe905e866f",
-      "variant_id": "026",
-      "field_name": "spark_plug",
-      "document_id": "batch3:9",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
       ]
     },
     {
@@ -41,38 +31,12 @@
       "variant_id": "026",
       "field_name": "spark_plug",
       "document_id": "batch3:10",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
+        "SPARK_PLUG_VALUE_NOT_RECOGNIZED",
+        "SPARK_PLUG_LOOKS_LIKE_TOOL_CODE",
         "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
-      ]
-    },
-    {
-      "candidate_id": "3efd5de7073c8645",
-      "variant_id": "026",
-      "field_name": "spark_plug",
-      "document_id": "batch3:10",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
-      ]
-    },
-    {
-      "candidate_id": "3f5196618a93f998",
-      "variant_id": "026",
-      "field_name": "spark_plug",
-      "document_id": "batch3:11",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
+        "PRECISION_NOT_ELIGIBLE"
       ]
     },
     {
@@ -80,9 +44,10 @@
       "variant_id": "026",
       "field_name": "spark_plug",
       "document_id": "batch3:2",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
+        "SPARK_PLUG_VALUE_NOT_RECOGNIZED",
+        "SPARK_PLUG_LOOKS_LIKE_TOOL_CODE",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE"
       ]
@@ -92,25 +57,12 @@
       "variant_id": "026",
       "field_name": "spark_plug",
       "document_id": "batch3:9",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
+        "SPARK_PLUG_VALUE_NOT_RECOGNIZED",
+        "SPARK_PLUG_LOOKS_LIKE_TOOL_CODE",
         "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
-      ]
-    },
-    {
-      "candidate_id": "d573672f5db79603",
-      "variant_id": "026",
-      "field_name": "spark_plug",
-      "document_id": "batch3:5",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
+        "PRECISION_NOT_ELIGIBLE"
       ]
     },
     {
@@ -118,9 +70,9 @@
       "variant_id": "026",
       "field_name": "stroke_mm",
       "document_id": "batch3:2",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
+        "NUMERIC_VALUE_OUT_OF_RANGE",
         "SANITY_FAILED",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE",
@@ -132,9 +84,9 @@
       "variant_id": "026",
       "field_name": "stroke_mm",
       "document_id": "batch3:2",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
+        "NUMERIC_VALUE_OUT_OF_RANGE",
         "SANITY_FAILED",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE",
@@ -146,49 +98,11 @@
       "variant_id": "026",
       "field_name": "stroke_mm",
       "document_id": "batch3:2",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
       "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE",
         "CONFLICT_UNRESOLVED"
-      ]
-    },
-    {
-      "candidate_id": "cbfe0fca4952c2d9",
-      "variant_id": "036",
-      "field_name": "power_kw",
-      "document_id": "batch3:45",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
-      ]
-    },
-    {
-      "candidate_id": "0ba5ade6c41ed7e2",
-      "variant_id": "036",
-      "field_name": "spark_plug",
-      "document_id": "batch3:45",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE"
-      ]
-    },
-    {
-      "candidate_id": "b7e90c845a6f22ee",
-      "variant_id": "036",
-      "field_name": "stroke_mm",
-      "document_id": "batch3:45",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE"
       ]
     },
     {
@@ -199,6 +113,8 @@
       "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
       "secondary_block_reasons": [
         "MODEL_SCOPE_UNRESOLVED",
+        "SPARK_PLUG_VALUE_NOT_RECOGNIZED",
+        "SPARK_PLUG_LOOKS_LIKE_TOOL_CODE",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE"
       ]
@@ -211,34 +127,10 @@
       "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
       "secondary_block_reasons": [
         "MODEL_SCOPE_UNRESOLVED",
+        "SPARK_PLUG_VALUE_NOT_RECOGNIZED",
+        "SPARK_PLUG_LOOKS_LIKE_TOOL_CODE",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE"
-      ]
-    },
-    {
-      "candidate_id": "72326a3f87394bfe",
-      "variant_id": "046",
-      "field_name": "spark_plug",
-      "document_id": "batch3:13",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
-      ]
-    },
-    {
-      "candidate_id": "8a31b1a9f1c0efa8",
-      "variant_id": "046",
-      "field_name": "spark_plug",
-      "document_id": "batch3:13",
-      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
-      "secondary_block_reasons": [
-        "MODEL_SCOPE_UNRESOLVED",
-        "INDEPENDENT_EVIDENCE_MISSING",
-        "PRECISION_NOT_ELIGIBLE",
-        "CONFLICT_UNRESOLVED"
       ]
     },
     {
@@ -297,6 +189,7 @@
       "document_id": "batch3:49",
       "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
       "secondary_block_reasons": [
+        "NUMERIC_VALUE_OUT_OF_RANGE",
         "SANITY_FAILED",
         "INDEPENDENT_EVIDENCE_MISSING",
         "PRECISION_NOT_ELIGIBLE",
@@ -316,10 +209,126 @@
       ]
     },
     {
-      "candidate_id": "f70f06b39f69272b",
+      "candidate_id": "a3e630237a5d9247",
       "variant_id": "ts-420",
-      "field_name": "spark_plug",
+      "field_name": "stroke_mm",
       "document_id": "batch3:29",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE"
+      ]
+    },
+    {
+      "candidate_id": "0d922fa160215dbb",
+      "variant_id": "ms-260",
+      "field_name": "power_kw",
+      "document_id": "batch3:7",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE",
+        "CONFLICT_UNRESOLVED"
+      ]
+    },
+    {
+      "candidate_id": "47df6c92cb3ea442",
+      "variant_id": "ms-260",
+      "field_name": "power_kw",
+      "document_id": "batch3:8",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE",
+        "CONFLICT_UNRESOLVED"
+      ]
+    },
+    {
+      "candidate_id": "0f79d6e4d27aa780",
+      "variant_id": "ms-260",
+      "field_name": "stroke_mm",
+      "document_id": "batch3:7",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE"
+      ]
+    },
+    {
+      "candidate_id": "4cb8e527528fc862",
+      "variant_id": "ms-260",
+      "field_name": "stroke_mm",
+      "document_id": "batch3:8",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE"
+      ]
+    },
+    {
+      "candidate_id": "54ed7468c0c750f3",
+      "variant_id": "ms-460",
+      "field_name": "power_kw",
+      "document_id": "batch3:11",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE",
+        "CONFLICT_UNRESOLVED"
+      ]
+    },
+    {
+      "candidate_id": "5cb9202feaf18871",
+      "variant_id": "ms-460",
+      "field_name": "spark_plug",
+      "document_id": "batch3:11",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "SPARK_PLUG_VALUE_NOT_RECOGNIZED",
+        "SPARK_PLUG_LOOKS_LIKE_TOOL_CODE",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE",
+        "CONFLICT_UNRESOLVED"
+      ]
+    },
+    {
+      "candidate_id": "8efbf25399d379a1",
+      "variant_id": "ms-460",
+      "field_name": "spark_plug",
+      "document_id": "batch3:11",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE",
+        "CONFLICT_UNRESOLVED"
+      ]
+    },
+    {
+      "candidate_id": "db00103e5b819a26",
+      "variant_id": "ms-460",
+      "field_name": "spark_plug",
+      "document_id": "batch3:11",
+      "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
+      "secondary_block_reasons": [
+        "MODEL_SCOPE_UNRESOLVED",
+        "INDEPENDENT_EVIDENCE_MISSING",
+        "PRECISION_NOT_ELIGIBLE",
+        "CONFLICT_UNRESOLVED"
+      ]
+    },
+    {
+      "candidate_id": "8a356b5d1cd6d0c8",
+      "variant_id": "ms-460",
+      "field_name": "stroke_mm",
+      "document_id": "batch3:11",
       "primary_block_reason": "DOCUMENT_NOT_AUTHENTICATED",
       "secondary_block_reasons": [
         "MODEL_SCOPE_UNRESOLVED",

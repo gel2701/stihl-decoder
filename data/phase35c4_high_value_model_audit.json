@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-29T21:54:24.734Z",
+  "generated_at": "2026-08-29T22:19:50.810Z",
   "source_commit": "d8c23f1",
   "models": [
     {
       "model": "026",
-      "authenticated_sources": 0,
+      "authenticated_sources": 3,
       "exact_scope_candidates": 0,
       "gold_candidates": 2,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 11,
+      "blocked_facts": 7,
       "top_block_reasons": [
         {
-          "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 11
+          "reason": "MODEL_SCOPE_UNRESOLVED",
+          "count": 7
         }
       ],
       "status": "BLOCKED"
@@ -25,14 +25,9 @@
       "gold_candidates": 2,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 3,
-      "top_block_reasons": [
-        {
-          "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 3
-        }
-      ],
-      "status": "BLOCKED"
+      "blocked_facts": 0,
+      "top_block_reasons": [],
+      "status": "NO_WORKING_SET_EVIDENCE"
     },
     {
       "model": "044",
@@ -57,11 +52,11 @@
       "gold_candidates": 2,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 3,
+      "blocked_facts": 1,
       "top_block_reasons": [
         {
           "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 3
+          "count": 1
         }
       ],
       "status": "BLOCKED"
@@ -86,7 +81,7 @@
       "model": "fs-350",
       "authenticated_sources": 0,
       "exact_scope_candidates": 0,
-      "gold_candidates": 2,
+      "gold_candidates": 0,
       "gold_validated": 0,
       "verified_facts": 0,
       "blocked_facts": 0,
@@ -100,11 +95,11 @@
       "gold_candidates": 0,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 3,
+      "blocked_facts": 2,
       "top_block_reasons": [
         {
           "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 3
+          "count": 2
         }
       ],
       "status": "BLOCKED"
@@ -116,11 +111,11 @@
       "gold_candidates": 2,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 6,
+      "blocked_facts": 4,
       "top_block_reasons": [
         {
           "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 6
+          "count": 4
         }
       ],
       "status": "BLOCKED"
@@ -129,7 +124,7 @@
       "model": "ms-360",
       "authenticated_sources": 0,
       "exact_scope_candidates": 0,
-      "gold_candidates": 4,
+      "gold_candidates": 2,
       "gold_validated": 0,
       "verified_facts": 0,
       "blocked_facts": 0,
@@ -170,11 +165,11 @@
       "gold_candidates": 0,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 3,
+      "blocked_facts": 2,
       "top_block_reasons": [
         {
           "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 3
+          "count": 2
         }
       ],
       "status": "BLOCKED"
@@ -186,11 +181,11 @@
       "gold_candidates": 0,
       "gold_validated": 0,
       "verified_facts": 0,
-      "blocked_facts": 3,
+      "blocked_facts": 1,
       "top_block_reasons": [
         {
           "reason": "DOCUMENT_NOT_AUTHENTICATED",
-          "count": 3
+          "count": 1
         }
       ],
       "status": "BLOCKED"

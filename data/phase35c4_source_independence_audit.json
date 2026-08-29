@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T21:54:24.708Z",
+  "generated_at": "2026-08-29T22:19:50.784Z",
   "source_commit": "d8c23f1",
   "records": [
     {
@@ -10,22 +10,6 @@
       "candidate_value": 2.1,
       "source_a": "TS_DATA:026:power_kw:aaf8f08e0992daff",
       "source_b": "batch3:2:power_kw:c17ffeea287341f0",
-      "same_file_hash": false,
-      "same_payload_hash": false,
-      "same_publication": false,
-      "same_scan": false,
-      "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof."
-    },
-    {
-      "model": "036",
-      "field": "power_kw",
-      "expected_value": 3.3,
-      "candidate_id": "cbfe0fca4952c2d9",
-      "candidate_value": 5.6,
-      "source_a": "TS_DATA:036:power_kw:91fa930b31074eb2",
-      "source_b": "batch3:45:power_kw:cbfe0fca4952c2d9",
       "same_file_hash": false,
       "same_payload_hash": false,
       "same_publication": false,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T21:54:24.733Z",
+  "generated_at": "2026-08-29T22:19:50.809Z",
   "source_commit": "d8c23f1",
   "records": [
     {
@@ -11,9 +11,9 @@
       "page": 6,
       "scope_evidence": [
         "EXPLICIT_PAGE_HEADING",
-        "SINGLE_MODEL_DOCUMENT_COMPATIBLE"
+        "SINGLE_MODEL_PAGE_CONTEXT"
       ],
-      "reason": "Single-model MS 261 technical page provides explicit page heading scope."
+      "reason": "Page heading and extracted page context resolve to a single explicit model."
     },
     {
       "candidate_id": "1ede93d8269ce9ad",
@@ -24,9 +24,9 @@
       "page": 6,
       "scope_evidence": [
         "EXPLICIT_PAGE_HEADING",
-        "SINGLE_MODEL_DOCUMENT_COMPATIBLE"
+        "SINGLE_MODEL_PAGE_CONTEXT"
       ],
-      "reason": "Single-model MS 261 technical page provides explicit page heading scope."
+      "reason": "Page heading and extracted page context resolve to a single explicit model."
     }
   ]
 }

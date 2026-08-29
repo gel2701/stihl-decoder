@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T21:54:24.714Z",
+  "generated_at": "2026-08-29T22:19:50.788Z",
   "source_commit": "d8c23f1",
   "models": [
     {
@@ -44,10 +44,8 @@
       ],
       "manual_documents": [
         "batch3:2",
-        "batch3:9",
         "batch3:10",
-        "batch3:11",
-        "batch3:5"
+        "batch3:9"
       ],
       "available_fields": [
         "power_kw",
@@ -56,7 +54,6 @@
       ],
       "exact_scope_possible_fields": [],
       "conflicted_fields": [
-        "spark_plug",
         "stroke_mm"
       ],
       "best_source_chain": "TS_DATA_PLUS_AUTHENTICATED_LEGACY_MANUAL",
@@ -102,18 +99,10 @@
         "TI_31_2001_03_01_01"
       ],
       "RA_TI_publications": [],
-      "manual_documents": [
-        "batch3:45"
-      ],
-      "available_fields": [
-        "power_kw",
-        "spark_plug",
-        "stroke_mm"
-      ],
+      "manual_documents": [],
+      "available_fields": [],
       "exact_scope_possible_fields": [],
-      "conflicted_fields": [
-        "power_kw"
-      ],
+      "conflicted_fields": [],
       "best_source_chain": "TS_DATA_ONLY",
       "recovery_priority": "TIER_A"
     },
@@ -196,16 +185,13 @@
       ],
       "RA_TI_publications": [],
       "manual_documents": [
-        "batch3:78",
-        "batch3:13"
+        "batch3:78"
       ],
       "available_fields": [
         "spark_plug"
       ],
       "exact_scope_possible_fields": [],
-      "conflicted_fields": [
-        "spark_plug"
-      ],
+      "conflicted_fields": [],
       "best_source_chain": "TS_DATA_ONLY",
       "recovery_priority": "TIER_A"
     },
@@ -239,20 +225,7 @@
       "model": "fs-350",
       "variant": "fs-350",
       "authenticated_documents": [],
-      "TS_Data_sources": [
-        {
-          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
-          "status": "GOLD_CANDIDATE",
-          "expected_value": 36.32,
-          "unit": "cc"
-        },
-        {
-          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\FS200_body.htm",
-          "status": "GOLD_CANDIDATE",
-          "expected_value": 1.6,
-          "unit": "kW"
-        }
-      ],
+      "TS_Data_sources": [],
       "model_index_relations": [
         "TI_19_1998_30",
         "TI_20_1998_30",
@@ -265,7 +238,7 @@
       "available_fields": [],
       "exact_scope_possible_fields": [],
       "conflicted_fields": [],
-      "best_source_chain": "TS_DATA_ONLY",
+      "best_source_chain": "NO_RECOVERABLE_CHAIN",
       "recovery_priority": "TIER_A"
     },
     {
@@ -280,7 +253,6 @@
       ],
       "available_fields": [
         "power_kw",
-        "spark_plug",
         "stroke_mm"
       ],
       "exact_scope_possible_fields": [],
@@ -314,7 +286,6 @@
       ],
       "available_fields": [
         "power_kw",
-        "spark_plug",
         "stroke_mm"
       ],
       "exact_scope_possible_fields": [],
@@ -337,18 +308,6 @@
         },
         {
           "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360_body.htm",
-          "status": "GOLD_CANDIDATE",
-          "expected_value": 3.3,
-          "unit": "kW"
-        },
-        {
-          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
-          "status": "GOLD_CANDIDATE",
-          "expected_value": 61.53,
-          "unit": "cc"
-        },
-        {
-          "source_file": "D:\\Downloads\\Stihl library\\Stihl library\\doc\\TS_Data\\ms360c_body.htm",
           "status": "GOLD_CANDIDATE",
           "expected_value": 3.3,
           "unit": "kW"
@@ -428,7 +387,6 @@
       ],
       "available_fields": [
         "power_kw",
-        "spark_plug",
         "stroke_mm"
       ],
       "exact_scope_possible_fields": [],
@@ -447,13 +405,10 @@
         "batch3:38"
       ],
       "available_fields": [
-        "spark_plug",
         "stroke_mm"
       ],
       "exact_scope_possible_fields": [],
-      "conflicted_fields": [
-        "stroke_mm"
-      ],
+      "conflicted_fields": [],
       "best_source_chain": "MANUAL_CANDIDATES_ONLY",
       "recovery_priority": "TIER_B"
     },

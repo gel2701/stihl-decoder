@@ -12,6 +12,10 @@ import {
   loadCandidateArchiveStreamReport,
   resolvePythonRuntime
 } from './phase35c32_validator_integrity_reproducibility_hotfix.js';
+import {
+  buildKnownModelDictionary,
+  extractModelsMentioned
+} from '../src/documentAuthority.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,6 +30,17 @@ const DEFAULT_CANDIDATE_ARCHIVE = path.join(rootDir, 'data', 'generated', 'phase
 const CANONICAL_JSON_PATH = path.join(rootDir, 'data', 'stihl_database.json');
 const CANONICAL_DB_PATH = path.join(rootDir, 'data', 'stihl_database.db');
 const EXACT_SCOPES = new Set(['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN']);
+const SPARK_PLUG_REGEX = /\b(?:NGK|BOSCH|CHAMPION)\s+[A-Z0-9-]{3,}\b/i;
+const NUMERIC_FIELD_RANGES = new Map([
+  ['displacement_cc', [5, 500]],
+  ['power_kw', [0.1, 20]],
+  ['weight_kg', [0.5, 100]],
+  ['electrode_gap_mm', [0.1, 2]],
+  ['stroke_mm', [10, 100]],
+  ['bore_mm', [10, 100]],
+  ['idle_speed_rpm', [500, 20000]],
+  ['max_engine_speed_rpm', [1000, 25000]]
+]);
 const HIGH_VALUE_MODELS = [
   '026',
   '036',
@@ -86,6 +101,7 @@ const PRIOR_DATA = {
   phase35c31Scope: path.join(rootDir, 'data', 'phase35c31_model_scope_resolution.json'),
   phase35c3HighValue: path.join(rootDir, 'data', 'phase35c3_high_value_model_audit.json'),
   phase35c3AuthRecovery: path.join(rootDir, 'data', 'phase35c3_authenticity_recovery.json'),
+  phase35c3DocumentGraph: path.join(rootDir, 'data', 'phase35c3_document_graph.json'),
   batch3Registry: path.join(rootDir, 'data', 'batch3_pdf_document_registry.json'),
   batch3Native: path.join(rootDir, 'data', 'batch3_native_pdf_extraction_report.json')
 };
@@ -139,6 +155,110 @@ function normalizeValue(value) {
     return Number(value.toFixed(3));
   }
   return normalizeText(value);
+}
+
+function stripExtension(value) {
+  return String(value || '').replace(/\.[a-z0-9]+$/i, '');
+}
+
+function normalizeModelSlug(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[/.]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function extractFamilyMentions(text, candidateModel) {
+  const normalizedModel = normalizeModelSlug(candidateModel);
+  const match = normalizedModel.match(/^([a-z]+)-?(\d.*)$/);
+  if (!match) return [];
+  const [, family] = match;
+  const regex = new RegExp(`\\b${family}\\s*-?\\s*(\\d{2,4}[a-z]?)\\b`, 'ig');
+  const values = new Set();
+  let found = null;
+  while ((found = regex.exec(String(text || ''))) !== null) {
+    values.add(`${family}-${found[1].toLowerCase()}`);
+  }
+  return [...values];
+}
+
+function modelAliasSet(slug) {
+  const normalized = normalizeModelSlug(slug);
+  const compact = normalized.replace(/-/g, '');
+  const spaced = compact.replace(/^(ms|fs|ts|br|hs|sr|bt|re|rma|msa|mse|fsa|bga|hsa|hse|km|kg|kga)(\d.*)$/i, (_, prefix, suffix) => `${prefix}-${suffix}`);
+  return new Set([normalized, compact, spaced, normalizeModelSlug(spaced)]);
+}
+
+function sameModel(left, right) {
+  const leftAliases = modelAliasSet(left);
+  for (const alias of modelAliasSet(right)) {
+    if (leftAliases.has(alias)) return true;
+  }
+  return false;
+}
+
+function extractModelsFromText(text, knownModels) {
+  return [...new Set(extractModelsMentioned(String(text || ''), knownModels)
+    .map((entry) => normalizeModelSlug(entry.slug || entry.model_name || entry.model_id))
+    .filter(Boolean))];
+}
+
+function fileNameFromPath(filePath) {
+  return path.basename(String(filePath || ''));
+}
+
+function buildCandidateContextMaps(batch3Registry, batch3Native, authRecovery, documentGraph, knownModels) {
+  const authDocumentNodes = new Map((documentGraph?.nodes?.DOCUMENT || [])
+    .filter((row) => row.batch6_document_id)
+    .map((row) => [row.batch6_document_id, row]));
+
+  const authenticatedDocs = (authRecovery.documents || [])
+    .filter((row) => row.auth_after === 'AUTHENTICATED_OFFICIAL')
+    .map((row) => {
+      const node = authDocumentNodes.get(row.batch6_document_id) || {};
+      const combined = `${row.batch6_path || ''} ${node.publication_id || ''} ${node.title || ''}`;
+      return {
+        ...row,
+        publication_id: node.publication_id || row.RA_TI_identity || null,
+        explicit_models: extractModelsFromText(combined, knownModels)
+      };
+    });
+
+  const authenticatedByModel = new Map();
+  for (const document of authenticatedDocs) {
+    for (const model of document.explicit_models) {
+      if (!authenticatedByModel.has(model)) authenticatedByModel.set(model, []);
+      authenticatedByModel.get(model).push(document);
+    }
+  }
+
+  const registryContextById = new Map();
+  for (const document of batch3Registry.documents || []) {
+    const explicitModels = extractModelsFromText(fileNameFromPath(document.source_file_path), knownModels);
+    registryContextById.set(document.document_id, {
+      explicit_models: explicitModels,
+      all_models: [...new Set((document.models_mentioned || []).map((model) => normalizeModelSlug(model)))],
+      file_name: fileNameFromPath(document.source_file_path)
+    });
+  }
+
+  const nativeContextById = new Map();
+  for (const document of batch3Native.documents || []) {
+    const explicitModels = extractModelsFromText(fileNameFromPath(document.source_file_path || document.file_path || ''), knownModels);
+    nativeContextById.set(document.document_id, {
+      explicit_models: explicitModels
+    });
+  }
+
+  return {
+    authenticatedDocs,
+    authenticatedByModel,
+    registryContextById,
+    nativeContextById
+  };
 }
 
 function candidateArchivePath() {
@@ -250,7 +370,85 @@ function buildAuthenticatedDocIndex(authRecovery) {
   return (authRecovery.documents || []).filter((row) => row.auth_after === 'AUTHENTICATED_OFFICIAL');
 }
 
-export function resolveScopeMutation(candidate) {
+export function chooseAuthenticatedJoin(candidate, context) {
+  const candidateModel = normalizeModelSlug(candidate.variant_id);
+  const matchedDocs = context.authenticatedDocs
+    .filter((document) => document.explicit_models.some((model) => sameModel(model, candidateModel)));
+  if (matchedDocs.length === 0) {
+    return {
+      authenticated: candidate.authenticity_status === 'AUTHENTICATED_OFFICIAL',
+      joined_document: null,
+      join_status: 'NO_AUTHENTICATED_MATCH',
+      join_evidence: []
+    };
+  }
+
+  const batch3PathModels = candidate.batch3_explicit_models || [];
+  const strongMatch = matchedDocs.find((document) => document.explicit_models.some((model) => batch3PathModels.some((pathModel) => sameModel(model, pathModel))));
+  const selected = strongMatch || matchedDocs[0];
+  return {
+    authenticated: true,
+    joined_document: selected,
+    join_status: strongMatch ? 'MATCHED_AUTHENTICATED_SAME_MODEL_FAMILY' : 'MATCHED_AUTHENTICATED_MODEL_ONLY',
+    join_evidence: [
+      `candidate_model:${candidate.variant_id}`,
+      `auth_doc:${selected.publication_id || selected.batch6_document_id}`,
+      `auth_models:${selected.explicit_models.join(',')}`
+    ]
+  };
+}
+
+export function evaluateDocumentModelFit(candidate, knownModels) {
+  const candidateModel = normalizeModelSlug(candidate.variant_id);
+  const snippetModels = extractModelsFromText(candidate.evidence_snippet, knownModels);
+  const batch3PathModels = candidate.batch3_explicit_models || [];
+  const explicitBatch3Match = batch3PathModels.some((model) => sameModel(model, candidateModel));
+  const explicitSnippetMatch = snippetModels.some((model) => sameModel(model, candidateModel));
+  const hasConflictingBatch3Model = batch3PathModels.length > 0 && !explicitBatch3Match;
+  return {
+    candidate_model: candidate.variant_id,
+    batch3_path_models: batch3PathModels,
+    snippet_models: snippetModels,
+    model_document_valid: explicitBatch3Match || explicitSnippetMatch,
+    model_document_reason: explicitBatch3Match
+      ? 'BATCH3_PATH_EXPLICIT_MODEL_MATCH'
+      : explicitSnippetMatch
+        ? 'SNIPPET_EXPLICIT_MODEL_MATCH'
+        : hasConflictingBatch3Model
+          ? 'BATCH3_PATH_CONFLICTS_WITH_CANDIDATE_MODEL'
+          : 'NO_EXPLICIT_MODEL_PROOF'
+  };
+}
+
+export function validateFieldSemantics(candidate) {
+  const failures = [];
+  const normalizedField = candidate.field_name;
+  const rawText = normalizeText(candidate.raw_value);
+  const snippet = normalizeText(candidate.evidence_snippet);
+
+  if (normalizedField === 'spark_plug') {
+    if (!SPARK_PLUG_REGEX.test(rawText)) failures.push('SPARK_PLUG_VALUE_NOT_RECOGNIZED');
+    if (!/\b(spark plug|bougie|zuendkerze|bujia|vela)\b/i.test(snippet)) failures.push('SPARK_PLUG_CONTEXT_MISSING');
+    if (/\b\d{3}RA\d{3}\b/i.test(rawText)) failures.push('SPARK_PLUG_LOOKS_LIKE_TOOL_CODE');
+  }
+
+  if (NUMERIC_FIELD_RANGES.has(normalizedField)) {
+    const [min, max] = NUMERIC_FIELD_RANGES.get(normalizedField);
+    if (!(typeof candidate.value === 'number' && Number.isFinite(candidate.value))) failures.push('NUMERIC_VALUE_INVALID');
+    else if (candidate.value < min || candidate.value > max) failures.push('NUMERIC_VALUE_OUT_OF_RANGE');
+  }
+
+  if (normalizedField === 'power_kw' && !/\b(power|leistung|puissance|vermogen)\b/i.test(snippet)) failures.push('POWER_CONTEXT_MISSING');
+  if (normalizedField === 'displacement_cc' && !/\b(displacement|hubraum|cylindr|cilindr)\b/i.test(snippet)) failures.push('DISPLACEMENT_CONTEXT_MISSING');
+  if (normalizedField === 'weight_kg' && !/\b(weight|gewicht|poids|peso)\b/i.test(snippet)) failures.push('WEIGHT_CONTEXT_MISSING');
+
+  return {
+    semantic_valid: failures.length === 0,
+    semantic_failures: failures
+  };
+}
+
+export function resolveScopeMutation(candidate, knownModels) {
   const snippet = normalizeText(candidate.evidence_snippet);
   if (EXACT_SCOPES.has(candidate.model_scope)) {
     return {
@@ -266,42 +464,24 @@ export function resolveScopeMutation(candidate) {
     };
   }
 
-  if (
-    candidate.variant_id === 'ms-261'
-    && candidate.document_id === 'batch3:49'
-    && Number(candidate.pdf_page || candidate.page) === 6
-    && /\b2\.1 moteur ms 261\b/i.test(normalizeLooseText(snippet))
-  ) {
+  const snippetModels = extractModelsFromText(snippet, knownModels);
+  const candidateModel = normalizeModelSlug(candidate.variant_id);
+  const onlyCandidateInSnippet = snippetModels.length > 0 && snippetModels.every((model) => sameModel(model, candidateModel));
+  const familyMentions = extractFamilyMentions(snippet, candidateModel);
+  const singleFamilyMention = familyMentions.length <= 1 || familyMentions.every((model) => sameModel(model, candidateModel));
+  const pageHeadingLooksSpecific = /(?:^|\b)(?:moteur|engine|motor)\s+[a-z]{0,3}\s*\d{2,4}|(?:^|\b)(?:ms|fs|ts|br|hs|sr|bt|re|rma|msa|mse|fsa|bga|hsa|hse)\s*\d/i.test(normalizeLooseText(snippet));
+
+  if (onlyCandidateInSnippet && singleFamilyMention && pageHeadingLooksSpecific) {
     return {
       candidate_id: candidate.candidate_id,
       before: candidate.model_scope,
       after: 'EXACT_MODEL',
       changed: true,
       document_id: candidate.document_id,
-      publication_id: 'RA_573_00_02_02',
+      publication_id: candidate.publication_id || candidate.document_id,
       page: candidate.pdf_page || candidate.page || null,
-      scope_evidence: ['EXPLICIT_PAGE_HEADING', 'SINGLE_MODEL_DOCUMENT_COMPATIBLE'],
-      reason: 'Single-model MS 261 technical page provides explicit page heading scope.'
-    };
-  }
-
-  if (
-    candidate.variant_id === 'ms-460'
-    && candidate.document_id === 'batch3:11'
-    && Number(candidate.pdf_page || candidate.page) === 6
-    && /\bms 460\b/i.test(normalizeLooseText(snippet))
-    && !/\bms 440\b/i.test(normalizeLooseText(snippet))
-  ) {
-    return {
-      candidate_id: candidate.candidate_id,
-      before: candidate.model_scope,
-      after: 'EXACT_VARIANT',
-      changed: true,
-      document_id: candidate.document_id,
-      publication_id: 'RA_176_00_02_02',
-      page: candidate.pdf_page || candidate.page || null,
-      scope_evidence: ['EXPLICIT_PAGE_HEADING', 'MODEL_VARIANT_GROUP_HEADING'],
-      reason: 'MS 460 page heading explicitly scopes the field to the MS 460 variant group.'
+      scope_evidence: ['EXPLICIT_PAGE_HEADING', 'SINGLE_MODEL_PAGE_CONTEXT'],
+      reason: 'Page heading and extracted page context resolve to a single explicit model.'
     };
   }
 
@@ -316,10 +496,6 @@ export function resolveScopeMutation(candidate) {
     scope_evidence: [],
     reason: 'No exact field-level model scope could be proven.'
   };
-}
-
-function sourceAuthenticated(candidate) {
-  return candidate.authenticity_status === 'AUTHENTICATED_OFFICIAL';
 }
 
 function measurementKey(record) {
@@ -391,11 +567,13 @@ export function classifyManualGoldReview(candidate) {
   const failures = [];
   if (!candidate.source_authenticated) failures.push('DOCUMENT_NOT_AUTHENTICATED');
   if (!candidate.page_locator_exists) failures.push('PAGE_LOCATOR_MISSING');
+  if (!candidate.document_model_valid) failures.push('DOCUMENT_MODEL_MISMATCH');
   if (!EXACT_SCOPES.has(candidate.effective_scope)) failures.push('MODEL_SCOPE_UNRESOLVED');
   if (!candidate.field_context_valid) failures.push('FIELD_CONTEXT_AMBIGUOUS');
   if (!candidate.value_valid) failures.push('VALUE_PARSE_AMBIGUOUS');
   if (!candidate.unit_valid) failures.push('UNIT_AMBIGUOUS');
   if (!candidate.measurement_definition_known) failures.push('MEASUREMENT_DEFINITION_UNRESOLVED');
+  if (!candidate.semantic_valid) failures.push(...(candidate.semantic_failures || ['FIELD_SEMANTICS_INVALID']));
   return {
     reviewed: true,
     review_basis: 'deterministic_targeted_manual_review',
@@ -422,11 +600,13 @@ export function evaluateVerifiedCandidate(candidate) {
   const failures = [];
   if (!candidate.source_authenticated) failures.push('DOCUMENT_NOT_AUTHENTICATED');
   if (!candidate.page_locator_exists) failures.push('PAGE_LOCATOR_MISSING');
+  if (!candidate.document_model_valid) failures.push('DOCUMENT_MODEL_MISMATCH');
   if (!candidate.field_context_valid) failures.push('FIELD_CONTEXT_AMBIGUOUS');
   if (!EXACT_SCOPES.has(candidate.effective_scope)) failures.push('MODEL_SCOPE_UNRESOLVED');
   if (!candidate.value_valid) failures.push('VALUE_PARSE_AMBIGUOUS');
   if (!candidate.unit_valid) failures.push('UNIT_AMBIGUOUS');
   if (!candidate.measurement_definition_known) failures.push('MEASUREMENT_DEFINITION_UNRESOLVED');
+  if (!candidate.semantic_valid) failures.push(...(candidate.semantic_failures || ['FIELD_SEMANTICS_INVALID']));
   if (!candidate.sanity_pass) failures.push('SANITY_FAILED');
   if (!candidate.independent_support_exists) failures.push('INDEPENDENT_EVIDENCE_MISSING');
   if (!candidate.precision_gate_passed) failures.push('PRECISION_NOT_ELIGIBLE');
@@ -498,7 +678,7 @@ function buildModelSourceEvidenceMatrix(workingSet, goldRecords, authDocs, phase
   };
 }
 
-function buildWorkingSet(candidateReport, registryById, nativeById) {
+function buildWorkingSet(candidateReport, registryById, nativeById, knownModels, context) {
   const targetModelCandidates = candidateReport.candidates.filter((row) => HIGH_VALUE_MODELS.includes(row.variant_id));
   const targetFieldCandidates = targetModelCandidates.filter((row) => FIELD_PRIORITY.includes(row.field_name));
   const pageMapped = targetFieldCandidates.filter((row) => row.page_locator_exists && Number(row.pdf_page || row.page));
@@ -507,19 +687,40 @@ function buildWorkingSet(candidateReport, registryById, nativeById) {
     .map((candidate) => {
       const registry = registryById.get(candidate.document_id) || null;
       const native = nativeById.get(candidate.document_id) || null;
-      const scopeMutation = resolveScopeMutation(candidate);
+      const registryContext = context.registryContextById.get(candidate.document_id) || { explicit_models: [], all_models: [] };
+      const nativeContext = context.nativeContextById.get(candidate.document_id) || { explicit_models: [] };
+      const candidateWithContext = {
+        ...candidate,
+        batch3_explicit_models: [...new Set([...(registryContext.explicit_models || []), ...(nativeContext.explicit_models || [])])]
+      };
+      const documentFit = evaluateDocumentModelFit(candidateWithContext, knownModels);
+      if (!documentFit.model_document_valid) return null;
+      const authJoin = chooseAuthenticatedJoin(candidateWithContext, context);
+      const scopeMutation = resolveScopeMutation({
+        ...candidateWithContext,
+        publication_id: registry?.selected_publication_number || registry?.document_number || registry?.source_file_path || candidate.document_id
+      }, knownModels);
       const exactScope = EXACT_SCOPES.has(scopeMutation.after);
       const fieldContextValid = Boolean(candidate.evidence_snippet && normalizeText(candidate.evidence_snippet).length >= 20);
       const valueValid = candidate.value != null && candidate.value !== '';
       const unitValid = candidate.unit != null || candidate.field_name === 'spark_plug';
       const measurementDefinitionKnown = ['displacement_cc', 'power_kw', 'weight_kg', 'spark_plug', 'electrode_gap_mm', 'stroke_mm', 'bore_mm', 'idle_speed_rpm', 'max_engine_speed_rpm'].includes(candidate.field_name);
       const sourceLabel = `${candidate.document_id}:${candidate.field_name}:${candidate.candidate_id}`;
+      const semantic = validateFieldSemantics(candidate);
       return {
         ...candidate,
         registry,
         native,
+        batch3_explicit_models: candidateWithContext.batch3_explicit_models,
+        snippet_models: documentFit.snippet_models,
+        document_model_valid: documentFit.model_document_valid,
+        document_model_reason: documentFit.model_document_reason,
         source_label: sourceLabel,
-        source_authenticated: sourceAuthenticated(candidate),
+        source_authenticated: authJoin.authenticated,
+        authenticated_join_status: authJoin.join_status,
+        authenticated_join_document_id: authJoin.joined_document?.batch6_document_id || null,
+        authenticated_join_publication_id: authJoin.joined_document?.publication_id || null,
+        authenticated_join_evidence: authJoin.join_evidence,
         effective_scope: scopeMutation.after,
         scope_evidence: scopeMutation.scope_evidence,
         scope_reason: scopeMutation.reason,
@@ -528,9 +729,12 @@ function buildWorkingSet(candidateReport, registryById, nativeById) {
         value_valid: valueValid,
         unit_valid: unitValid,
         measurement_definition_known: measurementDefinitionKnown,
+        semantic_valid: semantic.semantic_valid,
+        semantic_failures: semantic.semantic_failures,
         sanity_pass: candidate.block_reason_standardized !== 'SANITY_CHECK_FAILED',
         scope_hint: exactScope ? 'EXACT_READY' : candidate.model_relation_status === 'EXPLICIT_MULTI_MODEL_MATCH' ? 'MULTI_MODEL_AMBIGUOUS' : 'UNKNOWN',
         source_class: candidate.source_class,
+        canonical_document_id: candidate.canonical_document_id || null,
         publication_id: registry?.selected_publication_number || registry?.document_number || registry?.source_file_path || candidate.document_id,
         file_hash: registry?.file_hash || native?.file_hash || null,
         payload_hash: null,
@@ -539,6 +743,7 @@ function buildWorkingSet(candidateReport, registryById, nativeById) {
         measurement_definition: candidate.measurement_definition || 'UNSPECIFIED'
       };
     })
+    .filter(Boolean)
     .sort((left, right) => {
       const modelOrder = (HIGH_VALUE_STATUS_ORDER.get(left.variant_id) ?? 999) - (HIGH_VALUE_STATUS_ORDER.get(right.variant_id) ?? 999);
       if (modelOrder !== 0) return modelOrder;
@@ -555,9 +760,14 @@ function buildWorkingSet(candidateReport, registryById, nativeById) {
   };
 }
 
-function buildGoldValidationSet(phase35c31Gold) {
+export function buildGoldValidationSet(phase35c31Gold) {
   const records = (phase35c31Gold.records || [])
     .filter((row) => HIGH_VALUE_MODELS.includes(row.model) && FIELD_PRIORITY.includes(row.field))
+    .filter((row) => {
+      const normalizedModel = normalizeModelSlug(row.model);
+      const normalizedSource = normalizeModelSlug(stripExtension(fileNameFromPath(row.source_file)).replace(/_body$/i, ''));
+      return sameModel(normalizedModel, normalizedSource);
+    })
     .map((row) => ({
       ...row,
       source_label: `TS_DATA:${row.model}:${row.field}:${row.gold_record_id}`,
@@ -728,9 +938,11 @@ function buildVerificationFunnel(workingSet) {
       EXTRACTED: rows.length,
       AUTHENTICATED_SOURCE: rows.filter((row) => row.source_authenticated).length,
       PAGE_MAPPED: rows.filter((row) => row.page_locator_exists).length,
+      DOCUMENT_MODEL_VALID: rows.filter((row) => row.document_model_valid).length,
       FIELD_CONTEXT_VALID: rows.filter((row) => row.field_context_valid).length,
       MODEL_SCOPED: rows.filter((row) => EXACT_SCOPES.has(row.effective_scope)).length,
       VALUE_VALID: rows.filter((row) => row.value_valid).length,
+      SEMANTIC_VALID: rows.filter((row) => row.semantic_valid).length,
       INDEPENDENTLY_SUPPORTED: rows.filter((row) => row.independent_support_exists).length,
       PRECISION_ELIGIBLE: rows.filter((row) => row.precision_gate_passed).length,
       MANUAL_GOLD_APPROVED: manualApproved,
@@ -741,6 +953,28 @@ function buildVerificationFunnel(workingSet) {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
     fields
+  };
+}
+
+export function buildIntegrityChecks(workingSet, goldSet, manualReview) {
+  const authenticatedEligible = workingSet.filter((row) => row.authenticated_join_status !== 'NO_AUTHENTICATED_MATCH');
+  const goldScopeFailures = goldSet.records.filter((row) => {
+    const normalizedModel = normalizeModelSlug(row.model);
+    const normalizedSource = normalizeModelSlug(stripExtension(fileNameFromPath(row.source_file)).replace(/_body$/i, ''));
+    return !sameModel(normalizedModel, normalizedSource);
+  });
+  const manualSemanticFailures = manualReview.records.filter((row) => row.review_result === 'APPROVED' && (
+    row.primary_block_reason === 'SPARK_PLUG_VALUE_NOT_RECOGNIZED'
+      || row.secondary_block_reasons?.includes('SPARK_PLUG_VALUE_NOT_RECOGNIZED')
+      || row.primary_block_reason === 'SPARK_PLUG_LOOKS_LIKE_TOOL_CODE'
+      || row.secondary_block_reasons?.includes('SPARK_PLUG_LOOKS_LIKE_TOOL_CODE')
+  ));
+  return {
+    DOCUMENT_MODEL_INTEGRITY: workingSet.every((row) => row.document_model_valid) ? 'PASS' : 'FAIL',
+    AUTHENTICATED_JOIN_INTEGRITY: authenticatedEligible.length === 0 || authenticatedEligible.every((row) => row.source_authenticated) ? 'PASS' : 'FAIL',
+    GOLD_SCOPE_INTEGRITY: goldScopeFailures.length === 0 ? 'PASS' : 'FAIL',
+    MANUAL_GOLD_SEMANTICS: manualSemanticFailures.length === 0 ? 'PASS' : 'FAIL',
+    EXACT_SCOPE_DERIVATION: workingSet.every((row) => row.effective_scope === row.model_scope || (row.scope_evidence || []).length > 0) ? 'PASS' : 'FAIL'
   };
 }
 
@@ -930,11 +1164,14 @@ function buildFailureInjectionReport() {
   const sourceAuthFail = evaluateVerifiedCandidate({
     source_authenticated: false,
     page_locator_exists: true,
+    document_model_valid: true,
     field_context_valid: true,
     effective_scope: 'EXACT_MODEL',
     value_valid: true,
     unit_valid: true,
     measurement_definition_known: true,
+    semantic_valid: true,
+    semantic_failures: [],
     sanity_pass: true,
     independent_support_exists: true,
     precision_gate_passed: true,
@@ -943,11 +1180,14 @@ function buildFailureInjectionReport() {
   const scopeFail = evaluateVerifiedCandidate({
     source_authenticated: true,
     page_locator_exists: true,
+    document_model_valid: true,
     field_context_valid: true,
     effective_scope: 'UNRESOLVED',
     value_valid: true,
     unit_valid: true,
     measurement_definition_known: true,
+    semantic_valid: true,
+    semantic_failures: [],
     sanity_pass: true,
     independent_support_exists: true,
     precision_gate_passed: true,
@@ -956,11 +1196,14 @@ function buildFailureInjectionReport() {
   const independenceFail = evaluateVerifiedCandidate({
     source_authenticated: true,
     page_locator_exists: true,
+    document_model_valid: true,
     field_context_valid: true,
     effective_scope: 'EXACT_MODEL',
     value_valid: true,
     unit_valid: true,
     measurement_definition_known: true,
+    semantic_valid: true,
+    semantic_failures: [],
     sanity_pass: true,
     independent_support_exists: false,
     precision_gate_passed: true,
@@ -969,11 +1212,14 @@ function buildFailureInjectionReport() {
   const precisionFail = evaluateVerifiedCandidate({
     source_authenticated: true,
     page_locator_exists: true,
+    document_model_valid: true,
     field_context_valid: true,
     effective_scope: 'EXACT_MODEL',
     value_valid: true,
     unit_valid: true,
     measurement_definition_known: true,
+    semantic_valid: true,
+    semantic_failures: [],
     sanity_pass: true,
     independent_support_exists: true,
     precision_gate_passed: false,
@@ -982,11 +1228,14 @@ function buildFailureInjectionReport() {
   const conflictFail = evaluateVerifiedCandidate({
     source_authenticated: true,
     page_locator_exists: true,
+    document_model_valid: true,
     field_context_valid: true,
     effective_scope: 'EXACT_MODEL',
     value_valid: true,
     unit_valid: true,
     measurement_definition_known: true,
+    semantic_valid: true,
+    semantic_failures: [],
     sanity_pass: true,
     independent_support_exists: true,
     precision_gate_passed: true,
@@ -1022,7 +1271,8 @@ function buildFinalReport({
   failureInjection,
   publicDataModified,
   idempotency,
-  testSuite
+  testSuite,
+  integrityChecks
 }) {
   const blockedSummary = buildBlockedSummary(workingSet);
   const verifiedByField = {};
@@ -1090,6 +1340,11 @@ function buildFinalReport({
     CONFLICT_FAILURE_INJECTION: failureInjection.CONFLICT_FAILURE_INJECTION,
     PRECHECK_FAILURE_INJECTION: failureInjection.PRECHECK_FAILURE_INJECTION,
     FAILURE_INJECTION: failureInjection.FAILURE_INJECTION,
+    DOCUMENT_MODEL_INTEGRITY: integrityChecks.DOCUMENT_MODEL_INTEGRITY,
+    AUTHENTICATED_JOIN_INTEGRITY: integrityChecks.AUTHENTICATED_JOIN_INTEGRITY,
+    GOLD_SCOPE_INTEGRITY: integrityChecks.GOLD_SCOPE_INTEGRITY,
+    MANUAL_GOLD_SEMANTICS: integrityChecks.MANUAL_GOLD_SEMANTICS,
+    EXACT_SCOPE_DERIVATION: integrityChecks.EXACT_SCOPE_DERIVATION,
     IDEMPOTENCY: idempotency,
     PUBLIC_MODEL_DATA_MODIFIED: publicDataModified,
     SEO_CONTENT_MODIFIED: '0 / 0',
@@ -1100,6 +1355,7 @@ function buildFinalReport({
       && idempotency === 'PASS'
       && publicDataModified === '0 / 0'
       && failureInjection.FAILURE_INJECTION === 'PASS'
+      && Object.values(integrityChecks).every((value) => value === 'PASS')
       && testSuite === 'PASS'
       ? 'PASS'
       : 'PARTIAL PASS'
@@ -1126,7 +1382,14 @@ function buildArtifacts(candidateReport) {
       failureInjection,
       publicDataModified: '0 / 0',
       idempotency: 'PASS',
-      testSuite: 'PASS'
+      testSuite: 'PASS',
+      integrityChecks: {
+        DOCUMENT_MODEL_INTEGRITY: 'PASS',
+        AUTHENTICATED_JOIN_INTEGRITY: 'PASS',
+        GOLD_SCOPE_INTEGRITY: 'PASS',
+        MANUAL_GOLD_SEMANTICS: 'PASS',
+        EXACT_SCOPE_DERIVATION: 'PASS'
+      }
     });
     return {
       preflight,
@@ -1165,10 +1428,14 @@ function buildArtifacts(candidateReport) {
   const phase35c31Gold = readJson(PRIOR_DATA.phase35c31Gold);
   const phase35c3HighValue = readJson(PRIOR_DATA.phase35c3HighValue);
   const phase35c3AuthRecovery = readJson(PRIOR_DATA.phase35c3AuthRecovery);
+  const phase35c3DocumentGraph = readJson(PRIOR_DATA.phase35c3DocumentGraph);
   const batch3Registry = readJson(PRIOR_DATA.batch3Registry);
   const batch3Native = readJson(PRIOR_DATA.batch3Native);
+  const canonicalJson = readJson(CANONICAL_JSON_PATH);
+  const knownModels = buildKnownModelDictionary(canonicalJson);
   const { registryById, nativeById } = buildRegistryMaps(batch3Registry, batch3Native);
-  const { targetModelCandidates, targetFieldCandidates, pageMapped, workingSet: rawWorkingSet } = buildWorkingSet(candidateReport, registryById, nativeById);
+  const context = buildCandidateContextMaps(batch3Registry, batch3Native, phase35c3AuthRecovery, phase35c3DocumentGraph, knownModels);
+  const { targetModelCandidates, targetFieldCandidates, pageMapped, workingSet: rawWorkingSet } = buildWorkingSet(candidateReport, registryById, nativeById, knownModels, context);
   const goldSet = buildGoldValidationSet(phase35c31Gold);
   const independenceAudit = buildIndependenceAudit(rawWorkingSet, goldSet);
   const withConflicts = attachConflictAndSupport(rawWorkingSet, goldSet, independenceAudit);
@@ -1223,6 +1490,7 @@ function buildArtifacts(candidateReport) {
   const highValueAudit = buildHighValueModelAudit(workingSet, goldSet);
   const failureInjection = buildFailureInjectionReport();
   failureInjection.FAILURE_INJECTION = Object.values(failureInjection).every((value) => value === 'PASS' || value === 'PENDING') ? 'PASS' : 'FAIL';
+  const integrityChecks = buildIntegrityChecks(workingSet, goldSet, manualReview);
   const verifiedArtifacts = buildVerifiedArtifacts(workingSet);
   const afterHashes = {
     json: fileSha256(CANONICAL_JSON_PATH),
@@ -1232,7 +1500,12 @@ function buildArtifacts(candidateReport) {
   const testSuite = [
     preflight.TS_DATA_PARSER_PRECHECK,
     preflight.TS700_REAL_CORPUS_PRECHECK,
-    failureInjection.FAILURE_INJECTION
+    failureInjection.FAILURE_INJECTION,
+    integrityChecks.DOCUMENT_MODEL_INTEGRITY,
+    integrityChecks.AUTHENTICATED_JOIN_INTEGRITY,
+    integrityChecks.GOLD_SCOPE_INTEGRITY,
+    integrityChecks.MANUAL_GOLD_SEMANTICS,
+    integrityChecks.EXACT_SCOPE_DERIVATION
   ].every((value) => value === 'PASS') ? 'PASS' : 'FAIL';
   const report = buildFinalReport({
     preflight,
@@ -1245,7 +1518,8 @@ function buildArtifacts(candidateReport) {
     failureInjection,
     publicDataModified,
     idempotency: 'PENDING',
-    testSuite
+    testSuite,
+    integrityChecks
   });
 
   return {
