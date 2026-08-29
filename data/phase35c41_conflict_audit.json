@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-08-29T22:34:45.831Z",
+  "source_commit": "75d7b75",
+  "clusters": [
+    {
+      "cluster_id": "9def7df4f34a4c23",
+      "cluster_key": "026|stroke_mm|mm|US|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "c393314438c4fc97",
+      "cluster_key": "026|power_kw|kW|US|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "34742def652c16fc",
+      "cluster_key": "026|spark_plug|NONE|US|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "718c8f6f77246b9b",
+      "cluster_key": "ms-460|stroke_mm|mm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "15ac13d9bff3b6c9",
+      "cluster_key": "ms-460|power_kw|kW|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "2c71837e05ef4b1d",
+      "cluster_key": "ms-261|stroke_mm|mm|UNKNOWN|STANDARD|NONE",
+      "record_count": 2,
+      "conflict_status": "BLOCKED",
+      "conflict_type": "CROSS_SOURCE_DISAGREEMENT"
+    },
+    {
+      "cluster_id": "cd01e6a0ed65ff58",
+      "cluster_key": "ms-261|power_kw|kW|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "17ebac32bfda0816",
+      "cluster_key": "044|spark_plug|NONE|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "a705595f8f5b0be0",
+      "cluster_key": "046|spark_plug|NONE|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "53be86a552983caa",
+      "cluster_key": "026|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "671f2d92bef58ba6",
+      "cluster_key": "036|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "68e3ea5822c54cc4",
+      "cluster_key": "044|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "102e85fa49125cda",
+      "cluster_key": "046|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "728a95f7d94e4bd2",
+      "cluster_key": "ms-260|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "68de4c661e0c8193",
+      "cluster_key": "ms-360|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    },
+    {
+      "cluster_id": "75a30d2e6da79ee1",
+      "cluster_key": "ms-460|idle_speed_rpm|rpm|UNKNOWN|STANDARD|NONE",
+      "record_count": 1,
+      "conflict_status": "CLEAR",
+      "conflict_type": "NO_CONFLICT"
+    }
+  ]
+}

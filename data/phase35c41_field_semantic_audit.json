@@ -1,0 +1,597 @@
+{
+  "generated_at": "2026-08-29T22:34:45.833Z",
+  "source_commit": "75d7b75",
+  "records": [
+    {
+      "candidate_id": "fe31841b020df41a",
+      "variant_id": "026",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Moteur STIHL monocylindrique à deux-temps avec cylindre revêtu d’une couche spéciale 024 024 S 026 3 3 3 Cylindrée: 42 cm 44,3 cm 48,7 cm Alésage: 42 mm 42 mm 44 mm Course de piston: 30 mm 32 mm 32 mm",
+      "normalized_value": 30,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "c17ffeea287341f0",
+      "variant_id": "026",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "024 024 S 026 3 3 3 Cylindrée: 42 cm 44,3 cm 48,7 cm Alésage: 42 mm 42 mm 44 mm Course de piston: 30 mm 32 mm 32 mm Puissance suivant ISO 7293: 2,1 kW (2,85 ch) 2,3 kW (3,1 ch) 2,6 kW (3,5 ch)",
+      "normalized_value": 2.1,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "8a26d14b877e88c1",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "devrait toujours commencer par la Remarque: Sur la 026, à partir de - Démonter le capot, voir 4.2. bougie, voir manuel \"Réparations la machine numéro X 19 830 900, standards et recherche des le contact du câble d’allumage est •Enlever la do",
+      "normalized_value": "133RA129",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "03029a31fdde7489",
+      "variant_id": "026",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "AMBIGUOUS",
+      "field_semantic_evidence": [],
+      "raw_context": "tuyau flexible est alors endom- refoulement d’huile de l’intérieur magé et doit être remplacé. vers l’extérieur, à travers l’alé- Toutes les versions sage du raccord pour guide- Sur la 024, à partir de la machine chaîne et le faire dépasser",
+      "normalized_value": 0.5,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "78e4d91cc1466319",
+      "variant_id": "026",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Sur la 024, à partir de la machine chaîne et le faire dépasser •Dévisser les vis (2). numéro 1 42 721 934, une pompe d’environ 10...20 mm. à huile à course de 0,5 mm est •Déposer la pompe à huile (3). montée à la place de la pompe à 1 huile",
+      "normalized_value": 0.65,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "d573672f5db79603",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "pour bougie, en veillant à ce que tueuses. l’inscription « OBEN-TOP » se trouve en haut. 1 2 VA VA 146RA205 208RA029",
+      "normalized_value": "208RA029",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "0f79d6e4d27aa780",
+      "variant_id": "ms-260",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques 3.1 Moteur MS 240 MS 260, MS 260 C Cylindrée : 41,6 cm3 50,2 cm3 Alésage du cylindre : 42 mm 44,7 mm Course du piston : 30 mm 32 mm",
+      "normalized_value": 30,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "0d922fa160215dbb",
+      "variant_id": "ms-260",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3.1 Moteur MS 240 MS 260, MS 260 C Cylindrée : 41,6 cm3 50,2 cm3 Alésage du cylindre : 42 mm 44,7 mm Course du piston : 30 mm 32 mm Puissance suivant ISO 7293 : 2,1 kW (2,85 ch) 2,6 kW (3,5 ch)",
+      "normalized_value": 2.1,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "e78751bf6b47cc44",
+      "variant_id": "ms-260",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "d'emploi 3.3 Dispositif d'allumage Entrefer entre module d'allumage et hélice de ventilateur : 0,15...0,30 mm Bougie (antiparasitée) : NGK BPMR 7 A",
+      "normalized_value": "NGK BPMR 7 A",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "4cb8e527528fc862",
+      "variant_id": "ms-260",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques 3.1 Moteur MS 240 MS 260, MS 260 C Cylindrée : 41,6 cm3 50,2 cm3 Alésage du cylindre : 42 mm 44,7 mm Course du piston : 30 mm 32 mm",
+      "normalized_value": 30,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "47df6c92cb3ea442",
+      "variant_id": "ms-260",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3.1 Moteur MS 240 MS 260, MS 260 C Cylindrée : 41,6 cm3 50,2 cm3 Alésage du cylindre : 42 mm 44,7 mm Course du piston : 30 mm 32 mm Puissance suivant ISO 7293 : 2,1 kW (2,85 ch) 2,6 kW (3,5 ch)",
+      "normalized_value": 2.1,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "9c954bb92e93bb6a",
+      "variant_id": "ms-260",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "d'emploi 3.3 Dispositif d'allumage Entrefer entre module d'allumage et hélice de ventilateur : 0,15...0,30 mm Bougie (antiparasitée) : NGK BPMR 7 A",
+      "normalized_value": "NGK BPMR 7 A",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "a4979da092f581f8",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "d’allumage de la bougie et dévisser la bougie. 2 1 2 1 VA VA VA 175RA001 208RA028 208RA026",
+      "normalized_value": "208RA026",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "3696b9fe905e866f",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "0000 893 5903 dans l’alésage – Extraire les masselottes de pour bougie, en veillant à ce que l’entraîneur. l’inscription « OBEN-TOP » se trouve en haut. VA 208RA029",
+      "normalized_value": "208RA029",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "39a6b2e04e4d2ad6",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "d’allumage de la bougie et dévisser la bougie. 2 1 2 1 VA VA VA 175RA001 208RA028 208RA026",
+      "normalized_value": "208RA026",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "3efd5de7073c8645",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "0000 893 5903 dans l’alésage – Extraire les masselottes de pour bougie, en veillant à ce que l’entraîneur. l’inscription « OBEN-TOP » se trouve en haut. VA 208RA029",
+      "normalized_value": "208RA029",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "8a356b5d1cd6d0c8",
+      "variant_id": "ms-460",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques 3.1 Bloc-moteur Cylindrée : 76,5 cm3 Alésage : 52 mm Course de piston : 36 mm",
+      "normalized_value": 36,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "54ed7468c0c750f3",
+      "variant_id": "ms-460",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques 3.1 Bloc-moteur Cylindrée : 76,5 cm3 Alésage : 52 mm Course de piston : 36 mm Puissance suivant ISO 7293 : 4,4 kW (5,98 ch)",
+      "normalized_value": 4.4,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "8efbf25399d379a1",
+      "variant_id": "ms-460",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Carburant : Conformément aux indications de la Notice d’emploi 3.3 Dispositif d’allumage Entrefer entre module d’allumage et hélice de ventilateur : 0,15...0,3 mm Bougie (antiparasitée) : Bosch WSR 6F",
+      "normalized_value": "Bosch WSR 6F",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "db00103e5b819a26",
+      "variant_id": "ms-460",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "la Notice d’emploi 3.3 Dispositif d’allumage Entrefer entre module d’allumage et hélice de ventilateur : 0,15...0,3 mm Bougie (antiparasitée) : Bosch WSR 6F NGK BPMR 7A",
+      "normalized_value": "Bosch WSR 6F NGK BPMR 7A",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "5cb9202feaf18871",
+      "variant_id": "ms-460",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "0000 893 5903 dans l’alésage montage (2) 5910 890 2800. magées. pour bougie, en veillant à ce que l’inscription « OBEN-TOP » se – Extraire les masselottes de trouve en haut. l’entraîneur. VA 208RA029",
+      "normalized_value": "208RA029",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "3f5196618a93f998",
+      "variant_id": "026",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "0000 893 5903 dans l’alésage montage (2) 5910 890 2800. magées. pour bougie, en veillant à ce que l’inscription « OBEN-TOP » se – Extraire les masselottes de trouve en haut. l’entraîneur. VA 208RA029",
+      "normalized_value": "208RA029",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "8a31b1a9f1c0efa8",
+      "variant_id": "046",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Carburant : conformément aux indications de la Notice d’emploi 3.3 Dispositif d’allumage Entrefer (fente d’air) entre module d’allumage et hélice de ventilateur : 0,2...0,4 mm (0,008...0,015 in) Bougie (antiparasitée) : Bosch WSR 6F",
+      "normalized_value": "Bosch WSR 6F",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "72326a3f87394bfe",
+      "variant_id": "046",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Notice d’emploi 3.3 Dispositif d’allumage Entrefer (fente d’air) entre module d’allumage et hélice de ventilateur : 0,2...0,4 mm (0,008...0,015 in) Bougie (antiparasitée) : Bosch WSR 6F NGK BPMR 7A",
+      "normalized_value": "Bosch WSR 6F NGK BPMR 7A",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "a3e630237a5d9247",
+      "variant_id": "ts-420",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques 3.1 Moteur TS 410 TS 420 Cylindrée : 66,7 cm3 66,7 cm3 Alésage du cylindre : 50 mm 50 mm Course du piston : 34 mm 34 mm",
+      "normalized_value": 34,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "3fb903eb0d007b97",
+      "variant_id": "ts-420",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3.1 Moteur TS 410 TS 420 Cylindrée : 66,7 cm3 66,7 cm3 Alésage du cylindre : 50 mm 50 mm Course du piston : 34 mm 34 mm Puissance suivant ISO 7293 : 3,2 kW (4,4 ch) 3,2 kW (4,4 ch)",
+      "normalized_value": 3.2,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "f70f06b39f69272b",
+      "variant_id": "ts-420",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "avec surpression : p+ = 0,3 bar Carburant : conformément aux indications de la Notice d'emploi 3.3 Dispositif d'allumage Entrefer entre le module d'allumage et le rotor : 0,15...0,35 mm Bougie (antiparasitée) : Bosch WSR6F",
+      "normalized_value": "Bosch WSR6F",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "7511e86049c112ca",
+      "variant_id": "br-600",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques BR 500 BR 550 BR 600 3.1 Bloc-moteur Cylindrée : 64,8 cm3 64,8 cm3 64,8 cm3 Alésage : 50 mm 50 mm 50 mm Course de piston : 33 mm 33 mm 33 mm",
+      "normalized_value": 33,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "22eee2e3a091eff9",
+      "variant_id": "br-600",
+      "field_name": "spark_plug",
+      "field_semantic_status": "AMBIGUOUS",
+      "field_semantic_evidence": [],
+      "raw_context": "Contrôle d’étanchéité du carter de vilebrequin – avec surpression : p+ = 0,5 bar p+ = 0,5 bar p+ = 0,5 bar – avec dépression : p– = 0,5 bar p– = 0,5 bar p– = 0,5 bar 3.2 Dispositif d’allumage Entrefer entre module d’allumage et rotor : 0,15",
+      "normalized_value": "NGK CMR 6 H NGK CMR 6 H NGK CMR 6 H",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "d0c8b2da9ececd77",
+      "variant_id": "br-600",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "magés et il est interdit de les réutiliser. 452RA070 VA : Emmancher les capuchons de limitation de course de réglage jusqu’à la cote « a » = 5 mm.",
+      "normalized_value": 5,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "b7e90c845a6f22ee",
+      "variant_id": "036",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3. Caractéristiques techniques 3.1 Moteur MS 780 MS 880 Cylindrée : 121,6 cm3 121,6 cm3 Alésage du cylindre : 60 mm 60 mm Course du piston : 43 mm 43 mm",
+      "normalized_value": 43,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "cbfe0fca4952c2d9",
+      "variant_id": "036",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "3.1 Moteur MS 780 MS 880 Cylindrée : 121,6 cm3 121,6 cm3 Alésage du cylindre : 60 mm 60 mm Course du piston : 43 mm 43 mm Puissance suivant ISO 7293 : 5,6 kW (7,8 ch) 6,4 kW (8,7 ch)",
+      "normalized_value": 5.6,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "0ba5ade6c41ed7e2",
+      "variant_id": "036",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Carburant : conformément aux indications de la Notice d'emploi 3.3 Dispositif d'allumage Entrefer entre module d'allu- mage et hélice de ventilateur : 0,20...0,30 mm Bougie (antiparasitée) : NGK BPMR 7 A",
+      "normalized_value": "NGK BPMR 7 A",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "1ede93d8269ce9ad",
+      "variant_id": "ms-261",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "2. Caractéristiques techniques 2.1 Moteur MS 261 Cylindrée : 50,2 cm3 Alésage du cylindre : 44,7 mm Course du piston : 32,0 mm",
+      "normalized_value": 32,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "6ffe98ed22ee0d72",
+      "variant_id": "ms-261",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "2.1 Moteur MS 261 Cylindrée : 50,2 cm3 Alésage du cylindre : 44,7 mm Course du piston : 32,0 mm Puissance suivant ISO 7293 : 2,8 kW (3,8 ch)",
+      "normalized_value": 2.8,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "9e0ede16f13baa12",
+      "variant_id": "ms-261",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "Carburant : conformément aux indica- tions de la Notice d'emploi 2.3 Dispositif d'allumage Entrefer entre module d'allu- mage et hélice de ventilateur : 0,20 (+ 0,1/- 0,05) mm Bougie (antiparasitée) : NGK BPMR 7 A",
+      "normalized_value": "NGK BPMR 7 A",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "979226e2179d0f44",
+      "variant_id": "ms-261",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "tions de la Notice d'emploi 2.3 Dispositif d'allumage Entrefer entre module d'allu- mage et hélice de ventilateur : 0,20 (+ 0,1/- 0,05) mm Bougie (antiparasitée) : NGK BPMR 7 A BOSCH WSR6F",
+      "normalized_value": "NGK BPMR 7 A BOSCH WSR6F",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "d33be5cb92f8b4d5",
+      "variant_id": "ms-261",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "– Arrêter le moteur. richesse à haut régimeHest blo- – Tourner la vis de réglage de qué, une fois que le capuchon de limitation de course de réglage (1) – En agissant avec doigté dans le richesse au ralentiLdans le sens est enfoncé en retra",
+      "normalized_value": 2,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "1f4065cdbf4b32b0",
+      "variant_id": "fs-460",
+      "field_name": "stroke_mm",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "BORE_STROKE_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "2. Caractéristiques techniques 2.1 Moteur FS 240 C, FS 360 C FS 260 C, FS 410 C FS 460 C Cylindrée : 37,7 cm3 41,6 cm3 45,6 cm3 Alésage du cylindre : 40,0 mm 42,0 mm 44,0 mm Course du piston : 30,0 mm 30,0 mm 30,0 mm",
+      "normalized_value": 30,
+      "normalized_unit": "mm"
+    },
+    {
+      "candidate_id": "93f55babfcdce4da",
+      "variant_id": "fs-460",
+      "field_name": "power_kw",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "POWER_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "2.1 Moteur FS 240 C, FS 360 C FS 260 C, FS 410 C FS 460 C Cylindrée : 37,7 cm3 41,6 cm3 45,6 cm3 Alésage du cylindre : 40,0 mm 42,0 mm 44,0 mm Course du piston : 30,0 mm 30,0 mm 30,0 mm Puissance suivant ISO 8893 : 1,7 kW (2,3 ch) 2,0 kW (2",
+      "normalized_value": 1.7,
+      "normalized_unit": "kW"
+    },
+    {
+      "candidate_id": "04172d6f64c0e467",
+      "variant_id": "fs-460",
+      "field_name": "spark_plug",
+      "field_semantic_status": "VALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_CONTEXT_CONFIRMED"
+      ],
+      "raw_context": "2.3 Dispositif d'allumage Entrefer entre module d'allumage et hélice de ventilateur : 0,30 (+ 0,15/- 0,20) mm 0,30 (+ 0,15/- 0,20) mm 0,30 (+ 0,05/- 0,10) mm Bougie (antiparasitée) : NGK CMR 6 H NGK CMR 6 H NGK CMR 6 H",
+      "normalized_value": "NGK CMR 6 H NGK CMR 6 H NGK CMR 6 H",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "93ed4dc40d8fc098",
+      "variant_id": "044",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "bougie. vercle du pignon à came (1). (1+4) du cylindre. 2 3 1 2 VA VA VA 249RA044 249RA046 1 249RA048",
+      "normalized_value": "249RA048",
+      "normalized_unit": null
+    },
+    {
+      "candidate_id": "32acfeaf3a99a2b8",
+      "variant_id": "046",
+      "field_name": "spark_plug",
+      "field_semantic_status": "INVALID",
+      "field_semantic_evidence": [
+        "SPARK_PLUG_PATTERN_INVALID"
+      ],
+      "raw_context": "bougie. vercle du pignon à came (1). (1+4) du cylindre. 2 3 1 2 VA VA VA 249RA044 249RA046 1 249RA048",
+      "normalized_value": "249RA048",
+      "normalized_unit": null
+    }
+  ],
+  "field_metrics": [
+    {
+      "field": "displacement_cc",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "power_kw",
+      "CANDIDATES": 8,
+      "SEMANTIC_VALID": 8,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "weight_kg",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "spark_plug",
+      "CANDIDATES": 22,
+      "SEMANTIC_VALID": 11,
+      "SEMANTIC_AMBIGUOUS": 1,
+      "SEMANTIC_INVALID": 10
+    },
+    {
+      "field": "electrode_gap_mm",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "idle_speed_rpm",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "max_engine_speed_rpm",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "fuel_tank_l",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "oil_tank_l",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "bore_mm",
+      "CANDIDATES": 0,
+      "SEMANTIC_VALID": 0,
+      "SEMANTIC_AMBIGUOUS": 0,
+      "SEMANTIC_INVALID": 0
+    },
+    {
+      "field": "stroke_mm",
+      "CANDIDATES": 13,
+      "SEMANTIC_VALID": 12,
+      "SEMANTIC_AMBIGUOUS": 1,
+      "SEMANTIC_INVALID": 0
+    }
+  ]
+}
