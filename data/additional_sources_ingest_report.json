@@ -1,0 +1,186 @@
+{
+  "generated_at": "2026-08-29T05:50:50.055Z",
+  "phase": "ADDITIONAL SOURCES INGEST",
+  "SOURCE_COMMIT": "9123787",
+  "CONTENT_COMMIT": "9123787",
+  "source_fingerprints": [
+    {
+      "source_batch": "BATCH3_MANUEL_SERVICE",
+      "source_path": "C:/Users/GelliusSnippe/.agents/stihl_manuel_service_documentation.db",
+      "source_hash": "c3faa385cfa77de10404c77a45060052a45417c6407dcb91d11e09f333822f0e",
+      "source_size": 90112,
+      "backup_path": "C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder\\data\\backups\\stihl_manuel_service_documentation-2026-08-29-readonly.db"
+    },
+    {
+      "source_batch": "BATCH4_ARCHIVE_ORG_MIXED",
+      "source_path": "C:/Users/GelliusSnippe/.agents/stihl_archive_documentation.db",
+      "source_hash": "ba24b0b6d128c6edc008c32317dccc7eae0a1926e029e99bcfb430511ff0506f",
+      "source_size": 2588672,
+      "backup_path": "C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder\\data\\backups\\stihl_archive_documentation-2026-08-29-readonly.db"
+    },
+    {
+      "source_batch": "BATCH5_OPEFORUM_COMMUNITY",
+      "source_path": "C:/Users/GelliusSnippe/.agents/stihl_opeforum_documentation.db",
+      "source_hash": "936340a31655d1abc935b22975daa72ff5a1c6a4c8383ecc1d3db085c98691d8",
+      "source_size": 368640,
+      "backup_path": "C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder\\data\\backups\\stihl_opeforum_documentation-2026-08-29-readonly.db"
+    }
+  ],
+  "total_documents": 792,
+  "total_field_candidates": 26871,
+  "fields_verified": 0,
+  "official_indirect": 1470,
+  "blocked": 1472,
+  "conflicts": 20,
+  "duplicates_within_new_sources": 15,
+  "duplicates_against_existing_corpora": 0,
+  "immutable_public_data_unchanged": "PASS",
+  "seo_content_modified": "0 / 0",
+  "public_model_data_modified": "0 / 0",
+  "seo_content_freeze": "ACTIVE",
+  "idempotency_test": "PASS",
+  "per_source_summary": {
+    "BATCH3_MANUEL_SERVICE": {
+      "documents": 78,
+      "authenticated_official": 0,
+      "probable_official": 78,
+      "non_official": 0,
+      "insufficient_text": 0,
+      "verified_fields": 0,
+      "source_eligible_fields": 212
+    },
+    "BATCH4_ARCHIVE_ORG_MIXED": {
+      "documents": 663,
+      "authenticated_official": 13,
+      "probable_official": 41,
+      "non_official": 45,
+      "insufficient_text": 218,
+      "verified_fields": 0,
+      "source_eligible_fields": 1260
+    },
+    "BATCH5_OPEFORUM_COMMUNITY": {
+      "documents": 51,
+      "authenticated_official": 0,
+      "probable_official": 27,
+      "non_official": 0,
+      "insufficient_text": 24,
+      "verified_fields": 0,
+      "source_eligible_fields": 0
+    }
+  },
+  "precision_audits": {
+    "displacement_cc": {
+      "field": "displacement_cc",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "power_kw": {
+      "field": "power_kw",
+      "sample_size": 12,
+      "correct_context_validated": 0,
+      "false_positives": 12,
+      "context_precision_percent": 0
+    },
+    "weight_kg": {
+      "field": "weight_kg",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "spark_plug": {
+      "field": "spark_plug",
+      "sample_size": 14,
+      "correct_context_validated": 2,
+      "false_positives": 12,
+      "context_precision_percent": 14.3
+    },
+    "electrode_gap_mm": {
+      "field": "electrode_gap_mm",
+      "sample_size": 0,
+      "correct_context_validated": 0,
+      "false_positives": 0,
+      "context_precision_percent": 0
+    },
+    "carb_h_setting": {
+      "field": "carb_h_setting",
+      "sample_size": 100,
+      "correct_context_validated": 0,
+      "false_positives": 100,
+      "context_precision_percent": 0
+    },
+    "carb_l_setting": {
+      "field": "carb_l_setting",
+      "sample_size": 100,
+      "correct_context_validated": 0,
+      "false_positives": 100,
+      "context_precision_percent": 0
+    },
+    "part_number": {
+      "field": "part_number",
+      "sample_size": 49,
+      "correct_context_validated": 0,
+      "false_positives": 49,
+      "context_precision_percent": 0
+    }
+  },
+  "field_breakdown": [
+    {
+      "field": "carb_h_setting",
+      "extracted": 2775,
+      "source_eligible": 211,
+      "verified": 0,
+      "indirect": 210,
+      "blocked": 211,
+      "conflict": 8
+    },
+    {
+      "field": "carb_l_setting",
+      "extracted": 2884,
+      "source_eligible": 178,
+      "verified": 0,
+      "indirect": 177,
+      "blocked": 178,
+      "conflict": 8
+    },
+    {
+      "field": "carb_la_instruction",
+      "extracted": 21137,
+      "source_eligible": 1083,
+      "verified": 0,
+      "indirect": 1083,
+      "blocked": 1083,
+      "conflict": 4
+    },
+    {
+      "field": "part_number",
+      "extracted": 49,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "power_kw",
+      "extracted": 12,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    },
+    {
+      "field": "spark_plug",
+      "extracted": 14,
+      "source_eligible": 0,
+      "verified": 0,
+      "indirect": 0,
+      "blocked": 0,
+      "conflict": 0
+    }
+  ],
+  "final_status": "PARTIAL PASS"
+}
