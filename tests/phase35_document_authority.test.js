@@ -267,6 +267,54 @@ const br600Fields = dedupeFieldValues(extractTechnicalFields({
 }));
 assert.ok(br600Fields.some((field) => field.field_name === 'weight_kg' && field.value === 10.2));
 
+const contentLayerDoc = {
+  ...fs100Doc,
+  document_id: 'doc-content-layer',
+  model_relations: [
+    { model_id: 'stihl_fs_100', slug: 'fs-100', model_name: 'FS 100', relation_status: 'EXPLICIT_MODEL_MATCH' }
+  ]
+};
+assert.strictEqual(dedupeFieldValues(extractTechnicalFields({
+  document: contentLayerDoc,
+  pages: [
+    { page_number: 1, page_text: 'FS 100 Spark Plug: NGK CMR6H', content_layer: 'DOCUMENT_METADATA' }
+  ],
+  knownModels
+})).length, 0);
+assert.strictEqual(dedupeFieldValues(extractTechnicalFields({
+  document: contentLayerDoc,
+  pages: [
+    { page_number: 1, page_text: 'FS 100 Spark Plug: NGK CMR6H', content_layer: 'UI_NAVIGATION' }
+  ],
+  knownModels
+})).length, 0);
+assert.strictEqual(dedupeFieldValues(extractTechnicalFields({
+  document: contentLayerDoc,
+  pages: [
+    { page_number: 1, page_text: 'FS 100 Spark Plug: NGK CMR6H', content_layer: 'FORUM_POST' }
+  ],
+  knownModels
+})).length, 0);
+
+const carbPayloadFields = dedupeFieldValues(extractTechnicalFields({
+  document: contentLayerDoc,
+  pages: [
+    { page_number: 2, page_text: 'FS 100 carburetor settings H: 1 L: 1 LA: idle speed screw 2 turns', content_layer: 'DOCUMENT_OCR' }
+  ],
+  knownModels
+}));
+assert.ok(carbPayloadFields.some((field) => field.field_name === 'carb_h_setting' && field.value === '1'));
+assert.ok(carbPayloadFields.some((field) => field.field_name === 'carb_l_setting' && field.value === '1'));
+assert.ok(carbPayloadFields.some((field) => field.field_name === 'carb_la_instruction'));
+
+assert.strictEqual(dedupeFieldValues(extractTechnicalFields({
+  document: contentLayerDoc,
+  pages: [
+    { page_number: 3, page_text: 'LA --> H 43', content_layer: 'DOCUMENT_OCR' }
+  ],
+  knownModels
+})).length, 0);
+
 const partContext = 'Illustrated parts list Pos. 1 Part no 1128 123 4567 Qty 1';
 assert.deepStrictEqual(extractPartNumbers(partContext), ['1128-123-4567']);
 assert.strictEqual(classifyCodeCandidate(partContext, '1128-123-4567'), 'PART_NUMBER');

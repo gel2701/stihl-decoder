@@ -4,6 +4,13 @@ const DOCUMENT_NUMBER_REGEX = /\b0\d{3}[\s-]?\d{3}[\s-]?\d{4}(?:[\s-]?[A-Z])?\b/
 const STIHL_CODE_REGEX = /\b\d{4}[\s-]\d{3}[\s-]\d{4}(?:[\s-]?[A-Z])?\b/g;
 const SERIES_CODE_REGEX = /\b\d{4}\b/g;
 const SERIAL_NUMBER_REGEX = /\b\d{6,12}\b/;
+const EXTRACTION_ALLOWED_CONTENT_LAYERS = new Set([
+  'DOCUMENT_PAYLOAD',
+  'DOCUMENT_OCR',
+  'DOCUMENT_TEXT_EXTRACTION',
+  'ATTACHMENT_PAYLOAD'
+]);
+const CARB_CONTEXT_REGEX = /\b(carburetor|carburettor|carburator|carburador|carburateur|vergaser)\b/i;
 
 const OFFICIAL_KEYWORDS = [
   'andreas stihl',
@@ -867,7 +874,7 @@ function determineVerificationStatus({ document, fieldName, relationStatus, scop
   return 'UNVERIFIED';
 }
 
-function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, rawUnit, page, verificationStatus, scopeConfidence, sourceEligibility, evidenceSnippet, pageText = '', extra = {} }) {
+function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, rawUnit, page, verificationStatus, scopeConfidence, sourceEligibility, evidenceSnippet, pageText = '', contentLayer = null, extra = {} }) {
   const anomaly = typeof value === 'number' && !passesSanity(fieldName, value);
   const modelScope = determineModelScopeStatus({
     relationStatus: model.relation_status,
@@ -919,6 +926,7 @@ function buildFieldRecord({ document, model, fieldName, value, unit, rawValue, r
     source_eligibility: sourceEligibility || 'NONE',
     model_relation_status: model.relation_status,
     page_locator_exists: Number.isInteger(page),
+    content_layer: contentLayer,
     evidence_snippet: evidenceSnippet,
     extraction_quality: document.extraction_quality,
     measurement_definition: determineMeasurementDefinition(fieldName, evidenceSnippet),
@@ -949,9 +957,40 @@ function parseSparkPlug(context) {
   return match ? normalizeText(match[1]) : null;
 }
 
+function hasCarbContext(context) {
+  return CARB_CONTEXT_REGEX.test(String(context || ''));
+}
+
+function isValidCarbTurnValue(value) {
+  const raw = normalizeText(value);
+  if (!/^\d+(?:[.,]\d+)?(?:\s*\/\s*\d+)?$/.test(raw)) return false;
+  const normalized = raw.replace(',', '.');
+  if (normalized.includes('/')) {
+    const [left, right] = normalized.split('/').map((entry) => Number(entry.trim()));
+    if (!Number.isFinite(left) || !Number.isFinite(right) || right === 0) return false;
+    const ratio = left / right;
+    return ratio > 0 && ratio <= 5;
+  }
+  const numeric = Number(normalized);
+  return Number.isFinite(numeric) && numeric > 0 && numeric <= 5;
+}
+
 function parseCarbTurns(context, label) {
+  if (!hasCarbContext(context)) return null;
   const match = context.match(new RegExp(`${label}[^:=]*[:=]?\\s*(\\d+(?:[.,]\\d+)?(?:\\s*\\/\\s*\\d+)?)\\s*(?:turn|turns|slag|tour|vuelta|open)?`, 'i'));
-  return match ? normalizeText(match[1]) : null;
+  if (!match) return null;
+  const value = normalizeText(match[1]);
+  return isValidCarbTurnValue(value) ? value : null;
+}
+
+function parseCarbAdjustmentInstruction(context) {
+  if (!hasCarbContext(context)) return null;
+  const match = context.match(/(?:LA|idle speed screw|stationary speed screw)[^:\n]*[: ]+([^\n]+)/i);
+  if (!match) return null;
+  const value = normalizeText(match[1]);
+  if (value.length < 3) return null;
+  if (/^[-_>.<|/\\]+$/.test(value)) return null;
+  return value;
 }
 
 function parseMultiModelTableRow(line, applicableModels) {
@@ -1002,6 +1041,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
   const relationIndex = new Map(relations.map((entry) => [entry.model_id, entry]));
 
   for (const page of pages) {
+    const contentLayer = page.content_layer || null;
+    if (contentLayer && !EXTRACTION_ALLOWED_CONTENT_LAYERS.has(contentLayer)) continue;
     const pageText = String(page.page_text || '');
     const normalizedPageText = normalizeText(pageText);
     if (!normalizedPageText) continue;
@@ -1043,7 +1084,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
           scopeConfidence,
           sourceEligibility,
           evidenceSnippet: context.slice(0, 240),
-          pageText
+          pageText,
+          contentLayer
         }));
       }
 
@@ -1094,7 +1136,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
-            pageText
+            pageText,
+            contentLayer
           }));
         }
       }
@@ -1125,7 +1168,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             }),
             scopeConfidence,
             sourceEligibility,
-            evidenceSnippet: context.slice(0, 240)
+            evidenceSnippet: context.slice(0, 240),
+            contentLayer
           }));
         }
       }
@@ -1161,7 +1205,8 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             scopeConfidence,
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
-            pageText
+            pageText,
+            contentLayer
           }));
         }
       }
@@ -1201,11 +1246,11 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
 
       const carbH = parseCarbTurns(context, 'H');
       const carbL = parseCarbTurns(context, 'L');
-      const carbLA = context.match(/(?:LA|idle speed screw|stationary speed screw)[^:\n]*[: ]+([^\n]+)/i);
+      const carbLA = parseCarbAdjustmentInstruction(context);
       for (const [fieldName, value, unit] of [
         ['carb_h_setting', carbH, 'turns'],
         ['carb_l_setting', carbL, 'turns'],
-        ['carb_la_instruction', carbLA ? normalizeText(carbLA[1]) : null, null]
+        ['carb_la_instruction', carbLA, null]
       ]) {
         if (!value) continue;
         for (const model of applicableModels) {
@@ -1234,6 +1279,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
             pageText,
+            contentLayer,
             extra: fieldName === 'carb_la_instruction' ? {} : { normalized_turns: value }
           }));
         }
@@ -1270,6 +1316,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
             pageText,
+            contentLayer,
             extra: {
               description: normalizeText(context).slice(0, 100),
               assembly: hasPartContext(context) ? 'parts_list_context' : null,
@@ -1312,6 +1359,7 @@ export function extractTechnicalFields({ document, pages, knownModels = [] }) {
             sourceEligibility,
             evidenceSnippet: context.slice(0, 240),
             pageText,
+            contentLayer,
             extra: {
               evidence_type: cutoff.evidence_type,
               component,
