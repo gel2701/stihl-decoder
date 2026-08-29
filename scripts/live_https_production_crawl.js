@@ -70,14 +70,24 @@ async function fetchWithRedirects(inputUrl, maxRedirects = 5) {
   let currentUrl = normalizeUrl(inputUrl);
 
   for (let hop = 0; hop <= maxRedirects; hop += 1) {
-    const response = await fetch(currentUrl, {
-      redirect: 'manual',
-      headers: {
-        'user-agent': 'STIHLDecoder Phase34B Validation Bot/1.0 (+https://www.stihldecoder.nl)'
-      }
-    });
+    let response;
+    let body = '';
 
-    const body = await response.text();
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      response = await fetch(currentUrl, {
+        redirect: 'manual',
+        headers: {
+          'user-agent': 'STIHLDecoder Phase34B Validation Bot/1.0 (+https://www.stihldecoder.nl)'
+        }
+      });
+
+      body = await response.text();
+      if (response.status < 500 || attempt === 2) {
+        break;
+      }
+      await sleep(250 * (attempt + 1));
+    }
+
     visited.push({
       url: currentUrl,
       status: response.status,
@@ -179,7 +189,9 @@ function extractInternalLinks(body) {
   return [...new Set(links)];
 }
 
-function summarizeResponse(requestedUrl, finalResponse, redirectCount) {
+function summarizeResponse(requestedUrl, visited) {
+  const finalResponse = visited[visited.length - 1];
+  const redirectCount = visited.length - 1;
   const body = finalResponse.body;
   const contentType = finalResponse.headers['content-type'] || null;
   const isHtml = String(contentType).includes('text/html');
@@ -190,6 +202,7 @@ function summarizeResponse(requestedUrl, finalResponse, redirectCount) {
   return {
     url: requestedUrl,
     path: pathName,
+    initial_status: visited[0]?.status || finalResponse.status,
     http_status: finalResponse.status,
     final_url: finalResponse.url,
     redirect_count: redirectCount,
@@ -211,6 +224,7 @@ function summarizeResponse(requestedUrl, finalResponse, redirectCount) {
 function classifyPath(pathname) {
   if (pathname === '/') return 'HOME';
   if (pathname === '/onderdeelnummer/') return 'PARTS';
+  if (/^\/onderdeelnummer\/stihl-[^/]+\/$/.test(pathname)) return 'PARTS';
   if (pathname.startsWith('/vergelijk/')) return 'COMPARISONS';
   if (pathname.startsWith('/gidsen/')) return 'GUIDES';
   if (pathname.startsWith('/waarde/')) return 'VALUATION';
@@ -240,8 +254,7 @@ async function crawlUrlSet(urls) {
   while (queue.length > 0) {
     const url = queue.shift();
     const visited = await fetchWithRedirects(url);
-    const finalResponse = visited[visited.length - 1];
-    const summary = summarizeResponse(url, finalResponse, visited.length - 1);
+    const summary = summarizeResponse(url, visited);
     results.set(url, summary);
 
     if (!String(summary.content_type || '').includes('text/html')) {
@@ -265,8 +278,7 @@ console.log('🌐 Running true HTTPS production crawl against https://www.stihld
 const seedResults = [];
 for (const pathName of seedPaths) {
   const visited = await fetchWithRedirects(pathToUrl(pathName));
-  const finalResponse = visited[visited.length - 1];
-  seedResults.push(summarizeResponse(pathToUrl(pathName), finalResponse, visited.length - 1));
+  seedResults.push(summarizeResponse(pathToUrl(pathName), visited));
 }
 
 const sitemapFetch = await fetchWithRedirects(`${LIVE_ORIGIN}/sitemap.xml`);
@@ -299,6 +311,7 @@ const internalLinkAudit = [...uniqueInternalLinks]
     const entry = crawlResultsMap.get(url);
     return entry ? {
       url,
+      requested_status: entry.initial_status,
       final_url: entry.final_url,
       status: entry.http_status,
       redirect_count: entry.redirect_count,
@@ -334,7 +347,12 @@ for (const entry of htmlPages) {
 }
 
 const discoveredIndexableUrls = htmlPages
-  .filter((entry) => entry.http_status === 200 && !String(entry.robots || 'index, follow').toLowerCase().includes('noindex'))
+  .filter((entry) => (
+    entry.http_status === 200
+    && entry.redirect_count === 0
+    && normalizeUrl(entry.final_url) === entry.url
+    && !String(entry.robots || 'index, follow').toLowerCase().includes('noindex')
+  ))
   .map((entry) => ({
     ...entry,
     seo_hash: buildSeoHash(entry)
@@ -349,7 +367,7 @@ const websiteSchemaCount = (() => {
 const apexVisited = await fetchWithRedirects(`${APEX_ORIGIN}/`);
 const wwwVisited = await fetchWithRedirects(`${LIVE_ORIGIN}/`);
 
-const inventory = pageResults.reduce((acc, entry) => {
+const inventory = discoveredIndexableUrls.reduce((acc, entry) => {
   const bucket = classifyPath(new URL(entry.url).pathname);
   if (bucket === 'VALUATION') {
     const isNoindex = String(entry.robots || '').toLowerCase().includes('noindex');
@@ -377,8 +395,10 @@ const knownRouteAudit = getKnownRouteCandidates()
     const entry = crawlResultsMap.get(url);
     return {
       url,
+      requested_status: entry?.initial_status || 0,
       status: entry?.http_status || 0,
       final_url: entry?.final_url || null,
+      redirect_count: entry?.redirect_count || 0,
       robots: entry?.robots || null
     };
   });
