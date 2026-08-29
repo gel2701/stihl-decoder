@@ -1,0 +1,97 @@
+{
+  "TRUE_DEDUP_INVARIANT": "PASS",
+  "AUTHENTICITY_INVARIANT": "PASS",
+  "CORPORATE_IDENTITY_INVARIANT": "PASS",
+  "GOLD_INVARIANT": "PASS",
+  "MODEL_SCOPE_INVARIANT": "PASS",
+  "NEW_UNIQUE_REACHABILITY_TEST": "PASS",
+  "SAME_SOURCE_SEMANTICS_TEST": "PASS",
+  "precision_tests": {
+    "ZERO_SAMPLE_TEST": "PASS",
+    "LIMITED_SAMPLE_TEST": "PASS",
+    "HIGH_PRECISION_TEST": "PASS",
+    "BELOW_THRESHOLD_TEST": "PASS"
+  },
+  "dedup_fixtures": {
+    "SAME_SOURCE_REFERENCE": "SAME_SOURCE_REFERENCE",
+    "EXACT_FILE_DUPLICATE": "EXACT_FILE_DUPLICATE",
+    "EXACT_CONTENT_DUPLICATE": "EXACT_CONTENT_DUPLICATE",
+    "SAME_PUBLICATION_POSSIBLE_REVISION": "SAME_PUBLICATION_POSSIBLE_REVISION",
+    "IDENTITY_MATCH_ONLY": "IDENTITY_MATCH_ONLY",
+    "IDENTITY_CONFLICT": "IDENTITY_CONFLICT",
+    "NEW_UNIQUE": "NEW_UNIQUE"
+  },
+  "authenticity_fixtures": {
+    "negative": {
+      "corporate_identity": false,
+      "payload_identity": true,
+      "model_identity": false,
+      "structure_identity": false,
+      "auth_after": "PAYLOAD_UNREADABLE",
+      "payload_corporate_snippet": null
+    },
+    "positive": {
+      "corporate_identity": true,
+      "payload_identity": true,
+      "model_identity": true,
+      "structure_identity": true,
+      "auth_after": "AUTHENTICATED_OFFICIAL",
+      "payload_corporate_snippet": "Andreas Stihl AG & Co."
+    }
+  },
+  "gold_fixtures": {
+    "negative": {
+      "gold_record_id": "cf42c077f5214e5f",
+      "model": "ms-261",
+      "field": "power_kw",
+      "expected_value": 3,
+      "unit": "kW",
+      "source_file": "ts.html",
+      "status": "NEEDS_MANUAL_REVIEW",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW",
+        "MATCH_EXISTS_BUT_NOT_ELIGIBLE"
+      ],
+      "supporting_candidate_count": 1,
+      "supporting_candidate_eligible": false
+    },
+    "positive": {
+      "gold_record_id": "449c30b74cd5ddc1",
+      "model": "ms-261",
+      "field": "power_kw",
+      "expected_value": 3,
+      "unit": "kW",
+      "source_file": "ts.html",
+      "status": "GOLD_VALIDATED_INDEPENDENT",
+      "validation_evidence": [
+        "TS_DATA_EXPLICIT_ROW",
+        "INDEPENDENT_OFFICIAL_MATCH"
+      ],
+      "supporting_candidate_count": 1,
+      "supporting_candidate_eligible": true
+    }
+  },
+  "model_scope_fixtures": {
+    "positive": {
+      "changed": true,
+      "before": "DOCUMENT_LEVEL_ONLY",
+      "after": "EXACT_MODEL",
+      "reason": "Publication-level model index links only one matching model for this candidate.",
+      "explicit_publication_model_count": 1
+    },
+    "negative": {
+      "changed": false,
+      "before": "DOCUMENT_LEVEL_ONLY",
+      "after": "DOCUMENT_LEVEL_ONLY",
+      "reason": "No single exact publication-to-model mapping was proven.",
+      "explicit_publication_model_count": 2
+    }
+  },
+  "ts_data_regression": {
+    "TS_DATA_SPARK_GARBAGE": 0,
+    "TS_DATA_CARB_GARBAGE": 0
+  },
+  "ts700_regression": {
+    "TS700_REAL_CORPUS_CONFLICT": "YES"
+  }
+}
