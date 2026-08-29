@@ -221,6 +221,9 @@ function buildMaps(knownModels) {
   const batch3ById = new Map((batch3Registry.documents || []).map((doc) => [doc.document_id, doc]));
   const nativeById = new Map((batch3Native.documents || []).map((doc) => [doc.document_id, doc]));
   const batch2ByPath = new Map((batch2Registry.documents || []).map((doc) => [normalizeLooseText(doc.source_file_path), doc]));
+  const batch2ByCanonicalId = new Map((batch2Registry.documents || [])
+    .filter((doc) => doc.canonical_document_id)
+    .map((doc) => [doc.canonical_document_id, doc]));
   const canonicalById = new Map((crossRegistry.canonical_documents || []).map((doc) => [doc.canonical_document_id, doc]));
   const authenticatedDocs = (authRecovery.documents || [])
     .filter((doc) => doc.auth_after === 'AUTHENTICATED_OFFICIAL')
@@ -237,7 +240,7 @@ function buildMaps(knownModels) {
         explicit_models: extractModelsFromText(`${doc.batch6_path} ${publicationId || ''}`, knownModels)
       };
     });
-  return { batch3ById, nativeById, canonicalById, authenticatedDocs, tsDataRecords };
+  return { batch3ById, nativeById, batch2ByCanonicalId, canonicalById, authenticatedDocs, tsDataRecords };
 }
 
 export function assessCanonicalIdentity(candidateDoc, authDoc) {
@@ -286,9 +289,26 @@ function buildCanonicalReconciliation(targetCandidates, maps, knownModels) {
       explicit_models: extractModelsFromText(`${registry.source_file_path || ''} ${(registry.models_mentioned || []).join(' ')}`, knownModels)
     };
     const canonical = maps.canonicalById.get(candidateDoc.canonical_document_id) || null;
-    const matches = maps.authenticatedDocs
+    const canonicalSourceLocations = canonical?.source_locations || [];
+    const canonicalBatch2Source = canonicalSourceLocations.find((row) => row.source_batch === 'BATCH2_HIGH_AUTHORITY_STIHL') || null;
+    const canonicalBatch2Doc = canonicalBatch2Source
+      ? maps.batch2ByCanonicalId.get(candidateDoc.canonical_document_id) || null
+      : null;
+    const traversedMatches = maps.authenticatedDocs
+      .filter((authDoc) => {
+        if (!canonicalBatch2Source) return false;
+        if (canonicalBatch2Doc?.document_id && authDoc.batch2_document_id && canonicalBatch2Doc.document_id === authDoc.batch2_document_id) return true;
+        if (candidateDoc.canonical_document_id && authDoc.batch2_canonical_document_id && candidateDoc.canonical_document_id === authDoc.batch2_canonical_document_id) return true;
+        return false;
+      })
+      .map((authDoc) => ({ authDoc, assessment: assessCanonicalIdentity({
+        ...candidateDoc,
+        file_hash: canonicalBatch2Doc?.file_hash || candidateDoc.candidate_file_hash
+      }, authDoc) }));
+    const directMatches = maps.authenticatedDocs
       .map((authDoc) => ({ authDoc, assessment: assessCanonicalIdentity(candidateDoc, authDoc) }))
-      .filter((row) => row.assessment.identity_status !== 'UNRESOLVED')
+      .filter((row) => row.assessment.identity_status !== 'UNRESOLVED');
+    const matches = [...traversedMatches, ...directMatches]
       .sort((left, right) => right.assessment.evidence.length - left.assessment.evidence.length);
     const bestMatch = matches[0] || null;
     documentRows.push({
@@ -310,9 +330,13 @@ function buildCanonicalReconciliation(targetCandidates, maps, knownModels) {
       same_canonical_document: bestMatch?.assessment.identity_status === 'EXACT_CANONICAL_MATCH' || false,
       identity_confidence: bestMatch?.assessment.identity_confidence || 'LOW',
       identity_status: bestMatch?.assessment.identity_status || (canonical ? 'UNRESOLVED' : 'UNRESOLVED'),
-      identity_evidence: bestMatch?.assessment.evidence || (canonical ? ['CANDIDATE_CANONICAL_REFERENCE_PRESENT'] : []),
+      identity_evidence: bestMatch?.assessment.evidence || [],
       current_authenticity_status: bestMatch?.authDoc.auth_after || registry.authenticity_status || 'UNRESOLVED',
-      authenticity_source_phase: bestMatch ? 'PHASE35C3_AUTHENTICITY_RECOVERY' : 'BATCH3_NATIVE_DOCUMENT_REGISTRY'
+      authenticity_source_phase: bestMatch
+        ? traversedMatches.includes(bestMatch)
+          ? 'CROSS_CORPUS_CANONICAL_TRAVERSAL'
+          : 'PHASE35C3_AUTHENTICITY_RECOVERY'
+        : 'BATCH3_NATIVE_DOCUMENT_REGISTRY'
     });
   }
   return {
@@ -484,10 +508,8 @@ export function validateFieldSemantics35c41(candidate) {
     }
     field_semantic_status = value_pass && unit_pass && measurement_definition_pass ? 'VALID' : 'AMBIGUOUS';
   } else {
-    value_pass = candidate.value != null && candidate.value !== '';
-    unit_pass = true;
-    measurement_definition_pass = true;
-    field_semantic_status = value_pass ? 'VALID' : 'AMBIGUOUS';
+    field_semantic_status = 'AMBIGUOUS';
+    evidence.push('FIELD_VALIDATOR_NOT_IMPLEMENTED');
   }
 
   return {
@@ -529,12 +551,13 @@ function buildCandidateReviews(candidateReport, maps, knownModels) {
       current_document_authenticity_status: docRow?.current_authenticity_status || 'UNRESOLVED',
       effective_authenticity_status: auth.reassessed_authenticity_status,
       reassessment_reason: auth.reassessment_reason,
+      canonical_identity_pass: ['EXACT_CANONICAL_MATCH', 'EXACT_FILE_MATCH', 'EXACT_PAYLOAD_MATCH', 'SAME_SOURCE_REFERENCE'].includes(docRow?.identity_status),
+      canonical_identity_support_only: docRow?.identity_status === 'PUBLICATION_MATCH_STRONG',
       model_document_compatibility: compatibility,
       model_document_compatibility_pass: ['EXACT_MODEL_DOCUMENT', 'EXPLICIT_MULTI_MODEL_DOCUMENT', 'COMPATIBLE_COMPONENT_DOCUMENT'].includes(compatibility),
       field_scope_pass: EXACT_SCOPES.has(scope.scope_after),
       ...scope,
       ...semantic,
-      canonical_identity_pass: docRow?.candidate_document_id != null && candidate.canonical_document_id != null,
       effective_authenticity_pass: ['AUTHENTICATED_DIRECT', 'AUTHENTICATED_VIA_CANONICAL_DOCUMENT'].includes(auth.reassessed_authenticity_status),
       page_locator_pass: Boolean(candidate.page_locator_exists && Number(candidate.pdf_page || candidate.page)),
       field_semantic_pass: semantic.field_semantic_status === 'VALID',
@@ -598,7 +621,13 @@ function buildGoldValidationSet(tsDataRecords) {
 
 function buildSourceIndependenceAudit(reviewed, goldSet) {
   const records = [];
-  for (const candidate of reviewed.filter((row) => row.model_document_compatibility !== 'INCOMPATIBLE_MODEL_DOCUMENT')) {
+  for (const candidate of reviewed.filter((row) =>
+    row.canonical_identity_pass
+    && row.effective_authenticity_pass
+    && row.model_document_compatibility_pass
+    && row.field_semantic_pass
+    && row.field_scope_pass
+  )) {
     const goldMatches = goldSet.records.filter((row) => row.model === candidate.variant_id && row.field === candidate.field_name && row.status === 'GOLD_CANDIDATE');
     for (const gold of goldMatches) {
       const independence = classifySourceIndependence(
@@ -612,16 +641,24 @@ function buildSourceIndependenceAudit(reviewed, goldSet) {
         },
         {
           source_label: `${candidate.document_id}:${candidate.candidate_id}`,
-          file_hash: null,
-          payload_hash: null,
+          file_hash: candidate.candidate_file_hash || null,
+          payload_hash: candidate.candidate_payload_hash || null,
           publication_id: candidate.candidate_publication_id,
           canonical_document_id: candidate.canonical_document_id,
-          same_source_reference: false
+          same_source_reference: ['SAME_SOURCE_REFERENCE', 'EXACT_FILE_MATCH', 'EXACT_PAYLOAD_MATCH', 'EXACT_CANONICAL_MATCH'].includes(candidate.identity_status)
         }
       );
       const sameValue = normalizeValue(gold.normalized_value) === normalizeValue(candidate.value);
-      const supporting = independence.independent && sameValue && candidate.measurement_definition_pass && candidate.model_document_compatibility_pass;
-      const conflict = independence.independent && !sameValue;
+      const supporting = independence.independent
+        && sameValue
+        && candidate.measurement_definition_pass
+        && candidate.model_document_compatibility_pass
+        && candidate.effective_authenticity_pass
+        && candidate.field_scope_pass
+        && candidate.field_semantic_pass
+        && (candidate.market || 'UNKNOWN') === 'UNKNOWN'
+        && (candidate.revision || 'NONE') === 'NONE';
+      const conflict = independence.independent && !sameValue && candidate.effective_authenticity_pass && candidate.field_scope_pass && candidate.field_semantic_pass;
       records.push({
         candidate_id: candidate.candidate_id,
         model: candidate.variant_id,
@@ -639,7 +676,14 @@ function buildSourceIndependenceAudit(reviewed, goldSet) {
 
 function buildConflictAudit(reviewed, goldSet) {
   const clusters = new Map();
-  const eligible = reviewed.filter((row) => row.model_document_compatibility_pass && row.identity_status !== 'IDENTITY_CONFLICT');
+  const eligible = reviewed.filter((row) =>
+    row.canonical_identity_pass
+    && row.effective_authenticity_pass
+    && row.model_document_compatibility_pass
+    && row.field_semantic_pass
+    && row.field_scope_pass
+    && row.identity_status !== 'IDENTITY_CONFLICT'
+  );
   for (const row of eligible) {
     const key = [row.variant_id, row.field_name, row.normalized_unit || row.unit || 'NONE', row.market || 'UNKNOWN', 'STANDARD', row.revision || 'NONE'].join('|');
     if (!clusters.has(key)) clusters.set(key, []);
@@ -741,7 +785,18 @@ function buildArtifacts(candidateReport) {
       model_document_compatibility: row.model_document_compatibility
     }))
   };
-  const workingSet = reviewed.filter((row) => row.canonical_identity_pass && row.page_locator_pass && row.model_document_compatibility_pass && row.effective_authenticity_status !== 'INSUFFICIENT_EVIDENCE');
+  const reconciliationWorkingSet = reviewed.filter((row) =>
+    (row.canonical_identity_pass || row.canonical_identity_support_only)
+    && row.page_locator_pass
+    && row.model_document_compatibility_pass
+    && row.effective_authenticity_status !== 'INSUFFICIENT_EVIDENCE'
+  );
+  const workingSet = reviewed.filter((row) =>
+    row.canonical_identity_pass
+    && row.effective_authenticity_pass
+    && row.page_locator_pass
+    && row.model_document_compatibility_pass
+  );
   const fieldSemanticAudit = {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
@@ -857,7 +912,7 @@ function buildArtifacts(candidateReport) {
     canonicalReconciliation: reviewData.reconciliation,
     authenticityReassessment,
     modelCompatibility,
-    workingSetSummary: buildWorkingSetSummary(candidateReport, reviewData, reviewed, workingSet),
+    workingSetSummary: buildWorkingSetSummary(candidateReport, reviewData, reviewed, reconciliationWorkingSet, workingSet),
     fieldSemanticAudit,
     goldSet,
     sourceIndependenceAudit: independenceAudit,
@@ -872,7 +927,7 @@ function buildArtifacts(candidateReport) {
   };
 }
 
-function buildWorkingSetSummary(candidateReport, reviewData, reviewed, workingSet) {
+function buildWorkingSetSummary(candidateReport, reviewData, reviewed, reconciliationWorkingSet, verificationEligibleWorkingSet) {
   return {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
@@ -883,8 +938,10 @@ function buildWorkingSetSummary(candidateReport, reviewData, reviewed, workingSe
     CANONICAL_DOCUMENT_MATCHED: reviewed.filter((row) => row.canonical_identity_pass).length,
     AUTHENTICITY_RECOVERED: reviewed.filter((row) => row.effective_authenticity_status === 'AUTHENTICATED_VIA_CANONICAL_DOCUMENT').length,
     MODEL_DOCUMENT_COMPATIBLE: reviewed.filter((row) => row.model_document_compatibility_pass).length,
-    RECOVERY_WORKING_SET: workingSet.length,
-    working_set_hash: stableHash(workingSet.map((row) => row.candidate_id))
+    RECONCILIATION_WORKING_SET: reconciliationWorkingSet.length,
+    VERIFICATION_ELIGIBLE_WORKING_SET: verificationEligibleWorkingSet.length,
+    RECOVERY_WORKING_SET: verificationEligibleWorkingSet.length,
+    working_set_hash: stableHash(verificationEligibleWorkingSet.map((row) => row.candidate_id))
   };
 }
 
@@ -970,7 +1027,10 @@ function buildFinalReport({ preflight, reviewed, workingSet, reconciliation, fie
     NO_KNOWN_SPARK_PLUG_GARBAGE_SURVIVES: reviewed.filter((row) => ['208RA029', '208RA026', '133RA129'].includes(String(row.raw_value))).every((row) => row.field_semantic_status === 'INVALID') ? 'PASS' : 'FAIL',
     NO_FS200_TO_FS350_EXACT_SCOPE: goldSet.records.every((row) => !(row.model === 'fs-350' && String(row.source_file).includes('FS200_body.htm') && row.model_scope === 'EXACT_MODEL')) ? 'PASS' : 'FAIL',
     AUTH_RECOVERY_REQUIRES_CANONICAL_IDENTITY: failureInjection.AUTH_RECOVERY_REQUIRES_CANONICAL_IDENTITY,
-    NO_HARDCODED_SCOPE_RULES: failureInjection.NO_HARDCODED_SCOPE_RULES
+    NO_HARDCODED_SCOPE_RULES: failureInjection.NO_HARDCODED_SCOPE_RULES,
+    CANONICAL_IDENTITY_PASS_IMPLIES_PROVEN_IDENTITY: reviewed.every((row) =>
+      !row.canonical_identity_pass || ['EXACT_CANONICAL_MATCH', 'EXACT_FILE_MATCH', 'EXACT_PAYLOAD_MATCH', 'SAME_SOURCE_REFERENCE'].includes(row.identity_status)
+    ) ? 'PASS' : 'FAIL'
   };
   const failureValues = [
     failureInjection.CANONICAL_IDENTITY_FAILURE_INJECTION,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T22:34:45.830Z",
+  "generated_at": "2026-08-29T22:44:01.606Z",
   "source_commit": "75d7b75",
   "records": [
     {
@@ -125,9 +125,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: 026"
+        "Testing and Setting Data | Chain Saw: 026",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -253,9 +254,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: 036"
+        "Testing and Setting Data | Chain Saw: 036",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -381,9 +383,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: 044"
+        "Testing and Setting Data | Chain Saw: 044",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -509,9 +512,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: 046"
+        "Testing and Setting Data | Chain Saw: 046",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -639,7 +643,8 @@
       ],
       "status": "MODEL_MISMATCH",
       "validation_evidence": [
-        "Testing and Setting Data | Brushcutter: FS 200, FS 350"
+        "Testing and Setting Data | Brushcutter: FS 200, FS 350",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -657,7 +662,8 @@
       ],
       "status": "MODEL_MISMATCH",
       "validation_evidence": [
-        "Testing and Setting Data | Brushcutter: FS 200, FS 350"
+        "Testing and Setting Data | Brushcutter: FS 200, FS 350",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -783,9 +789,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: MS 260"
+        "Testing and Setting Data | Chain Saw: MS 260",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -911,9 +918,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: MS 360"
+        "Testing and Setting Data | Chain Saw: MS 360",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -1041,7 +1049,8 @@
       ],
       "status": "MODEL_MISMATCH",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: MS 360 C"
+        "Testing and Setting Data | Chain Saw: MS 360 C",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     },
     {
@@ -1167,9 +1176,10 @@
       "model_scope_evidence": [
         "TS_DATA_EXPLICIT_SINGLE_MODEL"
       ],
-      "status": "GOLD_CANDIDATE",
+      "status": "REJECTED",
       "validation_evidence": [
-        "Testing and Setting Data | Chain Saw: MS 460"
+        "Testing and Setting Data | Chain Saw: MS 460",
+        "FIELD_VALIDATOR_NOT_IMPLEMENTED"
       ]
     }
   ]
