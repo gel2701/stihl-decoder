@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-08-30T11:43:36.756Z",
+  "source_commit": "f0d9076",
+  "AUTHENTICATED_OFFICIAL": 89,
+  "PROBABLE_OFFICIAL": 0,
+  "NON_STIHL": 0,
+  "QUARANTINE": 4,
+  "UNRESOLVED": 5,
+  "targets": [
+    {
+      "target": "026",
+      "filename": "Stihl 026 Instruction Manual.pdf",
+      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "corporate_identity_signals": [
+        "ANDREAS_STIHL",
+        "STIHL_BRANDING"
+      ],
+      "publication_identity_signals": [
+        "PUBLICATION_ID:0458-133-3021"
+      ],
+      "document_structure_signals": [
+        "INSTRUCTION_MANUAL",
+        "SPECIFICATIONS_SECTION",
+        "DOC_TYPE:PARTS_LIST"
+      ]
+    },
+    {
+      "target": "046",
+      "filename": "STIHL 046.pdf",
+      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "corporate_identity_signals": [
+        "ANDREAS_STIHL",
+        "STIHL_BRANDING"
+      ],
+      "publication_identity_signals": [
+        "PUBLICATION_ID:0458-145-3021"
+      ],
+      "document_structure_signals": [
+        "SPECIFICATIONS_SECTION",
+        "TABLE_OF_CONTENTS",
+        "DOC_TYPE:PARTS_LIST"
+      ]
+    },
+    {
+      "target": "TS410_420",
+      "filename": "STIHL TS 410, 420 Owners Instruction Manual.pdf",
+      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "corporate_identity_signals": [
+        "ANDREAS_STIHL",
+        "STIHL_BRANDING",
+        "STIHL_COPYRIGHT"
+      ],
+      "publication_identity_signals": [
+        "PUBLICATION_ID:0458-370-8621-G",
+        "STIHL_NUMERIC_PUBLICATION_ID"
+      ],
+      "document_structure_signals": [
+        "INSTRUCTION_MANUAL",
+        "OWNERS_MANUAL",
+        "SPECIFICATIONS_SECTION",
+        "TABLE_OF_CONTENTS",
+        "DOC_TYPE:INSTRUCTION_MANUAL"
+      ]
+    }
+  ]
+}
