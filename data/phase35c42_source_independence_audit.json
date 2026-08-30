@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T11:43:36.775Z",
+  "generated_at": "2026-08-30T13:55:45.969Z",
   "source_commit": "f0d9076",
   "records": [
     {
@@ -12,9 +12,10 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "SUPPORTING",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 44,
       "supporting_value": 44
     },
@@ -28,9 +29,10 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "SUPPORTING",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 32,
       "supporting_value": 32
     },
@@ -44,11 +46,38 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "SUPPORTING",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 2800,
       "supporting_value": 2800
+    },
+    {
+      "candidate_id": "9063ada054d6499e",
+      "model": "026",
+      "field": "spark_plug",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:Stihl 026 Instruction Manual.pdf:50:spark_plug",
+      "source_b": "TS_DATA:026:spark_plug",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
+      "target_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 8"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "supporting_value": 0.5
     },
     {
       "candidate_id": "8482c1681118a0b4",
@@ -60,9 +89,10 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "SUPPORTING",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 76.5,
       "supporting_value": 76.5
     },
@@ -76,9 +106,10 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "SUPPORTING",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 52,
       "supporting_value": 52
     },
@@ -92,9 +123,10 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "CONFLICT",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 40,
       "supporting_value": 36
     },
@@ -108,11 +140,38 @@
       "same_payload_hash": false,
       "same_publication": false,
       "same_canonical_document": false,
-      "independent": true,
-      "reason": "Distinct source identities with no shared file, payload, publication, or canonical document proof.",
-      "pair_type": "SUPPORTING",
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
       "target_value": 2500,
       "supporting_value": 2500
+    },
+    {
+      "candidate_id": "249ab70cbbc116cd",
+      "model": "046",
+      "field": "spark_plug",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:STIHL 046.pdf:51:spark_plug",
+      "source_b": "TS_DATA:046:spark_plug",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
+      "target_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 9"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "supporting_value": 0.5
     }
   ]
 }

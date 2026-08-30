@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T11:43:36.799Z",
+  "generated_at": "2026-08-30T13:55:45.997Z",
   "source_commit": "f0d9076",
   "records": [
     {
@@ -25,17 +25,19 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "PRECISION_NOT_ELIGIBLE",
-        "secondary_block_reasons": []
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
       },
       "source_authenticated": true,
       "document_model_fit": "EXACT_MODEL_DOCUMENT",
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
-      "independent_support_exists": true,
+      "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "PRECISION_NOT_ELIGIBLE"
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
       "candidate_id": "aca582c9024aaa58",
@@ -60,17 +62,19 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "PRECISION_NOT_ELIGIBLE",
-        "secondary_block_reasons": []
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
       },
       "source_authenticated": true,
       "document_model_fit": "EXACT_MODEL_DOCUMENT",
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
-      "independent_support_exists": true,
+      "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "PRECISION_NOT_ELIGIBLE"
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
       "candidate_id": "3bc2e0c8657dd56b",
@@ -95,17 +99,19 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "PRECISION_NOT_ELIGIBLE",
-        "secondary_block_reasons": []
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
       },
       "source_authenticated": true,
       "document_model_fit": "EXACT_MODEL_DOCUMENT",
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
-      "independent_support_exists": true,
+      "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "PRECISION_NOT_ELIGIBLE"
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
       "candidate_id": "72fd1b8727277ec5",
@@ -257,6 +263,51 @@
       "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
+      "candidate_id": "9063ada054d6499e",
+      "model": "026",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6 F 8 or NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 8"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "raw_unit": null,
+      "normalized_unit": null,
+      "source_document": "Stihl 026 Instruction Manual.pdf",
+      "source_document_sha256": "51eee18eb2ea1f56722e210dab8d51d100f6529b5f9d986331e513b4f3e8264b",
+      "publication_id": "0458-133-3021",
+      "pdf_page": 50,
+      "printed_page": null,
+      "section": "Specifications",
+      "heading": "Specifications",
+      "table_identity": "Specifications",
+      "row": "spark_plug",
+      "column": null,
+      "scope": "EXACT_MODEL",
+      "authenticity": "AUTHENTICATED_OFFICIAL",
+      "semantic_status": "VALID",
+      "verification_gates": {
+        "verified": false,
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
+      },
+      "source_authenticated": true,
+      "document_model_fit": "EXACT_MODEL_DOCUMENT",
+      "resolved_scope": "EXACT_MODEL",
+      "independent_support_exists": false,
+      "conflict_status": "CLEAR",
+      "verified": false,
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
+    },
+    {
       "candidate_id": "8482c1681118a0b4",
       "model": "046",
       "field": "displacement_cc",
@@ -279,17 +330,19 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "PRECISION_NOT_ELIGIBLE",
-        "secondary_block_reasons": []
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
       },
       "source_authenticated": true,
       "document_model_fit": "EXACT_MODEL_DOCUMENT",
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
-      "independent_support_exists": true,
+      "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "PRECISION_NOT_ELIGIBLE"
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
       "candidate_id": "166341e51b579c6f",
@@ -314,17 +367,19 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "PRECISION_NOT_ELIGIBLE",
-        "secondary_block_reasons": []
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
       },
       "source_authenticated": true,
       "document_model_fit": "EXACT_MODEL_DOCUMENT",
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
-      "independent_support_exists": true,
+      "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "PRECISION_NOT_ELIGIBLE"
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
       "candidate_id": "42fe09339478eeb2",
@@ -351,8 +406,7 @@
         "verified": false,
         "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
         "secondary_block_reasons": [
-          "PRECISION_NOT_ELIGIBLE",
-          "CONFLICT_UNRESOLVED"
+          "PRECISION_NOT_ELIGIBLE"
         ]
       },
       "source_authenticated": true,
@@ -360,7 +414,7 @@
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
       "independent_support_exists": false,
-      "conflict_status": "BLOCKED",
+      "conflict_status": "CLEAR",
       "verified": false,
       "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
@@ -387,17 +441,19 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "PRECISION_NOT_ELIGIBLE",
-        "secondary_block_reasons": []
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
       },
       "source_authenticated": true,
       "document_model_fit": "EXACT_MODEL_DOCUMENT",
       "resolved_scope": "EXACT_MODEL",
       "semantic_failures": [],
-      "independent_support_exists": true,
+      "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "PRECISION_NOT_ELIGIBLE"
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
       "candidate_id": "eec05f344720af3f",
@@ -474,6 +530,51 @@
       "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
     },
     {
+      "candidate_id": "249ab70cbbc116cd",
+      "model": "046",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6 F 9 or NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 9"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "raw_unit": null,
+      "normalized_unit": null,
+      "source_document": "STIHL 046.pdf",
+      "source_document_sha256": "446b078785961c369e161589a7fd4152bed6270624a7232f6cee2071f02ced90",
+      "publication_id": "0458-145-3021",
+      "pdf_page": 51,
+      "printed_page": null,
+      "section": "Specifications",
+      "heading": "Specifications",
+      "table_identity": "Specifications",
+      "row": "spark_plug",
+      "column": null,
+      "scope": "EXACT_MODEL",
+      "authenticity": "AUTHENTICATED_OFFICIAL",
+      "semantic_status": "VALID",
+      "verification_gates": {
+        "verified": false,
+        "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING",
+        "secondary_block_reasons": [
+          "PRECISION_NOT_ELIGIBLE"
+        ]
+      },
+      "source_authenticated": true,
+      "document_model_fit": "EXACT_MODEL_DOCUMENT",
+      "resolved_scope": "EXACT_MODEL",
+      "independent_support_exists": false,
+      "conflict_status": "CLEAR",
+      "verified": false,
+      "primary_block_reason": "INDEPENDENT_EVIDENCE_MISSING"
+    },
+    {
       "candidate_id": "fd1cd8ff420dec6f",
       "model": "ts-410",
       "field": "displacement_cc",
@@ -496,21 +597,20 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "DOCUMENT_MODEL_MISMATCH",
+        "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
         "secondary_block_reasons": [
-          "MODEL_SCOPE_UNRESOLVED",
           "INDEPENDENT_EVIDENCE_MISSING",
           "PRECISION_NOT_ELIGIBLE"
         ]
       },
       "source_authenticated": true,
-      "document_model_fit": "INCOMPATIBLE_MODEL_DOCUMENT",
+      "document_model_fit": "EXPLICIT_MULTI_MODEL_DOCUMENT",
       "resolved_scope": "MULTI_MODEL_EXPLICIT_SHARED_VALUE",
       "semantic_failures": [],
       "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "DOCUMENT_MODEL_MISMATCH"
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED"
     },
     {
       "candidate_id": "9143f8fc9a4b6326",
@@ -535,21 +635,20 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "DOCUMENT_MODEL_MISMATCH",
+        "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
         "secondary_block_reasons": [
-          "MODEL_SCOPE_UNRESOLVED",
           "INDEPENDENT_EVIDENCE_MISSING",
           "PRECISION_NOT_ELIGIBLE"
         ]
       },
       "source_authenticated": true,
-      "document_model_fit": "INCOMPATIBLE_MODEL_DOCUMENT",
+      "document_model_fit": "EXPLICIT_MULTI_MODEL_DOCUMENT",
       "resolved_scope": "MULTI_MODEL_EXPLICIT_SHARED_VALUE",
       "semantic_failures": [],
       "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "DOCUMENT_MODEL_MISMATCH"
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED"
     },
     {
       "candidate_id": "263bfad5c9d87dfa",
@@ -574,21 +673,20 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "DOCUMENT_MODEL_MISMATCH",
+        "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
         "secondary_block_reasons": [
-          "MODEL_SCOPE_UNRESOLVED",
           "INDEPENDENT_EVIDENCE_MISSING",
           "PRECISION_NOT_ELIGIBLE"
         ]
       },
       "source_authenticated": true,
-      "document_model_fit": "INCOMPATIBLE_MODEL_DOCUMENT",
+      "document_model_fit": "EXPLICIT_MULTI_MODEL_DOCUMENT",
       "resolved_scope": "MULTI_MODEL_EXPLICIT_SHARED_VALUE",
       "semantic_failures": [],
       "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "DOCUMENT_MODEL_MISMATCH"
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED"
     },
     {
       "candidate_id": "ed2aeb03069bf9af",
@@ -613,21 +711,20 @@
       "semantic_status": "VALID",
       "verification_gates": {
         "verified": false,
-        "primary_block_reason": "DOCUMENT_MODEL_MISMATCH",
+        "primary_block_reason": "MODEL_SCOPE_UNRESOLVED",
         "secondary_block_reasons": [
-          "MODEL_SCOPE_UNRESOLVED",
           "INDEPENDENT_EVIDENCE_MISSING",
           "PRECISION_NOT_ELIGIBLE"
         ]
       },
       "source_authenticated": true,
-      "document_model_fit": "INCOMPATIBLE_MODEL_DOCUMENT",
+      "document_model_fit": "EXPLICIT_MULTI_MODEL_DOCUMENT",
       "resolved_scope": "MULTI_MODEL_EXPLICIT_SHARED_VALUE",
       "semantic_failures": [],
       "independent_support_exists": false,
       "conflict_status": "CLEAR",
       "verified": false,
-      "primary_block_reason": "DOCUMENT_MODEL_MISMATCH"
+      "primary_block_reason": "MODEL_SCOPE_UNRESOLVED"
     },
     {
       "candidate_id": "7054572e5e1e4690",
@@ -804,7 +901,7 @@
       "VERIFIED": 0
     },
     "spark_plug": {
-      "CANDIDATES": 0,
+      "CANDIDATES": 2,
       "VERIFIED": 0
     },
     "electrode_gap_mm": {

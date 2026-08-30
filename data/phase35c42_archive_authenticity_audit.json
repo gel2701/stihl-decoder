@@ -1,11 +1,17 @@
 {
-  "generated_at": "2026-08-30T11:43:36.756Z",
+  "generated_at": "2026-08-30T13:55:45.947Z",
   "source_commit": "f0d9076",
-  "AUTHENTICATED_OFFICIAL": 89,
+  "AUTHENTICATED_OFFICIAL": 87,
   "PROBABLE_OFFICIAL": 0,
-  "NON_STIHL": 0,
-  "QUARANTINE": 4,
-  "UNRESOLVED": 5,
+  "NON_STIHL": 2,
+  "QUARANTINE": 5,
+  "UNRESOLVED": 4,
+  "by_status": {
+    "QUARANTINE": 5,
+    "AUTHENTICATED_OFFICIAL": 87,
+    "INSUFFICIENT_EVIDENCE": 4,
+    "NON_STIHL": 2
+  },
   "targets": [
     {
       "target": "026",
@@ -22,6 +28,11 @@
         "INSTRUCTION_MANUAL",
         "SPECIFICATIONS_SECTION",
         "DOC_TYPE:PARTS_LIST"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:026"
       ]
     },
     {
@@ -39,6 +50,10 @@
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:PARTS_LIST"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:046"
       ]
     },
     {
@@ -56,10 +71,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ]
     }
   ]

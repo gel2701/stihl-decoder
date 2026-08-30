@@ -124,6 +124,10 @@ function normalizeLooseText(value) {
   return normalizeText(value).toLowerCase();
 }
 
+function escapeRegex(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function stableHash(input) {
   return crypto.createHash('sha256').update(JSON.stringify(input)).digest('hex');
 }
@@ -165,6 +169,15 @@ function originMainIsAccepted(originMain) {
   }
 }
 
+function validateArchivePrecheck({ originMain, archivePath, archiveExists, archiveHash }) {
+  const failures = [];
+  if (!originMainIsAccepted(originMain)) failures.push('ORIGIN_MAIN_BASELINE_MISMATCH');
+  if (!archivePath) failures.push('ARCHIVE_PATH_MISSING');
+  if (archivePath && !archiveExists) failures.push('ARCHIVE_PATH_NOT_FOUND');
+  if (archiveExists && archiveHash !== EXPECTED_ARCHIVE_SHA256) failures.push('WRONG_ARCHIVE_HASH');
+  return failures;
+}
+
 function archivePathFromEnv() {
   const configured = process.env.PHASE35C42_ARCHIVE_PATH ? path.resolve(process.env.PHASE35C42_ARCHIVE_PATH) : null;
   return configured;
@@ -188,20 +201,16 @@ function buildPreflight() {
   const head = runGit(['rev-parse', 'HEAD']);
   const originMain = runGit(['rev-parse', 'origin/main']);
   const archivePath = archivePathFromEnv();
-  const failures = [];
   let archiveHash = null;
   let archiveExists = false;
 
-  if (!originMainIsAccepted(originMain)) failures.push('ORIGIN_MAIN_BASELINE_MISMATCH');
-  if (!archivePath) failures.push('ARCHIVE_PATH_MISSING');
   if (archivePath) {
     archiveExists = fs.existsSync(archivePath);
-    if (!archiveExists) failures.push('ARCHIVE_PATH_NOT_FOUND');
     if (archiveExists) {
       archiveHash = fileSha256(archivePath);
-      if (archiveHash !== EXPECTED_ARCHIVE_SHA256) failures.push('WRONG_ARCHIVE_HASH');
     }
   }
+  const failures = validateArchivePrecheck({ originMain, archivePath, archiveExists, archiveHash });
 
   return {
     generated_at: new Date().toISOString(),
@@ -352,6 +361,89 @@ function buildSignalLists(filename, sampleText, publicationIds, documentType) {
   };
 }
 
+function isHistoricalNumericModel(value) {
+  return /^\d{2,4}[a-z]?$/i.test(String(value || '').trim());
+}
+
+function buildPatternRegex(pattern) {
+  return new RegExp(`(^|[^A-Z0-9])${pattern}(?=[^A-Z0-9]|$)`, 'i');
+}
+
+export function extractLexicalModelMatches(text, knownModels) {
+  const haystack = String(text || '');
+  const matches = [];
+  for (const model of knownModels || []) {
+    const found = model.patterns.some((pattern) => buildPatternRegex(pattern).test(haystack));
+    if (found) {
+      matches.push({
+        model_id: model.model_id,
+        slug: model.slug,
+        model_name: model.model_name,
+        series_code: model.series_code || null,
+        category_slug: model.category_slug || null
+      });
+    }
+  }
+  return matches;
+}
+
+export function extractPayloadModelMatches35c42(text, knownModels) {
+  const haystack = String(text || '');
+  const matches = [];
+  for (const model of knownModels || []) {
+    const aliases = [model.model_name, model.slug, ...(model.aliases || [])].filter(Boolean);
+    let found = false;
+    for (const alias of aliases) {
+      const normalizedAlias = String(alias).trim();
+      if (!normalizedAlias) continue;
+      if (isHistoricalNumericModel(normalizedAlias)) {
+        const numericPattern = escapeRegex(normalizedAlias).replace(/\s+/g, '\\s*');
+        const regex = new RegExp(`(^|[^0-9A-Z])(?:STIHL\\s+)?${numericPattern}(?=[^0-9A-Z]|$)`, 'i');
+        if (regex.test(haystack)) {
+          found = true;
+          break;
+        }
+      } else {
+        const pattern = escapeRegex(normalizedAlias).replace(/\s+/g, '[-\\s]*').replace(/\\-/g, '[-\\s]*');
+        if (buildPatternRegex(pattern).test(haystack)) {
+          found = true;
+          break;
+        }
+      }
+    }
+    if (found) {
+      matches.push({
+        model_id: model.model_id,
+        slug: model.slug,
+        model_name: model.model_name,
+        series_code: model.series_code || null,
+        category_slug: model.category_slug || null
+      });
+    }
+  }
+  return matches;
+}
+
+function extractPayloadPublicationIds35c42(text) {
+  return extractDocumentNumberCandidates(text);
+}
+
+export function detectExplicitTs410420DocumentScope(text) {
+  const matches = [];
+  if (/\bTS\s*410\b/i.test(String(text || ''))) matches.push('ts-410');
+  if (/\bTS\s*420\b/i.test(String(text || ''))) matches.push('ts-420');
+  return matches;
+}
+
+function buildFilenameHints(filename, publicationIds, knownModels) {
+  return [
+    /\bstihl\b/i.test(filename) ? 'FILENAME_STIHL' : null,
+    /\b(instruction manual|owners? instruction manual|workshop manual|repair manual|specifications?)\b/i.test(filename) ? 'FILENAME_DOC_TYPE_HINT' : null,
+    ...publicationIds.map((value) => value ? `FILENAME_PUBLICATION_HINT:${value}` : null),
+    ...extractLexicalModelMatches(filename, knownModels).map((entry) => `FILENAME_MODEL_HINT:${entry.slug || entry.model_name}`)
+  ].filter(Boolean);
+}
+
 function normalizeModels(models) {
   return [...new Set((models || [])
     .map((model) => String(model.slug || model.model_name || model.model_id || ''))
@@ -363,7 +455,7 @@ function classifyQuarantine(filename, sampleText) {
   const normalizedFilename = normalizeLooseText(filename);
   if (KNOWN_QUARANTINE_FILENAMES.has(normalizedFilename)) {
     const reason = KNOWN_QUARANTINE_FILENAMES.get(normalizedFilename);
-    if (reason === 'PAYLOAD_FILENAME_CONFLICT_EXPECTED' && /\baeg\b/i.test(sampleText)) {
+    if (reason === 'PAYLOAD_FILENAME_CONFLICT_EXPECTED' && (/\baeg\b/i.test(sampleText) || /^aeg\b/i.test(normalizedFilename))) {
       return { status: 'QUARANTINE', reason: 'AEG_PAYLOAD_CONFLICT_CONFIRMED' };
     }
     if (reason !== 'PAYLOAD_FILENAME_CONFLICT_EXPECTED') {
@@ -514,28 +606,30 @@ function buildArchiveInventory(rawInventory, knownModels) {
   for (const [rawHash, entries] of byHash.entries()) {
     const primary = entries[0];
     const filename = primary.filename;
-    const publicationIds = extractDocumentNumberCandidates(filename, primary.sample_text);
-    const detectedModels = normalizeModels(extractModelsMentioned(`${filename}\n${primary.sample_text}`, knownModels));
+    const publicationIds = extractPayloadPublicationIds35c42(primary.sample_text);
+    const filenamePublicationIds = extractDocumentNumberCandidates(filename);
+    const detectedModels = normalizeModels(extractPayloadModelMatches35c42(primary.sample_text, knownModels));
+    const filenameHints = buildFilenameHints(filename, filenamePublicationIds, knownModels);
     const documentType = inferDocumentType(filename, primary.sample_text);
     const extractionQuality = {
       ...computeExtractionQuality(primary.page_count, primary.native_text_page_count),
       ...inferTextQuality(primary.sample_text)
     };
     const authenticity = evaluateAuthenticity({
-      title: filename,
+      title: '',
       url: '',
       author: '',
       pageCount: primary.page_count,
       combinedText: primary.sample_text,
       documentNumbers: publicationIds,
-      modelsMentioned: extractModelsMentioned(`${filename}\n${primary.sample_text}`, knownModels),
+      modelsMentioned: extractPayloadModelMatches35c42(primary.sample_text, knownModels),
       extractionQuality: { quality: extractionQuality.quality },
       metadataSignals: {
-        manualStructure: /\b(instruction manual|owners? instruction manual|workshop manual|repair manual|specifications?)\b/i.test(`${filename}\n${primary.sample_text}`),
+        manualStructure: /\b(instruction manual|owners? instruction manual|workshop manual|repair manual|specifications?)\b/i.test(primary.sample_text),
         publisherMatch: /\bandreas stihl\b/i.test(primary.sample_text)
       }
     });
-    const signals = buildSignalLists(filename, primary.sample_text, publicationIds, documentType);
+    const signals = buildSignalLists('', primary.sample_text, publicationIds, documentType);
     const quarantine = classifyQuarantine(filename, primary.sample_text);
     const crossCorpus = buildCrossCorpusMatch({
       filename,
@@ -576,6 +670,7 @@ function buildArchiveInventory(rawInventory, knownModels) {
       publication_id: publicationIds[0] || null,
       publication_id_raw: publicationIds[0] || null,
       detected_models: detectedModels,
+      filename_hints: filenameHints,
       native_text_available: primary.native_text_available,
       native_text_page_count: primary.native_text_page_count,
       ocr_required: primary.ocr_required,
@@ -735,6 +830,10 @@ function buildArchiveAuthenticityAudit(inventory) {
     NON_STIHL: docs.filter((doc) => doc.authenticity_status === 'NON_STIHL').length,
     QUARANTINE: docs.filter((doc) => doc.authenticity_status === 'QUARANTINE').length,
     UNRESOLVED: docs.filter((doc) => doc.authenticity_status === 'INSUFFICIENT_EVIDENCE').length,
+    by_status: docs.reduce((acc, doc) => {
+      acc[doc.authenticity_status] = (acc[doc.authenticity_status] || 0) + 1;
+      return acc;
+    }, {}),
     targets: TARGETS.map((target) => {
       const match = docs.find((doc) => doc.filename === target.filename);
       return {
@@ -743,7 +842,8 @@ function buildArchiveAuthenticityAudit(inventory) {
         authenticity_status: match?.authenticity_status || 'NOT_FOUND',
         corporate_identity_signals: match?.corporate_identity_signals || [],
         publication_identity_signals: match?.publication_identity_signals || [],
-        document_structure_signals: match?.document_structure_signals || []
+        document_structure_signals: match?.document_structure_signals || [],
+        filename_hints: match?.filename_hints || []
       };
     })
   };
@@ -801,11 +901,13 @@ async function extractPdfLinePages(filePath) {
     })).filter((item) => normalizeText(item.text));
     const lines = groupItemsIntoLines(items);
     const pageText = lines.map((line) => line.line_text).join(' ');
+    const rawPageText = items.map((item) => normalizeText(item.text)).filter(Boolean).join(' ');
     pages.push({
       page_number: pageIndex + 1,
       page_width: viewport.width,
       lines,
-      page_text: pageText
+      page_text: pageText,
+      raw_page_text: rawPageText
     });
   }
   return pages;
@@ -888,6 +990,43 @@ export function parseSparkPlugAlternatives(rawValue) {
   return alternatives;
 }
 
+function trimSparkPlugMeasurementNoise(identifier) {
+  const normalized = normalizeText(identifier);
+  const tokens = normalized.split(' ');
+  if (tokens.length >= 4 && /^\d{1,2}$/.test(tokens.at(-1)) && /^[A-Z]{1,4}$/.test(tokens.at(-2))) {
+    return tokens.slice(0, -1).join(' ');
+  }
+  return normalized;
+}
+
+export function extractSparkPlugRaw(lineEntries, pageText) {
+  const rawPageText = String(pageText || '');
+  const exactAlternativePair = rawPageText.match(
+    /\b(?:Bosch|BOSCH)\s+([A-Z]{2,6}\s+\d{1,3}(?:\s+[A-Z]{1,4}){0,2})\s+or\s+NGK\s+([A-Z]{2,6}\s+\d{1,3}(?:\s+[A-Z]{1,4}){0,2})\b/
+  );
+  if (exactAlternativePair) {
+    return normalizeText(`Bosch ${trimSparkPlugMeasurementNoise(exactAlternativePair[1])} or NGK ${trimSparkPlugMeasurementNoise(exactAlternativePair[2])}`);
+  }
+
+  const strictAlternativeMatches = [...rawPageText.matchAll(/\bBosch\s+[A-Z0-9 .()"\/-]+?\s+or\s+NGK\s+[A-Z0-9 .()"\/-]+\b/ig)]
+    .map((match) => normalizeText(match[0]))
+    .filter((candidate) => parseSparkPlugAlternatives(candidate).length > 0)
+    .sort((left, right) => left.length - right.length);
+  if (strictAlternativeMatches.length > 0) return strictAlternativeMatches[0];
+
+  const pageMatches = [...rawPageText.matchAll(/Spark plug(?:\s*\([^)]*\))?:\s*(.+?)(?=\s+Electrode gap|\s+Spark plug thread|$)/ig)];
+  for (const match of pageMatches) {
+    const candidate = normalizeText(match[1]);
+    if (parseSparkPlugAlternatives(candidate).length > 0) return candidate;
+  }
+  const sparkLine = lineEntries.find((line) => /Spark plug/i.test(line));
+  const sourceText = sparkLine || pageText;
+  const anchored = sourceText.match(/Spark plug(?:\s*\([^)]*\))?:\s*(Bosch\s+[A-Z0-9 ]+\s+or\s+NGK\s+[A-Z0-9 ]+)(?=\s+Electrode gap|\s+Spark plug thread|$)/i);
+  if (anchored) return normalizeText(anchored[1]);
+  const broader = sourceText.match(/Spark plug(?:\s*\([^)]*\))?:\s*(.+?)(?=\s+Electrode gap|\s+Spark plug thread|$)/i);
+  return broader ? normalizeText(broader[1]) : null;
+}
+
 function matchField(pageText, regex, fieldName, extra = {}) {
   const match = pageText.match(regex);
   if (!match) return null;
@@ -940,6 +1079,7 @@ function parseSingleModelSpecs(doc, pages, model) {
   const candidates = [];
   for (const page of pages) {
     const pageText = page.page_text;
+    const rawPageText = page.raw_page_text || pageText;
     const lineEntries = collectLineEntries(page.lines);
     const specsSignalCount = [
       /Displacement:/i,
@@ -977,11 +1117,10 @@ function parseSingleModelSpecs(doc, pages, model) {
       candidates.push(buildCandidateBase(doc, model, page.page_number, 'max_power_speed_rpm', power[2], parseRpmValue(power[2]), 'rpm'));
     }
 
-    const sparkPlug = findLineValue(lineEntries, [/Spark plug(?:\s*\([^)]*\))?:\s*(Bosch\s+[A-Z0-9 ]+\s+or\s+NGK\s+[A-Z0-9 ]+)\s+Electrode gap/i])
-      || pageText.match(/Spark plug(?:\s*\([^)]*\))?:\s*(Bosch\s+[A-Z0-9 ]+\s+or\s+NGK\s+[A-Z0-9 ]+)\s+Electrode gap/i);
-    if (sparkPlug) {
-      const alternatives = parseSparkPlugAlternatives(sparkPlug[1]);
-      candidates.push(buildCandidateBase(doc, model, page.page_number, 'spark_plug', sparkPlug[1], alternatives, null, {
+    const sparkPlugRaw = extractSparkPlugRaw(lineEntries, rawPageText);
+    if (sparkPlugRaw) {
+      const alternatives = parseSparkPlugAlternatives(sparkPlugRaw);
+      candidates.push(buildCandidateBase(doc, model, page.page_number, 'spark_plug', sparkPlugRaw, alternatives, null, {
         semantic_status: alternatives.length > 0 ? 'VALID' : 'INVALID'
       }));
     }
@@ -1101,13 +1240,32 @@ function buildTsDataReparseAudit() {
   };
 }
 
-function buildTargetDocumentAudit(targetDocs, extractedPages) {
+function deriveTargetDocumentScopeModels(doc, pages, knownModels) {
+  const combinedPayload = pages.map((page) => page.page_text).join('\n');
+  const target = TARGETS.find((entry) => entry.filename === doc?.filename);
+  if (target?.key === 'TS410_420') {
+    const explicit = detectExplicitTs410420DocumentScope(combinedPayload);
+    if (explicit.length > 0) return explicit;
+  }
+  if (target?.model && ['026', '046'].includes(target.model)) {
+    const strictRegex = new RegExp(`(?:\\bSTIHL\\s+${target.model}\\b|\\b${target.model}\\b(?:\\s*;|\\s*\\)|\\s*$)|\\b${target.model}\\s+[0-9]{1,3}\\b)`, 'im');
+    if (strictRegex.test(combinedPayload)) return [target.model];
+  }
+  const matches = normalizeModels([
+    ...extractPayloadModelMatches35c42(combinedPayload, knownModels),
+    ...detectExplicitTs410420DocumentScope(combinedPayload).map((slug) => ({ slug }))
+  ]);
+  return matches.length > 0 ? matches : (doc?.detected_models || []);
+}
+
+function buildTargetDocumentAudit(targetDocs, extractedPages, knownModels) {
   return {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
     targets: TARGETS.map((target) => {
       const doc = targetDocs.find((entry) => entry?.filename === target.filename) || null;
       const pages = extractedPages.get(target.filename) || [];
+      const extractedModels = deriveTargetDocumentScopeModels(doc, pages, knownModels);
       return {
         target: target.key,
         target_found: doc ? 'YES' : 'NO',
@@ -1116,7 +1274,7 @@ function buildTargetDocumentAudit(targetDocs, extractedPages) {
         publication_identity: doc?.publication_id || null,
         page_count: doc?.page_count || null,
         authenticity: doc?.authenticity_status || 'NOT_FOUND',
-        detected_models: doc?.detected_models || [],
+        detected_models: extractedModels,
         revision: doc?.publication_id?.split('-').pop() || null,
         market: doc?.market || null,
         native_extraction_quality: pages.length > 0 ? computeExtractionQuality(pages.length, pages.filter((page) => normalizeText(page.page_text)).length).quality : 'NOT_PARSED',
@@ -1171,7 +1329,7 @@ function buildSourceIndependenceAudit(targetCandidates, tsReparse, targetDocs) {
       publication_id: tsRecord.model === '026' ? 'TS_DATA_026' : tsRecord.model === '046' ? 'TS_DATA_046' : null,
       canonical_document_id: `TS_DATA:${tsRecord.model}`
     };
-    const independence = classifySourceIndependence(sourceA, sourceB);
+    const independence = classifyArchiveTsDataIndependence35c42(sourceA, sourceB);
     const sameValue = stableHash(candidate.normalized_value) === stableHash(tsRecord.new_normalized);
     records.push({
       candidate_id: candidate.candidate_id,
@@ -1183,11 +1341,14 @@ function buildSourceIndependenceAudit(targetCandidates, tsReparse, targetDocs) {
       same_payload_hash: independence.same_payload_hash,
       same_publication: independence.same_publication,
       same_canonical_document: independence.same_canonical_document,
-      independent: independence.independent,
+      independence_status: independence.independence_status,
+      independent: independence.independence_status === 'INDEPENDENT_PROVEN',
       reason: independence.reason,
-      pair_type: !independence.independent
+      pair_type: independence.independence_status === 'SAME_SOURCE_PROVEN'
         ? 'DUPLICATE'
-        : sameValue
+        : independence.independence_status === 'INDEPENDENCE_UNRESOLVED'
+          ? 'COMPARISON'
+          : sameValue
           ? 'SUPPORTING'
           : 'CONFLICT',
       target_value: candidate.normalized_value,
@@ -1198,6 +1359,35 @@ function buildSourceIndependenceAudit(targetCandidates, tsReparse, targetDocs) {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
     records
+  };
+}
+
+export function classifyArchiveTsDataIndependence35c42(sourceA, sourceB) {
+  const base = classifySourceIndependence(sourceA, sourceB);
+  if (base.same_file_hash || base.same_payload_hash || base.same_publication || base.same_canonical_document) {
+    return {
+      ...base,
+      independence_status: 'SAME_SOURCE_PROVEN',
+      independent: false,
+      reason: 'Sources collapse to the same underlying document identity.'
+    };
+  }
+  const sourceAHasProvenance = Boolean(sourceA.file_hash || sourceA.payload_hash || sourceA.publication_id || sourceA.canonical_document_id);
+  const sourceBHasProvenance = Boolean(sourceB.file_hash || sourceB.payload_hash || sourceB.publication_id || sourceB.canonical_document_id);
+  const tsDataSynthetic = String(sourceB.canonical_document_id || '').startsWith('TS_DATA:') || String(sourceB.publication_id || '').startsWith('TS_DATA_');
+  if (!sourceAHasProvenance || !sourceBHasProvenance || tsDataSynthetic) {
+    return {
+      ...base,
+      independence_status: 'INDEPENDENCE_UNRESOLVED',
+      independent: false,
+      reason: 'Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.'
+    };
+  }
+  return {
+    ...base,
+    independence_status: 'INDEPENDENT_PROVEN',
+    independent: true,
+    reason: 'Both sources carry distinct, document-level provenance with no identity overlap.'
   };
 }
 
@@ -1226,10 +1416,13 @@ function buildVerificationFunnel(targetCandidates, targetDocs, sourceIndependenc
   const reviewed = targetCandidates.records.map((candidate) => {
     const doc = docByFilename.get(candidate.source_document);
     const support = supportByCandidate.get(candidate.candidate_id);
+    const safeEvidenceSnippet = candidate.field === 'spark_plug'
+      ? `${candidate.heading} ${candidate.row}`
+      : `${candidate.heading} ${candidate.row} ${candidate.raw_value}`;
     const modelFit = assessCandidateDocumentModelCompatibility(
       {
         variant_id: candidate.model,
-        evidence_snippet: `${candidate.heading} ${candidate.row} ${candidate.raw_value}`,
+        evidence_snippet: safeEvidenceSnippet,
         field_name: candidate.field,
         model_scope: candidate.scope
       },
@@ -1243,7 +1436,7 @@ function buildVerificationFunnel(targetCandidates, targetDocs, sourceIndependenc
       variant_id: candidate.model,
       model_scope: candidate.scope,
       section: candidate.section,
-      evidence_snippet: `${candidate.heading} ${candidate.row} ${candidate.raw_value}`
+      evidence_snippet: safeEvidenceSnippet
     }, knownModels);
     const semantics = candidate.field === 'spark_plug'
       ? validateFieldSemantics35c41({
@@ -1268,7 +1461,7 @@ function buildVerificationFunnel(targetCandidates, targetDocs, sourceIndependenc
       semantic_valid: semantics.field_semantic_status !== 'INVALID',
       semantic_failures: semantics.field_semantic_failures,
       sanity_pass: sanityCheck(candidate.field, candidate.normalized_value),
-      independent_support_exists: support?.independent === true && support?.pair_type === 'SUPPORTING' && Boolean(doc?.publication_id),
+      independent_support_exists: support?.independence_status === 'INDEPENDENT_PROVEN' && support?.pair_type === 'SUPPORTING' && Boolean(doc?.publication_id),
       precision_gate_passed: false,
       conflict_status: conflictSet.has(candidate.candidate_id) ? 'BLOCKED' : 'CLEAR'
     });
@@ -1279,7 +1472,7 @@ function buildVerificationFunnel(targetCandidates, targetDocs, sourceIndependenc
       resolved_scope: resolvedScope.scope_after,
       semantic_status: semantics.field_semantic_status,
       semantic_failures: semantics.field_semantic_failures,
-      independent_support_exists: support?.independent === true && support?.pair_type === 'SUPPORTING' && Boolean(doc?.publication_id),
+      independent_support_exists: support?.independence_status === 'INDEPENDENT_PROVEN' && support?.pair_type === 'SUPPORTING' && Boolean(doc?.publication_id),
       conflict_status: conflictSet.has(candidate.candidate_id) ? 'BLOCKED' : 'CLEAR',
       verified: decision.verified,
       primary_block_reason: decision.primary_block_reason,
@@ -1356,12 +1549,9 @@ function buildVerifiedArtifacts(funnel) {
 }
 
 function buildFailureInjectionReport(preflight, quarantineAudit) {
-  const wrongArchiveHashFailure = preflight.ARCHIVE_SHA256 !== EXPECTED_ARCHIVE_SHA256 ? 'PASS' : 'PASS';
-  const missingArchive = {
-    generated_at: new Date().toISOString(),
-    PRECHECK: buildMissingArchivePrecheck().PRECHECK
-  };
-  const duplicateAsIndependent = classifySourceIndependence(
+  const wrongArchiveHashFailure = buildWrongArchiveHashFailure(preflight);
+  const missingArchive = buildMissingArchivePrecheck(preflight);
+  const duplicateAsIndependent = classifyArchiveTsDataIndependence35c42(
     { source_label: 'A', file_hash: 'same', payload_hash: 'same', publication_id: '0458-370-8621-G', canonical_document_id: 'canon-ts' },
     { source_label: 'B', file_hash: 'same', payload_hash: 'same', publication_id: '0458-370-8621-G', canonical_document_id: 'canon-ts' }
   );
@@ -1441,9 +1631,9 @@ function buildFailureInjectionReport(preflight, quarantineAudit) {
   return {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
-    WRONG_ARCHIVE_HASH_FAILURE: wrongArchiveHashFailure,
-    MISSING_ARCHIVE_FAILURE: missingArchive.PRECHECK === 'FAIL' ? 'PASS' : 'FAIL',
-    DUPLICATE_COUNTED_AS_INDEPENDENT_FAILURE: duplicateAsIndependent.independent === false ? 'PASS' : 'FAIL',
+    WRONG_ARCHIVE_HASH_FAILURE: wrongArchiveHashFailure.PRECHECK === 'FAIL' && wrongArchiveHashFailure.PRECHECK_FAILURES.includes('WRONG_ARCHIVE_HASH') ? 'PASS' : 'FAIL',
+    MISSING_ARCHIVE_FAILURE: missingArchive.PRECHECK === 'FAIL' && missingArchive.PRECHECK_FAILURES.includes('ARCHIVE_PATH_NOT_FOUND') ? 'PASS' : 'FAIL',
+    DUPLICATE_COUNTED_AS_INDEPENDENT_FAILURE: duplicateAsIndependent.independence_status === 'SAME_SOURCE_PROVEN' ? 'PASS' : 'FAIL',
     QUARANTINE_PROMOTION_FAILURE: quarantinePromotion.verified === false && quarantineAudit.QUARANTINE_PROMOTED_FACTS === 0 ? 'PASS' : 'FAIL',
     DUAL_UNIT_CONCATENATION_FAILURE: dualUnitFixture.primary_metric_value === 48.7 ? 'PASS' : 'FAIL',
     RPM_THOUSANDS_SEPARATOR_FAILURE: rpmFixture === 2800 ? 'PASS' : 'FAIL',
@@ -1456,9 +1646,29 @@ function buildFailureInjectionReport(preflight, quarantineAudit) {
   };
 }
 
-function buildMissingArchivePrecheck() {
+export function buildWrongArchiveHashFailure(preflight) {
+  const failures = validateArchivePrecheck({
+    originMain: preflight.ORIGIN_MAIN,
+    archivePath: preflight.ARCHIVE_PATH,
+    archiveExists: true,
+    archiveHash: '0000000000000000000000000000000000000000000000000000000000000000'
+  });
   return {
-    PRECHECK: 'FAIL'
+    PRECHECK: failures.length === 0 ? 'PASS' : 'FAIL',
+    PRECHECK_FAILURES: failures
+  };
+}
+
+export function buildMissingArchivePrecheck(preflight = { ORIGIN_MAIN: EXPECTED_ORIGIN_MAIN }) {
+  const failures = validateArchivePrecheck({
+    originMain: preflight.ORIGIN_MAIN,
+    archivePath: path.join(rootDir, 'missing-phase35c42-archive.zip'),
+    archiveExists: false,
+    archiveHash: null
+  });
+  return {
+    PRECHECK: failures.length === 0 ? 'PASS' : 'FAIL',
+    PRECHECK_FAILURES: failures
   };
 }
 
@@ -1614,13 +1824,21 @@ function buildFinalReport({
   };
 }
 
-function buildQuarantineAudit(quarantineEntries) {
+function buildQuarantineAudit(quarantineEntries, inventory = { unique_documents: [] }, targetCandidates = { records: [] }) {
+  const quarantineHashes = new Set(quarantineEntries.map((entry) => entry.hash));
+  const knownQuarantinePromoted = inventory.unique_documents
+    .filter((doc) => KNOWN_QUARANTINE_FILENAMES.has(normalizeLooseText(doc.filename)))
+    .filter((doc) => doc.processing_status !== 'QUARANTINE')
+    .length;
+  const quarantinePromotedFacts = targetCandidates.records
+    .filter((candidate) => quarantineHashes.has(candidate.source_document_sha256))
+    .length;
   return {
     generated_at: new Date().toISOString(),
     source_commit: SOURCE_COMMIT,
     records: quarantineEntries,
-    QUARANTINE_PROMOTED_FACTS: 0,
-    KNOWN_QUARANTINE_PROMOTED: 0
+    QUARANTINE_PROMOTED_FACTS: quarantinePromotedFacts,
+    KNOWN_QUARANTINE_PROMOTED: knownQuarantinePromoted
   };
 }
 
@@ -1646,7 +1864,7 @@ async function buildArtifacts(prepared = null) {
   const beforeHashes = { json: fileSha256(CANONICAL_JSON_PATH), db: fileSha256(CANONICAL_DB_PATH) };
   if (preflight.PRECHECK !== 'PASS') {
     const emptyInventory = { archive_entries: [], unique_documents: [] };
-    const quarantineAudit = buildQuarantineAudit([]);
+    const quarantineAudit = buildQuarantineAudit([], emptyInventory, { records: [] });
     const failureInjection = buildFailureInjectionReport(preflight, quarantineAudit);
     const finalReport = buildFinalReport({
       preflight,
@@ -1688,16 +1906,20 @@ async function buildArtifacts(prepared = null) {
   const archiveInventory = runInputs.archiveInventory;
   const dedupAudit = buildArchiveDedupAudit(archiveInventory);
   const authenticityAudit = buildArchiveAuthenticityAudit(archiveInventory);
-  const quarantineAudit = buildQuarantineAudit(inventoryBuild.quarantineEntries);
   const tsDataReparse = runInputs.tsDataReparse;
   const extractedPages = runInputs.extractedPages;
 
   const targetDocs = findTargetDocs(archiveInventory).filter(Boolean);
-  const targetDocumentAudit = buildTargetDocumentAudit(targetDocs, extractedPages);
-  const targetFactCandidates = buildTargetCandidates(targetDocs, extractedPages);
-  const sourceIndependence = buildSourceIndependenceAudit(targetFactCandidates, tsDataReparse, targetDocs);
+  const scopedTargetDocs = targetDocs.map((doc) => ({
+    ...doc,
+    detected_models: deriveTargetDocumentScopeModels(doc, extractedPages.get(doc.filename) || [], knownModels)
+  }));
+  const targetDocumentAudit = buildTargetDocumentAudit(scopedTargetDocs, extractedPages, knownModels);
+  const targetFactCandidates = buildTargetCandidates(scopedTargetDocs, extractedPages);
+  const quarantineAudit = buildQuarantineAudit(inventoryBuild.quarantineEntries, archiveInventory, targetFactCandidates);
+  const sourceIndependence = buildSourceIndependenceAudit(targetFactCandidates, tsDataReparse, scopedTargetDocs);
   const conflictAudit = buildConflictAudit(targetFactCandidates, sourceIndependence);
-  const verificationFunnel = buildVerificationFunnel(targetFactCandidates, targetDocs, sourceIndependence, conflictAudit, knownModels);
+  const verificationFunnel = buildVerificationFunnel(targetFactCandidates, scopedTargetDocs, sourceIndependence, conflictAudit, knownModels);
   const verifiedArtifacts = buildVerifiedArtifacts(verificationFunnel);
   const deferredInventory = {
     generated_at: new Date().toISOString(),

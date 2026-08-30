@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T11:43:30.483Z",
+  "generated_at": "2026-08-30T13:55:38.736Z",
   "source_commit": "f0d9076",
   "source_batch": "BATCH7_OFFICIAL_ARCHIVE_V2",
   "archive_entries": [
@@ -12,7 +12,7 @@
       "page_count": 44,
       "duplicate_status": "PRIMARY_UNIQUE_PAYLOAD",
       "duplicate_of": null,
-      "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY"
+      "processing_status": "QUARANTINE"
     },
     {
       "archive_entry_id": "4633c67240f61e6b",
@@ -1252,24 +1252,25 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 1,
       "ocr_required": false,
-      "corporate_identity_signals": [
-        "STIHL_BRANDING"
-      ],
+      "corporate_identity_signals": [],
       "publication_identity_signals": [],
       "document_structure_signals": [
-        "INSTRUCTION_MANUAL",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
-      "authenticity_status": "INSUFFICIENT_EVIDENCE",
-      "authenticity_reason": "STIHL branding detected. Official document keywords found: stihl, instruction manual, betriebsanleitung. Page count is plausible for a manual or parts list.",
-      "authenticity_score": 6,
+      "authenticity_status": "QUARANTINE",
+      "authenticity_reason": "AEG_PAYLOAD_CONFLICT_CONFIRMED",
+      "authenticity_score": 2,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
-      "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
-      "deferred_priority": "MEDIUM",
+      "processing_status": "QUARANTINE",
+      "deferred_priority": null,
       "language": "de",
       "market": "UNKNOWN",
       "payload_hash": "7eee068300c733739ee045bc350eaa1c84ede5f9191d0603a6a44d7df2e83265",
@@ -1293,10 +1294,9 @@
       "document_type": "PARTS_LIST",
       "publication_id": "0458-179-8621",
       "publication_id_raw": "0458-179-8621",
-      "detected_models": [
-        "ms-460",
-        "010",
-        "075"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1316,7 +1316,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-179-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -1344,10 +1344,8 @@
       "document_type": "UNKNOWN",
       "publication_id": null,
       "publication_id_raw": null,
-      "detected_models": [
-        "010",
-        "041"
-      ],
+      "detected_models": [],
+      "filename_hints": [],
       "native_text_available": true,
       "native_text_page_count": 2,
       "ocr_required": false,
@@ -1358,7 +1356,7 @@
       ],
       "authenticity_status": "QUARANTINE",
       "authenticity_reason": "NON_STIHL_COURT_FILING",
-      "authenticity_score": 1,
+      "authenticity_score": 0,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "QUARANTINE",
@@ -1387,6 +1385,7 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [],
+      "filename_hints": [],
       "native_text_available": false,
       "native_text_page_count": 0,
       "ocr_required": false,
@@ -1397,7 +1396,7 @@
       ],
       "authenticity_status": "QUARANTINE",
       "authenticity_reason": "GENERIC_ENGINE_SERVICE_BOOK",
-      "authenticity_score": 1,
+      "authenticity_score": 0,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "QUARANTINE",
@@ -1425,10 +1424,8 @@
       "document_type": "UNKNOWN",
       "publication_id": null,
       "publication_id_raw": null,
-      "detected_models": [
-        "015",
-        "020"
-      ],
+      "detected_models": [],
+      "filename_hints": [],
       "native_text_available": true,
       "native_text_page_count": 1,
       "ocr_required": false,
@@ -1439,7 +1436,7 @@
       ],
       "authenticity_status": "QUARANTINE",
       "authenticity_reason": "NON_STIHL_MAGAZINE",
-      "authenticity_score": 2,
+      "authenticity_score": 1,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "QUARANTINE",
@@ -1469,6 +1466,10 @@
       "publication_id_raw": "0458-125-3021",
       "detected_models": [
         "009"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:009"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1516,6 +1517,9 @@
       "publication_id": "0458-143-3021",
       "publication_id_raw": "0458-143-3021",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -1565,6 +1569,11 @@
       "publication_id_raw": "0458-133-3021",
       "detected_models": [
         "026"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:026"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1617,6 +1626,10 @@
       "detected_models": [
         "046"
       ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:046"
+      ],
       "native_text_available": true,
       "native_text_page_count": 2,
       "ocr_required": false,
@@ -1665,9 +1678,12 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [
-        "010",
-        "051",
         "088"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:088"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1678,13 +1694,12 @@
       ],
       "publication_identity_signals": [],
       "document_structure_signals": [
-        "WORKSHOP_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:PARTS_LIST"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
-      "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Official document keywords found: andreas stihl, stihl, service manual, workshop manual.",
+      "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Official document keywords found: andreas stihl, stihl, service manual, technical information.",
       "authenticity_score": 11,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
@@ -1716,11 +1731,13 @@
       "detected_models": [
         "009",
         "010",
-        "011",
-        "012",
-        "044",
-        "050",
-        "051"
+        "011"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:010",
+        "FILENAME_MODEL_HINT:011"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1740,7 +1757,6 @@
         "PUBLICATION_ID:0455-901-1223"
       ],
       "document_structure_signals": [
-        "WORKSHOP_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:PARTS_LIST"
@@ -1777,6 +1793,9 @@
       "publication_id": "0458-420-8621-A",
       "publication_id_raw": "0458-420-8621-A",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -1828,8 +1847,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-478-8621-A",
       "publication_id_raw": "0458-478-8621-A",
-      "detected_models": [
-        "066"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1851,7 +1871,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-478-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "EXACT_FILE_DUPLICATE",
       "duplicate_of": [
         "STIHL BF-KM_manualzilla-id-6235309.pdf"
@@ -1882,6 +1902,9 @@
       "publication_id": "0458-294-3021",
       "publication_id_raw": "0458-294-3021",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -1929,8 +1952,10 @@
       "publication_id": "0458-295-8621-A",
       "publication_id_raw": "0458-295-8621-A",
       "detected_models": [
-        "009",
-        "015"
+        "009"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -1980,11 +2005,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-295-8621",
       "publication_id_raw": "0458-295-8621",
-      "detected_models": [
-        "010",
-        "011",
-        "020",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2004,7 +2027,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-295-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2032,8 +2055,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-296-8621-C",
       "publication_id_raw": "0458-296-8621-C",
-      "detected_models": [
-        "009"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2055,7 +2079,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-296-8621-C.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2084,8 +2108,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-296-8621-A",
       "publication_id_raw": "0458-296-8621-A",
-      "detected_models": [
-        "009"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2106,7 +2132,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-296-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "EXACT_FILE_DUPLICATE",
       "duplicate_of": [
         "STIHL BG 86 Instruction Manual_manualzilla-id-6970337.pdf"
@@ -2136,9 +2162,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-548-8621-A",
       "publication_id_raw": "0458-548-8621-A",
-      "detected_models": [
-        "009",
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2160,7 +2186,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-548-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2190,6 +2216,10 @@
       "publication_id_raw": "0458-290-8621-A",
       "detected_models": [
         "011"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2240,6 +2270,10 @@
       "publication_id": "0458-290-8621-A",
       "publication_id_raw": "0458-290-8621-A",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -2287,8 +2321,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0457-187-0121",
       "publication_id_raw": "0457-187-0121",
-      "detected_models": [
-        "012"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2306,7 +2341,7 @@
       ],
       "authenticity_status": "INSUFFICIENT_EVIDENCE",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0457-187-0121.",
-      "authenticity_score": 11,
+      "authenticity_score": 10,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2335,8 +2370,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-428-8621-A",
       "publication_id_raw": "0458-428-8621-A",
-      "detected_models": [
-        "010"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2356,7 +2392,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-428-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "EXACT_FILE_DUPLICATE",
       "duplicate_of": [
         "STIHL BT 121_manualzilla-id-7242842.pdf"
@@ -2388,8 +2424,11 @@
       "publication_id": "0458-421-8621-A",
       "publication_id_raw": "0458-421-8621-A",
       "detected_models": [
-        "010",
-        "015"
+        "010"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2405,7 +2444,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
@@ -2445,9 +2483,11 @@
       "detected_models": [
         "ms-210",
         "ms-230",
-        "ms-250",
-        "011",
-        "088"
+        "ms-250"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:ms-250"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2496,10 +2536,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-239-8621-B",
       "publication_id_raw": "0458-239-8621-B",
-      "detected_models": [
-        "010",
-        "015",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2519,7 +2558,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-239-8621-B.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2547,8 +2586,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-545-8621-D",
       "publication_id_raw": "0458-545-8621-D",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2570,7 +2610,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-545-8621-D.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2598,8 +2638,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-240-8621-F",
       "publication_id_raw": "0458-240-8621-F",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2615,14 +2657,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-240-8621-F.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2650,8 +2691,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-406-8621-A",
       "publication_id_raw": "0458-406-8621-A",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2667,14 +2710,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-406-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2702,8 +2744,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-472-8621-A",
       "publication_id_raw": "0458-472-8621-A",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2719,14 +2763,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-472-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2754,8 +2797,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-476-8621-B",
       "publication_id_raw": "0458-476-8621-B",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2771,14 +2816,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-476-8621-B.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2807,9 +2851,10 @@
       "publication_id": "0458-226-8621-A",
       "publication_id_raw": "0458-226-8621-A",
       "detected_models": [
-        "010",
-        "015",
         "070"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2857,9 +2902,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-254-8621-C",
       "publication_id_raw": "0458-254-8621-C",
-      "detected_models": [
-        "011",
-        "038"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2880,7 +2925,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-254-8621-C.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2908,10 +2953,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-250-8621-C",
       "publication_id_raw": "0458-250-8621-C",
-      "detected_models": [
-        "012",
-        "020",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2931,7 +2975,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-250-8621-C.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -2959,9 +3003,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-258-8621-B",
       "publication_id_raw": "0458-258-8621-B",
-      "detected_models": [
-        "010",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -2981,7 +3025,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-258-8621-B.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3009,8 +3053,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-273-8621-D",
       "publication_id_raw": "0458-273-8621-D",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3026,14 +3072,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-273-8621-D.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3061,8 +3106,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-342-3021-A",
       "publication_id_raw": "0458-342-3021-A",
-      "detected_models": [
-        "024"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3081,7 +3127,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-342-3021-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3112,6 +3158,10 @@
       "detected_models": [
         "009"
       ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -3126,7 +3176,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
@@ -3161,8 +3210,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-398-8621",
       "publication_id_raw": "0458-398-8621",
-      "detected_models": [
-        "010"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3182,7 +3232,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-398-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3210,10 +3260,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-393-9421",
       "publication_id_raw": "0458-393-9421",
-      "detected_models": [
-        "010",
-        "011",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3226,12 +3276,11 @@
         "PUBLICATION_ID:0458-393-9421"
       ],
       "document_structure_signals": [
-        "INSTRUCTION_MANUAL",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
-      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "authenticity_status": "INSUFFICIENT_EVIDENCE",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-393-9421.",
-      "authenticity_score": 13,
+      "authenticity_score": 10,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3260,8 +3309,10 @@
       "publication_id": "0458-393-8621",
       "publication_id_raw": "0458-393-8621",
       "detected_models": [
-        "010",
-        "011"
+        "010"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3309,8 +3360,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-260-8621-D",
       "publication_id_raw": "0458-260-8621-D",
-      "detected_models": [
-        "020"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3332,7 +3385,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-260-8621-D.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3360,8 +3413,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-593-8621-A",
       "publication_id_raw": "0458-593-8621-A",
-      "detected_models": [
-        "064"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3383,7 +3438,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-593-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3414,6 +3469,10 @@
       "detected_models": [
         "011"
       ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -3426,12 +3485,11 @@
         "STIHL_NUMERIC_PUBLICATION_ID"
       ],
       "document_structure_signals": [
-        "INSTRUCTION_MANUAL",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
-      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "authenticity_status": "INSUFFICIENT_EVIDENCE",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-593-9421-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 11,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3460,9 +3518,11 @@
       "publication_id": "0458-541-8621-A",
       "publication_id_raw": "0458-541-8621-A",
       "detected_models": [
-        "009",
-        "010",
-        "015"
+        "010"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3478,7 +3538,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
@@ -3514,10 +3573,10 @@
       "publication_id": "0458-238-8621",
       "publication_id_raw": "0458-238-8621",
       "detected_models": [
-        "010",
-        "011",
-        "038",
-        "070"
+        "038"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3565,8 +3624,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-238-8621-A",
       "publication_id_raw": "0458-238-8621-A",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3588,7 +3648,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-238-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3616,9 +3676,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-379-9921-A",
       "publication_id_raw": "0458-379-9921-A",
-      "detected_models": [
-        "010",
-        "020"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3637,7 +3697,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-379-9921-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3667,9 +3727,10 @@
       "publication_id": "0458-761-8621-A",
       "publication_id_raw": "0458-761-8621-A",
       "detected_models": [
-        "009",
-        "015",
-        "020"
+        "009"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3722,6 +3783,10 @@
       "publication_id": "0458-388-8621-E",
       "publication_id_raw": "0458-388-8621-E",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -3770,10 +3835,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-388-8621-B",
       "publication_id_raw": "0458-388-8621-B",
-      "detected_models": [
-        "009",
-        "010",
-        "020"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3793,7 +3857,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-388-8621-B.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3821,9 +3885,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-475-8621-B",
       "publication_id_raw": "0458-475-8621-B",
-      "detected_models": [
-        "015",
-        "048"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -3839,14 +3904,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-475-8621-B.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -3876,6 +3940,10 @@
       "publication_id": "0458-765-8621-B",
       "publication_id_raw": "0458-765-8621-B",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -3930,6 +3998,11 @@
         "hs-45",
         "009"
       ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:hs-45"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -3944,7 +4017,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
@@ -3979,8 +4051,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-366-3021",
       "publication_id_raw": "0458-366-3021",
-      "detected_models": [
-        "010"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4000,7 +4073,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-366-3021.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4028,9 +4101,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-367-3021",
       "publication_id_raw": "0458-367-3021",
-      "detected_models": [
-        "010",
-        "050"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4050,7 +4123,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-367-3021.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4078,9 +4151,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-443-8621-A",
       "publication_id_raw": "0458-443-8621-A",
-      "detected_models": [
-        "010",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4100,7 +4173,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-443-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4128,11 +4201,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-246-8621-E",
       "publication_id_raw": "0458-246-8621-E",
-      "detected_models": [
-        "010",
-        "011",
-        "015",
-        "056"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4154,7 +4226,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-246-8621-E.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4183,9 +4255,11 @@
       "publication_id": "0458-275-8621-C",
       "publication_id_raw": "0458-275-8621-C",
       "detected_models": [
-        "009",
-        "015",
-        "084"
+        "009"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4201,7 +4275,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
@@ -4237,8 +4310,11 @@
       "publication_id": "0458-555-8621-B",
       "publication_id_raw": "0458-555-8621-B",
       "detected_models": [
-        "011",
-        "026"
+        "011"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4290,6 +4366,9 @@
       "publication_id": "0458-766-8621-B",
       "publication_id_raw": "0458-766-8621-B",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -4342,6 +4421,10 @@
       "publication_id": "0458-466-8621-A",
       "publication_id_raw": "0458-466-8621-A",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -4392,8 +4475,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-461-8621-A",
       "publication_id_raw": "0458-461-8621-A",
-      "detected_models": [
-        "011"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4414,7 +4499,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-461-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4443,8 +4528,11 @@
       "publication_id": "0458-540-8621-C",
       "publication_id_raw": "0458-540-8621-C",
       "detected_models": [
-        "010",
         "015"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4494,9 +4582,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-540-8621-C",
       "publication_id_raw": "0458-540-8621-C",
-      "detected_models": [
-        "010",
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4518,7 +4606,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-540-8621-C.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4547,6 +4635,9 @@
       "publication_id": "0458-462-8621",
       "publication_id_raw": "0458-462-8621",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -4594,6 +4685,10 @@
       "publication_id": "0458-467-8621-A",
       "publication_id_raw": "0458-467-8621-A",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -4642,8 +4737,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-467-8621-A",
       "publication_id_raw": "0458-467-8621-A",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4659,14 +4756,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-467-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4695,8 +4791,10 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [
-        "010",
         "020"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4742,8 +4840,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-483-8621",
       "publication_id_raw": "0458-483-8621",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4764,7 +4863,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-483-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -4794,10 +4893,12 @@
       "publication_id_raw": "0458-207-8621-C",
       "detected_models": [
         "ms-170",
-        "ms-180",
-        "012",
-        "015",
-        "036"
+        "ms-180"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:ms-170"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4813,7 +4914,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:PARTS_LIST"
@@ -4850,8 +4950,11 @@
       "publication_id_raw": "0458-207-8221-A",
       "detected_models": [
         "ms-170",
-        "ms-180",
-        "011"
+        "ms-180"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:ms-170"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4900,10 +5003,10 @@
       "document_type": "PARTS_LIST",
       "publication_id": "0458-161-8621",
       "publication_id_raw": "0458-161-8621",
-      "detected_models": [
-        "ms-200",
-        "010",
-        "050"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:ms-200"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -4923,7 +5026,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-161-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "EXACT_FILE_DUPLICATE",
       "duplicate_of": [
         "STIHL MS 200_manualzilla-id-6235805.pdf"
@@ -4957,8 +5060,11 @@
         "ms-210",
         "ms-230",
         "ms-250",
-        "011",
-        "088"
+        "011"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:ms-210"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5008,12 +5114,12 @@
       "publication_id": "0458-209-8621-A",
       "publication_id_raw": "0458-209-8621-A",
       "detected_models": [
-        "ms-290",
         "ms-310",
-        "ms-390",
-        "011",
-        "020",
-        "070"
+        "ms-390"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:ms-290"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5065,9 +5171,11 @@
       "publication_id_raw": "0458-212-8621-A",
       "detected_models": [
         "ms-341",
-        "ms-361",
-        "010",
-        "070"
+        "ms-361"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:ms-341"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5115,11 +5223,9 @@
       "document_type": "UNKNOWN",
       "publication_id": "0458-538-1521-B",
       "publication_id_raw": "0458-538-1521-B",
-      "detected_models": [
-        "009",
-        "012",
-        "070",
-        "075"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 2,
@@ -5139,7 +5245,7 @@
       ],
       "authenticity_status": "INSUFFICIENT_EVIDENCE",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-538-1521-B, 0800-707-5001.",
-      "authenticity_score": 11,
+      "authenticity_score": 10,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5168,8 +5274,11 @@
       "publication_id": "0458-776-8621-A",
       "publication_id_raw": "0458-776-8621-A",
       "detected_models": [
-        "010",
-        "015"
+        "010"
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5185,7 +5294,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:PARTS_LIST"
@@ -5221,6 +5329,10 @@
       "publication_id": "0458-773-8621-A",
       "publication_id_raw": "0458-773-8621-A",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -5269,8 +5381,9 @@
       "document_type": "PARTS_LIST",
       "publication_id": "0458-216-8621-A",
       "publication_id_raw": "0458-216-8621-A",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5292,7 +5405,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-216-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5321,8 +5434,10 @@
       "document_type": "PARTS_LIST",
       "publication_id": "0458-756-8621-B",
       "publication_id_raw": "0458-756-8621-B",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5338,14 +5453,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:PARTS_LIST"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-756-8621-B.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "EXACT_FILE_DUPLICATE",
       "duplicate_of": [
         "STIHL MSE 170 C, 210 C Owners Instruction Manual_manualzilla-id-6242741.pdf"
@@ -5375,9 +5489,9 @@
       "document_type": "PARTS_LIST",
       "publication_id": "0458-182-8621",
       "publication_id_raw": "0458-182-8621",
-      "detected_models": [
-        "009",
-        "010"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5397,7 +5511,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-182-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5426,19 +5540,20 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": false,
       "native_text_page_count": 0,
       "ocr_required": true,
-      "corporate_identity_signals": [
-        "STIHL_BRANDING"
-      ],
+      "corporate_identity_signals": [],
       "publication_identity_signals": [],
       "document_structure_signals": [
         "DOC_TYPE:UNKNOWN"
       ],
-      "authenticity_status": "INSUFFICIENT_EVIDENCE",
-      "authenticity_reason": "STIHL branding detected. Official document keywords found: stihl.",
-      "authenticity_score": 2,
+      "authenticity_status": "NON_STIHL",
+      "authenticity_reason": "No STIHL identity found in the available title/body signals.",
+      "authenticity_score": 0,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5466,8 +5581,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0478-193-9904-A",
       "publication_id_raw": "0478-193-9904-A",
-      "detected_models": [
-        "020"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5484,7 +5601,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Confirmed publication number found: 0478-193-9904-A. Official document keywords found: stihl, instruction manual.",
-      "authenticity_score": 9,
+      "authenticity_score": 8,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5512,8 +5629,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-659-8621-A",
       "publication_id_raw": "0458-659-8621-A",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5535,7 +5653,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-659-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5563,9 +5681,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-551-8621-A",
       "publication_id_raw": "0458-551-8621-A",
-      "detected_models": [
-        "010",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5585,7 +5703,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-551-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5613,9 +5731,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-408-8621-A",
       "publication_id_raw": "0458-408-8621-A",
-      "detected_models": [
-        "009",
-        "088"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5636,7 +5754,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-408-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5664,8 +5782,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-457-8621-C",
       "publication_id_raw": "0458-457-8621-C",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5681,14 +5801,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-457-8621-C.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5716,9 +5835,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-372-8621-A",
       "publication_id_raw": "0458-372-8621-A",
-      "detected_models": [
-        "010",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5738,7 +5857,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-372-8621-A.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5766,8 +5885,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-454-8621-F",
       "publication_id_raw": "0458-454-8621-F",
-      "detected_models": [
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5789,7 +5910,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-454-8621-F.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5818,19 +5939,20 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": false,
       "native_text_page_count": 0,
       "ocr_required": true,
-      "corporate_identity_signals": [
-        "STIHL_BRANDING"
-      ],
+      "corporate_identity_signals": [],
       "publication_identity_signals": [],
       "document_structure_signals": [
         "DOC_TYPE:UNKNOWN"
       ],
-      "authenticity_status": "INSUFFICIENT_EVIDENCE",
-      "authenticity_reason": "STIHL branding detected. Official document keywords found: stihl. Page count is plausible for a manual or parts list.",
-      "authenticity_score": 3,
+      "authenticity_status": "NON_STIHL",
+      "authenticity_reason": "No STIHL identity found in the available title/body signals.",
+      "authenticity_score": 1,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5858,9 +5980,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-338-8621",
       "publication_id_raw": "0458-338-8621",
-      "detected_models": [
-        "010",
-        "070"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5880,7 +6002,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-338-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -5912,6 +6034,10 @@
         "ts-420",
         "015"
       ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
       "native_text_available": true,
       "native_text_page_count": 3,
       "ocr_required": false,
@@ -5926,7 +6052,6 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
@@ -5961,10 +6086,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-339-8621",
       "publication_id_raw": "0458-339-8621",
-      "detected_models": [
-        "010",
-        "050",
-        "076"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -5984,7 +6108,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-339-8621.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -6013,6 +6137,9 @@
       "publication_id": "0458-330-3021",
       "publication_id_raw": "0458-330-3021",
       "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
+      ],
       "native_text_available": true,
       "native_text_page_count": 2,
       "ocr_required": false,
@@ -6057,8 +6184,10 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-572-8621-D",
       "publication_id_raw": "0458-572-8621-D",
-      "detected_models": [
-        "015"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
       ],
       "native_text_available": true,
       "native_text_page_count": 3,
@@ -6074,14 +6203,13 @@
       ],
       "document_structure_signals": [
         "INSTRUCTION_MANUAL",
-        "OWNERS_MANUAL",
         "SPECIFICATIONS_SECTION",
         "TABLE_OF_CONTENTS",
         "DOC_TYPE:INSTRUCTION_MANUAL"
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-572-8621-D.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
@@ -6110,6 +6238,7 @@
       "publication_id": null,
       "publication_id_raw": null,
       "detected_models": [],
+      "filename_hints": [],
       "native_text_available": false,
       "native_text_page_count": 0,
       "ocr_required": false,
@@ -6120,7 +6249,7 @@
       ],
       "authenticity_status": "QUARANTINE",
       "authenticity_reason": "GENERIC_TRIMMER_BLOWER_SERVICE_BOOK",
-      "authenticity_score": 1,
+      "authenticity_score": 0,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "QUARANTINE",
@@ -6148,10 +6277,9 @@
       "document_type": "INSTRUCTION_MANUAL",
       "publication_id": "0458-523-0121",
       "publication_id_raw": "0458-523-0121",
-      "detected_models": [
-        "010",
-        "012",
-        "020"
+      "detected_models": [],
+      "filename_hints": [
+        "FILENAME_STIHL"
       ],
       "native_text_available": true,
       "native_text_page_count": 2,
@@ -6171,7 +6299,7 @@
       ],
       "authenticity_status": "AUTHENTICATED_OFFICIAL",
       "authenticity_reason": "STIHL branding detected. Corporate publisher string detected. Confirmed publication number found: 0458-523-0121.",
-      "authenticity_score": 13,
+      "authenticity_score": 12,
       "duplicate_status": "UNIQUE_WITHIN_ARCHIVE",
       "duplicate_of": [],
       "processing_status": "DEFERRED_FOR_FUTURE_RECOVERY",
