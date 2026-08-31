@@ -1,0 +1,246 @@
+{
+  "generated_at": "2026-08-31T23:26:20.789Z",
+  "phase_id": "35C.4.3.1.1",
+  "records": [
+    {
+      "check": "IMMUTABLE_GIT_BASELINE_USED",
+      "mutation": "IMMUTABLE_GIT_BASELINE_USED",
+      "expected": "pass",
+      "actual": "PASS",
+      "pass": true
+    },
+    {
+      "check": "WORKTREE_PUBLIC_STORE_CONTAMINATION_IGNORED",
+      "mutation": "WORKTREE_PUBLIC_STORE_CONTAMINATION_IGNORED",
+      "expected": "pass",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "BASELINE_FACT_REMOVAL_DETECTED",
+      "mutation": "BASELINE_FACT_REMOVAL_DETECTED",
+      "expected": "true",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "BASELINE_FACT_MUTATION_DETECTED",
+      "mutation": "BASELINE_FACT_MUTATION_DETECTED",
+      "expected": "true",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "026_BASELINE_SPARK_REGRESSION_DETECTED",
+      "mutation": "026_BASELINE_SPARK_REGRESSION_DETECTED",
+      "expected": "true",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "046_CONFLICT_PROVENANCE_REGRESSION_DETECTED",
+      "mutation": "046_CONFLICT_PROVENANCE_REGRESSION_DETECTED",
+      "expected": "true",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "DERIVATIVE_SOURCE_BLOCKED",
+      "mutation": "DERIVATIVE_SOURCE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "DERIVATIVE_SOURCE_NOT_TECHNICAL_EVIDENCE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "MISSING_AUTHENTICITY_BLOCKED",
+      "mutation": "MISSING_AUTHENTICITY_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "AUTHENTICITY_NOT_SUFFICIENT"
+      ],
+      "pass": true
+    },
+    {
+      "check": "MISSING_LINEAGE_BLOCKED",
+      "mutation": "MISSING_LINEAGE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "SOURCE_LINEAGE_MISSING"
+      ],
+      "pass": true
+    },
+    {
+      "check": "FALSE_SCS_INDEPENDENCE_BLOCKED",
+      "mutation": "FALSE_SCS_INDEPENDENCE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "SCS_LINEAGE_INDEPENDENCE_MISMATCH"
+      ],
+      "pass": true
+    },
+    {
+      "check": "MISSING_HEADING_BLOCKED",
+      "mutation": "MISSING_HEADING_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "SOURCE_HEADING_MISSING",
+        "NO_TECHNICAL_DATA_IN_SOURCE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "MISSING_LOCATOR_BLOCKED",
+      "mutation": "MISSING_LOCATOR_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "SOURCE_PAYLOAD_OR_LOCATOR_MISSING"
+      ],
+      "pass": true
+    },
+    {
+      "check": "PLACEHOLDER_SOURCE_BLOCKED",
+      "mutation": "PLACEHOLDER_SOURCE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "NO_TECHNICAL_DATA_IN_SOURCE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "WRONG_SCOPE_BLOCKED",
+      "mutation": "WRONG_SCOPE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "PROMOTION_SCOPE_REVALIDATION_FAILED"
+      ],
+      "pass": true
+    },
+    {
+      "check": "VARIANT_SCOPE_BLEED_BLOCKED",
+      "mutation": "VARIANT_SCOPE_BLEED_BLOCKED",
+      "expected": "blocked",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "ELECTRODE_GAP_CONFLICT_BLOCKED",
+      "mutation": "ELECTRODE_GAP_CONFLICT_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "OFFICIAL_CONFLICT_UNRESOLVED"
+      ],
+      "pass": true
+    },
+    {
+      "check": "UNKNOWN_MEASUREMENT_BLOCKED",
+      "mutation": "UNKNOWN_MEASUREMENT_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "MEASUREMENT_DEFINITION_UNKNOWN"
+      ],
+      "pass": true
+    },
+    {
+      "check": "NULL_NORMALIZED_VALUE_BLOCKED",
+      "mutation": "NULL_NORMALIZED_VALUE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "NULL_NORMALIZED_VALUE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "DUPLICATE_FACT_BLOCKED",
+      "mutation": "DUPLICATE_FACT_BLOCKED",
+      "expected": "single promotion",
+      "actual": 1,
+      "pass": true
+    },
+    {
+      "check": "NUMERIC_046_COLLISION_BLOCKED",
+      "mutation": "NUMERIC_046_COLLISION_BLOCKED",
+      "expected": "no unsafe specs",
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "NUMERIC_015_COLLISION_BLOCKED",
+      "mutation": "NUMERIC_015_COLLISION_BLOCKED",
+      "expected": "no unsafe specs",
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "SPARK_CARDINALITY_AMBIGUITY_BLOCKED",
+      "mutation": "SPARK_CARDINALITY_AMBIGUITY_BLOCKED",
+      "expected": "ambiguous blocked",
+      "actual": "AMBIGUOUS",
+      "pass": true
+    },
+    {
+      "check": "SPARK_CHAIN_CONTAMINATION_BLOCKED",
+      "mutation": "SPARK_CHAIN_CONTAMINATION_BLOCKED",
+      "expected": "invalid",
+      "actual": [
+        "SPARK_CHAIN_CONTAMINATION"
+      ],
+      "pass": true
+    },
+    {
+      "check": "SPARK_PARSER_SPLIT_PRESERVED",
+      "mutation": "SPARK_PARSER_SPLIT_PRESERVED",
+      "expected": "two manufacturers split",
+      "actual": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "ELECTRODE_GAP_AS_SPARK_BLOCKED",
+      "mutation": "ELECTRODE_GAP_AS_SPARK_BLOCKED",
+      "expected": "electrode gap remapped",
+      "actual": "electrode_gap_mm",
+      "pass": true
+    },
+    {
+      "check": "MS170_009_BLOCKED",
+      "mutation": "MS170_009_BLOCKED",
+      "expected": "blocked",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "MS180_009_BLOCKED",
+      "mutation": "MS180_009_BLOCKED",
+      "expected": "blocked",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "046_CONFLICT_WINNER_BLOCKED",
+      "mutation": "046_CONFLICT_WINNER_BLOCKED",
+      "expected": "existing conflict remains",
+      "actual": "OFFICIAL_CONFLICTED",
+      "pass": true
+    },
+    {
+      "check": "MISSING_INDEPENDENCE_BLOCKED",
+      "mutation": "MISSING_INDEPENDENCE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "INDEPENDENCE_STATUS_MISSING"
+      ],
+      "pass": true
+    }
+  ],
+  "FAILURE_INJECTION": "PASS"
+}

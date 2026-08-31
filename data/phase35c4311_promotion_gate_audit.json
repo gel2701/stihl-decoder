@@ -1,0 +1,444 @@
+{
+  "generated_at": "2026-08-31T23:26:19.995Z",
+  "phase_id": "35C.4.3.1.1",
+  "records": [
+    {
+      "check": "allowed_scope",
+      "checked_count": 423,
+      "failed_count": 317,
+      "examples": [
+        {
+          "candidate_id": "5c01fd18b77bde8e",
+          "model": "019t",
+          "field": "displacement_cc",
+          "source": "doc/TS_Data/019t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED"
+          ]
+        },
+        {
+          "candidate_id": "a1beb6bca52867ce",
+          "model": "019t",
+          "field": "bore_mm",
+          "source": "doc/TS_Data/019t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED"
+          ]
+        },
+        {
+          "candidate_id": "45a26488ac9a1bc1",
+          "model": "019t",
+          "field": "stroke_mm",
+          "source": "doc/TS_Data/019t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "allowed_source_class",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "authenticated",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "independence_status_present",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "lineage_independence_safe",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "live_conflict_safe",
+      "checked_count": 423,
+      "failed_count": 1,
+      "examples": [
+        {
+          "candidate_id": "55bbee62d48c9833",
+          "model": "046",
+          "field": "stroke_mm",
+          "source": "doc/TS_Data/046_body.htm",
+          "blocking_reasons": [
+            "OFFICIAL_CONFLICT_UNRESOLVED"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "measurement_definition_known",
+      "checked_count": 423,
+      "failed_count": 11,
+      "examples": [
+        {
+          "candidate_id": "5db7b51046c689a0",
+          "model": "021",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_021_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "7e7027cf59bee978",
+          "model": "029",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_029_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "daccb0ef0622bd80",
+          "model": "066",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_066_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "normalized_value_present",
+      "checked_count": 423,
+      "failed_count": 57,
+      "examples": [
+        {
+          "candidate_id": "5db7b51046c689a0",
+          "model": "021",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_021_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "7e7027cf59bee978",
+          "model": "029",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_029_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "daccb0ef0622bd80",
+          "model": "066",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_066_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "numeric_sanity",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "semantic_valid",
+      "checked_count": 423,
+      "failed_count": 57,
+      "examples": [
+        {
+          "candidate_id": "5db7b51046c689a0",
+          "model": "021",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_021_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "7e7027cf59bee978",
+          "model": "029",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_029_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "daccb0ef0622bd80",
+          "model": "066",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_066_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "source_heading_not_placeholder",
+      "checked_count": 423,
+      "failed_count": 11,
+      "examples": [
+        {
+          "candidate_id": "5db7b51046c689a0",
+          "model": "021",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_021_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "7e7027cf59bee978",
+          "model": "029",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_029_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "daccb0ef0622bd80",
+          "model": "066",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_066_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "source_heading_present",
+      "checked_count": 423,
+      "failed_count": 11,
+      "examples": [
+        {
+          "candidate_id": "5db7b51046c689a0",
+          "model": "021",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_021_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "7e7027cf59bee978",
+          "model": "029",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_029_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        },
+        {
+          "candidate_id": "daccb0ef0622bd80",
+          "model": "066",
+          "field": "NO_PAYLOAD",
+          "source": "doc/model/chain/model_chain_066_ts_30.htm",
+          "blocking_reasons": [
+            "SOURCE_HEADING_MISSING",
+            "NO_TECHNICAL_DATA_IN_SOURCE",
+            "SEMANTIC_INVALID",
+            "NULL_NORMALIZED_VALUE",
+            "SCOPE_NOT_STATED",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "MEASUREMENT_DEFINITION_UNKNOWN"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "source_lineage_present",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "source_locator_present",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "target_in_scope",
+      "checked_count": 423,
+      "failed_count": 317,
+      "examples": [
+        {
+          "candidate_id": "5c01fd18b77bde8e",
+          "model": "019t",
+          "field": "displacement_cc",
+          "source": "doc/TS_Data/019t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED"
+          ]
+        },
+        {
+          "candidate_id": "a1beb6bca52867ce",
+          "model": "019t",
+          "field": "bore_mm",
+          "source": "doc/TS_Data/019t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED"
+          ]
+        },
+        {
+          "candidate_id": "45a26488ac9a1bc1",
+          "model": "019t",
+          "field": "stroke_mm",
+          "source": "doc/TS_Data/019t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "unresolved_conflict",
+      "checked_count": 423,
+      "failed_count": 0,
+      "examples": []
+    },
+    {
+      "check": "variant_scope_safe",
+      "checked_count": 423,
+      "failed_count": 24,
+      "examples": [
+        {
+          "candidate_id": "f710c3bda0292c5f",
+          "model": "020",
+          "field": "displacement_cc",
+          "source": "doc/TS_Data/020t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "VARIANT_SCOPE_UNRESOLVED"
+          ]
+        },
+        {
+          "candidate_id": "553f987affcec78c",
+          "model": "020",
+          "field": "bore_mm",
+          "source": "doc/TS_Data/020t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "VARIANT_SCOPE_UNRESOLVED"
+          ]
+        },
+        {
+          "candidate_id": "de14ff2fce7e57b4",
+          "model": "020",
+          "field": "stroke_mm",
+          "source": "doc/TS_Data/020t_body.htm",
+          "blocking_reasons": [
+            "MODEL_NOT_IN_EXPLICIT_SOURCE_SCOPE",
+            "PROMOTION_SCOPE_REVALIDATION_FAILED",
+            "VARIANT_SCOPE_UNRESOLVED"
+          ]
+        }
+      ]
+    }
+  ]
+}

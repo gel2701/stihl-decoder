@@ -1,0 +1,1238 @@
+{
+  "generated_at": "2026-08-31T23:26:19.990Z",
+  "phase_id": "35C.4.3.1.1",
+  "METRIC_CLASSIFICATION": "OVERLAPPING_AUDIT_LABELS",
+  "INPUT_CANDIDATES": 100,
+  "PROMOTED_NEW": 92,
+  "TOTAL_BLOCKED_OR_REDUNDANT": 8,
+  "SAFE_NEW_SCS_FACTS_MATCHES_PROMOTED_NEW": "PASS",
+  "INPUT_INVARIANT": "PASS",
+  "REDUNDANT_WITH_BASELINE": 10,
+  "BLOCKED_BY_BASELINE_CONFLICT": 1,
+  "PRIMARY_DISPOSITION_COUNTS": {
+    "PROMOTED_NEW": 92,
+    "REDUNDANT_WITH_BASELINE": 8,
+    "BLOCKED_BASELINE_CONFLICT": 0,
+    "BLOCKED_AUTHENTICITY": 0,
+    "BLOCKED_LINEAGE": 0,
+    "BLOCKED_INDEPENDENCE": 0,
+    "BLOCKED_SCOPE": 0,
+    "BLOCKED_VARIANT": 0,
+    "BLOCKED_SEMANTIC": 0,
+    "BLOCKED_MEASUREMENT": 0,
+    "BLOCKED_DUPLICATE": 0,
+    "OTHER_BLOCKED": 0
+  },
+  "OVERLAP_RECORDS": [
+    {
+      "candidate_id": "54d531a8626b6bb5",
+      "model": "026",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "b8c71ff39ec4a73e",
+      "model": "026",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "ca4c1f3db275bba1",
+      "model": "026",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "3aa3679f6d7666ca",
+      "model": "026",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "a1b697d5c4418fce",
+      "model": "026",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "176dada7b3f7c977",
+      "model": "046",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "bf86b55174631369",
+      "model": "046",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "55bbee62d48c9833",
+      "model": "046",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "primary_disposition": "BLOCKED_BASELINE_CONFLICT",
+      "secondary_labels": [
+        "BLOCKED_BY_BASELINE_CONFLICT"
+      ]
+    },
+    {
+      "candidate_id": "17011b4030eca4f5",
+      "model": "046",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "f672e2a78dee7b60",
+      "model": "046",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "candidate_id": "33a7882e741e7412",
+      "model": "046",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    }
+  ],
+  "FINAL_TRANSITION_ACCOUNTING": "PASS",
+  "records": [
+    {
+      "fact_id": "3225b441568be8aa",
+      "model": "009",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 36.6,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "d92a9c195520ccc3",
+      "model": "009",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 36,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "f5057510bf116c60",
+      "model": "009",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 36,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "77958bdc4938d552",
+      "model": "009",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 1.2,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "aea36fb7a461b82f",
+      "model": "009",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 1.6,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "425dcd6c8e0fc2c9",
+      "model": "009",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "cb5195743cdc255a",
+      "model": "009",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "41de2cea9a637b05",
+      "model": "009",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "8d84fa13aff0d83a",
+      "model": "017",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 30.1,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "e6c56bc7f82befed",
+      "model": "017",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 37,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "fbdf8e36c294a21f",
+      "model": "017",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 28,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "358b1d3854d93084",
+      "model": "017",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 1.2,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "a8da7a7b34142414",
+      "model": "017",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 1.6,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "5766a62ad49c3bc7",
+      "model": "017",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "977e3a9ff9e46e4a",
+      "model": "017",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "18d750a89ff37e80",
+      "model": "017",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "normalized_value": 3200,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "408dd6b1e2409f8d",
+      "model": "018",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 31.8,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "01065b9d0bfbfc92",
+      "model": "018",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 38,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "9a1fd37d60976bb2",
+      "model": "018",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 28,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "f0a85af6c2b1f9d9",
+      "model": "018",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 1.4,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "eb503600782dced6",
+      "model": "018",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 1.9,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "eb6cf5040378b67f",
+      "model": "018",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "75ab93be26089382",
+      "model": "018",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "d7335d2366aa83f1",
+      "model": "018",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "879cbdb1b8a4c2d5",
+      "model": "026",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 48.7,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "3c4bcecbcb673509",
+      "model": "026",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 44,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "54d531a8626b6bb5",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "82a616780a71aeeb",
+      "model": "026",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 32,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "b8c71ff39ec4a73e",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "ea48afea7dbbcabf",
+      "model": "026",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 2.4,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "43e819935635ddfa",
+      "model": "026",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 3.2,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "82c6e77612d58ddf",
+      "model": "026",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "3aa3679f6d7666ca",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "59f033ba783c4e8d",
+      "model": "026",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "a1b697d5c4418fce",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "f4827a06a3c5fe4a",
+      "model": "036",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 61.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "aa7499cf910e41db",
+      "model": "036",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 48,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "9a3932d8f497b0b7",
+      "model": "036",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 34,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "8b9334c7f135adae",
+      "model": "036",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 3.3,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "fc420493f32b0833",
+      "model": "036",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 4.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "6398155034fa84db",
+      "model": "036",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "3359327415dc54f4",
+      "model": "036",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "7a8ccb6d3717d259",
+      "model": "036",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "4e21ce8900746ccc",
+      "model": "044",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 70.7,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "c026d46cad80e9b8",
+      "model": "044",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 50,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "3db3d157c881d655",
+      "model": "044",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 36,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "9a4dd39337db5b0c",
+      "model": "044",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 4,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "c7d3144c4fcb477e",
+      "model": "044",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 5.4,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "c39dd56b838eb3a9",
+      "model": "044",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "b74752434fc615a5",
+      "model": "044",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "c2ab6a33284341c0",
+      "model": "044",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "normalized_value": 2500,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "e2e0aa6af0139a3a",
+      "model": "046",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "normalized_value": 76.5,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "176dada7b3f7c977",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "c077b6daec763097",
+      "model": "046",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "normalized_value": 52,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "bf86b55174631369",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "10d2d45c3c55b213",
+      "model": "046",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "normalized_value": 4.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "45ee8cff65df1f77",
+      "model": "046",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "normalized_value": 6.1,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "e7e0d8bb58c55a30",
+      "model": "046",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "f672e2a78dee7b60",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "eaa1949c8a5a42df",
+      "model": "046",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "normalized_value": 2500,
+      "primary_disposition": "REDUNDANT_WITH_BASELINE",
+      "matched_candidate_id": "33a7882e741e7412",
+      "secondary_labels": [
+        "REDUNDANT_WITH_BASELINE"
+      ]
+    },
+    {
+      "fact_id": "97f797febc0bf027",
+      "model": "088",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 121.6,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "41bf7da78048e399",
+      "model": "088",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 60,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "8331dc7e736a128f",
+      "model": "088",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 43,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "1c6867265d1c79c0",
+      "model": "088",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 6.4,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "c420b1d519bd86f3",
+      "model": "088",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 8.7,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "bfb3c81534eeeaf5",
+      "model": "088",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "885b55d921399ce7",
+      "model": "088",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "a42eb240ccddc952",
+      "model": "088",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "normalized_value": 2700,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "961ee29f6099547f",
+      "model": "ms-260",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 48.7,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "82cde85ffd1cec37",
+      "model": "ms-260",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 44,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "29317502b7b9b7af",
+      "model": "ms-260",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 32,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "846adb2373fd43ca",
+      "model": "ms-260",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 2.4,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "8da14329619a1f2d",
+      "model": "ms-260",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 3.2,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "fcede5c1f87a4a63",
+      "model": "ms-260",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "c37789333cba2f1f",
+      "model": "ms-260",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "7bb942a8678b5add",
+      "model": "ms-260",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "1e6df1e701957f0f",
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 61.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "e5eba25933bb0a4f",
+      "model": "ms-360",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 48,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "eb975d8212ed0fe4",
+      "model": "ms-360",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 34,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "b5f946dc90fcfd15",
+      "model": "ms-360",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 3.3,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "bcdf6ccc0c2854c0",
+      "model": "ms-360",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 4.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "029dfc8123c9a4ca",
+      "model": "ms-360",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "8defcc62a7cf8205",
+      "model": "ms-360",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "0def0eca22c54e14",
+      "model": "ms-360",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "31c9d282af4143cb",
+      "model": "ms-460",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 76.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "309d5ff694a51ca6",
+      "model": "ms-460",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 52,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "728de325e3c8fdaa",
+      "model": "ms-460",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 36,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "11419c3beff2c4b9",
+      "model": "ms-460",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 4.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "d92e4bba4c98c003",
+      "model": "ms-460",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 6.1,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "a8abb8c78fc2435d",
+      "model": "ms-460",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "399cac1763218dc8",
+      "model": "ms-460",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "d691e1070baaa941",
+      "model": "ms-460",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "normalized_value": 2500,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "23e24f4ac0b2fadf",
+      "model": "fs-350",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 36.3,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "b97252c0a822c371",
+      "model": "fs-350",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 38,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "1b78bba596af6fe2",
+      "model": "fs-350",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 32,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "aba6e2332ac0bc69",
+      "model": "fs-350",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 1.6,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "b86c5bd568df89d9",
+      "model": "fs-350",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 2.2,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "f122622f4b8cb319",
+      "model": "fs-350",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "5b60752b14d6fa37",
+      "model": "fs-350",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "6c98da504c6487c3",
+      "model": "hs-45",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 27.2,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "514b6018f4ed016f",
+      "model": "hs-45",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 34,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "741ae4aaa0b532a7",
+      "model": "hs-45",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 30,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "916c7a7df33d0a15",
+      "model": "hs-45",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 0.75,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "91213f80ca786672",
+      "model": "hs-45",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 1,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "f55712da4a473803",
+      "model": "hs-45",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 0.5,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "147304ee54b14fbf",
+      "model": "hs-45",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 2800,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    },
+    {
+      "fact_id": "719132922f8bc0a8",
+      "model": "hs-45",
+      "field": "max_engine_speed_rpm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "normalized_value": 9500,
+      "primary_disposition": "PROMOTED_NEW",
+      "matched_candidate_id": null,
+      "secondary_labels": []
+    }
+  ]
+}

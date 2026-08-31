@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-31T23:26:19.971Z",
+  "phase_id": "35C.4.3.1.1",
+  "SCS_FACTS_BLOCKED_BY_BASELINE_VALUE_CONFLICT": 1,
+  "SCS_FACTS_REDUNDANT_WITH_BASELINE": 10,
+  "SCS_REDUNDANT_FACTS_SKIPPED": 10,
+  "examples": [
+    {
+      "model": "046",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "blocking_reasons": [
+        "OFFICIAL_CONFLICT_UNRESOLVED"
+      ]
+    }
+  ]
+}

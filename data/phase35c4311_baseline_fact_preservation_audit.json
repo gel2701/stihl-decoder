@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-08-31T23:26:19.969Z",
+  "phase_id": "35C.4.3.1.1",
+  "BASELINE_FACTS_BEFORE": 22,
+  "BASELINE_FACTS_PRESERVED": 22,
+  "BASELINE_FACTS_REMOVED": 0,
+  "BASELINE_FACTS_CHANGED": 0,
+  "BASELINE_FACTS_REPLACED": 0,
+  "records": [
+    {
+      "fact_id": "1c0c06cc89c979a3",
+      "model": "026",
+      "field": "bore_mm",
+      "baseline_hash": "6c05569fcad7be49df381aaae10d260b6c5bf045bf9bfb657b26046ba35f4507",
+      "staging_hash": "6c05569fcad7be49df381aaae10d260b6c5bf045bf9bfb657b26046ba35f4507",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "fd6e220b046de185",
+      "model": "026",
+      "field": "stroke_mm",
+      "baseline_hash": "bd140a5ecb23cc55d6e0f9f8fab8272a802aee9a2d4b0a3527f59bc67bb71e26",
+      "staging_hash": "bd140a5ecb23cc55d6e0f9f8fab8272a802aee9a2d4b0a3527f59bc67bb71e26",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "c59db37db8a04fbf",
+      "model": "026",
+      "field": "idle_speed_rpm",
+      "baseline_hash": "9bae0eba60e6bb42c806968dcad2b441367031d3b3b0ce9b56b0b5b34a96bd00",
+      "staging_hash": "9bae0eba60e6bb42c806968dcad2b441367031d3b3b0ce9b56b0b5b34a96bd00",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "d1afe1fa3420757e",
+      "model": "026",
+      "field": "fuel_tank_l",
+      "baseline_hash": "0419b140e234ba5e3445a0e3f1c3c025aaa4ff08ce0c93a358af2401a9e78209",
+      "staging_hash": "0419b140e234ba5e3445a0e3f1c3c025aaa4ff08ce0c93a358af2401a9e78209",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "88ae2b1f2ebf9b25",
+      "model": "026",
+      "field": "oil_tank_l",
+      "baseline_hash": "f5e8a3c8d11b40ff55b651a68c9d4c765a9a8b0761bacaa087c0612845881869",
+      "staging_hash": "f5e8a3c8d11b40ff55b651a68c9d4c765a9a8b0761bacaa087c0612845881869",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "b06b729d27dc3363",
+      "model": "026",
+      "field": "electrode_gap_mm",
+      "baseline_hash": "6a3c5abeb7e122fcc4d2e069fea803b41aa4df044ebcf376d72edf07bdc2ee3c",
+      "staging_hash": "6a3c5abeb7e122fcc4d2e069fea803b41aa4df044ebcf376d72edf07bdc2ee3c",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "ae46321be89ca92a",
+      "model": "026",
+      "field": "spark_plug",
+      "baseline_hash": "5735c3349eb72fe27004540bd8e12905b1175b0ba8894ee7d988957572cb0e67",
+      "staging_hash": "5735c3349eb72fe27004540bd8e12905b1175b0ba8894ee7d988957572cb0e67",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "185a0dc90a41d835",
+      "model": "046",
+      "field": "displacement_cc",
+      "baseline_hash": "fa7869be9e115e864dd1fb128705d4ce37519e96824658f7c5070c4a9b02b80d",
+      "staging_hash": "fa7869be9e115e864dd1fb128705d4ce37519e96824658f7c5070c4a9b02b80d",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "be008deb678debf2",
+      "model": "046",
+      "field": "bore_mm",
+      "baseline_hash": "67467e3e4da231fd7fc752d499c3e00981070d7ced54b9bc08ed753b4a9ef2f3",
+      "staging_hash": "67467e3e4da231fd7fc752d499c3e00981070d7ced54b9bc08ed753b4a9ef2f3",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "655bd677d4ddf22d",
+      "model": "046",
+      "field": "stroke_mm",
+      "baseline_hash": "9ece3434703203c47b625dc849c8f8c4cad075e342e3f9e4e231a5a70e1e49b5",
+      "staging_hash": "9ece3434703203c47b625dc849c8f8c4cad075e342e3f9e4e231a5a70e1e49b5",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "31ca6892a7bdfe12",
+      "model": "046",
+      "field": "idle_speed_rpm",
+      "baseline_hash": "40cc8b740df9ce6f1c959846fa92590078d60bbc709bac57ee7a256203a61d6a",
+      "staging_hash": "40cc8b740df9ce6f1c959846fa92590078d60bbc709bac57ee7a256203a61d6a",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "3260e5fc98a12778",
+      "model": "046",
+      "field": "fuel_tank_l",
+      "baseline_hash": "003f546b0fec27ee49ecb26fd1982310fb5a7e06644ae00c551e93da7114aeff",
+      "staging_hash": "003f546b0fec27ee49ecb26fd1982310fb5a7e06644ae00c551e93da7114aeff",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "6fcb206aab3fc45e",
+      "model": "046",
+      "field": "electrode_gap_mm",
+      "baseline_hash": "de644bdd8e15a213a41c7dbf8e0ac8a6e76bb28bd67a587cf27907366fa81ec3",
+      "staging_hash": "de644bdd8e15a213a41c7dbf8e0ac8a6e76bb28bd67a587cf27907366fa81ec3",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "e94d9b6042dfe6e6",
+      "model": "046",
+      "field": "spark_plug",
+      "baseline_hash": "7fc14db206759d7860958881d45b9b712a4f238c23ea277b27787cde6e86ddac",
+      "staging_hash": "7fc14db206759d7860958881d45b9b712a4f238c23ea277b27787cde6e86ddac",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "cec7bdf2432fabbe",
+      "model": "ts-410",
+      "field": "displacement_cc",
+      "baseline_hash": "376b969715ac322c3e8938af71a5e6fe3a86c6573f8f4e70dd2b3e72de92d7bf",
+      "staging_hash": "376b969715ac322c3e8938af71a5e6fe3a86c6573f8f4e70dd2b3e72de92d7bf",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "b2d18aaa9692ead2",
+      "model": "ts-410",
+      "field": "bore_mm",
+      "baseline_hash": "2035da88bd0997782ea0c1a652e696f2fd9c5b786da8c9a97493b26a0ecfea14",
+      "staging_hash": "2035da88bd0997782ea0c1a652e696f2fd9c5b786da8c9a97493b26a0ecfea14",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "cc5512ff4192bb93",
+      "model": "ts-410",
+      "field": "stroke_mm",
+      "baseline_hash": "1410b436763b56012e6b6ccf8b8d43940f7ec7b128e2cebfa3694291824d9462",
+      "staging_hash": "1410b436763b56012e6b6ccf8b8d43940f7ec7b128e2cebfa3694291824d9462",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "55b2da771991d0ae",
+      "model": "ts-410",
+      "field": "idle_speed_rpm",
+      "baseline_hash": "f5d33d57d411e9aa11995988ed41fcc2aeeb92ff53cc198266524822a62b945e",
+      "staging_hash": "f5d33d57d411e9aa11995988ed41fcc2aeeb92ff53cc198266524822a62b945e",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "364feaa44fd8dff8",
+      "model": "ts-420",
+      "field": "displacement_cc",
+      "baseline_hash": "39d30fd06913124411b607045cbf07eab5c1f2c75c281de3312153d6ffebb1aa",
+      "staging_hash": "39d30fd06913124411b607045cbf07eab5c1f2c75c281de3312153d6ffebb1aa",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "ff91450487878c90",
+      "model": "ts-420",
+      "field": "bore_mm",
+      "baseline_hash": "f6a13f10aa7db0587eb294a1436dd30bd0d6541340040a032ce9d24cba4b1f22",
+      "staging_hash": "f6a13f10aa7db0587eb294a1436dd30bd0d6541340040a032ce9d24cba4b1f22",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "d1093f6b03c43aba",
+      "model": "ts-420",
+      "field": "stroke_mm",
+      "baseline_hash": "dc68db7f32de495397861d0f5dd5b7520f03b0035d08fdcd5f97e01d3824c41a",
+      "staging_hash": "dc68db7f32de495397861d0f5dd5b7520f03b0035d08fdcd5f97e01d3824c41a",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    },
+    {
+      "fact_id": "2bf1738c41531cf8",
+      "model": "ts-420",
+      "field": "idle_speed_rpm",
+      "baseline_hash": "39df4ce21286090a31436cd8194e968f41fca87b1a39c44b17d04f78cd9cbb83",
+      "staging_hash": "39df4ce21286090a31436cd8194e968f41fca87b1a39c44b17d04f78cd9cbb83",
+      "preserved": true,
+      "changed": false,
+      "removed": false
+    }
+  ]
+}
