@@ -1,0 +1,2011 @@
+{
+  "generated_at": "2026-08-31T19:34:18.286Z",
+  "phase_id": "35C.4.3.1",
+  "HISTORICAL_PROMOTIONS": 111,
+  "RETAINED_UNCHANGED": 78,
+  "REMOVED": 24,
+  "REPLACED_OLD_FACTS": 9,
+  "REPLACEMENT_FACTS": 9,
+  "NEW_AFTER_REEVALUATION": 13,
+  "CORRECTED_PROMOTIONS": 100,
+  "HISTORICAL_INVARIANT": "PASS",
+  "CORRECTED_INVARIANT": "PASS",
+  "PRECOMMIT_ACCOUNTING": "PASS",
+  "replacement_mappings": [
+    {
+      "model": "009",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "017",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "018",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "036",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "044",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "088",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "ms-260",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "ms-360",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    },
+    {
+      "model": "ms-460",
+      "field": "spark_plug",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "replacement_reason": "SPARK_MANUFACTURER_MODEL_SPLIT_CORRECTED"
+    }
+  ],
+  "new_after_reevaluation_records": [
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "009",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "017",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "018",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "026",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "036",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "044",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "046",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "088",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "ms-260",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "ms-360",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "ms-460",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "fs-350",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "NEW_AFTER_REEVALUATION",
+      "model": "hs-45",
+      "field": "electrode_gap_mm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge\nTrimmer: HS 45, HL 45",
+      "new_raw_value": "0.5 0.02",
+      "new_normalized_value": 0.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    }
+  ],
+  "classifications": [
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "009",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "36.6 2.23",
+      "old_normalized_value": 36.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "36.6 2.23",
+      "new_normalized_value": 36.6,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "009",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "36 1.42",
+      "old_normalized_value": 36,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "36 1.42",
+      "new_normalized_value": 36,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "009",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "36 1.42",
+      "old_normalized_value": 36,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "36 1.42",
+      "new_normalized_value": 36,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "009",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "1.2 (1.6) 7,500",
+      "old_normalized_value": 1.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.2 (1.6) 7,500",
+      "new_normalized_value": 1.2,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "009",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "1.2 (1.6) 7,500",
+      "old_normalized_value": 1.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.2 (1.6) 7,500",
+      "new_normalized_value": 1.6,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "009",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "009",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "017",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "30.1 1.84",
+      "old_normalized_value": 30.1,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "30.1 1.84",
+      "new_normalized_value": 30.1,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "017",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "37 1.46",
+      "old_normalized_value": 37,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "37 1.46",
+      "new_normalized_value": 37,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "017",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "28 1.10",
+      "old_normalized_value": 28,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "28 1.10",
+      "new_normalized_value": 28,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "017",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "1.2 (1.6) 8,500",
+      "old_normalized_value": 1.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.2 (1.6) 8,500",
+      "new_normalized_value": 1.2,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "017",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "1.2 (1.6) 8,500",
+      "old_normalized_value": 1.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.2 (1.6) 8,500",
+      "new_normalized_value": 1.6,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "017",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "017",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "old_raw_value": "3,200",
+      "old_normalized_value": 3200,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "3,200",
+      "new_normalized_value": 3200,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "018",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "31.8 1.94",
+      "old_normalized_value": 31.8,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "31.8 1.94",
+      "new_normalized_value": 31.8,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "018",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "38 1.50",
+      "old_normalized_value": 38,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "38 1.50",
+      "new_normalized_value": 38,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "018",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "28 1.10",
+      "old_normalized_value": 28,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "28 1.10",
+      "new_normalized_value": 28,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "018",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "1.4 (1.9) 8,500",
+      "old_normalized_value": 1.4,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.4 (1.9) 8,500",
+      "new_normalized_value": 1.4,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "018",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "1.4 (1.9) 8,500",
+      "old_normalized_value": 1.9,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.4 (1.9) 8,500",
+      "new_normalized_value": 1.9,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "018",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "018",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "35.2 2.14",
+      "old_normalized_value": 35.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "40 1.58",
+      "old_normalized_value": 40,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "28 1.10",
+      "old_normalized_value": 28,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "1.6 (2.2) 10,000",
+      "old_normalized_value": 1.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "1.6 (2.2) 10,000",
+      "old_normalized_value": 2.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "020",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "026",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "old_raw_value": "48.7 2.96",
+      "old_normalized_value": 48.7,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "48.7 2.96",
+      "new_normalized_value": 48.7,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "026",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "old_raw_value": "44 1.73",
+      "old_normalized_value": 44,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "44 1.73",
+      "new_normalized_value": 44,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "026",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "old_raw_value": "32 1.26",
+      "old_normalized_value": 32,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "32 1.26",
+      "new_normalized_value": 32,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "026",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "old_raw_value": "2.4 (3.2) 9,500",
+      "old_normalized_value": 2.4,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2.4 (3.2) 9,500",
+      "new_normalized_value": 2.4,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "026",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "old_raw_value": "2.4 (3.2) 9,500",
+      "old_normalized_value": 3.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2.4 (3.2) 9,500",
+      "new_normalized_value": 3.2,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "026",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "036",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "61.5 3.75",
+      "old_normalized_value": 61.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "61.5 3.75",
+      "new_normalized_value": 61.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "036",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "48 1.89",
+      "old_normalized_value": 48,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "48 1.89",
+      "new_normalized_value": 48,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "036",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "34 1.34",
+      "old_normalized_value": 34,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "34 1.34",
+      "new_normalized_value": 34,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "036",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "3.3 (4.5) 9,500",
+      "old_normalized_value": 3.3,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "3.3 (4.5) 9,500",
+      "new_normalized_value": 3.3,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "036",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "3.3 (4.5) 9,500",
+      "old_normalized_value": 4.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "3.3 (4.5) 9,500",
+      "new_normalized_value": 4.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "036",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "036",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "044",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "70.7 4.31",
+      "old_normalized_value": 70.7,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "70.7 4.31",
+      "new_normalized_value": 70.7,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "044",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "50 1.97",
+      "old_normalized_value": 50,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "50 1.97",
+      "new_normalized_value": 50,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "044",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "36 1.42",
+      "old_normalized_value": 36,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "36 1.42",
+      "new_normalized_value": 36,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "044",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "4.0 (5.4) 9,500",
+      "old_normalized_value": 4,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "4.0 (5.4) 9,500",
+      "new_normalized_value": 4,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "044",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "4.0 (5.4) 9,500",
+      "old_normalized_value": 5.4,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "4.0 (5.4) 9,500",
+      "new_normalized_value": 5.4,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "044",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "044",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "old_raw_value": "2,500",
+      "old_normalized_value": 2500,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,500",
+      "new_normalized_value": 2500,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "046",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "old_raw_value": "76.5 4.67",
+      "old_normalized_value": 76.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "76.5 4.67",
+      "new_normalized_value": 76.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "046",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "old_raw_value": "52 2.05",
+      "old_normalized_value": 52,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "52 2.05",
+      "new_normalized_value": 52,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "046",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "old_raw_value": "4.5 (6.1) 9,500",
+      "old_normalized_value": 4.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "4.5 (6.1) 9,500",
+      "new_normalized_value": 4.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "046",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "old_raw_value": "4.5 (6.1) 9,500",
+      "old_normalized_value": 6.1,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "4.5 (6.1) 9,500",
+      "new_normalized_value": 6.1,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "046",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "old_raw_value": "2,500",
+      "old_normalized_value": 2500,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,500",
+      "new_normalized_value": 2500,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "088",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "121.6 7.42",
+      "old_normalized_value": 121.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "121.6 7.42",
+      "new_normalized_value": 121.6,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "088",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "60 2.37",
+      "old_normalized_value": 60,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "60 2.37",
+      "new_normalized_value": 60,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "088",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "43 1.70",
+      "old_normalized_value": 43,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "43 1.70",
+      "new_normalized_value": 43,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "088",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "6.4 (8.7) 8,500",
+      "old_normalized_value": 6.4,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "6.4 (8.7) 8,500",
+      "new_normalized_value": 6.4,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "088",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "6.4 (8.7) 8,500",
+      "old_normalized_value": 8.7,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "6.4 (8.7) 8,500",
+      "new_normalized_value": 8.7,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "088",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "088",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "old_raw_value": "2,700",
+      "old_normalized_value": 2700,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,700",
+      "new_normalized_value": 2700,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "35.2 2.14",
+      "old_normalized_value": 35.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "40 1.58",
+      "old_normalized_value": 40,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "28 1.10",
+      "old_normalized_value": 28,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "1.6 (2.2) 10,000",
+      "old_normalized_value": 1.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "1.6 (2.2) 10,000",
+      "old_normalized_value": 2.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-200",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-260",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "48.7 2.96",
+      "old_normalized_value": 48.7,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "48.7 2.96",
+      "new_normalized_value": 48.7,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-260",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "44 1.73",
+      "old_normalized_value": 44,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "44 1.73",
+      "new_normalized_value": 44,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-260",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "32 1.26",
+      "old_normalized_value": 32,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "32 1.26",
+      "new_normalized_value": 32,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-260",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "2.4 (3.2) 9,500",
+      "old_normalized_value": 2.4,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2.4 (3.2) 9,500",
+      "new_normalized_value": 2.4,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-260",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "2.4 (3.2) 9,500",
+      "old_normalized_value": 3.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2.4 (3.2) 9,500",
+      "new_normalized_value": 3.2,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "ms-260",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-260",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "61.5 3.75",
+      "old_normalized_value": 61.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "48 1.89",
+      "old_normalized_value": 48,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "34 1.34",
+      "old_normalized_value": 34,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "3.3 (4.5) 9,500",
+      "old_normalized_value": 3.3,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "3.3 (4.5) 9,500",
+      "old_normalized_value": 4.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "ms-360",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "VARIANT_SCOPE_UNRESOLVED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "61.5 3.75",
+      "old_normalized_value": 61.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "61.5 3.75",
+      "new_normalized_value": 61.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-360",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "48 1.89",
+      "old_normalized_value": 48,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "48 1.89",
+      "new_normalized_value": 48,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-360",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "34 1.34",
+      "old_normalized_value": 34,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "34 1.34",
+      "new_normalized_value": 34,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-360",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "3.3 (4.5) 9,500",
+      "old_normalized_value": 3.3,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "3.3 (4.5) 9,500",
+      "new_normalized_value": 3.3,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-360",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "3.3 (4.5) 9,500",
+      "old_normalized_value": 4.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "3.3 (4.5) 9,500",
+      "new_normalized_value": 4.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "ms-360",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-360",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-460",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "76.5 4.67",
+      "old_normalized_value": 76.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "76.5 4.67",
+      "new_normalized_value": 76.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-460",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "52 2.05",
+      "old_normalized_value": 52,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "52 2.05",
+      "new_normalized_value": 52,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-460",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "36 1.42",
+      "old_normalized_value": 36,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "36 1.42",
+      "new_normalized_value": 36,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-460",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "4.5 (6.1) 9,500",
+      "old_normalized_value": 4.5,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "4.5 (6.1) 9,500",
+      "new_normalized_value": 4.5,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-460",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "4.5 (6.1) 9,500",
+      "old_normalized_value": 6.1,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "4.5 (6.1) 9,500",
+      "new_normalized_value": 6.1,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REPLACED_BY_CORRECTED_FACT",
+      "model": "ms-460",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "WSR 6 F BPMR 7 A",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "WSR 6 F BPMR 7 A",
+      "new_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "ms-460",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "old_raw_value": "2,500",
+      "old_normalized_value": 2500,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,500",
+      "new_normalized_value": 2500,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "fs-350",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "36.3 2.21",
+      "old_normalized_value": 36.3,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "36.3 2.21",
+      "new_normalized_value": 36.3,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "fs-350",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "38 1.50",
+      "old_normalized_value": 38,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "38 1.50",
+      "new_normalized_value": 38,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "fs-350",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "32 1.26",
+      "old_normalized_value": 32,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "32 1.26",
+      "new_normalized_value": 32,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "fs-350",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "1.6 (2.2) 9,000",
+      "old_normalized_value": 1.6,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.6 (2.2) 9,000",
+      "new_normalized_value": 1.6,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "fs-350",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "1.6 (2.2) 9,000",
+      "old_normalized_value": 2.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "1.6 (2.2) 9,000",
+      "new_normalized_value": 2.2,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "fs-350",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A RCJ 6 Y"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "SPARK_SEMANTIC_INVALID"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "fs-350",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "fs-350",
+      "field": "max_engine_speed_rpm",
+      "source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "old_raw_value": "11.3 - 13.3",
+      "old_normalized_value": null,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "PROMOTION_GATE_FAILED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "displacement_cc",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "27.2 1.66",
+      "old_normalized_value": 27.2,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "27.2 1.66",
+      "new_normalized_value": 27.2,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "bore_mm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "34 1.34",
+      "old_normalized_value": 34,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "34 1.34",
+      "new_normalized_value": 34,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "stroke_mm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "30 1.18",
+      "old_normalized_value": 30,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "30 1.18",
+      "new_normalized_value": 30,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "power_kw",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "0.75 (1.0) 7,000",
+      "old_normalized_value": 0.75,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "0.75 (1.0) 7,000",
+      "new_normalized_value": 0.75,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "power_hp",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "0.75 (1.0) 7,000",
+      "old_normalized_value": 1,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "0.75 (1.0) 7,000",
+      "new_normalized_value": 1,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "REMOVED",
+      "model": "hs-45",
+      "field": "spark_plug",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "old_normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A RCJ 6 Y"
+        }
+      ],
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": null,
+      "new_normalized_value": null,
+      "new_status": null,
+      "removal_reason": "SPARK_SEMANTIC_INVALID"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "idle_speed_rpm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "2,800",
+      "old_normalized_value": 2800,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "2,800",
+      "new_normalized_value": 2800,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    },
+    {
+      "classification": "RETAINED_UNCHANGED",
+      "model": "hs-45",
+      "field": "max_engine_speed_rpm",
+      "source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "old_raw_value": "9,500",
+      "old_normalized_value": 9500,
+      "old_status": "OFFICIAL_DOCUMENTED",
+      "new_raw_value": "9,500",
+      "new_normalized_value": 9500,
+      "new_status": "OFFICIAL_DOCUMENTED"
+    }
+  ]
+}

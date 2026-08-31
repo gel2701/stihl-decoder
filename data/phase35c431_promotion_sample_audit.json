@@ -1,0 +1,222 @@
+{
+  "generated_at": "2026-08-31T19:34:18.302Z",
+  "phase_id": "35C.4.3.1",
+  "SAMPLE_MODELS": [
+    "009",
+    "fs-350",
+    "017",
+    "018",
+    "026"
+  ],
+  "SAMPLE_FIELDS": [
+    "bore_mm",
+    "spark_plug",
+    "power_kw",
+    "idle_speed_rpm",
+    "displacement_cc",
+    "electrode_gap_mm",
+    "power_hp",
+    "stroke_mm"
+  ],
+  "HAS_EXACT_SCOPE": "YES",
+  "HAS_MULTI_MODEL_SCOPE": "YES",
+  "HAS_SPARK": "YES",
+  "HAS_POWER": "YES",
+  "HAS_RPM": "YES",
+  "SAMPLE_REQUIREMENTS_PASS": "PASS",
+  "records": [
+    {
+      "model": "009",
+      "field": "bore_mm",
+      "normalized_value": 36,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "fs-350",
+      "field": "bore_mm",
+      "normalized_value": 38,
+      "source": "doc/TS_Data/FS200_body.htm",
+      "scope": "MULTI_MODEL_EXPLICIT_SHARED_VALUE"
+    },
+    {
+      "model": "009",
+      "field": "spark_plug",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "009",
+      "field": "power_kw",
+      "normalized_value": 1.2,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "009",
+      "field": "idle_speed_rpm",
+      "normalized_value": 2800,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "009",
+      "field": "displacement_cc",
+      "normalized_value": 36.6,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "fs-350",
+      "field": "displacement_cc",
+      "normalized_value": 36.3,
+      "source": "doc/TS_Data/FS200_body.htm",
+      "scope": "MULTI_MODEL_EXPLICIT_SHARED_VALUE"
+    },
+    {
+      "model": "017",
+      "field": "bore_mm",
+      "normalized_value": 37,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "018",
+      "field": "bore_mm",
+      "normalized_value": 38,
+      "source": "doc/TS_Data/018_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "026",
+      "field": "bore_mm",
+      "normalized_value": 44,
+      "source": "doc/TS_Data/026_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "009",
+      "field": "electrode_gap_mm",
+      "normalized_value": 0.5,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "009",
+      "field": "power_hp",
+      "normalized_value": 1.6,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "009",
+      "field": "stroke_mm",
+      "normalized_value": 36,
+      "source": "doc/TS_Data/009_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "displacement_cc",
+      "normalized_value": 30.1,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "electrode_gap_mm",
+      "normalized_value": 0.5,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "idle_speed_rpm",
+      "normalized_value": 3200,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "power_hp",
+      "normalized_value": 1.6,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "power_kw",
+      "normalized_value": 1.2,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "spark_plug",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "017",
+      "field": "stroke_mm",
+      "normalized_value": 28,
+      "source": "doc/TS_Data/017_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "018",
+      "field": "displacement_cc",
+      "normalized_value": 31.8,
+      "source": "doc/TS_Data/018_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "018",
+      "field": "electrode_gap_mm",
+      "normalized_value": 0.5,
+      "source": "doc/TS_Data/018_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "018",
+      "field": "idle_speed_rpm",
+      "normalized_value": 2800,
+      "source": "doc/TS_Data/018_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "018",
+      "field": "power_hp",
+      "normalized_value": 1.9,
+      "source": "doc/TS_Data/018_body.htm",
+      "scope": "EXACT_MODEL"
+    },
+    {
+      "model": "018",
+      "field": "power_kw",
+      "normalized_value": 1.4,
+      "source": "doc/TS_Data/018_body.htm",
+      "scope": "EXACT_MODEL"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-08-31T19:34:18.311Z",
+  "phase_id": "35C.4.3.1",
+  "records": [
+    {
+      "check": "DERIVATIVE_SOURCE_PROMOTION_BLOCKED",
+      "mutation": "DERIVATIVE_SOURCE_PROMOTION_BLOCKED",
+      "expected": "promoted count = 0",
+      "actual": [
+        "DERIVATIVE_SOURCE_NOT_TECHNICAL_EVIDENCE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "SCS_FALSE_INDEPENDENCE_BLOCKED",
+      "mutation": "SCS_FALSE_INDEPENDENCE_BLOCKED",
+      "expected": "blocked or normalized",
+      "actual": [
+        "SCS_LINEAGE_INDEPENDENCE_MISMATCH"
+      ],
+      "pass": true
+    },
+    {
+      "check": "WRONG_MODEL_SCOPE_PROMOTION_BLOCKED",
+      "mutation": "WRONG_MODEL_SCOPE_PROMOTION_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "PROMOTION_SCOPE_REVALIDATION_FAILED"
+      ],
+      "pass": true
+    },
+    {
+      "check": "SOURCE_HEADING_MISSING_BLOCKED",
+      "mutation": "SOURCE_HEADING_MISSING_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "SOURCE_HEADING_MISSING",
+        "NO_TECHNICAL_DATA_IN_SOURCE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "SOURCE_LOCATOR_MISSING_BLOCKED",
+      "mutation": "SOURCE_LOCATOR_MISSING_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "SOURCE_PAYLOAD_OR_LOCATOR_MISSING"
+      ],
+      "pass": true
+    },
+    {
+      "check": "SCS_PLACEHOLDER_BLOCKED",
+      "mutation": "SCS_PLACEHOLDER_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "NO_TECHNICAL_DATA_IN_SOURCE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "UNKNOWN_WEIGHT_DEFINITION_BLOCKED",
+      "mutation": "UNKNOWN_WEIGHT_DEFINITION_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "MEASUREMENT_DEFINITION_UNKNOWN"
+      ],
+      "pass": true
+    },
+    {
+      "check": "NULL_NORMALIZED_VALUE_BLOCKED",
+      "mutation": "NULL_NORMALIZED_VALUE_BLOCKED",
+      "expected": "blocked",
+      "actual": [
+        "NULL_NORMALIZED_VALUE"
+      ],
+      "pass": true
+    },
+    {
+      "check": "DUPLICATE_VIEW_PROMOTION_BLOCKED",
+      "mutation": "DUPLICATE_VIEW_PROMOTION_BLOCKED",
+      "expected": "single promotion",
+      "actual": 1,
+      "pass": true
+    },
+    {
+      "check": "NUMERIC_046_MODEL_COLLISION_BLOCKED",
+      "mutation": "NUMERIC_046_MODEL_COLLISION_BLOCKED",
+      "expected": "no unsafe specs",
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "NUMERIC_015_MODEL_COLLISION_BLOCKED",
+      "mutation": "NUMERIC_015_MODEL_COLLISION_BLOCKED",
+      "expected": "no unsafe specs",
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "SPARK_COMBINED_IDENTIFIER_BLOCKED",
+      "mutation": "SPARK_COMBINED_IDENTIFIER_BLOCKED",
+      "expected": "two manufacturers split",
+      "actual": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "SPARK_CARDINALITY_AMBIGUITY_BLOCKED",
+      "mutation": "SPARK_CARDINALITY_AMBIGUITY_BLOCKED",
+      "expected": "ambiguous blocked",
+      "actual": "AMBIGUOUS",
+      "pass": true
+    },
+    {
+      "check": "SPARK_CHAIN_CONTAMINATION_BLOCKED",
+      "mutation": "SPARK_CHAIN_CONTAMINATION_BLOCKED",
+      "expected": "invalid",
+      "actual": [
+        "SPARK_CHAIN_CONTAMINATION"
+      ],
+      "pass": true
+    },
+    {
+      "check": "ELECTRODE_GAP_AS_SPARK_BLOCKED",
+      "mutation": "ELECTRODE_GAP_AS_SPARK_BLOCKED",
+      "expected": "electrode gap remapped",
+      "actual": "electrode_gap_mm",
+      "pass": true
+    },
+    {
+      "check": "MS170_009_PROMOTION_BLOCKED",
+      "mutation": "MS170_009_PROMOTION_BLOCKED",
+      "expected": "blocked",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "MS180_009_PROMOTION_BLOCKED",
+      "mutation": "MS180_009_PROMOTION_BLOCKED",
+      "expected": "blocked",
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "046_CONFLICT_WINNER_BLOCKED",
+      "mutation": "046_CONFLICT_WINNER_BLOCKED",
+      "expected": "existing conflict remains",
+      "actual": "OFFICIAL_CONFLICTED",
+      "pass": true
+    },
+    {
+      "check": "VARIANT_SCOPE_BLEED_BLOCKED",
+      "mutation": "VARIANT_SCOPE_BLEED_BLOCKED",
+      "expected": "variant sources excluded",
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "FAILURE_INJECTION": "PASS"
+}

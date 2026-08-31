@@ -1,0 +1,1894 @@
+{
+  "generated_at": "2026-08-31T19:34:18.279Z",
+  "phase_id": "35C.4.3.1",
+  "SPARK_FACTS_REEVALUATED": 96,
+  "SPARK_FACTS_VALID": 67,
+  "SPARK_FACTS_BLOCKED": 74,
+  "SPARK_COMBINED_MANUFACTURER_VALUE_LEAKS": 0,
+  "records": [
+    {
+      "model": "009",
+      "source": "doc/TS_Data/009_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "009",
+      "source": "doc/TS_Data/009_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "017",
+      "source": "doc/TS_Data/017_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "017",
+      "source": "doc/TS_Data/017_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "018",
+      "source": "doc/TS_Data/018_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "018",
+      "source": "doc/TS_Data/018_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "019t",
+      "source": "doc/TS_Data/019t_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "019t",
+      "source": "doc/TS_Data/019t_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "020",
+      "source": "doc/TS_Data/020t_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "020",
+      "source": "doc/TS_Data/020t_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "026",
+      "source": "doc/TS_Data/026_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "026",
+      "source": "doc/TS_Data/026_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "036",
+      "source": "doc/TS_Data/036_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "036",
+      "source": "doc/TS_Data/036_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "044",
+      "source": "doc/TS_Data/044_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "044",
+      "source": "doc/TS_Data/044_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "046",
+      "source": "doc/TS_Data/046_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "046",
+      "source": "doc/TS_Data/046_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "088",
+      "source": "doc/TS_Data/088_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "088",
+      "source": "doc/TS_Data/088_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "ms-170",
+      "source": "doc/TS_Data/009_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-170",
+      "source": "doc/TS_Data/009_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-180",
+      "source": "doc/TS_Data/009_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-180",
+      "source": "doc/TS_Data/009_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms191t",
+      "source": "doc/TS_Data/ms191t_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms191t",
+      "source": "doc/TS_Data/ms191t_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-200",
+      "source": "doc/TS_Data/ms200t_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-200",
+      "source": "doc/TS_Data/ms200t_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-260",
+      "source": "doc/TS_Data/ms260_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "ms-260",
+      "source": "doc/TS_Data/ms260_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "ms-360",
+      "source": "doc/TS_Data/ms360c_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-360",
+      "source": "doc/TS_Data/ms360c_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-360",
+      "source": "doc/TS_Data/ms360_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "ms-360",
+      "source": "doc/TS_Data/ms360_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "ms440",
+      "source": "doc/TS_Data/ms440_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms440",
+      "source": "doc/TS_Data/ms440_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ms-460",
+      "source": "doc/TS_Data/ms460_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK"
+      ],
+      "plug_tokens_detected": [
+        "WSR 6 F",
+        "BPMR 7 A"
+      ],
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "ms-460",
+      "source": "doc/TS_Data/ms460_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "bt120c",
+      "source": "doc/TS_Data/BT120_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "bt120c",
+      "source": "doc/TS_Data/BT120_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ts350",
+      "source": "doc/TS_Data/TS350_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ts350",
+      "source": "doc/TS_Data/TS350_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ts400",
+      "source": "doc/TS_Data/TS400_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ts400",
+      "source": "doc/TS_Data/TS400_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ts460",
+      "source": "doc/TS_Data/TS460_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ts460",
+      "source": "doc/TS_Data/TS460_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ts510",
+      "source": "doc/TS_Data/TS510_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ts510",
+      "source": "doc/TS_Data/TS510_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ts760",
+      "source": "doc/TS_Data/TS760_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ts760",
+      "source": "doc/TS_Data/TS760_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "bg45",
+      "source": "doc/TS_Data/BG45_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "bg45",
+      "source": "doc/TS_Data/BG45_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fc55",
+      "source": "doc/TS_Data/FC55_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fc55",
+      "source": "doc/TS_Data/FC55_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fc75",
+      "source": "doc/TS_Data/FC75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fc75",
+      "source": "doc/TS_Data/FC75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fc83",
+      "source": "doc/TS_Data/FS83_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "- CMR 7 A -",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "-",
+        "CMR",
+        "7",
+        "A",
+        "-"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fc83",
+      "source": "doc/TS_Data/FS83_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fh75",
+      "source": "doc/TS_Data/HS75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fh75",
+      "source": "doc/TS_Data/HS75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs-350",
+      "source": "doc/TS_Data/FS200_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs-350",
+      "source": "doc/TS_Data/FS200_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "fs36",
+      "source": "doc/TS_Data/FS36_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "- BMR 6 A AC CSR 45 2)",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "-",
+        "BMR",
+        "6",
+        "A",
+        "AC",
+        "CSR",
+        "45",
+        "2"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs36",
+      "source": "doc/TS_Data/FS36_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.7 - 0.8 0.028 - 0.032",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.7,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs450",
+      "source": "doc/TS_Data/FS450_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs450",
+      "source": "doc/TS_Data/FS450_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs45",
+      "source": "doc/TS_Data/FS45_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs45",
+      "source": "doc/TS_Data/FS45_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs46",
+      "source": "doc/TS_Data/FS46_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs46",
+      "source": "doc/TS_Data/FS46_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs550",
+      "source": "doc/TS_Data/FS550_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs550",
+      "source": "doc/TS_Data/FS550_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs55",
+      "source": "doc/TS_Data/FS45_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs55",
+      "source": "doc/TS_Data/FS45_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs75",
+      "source": "doc/TS_Data/FS75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs75",
+      "source": "doc/TS_Data/FS75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs80",
+      "source": "doc/TS_Data/FS75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs80",
+      "source": "doc/TS_Data/FS75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "fs83",
+      "source": "doc/TS_Data/FS83_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "- CMR 7 A -",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "-",
+        "CMR",
+        "7",
+        "A",
+        "-"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "fs83",
+      "source": "doc/TS_Data/FS83_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "hl45",
+      "source": "doc/TS_Data/HS45_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "hl45",
+      "source": "doc/TS_Data/HS45_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "hl73",
+      "source": "doc/TS_Data/HL73_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "- CMR 7 A -",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "-",
+        "CMR",
+        "7",
+        "A",
+        "-"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "hl73",
+      "source": "doc/TS_Data/HL73_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.6 0.024",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.6,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "hl75",
+      "source": "doc/TS_Data/HS75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "hl75",
+      "source": "doc/TS_Data/HS75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "hs-45",
+      "source": "doc/TS_Data/HS45_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "hs-45",
+      "source": "doc/TS_Data/HS45_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "PROMOTED",
+      "reason": []
+    },
+    {
+      "model": "hs75",
+      "source": "doc/TS_Data/HS75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "hs75",
+      "source": "doc/TS_Data/HS75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ht70",
+      "source": "doc/TS_Data/HT70_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ht70",
+      "source": "doc/TS_Data/HT70_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "ht73",
+      "source": "doc/TS_Data/HT73_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "- CMR 7 A -",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "-",
+        "CMR",
+        "7",
+        "A",
+        "-"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "ht73",
+      "source": "doc/TS_Data/HT73_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    },
+    {
+      "model": "kw85",
+      "source": "doc/TS_Data/FS75_body.htm",
+      "field_heading": "Type of spark plug BOSCH NGK CHAMPION",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "manufacturers_detected": [
+        "BOSCH",
+        "NGK",
+        "CHAMPION"
+      ],
+      "plug_tokens_detected": [
+        "WSR",
+        "6",
+        "F",
+        "BPMR",
+        "7",
+        "A",
+        "RCJ",
+        "6",
+        "Y"
+      ],
+      "normalized_value": null,
+      "semantic_status": "INVALID",
+      "promotion_status": "BLOCKED",
+      "reason": [
+        "SPARK_COMBINED_IDENTIFIER_INVALID"
+      ]
+    },
+    {
+      "model": "kw85",
+      "source": "doc/TS_Data/FS75_body.htm",
+      "field_heading": "Spark plug electrode gap mm in",
+      "raw_value": "0.5 0.02",
+      "manufacturers_detected": [],
+      "plug_tokens_detected": [],
+      "normalized_value": 0.5,
+      "semantic_status": "VALID",
+      "promotion_status": "BLOCKED",
+      "reason": []
+    }
+  ]
+}

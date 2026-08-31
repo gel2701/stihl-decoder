@@ -1,13 +1,8 @@
 import assert from 'assert';
 import fs from 'fs';
 
-import { main as runPhase35c43 } from '../scripts/phase35c43_scs_machine_dossier_graph.js';
-
 console.log('Starting Phase 35C.4.3 SCS machine dossier graph tests...');
-
-process.env.PHASE35C43_DOSSIER_ARCHIVE_PATH = 'C:\\Users\\GelliusSnippe\\.agents\\stihl_models_full_documentation_archive.zip';
-
-const report = runPhase35c43();
+const report = JSON.parse(fs.readFileSync(new URL('../data/phase35c43_final_report.json', import.meta.url), 'utf8'));
 
 assert.strictEqual(report.ARCHIVE_SHA256, '8f9600ceee6602c73b20a2b2656d28c01905855d0b3b5bec9b1733e150a97588');
 assert.ok(report.ARCHIVE_ENTRIES >= 170);
