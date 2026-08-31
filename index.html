@@ -355,7 +355,7 @@
             </h4>
             
             <div>
-              <span class="text-xs text-gray-400">Geïdentificeerd Model:</span>
+              <span id="res-model-label" class="text-xs text-gray-400">Geïdentificeerd model:</span>
               <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
             </div>
 
@@ -367,7 +367,7 @@
             <!-- PRECISE SERIAL BREAKPOINTS PRODUCTION PERIOD & GENERATION CARD -->
             <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800 space-y-1.5">
               <div class="flex justify-between items-center">
-                <span class="text-xs text-gray-400 font-medium">Bouwperiode & Uitvoering:</span>
+                <span class="text-xs text-gray-400 font-medium">Productieperiode-indicatie & uitvoering:</span>
                 <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Breakpoint-gebaseerde indicatie</span>
               </div>
               
@@ -720,21 +720,21 @@
           const dispBox = document.getElementById('model-disp-box');
           if (dispBox) dispBox.style.display = specs.displacement_cc ? 'block' : 'none';
 
-          document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Broncontrole in behandeling';
-          document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Broncontrole in behandeling';
-          document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'Broncontrole in behandeling';
-          document.getElementById('model-spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Broncontrole in behandeling';
+          document.getElementById('model-spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Nog niet betrouwbaar gedocumenteerd';
+          document.getElementById('model-spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : (specs.power_kw ? `${specs.power_kw} kW` : 'Nog niet betrouwbaar gedocumenteerd');
+          document.getElementById('model-spec-spark-plug').innerText = specs.spark_plug || 'Nog niet betrouwbaar gedocumenteerd';
+          document.getElementById('model-spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Nog niet betrouwbaar gedocumenteerd';
           
-          document.getElementById('model-spec-carb-h').innerText = specs.carb_h_setting || 'Broncontrole in behandeling';
-          document.getElementById('model-spec-carb-l').innerText = specs.carb_l_setting || 'Broncontrole in behandeling';
-          document.getElementById('model-spec-carb-la').innerText = specs.carb_la_setting || 'Broncontrole in behandeling';
+          document.getElementById('model-spec-carb-h').innerText = specs.carb_h_setting || 'Nog niet betrouwbaar gedocumenteerd';
+          document.getElementById('model-spec-carb-l').innerText = specs.carb_l_setting || 'Nog niet betrouwbaar gedocumenteerd';
+          document.getElementById('model-spec-carb-la').innerText = specs.carb_la_setting || 'Nog niet betrouwbaar gedocumenteerd';
 
           const chainInfoEl = document.getElementById('model-spec-chain-info');
           const chainContainer = chainInfoEl ? chainInfoEl.parentElement : null;
           if (chainContainer) {
             if (isChainsaw && specs.chain_pitch) {
               chainContainer.style.display = 'block';
-              chainInfoEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Broncontrole in behandeling'} mm`;
+              chainInfoEl.innerText = `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Nog niet betrouwbaar gedocumenteerd'} mm`;
             } else {
               chainContainer.style.display = 'none';
             }
@@ -753,10 +753,16 @@
           const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
           const fuelTypeLabel = res.fuel_type_label || 'Niet vastgesteld';
 
-          currentModelName = (res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld';
+          currentModelName = res.exactModel || res.probableModelSeries || ((res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld');
 
           document.getElementById('res-serial-display').innerText = formatted;
           document.getElementById('res-model').innerText = currentModelName;
+          const modelLabelEl = document.getElementById('res-model-label');
+          if (modelLabelEl) {
+            modelLabelEl.innerText = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
+              ? 'Waarschijnlijke modelreeks:'
+              : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:');
+          }
           document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
           document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Duitsland'}${res.factory.location ? ` (${res.factory.location})` : ' (Waiblingen)'}` : 'Duitsland (Waiblingen)';
 
@@ -772,7 +778,16 @@
 
           const sourceStatusEl = document.getElementById('res-source-status-text');
           if (sourceStatusEl) {
-            if (res.sourceStatus === 'PRIMARY_SOURCE_LINKED' || res.hasPrimaryDoc) {
+            if (res.sourceStatus === 'CANONICAL_VERIFIED') {
+              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+              sourceStatusEl.innerText = 'Bronstatus: Meerdere bronnen bevestigd';
+            } else if (res.sourceStatus === 'OFFICIAL_DOCUMENTED') {
+              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30';
+              sourceStatusEl.innerText = res.sourceStatusLabel || 'Bronstatus: Officiële STIHL-bron';
+            } else if (res.sourceStatus === 'OFFICIAL_CONFLICTED') {
+              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
+              sourceStatusEl.innerText = res.sourceStatusLabel || 'Bronstatus: Bronverschil gevonden';
+            } else if (res.sourceStatus === 'PRIMARY_SOURCE_LINKED' || res.hasPrimaryDoc) {
               sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
               sourceStatusEl.innerText = 'Bronstatus: Primaire bron gekoppeld';
             } else if (res.sourceStatus === 'SERIES_SOURCE_LINKED') {
@@ -780,7 +795,7 @@
               sourceStatusEl.innerText = 'Bronstatus: Familiebron gekoppeld';
             } else {
               sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Primaire bron ontbreekt';
+              sourceStatusEl.innerText = 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
             }
           }
 
@@ -822,23 +837,23 @@
             if (carbLABox) carbLABox.style.display = 'block';
             if (oilBox) oilBox.style.display = isChainsaw ? 'block' : 'none';
 
-            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Broncontrole in behandeling';
-            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'Broncontrole in behandeling';
-            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Broncontrole in behandeling';
-            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Broncontrole in behandeling';
-            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Broncontrole in behandeling';
-            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || 'Broncontrole in behandeling';
-            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || 'Broncontrole in behandeling';
+            document.getElementById('spec-disp').innerText = specs.displacement_cc ? `${specs.displacement_cc} cc` : 'Nog niet betrouwbaar gedocumenteerd';
+            document.getElementById('spec-spark-plug').innerText = specs.spark_plug || 'Nog niet betrouwbaar gedocumenteerd';
+            document.getElementById('spec-electrode-gap').innerText = specs.electrode_gap_mm ? `${specs.electrode_gap_mm} mm` : 'Nog niet betrouwbaar gedocumenteerd';
+            document.getElementById('spec-carb-h').innerText = specs.carb_h_setting || 'Nog niet betrouwbaar gedocumenteerd';
+            document.getElementById('spec-carb-l').innerText = specs.carb_l_setting || 'Nog niet betrouwbaar gedocumenteerd';
+            document.getElementById('spec-carb-la').innerText = specs.carb_la_setting || 'Nog niet betrouwbaar gedocumenteerd';
+            document.getElementById('spec-oil-mix').innerText = specs.oil_mix_ratio || 'Nog niet betrouwbaar gedocumenteerd';
           }
 
-          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : 'Broncontrole in behandeling';
+          document.getElementById('spec-power').innerText = specs.power_hp ? `${specs.power_hp} pk (${specs.power_kw || ''} kW)` : (specs.power_kw ? `${specs.power_kw} kW` : 'Nog niet betrouwbaar gedocumenteerd');
           
           const serialChainEl = document.getElementById('spec-chain-info');
           const serialChainContainer = serialChainEl ? serialChainEl.parentElement : null;
           if (serialChainContainer) {
             if (isChainsaw) {
               serialChainContainer.style.display = 'block';
-              serialChainEl.innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Broncontrole in behandeling'} mm` : 'Broncontrole in behandeling';
+              serialChainEl.innerText = specs.chain_pitch ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm || 'Nog niet betrouwbaar gedocumenteerd'} mm` : 'Nog niet betrouwbaar gedocumenteerd';
             } else {
               serialChainContainer.style.display = 'none';
             }

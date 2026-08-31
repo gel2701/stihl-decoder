@@ -9,6 +9,43 @@ import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
 import { getFuelDriveLabel, getFuelTypeCode } from './publicationRules.js';
+import {
+  buildPublicEvidenceFieldMap,
+  buildPublicEvidenceMeta,
+  buildPublicSourceSummary,
+  findPublicEvidenceModel,
+  flattenPublicFactValue,
+  getPreferredPublicFact
+} from './publicEvidence.js';
+
+function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
+  const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
+  const technicalSpecs = {};
+  const publicFacts = [];
+
+  for (const [field, records] of Object.entries(fieldMap)) {
+    const fact = getPreferredPublicFact(records);
+    if (!fact || !fact.display_eligible) continue;
+    technicalSpecs[field] = flattenPublicFactValue(fact.normalized_value);
+    publicFacts.push({
+      field,
+      value: technicalSpecs[field],
+      meta: buildPublicEvidenceMeta(fact)
+    });
+  }
+
+  return { technicalSpecs, publicFacts };
+}
+
+function isExactModelMatch(inputQuery, model) {
+  if (!model) return false;
+  const normalized = normalizeModelQuery(inputQuery);
+  const cleanCanonical = String(normalized.canonicalQuery || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  const cleanBase = String(normalized.baseModel || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  const modelName = String(model.model_name || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  const modelSlug = String(model.slug || model.id || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  return modelName === cleanCanonical || modelSlug === cleanCanonical || modelName === cleanBase || modelSlug === cleanBase;
+}
 
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
@@ -67,14 +104,18 @@ export function decodeStihlCode(inputStr, database = {}) {
 export function analyzeModelQuery(modelStr, database) {
   const norm = normalizeModelQuery(modelStr);
   const relationship = resolveModelRelationship(modelStr);
+  const publicEvidenceMatch = findPublicEvidenceModel(norm.canonicalQuery || modelStr, database);
 
   // STRICT RULE: If relationship exists, do NOT inherit matchedModelSpec from the successor/related model!
   let matchedModelSpec = null;
   if (!relationship) {
     matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
+    if (matchedModelSpec && !isExactModelMatch(modelStr, matchedModelSpec)) {
+      matchedModelSpec = null;
+    }
   }
 
-  const hasResolvedModel = Boolean(relationship || matchedModelSpec);
+  const hasResolvedModel = Boolean(relationship || matchedModelSpec || publicEvidenceMatch);
   const prefixCode = norm.prefix || (relationship ? '0' : null);
   const prefixMeaning = database.prefixes ? database.prefixes[prefixCode] : null;
 
@@ -88,6 +129,9 @@ export function analyzeModelQuery(modelStr, database) {
     };
   }
 
+  const overlayModel = publicEvidenceMatch?.model || null;
+  const overlayModelKey = publicEvidenceMatch?.key || null;
+  const overlaySpecs = overlayModelKey ? buildTechnicalSpecsFromPublicEvidence(overlayModelKey, database) : { technicalSpecs: {}, publicFacts: [] };
   const rawSpecs = matchedModelSpec ? { ...matchedModelSpec } : {};
 
   // Prefix-based category resolution (Defaults to UNKNOWN, NEVER to Kettingzaag)
@@ -96,6 +140,8 @@ export function analyzeModelQuery(modelStr, database) {
     category = relationship.category;
   } else if (matchedModelSpec) {
     category = matchedModelSpec.category || matchedModelSpec.category_slug;
+  } else if (overlayModel?.category) {
+    category = overlayModel.category;
   } else if (norm.prefix === 'BR' || norm.prefix === 'BG' || norm.prefix === 'SH') {
     category = 'Bladblazer';
   } else if (norm.prefix === 'FS' || norm.prefix === 'FR') {
@@ -108,14 +154,28 @@ export function analyzeModelQuery(modelStr, database) {
     category = 'Kettingzaag';
   }
 
-  const resolvedModelName = relationship ? relationship.model_name : (matchedModelSpec ? matchedModelSpec.model_name : norm.canonicalQuery);
+  const resolvedModelName = relationship
+    ? relationship.model_name
+    : (matchedModelSpec
+      ? matchedModelSpec.model_name
+      : (overlayModel?.model_name || norm.canonicalQuery));
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
   const verification = matchedModelSpec ? getModelVerificationSummary(matchedModelSpec) : null;
-  const sourceStatus = verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING';
-  const sourceStatusLabel = verification
-    ? `Bronstatus: ${verification.badgeLabel}`
-    : 'Bronstatus: Primaire bron ontbreekt';
+  const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
+  const sourceStatus = publicSourceSummary?.primaryStatus || (verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING');
+  const sourceStatusLabel = publicSourceSummary?.display_fact_count
+    ? `Bronstatus: ${publicSourceSummary.summaryLabel}`
+    : verification
+      ? `Bronstatus: ${verification.badgeLabel}`
+      : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
+  const modelResolution = matchedModelSpec
+    ? 'EXACT_CANONICAL'
+    : overlayModelKey
+      ? 'VERIFIED_ALIAS'
+      : relationship
+        ? 'RELATED_MODEL_NO_SPEC_ATTACH'
+        : 'UNKNOWN';
 
   return {
     success: true,
@@ -131,7 +191,10 @@ export function analyzeModelQuery(modelStr, database) {
     fuel_type: matchedModelSpec ? getFuelTypeCode(matchedModelSpec) : 'UNKNOWN',
     fuel_type_label: matchedModelSpec ? getFuelDriveLabel(matchedModelSpec) : 'Niet vastgesteld',
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
-    confidenceLabel: matchedModelSpec ? 'Direct Model Match' : 'Familie Overeenkomst',
+    confidenceLabel: matchedModelSpec || overlayModelKey ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing',
+    modelResolution,
+    publicEvidenceSummary: publicSourceSummary,
+    publicEvidenceFacts: overlaySpecs.publicFacts,
     relationship: relationship ? {
       type: relationship.relationship_type,
       relatedModel: relationship.related_model_name,
@@ -139,7 +202,9 @@ export function analyzeModelQuery(modelStr, database) {
       specInheritance: relationship.spec_inheritance || false,
       notes: relationship.notes
     } : null,
-    technicalSpecs: sanitizedSpecs
+    technicalSpecs: overlaySpecs.publicFacts.length > 0
+      ? sanitizeModelSpecifications({ ...sanitizedSpecs, ...overlaySpecs.technicalSpecs }, category, resolvedModelName)
+      : sanitizedSpecs
   };
 }
 
@@ -169,12 +234,20 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     const prefix = serialStr.substring(0, 4);
     modelData = database.models.find(m => m.series_code === prefix);
   }
-  const modelName = modelData ? modelData.model_name : (rangeMatch ? (rangeMatch.model_name || 'Onbekend Model') : 'Onbekend Model');
+  const probableModelSeries = rangeMatch ? (rangeMatch.model_name || rangeMatch.generation || null) : null;
+  const identityStatus = modelData
+    ? 'EXACT_MODEL_IDENTIFIED'
+    : probableModelSeries
+      ? 'PROBABLE_MODEL_SERIES'
+      : 'MODEL_NOT_IDENTIFIED';
+  const modelName = modelData
+    ? modelData.model_name
+    : (probableModelSeries || 'Nog niet definitief bevestigd');
   const category = modelData ? (modelData.category || modelData.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend');
   const rawSpecs = modelData ? { ...modelData } : {};
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
 
-  const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? '2016 – Heden' : '2010 – Heden');
+  const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? 'vanaf circa 2016' : 'vanaf circa 2010');
   const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (seriereferentie)` : 'Niet vastgesteld');
 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
@@ -183,7 +256,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const sourceStatus = verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING';
   const sourceStatusLabel = verification
     ? `Bronstatus: ${verification.badgeLabel}`
-    : 'Bronstatus: Primaire bron ontbreekt';
+    : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
 
   return {
     success: true,
@@ -193,6 +266,14 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     cleaned: serialStr,
     factory: factoryData,
     model: modelName,
+    exactModel: modelData ? modelData.model_name : null,
+    probableModelSeries,
+    modelIdentityStatus: identityStatus,
+    identityLabel: identityStatus === 'EXACT_MODEL_IDENTIFIED'
+      ? 'Geïdentificeerd model'
+      : identityStatus === 'PROBABLE_MODEL_SERIES'
+        ? 'Waarschijnlijke modelreeks'
+        : 'Modelidentificatie',
     category,
     productionPeriod: rangeMatch || {
       yearRangeFormatted: estimatedYears,
@@ -203,7 +284,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     estimatedYears,
     generation,
     confidence: rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW',
-    confidenceLabel: rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie',
+    confidenceLabel: identityStatus === 'EXACT_MODEL_IDENTIFIED'
+      ? 'Exact model geïdentificeerd'
+      : (rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie'),
     sourceStatus,
     sourceStatusLabel,
     fuel_type: modelData ? getFuelTypeCode(modelData) : 'UNKNOWN',
@@ -211,7 +294,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     technicalSpecs: sanitizedSpecs,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
-    notes: rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`,
+    notes: identityStatus === 'PROBABLE_MODEL_SERIES'
+      ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}). Exact model en uitvoering zijn nog niet definitief bevestigd.`
+      : (rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`),
     stopHelingUrl,
     stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
   };

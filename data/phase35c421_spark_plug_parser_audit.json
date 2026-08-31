@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-08-30T21:44:52.843Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "records": [
+    {
+      "model": "026",
+      "source_document": "Stihl 026 Instruction Manual.pdf",
+      "pdf_page": 50,
+      "raw_value": "Bosch WSR 6 F 8.25 mm (0.325\") Rapid-Micro 2 of ANSI Standard B 175.1-1991, or NGK BPMR 7 A (26 RM 2), do not use replacement saw chain",
+      "semantic_status": "VALID",
+      "alternatives_count": 2,
+      "raw_line": "Spark plug (suppressed): (with green label): performance requirements of § 5.12",
+      "supporting_lines": [
+        "Spark plug (suppressed): (with green label): performance requirements of § 5.12",
+        "Bosch WSR 6 F 8.25 mm (0.325\") Rapid-Micro 2 of ANSI Standard B 175.1-1991,",
+        "or NGK BPMR 7 A (26 RM 2), do not use replacement saw chain"
+      ],
+      "parse_method": "ADJACENT_LINE_BLOCK"
+    },
+    {
+      "model": "046",
+      "source_document": "STIHL 046.pdf",
+      "pdf_page": 51,
+      "raw_value": "Bosch WSR 6 F 9.32 mm (3/8\") Rapid-Micro 2 Rapid-Super (33 RS, 33 RS 1, 36 RS, or NGK BPMR 7 A (33 RM 2, 36 RM 2) 36 RS 1, 33 RSL, 36 RSL, 33 RSF,",
+      "semantic_status": "VALID",
+      "alternatives_count": 2,
+      "raw_line": "Spark plug (suppressed): (with green label) for 3/8\" pitch: Rapid-Micro (33 RM, 36 RM, 33 RMF),",
+      "supporting_lines": [
+        "Spark plug (suppressed): (with green label) for 3/8\" pitch: Rapid-Micro (33 RM, 36 RM, 33 RMF),",
+        "Bosch WSR 6 F 9.32 mm (3/8\") Rapid-Micro 2 Rapid-Super (33 RS, 33 RS 1, 36 RS,",
+        "or NGK BPMR 7 A (33 RM 2, 36 RM 2) 36 RS 1, 33 RSL, 36 RSL, 33 RSF,"
+      ],
+      "parse_method": "ADJACENT_LINE_BLOCK"
+    }
+  ],
+  "026_SPARK_PLUG_CANDIDATES": 1,
+  "046_SPARK_PLUG_CANDIDATES": 1
+}

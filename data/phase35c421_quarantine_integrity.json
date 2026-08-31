@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-08-30T21:44:52.999Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "records": [
+    {
+      "filename": "AEG STS 350, STSZ 350, STSE 350 STIHL FS 80, 85 Instruction Manual.pdf",
+      "hash": "3b90b4352426ce48c4d575f8140b470bc1935cd2d291ade305b430031f732978",
+      "reason": "AEG_PAYLOAD_CONFLICT_CONFIRMED",
+      "payload_identity": "INSTRUCTION_MANUAL",
+      "status": "QUARANTINE",
+      "payload_corporate_signals": [],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ]
+    },
+    {
+      "filename": "gov.uscourts.nysd.320521.pdf",
+      "hash": "a13d6dfd60a7465c23008110b1bd1a8af819bf3c012dd859b16447308a41fe05",
+      "reason": "NON_STIHL_COURT_FILING",
+      "payload_identity": "UNKNOWN",
+      "status": "QUARANTINE",
+      "payload_corporate_signals": [],
+      "filename_hints": []
+    },
+    {
+      "filename": "Small air-cooled engines service manual.pdf",
+      "hash": "1c28060ec5a4f0cdde6532a4e0b7bbaf8318bf0c4cef52347714e728acde3c24",
+      "reason": "GENERIC_ENGINE_SERVICE_BOOK",
+      "payload_identity": "SERVICE_MANUAL",
+      "status": "QUARANTINE",
+      "payload_corporate_signals": [],
+      "filename_hints": []
+    },
+    {
+      "filename": "Sports Illustrated February 20, 2015 USA.pdf",
+      "hash": "6f6be3aba88d8e9ea75c90994baca34b635bde0c057582dbdca1db35d5fc5113",
+      "reason": "NON_STIHL_MAGAZINE",
+      "payload_identity": "UNKNOWN",
+      "status": "QUARANTINE",
+      "payload_corporate_signals": [],
+      "filename_hints": []
+    },
+    {
+      "filename": "String trimmer and blower _ service manual.pdf",
+      "hash": "646accf3d8d743d1bdc5c49a580f96c9aabdbbbb7f6f4ba7f8fecea17f095a24",
+      "reason": "GENERIC_TRIMMER_BLOWER_SERVICE_BOOK",
+      "payload_identity": "SERVICE_MANUAL",
+      "status": "QUARANTINE",
+      "payload_corporate_signals": [],
+      "filename_hints": []
+    }
+  ],
+  "QUARANTINE_BEFORE": 4,
+  "QUARANTINE_AFTER": 5,
+  "AEG_PAYLOAD_CONFLICT_STATUS": "QUARANTINE",
+  "QUARANTINE_FACT_CANDIDATES": 0,
+  "QUARANTINE_VERIFICATION_ELIGIBLE": 0,
+  "QUARANTINE_VERIFIED": 0,
+  "QUARANTINE_PROMOTED_FACTS": 0,
+  "KNOWN_QUARANTINE_VERIFICATION_ELIGIBLE": 0,
+  "KNOWN_QUARANTINE_VERIFIED": 0,
+  "KNOWN_QUARANTINE_PROMOTED": 0
+}

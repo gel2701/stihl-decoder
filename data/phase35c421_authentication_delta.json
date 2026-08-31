@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-08-30T21:44:52.817Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "AUTH_STATUS_BEFORE": 89,
+  "AUTH_STATUS_AFTER": 91,
+  "AUTH_DOWNGRADED": 0,
+  "AUTH_UPGRADED": 2,
+  "AUTH_UNCHANGED": 95,
+  "changed_documents": [
+    {
+      "filename": "AEG STS 350, STSZ 350, STSE 350 STIHL FS 80, 85 Instruction Manual.pdf",
+      "hash": "3b90b4352426ce48c4d575f8140b470bc1935cd2d291ade305b430031f732978",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "QUARANTINE",
+      "reason": "AEG_PAYLOAD_CONFLICT_CONFIRMED",
+      "payload_evidence": {
+        "corporate": [],
+        "publication": [],
+        "structure": [
+          "DOC_TYPE:INSTRUCTION_MANUAL"
+        ]
+      }
+    },
+    {
+      "filename": "Stihl Brushcutter Safety Manual.pdf",
+      "hash": "fc745eff3cf3a9ba068ce8523c167884796a338a5b340a49ba3e490357903ac4",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "AUTHENTICATED_OFFICIAL",
+      "reason": "PAYLOAD_AUTH_SUFFICIENT",
+      "payload_evidence": {
+        "corporate": [
+          "ANDREAS_STIHL",
+          "STIHL_BRANDING"
+        ],
+        "publication": [
+          "PUBLICATION_ID:0457-187-0121"
+        ],
+        "structure": [
+          "TABLE_OF_CONTENTS",
+          "DOC_TYPE:INSTRUCTION_MANUAL"
+        ]
+      }
+    },
+    {
+      "filename": "STIHL MS 381.pdf",
+      "hash": "d3a19ac57dc858f4404ff87a5cf6a007c68acdd9b6004babfc5ac026c81dda56",
+      "before": "INSUFFICIENT_EVIDENCE",
+      "after": "AUTHENTICATED_OFFICIAL",
+      "reason": "PAYLOAD_AUTH_SUFFICIENT",
+      "payload_evidence": {
+        "corporate": [
+          "ANDREAS_STIHL",
+          "STIHL_BRANDING",
+          "STIHL_WEBSITE"
+        ],
+        "publication": [
+          "PUBLICATION_ID:0458-538-1521-B",
+          "PUBLICATION_ID:0800-707-5001",
+          "STIHL_NUMERIC_PUBLICATION_ID"
+        ],
+        "structure": [
+          "DOC_TYPE:UNKNOWN"
+        ]
+      }
+    }
+  ]
+}

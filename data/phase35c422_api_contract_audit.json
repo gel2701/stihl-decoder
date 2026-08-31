@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-08-30T21:59:49.723Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "records": {
+    "exact026": {
+      "success": true,
+      "model": "STIHL 026",
+      "modelResolution": "VERIFIED_ALIAS",
+      "publicFacts": 8
+    },
+    "exact046": {
+      "success": true,
+      "model": "STIHL 046",
+      "modelResolution": "VERIFIED_ALIAS",
+      "publicFacts": 7
+    },
+    "ts410": {
+      "success": true,
+      "model": "TS 410",
+      "modelResolution": "VERIFIED_ALIAS",
+      "publicFacts": 4
+    },
+    "fuzzy": {
+      "success": false,
+      "status": "NOT_FOUND",
+      "type": "MODEL_DECODE",
+      "input": "MS 26",
+      "error": "Onbekend STIHL model of zoekterm. Voeg het exacte model van het typeplaatje toe voor technische specificaties."
+    }
+  },
+  "FUZZY_MODEL_SPEC_ATTACHMENTS": 0,
+  "API_BACKWARD_COMPATIBILITY": "PASS"
+}

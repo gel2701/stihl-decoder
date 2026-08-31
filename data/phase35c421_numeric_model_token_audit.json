@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-08-30T21:44:52.978Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "positive_results": [
+    {
+      "text": "STIHL 046",
+      "expected": "046",
+      "detected": [
+        "046"
+      ],
+      "pass": true
+    },
+    {
+      "text": "Chain Saw: 026",
+      "expected": "026",
+      "detected": [
+        "026"
+      ],
+      "pass": true
+    },
+    {
+      "text": "STIHL 009 chain saw",
+      "expected": "009",
+      "detected": [
+        "009"
+      ],
+      "pass": true
+    }
+  ],
+  "negative_results": [
+    {
+      "text": "Fuel tank capacity: 0.46 l",
+      "forbidden": "046",
+      "detected": [],
+      "pass": true
+    },
+    {
+      "text": "Electrode gap 0.26 mm",
+      "forbidden": "026",
+      "detected": [],
+      "pass": true
+    },
+    {
+      "text": "Copyright 2015",
+      "forbidden": "015",
+      "detected": [],
+      "pass": true
+    },
+    {
+      "text": "weight 4.6 kg",
+      "forbidden": "046",
+      "detected": [],
+      "pass": true
+    },
+    {
+      "text": "0.09 l",
+      "forbidden": "009",
+      "detected": [],
+      "pass": true
+    }
+  ],
+  "NUMERIC_MODEL_FALSE_POSITIVES": 0,
+  "FUEL_0_46_DETECTED_AS_MODEL_046": 0,
+  "DECIMAL_0_26_DETECTED_AS_MODEL_026": 0,
+  "YEAR_2015_DETECTED_AS_MODEL_015": 0,
+  "TS410_DETECTED": "YES",
+  "TS420_DETECTED": "YES",
+  "TS410_420_FALSE_NUMERIC_MODELS": []
+}

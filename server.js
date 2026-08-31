@@ -20,6 +20,7 @@ import { getSafeCategorySlug, getSafeModelPath, getSafeModelPartsPath, getValuat
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
+const publicEvidencePath = path.join(__dirname, 'data', 'public_evidence_facts.json');
 
 // Load database (JSON or SQLite fallback)
 const jsonPath = path.join(__dirname, 'data', 'stihl_database.json');
@@ -32,6 +33,16 @@ try {
   }
 } catch (err) {
   console.error('⚠️ Could not load stihl_database.json:', err);
+}
+
+try {
+  if (fs.existsSync(publicEvidencePath)) {
+    database.public_evidence = JSON.parse(fs.readFileSync(publicEvidencePath, 'utf8'));
+    console.log('✅ Public evidence overlay successfully loaded.');
+  }
+} catch (err) {
+  database.public_evidence = null;
+  console.error('⚠️ Could not load public_evidence_facts.json, continuing in canonical-only mode:', err.message);
 }
 
 const MIME_TYPES = {

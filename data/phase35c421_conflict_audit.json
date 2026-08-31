@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-08-30T21:44:52.979Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "conflicts": [
+    {
+      "conflict_id": "b10bfc688b30c392",
+      "candidate_id": "a01ac318806ef458",
+      "model": "026",
+      "field": "spark_plug",
+      "candidate_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 8.25 mm (0.325\") Rapid-Micro 2 of ANSI Standard B 175.1-1991,"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A (26 RM 2), do not use replacement saw chain"
+        }
+      ],
+      "comparison_value": 0.5,
+      "conflict_reason": "VALUE_DISAGREEMENT_SOURCE_INDEPENDENCE_UNRESOLVED",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "conflict_id": "977411276947b18c",
+      "candidate_id": "42fe09339478eeb2",
+      "model": "046",
+      "field": "stroke_mm",
+      "candidate_value": 40,
+      "comparison_value": 36,
+      "conflict_reason": "VALUE_DISAGREEMENT_SOURCE_INDEPENDENCE_UNRESOLVED",
+      "conflict_status": "BLOCKED"
+    },
+    {
+      "conflict_id": "d0ac798db475e586",
+      "candidate_id": "98ed42277c4065e5",
+      "model": "046",
+      "field": "spark_plug",
+      "candidate_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 9.32 mm (3/8\") Rapid-Micro 2 Rapid-Super (33 RS, 33 RS 1, 36 RS,"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A (33 RM 2, 36 RM 2) 36 RS 1, 33 RSL, 36 RSL, 33 RSF,"
+        }
+      ],
+      "comparison_value": 0.5,
+      "conflict_reason": "VALUE_DISAGREEMENT_SOURCE_INDEPENDENCE_UNRESOLVED",
+      "conflict_status": "BLOCKED"
+    }
+  ]
+}

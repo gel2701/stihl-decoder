@@ -29,7 +29,12 @@ const EXPECTED_CANDIDATE_ARCHIVE_SHA256 = '40d225d63c6de1fbc79be96b6912144794ac8
 const DEFAULT_CANDIDATE_ARCHIVE = path.join(rootDir, 'data', 'generated', 'phase35c2_blocked_field_candidates.jsonl.gz');
 const CANONICAL_JSON_PATH = path.join(rootDir, 'data', 'stihl_database.json');
 const CANONICAL_DB_PATH = path.join(rootDir, 'data', 'stihl_database.db');
-const EXACT_SCOPES = new Set(['EXACT_MODEL', 'EXACT_VARIANT', 'MULTI_MODEL_EXPLICIT_COLUMN']);
+const EXACT_SCOPES = new Set([
+  'EXACT_MODEL',
+  'EXACT_VARIANT',
+  'MULTI_MODEL_EXPLICIT_COLUMN',
+  'MULTI_MODEL_EXPLICIT_SHARED_VALUE'
+]);
 const SPARK_PLUG_REGEX = /\b(?:NGK|BOSCH|CHAMPION)\s+[A-Z0-9-]{3,}\b/i;
 const NUMERIC_FIELD_RANGES = new Map([
   ['displacement_cc', [5, 500]],

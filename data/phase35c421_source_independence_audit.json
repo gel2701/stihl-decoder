@@ -1,0 +1,177 @@
+{
+  "generated_at": "2026-08-30T21:44:52.979Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "records": [
+    {
+      "candidate_id": "9a4d35b681e45532",
+      "model": "026",
+      "field": "bore_mm",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:Stihl 026 Instruction Manual.pdf:50:bore_mm",
+      "source_b": "TS_DATA:026:bore_mm",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "UNRESOLVED_SUPPORTING_VALUE_MATCH",
+      "target_value": 44,
+      "supporting_value": 44
+    },
+    {
+      "candidate_id": "aca582c9024aaa58",
+      "model": "026",
+      "field": "stroke_mm",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:Stihl 026 Instruction Manual.pdf:50:stroke_mm",
+      "source_b": "TS_DATA:026:stroke_mm",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "UNRESOLVED_SUPPORTING_VALUE_MATCH",
+      "target_value": 32,
+      "supporting_value": 32
+    },
+    {
+      "candidate_id": "3bc2e0c8657dd56b",
+      "model": "026",
+      "field": "idle_speed_rpm",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:Stihl 026 Instruction Manual.pdf:50:idle_speed_rpm",
+      "source_b": "TS_DATA:026:idle_speed_rpm",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "UNRESOLVED_SUPPORTING_VALUE_MATCH",
+      "target_value": 2800,
+      "supporting_value": 2800
+    },
+    {
+      "candidate_id": "a01ac318806ef458",
+      "model": "026",
+      "field": "spark_plug",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:Stihl 026 Instruction Manual.pdf:50:spark_plug",
+      "source_b": "TS_DATA:026:spark_plug",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
+      "target_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 8.25 mm (0.325\") Rapid-Micro 2 of ANSI Standard B 175.1-1991,"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A (26 RM 2), do not use replacement saw chain"
+        }
+      ],
+      "supporting_value": 0.5
+    },
+    {
+      "candidate_id": "8482c1681118a0b4",
+      "model": "046",
+      "field": "displacement_cc",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:STIHL 046.pdf:51:displacement_cc",
+      "source_b": "TS_DATA:046:displacement_cc",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "UNRESOLVED_SUPPORTING_VALUE_MATCH",
+      "target_value": 76.5,
+      "supporting_value": 76.5
+    },
+    {
+      "candidate_id": "166341e51b579c6f",
+      "model": "046",
+      "field": "bore_mm",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:STIHL 046.pdf:51:bore_mm",
+      "source_b": "TS_DATA:046:bore_mm",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "UNRESOLVED_SUPPORTING_VALUE_MATCH",
+      "target_value": 52,
+      "supporting_value": 52
+    },
+    {
+      "candidate_id": "42fe09339478eeb2",
+      "model": "046",
+      "field": "stroke_mm",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:STIHL 046.pdf:51:stroke_mm",
+      "source_b": "TS_DATA:046:stroke_mm",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
+      "target_value": 40,
+      "supporting_value": 36
+    },
+    {
+      "candidate_id": "1460f7f253745c77",
+      "model": "046",
+      "field": "idle_speed_rpm",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:STIHL 046.pdf:51:idle_speed_rpm",
+      "source_b": "TS_DATA:046:idle_speed_rpm",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "UNRESOLVED_SUPPORTING_VALUE_MATCH",
+      "target_value": 2500,
+      "supporting_value": 2500
+    },
+    {
+      "candidate_id": "98ed42277c4065e5",
+      "model": "046",
+      "field": "spark_plug",
+      "source_a": "BATCH7_OFFICIAL_ARCHIVE_V2:STIHL 046.pdf:51:spark_plug",
+      "source_b": "TS_DATA:046:spark_plug",
+      "same_file_hash": false,
+      "same_payload_hash": false,
+      "same_publication": false,
+      "same_canonical_document": false,
+      "independence_status": "INDEPENDENCE_UNRESOLVED",
+      "independent": false,
+      "reason": "Distinct values exist, but one side lacks proven document-level provenance to claim true source independence.",
+      "pair_type": "COMPARISON",
+      "target_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F 9.32 mm (3/8\") Rapid-Micro 2 Rapid-Super (33 RS, 33 RS 1, 36 RS,"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A (33 RM 2, 36 RM 2) 36 RS 1, 33 RSL, 36 RSL, 33 RSF,"
+        }
+      ],
+      "supporting_value": 0.5
+    }
+  ]
+}

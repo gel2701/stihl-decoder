@@ -12,6 +12,14 @@ import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.j
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import {
+  buildPublicEvidenceFieldMap,
+  buildPublicEvidenceMeta,
+  buildPublicSourceSummary,
+  flattenPublicFactValue,
+  getPreferredPublicFact,
+  getPublicStatusLabel
+} from '../publicEvidence.js';
+import {
   getFuelDriveLabel,
   getRegisteredComparisonForModel,
   getRegisteredComparisons,
@@ -24,10 +32,31 @@ import {
   isBatteryModel
 } from '../publicationRules.js';
 
+function renderFactEvidenceLine(fact) {
+  if (!fact) return '';
+  const meta = buildPublicEvidenceMeta(fact);
+  const label = getPublicStatusLabel(fact.public_evidence_status);
+  const locator = [`p. ${meta.pdfPage}`];
+  if (meta.publicationId) locator.unshift(meta.publicationId);
+  return `
+    <div class="pt-2 border-t border-gray-800/70 space-y-1">
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-2xs font-bold bg-blue-500/10 text-blue-300 border border-blue-500/20">${label}</span>
+      <p class="text-2xs text-gray-400">${meta.sourceDocumentTitle}${locator.length ? ` · ${locator.join(' · ')}` : ''}</p>
+    </div>
+  `;
+}
+
 export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const verification = getModelVerificationSummary(model);
   const categorySlug = getSafeCategorySlug(model);
   const slug = model.slug || model.id.replace(/_/g, '-');
+  const publicFieldMap = buildPublicEvidenceFieldMap(slug, database);
+  const publicSummary = buildPublicSourceSummary(slug, database);
+  const powerFact = getPreferredPublicFact(publicFieldMap.power_kw || []);
+  const displacementFact = getPreferredPublicFact(publicFieldMap.displacement_cc || []);
+  const sparkFact = getPreferredPublicFact(publicFieldMap.spark_plug || []);
+  const gapFact = getPreferredPublicFact(publicFieldMap.electrode_gap_mm || []);
+  const weightFact = getPreferredPublicFact(publicFieldMap.weight_kg || []);
   const canonicalUrl = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/` : `${baseUrl}/modellen-onbekend/${slug}/`;
   const safeModelPath = getSafeModelPath(model);
   const safePartsPath = getSafeModelPartsPath(model);
@@ -119,7 +148,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
           Data Kwaliteit: ${verification.displayConfidence} (${verification.badgeLabel})
         </span>
         <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/30">
-          Bronstatus: ${verification.sourceLabel}
+          Bronstatus: ${publicSummary.display_fact_count > 0 ? publicSummary.summaryLabel : verification.sourceLabel}
         </span>
       </div>
 
@@ -168,19 +197,22 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Motorvermogen:</span>
-          <span class="text-base font-bold text-white">${model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Nog niet geverifieerd')}</span>
+          <span class="text-base font-bold text-white">${powerFact ? (model.power_hp ? `${model.power_hp} pk (${powerFact.normalized_value} kW)` : `${powerFact.normalized_value} kW`) : (model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Nog niet betrouwbaar gedocumenteerd'))}</span>
+          ${renderFactEvidenceLine(powerFact)}
         </div>
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Cilinderinhoud / Aandrijving:</span>
-          <span class="text-base font-bold text-white">${model.displacement_cc ? `${model.displacement_cc} cc` : fuelDriveLabel}</span>
+          <span class="text-base font-bold text-white">${displacementFact ? `${displacementFact.normalized_value} cc` : (model.displacement_cc ? `${model.displacement_cc} cc` : fuelDriveLabel)}</span>
+          ${renderFactEvidenceLine(displacementFact)}
         </div>
 
         ${isPetrol ? `
           ${model.spark_plug ? `
             <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
               <span class="text-gray-400 block">Bougie & Elektrodenafstand:</span>
-              <span class="text-base font-bold text-white">${model.spark_plug}${model.electrode_gap_mm ? ` (${model.electrode_gap_mm} mm)` : ''}</span>
+              <span class="text-base font-bold text-white">${sparkFact ? flattenPublicFactValue(sparkFact.normalized_value) : model.spark_plug}${gapFact ? ` (${gapFact.normalized_value} mm)` : (model.electrode_gap_mm ? ` (${model.electrode_gap_mm} mm)` : '')}</span>
+              ${renderFactEvidenceLine((sparkFact?.public_evidence_status === 'OFFICIAL_CONFLICTED' || gapFact?.public_evidence_status === 'OFFICIAL_CONFLICTED') ? (sparkFact || gapFact) : (sparkFact || gapFact))}
             </div>
           ` : ''}
 
@@ -201,7 +233,8 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Gewicht (Kaal motorblok):</span>
-          <span class="text-base font-bold text-white">${model.weight_kg ? `${model.weight_kg} kg` : 'Nog niet geverifieerd'}</span>
+          <span class="text-base font-bold text-white">${weightFact ? `${weightFact.normalized_value} kg` : (model.weight_kg ? `${model.weight_kg} kg` : 'Nog niet betrouwbaar gedocumenteerd')}</span>
+          ${renderFactEvidenceLine(weightFact)}
         </div>
       </div>
     </section>

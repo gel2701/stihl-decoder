@@ -1,0 +1,30 @@
+{
+  "schema_version": "public-evidence-v1",
+  "generated_at": "2026-08-30T21:59:49.726Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "statuses": {
+    "CANONICAL_VERIFIED": "Canonical gate unchanged; strongest verification only.",
+    "OFFICIAL_DOCUMENTED": "Single authenticated official STIHL source with exact model/page/field/value evidence.",
+    "OFFICIAL_CONFLICTED": "Multiple official exact-scoped values disagree; display the conflict, do not pick a winner.",
+    "SUPPORTED_ESTIMATE": "Breakpoint-derived indication only; never a technical spec.",
+    "UNKNOWN": "No safe public evidence path yet."
+  },
+  "allowed_scopes": [
+    "EXACT_MODEL",
+    "EXACT_VARIANT",
+    "MULTI_MODEL_EXPLICIT_COLUMN",
+    "MULTI_MODEL_EXPLICIT_SHARED_VALUE"
+  ],
+  "target_fields": [
+    "displacement_cc",
+    "power_kw",
+    "bore_mm",
+    "stroke_mm",
+    "weight_kg",
+    "idle_speed_rpm",
+    "spark_plug",
+    "electrode_gap_mm",
+    "fuel_tank_l",
+    "oil_tank_l"
+  ]
+}

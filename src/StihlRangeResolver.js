@@ -1,6 +1,6 @@
 export class StihlRangeResolver {
   /**
-   * Bepaalt het exacte bouwjaar en generatie op basis van serie-breakpoints.
+   * Geeft een breakpoint-gebaseerde productie-indicatie terug.
    */
   static resolve(numericSerial, plantCode, database) {
     const db = database || {};
@@ -15,10 +15,10 @@ export class StihlRangeResolver {
 
       if (match) {
         return {
-          yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `${match.year_start} – Heden`,
+          yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `vanaf circa ${match.year_start}`,
           yearStart: match.year_start,
           yearEnd: match.year_end || null,
-          generation: match.generation_name || match.generation || "Gevalideerde Uitvoering",
+          generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
           technicalHighlights: match.technical_changes || match.technical_highlights,
           confidence: match.confidence_level || 'HIGH'
         };

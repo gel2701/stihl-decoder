@@ -1,0 +1,187 @@
+{
+  "generated_at": "2026-08-30T21:44:52.765Z",
+  "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "AUTHENTICATED_OFFICIAL": 91,
+  "PROBABLE_OFFICIAL": 0,
+  "NON_STIHL": 0,
+  "QUARANTINE": 5,
+  "UNRESOLVED": 2,
+  "by_status": {
+    "QUARANTINE": 5,
+    "AUTHENTICATED_OFFICIAL": 91,
+    "INSUFFICIENT_EVIDENCE": 2
+  },
+  "targets": [
+    {
+      "target": "026",
+      "filename": "Stihl 026 Instruction Manual.pdf",
+      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "payload_authentication_signal_count": 6,
+      "payload_corporate_signals": [
+        {
+          "signal": "ANDREAS_STIHL",
+          "source": "PAYLOAD",
+          "evidence": "Instruction Manual STIH) Read and follow all safety precautions in Instruction Manual – improper use can cause serious or fatal injury. Warning! To reduce the risk of kickback inju"
+        },
+        {
+          "signal": "STIHL_BRANDING",
+          "source": "PAYLOAD",
+          "evidence": "Instruction Manual STIH) Read and follow all safety precautions in Instruction Manual – improper use can cause serious or fatal injury. Warning! To reduce the risk of kickback inju"
+        }
+      ],
+      "payload_publication_signals": [
+        {
+          "signal": "PUBLICATION_ID:0458-133-3021",
+          "source": "PAYLOAD",
+          "evidence": "0458-133-3021"
+        }
+      ],
+      "payload_structure_signals": [
+        {
+          "signal": "INSTRUCTION_MANUAL",
+          "source": "PAYLOAD",
+          "evidence": "Instruction Manual STIH) Read and follow all safety precautions in Instruction Manual – improper use can cause serious or fatal injury. Warning! To reduce the risk of kickback inju"
+        },
+        {
+          "signal": "SPECIFICATIONS_SECTION",
+          "source": "PAYLOAD",
+          "evidence": "Instruction Manual STIH) Read and follow all safety precautions in Instruction Manual – improper use can cause serious or fatal injury. Warning! To reduce the risk of kickback inju"
+        },
+        {
+          "signal": "DOC_TYPE:PARTS_LIST",
+          "source": "PAYLOAD",
+          "evidence": "PARTS_LIST"
+        }
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_MODEL_HINT:026",
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
+      "payload_publication_ids": [
+        "0458-133-3021"
+      ],
+      "filename_publication_hints": []
+    },
+    {
+      "target": "046",
+      "filename": "STIHL 046.pdf",
+      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "payload_authentication_signal_count": 6,
+      "payload_corporate_signals": [
+        {
+          "signal": "ANDREAS_STIHL",
+          "source": "PAYLOAD",
+          "evidence": "A. Kickback Safety Precautions ! Warning! Kickback may occur when the nose or tip of the guide bar touches an object, or when the wood closes in and pinches the saw chain in the cu"
+        },
+        {
+          "signal": "STIHL_BRANDING",
+          "source": "PAYLOAD",
+          "evidence": "A. Kickback Safety Precautions ! Warning! Kickback may occur when the nose or tip of the guide bar touches an object, or when the wood closes in and pinches the saw chain in the cu"
+        }
+      ],
+      "payload_publication_signals": [
+        {
+          "signal": "PUBLICATION_ID:0458-145-3021",
+          "source": "PAYLOAD",
+          "evidence": "0458-145-3021"
+        }
+      ],
+      "payload_structure_signals": [
+        {
+          "signal": "SPECIFICATIONS_SECTION",
+          "source": "PAYLOAD",
+          "evidence": "A. Kickback Safety Precautions ! Warning! Kickback may occur when the nose or tip of the guide bar touches an object, or when the wood closes in and pinches the saw chain in the cu"
+        },
+        {
+          "signal": "TABLE_OF_CONTENTS",
+          "source": "PAYLOAD",
+          "evidence": "A. Kickback Safety Precautions ! Warning! Kickback may occur when the nose or tip of the guide bar touches an object, or when the wood closes in and pinches the saw chain in the cu"
+        },
+        {
+          "signal": "DOC_TYPE:PARTS_LIST",
+          "source": "PAYLOAD",
+          "evidence": "PARTS_LIST"
+        }
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_MODEL_HINT:046",
+        "FILENAME_STIHL"
+      ],
+      "payload_publication_ids": [
+        "0458-145-3021"
+      ],
+      "filename_publication_hints": []
+    },
+    {
+      "target": "TS410_420",
+      "filename": "STIHL TS 410, 420 Owners Instruction Manual.pdf",
+      "authenticity_status": "AUTHENTICATED_OFFICIAL",
+      "payload_authentication_signal_count": 9,
+      "payload_corporate_signals": [
+        {
+          "signal": "ANDREAS_STIHL",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        },
+        {
+          "signal": "STIHL_BRANDING",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        },
+        {
+          "signal": "STIHL_COPYRIGHT",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        }
+      ],
+      "payload_publication_signals": [
+        {
+          "signal": "PUBLICATION_ID:0458-370-8621-G",
+          "source": "PAYLOAD",
+          "evidence": "0458-370-8621-G"
+        },
+        {
+          "signal": "STIHL_NUMERIC_PUBLICATION_ID",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        }
+      ],
+      "payload_structure_signals": [
+        {
+          "signal": "INSTRUCTION_MANUAL",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        },
+        {
+          "signal": "SPECIFICATIONS_SECTION",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        },
+        {
+          "signal": "TABLE_OF_CONTENTS",
+          "source": "PAYLOAD",
+          "evidence": "{ STIHL TS 410, 420 WARNING Read Instruction Manual thoroughly before use and follow all safety precautions – improper use can cause serious or fatal injury. ADVERTENCIA Antes de u"
+        },
+        {
+          "signal": "DOC_TYPE:INSTRUCTION_MANUAL",
+          "source": "PAYLOAD",
+          "evidence": "INSTRUCTION_MANUAL"
+        }
+      ],
+      "filename_hints": [
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT",
+        "FILENAME_STIHL",
+        "FILENAME_DOC_TYPE_HINT"
+      ],
+      "payload_publication_ids": [
+        "0458-370-8621-G"
+      ],
+      "filename_publication_hints": []
+    }
+  ]
+}

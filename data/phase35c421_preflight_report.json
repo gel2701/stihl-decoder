@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-30T21:43:16.622Z",
+  "SOURCE_COMMIT": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
+  "HEAD": "78c324e9f1392aab2774a6fdda485b2cca602f68",
+  "ORIGIN_MAIN": "78c324e9f1392aab2774a6fdda485b2cca602f68",
+  "WORKTREE_STATUS": "M data/phase35c42_archive_authenticity_audit.json\n M data/phase35c42_archive_dedup_audit.json\n M data/phase35c42_archive_inventory.json\n M data/phase35c42_conflict_audit.json\n M data/phase35c42_deferred_document_inventory.json\n M data/phase35c42_failure_injection_report.json\n M data/phase35c42_preflight_report.json\n M data/phase35c42_quarantine_audit.json\n M data/phase35c42_source_independence_audit.json\n M data/phase35c42_target_document_audit.json\n M data/phase35c42_target_fact_candidates.json\n M data/phase35c42_ts_data_reparse_audit.json\n M data/phase35c42_verification_funnel.json\n M data/phase35c42_verified_fact_evidence_graph.json\n M data/phase35c42_verified_fact_staging.json\n M data/stihl_database.db\n M scripts/phase35c4_verified_fact_recovery.js\n M tests/run_all_tests.js\n?? data/backups/\n?? data/phase35c421_archive_dedup_audit.json\n?? data/phase35c421_archive_inventory.json\n?? data/phase35c421_authentication_delta.json\n?? data/phase35c421_conflict_audit.json\n?? data/phase35c421_deferred_document_inventory.json\n?? data/phase35c421_failure_injection_integrity.json\n?? data/phase35c421_failure_injection_report.json\n?? data/phase35c421_final_report.json\n?? data/phase35c421_numeric_model_token_audit.json\n?? data/phase35c421_payload_authentication_audit.json\n?? data/phase35c421_preflight_report.json\n?? data/phase35c421_quarantine_integrity.json\n?? data/phase35c421_source_independence_audit.json\n?? data/phase35c421_source_provenance_audit.json\n?? data/phase35c421_spark_plug_parser_audit.json\n?? data/phase35c421_target_fact_candidates.json\n?? data/phase35c421_target_model_scope_audit.json\n?? data/phase35c421_verification_funnel.json\n?? data/phase35c421_verified_fact_evidence_graph.json\n?? data/phase35c421_verified_fact_staging.json\n?? scripts/phase35c421_failure_injection_integrity_hotfix.js\n?? tests/phase35c421_failure_injection_integrity_hotfix.test.js",
+  "ARCHIVE_PATH": "C:\\Users\\GelliusSnippe\\.agents\\stihl_archive_official_documentation_v2.zip",
+  "ARCHIVE_EXISTS": "YES",
+  "ARCHIVE_SHA256": "f7e6ca964c2cb5a9ab944fd515f7e6d0633f9ce13d973cc2d754bfef75c3f1bf",
+  "EXPECTED_ARCHIVE_SHA256": "f7e6ca964c2cb5a9ab944fd515f7e6d0633f9ce13d973cc2d754bfef75c3f1bf",
+  "ARCHIVE_ENTRIES": 112,
+  "UNIQUE_RAW_FILES": 98,
+  "EXACT_BYTE_DUPLICATES": 14,
+  "PRECHECK_FAILURES": [],
+  "PRECHECK": "PASS",
+  "ARCHIVE_INTAKE_NOT_STARTED": "NO"
+}

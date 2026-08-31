@@ -15,6 +15,8 @@ const testFiles = [
   'tests/phase35c31_legacy_graph_validation_hotfix.test.js',
   'tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js',
   'tests/phase35c4_verified_fact_recovery.test.js',
+  'tests/phase35c421_failure_injection_integrity_hotfix.test.js',
+  'tests/phase35c422_public_evidence_eligibility.test.js',
   'tests/phase35c42_targeted_archive_intake.test.js'
 ];
 
