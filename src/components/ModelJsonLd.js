@@ -3,9 +3,6 @@
  */
 
 export function generateModelJsonLd({ modelName, category, displacementCc, powerHp, sparkPlug, carbSettings, url, allowProduct = false, serialLocationText = 'Controleer het typeplaatje en de passende STIHL documentatie voor uw uitvoering.' }) {
-  const carbH = (carbSettings && carbSettings.H) || 'Niet vastgesteld';
-  const carbL = (carbSettings && carbSettings.L) || 'Niet vastgesteld';
-  const carbLA = (carbSettings && carbSettings.LA) || 'Niet vastgesteld';
   const graph = [
     {
       '@type': 'TechArticle',
@@ -42,10 +39,10 @@ export function generateModelJsonLd({ modelName, category, displacementCc, power
       },
       {
         '@type': 'Question',
-        'name': `Wat is een bruikbare basisreferentie voor de carburateur van de STIHL ${modelName}?`,
+        'name': `Waar controleer ik onderhoudsinstellingen voor de STIHL ${modelName}?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': `Repositoryreferentie: H-schroef: ${carbH}, L-schroef: ${carbL}, LA-schroef: ${carbLA}. Controleer de exacte afstelling altijd met het juiste typeplaatje en de primaire documentatie voor uw uitvoering.`
+          'text': `Controleer carburateur- en onderhoudsinstellingen altijd met het juiste typeplaatje en de passende primaire documentatie voor uw uitvoering.`
         }
       }
     ]

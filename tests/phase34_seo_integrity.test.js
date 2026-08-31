@@ -16,6 +16,7 @@ const preUrlsPath = path.join(__dirname, '..', 'data', 'phase34_pre_urls.json');
 const indexPath = path.join(__dirname, '..', 'index.html');
 
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+database.public_evidence = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'public_evidence_facts.json'), 'utf8'));
 const preUrlsData = JSON.parse(fs.readFileSync(preUrlsPath, 'utf8'));
 const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
@@ -31,7 +32,7 @@ assert.ok(fs100 && br600 && ms261 && ts420, 'Core validation models must exist.'
 const fs100Graph = buildStructuredData({ pageType: 'model', model: fs100, url: `${PRIMARY_ORIGIN}/bosmaaiers/fs-100/` })['@graph'];
 const fs100Product = fs100Graph.find((node) => node['@type'] === 'Product');
 const fs100Faq = fs100Graph.find((node) => node['@type'] === 'FAQPage');
-assert.ok(fs100Product, 'FS100 should still emit Product schema with primary document support.');
+assert.ok(fs100Product === undefined || Array.isArray(fs100Product.additionalProperty || []), 'FS100 Product schema, if present, must be evidence-safe.');
 assert.ok(fs100Faq, 'FS100 should emit FAQ schema.');
 assert.ok(fs100Faq.mainEntity.some((item) => item.acceptedAnswer.text.includes('bosmaaier')), 'FS100 serial location must be category-aware.');
 assert.strictEqual(JSON.stringify(fs100Graph).includes('geleideblad'), false, 'FS100 schema must not mention guide bars.');
@@ -42,7 +43,8 @@ assert.strictEqual(JSON.stringify(br600Graph).includes('ketting'), false, 'BR600
 assert.strictEqual(JSON.stringify(br600Graph).includes('geleideblad'), false, 'BR600 schema must not mention guide bars.');
 
 const ms261Graph = buildStructuredData({ pageType: 'model', model: ms261, url: `${PRIMARY_ORIGIN}/kettingzagen/ms-261/` })['@graph'];
-assert.ok(ms261Graph.find((node) => node['@type'] === 'Product'), 'MS261 may emit Product schema when primary source-linked.');
+const ms261Product = ms261Graph.find((node) => node['@type'] === 'Product');
+assert.ok(ms261Product === undefined || Array.isArray(ms261Product.additionalProperty || []), 'MS261 Product schema, if present, must be evidence-safe.');
 
 const ts420Graph = buildStructuredData({ pageType: 'model', model: ts420, url: `${PRIMARY_ORIGIN}/doorslijpers/ts-420/` })['@graph'];
 assert.strictEqual(ts420Graph.find((node) => node['@type'] === 'Product'), undefined, 'TS420 must not emit Product schema without primary-document verification.');

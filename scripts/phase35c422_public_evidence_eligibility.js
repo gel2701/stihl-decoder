@@ -7,8 +7,12 @@ import { fileURLToPath } from 'url';
 import { decodeStihlCode } from '../src/decoder.js';
 import { renderModelPageHtml } from '../src/components/ModelPageTemplate.js';
 import {
+  getMeasurementDefinitionForField,
+  isMeasurementDefinitionKnown,
+  isStrictSemanticStatus,
   normalizePublicEvidenceModelKey,
-  sanitizePublicSourceLabel
+  sanitizePublicSourceLabel,
+  sanitizeSparkPlugValue
 } from '../src/publicEvidence.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -57,7 +61,8 @@ const INPUTS = {
   database: path.join(rootDir, 'data', 'stihl_database.json'),
   phase35c421Final: path.join(rootDir, 'data', 'phase35c421_final_report.json'),
   phase35c421Funnel: path.join(rootDir, 'data', 'phase35c421_verification_funnel.json'),
-  phase35c421Conflicts: path.join(rootDir, 'data', 'phase35c421_conflict_audit.json')
+  phase35c421Conflicts: path.join(rootDir, 'data', 'phase35c421_conflict_audit.json'),
+  phase35c421SourceIndependence: path.join(rootDir, 'data', 'phase35c421_source_independence_audit.json')
 };
 
 function ensureDir(dirPath) {
@@ -154,16 +159,16 @@ function inferModelMetadata(modelKey, database) {
 }
 
 export function evaluatePublicEvidenceCandidate(candidate, conflicts = []) {
-  const measurementKnown = candidate.field === 'spark_plug' ? 'NOT_APPLICABLE' : Boolean(candidate.normalized_unit);
+  const measurementDefinition = getMeasurementDefinitionForField(candidate.field, candidate);
   const publicGate = {
     source_authenticated: candidate.source_authenticated === true,
     page_locator_exists: Boolean(candidate.pdf_page),
     document_model_valid: candidate.document_model_fit === 'EXACT_MODEL_DOCUMENT' || candidate.document_model_fit === 'EXPLICIT_MULTI_MODEL_DOCUMENT',
     model_scope_valid: ALLOWED_SCOPES.has(candidate.resolved_scope || candidate.scope),
-    field_semantic_valid: candidate.semantic_status !== 'INVALID',
+    field_semantic_valid: isStrictSemanticStatus(candidate.semantic_status),
     value_valid: candidate.normalized_value != null,
     unit_valid: candidate.field === 'spark_plug' ? true : Boolean(candidate.normalized_unit),
-    measurement_definition_known: measurementKnown === 'NOT_APPLICABLE' ? true : measurementKnown,
+    measurement_definition_known: isMeasurementDefinitionKnown(candidate.field, candidate),
     sanity_pass: candidate.verification_gates?.secondary_block_reasons?.includes('SANITY_FAILED') ? false : candidate.normalized_value != null,
     unresolved_fatal_conflict: false
   };
@@ -197,19 +202,82 @@ export function evaluatePublicEvidenceCandidate(candidate, conflicts = []) {
   return {
     public_evidence_status: status,
     display_eligible: displayEligible,
+    single_value_eligible: status === 'CANONICAL_VERIFIED' || status === 'OFFICIAL_DOCUMENTED',
     conflict_records: compatibleConflicts,
-    public_gate: publicGate
+    public_gate: {
+      ...publicGate,
+      measurement_definition: measurementDefinition
+    }
   };
 }
 
-function buildPublicFacts(database, funnel, conflictAudit) {
+function parseComparisonSource(sourceKey, unit) {
+  const raw = String(sourceKey || '');
+  if (!raw) {
+    return {
+      value: null,
+      unit,
+      source_label: 'Onbekende bron'
+    };
+  }
+  if (raw.startsWith('TS_DATA:')) {
+    return {
+      value: null,
+      unit,
+      source_label: 'STIHL technische dataset',
+      source_document_title: 'STIHL technische dataset',
+      source_class: 'OFFICIAL_TECHNICAL_DATASET'
+    };
+  }
+
+  const parts = raw.split(':');
+  return {
+    value: null,
+    unit,
+    source_label: parts.slice(1, 3).join(' · ') || raw,
+    source_document_title: parts[1] || raw,
+    pdf_page: Number(parts[2]) || null,
+    source_class: 'OFFICIAL_DOCUMENT_MIRROR'
+  };
+}
+
+function buildConflictMetadata(candidate, compatibleConflicts, sourceIndependenceAudit) {
+  return compatibleConflicts.map((conflict) => {
+    const sourcePair = (sourceIndependenceAudit.records || []).find((row) => row.candidate_id === conflict.candidate_id);
+    const comparisonSource = parseComparisonSource(sourcePair?.source_b, candidate.normalized_unit || null);
+    return {
+      value: conflict.comparison_value,
+      unit: candidate.normalized_unit || null,
+      source_label: comparisonSource.source_label,
+      source_document_title: comparisonSource.source_document_title || comparisonSource.source_label,
+      pdf_page: comparisonSource.pdf_page || null,
+      source_class: comparisonSource.source_class || null,
+      source_url: null,
+      reason: conflict.conflict_reason
+    };
+  }).filter((entry) => entry.value != null);
+}
+
+function buildPublicFacts(database, funnel, conflictAudit, sourceIndependenceAudit) {
   const conflicts = conflictAudit.conflicts || [];
   const records = [];
 
   for (const candidate of funnel.records || []) {
     if (!TARGET_FIELDS.includes(candidate.field)) continue;
+    const sparkSanitized = candidate.field === 'spark_plug'
+      ? sanitizeSparkPlugValue(candidate.raw_value || candidate.normalized_value)
+      : null;
+    const normalizedValue = sparkSanitized ? sparkSanitized.normalized_value : candidate.normalized_value;
+    const semanticStatus = sparkSanitized ? sparkSanitized.semantic_status : candidate.semantic_status;
+    const measurementDefinition = getMeasurementDefinitionForField(candidate.field, candidate);
     const identity = inferModelMetadata(candidate.model, database);
-    const evaluation = evaluatePublicEvidenceCandidate(candidate, conflicts);
+    const preparedCandidate = {
+      ...candidate,
+      normalized_value: normalizedValue,
+      semantic_status: semanticStatus,
+      measurement_definition: measurementDefinition
+    };
+    const evaluation = evaluatePublicEvidenceCandidate(preparedCandidate, conflicts);
     const conflictGroupId = evaluation.conflict_records.length > 0
       ? stableId(['public-conflict', candidate.model, candidate.field])
       : null;
@@ -222,11 +290,12 @@ function buildPublicFacts(database, funnel, conflictAudit) {
       category: identity.category,
       field: candidate.field,
       raw_value: candidate.raw_value,
-      normalized_value: candidate.normalized_value,
+      normalized_value: normalizedValue,
       unit: candidate.normalized_unit || null,
-      measurement_definition: candidate.field === 'spark_plug' ? 'NOT_APPLICABLE' : candidate.normalized_unit,
+      measurement_definition: measurementDefinition,
       public_evidence_status: evaluation.public_evidence_status,
       display_eligible: evaluation.display_eligible,
+      single_value_eligible: evaluation.single_value_eligible,
       source_class: inferSourceClass(candidate),
       source_document_id: candidate.publication_id || candidate.source_document_sha256,
       source_document_title: sanitizePublicSourceLabel(candidate.source_document),
@@ -238,19 +307,15 @@ function buildPublicFacts(database, funnel, conflictAudit) {
       configuration: null,
       model_scope: candidate.resolved_scope || candidate.scope,
       scope_evidence: Array.isArray(candidate.model_scope_evidence) ? candidate.model_scope_evidence : [],
-      field_semantic_status: candidate.semantic_status || 'UNKNOWN',
+      field_semantic_status: semanticStatus || 'UNKNOWN',
       conflict_group_id: conflictGroupId,
       conflict_status: evaluation.conflict_records.length > 0 ? 'UNRESOLVED_OFFICIAL_CONFLICT' : 'CLEAR',
-      conflicting_values: evaluation.conflict_records.map((conflict) => ({
-        candidate_value: conflict.candidate_value,
-        comparison_value: conflict.comparison_value,
-        reason: conflict.conflict_reason
-      })),
+      conflicting_values: buildConflictMetadata(preparedCandidate, evaluation.conflict_records, sourceIndependenceAudit),
       source_url: null,
       evidence_hash: stableHash([
         candidate.model,
         candidate.field,
-        candidate.normalized_value,
+        normalizedValue,
         candidate.publication_id,
         candidate.pdf_page
       ]),
@@ -501,6 +566,31 @@ function buildFailureInjectionReport() {
     field: 'displacement_cc',
     verification_gates: {}
   });
+  const sparkMutation = sanitizeSparkPlugValue('Bosch WSR 6 F 8.25 mm Rapid-Micro');
+  const contaminatedSpark = evaluatePublicEvidenceCandidate({
+    source_authenticated: true,
+    pdf_page: 1,
+    document_model_fit: 'EXACT_MODEL_DOCUMENT',
+    resolved_scope: 'EXACT_MODEL',
+    semantic_status: sparkMutation.semantic_status,
+    normalized_value: sparkMutation.normalized_value,
+    normalized_unit: null,
+    field: 'spark_plug',
+    verification_gates: {},
+    raw_value: 'Bosch WSR 6 F 8.25 mm Rapid-Micro'
+  });
+  const canonicalPromotion = evaluatePublicEvidenceCandidate({
+    source_authenticated: true,
+    pdf_page: 1,
+    document_model_fit: 'EXACT_MODEL_DOCUMENT',
+    resolved_scope: 'EXACT_MODEL',
+    semantic_status: 'VALID',
+    normalized_value: 50.2,
+    normalized_unit: 'cm3',
+    field: 'displacement_cc',
+    verified: false,
+    verification_gates: {}
+  });
 
   return {
     generated_at: new Date().toISOString(),
@@ -509,7 +599,8 @@ function buildFailureInjectionReport() {
     MISSING_PROVENANCE_BLOCKED: missingPage.display_eligible === false ? 'PASS' : 'FAIL',
     CONFLICT_HIDING_BLOCKED: conflict.public_evidence_status === 'OFFICIAL_CONFLICTED' ? 'PASS' : 'FAIL',
     ESTIMATE_AS_SPEC_BLOCKED: estimateAsSpec.display_eligible === false ? 'PASS' : 'FAIL',
-    CANONICAL_PROMOTION_BLOCKED: 'PASS'
+    SPARK_CHAIN_CONTAMINATION_BLOCKED: contaminatedSpark.display_eligible === false ? 'PASS' : 'FAIL',
+    CANONICAL_PROMOTION_BLOCKED: canonicalPromotion.public_evidence_status !== 'CANONICAL_VERIFIED' ? 'PASS' : 'FAIL'
   };
 }
 
@@ -558,8 +649,9 @@ function buildArtifacts() {
   const beforeOverlay = readJson(OUTPUTS.publicStore, { schema_version: 'public-evidence-v1', facts: [] });
   const funnel = readJson(INPUTS.phase35c421Funnel, { records: [] });
   const conflictAudit = readJson(INPUTS.phase35c421Conflicts, { conflicts: [] });
+  const sourceIndependenceAudit = readJson(INPUTS.phase35c421SourceIndependence, { records: [] });
 
-  const publicCandidates = buildPublicFacts(database, funnel, conflictAudit);
+  const publicCandidates = buildPublicFacts(database, funnel, conflictAudit, sourceIndependenceAudit);
   const overlay = buildOverlayStore(publicCandidates, database);
   const databaseWithOverlay = { ...database, public_evidence: overlay };
 

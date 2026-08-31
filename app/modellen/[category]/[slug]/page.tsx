@@ -51,7 +51,7 @@ export default async function ModelCategoryPage({ params }: Props) {
           STIHL {model.name} Bouwjaar & Specificaties
         </h1>
         <p className="text-sm text-gray-400 mt-2 leading-relaxed">
-          Officiële gids voor de STIHL {model.name}. Bekijk carburateur basisafstellingen, bougiespecificaties, kettingsteek en controleer het serienummer van uw machine.
+          Modelgids voor de STIHL {model.name}. Bevestig technische specificaties altijd met het typeplaatje en passende STIHL documentatie voor uw uitvoering.
         </p>
       </header>
 
@@ -73,19 +73,19 @@ export default async function ModelCategoryPage({ params }: Props) {
           <div className="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
             <span className="text-xs text-gray-400 block">Motorvermogen</span>
             <span className="text-base font-bold text-white">
-              {model.powerHp ? `${model.powerHp} pk (${model.powerKw} kW)` : 'Niet van toepassing'}
+              {model.powerKw ? `${model.powerKw} kW` : 'Nog niet betrouwbaar gedocumenteerd'}
             </span>
           </div>
           <div className="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
             <span className="text-xs text-gray-400 block">Cilinderinhoud</span>
             <span className="text-base font-bold text-white">
-              {model.displacementCc ? `${model.displacementCc} cc` : (model.batterySystem ? 'Accu-aangedreven' : '-')}
+              {model.displacementCc ? `${model.displacementCc} cc` : (model.batterySystem ? 'Accu-aangedreven' : 'Nog niet betrouwbaar gedocumenteerd')}
             </span>
           </div>
           <div className="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
             <span className="text-xs text-gray-400 block">Bougie & Elektrodenafstand</span>
             <span className="text-base font-bold text-white">
-              {model.sparkPlug ? `${model.sparkPlug} (${model.electrodeGapMm || 0.50} mm)` : 'Geen bougie (Accu)'}
+              {model.sparkPlug ? `${model.sparkPlug}${model.electrodeGapMm ? ` (${model.electrodeGapMm} mm)` : ''}` : 'Nog niet betrouwbaar gedocumenteerd'}
             </span>
           </div>
           <div className="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">

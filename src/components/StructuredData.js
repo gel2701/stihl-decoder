@@ -6,7 +6,40 @@
 import { PRIMARY_ORIGIN } from '../config.js';
 import { getSerialLocationAnswer, getSafeCategorySlug, shouldPublishProductSchema } from '../publicationRules.js';
 
-export function buildStructuredData({ pageType, model, guide, intent, breadcrumbs = [], url }) {
+function buildSafeProductProperties(publicEvidenceFields = {}) {
+  const properties = [];
+  const addProperty = (name, field, formatter = (value, unit) => unit ? `${value} ${unit}` : `${value}`) => {
+    const entry = publicEvidenceFields[field];
+    if (!entry || !entry.single_value_eligible || entry.value == null) return;
+    properties.push({
+      '@type': 'PropertyValue',
+      'name': name,
+      'value': formatter(entry.value, entry.unit)
+    });
+  };
+
+  addProperty('Motorinhoud', 'displacement_cc', (value) => `${value} cc`);
+  addProperty('Vermogen', 'power_kw', (value) => `${value} kW`);
+  addProperty('Cilinderboring', 'bore_mm', (value) => `${value} mm`);
+  addProperty('Slag', 'stroke_mm', (value) => `${value} mm`);
+  addProperty('Stationair toerental', 'idle_speed_rpm', (value) => `${value} rpm`);
+  addProperty('Elektrodenafstand', 'electrode_gap_mm', (value) => `${value} mm`);
+  addProperty('Brandstoftank', 'fuel_tank_l', (value) => `${value} l`);
+  addProperty('Kettingolietank', 'oil_tank_l', (value) => `${value} l`);
+
+  const sparkPlug = publicEvidenceFields.spark_plug;
+  if (sparkPlug?.single_value_eligible && sparkPlug.value) {
+    properties.push({
+      '@type': 'PropertyValue',
+      'name': 'Bougie',
+      'value': sparkPlug.value
+    });
+  }
+
+  return properties;
+}
+
+export function buildStructuredData({ pageType, model, guide, intent, publicEvidence = null, breadcrumbs = [], url }) {
   const baseUrl = PRIMARY_ORIGIN;
   const canonicalUrl = url || baseUrl;
   const graph = [];
@@ -54,6 +87,8 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
   // 3. Model Page Schemas
   if (pageType === 'model' && model) {
     const categorySlug = getSafeCategorySlug(model);
+    const publicEvidenceFields = publicEvidence?.fields || {};
+    const safeProductProperties = buildSafeProductProperties(publicEvidenceFields);
 
     // TechArticle Schema
     graph.push({
@@ -65,18 +100,16 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
     });
 
     const productGate = shouldPublishProductSchema(model);
-    if (productGate.allowed) {
+    if (productGate.allowed && safeProductProperties.length > 0) {
       const descParts = [`STIHL ${model.model_name}`];
-      if (model.displacement_cc) {
-        descParts.push(`met ${model.displacement_cc} cc motor`);
+      if (publicEvidenceFields.displacement_cc?.single_value_eligible) {
+        descParts.push(`met ${publicEvidenceFields.displacement_cc.value} cc motor`);
       } else if (model.battery_system || model.voltage_v) {
         descParts.push('met accu-aandrijving');
       }
 
-      if (model.power_hp) {
-        descParts.push(`en ${model.power_hp} pk vermogen`);
-      } else if (model.power_kw) {
-        descParts.push(`en ${model.power_kw} kW vermogen`);
+      if (publicEvidenceFields.power_kw?.single_value_eligible) {
+        descParts.push(`en ${publicEvidenceFields.power_kw.value} kW vermogen`);
       }
       descParts.push('.');
 
@@ -88,7 +121,8 @@ export function buildStructuredData({ pageType, model, guide, intent, breadcrumb
         'brand': {
           '@type': 'Brand',
           'name': 'STIHL'
-        }
+        },
+        'additionalProperty': safeProductProperties
       });
     }
 

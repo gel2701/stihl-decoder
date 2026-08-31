@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-08-31T13:18:41.594Z",
+  "source_commit": "ab2410e3f23d63483c1aadd4a7735328ec2b50e9",
+  "OFFICIAL_CONFLICTED_FACTS": 1,
+  "CONFLICT_SINGLE_VALUE_API_LEAKS": 0,
+  "046_STROKE_STATUS": "OFFICIAL_CONFLICTED",
+  "046_STROKE_CONFLICT_API": {
+    "field": "stroke_mm",
+    "evidence_status": "OFFICIAL_CONFLICTED",
+    "display_eligible": true,
+    "single_value_eligible": false,
+    "value": null,
+    "values": [
+      {
+        "value": 40,
+        "unit": "mm",
+        "sourceLabel": "STIHL 046.pdf",
+        "sourceClass": "OFFICIAL_DOCUMENT_MIRROR",
+        "publicationId": "0458-145-3021",
+        "pdfPage": 51,
+        "sourceUrl": null
+      },
+      {
+        "value": 36,
+        "unit": "mm",
+        "sourceLabel": "STIHL technische dataset",
+        "sourceClass": "OFFICIAL_TECHNICAL_DATASET",
+        "publicationId": null,
+        "pdfPage": null,
+        "sourceUrl": null
+      }
+    ],
+    "unit": "mm",
+    "measurement_definition": "PISTON_STROKE",
+    "meta": {
+      "status": "OFFICIAL_CONFLICTED",
+      "statusLabel": "Bronverschil gevonden",
+      "sourceClass": "OFFICIAL_DOCUMENT_MIRROR",
+      "sourceDocumentTitle": "STIHL 046.pdf",
+      "publicationId": "0458-145-3021",
+      "pdfPage": 51,
+      "printedPage": null,
+      "market": null,
+      "revision": null,
+      "configuration": null,
+      "sourceUrl": null,
+      "measurementDefinition": "PISTON_STROKE",
+      "singleValueEligible": false
+    }
+  }
+}

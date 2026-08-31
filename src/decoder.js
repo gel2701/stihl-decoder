@@ -10,31 +10,64 @@ import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
 import { getFuelDriveLabel, getFuelTypeCode } from './publicationRules.js';
 import {
+  buildPublicEvidenceFields,
   buildPublicEvidenceFieldMap,
   buildPublicEvidenceMeta,
   buildPublicSourceSummary,
   findPublicEvidenceModel,
   flattenPublicFactValue,
-  getPreferredPublicFact
+  getPreferredPublicFact,
+  getSingleValuePublicFact,
+  TECHNICAL_PUBLIC_FIELDS
 } from './publicEvidence.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
   const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
   const technicalSpecs = {};
+  const publicEvidenceFields = buildPublicEvidenceFields(modelKey, database);
   const publicFacts = [];
 
   for (const [field, records] of Object.entries(fieldMap)) {
     const fact = getPreferredPublicFact(records);
     if (!fact || !fact.display_eligible) continue;
-    technicalSpecs[field] = flattenPublicFactValue(fact.normalized_value);
+    const singleValueFact = getSingleValuePublicFact(records);
+    if (singleValueFact) {
+      technicalSpecs[field] = flattenPublicFactValue(singleValueFact.normalized_value);
+    }
     publicFacts.push({
       field,
-      value: technicalSpecs[field],
+      value: publicEvidenceFields[field]?.value ?? null,
       meta: buildPublicEvidenceMeta(fact)
     });
   }
 
-  return { technicalSpecs, publicFacts };
+  return { technicalSpecs, publicFacts, publicEvidenceFields };
+}
+
+function buildDisplayTechnicalSpecs(modelKey, database, category, modelName) {
+  const overlaySpecs = buildTechnicalSpecsFromPublicEvidence(modelKey, database);
+  return {
+    ...overlaySpecs,
+    technicalSpecs: sanitizeModelSpecifications(overlaySpecs.technicalSpecs, category, modelName)
+  };
+}
+
+function stripUnsafeTechnicalFallbacks(specs = {}) {
+  const clean = { ...specs };
+  const blockedFields = new Set([
+    ...TECHNICAL_PUBLIC_FIELDS,
+    'power_hp',
+    'carb_h_setting',
+    'carb_l_setting',
+    'carb_la_setting',
+    'chain_pitch',
+    'chain_gauge_mm',
+    'oil_mix_ratio'
+  ]);
+  for (const field of blockedFields) {
+    delete clean[field];
+  }
+  return clean;
 }
 
 function isExactModelMatch(inputQuery, model) {
@@ -131,8 +164,7 @@ export function analyzeModelQuery(modelStr, database) {
 
   const overlayModel = publicEvidenceMatch?.model || null;
   const overlayModelKey = publicEvidenceMatch?.key || null;
-  const overlaySpecs = overlayModelKey ? buildTechnicalSpecsFromPublicEvidence(overlayModelKey, database) : { technicalSpecs: {}, publicFacts: [] };
-  const rawSpecs = matchedModelSpec ? { ...matchedModelSpec } : {};
+  const rawSpecs = matchedModelSpec ? stripUnsafeTechnicalFallbacks({ ...matchedModelSpec }) : {};
 
   // Prefix-based category resolution (Defaults to UNKNOWN, NEVER to Kettingzaag)
   let category = 'UNKNOWN';
@@ -159,6 +191,9 @@ export function analyzeModelQuery(modelStr, database) {
     : (matchedModelSpec
       ? matchedModelSpec.model_name
       : (overlayModel?.model_name || norm.canonicalQuery));
+  const overlaySpecs = overlayModelKey
+    ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, resolvedModelName)
+    : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
   const verification = matchedModelSpec ? getModelVerificationSummary(matchedModelSpec) : null;
@@ -194,6 +229,7 @@ export function analyzeModelQuery(modelStr, database) {
     confidenceLabel: matchedModelSpec || overlayModelKey ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing',
     modelResolution,
     publicEvidenceSummary: publicSourceSummary,
+    publicEvidenceFields: overlaySpecs.publicEvidenceFields,
     publicEvidenceFacts: overlaySpecs.publicFacts,
     relationship: relationship ? {
       type: relationship.relationship_type,
@@ -203,7 +239,7 @@ export function analyzeModelQuery(modelStr, database) {
       notes: relationship.notes
     } : null,
     technicalSpecs: overlaySpecs.publicFacts.length > 0
-      ? sanitizeModelSpecifications({ ...sanitizedSpecs, ...overlaySpecs.technicalSpecs }, category, resolvedModelName)
+      ? overlaySpecs.technicalSpecs
       : sanitizedSpecs
   };
 }
@@ -244,7 +280,11 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     ? modelData.model_name
     : (probableModelSeries || 'Nog niet definitief bevestigd');
   const category = modelData ? (modelData.category || modelData.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend');
-  const rawSpecs = modelData ? { ...modelData } : {};
+  const overlayModelKey = modelData ? (modelData.slug || modelData.model_name) : null;
+  const overlaySpecs = overlayModelKey
+    ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, modelName)
+    : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
+  const rawSpecs = modelData ? stripUnsafeTechnicalFallbacks({ ...modelData }) : {};
   const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
 
   const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? 'vanaf circa 2016' : 'vanaf circa 2010');
@@ -253,10 +293,17 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
   const verification = modelData ? getModelVerificationSummary(modelData) : null;
-  const sourceStatus = verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING';
-  const sourceStatusLabel = verification
-    ? `Bronstatus: ${verification.badgeLabel}`
-    : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
+  const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
+  const sourceStatus = identityStatus === 'EXACT_MODEL_IDENTIFIED' && publicSourceSummary?.display_fact_count
+    ? publicSourceSummary.primaryStatus
+    : verification
+      ? verification.dataStatus
+      : 'PRIMARY_SOURCE_PENDING';
+  const sourceStatusLabel = identityStatus === 'EXACT_MODEL_IDENTIFIED' && publicSourceSummary?.display_fact_count
+    ? `Bronstatus: ${publicSourceSummary.summaryLabel}`
+    : verification
+      ? `Bronstatus: ${verification.badgeLabel}`
+      : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
 
   return {
     success: true,
@@ -292,7 +339,12 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     fuel_type: modelData ? getFuelTypeCode(modelData) : 'UNKNOWN',
     fuel_type_label: modelData ? getFuelDriveLabel(modelData) : 'Niet vastgesteld',
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
-    technicalSpecs: sanitizedSpecs,
+    publicEvidenceSummary: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? publicSourceSummary : null,
+    publicEvidenceFields: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? overlaySpecs.publicEvidenceFields : {},
+    publicEvidenceFacts: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? overlaySpecs.publicFacts : [],
+    technicalSpecs: identityStatus === 'EXACT_MODEL_IDENTIFIED'
+      ? overlaySpecs.technicalSpecs
+      : {},
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
     notes: identityStatus === 'PROBABLE_MODEL_SERIES'
       ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}). Exact model en uitvoering zijn nog niet definitief bevestigd.`

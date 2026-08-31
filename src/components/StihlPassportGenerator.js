@@ -5,48 +5,86 @@
 
 import { normalizeCategorySlug, CATEGORY_TYPES } from '../categoryWhitelist.js';
 
-export function renderStihlPassportHtml(data) {
-  const serial = data.cleanedSerial || data.serialNumber || '184592301';
-  const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
-  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Machine');
-  const categoryStr = data.category || (data.modelMatch && data.modelMatch.category) || model;
+function compactText(value, fallback = 'Niet vastgesteld') {
+  const text = String(value || '').trim();
+  return text || fallback;
+}
+
+function buildSafePassportSpecRows(data) {
+  const specs = data.technicalSpecs && typeof data.technicalSpecs === 'object' ? data.technicalSpecs : {};
+  const rows = [];
+
+  if (specs.displacement_cc) rows.push(`Motorinhoud: ${specs.displacement_cc} cc`);
+  if (specs.power_kw) rows.push(`Vermogen: ${specs.power_kw} kW`);
+  if (specs.spark_plug) rows.push(`Bougie: ${specs.spark_plug}`);
+  if (specs.electrode_gap_mm) rows.push(`Elektrodenafstand: ${specs.electrode_gap_mm} mm`);
+  if (specs.chain_pitch && specs.chain_gauge_mm) rows.push(`Kettingsteek: ${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm`);
+
+  return rows;
+}
+
+export function buildPassportViewModel(data = {}) {
+  const serial = data.cleanedSerial || data.serialNumber || '';
+  const formattedSerial = data.formatted || (serial ? `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}` : 'Niet vastgesteld');
+  const identityStatus = data.modelIdentityStatus || (data.exactModel ? 'EXACT_MODEL_IDENTIFIED' : (data.probableModelSeries ? 'PROBABLE_MODEL_SERIES' : 'MODEL_NOT_IDENTIFIED'));
+  const exactModel = compactText(data.exactModel, '');
+  const probableModelSeries = compactText(data.probableModelSeries, '');
+  const model = exactModel || probableModelSeries || compactText(data.model, 'STIHL Machine');
+  const categoryStr = compactText(data.category, '');
   const catSlug = normalizeCategorySlug(categoryStr, model);
-  const isChainsaw = (catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW);
-
-  const plantCountry = data.plantInfo?.country || data.factory?.country || 'Onbekend';
-  const plantLocation = data.plantInfo?.location || data.factory?.location || data.factory?.facility;
-  const country = plantLocation ? `${plantCountry} (${plantLocation})` : plantCountry;
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Niet vastgesteld');
-  const dispCc = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.displacementCc) || (data.technicalSpecs && data.technicalSpecs.displacement_cc);
-  const powerHp = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.powerHp) || (data.technicalSpecs && data.technicalSpecs.power_hp);
-
-  let categorySpecLabel = 'Machine Categorie & Uitvoering';
-  let categorySpecValue = 'Standaard STIHL Fabrieksuitvoering';
-
-  if (isChainsaw) {
-    categorySpecLabel = 'Snijgarnituur / Kettingmaat (Standaard)';
-    const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
-    const pitch = (data.technicalSpecs && data.technicalSpecs.chain_pitch) || (data.modelMatch?.specs?.chainPitch) || '.325"';
-    const gauge = (data.technicalSpecs && data.technicalSpecs.chain_gauge_mm) || (data.modelMatch?.specs?.chainGaugeMm) || 1.3;
-    categorySpecValue = chainDetails ? 
-      (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
-      `${pitch} @ ${gauge} mm`;
-  } else if (catSlug === CATEGORY_TYPES.BLOWER) {
-    categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
-    categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
-  } else if (catSlug === CATEGORY_TYPES.BRUSHCUTTER) {
-    categorySpecLabel = 'Aandrijving & Bosmaaier Systeem';
-    categorySpecValue = 'STIHL Profi Bosmaaier / Trimmer Systeem';
-  } else if (catSlug === CATEGORY_TYPES.CUTOFF_SAW) {
-    categorySpecLabel = 'Aandrijving & Doorslijper Systeem';
-    categorySpecValue = 'STIHL Cycloon Luchtfiltersysteem Doorslijper';
-  }
+  const plantCountry = compactText(data.plantInfo?.country || data.factory?.country, 'Niet vastgesteld');
+  const plantLocation = compactText(data.plantInfo?.location || data.factory?.location || data.factory?.facility, '');
+  const country = plantLocation && plantLocation !== 'Niet vastgesteld' ? `${plantCountry} (${plantLocation})` : plantCountry;
+  const years = compactText(data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Onbekend'}` : data.estimatedYears, 'Niet vastgesteld');
+  const technicalSpecRows = buildSafePassportSpecRows(data);
+  const hasTechnicalSpecs = technicalSpecRows.length > 0;
+  const identityTitle = identityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Exact model geïdentificeerd' : 'Waarschijnlijke modelreeks';
+  const identityExplanation = identityStatus === 'EXACT_MODEL_IDENTIFIED'
+    ? 'Technische specificaties zijn alleen opgenomen wanneer ze veilig aan dit model zijn gekoppeld.'
+    : 'Technische specificaties zijn niet aan dit serienummer gekoppeld zolang het exacte model niet voldoende is bevestigd.';
 
   const theftCheck = data.theftCheck || {
     userSelfReported: false,
     checkedAt: new Date().toLocaleDateString('nl-NL'),
     statusLabel: 'Niet gecontroleerd via StopHeling'
   };
+
+  return {
+    serial,
+    formattedSerial,
+    model,
+    exactModel: exactModel || null,
+    probableModelSeries: probableModelSeries || null,
+    identityStatus,
+    identityTitle,
+    identityLabel: data.confidenceLabel || (identityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Exact model geïdentificeerd' : 'Breakpoint-gebaseerde indicatie'),
+    identityExplanation,
+    category: categoryStr || null,
+    categorySlug: catSlug,
+    isChainsaw: catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW,
+    country,
+    years,
+    technicalSpecRows,
+    hasTechnicalSpecs,
+    theftCheck
+  };
+}
+
+export function renderStihlPassportHtml(data) {
+  const passport = buildPassportViewModel(data);
+  const {
+    serial,
+    formattedSerial,
+    model,
+    identityTitle,
+    identityLabel,
+    identityExplanation,
+    country,
+    years,
+    technicalSpecRows,
+    hasTechnicalSpecs,
+    theftCheck
+  } = passport;
 
   const isSelfReported = theftCheck.userSelfReported || theftCheck.status === 'USER_REPORTED_CLEAN';
   const statusTone = isSelfReported
@@ -63,6 +101,7 @@ export function renderStihlPassportHtml(data) {
         <div>
           <span class="text-2xs font-mono uppercase tracking-widest text-orange-500 font-bold block">Serienummer Rapport (indicatief)</span>
           <h2 class="text-2xl font-black tracking-tight text-white mt-0.5">${model}</h2>
+          <p class="text-2xs text-neutral-400 mt-1">${identityTitle}: ${identityLabel}</p>
         </div>
         <span class="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-2xs font-black tracking-wider">
           ${isSelfReported ? 'Zelf gerapporteerd' : 'Indicatief overzicht'}
@@ -99,15 +138,16 @@ export function renderStihlPassportHtml(data) {
           <span class="text-sm font-bold text-orange-400">${years}</span>
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
-          <span class="text-2xs text-neutral-400 block font-medium">Motor Specificaties</span>
-          <span class="text-sm font-bold text-white">${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Niet vastgesteld'}</span>
+          <span class="text-2xs text-neutral-400 block font-medium">${identityTitle}</span>
+          <span class="text-sm font-bold text-white">${identityLabel}</span>
         </div>
-        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2 flex justify-between items-center">
+        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2">
           <div>
-            <span class="text-2xs text-neutral-400 block font-medium">${categorySpecLabel}</span>
-            <span class="text-sm font-bold text-orange-300 font-mono">${categorySpecValue}</span>
+            <span class="text-2xs text-neutral-400 block font-medium">${hasTechnicalSpecs ? 'Technische specificaties' : 'Technische specificatiesstatus'}</span>
+            ${hasTechnicalSpecs
+              ? `<div class="space-y-1 mt-1">${technicalSpecRows.map((row) => `<span class="text-sm font-bold text-orange-300 font-mono block">${row}</span>`).join('')}</div>`
+              : `<span class="text-sm font-semibold text-neutral-300">${identityExplanation}</span>`}
           </div>
-          <span class="text-3xs bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Indicatief overzicht</span>
         </div>
       </div>
 
@@ -127,43 +167,21 @@ export function renderStihlPassportHtml(data) {
 }
 
 export function downloadStihlPassportImage(data) {
-  const serial = data.cleanedSerial || data.serialNumber || '184592301';
-  const formattedSerial = data.formatted || `${serial.substring(0,1)} ${serial.substring(1,4)} ${serial.substring(4,7)} ${serial.substring(7)}`;
-  const model = data.modelMatch ? data.modelMatch.modelName : (data.model || 'STIHL Machine');
-  const categoryStr = data.category || (data.modelMatch && data.modelMatch.category) || model;
-  const catSlug = normalizeCategorySlug(categoryStr, model);
-  const isChainsaw = (catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW);
+  const passport = buildPassportViewModel(data);
+  const {
+    serial,
+    formattedSerial,
+    model,
+    identityTitle,
+    identityLabel,
+    identityExplanation,
+    country,
+    years,
+    technicalSpecRows,
+    hasTechnicalSpecs
+  } = passport;
 
-  const plantCountry = data.plantInfo?.country || data.factory?.country || 'Onbekend';
-  const plantLocation = data.plantInfo?.location || data.factory?.location || data.factory?.facility;
-  const country = plantLocation ? `${plantCountry} (${plantLocation})` : plantCountry;
-  const years = data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Heden'}` : (data.estimatedYears || 'Niet vastgesteld');
-  const dispCc = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.displacementCc) || (data.technicalSpecs && data.technicalSpecs.displacement_cc);
-  const powerHp = (data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.powerHp) || (data.technicalSpecs && data.technicalSpecs.power_hp);
-
-  let categorySpecLabel = 'Machine Categorie & Uitvoering';
-  let categorySpecValue = 'Standaard STIHL Fabrieksuitvoering';
-
-  if (isChainsaw) {
-    categorySpecLabel = 'Snijgarnituur / Kettingmaat (Standaard)';
-    const chainDetails = data.modelMatch && data.modelMatch.specs && data.modelMatch.specs.chainDetails;
-    const pitch = (data.technicalSpecs && data.technicalSpecs.chain_pitch) || (data.modelMatch?.specs?.chainPitch) || '.325"';
-    const gauge = (data.technicalSpecs && data.technicalSpecs.chain_gauge_mm) || (data.modelMatch?.specs?.chainGaugeMm) || 1.3;
-    categorySpecValue = chainDetails ? 
-      (typeof chainDetails === 'string' ? chainDetails : `${chainDetails.pitch} @ ${chainDetails.gauge || 1.3} mm`) : 
-      `${pitch} @ ${gauge} mm`;
-  } else if (catSlug === CATEGORY_TYPES.BLOWER) {
-    categorySpecLabel = 'Aandrijving & Bladblazer Systeem';
-    categorySpecValue = 'STIHL 4-MIX® / 2-MIX® Ruggedragen Blazer';
-  } else if (catSlug === CATEGORY_TYPES.BRUSHCUTTER) {
-    categorySpecLabel = 'Aandrijving & Bosmaaier Systeem';
-    categorySpecValue = 'STIHL Profi Bosmaaier / Trimmer Systeem';
-  } else if (catSlug === CATEGORY_TYPES.CUTOFF_SAW) {
-    categorySpecLabel = 'Aandrijving & Doorslijper Systeem';
-    categorySpecValue = 'STIHL Cycloon Luchtfiltersysteem Doorslijper';
-  }
-
-  const theftCheck = data.theftCheck || {
+  const theftCheck = passport.theftCheck || {
     userSelfReported: false,
     checkedAt: new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
     statusLabel: 'Niet gecontroleerd via StopHeling'
@@ -193,6 +211,10 @@ export function downloadStihlPassportImage(data) {
     ctx.fillStyle = '#ffffff';
     ctx.font = '900 44px sans-serif';
     ctx.fillText(model, 60, 130);
+
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText(`${identityTitle}: ${identityLabel}`, 60, 155);
 
     // Source-status badge
     ctx.fillStyle = '#ea580c20';
@@ -247,20 +269,27 @@ export function downloadStihlPassportImage(data) {
     ctx.fillRect(615, 420, 525, 140);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText('Motor Specificaties', 645, 455);
+    ctx.fillText(identityTitle, 645, 455);
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 28px sans-serif';
-    ctx.fillText(`${dispCc ? dispCc + ' cc / ' : ''}${powerHp ? powerHp + ' pk' : 'Niet vastgesteld'}`, 645, 510);
+    ctx.font = 'bold 24px sans-serif';
+    ctx.fillText(identityLabel, 645, 505);
 
     // Category Specific Full Row Card
     ctx.fillStyle = '#171717';
     ctx.fillRect(60, 580, 1080, 120);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText(categorySpecLabel, 90, 615);
+    ctx.fillText(hasTechnicalSpecs ? 'Technische specificaties' : 'Technische specificatiesstatus', 90, 615);
     ctx.fillStyle = '#fb923c';
-    ctx.font = 'bold 30px monospace';
-    ctx.fillText(categorySpecValue, 90, 665);
+    if (hasTechnicalSpecs) {
+      ctx.font = 'bold 22px monospace';
+      technicalSpecRows.slice(0, 3).forEach((row, index) => {
+        ctx.fillText(row, 90, 655 + (index * 28));
+      });
+    } else {
+      ctx.font = 'bold 20px sans-serif';
+      ctx.fillText(identityExplanation, 90, 665, 980);
+    }
 
     // Footer Divider
     ctx.strokeStyle = '#262626';

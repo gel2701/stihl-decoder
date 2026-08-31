@@ -28,9 +28,6 @@ export function ModelJsonLd({ model, baseUrl = PRIMARY_ORIGIN }: ModelJsonLdProp
   const slug = model.slug || model.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   const url = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/` : `${baseUrl}/modellen-onbekend/${slug}/`;
 
-  const carbH = model.carbH || 'Niet vastgesteld';
-  const carbL = model.carbL || 'Niet vastgesteld';
-  const carbLA = model.carbLA || 'Niet vastgesteld';
   const serialLocationText = getSerialLocationAnswer(categorySlug);
   const allowProduct = shouldPublishProductSchema({
     model_name: model.name,
@@ -65,10 +62,10 @@ export function ModelJsonLd({ model, baseUrl = PRIMARY_ORIGIN }: ModelJsonLdProp
           },
           {
             '@type': 'Question',
-            'name': `Wat is een bruikbare basisreferentie voor de carburateur van de STIHL ${model.name}?`,
+            'name': `Waar controleer ik onderhoudsinstellingen voor de STIHL ${model.name}?`,
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': `Repositoryreferentie voor STIHL ${model.name}: H-schroef: ${carbH}, L-schroef: ${carbL}, LA-schroef: ${carbLA}. Controleer de exacte afstelling altijd met het juiste typeplaatje en de primaire documentatie voor uw uitvoering.`
+              'text': `Controleer carburateur- en onderhoudsinstellingen altijd met het juiste typeplaatje en de passende primaire documentatie voor uw uitvoering.`
             }
           }
         ]

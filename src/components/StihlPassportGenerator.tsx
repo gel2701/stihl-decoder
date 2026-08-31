@@ -6,7 +6,8 @@ export interface PassportData {
   modelName: string;
   country: string;
   productionYears: string;
-  powerHp: number;
+  powerHp?: number | null;
+  powerKw?: number | null;
   displacementCc?: number | null;
   chainInfo?: string;
   theftCheck: {
@@ -35,7 +36,11 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
 
   const isSelfReported = data.theftCheck ? Boolean(data.theftCheck.userSelfReported) : false;
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://www.stihldecoder.nl/?s=' + data.serialNumber)}`;
-  const chainText = data.chainInfo || '.325" @ 1.3 mm';
+  const technicalRows = [
+    data.displacementCc ? `${data.displacementCc} cc` : null,
+    data.powerKw ? `${data.powerKw} kW` : (data.powerHp ? `${data.powerHp} pk` : null),
+    data.chainInfo || null
+  ].filter(Boolean) as string[];
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -95,16 +100,21 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
             <span className="text-[11px] text-neutral-400 block font-medium">Geschat Bouwjaar</span>
             <span className="text-base font-bold text-orange-400">{data.productionYears}</span>
           </div>
-          <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
-            <span className="text-[11px] text-neutral-400 block font-medium">Motor Specificaties</span>
-            <span className="text-base font-bold text-white">{data.displacementCc ? `${data.displacementCc} cc / ` : ''}{data.powerHp} pk</span>
-          </div>
-          <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2 flex justify-between items-center">
-            <div>
-              <span className="text-[11px] text-neutral-400 block font-medium">Snijgarnituur / Kettingmaat (Standaard)</span>
-              <span className="text-sm font-bold text-orange-300 font-mono">{chainText}</span>
-            </div>
-            <span className="text-[10px] bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-0.5 rounded font-mono">Indicatief overzicht</span>
+          <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2">
+            <span className="text-[11px] text-neutral-400 block font-medium">
+              {technicalRows.length > 0 ? 'Technische specificaties' : 'Technische specificatiesstatus'}
+            </span>
+            {technicalRows.length > 0 ? (
+              <div className="mt-1 flex flex-col gap-1">
+                {technicalRows.map((row) => (
+                  <span key={row} className="text-sm font-bold text-orange-300 font-mono">{row}</span>
+                ))}
+              </div>
+            ) : (
+              <span className="text-sm font-semibold text-neutral-300">
+                Technische specificaties worden alleen getoond wanneer ze veilig aan het actuele decoderresultaat zijn gekoppeld.
+              </span>
+            )}
           </div>
         </div>
 

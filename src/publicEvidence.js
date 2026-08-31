@@ -1,8 +1,58 @@
+export const PUBLIC_EVIDENCE_SCHEMA = 'public-evidence-v1';
+
 const DISPLAY_ELIGIBLE_STATUSES = new Set([
   'CANONICAL_VERIFIED',
   'OFFICIAL_DOCUMENTED',
   'OFFICIAL_CONFLICTED'
 ]);
+
+const SINGLE_VALUE_ELIGIBLE_STATUSES = new Set([
+  'CANONICAL_VERIFIED',
+  'OFFICIAL_DOCUMENTED'
+]);
+
+export const TECHNICAL_PUBLIC_FIELDS = new Set([
+  'displacement_cc',
+  'power_kw',
+  'bore_mm',
+  'stroke_mm',
+  'weight_kg',
+  'idle_speed_rpm',
+  'spark_plug',
+  'electrode_gap_mm',
+  'fuel_tank_l',
+  'oil_tank_l'
+]);
+
+export const MEASUREMENT_DEFINITIONS = {
+  displacement_cc: ['ENGINE_DISPLACEMENT'],
+  power_kw: ['ENGINE_OUTPUT_POWER'],
+  bore_mm: ['CYLINDER_BORE'],
+  stroke_mm: ['PISTON_STROKE'],
+  weight_kg: ['MACHINE_DRY_WEIGHT', 'POWERHEAD_WEIGHT'],
+  idle_speed_rpm: ['ENGINE_IDLE_SPEED'],
+  spark_plug: ['NOT_APPLICABLE'],
+  electrode_gap_mm: ['SPARK_PLUG_ELECTRODE_GAP'],
+  fuel_tank_l: ['FUEL_TANK_CAPACITY'],
+  oil_tank_l: ['CHAIN_OIL_TANK_CAPACITY']
+};
+
+const SPARK_STOP_TOKENS = [
+  'RAPID',
+  'RAPID-MICRO',
+  'RAPID-SUPER',
+  'RM',
+  'RS',
+  'RSL',
+  'RSF',
+  'CHAIN',
+  'SAW CHAIN',
+  'REPLACEMENT SAW CHAIN',
+  'ANSI',
+  'PITCH',
+  'GUIDE BAR',
+  'CUTTING ATTACHMENT'
+];
 
 const STATUS_LABELS = {
   CANONICAL_VERIFIED: 'Meerdere bronnen bevestigd',
@@ -23,9 +73,211 @@ export function normalizePublicEvidenceModelKey(value) {
     .replace(/^-|-$/g, '');
 }
 
+function normalizeText(value) {
+  return String(value || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function stableEntries(value) {
+  if (Array.isArray(value)) {
+    return value.map(stableEntries);
+  }
+  if (!value || typeof value !== 'object') {
+    return value;
+  }
+  return Object.keys(value)
+    .sort()
+    .reduce((acc, key) => {
+      acc[key] = stableEntries(value[key]);
+      return acc;
+    }, {});
+}
+
+function compactSparkText(value) {
+  return normalizeText(String(value || '').replace(/[()]/g, ' '));
+}
+
+function sparkTokenize(segment) {
+  return compactSparkText(segment)
+    .replace(/[,;:]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function normalizeSparkPlugCode(match) {
+  const [, prefix, numeric, suffixA, suffixB] = match;
+  const parts = [
+    String(prefix || '').toUpperCase(),
+    String(numeric || ''),
+    String(suffixA || '').toUpperCase(),
+    String(suffixB || '').toUpperCase()
+  ].filter(Boolean);
+  if (parts.length < 2) return null;
+  const code = parts.join(' ').trim();
+  if (/^\d/.test(code)) return null;
+  if (/^(?:\d+RA\d+|RA\d+)$/i.test(code.replace(/\s+/g, ''))) return null;
+  return code;
+}
+
+function detectSparkContamination(segment) {
+  const upper = compactSparkText(segment).toUpperCase();
+  return SPARK_STOP_TOKENS.some((token) => upper.includes(token))
+    || /\b(?:0\.\d+|[1-9]\d?(?:\.\d+)?)\s*MM\b/i.test(upper)
+    || /\b(?:0\.\d+|[1-9]\d?(?:\.\d+)?)\s*(?:IN|")\b/i.test(upper);
+}
+
+function parseSparkPlugSegment(manufacturer, segment, hasNextManufacturer = false) {
+  const compact = compactSparkText(segment);
+  const tokens = sparkTokenize(segment);
+  const illustrationReferenceDetected = /\b\d+RA\d+\b/i.test(compact);
+  const contaminationDetected = detectSparkContamination(compact);
+
+  if (tokens.length < 2) {
+    return {
+      alternative: null,
+      contamination_detected: contaminationDetected,
+      illustration_reference_detected: illustrationReferenceDetected
+    };
+  }
+
+  const [prefix, numeric, ...rest] = tokens;
+  if (!/^[A-Z]{2,6}$/i.test(prefix) || !/^\d{1,3}$/.test(numeric)) {
+    return {
+      alternative: null,
+      contamination_detected: contaminationDetected,
+      illustration_reference_detected: illustrationReferenceDetected
+    };
+  }
+
+  const suffixes = [];
+  let consumed = 2;
+  while (
+    consumed < tokens.length
+    && suffixes.length < 2
+    && /^[A-Z]{1,3}$/i.test(tokens[consumed])
+    && !/^(?:OR|AND)$/i.test(tokens[consumed])
+  ) {
+    suffixes.push(tokens[consumed].toUpperCase());
+    consumed += 1;
+  }
+
+  const code = normalizeSparkPlugCode([
+    null,
+    prefix.toUpperCase(),
+    numeric,
+    suffixes[0] || '',
+    suffixes[1] || ''
+  ]);
+  const trailingTokens = tokens.slice(consumed);
+  const trailingText = trailingTokens.join(' ');
+  const trailingContamination = detectSparkContamination(trailingText)
+    || /\b\d+RA\d+\b/i.test(trailingText)
+    || /"/.test(trailingText);
+  const allowRecoveredCode = Boolean(code) && (!trailingContamination || hasNextManufacturer);
+
+  return {
+    alternative: allowRecoveredCode ? {
+      manufacturer: manufacturer.toUpperCase(),
+      model: code
+    } : null,
+    contamination_detected: contaminationDetected || trailingContamination,
+    illustration_reference_detected: illustrationReferenceDetected
+  };
+}
+
+export function sanitizeSparkPlugValue(rawValue) {
+  const raw = Array.isArray(rawValue)
+    ? rawValue
+        .map((entry) => [entry?.manufacturer, entry?.model].filter(Boolean).join(' ').trim())
+        .filter(Boolean)
+        .join(' or ')
+    : normalizeText(rawValue);
+
+  if (!raw) {
+    return {
+      normalized_value: [],
+      semantic_status: 'UNRESOLVED',
+      contamination_detected: false,
+      illustration_reference_detected: false
+    };
+  }
+
+  const matches = [...raw.matchAll(/\b(Bosch|NGK)\b/ig)];
+  const alternatives = [];
+  let contaminationDetected = false;
+  let illustrationReferenceDetected = false;
+
+  for (let index = 0; index < matches.length; index += 1) {
+    const current = matches[index];
+    const next = matches[index + 1];
+    const manufacturer = current[1];
+    const start = current.index + current[0].length;
+    const end = next ? next.index : raw.length;
+    const segment = raw.slice(start, end);
+    const parsed = parseSparkPlugSegment(manufacturer, segment, Boolean(next));
+    if (parsed.contamination_detected) contaminationDetected = true;
+    if (parsed.illustration_reference_detected) illustrationReferenceDetected = true;
+    if (parsed.alternative) {
+      alternatives.push(parsed.alternative);
+    }
+  }
+
+  const deduped = alternatives.filter((entry, index) => {
+    const signature = `${entry.manufacturer}:${entry.model}`;
+    return alternatives.findIndex((candidate) => `${candidate.manufacturer}:${candidate.model}` === signature) === index;
+  });
+
+  const semanticStatus = deduped.length > 0
+    ? 'VALID'
+    : contaminationDetected
+      ? 'CONTAMINATED'
+      : illustrationReferenceDetected
+        ? 'INVALID'
+        : 'UNRESOLVED';
+
+  return {
+    normalized_value: deduped,
+    semantic_status: semanticStatus,
+    contamination_detected: contaminationDetected,
+    illustration_reference_detected: illustrationReferenceDetected
+  };
+}
+
+export function isStrictSemanticStatus(status) {
+  return status === 'VALID';
+}
+
+export function getMeasurementDefinitionForField(field, context = {}) {
+  const allowed = MEASUREMENT_DEFINITIONS[field] || null;
+  if (!allowed) return null;
+  if (field === 'spark_plug') return 'NOT_APPLICABLE';
+  if (field !== 'weight_kg') return allowed[0];
+
+  const sourceText = normalizeText([
+    context.measurement_definition,
+    context.field_heading,
+    context.raw_line,
+    context.row,
+    context.heading,
+    context.section
+  ].filter(Boolean).join(' ')).toLowerCase();
+
+  if (sourceText.includes('powerhead')) return 'POWERHEAD_WEIGHT';
+  if (sourceText.includes('dry') || sourceText.includes('without fuel') || sourceText.includes('zonder brandstof')) {
+    return 'MACHINE_DRY_WEIGHT';
+  }
+
+  return null;
+}
+
+export function isMeasurementDefinitionKnown(field, context = {}) {
+  return Boolean(getMeasurementDefinitionForField(field, context));
+}
+
 function emptyOverlay() {
   return {
-    schema_version: 'public-evidence-v1',
+    schema_version: PUBLIC_EVIDENCE_SCHEMA,
     generated_from_phase: null,
     facts: [],
     model_index: {},
@@ -37,7 +289,7 @@ export function getPublicEvidenceOverlay(database = {}) {
   const overlay = database.public_evidence || database.publicEvidence || null;
   if (!overlay || typeof overlay !== 'object') return emptyOverlay();
   return {
-    schema_version: overlay.schema_version || 'public-evidence-v1',
+    schema_version: overlay.schema_version || PUBLIC_EVIDENCE_SCHEMA,
     generated_from_phase: overlay.generated_from_phase || null,
     facts: Array.isArray(overlay.facts) ? overlay.facts : [],
     model_index: overlay.model_index && typeof overlay.model_index === 'object' ? overlay.model_index : {},
@@ -100,6 +352,10 @@ export function isPublicDisplayEligibleFact(fact) {
   return Boolean(fact && fact.display_eligible && DISPLAY_ELIGIBLE_STATUSES.has(fact.public_evidence_status));
 }
 
+export function isSingleValuePublicFact(fact) {
+  return Boolean(fact && fact.display_eligible && SINGLE_VALUE_ELIGIBLE_STATUSES.has(fact.public_evidence_status));
+}
+
 export function getPreferredPublicFact(fieldFacts = []) {
   if (!Array.isArray(fieldFacts) || fieldFacts.length === 0) return null;
   const conflict = fieldFacts.find((fact) => fact.public_evidence_status === 'OFFICIAL_CONFLICTED');
@@ -109,13 +365,95 @@ export function getPreferredPublicFact(fieldFacts = []) {
   return fieldFacts.find((fact) => fact.public_evidence_status === 'OFFICIAL_DOCUMENTED') || fieldFacts[0];
 }
 
+export function getSingleValuePublicFact(fieldFacts = []) {
+  if (!Array.isArray(fieldFacts) || fieldFacts.length === 0) return null;
+  const canonical = fieldFacts.find((fact) => isSingleValuePublicFact(fact) && fact.public_evidence_status === 'CANONICAL_VERIFIED');
+  if (canonical) return canonical;
+  return fieldFacts.find((fact) => isSingleValuePublicFact(fact) && fact.public_evidence_status === 'OFFICIAL_DOCUMENTED') || null;
+}
+
+function buildConflictValueList(fact) {
+  if (!fact) return [];
+  const values = [];
+  const currentSignature = JSON.stringify(stableEntries({
+    value: flattenPublicFactValue(fact.normalized_value),
+    unit: fact.unit || null,
+    sourceLabel: sanitizePublicSourceLabel(fact.source_document_title || ''),
+    publicationId: fact.publication_id || null,
+    pdfPage: fact.pdf_page || null
+  }));
+
+  values.push({
+    value: flattenPublicFactValue(fact.normalized_value),
+    unit: fact.unit || null,
+    sourceLabel: sanitizePublicSourceLabel(fact.source_document_title || ''),
+    sourceClass: fact.source_class || null,
+    publicationId: fact.publication_id || null,
+    pdfPage: fact.pdf_page || null,
+    sourceUrl: fact.source_url || null
+  });
+
+  for (const entry of fact.conflicting_values || []) {
+    const candidate = {
+      value: flattenPublicFactValue(entry.value ?? entry.comparison_value ?? null),
+      unit: entry.unit || fact.unit || null,
+      sourceLabel: sanitizePublicSourceLabel(entry.source_document_title || entry.source_label || ''),
+      sourceClass: entry.source_class || null,
+      publicationId: entry.publication_id || null,
+      pdfPage: entry.pdf_page || null,
+      sourceUrl: entry.source_url || null
+    };
+    const signature = JSON.stringify(stableEntries(candidate));
+    if (signature !== currentSignature && !values.some((row) => JSON.stringify(stableEntries(row)) === signature)) {
+      values.push(candidate);
+    }
+  }
+
+  return values;
+}
+
+export function buildPublicEvidenceFields(modelOrSlug, database = {}) {
+  const fieldMap = buildPublicEvidenceFieldMap(modelOrSlug, database);
+  const publicFields = {};
+
+  for (const [field, facts] of Object.entries(fieldMap)) {
+    const preferred = getPreferredPublicFact(facts);
+    const singleValue = getSingleValuePublicFact(facts);
+    publicFields[field] = {
+      field,
+      evidence_status: preferred?.public_evidence_status || 'UNKNOWN',
+      display_eligible: Boolean(preferred && isPublicDisplayEligibleFact(preferred)),
+      single_value_eligible: Boolean(singleValue),
+      value: singleValue ? flattenPublicFactValue(singleValue.normalized_value) : null,
+      values: preferred?.public_evidence_status === 'OFFICIAL_CONFLICTED'
+        ? buildConflictValueList(preferred)
+        : singleValue
+          ? [{
+              value: flattenPublicFactValue(singleValue.normalized_value),
+              unit: singleValue.unit || null,
+              sourceLabel: sanitizePublicSourceLabel(singleValue.source_document_title || ''),
+              sourceClass: singleValue.source_class || null,
+              publicationId: singleValue.publication_id || null,
+              pdfPage: singleValue.pdf_page || null,
+              sourceUrl: singleValue.source_url || null
+            }]
+          : [],
+      unit: preferred?.unit || null,
+      measurement_definition: preferred?.measurement_definition || null,
+      meta: buildPublicEvidenceMeta(preferred)
+    };
+  }
+
+  return publicFields;
+}
+
 export function buildPublicTechnicalSpecs(modelOrSlug, database = {}) {
   const fieldMap = buildPublicEvidenceFieldMap(modelOrSlug, database);
   const technicalSpecs = {};
   for (const [field, facts] of Object.entries(fieldMap)) {
-    const fact = getPreferredPublicFact(facts);
-    if (!fact || !isPublicDisplayEligibleFact(fact)) continue;
-    technicalSpecs[field] = fact.normalized_value;
+    const fact = getSingleValuePublicFact(facts);
+    if (!fact) continue;
+    technicalSpecs[field] = flattenPublicFactValue(fact.normalized_value);
   }
   return technicalSpecs;
 }
@@ -200,7 +538,9 @@ export function buildPublicEvidenceMeta(fact) {
     market: fact.market || null,
     revision: fact.revision || null,
     configuration: fact.configuration || null,
-    sourceUrl: fact.source_url || null
+    sourceUrl: fact.source_url || null,
+    measurementDefinition: fact.measurement_definition || null,
+    singleValueEligible: isSingleValuePublicFact(fact)
   };
 }
 

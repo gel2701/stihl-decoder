@@ -12,11 +12,13 @@ import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.j
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import {
+  buildPublicEvidenceFields,
   buildPublicEvidenceFieldMap,
   buildPublicEvidenceMeta,
   buildPublicSourceSummary,
   flattenPublicFactValue,
   getPreferredPublicFact,
+  getSingleValuePublicFact,
   getPublicStatusLabel
 } from '../publicEvidence.js';
 import {
@@ -46,17 +48,57 @@ function renderFactEvidenceLine(fact) {
   `;
 }
 
+function renderConflictBlock(label, publicField) {
+  if (!publicField || publicField.evidence_status !== 'OFFICIAL_CONFLICTED') return '';
+  const values = Array.isArray(publicField.values) ? publicField.values : [];
+  if (values.length === 0) return '';
+
+  return `
+    <div class="bg-amber-500/10 p-4 rounded-xl border border-amber-500/30 space-y-3">
+      <div>
+        <span class="text-gray-400 block">${label}:</span>
+        <span class="text-base font-bold text-amber-300">Bronverschil gevonden</span>
+      </div>
+      <div class="space-y-2 text-xs text-gray-200">
+        ${values.map((entry) => `
+          <div class="rounded-lg border border-gray-800 bg-gray-950/70 p-3">
+            <span class="block font-semibold text-white">${entry.sourceLabel || 'Officiële bron'}</span>
+            <span class="block text-orange-300">${entry.value}${entry.unit ? ` ${entry.unit}` : ''}</span>
+          </div>
+        `).join('')}
+      </div>
+      <p class="text-2xs text-gray-400">STIHL-documentatie vermeldt verschillende waarden. Mogelijk betreft dit een uitvoering, revisie of marktverschil.</p>
+    </div>
+  `;
+}
+
+function renderSingleValueField(label, publicField, fallbackMarkup = '') {
+  if (publicField?.single_value_eligible) {
+    return `
+      <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
+        <span class="text-gray-400 block">${label}:</span>
+        <span class="text-base font-bold text-white">${publicField.value}${publicField.unit ? ` ${publicField.unit}` : ''}</span>
+      </div>
+    `;
+  }
+  if (publicField?.evidence_status === 'OFFICIAL_CONFLICTED') {
+    return renderConflictBlock(label, publicField);
+  }
+  return fallbackMarkup;
+}
+
 export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const verification = getModelVerificationSummary(model);
   const categorySlug = getSafeCategorySlug(model);
   const slug = model.slug || model.id.replace(/_/g, '-');
   const publicFieldMap = buildPublicEvidenceFieldMap(slug, database);
+  const publicFields = buildPublicEvidenceFields(slug, database);
   const publicSummary = buildPublicSourceSummary(slug, database);
-  const powerFact = getPreferredPublicFact(publicFieldMap.power_kw || []);
-  const displacementFact = getPreferredPublicFact(publicFieldMap.displacement_cc || []);
+  const powerFact = getSingleValuePublicFact(publicFieldMap.power_kw || []) || getPreferredPublicFact(publicFieldMap.power_kw || []);
+  const displacementFact = getSingleValuePublicFact(publicFieldMap.displacement_cc || []) || getPreferredPublicFact(publicFieldMap.displacement_cc || []);
   const sparkFact = getPreferredPublicFact(publicFieldMap.spark_plug || []);
   const gapFact = getPreferredPublicFact(publicFieldMap.electrode_gap_mm || []);
-  const weightFact = getPreferredPublicFact(publicFieldMap.weight_kg || []);
+  const weightFact = getSingleValuePublicFact(publicFieldMap.weight_kg || []) || getPreferredPublicFact(publicFieldMap.weight_kg || []);
   const canonicalUrl = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/` : `${baseUrl}/modellen-onbekend/${slug}/`;
   const safeModelPath = getSafeModelPath(model);
   const safePartsPath = getSafeModelPartsPath(model);
@@ -70,6 +112,10 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const jsonLdData = buildStructuredData({
     pageType: 'model',
     model,
+    publicEvidence: {
+      fields: publicFields,
+      summary: publicSummary
+    },
     breadcrumbs,
     url: canonicalUrl
   });
@@ -197,21 +243,21 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Motorvermogen:</span>
-          <span class="text-base font-bold text-white">${powerFact ? (model.power_hp ? `${model.power_hp} pk (${powerFact.normalized_value} kW)` : `${powerFact.normalized_value} kW`) : (model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Nog niet betrouwbaar gedocumenteerd'))}</span>
+          <span class="text-base font-bold text-white">${powerFact && powerFact.public_evidence_status !== 'OFFICIAL_CONFLICTED' ? `${powerFact.normalized_value} kW` : 'Nog niet betrouwbaar gedocumenteerd'}</span>
           ${renderFactEvidenceLine(powerFact)}
         </div>
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <span class="text-gray-400 block">Cilinderinhoud / Aandrijving:</span>
-          <span class="text-base font-bold text-white">${displacementFact ? `${displacementFact.normalized_value} cc` : (model.displacement_cc ? `${model.displacement_cc} cc` : fuelDriveLabel)}</span>
+          <span class="text-base font-bold text-white">${displacementFact && displacementFact.public_evidence_status !== 'OFFICIAL_CONFLICTED' ? `${displacementFact.normalized_value} cc` : fuelDriveLabel}</span>
           ${renderFactEvidenceLine(displacementFact)}
         </div>
 
         ${isPetrol ? `
-          ${model.spark_plug ? `
+          ${publicFields.spark_plug?.single_value_eligible || publicFields.electrode_gap_mm?.single_value_eligible ? `
             <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
               <span class="text-gray-400 block">Bougie & Elektrodenafstand:</span>
-              <span class="text-base font-bold text-white">${sparkFact ? flattenPublicFactValue(sparkFact.normalized_value) : model.spark_plug}${gapFact ? ` (${gapFact.normalized_value} mm)` : (model.electrode_gap_mm ? ` (${model.electrode_gap_mm} mm)` : '')}</span>
+              <span class="text-base font-bold text-white">${publicFields.spark_plug?.value || ''}${publicFields.electrode_gap_mm?.value != null ? ` (${publicFields.electrode_gap_mm.value} mm)` : ''}</span>
               ${renderFactEvidenceLine((sparkFact?.public_evidence_status === 'OFFICIAL_CONFLICTED' || gapFact?.public_evidence_status === 'OFFICIAL_CONFLICTED') ? (sparkFact || gapFact) : (sparkFact || gapFact))}
             </div>
           ` : ''}
@@ -231,11 +277,14 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
           </div>
         ` : ''}
 
-        <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-          <span class="text-gray-400 block">Gewicht (Kaal motorblok):</span>
-          <span class="text-base font-bold text-white">${weightFact ? `${weightFact.normalized_value} kg` : (model.weight_kg ? `${model.weight_kg} kg` : 'Nog niet betrouwbaar gedocumenteerd')}</span>
-          ${renderFactEvidenceLine(weightFact)}
-        </div>
+        ${renderSingleValueField('Gewicht (Kaal motorblok)', publicFields.weight_kg, `
+          <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
+            <span class="text-gray-400 block">Gewicht (Kaal motorblok):</span>
+            <span class="text-base font-bold text-white">Nog niet betrouwbaar gedocumenteerd</span>
+          </div>
+        `)}
+
+        ${renderSingleValueField('Slag', publicFields.stroke_mm)}
       </div>
     </section>
 

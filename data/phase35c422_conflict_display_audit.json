@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T21:59:49.718Z",
+  "generated_at": "2026-08-31T13:18:42.615Z",
   "source_commit": "ec6a56d6a9c35c2f9b71d3c36bfee1531c39550f",
   "records": [
     {
@@ -9,8 +9,13 @@
       "pdf_page": 51,
       "conflicting_values": [
         {
-          "candidate_value": 40,
-          "comparison_value": 36,
+          "value": 36,
+          "unit": "mm",
+          "source_label": "STIHL technische dataset",
+          "source_document_title": "STIHL technische dataset",
+          "pdf_page": null,
+          "source_class": "OFFICIAL_TECHNICAL_DATASET",
+          "source_url": null,
           "reason": "VALUE_DISAGREEMENT_SOURCE_INDEPENDENCE_UNRESOLVED"
         }
       ]

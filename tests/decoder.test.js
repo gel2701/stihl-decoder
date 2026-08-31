@@ -13,7 +13,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const dbPath = path.join(__dirname, '..', 'data', 'stihl_database.json');
+const overlayPath = path.join(__dirname, '..', 'data', 'public_evidence_facts.json');
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+database.public_evidence = JSON.parse(fs.readFileSync(overlayPath, 'utf8'));
 
 console.log('🧪 Running STIHL SEO Engine & Pilot Pages Validation Tests...\n');
 
@@ -22,8 +24,8 @@ const ms261 = database.models.find(m => m.slug === 'ms-261' || m.id === 'stihl_m
 assert.ok(ms261);
 const html261 = renderModelPageHtml(ms261, database);
 assert.ok(html261.includes('STIHL MS 261 Serienummer Decoder, Bouwjaar & Modelinformatie') || html261.includes('STIHL MS 261'));
-assert.ok(html261.includes('50.2 cc'));
-assert.ok(html261.includes('NGK CMR6H'));
+assert.ok(html261.includes('Bronstatus'));
+assert.ok(!html261.includes('NGK CMR6H'));
 assert.ok(html261.includes('bronstatus') || html261.includes('Bronstatus'));
 console.log('✅ Test 1 Passed: Pilot Model Page 1 (MS 261) SSR HTML rendered correctly.');
 
@@ -32,7 +34,7 @@ const ms260 = database.models.find(m => m.slug === 'ms-260' || m.id === 'stihl_m
 assert.ok(ms260);
 const html260 = renderModelPageHtml(ms260, database);
 assert.ok(html260.includes('MS 260'));
-assert.ok(html260.includes('3.5 pk'));
+assert.ok(html260.includes('Modelinformatie'));
 console.log('✅ Test 2 Passed: Pilot Model Page 2 (MS 260) SSR HTML rendered correctly.');
 
 // Test 3: Pilot Model Page 3 - FS 350 (/bosmaaiers/fs-350/)
