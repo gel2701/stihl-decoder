@@ -127,7 +127,8 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
     model,
     publicEvidence: {
       fields: publicFields,
-      summary: publicSummary
+      summary: publicSummary,
+      modelKey: slug
     },
     breadcrumbs,
     url: canonicalUrl

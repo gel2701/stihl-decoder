@@ -373,33 +373,40 @@ export function getSingleValuePublicFact(fieldFacts = []) {
 }
 
 function buildPublicTraceabilityEntry(entry = {}, fallback = {}) {
-  const sourceDocumentTitle = sanitizePublicSourceLabel(
-    entry.source_document_title || entry.source_label || fallback.source_document_title || fallback.source_label || ''
-  );
+  const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object || {}, key);
+  const fromEntry = (key, fallbackKey = key) => hasOwn(entry, key) ? entry[key] : fallback?.[fallbackKey];
+  const sourceTitleValue = hasOwn(entry, 'source_document_title')
+    ? entry.source_document_title
+    : hasOwn(entry, 'source_label')
+      ? entry.source_label
+      : (fallback?.source_document_title ?? fallback?.source_label);
+  const sourceDocumentTitle = sanitizePublicSourceLabel(sourceTitleValue ?? '');
   return {
-    value: flattenPublicFactValue(entry.value ?? entry.comparison_value ?? entry.normalized_value ?? fallback.normalized_value ?? null),
-    unit: entry.unit || fallback.unit || null,
-    sourceLabel: sourceDocumentTitle || sanitizePublicSourceLabel(fallback.source_document_title || ''),
-    sourceClass: entry.source_class || fallback.source_class || null,
-    sourceDocumentId: entry.source_document_id || fallback.source_document_id || null,
-    sourceDocumentTitle: sourceDocumentTitle || sanitizePublicSourceLabel(fallback.source_document_title || ''),
-    publicationId: entry.publication_id || fallback.publication_id || null,
-    pdfPage: entry.pdf_page ?? fallback.pdf_page ?? null,
-    printedPage: entry.printed_page ?? fallback.printed_page ?? null,
-    sourceLocatorType: entry.source_locator_type || fallback.source_locator_type || null,
-    sourceLocator: entry.source_locator || fallback.source_locator || null,
-    sourceHeading: entry.source_heading || fallback.source_heading || null,
-    sourceUrl: entry.source_url || fallback.source_url || null,
-    market: entry.market ?? fallback.market ?? null,
-    revision: entry.revision ?? fallback.revision ?? null,
-    configuration: entry.configuration ?? fallback.configuration ?? null,
-    evidenceStatus: entry.evidence_status || fallback.public_evidence_status || fallback.evidence_status || null,
-    modelScope: entry.model_scope || fallback.model_scope || null,
-    scopeEvidence: Array.isArray(entry.scope_evidence)
-      ? entry.scope_evidence
-      : Array.isArray(fallback.scope_evidence)
-        ? fallback.scope_evidence
-        : []
+    value: flattenPublicFactValue(
+      (hasOwn(entry, 'value') ? entry.value : hasOwn(entry, 'comparison_value') ? entry.comparison_value : hasOwn(entry, 'normalized_value') ? entry.normalized_value : fallback?.normalized_value) ?? null
+    ),
+    unit: fromEntry('unit'),
+    sourceLabel: sourceDocumentTitle || null,
+    sourceClass: fromEntry('source_class'),
+    sourceDocumentId: fromEntry('source_document_id'),
+    sourceDocumentTitle: sourceDocumentTitle || null,
+    publicationId: fromEntry('publication_id'),
+    pdfPage: fromEntry('pdf_page'),
+    printedPage: fromEntry('printed_page'),
+    sourceLocatorType: fromEntry('source_locator_type'),
+    sourceLocator: fromEntry('source_locator'),
+    sourceHeading: fromEntry('source_heading'),
+    sourceUrl: fromEntry('source_url'),
+    market: fromEntry('market'),
+    revision: fromEntry('revision'),
+    configuration: fromEntry('configuration'),
+    evidenceStatus: hasOwn(entry, 'evidence_status')
+      ? entry.evidence_status
+      : (fallback?.public_evidence_status ?? fallback?.evidence_status ?? null),
+    modelScope: fromEntry('model_scope'),
+    scopeEvidence: hasOwn(entry, 'scope_evidence')
+      ? (Array.isArray(entry.scope_evidence) ? entry.scope_evidence : [])
+      : (Array.isArray(fallback.scope_evidence) ? fallback.scope_evidence : [])
   };
 }
 

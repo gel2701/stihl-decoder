@@ -1,6 +1,11 @@
 import crypto from 'crypto';
 
 export const OFFICIAL_PRIMARY_DOCUMENTS = {
+  '0458-133-3021': {
+    documentNumber: '0458-133-3021',
+    title: 'STIHL 026 Instruction Manual',
+    models: ['026']
+  },
   '0458-259-8621-D': {
     documentNumber: '0458-259-8621-D',
     title: 'STIHL FS 100 / FS 100 RX Instruction Manual',

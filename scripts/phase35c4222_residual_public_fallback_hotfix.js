@@ -181,28 +181,30 @@ function buildAfterOverlay(beforeOverlay) {
 
     if (fact.model_slug === '046' && fact.field === 'stroke_mm' && fact.public_evidence_status === 'OFFICIAL_CONFLICTED') {
       const legacy = (provenanceAudit.records || provenanceAudit || []).find((row) => row.model === '046' && row.field === 'stroke_mm');
-      fact.conflicting_values = [{
-        value: legacy?.new_normalized ?? 36,
-        unit: legacy?.unit || 'mm',
-        source_label: 'STIHL technische gegevens',
-        source_document_id: legacy?.synthetic_publication_id || 'TS_DATA_046',
-        source_document_title: 'STIHL technische gegevens',
-        publication_id: legacy?.synthetic_publication_id || 'TS_DATA_046',
-        pdf_page: null,
-        printed_page: null,
-        source_class: normalizeSourceClass(legacy?.source_class || 'OFFICIAL_LEGACY_TECHNICAL_DATA'),
-        source_locator_type: 'TS_DATA',
-        source_locator: toCanonicalLocator(legacy?.source_path || legacy?.source_file || 'doc/TS_Data/046_body.htm'),
-        source_heading: legacy?.source_heading || 'Testing and Setting Data | Chain Saw: 046',
-        source_url: null,
-        market: null,
-        revision: null,
-        configuration: null,
-        evidence_status: 'OFFICIAL_CONFLICTED',
-        model_scope: legacy?.source_model_scope || 'EXACT_MODEL',
-        scope_evidence: ['DOC_MODEL:046'],
-        reason: 'VALUE_DISAGREEMENT_SOURCE_INDEPENDENCE_UNRESOLVED'
-      }];
+      if (legacy) {
+        fact.conflicting_values = [{
+          value: legacy.new_normalized,
+          unit: legacy.unit ?? null,
+          source_label: legacy.source_label ?? null,
+          source_document_id: legacy.synthetic_publication_id ?? null,
+          source_document_title: legacy.source_document_title ?? legacy.source_label ?? null,
+          publication_id: legacy.synthetic_publication_id ?? null,
+          pdf_page: legacy.pdf_page ?? null,
+          printed_page: legacy.printed_page ?? null,
+          source_class: normalizeSourceClass(legacy.source_class),
+          source_locator_type: legacy.source_locator_type ?? null,
+          source_locator: legacy.source_path || legacy.source_file ? toCanonicalLocator(legacy.source_path || legacy.source_file) : null,
+          source_heading: legacy.source_heading ?? null,
+          source_url: legacy.source_url ?? null,
+          market: legacy.market ?? null,
+          revision: legacy.revision ?? null,
+          configuration: legacy.configuration ?? null,
+          evidence_status: legacy.evidence_status ?? fact.public_evidence_status,
+          model_scope: legacy.source_model_scope ?? null,
+          scope_evidence: Array.isArray(legacy.scope_evidence) ? legacy.scope_evidence : [],
+          reason: legacy.reason ?? null
+        }];
+      }
     } else if (Array.isArray(fact.conflicting_values)) {
       fact.conflicting_values = fact.conflicting_values.map((entry) => ({
         ...entry,

@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-08-31T17:42:13.543Z",
+  "source_commit": "4eb42c3d7e785f0328f88830e21b069fac0d5f36",
+  "phase": "35C.4.2.2.3",
+  "hardcoded_046_ts_data_fallback_tokens": [
+    "TS_DATA_046",
+    "doc/TS_Data/046_body.htm",
+    "Testing and Setting Data | Chain Saw: 046"
+  ],
+  "hardcoded_fallback_tokens_present": false,
+  "explicit_null_probe": {
+    "source_document_id": null,
+    "source_document_title": null,
+    "publication_id": null,
+    "source_locator": null,
+    "passed": true
+  },
+  "live_046_conflict_values": [
+    {
+      "value": 40,
+      "source_document_id": "0458-145-3021",
+      "publication_id": "0458-145-3021",
+      "source_locator": "publication:0458-145-3021#page=51"
+    },
+    {
+      "value": 36,
+      "source_document_id": "TS_DATA_046",
+      "publication_id": "TS_DATA_046",
+      "source_locator": "doc/TS_Data/046_body.htm"
+    }
+  ],
+  "live_046_conflict_fact_present": true,
+  "explicit_null_provenance": "PRESERVED"
+}

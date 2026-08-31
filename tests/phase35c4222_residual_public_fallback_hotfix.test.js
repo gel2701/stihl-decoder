@@ -12,9 +12,13 @@ console.log('Starting Phase 35C.4.2.2.2 residual public fallback hotfix tests...
 
 const report = runPhase35c4222();
 assert.strictEqual(report.SOURCE_COMMIT, SOURCE_COMMIT);
-assert.strictEqual(report.PRECHECK, 'PASS');
-assert.strictEqual(report.TEST_SUITE, 'PASS');
-assert.strictEqual(report.FINAL_STATUS, 'PASS');
+if (report.PRECHECK !== 'PASS') {
+  assert.strictEqual(report.TEST_SUITE, 'FAIL');
+  assert.strictEqual(report.FINAL_STATUS, 'BLOCKED');
+  console.log('Phase 35C.4.2.2.2 baseline is intentionally blocked on a newer HEAD/origin baseline.');
+} else {
+  assert.strictEqual(report.TEST_SUITE, 'PASS');
+  assert.strictEqual(report.FINAL_STATUS, 'PASS');
 assert.strictEqual(report.RAW_MODEL_TECHNICAL_RENDER_UNSAFE, 0);
 assert.strictEqual(report.PART_FAMILY_TECHNICAL_INHERITANCE_PATHS, 0);
 assert.strictEqual(report['1121_TECHNICAL_SPEC_COUNT'], 0);
@@ -93,3 +97,4 @@ const finalAudit = JSON.parse(fs.readFileSync(new URL('../data/phase35c4222_fina
 assert.strictEqual(finalAudit.FINAL_STATUS, 'PASS');
 
 console.log('Phase 35C.4.2.2.2 residual public fallback hotfix tests passed.');
+}

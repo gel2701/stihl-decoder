@@ -19,6 +19,7 @@ const testFiles = [
   'tests/phase35c422_public_evidence_eligibility.test.js',
   'tests/phase35c4221_public_evidence_safety_hotfix.test.js',
   'tests/phase35c4222_residual_public_fallback_hotfix.test.js',
+  'tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js',
   'tests/phase35c42_targeted_archive_intake.test.js'
 ];
 

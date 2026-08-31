@@ -5,6 +5,7 @@
 
 import { PRIMARY_ORIGIN } from '../config.js';
 import { getSerialLocationAnswer, getSafeCategorySlug, shouldPublishProductSchema } from '../publicationRules.js';
+import { normalizePublicEvidenceModelKey } from '../publicEvidence.js';
 
 function buildSafeProductProperties(publicEvidenceFields = {}) {
   const properties = [];
@@ -87,7 +88,11 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
   // 3. Model Page Schemas
   if (pageType === 'model' && model) {
     const categorySlug = getSafeCategorySlug(model);
-    const publicEvidenceFields = publicEvidence?.fields || {};
+    const requestedModelKey = publicEvidence?.modelKey;
+    const modelKey = normalizePublicEvidenceModelKey(model.slug || model.id || model.model_name);
+    const evidenceBindingMatches = !requestedModelKey
+      || normalizePublicEvidenceModelKey(requestedModelKey) === modelKey;
+    const publicEvidenceFields = evidenceBindingMatches ? (publicEvidence?.fields || {}) : {};
     const safeProductProperties = buildSafeProductProperties(publicEvidenceFields);
 
     // TechArticle Schema
