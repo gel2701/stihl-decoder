@@ -200,7 +200,7 @@
         </div>
         <h3 class="text-lg font-bold text-white">Voer een nummer in voor instant analyse</h3>
         <p class="text-sm text-gray-400 max-w-md mx-auto">
-          Voer het serienummer in van uw Stihl machine, een 11-cijferig onderdeelnummer of een modelnaam om specificaties en echtheid op te vragen.
+          Voer het serienummer in van uw STIHL machine, een 11-cijferig onderdeelnummer of een modelnaam om bronstatus, familie-identiteit en bekende modeldata te bekijken.
         </p>
       </div>
 
@@ -226,19 +226,19 @@
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             </div>
             <div>
-              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">Gietnummer / Onderdeelnummer Gedetecteerd</span>
+              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">Onderdeelreeks / Familiecode Gedetecteerd</span>
               <h3 id="warn-part-no" class="text-xl sm:text-2xl font-mono font-extrabold text-white">1121 021 0800</h3>
             </div>
           </div>
-          <span class="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 self-start sm:self-center">Geen Uniek Serienummer (Geen Paspoort)</span>
+          <span class="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 self-start sm:self-center">Geen uniek serienummer</span>
         </div>
 
         <div class="space-y-3">
           <p id="warn-message" class="text-sm font-semibold text-amber-200 leading-relaxed"></p>
           <div class="bg-gray-950/60 rounded-xl p-4 border border-amber-500/20 space-y-2">
-            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Behoort tot Stihl Modelgroep:</div>
-            <div id="warn-model-group" class="text-lg font-bold text-orange-400">024 / 026 / MS 260</div>
-            <p id="warn-specs" class="text-xs text-gray-300"></p>
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Bekende familie-identiteit:</div>
+            <div id="warn-model-group" class="text-lg font-bold text-orange-400">024 / 026 / MS 260 familie</div>
+            <p id="warn-specs" class="text-xs text-gray-300">Familiecode en categorie zijn indicatief; technische specificaties horen niet automatisch bij dit onderdeelnummer.</p>
           </div>
         </div>
 
@@ -720,7 +720,7 @@
           document.getElementById('warn-part-no').innerText = res.formattedPartNo || res.cleaned;
           document.getElementById('warn-message').innerText = res.warningMessage || 'Dit is een onderdeelnummer (gietnummer/behuizing) en géén uniek serienummer van de complete machine.';
           document.getElementById('warn-model-group').innerText = res.modelGroup || 'STIHL Modelgroep ' + res.familyCode;
-          document.getElementById('warn-specs').innerText = `Machinetype: ${res.machineType || 'Gietstuk'} | Inhoud: ${res.displacement || '-'} | Vermogen: ${res.power || '-'} | Productieperiode: ${res.era || '-'}`;
+          document.getElementById('warn-specs').innerText = `${res.familyDetails?.familyLabel || 'STIHL onderdeelreeks / familiecode'}${res.category ? ` · Categorie: ${res.category}` : ''}`;
           document.getElementById('warn-advice').innerText = res.advice || 'Een uniek serienummer staat ingeslagen op het carter of typeplaatje en moet apart worden gecontroleerd.';
           warningCard.classList.remove('hidden');
           return;

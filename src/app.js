@@ -144,15 +144,10 @@ function renderPartNumberWarning(data) {
   const card = document.getElementById('warning-card');
   
   document.getElementById('warn-part-no').innerText = data.formattedPartNo || data.cleaned;
-  document.getElementById('warn-message').innerText = data.warningMessage;
-  document.getElementById('warn-model-group').innerText = data.modelGroup;
-  
-  if (data.machineType) {
-    document.getElementById('warn-specs').innerText = `Type: ${data.machineType} | Motor: ${data.displacement || ''} (${data.power || ''}) | Productieperiode: ${data.era || ''}`;
-    document.getElementById('warn-specs').classList.remove('hidden');
-  } else {
-    document.getElementById('warn-specs').classList.add('hidden');
-  }
+  document.getElementById('warn-message').innerText = data.warningMessage || 'Dit onderdeelnummer hoort bij een STIHL familiecode en niet bij een uniek serienummer.';
+  document.getElementById('warn-model-group').innerText = data.modelGroup || `STIHL familiecode ${data.familyCode}`;
+  document.getElementById('warn-specs').innerText = `${data.familyDetails?.familyLabel || 'STIHL onderdeelreeks / familiecode'}${data.category ? ` | Categorie: ${data.category}` : ''}`;
+  document.getElementById('warn-specs').classList.remove('hidden');
 
   document.getElementById('warn-advice').innerText = data.advice;
   

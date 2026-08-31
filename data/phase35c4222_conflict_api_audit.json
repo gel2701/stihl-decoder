@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-08-31T15:46:50.160Z",
+  "source_commit": "35fa5e17a71120c3bb0dac00910ede8f59eb02dc",
+  "046_STROKE_STATUS": "OFFICIAL_CONFLICTED",
+  "046_STROKE_CONFLICT_API": {
+    "field": "stroke_mm",
+    "evidence_status": "OFFICIAL_CONFLICTED",
+    "display_eligible": true,
+    "single_value_eligible": false,
+    "value": null,
+    "values": [
+      {
+        "value": 40,
+        "unit": "mm",
+        "sourceLabel": "STIHL 046.pdf",
+        "sourceClass": "OFFICIAL_DOCUMENT_MIRROR",
+        "sourceDocumentId": "0458-145-3021",
+        "sourceDocumentTitle": "STIHL 046.pdf",
+        "publicationId": "0458-145-3021",
+        "pdfPage": 51,
+        "printedPage": null,
+        "sourceLocatorType": "PDF_PAGE",
+        "sourceLocator": "publication:0458-145-3021#page=51",
+        "sourceHeading": "stroke_mm",
+        "sourceUrl": null,
+        "market": null,
+        "revision": null,
+        "configuration": null,
+        "evidenceStatus": "OFFICIAL_CONFLICTED",
+        "modelScope": "EXACT_MODEL",
+        "scopeEvidence": [
+          "DOC_MODEL:046"
+        ]
+      },
+      {
+        "value": 36,
+        "unit": "mm",
+        "sourceLabel": "STIHL technische gegevens",
+        "sourceClass": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+        "sourceDocumentId": "TS_DATA_046",
+        "sourceDocumentTitle": "STIHL technische gegevens",
+        "publicationId": "TS_DATA_046",
+        "pdfPage": 51,
+        "printedPage": null,
+        "sourceLocatorType": "TS_DATA",
+        "sourceLocator": "doc/TS_Data/046_body.htm",
+        "sourceHeading": "Testing and Setting Data | Chain Saw: 046",
+        "sourceUrl": null,
+        "market": null,
+        "revision": null,
+        "configuration": null,
+        "evidenceStatus": "OFFICIAL_CONFLICTED",
+        "modelScope": "EXACT_MODEL",
+        "scopeEvidence": [
+          "DOC_MODEL:046"
+        ]
+      }
+    ],
+    "unit": "mm",
+    "measurement_definition": "PISTON_STROKE",
+    "meta": {
+      "status": "OFFICIAL_CONFLICTED",
+      "statusLabel": "Bronverschil gevonden",
+      "sourceClass": "OFFICIAL_DOCUMENT_MIRROR",
+      "sourceDocumentId": "0458-145-3021",
+      "sourceDocumentTitle": "STIHL 046.pdf",
+      "publicationId": "0458-145-3021",
+      "pdfPage": 51,
+      "printedPage": null,
+      "sourceLocatorType": "PDF_PAGE",
+      "sourceLocator": "publication:0458-145-3021#page=51",
+      "sourceHeading": "stroke_mm",
+      "market": null,
+      "revision": null,
+      "configuration": null,
+      "sourceUrl": null,
+      "measurementDefinition": "PISTON_STROKE",
+      "singleValueEligible": false,
+      "modelScope": "EXACT_MODEL",
+      "scopeEvidence": [
+        "DOC_MODEL:046"
+      ],
+      "fieldSemanticStatus": "VALID"
+    }
+  },
+  "046_STROKE_SINGLE_VALUE_API_LEAKS": 0
+}

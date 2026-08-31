@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-08-31T15:46:50.154Z",
+  "source_commit": "35fa5e17a71120c3bb0dac00910ede8f59eb02dc",
+  "records": [
+    {
+      "file": "src/components/ValuationEngine.js",
+      "line": 23,
+      "context": "const baseDisplacement = model ? (model.displacement_cc || 50) : 50;",
+      "expression": "model.displacement_cc",
+      "field": "displacement_cc",
+      "public_path": false,
+      "classification": "INTERNAL_ADMIN",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "src/components/ValuationEngine.js",
+      "line": 24,
+      "context": "const baseHp = model ? (model.power_hp || 3.5) : 3.5;",
+      "expression": "model.power_hp",
+      "field": "power_hp",
+      "public_path": false,
+      "classification": "INTERNAL_ADMIN",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "src/components/ValuationEngine.js",
+      "line": 25,
+      "context": "const isMtronic = model ? (model.carb_h_setting || '').includes('M-Tronic') : false;",
+      "expression": "model.carb_h_setting",
+      "field": "carb_h_setting",
+      "public_path": false,
+      "classification": "INTERNAL_ADMIN",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "src/components/ValuationEngine.js",
+      "line": 28,
+      "context": "const hasEnoughModelData = Boolean(model && (model.displacement_cc || model.power_hp || model.power_kw));",
+      "expression": "model.power_kw",
+      "field": "power_kw",
+      "public_path": false,
+      "classification": "INTERNAL_ADMIN",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "src/components/ValuationEngine.js",
+      "line": 28,
+      "context": "const hasEnoughModelData = Boolean(model && (model.displacement_cc || model.power_hp || model.power_kw));",
+      "expression": "model.power_hp",
+      "field": "power_hp",
+      "public_path": false,
+      "classification": "INTERNAL_ADMIN",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "src/components/ValuationEngine.js",
+      "line": 28,
+      "context": "const hasEnoughModelData = Boolean(model && (model.displacement_cc || model.power_hp || model.power_kw));",
+      "expression": "model.displacement_cc",
+      "field": "displacement_cc",
+      "public_path": false,
+      "classification": "INTERNAL_ADMIN",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "tests/data_quality_audit.test.js",
+      "line": 38,
+      "context": "const hasCc = model.displacement_cc != null;",
+      "expression": "model.displacement_cc",
+      "field": "displacement_cc",
+      "public_path": false,
+      "classification": "TEST_FIXTURE",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "tests/data_quality_audit.test.js",
+      "line": 39,
+      "context": "const hasPower = model.power_hp != null || model.power_kw != null;",
+      "expression": "model.power_kw",
+      "field": "power_kw",
+      "public_path": false,
+      "classification": "TEST_FIXTURE",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "tests/data_quality_audit.test.js",
+      "line": 39,
+      "context": "const hasPower = model.power_hp != null || model.power_kw != null;",
+      "expression": "model.power_hp",
+      "field": "power_hp",
+      "public_path": false,
+      "classification": "TEST_FIXTURE",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "tests/data_quality_audit.test.js",
+      "line": 40,
+      "context": "const hasWeight = model.weight_kg != null;",
+      "expression": "model.weight_kg",
+      "field": "weight_kg",
+      "public_path": false,
+      "classification": "TEST_FIXTURE",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "tests/data_quality_audit.test.js",
+      "line": 41,
+      "context": "const hasSpark = model.spark_plug != null;",
+      "expression": "model.spark_plug",
+      "field": "spark_plug",
+      "public_path": false,
+      "classification": "TEST_FIXTURE",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    },
+    {
+      "file": "tests/data_quality_audit.test.js",
+      "line": 42,
+      "context": "const hasChain = model.chain_pitch != null || model.category_slug !== 'kettingzagen';",
+      "expression": "model.chain_pitch",
+      "field": "chain_pitch",
+      "public_path": false,
+      "classification": "TEST_FIXTURE",
+      "evidence_safe": true,
+      "reason": "Not on a public render path"
+    }
+  ],
+  "RAW_MODEL_TECHNICAL_RENDER_OCCURRENCES": 12,
+  "RAW_MODEL_TECHNICAL_RENDER_ALLOWED": 12,
+  "RAW_MODEL_TECHNICAL_RENDER_UNSAFE": 0
+}

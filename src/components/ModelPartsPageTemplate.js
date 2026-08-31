@@ -10,6 +10,18 @@ import { renderAffiliateLink } from './AffiliateLink.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { getSafeCategorySlug, getSafeModelPath } from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
+import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
+
+function renderSafeTechnicalValue(model, field, database, formatter) {
+  const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
+  if (state.single_value_eligible) {
+    return formatPublicTechnicalValue(state, formatter);
+  }
+  if (state.evidence_status === 'OFFICIAL_CONFLICTED') {
+    return 'Bronverschil';
+  }
+  return 'Niet betrouwbaar gedocumenteerd';
+}
 
 export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const categorySlug = getSafeCategorySlug(model);
@@ -46,10 +58,9 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const verification = getModelVerificationSummary(model);
 
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
-  const hasSparkData = Boolean(model.spark_plug || model.electrode_gap_mm);
-  const hasChainData = Boolean(isChainsaw && (model.chain_pitch || model.chain_gauge_mm));
-  const hasCarbData = Boolean(model.carb_h_setting || model.carb_l_setting || model.carb_la_setting);
-  const hasFilterData = Boolean(model.air_filter || model.oil_mix_ratio);
+  const sparkState = getPublicTechnicalDisplayState(slug, 'spark_plug', database);
+  const gapState = getPublicTechnicalDisplayState(slug, 'electrode_gap_mm', database);
+  const hasSparkData = sparkState.single_value_eligible || gapState.single_value_eligible;
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -110,8 +121,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             <span class="font-bold text-white text-sm">Bougie & Ontsteking</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Elektrisch</span>
           </div>
-          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${model.spark_plug || 'Niet vastgesteld'}</strong></p>
-          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${model.electrode_gap_mm ? `${model.electrode_gap_mm} mm` : 'Niet vastgesteld'}</strong></p>
+          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'spark_plug', database)}</strong></p>
+          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'electrode_gap_mm', database, (value) => `${value} mm`)}</strong></p>
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Bougie voor STIHL ${model.model_name}`,
@@ -121,17 +132,16 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           </div>
         </div>` : ''}
 
-        ${hasChainData ? `
+        ${isChainsaw ? `
           <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
             <div class="flex justify-between items-center">
               <span class="font-bold text-white text-sm">Zaagketting & Geleideblad</span>
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Snijgarnituur</span>
             </div>
-            <p class="text-gray-300">• Kettingsteek: <strong class="text-white font-mono">${model.chain_pitch}</strong></p>
-            <p class="text-gray-300">• Dikte Geleideblad: <strong class="text-white font-mono">${model.chain_gauge_mm || 'Niet vastgesteld'}</strong></p>
+            <p class="text-gray-300">• Technische kettingmaten worden alleen getoond zodra ze per veld betrouwbaar zijn gedocumenteerd.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
-                partName: `Zaagketting ${model.chain_pitch} voor STIHL ${model.model_name}`,
+                partName: `Zaagketting voor STIHL ${model.model_name}`,
                 searchQuery: `zaagketting STIHL ${model.model_name}`,
                 category: 'chain'
               })}
@@ -139,13 +149,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           </div>
         ` : ''}
 
-        ${hasCarbData ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Carburateur & Membraanset</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Brandstof</span>
           </div>
-          <p class="text-gray-300">• Type: <strong class="text-white">${model.carb_h_setting ? 'Handmatig (H/L Slag)' : 'Niet vastgesteld'}</strong></p>
-          <p class="text-gray-300">• Basisafstelling: <strong class="text-orange-400 font-mono">${model.carb_h_setting || 'Niet vastgesteld'}</strong></p>
+          <p class="text-gray-300">• Afstelwaarden worden pas getoond zodra ze per veld aan veilige bronstatus zijn gekoppeld.</p>
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Membraanset voor STIHL ${model.model_name}`,
@@ -153,15 +162,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               category: 'carburetor'
             })}
           </div>
-        </div>` : ''}
+        </div>
 
-        ${hasFilterData ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Luchtfilter & Olie-element</span>
             <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Filter</span>
           </div>
-          <p class="text-gray-300">• Filtertype: <strong class="text-white">${model.air_filter || 'Niet vastgesteld'}</strong></p>
-          <p class="text-gray-300">• Mengverhouding Olie: <strong class="text-white">${model.oil_mix_ratio || 'Niet vastgesteld'}</strong></p>
+          <p class="text-gray-300">• Filter- en menggegevens worden niet als technische waarheid getoond zonder veldniveau-evidence.</p>
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Luchtfilter voor STIHL ${model.model_name}`,
@@ -169,7 +177,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               category: 'air_filter'
             })}
           </div>
-        </div>` : ''}
+        </div>
       </div>
     </section>
 

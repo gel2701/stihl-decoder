@@ -16,7 +16,9 @@ import {
   buildPublicEvidenceFieldMap,
   buildPublicEvidenceMeta,
   buildPublicSourceSummary,
+  formatPublicTechnicalValue,
   flattenPublicFactValue,
+  getPublicTechnicalDisplayState,
   getPreferredPublicFact,
   getSingleValuePublicFact,
   getPublicStatusLabel
@@ -87,6 +89,17 @@ function renderSingleValueField(label, publicField, fallbackMarkup = '') {
   return fallbackMarkup;
 }
 
+function renderComparisonValue(modelSlug, field, database, formatter) {
+  const state = getPublicTechnicalDisplayState(modelSlug, field, database);
+  if (state.single_value_eligible) {
+    return formatPublicTechnicalValue(state, formatter);
+  }
+  if (state.evidence_status === 'OFFICIAL_CONFLICTED') {
+    return 'Bronverschil';
+  }
+  return 'Niet betrouwbaar gedocumenteerd';
+}
+
 export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const verification = getModelVerificationSummary(model);
   const categorySlug = getSafeCategorySlug(model);
@@ -147,6 +160,25 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const passportProCardHtml = renderPassportProMvpCard({ modelName: model.model_name, abVariant: 'B' });
   const repairLeadCardHtml = renderRepairLeadMvpCard({ modelName: model.model_name });
   const sellLeadCardHtml = renderSellLeadMvpCard({ modelName: model.model_name });
+  const comparisonDatabase = comparisonPartner ? database : null;
+  const modelComparisonPower = comparisonDatabase
+    ? renderComparisonValue(slug, 'power_kw', comparisonDatabase, (value) => `${value} kW`)
+    : null;
+  const partnerComparisonPower = comparisonPartner && comparisonDatabase
+    ? renderComparisonValue(comparisonPartner.slug || comparisonPartner.model_name, 'power_kw', comparisonDatabase, (value) => `${value} kW`)
+    : null;
+  const modelComparisonDisplacement = comparisonDatabase
+    ? renderComparisonValue(slug, 'displacement_cc', comparisonDatabase, (value) => `${value} cc`)
+    : null;
+  const partnerComparisonDisplacement = comparisonPartner && comparisonDatabase
+    ? renderComparisonValue(comparisonPartner.slug || comparisonPartner.model_name, 'displacement_cc', comparisonDatabase, (value) => `${value} cc`)
+    : null;
+  const modelComparisonWeight = comparisonDatabase
+    ? renderComparisonValue(slug, 'weight_kg', comparisonDatabase, (value) => `${value} kg`)
+    : null;
+  const partnerComparisonWeight = comparisonPartner && comparisonDatabase
+    ? renderComparisonValue(comparisonPartner.slug || comparisonPartner.model_name, 'weight_kg', comparisonDatabase, (value) => `${value} kg`)
+    : null;
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -261,20 +293,6 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
               ${renderFactEvidenceLine((sparkFact?.public_evidence_status === 'OFFICIAL_CONFLICTED' || gapFact?.public_evidence_status === 'OFFICIAL_CONFLICTED') ? (sparkFact || gapFact) : (sparkFact || gapFact))}
             </div>
           ` : ''}
-
-          ${(model.carb_h_setting || model.carb_la_setting) ? `
-            <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-              <span class="text-gray-400 block">Carburateur Standaardafstelling:</span>
-              <span class="text-base font-bold text-orange-400">${model.carb_h_setting ? `H: ${model.carb_h_setting}${model.carb_l_setting ? ` | L: ${model.carb_l_setting}` : ''}` : (model.carb_la_setting || '')}</span>
-            </div>
-          ` : ''}
-        ` : ''}
-
-        ${(isChainsaw && model.chain_pitch) ? `
-          <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-            <span class="text-gray-400 block">Kettingsteek & Dikte (Standaard):</span>
-            <span class="text-base font-bold text-white font-mono">${model.chain_pitch} @ ${model.chain_gauge_mm ? `${model.chain_gauge_mm} mm` : 'Nog niet geverifieerd'}</span>
-          </div>
         ` : ''}
 
         ${renderSingleValueField('Gewicht (Kaal motorblok)', publicFields.weight_kg, `
@@ -314,17 +332,17 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-gray-950 p-4 rounded-xl border border-gray-800">
           <div class="space-y-1">
             <span class="font-bold text-orange-400 block font-mono">STIHL ${model.model_name}</span>
-            <p class="text-gray-300">• Vermogen: ${model.power_hp ? `${model.power_hp} pk (${model.power_kw} kW)` : (model.power_kw ? `${model.power_kw} kW` : 'Niet vastgesteld')}</p>
-            <p class="text-gray-300">• Inhoud: ${model.displacement_cc ? `${model.displacement_cc} cc` : 'Niet vastgesteld'}</p>
-            <p class="text-gray-300">• Gewicht: ${model.weight_kg ? `${model.weight_kg} kg` : 'Niet vastgesteld'}</p>
+            <p class="text-gray-300">• Vermogen: ${modelComparisonPower}</p>
+            <p class="text-gray-300">• Inhoud: ${modelComparisonDisplacement}</p>
+            <p class="text-gray-300">• Gewicht: ${modelComparisonWeight}</p>
           </div>
           <div class="space-y-1">
             <a href="${comparisonPartnerPath}" class="font-bold text-orange-400 block font-mono hover:underline">
               STIHL ${comparisonPartner.model_name} →
             </a>
-            <p class="text-gray-300">• Vermogen: ${comparisonPartner.power_hp ? `${comparisonPartner.power_hp} pk (${comparisonPartner.power_kw} kW)` : (comparisonPartner.power_kw ? `${comparisonPartner.power_kw} kW` : 'Niet vastgesteld')}</p>
-            <p class="text-gray-300">• Inhoud: ${comparisonPartner.displacement_cc ? `${comparisonPartner.displacement_cc} cc` : 'Niet vastgesteld'}</p>
-            <p class="text-gray-300">• Gewicht: ${comparisonPartner.weight_kg ? `${comparisonPartner.weight_kg} kg` : 'Niet vastgesteld'}</p>
+            <p class="text-gray-300">• Vermogen: ${partnerComparisonPower}</p>
+            <p class="text-gray-300">• Inhoud: ${partnerComparisonDisplacement}</p>
+            <p class="text-gray-300">• Gewicht: ${partnerComparisonWeight}</p>
           </div>
         </div>
       </section>

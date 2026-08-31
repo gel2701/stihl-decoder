@@ -1,7 +1,7 @@
 {
   "schema_version": "public-evidence-v1",
-  "generated_at": "2026-08-31T13:18:42.614Z",
-  "generated_from_phase": "35C.4.2.2",
+  "generated_at": "2026-08-31T15:46:50.061Z",
+  "generated_from_phase": "35C.4.2.2.2",
   "facts": [
     {
       "fact_id": "1c0c06cc89c979a3",
@@ -36,7 +36,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "8b8a99126a7128d66fbf318ba67fb4d4381a656d4f99042b02e29dd5103d796f",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "bore_mm"
     },
     {
       "fact_id": "fd6e220b046de185",
@@ -71,7 +75,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "b25192a84e512369e80c5b8729139c7367cbf507eee24b2071a508f725903e0c",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "stroke_mm"
     },
     {
       "fact_id": "c59db37db8a04fbf",
@@ -106,7 +114,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "41e449a0994898d1dbac391c894295791ba72969a5c1fbef5bf4aa438523f90d",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "idle_speed_rpm"
     },
     {
       "fact_id": "d1afe1fa3420757e",
@@ -141,7 +153,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "3494bb0eaa8c50e0a034283be257762bda6954b5bfa38cec9290bb2ba27efea0",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "fuel_tank_l"
     },
     {
       "fact_id": "88ae2b1f2ebf9b25",
@@ -176,7 +192,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "9e8c9af6cc5eb4ebb660b7435a97adc6fff0d867b18aa5413ce4510fed8ec1cd",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "oil_tank_l"
     },
     {
       "fact_id": "b06b729d27dc3363",
@@ -211,7 +231,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "0c11dccbe5cc3fe5b23f6e6208ae5e1ee23cdae26e7c6e9572475c1a49462b7c",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "electrode_gap_mm"
     },
     {
       "fact_id": "ae46321be89ca92a",
@@ -220,11 +244,15 @@
       "model_name": "026",
       "category": "Kettingzaag",
       "field": "spark_plug",
-      "raw_value": "Bosch WSR 6 F 8.25 mm (0.325\") Rapid-Micro 2 of ANSI Standard B 175.1-1991, or NGK BPMR 7 A (26 RM 2), do not use replacement saw chain",
+      "raw_value": "Bosch WSR 6 F 8 or NGK BPMR 7 A",
       "normalized_value": [
         {
           "manufacturer": "BOSCH",
           "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
         }
       ],
       "unit": null,
@@ -251,7 +279,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "9fc02721aef26eb3075296ef2ed531ee417ec6cedbcfb980223105d2a240cd9d",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-133-3021#page=50",
+      "source_heading": "spark_plug"
     },
     {
       "fact_id": "185a0dc90a41d835",
@@ -286,7 +318,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "24eb8808afdeba52b6c6284e9f54a6d07fba0bfa3089e13c389c5adb7786eaaf",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "displacement_cc"
     },
     {
       "fact_id": "be008deb678debf2",
@@ -321,7 +357,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "d5e14b9bfd0262d40872c0f0bc66df7ceab60f1c783a1124849db1e90052359c",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "bore_mm"
     },
     {
       "fact_id": "655bd677d4ddf22d",
@@ -357,17 +397,35 @@
         {
           "value": 36,
           "unit": "mm",
-          "source_label": "STIHL technische dataset",
-          "source_document_title": "STIHL technische dataset",
+          "source_label": "STIHL technische gegevens",
+          "source_document_id": "TS_DATA_046",
+          "source_document_title": "STIHL technische gegevens",
+          "publication_id": "TS_DATA_046",
           "pdf_page": null,
-          "source_class": "OFFICIAL_TECHNICAL_DATASET",
+          "printed_page": null,
+          "source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+          "source_locator_type": "TS_DATA",
+          "source_locator": "doc/TS_Data/046_body.htm",
+          "source_heading": "Testing and Setting Data | Chain Saw: 046",
           "source_url": null,
+          "market": null,
+          "revision": null,
+          "configuration": null,
+          "evidence_status": "OFFICIAL_CONFLICTED",
+          "model_scope": "EXACT_MODEL",
+          "scope_evidence": [
+            "DOC_MODEL:046"
+          ],
           "reason": "VALUE_DISAGREEMENT_SOURCE_INDEPENDENCE_UNRESOLVED"
         }
       ],
       "source_url": null,
       "evidence_hash": "e55bb1d835349f3f67064d95aa76e9c404bd321c943c4db96f765f427c8a3d64",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_CONFLICTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "stroke_mm"
     },
     {
       "fact_id": "31ca6892a7bdfe12",
@@ -402,7 +460,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "13be32864b7fc0a934e7b6d1098aaab0eff74140c18d53ffdcd20f2e971e0464",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "idle_speed_rpm"
     },
     {
       "fact_id": "3260e5fc98a12778",
@@ -437,7 +499,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "e905b5fdcd252b7253ab3a62b0db1670143656b46cfaf4eeae0ee1c3b0e8656e",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "fuel_tank_l"
     },
     {
       "fact_id": "6fcb206aab3fc45e",
@@ -472,7 +538,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "3283e1cbf9d4014c3c86312db9d0585df97bd2e5177354f0098e6a17104beb4a",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "electrode_gap_mm"
     },
     {
       "fact_id": "e94d9b6042dfe6e6",
@@ -481,11 +551,15 @@
       "model_name": "046",
       "category": "Kettingzaag",
       "field": "spark_plug",
-      "raw_value": "Bosch WSR 6 F 9.32 mm (3/8\") Rapid-Micro 2 Rapid-Super (33 RS, 33 RS 1, 36 RS, or NGK BPMR 7 A (33 RM 2, 36 RM 2) 36 RS 1, 33 RSL, 36 RSL, 33 RSF,",
+      "raw_value": "Bosch WSR 6 F 9 or NGK BPMR 7 A",
       "normalized_value": [
         {
           "manufacturer": "BOSCH",
           "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
         }
       ],
       "unit": null,
@@ -512,7 +586,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "09df29017a2be51d4af84d1b8af06d26ba0c59e7ba4a315e81f9cb44cddc8420",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-145-3021#page=51",
+      "source_heading": "spark_plug"
     },
     {
       "fact_id": "cec7bdf2432fabbe",
@@ -545,7 +623,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "51c8b3137a09db7c0288664f10976d2485c42890d4f4ca125bff3a4502c1343c",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "displacement_cc"
     },
     {
       "fact_id": "b2d18aaa9692ead2",
@@ -578,7 +660,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "d484f906f74e4cc80a83519dcac8710a454bf6b6606939b2233214445579f687",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "bore_mm"
     },
     {
       "fact_id": "cc5512ff4192bb93",
@@ -611,7 +697,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "b966046b66d728e612efe59420af362020aad061fece0747c75bb16196dc37e0",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "stroke_mm"
     },
     {
       "fact_id": "55b2da771991d0ae",
@@ -644,7 +734,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "e94f4ebfe62ee0d9d0ae4247a4abc3b5b7d09e70a3461cb268ad07f9c9bdc7cc",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "idle_speed_rpm"
     },
     {
       "fact_id": "364feaa44fd8dff8",
@@ -677,7 +771,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "60c4094b46da3c906af46a45b27f90c22f2be430cc7dccf8ce9b04aac07f170e",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "displacement_cc"
     },
     {
       "fact_id": "ff91450487878c90",
@@ -710,7 +808,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "8c57fc181b3184367f974095304c48d414ca22f1c1452a303e8c249e238d842e",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "bore_mm"
     },
     {
       "fact_id": "d1093f6b03c43aba",
@@ -743,7 +845,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "189bd2eb4e3e894cd624d407c459018fb14f85a11cd86ecb39acc0366e52042f",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "stroke_mm"
     },
     {
       "fact_id": "2bf1738c41531cf8",
@@ -776,7 +882,11 @@
       "conflicting_values": [],
       "source_url": null,
       "evidence_hash": "db26d687b705e77c3e49d829a0cac7da4cbfe759dc3e0bd91c981cdd4c9ebfe4",
-      "generated_from_phase": "35C.4.2.2"
+      "generated_from_phase": "35C.4.2.2.2",
+      "evidence_status": "OFFICIAL_DOCUMENTED",
+      "source_locator_type": "PDF_PAGE",
+      "source_locator": "publication:0458-370-8621-G#page=49",
+      "source_heading": "idle_speed_rpm"
     }
   ],
   "model_index": {

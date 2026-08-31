@@ -9,6 +9,19 @@ import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { getSafeModelPath } from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
+import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
+
+function renderTechnicalValue(model, field, database, formatter) {
+  if (!model) return 'Niet betrouwbaar gedocumenteerd';
+  const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
+  if (state.single_value_eligible) {
+    return formatPublicTechnicalValue(state, formatter);
+  }
+  if (state.evidence_status === 'OFFICIAL_CONFLICTED') {
+    return 'Bronverschil';
+  }
+  return 'Niet betrouwbaar gedocumenteerd';
+}
 
 export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_ORIGIN) {
   const parts = pairSlug.split('-vs-');
@@ -126,33 +139,18 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_O
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Motorvermogen</td>
-              <td class="p-4 font-bold text-white">${modelA.power_hp ? `${modelA.power_hp} pk (${modelA.power_kw} kW)` : 'Niet vastgesteld'}</td>
-              <td class="p-4 font-bold text-white">${modelB.power_hp ? `${modelB.power_hp} pk (${modelB.power_kw} kW)` : 'Niet vastgesteld'}</td>
+              <td class="p-4 font-bold text-white">${renderTechnicalValue(modelA, 'power_kw', database, (value) => `${value} kW`)}</td>
+              <td class="p-4 font-bold text-white">${renderTechnicalValue(modelB, 'power_kw', database, (value) => `${value} kW`)}</td>
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Cilinderinhoud</td>
-              <td class="p-4 font-bold text-white">${modelA.displacement_cc ? `${modelA.displacement_cc} cc` : 'Niet vastgesteld'}</td>
-              <td class="p-4 font-bold text-white">${modelB.displacement_cc ? `${modelB.displacement_cc} cc` : 'Niet vastgesteld'}</td>
+              <td class="p-4 font-bold text-white">${renderTechnicalValue(modelA, 'displacement_cc', database, (value) => `${value} cc`)}</td>
+              <td class="p-4 font-bold text-white">${renderTechnicalValue(modelB, 'displacement_cc', database, (value) => `${value} cc`)}</td>
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Gewicht (Kaal motorblok)</td>
-              <td class="p-4 font-bold text-white">${modelA.weight_kg ? `${modelA.weight_kg} kg` : 'Niet vastgesteld'}</td>
-              <td class="p-4 font-bold text-white">${modelB.weight_kg ? `${modelB.weight_kg} kg` : 'Niet vastgesteld'}</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-gray-400">Carburateur / Systeem</td>
-              <td class="p-4 font-mono text-gray-300">${modelA.carb_h_setting || 'Niet vastgesteld'}</td>
-              <td class="p-4 font-mono text-gray-300">${modelB.carb_h_setting || 'Niet vastgesteld'}</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-gray-400">Bougie & Afstand</td>
-              <td class="p-4">${modelA.spark_plug || 'Niet vastgesteld'}</td>
-              <td class="p-4">${modelB.spark_plug || 'Niet vastgesteld'}</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-gray-400">Kettingsteek / Dikte</td>
-              <td class="p-4 font-mono">${modelA.chain_pitch ? `${modelA.chain_pitch} @ ${modelA.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld'}</td>
-              <td class="p-4 font-mono">${modelB.chain_pitch ? `${modelB.chain_pitch} @ ${modelB.chain_gauge_mm || 'Niet vastgesteld'} mm` : 'Niet vastgesteld'}</td>
+              <td class="p-4 font-bold text-white">${renderTechnicalValue(modelA, 'weight_kg', database, (value) => `${value} kg`)}</td>
+              <td class="p-4 font-bold text-white">${renderTechnicalValue(modelB, 'weight_kg', database, (value) => `${value} kg`)}</td>
             </tr>
             <tr>
               <td class="p-4 font-bold text-gray-400">Status & Uitvoering</td>

@@ -8,6 +8,18 @@ import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { getRegisteredComparisons, getSafeModelPath } from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
+import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
+
+function renderCategorySpec(model, field, database, formatter) {
+  const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
+  if (state.single_value_eligible) {
+    return formatPublicTechnicalValue(state, formatter);
+  }
+  if (state.evidence_status === 'OFFICIAL_CONFLICTED') {
+    return 'Bronverschil';
+  }
+  return 'Niet betrouwbaar gedocumenteerd';
+}
 
 export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY_ORIGIN) {
   const categoryNames = {
@@ -148,9 +160,9 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY
                 <span class="px-2 py-0.5 rounded text-2xs font-bold bg-orange-500/10 text-orange-400 border border-orange-500/20">${m.series_code ? `Serie ${m.series_code}` : 'Model'}</span>
               </div>
               <div class="text-xs text-gray-400 space-y-1">
-                <p>• Vermogen: <strong class="text-gray-200">${m.power_hp ? `${m.power_hp} pk (${m.power_kw} kW)` : (m.power_kw ? `${m.power_kw} kW` : 'Niet vastgesteld')}</strong></p>
-                <p>• Cilinderinhoud: <strong class="text-gray-200">${m.displacement_cc ? `${m.displacement_cc} cc` : 'Niet vastgesteld'}</strong></p>
-                <p>• Gewicht: <strong class="text-gray-200">${m.weight_kg ? `${m.weight_kg} kg` : 'Niet vastgesteld'}</strong></p>
+                <p>• Vermogen: <strong class="text-gray-200">${renderCategorySpec(m, 'power_kw', database, (value) => `${value} kW`)}</strong></p>
+                <p>• Cilinderinhoud: <strong class="text-gray-200">${renderCategorySpec(m, 'displacement_cc', database, (value) => `${value} cc`)}</strong></p>
+                <p>• Gewicht: <strong class="text-gray-200">${renderCategorySpec(m, 'weight_kg', database, (value) => `${value} kg`)}</strong></p>
                 <p>• Bronstatus: <strong class="text-gray-200">${verification.badgeLabel}</strong></p>
               </div>
               <div class="pt-2 border-t border-gray-800 flex justify-between items-center text-2xs font-bold text-orange-400">

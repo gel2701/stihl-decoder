@@ -80,6 +80,35 @@ function isExactModelMatch(inputQuery, model) {
   return modelName === cleanCanonical || modelSlug === cleanCanonical || modelName === cleanBase || modelSlug === cleanBase;
 }
 
+function formatPartNumber(partStr) {
+  const digits = String(partStr || '').replace(/\D/g, '');
+  if (digits.length !== 11) return digits;
+  return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
+}
+
+function buildPartFamilyIdentity(familyCode, database = {}) {
+  const models = Array.isArray(database.models)
+    ? database.models.filter((model) => String(model.series_code || '') === String(familyCode))
+    : [];
+  const relatedModels = [...new Set(models.map((model) => String(model.model_name || '').trim()).filter(Boolean))];
+  const categories = [...new Set(models.map((model) => model.category || model.category_slug).filter(Boolean))];
+  const category = categories.length === 1 ? categories[0] : (categories[0] || 'Onbekend');
+  const familyInfo = database.part_family_prefixes ? database.part_family_prefixes[familyCode] : null;
+  const groupLabel = relatedModels.length > 0
+    ? `${relatedModels.slice(0, 4).join(' / ')} familie`
+    : `STIHL familiecode ${familyCode}`;
+
+  return {
+    familyCode,
+    familyLabel: 'STIHL onderdeelreeks / familiecode',
+    category,
+    relatedModels,
+    modelGroup: groupLabel,
+    explanation: familyInfo?.note
+      || `Code ${familyCode} duidt een STIHL onderdeelreeks of machinefamilie aan en bewijst geen exact model of exacte technische specificaties.`
+  };
+}
+
 export function decodeStihlCode(inputStr, database = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
     return { success: false, error: 'Ongeldige invoer.' };
@@ -356,14 +385,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
 
 export function analyzePartNumber(partStr, database) {
   const familyCode = partStr.substring(0, 4);
-  const familyInfo = database.part_family_prefixes ? database.part_family_prefixes[familyCode] : null;
+  const familyIdentity = buildPartFamilyIdentity(familyCode, database);
 
-  let matchedModelSpec = null;
-  if (database.models && Array.isArray(database.models)) {
-    matchedModelSpec = database.models.find(m => m.series_code === familyCode);
-  }
-
-  if (!matchedModelSpec && !familyInfo) {
+  if (!familyIdentity.relatedModels.length && !database.part_family_prefixes?.[familyCode]) {
     return {
       success: false,
       status: 'NOT_FOUND',
@@ -373,26 +397,26 @@ export function analyzePartNumber(partStr, database) {
     };
   }
 
-  const category = matchedModelSpec ? (matchedModelSpec.category || matchedModelSpec.category_slug) : familyInfo.category;
-  const modelName = matchedModelSpec ? matchedModelSpec.model_name : familyInfo.model;
-
-  const sanitizedSpecs = matchedModelSpec ? sanitizeModelSpecifications(matchedModelSpec, category, modelName) : null;
-
   return {
     success: true,
     type: 'PART_NUMBER',
     input: partStr,
+    cleaned: partStr,
+    formattedPartNo: formatPartNumber(partStr),
     familyCode,
-    familyDetails: familyInfo || {
-      model: modelName,
-      category,
-      note: `Gietnummer / Onderdeelnummer Serie ${familyCode}`
-    },
+    familyDetails: familyIdentity,
     isWarning: true,
-    modelGroup: matchedModelSpec ? matchedModelSpec.model_name : familyInfo.model,
-    matchedModel: matchedModelSpec ? matchedModelSpec.model_name : null,
-    technicalSpecs: sanitizedSpecs,
-    warning: `Dit is een 11-cijferig STIHL onderdeelnummer (Teilenummer). Het eerste gedeelte (${familyCode}) is de serie-code.`
+    modelGroup: familyIdentity.modelGroup,
+    matchedModel: null,
+    category: familyIdentity.category,
+    technicalSpecs: {},
+    machineType: null,
+    displacement: null,
+    power: null,
+    era: null,
+    warning: `Dit is een 11-cijferig STIHL onderdeelnummer (Teilenummer). Het eerste gedeelte (${familyCode}) is een familiecode en geen exact modelbewijs.`,
+    warningMessage: `Dit 11-cijferige nummer hoort bij een STIHL onderdeelreeks. Familiecode ${familyCode} kan meerdere verwante modellen omvatten en identificeert niet automatisch de exacte machine.`,
+    advice: 'Zoek het unieke serienummer op het typeplaatje of carter om de complete machine apart te controleren.'
   };
 }
 

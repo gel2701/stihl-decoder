@@ -372,37 +372,47 @@ export function getSingleValuePublicFact(fieldFacts = []) {
   return fieldFacts.find((fact) => isSingleValuePublicFact(fact) && fact.public_evidence_status === 'OFFICIAL_DOCUMENTED') || null;
 }
 
+function buildPublicTraceabilityEntry(entry = {}, fallback = {}) {
+  const sourceDocumentTitle = sanitizePublicSourceLabel(
+    entry.source_document_title || entry.source_label || fallback.source_document_title || fallback.source_label || ''
+  );
+  return {
+    value: flattenPublicFactValue(entry.value ?? entry.comparison_value ?? entry.normalized_value ?? fallback.normalized_value ?? null),
+    unit: entry.unit || fallback.unit || null,
+    sourceLabel: sourceDocumentTitle || sanitizePublicSourceLabel(fallback.source_document_title || ''),
+    sourceClass: entry.source_class || fallback.source_class || null,
+    sourceDocumentId: entry.source_document_id || fallback.source_document_id || null,
+    sourceDocumentTitle: sourceDocumentTitle || sanitizePublicSourceLabel(fallback.source_document_title || ''),
+    publicationId: entry.publication_id || fallback.publication_id || null,
+    pdfPage: entry.pdf_page ?? fallback.pdf_page ?? null,
+    printedPage: entry.printed_page ?? fallback.printed_page ?? null,
+    sourceLocatorType: entry.source_locator_type || fallback.source_locator_type || null,
+    sourceLocator: entry.source_locator || fallback.source_locator || null,
+    sourceHeading: entry.source_heading || fallback.source_heading || null,
+    sourceUrl: entry.source_url || fallback.source_url || null,
+    market: entry.market ?? fallback.market ?? null,
+    revision: entry.revision ?? fallback.revision ?? null,
+    configuration: entry.configuration ?? fallback.configuration ?? null,
+    evidenceStatus: entry.evidence_status || fallback.public_evidence_status || fallback.evidence_status || null,
+    modelScope: entry.model_scope || fallback.model_scope || null,
+    scopeEvidence: Array.isArray(entry.scope_evidence)
+      ? entry.scope_evidence
+      : Array.isArray(fallback.scope_evidence)
+        ? fallback.scope_evidence
+        : []
+  };
+}
+
 function buildConflictValueList(fact) {
   if (!fact) return [];
   const values = [];
-  const currentSignature = JSON.stringify(stableEntries({
-    value: flattenPublicFactValue(fact.normalized_value),
-    unit: fact.unit || null,
-    sourceLabel: sanitizePublicSourceLabel(fact.source_document_title || ''),
-    publicationId: fact.publication_id || null,
-    pdfPage: fact.pdf_page || null
-  }));
+  const primary = buildPublicTraceabilityEntry(fact, fact);
+  const currentSignature = JSON.stringify(stableEntries(primary));
 
-  values.push({
-    value: flattenPublicFactValue(fact.normalized_value),
-    unit: fact.unit || null,
-    sourceLabel: sanitizePublicSourceLabel(fact.source_document_title || ''),
-    sourceClass: fact.source_class || null,
-    publicationId: fact.publication_id || null,
-    pdfPage: fact.pdf_page || null,
-    sourceUrl: fact.source_url || null
-  });
+  values.push(primary);
 
   for (const entry of fact.conflicting_values || []) {
-    const candidate = {
-      value: flattenPublicFactValue(entry.value ?? entry.comparison_value ?? null),
-      unit: entry.unit || fact.unit || null,
-      sourceLabel: sanitizePublicSourceLabel(entry.source_document_title || entry.source_label || ''),
-      sourceClass: entry.source_class || null,
-      publicationId: entry.publication_id || null,
-      pdfPage: entry.pdf_page || null,
-      sourceUrl: entry.source_url || null
-    };
+    const candidate = buildPublicTraceabilityEntry(entry, fact);
     const signature = JSON.stringify(stableEntries(candidate));
     if (signature !== currentSignature && !values.some((row) => JSON.stringify(stableEntries(row)) === signature)) {
       values.push(candidate);
@@ -428,15 +438,7 @@ export function buildPublicEvidenceFields(modelOrSlug, database = {}) {
       values: preferred?.public_evidence_status === 'OFFICIAL_CONFLICTED'
         ? buildConflictValueList(preferred)
         : singleValue
-          ? [{
-              value: flattenPublicFactValue(singleValue.normalized_value),
-              unit: singleValue.unit || null,
-              sourceLabel: sanitizePublicSourceLabel(singleValue.source_document_title || ''),
-              sourceClass: singleValue.source_class || null,
-              publicationId: singleValue.publication_id || null,
-              pdfPage: singleValue.pdf_page || null,
-              sourceUrl: singleValue.source_url || null
-            }]
+          ? [buildPublicTraceabilityEntry(singleValue, singleValue)]
           : [],
       unit: preferred?.unit || null,
       measurement_definition: preferred?.measurement_definition || null,
@@ -531,16 +533,23 @@ export function buildPublicEvidenceMeta(fact) {
     status: fact.public_evidence_status,
     statusLabel: getPublicStatusLabel(fact.public_evidence_status),
     sourceClass: fact.source_class || null,
+    sourceDocumentId: fact.source_document_id || null,
     sourceDocumentTitle: sanitizePublicSourceLabel(fact.source_document_title || ''),
     publicationId: fact.publication_id || null,
     pdfPage: fact.pdf_page || null,
     printedPage: fact.printed_page || null,
+    sourceLocatorType: fact.source_locator_type || null,
+    sourceLocator: fact.source_locator || null,
+    sourceHeading: fact.source_heading || null,
     market: fact.market || null,
     revision: fact.revision || null,
     configuration: fact.configuration || null,
     sourceUrl: fact.source_url || null,
     measurementDefinition: fact.measurement_definition || null,
-    singleValueEligible: isSingleValuePublicFact(fact)
+    singleValueEligible: isSingleValuePublicFact(fact),
+    modelScope: fact.model_scope || null,
+    scopeEvidence: Array.isArray(fact.scope_evidence) ? fact.scope_evidence : [],
+    fieldSemanticStatus: fact.field_semantic_status || null
   };
 }
 
@@ -555,4 +564,32 @@ export function flattenPublicFactValue(value) {
       .join(' / ');
   }
   return value;
+}
+
+export function getPublicTechnicalDisplayState(modelOrSlug, field, database = {}) {
+  const publicFields = buildPublicEvidenceFields(modelOrSlug, database);
+  const entry = publicFields[field] || null;
+  return {
+    field,
+    evidence_status: entry?.evidence_status || 'UNKNOWN',
+    display_eligible: Boolean(entry?.display_eligible),
+    single_value_eligible: Boolean(entry?.single_value_eligible && entry?.value != null && entry?.value !== ''),
+    value: entry?.value ?? null,
+    values: Array.isArray(entry?.values) ? entry.values : [],
+    unit: entry?.unit || null,
+    meta: entry?.meta || null
+  };
+}
+
+export function getSafePublicTechnicalValue(modelOrSlug, field, database = {}) {
+  const state = getPublicTechnicalDisplayState(modelOrSlug, field, database);
+  return state.single_value_eligible ? state.value : null;
+}
+
+export function formatPublicTechnicalValue(state, formatter = null) {
+  if (!state?.single_value_eligible) return null;
+  if (typeof formatter === 'function') {
+    return formatter(state.value, state.unit, state);
+  }
+  return state.unit ? `${state.value} ${state.unit}` : `${state.value}`;
 }
