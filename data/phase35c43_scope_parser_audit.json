@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-08-31T18:39:28.212Z",
+  "phase_id": "35C.4.3",
+  "records": [
+    {
+      "heading": "Brushcutter: FS 200, FS 350",
+      "expected": [
+        "fs-200",
+        "fs-350"
+      ],
+      "actual": [
+        "fs-200",
+        "fs-350"
+      ],
+      "pass": true
+    },
+    {
+      "heading": "FS 75, FS 80, FS 85, KW 85",
+      "expected": [
+        "fs-75",
+        "fs-80",
+        "fs-85",
+        "kw-85"
+      ],
+      "actual": [
+        "fs-75",
+        "fs-80",
+        "fs-85",
+        "kw-85"
+      ],
+      "pass": true
+    },
+    {
+      "heading": "FS45,FS55",
+      "expected": [
+        "fs-45",
+        "fs-55"
+      ],
+      "actual": [
+        "fs-45",
+        "fs-55"
+      ],
+      "pass": true
+    },
+    {
+      "heading": "Chain Saw: 009",
+      "expected": [
+        "009"
+      ],
+      "actual": [
+        "009"
+      ],
+      "pass": true
+    },
+    {
+      "heading": "SCS",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    }
+  ],
+  "PASS": "PASS"
+}

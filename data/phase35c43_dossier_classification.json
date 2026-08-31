@@ -1,0 +1,1449 @@
+{
+  "generated_at": "2026-08-31T18:39:27.976Z",
+  "phase_id": "35C.4.3",
+  "MACHINE_BASE_RECORDS": 106,
+  "CONTROLLER_RECORDS_EXCLUDED": 5,
+  "VIEW_RECORDS": 69,
+  "records": [
+    {
+      "dossier_id": "dfc42bad3c546e4f",
+      "filename": "CHAIN_STIHL_009_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_009",
+      "model_slug": "009",
+      "type_number": "1120"
+    },
+    {
+      "dossier_id": "a994bb5b30e062e8",
+      "filename": "CHAIN_STIHL_017_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_017",
+      "model_slug": "017",
+      "type_number": "1130"
+    },
+    {
+      "dossier_id": "aa88447b39f60d38",
+      "filename": "CHAIN_STIHL_017_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_017",
+      "model_slug": "017-ti",
+      "type_number": "1130"
+    },
+    {
+      "dossier_id": "fa58856c35c259c3",
+      "filename": "CHAIN_STIHL_018_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_018",
+      "model_slug": "018",
+      "type_number": "1130"
+    },
+    {
+      "dossier_id": "b6fbe2127c524385",
+      "filename": "CHAIN_STIHL_018_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_018",
+      "model_slug": "018-ti",
+      "type_number": "1130"
+    },
+    {
+      "dossier_id": "252ced2982e952bf",
+      "filename": "CHAIN_STIHL_019T_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_019T",
+      "model_slug": "019t",
+      "type_number": "1132"
+    },
+    {
+      "dossier_id": "a4a7571447f13773",
+      "filename": "CHAIN_STIHL_019T_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_019T",
+      "model_slug": "019t-ti",
+      "type_number": "1132"
+    },
+    {
+      "dossier_id": "7537ac24a4ddb123",
+      "filename": "CHAIN_STIHL_020T_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_020T",
+      "model_slug": "020",
+      "type_number": "1129"
+    },
+    {
+      "dossier_id": "81b545ed7a34f123",
+      "filename": "CHAIN_STIHL_020T_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_020T",
+      "model_slug": "020",
+      "type_number": "1129"
+    },
+    {
+      "dossier_id": "0f9c979c11722d6b",
+      "filename": "CHAIN_STIHL_021_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_021",
+      "model_slug": "021",
+      "type_number": "1123"
+    },
+    {
+      "dossier_id": "56f4f333851e045e",
+      "filename": "CHAIN_STIHL_021_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_021",
+      "model_slug": "021-ti",
+      "type_number": "1123"
+    },
+    {
+      "dossier_id": "87784bee967014b3",
+      "filename": "CHAIN_STIHL_021_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "CHAIN_STIHL_021",
+      "model_slug": "021-ts",
+      "type_number": "1123"
+    },
+    {
+      "dossier_id": "7aca2114580c0d74",
+      "filename": "CHAIN_STIHL_026_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_026",
+      "model_slug": "026",
+      "type_number": "1121"
+    },
+    {
+      "dossier_id": "8ec4a07c1f2065cd",
+      "filename": "CHAIN_STIHL_026_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_026",
+      "model_slug": "026",
+      "type_number": "1121"
+    },
+    {
+      "dossier_id": "853c2014817c245b",
+      "filename": "CHAIN_STIHL_029_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_029",
+      "model_slug": "029",
+      "type_number": "1127"
+    },
+    {
+      "dossier_id": "ea65fb73bd8606e4",
+      "filename": "CHAIN_STIHL_029_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_029",
+      "model_slug": "029-ti",
+      "type_number": "1127"
+    },
+    {
+      "dossier_id": "18061bf46d7aae3f",
+      "filename": "CHAIN_STIHL_029_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "CHAIN_STIHL_029",
+      "model_slug": "029-ts",
+      "type_number": "1127"
+    },
+    {
+      "dossier_id": "5febde4ec7eee628",
+      "filename": "CHAIN_STIHL_036_BA_FULL.md",
+      "classification": "BA_VIEW",
+      "base_key": "CHAIN_STIHL_036",
+      "model_slug": "036",
+      "type_number": "1125"
+    },
+    {
+      "dossier_id": "d4231e173f0959c3",
+      "filename": "CHAIN_STIHL_036_ET_FULL.md",
+      "classification": "ET_VIEW",
+      "base_key": "CHAIN_STIHL_036",
+      "model_slug": "036",
+      "type_number": "1125"
+    },
+    {
+      "dossier_id": "dc5025a14d169dbb",
+      "filename": "CHAIN_STIHL_036_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_036",
+      "model_slug": "036",
+      "type_number": "1125"
+    },
+    {
+      "dossier_id": "1b166f9ea1f64d0e",
+      "filename": "CHAIN_STIHL_036_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_036",
+      "model_slug": "036",
+      "type_number": "1125"
+    },
+    {
+      "dossier_id": "e71632d7cb6839a0",
+      "filename": "CHAIN_STIHL_044_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_044",
+      "model_slug": "044",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "fd5e13097b19519b",
+      "filename": "CHAIN_STIHL_044_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_044",
+      "model_slug": "044",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "f623bb12538ed280",
+      "filename": "CHAIN_STIHL_046_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_046",
+      "model_slug": "046",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "4b17890116aaf2e5",
+      "filename": "CHAIN_STIHL_046_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_046",
+      "model_slug": "046",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "567ee2d72fef8fa3",
+      "filename": "CHAIN_STIHL_066_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_066",
+      "model_slug": "066",
+      "type_number": "1122"
+    },
+    {
+      "dossier_id": "d4e64c042576dd09",
+      "filename": "CHAIN_STIHL_066_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_066",
+      "model_slug": "066",
+      "type_number": "1122"
+    },
+    {
+      "dossier_id": "4ee0e7b6ccaf832c",
+      "filename": "CHAIN_STIHL_066_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "CHAIN_STIHL_066",
+      "model_slug": "066",
+      "type_number": "1122"
+    },
+    {
+      "dossier_id": "fae03e78cd676ae1",
+      "filename": "CHAIN_STIHL_088_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_088",
+      "model_slug": "088",
+      "type_number": "1124"
+    },
+    {
+      "dossier_id": "a739f0b559791a7f",
+      "filename": "CHAIN_STIHL_088_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_088",
+      "model_slug": "088",
+      "type_number": "1124"
+    },
+    {
+      "dossier_id": "1e1bb15877428fce",
+      "filename": "CHAIN_STIHL_E140_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_E140",
+      "model_slug": "e140",
+      "type_number": "1208"
+    },
+    {
+      "dossier_id": "0c593adfaf5a246c",
+      "filename": "CHAIN_STIHL_E140_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_E140",
+      "model_slug": "e140-ti",
+      "type_number": "1208"
+    },
+    {
+      "dossier_id": "7f6b651dbc1b4dcc",
+      "filename": "CHAIN_STIHL_E220_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_E220",
+      "model_slug": "e220",
+      "type_number": "1207"
+    },
+    {
+      "dossier_id": "036e5cd225d9db2e",
+      "filename": "CHAIN_STIHL_MS170_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS170",
+      "model_slug": "ms-170",
+      "type_number": "1130"
+    },
+    {
+      "dossier_id": "1ff45d2b9c09576a",
+      "filename": "CHAIN_STIHL_MS180_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS180",
+      "model_slug": "ms-180",
+      "type_number": "1130"
+    },
+    {
+      "dossier_id": "46877b8dd75b7d49",
+      "filename": "CHAIN_STIHL_MS191T_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS191T",
+      "model_slug": "ms191t",
+      "type_number": "1132"
+    },
+    {
+      "dossier_id": "d6739a2200897ca4",
+      "filename": "CHAIN_STIHL_MS191T_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_MS191T",
+      "model_slug": "ms191t-ti",
+      "type_number": "1132"
+    },
+    {
+      "dossier_id": "4ac7226940ba4982",
+      "filename": "CHAIN_STIHL_MS200T_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS200T",
+      "model_slug": "ms-200",
+      "type_number": "1129"
+    },
+    {
+      "dossier_id": "bbcf1dc2f56c2c3e",
+      "filename": "CHAIN_STIHL_MS210_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS210",
+      "model_slug": "ms-210",
+      "type_number": "1123"
+    },
+    {
+      "dossier_id": "0091e5768eea6048",
+      "filename": "CHAIN_STIHL_MS210_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "CHAIN_STIHL_MS210",
+      "model_slug": "ms-210",
+      "type_number": "1123"
+    },
+    {
+      "dossier_id": "e7e2518230e91ffc",
+      "filename": "CHAIN_STIHL_MS260_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS260",
+      "model_slug": "ms-260",
+      "type_number": "1121"
+    },
+    {
+      "dossier_id": "9355abea1c45cdad",
+      "filename": "CHAIN_STIHL_MS270CQS_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS270CQS",
+      "model_slug": "ms-270",
+      "type_number": "1133"
+    },
+    {
+      "dossier_id": "f02c0f69d4dbfb27",
+      "filename": "CHAIN_STIHL_MS270_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS270",
+      "model_slug": "ms-270",
+      "type_number": "1133"
+    },
+    {
+      "dossier_id": "39a68a3ae59c6f34",
+      "filename": "CHAIN_STIHL_MS280CQS_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS280CQS",
+      "model_slug": "ms-280",
+      "type_number": "1133"
+    },
+    {
+      "dossier_id": "8be2f2cb9624a203",
+      "filename": "CHAIN_STIHL_MS290_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS290",
+      "model_slug": "ms-290",
+      "type_number": "1127"
+    },
+    {
+      "dossier_id": "a1f4dde3a506d9c5",
+      "filename": "CHAIN_STIHL_MS290_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "CHAIN_STIHL_MS290",
+      "model_slug": "ms-290",
+      "type_number": "1127"
+    },
+    {
+      "dossier_id": "c6494f83dd259bd5",
+      "filename": "CHAIN_STIHL_MS360C_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS360C",
+      "model_slug": "ms-360",
+      "type_number": "1125"
+    },
+    {
+      "dossier_id": "db1592c6503183c9",
+      "filename": "CHAIN_STIHL_MS360_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS360",
+      "model_slug": "ms-360",
+      "type_number": "1125"
+    },
+    {
+      "dossier_id": "2c24132d70134231",
+      "filename": "CHAIN_STIHL_MS440_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS440",
+      "model_slug": "ms440",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "9b931fac4692f7f4",
+      "filename": "CHAIN_STIHL_MS460_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS460",
+      "model_slug": "ms-460",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "888a4f91382090ad",
+      "filename": "CHAIN_STIHL_MS460_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CHAIN_STIHL_MS460",
+      "model_slug": "ms-460",
+      "type_number": "1128"
+    },
+    {
+      "dossier_id": "ea8381798ba486ba",
+      "filename": "CHAIN_STIHL_MS660_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MS660",
+      "model_slug": "ms660",
+      "type_number": "1122"
+    },
+    {
+      "dossier_id": "7ad96fd2d4bd277a",
+      "filename": "CHAIN_STIHL_MSE140_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CHAIN_STIHL_MSE140",
+      "model_slug": "mse140",
+      "type_number": "1208"
+    },
+    {
+      "dossier_id": "51d25e0732b748e4",
+      "filename": "CHAIN_STIHL_MODEL__CHAIN_STEUERLEISTE_30_FULL.md",
+      "classification": "CONTROLLER_OR_MENU",
+      "base_key": "CHAIN_STIHL_MODEL__CHAIN_STEUERLEISTE_30",
+      "model_slug": "model__chain_steuerleiste_30",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "2d36411439d17d33",
+      "filename": "CLEAN_STIHL_RB220_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CLEAN_STIHL_RB220",
+      "model_slug": "rb220",
+      "type_number": "4718"
+    },
+    {
+      "dossier_id": "0d7f55c51bd48ea9",
+      "filename": "CLEAN_STIHL_RB400_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CLEAN_STIHL_RB400",
+      "model_slug": "rb400",
+      "type_number": "4710"
+    },
+    {
+      "dossier_id": "b48df6cded6b9e0c",
+      "filename": "CLEAN_STIHL_RE102_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CLEAN_STIHL_RE102",
+      "model_slug": "re102",
+      "type_number": "4719"
+    },
+    {
+      "dossier_id": "8eb9c7ffa1b1a1f8",
+      "filename": "CLEAN_STIHL_RE102_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CLEAN_STIHL_RE102",
+      "model_slug": "re102-ti",
+      "type_number": "4719"
+    },
+    {
+      "dossier_id": "367c1b011b29d0f3",
+      "filename": "CLEAN_STIHL_RE110_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CLEAN_STIHL_RE110",
+      "model_slug": "re110",
+      "type_number": "4703"
+    },
+    {
+      "dossier_id": "9c340b80657249f1",
+      "filename": "CLEAN_STIHL_SE100_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CLEAN_STIHL_SE100",
+      "model_slug": "se100",
+      "type_number": "4709"
+    },
+    {
+      "dossier_id": "670bd6c67edbad92",
+      "filename": "CLEAN_STIHL_SE200_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CLEAN_STIHL_SE200",
+      "model_slug": "se200",
+      "type_number": "4714"
+    },
+    {
+      "dossier_id": "f2776d8bd76d51df",
+      "filename": "CLEAN_STIHL_MODEL__CLEAN_STEUERLEISTE_30_FULL.md",
+      "classification": "CONTROLLER_OR_MENU",
+      "base_key": "CLEAN_STIHL_MODEL__CLEAN_STEUERLEISTE_30",
+      "model_slug": "model__clean_steuerleiste_30",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "88f1093c826c2f92",
+      "filename": "CONS_STIHL_BT120C_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_BT120C",
+      "model_slug": "bt120c",
+      "type_number": "4314"
+    },
+    {
+      "dossier_id": "b9b9ac74b8ca17ce",
+      "filename": "CONS_STIHL_BT120C_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CONS_STIHL_BT120C",
+      "model_slug": "bt120c-ti",
+      "type_number": "4313"
+    },
+    {
+      "dossier_id": "1c184a4d42bc5cad",
+      "filename": "CONS_STIHL_BT45_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_BT45",
+      "model_slug": "bt45",
+      "type_number": "4314"
+    },
+    {
+      "dossier_id": "63bff78e7cb1df32",
+      "filename": "CONS_STIHL_TS350_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_TS350",
+      "model_slug": "ts350",
+      "type_number": "4201"
+    },
+    {
+      "dossier_id": "9e04adc89212c273",
+      "filename": "CONS_STIHL_TS350_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CONS_STIHL_TS350",
+      "model_slug": "ts350-ti",
+      "type_number": "4201"
+    },
+    {
+      "dossier_id": "40733d6c98d8aba9",
+      "filename": "CONS_STIHL_TS400_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_TS400",
+      "model_slug": "ts400",
+      "type_number": "4223"
+    },
+    {
+      "dossier_id": "4ab2ddd10d0ed442",
+      "filename": "CONS_STIHL_TS400_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CONS_STIHL_TS400",
+      "model_slug": "ts400-ti",
+      "type_number": "4223"
+    },
+    {
+      "dossier_id": "9a1faf03cb1cc35d",
+      "filename": "CONS_STIHL_TS460_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_TS460",
+      "model_slug": "ts460",
+      "type_number": "4221"
+    },
+    {
+      "dossier_id": "15a93249c9d01bb1",
+      "filename": "CONS_STIHL_TS460_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CONS_STIHL_TS460",
+      "model_slug": "ts460-ti",
+      "type_number": "4221"
+    },
+    {
+      "dossier_id": "99a6d49e44f4d16c",
+      "filename": "CONS_STIHL_TS510_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_TS510",
+      "model_slug": "ts510",
+      "type_number": "4205"
+    },
+    {
+      "dossier_id": "90bb4e4a9a1730af",
+      "filename": "CONS_STIHL_TS510_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CONS_STIHL_TS510",
+      "model_slug": "ts510-ti",
+      "type_number": "4205"
+    },
+    {
+      "dossier_id": "498843b731da0dd5",
+      "filename": "CONS_STIHL_TS760_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "CONS_STIHL_TS760",
+      "model_slug": "ts760",
+      "type_number": "4205"
+    },
+    {
+      "dossier_id": "ca3edf47e22405d9",
+      "filename": "CONS_STIHL_TS760_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "CONS_STIHL_TS760",
+      "model_slug": "ts760-ti",
+      "type_number": "4205"
+    },
+    {
+      "dossier_id": "f34936b788379155",
+      "filename": "CONS_STIHL_MODEL__CONS_STEUERLEISTE_30_FULL.md",
+      "classification": "CONTROLLER_OR_MENU",
+      "base_key": "CONS_STIHL_MODEL__CONS_STEUERLEISTE_30",
+      "model_slug": "model__cons_steuerleiste_30",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "a92026b6e40c0043",
+      "filename": "MIS_STIHL_MODEL_MIS_STEUERLEISTE_30_FULL.md",
+      "classification": "CONTROLLER_OR_MENU",
+      "base_key": "MIS_STIHL_MODEL_MIS_STEUERLEISTE_30",
+      "model_slug": "model_mis_steuerleiste_30",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "9c2926a1496707fc",
+      "filename": "OUT_STIHL_BC35_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BC35",
+      "model_slug": "bc35",
+      "type_number": "4600"
+    },
+    {
+      "dossier_id": "1b19f40f56089dcc",
+      "filename": "OUT_STIHL_BCKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BCKM",
+      "model_slug": "bckm",
+      "type_number": "4600"
+    },
+    {
+      "dossier_id": "69405ae218fccd38",
+      "filename": "OUT_STIHL_BFMM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BFMM",
+      "model_slug": "bfmm",
+      "type_number": "4601"
+    },
+    {
+      "dossier_id": "4602f8d96949a2c9",
+      "filename": "OUT_STIHL_BG45_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BG45",
+      "model_slug": "bg45",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "5f1349ef5f8cb4a1",
+      "filename": "OUT_STIHL_BG45_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_BG45",
+      "model_slug": "bg45-ti",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "2f7ce16ff622c71b",
+      "filename": "OUT_STIHL_BG46_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BG46",
+      "model_slug": "bg46",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "760f1fbe87b7c069",
+      "filename": "OUT_STIHL_BG55_ET_FULL.md",
+      "classification": "ET_VIEW",
+      "base_key": "OUT_STIHL_BG55",
+      "model_slug": "bg55-et",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "d267f2708ae955a8",
+      "filename": "OUT_STIHL_BG55_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BG55",
+      "model_slug": "bg55",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "9da1203023d3c37a",
+      "filename": "OUT_STIHL_BG55_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_BG55",
+      "model_slug": "bg55-ti",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "31aca374f9d5b463",
+      "filename": "OUT_STIHL_BG55_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "OUT_STIHL_BG55",
+      "model_slug": "bg55-ts",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "8388fd2825986097",
+      "filename": "OUT_STIHL_BG75_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BG75",
+      "model_slug": "bg75",
+      "type_number": "4227"
+    },
+    {
+      "dossier_id": "d36b2b48ba4baa89",
+      "filename": "OUT_STIHL_BG75_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_BG75",
+      "model_slug": "bg75-ti",
+      "type_number": "4227"
+    },
+    {
+      "dossier_id": "a3391b80315982a8",
+      "filename": "OUT_STIHL_BGE60_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BGE60",
+      "model_slug": "bge60",
+      "type_number": "4807"
+    },
+    {
+      "dossier_id": "ab2d6eda983eb917",
+      "filename": "OUT_STIHL_BR320_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BR320",
+      "model_slug": "br320",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "3be8d842e85e3292",
+      "filename": "OUT_STIHL_BR320_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_BR320",
+      "model_slug": "br320-ti",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "933ac117fd973b58",
+      "filename": "OUT_STIHL_BR320_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "OUT_STIHL_BR320",
+      "model_slug": "br320-ts",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "6df9af3c663ec8f2",
+      "filename": "OUT_STIHL_BR340_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BR340",
+      "model_slug": "br340",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "8433d8dfd594f329",
+      "filename": "OUT_STIHL_BR340_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "OUT_STIHL_BR340",
+      "model_slug": "br340-ts",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "07e6eb269a840fcd",
+      "filename": "OUT_STIHL_BR45C_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_BR45C",
+      "model_slug": "br45c",
+      "type_number": "4229"
+    },
+    {
+      "dossier_id": "00ba0cfa7c82934d",
+      "filename": "OUT_STIHL_EC70_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_EC70",
+      "model_slug": "ec70",
+      "type_number": "4803"
+    },
+    {
+      "dossier_id": "b43dda27715f9003",
+      "filename": "OUT_STIHL_FC110_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC110",
+      "model_slug": "fc110",
+      "type_number": "4180"
+    },
+    {
+      "dossier_id": "043c5c1ee6c1e8c8",
+      "filename": "OUT_STIHL_FC44_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC44",
+      "model_slug": "fc44",
+      "type_number": "4130"
+    },
+    {
+      "dossier_id": "ab54371a074a9a0b",
+      "filename": "OUT_STIHL_FC44_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FC44",
+      "model_slug": "fc44-ti",
+      "type_number": "4130"
+    },
+    {
+      "dossier_id": "21edae4a8e3ba1ee",
+      "filename": "OUT_STIHL_FC55_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC55",
+      "model_slug": "fc55",
+      "type_number": "4140"
+    },
+    {
+      "dossier_id": "27daf21d25dee56b",
+      "filename": "OUT_STIHL_FC55_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FC55",
+      "model_slug": "fc55-ti",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "3af74c15a5bc4194",
+      "filename": "OUT_STIHL_FC73_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC73",
+      "model_slug": "fc73",
+      "type_number": "4141"
+    },
+    {
+      "dossier_id": "393f83f51f1acc3a",
+      "filename": "OUT_STIHL_FC75_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC75",
+      "model_slug": "fc75",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "bc7694213b8319a8",
+      "filename": "OUT_STIHL_FC75_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FC75",
+      "model_slug": "fc75-ti",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "d8d50fb7c582521e",
+      "filename": "OUT_STIHL_FC83_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC83",
+      "model_slug": "fc83",
+      "type_number": "4141"
+    },
+    {
+      "dossier_id": "688a431eaada3467",
+      "filename": "OUT_STIHL_FC83_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FC83",
+      "model_slug": "fc83-ti",
+      "type_number": "4141"
+    },
+    {
+      "dossier_id": "70a95a9ec3bd6f46",
+      "filename": "OUT_STIHL_FC85_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC85",
+      "model_slug": "fc85",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "4d922f23527d6268",
+      "filename": "OUT_STIHL_FC85_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FC85",
+      "model_slug": "fc85-ti",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "9c361bd4c60bf21e",
+      "filename": "OUT_STIHL_FCBKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FCBKM",
+      "model_slug": "fcbkm",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "4ad1430592390605",
+      "filename": "OUT_STIHL_FCB_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FCB",
+      "model_slug": "fcb",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "3067b9279ca8ea0a",
+      "filename": "OUT_STIHL_FCSKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FCSKM",
+      "model_slug": "fcskm",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "9d0fd561922c7b35",
+      "filename": "OUT_STIHL_FCS_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FCS",
+      "model_slug": "fcs",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "6dc41ab5dd7450f6",
+      "filename": "OUT_STIHL_FC_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FC",
+      "model_slug": "fc",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "c87d935426ca2aef",
+      "filename": "OUT_STIHL_FE55_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FE55",
+      "model_slug": "fe55",
+      "type_number": "4803"
+    },
+    {
+      "dossier_id": "a4bdc9d453125cf5",
+      "filename": "OUT_STIHL_FE55_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FE55",
+      "model_slug": "fe55-ti",
+      "type_number": "4803"
+    },
+    {
+      "dossier_id": "64ba8573d12c9f0c",
+      "filename": "OUT_STIHL_FH75_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FH75",
+      "model_slug": "fh75",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "15ec036c2c33fadb",
+      "filename": "OUT_STIHL_FH75_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FH75",
+      "model_slug": "fh75-ti",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "df4dac18d97b2f02",
+      "filename": "OUT_STIHL_FHKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FHKM",
+      "model_slug": "fhkm",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "acd99bc5a8b0eeaa",
+      "filename": "OUT_STIHL_FH_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FH",
+      "model_slug": "fh",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "c898e7a401fe5aad",
+      "filename": "OUT_STIHL_FS110_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS110",
+      "model_slug": "fs110",
+      "type_number": "4180"
+    },
+    {
+      "dossier_id": "5144062d05040e06",
+      "filename": "OUT_STIHL_FS120_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS120",
+      "model_slug": "fs120",
+      "type_number": "4134"
+    },
+    {
+      "dossier_id": "195b81b12f87bcd8",
+      "filename": "OUT_STIHL_FS120_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS120",
+      "model_slug": "fs120-ti",
+      "type_number": "4134"
+    },
+    {
+      "dossier_id": "25092cb27fbf6ba8",
+      "filename": "OUT_STIHL_FS120_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "OUT_STIHL_FS120",
+      "model_slug": "fs120-ts",
+      "type_number": "4134"
+    },
+    {
+      "dossier_id": "8fec99c7fee082ac",
+      "filename": "OUT_STIHL_FS350_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS350",
+      "model_slug": "fs-350",
+      "type_number": "4134"
+    },
+    {
+      "dossier_id": "3bc8987fc834006a",
+      "filename": "OUT_STIHL_FS350_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS350",
+      "model_slug": "fs-350",
+      "type_number": "4134"
+    },
+    {
+      "dossier_id": "035c82ac6dce1b13",
+      "filename": "OUT_STIHL_FS36_BA_FULL.md",
+      "classification": "BA_VIEW",
+      "base_key": "OUT_STIHL_FS36",
+      "model_slug": "fs36-ba",
+      "type_number": "4130"
+    },
+    {
+      "dossier_id": "2a1f252c6c0e952d",
+      "filename": "OUT_STIHL_FS36_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS36",
+      "model_slug": "fs36",
+      "type_number": "4130"
+    },
+    {
+      "dossier_id": "93f1778f9b40df2c",
+      "filename": "OUT_STIHL_FS36_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS36",
+      "model_slug": "fs36-ti",
+      "type_number": "4130"
+    },
+    {
+      "dossier_id": "ab5346a72df13a74",
+      "filename": "OUT_STIHL_FS450_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS450",
+      "model_slug": "fs450",
+      "type_number": "4128"
+    },
+    {
+      "dossier_id": "3ec46a16fc3cbdc4",
+      "filename": "OUT_STIHL_FS450_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS450",
+      "model_slug": "fs450-ti",
+      "type_number": "4128"
+    },
+    {
+      "dossier_id": "191c60fddec7c0ba",
+      "filename": "OUT_STIHL_FS45_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS45",
+      "model_slug": "fs45",
+      "type_number": "4140"
+    },
+    {
+      "dossier_id": "f715a38d2f918870",
+      "filename": "OUT_STIHL_FS45_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS45",
+      "model_slug": "fs45-ti",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "10e9dfeb305b147f",
+      "filename": "OUT_STIHL_FS46_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS46",
+      "model_slug": "fs46",
+      "type_number": "4140"
+    },
+    {
+      "dossier_id": "6d85aef1b3a932a5",
+      "filename": "OUT_STIHL_FS46_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS46",
+      "model_slug": "fs46-ti",
+      "type_number": "N/A"
+    },
+    {
+      "dossier_id": "9ab20561c2ed817b",
+      "filename": "OUT_STIHL_FS550_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS550",
+      "model_slug": "fs550",
+      "type_number": "4116"
+    },
+    {
+      "dossier_id": "0eee1b4522b1b6a7",
+      "filename": "OUT_STIHL_FS550_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS550",
+      "model_slug": "fs550-ti",
+      "type_number": "4116"
+    },
+    {
+      "dossier_id": "b258eafd5368148f",
+      "filename": "OUT_STIHL_FS55_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS55",
+      "model_slug": "fs55",
+      "type_number": "4140"
+    },
+    {
+      "dossier_id": "80a037dc39a40838",
+      "filename": "OUT_STIHL_FS55_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS55",
+      "model_slug": "fs55-ti",
+      "type_number": "4140"
+    },
+    {
+      "dossier_id": "37a53b7f3cef0933",
+      "filename": "OUT_STIHL_FS75_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS75",
+      "model_slug": "fs75",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "d5e46c6a00958be5",
+      "filename": "OUT_STIHL_FS75_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS75",
+      "model_slug": "fs75-ti",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "ad00e82c0a31487a",
+      "filename": "OUT_STIHL_FS80_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS80",
+      "model_slug": "fs80",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "fec745674e72dd56",
+      "filename": "OUT_STIHL_FS80_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS80",
+      "model_slug": "fs80-ti",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "8fd99fc1e02566a5",
+      "filename": "OUT_STIHL_FS83_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FS83",
+      "model_slug": "fs83",
+      "type_number": "4141"
+    },
+    {
+      "dossier_id": "15220db04d2ab6ba",
+      "filename": "OUT_STIHL_FS83_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_FS83",
+      "model_slug": "fs83-ti",
+      "type_number": "4141"
+    },
+    {
+      "dossier_id": "d861b81ad94e7e81",
+      "filename": "OUT_STIHL_FSE60_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FSE60",
+      "model_slug": "fse60",
+      "type_number": "4809"
+    },
+    {
+      "dossier_id": "01bd05ce3bb88da4",
+      "filename": "OUT_STIHL_FSKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_FSKM",
+      "model_slug": "fskm",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "e93c49818b3fadb6",
+      "filename": "OUT_STIHL_HL45_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HL45",
+      "model_slug": "hl45",
+      "type_number": "4232"
+    },
+    {
+      "dossier_id": "932b94b76eb6eebe",
+      "filename": "OUT_STIHL_HL45_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_HL45",
+      "model_slug": "hl45-ti",
+      "type_number": "4232"
+    },
+    {
+      "dossier_id": "ba2aaffae8ba45bb",
+      "filename": "OUT_STIHL_HL73_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HL73",
+      "model_slug": "hl73",
+      "type_number": "4235"
+    },
+    {
+      "dossier_id": "79c9e4519f36064f",
+      "filename": "OUT_STIHL_HL73_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_HL73",
+      "model_slug": "hl73-ti",
+      "type_number": "4235"
+    },
+    {
+      "dossier_id": "9338d8932a59b785",
+      "filename": "OUT_STIHL_HL75_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HL75",
+      "model_slug": "hl75",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "fec93d95f5776538",
+      "filename": "OUT_STIHL_HL75_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_HL75",
+      "model_slug": "hl75-ti",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "71afb2ba9a8f6fbc",
+      "filename": "OUT_STIHL_HLKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HLKM",
+      "model_slug": "hlkm",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "ee42d7862363d622",
+      "filename": "OUT_STIHL_HL_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HL",
+      "model_slug": "hl",
+      "type_number": "4230"
+    },
+    {
+      "dossier_id": "843988f162a03a9a",
+      "filename": "OUT_STIHL_HS45_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HS45",
+      "model_slug": "hs-45",
+      "type_number": "4228"
+    },
+    {
+      "dossier_id": "2ec394dfd3f50009",
+      "filename": "OUT_STIHL_HS45_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_HS45",
+      "model_slug": "hs-45",
+      "type_number": "4228"
+    },
+    {
+      "dossier_id": "30db6ecaa785b733",
+      "filename": "OUT_STIHL_HS75_BA_FULL.md",
+      "classification": "BA_VIEW",
+      "base_key": "OUT_STIHL_HS75",
+      "model_slug": "hs75-ba",
+      "type_number": "4226"
+    },
+    {
+      "dossier_id": "3506d999d722fc22",
+      "filename": "OUT_STIHL_HS75_RT_FULL.md",
+      "classification": "RT_VIEW",
+      "base_key": "OUT_STIHL_HS75",
+      "model_slug": "hs75-rt",
+      "type_number": "4226"
+    },
+    {
+      "dossier_id": "f4c8747e9cbd2c85",
+      "filename": "OUT_STIHL_HS75_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HS75",
+      "model_slug": "hs75",
+      "type_number": "4226"
+    },
+    {
+      "dossier_id": "60cb23346e79830c",
+      "filename": "OUT_STIHL_HS75_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_HS75",
+      "model_slug": "hs75-ti",
+      "type_number": "4226"
+    },
+    {
+      "dossier_id": "2144f287a0d33b47",
+      "filename": "OUT_STIHL_HT70_RT_FULL.md",
+      "classification": "RT_VIEW",
+      "base_key": "OUT_STIHL_HT70",
+      "model_slug": "ht70-rt",
+      "type_number": "4138"
+    },
+    {
+      "dossier_id": "57e5db6d557b964f",
+      "filename": "OUT_STIHL_HT70_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HT70",
+      "model_slug": "ht70",
+      "type_number": "4138"
+    },
+    {
+      "dossier_id": "bec62a662228e144",
+      "filename": "OUT_STIHL_HT70_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_HT70",
+      "model_slug": "ht70-ti",
+      "type_number": "4138"
+    },
+    {
+      "dossier_id": "f0c1a44f25ccab9c",
+      "filename": "OUT_STIHL_HT73_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HT73",
+      "model_slug": "ht73",
+      "type_number": "4142"
+    },
+    {
+      "dossier_id": "411946058e1b3b63",
+      "filename": "OUT_STIHL_HTKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HTKM",
+      "model_slug": "htkm",
+      "type_number": "4138"
+    },
+    {
+      "dossier_id": "2c8c3f654ff1c01c",
+      "filename": "OUT_STIHL_HT_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_HT",
+      "model_slug": "ht",
+      "type_number": "4138"
+    },
+    {
+      "dossier_id": "888d29bad03082e8",
+      "filename": "OUT_STIHL_KM110_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_KM110",
+      "model_slug": "km110",
+      "type_number": "4180"
+    },
+    {
+      "dossier_id": "65d08a92fac15dbd",
+      "filename": "OUT_STIHL_KM55_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_KM55",
+      "model_slug": "km55",
+      "type_number": "4140"
+    },
+    {
+      "dossier_id": "a4349060cfecc855",
+      "filename": "OUT_STIHL_KM85_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_KM85",
+      "model_slug": "km85",
+      "type_number": "4137"
+    },
+    {
+      "dossier_id": "9f27ec306a2b6e7b",
+      "filename": "OUT_STIHL_KW85_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_KW85",
+      "model_slug": "kw85",
+      "type_number": "4602"
+    },
+    {
+      "dossier_id": "5692f78805a2226b",
+      "filename": "OUT_STIHL_KWKM_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_KWKM",
+      "model_slug": "kwkm",
+      "type_number": "4602"
+    },
+    {
+      "dossier_id": "584529f067ada9ea",
+      "filename": "OUT_STIHL_KW_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_KW",
+      "model_slug": "kw",
+      "type_number": "4602"
+    },
+    {
+      "dossier_id": "1d4fa11cbcc57d9a",
+      "filename": "OUT_STIHL_MM55_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_MM55",
+      "model_slug": "mm55",
+      "type_number": "4601"
+    },
+    {
+      "dossier_id": "defd37605ae18db2",
+      "filename": "OUT_STIHL_SR320_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_SR320",
+      "model_slug": "sr320",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "71c8ee579b3cc6fb",
+      "filename": "OUT_STIHL_SR320_TI_FULL.md",
+      "classification": "TI_VIEW",
+      "base_key": "OUT_STIHL_SR320",
+      "model_slug": "sr320-ti",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "a1e3467a643865b3",
+      "filename": "OUT_STIHL_SR320_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "OUT_STIHL_SR320",
+      "model_slug": "sr320-ts",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "5829ea768a816244",
+      "filename": "OUT_STIHL_SR340_FULL.md",
+      "classification": "MACHINE_BASE",
+      "base_key": "OUT_STIHL_SR340",
+      "model_slug": "sr340",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "612a4fee116b1151",
+      "filename": "OUT_STIHL_SR340_TS_FULL.md",
+      "classification": "TS_VIEW",
+      "base_key": "OUT_STIHL_SR340",
+      "model_slug": "sr340-ts",
+      "type_number": "4203"
+    },
+    {
+      "dossier_id": "53db5c2a9b6b707a",
+      "filename": "OUT_STIHL_MODEL__OUT_STEUERLEISTE_30_FULL.md",
+      "classification": "CONTROLLER_OR_MENU",
+      "base_key": "OUT_STIHL_MODEL__OUT_STEUERLEISTE_30",
+      "model_slug": "model__out_steuerleiste_30",
+      "type_number": "N/A"
+    }
+  ]
+}

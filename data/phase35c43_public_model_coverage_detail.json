@@ -1,0 +1,358 @@
+{
+  "generated_at": "2026-08-31T18:39:28.271Z",
+  "phase_id": "35C.4.3",
+  "MODELS_WITH_PUBLIC_FACTS_AFTER": 17,
+  "MODELS_WITH_5PLUS_FACTS_AFTER": 15,
+  "records": [
+    {
+      "model": "009",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/009_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "017",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/017_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "018",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/018_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "020",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/020t_body.htm"
+      ],
+      "scope_types": [
+        "MULTI_MODEL_EXPLICIT_SHARED_VALUE"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "026",
+      "facts_before": 7,
+      "facts_added": 6,
+      "facts_after": 13,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/026_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "036",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/036_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "044",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/044_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "046",
+      "facts_before": 7,
+      "facts_added": 5,
+      "facts_after": 12,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/046_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "088",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/088_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "fs-350",
+      "facts_before": 0,
+      "facts_added": 8,
+      "facts_after": 8,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "max_engine_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/FS200_body.htm"
+      ],
+      "scope_types": [
+        "MULTI_MODEL_EXPLICIT_SHARED_VALUE"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "hs-45",
+      "facts_before": 0,
+      "facts_added": 8,
+      "facts_after": 8,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "max_engine_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/HS45_body.htm"
+      ],
+      "scope_types": [
+        "MULTI_MODEL_EXPLICIT_SHARED_VALUE"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "ms-200",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/ms200t_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "ms-260",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/ms260_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "ms-360",
+      "facts_before": 0,
+      "facts_added": 14,
+      "facts_after": 14,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/ms360_body.htm",
+        "doc/TS_Data/ms360c_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "ms-460",
+      "facts_before": 0,
+      "facts_added": 7,
+      "facts_after": 7,
+      "fields_added": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "underlying_sources": [
+        "doc/TS_Data/ms460_body.htm"
+      ],
+      "scope_types": [
+        "EXACT_MODEL"
+      ],
+      "FIVE_PLUS_FACTS": "YES"
+    },
+    {
+      "model": "ts-410",
+      "facts_before": 4,
+      "facts_added": 0,
+      "facts_after": 4,
+      "fields_added": [],
+      "underlying_sources": [],
+      "scope_types": [],
+      "FIVE_PLUS_FACTS": "NO"
+    },
+    {
+      "model": "ts-420",
+      "facts_before": 4,
+      "facts_added": 0,
+      "facts_after": 4,
+      "fields_added": [],
+      "underlying_sources": [],
+      "scope_types": [],
+      "FIVE_PLUS_FACTS": "NO"
+    }
+  ]
+}

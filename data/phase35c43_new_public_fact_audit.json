@@ -1,0 +1,2653 @@
+{
+  "generated_at": "2026-08-31T18:39:28.268Z",
+  "phase_id": "35C.4.3",
+  "NEW_PUBLIC_FACTS": 111,
+  "NEW_PUBLIC_FACTS_WITH_UNDERLYING_SOURCE": 111,
+  "NEW_PUBLIC_FACTS_WITHOUT_UNDERLYING_SOURCE": 0,
+  "DOSSIER_AS_DIRECT_FACT_SOURCE_COUNT": 0,
+  "DOSSIER_COUNTED_AS_INDEPENDENT_SUPPORT": 0,
+  "NEW_TS_DATA_FACTS_WITH_SOURCE_HEADING": 111,
+  "NEW_TS_DATA_FACTS_WITHOUT_SOURCE_HEADING": 0,
+  "PUBLIC_WINDOWS_PATH_COUNT": 0,
+  "records": [
+    {
+      "model": "009",
+      "field": "bore_mm",
+      "raw_value": "36 1.42",
+      "normalized_value": 36,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "009",
+      "field": "displacement_cc",
+      "raw_value": "36.6 2.23",
+      "normalized_value": 36.6,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "009",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "009",
+      "field": "power_hp",
+      "raw_value": "1.2 (1.6) 7,500",
+      "normalized_value": 1.6,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "009",
+      "field": "power_kw",
+      "raw_value": "1.2 (1.6) 7,500",
+      "normalized_value": 1.2,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "009",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "009",
+      "field": "stroke_mm",
+      "raw_value": "36 1.42",
+      "normalized_value": 36,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/009_body.htm",
+      "source_heading": "Chain Saw: 009",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "009"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 009"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "bore_mm",
+      "raw_value": "37 1.46",
+      "normalized_value": 37,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "displacement_cc",
+      "raw_value": "30.1 1.84",
+      "normalized_value": 30.1,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "idle_speed_rpm",
+      "raw_value": "3,200",
+      "normalized_value": 3200,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "power_hp",
+      "raw_value": "1.2 (1.6) 8,500",
+      "normalized_value": 1.6,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "power_kw",
+      "raw_value": "1.2 (1.6) 8,500",
+      "normalized_value": 1.2,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "017",
+      "field": "stroke_mm",
+      "raw_value": "28 1.10",
+      "normalized_value": 28,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/017_body.htm",
+      "source_heading": "Chain Saw: 017",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "017"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 017"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "bore_mm",
+      "raw_value": "38 1.50",
+      "normalized_value": 38,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "displacement_cc",
+      "raw_value": "31.8 1.94",
+      "normalized_value": 31.8,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "power_hp",
+      "raw_value": "1.4 (1.9) 8,500",
+      "normalized_value": 1.9,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "power_kw",
+      "raw_value": "1.4 (1.9) 8,500",
+      "normalized_value": 1.4,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "018",
+      "field": "stroke_mm",
+      "raw_value": "28 1.10",
+      "normalized_value": 28,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/018_body.htm",
+      "source_heading": "Chain Saw: 018",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "018"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 018"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "bore_mm",
+      "raw_value": "40 1.58",
+      "normalized_value": 40,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "displacement_cc",
+      "raw_value": "35.2 2.14",
+      "normalized_value": 35.2,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "power_hp",
+      "raw_value": "1.6 (2.2) 10,000",
+      "normalized_value": 2.2,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "power_kw",
+      "raw_value": "1.6 (2.2) 10,000",
+      "normalized_value": 1.6,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "020",
+      "field": "stroke_mm",
+      "raw_value": "28 1.10",
+      "normalized_value": 28,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/020t_body.htm",
+      "source_heading": "Chain Saw: 020 T",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "020"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 020 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "026",
+      "field": "bore_mm",
+      "raw_value": "44 1.73",
+      "normalized_value": 44,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "026"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 026"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "026",
+      "field": "displacement_cc",
+      "raw_value": "48.7 2.96",
+      "normalized_value": 48.7,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "026"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 026"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "026",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "026"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 026"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "026",
+      "field": "power_hp",
+      "raw_value": "2.4 (3.2) 9,500",
+      "normalized_value": 3.2,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "026"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 026"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "026",
+      "field": "power_kw",
+      "raw_value": "2.4 (3.2) 9,500",
+      "normalized_value": 2.4,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "026"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 026"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "026",
+      "field": "stroke_mm",
+      "raw_value": "32 1.26",
+      "normalized_value": 32,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/026_body.htm",
+      "source_heading": "Chain Saw: 026",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "026"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 026"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "bore_mm",
+      "raw_value": "48 1.89",
+      "normalized_value": 48,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "displacement_cc",
+      "raw_value": "61.5 3.75",
+      "normalized_value": 61.5,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "power_hp",
+      "raw_value": "3.3 (4.5) 9,500",
+      "normalized_value": 4.5,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "power_kw",
+      "raw_value": "3.3 (4.5) 9,500",
+      "normalized_value": 3.3,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "036",
+      "field": "stroke_mm",
+      "raw_value": "34 1.34",
+      "normalized_value": 34,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/036_body.htm",
+      "source_heading": "Chain Saw: 036",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "036"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 036"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "bore_mm",
+      "raw_value": "50 1.97",
+      "normalized_value": 50,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "displacement_cc",
+      "raw_value": "70.7 4.31",
+      "normalized_value": 70.7,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "power_hp",
+      "raw_value": "4.0 (5.4) 9,500",
+      "normalized_value": 5.4,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "power_kw",
+      "raw_value": "4.0 (5.4) 9,500",
+      "normalized_value": 4,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "044",
+      "field": "stroke_mm",
+      "raw_value": "36 1.42",
+      "normalized_value": 36,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/044_body.htm",
+      "source_heading": "Chain Saw: 044",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "044"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 044"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "046",
+      "field": "bore_mm",
+      "raw_value": "52 2.05",
+      "normalized_value": 52,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "046"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 046"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "046",
+      "field": "displacement_cc",
+      "raw_value": "76.5 4.67",
+      "normalized_value": 76.5,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "046"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 046"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "046",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "046"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 046"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "046",
+      "field": "power_hp",
+      "raw_value": "4.5 (6.1) 9,500",
+      "normalized_value": 6.1,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "046"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 046"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "046",
+      "field": "power_kw",
+      "raw_value": "4.5 (6.1) 9,500",
+      "normalized_value": 4.5,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/046_body.htm",
+      "source_heading": "Chain Saw: 046",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "046"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 046"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "bore_mm",
+      "raw_value": "60 2.37",
+      "normalized_value": 60,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "displacement_cc",
+      "raw_value": "121.6 7.42",
+      "normalized_value": 121.6,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,700",
+      "normalized_value": 2700,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "power_hp",
+      "raw_value": "6.4 (8.7) 8,500",
+      "normalized_value": 8.7,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "power_kw",
+      "raw_value": "6.4 (8.7) 8,500",
+      "normalized_value": 6.4,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "088",
+      "field": "stroke_mm",
+      "raw_value": "43 1.70",
+      "normalized_value": 43,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/088_body.htm",
+      "source_heading": "Chain Saw: 088",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "088"
+      ],
+      "scope_evidence": [
+        "Chain Saw: 088"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "bore_mm",
+      "raw_value": "38 1.50",
+      "normalized_value": 38,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "displacement_cc",
+      "raw_value": "36.3 2.21",
+      "normalized_value": 36.3,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "11.3 - 13.3",
+      "normalized_value": null,
+      "unit": "rpm",
+      "measurement_definition": "MAX_ENGINE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "power_hp",
+      "raw_value": "1.6 (2.2) 9,000",
+      "normalized_value": 2.2,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "power_kw",
+      "raw_value": "1.6 (2.2) 9,000",
+      "normalized_value": 1.6,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A RCJ 6 Y"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "fs-350",
+      "field": "stroke_mm",
+      "raw_value": "32 1.26",
+      "normalized_value": 32,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/FS200_body.htm",
+      "source_heading": "Brushcutter: FS 200, FS 350",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "fs-200",
+        "fs-350"
+      ],
+      "scope_evidence": [
+        "Brushcutter: FS 200, FS 350"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "bore_mm",
+      "raw_value": "34 1.34",
+      "normalized_value": 34,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "displacement_cc",
+      "raw_value": "27.2 1.66",
+      "normalized_value": 27.2,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "9,500",
+      "normalized_value": 9500,
+      "unit": "rpm",
+      "measurement_definition": "MAX_ENGINE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "power_hp",
+      "raw_value": "0.75 (1.0) 7,000",
+      "normalized_value": 1,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "power_kw",
+      "raw_value": "0.75 (1.0) 7,000",
+      "normalized_value": 0.75,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A RCJ 6 Y",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A RCJ 6 Y"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "hs-45",
+      "field": "stroke_mm",
+      "raw_value": "30 1.18",
+      "normalized_value": 30,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/HS45_body.htm",
+      "source_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_status": "MULTI_MODEL_EXPLICIT",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_evidence": [
+        "Hedge Trimmer: HS 45, HL 45"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "bore_mm",
+      "raw_value": "40 1.58",
+      "normalized_value": 40,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "displacement_cc",
+      "raw_value": "35.2 2.14",
+      "normalized_value": 35.2,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "power_hp",
+      "raw_value": "1.6 (2.2) 10,000",
+      "normalized_value": 2.2,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "power_kw",
+      "raw_value": "1.6 (2.2) 10,000",
+      "normalized_value": 1.6,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-200",
+      "field": "stroke_mm",
+      "raw_value": "28 1.10",
+      "normalized_value": 28,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms200t_body.htm",
+      "source_heading": "Chain Saw: MS 200 T",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 200 T"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "bore_mm",
+      "raw_value": "44 1.73",
+      "normalized_value": 44,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "displacement_cc",
+      "raw_value": "48.7 2.96",
+      "normalized_value": 48.7,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "power_hp",
+      "raw_value": "2.4 (3.2) 9,500",
+      "normalized_value": 3.2,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "power_kw",
+      "raw_value": "2.4 (3.2) 9,500",
+      "normalized_value": 2.4,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-260",
+      "field": "stroke_mm",
+      "raw_value": "32 1.26",
+      "normalized_value": 32,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms260_body.htm",
+      "source_heading": "Chain Saw: MS 260",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 260"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "bore_mm",
+      "raw_value": "48 1.89",
+      "normalized_value": 48,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "bore_mm",
+      "raw_value": "48 1.89",
+      "normalized_value": 48,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "raw_value": "61.5 3.75",
+      "normalized_value": 61.5,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "displacement_cc",
+      "raw_value": "61.5 3.75",
+      "normalized_value": 61.5,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,800",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "power_hp",
+      "raw_value": "3.3 (4.5) 9,500",
+      "normalized_value": 4.5,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "power_hp",
+      "raw_value": "3.3 (4.5) 9,500",
+      "normalized_value": 4.5,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "power_kw",
+      "raw_value": "3.3 (4.5) 9,500",
+      "normalized_value": 3.3,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "power_kw",
+      "raw_value": "3.3 (4.5) 9,500",
+      "normalized_value": 3.3,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "stroke_mm",
+      "raw_value": "34 1.34",
+      "normalized_value": 34,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-360",
+      "field": "stroke_mm",
+      "raw_value": "34 1.34",
+      "normalized_value": 34,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms360c_body.htm",
+      "source_heading": "Chain Saw: MS 360",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 360"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "bore_mm",
+      "raw_value": "52 2.05",
+      "normalized_value": 52,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "displacement_cc",
+      "raw_value": "76.5 4.67",
+      "normalized_value": 76.5,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "power_hp",
+      "raw_value": "4.5 (6.1) 9,500",
+      "normalized_value": 6.1,
+      "unit": "hp",
+      "measurement_definition": "ENGINE_POWER_HP",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "power_kw",
+      "raw_value": "4.5 (6.1) 9,500",
+      "normalized_value": 4.5,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_POWER_KW",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "spark_plug",
+      "raw_value": "WSR 6 F BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F BPMR 7 A"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    },
+    {
+      "model": "ms-460",
+      "field": "stroke_mm",
+      "raw_value": "36 1.42",
+      "normalized_value": 36,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "underlying_source_class": "OFFICIAL_LEGACY_TECHNICAL_DATA",
+      "underlying_source_locator": "doc/TS_Data/ms460_body.htm",
+      "source_heading": "Chain Saw: MS 460",
+      "scope_status": "EXACT_MODEL_EXPLICIT",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_evidence": [
+        "Chain Saw: MS 460"
+      ],
+      "semantic_status": "VALID",
+      "source_lineage": "BATCH6_STIHL_LEGACY_DOCUMENT_CD",
+      "independence_status": "SAME_SOURCE_PROVEN",
+      "public_evidence_status": "OFFICIAL_DOCUMENTED",
+      "promotion_reason": "UNDERLYING_OFFICIAL_TS_DATA_EXPLICIT_SCOPE"
+    }
+  ]
+}

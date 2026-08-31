@@ -1,0 +1,987 @@
+{
+  "generated_at": "2026-08-31T18:39:28.211Z",
+  "phase_id": "35C.4.3",
+  "records": [
+    {
+      "machine_id": "1ee7ccc9936e3e62",
+      "model_slug": "009",
+      "technical_heading": "Chain Saw: 009",
+      "scope_models": [
+        "009"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9ca64ffa13c32467",
+      "model_slug": "017",
+      "technical_heading": "Chain Saw: 017",
+      "scope_models": [
+        "017"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "8a0fbe38e3ad0899",
+      "model_slug": "018",
+      "technical_heading": "Chain Saw: 018",
+      "scope_models": [
+        "018"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "075ffc0fafc335c0",
+      "model_slug": "019t",
+      "technical_heading": "Chain Saw: 019 T",
+      "scope_models": [
+        "019"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "92d624db7f05f2e3",
+      "model_slug": "020",
+      "technical_heading": "Chain Saw: 020 T",
+      "scope_models": [
+        "020",
+        "020-t"
+      ],
+      "scope_classification": "MULTI_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "432f89a5fc3c27f4",
+      "model_slug": "021",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "43d145c6943dcf69",
+      "model_slug": "026",
+      "technical_heading": "Chain Saw: 026",
+      "scope_models": [
+        "026"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "8deddb7de16c010b",
+      "model_slug": "029",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "0cc4d451567194f7",
+      "model_slug": "036",
+      "technical_heading": "Chain Saw: 036",
+      "scope_models": [
+        "036"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "cfaa10167ce43f78",
+      "model_slug": "044",
+      "technical_heading": "Chain Saw: 044",
+      "scope_models": [
+        "044"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "fae5b7af3b5707f6",
+      "model_slug": "046",
+      "technical_heading": "Chain Saw: 046",
+      "scope_models": [
+        "046"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "251afd2e9dfcbd6d",
+      "model_slug": "066",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "bf7a5b8d12db20fd",
+      "model_slug": "088",
+      "technical_heading": "Chain Saw: 088",
+      "scope_models": [
+        "088"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9b99f68904567857",
+      "model_slug": "e140",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "88e7ba6bb6b4de8d",
+      "model_slug": "e220",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "5245f2ee5ec803e4",
+      "model_slug": "ms-170",
+      "technical_heading": "Chain Saw: 009",
+      "scope_models": [
+        "009"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "3de7c883e4768105",
+      "model_slug": "ms-180",
+      "technical_heading": "Chain Saw: 009",
+      "scope_models": [
+        "009"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "5bcf9c70512b0445",
+      "model_slug": "ms191t",
+      "technical_heading": "Chain Saw: MS 191 T",
+      "scope_models": [
+        "ms-191"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "5282e4c5312f5be0",
+      "model_slug": "ms-200",
+      "technical_heading": "Chain Saw: MS 200 T",
+      "scope_models": [
+        "ms-200"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "c8183a7e0b8f07cf",
+      "model_slug": "ms-210",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "984c20b8202ef924",
+      "model_slug": "ms-260",
+      "technical_heading": "Chain Saw: MS 260",
+      "scope_models": [
+        "ms-260"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "7a5da3d875639104",
+      "model_slug": "ms-270",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "7a5da3d875639104",
+      "model_slug": "ms-270",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "4ebb19c944645917",
+      "model_slug": "ms-280",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "6e767c70aaa06f61",
+      "model_slug": "ms-290",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9fc0be6207bcb524",
+      "model_slug": "ms-360",
+      "technical_heading": "Chain Saw: MS 360 C",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9fc0be6207bcb524",
+      "model_slug": "ms-360",
+      "technical_heading": "Chain Saw: MS 360",
+      "scope_models": [
+        "ms-360"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "c24b2ec650b949ea",
+      "model_slug": "ms440",
+      "technical_heading": "Chain Saw: MS 440",
+      "scope_models": [
+        "ms-440"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "d4459418d1c0fd22",
+      "model_slug": "ms-460",
+      "technical_heading": "Chain Saw: MS 460",
+      "scope_models": [
+        "ms-460"
+      ],
+      "scope_classification": "EXACT_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "0bfd3096be1eb5c3",
+      "model_slug": "ms660",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "90e5781d3e71d81c",
+      "model_slug": "mse140",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "3fe4cdfd554c2623",
+      "model_slug": "rb220",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "53e6ec6bac299b4f",
+      "model_slug": "rb400",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "c8ebbf485d000ae5",
+      "model_slug": "re102",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "51f56e05d80ad3c8",
+      "model_slug": "re110",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "74fcea4b284d41a0",
+      "model_slug": "se100",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "328371f9b3802771",
+      "model_slug": "se200",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "97e5774d85e2d759",
+      "model_slug": "bt120c",
+      "technical_heading": "Cut-Off Saw: BT 120 C",
+      "scope_models": [
+        "bt-120"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "92a678a99c3f7424",
+      "model_slug": "bt45",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "f51d5a5d07ec57b2",
+      "model_slug": "ts350",
+      "technical_heading": "Cut-Off Saw: TS 350",
+      "scope_models": [
+        "ts-350"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "e7ed4ba66d8ae8f4",
+      "model_slug": "ts400",
+      "technical_heading": "Cut-Off Saw: TS 400",
+      "scope_models": [
+        "ts-400"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "22cfac517cfa1b9d",
+      "model_slug": "ts460",
+      "technical_heading": "Cut-Off Saw: TS 460",
+      "scope_models": [
+        "ts-460"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "1a775a50c34be185",
+      "model_slug": "ts510",
+      "technical_heading": "Cut-Off Saw: TS 510",
+      "scope_models": [
+        "ts-510"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "3bd8e857dbdaac8e",
+      "model_slug": "ts760",
+      "technical_heading": "Cut-Off Saw: TS 760",
+      "scope_models": [
+        "ts-760"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "cd853c8ff0186869",
+      "model_slug": "bc35",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "590df40263366f3d",
+      "model_slug": "bckm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "936bf2f417b999a5",
+      "model_slug": "bfmm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "38a314a25ab91c36",
+      "model_slug": "bg45",
+      "technical_heading": "Blowers: BG 45, BG 55, BG 65, SH 55",
+      "scope_models": [
+        "bg-45",
+        "bg-55",
+        "bg-65",
+        "sh-55"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "f4f20bb431d69024",
+      "model_slug": "bg46",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "1c2cba079c238a0c",
+      "model_slug": "bg55",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "ae16b586abcce787",
+      "model_slug": "bg75",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "8a3ddae5dc3fc8d5",
+      "model_slug": "bge60",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "338000b0f88a1bdd",
+      "model_slug": "br320",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "7600b92499863cbc",
+      "model_slug": "br340",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9a71445f9baffe3f",
+      "model_slug": "br45c",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "316349400ce3e3be",
+      "model_slug": "ec70",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "4e74eead5b432107",
+      "model_slug": "fc110",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "c884da587fb67a7e",
+      "model_slug": "fc44",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "84a60e148f696c96",
+      "model_slug": "fc55",
+      "technical_heading": "Brushcutter: FC 55",
+      "scope_models": [
+        "fc-55"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "d05f56d9cc55bf66",
+      "model_slug": "fc73",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9f8b5ba1347720d2",
+      "model_slug": "fc75",
+      "technical_heading": "Brushcutter: FC 75",
+      "scope_models": [
+        "fc-75"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "3a746cbd80fe6633",
+      "model_slug": "fc83",
+      "technical_heading": "Brushcutter: FS 83, FC 83",
+      "scope_models": [
+        "fs-83",
+        "fc-83"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "0c98623833aa79e4",
+      "model_slug": "fc85",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "deb5348198a116f3",
+      "model_slug": "fcbkm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "cb61c5b3c409b5d2",
+      "model_slug": "fcb",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "c47277127d6891cf",
+      "model_slug": "fcskm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "6b5019e41b71d919",
+      "model_slug": "fcs",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "fc61647b6857ff15",
+      "model_slug": "fc",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "f612a39334e5087d",
+      "model_slug": "fe55",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "a6c7a2ae56edc709",
+      "model_slug": "fh75",
+      "technical_heading": "Hedge Trimmer: HS 75, HS 80, HS 85, HL 75, FH 75",
+      "scope_models": [
+        "hs-75",
+        "hs-80",
+        "hs-85",
+        "hl-75",
+        "fh-75"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "e1d950eac4fa9f04",
+      "model_slug": "fhkm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "2c1b6876ce42be8a",
+      "model_slug": "fh",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "61691ff0c35a8b75",
+      "model_slug": "fs110",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "d1f1e7b38252c5ef",
+      "model_slug": "fs120",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "2dca340ecba88999",
+      "model_slug": "fs-350",
+      "technical_heading": "Brushcutter: FS 200, FS 350",
+      "scope_models": [
+        "fs-350",
+        "fs-200"
+      ],
+      "scope_classification": "MULTI_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "9b020587d8e57dc3",
+      "model_slug": "fs36",
+      "technical_heading": "Brushcutter: FS 36",
+      "scope_models": [
+        "fs-36"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "7dfda44cceac6078",
+      "model_slug": "fs450",
+      "technical_heading": "Brushcutter: FS 450",
+      "scope_models": [
+        "fs-450"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "a830314726c00289",
+      "model_slug": "fs45",
+      "technical_heading": "Brushcutter: FS 45, FS 55",
+      "scope_models": [
+        "fs-45",
+        "fs-55"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "e1dc6274915bcd55",
+      "model_slug": "fs46",
+      "technical_heading": "Brushcutter: FS 46",
+      "scope_models": [
+        "fs-46"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "a48086114dfafe1f",
+      "model_slug": "fs550",
+      "technical_heading": "Brushcutter: FS 550",
+      "scope_models": [
+        "fs-550"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "1bb43e1f81c128e8",
+      "model_slug": "fs55",
+      "technical_heading": "Brushcutter: FS 45, FS 55",
+      "scope_models": [
+        "fs-45",
+        "fs-55"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "2c5ad95f26aaa54f",
+      "model_slug": "fs75",
+      "technical_heading": "Brushcutter: FS 75, FS 80, FS 85, KW 85",
+      "scope_models": [
+        "fs-75",
+        "fs-80",
+        "fs-85",
+        "kw-85"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "aa3193ba97aba508",
+      "model_slug": "fs80",
+      "technical_heading": "Brushcutter: FS 75, FS 80, FS 85, KW 85",
+      "scope_models": [
+        "fs-75",
+        "fs-80",
+        "fs-85",
+        "kw-85"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "394ffff004a0b261",
+      "model_slug": "fs83",
+      "technical_heading": "Brushcutter: FS 83, FC 83",
+      "scope_models": [
+        "fs-83",
+        "fc-83"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "bddb742a8b9bf4dc",
+      "model_slug": "fse60",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "cf5bfb65e0ee4ad9",
+      "model_slug": "fskm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "a07dcfdbd0909fbf",
+      "model_slug": "hl45",
+      "technical_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "0f467bf840ed5d05",
+      "model_slug": "hl73",
+      "technical_heading": "Hedge Trimmer: HL 73",
+      "scope_models": [
+        "hl-73"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "ccbb8427cdb674ef",
+      "model_slug": "hl75",
+      "technical_heading": "Hedge Trimmer: HS 75, HS 80, HS 85, HL 75, FH 75",
+      "scope_models": [
+        "hs-75",
+        "hs-80",
+        "hs-85",
+        "hl-75",
+        "fh-75"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "f3ba3a5f10791afd",
+      "model_slug": "hlkm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "30e9d2b18252008b",
+      "model_slug": "hl",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "176557e1e90d66c9",
+      "model_slug": "hs-45",
+      "technical_heading": "Hedge Trimmer: HS 45, HL 45",
+      "scope_models": [
+        "hs-45",
+        "hl-45"
+      ],
+      "scope_classification": "MULTI_MODEL_EXPLICIT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "2b5edee71cc3e6e1",
+      "model_slug": "hs75",
+      "technical_heading": "Hedge Trimmer: HS 75, HS 80, HS 85, HL 75, FH 75",
+      "scope_models": [
+        "hs-75",
+        "hs-80",
+        "hs-85",
+        "hl-75",
+        "fh-75"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "cac3dd27f74a0839",
+      "model_slug": "ht70",
+      "technical_heading": "Brushcutter: HT 70, HT 75",
+      "scope_models": [
+        "ht-70",
+        "ht-75"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "c322c257716dddd5",
+      "model_slug": "ht73",
+      "technical_heading": "Brushcutter: HT 73",
+      "scope_models": [
+        "ht-73"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "5811278dfad666aa",
+      "model_slug": "htkm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "db038684399991af",
+      "model_slug": "ht",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "f33eafc0319b70e0",
+      "model_slug": "km110",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "d46af22169cb53fe",
+      "model_slug": "km55",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "14ef1dc098c7ed09",
+      "model_slug": "km85",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "8b01fbc767be1344",
+      "model_slug": "kw85",
+      "technical_heading": "Brushcutter: FS 75, FS 80, FS 85, KW 85",
+      "scope_models": [
+        "fs-75",
+        "fs-80",
+        "fs-85",
+        "kw-85"
+      ],
+      "scope_classification": "SCOPE_CONFLICT",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "a67510647e2ae431",
+      "model_slug": "kwkm",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "4a67fa035148d2ee",
+      "model_slug": "kw",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "d1731dde7b1a75ce",
+      "model_slug": "mm55",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "d25a1efaf9c7cd5f",
+      "model_slug": "sr320",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    },
+    {
+      "machine_id": "96908aa658718514",
+      "model_slug": "sr340",
+      "technical_heading": null,
+      "scope_models": [],
+      "scope_classification": "SCOPE_NOT_STATED",
+      "source_scope_from_filename_only": false
+    }
+  ],
+  "EXPLICIT_EXACT_SCOPES": 13,
+  "EXPLICIT_MULTI_MODEL_SCOPES": 3,
+  "UNRESOLVED_SCOPES": 58,
+  "SCOPE_CONFLICTS": 32
+}
