@@ -34,12 +34,18 @@ assert.strictEqual(res11digit.isWarning, true);
 assert.ok(res11digit.modelGroup.includes('026') || res11digit.modelGroup.includes('260') || res11digit.modelGroup.includes('261'));
 console.log('✅ Scenario 2 Passed: 11-digit part number decoded with warning card.');
 
-// 3. Known model search
+// 3. Known base model search
 const resModel = decodeStihlCode('MS 261', database);
 assert.strictEqual(resModel.success, true);
 assert.strictEqual(resModel.type, 'MODEL_DECODE');
 assert.strictEqual(resModel.prefixCode, 'MS');
-console.log('✅ Scenario 3 Passed: Model query decoded with technical specs.');
+assert.deepStrictEqual(resModel.technicalSpecs, {});
+console.log('✅ Scenario 3 Passed: Base model query decoded without unsafe technical fallback.');
+
+// 3b. Variant query must not inherit base-model specs
+const resModelVariant = decodeStihlCode('MS 261 C-M', database);
+assert.ok(resModelVariant.success === false || Object.keys(resModelVariant.technicalSpecs || {}).length === 0);
+console.log('✅ Scenario 3b Passed: Variant query did not inherit base-model specs.');
 
 // 4. Unknown serial / short number
 const resShort = decodeStihlCode('12345', database);

@@ -1,8 +1,10 @@
 /**
  * Database-driven Related Models Resolver & Component
+ * Phase 35C.4.3.2.1 public-evidence-safe summary cards
  */
 
 import { getFuelDriveLabel, getSafeModelPath } from '../publicationRules.js';
+import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
 
 export function getRelatedModels(targetModel, database) {
   if (!targetModel || !database || !database.models) return [];
@@ -36,7 +38,18 @@ export function getRelatedModels(targetModel, database) {
     .map(item => item.model);
 }
 
-export function renderRelatedModelsHtml(relatedModels) {
+function renderSafeRelatedMetric(model, field, database, formatter) {
+  const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
+  if (state.single_value_eligible) {
+    return formatPublicTechnicalValue(state, formatter);
+  }
+  if (field === 'displacement_cc') {
+    return getFuelDriveLabel(model);
+  }
+  return 'Niet betrouwbaar gedocumenteerd';
+}
+
+export function renderRelatedModelsHtml(relatedModels, database = null) {
   if (!relatedModels || relatedModels.length === 0) return '';
 
   const cards = relatedModels.map(m => {
@@ -52,8 +65,8 @@ export function renderRelatedModelsHtml(relatedModels) {
           <h4 class="text-base font-bold text-white group-hover:text-orange-400 transition mt-0.5">${m.model_name}</h4>
         </div>
         <div class="text-2xs text-gray-400 flex items-center justify-between pt-2 border-t border-gray-800/60">
-          <span>${m.displacement_cc ? m.displacement_cc + ' cc' : getFuelDriveLabel(m)}</span>
-          <span class="font-bold text-gray-300">${m.power_hp ? m.power_hp + ' pk' : '-'}</span>
+          <span>${database ? renderSafeRelatedMetric(m, 'displacement_cc', database, (value) => `${value} cc`) : getFuelDriveLabel(m)}</span>
+          <span class="font-bold text-gray-300">${database ? renderSafeRelatedMetric(m, 'power_kw', database, (value) => `${value} kW`) : 'Niet betrouwbaar gedocumenteerd'}</span>
         </div>
       </a>
     `;

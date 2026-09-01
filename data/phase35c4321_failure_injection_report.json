@@ -1,0 +1,285 @@
+{
+  "generated_at": "2026-09-01T04:20:01.549Z",
+  "phase_id": "35C.4.3.2.1",
+  "records": [
+    {
+      "check": "NESTED_TECHNICAL_FALLBACK_DETECTED",
+      "detected": true,
+      "details": {
+        "query": "FAIL_NESTED_FIELD_VERIFICATION",
+        "success": true,
+        "model": "MS 170",
+        "resolved_public_model_key": "ms-170",
+        "public_fact_count": 0,
+        "technical_specs": {
+          "field_verification": {
+            "power_kw": {
+              "value": 3
+            }
+          }
+        },
+        "technical_spec_paths": [],
+        "raw_technical_leak_paths": [
+          "technicalSpecs.field_verification",
+          "technicalSpecs.field_verification.power_kw",
+          "technicalSpecs.field_verification.power_kw.value"
+        ],
+        "top_level_raw_technical_leak_paths": [
+          "technicalSpecs.field_verification"
+        ],
+        "nested_raw_technical_leak_paths": [
+          "technicalSpecs.field_verification.power_kw",
+          "technicalSpecs.field_verification.power_kw.value"
+        ],
+        "technical_specs_without_public_fact": [],
+        "technical_spec_value_mismatches": [],
+        "cross_model_technical_fact_leaks": [],
+        "non_technical_keys_inside_technical_specs": [
+          "field_verification"
+        ],
+        "pass": false
+      }
+    },
+    {
+      "check": "NESTED_SPECIFICATIONS_FALLBACK_DETECTED",
+      "detected": true,
+      "details": {
+        "query": "FAIL_NESTED_SPECIFICATIONS",
+        "success": true,
+        "model": "MS 170",
+        "resolved_public_model_key": "ms-170",
+        "public_fact_count": 0,
+        "technical_specs": {
+          "specifications": {
+            "engine": {
+              "displacement_cc": 50.2
+            }
+          }
+        },
+        "technical_spec_paths": [],
+        "raw_technical_leak_paths": [
+          "technicalSpecs.specifications",
+          "technicalSpecs.specifications.engine.displacement_cc"
+        ],
+        "top_level_raw_technical_leak_paths": [
+          "technicalSpecs.specifications"
+        ],
+        "nested_raw_technical_leak_paths": [
+          "technicalSpecs.specifications.engine.displacement_cc"
+        ],
+        "technical_specs_without_public_fact": [],
+        "technical_spec_value_mismatches": [],
+        "cross_model_technical_fact_leaks": [],
+        "non_technical_keys_inside_technical_specs": [
+          "specifications"
+        ],
+        "pass": false
+      }
+    },
+    {
+      "check": "DIRECT_RAW_FIELD_DETECTED",
+      "detected": true,
+      "details": {
+        "query": "FAIL_DIRECT_RAW_FIELD",
+        "success": true,
+        "model": "MS 170",
+        "resolved_public_model_key": "ms-170",
+        "public_fact_count": 0,
+        "technical_specs": {
+          "power_kw": 3
+        },
+        "technical_spec_paths": [
+          "technicalSpecs.power_kw"
+        ],
+        "raw_technical_leak_paths": [
+          "technicalSpecs.power_kw"
+        ],
+        "top_level_raw_technical_leak_paths": [
+          "technicalSpecs.power_kw"
+        ],
+        "nested_raw_technical_leak_paths": [],
+        "technical_specs_without_public_fact": [
+          "technicalSpecs.power_kw"
+        ],
+        "technical_spec_value_mismatches": [],
+        "cross_model_technical_fact_leaks": [],
+        "non_technical_keys_inside_technical_specs": [],
+        "pass": false
+      }
+    },
+    {
+      "check": "CROSS_MODEL_TECHNICAL_FACT_LEAK_DETECTED",
+      "detected": true,
+      "details": {
+        "query": "FAIL_WRONG_MODEL_FACT",
+        "success": true,
+        "model": "MS 261",
+        "resolved_public_model_key": "ms-261",
+        "public_fact_count": 0,
+        "technical_specs": {
+          "displacement_cc": 48.7
+        },
+        "technical_spec_paths": [
+          "technicalSpecs.displacement_cc"
+        ],
+        "raw_technical_leak_paths": [
+          "technicalSpecs.displacement_cc"
+        ],
+        "top_level_raw_technical_leak_paths": [
+          "technicalSpecs.displacement_cc"
+        ],
+        "nested_raw_technical_leak_paths": [],
+        "technical_specs_without_public_fact": [
+          "technicalSpecs.displacement_cc"
+        ],
+        "technical_spec_value_mismatches": [],
+        "cross_model_technical_fact_leaks": [
+          {
+            "path": "technicalSpecs.displacement_cc",
+            "leaked_from_model": "026"
+          }
+        ],
+        "non_technical_keys_inside_technical_specs": [],
+        "pass": false
+      }
+    },
+    {
+      "check": "VARIANT_SPEC_INHERITANCE_DETECTED",
+      "detected": true,
+      "details": {
+        "query": "FAIL_VARIANT_INHERITANCE",
+        "success": true,
+        "model": "MS 261 C-M",
+        "resolved_public_model_key": "ms-261-c-m",
+        "public_fact_count": 0,
+        "technical_specs": {
+          "displacement_cc": 48.7,
+          "bore_mm": 44,
+          "stroke_mm": 32,
+          "power_kw": 2.4,
+          "power_hp": 3.2,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "technical_spec_paths": [
+          "technicalSpecs.displacement_cc",
+          "technicalSpecs.bore_mm",
+          "technicalSpecs.stroke_mm",
+          "technicalSpecs.power_kw",
+          "technicalSpecs.power_hp",
+          "technicalSpecs.spark_plug",
+          "technicalSpecs.electrode_gap_mm",
+          "technicalSpecs.idle_speed_rpm"
+        ],
+        "raw_technical_leak_paths": [
+          "technicalSpecs.displacement_cc",
+          "technicalSpecs.bore_mm",
+          "technicalSpecs.stroke_mm",
+          "technicalSpecs.power_kw",
+          "technicalSpecs.power_hp",
+          "technicalSpecs.spark_plug",
+          "technicalSpecs.electrode_gap_mm",
+          "technicalSpecs.idle_speed_rpm"
+        ],
+        "top_level_raw_technical_leak_paths": [
+          "technicalSpecs.displacement_cc",
+          "technicalSpecs.bore_mm",
+          "technicalSpecs.stroke_mm",
+          "technicalSpecs.power_kw",
+          "technicalSpecs.power_hp",
+          "technicalSpecs.spark_plug",
+          "technicalSpecs.electrode_gap_mm",
+          "technicalSpecs.idle_speed_rpm"
+        ],
+        "nested_raw_technical_leak_paths": [],
+        "technical_specs_without_public_fact": [
+          "technicalSpecs.displacement_cc",
+          "technicalSpecs.bore_mm",
+          "technicalSpecs.stroke_mm",
+          "technicalSpecs.power_kw",
+          "technicalSpecs.power_hp",
+          "technicalSpecs.spark_plug",
+          "technicalSpecs.electrode_gap_mm",
+          "technicalSpecs.idle_speed_rpm"
+        ],
+        "technical_spec_value_mismatches": [],
+        "cross_model_technical_fact_leaks": [
+          {
+            "path": "technicalSpecs.displacement_cc",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.bore_mm",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.stroke_mm",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.power_kw",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.power_hp",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.spark_plug",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.electrode_gap_mm",
+            "leaked_from_model": "026"
+          },
+          {
+            "path": "technicalSpecs.idle_speed_rpm",
+            "leaked_from_model": "026"
+          }
+        ],
+        "non_technical_keys_inside_technical_specs": [],
+        "pass": false
+      }
+    },
+    {
+      "check": "FAMILY_LEVEL_TECHNICAL_INHERITANCE_DETECTED",
+      "detected": true,
+      "details": {
+        "query": "FAIL_FAMILY_INHERITANCE",
+        "success": true,
+        "model": "MS 170",
+        "resolved_public_model_key": "ms-170",
+        "public_fact_count": 0,
+        "technical_specs": {
+          "field_verification": {
+            "spark_plug": {
+              "value": "Bosch WSR 6 F / NGK BPMR 7 A"
+            }
+          }
+        },
+        "technical_spec_paths": [],
+        "raw_technical_leak_paths": [
+          "technicalSpecs.field_verification",
+          "technicalSpecs.field_verification.spark_plug",
+          "technicalSpecs.field_verification.spark_plug.value"
+        ],
+        "top_level_raw_technical_leak_paths": [
+          "technicalSpecs.field_verification"
+        ],
+        "nested_raw_technical_leak_paths": [
+          "technicalSpecs.field_verification.spark_plug",
+          "technicalSpecs.field_verification.spark_plug.value"
+        ],
+        "technical_specs_without_public_fact": [],
+        "technical_spec_value_mismatches": [],
+        "cross_model_technical_fact_leaks": [],
+        "non_technical_keys_inside_technical_specs": [
+          "field_verification"
+        ],
+        "pass": false
+      }
+    }
+  ],
+  "FAILURE_INJECTION": "PASS"
+}

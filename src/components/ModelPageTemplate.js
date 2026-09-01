@@ -144,7 +144,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
 
   const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
   const relatedModels = getRelatedModels(model, database);
-  const relatedModelsHtml = renderRelatedModelsHtml(relatedModels);
+  const relatedModelsHtml = renderRelatedModelsHtml(relatedModels, database);
 
   const isPetrol = isPetrolModel(model);
   const isBattery = isBatteryModel(model);

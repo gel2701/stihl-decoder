@@ -1,6 +1,6 @@
 /**
  * Core STIHL Code & Serial Number Decoder Engine for STIHLDecoder.nl
- * Phase 33 Category Specification Whitelist & Leak Prevention
+ * Phase 35C.4.3.2.1 fail-closed technicalSpecs contract
  */
 
 import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWhitelist.js';
@@ -50,24 +50,6 @@ function buildDisplayTechnicalSpecs(modelKey, database, category, modelName) {
     ...overlaySpecs,
     technicalSpecs: sanitizeModelSpecifications(overlaySpecs.technicalSpecs, category, modelName)
   };
-}
-
-function stripUnsafeTechnicalFallbacks(specs = {}) {
-  const clean = { ...specs };
-  const blockedFields = new Set([
-    ...TECHNICAL_PUBLIC_FIELDS,
-    'power_hp',
-    'carb_h_setting',
-    'carb_l_setting',
-    'carb_la_setting',
-    'chain_pitch',
-    'chain_gauge_mm',
-    'oil_mix_ratio'
-  ]);
-  for (const field of blockedFields) {
-    delete clean[field];
-  }
-  return clean;
 }
 
 function isExactModelMatch(inputQuery, model) {
@@ -197,8 +179,6 @@ export function analyzeModelQuery(modelStr, database) {
 
   const overlayModel = publicEvidenceMatch?.model || null;
   const overlayModelKey = publicEvidenceMatch?.key || null;
-  const rawSpecs = matchedModelSpec ? stripUnsafeTechnicalFallbacks({ ...matchedModelSpec }) : {};
-
   // Prefix-based category resolution (Defaults to UNKNOWN, NEVER to Kettingzaag)
   let category = 'UNKNOWN';
   if (relationship) {
@@ -227,7 +207,6 @@ export function analyzeModelQuery(modelStr, database) {
   const overlaySpecs = overlayModelKey
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, resolvedModelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
-  const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, resolvedModelName);
 
   const verification = matchedModelSpec ? getModelVerificationSummary(matchedModelSpec) : null;
   const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
@@ -271,9 +250,7 @@ export function analyzeModelQuery(modelStr, database) {
       specInheritance: relationship.spec_inheritance || false,
       notes: relationship.notes
     } : null,
-    technicalSpecs: overlaySpecs.publicFacts.length > 0
-      ? overlaySpecs.technicalSpecs
-      : sanitizedSpecs
+    technicalSpecs: overlaySpecs.technicalSpecs
   };
 }
 
@@ -317,9 +294,6 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const overlaySpecs = overlayModelKey
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, modelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
-  const rawSpecs = modelData ? stripUnsafeTechnicalFallbacks({ ...modelData }) : {};
-  const sanitizedSpecs = sanitizeModelSpecifications(rawSpecs, category, modelName);
-
   const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? 'vanaf circa 2016' : 'vanaf circa 2010');
   const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (seriereferentie)` : 'Niet vastgesteld');
 

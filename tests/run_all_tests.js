@@ -24,7 +24,8 @@ const testFiles = [
   'tests/phase35c43_scs_machine_dossier_graph.test.js',
   'tests/phase35c431_scs_promotion_safety_hotfix.test.js',
   'tests/phase35c4311_immutable_public_baseline_hotfix.test.js',
-  'tests/phase35c432_public_evidence_activation.test.js'
+  'tests/phase35c432_public_evidence_activation.test.js',
+  'tests/phase35c4321_nested_fallback_hotfix.test.js'
 ];
 
 let failures = 0;
