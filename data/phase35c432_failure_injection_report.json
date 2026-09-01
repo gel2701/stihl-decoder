@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-09-01T00:30:43.780Z",
+  "phase_id": "35C.4.3.2",
+  "records": [
+    {
+      "check": "AUDITED_STAGING_HASH_MISMATCH",
+      "pass": true
+    },
+    {
+      "check": "FACT_SET_MISMATCH_REMOVAL",
+      "pass": true
+    },
+    {
+      "check": "FACT_SET_MISMATCH_EXTRA",
+      "pass": true
+    },
+    {
+      "check": "BASELINE_FACT_REGRESSION",
+      "pass": true
+    },
+    {
+      "check": "046_CONFLICT_WINNER_DETECTED",
+      "pass": true
+    },
+    {
+      "check": "SOURCE_LINEAGE_LOSS_DETECTED",
+      "pass": true
+    },
+    {
+      "check": "SCHEMA_MODEL_BINDING_BLOCKED",
+      "pass": true
+    },
+    {
+      "check": "FUZZY_SPEC_LEAK_DETECTED",
+      "pass": true
+    },
+    {
+      "check": "PROBABLE_SERIAL_SPEC_LEAK_DETECTED",
+      "pass": true
+    },
+    {
+      "check": "PART_FAMILY_SPEC_LEAK_DETECTED",
+      "pass": true
+    }
+  ],
+  "FAILURE_INJECTION": "PASS"
+}

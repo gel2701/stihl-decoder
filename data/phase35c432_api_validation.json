@@ -1,0 +1,2307 @@
+{
+  "generated_at": "2026-09-01T00:30:42.730Z",
+  "phase_id": "35C.4.3.2",
+  "records": [
+    {
+      "query": "009",
+      "http_status": 200,
+      "result": {
+        "query": "009",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "009",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 36.6,
+          "bore_mm": 36,
+          "stroke_mm": 36,
+          "power_kw": 1.2,
+          "power_hp": 1.6,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 36.6,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 36,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 36,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 1.2,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 1.6,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "009_body",
+            "sourceLocator": "doc/TS_Data/009_body.htm",
+            "sourceHeading": "Chain Saw: 009",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "017",
+      "http_status": 200,
+      "result": {
+        "query": "017",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "017",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 30.1,
+          "bore_mm": 37,
+          "stroke_mm": 28,
+          "power_kw": 1.2,
+          "power_hp": 1.6,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 3200
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 30.1,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 37,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 28,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 1.2,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 1.6,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 3200,
+            "sourceDocumentId": "017_body",
+            "sourceLocator": "doc/TS_Data/017_body.htm",
+            "sourceHeading": "Chain Saw: 017",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "018",
+      "http_status": 200,
+      "result": {
+        "query": "018",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "018",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 31.8,
+          "bore_mm": 38,
+          "stroke_mm": 28,
+          "power_kw": 1.4,
+          "power_hp": 1.9,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 31.8,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 38,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 28,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 1.4,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 1.9,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "018_body",
+            "sourceLocator": "doc/TS_Data/018_body.htm",
+            "sourceHeading": "Chain Saw: 018",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "020",
+      "http_status": 200,
+      "result": {
+        "query": "020",
+        "success": false,
+        "type": null,
+        "status": null,
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "026",
+      "http_status": 200,
+      "result": {
+        "query": "026",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "STIHL 026",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "bore_mm",
+          "stroke_mm",
+          "idle_speed_rpm",
+          "fuel_tank_l",
+          "oil_tank_l",
+          "electrode_gap_mm",
+          "spark_plug",
+          "displacement_cc",
+          "power_kw",
+          "power_hp"
+        ],
+        "technicalSpecs": {
+          "bore_mm": 44,
+          "stroke_mm": 32,
+          "idle_speed_rpm": 2800,
+          "fuel_tank_l": 0.46,
+          "oil_tank_l": 0.29,
+          "electrode_gap_mm": 0.5,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "displacement_cc": 48.7,
+          "power_kw": 2.4,
+          "power_hp": 3.2
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "bore_mm",
+            "value": 44,
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "bore_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 32,
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "stroke_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "idle_speed_rpm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "fuel_tank_l",
+            "value": 0.46,
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "fuel_tank_l",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "oil_tank_l",
+            "value": 0.29,
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "oil_tank_l",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "electrode_gap_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "0458-133-3021",
+            "sourceLocator": "publication:0458-133-3021#page=50",
+            "sourceHeading": "spark_plug",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "displacement_cc",
+            "value": 48.7,
+            "sourceDocumentId": "026_body",
+            "sourceLocator": "doc/TS_Data/026_body.htm",
+            "sourceHeading": "Chain Saw: 026",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 2.4,
+            "sourceDocumentId": "026_body",
+            "sourceLocator": "doc/TS_Data/026_body.htm",
+            "sourceHeading": "Chain Saw: 026",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 3.2,
+            "sourceDocumentId": "026_body",
+            "sourceLocator": "doc/TS_Data/026_body.htm",
+            "sourceHeading": "Chain Saw: 026",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "036",
+      "http_status": 200,
+      "result": {
+        "query": "036",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "STIHL 036",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 61.5,
+          "bore_mm": 48,
+          "stroke_mm": 34,
+          "power_kw": 3.3,
+          "power_hp": 4.5,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 61.5,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 48,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 34,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 3.3,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 4.5,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "036_body",
+            "sourceLocator": "doc/TS_Data/036_body.htm",
+            "sourceHeading": "Chain Saw: 036",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "044",
+      "http_status": 200,
+      "result": {
+        "query": "044",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "STIHL 044",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 70.7,
+          "bore_mm": 50,
+          "stroke_mm": 36,
+          "power_kw": 4,
+          "power_hp": 5.4,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2500
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 70.7,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 50,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 36,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 4,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 5.4,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2500,
+            "sourceDocumentId": "044_body",
+            "sourceLocator": "doc/TS_Data/044_body.htm",
+            "sourceHeading": "Chain Saw: 044",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "046",
+      "http_status": 200,
+      "result": {
+        "query": "046",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "STIHL 046",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "idle_speed_rpm",
+          "fuel_tank_l",
+          "electrode_gap_mm",
+          "spark_plug",
+          "power_kw",
+          "power_hp"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 76.5,
+          "bore_mm": 52,
+          "idle_speed_rpm": 2500,
+          "fuel_tank_l": 0.8,
+          "electrode_gap_mm": 0.5,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "power_kw": 4.5,
+          "power_hp": 6.1
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 76.5,
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "displacement_cc",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 52,
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "bore_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": null,
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "stroke_mm",
+            "status": "OFFICIAL_CONFLICTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2500,
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "idle_speed_rpm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "fuel_tank_l",
+            "value": 0.8,
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "fuel_tank_l",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "electrode_gap_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "0458-145-3021",
+            "sourceLocator": "publication:0458-145-3021#page=51",
+            "sourceHeading": "spark_plug",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 4.5,
+            "sourceDocumentId": "046_body",
+            "sourceLocator": "doc/TS_Data/046_body.htm",
+            "sourceHeading": "Chain Saw: 046",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 6.1,
+            "sourceDocumentId": "046_body",
+            "sourceLocator": "doc/TS_Data/046_body.htm",
+            "sourceHeading": "Chain Saw: 046",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "088",
+      "http_status": 200,
+      "result": {
+        "query": "088",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "088",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 121.6,
+          "bore_mm": 60,
+          "stroke_mm": 43,
+          "power_kw": 6.4,
+          "power_hp": 8.7,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2700
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 121.6,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 60,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 43,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 6.4,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 8.7,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2700,
+            "sourceDocumentId": "088_body",
+            "sourceLocator": "doc/TS_Data/088_body.htm",
+            "sourceHeading": "Chain Saw: 088",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "FS 350",
+      "http_status": 200,
+      "result": {
+        "query": "FS 350",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "FS 350",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 36.3,
+          "bore_mm": 38,
+          "stroke_mm": 32,
+          "power_kw": 1.6,
+          "power_hp": 2.2,
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 36.3,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 38,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 32,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 1.6,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 2.2,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "FS200_body",
+            "sourceLocator": "doc/TS_Data/FS200_body.htm",
+            "sourceHeading": "Brushcutter: FS 200, FS 350",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "HS 45",
+      "http_status": 200,
+      "result": {
+        "query": "HS 45",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "HS 45",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "max_engine_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 27.2,
+          "bore_mm": 34,
+          "stroke_mm": 30,
+          "power_kw": 0.75,
+          "power_hp": 1,
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800,
+          "max_engine_speed_rpm": 9500
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 27.2,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 34,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 30,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 0.75,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 1,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "max_engine_speed_rpm",
+            "value": 9500,
+            "sourceDocumentId": "HS45_body",
+            "sourceLocator": "doc/TS_Data/HS45_body.htm",
+            "sourceHeading": "Hedge\nTrimmer: HS 45, HL 45",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "MS 200",
+      "http_status": 200,
+      "result": {
+        "query": "MS 200",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 200 / 020 T",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "id",
+          "slug",
+          "category_slug",
+          "series_code",
+          "model_name",
+          "category",
+          "fuel_type",
+          "fuel_type_label",
+          "battery_system",
+          "voltage_v",
+          "is_discontinued",
+          "data_confidence",
+          "production_confidence",
+          "specs_verified",
+          "data_source",
+          "provenance",
+          "data_status",
+          "field_verification",
+          "model_status",
+          "series_identification"
+        ],
+        "technicalSpecs": {
+          "id": "stihl_ms_200",
+          "slug": "ms-200",
+          "category_slug": "kettingzagen",
+          "series_code": "1129",
+          "model_name": "MS 200 / 020 T",
+          "category": "Kettingzaag (Boomverzorging)",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt)",
+          "battery_system": null,
+          "voltage_v": null,
+          "is_discontinued": 1,
+          "data_confidence": "LOW",
+          "production_confidence": "UNKNOWN",
+          "specs_verified": false,
+          "data_source": "STIHL Service Manual 1129",
+          "provenance": {
+            "source_type": "series_service_manual",
+            "source_title": "STIHL Service Manual 1129",
+            "source_document_number": null,
+            "source_revision": null,
+            "source_year": null,
+            "confidence": "LOW",
+            "verification_status": "SERIES_SOURCE_LINKED",
+            "legacy_reference": "STIHL Service Manual 1129",
+            "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+          },
+          "data_status": "SERIES_SOURCE_LINKED",
+          "field_verification": {
+            "displacement_cc": {
+              "value": 35.2,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "power_kw": {
+              "value": 1.7,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "power_hp": {
+              "value": 2.3,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "weight_kg": {
+              "value": 3.5,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "spark_plug": {
+              "value": "NGK BPMR7A",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "electrode_gap_mm": {
+              "value": 0.5,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_h_setting": {
+              "value": "1 slag open",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_l_setting": {
+              "value": "1 slag open",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_la_setting": {
+              "value": "2800 RPM",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "chain_pitch": {
+              "value": "3/8\" P",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "chain_gauge_mm": {
+              "value": 1.3,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "oil_mix_ratio": {
+              "value": "1:50",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Service Manual 1129",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            }
+          },
+          "model_status": "SERIES_SOURCE_LINKED",
+          "series_identification": "1129"
+        },
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS 260",
+      "http_status": 200,
+      "result": {
+        "query": "MS 260",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 260",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 48.7,
+          "bore_mm": 44,
+          "stroke_mm": 32,
+          "power_kw": 2.4,
+          "power_hp": 3.2,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 48.7,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 44,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 32,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 2.4,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 3.2,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "ms260_body",
+            "sourceLocator": "doc/TS_Data/ms260_body.htm",
+            "sourceHeading": "Chain Saw: MS 260",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "MS 360",
+      "http_status": 200,
+      "result": {
+        "query": "MS 360",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 360 / 036 Pro",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 61.5,
+          "bore_mm": 48,
+          "stroke_mm": 34,
+          "power_kw": 3.3,
+          "power_hp": 4.5,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2800
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 61.5,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 48,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 34,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 3.3,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 4.5,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2800,
+            "sourceDocumentId": "ms360_body",
+            "sourceLocator": "doc/TS_Data/ms360_body.htm",
+            "sourceHeading": "Chain Saw: MS 360",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "MS 460",
+      "http_status": 200,
+      "result": {
+        "query": "MS 460",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 460 / 046 Magnum",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "power_kw",
+          "power_hp",
+          "spark_plug",
+          "electrode_gap_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 76.5,
+          "bore_mm": 52,
+          "stroke_mm": 36,
+          "power_kw": 4.5,
+          "power_hp": 6.1,
+          "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+          "electrode_gap_mm": 0.5,
+          "idle_speed_rpm": 2500
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 76.5,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 52,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 36,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_kw",
+            "value": 4.5,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "power_hp",
+            "value": 6.1,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "spark_plug",
+            "value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "electrode_gap_mm",
+            "value": 0.5,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2500,
+            "sourceDocumentId": "ms460_body",
+            "sourceLocator": "doc/TS_Data/ms460_body.htm",
+            "sourceHeading": "Chain Saw: MS 460",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "TS 410",
+      "http_status": 200,
+      "result": {
+        "query": "TS 410",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "TS 410",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 66.7,
+          "bore_mm": 50,
+          "stroke_mm": 34,
+          "idle_speed_rpm": 2500
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 66.7,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "displacement_cc",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 50,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "bore_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 34,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "stroke_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2500,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "idle_speed_rpm",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "TS 420",
+      "http_status": 200,
+      "result": {
+        "query": "TS 420",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "TS 420",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "displacement_cc",
+          "bore_mm",
+          "stroke_mm",
+          "idle_speed_rpm"
+        ],
+        "technicalSpecs": {
+          "displacement_cc": 66.7,
+          "bore_mm": 50,
+          "stroke_mm": 34,
+          "idle_speed_rpm": 2500
+        },
+        "publicEvidenceFacts": [
+          {
+            "field": "displacement_cc",
+            "value": 66.7,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "displacement_cc",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "bore_mm",
+            "value": 50,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "bore_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "stroke_mm",
+            "value": 34,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "stroke_mm",
+            "status": "OFFICIAL_DOCUMENTED"
+          },
+          {
+            "field": "idle_speed_rpm",
+            "value": 2500,
+            "sourceDocumentId": "0458-370-8621-G",
+            "sourceLocator": "publication:0458-370-8621-G#page=49",
+            "sourceHeading": "idle_speed_rpm",
+            "status": "OFFICIAL_DOCUMENTED"
+          }
+        ]
+      }
+    },
+    {
+      "query": "MS 170",
+      "http_status": 200,
+      "result": {
+        "query": "MS 170",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 170",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "id",
+          "slug",
+          "category_slug",
+          "series_code",
+          "model_name",
+          "category",
+          "fuel_type",
+          "fuel_type_label",
+          "battery_system",
+          "voltage_v",
+          "is_discontinued",
+          "data_confidence",
+          "production_confidence",
+          "specs_verified",
+          "data_source",
+          "provenance",
+          "data_status",
+          "field_verification",
+          "model_status",
+          "series_identification"
+        ],
+        "technicalSpecs": {
+          "id": "stihl_ms_170",
+          "slug": "ms-170",
+          "category_slug": "kettingzagen",
+          "series_code": "1130",
+          "model_name": "MS 170",
+          "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt 1:50)",
+          "battery_system": null,
+          "voltage_v": null,
+          "is_discontinued": 0,
+          "data_confidence": "LOW",
+          "production_confidence": "UNKNOWN",
+          "specs_verified": false,
+          "data_source": "STIHL Werkplaatshandboek 1130",
+          "provenance": {
+            "source_type": "series_workshop_manual",
+            "source_title": "STIHL Werkplaatshandboek 1130",
+            "source_document_number": null,
+            "source_revision": null,
+            "source_year": null,
+            "confidence": "LOW",
+            "verification_status": "SERIES_SOURCE_LINKED",
+            "legacy_reference": "STIHL Werkplaatshandboek 1130",
+            "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+          },
+          "data_status": "SERIES_SOURCE_LINKED",
+          "field_verification": {
+            "displacement_cc": {
+              "value": 30.1,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "power_kw": {
+              "value": 1.2,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "power_hp": {
+              "value": 1.6,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "weight_kg": {
+              "value": 4.1,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "spark_plug": {
+              "value": "Bosch WSR 6 F / NGK BPMR 7 A",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "electrode_gap_mm": {
+              "value": 0.5,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_h_setting": {
+              "value": "Vast",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_l_setting": {
+              "value": "Vast",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_la_setting": {
+              "value": "Standaard",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "chain_pitch": {
+              "value": "3/8\" P",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "chain_gauge_mm": {
+              "value": 1.1,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "oil_mix_ratio": {
+              "value": "1:50",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            }
+          },
+          "model_status": "SERIES_SOURCE_LINKED",
+          "series_identification": "1130"
+        },
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS 180",
+      "http_status": 200,
+      "result": {
+        "query": "MS 180",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 180",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "id",
+          "slug",
+          "category_slug",
+          "series_code",
+          "model_name",
+          "category",
+          "fuel_type",
+          "fuel_type_label",
+          "battery_system",
+          "voltage_v",
+          "is_discontinued",
+          "data_confidence",
+          "production_confidence",
+          "specs_verified",
+          "data_source",
+          "provenance",
+          "data_status",
+          "field_verification",
+          "model_status",
+          "series_identification"
+        ],
+        "technicalSpecs": {
+          "id": "stihl_ms_180",
+          "slug": "ms-180",
+          "category_slug": "kettingzagen",
+          "series_code": "1130",
+          "model_name": "MS 180",
+          "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt 1:50)",
+          "battery_system": null,
+          "voltage_v": null,
+          "is_discontinued": 0,
+          "data_confidence": "LOW",
+          "production_confidence": "UNKNOWN",
+          "specs_verified": false,
+          "data_source": "STIHL Werkplaatshandboek 1130",
+          "provenance": {
+            "source_type": "series_workshop_manual",
+            "source_title": "STIHL Werkplaatshandboek 1130",
+            "source_document_number": null,
+            "source_revision": null,
+            "source_year": null,
+            "confidence": "LOW",
+            "verification_status": "SERIES_SOURCE_LINKED",
+            "legacy_reference": "STIHL Werkplaatshandboek 1130",
+            "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+          },
+          "data_status": "SERIES_SOURCE_LINKED",
+          "field_verification": {
+            "displacement_cc": {
+              "value": 31.8,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "power_kw": {
+              "value": 1.4,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "power_hp": {
+              "value": 1.9,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "weight_kg": {
+              "value": 4.1,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "spark_plug": {
+              "value": "NGK BPMR7A",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "electrode_gap_mm": {
+              "value": 0.5,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_h_setting": {
+              "value": "Vast",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_l_setting": {
+              "value": "Vast",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "carb_la_setting": {
+              "value": "2800 RPM",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "chain_pitch": {
+              "value": "3/8\" P",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "chain_gauge_mm": {
+              "value": 1.1,
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            },
+            "oil_mix_ratio": {
+              "value": "1:50",
+              "status": "SERIES_REFERENCE_LINKED",
+              "source": "STIHL Werkplaatshandboek 1130",
+              "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+            }
+          },
+          "model_status": "SERIES_SOURCE_LINKED",
+          "series_identification": "1130"
+        },
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS 261",
+      "http_status": 200,
+      "result": {
+        "query": "MS 261",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "MS 261",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [
+          "id",
+          "slug",
+          "category_slug",
+          "series_code",
+          "model_name",
+          "category",
+          "fuel_type",
+          "fuel_type_label",
+          "battery_system",
+          "voltage_v",
+          "is_discontinued",
+          "data_confidence",
+          "production_confidence",
+          "specs_verified",
+          "data_source",
+          "provenance",
+          "data_status",
+          "field_verification",
+          "model_status",
+          "series_identification"
+        ],
+        "technicalSpecs": {
+          "id": "stihl_ms_261_cm",
+          "slug": "ms-261",
+          "category_slug": "kettingzagen",
+          "series_code": "1141",
+          "model_name": "MS 261",
+          "category": "Kettingzaag",
+          "fuel_type": "PETROL_2STROKE",
+          "fuel_type_label": "Benzine (2-Takt M-Tronic)",
+          "battery_system": null,
+          "voltage_v": null,
+          "is_discontinued": 0,
+          "data_confidence": "MEDIUM",
+          "production_confidence": "UNKNOWN",
+          "specs_verified": false,
+          "data_source": "0458-573-8621-D - STIHL MS 261 Instruction Manual",
+          "provenance": {
+            "source_type": "official_stihl_instruction_manual",
+            "source_title": "STIHL MS 261 Instruction Manual",
+            "source_document_number": "0458-573-8621-D",
+            "source_revision": "Rev. 2021",
+            "source_year": null,
+            "confidence": "MEDIUM",
+            "verification_status": "PRIMARY_SOURCE_LINKED",
+            "legacy_reference": null,
+            "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
+          },
+          "data_status": "PRIMARY_SOURCE_LINKED",
+          "field_verification": {
+            "displacement_cc": {
+              "value": 50.2,
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "power_kw": {
+              "value": 3,
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "power_hp": {
+              "value": 4.1,
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "weight_kg": {
+              "value": 4.9,
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "spark_plug": {
+              "value": "NGK CMR6H",
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "electrode_gap_mm": {
+              "value": 0.5,
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "carb_h_setting": {
+              "value": "Elektronisch (M-Tronic)",
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "carb_l_setting": {
+              "value": "Elektronisch (M-Tronic)",
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "carb_la_setting": {
+              "value": "M-Tronic",
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "chain_pitch": {
+              "value": ".325\"",
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "chain_gauge_mm": {
+              "value": 1.3,
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            },
+            "oil_mix_ratio": {
+              "value": "1:50",
+              "status": "DOCUMENT_LINKED",
+              "source": "0458-573-8621-D",
+              "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+            }
+          },
+          "model_status": "PRIMARY_SOURCE_LINKED",
+          "series_identification": "1141"
+        },
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS999",
+      "http_status": 200,
+      "result": {
+        "query": "MS999",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "FS999",
+      "http_status": 200,
+      "result": {
+        "query": "FS999",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "BR601",
+      "http_status": 200,
+      "result": {
+        "query": "BR601",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS 26",
+      "http_status": 200,
+      "result": {
+        "query": "MS 26",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "184592301",
+      "http_status": 200,
+      "result": {
+        "query": "184592301",
+        "success": true,
+        "type": "SERIAL_NUMBER",
+        "status": "FORMAT_VALIDATED",
+        "model": "MS 261 C-M Gen 2 (Facelift / V2)",
+        "exactModel": null,
+        "probableModelSeries": "MS 261 C-M Gen 2 (Facelift / V2)",
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "11210210800",
+      "http_status": 200,
+      "result": {
+        "query": "11210210800",
+        "success": true,
+        "type": "PART_NUMBER",
+        "status": null,
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "11280210800",
+      "http_status": 200,
+      "result": {
+        "query": "11280210800",
+        "success": true,
+        "type": "PART_NUMBER",
+        "status": null,
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "0.46",
+      "http_status": 200,
+      "result": {
+        "query": "0.46",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "0.15",
+      "http_status": 200,
+      "result": {
+        "query": "0.15",
+        "success": false,
+        "type": null,
+        "status": null,
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "020T",
+      "http_status": 200,
+      "result": {
+        "query": "020T",
+        "success": true,
+        "type": "MODEL_DECODE",
+        "status": null,
+        "model": "STIHL 020 T",
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS200T",
+      "http_status": 200,
+      "result": {
+        "query": "MS200T",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    },
+    {
+      "query": "MS360C",
+      "http_status": 200,
+      "result": {
+        "query": "MS360C",
+        "success": false,
+        "type": "MODEL_DECODE",
+        "status": "NOT_FOUND",
+        "model": null,
+        "exactModel": null,
+        "probableModelSeries": null,
+        "technicalSpecKeys": [],
+        "technicalSpecs": {},
+        "publicEvidenceFacts": []
+      }
+    }
+  ],
+  "trace_records": [
+    {
+      "model_slug": "009",
+      "field": "power_kw",
+      "fact_id": "96e9c0555d746321",
+      "staging_source_locator": "doc/TS_Data/009_body.htm",
+      "activated_value": 1.2,
+      "resolver_value": 1.2,
+      "api_value": 1.2,
+      "api_source_locator": "doc/TS_Data/009_body.htm"
+    },
+    {
+      "model_slug": "017",
+      "field": "spark_plug",
+      "fact_id": "f482129016edc19b",
+      "staging_source_locator": "doc/TS_Data/017_body.htm",
+      "activated_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "resolver_value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+      "api_value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+      "api_source_locator": "doc/TS_Data/017_body.htm"
+    },
+    {
+      "model_slug": "018",
+      "field": "spark_plug",
+      "fact_id": "7a8c284200186cf3",
+      "staging_source_locator": "doc/TS_Data/018_body.htm",
+      "activated_value": [
+        {
+          "manufacturer": "BOSCH",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "resolver_value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+      "api_value": "BOSCH WSR 6 F / NGK BPMR 7 A",
+      "api_source_locator": "doc/TS_Data/018_body.htm"
+    },
+    {
+      "model_slug": "fs-350",
+      "field": "power_kw",
+      "fact_id": "d08620266924fea3",
+      "staging_source_locator": "doc/TS_Data/FS200_body.htm",
+      "activated_value": 1.6,
+      "resolver_value": 1.6,
+      "api_value": 1.6,
+      "api_source_locator": "doc/TS_Data/FS200_body.htm"
+    }
+  ],
+  "009_RESULT": {
+    "expected": {
+      "displacement_cc": 36.6,
+      "bore_mm": 36,
+      "stroke_mm": 36,
+      "power_kw": 1.2,
+      "power_hp": 1.6,
+      "idle_speed_rpm": 2800,
+      "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+      "electrode_gap_mm": 0.5
+    },
+    "actual": {
+      "displacement_cc": 36.6,
+      "bore_mm": 36,
+      "stroke_mm": 36,
+      "power_kw": 1.2,
+      "power_hp": 1.6,
+      "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+      "electrode_gap_mm": 0.5,
+      "idle_speed_rpm": 2800
+    },
+    "pass": true
+  },
+  "017_SPARK_RESULT": "BOSCH WSR 6 F / NGK BPMR 7 A",
+  "018_SPARK_RESULT": "BOSCH WSR 6 F / NGK BPMR 7 A",
+  "026_RESULT": {
+    "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+    "pass": true
+  },
+  "046_RESULT": {
+    "spark_plug": "BOSCH WSR 6 F / NGK BPMR 7 A",
+    "stroke_present": false,
+    "pass": true
+  },
+  "FS350_RESULT": {
+    "source_locator": "doc/TS_Data/FS200_body.htm",
+    "source_heading": "Brushcutter: FS 200, FS 350",
+    "pass": true
+  },
+  "MS170_009_TECHNICAL_FACTS": 0,
+  "MS180_009_TECHNICAL_FACTS": 0,
+  "VARIANT_SPEC_LEAKS": 0,
+  "FUZZY_MODEL_SPEC_ATTACHMENTS": 0,
+  "PROBABLE_SERIAL_SPEC_ATTACHMENTS": 0,
+  "PART_NUMBER_MODEL_SPEC_ATTACHMENTS": 0,
+  "NUMERIC_TOKEN_MODEL_COLLISIONS": 0
+}

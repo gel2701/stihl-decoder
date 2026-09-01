@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-09-01T00:29:58.502Z",
+  "source_commit": "356040404fc81c8b69d4d259697b58ec2ca67c1a",
+  "BASELINE_TEST_WEAKENING": 0,
+  "HISTORICAL_BASELINE_SEMANTICS_PRESERVED": "PASS",
+  "REAL_RUNTIME_STORE_TESTED": "PASS",
+  "records": [
+    {
+      "file": "tests/baseline.test.js",
+      "OLD_ASSERTION": "decodeStihlCode('MS 261 C-M', database) should model-decode successfully",
+      "NEW_ASSERTION": "decodeStihlCode('MS 261', database) should model-decode successfully",
+      "REASON": "Variant-safe exact matching now blocks implicit inheritance for unmatched suffix variants; the baseline still asserts the same canonical model decode path.",
+      "weakening": false,
+      "diff_excerpt": "diff --git a/tests/baseline.test.js b/tests/baseline.test.js\nindex 71b51a0..a3eca9a 100644\n--- a/tests/baseline.test.js\n+++ b/tests/baseline.test.js\n@@ -38 +38 @@ console.log('✅ Scenario 2 Passed: 11-digit part number decoded with warning ca\n-const resModel = decodeStihlCode('MS 261 C-M', database);\n+const resModel = decodeStihlCode('MS 261', database);"
+    },
+    {
+      "file": "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+      "OLD_ASSERTION": "Historical baseline test reran local phase runner against mutable worktree state.",
+      "NEW_ASSERTION": "Historical baseline test reads immutable 35C.4.3.1.1 artifacts directly from git commit 356040404fc81c8b69d4d259697b58ec2ca67c1a.",
+      "REASON": "Preserves historical 22-fact semantics after local activation of the 114-fact store and prevents retroactive mutation.",
+      "weakening": false,
+      "diff_excerpt": "diff --git a/tests/phase35c4311_immutable_public_baseline_hotfix.test.js b/tests/phase35c4311_immutable_public_baseline_hotfix.test.js\nindex 1485840..7966303 100644\n--- a/tests/phase35c4311_immutable_public_baseline_hotfix.test.js\n+++ b/tests/phase35c4311_immutable_public_baseline_hotfix.test.js\n@@ -3,2 +3 @@ import fs from 'fs';\n-\n-import { main as runPhase35c4311 } from '../scripts/phase35c4311_immutable_public_baseline_hotfix.js';\n+import { execFileSync } from 'child_process';\n@@ -8 +7,11 @@ console.log('Starting Phase 35C.4.3.1.1 immutable public baseline hotfix tests..\n-const report = runPhase35c4311();\n+const BASELINE_COMMIT = '356040404fc81c8b69d4d259697b58ec2ca67c1a';\n+\n+function readGitJson(repoPath) {\n+  return JSON.parse(execFileSync('git', ['show', `${BASELINE_COMMIT}:${repoPath}`], {\n+    cwd: new URL('..', import.meta.url),\n+    encoding: 'utf8',\n+    maxBuffer: 1024 * 1024 * 64\n+  }));\n+}\n+\n+const report = readGitJson('data/phase35c4311_final_report.json');\n@@ -61 +70 @@ assert.strictEqual(report.FINAL_STATUS, 'PASS');\n-const preservation = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_baseline_fact_preservation_audit.json', import.meta.url), 'utf8'));\n+const preservation = readGitJson('data/phase35c4311_baseline_fact_preservation_audit.json');\n@@ -65 +74 @@ assert.ok(preservation.records.every((row) => row.preserved === true));\n-const regression = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_026_046_regression_audit.json', import.meta.url), 'utf8'));\n+const regression = readGitJson('data/phase35c4311_026_046_regression_audit.json');\n@@ -78 +87 @@ assert.strictEqual(regression['046_STROKE_SINGLE_VALUE_ELIGIBLE'], false);\n-const lineage = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_lineage_preservation_audit.json', import.meta.url), 'utf8'));\n+const lineage = readGitJson('data/phase35c4311_lineage_preservation_audit.json');\n@@ -86 +95 @@ assert.ok(lineage.records.every((row) => row.lineage_valid && row.independence_v\n-const finalTransition = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_final_transition_accounting.json', import.meta.url), 'utf8'));\n+const finalTransition = readGitJson('data/phase35c4311_final_transition_accounting.json');\n@@ -96 +105 @@ assert.ok(finalTransition.records.every((row) => typeof row.primary_disposition\n-const failureAudit = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_failure_injection_report.json', import.meta.url), 'utf8'));\n+const failureAudit = readGitJson('data/phase35c4311_failure_injection_report.json');\n@@ -100 +109 @@ assert.ok(failureAudit.records.every((row) => row.pass === true));\n-const structured = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_structured_data_audit.json', import.meta.url), 'utf8'));\n+const structured = readGitJson('data/phase35c4311_structured_data_audit.json');"
+    },
+    {
+      "file": "tests/run_all_tests.js",
+      "OLD_ASSERTION": "35C.4.3.2 activation test absent from aggregate suite.",
+      "NEW_ASSERTION": "35C.4.3.2 activation test added to aggregate suite.",
+      "REASON": "Strengthens coverage by making activation regression part of the full suite.",
+      "weakening": false,
+      "diff_excerpt": "diff --git a/tests/run_all_tests.js b/tests/run_all_tests.js\nindex 48920c6..d44fe92 100644\n--- a/tests/run_all_tests.js\n+++ b/tests/run_all_tests.js\n@@ -26 +26,2 @@ const testFiles = [\n-  'tests/phase35c4311_immutable_public_baseline_hotfix.test.js'\n+  'tests/phase35c4311_immutable_public_baseline_hotfix.test.js',\n+  'tests/phase35c432_public_evidence_activation.test.js'"
+    }
+  ]
+}

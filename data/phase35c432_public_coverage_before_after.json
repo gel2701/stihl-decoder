@@ -1,0 +1,690 @@
+{
+  "generated_at": "2026-09-01T00:30:42.196Z",
+  "phase_id": "35C.4.3.2",
+  "before": {
+    "PUBLIC_FACTS_TOTAL": 22,
+    "PUBLIC_MODELS_WITH_ANY_FACT": 4,
+    "perModel": {
+      "026": {
+        "model_slug": "026",
+        "model_name": "026",
+        "fields": [
+          "bore_mm",
+          "electrode_gap_mm",
+          "fuel_tank_l",
+          "idle_speed_rpm",
+          "oil_tank_l",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "046": {
+        "model_slug": "046",
+        "model_name": "046",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "fuel_tank_l",
+          "idle_speed_rpm",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": [
+          "stroke_mm"
+        ]
+      },
+      "ts-410": {
+        "model_slug": "ts-410",
+        "model_name": "TS 410",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "idle_speed_rpm",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "ts-420": {
+        "model_slug": "ts-420",
+        "model_name": "TS 420",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "idle_speed_rpm",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      }
+    }
+  },
+  "after": {
+    "PUBLIC_FACTS_TOTAL": 114,
+    "PUBLIC_MODELS_WITH_ANY_FACT": 15,
+    "perModel": {
+      "026": {
+        "model_slug": "026",
+        "model_name": "026",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "fuel_tank_l",
+          "idle_speed_rpm",
+          "oil_tank_l",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "046": {
+        "model_slug": "046",
+        "model_name": "046",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "fuel_tank_l",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": [
+          "stroke_mm"
+        ]
+      },
+      "ts-410": {
+        "model_slug": "ts-410",
+        "model_name": "TS 410",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "idle_speed_rpm",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "ts-420": {
+        "model_slug": "ts-420",
+        "model_name": "TS 420",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "idle_speed_rpm",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "009": {
+        "model_slug": "009",
+        "model_name": "009",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "017": {
+        "model_slug": "017",
+        "model_name": "017",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "018": {
+        "model_slug": "018",
+        "model_name": "018",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "036": {
+        "model_slug": "036",
+        "model_name": "036",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "044": {
+        "model_slug": "044",
+        "model_name": "044",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "088": {
+        "model_slug": "088",
+        "model_name": "088",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "ms-260": {
+        "model_slug": "ms-260",
+        "model_name": "MS 260",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "ms-360": {
+        "model_slug": "ms-360",
+        "model_name": "MS 360 / 036 Pro",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "ms-460": {
+        "model_slug": "ms-460",
+        "model_name": "MS 460 / 046 Magnum",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "spark_plug",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "fs-350": {
+        "model_slug": "fs-350",
+        "model_name": "FS 350",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      },
+      "hs-45": {
+        "model_slug": "hs-45",
+        "model_name": "HS 45",
+        "fields": [
+          "bore_mm",
+          "displacement_cc",
+          "electrode_gap_mm",
+          "idle_speed_rpm",
+          "max_engine_speed_rpm",
+          "power_hp",
+          "power_kw",
+          "stroke_mm"
+        ],
+        "conflicted_fields": []
+      }
+    }
+  },
+  "PUBLIC_FACTS_BEFORE": 22,
+  "PUBLIC_FACTS_AFTER": 114,
+  "MODELS_WITH_PUBLIC_FACTS_BEFORE": 4,
+  "MODELS_WITH_PUBLIC_FACTS_AFTER": 15,
+  "NEW_PUBLIC_MODELS": [
+    "009",
+    "017",
+    "018",
+    "036",
+    "044",
+    "088",
+    "fs-350",
+    "hs-45",
+    "ms-260",
+    "ms-360",
+    "ms-460"
+  ],
+  "records": [
+    {
+      "model_slug": "009",
+      "model_name": "009",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "017",
+      "model_name": "017",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "018",
+      "model_name": "018",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "026",
+      "model_name": "026",
+      "before_fields": [
+        "bore_mm",
+        "electrode_gap_mm",
+        "fuel_tank_l",
+        "idle_speed_rpm",
+        "oil_tank_l",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "fuel_tank_l",
+        "idle_speed_rpm",
+        "oil_tank_l",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "displacement_cc",
+        "power_hp",
+        "power_kw"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "036",
+      "model_name": "036",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "044",
+      "model_name": "044",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "046",
+      "model_name": "046",
+      "before_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "fuel_tank_l",
+        "idle_speed_rpm",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "fuel_tank_l",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "power_hp",
+        "power_kw"
+      ],
+      "conflicted_fields": [
+        "stroke_mm"
+      ]
+    },
+    {
+      "model_slug": "088",
+      "model_name": "088",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "fs-350",
+      "model_name": "FS 350",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "hs-45",
+      "model_name": "HS 45",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "max_engine_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "max_engine_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "ms-260",
+      "model_name": "MS 260",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "ms-360",
+      "model_name": "MS 360 / 036 Pro",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "ms-460",
+      "model_name": "MS 460 / 046 Magnum",
+      "before_fields": [],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "new_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "power_hp",
+        "power_kw",
+        "spark_plug",
+        "stroke_mm"
+      ],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "ts-410",
+      "model_name": "TS 410",
+      "before_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "stroke_mm"
+      ],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "stroke_mm"
+      ],
+      "new_fields": [],
+      "conflicted_fields": []
+    },
+    {
+      "model_slug": "ts-420",
+      "model_name": "TS 420",
+      "before_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "stroke_mm"
+      ],
+      "after_fields": [
+        "bore_mm",
+        "displacement_cc",
+        "idle_speed_rpm",
+        "stroke_mm"
+      ],
+      "new_fields": [],
+      "conflicted_fields": []
+    }
+  ]
+}

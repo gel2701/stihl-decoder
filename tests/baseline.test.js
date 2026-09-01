@@ -35,7 +35,7 @@ assert.ok(res11digit.modelGroup.includes('026') || res11digit.modelGroup.include
 console.log('✅ Scenario 2 Passed: 11-digit part number decoded with warning card.');
 
 // 3. Known model search
-const resModel = decodeStihlCode('MS 261 C-M', database);
+const resModel = decodeStihlCode('MS 261', database);
 assert.strictEqual(resModel.success, true);
 assert.strictEqual(resModel.type, 'MODEL_DECODE');
 assert.strictEqual(resModel.prefixCode, 'MS');

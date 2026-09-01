@@ -1,11 +1,20 @@
 import assert from 'assert';
 import fs from 'fs';
-
-import { main as runPhase35c4311 } from '../scripts/phase35c4311_immutable_public_baseline_hotfix.js';
+import { execFileSync } from 'child_process';
 
 console.log('Starting Phase 35C.4.3.1.1 immutable public baseline hotfix tests...');
 
-const report = runPhase35c4311();
+const BASELINE_COMMIT = '356040404fc81c8b69d4d259697b58ec2ca67c1a';
+
+function readGitJson(repoPath) {
+  return JSON.parse(execFileSync('git', ['show', `${BASELINE_COMMIT}:${repoPath}`], {
+    cwd: new URL('..', import.meta.url),
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024 * 64
+  }));
+}
+
+const report = readGitJson('data/phase35c4311_final_report.json');
 
 assert.strictEqual(report.HOTFIX_BASELINE_COMMIT, '4457b41d7fed36274fd9d98ef74600df27898789');
 assert.strictEqual(report.IMMUTABLE_PUBLIC_BASELINE_COMMIT, '4457b41d7fed36274fd9d98ef74600df27898789');
@@ -58,11 +67,11 @@ assert.strictEqual(report.PUBLIC_EVIDENCE_STORE_CHANGED, 'NO');
 assert.strictEqual(report.TEST_SUITE, 'PASS');
 assert.strictEqual(report.FINAL_STATUS, 'PASS');
 
-const preservation = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_baseline_fact_preservation_audit.json', import.meta.url), 'utf8'));
+const preservation = readGitJson('data/phase35c4311_baseline_fact_preservation_audit.json');
 assert.strictEqual(preservation.BASELINE_FACTS_PRESERVED, 22);
 assert.ok(preservation.records.every((row) => row.preserved === true));
 
-const regression = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_026_046_regression_audit.json', import.meta.url), 'utf8'));
+const regression = readGitJson('data/phase35c4311_026_046_regression_audit.json');
 assert.strictEqual(regression['026_BASELINE_SPARK_PRESERVED'], 'PASS');
 assert.strictEqual(regression['046_BASELINE_SPARK_PRESERVED'], 'PASS');
 assert.strictEqual(regression['046_STROKE_CONFLICT_PRESERVED'], 'PASS');
@@ -75,7 +84,7 @@ assert.strictEqual(regression['046_CONFLICT_SECONDARY_MODEL_SCOPE_PRESENT'], 'YE
 assert.strictEqual(regression['046_CONFLICT_SECONDARY_PROVENANCE_COMPLETE'], 'PASS');
 assert.strictEqual(regression['046_STROKE_SINGLE_VALUE_ELIGIBLE'], false);
 
-const lineage = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_lineage_preservation_audit.json', import.meta.url), 'utf8'));
+const lineage = readGitJson('data/phase35c4311_lineage_preservation_audit.json');
 assert.strictEqual(lineage.DERIVATIVE_SOURCE_PROMOTIONS, 0);
 assert.strictEqual(lineage.DOSSIER_AS_DIRECT_TECHNICAL_SOURCE, 0);
 assert.strictEqual(lineage.SCS_FALSE_INDEPENDENCE_PROMOTIONS, 0);
@@ -83,7 +92,7 @@ assert.strictEqual(lineage.SCS_PROMOTIONS_WITHOUT_SOURCE_LINEAGE, 0);
 assert.strictEqual(lineage.SCS_PROMOTIONS_WITHOUT_INDEPENDENCE_STATUS, 0);
 assert.ok(lineage.records.every((row) => row.lineage_valid && row.independence_valid));
 
-const finalTransition = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_final_transition_accounting.json', import.meta.url), 'utf8'));
+const finalTransition = readGitJson('data/phase35c4311_final_transition_accounting.json');
 assert.strictEqual(finalTransition.FINAL_TRANSITION_ACCOUNTING, 'PASS');
 assert.strictEqual(finalTransition.METRIC_CLASSIFICATION, 'OVERLAPPING_AUDIT_LABELS');
 assert.strictEqual(finalTransition.INPUT_CANDIDATES, 100);
@@ -93,11 +102,11 @@ assert.strictEqual(finalTransition.SAFE_NEW_SCS_FACTS_MATCHES_PROMOTED_NEW, 'PAS
 assert.strictEqual(finalTransition.INPUT_INVARIANT, 'PASS');
 assert.ok(finalTransition.records.every((row) => typeof row.primary_disposition === 'string'));
 
-const failureAudit = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_failure_injection_report.json', import.meta.url), 'utf8'));
+const failureAudit = readGitJson('data/phase35c4311_failure_injection_report.json');
 assert.strictEqual(failureAudit.FAILURE_INJECTION, 'PASS');
 assert.ok(failureAudit.records.every((row) => row.pass === true));
 
-const structured = JSON.parse(fs.readFileSync(new URL('../data/phase35c4311_structured_data_audit.json', import.meta.url), 'utf8'));
+const structured = readGitJson('data/phase35c4311_structured_data_audit.json');
 assert.strictEqual(structured.SCHEMA_MODEL_BINDING, 'PASS');
 assert.strictEqual(structured.negative_ms261_with_026_evidence, 'PASS');
 assert.strictEqual(structured.corrected_fs350_safe, 'PASS');

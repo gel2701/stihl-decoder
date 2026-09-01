@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-09-01T00:30:42.755Z",
+  "phase_id": "35C.4.3.2",
+  "schema_026_types": [
+    "BreadcrumbList",
+    "TechArticle",
+    "Product",
+    "FAQPage"
+  ],
+  "schema_046_types": [
+    "BreadcrumbList",
+    "TechArticle",
+    "FAQPage"
+  ],
+  "product_026_property_count": 9,
+  "product_046_present": false,
+  "product_009_present": false,
+  "negative_ms261_with_026_evidence": "PASS",
+  "026_positive_binding": "PASS",
+  "046_conflicted_stroke_excluded": "PASS",
+  "SCHEMA_MODEL_BINDING_MISMATCHES": 0,
+  "records": [
+    {
+      "model_slug": "026",
+      "product_present": true,
+      "properties": [
+        {
+          "@type": "PropertyValue",
+          "name": "Motorinhoud",
+          "value": "48.7 cc"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Vermogen",
+          "value": "2.4 kW"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Cilinderboring",
+          "value": "44 mm"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Slag",
+          "value": "32 mm"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Stationair toerental",
+          "value": "2800 rpm"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Elektrodenafstand",
+          "value": "0.5 mm"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Brandstoftank",
+          "value": "0.46 l"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Kettingolietank",
+          "value": "0.29 l"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Bougie",
+          "value": "BOSCH WSR 6 F / NGK BPMR 7 A"
+        }
+      ]
+    },
+    {
+      "model_slug": "046",
+      "product_present": false,
+      "properties": []
+    },
+    {
+      "model_slug": "009",
+      "product_present": false,
+      "properties": []
+    },
+    {
+      "model_slug": "ms-261",
+      "mismatch_blocked": true
+    }
+  ],
+  "STRUCTURED_DATA_VALIDATION": "PASS"
+}

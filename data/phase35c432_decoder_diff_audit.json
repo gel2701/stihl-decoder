@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-09-01T00:29:58.354Z",
+  "source_commit": "356040404fc81c8b69d4d259697b58ec2ca67c1a",
+  "DECODER_CHANGED_LINES": 6,
+  "DECODER_ALLOWED_CHANGED_LINES": 6,
+  "DECODER_UNEXPLAINED_CHANGED_LINES": 0,
+  "NEW_PRODUCTION_TECHNICAL_VALUE_CONSTANTS": 0,
+  "technical_value_constant_lines": [],
+  "hunks": [
+    {
+      "header": "@@ -79,0 +80,3 @@ function isExactModelMatch(inputQuery, model) {",
+      "classification": "FUZZY_SPEC_LEAK_PREVENTION",
+      "changed_lines": 3,
+      "added_lines": [
+        "+  if (normalized.variant) {",
+        "+    return modelName === cleanCanonical || modelSlug === cleanCanonical;",
+        "+  }"
+      ],
+      "removed_lines": []
+    },
+    {
+      "header": "@@ -152,0 +156 @@ export function decodeStihlCode(inputStr, database = {}) {",
+      "classification": "PUBLIC_EVIDENCE_CONSUMER_SAFETY",
+      "changed_lines": 1,
+      "added_lines": [
+        "+    const publicEvidenceMatch = findPublicEvidenceModel(cleaned, database);"
+      ],
+      "removed_lines": []
+    },
+    {
+      "header": "@@ -154 +158 @@ export function decodeStihlCode(inputStr, database = {}) {",
+      "classification": "PUBLIC_EVIDENCE_CONSUMER_SAFETY",
+      "changed_lines": 2,
+      "added_lines": [
+        "+    if (rel || publicEvidenceMatch) {"
+      ],
+      "removed_lines": [
+        "-    if (rel) {"
+      ]
+    }
+  ]
+}

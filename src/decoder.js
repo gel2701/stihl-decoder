@@ -77,6 +77,9 @@ function isExactModelMatch(inputQuery, model) {
   const cleanBase = String(normalized.baseModel || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
   const modelName = String(model.model_name || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
   const modelSlug = String(model.slug || model.id || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  if (normalized.variant) {
+    return modelName === cleanCanonical || modelSlug === cleanCanonical;
+  }
   return modelName === cleanCanonical || modelSlug === cleanCanonical || modelName === cleanBase || modelSlug === cleanBase;
 }
 
@@ -150,8 +153,9 @@ export function decodeStihlCode(inputStr, database = {}) {
     if (cleaned.length === 11) {
       return analyzePartNumber(cleaned, database);
     }
+    const publicEvidenceMatch = findPublicEvidenceModel(cleaned, database);
     const rel = resolveModelRelationship(inputStr);
-    if (rel) {
+    if (rel || publicEvidenceMatch) {
       return analyzeModelQuery(inputStr.trim(), database);
     }
     return {

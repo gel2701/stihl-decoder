@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-09-01T00:30:42.196Z",
+  "phase_id": "35C.4.3.2",
+  "consumers": [
+    {
+      "file": "src/publicEvidence.js",
+      "function": "buildPublicEvidenceFields",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    },
+    {
+      "file": "src/publicEvidence.js",
+      "function": "buildPublicTechnicalSpecs",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    },
+    {
+      "file": "src/decoder.js",
+      "function": "analyzeModelQuery",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": "sanitized_nontechnical_only",
+      "activation_tested": true
+    },
+    {
+      "file": "src/decoder.js",
+      "function": "analyzeSerialNumber",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": "no_technical_specs_for_probable",
+      "activation_tested": true
+    },
+    {
+      "file": "src/decoder.js",
+      "function": "analyzePartNumber",
+      "reads_public_evidence": false,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    },
+    {
+      "file": "server.js",
+      "function": "GET /api/decode",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": "via decoder safeguards only",
+      "activation_tested": true
+    },
+    {
+      "file": "src/components/ModelPageTemplate.js",
+      "function": "renderModelPageHtml",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    },
+    {
+      "file": "src/components/ComparisonPageTemplate.js",
+      "function": "renderComparisonPageHtml",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    },
+    {
+      "file": "src/components/StihlPassportGenerator.js",
+      "function": "buildPassportViewModel/renderStihlPassportHtml",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    },
+    {
+      "file": "src/components/StructuredData.js",
+      "function": "buildStructuredData",
+      "reads_public_evidence": true,
+      "raw_model_fallback_present": false,
+      "activation_tested": true
+    }
+  ]
+}
