@@ -1,0 +1,69 @@
+{
+  "sourceCommit": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+  "resultCommit": "64f38d59595858c1092d951c391f98f86720d0c9",
+  "REPLAY_SOURCE_COMMIT_FOUND": "PASS",
+  "REPLAY_RESULT_COMMIT_FOUND": "PASS",
+  "REPLAY_COMMIT_RELATION_VALID": "PASS",
+  "SOURCE_PUBLIC_STORE_CANONICAL_SHA256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+  "RESULT_PUBLIC_STORE_CANONICAL_SHA256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+  "REPLAY_SOURCE_STORE_HASH_VALID": "PASS",
+  "REPLAY_RESULT_STORE_HASH_VALID": "PASS",
+  "REPLAY_HISTORICAL_ARTIFACTS_VALID": "PASS",
+  "artifact_records": [
+    {
+      "path": "data/phase35c4321_preflight_report.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_public_store_immutability_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_api_recursive_fallback_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_variant_regression_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_public_fact_binding_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_activation_state_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_failure_injection_report.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_structured_data_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_passport_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_comparison_audit.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_idempotency_report.json",
+      "exists": true
+    },
+    {
+      "path": "data/phase35c4321_final_report.json",
+      "exists": true
+    }
+  ],
+  "missing_artifacts": [],
+  "decoder_transition_valid": true,
+  "related_models_transition_valid": true,
+  "model_page_transition_valid": true,
+  "REPLAY_RUNTIME_TRANSITION_VALID": "PASS",
+  "POST_COMMIT_REPLAY": "PASS",
+  "failure_reasons": []
+}

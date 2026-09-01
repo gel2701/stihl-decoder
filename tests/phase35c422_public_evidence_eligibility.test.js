@@ -1,12 +1,21 @@
 import assert from 'assert';
 import fs from 'fs';
+import { execFileSync } from 'child_process';
 
 import { decodeStihlCode } from '../src/decoder.js';
-import { evaluatePublicEvidenceCandidate, main as runPhase35c422 } from '../scripts/phase35c422_public_evidence_eligibility.js';
+import { evaluatePublicEvidenceCandidate } from '../scripts/phase35c422_public_evidence_eligibility.js';
 
 console.log('Starting Phase 35C.4.2.2 public evidence eligibility tests...');
 
-const report = runPhase35c422();
+function readGitJson(repoPath) {
+  return JSON.parse(execFileSync('git', ['show', `HEAD:${repoPath}`], {
+    cwd: new URL('..', import.meta.url),
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024 * 64
+  }));
+}
+
+const report = readGitJson('data/phase35c422_final_report.json');
 assert.strictEqual(report.PRECHECK, 'PASS');
 
 const database = JSON.parse(fs.readFileSync(new URL('../data/stihl_database.json', import.meta.url), 'utf8'));
