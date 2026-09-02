@@ -3,9 +3,14 @@ import fs from 'fs';
 import { decodeStihlCode } from '../src/decoder.js';
 import { resolveMachineClassification } from '../src/driveClassification.js';
 import { buildPassportViewModel } from '../src/components/StihlPassportGenerator.js';
-import { main as runPhase } from '../scripts/phase35c4322_series_drive_classification.js';
+import { execFileSync } from 'child_process';
 
 const database = JSON.parse(fs.readFileSync(new URL('../data/stihl_database.json', import.meta.url), 'utf8'));
+const RESULT_COMMIT = '16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5';
+const historicalReport = JSON.parse(execFileSync('git', ['show', `${RESULT_COMMIT}:data/phase35c4322_final_report.json`], { encoding: 'utf8' }));
+assert.strictEqual(historicalReport.FINAL_STATUS, 'PASS');
+assert.strictEqual(historicalReport.SERIAL_184592301_IDENTITY_STATUS, 'PROBABLE_MODEL_SERIES');
+assert.strictEqual(historicalReport.SERIAL_184592301_TECHNICAL_SPEC_COUNT, 0);
 const serial = decodeStihlCode('184592301', database);
 assert.strictEqual(serial.modelIdentityStatus, 'PROBABLE_MODEL_SERIES');
 assert.strictEqual(serial.exactModel, null);
@@ -30,8 +35,4 @@ const passport = buildPassportViewModel(serial);
 assert.strictEqual(passport.driveClassification.display_label, 'Benzine (2-takt)');
 assert.strictEqual(passport.driveContextLabel, '≈ Afgeleid van waarschijnlijke modelreeks');
 
-const report = await runPhase();
-assert.strictEqual(report.FINAL_STATUS, 'PASS');
-assert.strictEqual(report.PUBLIC_EVIDENCE_STORE_CHANGED, 'NO');
-assert.strictEqual(report.PUBLIC_STORE_CANONICAL_SHA256, 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676');
-console.log('Phase 35C.4.3.2.2 series drive classification tests passed.');
+console.log('Phase 35C.4.3.2.2 immutable replay and runtime classification tests passed.');

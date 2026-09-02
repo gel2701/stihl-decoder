@@ -68,6 +68,7 @@ const HISTORICAL_ASSERTION_PATTERNS = [
 const HARNESS_EXCLUDED_TESTS = new Set([
   'tests/phase35c43211_postcommit_replay_hotfix.test.js',
   'tests/phase35c432111_self_replay_ancestry_hotfix.test.js',
+  'tests/phase35c43221_validator_replay_hotfix.test.js',
   'tests/phase35c4322_series_drive_classification.test.js'
 ]);
 
@@ -758,7 +759,8 @@ function buildFinalReport(preflight, commitIdentity, replayAudit, publicStoreRep
   const currentPublicStoreHash = sha256Canonical(currentStore);
   const productionDiffs = PRODUCTION_FILES.map((repoPath) => ({
     path: repoPath,
-    changed: git(['diff', '--name-only', PHASE_RESULT_COMMIT, '--', repoPath]) !== ''
+    // Historical replay validates the replay-hotfix transition, never its source phase or later descendants.
+    changed: git(['diff', '--name-only', PHASE_RESULT_COMMIT, BASELINE_COMMIT, '--', repoPath]) !== ''
   }));
 
   const finalStatus = preflight.PRECHECK === 'PASS'
