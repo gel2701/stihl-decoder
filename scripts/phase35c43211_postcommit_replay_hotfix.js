@@ -67,7 +67,8 @@ const HISTORICAL_ASSERTION_PATTERNS = [
 ];
 const HARNESS_EXCLUDED_TESTS = new Set([
   'tests/phase35c43211_postcommit_replay_hotfix.test.js',
-  'tests/phase35c432111_self_replay_ancestry_hotfix.test.js'
+  'tests/phase35c432111_self_replay_ancestry_hotfix.test.js',
+  'tests/phase35c4322_series_drive_classification.test.js'
 ]);
 
 export function git(args, options = {}) {

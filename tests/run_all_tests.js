@@ -25,6 +25,7 @@ export const testFiles = [
   'tests/phase35c31_legacy_graph_validation_hotfix.test.js',
   'tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js',
   'tests/phase35c432111_self_replay_ancestry_hotfix.test.js',
+  'tests/phase35c4322_series_drive_classification.test.js',
   'tests/phase35c43211_postcommit_replay_hotfix.test.js',
   'tests/phase35c4321_nested_fallback_hotfix.test.js',
   'tests/phase35c432_public_evidence_activation.test.js',

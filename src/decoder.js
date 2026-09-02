@@ -8,7 +8,7 @@ import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
-import { getFuelDriveLabel, getFuelTypeCode } from './publicationRules.js';
+import { resolveMachineClassification } from './driveClassification.js';
 import {
   buildPublicEvidenceFields,
   buildPublicEvidenceFieldMap,
@@ -209,6 +209,13 @@ export function analyzeModelQuery(modelStr, database) {
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
 
   const verification = matchedModelSpec ? getModelVerificationSummary(matchedModelSpec) : null;
+  const driveClassification = resolveMachineClassification({
+    identityStatus: matchedModelSpec ? 'EXACT_MODEL_IDENTIFIED' : 'MODEL_NOT_IDENTIFIED',
+    exactModel: matchedModelSpec,
+    modelKey: resolvedModelName,
+    category,
+    modelPrefix: norm.prefix
+  });
   const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
   const sourceStatus = publicSourceSummary?.primaryStatus || (verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING');
   const sourceStatusLabel = publicSourceSummary?.display_fact_count
@@ -235,8 +242,9 @@ export function analyzeModelQuery(modelStr, database) {
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
     sourceStatus,
     sourceStatusLabel,
-    fuel_type: matchedModelSpec ? getFuelTypeCode(matchedModelSpec) : 'UNKNOWN',
-    fuel_type_label: matchedModelSpec ? getFuelDriveLabel(matchedModelSpec) : 'Niet vastgesteld',
+    driveClassification,
+    fuel_type: driveClassification.drive_type,
+    fuel_type_label: driveClassification.display_label,
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     confidenceLabel: matchedModelSpec || overlayModelKey ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing',
     modelResolution,
@@ -300,6 +308,13 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
   const verification = modelData ? getModelVerificationSummary(modelData) : null;
+  const driveClassification = resolveMachineClassification({
+    identityStatus,
+    exactModel: modelData,
+    probableModelSeries,
+    modelKey: modelName,
+    category
+  });
   const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
   const sourceStatus = identityStatus === 'EXACT_MODEL_IDENTIFIED' && publicSourceSummary?.display_fact_count
     ? publicSourceSummary.primaryStatus
@@ -343,8 +358,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
       : (rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie'),
     sourceStatus,
     sourceStatusLabel,
-    fuel_type: modelData ? getFuelTypeCode(modelData) : 'UNKNOWN',
-    fuel_type_label: modelData ? getFuelDriveLabel(modelData) : 'Niet vastgesteld',
+    driveClassification,
+    fuel_type: driveClassification.drive_type,
+    fuel_type_label: driveClassification.display_label,
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
     publicEvidenceSummary: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? publicSourceSummary : null,
     publicEvidenceFields: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? overlaySpecs.publicEvidenceFields : {},

@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-09-02T19:23:38.052Z",
+  "phase_id": "35C.4.3.2.2",
+  "cases": [
+    {
+      "model": "MSA 220",
+      "classification": {
+        "machine_type": "CHAINSAW",
+        "power_source": "BATTERY",
+        "drive_type": "BATTERY_ELECTRIC",
+        "display_label": "Accu-aandrijving",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "MSA 220",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "MSE 210",
+      "classification": {
+        "machine_type": "CHAINSAW",
+        "power_source": "ELECTRIC_CORDED",
+        "drive_type": "CORDED_ELECTRIC",
+        "display_label": "Elektrische aandrijving",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "MSE 210",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "BGA 86",
+      "classification": {
+        "machine_type": "BLOWER",
+        "power_source": "BATTERY",
+        "drive_type": "BATTERY_ELECTRIC",
+        "display_label": "Accu-aandrijving",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "BGA 86",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "TSA 230",
+      "classification": {
+        "machine_type": "CUT_OFF_MACHINE",
+        "power_source": "BATTERY",
+        "drive_type": "BATTERY_ELECTRIC",
+        "display_label": "Accu-aandrijving",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "TSA 230",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "HTA 85",
+      "classification": {
+        "machine_type": "POLE_PRUNER",
+        "power_source": "BATTERY",
+        "drive_type": "BATTERY_ELECTRIC",
+        "display_label": "Accu-aandrijving",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "HTA 85",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "FSA 130 R",
+      "classification": {
+        "machine_type": "BRUSHCUTTER",
+        "power_source": "BATTERY",
+        "drive_type": "BATTERY_ELECTRIC",
+        "display_label": "Accu-aandrijving",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "FSA 130 R",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "HT 75",
+      "classification": {
+        "machine_type": "POLE_PRUNER",
+        "power_source": "PETROL",
+        "drive_type": "PETROL_OTHER",
+        "display_label": "Benzine",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "HT 75",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    }
+  ]
+}

@@ -362,6 +362,7 @@
             <div>
               <span class="text-xs text-gray-400">Aandrijvingstype:</span>
               <div id="res-fuel-type" class="text-sm font-bold text-emerald-400 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
+              <div id="res-fuel-evidence" class="text-2xs text-gray-400 mt-1 hidden"></div>
             </div>
 
             <!-- PRECISE SERIAL BREAKPOINTS PRODUCTION PERIOD & GENERATION CARD -->
@@ -732,7 +733,7 @@
           
           document.getElementById('model-title-display').innerText = modelName;
           document.getElementById('model-card-name').innerText = modelName;
-          document.getElementById('model-card-fuel').innerText = res.fuel_type_label || 'Niet vastgesteld';
+          document.getElementById('model-card-fuel').innerText = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
 
           const specs = res.technicalSpecs || {};
           const isChainsaw = res.category && (res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw'));
@@ -761,8 +762,11 @@
           currentSerial = serial;
           const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
-          const isBattery = serial.startsWith('125') || (res.model && res.model.startsWith('MSA'));
-          const fuelTypeLabel = res.fuel_type_label || 'Niet vastgesteld';
+          const isBattery = res.driveClassification?.power_source === 'BATTERY';
+          const fuelTypeLabel = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
+          const driveEvidenceLabel = res.driveClassification?.evidence === 'SERIES_DERIVED'
+            ? '≈ Afgeleid van waarschijnlijke modelreeks'
+            : (res.driveClassification?.evidence === 'PREFIX_DERIVED' ? '≈ Afgeleid van modelaanduiding' : '');
 
           currentModelName = res.exactModel || res.probableModelSeries || ((res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld');
 
@@ -775,6 +779,11 @@
               : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:');
           }
           document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
+          const fuelEvidenceEl = document.getElementById('res-fuel-evidence');
+          if (fuelEvidenceEl) {
+            fuelEvidenceEl.innerText = driveEvidenceLabel;
+            fuelEvidenceEl.classList.toggle('hidden', !driveEvidenceLabel);
+          }
           document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Niet vastgesteld'}${res.factory.location ? ` (${res.factory.location})` : ''}` : 'Niet vastgesteld';
 
           const prodPeriod = res.productionPeriod || {};

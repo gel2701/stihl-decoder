@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-09-02T19:23:38.052Z",
+  "phase_id": "35C.4.3.2.2",
+  "cases": [
+    {
+      "model": "MS 261 C-M",
+      "classification": {
+        "machine_type": "CHAINSAW",
+        "power_source": "PETROL",
+        "drive_type": "PETROL_2STROKE",
+        "display_label": "Benzine (2-takt)",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "MS 261 C-M",
+        "engine_technology": "M_TRONIC",
+        "engine_technology_label": "M-Tronic",
+        "engine_technology_evidence": "SERIES_DERIVED"
+      }
+    },
+    {
+      "model": "BR 600",
+      "classification": {
+        "machine_type": "BLOWER",
+        "power_source": "PETROL",
+        "drive_type": "PETROL_OTHER",
+        "display_label": "Benzine",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "BR 600",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "TS 420",
+      "classification": {
+        "machine_type": "CUT_OFF_MACHINE",
+        "power_source": "PETROL",
+        "drive_type": "PETROL_OTHER",
+        "display_label": "Benzine",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "TS 420",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "model": "FS 350",
+      "classification": {
+        "machine_type": "BRUSHCUTTER",
+        "power_source": "PETROL",
+        "drive_type": "PETROL_OTHER",
+        "display_label": "Benzine",
+        "evidence": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "conflict_status": "NONE",
+        "source_basis": "FS 350",
+        "engine_technology": null,
+        "engine_technology_label": null,
+        "engine_technology_evidence": "UNKNOWN"
+      }
+    }
+  ]
+}

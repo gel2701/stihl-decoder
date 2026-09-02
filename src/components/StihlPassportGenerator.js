@@ -4,6 +4,7 @@
  */
 
 import { normalizeCategorySlug, CATEGORY_TYPES } from '../categoryWhitelist.js';
+import { getClassificationContextLabel } from '../driveClassification.js';
 
 function compactText(value, fallback = 'Niet vastgesteld') {
   const text = String(value || '').trim();
@@ -42,6 +43,8 @@ export function buildPassportViewModel(data = {}) {
   const identityExplanation = identityStatus === 'EXACT_MODEL_IDENTIFIED'
     ? 'Technische specificaties zijn alleen opgenomen wanneer ze veilig aan dit model zijn gekoppeld.'
     : 'Technische specificaties zijn niet aan dit serienummer gekoppeld zolang het exacte model niet voldoende is bevestigd.';
+  const driveClassification = data.driveClassification || null;
+  const driveContextLabel = getClassificationContextLabel(driveClassification);
 
   const theftCheck = data.theftCheck || {
     userSelfReported: false,
@@ -64,6 +67,8 @@ export function buildPassportViewModel(data = {}) {
     isChainsaw: catSlug === CATEGORY_TYPES.CHAINSAW || catSlug === CATEGORY_TYPES.ACCU_CHAINSAW,
     country,
     years,
+    driveClassification,
+    driveContextLabel,
     technicalSpecRows,
     hasTechnicalSpecs,
     theftCheck
@@ -81,6 +86,8 @@ export function renderStihlPassportHtml(data) {
     identityExplanation,
     country,
     years,
+    driveClassification,
+    driveContextLabel,
     technicalSpecRows,
     hasTechnicalSpecs,
     theftCheck
@@ -140,6 +147,11 @@ export function renderStihlPassportHtml(data) {
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">${identityTitle}</span>
           <span class="text-sm font-bold text-white">${identityLabel}</span>
+        </div>
+        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2">
+          <span class="text-2xs text-neutral-400 block font-medium">Aandrijvingstype</span>
+          <span class="text-sm font-bold text-white">${driveClassification?.display_label || 'Niet vastgesteld'}</span>
+          ${driveContextLabel ? `<span class="text-2xs text-neutral-400 block mt-1">${driveContextLabel}</span>` : ''}
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2">
           <div>
