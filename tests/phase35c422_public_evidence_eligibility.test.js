@@ -7,8 +7,10 @@ import { evaluatePublicEvidenceCandidate } from '../scripts/phase35c422_public_e
 
 console.log('Starting Phase 35C.4.2.2 public evidence eligibility tests...');
 
+const PHASE35C422_RESULT_COMMIT = 'ab2410e3f23d63483c1aadd4a7735328ec2b50e9';
+
 function readGitJson(repoPath) {
-  return JSON.parse(execFileSync('git', ['show', `HEAD:${repoPath}`], {
+  return JSON.parse(execFileSync('git', ['show', `${PHASE35C422_RESULT_COMMIT}:${repoPath}`], {
     cwd: new URL('..', import.meta.url),
     encoding: 'utf8',
     maxBuffer: 1024 * 1024 * 64

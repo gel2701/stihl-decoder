@@ -1,0 +1,286 @@
+{
+  "generated_at": "2026-09-02T16:48:22.878Z",
+  "phase_id": "35C.4.3.2.1.1.1",
+  "DESCENDANT_HEAD_WITHOUT_EQUALITY_REPLAY": "PASS",
+  "REPLAY_RESULT_ANCESTRY_FAILURE_DETECTED": "PASS",
+  "RESULT_NOT_IN_CURRENT_HISTORY_DETECTED": "PASS",
+  "HISTORICAL_RESULT_COMMIT_MISMATCH_DETECTED": "PASS",
+  "records": [
+    {
+      "check": "DESCENDANT_HEAD_WITHOUT_EQUALITY_REPLAY",
+      "detected": true,
+      "details": {
+        "generated_at": "2026-09-02T16:48:17.637Z",
+        "phase_id": "35C.4.3.2.1.1.1",
+        "BASELINE_COMMIT": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "CURRENT_HEAD": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "CURRENT_ORIGIN_MAIN": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "PHASE_SOURCE_COMMIT": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "PHASE_RESULT_COMMIT": "64f38d59595858c1092d951c391f98f86720d0c9",
+        "PHASE_SOURCE_COMMIT_FOUND": "PASS",
+        "PHASE_RESULT_COMMIT_FOUND": "PASS",
+        "SOURCE_TO_RESULT_RELATION_VALID": "PASS",
+        "RESULT_IS_ANCESTOR_OF_HEAD": "PASS",
+        "RESULT_IS_ANCESTOR_OF_ORIGIN_MAIN": "PASS",
+        "HEAD_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "ORIGIN_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "POST_COMMIT_SELF_REPLAY": "PASS",
+        "POST_COMMIT_REPLAY": "PASS",
+        "failure_reasons": []
+      }
+    },
+    {
+      "check": "REPLAY_RESULT_ANCESTRY_FAILURE_DETECTED",
+      "detected": true,
+      "details": {
+        "generated_at": "2026-09-02T16:48:19.136Z",
+        "phase_id": "35C.4.3.2.1.1.1",
+        "BASELINE_COMMIT": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "CURRENT_HEAD": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "CURRENT_ORIGIN_MAIN": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "PHASE_SOURCE_COMMIT": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "PHASE_RESULT_COMMIT": "64f38d59595858c1092d951c391f98f86720d0c9",
+        "PHASE_SOURCE_COMMIT_FOUND": "PASS",
+        "PHASE_RESULT_COMMIT_FOUND": "PASS",
+        "SOURCE_TO_RESULT_RELATION_VALID": "PASS",
+        "RESULT_IS_ANCESTOR_OF_HEAD": "FAIL",
+        "RESULT_IS_ANCESTOR_OF_ORIGIN_MAIN": "FAIL",
+        "HEAD_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "ORIGIN_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "POST_COMMIT_SELF_REPLAY": "FAIL",
+        "POST_COMMIT_REPLAY": "FAIL",
+        "failure_reasons": [
+          "RESULT_NOT_ANCESTOR_OF_HEAD"
+        ]
+      }
+    },
+    {
+      "check": "RESULT_NOT_IN_CURRENT_HISTORY_DETECTED",
+      "detected": true,
+      "details": {
+        "generated_at": "2026-09-02T16:48:20.583Z",
+        "phase_id": "35C.4.3.2.1.1.1",
+        "BASELINE_COMMIT": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "CURRENT_HEAD": "4c0de6f5645fc2196da0de573dd46062342bee9a",
+        "CURRENT_ORIGIN_MAIN": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "PHASE_SOURCE_COMMIT": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "PHASE_RESULT_COMMIT": "64f38d59595858c1092d951c391f98f86720d0c9",
+        "PHASE_SOURCE_COMMIT_FOUND": "PASS",
+        "PHASE_RESULT_COMMIT_FOUND": "PASS",
+        "SOURCE_TO_RESULT_RELATION_VALID": "PASS",
+        "RESULT_IS_ANCESTOR_OF_HEAD": "FAIL",
+        "RESULT_IS_ANCESTOR_OF_ORIGIN_MAIN": "PASS",
+        "HEAD_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "ORIGIN_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "POST_COMMIT_SELF_REPLAY": "FAIL",
+        "POST_COMMIT_REPLAY": "FAIL",
+        "failure_reasons": [
+          "RESULT_NOT_ANCESTOR_OF_HEAD"
+        ]
+      }
+    },
+    {
+      "check": "SOURCE_RESULT_SWAP_DETECTED",
+      "detected": true,
+      "details": {
+        "sourceCommit": "64f38d59595858c1092d951c391f98f86720d0c9",
+        "resultCommit": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "CURRENT_HEAD": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "CURRENT_ORIGIN_MAIN": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "PHASE_SOURCE_COMMIT_FOUND": "PASS",
+        "PHASE_RESULT_COMMIT_FOUND": "PASS",
+        "SOURCE_TO_RESULT_RELATION_VALID": "FAIL",
+        "REPLAY_SOURCE_COMMIT_FOUND": "PASS",
+        "REPLAY_RESULT_COMMIT_FOUND": "PASS",
+        "REPLAY_COMMIT_RELATION_VALID": "FAIL",
+        "RESULT_IS_ANCESTOR_OF_HEAD": "PASS",
+        "RESULT_IS_ANCESTOR_OF_ORIGIN_MAIN": "PASS",
+        "HEAD_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "ORIGIN_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "SOURCE_PUBLIC_STORE_CANONICAL_SHA256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+        "RESULT_PUBLIC_STORE_CANONICAL_SHA256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+        "REPLAY_SOURCE_STORE_HASH_VALID": "PASS",
+        "REPLAY_RESULT_STORE_HASH_VALID": "PASS",
+        "REPLAY_HISTORICAL_ARTIFACTS_VALID": "FAIL",
+        "artifact_records": [
+          {
+            "path": "data/phase35c4321_preflight_report.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_public_store_immutability_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_api_recursive_fallback_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_variant_regression_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_public_fact_binding_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_activation_state_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_failure_injection_report.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_structured_data_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_passport_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_comparison_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_idempotency_report.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_final_report.json",
+            "exists": false
+          }
+        ],
+        "missing_artifacts": [
+          "data/phase35c4321_preflight_report.json",
+          "data/phase35c4321_public_store_immutability_audit.json",
+          "data/phase35c4321_api_recursive_fallback_audit.json",
+          "data/phase35c4321_variant_regression_audit.json",
+          "data/phase35c4321_public_fact_binding_audit.json",
+          "data/phase35c4321_activation_state_audit.json",
+          "data/phase35c4321_failure_injection_report.json",
+          "data/phase35c4321_structured_data_audit.json",
+          "data/phase35c4321_passport_audit.json",
+          "data/phase35c4321_comparison_audit.json",
+          "data/phase35c4321_idempotency_report.json",
+          "data/phase35c4321_final_report.json"
+        ],
+        "decoder_transition_valid": false,
+        "related_models_transition_valid": false,
+        "model_page_transition_valid": false,
+        "REPLAY_RUNTIME_TRANSITION_VALID": "FAIL",
+        "POST_COMMIT_SELF_REPLAY": "FAIL",
+        "POST_COMMIT_REPLAY": "FAIL",
+        "failure_reasons": [
+          "INVALID_HISTORICAL_TRANSITION",
+          "MISSING_IMMUTABLE_ARTIFACT",
+          "RUNTIME_TRANSITION_INVALID",
+          "HISTORICAL_ARTIFACT_ASSERTION_FAILURE"
+        ]
+      }
+    },
+    {
+      "check": "HISTORICAL_RESULT_COMMIT_MISMATCH_DETECTED",
+      "detected": true,
+      "details": {
+        "sourceCommit": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "resultCommit": "dcdef90942256a409cd274bbcb9fb6788a1a13a5",
+        "CURRENT_HEAD": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "CURRENT_ORIGIN_MAIN": "2bbcb2bc3e16412fef2688494cc77231122a98b0",
+        "PHASE_SOURCE_COMMIT_FOUND": "PASS",
+        "PHASE_RESULT_COMMIT_FOUND": "PASS",
+        "SOURCE_TO_RESULT_RELATION_VALID": "FAIL",
+        "REPLAY_SOURCE_COMMIT_FOUND": "PASS",
+        "REPLAY_RESULT_COMMIT_FOUND": "PASS",
+        "REPLAY_COMMIT_RELATION_VALID": "FAIL",
+        "RESULT_IS_ANCESTOR_OF_HEAD": "PASS",
+        "RESULT_IS_ANCESTOR_OF_ORIGIN_MAIN": "PASS",
+        "HEAD_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "ORIGIN_EQUALITY_REQUIRED_FOR_REPLAY": "NO",
+        "SOURCE_PUBLIC_STORE_CANONICAL_SHA256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+        "RESULT_PUBLIC_STORE_CANONICAL_SHA256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+        "REPLAY_SOURCE_STORE_HASH_VALID": "PASS",
+        "REPLAY_RESULT_STORE_HASH_VALID": "PASS",
+        "REPLAY_HISTORICAL_ARTIFACTS_VALID": "FAIL",
+        "artifact_records": [
+          {
+            "path": "data/phase35c4321_preflight_report.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_public_store_immutability_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_api_recursive_fallback_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_variant_regression_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_public_fact_binding_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_activation_state_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_failure_injection_report.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_structured_data_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_passport_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_comparison_audit.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_idempotency_report.json",
+            "exists": false
+          },
+          {
+            "path": "data/phase35c4321_final_report.json",
+            "exists": false
+          }
+        ],
+        "missing_artifacts": [
+          "data/phase35c4321_preflight_report.json",
+          "data/phase35c4321_public_store_immutability_audit.json",
+          "data/phase35c4321_api_recursive_fallback_audit.json",
+          "data/phase35c4321_variant_regression_audit.json",
+          "data/phase35c4321_public_fact_binding_audit.json",
+          "data/phase35c4321_activation_state_audit.json",
+          "data/phase35c4321_failure_injection_report.json",
+          "data/phase35c4321_structured_data_audit.json",
+          "data/phase35c4321_passport_audit.json",
+          "data/phase35c4321_comparison_audit.json",
+          "data/phase35c4321_idempotency_report.json",
+          "data/phase35c4321_final_report.json"
+        ],
+        "decoder_transition_valid": false,
+        "related_models_transition_valid": false,
+        "model_page_transition_valid": false,
+        "REPLAY_RUNTIME_TRANSITION_VALID": "FAIL",
+        "POST_COMMIT_SELF_REPLAY": "FAIL",
+        "POST_COMMIT_REPLAY": "FAIL",
+        "failure_reasons": [
+          "INVALID_HISTORICAL_TRANSITION",
+          "MISSING_IMMUTABLE_ARTIFACT",
+          "RUNTIME_TRANSITION_INVALID",
+          "HISTORICAL_ARTIFACT_ASSERTION_FAILURE"
+        ]
+      }
+    }
+  ],
+  "FAILURE_INJECTION": "PASS"
+}
