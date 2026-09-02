@@ -327,6 +327,19 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
       ? `Bronstatus: ${verification.badgeLabel}`
       : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
 
+  // Serial ranges support a production-period indication only. Technical claims
+  // must come through the field-level public evidence gate, never range metadata.
+  const productionPeriod = {
+    yearStart: rangeMatch?.yearStart ?? null,
+    yearEnd: rangeMatch?.yearEnd ?? null,
+    yearRangeFormatted: rangeMatch?.yearRangeFormatted || estimatedYears,
+    generation: rangeMatch?.generation || generation,
+    confidence: rangeMatch?.confidence || 'MEDIUM',
+    ...(identityStatus === 'PROBABLE_MODEL_SERIES'
+      ? { seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.' }
+      : {})
+  };
+
   return {
     success: true,
     status: 'FORMAT_VALIDATED',
@@ -344,12 +357,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
         ? 'Waarschijnlijke modelreeks'
         : 'Modelidentificatie',
     category,
-    productionPeriod: rangeMatch || {
-      yearRangeFormatted: estimatedYears,
-      generation,
-      confidence: 'MEDIUM',
-      technicalHighlights: modelData ? `Bekende STIHL ${modelName} fabrieksserie op basis van serienummerbereik.` : 'Serie-identificatie op basis van bekende fabrieksbreakpoints.'
-    },
+    productionPeriod,
     estimatedYears,
     generation,
     confidence: rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW',

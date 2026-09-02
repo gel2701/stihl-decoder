@@ -1,0 +1,33 @@
+{
+  "BREAKPOINT_TECHNICAL_HIGHLIGHT_LEAK_DETECTED": "PASS",
+  "BREAKPOINT_TECHNICAL_CHANGE_CLAIM_DETECTED": "PASS",
+  "RAW_BREAKPOINT_FIELD_EXPOSURE_DETECTED": "PASS",
+  "EXACT_IDENTITY_UNEVIDENCED_BREAKPOINT_TECH_CLAIM_DETECTED": "PASS",
+  "EXACT_IDENTITY_RAW_BREAKPOINT_TECHNICAL_EXPOSURE": 0,
+  "injection_violations": [
+    [
+      "RAW_RANGE_FIELD:technicalHighlights",
+      "RAW_BREAKPOINT_TECHNICAL_FIELD:technicalHighlights",
+      "PROBABLE_TECHNICAL_TOKEN:M-Tronic V2\\.1",
+      "PROBABLE_TECHNICAL_TOKEN:V2\\.1\\s*\\/\\s*V3\\.0"
+    ],
+    [
+      "RAW_RANGE_FIELD:technicalHighlights",
+      "RAW_BREAKPOINT_TECHNICAL_FIELD:technicalHighlights",
+      "PROBABLE_TECHNICAL_TOKEN:300g\\s+lichter",
+      "PROBABLE_TECHNICAL_TOKEN:lichter carter",
+      "PROBABLE_TECHNICAL_TOKEN:vliegwiel"
+    ],
+    [
+      "RAW_RANGE_FIELD:technical_changes",
+      "RAW_BREAKPOINT_TECHNICAL_FIELD:technical_changes",
+      "PROBABLE_TECHNICAL_TOKEN:afgeschuinde cilinderkap"
+    ],
+    [
+      "RAW_RANGE_FIELD:technicalHighlights",
+      "RAW_BREAKPOINT_TECHNICAL_FIELD:technicalHighlights",
+      "UNEVIDENCED_BREAKPOINT_TECHNICAL_TOKEN:M-Tronic V3\\.0"
+    ]
+  ],
+  "FAILURE_INJECTION": "PASS"
+}

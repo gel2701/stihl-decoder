@@ -19,8 +19,9 @@ export class StihlRangeResolver {
           yearStart: match.year_start,
           yearEnd: match.year_end || null,
           generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
-          technicalHighlights: match.technical_changes || match.technical_highlights,
-          confidence: match.confidence_level || 'HIGH'
+          confidence: match.confidence_level || 'HIGH',
+          // Breakpoint records establish a range, not publishable technical evidence.
+          seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.'
         };
       }
     }

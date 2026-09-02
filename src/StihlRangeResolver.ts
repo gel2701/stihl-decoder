@@ -3,7 +3,7 @@ export interface ProductionPeriodResult {
   yearStart: number;
   yearEnd: number | null;
   generation: string;
-  technicalHighlights?: string;
+  seriesSummary?: string;
   confidence: 'HIGH' | 'MEDIUM' | 'ESTIMATED';
 }
 
@@ -31,9 +31,9 @@ export class StihlRangeResolver {
           yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `${match.year_start} – Heden`,
           yearStart: match.year_start,
           yearEnd: match.year_end || null,
-          generation: match.generation_name || match.generation || "Gevalideerde Uitvoering",
-          technicalHighlights: match.technical_changes || match.technical_highlights,
-          confidence: (match.confidence_level as any) || 'HIGH'
+          generation: match.generation_name || match.generation || "Waarschijnlijke uitvoering",
+          confidence: (match.confidence_level as any) || 'HIGH',
+          seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.'
         };
       }
     }
@@ -44,7 +44,7 @@ export class StihlRangeResolver {
           yearRangeFormatted: "2016 – Heden",
           yearStart: 2016,
           yearEnd: null,
-          generation: "Modern Productie-tijdperk (Facelift / M-Tronic V2+)",
+          generation: "Modern productietijdperk",
           confidence: 'MEDIUM'
         };
       } else if (numericSerial >= 170000000) {
@@ -52,7 +52,7 @@ export class StihlRangeResolver {
           yearRangeFormatted: "2010 – 2016",
           yearStart: 2010,
           yearEnd: 2016,
-          generation: "Generatie 1 (2-MIX / Vroege M-Tronic)",
+          generation: "Vroege moderne productiereeks",
           confidence: 'MEDIUM'
         };
       } else if (numericSerial >= 140000000) {

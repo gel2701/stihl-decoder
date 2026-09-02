@@ -821,7 +821,9 @@
 
           const hlContainer = document.getElementById('res-highlights-container');
           const hlText = document.getElementById('res-highlights-text');
-          const highlightContent = prodPeriod.technicalHighlights || res.notes;
+          const highlightContent = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
+            ? (prodPeriod.seriesSummary || 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.')
+            : res.notes;
           if (highlightContent) {
             if (hlText) hlText.innerText = `ℹ️ ${highlightContent}`;
             if (hlContainer) hlContainer.style.display = 'block';
