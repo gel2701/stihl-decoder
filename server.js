@@ -75,7 +75,8 @@ const PUBLIC_PREFIXES = ['/css/'];
 const PUBLIC_EXACT_FILES = new Set([
   '/components/tools/GietklokHelper.js',
   '/src/components/StihlPassportGenerator.js',
-  '/src/categoryWhitelist.js'
+  '/src/categoryWhitelist.js',
+  '/src/driveClassification.js'
 ]);
 
 const server = http.createServer(async (req, res) => {
