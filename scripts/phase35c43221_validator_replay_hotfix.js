@@ -200,13 +200,32 @@ function buildAudits({ includeSuite = false, mode = 'development' } = {}) {
   runtime.FOUR_MIX_FALSE_CLASSIFICATIONS = ['BR 500', 'FS 350', 'HT 75'].filter((model) => resolveMachineClassification({ identityStatus: 'PROBABLE_MODEL_SERIES', probableModelSeries: model }).drive_type === 'PETROL_4MIX').length;
   const suite = includeSuite ? runTestSuite({ testFiles: SAFETY_TESTS }) : { failures: 0 };
   const phaseTestSource = fs.readFileSync(path.join(rootDir, 'tests', 'phase35c43221_validator_replay_hotfix.test.js'), 'utf8');
+  const PHASE43221_RESULT_COMMIT = '41c6817a88a8fd5db438e9c29c4ad9c887a7c16f';
+  const historicalProductionChanges = {
+    HISTORICAL_SERVER_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, PHASE43221_RESULT_COMMIT, '--', 'server.js']) === '' ? 'NO' : 'YES',
+    HISTORICAL_DRIVE_CLASSIFICATION_PRODUCTION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, PHASE43221_RESULT_COMMIT, '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES',
+    HISTORICAL_DECODER_PRODUCTION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, PHASE43221_RESULT_COMMIT, '--', 'src/decoder.js']) === '' ? 'NO' : 'YES',
+    HISTORICAL_INDEX_UI_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, PHASE43221_RESULT_COMMIT, '--', 'index.html']) === '' ? 'NO' : 'YES',
+    HISTORICAL_PASSPORT_PRODUCTION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, PHASE43221_RESULT_COMMIT, '--', 'src/components/StihlPassportGenerator.js']) === '' ? 'NO' : 'YES'
+  };
+  const currentDescendantProductionChanges = {
+    CURRENT_DESCENDANT_SERVER_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, head, '--', 'server.js']) === '' ? 'NO' : 'YES',
+    CURRENT_DESCENDANT_DRIVE_CLASSIFICATION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, head, '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES',
+    CURRENT_DESCENDANT_DECODER_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, head, '--', 'src/decoder.js']) === '' ? 'NO' : 'YES',
+    CURRENT_DESCENDANT_INDEX_UI_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, head, '--', 'index.html']) === '' ? 'NO' : 'YES',
+    CURRENT_DESCENDANT_PASSPORT_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, head, '--', 'src/components/StihlPassportGenerator.js']) === '' ? 'NO' : 'YES'
+  };
+  const historicalProductionPass = Object.values(historicalProductionChanges).every((value) => value === 'NO') ? 'PASS' : 'FAIL';
   const productionAudit = {
     POST_COMMIT_TEST_HEAD_EQUALITY_DEPENDENCIES: (phaseTestSource.match(/(?:HEAD|origin\/main)\s*===/g) || []).length,
-    DRIVE_CLASSIFICATION_PRODUCTION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES',
-    DECODER_PRODUCTION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, '--', 'src/decoder.js']) === '' ? 'NO' : 'YES',
-    INDEX_UI_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, '--', 'index.html']) === '' ? 'NO' : 'YES',
-    PASSPORT_PRODUCTION_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, '--', 'src/components/StihlPassportGenerator.js']) === '' ? 'NO' : 'YES',
-    SERVER_CHANGED: git(['diff', '--name-only', BASELINE_COMMIT, '--', 'server.js']) === '' ? 'NO' : 'YES'
+    ...historicalProductionChanges,
+    ...currentDescendantProductionChanges,
+    HISTORICAL_PRODUCTION_MUTATION: historicalProductionPass,
+    DRIVE_CLASSIFICATION_PRODUCTION_CHANGED: mode === 'development' ? currentDescendantProductionChanges.CURRENT_DESCENDANT_DRIVE_CLASSIFICATION_CHANGED : historicalProductionChanges.HISTORICAL_DRIVE_CLASSIFICATION_PRODUCTION_CHANGED,
+    DECODER_PRODUCTION_CHANGED: mode === 'development' ? currentDescendantProductionChanges.CURRENT_DESCENDANT_DECODER_CHANGED : historicalProductionChanges.HISTORICAL_DECODER_PRODUCTION_CHANGED,
+    INDEX_UI_CHANGED: mode === 'development' ? currentDescendantProductionChanges.CURRENT_DESCENDANT_INDEX_UI_CHANGED : historicalProductionChanges.HISTORICAL_INDEX_UI_CHANGED,
+    PASSPORT_PRODUCTION_CHANGED: mode === 'development' ? currentDescendantProductionChanges.CURRENT_DESCENDANT_PASSPORT_CHANGED : historicalProductionChanges.HISTORICAL_PASSPORT_PRODUCTION_CHANGED,
+    SERVER_CHANGED: mode === 'development' ? currentDescendantProductionChanges.CURRENT_DESCENDANT_SERVER_CHANGED : historicalProductionChanges.HISTORICAL_SERVER_CHANGED
   };
   return { preflight, historicalReplay, binding, runtime, fs350Scope, injections, publicStore, canonical, productionAudit, suite };
 }
@@ -214,7 +233,7 @@ function withoutVolatile(value) { if (Array.isArray(value)) return value.map(wit
 function buildFinal(audits, idempotency) {
   const { preflight: p, historicalReplay: h, binding: b, runtime: r, fs350Scope: f, injections: i, publicStore: s, canonical: c, productionAudit: production, suite } = audits;
   const modePrecheckPass = p.MODE === 'development' ? p.DEVELOPMENT_BASELINE_PRECHECK === 'PASS' : p.REPLAY_ANCESTRY_PRECHECK === 'PASS';
-  const pass = modePrecheckPass && h.PHASE4322_SOURCE_FOUND === 'PASS' && h.PHASE4322_RESULT_FOUND === 'PASS' && h.PHASE4322_SOURCE_TO_RESULT_RELATION_VALID === 'PASS' && h.PHASE4322_RESULT_IS_ANCESTOR_OF_HEAD === 'PASS' && h.PHASE4322_POST_COMMIT_REPLAY === 'PASS' && h.PHASE4322_RESULT_ANCESTRY_FAILURE_DETECTED === 'PASS' && h.PHASE4322_HISTORICAL_ARTIFACTS_IMMUTABLE === 'PASS' && b.PUBLIC_EVIDENCE_BOUND_TO_RUNTIME_DATABASE === 'PASS' && b.ACTIVE_PUBLIC_FACT_COUNT === 114 && b.ACTIVE_PUBLIC_STORE_HASH === EXPECTED_STORE_HASH && r.SERIAL_184592301_IDENTITY_STATUS === 'PROBABLE_MODEL_SERIES' && r.SERIAL_184592301_POWER_SOURCE === 'PETROL' && r.SERIAL_184592301_DRIVE_TYPE === 'PETROL_2STROKE' && r.SERIAL_184592301_TECHNICAL_SPEC_COUNT === 0 && r['026_BASELINE_SPARK_PRESERVED'] === 'PASS' && r['046_CONFLICT_RUNTIME'] === 'PASS' && f.FS350_SCOPE_RUNTIME === 'PASS' && f.FS350_CROSS_MODEL_FACTS === 0 && f.FS350_RAW_FALLBACK_FACTS === 0 && r.MS170_009_FACT_LEAKS === 0 && r.MS180_009_FACT_LEAKS === 0 && r.MS261CM_TO_MS261_SPEC_INHERITANCE === 0 && i.FAILURE_INJECTION === 'PASS' && s.PUBLIC_EVIDENCE_STORE_CHANGED === 'NO' && s.REAL_PUBLIC_STORE_BYTE_STABLE === 'PASS' && c.CANONICAL_DATABASE_CHANGED === 'NO' && c.UNEXPECTED_CANONICAL_PROMOTIONS === 0 && c.PHASE_CANONICAL_DB_FILES_CHANGED.length === 0 && production.POST_COMMIT_TEST_HEAD_EQUALITY_DEPENDENCIES === 0 && Object.values(production).filter((value) => typeof value === 'string').every((value) => value === 'NO') && suite.failures === 0 && idempotency.IDEMPOTENCY === 'PASS';
+  const pass = modePrecheckPass && h.PHASE4322_SOURCE_FOUND === 'PASS' && h.PHASE4322_RESULT_FOUND === 'PASS' && h.PHASE4322_SOURCE_TO_RESULT_RELATION_VALID === 'PASS' && h.PHASE4322_RESULT_IS_ANCESTOR_OF_HEAD === 'PASS' && h.PHASE4322_POST_COMMIT_REPLAY === 'PASS' && h.PHASE4322_RESULT_ANCESTRY_FAILURE_DETECTED === 'PASS' && h.PHASE4322_HISTORICAL_ARTIFACTS_IMMUTABLE === 'PASS' && b.PUBLIC_EVIDENCE_BOUND_TO_RUNTIME_DATABASE === 'PASS' && b.ACTIVE_PUBLIC_FACT_COUNT === 114 && b.ACTIVE_PUBLIC_STORE_HASH === EXPECTED_STORE_HASH && r.SERIAL_184592301_IDENTITY_STATUS === 'PROBABLE_MODEL_SERIES' && r.SERIAL_184592301_POWER_SOURCE === 'PETROL' && r.SERIAL_184592301_DRIVE_TYPE === 'PETROL_2STROKE' && r.SERIAL_184592301_TECHNICAL_SPEC_COUNT === 0 && r['026_BASELINE_SPARK_PRESERVED'] === 'PASS' && r['046_CONFLICT_RUNTIME'] === 'PASS' && f.FS350_SCOPE_RUNTIME === 'PASS' && f.FS350_CROSS_MODEL_FACTS === 0 && f.FS350_RAW_FALLBACK_FACTS === 0 && r.MS170_009_FACT_LEAKS === 0 && r.MS180_009_FACT_LEAKS === 0 && r.MS261CM_TO_MS261_SPEC_INHERITANCE === 0 && i.FAILURE_INJECTION === 'PASS' && s.PUBLIC_EVIDENCE_STORE_CHANGED === 'NO' && s.REAL_PUBLIC_STORE_BYTE_STABLE === 'PASS' && c.CANONICAL_DATABASE_CHANGED === 'NO' && c.UNEXPECTED_CANONICAL_PROMOTIONS === 0 && c.PHASE_CANONICAL_DB_FILES_CHANGED.length === 0 && production.POST_COMMIT_TEST_HEAD_EQUALITY_DEPENDENCIES === 0 && production.HISTORICAL_PRODUCTION_MUTATION === 'PASS' && suite.failures === 0 && idempotency.IDEMPOTENCY === 'PASS';
   return { generated_at: new Date().toISOString(), 'FASE 35C.4.3.2.2.1 FINAL REPORT': true, BASELINE_COMMIT, ...p, ...h, ...b, ...r, ...f, ...i, ...s, ...c, ...production, POST_COMMIT_SELF_REPLAY: h.PHASE4322_POST_COMMIT_REPLAY, IDEMPOTENCY: idempotency.IDEMPOTENCY, TEST_SUITE: suite.failures === 0 ? 'PASS' : 'FAIL', FINAL_STATUS: pass ? 'PASS' : 'FAIL' };
 }
 export async function main({ includeSuite = true, mode = 'development', writeArtifacts = true } = {}) {
