@@ -41,7 +41,10 @@ export const testFiles = [
   'tests/phase35c4221_public_evidence_safety_hotfix.test.js',
   'tests/phase35c4222_residual_public_fallback_hotfix.test.js',
   'tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js',
-  'tests/phase35c42_targeted_archive_intake.test.js'
+  'tests/phase35c42_targeted_archive_intake.test.js',
+  'tests/phase35c44_stihlusa_source_hygiene.test.js',
+  'tests/phase35c441_provenance_metrics_integrity_hotfix.test.js',
+  'tests/phase35c442_clean_checkout_reproducibility.test.js'
 ];
 
 function sha256Text(value) {
@@ -76,7 +79,8 @@ function runNodeTest(testFile, extraEnv = {}) {
   console.log(`\n▶ Running ${testFile}`);
   return spawnSync(process.execPath, [testFile], {
     stdio: 'inherit',
-    env: { ...process.env, ...extraEnv },
+    // Keep analytics schema setup and events out of the canonical SQLite database.
+    env: { ...process.env, NODE_ENV: 'test', ...extraEnv },
     cwd: rootDir
   });
 }

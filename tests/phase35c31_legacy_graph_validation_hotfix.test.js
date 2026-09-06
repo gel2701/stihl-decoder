@@ -1,6 +1,7 @@
 import assert from 'assert';
 import fs from 'fs';
 import crypto from 'crypto';
+import { fileURLToPath } from 'url';
 
 import {
   assessAuthenticityFromPayload,
@@ -71,14 +72,14 @@ assert.strictEqual(authenticated.corporate_identity, true);
 
 const maps = {
   batch2ByPath: new Map([
-    [normalizePathForTest(import.meta.url), { source_file_path: new URL(import.meta.url).pathname.slice(1) }]
+    [normalizePathForTest(fileURLToPath(import.meta.url)), { source_file_path: fileURLToPath(import.meta.url) }]
   ]),
   batch3ByPublication: new Map()
 };
 const dedup = classifyDocumentDedup(
   {
-    file_path: new URL(import.meta.url).pathname.slice(1),
-    file_hash: hashFile(new URL(import.meta.url).pathname.slice(1)),
+    file_path: fileURLToPath(import.meta.url),
+    file_hash: hashFile(fileURLToPath(import.meta.url)),
     pdf_pages: 10,
     publication_id: 'TI_03_2000_30',
     title_line: 'Technical Information TI_03_2000_30 STIHL',
@@ -133,6 +134,6 @@ assert.strictEqual(changedScope.after, 'EXACT_MODEL');
 
 console.log('Phase 35C.3.1 validation integrity hotfix tests passed.');
 
-function normalizePathForTest(urlValue) {
-  return new URL(urlValue).pathname.slice(1).replace(/\//g, '\\').toLowerCase();
+function normalizePathForTest(filePath) {
+  return String(filePath).replace(/\//g, '\\').toLowerCase();
 }

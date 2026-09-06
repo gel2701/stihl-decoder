@@ -1,0 +1,511 @@
+{
+  "spec_version": "1.0.0-fixture-test",
+  "provider": "STIHL USA Official Synthetic Test Fixture",
+  "harvest_timestamp": "2026-09-06 00:00:00",
+  "total_raw_records": 14,
+  "total_unique_records": 14,
+  "records": [
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL MS 261 Official Product Page",
+        "raw_description": "STIHL USA Official Specifications for MS 261 Chainsaw",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/professional-saws/ms261/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/professional-saws/ms261/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "ms261"
+      },
+      "part": {
+        "part_name": "STIHL MS 261 Chainsaw",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MS 261",
+          "model_key": "ms-261",
+          "base_model": "MS 261",
+          "variant_suffix": null,
+          "power_source": "PETROL",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL MSA 220 C-B Battery Chainsaw",
+        "raw_description": "STIHL USA Specifications for MSA 220 C-B Battery Chainsaw",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/battery-saws/msa220c-b/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/battery-saws/msa220c-b/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "msa220c-b"
+      },
+      "part": {
+        "part_name": "STIHL MSA 220 C-B Battery Chainsaw",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MSA 220 C-B",
+          "model_key": "msa-220-c-b",
+          "base_model": "MSA 220",
+          "variant_suffix": "C-B",
+          "power_source": "UNKNOWN",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL MSE 210 Electric Chainsaw",
+        "raw_description": "STIHL USA Specifications for MSE 210 Corded Electric Chainsaw",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/electric-saws/mse210/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/electric-saws/mse210/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "mse210"
+      },
+      "part": {
+        "part_name": "STIHL MSE 210 Electric Chainsaw",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MSE 210",
+          "model_key": "mse-210",
+          "base_model": "MSE 210",
+          "variant_suffix": null,
+          "power_source": "UNKNOWN",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL MS 500i Fuel-Injected Chainsaw",
+        "raw_description": "STIHL USA Specifications for MS 500i Chainsaw",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/professional-saws/ms500i/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/professional-saws/ms500i/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "ms500i"
+      },
+      "part": {
+        "part_name": "STIHL MS 500i Chainsaw",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MS 500i",
+          "model_key": "ms-500i",
+          "base_model": "MS 500i",
+          "variant_suffix": "i",
+          "power_source": "PETROL",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL FS 100 Trimmer",
+        "raw_description": "STIHL USA Specifications for FS 100 Trimmer",
+        "item_url": "https://www.stihlusa.com/products/trimmers-and-brushcutters/homeowner-trimmers/fs100/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/trimmers-and-brushcutters/homeowner-trimmers/fs100/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "fs100"
+      },
+      "part": {
+        "part_name": "STIHL FS 100 Trimmer",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "FS 100",
+          "model_key": "fs-100",
+          "base_model": "FS 100",
+          "variant_suffix": null,
+          "power_source": "UNKNOWN",
+          "machine_type_code": "TRIMMER",
+          "machine_type_nl": "Bosmaaier / Trimmer",
+          "machine_type_en": "Trimmer",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["TRIMMER"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL FS 100 R Trimmer",
+        "raw_description": "STIHL USA Specifications for FS 100 R Loop-Handle Trimmer",
+        "item_url": "https://www.stihlusa.com/products/trimmers-and-brushcutters/homeowner-trimmers/fs100r/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/trimmers-and-brushcutters/homeowner-trimmers/fs100r/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "fs100r"
+      },
+      "part": {
+        "part_name": "STIHL FS 100 R Trimmer",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "FS 100 R",
+          "model_key": "fs-100-r",
+          "base_model": "FS 100",
+          "variant_suffix": "R",
+          "power_source": "PETROL",
+          "machine_type_code": "TRIMMER",
+          "machine_type_nl": "Bosmaaier / Trimmer",
+          "machine_type_en": "Trimmer",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["TRIMMER"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL FS 100 RX Lightweight Trimmer",
+        "raw_description": "STIHL USA Specifications for FS 100 RX Trimmer",
+        "item_url": "https://www.stihlusa.com/products/trimmers-and-brushcutters/homeowner-trimmers/fs100rx/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/trimmers-and-brushcutters/homeowner-trimmers/fs100rx/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "fs100rx"
+      },
+      "part": {
+        "part_name": "STIHL FS 100 RX Trimmer",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "FS 100 RX",
+          "model_key": "fs-100-rx",
+          "base_model": "FS 100",
+          "variant_suffix": "RX",
+          "power_source": "PETROL",
+          "machine_type_code": "TRIMMER",
+          "machine_type_nl": "Bosmaaier / Trimmer",
+          "machine_type_en": "Trimmer",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["TRIMMER"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL Unknown Model X9000",
+        "raw_description": "Generic unknown equipment specification",
+        "item_url": "https://www.stihlusa.com/products/unknown/x9000/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/unknown/x9000/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "x9000"
+      },
+      "part": {
+        "part_name": "Unknown Equipment",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "UNVERIFIED",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "X 9000",
+          "model_key": "x-9000",
+          "base_model": "X 9000",
+          "variant_suffix": null,
+          "power_source": "UNKNOWN",
+          "machine_type_code": "UNKNOWN",
+          "machine_type_nl": "Onbekend",
+          "machine_type_en": "Unknown",
+          "model_evidence": "DERIVED",
+          "machine_type_evidence": "UNINFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": []
+    },
+    {
+      "item_boundary_type": "CATEGORY_INDEX",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "Chainsaws Category Overview",
+        "raw_description": "STIHL Chainsaws Overview Page",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "chain-saws"
+      },
+      "part": {
+        "part_name": "Chainsaws Overview",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "CATEGORY_INDEX",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "MANUAL_INDEX",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "Instruction Manuals Index",
+        "raw_description": "STIHL Product Instruction Manuals",
+        "item_url": "https://www.stihlusa.com/manuals/instruction-manuals/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/manuals/instruction-manuals/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "instruction-manuals"
+      },
+      "part": {
+        "part_name": "Instruction Manuals",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "MANUAL_INDEX",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [],
+      "machine_types": []
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "THIRD_PARTY_MIRROR",
+        "raw_title": "Derived MS 170 Reference",
+        "raw_description": "Refers to MS 170 in synthetic text without explicit item URL",
+        "item_url": "https://example.com/derived-ms170/",
+        "archive_url": null,
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "derived-ms170"
+      },
+      "part": {
+        "part_name": "Derived Text",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "UNVERIFIED",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MS 170",
+          "model_key": "ms-170",
+          "base_model": "MS 170",
+          "variant_suffix": null,
+          "power_source": "PETROL",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "ACCESSORY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "Guide Bar for MS 170 / MS 180",
+        "raw_description": "STIHL 14 inch Rollomatic E Guide Bar",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/accessories/guide-bars/rollomatic-e/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/accessories/guide-bars/rollomatic-e/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "rollomatic-e"
+      },
+      "part": {
+        "part_name": "Guide Bar",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "ACCESSORY",
+        "oem_part_number_display": "3005 000 4809",
+        "oem_part_number_normalized": "30050004809",
+        "cross_references": []
+      },
+      "compatibility": [],
+      "machine_types": []
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL MS 211 Chainsaw Conflicting Timestamps",
+        "raw_description": "STIHL MS 211 Chainsaw with declared 2021 timestamp and embedded 2019 timestamp",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/homeowner-saws/ms211/",
+        "archive_url": "https://web.archive.org/web/20210120120000/https://www.stihlusa.com/products/chain-saws/homeowner-saws/ms211/",
+        "embedded_archive_url": "https://web.archive.org/web/20191114030707/https://www.stihlusa.com/products/chain-saws/homeowner-saws/ms211/",
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "ms211"
+      },
+      "part": {
+        "part_name": "STIHL MS 211 Chainsaw",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MS 211",
+          "model_key": "ms-211",
+          "base_model": "MS 211",
+          "variant_suffix": null,
+          "power_source": "PETROL",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    },
+    {
+      "item_boundary_type": "PRIMARY_PRODUCT",
+      "source": {
+        "provider": "STIHL USA Official",
+        "source_class": "PRIMARY",
+        "source_subtype": "OFFICIAL_MANUFACTURER_WEBSITE",
+        "raw_title": "STIHL MS 250 Chainsaw Unverified Snapshot Date Only",
+        "raw_description": "STIHL MS 250 Chainsaw with only snapshot_date metadata and no archive URL",
+        "item_url": "https://www.stihlusa.com/products/chain-saws/homeowner-saws/ms250-no-archive/",
+        "archive_url": null,
+        "snapshot_date": "2026-09-01",
+        "source_product_slug": "ms250-no-archive"
+      },
+      "part": {
+        "part_name": "STIHL MS 250 Chainsaw",
+        "part_manufacturer": "STIHL",
+        "genuine_status": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+        "oem_part_number_display": null,
+        "oem_part_number_normalized": null,
+        "cross_references": []
+      },
+      "compatibility": [
+        {
+          "canonical_model": "MS 250",
+          "model_key": "ms-250",
+          "base_model": "MS 250",
+          "variant_suffix": null,
+          "power_source": "PETROL",
+          "machine_type_code": "CHAINSAW",
+          "machine_type_nl": "Kettingzaag",
+          "machine_type_en": "Chainsaw",
+          "model_evidence": "DESCRIPTION_EXPLICIT",
+          "machine_type_evidence": "MODEL_PREFIX_INFERRED",
+          "has_type_conflict": false,
+          "type_conflict_resolution": null
+        }
+      ],
+      "machine_types": ["CHAINSAW"]
+    }
+  ]
+}

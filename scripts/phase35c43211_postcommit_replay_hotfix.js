@@ -69,7 +69,11 @@ const HARNESS_EXCLUDED_TESTS = new Set([
   'tests/phase35c43211_postcommit_replay_hotfix.test.js',
   'tests/phase35c432111_self_replay_ancestry_hotfix.test.js',
   'tests/phase35c43221_validator_replay_hotfix.test.js',
-  'tests/phase35c4322_series_drive_classification.test.js'
+  'tests/phase35c4322_series_drive_classification.test.js',
+  'tests/phase35c432241_validator_integrity_restore.test.js',
+  'tests/phase35c44_stihlusa_source_hygiene.test.js',
+  'tests/phase35c441_provenance_metrics_integrity_hotfix.test.js',
+  'tests/phase35c442_clean_checkout_reproducibility.test.js'
 ]);
 
 export function git(args, options = {}) {

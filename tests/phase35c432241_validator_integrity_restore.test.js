@@ -12,7 +12,7 @@ const rootDir = path.resolve(__dirname, '..');
 console.log('🧪 Running Phase 35C.4.3.2.2.4.1 Validator Integrity Restore Test...');
 
 // 1. Run 43221 validator replay and check strict FINAL_STATUS = PASS
-const report = await main({ mode: 'replay', writeArtifacts: false });
+const report = await main({ mode: 'replay', writeArtifacts: false, includeSuite: false });
 assert.strictEqual(report.FINAL_STATUS, 'PASS', '43221 report.FINAL_STATUS must be PASS without bypass');
 assert.strictEqual(report.HISTORICAL_SERVER_CHANGED, 'NO', 'HISTORICAL_SERVER_CHANGED must be NO');
 assert.strictEqual(report.CURRENT_DESCENDANT_SERVER_CHANGED, 'YES', 'CURRENT_DESCENDANT_SERVER_CHANGED must be YES');
