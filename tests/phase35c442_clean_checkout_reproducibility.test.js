@@ -17,8 +17,13 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
+const writeArtifacts = process.env.PHASE35C442_WRITE_ARTIFACTS === '1';
+const artifactDir = writeArtifacts
+  ? path.resolve(process.env.PHASE35C442_ARTIFACT_DIR || path.join(rootDir, 'data'))
+  : null;
 
 console.log('▶ Running Phase 35C.4.4.2 Clean-Checkout Reproducibility & External Source Isolation Test');
+console.log(`ARTIFACT_WRITE_MODE=${writeArtifacts ? 'ENABLED' : 'DISABLED'}`);
 
 function sha256(val) {
   return crypto.createHash('sha256').update(val).digest('hex');
@@ -329,8 +334,11 @@ const auditOutputs = {
   }
 };
 
-for (const [name, data] of Object.entries(auditOutputs)) {
-  fs.writeFileSync(path.join(rootDir, 'data', `${name}.json`), JSON.stringify(data, null, 2), 'utf8');
+if (writeArtifacts) {
+  fs.mkdirSync(artifactDir, { recursive: true });
+  for (const [name, data] of Object.entries(auditOutputs)) {
+    fs.writeFileSync(path.join(artifactDir, `${name}.json`), JSON.stringify(data, null, 2), 'utf8');
+  }
 }
 
 console.log('✅ Phase 35C.4.4.2 Clean-Checkout Reproducibility Test Passed Successfully');
