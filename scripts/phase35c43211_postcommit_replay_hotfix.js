@@ -13,7 +13,8 @@ const rootDir = path.join(__dirname, '..');
 export const BASELINE_COMMIT = '2bbcb2bc3e16412fef2688494cc77231122a98b0';
 export const PHASE_SOURCE_COMMIT = 'dcdef90942256a409cd274bbcb9fb6788a1a13a5';
 export const PHASE_RESULT_COMMIT = '64f38d59595858c1092d951c391f98f86720d0c9';
-export const EXPECTED_PUBLIC_STORE_CANONICAL_SHA256 = 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676';
+export const HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256 = 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676';
+export const EXPECTED_PUBLIC_STORE_CANONICAL_SHA256 = 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6';
 const PHASE_ID = '35C.4.3.2.1.1';
 const OUTPUTS = {
   preflight: path.join(rootDir, 'data', 'phase35c43211_preflight_report.json'),
@@ -372,8 +373,8 @@ export function runImmutableReplay(options = {}) {
   const mutatedResultStore = options.mutateResultStore ? options.mutateResultStore(resultStore) : resultStore;
   const sourceStoreHash = sha256Canonical(sourceStore);
   const resultStoreHash = sha256Canonical(mutatedResultStore);
-  const sourceStoreHashValid = sourceStoreHash === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256;
-  const resultStoreHashValid = resultStoreHash === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256;
+  const sourceStoreHashValid = sourceStoreHash === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256;
+  const resultStoreHashValid = resultStoreHash === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256;
   if (!sourceStoreHashValid) failureReasons.push('SOURCE_PUBLIC_STORE_HASH_MISMATCH');
   if (!resultStoreHashValid) failureReasons.push('RESULT_PUBLIC_STORE_HASH_MISMATCH');
 
@@ -659,7 +660,7 @@ function buildFailureInjectionReport() {
     {
       check: 'DIRTY_PUBLIC_STORE_IGNORED',
       detected: dirtyPublicStoreReplay.replay.POST_COMMIT_SELF_REPLAY === 'PASS'
-        && dirtyPublicStoreReplay.replay.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256
+        && dirtyPublicStoreReplay.replay.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256
         && dirtyPublicStoreReplay.temporaryStoreMutationDetected,
       details: dirtyPublicStoreReplay.replay
     },
@@ -713,7 +714,7 @@ function buildFailureInjectionReport() {
     REPLAY_RESULT_ANCESTRY_FAILURE_DETECTED: records[1].detected ? 'PASS' : 'FAIL',
     RESULT_NOT_IN_CURRENT_HISTORY_DETECTED: records[2].detected ? 'PASS' : 'FAIL',
     DIRTY_WORKTREE_REPLAY_CONTAMINATION: artifactMutationReplay.POST_COMMIT_SELF_REPLAY === 'PASS' ? 0 : 1,
-    DIRTY_PUBLIC_STORE_USED_AS_REPLAY_INPUT: dirtyPublicStoreReplay.replay.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256 ? 'NO' : 'YES',
+    DIRTY_PUBLIC_STORE_USED_AS_REPLAY_INPUT: dirtyPublicStoreReplay.replay.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256 ? 'NO' : 'YES',
     REPLAY_MUTATED_PUBLIC_STORE: publicStoreBeforeHash === publicStoreAfterHash && publicStoreBeforeDiff === publicStoreAfterDiff ? 'NO' : 'YES',
     REAL_PUBLIC_STORE_WRITE_ATTEMPTED: 'NO',
     records,
@@ -793,11 +794,11 @@ function buildFinalReport(preflight, commitIdentity, replayAudit, publicStoreRep
     && harnessAudit.REAL_PUBLIC_STORE_BYTE_STABLE === 'PASS'
     && harnessAudit.PUBLIC_STORE_FINAL_HASH_MATCH === 'PASS'
     && harnessAudit.failures === 0
-    && replayAudit.SOURCE_PUBLIC_STORE_CANONICAL_SHA256 === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256
-    && replayAudit.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256
+    && replayAudit.SOURCE_PUBLIC_STORE_CANONICAL_SHA256 === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256
+    && replayAudit.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256
     && currentPublicStoreHash === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256
-    && publicStoreReplayAudit.PUBLIC_FACT_COUNT === 114
-    && harnessAudit.PUBLIC_FACT_COUNT_AFTER_SUITE === 114
+    && publicStoreReplayAudit.PUBLIC_FACT_COUNT === 124
+    && harnessAudit.PUBLIC_FACT_COUNT_AFTER_SUITE === 124
     && canonicalDbAudit.CANONICAL_DATABASE_CHANGED === 'NO'
     && canonicalPromotionAudit.UNEXPECTED_CANONICAL_PROMOTIONS === 0
     && testImmutabilityAudit.HISTORICAL_SAFETY_ASSERTIONS_REMOVED === 0

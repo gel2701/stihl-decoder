@@ -44,7 +44,12 @@ export const testFiles = [
   'tests/phase35c42_targeted_archive_intake.test.js',
   'tests/phase35c44_stihlusa_source_hygiene.test.js',
   'tests/phase35c441_provenance_metrics_integrity_hotfix.test.js',
-  'tests/phase35c442_clean_checkout_reproducibility.test.js'
+  'tests/phase35c442_clean_checkout_reproducibility.test.js',
+  'tests/phase36_serial_user_value_engine.test.js',
+  'tests/phase36_ms170_realworld_acceptance.test.js',
+  'tests/phase36_model_assisted_decode.test.js',
+  'tests/phase36_serial_chronology.test.js',
+  'tests/phase36c_ui_user_value_acceptance.test.js'
 ];
 
 function sha256Text(value) {

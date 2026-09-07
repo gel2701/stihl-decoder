@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-09-06T19:56:15.160Z",
+  "phase": "36C",
+  "schema_version": "serial-chronology-v1",
+  "dataset_file": "data/serial_chronology_anchors.json",
+  "verified_anchor_count": 0,
+  "zero_synthetic_anchors_in_prod": true,
+  "serial_824061159_production_status": "UNKNOWN",
+  "safety_guarantees": {
+    "single_anchor_interpolation": "BLOCKED (INSUFFICIENT_ANCHORS)",
+    "cross_plant_interpolation": "BLOCKED (CROSS_PLANT_BLOCKED)",
+    "unbounded_extrapolation": "BLOCKED (EXTRAPOLATION_BLOCKED)",
+    "non_monotonic_anchors": "BLOCKED (CHRONOLOGY_CONFLICT)"
+  },
+  "synthetic_test_coverage": {
+    "exact_match_resolution": "PASS",
+    "bounded_interpolation": "PASS",
+    "plant_code_isolation": "PASS"
+  }
+}

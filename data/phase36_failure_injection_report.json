@@ -1,0 +1,128 @@
+{
+  "FAILURE_INJECTION_CASES_TOTAL": 15,
+  "FAILURE_INJECTION_CASES_PASS": 15,
+  "FAILURE_INJECTION": "PASS",
+  "generated_at": "2026-09-06T20:18:45.265Z",
+  "test_cases": [
+    {
+      "case_number": 1,
+      "name": "range missing model_id",
+      "assertion": "model_id must be null; range fails to assign exact model",
+      "expected_behavior": "blocked_identity_propagation",
+      "status": "PASS",
+      "details": "Resolver gracefully handles range missing model_id by setting model_id to null; exact model identity blocked."
+    },
+    {
+      "case_number": 2,
+      "name": "invalid model_id",
+      "assertion": "invalid model_id must fail closed with MODEL_CONFIRMATION_REQUIRED",
+      "expected_behavior": "rejected_unrecognized_model",
+      "status": "PASS",
+      "details": "Decoder rejects non-existent model ID and returns MODEL_CONFIRMATION_REQUIRED."
+    },
+    {
+      "case_number": 3,
+      "name": "overlapping/conflicting ranges",
+      "assertion": "conflicting overlapping ranges must return null (fail closed)",
+      "expected_behavior": "blocked_ambiguous_resolution",
+      "status": "PASS",
+      "details": "Resolver detects multiple matching ranges for the serial and returns null."
+    },
+    {
+      "case_number": 4,
+      "name": "only one chronology anchor",
+      "assertion": "single anchor cannot interpolate; must return INSUFFICIENT_ANCHORS",
+      "expected_behavior": "blocked_single_anchor_interpolation",
+      "status": "PASS",
+      "details": "SerialChronologyResolver enforces minimum 2 bounding anchors for interpolation."
+    },
+    {
+      "case_number": 5,
+      "name": "cross-plant interpolation",
+      "assertion": "anchors from different plants must be blocked with CROSS_PLANT_BLOCKED",
+      "expected_behavior": "blocked_cross_plant_leakage",
+      "status": "PASS",
+      "details": "SerialChronologyResolver blocks cross-plant interpolation between plant 1 and plant 8."
+    },
+    {
+      "case_number": 6,
+      "name": "chronology extrapolation",
+      "assertion": "serials outside bounding anchors must be blocked with EXTRAPOLATION_BLOCKED",
+      "expected_behavior": "blocked_unbounded_extrapolation",
+      "status": "PASS",
+      "details": "SerialChronologyResolver rejects extrapolation outside lower and upper anchors."
+    },
+    {
+      "case_number": 7,
+      "name": "non-monotonic chronology",
+      "assertion": "inverted anchor years must trigger CHRONOLOGY_CONFLICT",
+      "expected_behavior": "blocked_non_monotonic_anchors",
+      "status": "PASS",
+      "details": "SerialChronologyResolver validates monotonicity and flags inverted anchor intervals."
+    },
+    {
+      "case_number": 8,
+      "name": "unknown confirmed model",
+      "assertion": "unregistered confirmed model must be rejected fail-closed",
+      "expected_behavior": "rejected_unregistered_model",
+      "status": "PASS",
+      "details": "Decoder returns MODEL_CONFIRMATION_REQUIRED when confirmed model does not match database."
+    },
+    {
+      "case_number": 9,
+      "name": "fuzzy user model",
+      "assertion": "non-canonical arbitrary text must not match any model",
+      "expected_behavior": "rejected_fuzzy_match",
+      "status": "PASS",
+      "details": "Fuzzy / unparseable user string fails model lookup and rejects confirmation."
+    },
+    {
+      "case_number": 10,
+      "name": "USER_CONFIRMED_MODEL wrongly populates exactModel",
+      "assertion": "exactModel must be strictly null when modelIdentityStatus is USER_CONFIRMED_MODEL",
+      "expected_behavior": "enforced_exact_model_null_contract",
+      "status": "PASS",
+      "details": "exactModel semantics contract enforced: user-confirmed models cannot claim exact serial proof."
+    },
+    {
+      "case_number": 11,
+      "name": "technical specs require eligible official evidence and pure non-hybrid context",
+      "assertion": "unanchored serials have 0 specs; MS 170 power context is 8500 rpm and strictly non-hybrid",
+      "expected_behavior": "empty_technical_specs_without_model_evidence_and_clean_power_context",
+      "status": "PASS",
+      "details": "Serial-only decode has 0 specs; MS 170 power evidence has verified 8,500 rpm context without hybrid 9500 rpm corruption."
+    },
+    {
+      "case_number": 12,
+      "name": "fake breakpoint technical changes",
+      "assertion": "ranges provide series indication only, never unverified technical changes",
+      "expected_behavior": "guarded_series_summary_only",
+      "status": "PASS",
+      "details": "Range resolver strips non-standard technical fields and attaches cautionary seriesSummary."
+    },
+    {
+      "case_number": 13,
+      "name": "invalid serial format",
+      "assertion": "non-numeric and wrong-length inputs must fail serial validation",
+      "expected_behavior": "rejected_invalid_serial_format",
+      "status": "PASS",
+      "details": "Letters in serial or wrong length are rejected as invalid serial format."
+    },
+    {
+      "case_number": 14,
+      "name": "unverified factory location and country",
+      "assertion": "plant code 8 must have country null, location null, details null, and confidence UNVERIFIED",
+      "expected_behavior": "suppressed_unverified_plant_geography",
+      "status": "PASS",
+      "details": "Plant 8 country, location, and details are strictly null; confidence is UNVERIFIED; zero geographic inference."
+    },
+    {
+      "case_number": 15,
+      "name": "userProvidedYear promoted to exact official year",
+      "assertion": "userProvidedYear must stay isolated and never promote production.status to EXACT_DOCUMENTED_YEAR",
+      "expected_behavior": "isolated_user_year_with_independent_production_status",
+      "status": "PASS",
+      "details": "userProvidedYear is stored as USER_PROVIDED_YEAR while production.status remains UNKNOWN."
+    }
+  ]
+}

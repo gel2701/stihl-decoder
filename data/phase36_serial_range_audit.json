@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-09-06T19:56:15.159Z",
+  "phase": "36C",
+  "range_source": "stihl_database.json (serial_breakpoints)",
+  "RANGE_MODEL_ID_PROPAGATION": "PASS",
+  "total_ranges": 3,
+  "ranges_with_valid_model_id": 3,
+  "ranges_with_source_ref": 3,
+  "range_conflicts": 0,
+  "exact_model_claims_from_ranges": 0,
+  "range_ranking_strategy": "deterministic (plant_code specificity > narrowest range span)",
+  "unverified_ranges_safe": true,
+  "ranges": [
+    {
+      "model_id": "stihl_ms_260",
+      "model_name": "MS 260 (Klassiek / Analoog)",
+      "plant_code": "1",
+      "serial_start": 145000000,
+      "serial_end": 169999999,
+      "year_start": 2001,
+      "year_end": 2011,
+      "confidence_level": "HIGH"
+    },
+    {
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "MS 261 / MS 261 C-M Gen 1",
+      "plant_code": "1",
+      "serial_start": 171000000,
+      "serial_end": 179999999,
+      "year_start": 2010,
+      "year_end": 2016,
+      "confidence_level": "HIGH"
+    },
+    {
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "MS 261 C-M Gen 2 (Facelift / V2)",
+      "plant_code": "1",
+      "serial_start": 180000000,
+      "serial_end": 199999999,
+      "year_start": 2016,
+      "year_end": null,
+      "confidence_level": "HIGH"
+    }
+  ]
+}

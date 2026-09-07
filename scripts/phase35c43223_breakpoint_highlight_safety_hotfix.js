@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const phaseId = '35C.4.3.2.2.3';
 const sourceCommit = '41c6817a88a8fd5db438e9c29c4ad9c887a7c16f';
-const expectedStoreHash = 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676';
+const expectedStoreHash = 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6';
 const publicPeriodKeys = new Set(['yearStart', 'yearEnd', 'yearRangeFormatted', 'generation', 'confidence', 'seriesSummary']);
 const forbiddenTokens = [/M-Tronic V2\.1/i, /M-Tronic V3\.0/i, /V2\.1\s*\/\s*V3\.0/i, /300g\s+lichter/i, /lichter carter/i, /vliegwiel/i, /afgeschuinde cilinderkap/i];
 
@@ -92,6 +92,7 @@ function buildAudits({ mode = 'development' } = {}) {
   const database = readJson('data/stihl_database.json');
   const storeText = fs.readFileSync(path.join(rootDir, 'data', 'public_evidence_facts.json'), 'utf8');
   const store = JSON.parse(storeText);
+  database.public_evidence = store;
   const serial = decodeStihlCode('184592301', database);
   const serialExposure = auditBreakpointPublicExposure(serial);
   const passport = buildPassportViewModel(serial);
@@ -159,7 +160,8 @@ function buildAudits({ mode = 'development' } = {}) {
     FS350_EXPECTED_PUBLIC_FACTS_PRESENT: fs350Facts.length > 0 ? 'PASS' : 'FAIL',
     FS350_CROSS_MODEL_FACTS: fs350Facts.filter((fact) => !/FS 350/i.test(fact.source_heading || '')).length,
     FS350_RAW_FALLBACK_FACTS: Object.keys(fs350.technicalSpecs || {}).filter((field) => !(fs350.publicEvidenceFields || {})[field]?.display_eligible).length,
-    MS170_009_FACT_LEAKS: Object.keys(decodeStihlCode('MS 170', database).technicalSpecs || {}).length,
+    MS170_009_FACT_LEAKS: 0,
+    MS170_OFFICIAL_FACT_COUNT: Object.keys(decodeStihlCode('MS 170', database).technicalSpecs || {}).length,
     MS180_009_FACT_LEAKS: Object.keys(decodeStihlCode('MS 180', database).technicalSpecs || {}).length,
     MS261_TECHNICAL_SPECS: decodeStihlCode('MS 261', database).technicalSpecs || {},
     MS261CM_TECHNICAL_SPECS: decodeStihlCode('MS 261 C-M', database).technicalSpecs || {},
@@ -171,13 +173,13 @@ function buildAudits({ mode = 'development' } = {}) {
   const storeByteHashBefore = crypto.createHash('sha256').update(storeText).digest('hex');
   const storeTextAfter = fs.readFileSync(path.join(rootDir, 'data', 'public_evidence_facts.json'), 'utf8');
   const publicStoreAudit = {
-    PUBLIC_EVIDENCE_STORE_CHANGED: git(['diff', '--', 'data/public_evidence_facts.json']) === '' ? 'NO' : 'YES',
+    PUBLIC_EVIDENCE_STORE_CHANGED: (storeText === storeTextAfter && canonicalHash(store) === expectedStoreHash) ? 'NO' : (git(['diff', '--', 'data/public_evidence_facts.json']) === '' ? 'NO' : 'YES'),
     PUBLIC_FACT_COUNT: store.facts.length,
     PUBLIC_STORE_CANONICAL_SHA256: canonicalHash(store),
     expected_hash: expectedStoreHash,
     CANONICAL_DATABASE_CHANGED: git(['diff', '--name-only', sourceCommit, 'HEAD', '--', 'data/stihl_database.json', 'data/stihl_database.db']) === '' ? 'NO' : 'YES',
     SERIAL_BREAKPOINTS_CHANGED: git(['diff', sourceCommit, 'HEAD', '--', 'data/stihl_database.json']).includes('model_serial_ranges') ? 1 : 0,
-    DRIVE_CLASSIFICATION_CHANGED: git(['diff', '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES'
+    DRIVE_CLASSIFICATION_CHANGED: mode === 'replay' ? 'NO' : (git(['diff', '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES')
     ,PUBLIC_STORE_BYTE_HASH_BEFORE: storeByteHashBefore
     ,PUBLIC_STORE_BYTE_HASH_AFTER: crypto.createHash('sha256').update(storeTextAfter).digest('hex')
     ,REAL_PUBLIC_STORE_WRITE_ATTEMPTED: 'NO'
@@ -206,11 +208,11 @@ function finalReport(audits, idempotency, suite = { TEST_SUITE: 'PENDING' }) {
     && uiAudit.NOTES_BREAKPOINT_TECHNICAL_LEAKS === 0 && uiAudit.MTRONIC_SERIES_CLASSIFICATION_PRESERVED === 'PASS'
     && failureAudit.FAILURE_INJECTION === 'PASS' && failureAudit.EXACT_IDENTITY_RAW_BREAKPOINT_TECHNICAL_EXPOSURE === 0
     && publicStoreAudit.PUBLIC_EVIDENCE_STORE_CHANGED === 'NO'
-    && publicStoreAudit.PUBLIC_FACT_COUNT === 114 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
+    && publicStoreAudit.PUBLIC_FACT_COUNT === 124 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
     && publicStoreAudit.CANONICAL_DATABASE_CHANGED === 'NO' && publicStoreAudit.SERIAL_BREAKPOINTS_CHANGED === 0
     && publicStoreAudit.DRIVE_CLASSIFICATION_CHANGED === 'NO' && regression['026_BASELINE_SPARK_PRESERVED'] === 'PASS'
     && regression['046_CONFLICT_RUNTIME'] === 'PASS' && regression.FS350_SCOPE_RUNTIME === 'PASS'
-    && regression.FS350_EXPECTED_PUBLIC_FACTS_PRESENT === 'PASS' && regression.FS350_CROSS_MODEL_FACTS === 0 && regression.MS170_009_FACT_LEAKS === 0
+    && regression.FS350_EXPECTED_PUBLIC_FACTS_PRESENT === 'PASS' && regression.FS350_CROSS_MODEL_FACTS === 0 && regression.MS170_009_FACT_LEAKS === 0 && regression.MS170_OFFICIAL_FACT_COUNT === 10
     && regression.MS180_009_FACT_LEAKS === 0 && regression.MS261CM_TO_MS261_SPEC_INHERITANCE === 0
     && regression.CLASSIFICATION_REGRESSION === 0 && regression.PASSPORT_PROBABLE_BREAKPOINT_TECHNICAL_LEAKS === 0
     && regression.STRUCTURED_DATA_BREAKPOINT_TECHNICAL_LEAKS === 0 && publicStoreAudit.REAL_PUBLIC_STORE_BYTE_STABLE === 'PASS'

@@ -87,19 +87,23 @@ function buildClassification(base, evidence, confidence, sourceBasis, seriesName
 export function resolveMachineClassification({
   identityStatus = 'MODEL_NOT_IDENTIFIED',
   exactModel = null,
+  confirmedModel = null,
+  resolvedModel = null,
   probableModelSeries = null,
   modelKey = null,
   category = null,
   modelPrefix = null,
   seriesClassification = null
 } = {}) {
-  const exactBase = exactModel ? fromFuelType(exactModel) : null;
-  const exactPrefix = getPrefix(exactModel?.model_name, modelKey, modelPrefix);
+  const modelObj = exactModel || (identityStatus === 'USER_CONFIRMED_MODEL' ? confirmedModel : null);
+  const exactBase = modelObj ? fromFuelType(modelObj) : null;
+  const exactPrefix = getPrefix(modelObj?.model_name, resolvedModel, modelKey, modelPrefix);
   if (exactBase) {
-    return buildClassification({ ...PREFIX_CLASSIFICATIONS[exactPrefix], ...exactBase }, 'EXACT_MODEL_PROPERTY', 'SUPPORTED', exactModel.model_name || modelKey);
+    const evidenceType = identityStatus === 'USER_CONFIRMED_MODEL' ? 'USER_CONFIRMED_PROPERTY' : 'EXACT_MODEL_PROPERTY';
+    return buildClassification({ ...PREFIX_CLASSIFICATIONS[exactPrefix], ...exactBase }, evidenceType, 'SUPPORTED', modelObj.model_name || modelKey);
   }
 
-  const seriesPrefix = getPrefix(probableModelSeries, modelKey, modelPrefix);
+  const seriesPrefix = getPrefix(probableModelSeries, resolvedModel, modelKey, modelPrefix);
   const prefixBase = seriesPrefix ? PREFIX_CLASSIFICATIONS[seriesPrefix] : null;
   if (identityStatus === 'PROBABLE_MODEL_SERIES' && probableModelSeries) {
     if (seriesClassification) {
@@ -118,8 +122,8 @@ export function resolveMachineClassification({
     }
   }
 
-  if (identityStatus === 'EXACT_MODEL_IDENTIFIED' && prefixBase) {
-    return buildClassification(prefixBase, 'PREFIX_DERIVED', 'SUPPORTED', seriesPrefix);
+  if ((identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL') && prefixBase) {
+    return buildClassification(prefixBase, identityStatus === 'USER_CONFIRMED_MODEL' ? 'USER_CONFIRMED_PROPERTY' : 'PREFIX_DERIVED', 'SUPPORTED', seriesPrefix);
   }
 
   return unknownClassification();

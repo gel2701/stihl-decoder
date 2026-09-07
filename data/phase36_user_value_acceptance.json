@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-09-06T19:56:15.159Z",
+  "phase": "36C",
+  "acceptance_serial": "824061159",
+  "case_a_serial_only": {
+    "user_value_score": 6,
+    "user_value_score_max": 6,
+    "min_required_score": 4,
+    "gate_status": "PASS",
+    "exactModel": null,
+    "factory": {
+      "code": "8",
+      "country": null,
+      "location": null,
+      "details": null,
+      "confidence": "UNVERIFIED",
+      "sourceRef": null
+    },
+    "production": {
+      "status": "UNKNOWN",
+      "year": null
+    },
+    "model_assist_available": true,
+    "elements": {
+      "format_status": "9-digit serial format validated",
+      "factory_context": "Fabriekscode 8 — locatie nog niet bevestigd (onbekende herkomst)",
+      "production_status": "UNKNOWN (zero fake 2010/2016 years injected)",
+      "model_resolution_status": "exactModel = null (honest fallback, unconfirmed)",
+      "model_assist_cta": "Model Assist CTA present and active",
+      "verification_theft_action": "Direct StopHeling search URL and legal advice provided"
+    }
+  },
+  "case_b_model_assisted": {
+    "user_value_score": 8,
+    "user_value_score_max": 8,
+    "min_required_score": 7,
+    "gate_status": "PASS",
+    "user_confirmed_model": "MS 170",
+    "resolved_model": "MS 170",
+    "confirmed_model": "MS 170",
+    "exactModel": null,
+    "modelIdentityStatus": "USER_CONFIRMED_MODEL",
+    "modelIdentitySource": "USER_INPUT",
+    "category": "Kettingzaag",
+    "drive": "PETROL_2STROKE",
+    "production_status": "UNKNOWN",
+    "technical_facts_count": 10,
+    "elements": {
+      "model": "MS 170 (exactModel remains null; resolvedModel / confirmedModel set)",
+      "category": "Kettingzaag",
+      "drive": "PETROL_2STROKE / Benzine 2-takt",
+      "family_type": "1130 series / STIHL kettingzaag familie",
+      "technical_facts": "10 verified official facts attached via public evidence gate",
+      "source_transparency": "Manual 0458-207-8321-B, printed p. 43, PDF p. 45 cited",
+      "production_status": "Honest independent production status: UNKNOWN without verified serial chronology",
+      "next_verification_action": "Clear guidance on serial chronology independence and StopHeling search"
+    }
+  },
+  "case_c_user_provided_year": {
+    "user_provided_year": 2021,
+    "user_provided_year_status": "USER_PROVIDED_YEAR",
+    "production_status": "UNKNOWN",
+    "exactModel": null,
+    "modelIdentityStatus": "USER_CONFIRMED_MODEL",
+    "gate_status": "PASS",
+    "elements": {
+      "year_display": "Opgegeven bouwjaar: 2021 (Door gebruiker opgegeven — niet onafhankelijk uit serienummer bevestigd)",
+      "production_isolation": "production.status remains UNKNOWN, isolated from user input",
+      "exact_model_isolation": "exactModel remains strictly null"
+    }
+  }
+}

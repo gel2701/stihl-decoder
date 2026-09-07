@@ -542,6 +542,8 @@ export function buildPublicEvidenceMeta(fact) {
     sourceClass: fact.source_class || null,
     sourceDocumentId: fact.source_document_id || null,
     sourceDocumentTitle: sanitizePublicSourceLabel(fact.source_document_title || ''),
+    sourceEdition: fact.source_edition || null,
+    contentId: fact.content_id || null,
     publicationId: fact.publication_id || null,
     pdfPage: fact.pdf_page || null,
     printedPage: fact.printed_page || null,

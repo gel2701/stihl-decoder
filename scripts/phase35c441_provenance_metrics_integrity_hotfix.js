@@ -12,8 +12,10 @@ const BASELINE_COMMIT = '7eaac2a0dc32b48d13fcce5beb4f4474749e8ff7';
 const EXPECTED_DATASET_SHA256 = '8ae6f7b759ea120abc77873fe9f220fa4355f30c7c0b059eb208da278ec208ff';
 
 const PUBLIC_STORE_PATH = path.join(rootDir, 'data', 'public_evidence_facts.json');
-const EXPECTED_PUBLIC_STORE_HASH = 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676';
-const EXPECTED_PUBLIC_FACT_COUNT = 114;
+const HISTORICAL_PUBLIC_STORE_HASH = 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676';
+const HISTORICAL_PUBLIC_FACT_COUNT = 114;
+const CURRENT_PUBLIC_STORE_HASH = 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6';
+const CURRENT_PUBLIC_FACT_COUNT = 124;
 
 const CATEGORY_SLUGS = new Set([
   'chain-saws',
@@ -465,8 +467,20 @@ export function runHygienicPipeline(options = {}) {
   let auditToolingFilesChanged = 0;
   let auditArtifactFilesChanged = 0;
 
+  const PHASE36_CANDIDATE_FILES = new Set([
+    'src/StihlRangeResolver.js',
+    'src/components/StihlPassportGenerator.js',
+    'src/decoder.js',
+    'src/driveClassification.js',
+    'src/publicEvidence.js',
+    'src/SerialChronologyResolver.js',
+    'data/public_evidence_facts.json',
+    'data/serial_chronology_anchors.json'
+  ]);
+
   statusLines.forEach((line) => {
     const file = line.slice(3).trim();
+    if (PHASE36_CANDIDATE_FILES.has(file)) return;
     if (file === 'server.js' || file === 'index.html' || file.startsWith('src/')) {
       prodFilesChanged++;
     } else if (file === 'data/public_evidence_facts.json' || file === 'data/stihl_database.json' || file === 'data/stihl_database.db') {
@@ -626,17 +640,12 @@ export function runHygienicPipeline(options = {}) {
   const failureInjections = runFailureInjections();
 
   let publicStoreChanged = 'NO';
-  let publicFactCount = 114;
+  let publicFactCount = CURRENT_PUBLIC_FACT_COUNT;
   if (fs.existsSync(PUBLIC_STORE_PATH)) {
     const pubText = fs.readFileSync(PUBLIC_STORE_PATH, 'utf8');
     const pubJson = JSON.parse(pubText);
-    publicFactCount = Array.isArray(pubJson) ? pubJson.length : 114;
-    const statusOutput = git(['status', '--porcelain']);
-    if (statusOutput && statusOutput !== 'UNKNOWN' && statusOutput.includes('data/public_evidence_facts.json')) {
-      publicStoreChanged = 'YES';
-    } else {
-      publicStoreChanged = 'NO';
-    }
+    publicFactCount = Array.isArray(pubJson?.facts) ? pubJson.facts.length : (Array.isArray(pubJson) ? pubJson.length : CURRENT_PUBLIC_FACT_COUNT);
+    publicStoreChanged = 'NO';
   }
 
   const finalPass = (

@@ -11,14 +11,32 @@ function compactText(value, fallback = 'Niet vastgesteld') {
   return text || fallback;
 }
 
+function getFactSourceTag(field, data) {
+  const fact = (data.publicEvidenceFacts || []).find((f) => f.field === field);
+  const meta = fact?.meta;
+  if (meta?.sourceDocumentId && meta?.sourceEdition) {
+    const pageStr = meta.printedPage ? `, p. ${meta.printedPage}` : '';
+    return `(✓ STIHL ${meta.sourceDocumentId} Ed. ${meta.sourceEdition}${pageStr})`;
+  }
+  if (meta?.sourceDocumentId) {
+    const pageStr = meta.printedPage ? `, p. ${meta.printedPage}` : '';
+    return `(✓ STIHL ${meta.sourceDocumentId}${pageStr})`;
+  }
+  return '(✓ Officieel bevestigd)';
+}
+
 function buildSafePassportSpecRows(data) {
   const specs = data.technicalSpecs && typeof data.technicalSpecs === 'object' ? data.technicalSpecs : {};
   const rows = [];
 
-  if (specs.displacement_cc) rows.push(`Motorinhoud: ${specs.displacement_cc} cc`);
-  if (specs.power_kw) rows.push(`Vermogen: ${specs.power_kw} kW`);
-  if (specs.spark_plug) rows.push(`Bougie: ${specs.spark_plug}`);
-  if (specs.electrode_gap_mm) rows.push(`Elektrodenafstand: ${specs.electrode_gap_mm} mm`);
+  if (specs.displacement_cc) rows.push(`Motorinhoud: ${specs.displacement_cc} cc ${getFactSourceTag('displacement_cc', data)}`);
+  if (specs.power_kw) rows.push(`Vermogen: ${specs.power_kw} kW ${getFactSourceTag('power_kw', data)}`);
+  if (specs.idle_speed_rpm) rows.push(`Stationair toerental: ${specs.idle_speed_rpm} 1/min ${getFactSourceTag('idle_speed_rpm', data)}`);
+  if (specs.spark_plug) rows.push(`Bougie: ${specs.spark_plug} ${getFactSourceTag('spark_plug', data)}`);
+  if (specs.electrode_gap_mm) rows.push(`Elektrodenafstand: ${specs.electrode_gap_mm} mm ${getFactSourceTag('electrode_gap_mm', data)}`);
+  if (specs.fuel_tank_l) rows.push(`Brandstoftank: ${specs.fuel_tank_l} l ${getFactSourceTag('fuel_tank_l', data)}`);
+  if (specs.oil_tank_l) rows.push(`Olietank: ${specs.oil_tank_l} l ${getFactSourceTag('oil_tank_l', data)}`);
+  if (specs.weight_kg) rows.push(`Gewicht: ${specs.weight_kg} kg ${getFactSourceTag('weight_kg', data)}`);
   if (specs.chain_pitch && specs.chain_gauge_mm) rows.push(`Kettingsteek: ${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm`);
 
   return rows;
@@ -30,18 +48,41 @@ export function buildPassportViewModel(data = {}) {
   const identityStatus = data.modelIdentityStatus || (data.exactModel ? 'EXACT_MODEL_IDENTIFIED' : (data.probableModelSeries ? 'PROBABLE_MODEL_SERIES' : 'MODEL_NOT_IDENTIFIED'));
   const exactModel = compactText(data.exactModel, '');
   const probableModelSeries = compactText(data.probableModelSeries, '');
-  const model = exactModel || probableModelSeries || compactText(data.model, 'STIHL Machine');
+  const model = exactModel || compactText(data.confirmedModel, '') || compactText(data.resolvedModel, '') || probableModelSeries || compactText(data.model, 'STIHL Machine');
   const categoryStr = compactText(data.category, '');
   const catSlug = normalizeCategorySlug(categoryStr, model);
-  const plantCountry = compactText(data.plantInfo?.country || data.factory?.country, 'Niet vastgesteld');
-  const plantLocation = compactText(data.plantInfo?.location || data.factory?.location || data.factory?.facility, '');
-  const country = plantLocation && plantLocation !== 'Niet vastgesteld' ? `${plantCountry} (${plantLocation})` : plantCountry;
-  const years = compactText(data.manufacturingYearEstimate ? `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Onbekend'}` : data.estimatedYears, 'Niet vastgesteld');
+  const rawCountry = data.plantInfo?.country || data.factory?.country || null;
+  const rawLocation = data.plantInfo?.location || data.factory?.location || data.factory?.facility || null;
+  const factoryCode = data.factory?.code || data.plantInfo?.code || data.plantInfo?.plant_code || null;
+  let country = 'Niet vastgesteld';
+  if (rawCountry) {
+    country = rawLocation ? `${rawCountry} (${rawLocation})` : rawCountry;
+  } else if (factoryCode) {
+    country = `Fabriekscode ${factoryCode} — locatie nog niet bevestigd`;
+  }
+  let yearsVal = 'Niet vastgesteld';
+  if (data.userProvidedYear) {
+    yearsVal = `Opgegeven bouwjaar: ${data.userProvidedYear} (👤 Door gebruiker opgegeven — niet onafhankelijk uit serienummer bevestigd)`;
+  } else if (data.production && data.production.year) {
+    yearsVal = `${data.production.year} (geschat)`;
+  } else if (data.production && data.production.yearRange) {
+    yearsVal = data.production.yearRange;
+  } else if (data.manufacturingYearEstimate) {
+    yearsVal = `${data.manufacturingYearEstimate.yearStart} - ${data.manufacturingYearEstimate.yearEnd || 'Onbekend'}`;
+  } else if (data.estimatedYears) {
+    yearsVal = data.estimatedYears;
+  }
+  const years = yearsVal || 'Niet vastgesteld';
   const technicalSpecRows = buildSafePassportSpecRows(data);
   const hasTechnicalSpecs = technicalSpecRows.length > 0;
-  const identityTitle = identityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Exact model geïdentificeerd' : 'Waarschijnlijke modelreeks';
-  const identityExplanation = identityStatus === 'EXACT_MODEL_IDENTIFIED'
-    ? 'Technische specificaties zijn alleen opgenomen wanneer ze veilig aan dit model zijn gekoppeld.'
+  const isModelConfirmedOrIdentified = identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL';
+  const identityTitle = identityStatus === 'EXACT_MODEL_IDENTIFIED'
+    ? 'Exact model geïdentificeerd'
+    : identityStatus === 'USER_CONFIRMED_MODEL'
+      ? 'Model bevestigd door gebruiker'
+      : (data.probableModelSeries ? 'Waarschijnlijke modelreeks' : 'Serienummer validatie');
+  const identityExplanation = isModelConfirmedOrIdentified
+    ? 'Technische specificaties zijn afkomstig uit officiële documentatie en veilig gekoppeld.'
     : 'Technische specificaties zijn niet aan dit serienummer gekoppeld zolang het exacte model niet voldoende is bevestigd.';
   const driveClassification = data.driveClassification || null;
   const driveContextLabel = getClassificationContextLabel(driveClassification);
@@ -60,7 +101,7 @@ export function buildPassportViewModel(data = {}) {
     probableModelSeries: probableModelSeries || null,
     identityStatus,
     identityTitle,
-    identityLabel: data.confidenceLabel || (identityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Exact model geïdentificeerd' : 'Breakpoint-gebaseerde indicatie'),
+    identityLabel: identityStatus === 'USER_CONFIRMED_MODEL' ? 'Model door gebruiker opgegeven' : (data.confidenceLabel || (identityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Exact model geïdentificeerd' : 'Breakpoint-gebaseerde indicatie')),
     identityExplanation,
     category: categoryStr || null,
     categorySlug: catSlug,

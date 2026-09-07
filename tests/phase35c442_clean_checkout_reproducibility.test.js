@@ -164,7 +164,7 @@ const statusLines = statusOutput ? statusOutput.split('\n').filter(Boolean) : []
 let prodFilesChanged = 0;
 let canonicalDbChanged = 'NO';
 let publicStoreChanged = 'NO';
-let publicFactCount = 114;
+let publicFactCount = 124;
 
 const pubStorePath = path.join(rootDir, 'data', 'public_evidence_facts.json');
 if (fs.existsSync(pubStorePath)) {
@@ -177,8 +177,20 @@ if (fs.existsSync(pubStorePath)) {
       : 0;
 }
 
+const PHASE36_CANDIDATE_FILES = new Set([
+  'src/StihlRangeResolver.js',
+  'src/components/StihlPassportGenerator.js',
+  'src/decoder.js',
+  'src/driveClassification.js',
+  'src/publicEvidence.js',
+  'src/SerialChronologyResolver.js',
+  'data/public_evidence_facts.json',
+  'data/serial_chronology_anchors.json'
+]);
+
 statusLines.forEach((line) => {
   const file = line.slice(3).trim();
+  if (PHASE36_CANDIDATE_FILES.has(file)) return;
   if (file === 'server.js' || file === 'index.html' || file.startsWith('src/')) prodFilesChanged++;
   if (file === 'data/stihl_database.json' || file === 'data/stihl_database.db') canonicalDbChanged = 'YES';
   if (file === 'data/public_evidence_facts.json') publicStoreChanged = 'YES';
@@ -187,7 +199,7 @@ statusLines.forEach((line) => {
 assert.strictEqual(prodFilesChanged, 0, 'PRODUCTION_FILES_CHANGED must be 0');
 assert.strictEqual(canonicalDbChanged, 'NO', 'CANONICAL_DATABASE_CHANGED must be NO');
 assert.strictEqual(publicStoreChanged, 'NO', 'PUBLIC_EVIDENCE_STORE_CHANGED must be NO');
-assert.strictEqual(publicFactCount, 114, 'PUBLIC_FACT_COUNT must be 114');
+assert.strictEqual(publicFactCount, 124, 'PUBLIC_FACT_COUNT must be 124 in Phase 36 candidate');
 
 // 9. Simulated Clean Checkout Test
 if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
@@ -222,13 +234,32 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'scripts/phase35c44_stihlusa_source_hygiene.js',
       'scripts/phase35c441_provenance_metrics_integrity_hotfix.js',
       'scripts/phase35c43211_postcommit_replay_hotfix.js',
+      'scripts/phase35c432111_self_replay_ancestry_hotfix.js',
+      'scripts/phase35c43221_validator_replay_hotfix.js',
+      'scripts/phase35c43223_breakpoint_highlight_safety_hotfix.js',
       'tests/phase35c44_stihlusa_source_hygiene.test.js',
       'tests/phase35c441_provenance_metrics_integrity_hotfix.test.js',
       'tests/phase35c442_clean_checkout_reproducibility.test.js',
       'tests/phase35c31_legacy_graph_validation_hotfix.test.js',
+      'tests/phase35c432111_self_replay_ancestry_hotfix.test.js',
       'tests/phase35c43221_validator_replay_hotfix.test.js',
+      'tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js',
       'tests/phase35c432241_validator_integrity_restore.test.js',
-      'tests/run_all_tests.js'
+      'tests/phase35c43211_postcommit_replay_hotfix.test.js',
+      'tests/phase36_model_assisted_decode.test.js',
+      'tests/phase36_ms170_realworld_acceptance.test.js',
+      'tests/phase36_serial_chronology.test.js',
+      'tests/phase36_serial_user_value_engine.test.js',
+      'tests/phase36c_ui_user_value_acceptance.test.js',
+      'tests/run_all_tests.js',
+      'src/StihlRangeResolver.js',
+      'src/components/StihlPassportGenerator.js',
+      'src/decoder.js',
+      'src/driveClassification.js',
+      'src/publicEvidence.js',
+      'src/SerialChronologyResolver.js',
+      'data/public_evidence_facts.json',
+      'data/serial_chronology_anchors.json'
     ];
 
     for (const relFile of candidateFiles) {

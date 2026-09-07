@@ -7,6 +7,7 @@ import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWh
 import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
+import { SerialChronologyResolver } from './SerialChronologyResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
 import { resolveMachineClassification } from './driveClassification.js';
 import {
@@ -94,7 +95,7 @@ function buildPartFamilyIdentity(familyCode, database = {}) {
   };
 }
 
-export function decodeStihlCode(inputStr, database = {}) {
+export function decodeStihlCode(inputStr, database = {}, options = {}) {
   if (!inputStr || typeof inputStr !== 'string') {
     return { success: false, error: 'Ongeldige invoer.' };
   }
@@ -129,8 +130,8 @@ export function decodeStihlCode(inputStr, database = {}) {
   }
 
   if (/^\d+$/.test(cleaned)) {
-    if (cleaned.length === 9) {
-      return analyzeSerialNumber(cleaned, database, counterfeitEvaluation);
+    if (cleaned.length === 9 || ((cleaned.length === 8 || cleaned.length === 10) && (options.confirmedModel || options.userConfirmedModel || options.allowVariableLength))) {
+      return analyzeSerialNumber(cleaned, database, counterfeitEvaluation, options);
     }
     if (cleaned.length === 11) {
       return analyzePartNumber(cleaned, database);
@@ -144,6 +145,17 @@ export function decodeStihlCode(inputStr, database = {}) {
       success: false,
       error: `Invoer bevat ${cleaned.length} cijfers. Veel STIHL machines gebruiken een 9-cijferige reeks, maar controleer altijd het typeplaatje en de context van de machine.`
     };
+  }
+
+  const isAlphaNumCandidate = /^[A-Z0-9]{8,10}$/i.test(cleaned) && /[A-Z]/i.test(cleaned) && /\d/.test(cleaned);
+  if (isAlphaNumCandidate) {
+    const publicEvidenceMatch = findPublicEvidenceModel(cleaned, database);
+    const rel = resolveModelRelationship(inputStr);
+    const matchedModel = findModelInDatabase(inputStr, database.models || []);
+    if (rel || publicEvidenceMatch || matchedModel) {
+      return analyzeModelQuery(inputStr.trim(), database);
+    }
+    return analyzeSerialNumber(cleaned.toUpperCase(), database, counterfeitEvaluation, { ...options, isAlphanumeric: true });
   }
 
   return analyzeModelQuery(inputStr.trim(), database);
@@ -262,38 +274,63 @@ export function analyzeModelQuery(modelStr, database) {
   };
 }
 
-export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) {
+export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, options = {}) {
   const factoryDigit = serialStr.charAt(0);
-  const plantRecord = resolvePlantRecord(database, factoryDigit);
-  const factoryData = plantRecord ? {
-    code: factoryDigit,
-    country: plantRecord.country || plantRecord.country_name,
-    location: plantRecord.location || plantRecord.facility || plantRecord.plant_location,
-    details: plantRecord.details || plantRecord.type || plantRecord.notes
-  } : {
-    code: factoryDigit,
-    country: factoryDigit === '1' ? 'Duitsland' : (factoryDigit === '2' || factoryDigit === '5' ? 'Verenigde Staten' : (factoryDigit === '3' ? 'Brazilië' : (factoryDigit === '4' ? 'Zwitserland' : (factoryDigit === '8' ? 'China' : 'Speciaal')))),
-    location: factoryDigit === '1' ? 'Waiblingen' : (factoryDigit === '2' || factoryDigit === '5' ? 'Virginia Beach' : (factoryDigit === '3' ? 'São Leopoldo' : (factoryDigit === '4' ? 'Wil' : (factoryDigit === '8' ? 'Qingdao' : 'Internationale Assemblage')))),
-    details: 'STIHL Fabriekslocatie'
-  };
+  let factoryData;
+  if (factoryDigit === '8') {
+    // Factory code 8 fail-closed: without verified primary document, country, location, and details remain null
+    factoryData = {
+      code: '8',
+      country: null,
+      location: null,
+      details: null,
+      confidence: 'UNVERIFIED',
+      sourceStatus: 'UNVERIFIED',
+      sourceRef: null
+    };
+  } else {
+    const plantRecord = resolvePlantRecord(database, factoryDigit);
+    const isLocationVerified = plantRecord && (plantRecord.location || plantRecord.plant_location || plantRecord.facility);
+    const factoryLocation = isLocationVerified ? (plantRecord.location || plantRecord.plant_location || plantRecord.facility) : null;
+    factoryData = plantRecord ? {
+      code: factoryDigit,
+      country: plantRecord.country || plantRecord.country_name || null,
+      location: factoryLocation,
+      details: plantRecord.details || plantRecord.notes || 'STIHL Fabriekslocatie',
+      confidence: isLocationVerified ? (plantRecord.confidence || 'MEDIUM') : 'UNVERIFIED',
+      sourceStatus: isLocationVerified ? (plantRecord.source_status || 'ESTABLISHED') : 'UNVERIFIED',
+      sourceRef: isLocationVerified ? (plantRecord.source_ref || null) : null
+    } : {
+      code: factoryDigit,
+      country: null,
+      location: null,
+      details: null,
+      confidence: 'UNKNOWN',
+      sourceStatus: 'UNVERIFIED',
+      sourceRef: null
+    };
+  }
 
+  const isAlphanumeric = Boolean(options.isAlphanumeric || !/^\d+$/.test(serialStr));
   const numericSerial = parseInt(serialStr, 10);
-  const rangeMatch = StihlRangeResolver.resolve(numericSerial, factoryDigit, database);
+  const rangeMatch = (!isAlphanumeric && /^\d{8,10}$/.test(serialStr)) ? StihlRangeResolver.resolve(numericSerial, factoryDigit, database) : null;
 
   let modelData = null;
-  if (rangeMatch && rangeMatch.model_id && database.models) {
-    modelData = database.models.find(m => m.id === rangeMatch.model_id);
+  const confirmedModelInput = options.confirmedModel || options.userConfirmedModel || null;
+  const confirmedModel = confirmedModelInput ? findModelInDatabase(confirmedModelInput, database.models || []) : null;
+  if (confirmedModelInput && !confirmedModel) {
+    return { success: false, status: 'MODEL_CONFIRMATION_REQUIRED', error: 'Het opgegeven model is niet exact herkend. Kies een model uit de lijst.' };
   }
-  if (!modelData && database.models) {
-    const prefix = serialStr.substring(0, 4);
-    modelData = database.models.find(m => m.series_code === prefix);
+  if (confirmedModel) {
+    modelData = confirmedModel;
   }
   const probableModelSeries = rangeMatch ? (rangeMatch.model_name || rangeMatch.generation || null) : null;
   const identityStatus = modelData
-    ? 'EXACT_MODEL_IDENTIFIED'
+    ? (confirmedModel ? 'USER_CONFIRMED_MODEL' : 'EXACT_MODEL_IDENTIFIED')
     : probableModelSeries
       ? 'PROBABLE_MODEL_SERIES'
       : 'MODEL_NOT_IDENTIFIED';
+  const isModelConfirmedOrIdentified = identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL';
   const modelName = modelData
     ? modelData.model_name
     : (probableModelSeries || 'Nog niet definitief bevestigd');
@@ -302,7 +339,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const overlaySpecs = overlayModelKey
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, modelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
-  const estimatedYears = rangeMatch ? rangeMatch.yearRangeFormatted : (factoryDigit === '1' ? 'vanaf circa 2016' : 'vanaf circa 2010');
+  const estimatedYears = rangeMatch?.yearRangeFormatted || null;
   const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (seriereferentie)` : 'Niet vastgesteld');
 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
@@ -310,18 +347,20 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const verification = modelData ? getModelVerificationSummary(modelData) : null;
   const driveClassification = resolveMachineClassification({
     identityStatus,
-    exactModel: modelData,
+    exactModel: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? modelData : null,
+    confirmedModel: confirmedModel,
+    resolvedModel: modelData ? modelData.model_name : null,
     probableModelSeries,
     modelKey: modelName,
     category
   });
   const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
-  const sourceStatus = identityStatus === 'EXACT_MODEL_IDENTIFIED' && publicSourceSummary?.display_fact_count
+  const sourceStatus = isModelConfirmedOrIdentified && publicSourceSummary?.display_fact_count
     ? publicSourceSummary.primaryStatus
     : verification
       ? verification.dataStatus
       : 'PRIMARY_SOURCE_PENDING';
-  const sourceStatusLabel = identityStatus === 'EXACT_MODEL_IDENTIFIED' && publicSourceSummary?.display_fact_count
+  const sourceStatusLabel = isModelConfirmedOrIdentified && publicSourceSummary?.display_fact_count
     ? `Bronstatus: ${publicSourceSummary.summaryLabel}`
     : verification
       ? `Bronstatus: ${verification.badgeLabel}`
@@ -332,13 +371,39 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
   const productionPeriod = {
     yearStart: rangeMatch?.yearStart ?? null,
     yearEnd: rangeMatch?.yearEnd ?? null,
-    yearRangeFormatted: rangeMatch?.yearRangeFormatted || estimatedYears,
+    yearRangeFormatted: estimatedYears,
     generation: rangeMatch?.generation || generation,
-    confidence: rangeMatch?.confidence || 'MEDIUM',
+    confidence: rangeMatch?.confidence || 'UNKNOWN',
     ...(identityStatus === 'PROBABLE_MODEL_SERIES'
       ? { seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.' }
       : {})
   };
+
+  const chronologyAnchors = options.anchors || database.serial_chronology_anchors || database.chronology_anchors || null;
+  const chronologyResult = SerialChronologyResolver.resolve(serialStr, {
+    anchors: chronologyAnchors,
+    plantCode: factoryDigit
+  });
+
+  const production = (chronologyResult.status === 'ESTIMATED' || chronologyResult.status === 'EXACT')
+    ? {
+        status: chronologyResult.status,
+        year: chronologyResult.estimatedYear,
+        yearRange: chronologyResult.yearRange,
+        confidence: chronologyResult.confidence,
+        method: chronologyResult.method,
+        explanation: chronologyResult.explanation,
+        provenance: chronologyResult.provenance
+      }
+    : {
+        status: 'UNKNOWN',
+        year: null,
+        yearRange: null,
+        confidence: 'NONE',
+        method: 'NONE',
+        explanation: 'Geen productiejaar beschikbaar zonder betrouwbare bronverankering.',
+        provenance: null
+      };
 
   return {
     success: true,
@@ -348,40 +413,73 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation) 
     cleaned: serialStr,
     factory: factoryData,
     model: modelName,
-    exactModel: modelData ? modelData.model_name : null,
-    probableModelSeries,
+    resolvedModel: modelData ? modelData.model_name : (probableModelSeries || null),
+    confirmedModel: confirmedModel ? confirmedModel.model_name : null,
+    exactModel: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? (modelData ? modelData.model_name : null) : null,
     modelIdentityStatus: identityStatus,
+    modelIdentitySource: confirmedModel ? 'USER_INPUT' : (rangeMatch ? 'SERIAL_RANGE' : 'SERIAL_FORMAT'),
+    serialResolution: {
+      level: confirmedModel ? 'USER_CONFIRMED_MODEL' : rangeMatch?.model_id ? 'VERIFIED_SERIAL_RANGE_MODEL' : 'FORMAT_ONLY',
+      confidence: confirmedModel ? 'USER_CONFIRMED' : (rangeMatch?.confidence || 'LOW'),
+      rangeModelId: rangeMatch?.model_id || null,
+      rangeId: rangeMatch?.range_id || null,
+      serialFormat: {
+        status: isAlphanumeric ? 'FORMAT_ONLY' : 'SERIAL_FORMAT_RECOGNIZED',
+        chronologyCompatible: isAlphanumeric ? 'NO' : (rangeMatch ? 'YES' : 'NO')
+      },
+      nextActions: (modelData && !confirmedModel)
+        ? ['Controleer het typeplaatje en STIHL voor bevestiging.']
+        : confirmedModel
+          ? ['Model bevestigd door gebruiker. Technische specificaties gekoppeld uit officiële bronnen.']
+          : ['Weet je welk model dit is? Vul het model van het typeplaatje in voor volledige specificaties.']
+    },
+    modelAssistAvailable: !confirmedModel && (!modelData || identityStatus !== 'EXACT_MODEL_IDENTIFIED'),
+    production,
+    chronology: chronologyResult,
+    productionChronology: chronologyResult,
+    userProvidedYear: options.userProvidedYear ?? null,
+    userProvidedYearStatus: options.userProvidedYear ? 'USER_PROVIDED_YEAR' : null,
+    userProvidedContext: options.userProvidedYear ? {
+      year: options.userProvidedYear,
+      status: 'USER_PROVIDED_YEAR'
+    } : null,
     identityLabel: identityStatus === 'EXACT_MODEL_IDENTIFIED'
       ? 'Geïdentificeerd model'
-      : identityStatus === 'PROBABLE_MODEL_SERIES'
-        ? 'Waarschijnlijke modelreeks'
-        : 'Modelidentificatie',
+      : identityStatus === 'USER_CONFIRMED_MODEL'
+        ? 'Model bevestigd door gebruiker'
+        : identityStatus === 'PROBABLE_MODEL_SERIES'
+          ? 'Waarschijnlijke modelreeks'
+          : 'Modelidentificatie',
     category,
     productionPeriod,
     estimatedYears,
     generation,
-    confidence: rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW',
+    confidence: confirmedModel ? 'HIGH' : (rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW'),
     confidenceLabel: identityStatus === 'EXACT_MODEL_IDENTIFIED'
       ? 'Exact model geïdentificeerd'
-      : (rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie'),
+      : identityStatus === 'USER_CONFIRMED_MODEL'
+        ? 'Model door gebruiker bevestigd'
+        : (rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie'),
     sourceStatus,
     sourceStatusLabel,
     driveClassification,
     fuel_type: driveClassification.drive_type,
     fuel_type_label: driveClassification.display_label,
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
-    publicEvidenceSummary: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? publicSourceSummary : null,
-    publicEvidenceFields: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? overlaySpecs.publicEvidenceFields : {},
-    publicEvidenceFacts: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? overlaySpecs.publicFacts : [],
-    technicalSpecs: identityStatus === 'EXACT_MODEL_IDENTIFIED'
+    publicEvidenceSummary: isModelConfirmedOrIdentified ? publicSourceSummary : null,
+    publicEvidenceFields: isModelConfirmedOrIdentified ? overlaySpecs.publicEvidenceFields : {},
+    publicEvidenceFacts: isModelConfirmedOrIdentified ? overlaySpecs.publicFacts : [],
+    technicalSpecs: isModelConfirmedOrIdentified
       ? overlaySpecs.technicalSpecs
       : {},
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
-    notes: identityStatus === 'PROBABLE_MODEL_SERIES'
+    notes: !rangeMatch
+      ? 'Productieperiode nog niet uit dit serienummer afgeleid. Vul het model van het typeplaatje in voor een completer resultaat.'
+      : identityStatus === 'PROBABLE_MODEL_SERIES'
       ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}). Exact model en uitvoering zijn nog niet definitief bevestigd.`
-      : (rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).`),
+      : (rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : (factoryData.country ? `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit}.`)),
     stopHelingUrl,
-    stopHelingTip: "Als u deze machine tweedehands koopt, bent u wettelijk verplicht te controleren of het serienummer als gestolen staat geregistreerd."
+    stopHelingTip: "Controleer bij aankoop van een gebruikte machine of het serienummer als gestolen staat geregistreerd."
   };
 }
 
