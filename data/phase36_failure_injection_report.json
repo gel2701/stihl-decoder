@@ -2,7 +2,7 @@
   "FAILURE_INJECTION_CASES_TOTAL": 15,
   "FAILURE_INJECTION_CASES_PASS": 15,
   "FAILURE_INJECTION": "PASS",
-  "generated_at": "2026-09-06T20:18:45.265Z",
+  "generated_at": "2026-09-07T01:17:38.962Z",
   "test_cases": [
     {
       "case_number": 1,
@@ -102,11 +102,11 @@
     },
     {
       "case_number": 13,
-      "name": "invalid serial format",
-      "assertion": "non-numeric and wrong-length inputs must fail serial validation",
-      "expected_behavior": "rejected_invalid_serial_format",
+      "name": "alphanumeric serial contract and genuine invalid format",
+      "assertion": "8-10 alphanumeric serial must be FORMAT_ONLY with chronologyCompatible NO; genuine invalid lengths/chars must fail",
+      "expected_behavior": "alphanumeric_format_only_and_rejected_invalid_format",
       "status": "PASS",
-      "details": "Letters in serial or wrong length are rejected as invalid serial format."
+      "details": "8-10 char alphanumeric serial (12345678A) recognized as FORMAT_ONLY with chronologyCompatible NO and not counterfeit; genuine invalid formats (too short, too long, illegal chars) are rejected."
     },
     {
       "case_number": 14,
