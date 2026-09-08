@@ -448,6 +448,25 @@
             <div id="serial-spec-summary" class="hidden rounded-xl border border-gray-800 bg-gray-900/70 p-3 text-xs text-gray-300">
               Technische specificaties worden pas getoond wanneer het exacte model voldoende is bevestigd.
             </div>
+
+            <!-- SAFE TECHNICAL PREVIEW FOR PROBABLE MODEL SERIES -->
+            <div id="safe-technical-preview-card" class="hidden rounded-xl border border-blue-500/30 bg-blue-950/20 p-4 space-y-3">
+              <div class="flex items-center justify-between border-b border-blue-500/20 pb-2">
+                <div>
+                  <h5 class="text-xs font-bold text-blue-400 flex items-center gap-1.5">
+                    <span>Veilige technische indicatie</span>
+                  </h5>
+                  <p class="text-2xs text-gray-400">Afgeleid van waarschijnlijke modelreeks — geen exact bevestigd model</p>
+                </div>
+                <span class="text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Reeksindicatie</span>
+              </div>
+              <div id="safe-preview-fields-grid" class="grid grid-cols-2 gap-2.5 text-xs">
+                <!-- Dynamically populated preview fields -->
+              </div>
+              <div class="pt-2 border-t border-blue-500/20 text-2xs text-gray-400">
+                ℹ️ Deze gegevens zijn veilig afgeleid van de waarschijnlijke modelreeks. Exacte technische uitvoering kan per variant verschillen.
+              </div>
+            </div>
           </div>
         </div>
 
@@ -649,6 +668,9 @@
       const modelCard = document.getElementById('model-card');
       const emptyState = document.getElementById('empty-state');
       const serialSpecSummary = document.getElementById('serial-spec-summary');
+      const safePreviewCard = document.getElementById('safe-technical-preview-card');
+      const safePreviewGrid = document.getElementById('safe-preview-fields-grid');
+      const specsGridContainer = document.getElementById('specs-grid-container');
       let currentSerial = '184592301';
       let currentModelName = 'Niet vastgesteld';
       let currentYearsFormatted = 'Niet vastgesteld';
@@ -692,6 +714,7 @@
         counterfeitCard.classList.add('hidden');
         modelCard.classList.add('hidden');
         emptyState.classList.add('hidden');
+        if (safePreviewCard) safePreviewCard.classList.add('hidden');
         currentDecodeResult = null;
 
         if (!val) {
@@ -872,8 +895,34 @@
             setVisibility(chainBox, Boolean(isChainsaw && chainInfo));
             if (serialChainEl && isChainsaw && chainInfo) serialChainEl.innerText = chainInfo;
             const totalVisibleRows = visibleRows + (isChainsaw && chainInfo ? 1 : 0);
-            if (serialSpecSummary) {
-              serialSpecSummary.classList.toggle('hidden', hasExactModel || totalVisibleRows > 0);
+
+            const preview = res.safeTechnicalPreview;
+            const hasPreview = Boolean(preview && preview.available && Array.isArray(preview.fields) && preview.fields.length > 0);
+
+            if (totalVisibleRows > 0) {
+              if (specsGridContainer) specsGridContainer.classList.remove('hidden');
+              if (safePreviewCard) safePreviewCard.classList.add('hidden');
+              if (serialSpecSummary) serialSpecSummary.classList.add('hidden');
+            } else if (hasPreview) {
+              if (specsGridContainer) specsGridContainer.classList.add('hidden');
+              if (serialSpecSummary) serialSpecSummary.classList.add('hidden');
+              if (safePreviewCard && safePreviewGrid) {
+                safePreviewGrid.innerHTML = preview.fields.map((f) => `
+                  <div class="bg-gray-900/90 p-2.5 rounded-lg border border-gray-800">
+                    <span class="text-gray-400 block text-2xs font-medium">${f.label}:</span>
+                    <span class="font-semibold text-gray-100 text-xs">${f.value}</span>
+                  </div>
+                `).join('');
+                safePreviewCard.classList.remove('hidden');
+              }
+              const previewDisp = preview.fields.find((f) => f.key === 'displacement_cc');
+              const previewPower = preview.fields.find((f) => f.key === 'power_kw');
+              if (previewDisp) setSpecField('res-disp-box', 'spec-disp', previewDisp.value);
+              if (previewPower) setSpecField('spec-power-box', 'spec-power', previewPower.value);
+            } else {
+              if (specsGridContainer) specsGridContainer.classList.add('hidden');
+              if (safePreviewCard) safePreviewCard.classList.add('hidden');
+              if (serialSpecSummary) serialSpecSummary.classList.remove('hidden');
             }
           }
           if (isBattery && serialSpecSummary) {
@@ -901,6 +950,7 @@
           counterfeitCard.classList.add('hidden');
           modelCard.classList.add('hidden');
           emptyState.classList.remove('hidden');
+          if (safePreviewCard) safePreviewCard.classList.add('hidden');
           inputEl.focus();
         });
       }

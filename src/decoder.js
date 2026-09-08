@@ -21,6 +21,7 @@ import {
   getSingleValuePublicFact,
   TECHNICAL_PUBLIC_FIELDS
 } from './publicEvidence.js';
+import { buildSafeTechnicalPreview } from './SafeTechnicalPreviewResolver.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
   const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
@@ -270,7 +271,8 @@ export function analyzeModelQuery(modelStr, database) {
       specInheritance: relationship.spec_inheritance || false,
       notes: relationship.notes
     } : null,
-    technicalSpecs: overlaySpecs.technicalSpecs
+    technicalSpecs: overlaySpecs.technicalSpecs,
+    safeTechnicalPreview: { available: false, mode: 'PROBABLE_SERIES_PREVIEW', fields: [] }
   };
 }
 
@@ -405,6 +407,25 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
         provenance: null
       };
 
+  const resolvedModelName = modelData ? modelData.model_name : (probableModelSeries || null);
+  const safeTechnicalPreview = buildSafeTechnicalPreview(
+    {
+      modelIdentityStatus: identityStatus,
+      resolvedModel: resolvedModelName,
+      probableModelSeries,
+      model: modelName,
+      serialResolution: {
+        rangeModelId: rangeMatch?.model_id || null,
+        level: confirmedModel ? 'USER_CONFIRMED_MODEL' : rangeMatch?.model_id ? 'VERIFIED_SERIAL_RANGE_MODEL' : 'FORMAT_ONLY'
+      },
+      seriesCode: rangeMatch?.range_id || (rangeMatch?.model_id ? database.models?.find((m) => m.id === rangeMatch.model_id)?.series_code : null),
+      category,
+      driveClassification,
+      fuel_type_label: driveClassification.display_label
+    },
+    database
+  );
+
   return {
     success: true,
     status: 'FORMAT_VALIDATED',
@@ -413,7 +434,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     cleaned: serialStr,
     factory: factoryData,
     model: modelName,
-    resolvedModel: modelData ? modelData.model_name : (probableModelSeries || null),
+    resolvedModel: resolvedModelName,
     confirmedModel: confirmedModel ? confirmedModel.model_name : null,
     exactModel: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? (modelData ? modelData.model_name : null) : null,
     modelIdentityStatus: identityStatus,
@@ -472,6 +493,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     technicalSpecs: isModelConfirmedOrIdentified
       ? overlaySpecs.technicalSpecs
       : {},
+    safeTechnicalPreview,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
     notes: !rangeMatch
       ? 'Productieperiode nog niet uit dit serienummer afgeleid. Vul het model van het typeplaatje in voor een completer resultaat.'
@@ -510,6 +532,7 @@ export function analyzePartNumber(partStr, database) {
     matchedModel: null,
     category: familyIdentity.category,
     technicalSpecs: {},
+    safeTechnicalPreview: { available: false, mode: 'PROBABLE_SERIES_PREVIEW', fields: [] },
     machineType: null,
     displacement: null,
     power: null,

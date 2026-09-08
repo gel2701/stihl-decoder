@@ -470,10 +470,12 @@ export function runHygienicPipeline(options = {}) {
   const PHASE36_CANDIDATE_FILES = new Set([
     'src/StihlRangeResolver.js',
     'src/components/StihlPassportGenerator.js',
+    'src/SafeTechnicalPreviewResolver.js',
     'src/decoder.js',
     'src/driveClassification.js',
     'src/publicEvidence.js',
     'src/SerialChronologyResolver.js',
+    'index.html',
     'data/public_evidence_facts.json',
     'data/serial_chronology_anchors.json'
   ]);

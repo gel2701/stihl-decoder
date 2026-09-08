@@ -180,10 +180,12 @@ if (fs.existsSync(pubStorePath)) {
 const PHASE36_CANDIDATE_FILES = new Set([
   'src/StihlRangeResolver.js',
   'src/components/StihlPassportGenerator.js',
+  'src/SafeTechnicalPreviewResolver.js',
   'src/decoder.js',
   'src/driveClassification.js',
   'src/publicEvidence.js',
   'src/SerialChronologyResolver.js',
+  'index.html',
   'data/public_evidence_facts.json',
   'data/serial_chronology_anchors.json'
 ]);
@@ -251,13 +253,17 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'tests/phase36_serial_chronology.test.js',
       'tests/phase36_serial_user_value_engine.test.js',
       'tests/phase36c_ui_user_value_acceptance.test.js',
+      'tests/phase36a_safe_technical_preview.test.js',
+      'scripts/phase36a_safe_technical_preview.js',
       'tests/run_all_tests.js',
       'src/StihlRangeResolver.js',
       'src/components/StihlPassportGenerator.js',
+      'src/SafeTechnicalPreviewResolver.js',
       'src/decoder.js',
       'src/driveClassification.js',
       'src/publicEvidence.js',
       'src/SerialChronologyResolver.js',
+      'index.html',
       'data/public_evidence_facts.json',
       'data/serial_chronology_anchors.json'
     ];

@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-09-08T07:46:23.572Z",
+  "total_cases": 10,
+  "passed_cases": 10,
+  "failed_cases": 0,
+  "status": "PASS",
+  "cases": [
+    {
+      "case_number": 1,
+      "name": "Overclaiming exact model from preview",
+      "action": "Check if safeTechnicalPreview sets exactModel or overclaims confirmed identity",
+      "expected": "exactModel remains null",
+      "actual": null,
+      "status": "PASS"
+    },
+    {
+      "case_number": 2,
+      "name": "Raw breakpoint text fallback leakage",
+      "action": "Scan preview values for raw fallback patterns like \"vanaf machinenr\"",
+      "expected": "zero raw fallback text in values",
+      "actual": 0,
+      "status": "PASS"
+    },
+    {
+      "case_number": 3,
+      "name": "Forbidden token leakage: Carburetor H/L/LA settings",
+      "action": "Scan preview values for carb tuning limits (H:, L:, LA:)",
+      "expected": "zero occurrences",
+      "actual": 0,
+      "status": "PASS"
+    },
+    {
+      "case_number": 4,
+      "name": "Forbidden token leakage: Exact M-Tronic version numbers",
+      "action": "Scan preview values for exact M-Tronic versions (e.g. V2.1, V3.0)",
+      "expected": "zero occurrences in all fields and values",
+      "actual": 0,
+      "status": "PASS"
+    },
+    {
+      "case_number": 5,
+      "name": "Structured Data Product schema pollution",
+      "action": "Generate structured data for model page without confirmed evidence",
+      "expected": "Product schema does not claim safe preview indicators",
+      "actual": "CLEAN",
+      "status": "PASS"
+    },
+    {
+      "case_number": 6,
+      "name": "Trivial single candidate consensus blocking (Rule 3)",
+      "action": "Verify single candidate does not output technical fields as series consensus",
+      "expected": "all technical specs blocked for candidate count 1",
+      "actual": "BLOCKED_OK",
+      "status": "PASS"
+    },
+    {
+      "case_number": 7,
+      "name": "Legacy technical fields without public evidence (Rule 1)",
+      "action": "Check that candidate model technical specs from database.models are not leaked",
+      "expected": "0 legacy technical fields in preview",
+      "actual": 0,
+      "status": "PASS"
+    },
+    {
+      "case_number": 8,
+      "name": "Category fallback fail-closed (Rule 4)",
+      "action": "Pass UNKNOWN category without chainsaw hint",
+      "expected": "machine_category omitted, no Kettingzaag fallback",
+      "actual": "CLEAN",
+      "status": "PASS"
+    },
+    {
+      "case_number": 9,
+      "name": "Unsourced 1:50 fuel claim suppression (Rule 6)",
+      "action": "Check likely_fuel_family for unverified 1:50 claim",
+      "expected": "does not contain 1:50",
+      "actual": "CLEAN",
+      "status": "PASS"
+    },
+    {
+      "case_number": 10,
+      "name": "M-Tronic inference hardening (Rule 5)",
+      "action": "Ensure M-Tronic is not inferred for 184592301 without series-level evidence",
+      "expected": "has_mtronic omitted",
+      "actual": "BLOCKED",
+      "status": "PASS"
+    }
+  ]
+}

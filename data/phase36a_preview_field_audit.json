@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-09-08T07:46:23.567Z",
+  "serial": "184592301",
+  "probable_series": "1141",
+  "candidate_model_count": 1,
+  "preview_available": true,
+  "total_rendered_fields": 4,
+  "rendered_fields": [
+    "machine_category",
+    "drive_type",
+    "engine_cycle_display",
+    "likely_fuel_family"
+  ],
+  "high_level_fields": [
+    "machine_category",
+    "drive_type",
+    "engine_cycle_display",
+    "likely_fuel_family"
+  ],
+  "technical_evidence_fields": [],
+  "rendered_values": {
+    "machine_category": {
+      "label": "Machinecategorie",
+      "value": "Kettingzaag",
+      "source_type": "CATEGORY_DERIVED",
+      "confidence": "SUPPORTED_ESTIMATE",
+      "exact_model_confirmed": false
+    },
+    "drive_type": {
+      "label": "Aandrijvingstype",
+      "value": "Benzine (2-takt)",
+      "source_type": "SERIES_DERIVED",
+      "confidence": "SUPPORTED_ESTIMATE",
+      "exact_model_confirmed": false
+    },
+    "engine_cycle_display": {
+      "label": "Motorprincipe",
+      "value": "2-takt",
+      "source_type": "SERIES_DERIVED",
+      "confidence": "SUPPORTED_ESTIMATE",
+      "exact_model_confirmed": false
+    },
+    "likely_fuel_family": {
+      "label": "Brandstof",
+      "value": "Benzine / mengsmering",
+      "source_type": "SERIES_DERIVED",
+      "confidence": "SUPPORTED_ESTIMATE",
+      "exact_model_confirmed": false
+    }
+  },
+  "multi_candidate_evidence_trace_sample": {
+    "key": "displacement_cc",
+    "value": "50.2 cc",
+    "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+    "confidence": "SUPPORTED_ESTIMATE",
+    "candidate_count": 2,
+    "evidence_fact_ids": [
+      "fact_d1",
+      "fact_d2"
+    ],
+    "source_document_ids": [
+      "DOC_D1",
+      "DOC_D2"
+    ],
+    "scope_status": "EXACT_COMPATIBLE"
+  }
+}

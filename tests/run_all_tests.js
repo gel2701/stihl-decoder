@@ -49,7 +49,8 @@ export const testFiles = [
   'tests/phase36_ms170_realworld_acceptance.test.js',
   'tests/phase36_model_assisted_decode.test.js',
   'tests/phase36_serial_chronology.test.js',
-  'tests/phase36c_ui_user_value_acceptance.test.js'
+  'tests/phase36c_ui_user_value_acceptance.test.js',
+  'tests/phase36a_safe_technical_preview.test.js'
 ];
 
 function sha256Text(value) {
