@@ -121,18 +121,22 @@ export function buildSafeTechnicalPreview(result, database = {}, publicEvidenceS
   const models = Array.isArray(database.models) ? database.models : [];
   const rangeModelId = result.serialResolution?.rangeModelId;
   const probableModel = result.resolvedModel || result.probableModelSeries || result.model;
+  const evidenceStore = publicEvidenceStore || database.public_evidence;
+  const publicFacts = Array.isArray(evidenceStore?.facts)
+    ? evidenceStore.facts
+    : (Array.isArray(evidenceStore) ? evidenceStore : []);
 
   // 1. Discover Candidate Models for the Probable Series
   let candidateModels = [];
 
-  if (rangeModelId) {
-    const directModel = models.find((m) => m.id === rangeModelId);
-    if (directModel) {
-      if (directModel.series_code) {
-        candidateModels = models.filter((m) => String(m.series_code) === String(directModel.series_code));
-      } else {
-        candidateModels = [directModel];
-      }
+  const directModel = rangeModelId ? models.find((m) => m.id === rangeModelId) : null;
+  const seriesCode = directModel?.series_code || result.probableSeries;
+
+  if (rangeModelId && directModel) {
+    if (directModel.series_code) {
+      candidateModels = models.filter((m) => String(m.series_code) === String(directModel.series_code));
+    } else {
+      candidateModels = [directModel];
     }
   }
 
@@ -146,6 +150,25 @@ export function buildSafeTechnicalPreview(result, database = {}, publicEvidenceS
       const name = (m.model_name || '').toUpperCase();
       return cleanProbable.includes(name) || name.includes(cleanProbable);
     });
+  }
+
+  // Include any models discovered from official public evidence facts for this series
+  if (seriesCode) {
+    const factsForSeries = publicFacts.filter((f) => String(f.series_code) === String(seriesCode));
+    const knownSlugs = new Set(candidateModels.map((m) => m.slug || m.id));
+    for (const f of factsForSeries) {
+      const slug = f.model_slug;
+      if (slug && !knownSlugs.has(slug)) {
+        knownSlugs.add(slug);
+        candidateModels.push({
+          id: f.model_key || slug,
+          model_name: f.model_name,
+          slug: slug,
+          series_code: String(seriesCode),
+          category: f.category
+        });
+      }
+    }
   }
 
   // Filter candidates: category compatibility if known
@@ -248,11 +271,6 @@ export function buildSafeTechnicalPreview(result, database = {}, publicEvidenceS
   //      (which requires candidateModels.length >= 2 AND all candidate models are M-Tronic models)
   //   OR
   //   B) All candidate models have explicit eligible public evidence for M-Tronic
-  const evidenceStore = publicEvidenceStore || database.public_evidence;
-  const publicFacts = Array.isArray(evidenceStore?.facts)
-    ? evidenceStore.facts
-    : (Array.isArray(evidenceStore) ? evidenceStore : []);
-
   let mtronicPermitted = false;
 
   if (candidateModels.length >= 2) {
@@ -344,17 +362,19 @@ export function buildSafeTechnicalPreview(result, database = {}, publicEvidenceS
       const eligibleFact = matchingFacts.find((f) => {
         if (!ALLOWED_EVIDENCE_STATUSES.has(f.public_evidence_status)) return false;
         if (f.single_value_eligible === false) return false;
-        if (f.value === null || f.value === undefined || f.value === '') return false;
+        const val = f.normalized_value !== undefined ? f.normalized_value : (f.value !== undefined ? f.value : f.raw_value);
+        if (val === null || val === undefined || val === '') return false;
         return true;
       });
 
       if (!eligibleFact) {
         missingCoverage = true;
       } else {
+        const val = eligibleFact.normalized_value !== undefined ? eligibleFact.normalized_value : (eligibleFact.value !== undefined ? eligibleFact.value : eligibleFact.raw_value);
         candidateFactMap.push({
           model,
           fact: eligibleFact,
-          normalizedValue: eligibleFact.normalized_value !== undefined ? eligibleFact.normalized_value : eligibleFact.value
+          normalizedValue: val
         });
       }
     }
@@ -390,6 +410,9 @@ export function buildSafeTechnicalPreview(result, database = {}, publicEvidenceS
       if (typeof v === 'number' && typeof firstVal === 'number') {
         return Math.abs(v - firstVal) < 0.001;
       }
+      if (typeof v === 'object' && typeof firstVal === 'object' && v !== null && firstVal !== null) {
+        return JSON.stringify(v) === JSON.stringify(firstVal);
+      }
       return String(v).toLowerCase().trim() === String(firstVal).toLowerCase().trim();
     });
 
@@ -411,9 +434,14 @@ export function buildSafeTechnicalPreview(result, database = {}, publicEvidenceS
 
     // All gates passed! Assemble formatted preview field with complete evidence trace
     const factIds = candidateFactMap.map((e) => e.fact.fact_id || e.fact.id).filter(Boolean);
-    const docIds = candidateFactMap.map((e) => e.fact.source_doc_id || e.fact.source_ref || e.fact.document_id).filter(Boolean);
+    const docIds = candidateFactMap.map((e) => e.fact.source_document_id || e.fact.publication_id || e.fact.source_doc_id || e.fact.source_ref || e.fact.document_id).filter(Boolean);
     const unit = gate.unit || candidateFactMap[0].fact.unit || '';
-    const formattedVal = unit ? `${firstVal} ${unit}` : String(firstVal);
+    let formattedVal;
+    if (Array.isArray(firstVal)) {
+      formattedVal = candidateFactMap[0].fact.raw_value || firstVal.map((p) => `${p.manufacturer || ''} ${p.model || ''}`.trim()).join(', ');
+    } else {
+      formattedVal = unit ? `${firstVal} ${unit}` : String(firstVal);
+    }
 
     fields.push({
       key: fieldKey,

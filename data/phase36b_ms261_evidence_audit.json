@@ -1,0 +1,110 @@
+{
+  "phase": "36B.4",
+  "generated_at": "2026-09-08T21:52:44.969Z",
+  "target_series": "1141",
+  "models_evaluated": [
+    "MS 261",
+    "MS 261 C-M"
+  ],
+  "source_documents_used": [
+    {
+      "document_id": "0458-573-1521-C",
+      "model": "MS 261",
+      "market": "BR"
+    },
+    {
+      "document_id": "0458-153-7521-C",
+      "model": "MS 261 C-M",
+      "market": null
+    }
+  ],
+  "field_comparisons": [
+    {
+      "field": "displacement_cc",
+      "ms_261_val": 50.2,
+      "ms_261_cm_val": 50.2,
+      "consensus_status": "CONSENSUS_MATCH",
+      "preview_eligible": true,
+      "raw_source_ms261": "50,2 cm³ (0458-573-1521-C, p.41)",
+      "raw_source_ms261_cm": "50,2 cm³ (0458-153-7521-C, p.41)"
+    },
+    {
+      "field": "power_kw",
+      "ms_261_val": 3,
+      "ms_261_cm_val": 3,
+      "consensus_status": "CONSENSUS_MATCH",
+      "preview_eligible": true,
+      "raw_source_ms261": "3,0 kW (0458-573-1521-C, p.41)",
+      "raw_source_ms261_cm": "3,0 kW (4,1 PS) (0458-153-7521-C, p.41)"
+    },
+    {
+      "field": "fuel_tank_l",
+      "ms_261_val": 0.5,
+      "ms_261_cm_val": 0.5,
+      "consensus_status": "CONSENSUS_MATCH",
+      "preview_eligible": true,
+      "raw_source_ms261": "500 cm³ (0,50 l) (0458-573-1521-C, p.41)",
+      "raw_source_ms261_cm": "500 cm³ (0,5 l) (0458-153-7521-C, p.41)"
+    },
+    {
+      "field": "weight_kg",
+      "ms_261_val": 4.9,
+      "ms_261_cm_val": 4.9,
+      "consensus_status": "CONSENSUS_MATCH",
+      "preview_eligible": true,
+      "raw_source_ms261": "4,9 kg (0458-573-1521-C, p.42)",
+      "raw_source_ms261_cm": "4,9 kg (0458-153-7521-C, p.41)"
+    },
+    {
+      "field": "chain_pitch",
+      "ms_261_val": ".325\"",
+      "ms_261_cm_val": ".325\"",
+      "consensus_status": "CONSENSUS_MATCH",
+      "preview_eligible": true,
+      "raw_source_ms261": ".325\" (8,25 mm) (0458-573-1521-C, p.42)",
+      "raw_source_ms261_cm": ".325\" (0458-153-7521-C, p.42)"
+    },
+    {
+      "field": "spark_plug",
+      "ms_261_val": "Bosch WSR 6 F, NGK BPMR 7 A",
+      "ms_261_cm_val": "Bosch WSR 6 F, NGK BPMR 7 A",
+      "consensus_status": "CONSENSUS_MATCH",
+      "preview_eligible": true,
+      "raw_source_ms261": "Bosch WSR 6 F, NGK BPMR 7 A (0458-573-1521-C, p.41)",
+      "raw_source_ms261_cm": "Bosch WSR 6 F, NGK BPMR 7 A (0458-153-7521-C, p.41)"
+    },
+    {
+      "field": "has_mtronic",
+      "ms_261_val": null,
+      "ms_261_cm_val": null,
+      "consensus_status": "DIVERGENT_AND_UNCONFIRMED_RAW",
+      "preview_eligible": false,
+      "gate_reason": "Synthetic raw values rejected; MS 261 manual carburetor vs MS 261 C-M M-Tronic diverge; strictly blocked from preview."
+    }
+  ],
+  "serial_184592301_behavior": {
+    "serial": "184592301",
+    "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+    "probableSeries": "1141",
+    "technicalSpecs_empty": true,
+    "safeTechnicalPreview_available": true,
+    "unlocked_preview_fields": [
+      "machine_category",
+      "drive_type",
+      "engine_cycle_display",
+      "likely_fuel_family",
+      "displacement_cc",
+      "power_kw",
+      "fuel_tank_l",
+      "weight_kg",
+      "chain_pitch",
+      "spark_plug"
+    ],
+    "blocked_fields": [
+      "has_mtronic",
+      "clutch_speed_rpm",
+      "max_speed_rpm",
+      "chain_gauge_mm"
+    ]
+  }
+}

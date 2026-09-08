@@ -1,0 +1,73 @@
+{
+  "phase": "36B.4",
+  "generated_at": "2026-09-08T21:52:44.968Z",
+  "candidate_facts_reviewed": 142,
+  "facts_promotion_eligible": 135,
+  "facts_downgraded": 0,
+  "facts_rejected": 7,
+  "rejection_breakdown": [
+    {
+      "fact_id": "a9a435c69f15e08e",
+      "model": "MS 261",
+      "field": "has_mtronic",
+      "reason": "SYNTHETIC_RAW_VALUE"
+    },
+    {
+      "fact_id": "19b6dc64a09f0030",
+      "model": "MS 261 C-M",
+      "field": "has_mtronic",
+      "reason": "SYNTHETIC_RAW_VALUE"
+    },
+    {
+      "fact_id": "bb4ca294342015bc",
+      "model": "MS 201 TC-M",
+      "field": "has_mtronic",
+      "reason": "SYNTHETIC_RAW_VALUE"
+    },
+    {
+      "fact_id": "599ee20980ce73cd",
+      "model": "FS 460 C-EM",
+      "field": "has_mtronic",
+      "reason": "SYNTHETIC_RAW_VALUE"
+    },
+    {
+      "fact_id": "8d749f43973b76ea",
+      "model": "MS 362 C-M",
+      "field": "has_mtronic",
+      "reason": "SYNTHETIC_RAW_VALUE"
+    },
+    {
+      "fact_id": "a7bd95784e675071",
+      "model": "BR 600",
+      "field": "bore_mm",
+      "reason": "UNSOURCED_IN_PRIMARY_MANUAL"
+    },
+    {
+      "fact_id": "3ecb288bcb003276",
+      "model": "BR 600",
+      "field": "stroke_mm",
+      "reason": "UNSOURCED_IN_PRIMARY_MANUAL"
+    }
+  ],
+  "baseline_fact_count": 124,
+  "baseline_store_hash": "e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6",
+  "total_fact_count": 259,
+  "canonical_database_changed": "NO",
+  "baseline_facts_altered_or_removed": 0,
+  "updated_store_hash": "869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1",
+  "facts_added_per_model": {
+    "MS 261": 13,
+    "MS 261 C-M": 13,
+    "MS 180": 12,
+    "BR 600": 8,
+    "MS 201 TC-M": 11,
+    "FS 460 C-EM": 9,
+    "MS 210": 10,
+    "MS 230": 10,
+    "MS 250": 10,
+    "MS 290": 10,
+    "MS 362 C-M": 11,
+    "FS 38": 9,
+    "SR 430": 9
+  }
+}

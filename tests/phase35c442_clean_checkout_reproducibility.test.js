@@ -164,7 +164,7 @@ const statusLines = statusOutput ? statusOutput.split('\n').filter(Boolean) : []
 let prodFilesChanged = 0;
 let canonicalDbChanged = 'NO';
 let publicStoreChanged = 'NO';
-let publicFactCount = 124;
+let publicFactCount = 259;
 
 const pubStorePath = path.join(rootDir, 'data', 'public_evidence_facts.json');
 if (fs.existsSync(pubStorePath)) {
@@ -201,7 +201,7 @@ statusLines.forEach((line) => {
 assert.strictEqual(prodFilesChanged, 0, 'PRODUCTION_FILES_CHANGED must be 0');
 assert.strictEqual(canonicalDbChanged, 'NO', 'CANONICAL_DATABASE_CHANGED must be NO');
 assert.strictEqual(publicStoreChanged, 'NO', 'PUBLIC_EVIDENCE_STORE_CHANGED must be NO');
-assert.strictEqual(publicFactCount, 124, 'PUBLIC_FACT_COUNT must be 124 in Phase 36 candidate');
+assert.strictEqual(publicFactCount, 259, 'PUBLIC_FACT_COUNT must be 259 in Phase 36B candidate');
 
 // 9. Simulated Clean Checkout Test
 if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
@@ -255,6 +255,7 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'tests/phase36c_ui_user_value_acceptance.test.js',
       'tests/phase36a_safe_technical_preview.test.js',
       'scripts/phase36a_safe_technical_preview.js',
+      'tests/phase36b_evidence_expansion.test.js',
       'tests/run_all_tests.js',
       'src/StihlRangeResolver.js',
       'src/components/StihlPassportGenerator.js',
@@ -265,7 +266,10 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'src/SerialChronologyResolver.js',
       'index.html',
       'data/public_evidence_facts.json',
-      'data/serial_chronology_anchors.json'
+      'data/serial_chronology_anchors.json',
+      'data/phase36b_official_source_inventory.json',
+      'data/phase36b_public_evidence_promotion_report.json',
+      'data/phase36b_ms261_evidence_audit.json'
     ];
 
     for (const relFile of candidateFiles) {

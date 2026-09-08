@@ -14,7 +14,7 @@ export const BASELINE_COMMIT = '2bbcb2bc3e16412fef2688494cc77231122a98b0';
 export const PHASE_SOURCE_COMMIT = 'dcdef90942256a409cd274bbcb9fb6788a1a13a5';
 export const PHASE_RESULT_COMMIT = '64f38d59595858c1092d951c391f98f86720d0c9';
 export const HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256 = 'ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676';
-export const EXPECTED_PUBLIC_STORE_CANONICAL_SHA256 = 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6';
+export const EXPECTED_PUBLIC_STORE_CANONICAL_SHA256 = '869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1';
 const PHASE_ID = '35C.4.3.2.1.1';
 const OUTPUTS = {
   preflight: path.join(rootDir, 'data', 'phase35c43211_preflight_report.json'),
@@ -797,8 +797,8 @@ function buildFinalReport(preflight, commitIdentity, replayAudit, publicStoreRep
     && replayAudit.SOURCE_PUBLIC_STORE_CANONICAL_SHA256 === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256
     && replayAudit.RESULT_PUBLIC_STORE_CANONICAL_SHA256 === HISTORICAL_PUBLIC_STORE_CANONICAL_SHA256
     && currentPublicStoreHash === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256
-    && publicStoreReplayAudit.PUBLIC_FACT_COUNT === 124
-    && harnessAudit.PUBLIC_FACT_COUNT_AFTER_SUITE === 124
+    && publicStoreReplayAudit.PUBLIC_FACT_COUNT === 259
+    && harnessAudit.PUBLIC_FACT_COUNT_AFTER_SUITE === 259
     && canonicalDbAudit.CANONICAL_DATABASE_CHANGED === 'NO'
     && canonicalPromotionAudit.UNEXPECTED_CANONICAL_PROMOTIONS === 0
     && testImmutabilityAudit.HISTORICAL_SAFETY_ASSERTIONS_REMOVED === 0

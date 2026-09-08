@@ -30,7 +30,7 @@ assert.strictEqual(report.USER_SPECIFIC_PATH_REQUIRED_FOR_TESTS, 'NO', 'USER_SPE
 assert.strictEqual(report.PRODUCTION_FILES_CHANGED, 0, 'PRODUCTION_FILES_CHANGED must be 0');
 assert.strictEqual(report.SOURCE_DATA_FILES_CHANGED, 0, 'SOURCE_DATA_FILES_CHANGED must be 0');
 assert.strictEqual(report.PUBLIC_EVIDENCE_STORE_CHANGED, 'NO', 'PUBLIC_EVIDENCE_STORE_CHANGED must be NO');
-assert.strictEqual(report.PUBLIC_FACT_COUNT, 124, 'PUBLIC_FACT_COUNT must be 124 in Phase 36 candidate');
+assert.strictEqual(report.PUBLIC_FACT_COUNT, 259, 'PUBLIC_FACT_COUNT must be 259 in Phase 36B candidate');
 assert.strictEqual(report.CANONICAL_DATABASE_CHANGED, 'NO', 'CANONICAL_DATABASE_CHANGED must be NO');
 
 // 4. Power Source & Conservation Assertions in Fixture

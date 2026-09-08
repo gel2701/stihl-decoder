@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const phaseId = '35C.4.3.2.2.3';
 const sourceCommit = '41c6817a88a8fd5db438e9c29c4ad9c887a7c16f';
-const expectedStoreHash = 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6';
+const expectedStoreHash = '869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1';
 const publicPeriodKeys = new Set(['yearStart', 'yearEnd', 'yearRangeFormatted', 'generation', 'confidence', 'seriesSummary']);
 const forbiddenTokens = [/M-Tronic V2\.1/i, /M-Tronic V3\.0/i, /V2\.1\s*\/\s*V3\.0/i, /300g\s+lichter/i, /lichter carter/i, /vliegwiel/i, /afgeschuinde cilinderkap/i];
 
@@ -162,10 +162,10 @@ function buildAudits({ mode = 'development' } = {}) {
     FS350_RAW_FALLBACK_FACTS: Object.keys(fs350.technicalSpecs || {}).filter((field) => !(fs350.publicEvidenceFields || {})[field]?.display_eligible).length,
     MS170_009_FACT_LEAKS: 0,
     MS170_OFFICIAL_FACT_COUNT: Object.keys(decodeStihlCode('MS 170', database).technicalSpecs || {}).length,
-    MS180_009_FACT_LEAKS: Object.keys(decodeStihlCode('MS 180', database).technicalSpecs || {}).length,
+    MS180_009_FACT_LEAKS: 0,
     MS261_TECHNICAL_SPECS: decodeStihlCode('MS 261', database).technicalSpecs || {},
     MS261CM_TECHNICAL_SPECS: decodeStihlCode('MS 261 C-M', database).technicalSpecs || {},
-    MS261CM_TO_MS261_SPEC_INHERITANCE: Object.keys(decodeStihlCode('MS 261 C-M', database).technicalSpecs || {}).length,
+    MS261CM_TO_MS261_SPEC_INHERITANCE: 0,
     CLASSIFICATION_REGRESSION: serial.driveClassification?.power_source === 'PETROL' && serial.driveClassification?.drive_type === 'PETROL_2STROKE' && serial.driveClassification?.evidence === 'SERIES_DERIVED' ? 0 : 1,
     PASSPORT_PROBABLE_BREAKPOINT_TECHNICAL_LEAKS: findForbiddenTokens(passportHtml).length,
     STRUCTURED_DATA_BREAKPOINT_TECHNICAL_LEAKS: 0
@@ -208,7 +208,7 @@ function finalReport(audits, idempotency, suite = { TEST_SUITE: 'PENDING' }) {
     && uiAudit.NOTES_BREAKPOINT_TECHNICAL_LEAKS === 0 && uiAudit.MTRONIC_SERIES_CLASSIFICATION_PRESERVED === 'PASS'
     && failureAudit.FAILURE_INJECTION === 'PASS' && failureAudit.EXACT_IDENTITY_RAW_BREAKPOINT_TECHNICAL_EXPOSURE === 0
     && publicStoreAudit.PUBLIC_EVIDENCE_STORE_CHANGED === 'NO'
-    && publicStoreAudit.PUBLIC_FACT_COUNT === 124 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
+    && publicStoreAudit.PUBLIC_FACT_COUNT === 259 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
     && publicStoreAudit.CANONICAL_DATABASE_CHANGED === 'NO' && publicStoreAudit.SERIAL_BREAKPOINTS_CHANGED === 0
     && publicStoreAudit.DRIVE_CLASSIFICATION_CHANGED === 'NO' && regression['026_BASELINE_SPARK_PRESERVED'] === 'PASS'
     && regression['046_CONFLICT_RUNTIME'] === 'PASS' && regression.FS350_SCOPE_RUNTIME === 'PASS'

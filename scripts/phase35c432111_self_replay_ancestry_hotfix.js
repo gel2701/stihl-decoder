@@ -297,7 +297,7 @@ function buildFinalReport(preflight, replayAncestryAudit, selfReplayAudit, phase
     && phase35c422PinAudit.PHASE35C422_ARTIFACT_PINNED === 'PASS'
     && publicStoreAudit.PUBLIC_STORE_CHANGED === 'NO'
     && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === EXPECTED_PUBLIC_STORE_CANONICAL_SHA256
-    && publicStoreAudit.PUBLIC_FACT_COUNT === 124
+    && publicStoreAudit.PUBLIC_FACT_COUNT === 259
     && selfReplayAudit.DIRTY_WORKTREE_REPLAY_CONTAMINATION === 0
     && selfReplayAudit.DIRTY_PUBLIC_STORE_USED_AS_REPLAY_INPUT === 'NO'
     && selfReplayAudit.REPLAY_MUTATED_PUBLIC_STORE === 'NO'

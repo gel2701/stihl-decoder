@@ -23,7 +23,7 @@ assert.strictEqual(finalReport.DEPLOYED, 'NO', 'DEPLOYED must be NO');
 // 2. Safety & Immutability Assertions
 assert.strictEqual(finalReport.AUTO_PUBLIC_PROMOTIONS, 0, 'AUTO_PUBLIC_PROMOTIONS must be 0');
 assert.strictEqual(finalReport.PUBLIC_EVIDENCE_STORE_CHANGED, 'NO', 'PUBLIC_EVIDENCE_STORE_CHANGED must be NO');
-assert.strictEqual(finalReport.PUBLIC_FACT_COUNT, 124, 'PUBLIC_FACT_COUNT must be 124 in Phase 36 candidate');
+assert.strictEqual(finalReport.PUBLIC_FACT_COUNT, 259, 'PUBLIC_FACT_COUNT must be 259 in Phase 36B candidate');
 assert.strictEqual(finalReport.SOURCE_DATASET_MUTATED, 'NO', 'SOURCE_DATASET_MUTATED must be NO');
 assert.strictEqual(finalReport.CANONICAL_DATABASE_CHANGED, 'NO', 'CANONICAL_DATABASE_CHANGED must be NO');
 assert.strictEqual(finalReport.PRODUCTION_CODE_CHANGED, 'NO', 'PRODUCTION_CODE_CHANGED must be NO');

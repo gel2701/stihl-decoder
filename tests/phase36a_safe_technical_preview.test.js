@@ -37,15 +37,18 @@ assert.ok(previewKeys184.includes('drive_type'), 'Must include drive_type');
 assert.ok(previewKeys184.includes('engine_cycle_display'), 'Must include engine_cycle_display');
 assert.ok(previewKeys184.includes('likely_fuel_family'), 'Must include likely_fuel_family');
 
-// Rule 5: M-Tronic must be blocked for 184592301 because no public evidence exists for MS 261
-assert.ok(!previewKeys184.includes('has_mtronic'), 'M-Tronic MUST be blocked without series-level public evidence');
+// Rule 5: M-Tronic must be blocked for 184592301 because MS 261 (manual carb) and MS 261 C-M (M-Tronic) diverge
+assert.ok(!previewKeys184.includes('has_mtronic'), 'M-Tronic MUST be blocked when candidate models diverge');
 
-// Rule 1, 2, 3: Technical specs must be blocked for 184592301 (single candidate & no public evidence)
-for (const techKey of ['displacement_cc', 'power_kw', 'spark_plug', 'fuel_tank_l', 'weight_kg', 'chain_pitch', 'chain_gauge_mm']) {
-  assert.ok(!previewKeys184.includes(techKey), `Technical spec ${techKey} MUST be blocked for 184592301`);
-  const auditStatus = res184.safeTechnicalPreview.technicalFieldAudit[techKey]?.status;
-  assert.strictEqual(auditStatus, 'BLOCKED_SINGLE_CANDIDATE', `Audit status for ${techKey} must be BLOCKED_SINGLE_CANDIDATE`);
+// Phase 36B: Consensus-supported technical specs are unlocked for 184592301 in safeTechnicalPreview
+for (const techKey of ['displacement_cc', 'power_kw', 'spark_plug', 'fuel_tank_l', 'weight_kg', 'chain_pitch']) {
+  assert.ok(previewKeys184.includes(techKey), `Technical spec ${techKey} must be present in safeTechnicalPreview under Phase 36B consensus`);
+  assert.strictEqual(res184.safeTechnicalPreview.technicalFieldAudit[techKey]?.status, 'VISIBLE');
 }
+
+// Chain gauge remains blocked due to no public evidence
+assert.ok(!previewKeys184.includes('chain_gauge_mm'), 'chain_gauge_mm MUST remain blocked without public evidence');
+assert.strictEqual(res184.safeTechnicalPreview.technicalFieldAudit.chain_gauge_mm?.status, 'BLOCKED_NO_PUBLIC_EVIDENCE');
 
 // Rule 6: Fuel family must NOT contain "1:50"
 const fuelField = res184.safeTechnicalPreview.fields.find((f) => f.key === 'likely_fuel_family');
@@ -338,8 +341,8 @@ function stable(value) {
 }
 const storeText = fs.readFileSync(evPath, 'utf8');
 const storeObj = JSON.parse(storeText);
-assert.strictEqual(storeObj.facts.length, 124, 'Public fact count must remain exactly 124');
+assert.strictEqual(storeObj.facts.length, 259, 'Public fact count must remain exactly 259');
 const storeHash = crypto.createHash('sha256').update(stable(storeObj)).digest('hex');
-assert.strictEqual(storeHash, 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6', 'Public store hash must not mutate');
+assert.strictEqual(storeHash, '869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1', 'Public store hash must not mutate');
 
 console.log('✅ Phase 36A.1 Hardened Safe Technical Preview Tests Passed 100%.');

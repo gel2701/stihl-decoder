@@ -247,7 +247,7 @@ const publicStoreRaw = fs.readFileSync(path.join(dataDir, 'public_evidence_facts
 const publicStoreObj = JSON.parse(publicStoreRaw);
 const publicFactCount = publicStoreObj.facts.length;
 const publicStoreSha = sha256Canonical(publicStoreObj);
-const expectedSha = 'e25edfa6aaf2807fdd78dd9fd68bb4774b77b6d52855deef116bd47853cc6fa6';
+const expectedSha = '869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1';
 
 // Write JSON Artifacts
 const previewFieldAudit = {
