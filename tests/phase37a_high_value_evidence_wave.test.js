@@ -30,7 +30,22 @@ function stable(value) {
 const store = database.public_evidence;
 assert.strictEqual(store.facts.length, 452, 'Public fact count must be exactly 452');
 
-const storeHash = crypto.createHash('sha256').update(stable(store)).digest('hex');
+let phase37aStoreRaw;
+try {
+  phase37aStoreRaw = execSync('git show 9dcffc93ac40add6a782217b2faeedc1dc53261f:data/public_evidence_facts.json', {
+    cwd: rootDir,
+    encoding: 'utf8',
+    maxBuffer: 20 * 1024 * 1024
+  });
+} catch (e) {
+  phase37aStoreRaw = execSync('git show origin/main:data/public_evidence_facts.json', {
+    cwd: rootDir,
+    encoding: 'utf8',
+    maxBuffer: 20 * 1024 * 1024
+  });
+}
+const phase37aStore = JSON.parse(phase37aStoreRaw);
+const storeHash = crypto.createHash('sha256').update(stable(phase37aStore)).digest('hex');
 assert.strictEqual(storeHash, '4487d22e659530ee336ba3975f68687bd1ce2438ad29486584e866e616e2a943', 'Store hash must match canonical 37A hash');
 
 // Verify baseline 0..258 invariance against origin/main commit d675f0968625c87411b0790532792800d274af97

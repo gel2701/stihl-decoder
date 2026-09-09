@@ -41,8 +41,10 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
     urls.push({ loc: `${baseUrl}/${cat}/`, priority: '0.9', changefreq: 'weekly' });
   });
 
-  // 3. Model Pages & Model Parts Pages
   models.forEach(m => {
+    if (m.data_status === 'EVIDENCE_STORE_LINKED') {
+      return;
+    }
     const modelPath = getSafeModelPath(m);
     const partsPath = getSafeModelPartsPath(m);
     const lastmod = m.content_updated_at || m.updated_at || null;

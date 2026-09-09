@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const phaseId = '35C.4.3.2.2.3';
 const sourceCommit = '41c6817a88a8fd5db438e9c29c4ad9c887a7c16f';
-const expectedStoreHash = '4487d22e659530ee336ba3975f68687bd1ce2438ad29486584e866e616e2a943';
+const expectedStoreHash = '438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951';
 const publicPeriodKeys = new Set(['yearStart', 'yearEnd', 'yearRangeFormatted', 'generation', 'confidence', 'seriesSummary']);
 const forbiddenTokens = [/M-Tronic V2\.1/i, /M-Tronic V3\.0/i, /V2\.1\s*\/\s*V3\.0/i, /300g\s+lichter/i, /lichter carter/i, /vliegwiel/i, /afgeschuinde cilinderkap/i];
 

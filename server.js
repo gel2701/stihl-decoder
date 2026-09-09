@@ -57,7 +57,7 @@ const MIME_TYPES = {
   '.webmanifest': 'application/manifest+json'
 };
 
-const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers'];
+const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers', 'nevelspuiten'];
 const MAX_JSON_BODY_BYTES = 32 * 1024;
 const PUBLIC_ROOT_FILES = new Set([
   'index.html',
@@ -202,7 +202,10 @@ function checkRateLimit(req) {
     if (code.length > 50) code = code.substring(0, 50);
     code = code.replace(/[^a-zA-Z0-9\s\.\-_\/]/g, '');
 
-    const result = decodeStihlCode(code, database);
+    const confirmedModel = (urlObj.searchParams.get('confirmedModel') || '').trim();
+    const options = confirmedModel ? { confirmedModel } : {};
+
+    const result = decodeStihlCode(code, database, options);
     logStihlEvent(EVENT_TYPES.DECODER_USED, { input: code, success: result.success }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(result));

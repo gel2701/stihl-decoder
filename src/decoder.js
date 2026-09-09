@@ -54,16 +54,91 @@ function buildDisplayTechnicalSpecs(modelKey, database, category, modelName) {
   };
 }
 
+function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, database) {
+  if (identityStatus !== 'PROBABLE_MODEL_SERIES') {
+    return {
+      available: false,
+      series: probableModelSeries || null,
+      candidates: []
+    };
+  }
+
+  const models = Array.isArray(database.models) ? database.models : [];
+  const rangeModelId = rangeMatch?.model_id;
+  const directModel = rangeModelId ? models.find((m) => m.id === rangeModelId) : null;
+  const seriesCode = directModel?.series_code || rangeMatch?.range_id || null;
+
+  let candidatesFound = [];
+  if (seriesCode) {
+    candidatesFound = models.filter((m) => String(m.series_code) === String(seriesCode));
+  }
+
+  if (candidatesFound.length === 0 && probableModelSeries) {
+    const parts = String(probableModelSeries).split(/\s*[\/,]\s*|\s+of\s+|\s+or\s+/i).map((p) => p.trim()).filter(Boolean);
+    for (const part of parts) {
+      const m = findModelInDatabase(part, models);
+      if (m && !candidatesFound.some((c) => c.slug === m.slug)) {
+        candidatesFound.push(m);
+      }
+    }
+  }
+
+  const validCandidates = [];
+  for (const m of candidatesFound) {
+    const cat = m.category_slug || m.category || 'kettingzagen';
+    const specs = buildDisplayTechnicalSpecs(m.slug, database, cat, m.model_name);
+    const hasSpecs = Object.keys(specs.technicalSpecs || {}).length > 0;
+    if (hasSpecs) {
+      validCandidates.push({
+        slug: m.slug,
+        name: m.model_name,
+        category: cat,
+        hasSpecs: true
+      });
+    }
+  }
+
+  const seriesName = validCandidates.length > 0
+    ? validCandidates.map((c) => c.name).join(' / ')
+    : (probableModelSeries || null);
+
+  return {
+    available: validCandidates.length > 0,
+    series: seriesName,
+    candidates: validCandidates
+  };
+}
+
 function isExactModelMatch(inputQuery, model) {
   if (!model) return false;
   const normalized = normalizeModelQuery(inputQuery);
   const cleanCanonical = String(normalized.canonicalQuery || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
   const cleanBase = String(normalized.baseModel || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
-  const modelName = String(model.model_name || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  const rawModelName = String(model.model_name || '').toUpperCase();
+  const modelName = rawModelName.replace(/[^A-Z0-9]/gi, '');
   const modelSlug = String(model.slug || model.id || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
-  if (normalized.variant) {
-    return modelName === cleanCanonical || modelSlug === cleanCanonical;
+
+  // Exact match by model name
+  if (modelName === cleanCanonical) return true;
+
+  // Sub-part match for legacy slashed names e.g. "MS 200 / 020 T"
+  if (rawModelName.includes('/')) {
+    const parts = rawModelName.split('/').map((p) => p.replace(/[^A-Z0-9]/gi, '').trim());
+    if (parts.includes(cleanCanonical) || parts.includes(cleanBase)) return true;
   }
+
+  // If canonical model specifies advanced variant (e.g. C-M, C-EM, TC-M), do NOT match base or different variant query
+  const hasAdvancedVariant = rawModelName.includes('C-M') || rawModelName.includes('C-EM') || rawModelName.includes('TC-M');
+  const queryHasAdvancedVariant = (normalized.variant || '').includes('C-M') || (normalized.variant || '').includes('C-EM') || (normalized.variant || '').includes('TC-M');
+
+  if (hasAdvancedVariant && !queryHasAdvancedVariant) {
+    return false;
+  }
+
+  if (normalized.variant) {
+    return modelName === cleanCanonical || (modelSlug === cleanCanonical && !hasAdvancedVariant);
+  }
+
   return modelName === cleanCanonical || modelSlug === cleanCanonical || modelName === cleanBase || modelSlug === cleanBase;
 }
 
@@ -101,7 +176,20 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     return { success: false, error: 'Ongeldige invoer.' };
   }
 
-  const cleaned = inputStr.replace(/[^A-Za-z0-9]/g, '').trim();
+  const trimmed = inputStr.trim();
+  const stripped = trimmed.replace(/^STIHL[\s_\-]+/i, '').trim();
+
+  // Model intent detection on stripped input
+  const isModelIntent = Boolean(
+    resolveModelRelationship(stripped) ||
+    findPublicEvidenceModel(stripped, database) ||
+    findModelInDatabase(stripped, database.models || [])
+  );
+  if (isModelIntent) {
+    return analyzeModelQuery(stripped, database);
+  }
+
+  const cleaned = stripped.replace(/[^A-Za-z0-9]/g, '');
 
   // 1. Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers)
   let counterfeitEvaluation = null;
@@ -137,11 +225,6 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     if (cleaned.length === 11) {
       return analyzePartNumber(cleaned, database);
     }
-    const publicEvidenceMatch = findPublicEvidenceModel(cleaned, database);
-    const rel = resolveModelRelationship(inputStr);
-    if (rel || publicEvidenceMatch) {
-      return analyzeModelQuery(inputStr.trim(), database);
-    }
     return {
       success: false,
       error: `Invoer bevat ${cleaned.length} cijfers. Veel STIHL machines gebruiken een 9-cijferige reeks, maar controleer altijd het typeplaatje en de context van de machine.`
@@ -150,16 +233,10 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
 
   const isAlphaNumCandidate = /^[A-Z0-9]{8,10}$/i.test(cleaned) && /[A-Z]/i.test(cleaned) && /\d/.test(cleaned);
   if (isAlphaNumCandidate) {
-    const publicEvidenceMatch = findPublicEvidenceModel(cleaned, database);
-    const rel = resolveModelRelationship(inputStr);
-    const matchedModel = findModelInDatabase(inputStr, database.models || []);
-    if (rel || publicEvidenceMatch || matchedModel) {
-      return analyzeModelQuery(inputStr.trim(), database);
-    }
     return analyzeSerialNumber(cleaned.toUpperCase(), database, counterfeitEvaluation, { ...options, isAlphanumeric: true });
   }
 
-  return analyzeModelQuery(inputStr.trim(), database);
+  return analyzeModelQuery(stripped, database);
 }
 
 export function analyzeModelQuery(modelStr, database) {
@@ -236,9 +313,10 @@ export function analyzeModelQuery(modelStr, database) {
     : verification
       ? `Bronstatus: ${verification.badgeLabel}`
       : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
-  const modelResolution = matchedModelSpec
+  const isLinkedModel = matchedModelSpec && (matchedModelSpec.data_status === 'EVIDENCE_STORE_LINKED');
+  const modelResolution = (matchedModelSpec && !isLinkedModel)
     ? 'EXACT_CANONICAL'
-    : overlayModelKey
+    : (overlayModelKey || isLinkedModel)
       ? 'VERIFIED_ALIAS'
       : relationship
         ? 'RELATED_MODEL_NO_SPEC_ATTACH'
@@ -326,12 +404,15 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   if (confirmedModel) {
     modelData = confirmedModel;
   }
-  const probableModelSeries = rangeMatch ? (rangeMatch.model_name || rangeMatch.generation || null) : null;
-  const identityStatus = modelData
+  const rawProbableSeries = rangeMatch ? (rangeMatch.model_name || rangeMatch.generation || null) : null;
+  const rawIdentityStatus = modelData
     ? (confirmedModel ? 'USER_CONFIRMED_MODEL' : 'EXACT_MODEL_IDENTIFIED')
-    : probableModelSeries
+    : rawProbableSeries
       ? 'PROBABLE_MODEL_SERIES'
       : 'MODEL_NOT_IDENTIFIED';
+  const modelAssist = buildModelAssist(rawIdentityStatus, rangeMatch, rawProbableSeries, database);
+  const probableModelSeries = modelAssist.available ? modelAssist.series : rawProbableSeries;
+  const identityStatus = rawIdentityStatus;
   const isModelConfirmedOrIdentified = identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL';
   const modelName = modelData
     ? modelData.model_name
@@ -455,6 +536,8 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
           : ['Weet je welk model dit is? Vul het model van het typeplaatje in voor volledige specificaties.']
     },
     modelAssistAvailable: !confirmedModel && (!modelData || identityStatus !== 'EXACT_MODEL_IDENTIFIED'),
+    modelAssist,
+    probableModelSeries,
     production,
     chronology: chronologyResult,
     productionChronology: chronologyResult,

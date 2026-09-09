@@ -303,7 +303,18 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
           </div>
         `)}
 
+        ${renderSingleValueField('Boring', publicFields.bore_mm)}
         ${renderSingleValueField('Slag', publicFields.stroke_mm)}
+        ${renderSingleValueField('Stationair toerental', publicFields.idle_speed_rpm)}
+        ${renderSingleValueField('Maximaal toerental', publicFields.max_speed_rpm)}
+        ${renderSingleValueField('Brandstoftank', publicFields.fuel_tank_capacity_cm3)}
+        ${isChainsaw ? renderSingleValueField('Kettingolietank', publicFields.oil_tank_capacity_cm3) : ''}
+        ${renderSingleValueField('Carburateur H-stelschroef', publicFields.carb_h_setting)}
+        ${renderSingleValueField('Carburateur L-stelschroef', publicFields.carb_l_setting)}
+        ${renderSingleValueField('Carburateur LA-stelschroef', publicFields.carb_la_setting)}
+        ${(categorySlug === 'bladblazers' || categorySlug === 'nevelspuiten') ? renderSingleValueField('Blaaskracht', publicFields.blowing_force_n) : ''}
+        ${isChainsaw ? renderSingleValueField('Kettingsteek', publicFields.chain_pitch) : ''}
+        ${isChainsaw ? renderSingleValueField('Groefbreedte (aandrijfschakel)', publicFields.chain_gauge_mm) : ''}
       </div>
     </section>
 

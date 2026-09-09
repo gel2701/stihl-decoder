@@ -126,7 +126,7 @@ if (resolvedReal.path && fs.existsSync(resolvedReal.path)) {
 } else {
   // Verify missing real file detection throws SOURCE_INPUT_REQUIRED
   assert.throws(
-    () => runPipeline441({ input: 'C:\\Users\\Nobody\\missing.json', sourceMode: 'real' }),
+    () => runPipeline441({ input: '/nonexistent_source_path/missing.json', sourceMode: 'real' }),
     /SOURCE_INPUT_REQUIRED/,
     'Must throw SOURCE_INPUT_REQUIRED when real file missing'
   );
@@ -185,9 +185,17 @@ const PHASE36_CANDIDATE_FILES = new Set([
   'src/driveClassification.js',
   'src/publicEvidence.js',
   'src/SerialChronologyResolver.js',
+  'src/categoryWhitelist.js',
+  'src/modelNormalizer.js',
+  'src/publicationRules.js',
+  'src/components/CategoryPageTemplate.js',
+  'src/components/ModelPageTemplate.js',
+  'src/components/SitemapGenerator.js',
+  'server.js',
   'index.html',
   'data/public_evidence_facts.json',
-  'data/serial_chronology_anchors.json'
+  'data/serial_chronology_anchors.json',
+  'data/stihl_database.json'
 ]);
 
 statusLines.forEach((line) => {
@@ -276,7 +284,16 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'data/phase37a_value_impact_report.json',
       'data/phase37a_missing_high_value_fields.json',
       'data/phase37a_raw_fact_reproduction_audit.json',
-      'tests/phase37a_high_value_evidence_wave.test.js'
+      'tests/phase37a_high_value_evidence_wave.test.js',
+      'src/categoryWhitelist.js',
+      'src/modelNormalizer.js',
+      'src/publicationRules.js',
+      'src/components/CategoryPageTemplate.js',
+      'src/components/ModelPageTemplate.js',
+      'src/components/SitemapGenerator.js',
+      'server.js',
+      'data/stihl_database.json',
+      'tests/phase37c_evidence_surfacing_reachability.test.js'
     ];
 
     for (const relFile of candidateFiles) {

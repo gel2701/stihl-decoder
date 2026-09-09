@@ -254,67 +254,113 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">STIHL Model Specificaties</span>
-              <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">📋 Model Datablad (Geen Serienummer Ingevoerd)</span>
+              <span id="model-card-source-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">✓ Officiële STIHL-bron</span>
             </div>
             <h3 id="model-title-display" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">MS 261 C-M</h3>
+          </div>
+          <div>
+            <span class="text-xs text-gray-400">Aandrijving:</span>
+            <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">Benzine (2-Takt)</div>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
+          <!-- Section 1: Motor -->
+          <div id="model-sec-motor" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-              Model Gegevens
+              Motor
             </h4>
-            <div>
-              <span class="text-xs text-gray-400">Modelnaam:</span>
-              <div id="model-card-name" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
-            </div>
-            <div>
-              <span class="text-xs text-gray-400">Aandrijving:</span>
-              <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
-            </div>
-            <div class="pt-3 border-t border-gray-800 grid grid-cols-2 gap-3 text-xs">
+            <div class="grid grid-cols-2 gap-3 text-xs">
               <div id="model-disp-box">
                 <span class="text-gray-400 block">Cilinderinhoud:</span>
-                <span id="model-spec-disp" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                <span id="model-spec-disp" class="font-semibold text-gray-200">-</span>
               </div>
               <div id="model-power-box">
                 <span class="text-gray-400 block">Vermogen:</span>
-                <span id="model-spec-power" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                <span id="model-spec-power" class="font-semibold text-gray-200">-</span>
+              </div>
+              <div id="model-bore-stroke-box">
+                <span class="text-gray-400 block">Boring × Slag:</span>
+                <span id="model-spec-bore-stroke" class="font-semibold text-gray-200">-</span>
+              </div>
+              <div id="model-rpm-box">
+                <span class="text-gray-400 block">Toerental (stat. / max):</span>
+                <span id="model-spec-rpm" class="font-semibold text-gray-200">-</span>
               </div>
             </div>
           </div>
 
-          <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
+          <!-- Section 2: Brandstof & Onderhoud -->
+          <div id="model-sec-fuel" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Service Specificaties & Aandrijving
+              Brandstof & Onderhoud
             </h4>
-            <div id="model-specs-grid-petrol" class="grid grid-cols-2 gap-3 text-xs">
+            <div class="grid grid-cols-2 gap-3 text-xs">
               <div id="model-spec-spark-box">
-                <span class="text-gray-400 block">Bougie Type:</span>
-                <span id="model-spec-spark-plug" class="font-mono text-orange-300 font-bold">Niet vastgesteld</span>
+                <span class="text-gray-400 block">Bougie:</span>
+                <span id="model-spec-spark-plug" class="font-mono text-orange-300 font-bold">-</span>
               </div>
               <div id="model-spec-gap-box">
                 <span class="text-gray-400 block">Elektrodenafstand:</span>
-                <span id="model-spec-electrode-gap" class="font-mono text-gray-200">Niet vastgesteld</span>
+                <span id="model-spec-electrode-gap" class="font-mono text-gray-200">-</span>
+              </div>
+              <div id="model-spec-tank-box">
+                <span class="text-gray-400 block">Brandstoftank:</span>
+                <span id="model-spec-fuel-tank" class="font-semibold text-gray-200">-</span>
+              </div>
+              <div id="model-spec-oiltank-box">
+                <span class="text-gray-400 block">Kettingolietank:</span>
+                <span id="model-spec-oil-tank" class="font-semibold text-gray-200">-</span>
               </div>
               <div id="model-spec-carb-h-box">
-                <span class="text-gray-400 block">Carburateur H-Schroef:</span>
-                <span id="model-spec-carb-h" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                <span class="text-gray-400 block">Carburateur H:</span>
+                <span id="model-spec-carb-h" class="font-semibold text-gray-200">-</span>
               </div>
               <div id="model-spec-carb-l-box">
-                <span class="text-gray-400 block">Carburateur L-Schroef:</span>
-                <span id="model-spec-carb-l" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                <span class="text-gray-400 block">Carburateur L:</span>
+                <span id="model-spec-carb-l" class="font-semibold text-gray-200">-</span>
               </div>
               <div id="model-spec-carb-la-box">
-                <span class="text-gray-400 block">Carburateur LA-Schroef:</span>
-                <span id="model-spec-carb-la" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                <span class="text-gray-400 block">Carburateur LA:</span>
+                <span id="model-spec-carb-la" class="font-semibold text-gray-200">-</span>
               </div>
-              <div id="model-spec-chain-box">
-                <span class="text-gray-400 block">Kettingsteek & Dikte:</span>
-                <span id="model-spec-chain-info" class="font-semibold text-gray-200">Niet vastgesteld</span>
+            </div>
+          </div>
+
+          <!-- Section 3: Machine -->
+          <div id="model-sec-machine" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Machine
+            </h4>
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div id="model-weight-box">
+                <span class="text-gray-400 block">Gewicht:</span>
+                <span id="model-spec-weight" class="font-semibold text-gray-200">-</span>
+              </div>
+              <div id="model-blowing-force-box">
+                <span class="text-gray-400 block">Blaaskracht:</span>
+                <span id="model-spec-blowing-force" class="font-semibold text-gray-200">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Zaaguitrusting -->
+          <div id="model-sec-chainsaw" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.5 8.5"/></svg>
+              Zaaguitrusting
+            </h4>
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div id="model-spec-pitch-box">
+                <span class="text-gray-400 block">Kettingsteek:</span>
+                <span id="model-spec-pitch" class="font-semibold text-gray-200">-</span>
+              </div>
+              <div id="model-spec-gauge-box">
+                <span class="text-gray-400 block">Groefbreedte:</span>
+                <span id="model-spec-gauge" class="font-semibold text-gray-200">-</span>
               </div>
             </div>
           </div>
@@ -324,6 +370,7 @@
           <span class="font-bold text-orange-400 block mb-1">💡 Let op: U bekijkt een algemeen model datablad.</span>
           Voer het serienummer in van uw specifieke machine om de fabriek van herkomst, de StopHeling-controlestatus en een onafhankelijk rapport op te vragen.
         </div>
+      </div>
       </div>
 
       <!-- Serial Number Result Card (VALID 9-DIGIT SERIAL NUMBERS ONLY) -->
@@ -357,6 +404,20 @@
             <div>
               <span id="res-model-label" class="text-xs text-gray-400">Geïdentificeerd model:</span>
               <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
+            </div>
+
+            <!-- MODEL ASSIST BLOCK -->
+            <div id="model-assist-container" class="hidden bg-orange-950/30 border border-orange-500/40 rounded-xl p-3.5 space-y-2">
+              <span class="text-xs font-bold text-orange-300 block">
+                💡 Uw serienummer hoort bij de <span id="model-assist-series-name"></span>-reeks. Welke uitvoering heeft u?
+              </span>
+              <div id="model-assist-buttons" class="flex flex-wrap gap-2 pt-1">
+                <!-- Dynamically populated candidate buttons -->
+              </div>
+              <div id="model-assist-confirmed-badge" class="hidden text-2xs text-emerald-400 font-semibold flex items-center justify-between pt-1 border-t border-orange-500/20">
+                <span>✓ Model geselecteerd: <span id="model-assist-confirmed-name" class="font-bold"></span> — specificaties ter referentie</span>
+                <button type="button" id="model-assist-reset-btn" class="text-xs text-gray-400 hover:text-white underline cursor-pointer">Kies ander model</button>
+              </div>
             </div>
 
             <div>
@@ -759,20 +820,104 @@
           document.getElementById('model-card-fuel').innerText = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
 
           const specs = res.technicalSpecs || {};
-          const isChainsaw = res.category && (res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw'));
-          setSpecField('model-disp-box', 'model-spec-disp', specs.displacement_cc, (value) => `${value} cc`);
-          setSpecField('model-power-box', 'model-spec-power', specs.power_kw, (value) => `${value} kW`);
-          setSpecField('model-spec-spark-box', 'model-spec-spark-plug', specs.spark_plug);
-          setSpecField('model-spec-gap-box', 'model-spec-electrode-gap', specs.electrode_gap_mm, (value) => `${value} mm`);
-          setSpecField('model-spec-carb-h-box', 'model-spec-carb-h', specs.carb_h_setting);
-          setSpecField('model-spec-carb-l-box', 'model-spec-carb-l', specs.carb_l_setting);
-          setSpecField('model-spec-carb-la-box', 'model-spec-carb-la', specs.carb_la_setting);
+          const cat = (res.category || '').toLowerCase();
+          const isChainsaw = cat.includes('kettingzaag') || cat.includes('chainsaw');
+          const isBlower = cat.includes('bladblazer') || cat.includes('blower') || cat.includes('nevelspuit');
 
-          const chainInfo = specs.chain_pitch && specs.chain_gauge_mm ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm` : '';
-          const chainInfoEl = document.getElementById('model-spec-chain-info');
-          const chainContainer = document.getElementById('model-spec-chain-box') || (chainInfoEl ? chainInfoEl.parentElement : null);
-          setVisibility(chainContainer, Boolean(isChainsaw && chainInfo));
-          if (chainInfoEl && isChainsaw && chainInfo) chainInfoEl.innerText = chainInfo;
+          // Section 1: Motor
+          const hasDisp = setSpecField('model-disp-box', 'model-spec-disp', specs.displacement_cc, (v) => `${v} cc`);
+          let powerStr = '';
+          if (specs.power_kw && specs.power_hp) {
+            powerStr = `${specs.power_kw} kW (${specs.power_hp} pk)`;
+          } else if (specs.power_kw) {
+            powerStr = `${specs.power_kw} kW`;
+          } else if (specs.power_hp) {
+            powerStr = `${specs.power_hp} pk`;
+          }
+          const hasPower = setSpecField('model-power-box', 'model-spec-power', powerStr);
+
+          let boreStrokeStr = '';
+          if (specs.bore_mm && specs.stroke_mm) {
+            boreStrokeStr = `${specs.bore_mm} × ${specs.stroke_mm} mm`;
+          } else if (specs.bore_mm) {
+            boreStrokeStr = `Boring ${specs.bore_mm} mm`;
+          } else if (specs.stroke_mm) {
+            boreStrokeStr = `Slag ${specs.stroke_mm} mm`;
+          }
+          const hasBoreStroke = setSpecField('model-bore-stroke-box', 'model-spec-bore-stroke', boreStrokeStr);
+
+          const maxRpm = specs.max_speed_rpm || specs.max_engine_speed_rpm;
+          let rpmStr = '';
+          if (specs.idle_speed_rpm && maxRpm) {
+            rpmStr = `${specs.idle_speed_rpm} / ${maxRpm} t/min`;
+          } else if (specs.idle_speed_rpm) {
+            rpmStr = `Stat. ${specs.idle_speed_rpm} t/min`;
+          } else if (maxRpm) {
+            rpmStr = `Max. ${maxRpm} t/min`;
+          }
+          if (specs.clutch_speed_rpm) {
+            rpmStr = rpmStr ? `${rpmStr} · Koppeling ${specs.clutch_speed_rpm} t/min` : `Koppeling ${specs.clutch_speed_rpm} t/min`;
+          }
+          const hasRpm = setSpecField('model-rpm-box', 'model-spec-rpm', rpmStr);
+          setVisibility(document.getElementById('model-sec-motor'), hasDisp || hasPower || hasBoreStroke || hasRpm);
+
+          // Section 2: Brandstof & Onderhoud
+          const hasSpark = setSpecField('model-spec-spark-box', 'model-spec-spark-plug', specs.spark_plug);
+          const gapVal = specs.electrode_gap_mm || specs.spark_plug_gap_mm;
+          const hasGap = setSpecField('model-spec-gap-box', 'model-spec-electrode-gap', gapVal, (v) => `${v} mm`);
+
+          const fuelTankVal = specs.fuel_tank_l ? `${specs.fuel_tank_l} l` : (specs.fuel_tank_capacity_cm3 ? `${specs.fuel_tank_capacity_cm3} cm³` : null);
+          const hasFuelTank = setSpecField('model-spec-tank-box', 'model-spec-fuel-tank', fuelTankVal);
+
+          let hasOilTank = false;
+          if (isChainsaw && (specs.oil_tank_l || specs.oil_tank_capacity_cm3)) {
+            const oilTankVal = specs.oil_tank_l ? `${specs.oil_tank_l} l` : (specs.oil_tank_capacity_cm3 ? `${specs.oil_tank_capacity_cm3} cm³` : null);
+            hasOilTank = setSpecField('model-spec-oiltank-box', 'model-spec-oil-tank', oilTankVal);
+          } else {
+            setVisibility(document.getElementById('model-spec-oiltank-box'), false);
+          }
+
+          const hasCarbH = setSpecField('model-spec-carb-h-box', 'model-spec-carb-h', specs.carb_h_setting);
+          const hasCarbL = setSpecField('model-spec-carb-l-box', 'model-spec-carb-l', specs.carb_l_setting);
+          const hasCarbLa = setSpecField('model-spec-carb-la-box', 'model-spec-carb-la', specs.carb_la_setting);
+          setVisibility(document.getElementById('model-sec-fuel'), hasSpark || hasGap || hasFuelTank || hasOilTank || hasCarbH || hasCarbL || hasCarbLa);
+
+          // Section 3: Machine
+          const hasWeight = setSpecField('model-weight-box', 'model-spec-weight', specs.weight_kg, (v) => `${v} kg`);
+          let hasBlowing = false;
+          if (isBlower && specs.blowing_force_n) {
+            hasBlowing = setSpecField('model-blowing-force-box', 'model-spec-blowing-force', specs.blowing_force_n, (v) => `${v} N`);
+          } else {
+            setVisibility(document.getElementById('model-blowing-force-box'), false);
+          }
+          setVisibility(document.getElementById('model-sec-machine'), hasWeight || hasBlowing);
+
+          // Section 4: Zaaguitrusting
+          let hasPitch = false;
+          let hasGauge = false;
+          if (isChainsaw) {
+            hasPitch = setSpecField('model-spec-pitch-box', 'model-spec-pitch', specs.chain_pitch);
+            hasGauge = setSpecField('model-spec-gauge-box', 'model-spec-gauge', specs.chain_gauge_mm, (v) => `${v} mm`);
+          } else {
+            setVisibility(document.getElementById('model-spec-pitch-box'), false);
+            setVisibility(document.getElementById('model-spec-gauge-box'), false);
+          }
+          setVisibility(document.getElementById('model-sec-chainsaw'), isChainsaw && (hasPitch || hasGauge));
+
+          // Source Badge
+          const badgeEl = document.getElementById('model-card-source-badge');
+          if (badgeEl) {
+            if (res.sourceStatus === 'CANONICAL_VERIFIED') {
+              badgeEl.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+              badgeEl.innerText = '◉ Meerdere officiële bronnen';
+            } else if (res.sourceStatus === 'OFFICIAL_CONFLICTED') {
+              badgeEl.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+              badgeEl.innerText = '△ Bronverschil gevonden';
+            } else {
+              badgeEl.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30';
+              badgeEl.innerText = '✓ Officiële STIHL-bron';
+            }
+          }
 
           modelCard.classList.remove('hidden');
           return;
@@ -780,163 +925,211 @@
 
         // CASE 4: Recognized Serial Number -> FULL PASSPORT & SERIAL BREAKPOINTS ENGINE
         if (res && res.type === 'SERIAL_NUMBER') {
-          currentDecodeResult = res;
-          const serial = res.cleaned;
-          currentSerial = serial;
-          const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
-
-          const isBattery = res.driveClassification?.power_source === 'BATTERY';
-          const fuelTypeLabel = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
-          const driveEvidenceLabel = res.driveClassification?.evidence === 'SERIES_DERIVED'
-            ? '≈ Afgeleid van waarschijnlijke modelreeks'
-            : (res.driveClassification?.evidence === 'PREFIX_DERIVED' ? '≈ Afgeleid van modelaanduiding' : '');
-
-          currentModelName = res.exactModel || res.probableModelSeries || ((res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld');
-
-          document.getElementById('res-serial-display').innerText = formatted;
-          document.getElementById('res-model').innerText = currentModelName;
-          const modelLabelEl = document.getElementById('res-model-label');
-          if (modelLabelEl) {
-            modelLabelEl.innerText = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
-              ? 'Waarschijnlijke modelreeks:'
-              : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:');
-          }
-          document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
-          const fuelEvidenceEl = document.getElementById('res-fuel-evidence');
-          if (fuelEvidenceEl) {
-            fuelEvidenceEl.innerText = driveEvidenceLabel;
-            fuelEvidenceEl.classList.toggle('hidden', !driveEvidenceLabel);
-          }
-          document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Niet vastgesteld'}${res.factory.location ? ` (${res.factory.location})` : ''}` : 'Niet vastgesteld';
-
-          const prodPeriod = res.productionPeriod || {};
-          currentYearsFormatted = res.estimatedYears && res.estimatedYears !== 'UNKNOWN' ? res.estimatedYears : (prodPeriod.yearRangeFormatted || 'Niet vastgesteld');
-          document.getElementById('res-years').innerText = currentYearsFormatted;
-          document.getElementById('res-generation').innerText = res.generation && res.generation !== 'UNKNOWN' ? res.generation : 'Niet vastgesteld';
-
-          const matchTag = document.getElementById('res-range-match-tag');
-          if (matchTag) {
-            matchTag.innerText = res.confidenceLabel || 'Breakpoint-gebaseerde indicatie';
-          }
-
-          const sourceStatusEl = document.getElementById('res-source-status-text');
-          if (sourceStatusEl) {
-            if (res.sourceStatus === 'CANONICAL_VERIFIED') {
-              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Meerdere bronnen bevestigd';
-            } else if (res.sourceStatus === 'OFFICIAL_DOCUMENTED') {
-              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30';
-              sourceStatusEl.innerText = res.sourceStatusLabel || 'Bronstatus: Officiële STIHL-bron';
-            } else if (res.sourceStatus === 'OFFICIAL_CONFLICTED') {
-              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
-              sourceStatusEl.innerText = res.sourceStatusLabel || 'Bronstatus: Bronverschil gevonden';
-            } else if (res.sourceStatus === 'PRIMARY_SOURCE_LINKED' || res.hasPrimaryDoc) {
-              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Primaire bron gekoppeld';
-            } else if (res.sourceStatus === 'SERIES_SOURCE_LINKED') {
-              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Familiebron gekoppeld';
-            } else {
-              sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
-              sourceStatusEl.innerText = 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
-            }
-          }
-
-          const hlContainer = document.getElementById('res-highlights-container');
-          const hlText = document.getElementById('res-highlights-text');
-          const highlightContent = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
-            ? (prodPeriod.seriesSummary || 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.')
-            : res.notes;
-          if (highlightContent) {
-            if (hlText) hlText.innerText = `ℹ️ ${highlightContent}`;
-            if (hlContainer) hlContainer.style.display = 'block';
-          } else {
-            if (hlContainer) hlContainer.style.display = 'none';
-          }
-
-          const specs = res.technicalSpecs || {};
-          const hasExactModel = res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED';
-          const isChainsaw = !res.category || res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw');
-
-          const dispBox = document.getElementById('res-disp-box');
-          const sparkBox = document.getElementById('spec-spark-box');
-          const gapBox = document.getElementById('spec-gap-box');
-          const carbHBox = document.getElementById('spec-carb-h-box');
-          const carbLBox = document.getElementById('spec-carb-l-box');
-          const carbLABox = document.getElementById('spec-carb-la-box');
-          const oilBox = document.getElementById('spec-oil-box');
-          const powerBox = document.getElementById('spec-power-box');
-          const chainBox = document.getElementById('spec-chain-box');
-
-          if (isBattery) {
-            setVisibility(dispBox, false);
-            setVisibility(sparkBox, false);
-            setVisibility(gapBox, false);
-            setVisibility(carbHBox, false);
-            setVisibility(carbLBox, false);
-            setVisibility(carbLABox, false);
-            setVisibility(oilBox, false);
-            setVisibility(powerBox, false);
-            setVisibility(chainBox, false);
-          } else {
-            const visibleRows = [
-              setSpecField('res-disp-box', 'spec-disp', specs.displacement_cc, (value) => `${value} cc`),
-              setSpecField('spec-power-box', 'spec-power', specs.power_kw, (value) => `${value} kW`),
-              setSpecField('spec-spark-box', 'spec-spark-plug', specs.spark_plug),
-              setSpecField('spec-gap-box', 'spec-electrode-gap', specs.electrode_gap_mm, (value) => `${value} mm`),
-              setSpecField('spec-carb-h-box', 'spec-carb-h', specs.carb_h_setting),
-              setSpecField('spec-carb-l-box', 'spec-carb-l', specs.carb_l_setting),
-              setSpecField('spec-carb-la-box', 'spec-carb-la', specs.carb_la_setting),
-              setSpecField('spec-oil-box', 'spec-oil-mix', isChainsaw ? specs.oil_mix_ratio : '')
-            ].filter(Boolean).length;
-
-            const serialChainEl = document.getElementById('spec-chain-info');
-            const chainInfo = specs.chain_pitch && specs.chain_gauge_mm ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm` : '';
-            setVisibility(chainBox, Boolean(isChainsaw && chainInfo));
-            if (serialChainEl && isChainsaw && chainInfo) serialChainEl.innerText = chainInfo;
-            const totalVisibleRows = visibleRows + (isChainsaw && chainInfo ? 1 : 0);
-
-            const preview = res.safeTechnicalPreview;
-            const hasPreview = Boolean(preview && preview.available && Array.isArray(preview.fields) && preview.fields.length > 0);
-
-            if (totalVisibleRows > 0) {
-              if (specsGridContainer) specsGridContainer.classList.remove('hidden');
-              if (safePreviewCard) safePreviewCard.classList.add('hidden');
-              if (serialSpecSummary) serialSpecSummary.classList.add('hidden');
-            } else if (hasPreview) {
-              if (specsGridContainer) specsGridContainer.classList.add('hidden');
-              if (serialSpecSummary) serialSpecSummary.classList.add('hidden');
-              if (safePreviewCard && safePreviewGrid) {
-                safePreviewGrid.innerHTML = preview.fields.map((f) => `
-                  <div class="bg-gray-900/90 p-2.5 rounded-lg border border-gray-800">
-                    <span class="text-gray-400 block text-2xs font-medium">${f.label}:</span>
-                    <span class="font-semibold text-gray-100 text-xs">${f.value}</span>
-                  </div>
-                `).join('');
-                safePreviewCard.classList.remove('hidden');
-              }
-              const previewDisp = preview.fields.find((f) => f.key === 'displacement_cc');
-              const previewPower = preview.fields.find((f) => f.key === 'power_kw');
-              if (previewDisp) setSpecField('res-disp-box', 'spec-disp', previewDisp.value);
-              if (previewPower) setSpecField('spec-power-box', 'spec-power', previewPower.value);
-            } else {
-              if (specsGridContainer) specsGridContainer.classList.add('hidden');
-              if (safePreviewCard) safePreviewCard.classList.add('hidden');
-              if (serialSpecSummary) serialSpecSummary.classList.remove('hidden');
-            }
-          }
-          if (isBattery && serialSpecSummary) {
-            serialSpecSummary.classList.toggle('hidden', hasExactModel);
-          }
-
-          const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
-          if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
-
-          resultCard.classList.remove('hidden');
+          renderSerialResult(res);
           return;
         }
 
         emptyState.classList.remove('hidden');
+      }
+
+      function renderSerialResult(res) {
+        currentDecodeResult = res;
+        const serial = res.cleaned;
+        currentSerial = serial;
+        const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
+
+        const isBattery = res.driveClassification?.power_source === 'BATTERY';
+        const fuelTypeLabel = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
+        const driveEvidenceLabel = res.driveClassification?.evidence === 'SERIES_DERIVED'
+          ? '≈ Afgeleid van waarschijnlijke modelreeks'
+          : (res.driveClassification?.evidence === 'PREFIX_DERIVED' ? '≈ Afgeleid van modelaanduiding' : '');
+
+        currentModelName = res.exactModel || res.confirmedModel || res.probableModelSeries || ((res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld');
+
+        document.getElementById('res-serial-display').innerText = formatted;
+        document.getElementById('res-model').innerText = currentModelName;
+        const modelLabelEl = document.getElementById('res-model-label');
+        if (modelLabelEl) {
+          modelLabelEl.innerText = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
+            ? 'Waarschijnlijke modelreeks:'
+            : (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
+              ? 'Model bevestigd door gebruiker:'
+              : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:'));
+        }
+
+        // Model Assist handling
+        const assistContainer = document.getElementById('model-assist-container');
+        const assistButtons = document.getElementById('model-assist-buttons');
+        const assistSeriesName = document.getElementById('model-assist-series-name');
+        const assistConfirmedBadge = document.getElementById('model-assist-confirmed-badge');
+        const assistConfirmedName = document.getElementById('model-assist-confirmed-name');
+
+        if (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL' && res.confirmedModel) {
+          if (assistContainer) assistContainer.classList.remove('hidden');
+          if (assistButtons) assistButtons.classList.add('hidden');
+          if (assistConfirmedBadge) assistConfirmedBadge.classList.remove('hidden');
+          if (assistConfirmedName) assistConfirmedName.innerText = res.confirmedModel;
+        } else if (res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES' && res.modelAssist?.available && res.modelAssist.candidates?.length > 0) {
+          if (assistContainer) assistContainer.classList.remove('hidden');
+          if (assistButtons) {
+            assistButtons.classList.remove('hidden');
+            assistButtons.innerHTML = res.modelAssist.candidates.map((c) => `
+              <button type="button" class="model-assist-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-orange-600 hover:bg-orange-500 text-white transition shadow cursor-pointer" data-slug="${c.slug}" data-name="${c.name}">
+                ${c.name}
+              </button>
+            `).join('');
+
+            assistButtons.querySelectorAll('.model-assist-btn').forEach((btn) => {
+              btn.addEventListener('click', async () => {
+                const confirmedModel = btn.getAttribute('data-name');
+                try {
+                  const response = await fetch(`${decodeEndpoint}?code=${encodeURIComponent(currentSerial)}&confirmedModel=${encodeURIComponent(confirmedModel)}`);
+                  const confirmedRes = await response.json();
+                  renderSerialResult(confirmedRes);
+                } catch (e) {
+                  showToast('Fout bij ophalen specificaties');
+                }
+              });
+            });
+          }
+          if (assistSeriesName) assistSeriesName.innerText = res.modelAssist.series || res.probableModelSeries || '';
+          if (assistConfirmedBadge) assistConfirmedBadge.classList.add('hidden');
+        } else {
+          if (assistContainer) assistContainer.classList.add('hidden');
+        }
+
+        document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
+        const fuelEvidenceEl = document.getElementById('res-fuel-evidence');
+        if (fuelEvidenceEl) {
+          fuelEvidenceEl.innerText = driveEvidenceLabel;
+          fuelEvidenceEl.classList.toggle('hidden', !driveEvidenceLabel);
+        }
+        document.getElementById('res-country').innerText = res.factory ? `${res.factory.country || 'Niet vastgesteld'}${res.factory.location ? ` (${res.factory.location})` : ''}` : 'Niet vastgesteld';
+
+        const prodPeriod = res.productionPeriod || {};
+        currentYearsFormatted = res.estimatedYears && res.estimatedYears !== 'UNKNOWN' ? res.estimatedYears : (prodPeriod.yearRangeFormatted || 'Niet vastgesteld');
+        document.getElementById('res-years').innerText = currentYearsFormatted;
+        document.getElementById('res-generation').innerText = res.generation && res.generation !== 'UNKNOWN' ? res.generation : 'Niet vastgesteld';
+
+        const matchTag = document.getElementById('res-range-match-tag');
+        if (matchTag) {
+          matchTag.innerText = res.confidenceLabel || 'Breakpoint-gebaseerde indicatie';
+        }
+
+        const sourceStatusEl = document.getElementById('res-source-status-text');
+        if (sourceStatusEl) {
+          if (res.sourceStatus === 'CANONICAL_VERIFIED') {
+            sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+            sourceStatusEl.innerText = 'Bronstatus: Meerdere bronnen bevestigd';
+          } else if (res.sourceStatus === 'OFFICIAL_DOCUMENTED') {
+            sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30';
+            sourceStatusEl.innerText = res.sourceStatusLabel || 'Bronstatus: Officiële STIHL-bron';
+          } else if (res.sourceStatus === 'OFFICIAL_CONFLICTED') {
+            sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
+            sourceStatusEl.innerText = res.sourceStatusLabel || 'Bronstatus: Bronverschil gevonden';
+          } else if (res.sourceStatus === 'PRIMARY_SOURCE_LINKED' || res.hasPrimaryDoc) {
+            sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+            sourceStatusEl.innerText = 'Bronstatus: Primaire bron gekoppeld';
+          } else if (res.sourceStatus === 'SERIES_SOURCE_LINKED') {
+            sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30';
+            sourceStatusEl.innerText = 'Bronstatus: Familiebron gekoppeld';
+          } else {
+            sourceStatusEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30';
+            sourceStatusEl.innerText = 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
+          }
+        }
+
+        const hlContainer = document.getElementById('res-highlights-container');
+        const hlText = document.getElementById('res-highlights-text');
+        const highlightContent = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
+          ? (prodPeriod.seriesSummary || 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.')
+          : res.notes;
+        if (highlightContent) {
+          if (hlText) hlText.innerText = `ℹ️ ${highlightContent}`;
+          if (hlContainer) hlContainer.style.display = 'block';
+        } else {
+          if (hlContainer) hlContainer.style.display = 'none';
+        }
+
+        const specs = res.technicalSpecs || {};
+        const hasExactModel = res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' || res.modelIdentityStatus === 'USER_CONFIRMED_MODEL';
+        const isChainsaw = !res.category || res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw');
+
+        const dispBox = document.getElementById('res-disp-box');
+        const sparkBox = document.getElementById('spec-spark-box');
+        const gapBox = document.getElementById('spec-gap-box');
+        const carbHBox = document.getElementById('spec-carb-h-box');
+        const carbLBox = document.getElementById('spec-carb-l-box');
+        const carbLABox = document.getElementById('spec-carb-la-box');
+        const oilBox = document.getElementById('spec-oil-box');
+        const powerBox = document.getElementById('spec-power-box');
+        const chainBox = document.getElementById('spec-chain-box');
+
+        if (isBattery) {
+          setVisibility(dispBox, false);
+          setVisibility(sparkBox, false);
+          setVisibility(gapBox, false);
+          setVisibility(carbHBox, false);
+          setVisibility(carbLBox, false);
+          setVisibility(carbLABox, false);
+          setVisibility(oilBox, false);
+          setVisibility(powerBox, false);
+          setVisibility(chainBox, false);
+        } else {
+          const visibleRows = [
+            setSpecField('res-disp-box', 'spec-disp', specs.displacement_cc, (value) => `${value} cc`),
+            setSpecField('spec-power-box', 'spec-power', specs.power_kw, (value) => `${value} kW`),
+            setSpecField('spec-spark-box', 'spec-spark-plug', specs.spark_plug),
+            setSpecField('spec-gap-box', 'spec-electrode-gap', specs.electrode_gap_mm, (value) => `${value} mm`),
+            setSpecField('spec-carb-h-box', 'spec-carb-h', specs.carb_h_setting),
+            setSpecField('spec-carb-l-box', 'spec-carb-l', specs.carb_l_setting),
+            setSpecField('spec-carb-la-box', 'spec-carb-la', specs.carb_la_setting),
+            setSpecField('spec-oil-box', 'spec-oil-mix', isChainsaw ? specs.oil_mix_ratio : '')
+          ].filter(Boolean).length;
+
+          const serialChainEl = document.getElementById('spec-chain-info');
+          const chainInfo = specs.chain_pitch && specs.chain_gauge_mm ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm` : '';
+          setVisibility(chainBox, Boolean(isChainsaw && chainInfo));
+          if (serialChainEl && isChainsaw && chainInfo) serialChainEl.innerText = chainInfo;
+          const totalVisibleRows = visibleRows + (isChainsaw && chainInfo ? 1 : 0);
+
+          const preview = res.safeTechnicalPreview;
+          const hasPreview = Boolean(preview && preview.available && Array.isArray(preview.fields) && preview.fields.length > 0);
+
+          if (totalVisibleRows > 0) {
+            if (specsGridContainer) specsGridContainer.classList.remove('hidden');
+            if (safePreviewCard) safePreviewCard.classList.add('hidden');
+            if (serialSpecSummary) serialSpecSummary.classList.add('hidden');
+          } else if (hasPreview) {
+            if (specsGridContainer) specsGridContainer.classList.add('hidden');
+            if (serialSpecSummary) serialSpecSummary.classList.add('hidden');
+            if (safePreviewCard && safePreviewGrid) {
+              safePreviewGrid.innerHTML = preview.fields.map((f) => `
+                <div class="bg-gray-900/90 p-2.5 rounded-lg border border-gray-800">
+                  <span class="text-gray-400 block text-2xs font-medium">${f.label}:</span>
+                  <span class="font-semibold text-gray-100 text-xs">${f.value}</span>
+                </div>
+              `).join('');
+              safePreviewCard.classList.remove('hidden');
+            }
+            const previewDisp = preview.fields.find((f) => f.key === 'displacement_cc');
+            const previewPower = preview.fields.find((f) => f.key === 'power_kw');
+            if (previewDisp) setSpecField('res-disp-box', 'spec-disp', previewDisp.value);
+            if (previewPower) setSpecField('spec-power-box', 'spec-power', previewPower.value);
+          } else {
+            if (specsGridContainer) specsGridContainer.classList.add('hidden');
+            if (safePreviewCard) safePreviewCard.classList.add('hidden');
+            if (serialSpecSummary) serialSpecSummary.classList.remove('hidden');
+          }
+        }
+        if (isBattery && serialSpecSummary) {
+          serialSpecSummary.classList.toggle('hidden', hasExactModel);
+        }
+
+        const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
+        if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
+
+        resultCard.classList.remove('hidden');
       }
 
       if (searchBtn) searchBtn.addEventListener('click', handleDecode);
@@ -951,7 +1144,19 @@
           modelCard.classList.add('hidden');
           emptyState.classList.remove('hidden');
           if (safePreviewCard) safePreviewCard.classList.add('hidden');
+          const assistContainer = document.getElementById('model-assist-container');
+          if (assistContainer) assistContainer.classList.add('hidden');
           inputEl.focus();
+        });
+      }
+
+      const assistResetBtn = document.getElementById('model-assist-reset-btn');
+      if (assistResetBtn) {
+        assistResetBtn.addEventListener('click', () => {
+          if (currentSerial) {
+            inputEl.value = currentSerial;
+            handleDecode();
+          }
         });
       }
 

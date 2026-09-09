@@ -21,7 +21,7 @@ export const VARIANT_SUFFIXES = ['C-M', 'C-EM', 'TC-M', 'C-E', 'T', 'R', 'RX', '
 export function normalizeModelQuery(inputStr = '') {
   if (!inputStr || typeof inputStr !== 'string') return { baseModel: '', variant: '', canonicalQuery: '' };
 
-  let raw = inputStr.trim().toUpperCase();
+  let raw = inputStr.trim().replace(/^STIHL[\s_\-]+/i, '').trim().toUpperCase();
 
   // Legacy numeric designations (e.g., 026, 036, 046, 044, 066, 020 T)
   const legacyMatch = raw.match(/^(0\d{2})[\s-]?([A-Z])?$/i);

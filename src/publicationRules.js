@@ -6,7 +6,8 @@ export const KNOWN_PUBLIC_CATEGORIES = new Set([
   'bladblazers',
   'heggenscharen',
   'accu-kettingzagen',
-  'doorslijpers'
+  'doorslijpers',
+  'nevelspuiten'
 ]);
 
 export const INDEXABLE_COMPARISONS = [
@@ -84,6 +85,9 @@ export function getSerialLocationAnswer(categorySlug) {
   }
   if (categorySlug === 'doorslijpers') {
     return 'Het serienummer staat ingeslagen op het motorhuis of typeplaatje van de doorslijper.';
+  }
+  if (categorySlug === 'nevelspuiten') {
+    return 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de nevelspuit.';
   }
   return 'De exacte locatie van het serienummer verschilt per model. Controleer het typeplaatje en de passende STIHL documentatie voor uw uitvoering.';
 }

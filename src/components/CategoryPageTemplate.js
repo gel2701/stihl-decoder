@@ -27,7 +27,9 @@ export function renderCategoryPageHtml(categorySlug, database, baseUrl = PRIMARY
     'bosmaaiers': 'STIHL Bosmaaiers',
     'bladblazers': 'STIHL Bladblazers',
     'heggenscharen': 'STIHL Heggenscharen',
-    'accu-kettingzagen': 'STIHL Accu Kettingzagen'
+    'accu-kettingzagen': 'STIHL Accu Kettingzagen',
+    'doorslijpers': 'STIHL Doorslijpers',
+    'nevelspuiten': 'STIHL Nevelspuiten'
   };
 
   const categoryTitle = categoryNames[categorySlug] || `STIHL ${categorySlug}`;

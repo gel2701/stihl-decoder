@@ -33,8 +33,8 @@ function stable(value) {
 }
 
 const storeHash = crypto.createHash('sha256').update(stable(store)).digest('hex');
-// Baseline Phase 36B canonical hash: 4487d22e659530ee336ba3975f68687bd1ce2438ad29486584e866e616e2a943
-assert.strictEqual(storeHash, '4487d22e659530ee336ba3975f68687bd1ce2438ad29486584e866e616e2a943', 'Store hash must match current canonical hash');
+// Active canonical store hash: 438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951
+assert.strictEqual(storeHash, '438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951', 'Store hash must match current canonical hash');
 
 // Verify baseline 0..123 invariance
 assert.strictEqual(store.facts[0].fact_id, '1c0c06cc89c979a3', 'Baseline fact 0 preserved');

@@ -10,6 +10,7 @@ export const CATEGORY_TYPES = {
   HEDGE_TRIMMER: 'heggenscharen',
   CUTOFF_SAW: 'doorslijpers',
   ACCU_CHAINSAW: 'accu-kettingzagen',
+  MISTBLOWER: 'nevelspuiten',
   UNKNOWN: 'unknown'
 };
 
@@ -21,6 +22,8 @@ export const CHAINSAW_ONLY_FIELDS = [
   'bar_length',
   'guide_bar',
   'oil_tank',
+  'oil_tank_capacity_cm3',
+  'oil_tank_volume_cm3',
   'chain_oil',
   'drive_links'
 ];
@@ -68,6 +71,9 @@ export function normalizeCategorySlug(categoryNameOrSlug = '', modelNameOrId = '
   if (cat.includes('doorslijper') || cat.includes('cutoff') || name.startsWith('TS')) {
     return CATEGORY_TYPES.CUTOFF_SAW;
   }
+  if (cat.includes('nevelspuit') || cat.includes('mistblower') || name.startsWith('SR')) {
+    return CATEGORY_TYPES.MISTBLOWER;
+  }
 
   return CATEGORY_TYPES.UNKNOWN;
 }
@@ -95,6 +101,9 @@ export function sanitizeModelSpecifications(specs = {}, categoryStr = '', modelN
   }
   if (nameUpper.startsWith('TS') && catSlug !== CATEGORY_TYPES.CUTOFF_SAW) {
     console.warn(`[CATEGORY_SPEC_CONFLICT] Model ${modelName} prefix TS conflicts with category ${categoryStr}`);
+  }
+  if (nameUpper.startsWith('SR') && catSlug !== CATEGORY_TYPES.MISTBLOWER) {
+    console.warn(`[CATEGORY_SPEC_CONFLICT] Model ${modelName} prefix SR conflicts with category ${categoryStr}`);
   }
 
   // HARD SAFETY RULE: Block chainsaw-only fields for non-chainsaw categories or UNKNOWN

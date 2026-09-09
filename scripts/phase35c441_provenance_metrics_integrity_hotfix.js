@@ -475,9 +475,17 @@ export function runHygienicPipeline(options = {}) {
     'src/driveClassification.js',
     'src/publicEvidence.js',
     'src/SerialChronologyResolver.js',
+    'src/categoryWhitelist.js',
+    'src/modelNormalizer.js',
+    'src/publicationRules.js',
+    'src/components/CategoryPageTemplate.js',
+    'src/components/ModelPageTemplate.js',
+    'src/components/SitemapGenerator.js',
+    'server.js',
     'index.html',
     'data/public_evidence_facts.json',
-    'data/serial_chronology_anchors.json'
+    'data/serial_chronology_anchors.json',
+    'data/stihl_database.json'
   ]);
 
   statusLines.forEach((line) => {
@@ -759,7 +767,7 @@ export function runFailureInjections() {
   let unverifiedSnapshotDateRejected = 'FAIL';
 
   // 1. Missing external source resolution
-  const missingResolved = resolveStihlUsaSourcePath({ input: 'C:\\Users\\Nobody\\missing.json' });
+  const missingResolved = resolveStihlUsaSourcePath({ input: '/nonexistent_source_path/missing.json' });
   if (missingResolved.path && !fs.existsSync(missingResolved.path)) {
     missingExternalSourceDetected = 'PASS';
   }
