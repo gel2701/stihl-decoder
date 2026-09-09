@@ -1,0 +1,389 @@
+{
+  "phase": "37A",
+  "generated_at": "2026-09-09T00:46:59.521Z",
+  "baseline_facts": 259,
+  "candidate_facts": 452,
+  "new_facts_promoted": 193,
+  "series_unlocked": [
+    {
+      "series_code": "1127",
+      "family_name": "Farm Boss (MS 290, MS 310, MS 390)",
+      "category": "Kettingzaag",
+      "models_in_series": [
+        "MS 290",
+        "MS 310",
+        "MS 390"
+      ],
+      "baseline_status": "BLOCKED_INCOMPLETE_CANDIDATE_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "Bosch",
+              "model": "WSR 6 F"
+            },
+            {
+              "manufacturer": "NGK",
+              "model": "BPMR 7 A"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        },
+        {
+          "field": "fuel_tank_l",
+          "value": 0.56
+        },
+        {
+          "field": "weight_kg",
+          "value": 5.9
+        },
+        {
+          "field": "chain_pitch",
+          "value": "3/8\""
+        }
+      ]
+    },
+    {
+      "series_code": "4282",
+      "family_name": "Professional Backpack Blowers (BR 500, BR 550, BR 600, BR 700)",
+      "category": "Bladblazer",
+      "models_in_series": [
+        "BR 500",
+        "BR 550",
+        "BR 600",
+        "BR 700"
+      ],
+      "baseline_status": "BLOCKED_INCOMPLETE_CANDIDATE_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "displacement_cc",
+          "value": 64.8
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 2500
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "NGK",
+              "model": "CMR6H"
+            },
+            {
+              "manufacturer": "Bosch",
+              "model": "USR 4AC"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        },
+        {
+          "field": "fuel_tank_l",
+          "value": 1.4
+        }
+      ]
+    },
+    {
+      "series_code": "1145",
+      "family_name": "Professional Arborist Chainsaw (MS 201 T, MS 201 TC-M)",
+      "category": "Kettingzaag",
+      "models_in_series": [
+        "MS 201 T",
+        "MS 201 TC-M"
+      ],
+      "baseline_status": "BLOCKED_INCOMPLETE_CANDIDATE_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "displacement_cc",
+          "value": 35.2
+        },
+        {
+          "field": "power_kw",
+          "value": 1.8
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 3000
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "NGK",
+              "model": "CMR 6 H"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        },
+        {
+          "field": "fuel_tank_l",
+          "value": 0.31
+        },
+        {
+          "field": "oil_tank_l",
+          "value": 0.22
+        },
+        {
+          "field": "weight_kg",
+          "value": 3.7
+        },
+        {
+          "field": "chain_pitch",
+          "value": "3/8\" P"
+        }
+      ]
+    },
+    {
+      "series_code": "4134",
+      "family_name": "Brushcutters & Clearing Saws (FS 120, FS 200, FS 350)",
+      "category": "Bosmaaier",
+      "models_in_series": [
+        "FS 120",
+        "FS 200",
+        "FS 350"
+      ],
+      "baseline_status": "PARTIAL_NO_PREVIEW",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "stroke_mm",
+          "value": 32
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 2800
+        },
+        {
+          "field": "max_speed_rpm",
+          "value": 12500
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "Bosch",
+              "model": "WSR 6F"
+            },
+            {
+              "manufacturer": "NGK",
+              "model": "BPMR 7 A"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        },
+        {
+          "field": "fuel_tank_l",
+          "value": 0.64
+        }
+      ]
+    },
+    {
+      "series_code": "4244",
+      "family_name": "Mistblowers (SR 430, SR 450)",
+      "category": "Nevelspuit",
+      "models_in_series": [
+        "SR 430",
+        "SR 450"
+      ],
+      "baseline_status": "BLOCKED_INCOMPLETE_CANDIDATE_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "displacement_cc",
+          "value": 63.3
+        },
+        {
+          "field": "power_kw",
+          "value": 2.9
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 3000
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "Bosch",
+              "model": "WSR 6 F"
+            },
+            {
+              "manufacturer": "NGK",
+              "model": "BPMR 7 A"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        },
+        {
+          "field": "fuel_tank_l",
+          "value": 1.7
+        }
+      ]
+    },
+    {
+      "series_code": "1135",
+      "family_name": "Professional Forestry Saws (MS 341, MS 361)",
+      "category": "Kettingzaag",
+      "models_in_series": [
+        "MS 341",
+        "MS 361"
+      ],
+      "baseline_status": "NO_PUBLIC_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "displacement_cc",
+          "value": 59
+        },
+        {
+          "field": "bore_mm",
+          "value": 47
+        },
+        {
+          "field": "stroke_mm",
+          "value": 34
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 2800
+        },
+        {
+          "field": "clutch_speed_rpm",
+          "value": 3500
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "Bosch",
+              "model": "WSR 6 F"
+            },
+            {
+              "manufacturer": "NGK",
+              "model": "BPMR 7 A"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "series_code": "1133",
+      "family_name": "Mid-Range Chainsaws (MS 270, MS 280)",
+      "category": "Kettingzaag",
+      "models_in_series": [
+        "MS 270",
+        "MS 280"
+      ],
+      "baseline_status": "NO_PUBLIC_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "stroke_mm",
+          "value": 32.6
+        },
+        {
+          "field": "max_engine_speed_rpm",
+          "value": 13500
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 2800
+        },
+        {
+          "field": "clutch_speed_rpm",
+          "value": 3300
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "NGK",
+              "model": "BPMR 7 A"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "series_code": "1129",
+      "family_name": "Legendary Arborist Saws (MS 200, MS 200 T)",
+      "category": "Kettingzaag",
+      "models_in_series": [
+        "MS 200",
+        "MS 200 T"
+      ],
+      "baseline_status": "NO_PUBLIC_COVERAGE",
+      "phase37a_status": "UNLOCKED_CONSENSUS_PREVIEW",
+      "unlocked_consensus_fields": [
+        {
+          "field": "displacement_cc",
+          "value": 35.2
+        },
+        {
+          "field": "bore_mm",
+          "value": 40
+        },
+        {
+          "field": "stroke_mm",
+          "value": 28
+        },
+        {
+          "field": "power_kw",
+          "value": 1.7
+        },
+        {
+          "field": "max_engine_speed_rpm",
+          "value": 14000
+        },
+        {
+          "field": "idle_speed_rpm",
+          "value": 2800
+        },
+        {
+          "field": "clutch_speed_rpm",
+          "value": 3700
+        },
+        {
+          "field": "spark_plug",
+          "value": [
+            {
+              "manufacturer": "Bosch",
+              "model": "WSR 6 F"
+            }
+          ]
+        },
+        {
+          "field": "spark_plug_gap_mm",
+          "value": 0.5
+        }
+      ]
+    }
+  ]
+}

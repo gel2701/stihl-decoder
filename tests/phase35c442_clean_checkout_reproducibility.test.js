@@ -164,7 +164,7 @@ const statusLines = statusOutput ? statusOutput.split('\n').filter(Boolean) : []
 let prodFilesChanged = 0;
 let canonicalDbChanged = 'NO';
 let publicStoreChanged = 'NO';
-let publicFactCount = 259;
+let publicFactCount = 452;
 
 const pubStorePath = path.join(rootDir, 'data', 'public_evidence_facts.json');
 if (fs.existsSync(pubStorePath)) {
@@ -201,7 +201,7 @@ statusLines.forEach((line) => {
 assert.strictEqual(prodFilesChanged, 0, 'PRODUCTION_FILES_CHANGED must be 0');
 assert.strictEqual(canonicalDbChanged, 'NO', 'CANONICAL_DATABASE_CHANGED must be NO');
 assert.strictEqual(publicStoreChanged, 'NO', 'PUBLIC_EVIDENCE_STORE_CHANGED must be NO');
-assert.strictEqual(publicFactCount, 259, 'PUBLIC_FACT_COUNT must be 259 in Phase 36B candidate');
+assert.strictEqual(publicFactCount, 452, 'PUBLIC_FACT_COUNT must be 452 in Phase 37A candidate');
 
 // 9. Simulated Clean Checkout Test
 if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
@@ -269,7 +269,14 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'data/serial_chronology_anchors.json',
       'data/phase36b_official_source_inventory.json',
       'data/phase36b_public_evidence_promotion_report.json',
-      'data/phase36b_ms261_evidence_audit.json'
+      'data/phase36b_ms261_evidence_audit.json',
+      'data/phase37a_priority_queue.json',
+      'data/phase37a_official_source_inventory.json',
+      'data/phase37a_preview_unlock_report.json',
+      'data/phase37a_value_impact_report.json',
+      'data/phase37a_missing_high_value_fields.json',
+      'data/phase37a_raw_fact_reproduction_audit.json',
+      'tests/phase37a_high_value_evidence_wave.test.js'
     ];
 
     for (const relFile of candidateFiles) {

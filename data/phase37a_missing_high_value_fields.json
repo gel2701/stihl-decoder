@@ -1,0 +1,78 @@
+{
+  "phase": "37A",
+  "generated_at": "2026-09-09T00:46:59.522Z",
+  "analyzed_models": [
+    "ms-310",
+    "ms-390",
+    "br-500",
+    "br-550",
+    "br-700",
+    "ms-201-t",
+    "fs-120",
+    "fs-200",
+    "sr-450",
+    "fs-410-c-m",
+    "fs-490-c-m",
+    "ms-341",
+    "ms-361",
+    "ms-270",
+    "ms-280",
+    "ms-200",
+    "ms-200-t",
+    "ms-440",
+    "ms-441",
+    "ms-461"
+  ],
+  "findings": [
+    {
+      "model_slug": "ms-390",
+      "missing_field": "power_hp",
+      "reason": "Instruction manual provides power in kW (3.4 kW). The HP value in English manual had a typographical error (4.1 HP); to preserve strict provenance without synthetic guessing, power_hp was omitted."
+    },
+    {
+      "model_slug": "ms-341",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications and torque values rather than dry weight. Safe fail-closed behavior preserves weight_kg as missing rather than guessing."
+    },
+    {
+      "model_slug": "ms-361",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications and torque values rather than dry weight."
+    },
+    {
+      "model_slug": "ms-270",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    },
+    {
+      "model_slug": "ms-280",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    },
+    {
+      "model_slug": "ms-200",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    },
+    {
+      "model_slug": "ms-200-t",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    },
+    {
+      "model_slug": "ms-440",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    },
+    {
+      "model_slug": "ms-441",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    },
+    {
+      "model_slug": "ms-461",
+      "missing_field": "weight_kg",
+      "reason": "Official service manual focuses on workshop specifications."
+    }
+  ]
+}

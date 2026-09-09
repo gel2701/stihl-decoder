@@ -51,7 +51,8 @@ export const testFiles = [
   'tests/phase36_serial_chronology.test.js',
   'tests/phase36c_ui_user_value_acceptance.test.js',
   'tests/phase36a_safe_technical_preview.test.js',
-  'tests/phase36b_evidence_expansion.test.js'
+  'tests/phase36b_evidence_expansion.test.js',
+  'tests/phase37a_high_value_evidence_wave.test.js'
 ];
 
 function sha256Text(value) {

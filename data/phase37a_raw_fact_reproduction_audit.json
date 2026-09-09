@@ -1,0 +1,4037 @@
+{
+  "phase": "37A",
+  "generated_at": "2026-09-09T00:55:49.449Z",
+  "RAW_FACTS_EXPECTED": 193,
+  "RAW_FACTS_ATTEMPTED": 193,
+  "RAW_FACT_REPRODUCTION_PASS": 193,
+  "RAW_FACT_REPRODUCTION_FAIL": 0,
+  "FACTS_WITHOUT_EXPLICIT_BINDING_METHOD": 0,
+  "SERIES_BINDING_HARD_PROOFS": {
+    "BR700_SERIES_BINDING_PROOF": "PASS",
+    "FS120_SERIES_BINDING": "PASS",
+    "FS200_SERIES_BINDING": "PASS",
+    "FS350_SERIES_BINDING": "PASS"
+  },
+  "records": [
+    {
+      "fact_id": "b8f88692ef1818f0",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "displacement_cc",
+      "raw_value": "59.0 cm3",
+      "normalized_value": 59,
+      "unit": "cc",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "db5b8c438d7186fe",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "bore_mm",
+      "raw_value": "47 mm",
+      "normalized_value": 47,
+      "unit": "mm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "d5e1277da1007986",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "stroke_mm",
+      "raw_value": "34 mm",
+      "normalized_value": 34,
+      "unit": "mm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "ede6e3a093599628",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "power_kw",
+      "raw_value": "3.2 kW (4.4 HP) at 9500 rpm",
+      "normalized_value": 3.2,
+      "unit": "kW",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "bb731acc7d8fb93c",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "power_hp",
+      "raw_value": "4.4 HP",
+      "normalized_value": 4.4,
+      "unit": "HP",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "5c677c79cbd57ed8",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 rpm",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "8eec75d638f3e6b6",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6 F, NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "bcbca963c3aaa287",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "13ea6c79138a864e",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "fuel_tank_l",
+      "raw_value": "560 cm3 (0.56 l)",
+      "normalized_value": 0.56,
+      "unit": "l",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "46363f75e85acad9",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "oil_tank_l",
+      "raw_value": "330 cm3 (0.33 l)",
+      "normalized_value": 0.33,
+      "unit": "l",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "cc4ae11686131d5d",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "weight_kg",
+      "raw_value": "5.9 kg",
+      "normalized_value": 5.9,
+      "unit": "kg",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "18bc3e255f534d18",
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "field": "chain_pitch",
+      "raw_value": "3/8\" (9.32 mm)",
+      "normalized_value": "3/8\"",
+      "unit": "",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "a9b00e8916831533",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "displacement_cc",
+      "raw_value": "64.1 cm3",
+      "normalized_value": 64.1,
+      "unit": "cc",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b5447bc57cc2996a",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "bore_mm",
+      "raw_value": "49 mm",
+      "normalized_value": 49,
+      "unit": "mm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "12280a6c66d07a3f",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "stroke_mm",
+      "raw_value": "34 mm",
+      "normalized_value": 34,
+      "unit": "mm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "1f11e4b079ad954a",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "power_kw",
+      "raw_value": "3.4 kW at 9500 rpm",
+      "normalized_value": 3.4,
+      "unit": "kW",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "a9a49142cc3421b3",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 rpm",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e6b25d55318a8e59",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6 F, NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "4e549aab0c0b0f9a",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "9cd5e9df9c569acb",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "fuel_tank_l",
+      "raw_value": "560 cm3 (0.56 l)",
+      "normalized_value": 0.56,
+      "unit": "l",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "9f6ee440a21be8f1",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "oil_tank_l",
+      "raw_value": "330 cm3 (0.33 l)",
+      "normalized_value": 0.33,
+      "unit": "l",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c9fcf37e4e85f7b4",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "weight_kg",
+      "raw_value": "5.9 kg",
+      "normalized_value": 5.9,
+      "unit": "kg",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "afcb7e87058dca6d",
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "field": "chain_pitch",
+      "raw_value": "3/8\" (9.32 mm)",
+      "normalized_value": "3/8\"",
+      "unit": "",
+      "source_document_id": "0458-209-0121-B",
+      "pdf_page": 41,
+      "printed_page": 41,
+      "source_locator": "publication:0458-209-0121-B#page=41",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b8ef4786e4071c7e",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "displacement_cc",
+      "raw_value": "64.8 cm³",
+      "normalized_value": 64.8,
+      "unit": "cc",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3dd3668b0af6ef12",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "power_kw",
+      "raw_value": "2 kW (2.7 bhp) at 5,300 rpm",
+      "normalized_value": 2,
+      "unit": "kW",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f0129e41b6c6b956",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "power_hp",
+      "raw_value": "2.7 bhp",
+      "normalized_value": 2.7,
+      "unit": "HP",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "5fdb3bc89c4d55ef",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500 rpm",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fcc52626fa2fac5b",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "spark_plug",
+      "raw_value": "NGK CMR6H / Bosch USR 4AC",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR6H"
+        },
+        {
+          "manufacturer": "Bosch",
+          "model": "USR 4AC"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3ef2d48a19f180b5",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b64107b7e346cf8c",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "fuel_tank_l",
+      "raw_value": "1400 cc (1.4 l)",
+      "normalized_value": 1.4,
+      "unit": "l",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "09fabe4a41873c43",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "weight_kg",
+      "raw_value": "10.4 kg",
+      "normalized_value": 10.4,
+      "unit": "kg",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fce0d25c8565348b",
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "field": "blowing_force_n",
+      "raw_value": "22 N",
+      "normalized_value": 22,
+      "unit": "N",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f1a97810b99193b1",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "displacement_cc",
+      "raw_value": "64.8 cm³",
+      "normalized_value": 64.8,
+      "unit": "cc",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "54e1756c231f6800",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "power_kw",
+      "raw_value": "2.5 kW (3.4 bhp) at 6,000 rpm",
+      "normalized_value": 2.5,
+      "unit": "kW",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "8e0400dd3c40258a",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "power_hp",
+      "raw_value": "3.4 bhp",
+      "normalized_value": 3.4,
+      "unit": "HP",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "80754284cdec2364",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500 rpm",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "92efa5bf5b3f5489",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "spark_plug",
+      "raw_value": "NGK CMR6H / Bosch USR 4AC",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR6H"
+        },
+        {
+          "manufacturer": "Bosch",
+          "model": "USR 4AC"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fa6239838f76a9aa",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b35f22f9c91ab069",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "fuel_tank_l",
+      "raw_value": "1400 cc (1.4 l)",
+      "normalized_value": 1.4,
+      "unit": "l",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fc79a806941e0d77",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "weight_kg",
+      "raw_value": "10.1 kg",
+      "normalized_value": 10.1,
+      "unit": "kg",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "52ca56ee0b0911a5",
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "field": "blowing_force_n",
+      "raw_value": "27 N",
+      "normalized_value": 27,
+      "unit": "N",
+      "source_document_id": "0458-452-0121-J",
+      "pdf_page": 14,
+      "printed_page": 14,
+      "source_locator": "publication:0458-452-0121-J#page=14",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "446d3dc9aead4b3a",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "displacement_cc",
+      "raw_value": "64.8 cc",
+      "normalized_value": 64.8,
+      "unit": "cc",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b4cb7032e76137fb",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "bore_mm",
+      "raw_value": "50 mm",
+      "normalized_value": 50,
+      "unit": "mm",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c3e1e5383f00a4e6",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "stroke_mm",
+      "raw_value": "33 mm",
+      "normalized_value": 33,
+      "unit": "mm",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "218385b7a42b9b3f",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500 rpm",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "172cdcfd568714dc",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "spark_plug",
+      "raw_value": "NGK CMR 6 H, BOSCH USR 4AC",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR6H"
+        },
+        {
+          "manufacturer": "Bosch",
+          "model": "USR 4AC"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3b5955ba64c09654",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e7ee6e586852f58c",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "fuel_tank_l",
+      "raw_value": "1400 cc (1.4 l)",
+      "normalized_value": 1.4,
+      "unit": "l",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "63223f564a045367",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "weight_kg",
+      "raw_value": "10.5 kg",
+      "normalized_value": 10.5,
+      "unit": "kg",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f32709fb59d90ca0",
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "field": "blowing_force_n",
+      "raw_value": "35 N",
+      "normalized_value": 35,
+      "unit": "N",
+      "source_document_id": "0458-459-0121-A",
+      "pdf_page": 25,
+      "printed_page": 23,
+      "source_locator": "publication:0458-459-0121-A#page=25",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7eec19ffa6fbe832",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "displacement_cc",
+      "raw_value": "35.2 cc",
+      "normalized_value": 35.2,
+      "unit": "cc",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c09b4c35a2571865",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "bore_mm",
+      "raw_value": "40 mm",
+      "normalized_value": 40,
+      "unit": "mm",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "a4f9356f21ad7f49",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "stroke_mm",
+      "raw_value": "28 mm",
+      "normalized_value": 28,
+      "unit": "mm",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "edcc8ace6086513a",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "power_kw",
+      "raw_value": "1.8 kW (2.4 bhp) at 10,500 rpm",
+      "normalized_value": 1.8,
+      "unit": "kW",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e25a1255149cbe11",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "power_hp",
+      "raw_value": "2.4 bhp",
+      "normalized_value": 2.4,
+      "unit": "HP",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "50822f8b728ba2dd",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "idle_speed_rpm",
+      "raw_value": "3,000 rpm",
+      "normalized_value": 3000,
+      "unit": "rpm",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f8ba9cbf9febe70c",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "spark_plug",
+      "raw_value": "NGK CMR 6 H",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR 6 H"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "bd62b670c2a727d2",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7cc4c4d1f71eda26",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "fuel_tank_l",
+      "raw_value": "310 cc (0,31 l)",
+      "normalized_value": 0.31,
+      "unit": "l",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "589bf1198d78d3c3",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "oil_tank_l",
+      "raw_value": "220 cc (0,22 l)",
+      "normalized_value": 0.22,
+      "unit": "l",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 30,
+      "printed_page": 28,
+      "source_locator": "publication:0458-599-0121-D#page=30",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "42b5ae0e576e84c5",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "weight_kg",
+      "raw_value": "3.7 kg",
+      "normalized_value": 3.7,
+      "unit": "kg",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 31,
+      "printed_page": 30,
+      "source_locator": "publication:0458-599-0121-D#page=31",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "9bbf538afbc1f983",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "field": "chain_pitch",
+      "raw_value": "3/8\" P (9.32 mm)",
+      "normalized_value": "3/8\" P",
+      "unit": "",
+      "source_document_id": "0458-599-0121-D",
+      "pdf_page": 31,
+      "printed_page": 30,
+      "source_locator": "publication:0458-599-0121-D#page=31",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "9c650d86dff2ea7b",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "displacement_cc",
+      "raw_value": "30,8 cm 3",
+      "normalized_value": 30.8,
+      "unit": "cc",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "0833231e8cb25433",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "bore_mm",
+      "raw_value": "35 mm",
+      "normalized_value": 35,
+      "unit": "mm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e95f4751e611698d",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "stroke_mm",
+      "raw_value": "32 mm",
+      "normalized_value": 32,
+      "unit": "mm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "80500530caa67e39",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "power_kw",
+      "raw_value": "1,3 kW (1,8 ch)",
+      "normalized_value": 1.3,
+      "unit": "kW",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f1e517bcc4577d22",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "power_hp",
+      "raw_value": "1,8 ch",
+      "normalized_value": 1.8,
+      "unit": "HP",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "301b75db1e95724f",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "6b380ad05cf47d89",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "max_speed_rpm",
+      "raw_value": "12500 ± 1000 tr/mn",
+      "normalized_value": 12500,
+      "unit": "rpm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7bb43e989e782060",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "fuel_tank_l",
+      "raw_value": "0,64 l (640 cm 3 )",
+      "normalized_value": 0.64,
+      "unit": "l",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c528d6d8068f6c2f",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6F, NGK BPMR 7 A ou Champion RCJ 6Y",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        },
+        {
+          "manufacturer": "Champion",
+          "model": "RCJ 6Y"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 5,
+      "printed_page": 4,
+      "source_locator": "publication:0455-250-0223#page=5",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fd4a64af5eebfa16",
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 5,
+      "printed_page": 4,
+      "source_locator": "publication:0455-250-0223#page=5",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "93c12baf78c4b185",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "displacement_cc",
+      "raw_value": "36,3 cm 3",
+      "normalized_value": 36.3,
+      "unit": "cc",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "d662b82753e332bf",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "bore_mm",
+      "raw_value": "38 mm",
+      "normalized_value": 38,
+      "unit": "mm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "739cec54ba5c6542",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "stroke_mm",
+      "raw_value": "32 mm",
+      "normalized_value": 32,
+      "unit": "mm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f367bd09f51bf00a",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "power_kw",
+      "raw_value": "1,6 kW (2,2 ch)",
+      "normalized_value": 1.6,
+      "unit": "kW",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "4f971e36e67e52ec",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "power_hp",
+      "raw_value": "2,2 ch",
+      "normalized_value": 2.2,
+      "unit": "HP",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "0471ddee180213be",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "cec5606c45c4c1c2",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "max_speed_rpm",
+      "raw_value": "12500 ± 800 tr/mn",
+      "normalized_value": 12500,
+      "unit": "rpm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7d71db8ed79b5964",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "fuel_tank_l",
+      "raw_value": "0,64 l (640 cm 3 )",
+      "normalized_value": 0.64,
+      "unit": "l",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 4,
+      "printed_page": 3,
+      "source_locator": "publication:0455-250-0223#page=4",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "9befddde73fc7552",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6F, NGK BPMR 7 A ou Champion RCJ 6Y",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        },
+        {
+          "manufacturer": "Champion",
+          "model": "RCJ 6Y"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 5,
+      "printed_page": 4,
+      "source_locator": "publication:0455-250-0223#page=5",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "06163c168937738e",
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-250-0223",
+      "pdf_page": 5,
+      "printed_page": 4,
+      "source_locator": "publication:0455-250-0223#page=5",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f9c2b6ebb1731ca9",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "displacement_cc",
+      "raw_value": "63.3 cc",
+      "normalized_value": 63.3,
+      "unit": "cc",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "bd98dfb8b07f5374",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "bore_mm",
+      "raw_value": "48 mm",
+      "normalized_value": 48,
+      "unit": "mm",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "a8b940b0667bc977",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "stroke_mm",
+      "raw_value": "35 mm",
+      "normalized_value": 35,
+      "unit": "mm",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e07b47a2a8fc6ed9",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "power_kw",
+      "raw_value": "2.9 kW (3.9 bhp)",
+      "normalized_value": 2.9,
+      "unit": "kW",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "547bec6a54b23d64",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "power_hp",
+      "raw_value": "3.9 bhp",
+      "normalized_value": 3.9,
+      "unit": "HP",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "10081c124af19c3c",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "idle_speed_rpm",
+      "raw_value": "3,000 rpm",
+      "normalized_value": 3000,
+      "unit": "rpm",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fe8bd286a7d5635f",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "spark_plug",
+      "raw_value": "NGK BPMR 7 A, Bosch WSR 6 F",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "276b090abacfba18",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "6f3355c2bbf7d409",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "fuel_tank_l",
+      "raw_value": "1700 cc (1.7 l)",
+      "normalized_value": 1.7,
+      "unit": "l",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c3468f773e723fbf",
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "field": "weight_kg",
+      "raw_value": "12.8 kg",
+      "normalized_value": 12.8,
+      "unit": "kg",
+      "source_document_id": "0458-454-0121-E",
+      "pdf_page": 37,
+      "printed_page": 35,
+      "source_locator": "publication:0458-454-0121-E#page=37",
+      "model_binding_method": "EXPLICIT_SHARED_VALUE_SCOPE",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "8776e6e28e333084",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "displacement_cc",
+      "raw_value": "41.6 cc",
+      "normalized_value": 41.6,
+      "unit": "cc",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 47,
+      "printed_page": 45,
+      "source_locator": "publication:0458-746-0121-D#page=47",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c3cbddc31f675131",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "bore_mm",
+      "raw_value": "42 mm",
+      "normalized_value": 42,
+      "unit": "mm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 47,
+      "printed_page": 45,
+      "source_locator": "publication:0458-746-0121-D#page=47",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "5dff62461b270c8d",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "stroke_mm",
+      "raw_value": "30 mm",
+      "normalized_value": 30,
+      "unit": "mm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 47,
+      "printed_page": 45,
+      "source_locator": "publication:0458-746-0121-D#page=47",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "9b68cee1c7f09995",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "power_kw",
+      "raw_value": "2.0 kW (2.7 HP) at 9,000 rpm",
+      "normalized_value": 2,
+      "unit": "kW",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 47,
+      "printed_page": 45,
+      "source_locator": "publication:0458-746-0121-D#page=47",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "0bd37ff05d015ec9",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "power_hp",
+      "raw_value": "2.7 HP",
+      "normalized_value": 2.7,
+      "unit": "HP",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 47,
+      "printed_page": 45,
+      "source_locator": "publication:0458-746-0121-D#page=47",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "d9f128cd26de49be",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,700 rpm",
+      "normalized_value": 2700,
+      "unit": "rpm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 47,
+      "printed_page": 45,
+      "source_locator": "publication:0458-746-0121-D#page=47",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f737d7574da111ef",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "spark_plug",
+      "raw_value": "NGK CMR6H Bosch USR4AC",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR6H"
+        },
+        {
+          "manufacturer": "Bosch",
+          "model": "USR 4AC"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "596f022bbe4c8809",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "ea53169c8fb3a0d7",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "fuel_tank_l",
+      "raw_value": "750 cc (0.75 l)",
+      "normalized_value": 0.75,
+      "unit": "l",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7a24e829bde5d122",
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "field": "weight_kg",
+      "raw_value": "8.5 kg",
+      "normalized_value": 8.5,
+      "unit": "kg",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e1df0042e5e3d8b8",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "displacement_cc",
+      "raw_value": "51.6 cc",
+      "normalized_value": 51.6,
+      "unit": "cc",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "da078c4e8115a372",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "bore_mm",
+      "raw_value": "44.7 mm",
+      "normalized_value": 44.7,
+      "unit": "mm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3374c2c44b36139f",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "stroke_mm",
+      "raw_value": "32.9 mm",
+      "normalized_value": 32.9,
+      "unit": "mm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "afe17a926bfba451",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "power_kw",
+      "raw_value": "2.4 kW (3.3 HP) at 9,500 rpm",
+      "normalized_value": 2.4,
+      "unit": "kW",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "42c16abfd17d8575",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "power_hp",
+      "raw_value": "3.3 HP",
+      "normalized_value": 3.3,
+      "unit": "HP",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "6eecd8459a3b6b4f",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "idle_speed_rpm",
+      "raw_value": "2,500 rpm",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "157f95cb0a3e33b2",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "spark_plug",
+      "raw_value": "NGK BPMR7A",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "1fdcc65c12e409cc",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0.5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "602988b71cdb8f0f",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "fuel_tank_l",
+      "raw_value": "990 cc (0.99 l)",
+      "normalized_value": 0.99,
+      "unit": "l",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "17bebf21a8d5db4a",
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "field": "weight_kg",
+      "raw_value": "9.1 kg",
+      "normalized_value": 9.1,
+      "unit": "kg",
+      "source_document_id": "0458-746-0121-D",
+      "pdf_page": 48,
+      "printed_page": 46,
+      "source_locator": "publication:0458-746-0121-D#page=48",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "6134e3a8440ff42b",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "displacement_cc",
+      "raw_value": "59,0 cm 3",
+      "normalized_value": 59,
+      "unit": "cc",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "d6a23f1843d4adad",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "bore_mm",
+      "raw_value": "47 mm",
+      "normalized_value": 47,
+      "unit": "mm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "cd955048a24e694f",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "stroke_mm",
+      "raw_value": "34 mm",
+      "normalized_value": 34,
+      "unit": "mm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3acacc91169bbdf2",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "power_kw",
+      "raw_value": "3,1 kW (4,1 ch) à 9500 tr/mn",
+      "normalized_value": 3.1,
+      "unit": "kW",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "5056f010cfb6239a",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "13500 tr/mn",
+      "normalized_value": 13500,
+      "unit": "rpm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "cdb393d2ef5d6afe",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "be4a7487c804c284",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3500 tr/mn",
+      "normalized_value": 3500,
+      "unit": "rpm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "96322de20a6ea1f6",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6F NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "ef4a70f021fc7bc5",
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b3cfcd16cb3bc3be",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "displacement_cc",
+      "raw_value": "59,0 cm 3",
+      "normalized_value": 59,
+      "unit": "cc",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "cf59388baa49722e",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "bore_mm",
+      "raw_value": "47 mm",
+      "normalized_value": 47,
+      "unit": "mm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "12daaa4ec055db3e",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "stroke_mm",
+      "raw_value": "34 mm",
+      "normalized_value": 34,
+      "unit": "mm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "621c8a590fcea1c4",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "power_kw",
+      "raw_value": "3,4 kW (4,6 ch) à 9500 tr/mn",
+      "normalized_value": 3.4,
+      "unit": "kW",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "6a7fc98db6d2b7c8",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "14000 tr/mn",
+      "normalized_value": 14000,
+      "unit": "rpm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f5612338811e7f49",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "82bad4c6d1594dbe",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3500 tr/mn",
+      "normalized_value": 3500,
+      "unit": "rpm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "43dec574caa3a601",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6F NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "8371d13443bece58",
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-212-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-212-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "1292cdd3f6aaf26b",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "displacement_cc",
+      "raw_value": "49,6 cm 3",
+      "normalized_value": 49.6,
+      "unit": "cc",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "0ec5ac583f608ebb",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "bore_mm",
+      "raw_value": "44,0 mm",
+      "normalized_value": 44,
+      "unit": "mm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "ae3366c1c11096cd",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "stroke_mm",
+      "raw_value": "32,6 mm",
+      "normalized_value": 32.6,
+      "unit": "mm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "618f68b7be001230",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "power_kw",
+      "raw_value": "2,6 kW (3,54 ch) à 9500 tr/mn",
+      "normalized_value": 2.6,
+      "unit": "kW",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "728ff0939ebca9b0",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "13500 ± 150 tr/mn",
+      "normalized_value": 13500,
+      "unit": "rpm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "eb38d3fc52c96bb2",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "eff77e95ad21d2c0",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3300 tr/mn",
+      "normalized_value": 3300,
+      "unit": "rpm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "8df9e3298f82d538",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "spark_plug",
+      "raw_value": "NGK BPMR 7A",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "68e61c5c8f3d4171",
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7f55a57e0c9f6b26",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "displacement_cc",
+      "raw_value": "54,2 cm 3",
+      "normalized_value": 54.2,
+      "unit": "cc",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "73d87fdf2701bd61",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "bore_mm",
+      "raw_value": "46,0 mm",
+      "normalized_value": 46,
+      "unit": "mm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e6a8c39658d86546",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "stroke_mm",
+      "raw_value": "32,6 mm",
+      "normalized_value": 32.6,
+      "unit": "mm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "5068f1c009746a2c",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "power_kw",
+      "raw_value": "2,8 kW (3,81 ch) à 9500 tr/mn",
+      "normalized_value": 2.8,
+      "unit": "kW",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "924ac0f0a3a559cb",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "13500 ± 150 tr/mn",
+      "normalized_value": 13500,
+      "unit": "rpm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f4f3b7738aedf1b5",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7587b04770b1b518",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3300 tr/mn",
+      "normalized_value": 3300,
+      "unit": "rpm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c953ecd419325461",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "spark_plug",
+      "raw_value": "NGK BPMR 7A",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "952dc8e09e1fdfce",
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-146-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-146-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c345c92276d9a093",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "displacement_cc",
+      "raw_value": "35,2 cm 3",
+      "normalized_value": 35.2,
+      "unit": "cc",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e48a3ed9164ec888",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "bore_mm",
+      "raw_value": "40 mm",
+      "normalized_value": 40,
+      "unit": "mm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "5a4a2a9e9737785e",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "stroke_mm",
+      "raw_value": "28 mm",
+      "normalized_value": 28,
+      "unit": "mm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "52adf8cf22f3cb3a",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "power_kw",
+      "raw_value": "1,7 kW (2,3 ch) à 10 000 tr/mn",
+      "normalized_value": 1.7,
+      "unit": "kW",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "d0f052cf271ae760",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "14 000 tr/mn",
+      "normalized_value": 14000,
+      "unit": "rpm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "d3872d84614787e6",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "idle_speed_rpm",
+      "raw_value": "2 800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "e65288054b9c747e",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3 700 tr/mn",
+      "normalized_value": 3700,
+      "unit": "rpm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "79e2ed203a04348a",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR6F",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "240d123925508b93",
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fc10f8376fe5b7cc",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "displacement_cc",
+      "raw_value": "35,2 cm 3",
+      "normalized_value": 35.2,
+      "unit": "cc",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "0f66689c2054d46e",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "bore_mm",
+      "raw_value": "40 mm",
+      "normalized_value": 40,
+      "unit": "mm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7a67ea4d5a229735",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "stroke_mm",
+      "raw_value": "28 mm",
+      "normalized_value": 28,
+      "unit": "mm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "859513681c5bcb97",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "power_kw",
+      "raw_value": "1,7 kW (2,3 ch) à 10 000 tr/mn",
+      "normalized_value": 1.7,
+      "unit": "kW",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "926023f5f2f5b860",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "14 000 tr/mn",
+      "normalized_value": 14000,
+      "unit": "rpm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "8c861fdc0b5b318c",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "idle_speed_rpm",
+      "raw_value": "2 800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "2076453d4c454134",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3 700 tr/mn",
+      "normalized_value": 3700,
+      "unit": "rpm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "70b341436a29f892",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR6F",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "31059d783e69b3d5",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-161-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-161-0223#page=6",
+      "model_binding_method": "MODEL_COLUMN",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "db6b35547968812a",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "displacement_cc",
+      "raw_value": "70,7 cm 3",
+      "normalized_value": 70.7,
+      "unit": "cc",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7c3124e21cc6b059",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "bore_mm",
+      "raw_value": "50 mm",
+      "normalized_value": 50,
+      "unit": "mm",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3a168e2b491b4145",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "stroke_mm",
+      "raw_value": "36 mm",
+      "normalized_value": 36,
+      "unit": "mm",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "4b6c9b8af8e69da4",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "power_kw",
+      "raw_value": "4 kW (5,4 ch) à 9500 tr/mn",
+      "normalized_value": 4,
+      "unit": "kW",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "1f3e24ac53fbfd61",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "13500 ± 150 tr/mn",
+      "normalized_value": 13500,
+      "unit": "rpm",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "35dd1b8f23218765",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "idle_speed_rpm",
+      "raw_value": "2500 tr/mn",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "1941595ae0e07aa4",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3500 tr/mn",
+      "normalized_value": 3500,
+      "unit": "rpm",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c140aff355694886",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6F NGK BPMR 7A",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "bf445001c5521bc6",
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-175-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-175-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "3bf180d5ba44c466",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "displacement_cc",
+      "raw_value": "70,7 cm 3",
+      "normalized_value": 70.7,
+      "unit": "cc",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "4c3bfac6a8e5b80f",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "bore_mm",
+      "raw_value": "50 mm",
+      "normalized_value": 50,
+      "unit": "mm",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "afbe91e3f0b23a70",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "stroke_mm",
+      "raw_value": "36 mm",
+      "normalized_value": 36,
+      "unit": "mm",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "fcb0702f9a5586ee",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "power_kw",
+      "raw_value": "4,1 kW (5,8 ch) à 9500 tr/mn",
+      "normalized_value": 4.1,
+      "unit": "kW",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "0ba813fa7e92ad0d",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "13500 tr/mn",
+      "normalized_value": 13500,
+      "unit": "rpm",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "b9e4b270ea7e07d4",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "c3119b3ccb8442c6",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3700 tr/mn",
+      "normalized_value": 3700,
+      "unit": "rpm",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "31ba94888f03918a",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "spark_plug",
+      "raw_value": "NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f64684f421f7b23b",
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-219-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-219-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "f4f2004c4e2a4d74",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "displacement_cc",
+      "raw_value": "76,5 cm 3",
+      "normalized_value": 76.5,
+      "unit": "cc",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "bf39f7a9edf4323d",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "bore_mm",
+      "raw_value": "52,0 mm",
+      "normalized_value": 52,
+      "unit": "mm",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "a20d8cd1a9671cc8",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "stroke_mm",
+      "raw_value": "36,0 mm",
+      "normalized_value": 36,
+      "unit": "mm",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "516185768a7f2720",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "power_kw",
+      "raw_value": "4,4 kW (6,0 ch) à 9800 tr/mn",
+      "normalized_value": 4.4,
+      "unit": "kW",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "6a5710bdd69eba38",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "max_engine_speed_rpm",
+      "raw_value": "13500 tr/mn",
+      "normalized_value": 13500,
+      "unit": "rpm",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "7451b2895d340958",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "idle_speed_rpm",
+      "raw_value": "2500 tr/mn",
+      "normalized_value": 2500,
+      "unit": "rpm",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "81c9baa4d64f6dd9",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3500 tr/mn",
+      "normalized_value": 3500,
+      "unit": "rpm",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "63a9ad80764d7b0f",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "spark_plug",
+      "raw_value": "Bosch WSR 6 F NGK BPMR 7 A",
+      "normalized_value": [
+        {
+          "manufacturer": "Bosch",
+          "model": "WSR 6 F"
+        },
+        {
+          "manufacturer": "NGK",
+          "model": "BPMR 7 A"
+        }
+      ],
+      "unit": "",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    },
+    {
+      "fact_id": "61b8fa7040bf733a",
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "field": "spark_plug_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "source_document_id": "0455-773-0223",
+      "pdf_page": 6,
+      "printed_page": 5,
+      "source_locator": "publication:0455-773-0223#page=6",
+      "model_binding_method": "EXCLUSIVE_MODEL_MANUAL",
+      "contextual_proof": {
+        "MODEL_BINDING": "YES",
+        "FIELD_MATCH": "YES",
+        "RAW_VALUE_MATCH": "YES"
+      }
+    }
+  ]
+}

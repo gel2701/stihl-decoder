@@ -1,0 +1,431 @@
+{
+  "phase": "37A",
+  "generated_at": "2026-09-09T00:55:49.405Z",
+  "scoring_model": {
+    "decoder_impact_max": 30,
+    "preview_unlock_max": 35,
+    "model_page_existence_max": 15,
+    "maintenance_value_max": 10,
+    "official_source_availability_max": 10,
+    "analytics_signal": "UNAVAILABLE"
+  },
+  "waves": {
+    "Wave 2A": {
+      "rank_range": "1-5",
+      "models_count": 5,
+      "focus": "Consensus Preview Unlock on High-Volume Series (1127, 4282)"
+    },
+    "Wave 2B": {
+      "rank_range": "6-10",
+      "models_count": 5,
+      "focus": "Consensus Preview & Spec Expansion (1145, 1141, 4244, 4147)"
+    },
+    "Wave 2C": {
+      "rank_range": "11-20",
+      "models_count": 10,
+      "focus": "Pro Forestry & Legend Chainsaw Series (4147, 1135, 1133, 1129, 1128, 1138, 1142)"
+    }
+  },
+  "queue": [
+    {
+      "rank": 1,
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "series_code": "1127",
+      "category": "Kettingzaag",
+      "wave": "Wave 2A",
+      "scores": {
+        "decoder_impact": 30,
+        "preview_unlock": 35,
+        "model_page_existence": 15,
+        "maintenance_value": 10,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 100
+      },
+      "source_document": "0458-209-0121-B",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Unlocks consensus for Series 1127 Farm Boss range when paired with MS 290 and MS 390."
+    },
+    {
+      "rank": 2,
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "series_code": "1127",
+      "category": "Kettingzaag",
+      "wave": "Wave 2A",
+      "scores": {
+        "decoder_impact": 30,
+        "preview_unlock": 35,
+        "model_page_existence": 15,
+        "maintenance_value": 10,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 100
+      },
+      "source_document": "0458-209-0121-B",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Completes Series 1127 coverage with MS 290 and MS 310 on exact same specifications page 41."
+    },
+    {
+      "rank": 3,
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "series_code": "4282",
+      "category": "Bladblazer",
+      "wave": "Wave 2A",
+      "scores": {
+        "decoder_impact": 28,
+        "preview_unlock": 35,
+        "model_page_existence": 10,
+        "maintenance_value": 10,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 93
+      },
+      "source_document": "0458-452-0121-J",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Primary backpack blower in Series 4282 (4-Mix), enables cross-model series preview with BR 600."
+    },
+    {
+      "rank": 4,
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "series_code": "4282",
+      "category": "Bladblazer",
+      "wave": "Wave 2A",
+      "scores": {
+        "decoder_impact": 28,
+        "preview_unlock": 35,
+        "model_page_existence": 10,
+        "maintenance_value": 10,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 93
+      },
+      "source_document": "0458-452-0121-J",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "High-volume commercial blower in Series 4282 alongside BR 500 and BR 600."
+    },
+    {
+      "rank": 5,
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "series_code": "4282",
+      "category": "Bladblazer",
+      "wave": "Wave 2A",
+      "scores": {
+        "decoder_impact": 28,
+        "preview_unlock": 35,
+        "model_page_existence": 10,
+        "maintenance_value": 10,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 93
+      },
+      "source_document": "0458-459-0121-A",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Flagship backpack blower in Series 4282; unlocks solid 4282 series consensus for 64.8cc displacement and 1.4l tank."
+    },
+    {
+      "rank": 6,
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 T",
+      "series_code": "1145",
+      "category": "Kettingzaag",
+      "wave": "Wave 2B",
+      "scores": {
+        "decoder_impact": 27,
+        "preview_unlock": 30,
+        "model_page_existence": 15,
+        "maintenance_value": 9,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 91
+      },
+      "source_document": "0458-599-0121-D",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Leading professional arborist top-handle chainsaw in Series 1145 alongside MS 201 TC-M."
+    },
+    {
+      "rank": 7,
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "series_code": "4134",
+      "category": "Bosmaaier",
+      "wave": "Wave 2B",
+      "scores": {
+        "decoder_impact": 26,
+        "preview_unlock": 30,
+        "model_page_existence": 12,
+        "maintenance_value": 9,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 87
+      },
+      "source_document": "0455-250-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Popular heavy-duty brushcutter in Series 4134 alongside FS 200, FS 300, FS 350."
+    },
+    {
+      "rank": 8,
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "series_code": "4134",
+      "category": "Bosmaaier",
+      "wave": "Wave 2B",
+      "scores": {
+        "decoder_impact": 26,
+        "preview_unlock": 30,
+        "model_page_existence": 12,
+        "maintenance_value": 9,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 87
+      },
+      "source_document": "0455-250-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Standard landscaping brushcutter in Series 4134; shares workshop manual 0455-250-0223."
+    },
+    {
+      "rank": 9,
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "series_code": "4244",
+      "category": "Nevelspuit",
+      "wave": "Wave 2B",
+      "scores": {
+        "decoder_impact": 25,
+        "preview_unlock": 30,
+        "model_page_existence": 10,
+        "maintenance_value": 8,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 83
+      },
+      "source_document": "0458-454-0121-E",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Professional backpack sprayer/duster in Series 4244, complements SR 430 with 63.3cc engine."
+    },
+    {
+      "rank": 10,
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "series_code": "4147",
+      "category": "Bosmaaier",
+      "wave": "Wave 2B",
+      "scores": {
+        "decoder_impact": 26,
+        "preview_unlock": 28,
+        "model_page_existence": 10,
+        "maintenance_value": 9,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 83
+      },
+      "source_document": "0458-746-0121-D",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Professional clearing saw in Series 4147 with M-Tronic, shares official manual with FS 460 C-EM."
+    },
+    {
+      "rank": 11,
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "series_code": "4147",
+      "category": "Bosmaaier",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 25,
+        "preview_unlock": 28,
+        "model_page_existence": 10,
+        "maintenance_value": 9,
+        "official_source_availability": 10,
+        "analytics_signal": null,
+        "total_score": 82
+      },
+      "source_document": "0458-746-0121-D",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "rationale": "Top-tier clearing saw in Series 4147 (51.6cc) documented in official instruction manual."
+    },
+    {
+      "rank": 12,
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "series_code": "1135",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 24,
+        "preview_unlock": 28,
+        "model_page_existence": 10,
+        "maintenance_value": 9,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 80
+      },
+      "source_document": "0455-212-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Sister model to MS 361 in Series 1135, shares official service manual 0455-212-0223."
+    },
+    {
+      "rank": 13,
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "series_code": "1135",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 26,
+        "preview_unlock": 28,
+        "model_page_existence": 15,
+        "maintenance_value": 10,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 88
+      },
+      "source_document": "0455-212-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Legendary professional forestry chainsaw in Series 1135; unlocks series preview consensus with MS 341."
+    },
+    {
+      "rank": 14,
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "series_code": "1133",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 24,
+        "preview_unlock": 26,
+        "model_page_existence": 10,
+        "maintenance_value": 9,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 78
+      },
+      "source_document": "0455-146-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Mid-range farm & ranch chainsaw in Series 1133, documented in service manual 0455-146-0223."
+    },
+    {
+      "rank": 15,
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "series_code": "1133",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 24,
+        "preview_unlock": 26,
+        "model_page_existence": 10,
+        "maintenance_value": 9,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 78
+      },
+      "source_document": "0455-146-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Pioneer microprocessor-managed saw in Series 1133 alongside MS 270."
+    },
+    {
+      "rank": 16,
+      "model_slug": "ms-200",
+      "model_name": "MS 200",
+      "series_code": "1129",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 25,
+        "preview_unlock": 26,
+        "model_page_existence": 12,
+        "maintenance_value": 10,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 82
+      },
+      "source_document": "0455-161-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Legendary rear-handle lightweight chainsaw in Series 1129."
+    },
+    {
+      "rank": 17,
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "series_code": "1129",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 28,
+        "preview_unlock": 26,
+        "model_page_existence": 15,
+        "maintenance_value": 10,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 88
+      },
+      "source_document": "0455-161-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "The gold-standard arborist climbing saw in Series 1129 worldwide."
+    },
+    {
+      "rank": 18,
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 25,
+        "preview_unlock": 25,
+        "model_page_existence": 15,
+        "maintenance_value": 10,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 84
+      },
+      "source_document": "0455-175-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Iconic 70cc heavy logging chainsaw in Series 1128, documented in manual 0455-175-0223."
+    },
+    {
+      "rank": 19,
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "series_code": "1138",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 24,
+        "preview_unlock": 25,
+        "model_page_existence": 12,
+        "maintenance_value": 9,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 79
+      },
+      "source_document": "0455-219-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "Modern 70cc pro forestry saw in Series 1138 with low vibration system."
+    },
+    {
+      "rank": 20,
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "series_code": "1142",
+      "category": "Kettingzaag",
+      "wave": "Wave 2C",
+      "scores": {
+        "decoder_impact": 26,
+        "preview_unlock": 25,
+        "model_page_existence": 15,
+        "maintenance_value": 10,
+        "official_source_availability": 9,
+        "analytics_signal": null,
+        "total_score": 85
+      },
+      "source_document": "0455-773-0223",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "rationale": "High-power pro forestry saw in Series 1142, documented in manual 0455-773-0223."
+    }
+  ]
+}

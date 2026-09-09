@@ -341,8 +341,8 @@ function stable(value) {
 }
 const storeText = fs.readFileSync(evPath, 'utf8');
 const storeObj = JSON.parse(storeText);
-assert.strictEqual(storeObj.facts.length, 259, 'Public fact count must remain exactly 259');
+assert.strictEqual(storeObj.facts.length, 452, 'Public fact count must remain exactly 452');
 const storeHash = crypto.createHash('sha256').update(stable(storeObj)).digest('hex');
-assert.strictEqual(storeHash, '869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1', 'Public store hash must not mutate');
+assert.strictEqual(storeHash, '4487d22e659530ee336ba3975f68687bd1ce2438ad29486584e866e616e2a943', 'Public store hash must not mutate');
 
 console.log('✅ Phase 36A.1 Hardened Safe Technical Preview Tests Passed 100%.');

@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const phaseId = '35C.4.3.2.2.3';
 const sourceCommit = '41c6817a88a8fd5db438e9c29c4ad9c887a7c16f';
-const expectedStoreHash = '869b5e8984000907db37f079e21d59d4663943d6cad3ed8f69c62082801377f1';
+const expectedStoreHash = '4487d22e659530ee336ba3975f68687bd1ce2438ad29486584e866e616e2a943';
 const publicPeriodKeys = new Set(['yearStart', 'yearEnd', 'yearRangeFormatted', 'generation', 'confidence', 'seriesSummary']);
 const forbiddenTokens = [/M-Tronic V2\.1/i, /M-Tronic V3\.0/i, /V2\.1\s*\/\s*V3\.0/i, /300g\s+lichter/i, /lichter carter/i, /vliegwiel/i, /afgeschuinde cilinderkap/i];
 
@@ -208,7 +208,7 @@ function finalReport(audits, idempotency, suite = { TEST_SUITE: 'PENDING' }) {
     && uiAudit.NOTES_BREAKPOINT_TECHNICAL_LEAKS === 0 && uiAudit.MTRONIC_SERIES_CLASSIFICATION_PRESERVED === 'PASS'
     && failureAudit.FAILURE_INJECTION === 'PASS' && failureAudit.EXACT_IDENTITY_RAW_BREAKPOINT_TECHNICAL_EXPOSURE === 0
     && publicStoreAudit.PUBLIC_EVIDENCE_STORE_CHANGED === 'NO'
-    && publicStoreAudit.PUBLIC_FACT_COUNT === 259 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
+    && publicStoreAudit.PUBLIC_FACT_COUNT === 452 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
     && publicStoreAudit.CANONICAL_DATABASE_CHANGED === 'NO' && publicStoreAudit.SERIAL_BREAKPOINTS_CHANGED === 0
     && publicStoreAudit.DRIVE_CLASSIFICATION_CHANGED === 'NO' && regression['026_BASELINE_SPARK_PRESERVED'] === 'PASS'
     && regression['046_CONFLICT_RUNTIME'] === 'PASS' && regression.FS350_SCOPE_RUNTIME === 'PASS'
