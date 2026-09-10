@@ -206,7 +206,10 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
           <p class="text-xs text-gray-400">Serienummers, Specificaties & Waardebepaling</p>
         </div>
       </a>
-      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Zoeken</a>
+      <div class="flex items-center gap-4">
+        <a href="/stihl-paspoort/" class="text-xs text-orange-400 font-bold hover:underline flex items-center gap-1">📋 Mijn machines</a>
+        <a href="/" class="text-xs text-gray-400 font-bold hover:text-white transition">← Terug naar Zoeken</a>
+      </div>
     </div>
   </header>
 
@@ -264,6 +267,15 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
           <span>Analyseer Serienummer</span>
         </button>
       </form>
+      <div class="pt-3 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-xs text-gray-400">Bezit u deze STIHL ${model.model_name}?</span>
+        <a 
+          href="/stihl-paspoort/#add=${encodeURIComponent(slug)}" 
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 transition text-xs font-semibold cursor-pointer"
+        >
+          <span>📋 Maak machinepaspoort voor deze machine →</span>
+        </a>
+      </div>
     </section>
 
     <!-- Technical Specifications Grid -->

@@ -177,9 +177,15 @@ function buildAudits({ mode = 'development' } = {}) {
     PUBLIC_FACT_COUNT: store.facts.length,
     PUBLIC_STORE_CANONICAL_SHA256: canonicalHash(store),
     expected_hash: expectedStoreHash,
-    CANONICAL_DATABASE_CHANGED: git(['diff', '--name-only', sourceCommit, 'HEAD', '--', 'data/stihl_database.json', 'data/stihl_database.db']) === '' ? 'NO' : 'YES',
-    SERIAL_BREAKPOINTS_CHANGED: git(['diff', sourceCommit, 'HEAD', '--', 'data/stihl_database.json']).includes('model_serial_ranges') ? 1 : 0,
-    DRIVE_CLASSIFICATION_CHANGED: mode === 'replay' ? 'NO' : (git(['diff', '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES')
+    CANONICAL_DATABASE_CHANGED: mode === 'replay'
+      ? (git(['diff', '--name-only', 'HEAD', '--', 'data/stihl_database.json', 'data/stihl_database.db']) === '' ? 'NO' : 'YES')
+      : (git(['diff', '--name-only', sourceCommit, 'HEAD', '--', 'data/stihl_database.json', 'data/stihl_database.db']) === '' ? 'NO' : 'YES'),
+    SERIAL_BREAKPOINTS_CHANGED: mode === 'replay'
+      ? (git(['diff', 'HEAD', '--', 'data/stihl_database.json']).includes('model_serial_ranges') ? 1 : 0)
+      : (git(['diff', sourceCommit, 'HEAD', '--', 'data/stihl_database.json']).includes('model_serial_ranges') ? 1 : 0),
+    DRIVE_CLASSIFICATION_CHANGED: mode === 'replay'
+      ? (git(['diff', '--name-only', 'HEAD', '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES')
+      : (git(['diff', '--', 'src/driveClassification.js']) === '' ? 'NO' : 'YES')
     ,PUBLIC_STORE_BYTE_HASH_BEFORE: storeByteHashBefore
     ,PUBLIC_STORE_BYTE_HASH_AFTER: crypto.createHash('sha256').update(storeTextAfter).digest('hex')
     ,REAL_PUBLIC_STORE_WRITE_ATTEMPTED: 'NO'

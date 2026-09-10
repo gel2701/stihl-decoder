@@ -140,6 +140,7 @@
         </div>
       </div>
       <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-gray-400">
+        <a href="/stihl-paspoort/" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-600/20 hover:bg-orange-600/30 text-orange-400 border border-orange-500/30 transition text-xs font-semibold">📋 Mijn machines</a>
         <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Breakpoint-gebaseerde serienummeranalyse</span>
         <span class="flex items-center gap-1.5 text-orange-400"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Bronstatus zichtbaar</span>
       </div>
@@ -257,10 +258,16 @@
               <span id="model-card-source-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">✓ Officiële STIHL-bron</span>
             </div>
             <h3 id="model-title-display" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">MS 261 C-M</h3>
+            <span id="model-card-name" class="hidden"></span>
           </div>
-          <div>
-            <span class="text-xs text-gray-400">Aandrijving:</span>
-            <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">Benzine (2-Takt)</div>
+          <div class="flex flex-wrap items-center gap-4">
+            <div>
+              <span class="text-xs text-gray-400">Aandrijving:</span>
+              <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">Benzine (2-Takt)</div>
+            </div>
+            <button id="model-card-save-btn" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Bewaar dit model in Mijn Dossier">
+              <span>💾 Bewaar als mijn machine</span>
+            </button>
           </div>
         </div>
 
@@ -385,10 +392,15 @@
             <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">184592301</h3>
           </div>
 
-          <!-- Independent report download action button -->
-          <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Download onafhankelijk rapport als afbeelding">
-            <span>📷 Download onafhankelijk rapport als afbeelding</span>
-          </button>
+          <div class="flex flex-wrap items-center gap-3 self-start sm:self-center">
+            <button id="res-save-dossier-btn" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition cursor-pointer" aria-label="Opslaan in Mijn Dossier">
+              <span>💾 Bewaar in Mijn Dossier</span>
+            </button>
+            <!-- Independent report download action button -->
+            <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer" aria-label="Download onafhankelijk rapport als afbeelding">
+              <span>📷 Download onafhankelijk rapport als afbeelding</span>
+            </button>
+          </div>
         </div>
 
         <!-- Main Grid -->
@@ -677,12 +689,79 @@
     </div>
   </div>
 
+  <!-- Save to Dossier Modal -->
+  <div id="save-dossier-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex justify-between items-start border-b border-gray-800 pb-3">
+        <div>
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>💾 Machine Opslaan in Mijn Dossier</span>
+          </h3>
+          <p class="text-xs text-gray-400 mt-0.5">Bewaar uw machine lokaal in uw browser met officiële specificaties.</p>
+        </div>
+        <button id="modal-dossier-close-btn" type="button" class="text-gray-400 hover:text-white p-1 text-lg leading-none cursor-pointer">✕</button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1 font-medium">STIHL Model</label>
+          <input type="text" id="modal-dossier-model" readonly class="w-full bg-gray-950 border border-gray-700 rounded-xl px-3 py-2 text-white font-bold font-mono focus:outline-none" />
+          <input type="hidden" id="modal-dossier-model-slug" />
+          <input type="hidden" id="modal-dossier-identity-status" />
+          <input type="hidden" id="modal-dossier-identity-source" />
+        </div>
+
+        <div id="modal-dossier-confirm-wrap" class="hidden bg-orange-950/30 border border-orange-500/30 rounded-xl p-3">
+          <label class="flex items-start gap-2.5 cursor-pointer text-gray-200">
+            <input type="checkbox" id="modal-dossier-confirm-check" class="mt-0.5 w-4 h-4 rounded border-gray-700 bg-gray-900 text-orange-500 focus:ring-orange-500 cursor-pointer" />
+            <span class="leading-tight">Ik bevestig dat dit mijn machinemodel is (vereist omdat er geen serienummerkoppeling is)</span>
+          </label>
+        </div>
+
+        <div>
+          <label class="block text-gray-400 mb-1 font-medium">Serienummer (optioneel)</label>
+          <input type="text" id="modal-dossier-serial" placeholder="Bijv. 184592301 (9 cijfers)" class="w-full bg-gray-950 border border-gray-700 rounded-xl px-3 py-2 text-white font-mono focus:outline-none focus:border-orange-500" />
+        </div>
+
+        <div>
+          <label class="block text-gray-400 mb-1 font-medium">Eigen bijnaam / Kenmerk (optioneel)</label>
+          <input type="text" id="modal-dossier-nickname" placeholder="Bijv. Zaag brandhout, Machine werkplaats..." class="w-full bg-gray-950 border border-gray-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-orange-500" />
+        </div>
+
+        <div>
+          <label class="block text-gray-400 mb-1 font-medium">Aankoopjaar (Door gebruiker opgegeven, optioneel)</label>
+          <input type="number" id="modal-dossier-purchase-year" min="1950" max="2099" placeholder="Bijv. 2019" class="w-full bg-gray-950 border border-gray-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-orange-500" />
+        </div>
+
+        <div>
+          <label class="block text-gray-400 mb-1 font-medium">Eerste notitie (optioneel)</label>
+          <textarea id="modal-dossier-note" rows="2" placeholder="Bijv. Nieuwe bougie geplaatst..." class="w-full bg-gray-950 border border-gray-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-orange-500"></textarea>
+        </div>
+
+        <div class="bg-gray-950 border border-gray-800 rounded-xl p-3 text-2xs text-gray-400 flex items-start gap-2">
+          <span class="text-emerald-400 font-bold">🔒 Privacy:</span>
+          <span>Uw persoonlijke machinegegevens worden alleen op dit apparaat opgeslagen (localStorage). Voor actuele technische gegevens kan alleen het STIHL-model worden opgevraagd bij STIHLDecoder.</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-800">
+        <button id="modal-dossier-cancel-btn" type="button" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold text-xs cursor-pointer">
+          Annuleren
+        </button>
+        <button id="modal-dossier-save-btn" type="button" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 cursor-pointer">
+          Opslaan in Dossier
+        </button>
+      </div>
+    </div>
+  </div>
+
   </footer>
 
   <!-- Client Script for Gietklok Helper, Examples, Breakpoint Resolving & Passport Image Download -->
   <script type="module">
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
+    import { createDossierObject, saveDossier } from '/src/components/MachineDossierManager.js';
 
     document.addEventListener('DOMContentLoaded', () => {
       // Cookie Consent Banner Handling
@@ -813,10 +892,14 @@
 
         // CASE 3: Model Name Search (e.g. "MS 261 C-M")
         if (res && res.type === 'MODEL_DECODE') {
+          currentDecodeResult = res;
+          currentSerial = '';
           const modelName = res.input.toUpperCase();
+          currentModelName = modelName;
           
           document.getElementById('model-title-display').innerText = modelName;
-          document.getElementById('model-card-name').innerText = modelName;
+          const modelCardNameEl = document.getElementById('model-card-name');
+          if (modelCardNameEl) modelCardNameEl.innerText = modelName;
           document.getElementById('model-card-fuel').innerText = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
 
           const specs = res.technicalSpecs || {};
@@ -1263,6 +1346,146 @@
                 : 'Niet gecontroleerd via StopHeling'
             }
           });
+        });
+      }
+
+      // Machine Dossier Modal Handling
+      const saveModal = document.getElementById('save-dossier-modal');
+      const modalModel = document.getElementById('modal-dossier-model');
+      const modalModelSlug = document.getElementById('modal-dossier-model-slug');
+      const modalIdentityStatus = document.getElementById('modal-dossier-identity-status');
+      const modalIdentitySource = document.getElementById('modal-dossier-identity-source');
+      const modalConfirmWrap = document.getElementById('modal-dossier-confirm-wrap');
+      const modalConfirmCheck = document.getElementById('modal-dossier-confirm-check');
+      const modalSerial = document.getElementById('modal-dossier-serial');
+      const modalNickname = document.getElementById('modal-dossier-nickname');
+      const modalPurchaseYear = document.getElementById('modal-dossier-purchase-year');
+      const modalNote = document.getElementById('modal-dossier-note');
+      const modalCloseBtn = document.getElementById('modal-dossier-close-btn');
+      const modalCancelBtn = document.getElementById('modal-dossier-cancel-btn');
+      const modalSaveBtn = document.getElementById('modal-dossier-save-btn');
+
+      function openSaveModal(config) {
+        if (!saveModal) return;
+        if (modalModel) modalModel.value = config.modelName || '';
+        if (modalModelSlug) modalModelSlug.value = config.modelSlug || '';
+        if (modalIdentityStatus) modalIdentityStatus.value = config.identityStatus || 'USER_CONFIRMED_MODEL';
+        if (modalIdentitySource) modalIdentitySource.value = config.identitySource || 'MODEL_PAGE_SELECTION';
+        if (modalSerial) modalSerial.value = config.serialNumber || '';
+        if (modalNickname) modalNickname.value = '';
+        if (modalPurchaseYear) modalPurchaseYear.value = '';
+        if (modalNote) modalNote.value = '';
+
+        if (modalConfirmWrap && modalConfirmCheck) {
+          if (config.requireConfirmation) {
+            modalConfirmWrap.classList.remove('hidden');
+            modalConfirmCheck.checked = false;
+          } else {
+            modalConfirmWrap.classList.add('hidden');
+            modalConfirmCheck.checked = true;
+          }
+        }
+        saveModal.classList.remove('hidden');
+      }
+
+      function closeSaveModal() {
+        if (saveModal) saveModal.classList.add('hidden');
+      }
+
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeSaveModal);
+      if (modalCancelBtn) modalCancelBtn.addEventListener('click', closeSaveModal);
+
+      const modelCardSaveBtn = document.getElementById('model-card-save-btn');
+      if (modelCardSaveBtn) {
+        modelCardSaveBtn.addEventListener('click', () => {
+          const modelTitle = document.getElementById('model-title-display')?.innerText || currentModelName || 'STIHL Machine';
+          const cleanSlug = (currentDecodeResult?.slug || modelTitle).toLowerCase().replace(/\s+/g, '-');
+          openSaveModal({
+            modelName: modelTitle,
+            modelSlug: cleanSlug,
+            serialNumber: '',
+            identityStatus: 'USER_CONFIRMED_MODEL',
+            identitySource: 'MODEL_PAGE_SELECTION',
+            requireConfirmation: true
+          });
+        });
+      }
+
+      const resSaveDossierBtn = document.getElementById('res-save-dossier-btn');
+      if (resSaveDossierBtn) {
+        resSaveDossierBtn.addEventListener('click', () => {
+          if (!currentDecodeResult) return;
+          if (currentDecodeResult.modelIdentityStatus === 'PROBABLE_MODEL_SERIES') {
+            showToast('Bevestig eerst het model hierboven om deze machine in uw persoonlijke dossier op te slaan.');
+            const assistContainer = document.getElementById('model-assist-container');
+            if (assistContainer) {
+              assistContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              assistContainer.classList.add('ring-2', 'ring-orange-500');
+              setTimeout(() => assistContainer.classList.remove('ring-2', 'ring-orange-500'), 2500);
+            }
+            return;
+          }
+
+          const isExact = currentDecodeResult.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED';
+          const targetSlug = (currentDecodeResult.model_slug || currentDecodeResult.slug || currentModelName || '').toLowerCase().replace(/\s+/g, '-');
+          openSaveModal({
+            modelName: currentModelName,
+            modelSlug: targetSlug,
+            serialNumber: currentSerial,
+            identityStatus: isExact ? 'EXACT_MODEL_IDENTIFIED' : 'USER_CONFIRMED_MODEL',
+            identitySource: isExact ? 'SERIAL_DECODE' : 'SERIAL_DECODE_ASSIST_CONFIRMED',
+            requireConfirmation: false
+          });
+        });
+      }
+
+      if (modalSaveBtn) {
+        modalSaveBtn.addEventListener('click', () => {
+          if (modalConfirmWrap && !modalConfirmWrap.classList.contains('hidden')) {
+            if (!modalConfirmCheck || !modalConfirmCheck.checked) {
+              alert('Vink a.u.b. aan dat dit uw machinemodel is om te bevestigen.');
+              return;
+            }
+          }
+
+          const modelName = modalModel ? modalModel.value.trim() : '';
+          const modelSlug = modalModelSlug ? modalModelSlug.value.trim() : '';
+          const serialNumber = modalSerial ? modalSerial.value.trim() : '';
+          const nickname = modalNickname ? modalNickname.value.trim() : '';
+          const purchaseYearVal = modalPurchaseYear && modalPurchaseYear.value ? parseInt(modalPurchaseYear.value, 10) : null;
+          const identityStatus = modalIdentityStatus ? modalIdentityStatus.value : 'USER_CONFIRMED_MODEL';
+          const identitySource = modalIdentitySource ? modalIdentitySource.value : 'MODEL_PAGE_SELECTION';
+          const initialNote = modalNote ? modalNote.value.trim() : '';
+
+          const notes = initialNote ? [{
+            id: 'note_' + Date.now(),
+            timestamp: new Date().toISOString(),
+            text: initialNote,
+            category: 'NOTE'
+          }] : [];
+
+          try {
+            const dossier = createDossierObject({
+              model_name: modelName,
+              model_slug: modelSlug,
+              serial_number: serialNumber || null,
+              nickname: nickname || null,
+              purchase_year: isNaN(purchaseYearVal) ? null : purchaseYearVal,
+              identity_status: identityStatus,
+              identity_source: identitySource,
+              notes: notes
+            });
+
+            const saveRes = saveDossier(dossier);
+            if (saveRes.success) {
+              closeSaveModal();
+              showToast('Machine opgeslagen in Mijn Dossier! Open Mijn Machines in het menu.');
+            } else {
+              alert('Kon machine niet opslaan: ' + (saveRes.error || 'Onbekende fout'));
+            }
+          } catch (err) {
+            alert('Fout bij opslaan: ' + err.message);
+          }
         });
       }
     });

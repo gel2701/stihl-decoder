@@ -75,6 +75,7 @@ const PUBLIC_PREFIXES = ['/css/'];
 const PUBLIC_EXACT_FILES = new Set([
   '/components/tools/GietklokHelper.js',
   '/src/components/StihlPassportGenerator.js',
+  '/src/components/MachineDossierManager.js',
   '/src/categoryWhitelist.js',
   '/src/driveClassification.js'
 ]);

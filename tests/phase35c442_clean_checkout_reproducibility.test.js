@@ -190,6 +190,8 @@ const PHASE36_CANDIDATE_FILES = new Set([
   'src/publicationRules.js',
   'src/components/CategoryPageTemplate.js',
   'src/components/ModelPageTemplate.js',
+  'src/components/IntentPageTemplate.js',
+  'src/components/MachineDossierManager.js',
   'src/components/SitemapGenerator.js',
   'server.js',
   'index.html',
@@ -290,10 +292,14 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'src/publicationRules.js',
       'src/components/CategoryPageTemplate.js',
       'src/components/ModelPageTemplate.js',
+      'src/components/IntentPageTemplate.js',
+      'src/components/MachineDossierManager.js',
       'src/components/SitemapGenerator.js',
       'server.js',
       'data/stihl_database.json',
-      'tests/phase37c_evidence_surfacing_reachability.test.js'
+      'tests/phase37c_evidence_surfacing_reachability.test.js',
+      'scripts/phase38a_machine_dossier_audit.js',
+      'tests/phase38a_machine_dossier_mvp.test.js'
     ];
 
     for (const relFile of candidateFiles) {

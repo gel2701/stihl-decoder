@@ -480,6 +480,8 @@ export function runHygienicPipeline(options = {}) {
     'src/publicationRules.js',
     'src/components/CategoryPageTemplate.js',
     'src/components/ModelPageTemplate.js',
+    'src/components/IntentPageTemplate.js',
+    'src/components/MachineDossierManager.js',
     'src/components/SitemapGenerator.js',
     'server.js',
     'index.html',

@@ -1,0 +1,49 @@
+{
+  "semantic_isolation_tier_a": "Verified STIHL Data (Live-Gated / Read-Time Hydrated)",
+  "semantic_isolation_tier_b": "User-Provided Machine Data (Strict textContent DOM sinks)",
+  "semantic_isolation_tier_c": "Unknown / Not Documented (Honest fallback labels)",
+  "purchase_year_semantics": "Aankoopjaar (Door gebruiker opgegeven)",
+  "last_service_date_semantics": "Laatste onderhoud (Door gebruiker opgegeven)",
+  "journeys": [
+    {
+      "journey_id": "SERIAL_EXACT_IDENTIFIED",
+      "entry_point": "/",
+      "input": "184592301",
+      "decoder_status": "EXACT_MODEL_IDENTIFIED",
+      "save_allowed_immediately": true,
+      "resulting_identity_status": "EXACT_MODEL_IDENTIFIED",
+      "resulting_identity_source": "SERIAL_DECODE"
+    },
+    {
+      "journey_id": "SERIAL_PROBABLE_SERIES",
+      "entry_point": "/",
+      "input": "161984210",
+      "decoder_status": "PROBABLE_MODEL_SERIES",
+      "save_allowed_immediately": false,
+      "blocking_message": "Bevestig eerst het model hierboven om deze machine in uw persoonlijke dossier op te slaan.",
+      "on_candidate_select": {
+        "new_decoder_status": "USER_CONFIRMED_MODEL",
+        "save_allowed": true,
+        "resulting_identity_status": "USER_CONFIRMED_MODEL",
+        "resulting_identity_source": "SERIAL_DECODE_ASSIST_CONFIRMED"
+      }
+    },
+    {
+      "journey_id": "MODEL_PAGE_SELECTION",
+      "entry_point": "/kettingzagen/ms-261-c-m/",
+      "physical_proof_implied": false,
+      "explicit_user_checkbox_required": true,
+      "checkbox_label": "Ik bevestig dat dit mijn machinemodel is (vereist omdat er geen serienummerkoppeling is)",
+      "resulting_identity_status": "USER_CONFIRMED_MODEL",
+      "resulting_identity_source": "MODEL_PAGE_SELECTION"
+    },
+    {
+      "journey_id": "PASSPORT_HUB_MANUAL_ADD",
+      "entry_point": "/stihl-paspoort/",
+      "physical_proof_implied": false,
+      "explicit_user_checkbox_required": true,
+      "resulting_identity_status": "USER_CONFIRMED_MODEL",
+      "resulting_identity_source": "MANUAL_ENTRY"
+    }
+  ]
+}
