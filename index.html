@@ -481,41 +481,111 @@
             </div>
           </div>
 
-          <!-- FULL Technical Specs & Carburetor Tuning Grid -->
+          <!-- FULL Technical Specs & Service Specifications Grid -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Service Specificaties & Aandrijving
-            </h4>
+            <div class="flex items-center justify-between border-b border-gray-800/80 pb-3">
+              <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span id="serial-specs-heading">Service Specificaties & Aandrijving</span>
+              </h4>
+              <span id="serial-specs-badge" class="hidden text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"></span>
+            </div>
             
-            <div id="specs-grid-container" class="grid grid-cols-2 gap-3 text-xs">
-              <div id="spec-spark-box">
-                <span class="text-gray-400 block">Bougie Type:</span>
-                <span id="spec-spark-plug" class="font-mono text-orange-300 font-bold">Niet vastgesteld</span>
+            <div id="specs-grid-container" class="space-y-4">
+              <!-- Section 1: Motor -->
+              <div id="serial-sec-motor" class="bg-gray-900/80 rounded-xl p-4 border border-gray-800 space-y-2.5">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Motor</span>
+                <div class="grid grid-cols-2 gap-2.5 text-xs">
+                  <div id="serial-disp-box">
+                    <span class="text-gray-400 block">Cilinderinhoud:</span>
+                    <span id="serial-spec-disp" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="serial-power-box">
+                    <span class="text-gray-400 block">Vermogen:</span>
+                    <span id="serial-spec-power" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="serial-bore-stroke-box">
+                    <span class="text-gray-400 block">Boring × Slag:</span>
+                    <span id="serial-spec-bore-stroke" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="serial-rpm-box">
+                    <span class="text-gray-400 block">Toerental:</span>
+                    <span id="serial-spec-rpm" class="font-semibold text-gray-200">-</span>
+                  </div>
+                </div>
               </div>
-              <div id="spec-gap-box">
-                <span class="text-gray-400 block">Elektrodenafstand:</span>
-                <span id="spec-electrode-gap" class="font-mono text-gray-200">Niet vastgesteld</span>
+
+              <!-- Section 2: Brandstof & Service -->
+              <div id="serial-sec-fuel" class="bg-gray-900/80 rounded-xl p-4 border border-gray-800 space-y-2.5">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Brandstof & Service</span>
+                <div class="grid grid-cols-2 gap-2.5 text-xs">
+                  <div id="spec-spark-box">
+                    <span class="text-gray-400 block">Bougie Type:</span>
+                    <span id="spec-spark-plug" class="font-mono text-orange-300 font-bold">Niet vastgesteld</span>
+                  </div>
+                  <div id="spec-gap-box">
+                    <span class="text-gray-400 block">Elektrodenafstand:</span>
+                    <span id="spec-electrode-gap" class="font-mono text-gray-200">Niet vastgesteld</span>
+                  </div>
+                  <div id="serial-spec-tank-box">
+                    <span class="text-gray-400 block">Brandstoftank:</span>
+                    <span id="serial-spec-fuel-tank" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="serial-spec-oiltank-box">
+                    <span class="text-gray-400 block">Kettingolietank:</span>
+                    <span id="serial-spec-oil-tank" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="spec-carb-h-box">
+                    <span class="text-gray-400 block">Carburateur H-Schroef:</span>
+                    <span id="spec-carb-h" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                  </div>
+                  <div id="spec-carb-l-box">
+                    <span class="text-gray-400 block">Carburateur L-Schroef:</span>
+                    <span id="spec-carb-l" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                  </div>
+                  <div id="spec-carb-la-box">
+                    <span class="text-gray-400 block">Carburateur LA-Schroef:</span>
+                    <span id="spec-carb-la" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                  </div>
+                  <div id="spec-oil-box">
+                    <span class="text-gray-400 block">Mengsmering:</span>
+                    <span id="spec-oil-mix" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                  </div>
+                </div>
               </div>
-              <div id="spec-carb-h-box">
-                <span class="text-gray-400 block">Carburateur H-Schroef:</span>
-                <span id="spec-carb-h" class="font-semibold text-gray-200">Niet vastgesteld</span>
+
+              <!-- Section 3: Machine -->
+              <div id="serial-sec-machine" class="bg-gray-900/80 rounded-xl p-4 border border-gray-800 space-y-2.5">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Machine</span>
+                <div class="grid grid-cols-2 gap-2.5 text-xs">
+                  <div id="serial-weight-box">
+                    <span class="text-gray-400 block">Gewicht:</span>
+                    <span id="serial-spec-weight" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="serial-blowing-force-box">
+                    <span class="text-gray-400 block">Blaaskracht:</span>
+                    <span id="serial-spec-blowing-force" class="font-semibold text-gray-200">-</span>
+                  </div>
+                </div>
               </div>
-              <div id="spec-carb-l-box">
-                <span class="text-gray-400 block">Carburateur L-Schroef:</span>
-                <span id="spec-carb-l" class="font-semibold text-gray-200">Niet vastgesteld</span>
-              </div>
-              <div id="spec-carb-la-box">
-                <span class="text-gray-400 block">Carburateur LA-Schroef:</span>
-                <span id="spec-carb-la" class="font-semibold text-gray-200">Niet vastgesteld</span>
-              </div>
-              <div id="spec-chain-box">
-                <span class="text-gray-400 block">Kettingsteek & Dikte:</span>
-                <span id="spec-chain-info" class="font-semibold text-gray-200">Niet vastgesteld</span>
-              </div>
-              <div id="spec-oil-box">
-                <span class="text-gray-400 block">Mengsmering:</span>
-                <span id="spec-oil-mix" class="font-semibold text-gray-200">Niet vastgesteld</span>
+
+              <!-- Section 4: Zaaguitrusting -->
+              <div id="serial-sec-chainsaw" class="bg-gray-900/80 rounded-xl p-4 border border-gray-800 space-y-2.5">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Zaaguitrusting</span>
+                <div class="grid grid-cols-2 gap-2.5 text-xs">
+                  <div id="serial-spec-pitch-box">
+                    <span class="text-gray-400 block">Kettingsteek:</span>
+                    <span id="serial-spec-pitch" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="serial-spec-gauge-box">
+                    <span class="text-gray-400 block">Groefbreedte:</span>
+                    <span id="serial-spec-gauge" class="font-semibold text-gray-200">-</span>
+                  </div>
+                  <div id="spec-chain-box" class="col-span-2">
+                    <span class="text-gray-400 block">Kettingsteek & Dikte:</span>
+                    <span id="spec-chain-info" class="font-semibold text-gray-200">Niet vastgesteld</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div id="serial-spec-summary" class="hidden rounded-xl border border-gray-800 bg-gray-900/70 p-3 text-xs text-gray-300">
@@ -1136,50 +1206,152 @@
 
         const specs = res.technicalSpecs || {};
         const hasExactModel = res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' || res.modelIdentityStatus === 'USER_CONFIRMED_MODEL';
-        const isChainsaw = !res.category || res.category.toLowerCase().includes('kettingzaag') || res.category.toLowerCase().includes('chainsaw');
+        const cat = (res.category || '').toLowerCase();
+        const isChainsaw = !res.category || cat.includes('kettingzaag') || cat.includes('chainsaw');
+        const isBlower = cat.includes('bladblazer') || cat.includes('blower') || cat.includes('nevelspuit');
+
+        const specsHeadingEl = document.getElementById('serial-specs-heading');
+        const specsBadgeEl = document.getElementById('serial-specs-badge');
+
+        if (hasExactModel) {
+          if (specsHeadingEl) {
+            specsHeadingEl.innerText = res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
+              ? 'Specificaties voor gekozen model'
+              : 'Specificaties voor geïdentificeerd model';
+          }
+          if (specsBadgeEl) {
+            specsBadgeEl.innerText = res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
+              ? 'Model door gebruiker bevestigd'
+              : 'Exact model geverifieerd';
+            specsBadgeEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+            specsBadgeEl.classList.remove('hidden');
+          }
+        } else {
+          if (specsHeadingEl) {
+            specsHeadingEl.innerText = 'Service Specificaties & Aandrijving';
+          }
+          if (specsBadgeEl) {
+            specsBadgeEl.classList.add('hidden');
+          }
+        }
+
+        // Calculate unified spec strings
+        let powerStr = '';
+        if (specs.power_kw && specs.power_hp) {
+          powerStr = `${specs.power_kw} kW (${specs.power_hp} pk)`;
+        } else if (specs.power_kw) {
+          powerStr = `${specs.power_kw} kW`;
+        } else if (specs.power_hp) {
+          powerStr = `${specs.power_hp} pk`;
+        }
+
+        let boreStrokeStr = '';
+        if (specs.bore_mm && specs.stroke_mm) {
+          boreStrokeStr = `${specs.bore_mm} × ${specs.stroke_mm} mm`;
+        } else if (specs.bore_mm) {
+          boreStrokeStr = `Boring ${specs.bore_mm} mm`;
+        } else if (specs.stroke_mm) {
+          boreStrokeStr = `Slag ${specs.stroke_mm} mm`;
+        }
+
+        const maxRpm = specs.max_speed_rpm || specs.max_engine_speed_rpm;
+        let rpmParts = [];
+        if (specs.idle_speed_rpm && maxRpm) {
+          rpmParts.push(`${specs.idle_speed_rpm} / ${maxRpm} t/min`);
+        } else if (specs.idle_speed_rpm) {
+          rpmParts.push(`Stat. ${specs.idle_speed_rpm} t/min`);
+        } else if (maxRpm) {
+          rpmParts.push(`Max. ${maxRpm} t/min`);
+        }
+        if (specs.clutch_speed_rpm) {
+          rpmParts.push(`Koppeling ${specs.clutch_speed_rpm} t/min`);
+        }
+        const rpmStr = rpmParts.join(' · ');
+
+        let gapVal = null;
+        if (specs.electrode_gap_mm !== undefined && specs.spark_plug_gap_mm !== undefined) {
+          if (specs.electrode_gap_mm === specs.spark_plug_gap_mm) {
+            gapVal = specs.electrode_gap_mm;
+          } else {
+            gapVal = null; // Conflicted values fail closed
+          }
+        } else if (specs.electrode_gap_mm !== undefined) {
+          gapVal = specs.electrode_gap_mm;
+        } else if (specs.spark_plug_gap_mm !== undefined) {
+          gapVal = specs.spark_plug_gap_mm;
+        }
+
+        const fuelTankVal = specs.fuel_tank_l ? `${specs.fuel_tank_l} l` : (specs.fuel_tank_capacity_cm3 ? `${specs.fuel_tank_capacity_cm3} cm³` : null);
+        const oilTankVal = isChainsaw ? (specs.oil_tank_l ? `${specs.oil_tank_l} l` : (specs.oil_tank_capacity_cm3 ? `${specs.oil_tank_capacity_cm3} cm³` : null)) : null;
+
+        let chainInfo = '';
+        if (specs.chain_pitch && specs.chain_gauge_mm) {
+          chainInfo = `${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm`;
+        } else if (specs.chain_pitch) {
+          chainInfo = `${specs.chain_pitch}`;
+        } else if (specs.chain_gauge_mm) {
+          chainInfo = `${specs.chain_gauge_mm} mm`;
+        }
 
         const dispBox = document.getElementById('res-disp-box');
-        const sparkBox = document.getElementById('spec-spark-box');
-        const gapBox = document.getElementById('spec-gap-box');
-        const carbHBox = document.getElementById('spec-carb-h-box');
-        const carbLBox = document.getElementById('spec-carb-l-box');
-        const carbLABox = document.getElementById('spec-carb-la-box');
-        const oilBox = document.getElementById('spec-oil-box');
         const powerBox = document.getElementById('spec-power-box');
-        const chainBox = document.getElementById('spec-chain-box');
 
         if (isBattery) {
           setVisibility(dispBox, false);
-          setVisibility(sparkBox, false);
-          setVisibility(gapBox, false);
-          setVisibility(carbHBox, false);
-          setVisibility(carbLBox, false);
-          setVisibility(carbLABox, false);
-          setVisibility(oilBox, false);
           setVisibility(powerBox, false);
-          setVisibility(chainBox, false);
+          setVisibility(document.getElementById('serial-sec-motor'), false);
+          setVisibility(document.getElementById('serial-sec-fuel'), false);
+          setVisibility(document.getElementById('serial-sec-machine'), false);
+          setVisibility(document.getElementById('serial-sec-chainsaw'), false);
         } else {
-          const visibleRows = [
-            setSpecField('res-disp-box', 'spec-disp', specs.displacement_cc, (value) => `${value} cc`),
-            setSpecField('spec-power-box', 'spec-power', specs.power_kw, (value) => `${value} kW`),
-            setSpecField('spec-spark-box', 'spec-spark-plug', specs.spark_plug),
-            setSpecField('spec-gap-box', 'spec-electrode-gap', specs.electrode_gap_mm, (value) => `${value} mm`),
-            setSpecField('spec-carb-h-box', 'spec-carb-h', specs.carb_h_setting),
-            setSpecField('spec-carb-l-box', 'spec-carb-l', specs.carb_l_setting),
-            setSpecField('spec-carb-la-box', 'spec-carb-la', specs.carb_la_setting),
-            setSpecField('spec-oil-box', 'spec-oil-mix', isChainsaw ? specs.oil_mix_ratio : '')
-          ].filter(Boolean).length;
+          // Left column hero fields
+          setSpecField('res-disp-box', 'spec-disp', specs.displacement_cc, (value) => `${value} cc`);
+          setSpecField('spec-power-box', 'spec-power', powerStr);
 
-          const serialChainEl = document.getElementById('spec-chain-info');
-          const chainInfo = specs.chain_pitch && specs.chain_gauge_mm ? `${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm` : '';
-          setVisibility(chainBox, Boolean(isChainsaw && chainInfo));
-          if (serialChainEl && isChainsaw && chainInfo) serialChainEl.innerText = chainInfo;
-          const totalVisibleRows = visibleRows + (isChainsaw && chainInfo ? 1 : 0);
+          // Right column grouped cards
+          // Section 1: Motor
+          const hasDisp = setSpecField('serial-disp-box', 'serial-spec-disp', specs.displacement_cc, (v) => `${v} cc`);
+          const hasPower = setSpecField('serial-power-box', 'serial-spec-power', powerStr);
+          const hasBoreStroke = setSpecField('serial-bore-stroke-box', 'serial-spec-bore-stroke', boreStrokeStr);
+          const hasRpm = setSpecField('serial-rpm-box', 'serial-spec-rpm', rpmStr);
+          setVisibility(document.getElementById('serial-sec-motor'), hasDisp || hasPower || hasBoreStroke || hasRpm);
+
+          // Section 2: Brandstof & Service
+          const hasSpark = setSpecField('spec-spark-box', 'spec-spark-plug', specs.spark_plug);
+          const hasGap = setSpecField('spec-gap-box', 'spec-electrode-gap', gapVal, (v) => `${v} mm`);
+          const hasFuelTank = setSpecField('serial-spec-tank-box', 'serial-spec-fuel-tank', fuelTankVal);
+          const hasOilTank = isChainsaw && setSpecField('serial-spec-oiltank-box', 'serial-spec-oil-tank', oilTankVal);
+          const hasCarbH = setSpecField('spec-carb-h-box', 'spec-carb-h', specs.carb_h_setting);
+          const hasCarbL = setSpecField('spec-carb-l-box', 'spec-carb-l', specs.carb_l_setting);
+          const hasCarbLa = setSpecField('spec-carb-la-box', 'spec-carb-la', specs.carb_la_setting);
+          const hasOilMix = setSpecField('spec-oil-box', 'spec-oil-mix', specs.oil_mix_ratio);
+          setVisibility(document.getElementById('serial-sec-fuel'), hasSpark || hasGap || hasFuelTank || hasOilTank || hasCarbH || hasCarbL || hasCarbLa || hasOilMix);
+
+          // Section 3: Machine
+          const hasWeight = setSpecField('serial-weight-box', 'serial-spec-weight', specs.weight_kg, (v) => `${v} kg`);
+          const hasBlowing = isBlower && setSpecField('serial-blowing-force-box', 'serial-spec-blowing-force', specs.blowing_force_n, (v) => `${v} N`);
+          setVisibility(document.getElementById('serial-sec-machine'), hasWeight || hasBlowing);
+
+          // Section 4: Zaaguitrusting
+          const hasPitch = isChainsaw && setSpecField('serial-spec-pitch-box', 'serial-spec-pitch', specs.chain_pitch);
+          const hasGauge = isChainsaw && setSpecField('serial-spec-gauge-box', 'serial-spec-gauge', specs.chain_gauge_mm, (v) => `${v} mm`);
+          const hasChainInfo = isChainsaw && setSpecField('spec-chain-box', 'spec-chain-info', chainInfo);
+          if (hasPitch || hasGauge) {
+            setVisibility(document.getElementById('spec-chain-box'), false);
+          }
+          setVisibility(document.getElementById('serial-sec-chainsaw'), isChainsaw && (hasPitch || hasGauge || hasChainInfo));
+
+          const totalVisibleRows = [
+            hasDisp, hasPower, hasBoreStroke, hasRpm,
+            hasSpark, hasGap, hasFuelTank, hasOilTank,
+            hasCarbH, hasCarbL, hasCarbLa, hasOilMix,
+            hasWeight, hasBlowing, hasPitch, hasGauge, hasChainInfo
+          ].filter(Boolean).length;
 
           const preview = res.safeTechnicalPreview;
           const hasPreview = Boolean(preview && preview.available && Array.isArray(preview.fields) && preview.fields.length > 0);
 
-          if (totalVisibleRows > 0) {
+          if (hasExactModel && totalVisibleRows > 0) {
             if (specsGridContainer) specsGridContainer.classList.remove('hidden');
             if (safePreviewCard) safePreviewCard.classList.add('hidden');
             if (serialSpecSummary) serialSpecSummary.classList.add('hidden');

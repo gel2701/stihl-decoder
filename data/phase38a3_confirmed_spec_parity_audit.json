@@ -1,0 +1,330 @@
+{
+  "phase": "Phase 38A.3",
+  "timestamp": "2026-09-10T23:45:00.000Z",
+  "root_cause": "UI rendering bug in index.html where renderSerialResult only rendered static DOM elements for 7 fields (with spark_plug_gap_mm and partial chain suppressed), while omitting bore, stroke, rpm, fuel tank, oil tank, and weight from the serial specs DOM entirely.",
+  "step_a_unconfirmed": {
+    "serial": "184592301",
+    "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+    "probableModelSeries": "MS 261 / MS 261 C-M",
+    "exactModel": null,
+    "technicalSpecs": {},
+    "technicalSpecs_count": 0,
+    "safeTechnicalPreview_field_count": 10,
+    "safeTechnicalPreview_fields": [
+      {
+        "key": "machine_category",
+        "label": "Machinecategorie",
+        "value": "Kettingzaag",
+        "source_type": "CATEGORY_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "drive_type",
+        "label": "Aandrijvingstype",
+        "value": "Benzine (2-takt)",
+        "source_type": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "engine_cycle_display",
+        "label": "Motorprincipe",
+        "value": "2-takt",
+        "source_type": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "likely_fuel_family",
+        "label": "Brandstof",
+        "value": "Benzine / mengsmering",
+        "source_type": "SERIES_DERIVED",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "displacement_cc",
+        "label": "Cilinderinhoud (indicatief)",
+        "value": "50.2 cc",
+        "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "candidate_count": 2,
+        "evidence_fact_ids": [
+          "a87ac059a3b50ff5",
+          "d3358f82f8ea2e5b"
+        ],
+        "source_document_ids": [
+          "0458-573-1521-C",
+          "0458-153-7521-C"
+        ],
+        "scope_status": "EXACT_COMPATIBLE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "power_kw",
+        "label": "Vermogen (indicatief)",
+        "value": "3 kW",
+        "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "candidate_count": 2,
+        "evidence_fact_ids": [
+          "1bfd11bf2fc7d73c",
+          "74b95fce9443849e"
+        ],
+        "source_document_ids": [
+          "0458-573-1521-C",
+          "0458-153-7521-C"
+        ],
+        "scope_status": "EXACT_COMPATIBLE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "spark_plug",
+        "label": "Bougietype (reeks)",
+        "value": "Bosch WSR 6 F, NGK BPMR 7 A",
+        "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "candidate_count": 2,
+        "evidence_fact_ids": [
+          "6ccb7c0711129aaa",
+          "508e47394409c4bd"
+        ],
+        "source_document_ids": [
+          "0458-573-1521-C",
+          "0458-153-7521-C"
+        ],
+        "scope_status": "EXACT_COMPATIBLE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "fuel_tank_l",
+        "label": "Brandstoftank (indicatief)",
+        "value": "0.5 l",
+        "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "candidate_count": 2,
+        "evidence_fact_ids": [
+          "07f5b955919a768b",
+          "d901f27bafefd4e6"
+        ],
+        "source_document_ids": [
+          "0458-573-1521-C",
+          "0458-153-7521-C"
+        ],
+        "scope_status": "EXACT_COMPATIBLE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "weight_kg",
+        "label": "Gewicht kaal (indicatief)",
+        "value": "4.9 kg",
+        "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "candidate_count": 2,
+        "evidence_fact_ids": [
+          "cb1de4094bcb7594",
+          "d4fb13db1710af5d"
+        ],
+        "source_document_ids": [
+          "0458-573-1521-C",
+          "0458-153-7521-C"
+        ],
+        "scope_status": "EXACT_COMPATIBLE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      },
+      {
+        "key": "chain_pitch",
+        "label": "Kettingsteek (reeks)",
+        "value": ".325\"",
+        "source_type": "PUBLIC_EVIDENCE_CONSENSUS",
+        "confidence": "SUPPORTED_ESTIMATE",
+        "candidate_count": 2,
+        "evidence_fact_ids": [
+          "793b16cb7e446918",
+          "0a6ff834961bfe55"
+        ],
+        "source_document_ids": [
+          "0458-573-1521-C",
+          "0458-153-7521-C"
+        ],
+        "scope_status": "EXACT_COMPATIBLE",
+        "exact_model_confirmed": false,
+        "exact_value_confirmed": false
+      }
+    ]
+  },
+  "step_b_confirmed": {
+    "serial": "184592301",
+    "confirmedModel": "MS 261 C-M",
+    "modelIdentityStatus": "USER_CONFIRMED_MODEL",
+    "exactModel": null,
+    "technicalSpecs_count": 13,
+    "technicalSpecs": {
+      "displacement_cc": 50.2,
+      "bore_mm": 44.7,
+      "stroke_mm": 32,
+      "power_kw": 3,
+      "idle_speed_rpm": 2800,
+      "clutch_speed_rpm": 3800,
+      "max_speed_rpm": 14000,
+      "spark_plug": "Bosch WSR 6 F / NGK BPMR 7 A",
+      "spark_plug_gap_mm": 0.5,
+      "fuel_tank_l": 0.5,
+      "oil_tank_l": 0.27,
+      "weight_kg": 4.9,
+      "chain_pitch": ".325\""
+    }
+  },
+  "parity_comparison": {
+    "direct_model": "MS 261 C-M",
+    "direct_model_spec_keys": [
+      "bore_mm",
+      "chain_pitch",
+      "clutch_speed_rpm",
+      "displacement_cc",
+      "fuel_tank_l",
+      "idle_speed_rpm",
+      "max_speed_rpm",
+      "oil_tank_l",
+      "power_kw",
+      "spark_plug",
+      "spark_plug_gap_mm",
+      "stroke_mm",
+      "weight_kg"
+    ],
+    "confirmed_serial_spec_keys": [
+      "bore_mm",
+      "chain_pitch",
+      "clutch_speed_rpm",
+      "displacement_cc",
+      "fuel_tank_l",
+      "idle_speed_rpm",
+      "max_speed_rpm",
+      "oil_tank_l",
+      "power_kw",
+      "spark_plug",
+      "spark_plug_gap_mm",
+      "stroke_mm",
+      "weight_kg"
+    ],
+    "unexplained_spec_key_difference_count": 0,
+    "unexplained_differences": []
+  },
+  "field_audit": [
+    {
+      "field": "bore_mm",
+      "api_value": 44.7,
+      "ui_mapping": "Motor > bore_mm",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "chain_pitch",
+      "api_value": ".325\"",
+      "ui_mapping": "Zaaguitrusting > chain_pitch",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "clutch_speed_rpm",
+      "api_value": 3800,
+      "ui_mapping": "Motor > clutch_speed_rpm",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "displacement_cc",
+      "api_value": 50.2,
+      "ui_mapping": "Motor > displacement_cc",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "fuel_tank_l",
+      "api_value": 0.5,
+      "ui_mapping": "Brandstof & service > fuel_tank_l",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "idle_speed_rpm",
+      "api_value": 2800,
+      "ui_mapping": "Motor > idle_speed_rpm",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "max_speed_rpm",
+      "api_value": 14000,
+      "ui_mapping": "Motor > max_speed_rpm",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "oil_tank_l",
+      "api_value": 0.27,
+      "ui_mapping": "Brandstof & service > oil_tank_l",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "power_kw",
+      "api_value": 3,
+      "ui_mapping": "Motor > power_kw",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "spark_plug",
+      "api_value": "Bosch WSR 6 F / NGK BPMR 7 A",
+      "ui_mapping": "Brandstof & service > spark_plug",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "spark_plug_gap_mm",
+      "api_value": 0.5,
+      "ui_mapping": "Brandstof & service > spark_plug_gap_mm",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "stroke_mm",
+      "api_value": 32,
+      "ui_mapping": "Motor > stroke_mm",
+      "visible": true,
+      "blocked_reason": null
+    },
+    {
+      "field": "weight_kg",
+      "api_value": 4.9,
+      "ui_mapping": "Machine > weight_kg",
+      "visible": true,
+      "blocked_reason": null
+    }
+  ],
+  "metrics": {
+    "MS261CM_PREVIEW_VISIBLE_FIELDS": 10,
+    "MS261CM_CONFIRMED_API_SPEC_COUNT": 13,
+    "MS261CM_CONFIRMED_UI_SPEC_COUNT_BEFORE": 1,
+    "MS261CM_CONFIRMED_UI_SPEC_COUNT": 13,
+    "CONFIRMATION_SHARED_SPEC_LOSSES": 0,
+    "UNEXPLAINED_SPEC_KEY_DIFFERENCE": 0,
+    "UNACCOUNTED_CONFIRMED_SPEC_FIELDS": 0,
+    "VARIANT_SPEC_LEAKS": 0,
+    "CATEGORY_FIELD_UI_LEAKS": 0,
+    "046_CONFLICT_UI_LEAKS": 0,
+    "RAW_FACT_UI_BYPASS": 0,
+    "LEGACY_TECHNICAL_FALLBACK": 0
+  }
+}

@@ -299,7 +299,9 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'data/stihl_database.json',
       'tests/phase37c_evidence_surfacing_reachability.test.js',
       'scripts/phase38a_machine_dossier_audit.js',
-      'tests/phase38a_machine_dossier_mvp.test.js'
+      'tests/phase38a_machine_dossier_mvp.test.js',
+      'data/phase38a3_confirmed_spec_parity_audit.json',
+      'tests/phase38a3_confirmed_spec_parity.test.js'
     ];
 
     for (const relFile of candidateFiles) {

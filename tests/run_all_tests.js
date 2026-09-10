@@ -54,7 +54,8 @@ export const testFiles = [
   'tests/phase36b_evidence_expansion.test.js',
   'tests/phase37a_high_value_evidence_wave.test.js',
   'tests/phase37c_evidence_surfacing_reachability.test.js',
-  'tests/phase38a_machine_dossier_mvp.test.js'
+  'tests/phase38a_machine_dossier_mvp.test.js',
+  'tests/phase38a3_confirmed_spec_parity.test.js'
 ];
 
 function sha256Text(value) {
