@@ -426,9 +426,78 @@
               <div id="model-assist-buttons" class="flex flex-wrap gap-2 pt-1">
                 <!-- Dynamically populated candidate buttons -->
               </div>
+              <div id="model-assist-not-listed-wrap" class="pt-2 border-t border-orange-500/20 flex items-center justify-between">
+                <button type="button" id="btn-model-not-listed" class="text-xs text-orange-400 hover:text-orange-300 font-medium underline flex items-center gap-1 cursor-pointer">
+                  <span>🔍 Mijn model staat er niet bij</span>
+                </button>
+              </div>
               <div id="model-assist-confirmed-badge" class="hidden text-2xs text-emerald-400 font-semibold flex items-center justify-between pt-1 border-t border-orange-500/20">
                 <span>✓ Model geselecteerd: <span id="model-assist-confirmed-name" class="font-bold"></span> — specificaties ter referentie</span>
                 <button type="button" id="model-assist-reset-btn" class="text-xs text-gray-400 hover:text-white underline cursor-pointer">Kies ander model</button>
+              </div>
+            </div>
+
+            <!-- MODEL MISMATCH WARNING (Known model outside predicted series) -->
+            <div id="model-mismatch-warning" class="hidden bg-amber-950/40 border border-amber-500/40 rounded-xl p-3.5 space-y-1.5">
+              <div class="flex items-center gap-2 text-amber-400 text-xs font-bold">
+                <span id="model-mismatch-title">⚠️ Model door gebruiker bevestigd: <span id="model-mismatch-name"></span></span>
+              </div>
+              <p class="text-2xs text-gray-300 leading-relaxed">
+                Dit model wijkt af van onze serienummerindicatie.
+              </p>
+              <p id="model-mismatch-subtext" class="text-2xs text-amber-300 font-medium">
+                Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.
+              </p>
+            </div>
+
+            <!-- UNVERIFIED FREE-TEXT WARNING -->
+            <div id="model-unverified-warning" class="hidden bg-blue-950/40 border border-blue-500/40 rounded-xl p-3.5 space-y-2">
+              <div class="flex items-center gap-2 text-blue-400 text-xs font-bold">
+                <span>ℹ️ Model door gebruiker opgegeven: <span id="unverified-model-name"></span></span>
+              </div>
+              <p class="text-2xs text-gray-300 leading-relaxed">
+                Dit model wijkt af van onze serienummerindicatie.
+              </p>
+              <p class="text-2xs text-amber-300 font-medium">
+                Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.
+              </p>
+            </div>
+
+            <!-- OPTIONAL FIELD OBSERVATION FEEDBACK CARD -->
+            <div id="field-observation-card" class="hidden bg-gray-900 border border-gray-700 rounded-xl p-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <h5 class="text-xs font-bold text-white flex items-center gap-1.5">
+                  <span>🔬 Help STIHLDecoder verbeteren (Vrijwillig)</span>
+                </h5>
+                <span class="text-2xs font-mono text-gray-400">Review Data</span>
+              </div>
+              <p class="text-2xs text-gray-300 leading-relaxed">
+                Als u dit deelt, slaan we het serienummer, uw opgegeven model, de huidige serienummerindicatie en de door u gekozen bron van het model privé op voor handmatige controle. Deze melding wijzigt de decoder niet automatisch.
+              </p>
+              <div class="space-y-2.5">
+                <div>
+                  <label for="obs-source-select" class="block text-2xs font-semibold text-gray-400 mb-1">Waar heb je het model afgelezen?</label>
+                  <select id="obs-source-select" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-gray-100">
+                    <option value="TYPEPLATE">Typeplaatje op de machine</option>
+                    <option value="MODEL_STICKER">Sticker of opdruk op de kap</option>
+                    <option value="OWNER_MANUAL">Handleiding van de machine</option>
+                    <option value="PURCHASE_DOCUMENT">Aankoopbewijs / factuur</option>
+                    <option value="OWNER_KNOWLEDGE">Eigen kennis / herinnering</option>
+                    <option value="OTHER">Anders</option>
+                  </select>
+                </div>
+                <div class="flex items-start gap-2 pt-1">
+                  <input type="checkbox" id="obs-consent-checkbox" class="mt-0.5 rounded border-gray-700 bg-gray-950 text-orange-500 focus:ring-orange-500">
+                  <label for="obs-consent-checkbox" class="text-2xs text-gray-300 leading-tight cursor-pointer">
+                    Ik wil deze modelcorrectie delen met STIHLDecoder om de serienummerherkenning te helpen verbeteren.
+                  </label>
+                </div>
+                <div class="pt-2 flex items-center gap-3">
+                  <button type="button" id="obs-submit-btn" class="px-3.5 py-1.5 bg-orange-600 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-500 text-white font-bold text-xs rounded-lg transition cursor-pointer">
+                    Verstuur veldobservatie
+                  </button>
+                  <span id="obs-feedback-status" class="text-2xs text-gray-400 font-medium"></span>
+                </div>
               </div>
             </div>
 
@@ -825,6 +894,45 @@
     </div>
   </div>
 
+  <!-- Global Model Search Modal (Phase 38C) -->
+  <div id="global-model-search-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl space-y-4 p-5 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <span>🔍 Zoek model in STIHL database</span>
+        </h3>
+        <button id="modal-search-close-btn" class="text-gray-400 hover:text-white text-base cursor-pointer">✕</button>
+      </div>
+      <div>
+        <p class="text-xs text-gray-400 mb-2">Zoek op modelnaam of nummer (bijv. MS 261, BG 86, FS 460):</p>
+        <div class="relative">
+          <input type="text" id="global-model-search-input" placeholder="Typ modelnaam..." class="w-full bg-gray-950 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-orange-500" autocomplete="off">
+        </div>
+      </div>
+      <div id="global-model-search-results" class="flex-1 overflow-y-auto space-y-1.5 max-h-60 pr-1 divide-y divide-gray-800/50">
+        <!-- Search results dynamically rendered here -->
+      </div>
+      <div class="border-t border-gray-800 pt-3 flex items-center justify-between">
+        <button type="button" id="btn-manual-model-input" class="text-xs text-orange-400 hover:text-orange-300 underline font-medium cursor-pointer">
+          ✏️ Model staat er niet tussen? Handmatig opgeven
+        </button>
+        <button type="button" id="modal-search-cancel-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold rounded-lg cursor-pointer">
+          Sluiten
+        </button>
+      </div>
+      <!-- Subpanel for free-text manual input -->
+      <div id="manual-model-input-panel" class="hidden border-t border-gray-800 pt-3 space-y-2">
+        <label for="manual-model-text" class="block text-2xs font-semibold text-gray-400">Vul de exacte aanduiding in zoals op de machine vermeld:</label>
+        <div class="flex gap-2">
+          <input type="text" id="manual-model-text" placeholder="bijv. MS 251 / C" maxlength="80" class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+          <button type="button" id="btn-manual-model-apply" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl transition cursor-pointer">
+            Toepassen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </footer>
 
   <!-- Client Script for Gietklok Helper, Examples, Breakpoint Resolving & Passport Image Download -->
@@ -832,6 +940,7 @@
     import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
     import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
     import { createDossierObject, saveDossier } from '/src/components/MachineDossierManager.js';
+    import { searchGlobalModels, buildSearchableIdentities, findRegisteredModel } from '/src/globalModelSearch.js';
 
     document.addEventListener('DOMContentLoaded', () => {
       // Cookie Consent Banner Handling
@@ -885,6 +994,10 @@
       let currentModelName = 'Niet vastgesteld';
       let currentYearsFormatted = 'Niet vastgesteld';
       let currentDecodeResult = null;
+      let manualModelOverride = null;
+      let currentSelectedModelSlug = null;
+      let allSearchIdentities = [];
+      fetch('/api/models').then(r => r.json()).then(data => { allSearchIdentities = data; }).catch(() => {});
       const decodeEndpoint = window.STIHL_CLIENT_CONFIG?.decodeEndpoint || '/api/decode';
 
       function setVisibility(element, visible) {
@@ -926,6 +1039,24 @@
         emptyState.classList.add('hidden');
         if (safePreviewCard) safePreviewCard.classList.add('hidden');
         currentDecodeResult = null;
+        manualModelOverride = null;
+        currentSelectedModelSlug = null;
+
+        const mismatchWarn = document.getElementById('model-mismatch-warning');
+        const unverifiedWarn = document.getElementById('model-unverified-warning');
+        const obsCard = document.getElementById('field-observation-card');
+        const obsCheckbox = document.getElementById('obs-consent-checkbox');
+        const obsSubmitBtn = document.getElementById('obs-submit-btn');
+        const obsFeedback = document.getElementById('obs-feedback-status');
+        if (mismatchWarn) mismatchWarn.classList.add('hidden');
+        if (unverifiedWarn) unverifiedWarn.classList.add('hidden');
+        if (obsCard) obsCard.classList.add('hidden');
+        if (obsCheckbox) {
+          obsCheckbox.checked = false;
+          obsCheckbox.disabled = false;
+        }
+        if (obsSubmitBtn) obsSubmitBtn.disabled = false;
+        if (obsFeedback) obsFeedback.innerText = '';
 
         if (!val) {
           emptyState.classList.remove('hidden');
@@ -1097,6 +1228,37 @@
           ? '≈ Afgeleid van waarschijnlijke modelreeks'
           : (res.driveClassification?.evidence === 'PREFIX_DERIVED' ? '≈ Afgeleid van modelaanduiding' : '');
 
+        const mismatchWarn = document.getElementById('model-mismatch-warning');
+        const unverifiedWarn = document.getElementById('model-unverified-warning');
+        const obsCard = document.getElementById('field-observation-card');
+
+        // Check if user entered an unverified free-text model override (Point 4)
+        if (manualModelOverride && manualModelOverride.status === 'USER_REPORTED_UNVERIFIED_MODEL') {
+          currentModelName = manualModelOverride.raw;
+          document.getElementById('res-serial-display').innerText = formatted;
+          document.getElementById('res-model').innerText = manualModelOverride.raw;
+          const modelLabelEl = document.getElementById('res-model-label');
+          if (modelLabelEl) modelLabelEl.innerText = 'Model door gebruiker opgegeven:';
+
+          const unverifiedNameEl = document.getElementById('unverified-model-name');
+          if (unverifiedNameEl) unverifiedNameEl.innerText = manualModelOverride.raw;
+
+          const assistContainer = document.getElementById('model-assist-container');
+          if (assistContainer) assistContainer.classList.add('hidden');
+          if (mismatchWarn) mismatchWarn.classList.add('hidden');
+          if (unverifiedWarn) unverifiedWarn.classList.remove('hidden');
+          if (specsGridContainer) specsGridContainer.classList.add('hidden');
+          if (safePreviewCard) safePreviewCard.classList.add('hidden');
+          if (serialSpecSummary) {
+            serialSpecSummary.innerText = 'Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.';
+            serialSpecSummary.classList.remove('hidden');
+          }
+          if (obsCard) obsCard.classList.remove('hidden');
+
+          resultCard.classList.remove('hidden');
+          return;
+        }
+
         currentModelName = res.exactModel || res.confirmedModel || res.probableModelSeries || ((res.model && res.model !== 'UNKNOWN') ? res.model : 'Niet vastgesteld');
 
         document.getElementById('res-serial-display').innerText = formatted;
@@ -1122,33 +1284,60 @@
           if (assistButtons) assistButtons.classList.add('hidden');
           if (assistConfirmedBadge) assistConfirmedBadge.classList.remove('hidden');
           if (assistConfirmedName) assistConfirmedName.innerText = res.confirmedModel;
-        } else if (res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES' && res.modelAssist?.available && res.modelAssist.candidates?.length > 0) {
-          if (assistContainer) assistContainer.classList.remove('hidden');
-          if (assistButtons) {
-            assistButtons.classList.remove('hidden');
-            assistButtons.innerHTML = res.modelAssist.candidates.map((c) => `
-              <button type="button" class="model-assist-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-orange-600 hover:bg-orange-500 text-white transition shadow cursor-pointer" data-slug="${c.slug}" data-name="${c.name}">
-                ${c.name}
-              </button>
-            `).join('');
 
-            assistButtons.querySelectorAll('.model-assist-btn').forEach((btn) => {
-              btn.addEventListener('click', async () => {
-                const confirmedModel = btn.getAttribute('data-name');
-                try {
-                  const response = await fetch(`${decodeEndpoint}?code=${encodeURIComponent(currentSerial)}&confirmedModel=${encodeURIComponent(confirmedModel)}`);
-                  const confirmedRes = await response.json();
-                  renderSerialResult(confirmedRes);
-                } catch (e) {
-                  showToast('Fout bij ophalen specificaties');
-                }
-              });
-            });
+          // Check if outside predicted series
+          const probable = res.probableModelSeries || (res.modelAssist && res.modelAssist.series);
+          const isDeviant = probable && !probable.includes(res.confirmedModel);
+          const hasSpecs = res.technicalSpecs && Object.keys(res.technicalSpecs).length > 0;
+          if (mismatchWarn) {
+            mismatchWarn.classList.toggle('hidden', !isDeviant);
+            const nameEl = document.getElementById('model-mismatch-name');
+            if (nameEl) nameEl.innerText = res.confirmedModel;
+            const subtextEl = document.getElementById('model-mismatch-subtext');
+            if (subtextEl) {
+              subtextEl.classList.toggle('hidden', hasSpecs);
+            }
           }
-          if (assistSeriesName) assistSeriesName.innerText = res.modelAssist.series || res.probableModelSeries || '';
+          if (obsCard) obsCard.classList.toggle('hidden', !isDeviant);
+          if (unverifiedWarn) unverifiedWarn.classList.add('hidden');
+        } else if (res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES') {
+          if (assistContainer) assistContainer.classList.remove('hidden');
+          if (assistSeriesName) assistSeriesName.innerText = res.modelAssist?.series || res.probableModelSeries || '';
           if (assistConfirmedBadge) assistConfirmedBadge.classList.add('hidden');
+          if (mismatchWarn) mismatchWarn.classList.add('hidden');
+          if (unverifiedWarn) unverifiedWarn.classList.add('hidden');
+          if (obsCard) obsCard.classList.add('hidden');
+
+          if (assistButtons) {
+            if (res.modelAssist?.candidates?.length > 0) {
+              assistButtons.classList.remove('hidden');
+              assistButtons.innerHTML = res.modelAssist.candidates.map((c) => `
+                <button type="button" class="model-assist-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-orange-600 hover:bg-orange-500 text-white transition shadow cursor-pointer" data-slug="${c.slug}" data-name="${c.name}">
+                  ${c.name}
+                </button>
+              `).join('');
+
+              assistButtons.querySelectorAll('.model-assist-btn').forEach((btn) => {
+                btn.addEventListener('click', async () => {
+                  const confirmedModel = btn.getAttribute('data-name');
+                  try {
+                    const response = await fetch(`${decodeEndpoint}?code=${encodeURIComponent(currentSerial)}&confirmedModel=${encodeURIComponent(confirmedModel)}`);
+                    const confirmedRes = await response.json();
+                    renderSerialResult(confirmedRes);
+                  } catch (e) {
+                    showToast('Fout bij ophalen specificaties');
+                  }
+                });
+              });
+            } else {
+              assistButtons.innerHTML = '';
+            }
+          }
         } else {
           if (assistContainer) assistContainer.classList.add('hidden');
+          if (mismatchWarn) mismatchWarn.classList.add('hidden');
+          if (unverifiedWarn) unverifiedWarn.classList.add('hidden');
+          if (obsCard) obsCard.classList.add('hidden');
         }
 
         document.getElementById('res-fuel-type').innerText = fuelTypeLabel;
@@ -1500,6 +1689,10 @@
       const downloadBtn = document.getElementById('download-passport-btn');
       if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
+          if (manualModelOverride && manualModelOverride.status === 'USER_REPORTED_UNVERIFIED_MODEL') {
+            showToast('Dit model moet eerst aan een geregistreerd model worden gekoppeld voordat een volledig machinepaspoort kan worden gedownload.');
+            return;
+          }
           const codeVal = inputEl ? inputEl.value.trim() : '';
           const cleanSerial = codeVal.replace(/[^0-9]/g, '') || currentSerial;
           const isSelfChecked = userCheckbox ? userCheckbox.checked : false;
@@ -1586,6 +1779,10 @@
       const resSaveDossierBtn = document.getElementById('res-save-dossier-btn');
       if (resSaveDossierBtn) {
         resSaveDossierBtn.addEventListener('click', () => {
+          if (manualModelOverride && manualModelOverride.status === 'USER_REPORTED_UNVERIFIED_MODEL') {
+            showToast('Dit model moet eerst aan een geregistreerd model worden gekoppeld voordat een volledig machinepaspoort met officiële gegevens kan worden gemaakt.');
+            return;
+          }
           if (!currentDecodeResult) return;
           if (currentDecodeResult.modelIdentityStatus === 'PROBABLE_MODEL_SERIES') {
             showToast('Bevestig eerst het model hierboven om deze machine in uw persoonlijke dossier op te slaan.');
@@ -1657,6 +1854,242 @@
             }
           } catch (err) {
             alert('Fout bij opslaan: ' + err.message);
+          }
+        });
+      }
+
+      // ============================================================
+      // Phase 38C: Global Model Search & Field Observation Wiring
+      // ============================================================
+      const btnModelNotListed = document.getElementById('btn-model-not-listed');
+      const searchModal = document.getElementById('global-model-search-modal');
+      const searchCloseBtn = document.getElementById('modal-search-close-btn');
+      const searchCancelBtn = document.getElementById('modal-search-cancel-btn');
+      const searchInput = document.getElementById('global-model-search-input');
+      const searchResultsContainer = document.getElementById('global-model-search-results');
+      const btnManualInput = document.getElementById('btn-manual-model-input');
+      const manualInputPanel = document.getElementById('manual-model-input-panel');
+      const manualTextInput = document.getElementById('manual-model-text');
+      const btnManualApply = document.getElementById('btn-manual-model-apply');
+
+      const obsConsentCheckbox = document.getElementById('obs-consent-checkbox');
+      const obsSubmitBtn = document.getElementById('obs-submit-btn');
+      const obsSourceSelect = document.getElementById('obs-source-select');
+      const obsFeedbackStatus = document.getElementById('obs-feedback-status');
+
+      function openGlobalSearchModal() {
+        if (!searchModal) return;
+        searchModal.classList.remove('hidden');
+        if (manualInputPanel) manualInputPanel.classList.add('hidden');
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        renderSearchResults('');
+      }
+
+      function closeGlobalSearchModal() {
+        if (!searchModal) return;
+        searchModal.classList.add('hidden');
+      }
+
+      function renderSearchResults(query) {
+        if (!searchResultsContainer) return;
+        const results = searchGlobalModels(query, allSearchIdentities);
+        if (results.length === 0) {
+          searchResultsContainer.innerHTML = `
+            <div class="p-4 text-center text-gray-400 text-xs">
+              Geen modellen gevonden voor "<span class="text-white">${query}</span>".
+              <div class="mt-2">
+                <span class="text-2xs text-gray-500">Staat uw model er niet bij? Gebruik handmatige invoer hieronder.</span>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        searchResultsContainer.innerHTML = results.map(item => `
+          <button type="button" class="w-full text-left p-3 hover:bg-gray-800/80 rounded-xl transition flex items-center justify-between group cursor-pointer" data-slug="${item.slug}" data-name="${item.model_name}">
+            <div>
+              <div class="font-bold text-sm text-gray-100 group-hover:text-orange-400 transition">${item.model_name}</div>
+              <div class="text-2xs text-gray-400">${item.category || 'STIHL Machine'} ${item.has_evidence ? '• <span class="text-emerald-400">Officiële data beschikbaar</span>' : ''}</div>
+            </div>
+            <span class="text-xs text-orange-400 opacity-0 group-hover:opacity-100 transition font-medium">Selecteer →</span>
+          </button>
+        `).join('');
+
+        searchResultsContainer.querySelectorAll('button[data-name]').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const selectedName = btn.getAttribute('data-name');
+            const selectedSlug = btn.getAttribute('data-slug');
+            const probable = currentDecodeResult?.probableModelSeries || currentDecodeResult?.modelAssist?.series || '';
+            const isOutsideSeries = probable && !probable.toLowerCase().includes(selectedName.toLowerCase());
+
+            if (isOutsideSeries) {
+              const proceed = window.confirm(`Let op: U selecteert "${selectedName}". Dit wijkt af van de serienummerindicatie (${probable}).\n\nWeet u zeker dat uw machine een ${selectedName} is?`);
+              if (!proceed) return;
+            }
+
+            closeGlobalSearchModal();
+
+            try {
+              const res = await fetch(`${decodeEndpoint}?code=${encodeURIComponent(currentSerial)}&confirmedModel=${encodeURIComponent(selectedName)}`);
+              const confirmedRes = await res.json();
+              manualModelOverride = null;
+              currentSelectedModelSlug = selectedSlug;
+              renderSerialResult(confirmedRes);
+            } catch (e) {
+              showToast('Fout bij ophalen specificaties voor geselecteerd model');
+            }
+          });
+        });
+      }
+
+      if (btnModelNotListed) {
+        btnModelNotListed.addEventListener('click', openGlobalSearchModal);
+      }
+      if (searchCloseBtn) {
+        searchCloseBtn.addEventListener('click', closeGlobalSearchModal);
+      }
+      if (searchCancelBtn) {
+        searchCancelBtn.addEventListener('click', closeGlobalSearchModal);
+      }
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderSearchResults(e.target.value);
+        });
+      }
+
+      if (btnManualInput && manualInputPanel) {
+        btnManualInput.addEventListener('click', () => {
+          manualInputPanel.classList.toggle('hidden');
+          if (!manualInputPanel.classList.contains('hidden') && manualTextInput) {
+            manualTextInput.focus();
+          }
+        });
+      }
+
+      if (btnManualApply && manualTextInput) {
+        btnManualApply.addEventListener('click', () => {
+          const rawText = manualTextInput.value.trim();
+          if (!rawText) return;
+
+          // Check if this matches a registered model first
+          const found = findRegisteredModel(rawText, allSearchIdentities);
+          if (found) {
+            // It matches a known registered model!
+            closeGlobalSearchModal();
+            fetch(`${decodeEndpoint}?code=${encodeURIComponent(currentSerial)}&confirmedModel=${encodeURIComponent(found.model_name)}`)
+              .then(r => r.json())
+              .then(confirmedRes => {
+                manualModelOverride = null;
+                currentSelectedModelSlug = found.slug;
+                renderSerialResult(confirmedRes);
+              })
+              .catch(() => {
+                showToast('Fout bij ophalen specificaties');
+              });
+            return;
+          }
+
+          // Unverified free-text model: DO NOT SEND TO /api/decode (Point 2)
+          manualModelOverride = {
+            raw: rawText,
+            status: 'USER_REPORTED_UNVERIFIED_MODEL',
+            source: 'MANUAL_FREE_TEXT'
+          };
+          currentSelectedModelSlug = null;
+          closeGlobalSearchModal();
+
+          // Render unverified presentation state
+          renderSerialResult(currentDecodeResult);
+        });
+      }
+
+      // Field observation consent and submission
+      if (obsConsentCheckbox && obsFeedbackStatus) {
+        obsConsentCheckbox.addEventListener('change', () => {
+          if (obsConsentCheckbox.checked && obsFeedbackStatus.innerText.includes('toestemming')) {
+            obsFeedbackStatus.innerText = '';
+          }
+        });
+      }
+
+      if (obsSubmitBtn) {
+        obsSubmitBtn.addEventListener('click', async () => {
+          // 1. Consent check before disable
+          if (!obsConsentCheckbox || !obsConsentCheckbox.checked) {
+            if (obsFeedbackStatus) {
+              obsFeedbackStatus.innerText = 'Vink eerst het toestemmingsvakje aan om te versturen.';
+              obsFeedbackStatus.className = 'text-2xs text-amber-400 font-medium';
+            }
+            obsSubmitBtn.disabled = false;
+            return;
+          }
+
+          // 2. Disable button to prevent duplicate clicks during in-flight request
+          obsSubmitBtn.disabled = true;
+          const reportedModel = (manualModelOverride ? manualModelOverride.raw : currentModelName) || '';
+          const sourceVal = obsSourceSelect ? obsSourceSelect.value : 'TYPEPLATE';
+          if (obsFeedbackStatus) {
+            obsFeedbackStatus.innerText = 'Versturen...';
+            obsFeedbackStatus.className = 'text-2xs text-gray-400 font-medium';
+          }
+
+          try {
+            const resp = await fetch('/api/field-observation', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                serial: currentSerial,
+                reportedModel: reportedModel,
+                observationSource: sourceVal,
+                matchedModelSlug: currentSelectedModelSlug || null,
+                consent: true
+              })
+            });
+            let data = null;
+            try { data = await resp.json(); } catch {}
+            if (resp.ok && data && data.success) {
+              if (data.already_received) {
+                if (obsFeedbackStatus) {
+                  obsFeedbackStatus.innerText = '✓ Deze observatie was al ontvangen. Bedankt!';
+                  obsFeedbackStatus.className = 'text-2xs text-amber-400 font-medium';
+                }
+              } else {
+                if (obsFeedbackStatus) {
+                  obsFeedbackStatus.innerText = '✓ Veldobservatie succesvol ontvangen. Bedankt voor uw bijdrage!';
+                  obsFeedbackStatus.className = 'text-2xs text-emerald-400 font-medium';
+                }
+              }
+              // 3. Success state: retain disabled to protect against double submit
+              obsSubmitBtn.disabled = true;
+              obsConsentCheckbox.disabled = true;
+            } else {
+              // 4. API Error recovery (429, 500, etc.): re-enable button for retry
+              obsSubmitBtn.disabled = false;
+              let errMsg = 'Er ging iets mis bij het versturen. Probeer het opnieuw.';
+              if (resp.status === 429 || (data && data.error === 'RATE_LIMIT_EXCEEDED')) {
+                errMsg = 'Te veel verzoeken verstuurd. Probeer het later opnieuw.';
+              } else if (resp.status >= 500) {
+                errMsg = 'Serverfout bij opslaan. Probeer het opnieuw.';
+              } else if (data && data.error === 'CONSENT_REQUIRED') {
+                errMsg = 'Toestemming is verplicht.';
+              } else if (data && data.error) {
+                errMsg = 'Fout bij versturen: ' + data.error;
+              }
+              if (obsFeedbackStatus) {
+                obsFeedbackStatus.innerText = errMsg;
+                obsFeedbackStatus.className = 'text-2xs text-red-400 font-medium';
+              }
+            }
+          } catch (e) {
+            // 5. Network Error recovery: re-enable button for retry
+            obsSubmitBtn.disabled = false;
+            if (obsFeedbackStatus) {
+              obsFeedbackStatus.innerText = 'Netwerkfout bij versturen. Controleer uw verbinding en probeer opnieuw.';
+              obsFeedbackStatus.className = 'text-2xs text-red-400 font-medium';
+            }
           }
         });
       }

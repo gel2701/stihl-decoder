@@ -1,0 +1,32 @@
+{
+  "phase": "Phase38C",
+  "audit_date": "2026-09-11T17:00:00.000Z",
+  "total_searchable_identities": 57,
+  "canonical_identities_count": 55,
+  "public_evidence_identities_count": 2,
+  "public_evidence_models": [
+    "MS 201 TC-M",
+    "FS 460 C-EM"
+  ],
+  "registered_safe_identities_omitted_from_global_search": 0,
+  "search_coverage_percentage": 100,
+  "variant_isolation_verified": true,
+  "variant_rankings": [
+    {
+      "query": "MS 200",
+      "top_match": "ms-200",
+      "base_model": "MS 200 / 020 T",
+      "variant_follows": "ms-200-t (MS 200 T)"
+    },
+    {
+      "query": "MS 261",
+      "top_match": "ms-261",
+      "base_model": "MS 261",
+      "variant_follows": "ms-261-c-m (MS 261 C-M)"
+    }
+  ],
+  "query_normalization_verified": true,
+  "auto_confirm_disabled": true,
+  "user_explicit_selection_enforced": true,
+  "audit_result": "PASS"
+}

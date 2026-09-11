@@ -31,8 +31,14 @@ export const MAX_NOTE_LENGTH = 500;
 export const IDENTITY_STATUSES = Object.freeze({
   EXACT_MODEL_IDENTIFIED: 'EXACT_MODEL_IDENTIFIED',
   USER_CONFIRMED_MODEL: 'USER_CONFIRMED_MODEL',
-  PROBABLE_MODEL_SERIES: 'PROBABLE_MODEL_SERIES'
+  PROBABLE_MODEL_SERIES: 'PROBABLE_MODEL_SERIES',
+  USER_REPORTED_UNVERIFIED_MODEL: 'USER_REPORTED_UNVERIFIED_MODEL'
 });
+
+export const DOSSIER_SAVEABLE_IDENTITY_STATUSES = Object.freeze([
+  IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
+  IDENTITY_STATUSES.USER_CONFIRMED_MODEL
+]);
 
 export const IDENTITY_SOURCES = Object.freeze({
   EXACT_CANONICAL_DECODE: 'EXACT_CANONICAL_DECODE',
@@ -198,11 +204,7 @@ export function validateDossierSchema(dossier, expectedVersion = DOSSIER_SCHEMA_
   if (!dossier.identity || typeof dossier.identity !== 'object') return false;
   if (!dossier.identity.model_slug || !dossier.identity.model_name) return false;
 
-  const validStatuses = [
-    IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
-    IDENTITY_STATUSES.USER_CONFIRMED_MODEL
-  ];
-  if (!validStatuses.includes(dossier.identity.identity_status)) return false;
+  if (!DOSSIER_SAVEABLE_IDENTITY_STATUSES.includes(dossier.identity.identity_status)) return false;
 
   if (!dossier.machine || typeof dossier.machine !== 'object') return false;
   if (!dossier.maintenance || typeof dossier.maintenance !== 'object') return false;

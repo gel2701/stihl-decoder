@@ -4,8 +4,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl } from './src/config.js';
-import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive } from './src/databaseConfig.js';
+import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive, getDatabaseConnection } from './src/databaseConfig.js';
 import { decodeStihlCode } from './src/decoder.js';
+import { buildSearchableIdentities, normalizeSearchQuery } from './src/globalModelSearch.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
 import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
@@ -77,8 +78,81 @@ const PUBLIC_EXACT_FILES = new Set([
   '/src/components/StihlPassportGenerator.js',
   '/src/components/MachineDossierManager.js',
   '/src/categoryWhitelist.js',
-  '/src/driveClassification.js'
+  '/src/driveClassification.js',
+  '/src/globalModelSearch.js'
 ]);
+
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 60;
+
+function checkRateLimit(req) {
+  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || (now - entry.startTime > RATE_LIMIT_WINDOW_MS)) {
+    rateLimitMap.set(ip, { count: 1, startTime: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > MAX_REQUESTS_PER_WINDOW;
+}
+
+const observationRateLimitMap = new Map();
+const OBS_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const OBS_MAX_REQUESTS_PER_WINDOW = 10;
+
+function checkObservationRateLimit(req) {
+  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const now = Date.now();
+  const entry = observationRateLimitMap.get(ip);
+  if (!entry || (now - entry.startTime > OBS_RATE_LIMIT_WINDOW_MS)) {
+    observationRateLimitMap.set(ip, { count: 1, startTime: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > OBS_MAX_REQUESTS_PER_WINDOW;
+}
+
+function isSameOriginRequest(req, forwardedHost) {
+  const origin = req.headers['origin'];
+  const referer = req.headers['referer'];
+  const secFetchSite = req.headers['sec-fetch-site'];
+
+  if (secFetchSite && secFetchSite === 'cross-site') {
+    return false;
+  }
+
+  const allowedHosts = new Set([
+    PRIMARY_HOST.toLowerCase(),
+    (forwardedHost || '').toLowerCase(),
+    'stihldecoder.nl',
+    'www.stihldecoder.nl',
+    'localhost',
+    '127.0.0.1'
+  ]);
+
+  function hostMatches(val) {
+    if (!val) return false;
+    try {
+      const u = new URL(val);
+      const h = u.hostname.toLowerCase();
+      return allowedHosts.has(h) || allowedHosts.has(u.host.toLowerCase());
+    } catch {
+      return false;
+    }
+  }
+
+  if (origin) {
+    return hostMatches(origin);
+  }
+
+  if (referer) {
+    return hostMatches(referer);
+  }
+
+  return true;
+}
 
 const server = http.createServer(async (req, res) => {
   try {
@@ -134,21 +208,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-const rateLimitMap = new Map();
-const RATE_LIMIT_WINDOW_MS = 60 * 1000;
-const MAX_REQUESTS_PER_WINDOW = 60;
 
-function checkRateLimit(req) {
-  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || (now - entry.startTime > RATE_LIMIT_WINDOW_MS)) {
-    rateLimitMap.set(ip, { count: 1, startTime: now });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > MAX_REQUESTS_PER_WINDOW;
-}
 
   // 3. REST API v1: POST /api/v1/decode
   if (pathname === '/api/v1/decode' && req.method === 'POST') {
@@ -210,6 +270,155 @@ function checkRateLimit(req) {
     logStihlEvent(EVENT_TYPES.DECODER_USED, { input: code, success: result.success }, req.headers['user-agent']);
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(result));
+    return;
+  }
+
+  // 5a. REST API: GET /api/models (Searchable identity metadata only, Point 35)
+  if (pathname === '/api/models' && req.method === 'GET') {
+    const identities = buildSearchableIdentities(database).map((id) => ({
+      slug: id.slug,
+      model_name: id.model_name,
+      category: id.category,
+      evidence_available: id.has_evidence
+    }));
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify(identities));
+    return;
+  }
+
+  // 5b. REST API: POST /api/field-observation (Phase 38C)
+  if (pathname === '/api/field-observation') {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'METHOD_NOT_ALLOWED' }));
+      return;
+    }
+
+    if (!isSameOriginRequest(req, forwardedHost)) {
+      res.writeHead(403, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'FORBIDDEN' }));
+      return;
+    }
+
+    if (checkObservationRateLimit(req)) {
+      res.writeHead(429, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'RATE_LIMITED' }));
+      return;
+    }
+
+    const bodyObj = await readJsonBody(req, res);
+    if (bodyObj === null) return;
+
+    if (bodyObj.consent !== true) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'CONSENT_REQUIRED' }));
+      return;
+    }
+
+    const rawSerial = typeof bodyObj.serial === 'string' ? bodyObj.serial.trim() : '';
+    const cleanSerial = rawSerial.replace(/[^a-zA-Z0-9]/g, '');
+    if (!cleanSerial || cleanSerial.length < 8 || cleanSerial.length > 15) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'INVALID_SERIAL' }));
+      return;
+    }
+
+    const rawReportedModel = typeof bodyObj.reportedModel === 'string' ? bodyObj.reportedModel.trim() : '';
+    if (!rawReportedModel || rawReportedModel.length > 80) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'INVALID_MODEL_INPUT' }));
+      return;
+    }
+
+    const VALID_SOURCES = new Set(['TYPEPLATE', 'MODEL_STICKER', 'OWNER_MANUAL', 'PURCHASE_DOCUMENT', 'OWNER_KNOWLEDGE', 'OTHER']);
+    const observationSource = typeof bodyObj.observationSource === 'string' ? bodyObj.observationSource.trim().toUpperCase() : '';
+    if (!VALID_SOURCES.has(observationSource)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'INVALID_SOURCE' }));
+      return;
+    }
+
+    const rawMatchedSlug = typeof bodyObj.matchedModelSlug === 'string' ? bodyObj.matchedModelSlug.trim().toLowerCase() : '';
+    let matchedModelSlug = null;
+    let matchedModelName = null;
+    if (rawMatchedSlug) {
+      const allIdentities = buildSearchableIdentities(database);
+      const found = allIdentities.find((id) => id.slug === rawMatchedSlug || id.slug.replace(/^stihl-/, '') === rawMatchedSlug);
+      if (found) {
+        matchedModelSlug = found.slug;
+        matchedModelName = found.model_name;
+      }
+    }
+
+    const userReportedModelNormalized = normalizeSearchQuery(rawReportedModel);
+
+    // Server-side recomputation (Point 21)
+    const decodeResult = decodeStihlCode(cleanSerial, database);
+    const decoderIdentityStatus = decodeResult.modelIdentityStatus || 'UNKNOWN';
+    const decoderPredictedSeries = decodeResult.probableModelSeries || decodeResult.model || null;
+    const decoderCandidateSlugsJson = JSON.stringify(decodeResult.modelAssist?.candidates?.map((c) => c.slug) || []);
+
+    const serialHash = crypto.createHash('sha256').update(cleanSerial).digest('hex');
+    const dedupeTarget = matchedModelSlug || userReportedModelNormalized;
+    const dedupeKey = crypto.createHash('sha256').update(`${serialHash}:${dedupeTarget}`).digest('hex');
+    const observationId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
+
+    try {
+      const db = getDatabaseConnection();
+      if (!db) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: 'SERVICE_UNAVAILABLE' }));
+        return;
+      }
+
+      const stmt = `INSERT INTO field_observations (
+        observation_id, dedupe_key, serial_normalized, serial_hash,
+        decoder_identity_status, decoder_predicted_series, decoder_candidate_slugs_json,
+        user_reported_model_raw, user_reported_model_normalized,
+        matched_model_slug, matched_model_name, observation_source,
+        verification_status, consent_version
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING', 'v1');`;
+
+      db.run(stmt, [
+        observationId,
+        dedupeKey,
+        cleanSerial,
+        serialHash,
+        decoderIdentityStatus,
+        decoderPredictedSeries,
+        decoderCandidateSlugsJson,
+        rawReportedModel,
+        userReportedModelNormalized,
+        matchedModelSlug,
+        matchedModelName,
+        observationSource
+      ], function(err) {
+        if (err) {
+          if (err.message && (err.message.includes('UNIQUE constraint failed') || err.message.includes('dedupe_key'))) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+              success: true,
+              status: 'PENDING',
+              already_received: true
+            }));
+            return;
+          }
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: false, error: 'SERVICE_UNAVAILABLE' }));
+          return;
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+          success: true,
+          status: 'PENDING',
+          already_received: false
+        }));
+      });
+    } catch (dbErr) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'SERVICE_UNAVAILABLE' }));
+    }
     return;
   }
 

@@ -1,0 +1,19 @@
+{
+  "phase": "Phase38C",
+  "audit_date": "2026-09-11T17:00:00.000Z",
+  "endpoint": "POST /api/field-observation",
+  "same_origin_validation": "ENFORCED",
+  "rate_limiting_enforced": true,
+  "rate_limit_policy": "10 requests / 10 minutes per IP (in-memory)",
+  "server_side_recomputation_enforced": true,
+  "atomic_deduplication_enforced": true,
+  "dedupe_key_formula": "sha256(serial_hash + ':' + dedupeTarget)",
+  "client_visible_observation_ids": 0,
+  "auto_promotion_to_evidence": 0,
+  "auto_mutation_of_breakpoints": 0,
+  "default_status": "PENDING",
+  "sqlite_table_initialized": true,
+  "schema_version": 3,
+  "table_name": "field_observations",
+  "audit_result": "PASS"
+}

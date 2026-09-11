@@ -193,6 +193,9 @@ const PHASE36_CANDIDATE_FILES = new Set([
   'src/components/IntentPageTemplate.js',
   'src/components/MachineDossierManager.js',
   'src/components/SitemapGenerator.js',
+  'src/globalModelSearch.js',
+  'src/databaseConfig.js',
+  'scripts/field_observation_report.js',
   'server.js',
   'index.html',
   'data/public_evidence_facts.json',
@@ -224,9 +227,10 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
     // Execute git clone --local to get full repository history & refs
     execFileSync('git', ['clone', '-q', '--local', rootDir, tempDir], { encoding: 'utf8' });
 
-    // Ensure origin/main ref exists in tempDir for historical commit checks
+    // Ensure origin/main ref exists in tempDir for historical commit checks without ambiguous branch
     try {
-      execFileSync('git', ['branch', 'origin/main', 'HEAD'], { cwd: tempDir, encoding: 'utf8' });
+      const rootOriginMain = execFileSync('git', ['rev-parse', 'origin/main'], { cwd: rootDir, encoding: 'utf8' }).trim();
+      execFileSync('git', ['update-ref', 'refs/remotes/origin/main', rootOriginMain], { cwd: tempDir, encoding: 'utf8' });
     } catch {}
 
     // Link node_modules so dependencies resolved via package.json are present
@@ -308,13 +312,28 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'data/phase38b_privacy_audit.json',
       'data/phase38b_backup_import_audit.json',
       'data/phase38b_user_journey_audit.json',
-      'data/phase38b_final_report.json'
+      'data/phase38b_final_report.json',
+      'src/globalModelSearch.js',
+      'src/databaseConfig.js',
+      'scripts/field_observation_report.js',
+      'tests/phase38c_manual_model_correction.test.js',
+      'data/phase38c_serial_mismatch_audit.json',
+      'data/phase38c_global_model_search_audit.json',
+      'data/phase38c_field_observation_audit.json',
+      'data/phase38c_breakpoint_immutability_audit.json',
+      'data/phase38c_privacy_consent_audit.json',
+      'data/phase38c_final_report.json'
     ];
 
     for (const relFile of candidateFiles) {
       const srcPath = path.join(rootDir, relFile);
       const destPath = path.join(tempDir, relFile);
       if (fs.existsSync(srcPath) && fs.statSync(srcPath).isFile()) {
+        if (fs.existsSync(destPath)) {
+          const srcBuf = fs.readFileSync(srcPath);
+          const destBuf = fs.readFileSync(destPath);
+          if (srcBuf.equals(destBuf)) continue;
+        }
         fs.mkdirSync(path.dirname(destPath), { recursive: true });
         fs.copyFileSync(srcPath, destPath);
       }

@@ -1,0 +1,21 @@
+{
+  "phase": "Phase38C",
+  "audit_date": "2026-09-11T17:00:00.000Z",
+  "public_fact_count": 452,
+  "fact_array_sha256": "cbf73a35d243707806645ed2512710b36d2aa3b82372d776fcf7bf26da7251da",
+  "public_store_sha256": "438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951",
+  "canonical_db_sha256": "fa9fcce8b160a6b5c42486c9629dc9bd98240e4c08a9ce3f343f7e4ed1bade2c",
+  "breakpoint_files_changed": 0,
+  "breakpoint_hashes": {
+    "src/StihlRangeResolver.js": "6b033ecf6e246e5fde29ddfbd6d441882934316aed5a67f53e9b87fe25f254ad",
+    "src/SerialChronologyResolver.js": "415e7d99c240b995ca8fec9482ab9c62f1ad69b2fb057eaf8818f49a2c289489",
+    "src/SafeTechnicalPreviewResolver.js": "a8636b537be29912c9375749f9f1809cbd700d9b361059ee43fdd18d2abbccdc",
+    "src/decoder.js": "263b7ef9831467b184ce70ce86e11a12a25c231c4005050718170f6accf07e8f",
+    "src/driveClassification.js": "d6ccf6467f908cdd8ea8fff9b37a29a10c187b5c35765bcec194e5202868815b",
+    "src/publicEvidence.js": "ae1689ff0b9b9995a4936c11b9f20973c7cf8f746baf593bd625695955e21918",
+    "src/categoryWhitelist.js": "bd61b32c3830eb333599278eca26e2877168a61dfac3477cd0fd7dc881af7a16"
+  },
+  "unauthorized_breakpoint_mutations": 0,
+  "evidence_contract_preserved": true,
+  "audit_result": "PASS"
+}

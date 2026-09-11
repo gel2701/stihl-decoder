@@ -11,7 +11,73 @@ let sqlite3;
 try {
   sqlite3 = (await import('sqlite3')).default.verbose();
 } catch (e) {
-  // SQLite fallback
+  try {
+    const { DatabaseSync } = await import('node:sqlite');
+    sqlite3 = {
+      Database: class {
+        constructor(targetPath) {
+          this.syncDb = new DatabaseSync(targetPath);
+        }
+        serialize(fn) {
+          if (typeof fn === 'function') fn();
+        }
+        run(sql, params, callback) {
+          if (typeof params === 'function') {
+            callback = params;
+            params = [];
+          }
+          try {
+            const stmt = this.syncDb.prepare(sql);
+            const res = stmt.run(...(params || []));
+            if (callback) callback.call({ changes: res.changes, lastID: res.lastInsertRowid }, null);
+          } catch (err) {
+            if (callback) callback(err);
+          }
+        }
+        get(sql, params, callback) {
+          if (typeof params === 'function') {
+            callback = params;
+            params = [];
+          }
+          try {
+            const stmt = this.syncDb.prepare(sql);
+            const row = stmt.get(...(params || []));
+            if (callback) callback(null, row);
+          } catch (err) {
+            if (callback) callback(err);
+          }
+        }
+        all(sql, params, callback) {
+          if (typeof params === 'function') {
+            callback = params;
+            params = [];
+          }
+          try {
+            const stmt = this.syncDb.prepare(sql);
+            const rows = stmt.all(...(params || []));
+            if (callback) callback(null, rows);
+          } catch (err) {
+            if (callback) callback(err);
+          }
+        }
+        on(event, handler) {
+          if (event === 'open' && typeof handler === 'function') {
+            setTimeout(handler, 0);
+          }
+        }
+        close(callback) {
+          try {
+            this.syncDb.close();
+            if (callback) callback(null);
+          } catch (err) {
+            if (callback) callback(err);
+          }
+        }
+      }
+    };
+  } catch (fallbackErr) {
+    // Both SQLite drivers unavailable
+  }
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,7 +88,7 @@ const PERSISTENT_DIR = process.env.RENDER_DISK_PATH || '/var/data';
 const PERSISTENT_DB_PATH = path.join(PERSISTENT_DIR, 'stihl_database.db');
 const LOCAL_FALLBACK_DB_PATH = path.join(__dirname, '..', 'data', 'stihl_database.db');
 const TEST_DB_PATH = path.join(__dirname, '..', 'data', 'test_stihl_database.db');
-const DB_SCHEMA_VERSION = 2;
+const DB_SCHEMA_VERSION = 3;
 
 const dbHealthSnapshot = {
   connected: false,
@@ -35,7 +101,13 @@ const dbHealthSnapshot = {
 
 export function getDatabasePath() {
   if (process.env.DATABASE_PATH) return process.env.DATABASE_PATH;
-  if (process.env.NODE_ENV === 'test') return TEST_DB_PATH;
+  if (
+    process.env.NODE_ENV === 'test' ||
+    process.env.REPRODUCIBILITY_NESTED_RUN === '1' ||
+    process.argv.some((arg) => typeof arg === 'string' && (arg.endsWith('.test.js') || arg.includes('run_all_tests') || arg.includes('test_runner')))
+  ) {
+    return TEST_DB_PATH;
+  }
   
   // If Render Persistent Disk directory exists or is mounted, use /var/data/stihl_database.db
   if (fs.existsSync(PERSISTENT_DIR)) {
@@ -128,6 +200,32 @@ export function getDatabaseConnection() {
         dbHealthSnapshot.analyticsSchemaReady = true;
       }
     });
+
+    dbInstance.run(`CREATE TABLE IF NOT EXISTS field_observations (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      observation_id TEXT UNIQUE NOT NULL,
+      dedupe_key TEXT UNIQUE NOT NULL,
+      serial_normalized TEXT NOT NULL,
+      serial_hash TEXT NOT NULL,
+      decoder_identity_status TEXT NOT NULL,
+      decoder_predicted_series TEXT,
+      decoder_candidate_slugs_json TEXT,
+      user_reported_model_raw TEXT NOT NULL,
+      user_reported_model_normalized TEXT NOT NULL,
+      matched_model_slug TEXT,
+      matched_model_name TEXT,
+      observation_source TEXT NOT NULL,
+      verification_status TEXT NOT NULL DEFAULT 'PENDING',
+      consent_version TEXT NOT NULL DEFAULT 'v1',
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      reviewed_at TEXT,
+      review_status_note TEXT,
+      promoted_reference TEXT
+    );`);
+
+    dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_field_obs_serial_hash ON field_observations(serial_hash);`);
+    dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_field_obs_status ON field_observations(verification_status);`);
+    dbInstance.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_field_obs_dedupe ON field_observations(dedupe_key);`);
   });
 
   dbInstance.on('open', () => {

@@ -1,0 +1,20 @@
+{
+  "phase": "Phase38C",
+  "audit_date": "2026-09-11T17:00:00.000Z",
+  "consent_checkbox_default": "UNCHECKED",
+  "consent_copy_verified": true,
+  "privacy_disclaimer": "Als u dit deelt, slaan we het serienummer, uw opgegeven model, de huidige serienummerindicatie en de door u gekozen bron van het model privé op voor handmatige controle. Deze melding wijzigt de decoder niet automatisch.",
+  "ip_persisted_in_database": false,
+  "user_agent_persisted_in_database": false,
+  "pii_in_console_logs": 0,
+  "review_report_exact_serials_default": 0,
+  "observation_retention_policy_documented": true,
+  "retention_policy": {
+    "pending_days": 90,
+    "verified_archived_days": 180,
+    "rejected_deleted_days": 30,
+    "ip_storage": "NONE (Memory only rate limiter)",
+    "user_agent_storage": "NONE"
+  },
+  "audit_result": "PASS"
+}
