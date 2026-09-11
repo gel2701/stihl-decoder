@@ -221,7 +221,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
     <header class="space-y-2">
       <div class="flex items-center gap-2">
         <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block">
-          Machine Dossier MVP
+          Machine Dossier
         </span>
         <span class="px-2.5 py-0.5 rounded-full text-2xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
           Lokaal & Privé
@@ -231,11 +231,42 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         STIHL Machine Dossier & Paspoort Hub
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Beheer uw eigen STIHL-machines, bewaar persoonlijke onderhoudsnotities en raadpleeg direct actuele, geverifieerde fabrieksspecificaties.
+        Beheer uw eigen STIHL-machines, houd een gestructureerde onderhoudshistorie en herinneringen bij, en raadpleeg direct officiële, geverifieerde fabrieksspecificaties.
       </p>
     </header>
 
-    <!-- Privacy Guarantee Banner (Section 12, 13) -->
+    <!-- Privacy Guarantee Banner -->
+    <section class="bg-emerald-950/30 border border-emerald-800/50 p-4 rounded-2xl text-xs text-emerald-200 flex items-start sm:items-center gap-3">
+      <span class="text-xl flex-shrink-0">🔒</span>
+      <div class="space-y-0.5">
+        <strong class="font-bold text-emerald-300 block">Privacy-first opslag:</strong>
+        <p class="text-emerald-300/80 leading-relaxed">
+          Uw persoonlijke machine- en onderhoudsgegevens worden alleen op dit apparaat opgeslagen. Voor actuele technische specificaties wordt uitsluitend het STIHL-model opgevraagd bij STIHLDecoder.
+        </p>
+      </div>
+    </section>
+
+    <!-- Return-Value Indicator Metrics Panel (Section 16) -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+      <div class="bg-neutral-900 border border-neutral-800 p-3.5 rounded-2xl text-center space-y-1">
+        <span class="text-2xs text-neutral-400 block font-medium">Opgeslagen machines</span>
+        <span id="metric-machines-count" class="text-2xl font-black text-white">0</span>
+      </div>
+      <div class="bg-neutral-900 border border-neutral-800 p-3.5 rounded-2xl text-center space-y-1">
+        <span class="text-2xs text-neutral-400 block font-medium">Gepland onderhoud</span>
+        <span id="metric-reminders-count" class="text-2xl font-black text-blue-400">0</span>
+      </div>
+      <div class="bg-neutral-900 border border-neutral-800 p-3.5 rounded-2xl text-center space-y-1">
+        <span class="text-2xs text-neutral-400 block font-medium">Binnenkort (30 dgn)</span>
+        <span id="metric-soon-count" class="text-2xl font-black text-amber-400">0</span>
+      </div>
+      <div class="bg-neutral-900 border border-neutral-800 p-3.5 rounded-2xl text-center space-y-1">
+        <span class="text-2xs text-neutral-400 block font-medium">Verlopen onderhoud</span>
+        <span id="metric-overdue-count" class="text-2xl font-black text-red-400">0</span>
+      </div>
+    </section>
+
+    <!-- Privacy Notice -->
     <section class="bg-emerald-950/30 border border-emerald-800/50 p-4 rounded-2xl text-xs text-emerald-200 flex items-start sm:items-center gap-3">
       <span class="text-xl flex-shrink-0">🔒</span>
       <div class="space-y-0.5">
@@ -246,26 +277,47 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       </div>
     </section>
 
-    <!-- Machines Toolbar -->
+    <!-- Backup & Restore Toolbar (Section 23-31) -->
+    <section class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-neutral-900/60 border border-neutral-800 p-3.5 rounded-2xl text-xs">
+      <div class="space-y-0.5">
+        <span class="font-bold text-neutral-200 block">Back-up & Beheer</span>
+        <p class="text-2xs text-neutral-400">Dit bestand bevat de machinegegevens die u zelf heeft opgeslagen.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="btn-export-backup" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold px-3 py-2 rounded-xl border border-neutral-700 transition cursor-pointer text-2xs flex items-center gap-1">
+          <span>⬇ Exporteer gegevens</span>
+        </button>
+        <button id="btn-import-backup-trigger" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold px-3 py-2 rounded-xl border border-neutral-700 transition cursor-pointer text-2xs flex items-center gap-1">
+          <span>⬆ Importeer back-up</span>
+        </button>
+        <input type="file" id="input-import-backup-file" accept=".json" class="hidden" />
+      </div>
+    </section>
+
+    <!-- Machines Toolbar & Filters -->
     <section class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-gray-800 pb-4">
-      <div>
+      <div class="flex items-center gap-2">
         <h2 class="text-xl font-bold text-white flex items-center gap-2">
           <span>Mijn Machines</span>
           <span id="dossier-count-badge" class="text-xs bg-neutral-800 text-neutral-300 px-2.5 py-0.5 rounded-full font-mono font-bold">0</span>
         </h2>
-        <p class="text-xs text-gray-400">Opgeslagen op dit apparaat</p>
       </div>
-      <div class="flex items-center gap-2.5 w-full sm:w-auto">
-        <button id="btn-open-add" class="flex-1 sm:flex-initial bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-md cursor-pointer">
+
+      <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+        <!-- Filter buttons -->
+        <div class="flex items-center gap-1 bg-neutral-950 p-1 rounded-xl border border-neutral-800 text-2xs">
+          <button id="filter-btn-all" class="px-2.5 py-1 rounded-lg font-bold bg-orange-600 text-white cursor-pointer">Alle (<span id="filter-count-all">0</span>)</button>
+          <button id="filter-btn-soon" class="px-2.5 py-1 rounded-lg font-bold text-neutral-400 hover:text-white cursor-pointer">Binnenkort (<span id="filter-count-soon">0</span>)</button>
+          <button id="filter-btn-overdue" class="px-2.5 py-1 rounded-lg font-bold text-neutral-400 hover:text-white cursor-pointer">Verlopen (<span id="filter-count-overdue">0</span>)</button>
+        </div>
+
+        <button id="btn-open-add" class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2 rounded-xl transition flex items-center justify-center gap-1.5 shadow-md cursor-pointer">
           <span>➕ Machine toevoegen</span>
         </button>
-        <a href="/" class="flex-1 sm:flex-initial bg-neutral-900 border border-neutral-800 hover:border-orange-500 text-neutral-300 font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-center">
-          <span>🔍 Decoderen</span>
-        </a>
       </div>
     </section>
 
-    <!-- Storage Status Alert (Failure Handling) -->
+    <!-- Storage Status Alert -->
     <div id="storage-status-alert" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
 
     <!-- Dossier Grid Container -->
@@ -277,8 +329,8 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         📋
       </div>
       <div class="space-y-1">
-        <h3 class="text-base font-bold text-white">Nog geen machines opgeslagen</h3>
-        <p class="text-xs text-neutral-400 max-w-md mx-auto leading-relaxed">
+        <h3 id="empty-title" class="text-base font-bold text-white">Nog geen machines opgeslagen</h3>
+        <p id="empty-desc" class="text-xs text-neutral-400 max-w-md mx-auto leading-relaxed">
           Voeg uw eerste STIHL-machine toe om onderhoudsnotities bij te houden en altijd direct toegang te hebben tot geverifieerde fabrieksspecificaties.
         </p>
       </div>
@@ -393,7 +445,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
             <span class="text-3xs text-neutral-500 block">Géén onafhankelijk bouwjaar</span>
           </div>
           <div>
-            <span class="text-2xs text-neutral-500 block">Laatste onderhoud (door gebruiker opgegeven)</span>
+            <span class="text-2xs text-neutral-500 block">Laatste onderhoud (handmatig opgegeven)</span>
             <div class="flex items-center gap-2 mt-0.5">
               <span id="detail-last-service-text" class="text-neutral-300 font-semibold"></span>
               <button type="button" id="btn-edit-last-service" class="text-3xs text-orange-400 hover:text-orange-300 underline cursor-pointer">Bewerken</button>
@@ -406,6 +458,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
                 <button type="button" id="btn-cancel-last-service" class="text-neutral-400 hover:text-neutral-200 text-3xs px-1 cursor-pointer">Annuleren</button>
               </div>
             </div>
+            <span class="text-3xs text-neutral-500 block mt-1">Effectief recentste: <strong id="detail-effective-service-text" class="text-neutral-300 font-normal"></strong></span>
           </div>
         </div>
       </section>
@@ -421,7 +474,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         </div>
       </section>
 
-      <!-- Section 3: Onderhoud & Afstelling (Category Safe) -->
+      <!-- Section 3: Onderhouds- & Afstelgegevens -->
       <section class="space-y-2">
         <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-400">3. Onderhouds- & Afstelgegevens</h4>
         <div id="detail-maint-container" class="bg-neutral-950 p-3.5 rounded-xl border border-neutral-800 space-y-1.5">
@@ -429,18 +482,114 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         </div>
       </section>
 
-      <!-- Section 4: Eigen Onderhoudsgeschiedenis & Notities -->
+      <!-- Section 4: Gestructureerde Onderhoudshistorie (Phase 38B) -->
       <section class="space-y-2.5">
         <div class="flex items-center justify-between">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-400">4. Eigen Onderhoudsgeschiedenis</h4>
-          <span class="text-2xs text-neutral-500">Eigen notities (geen officiële dealerhistorie)</span>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-400">4. Onderhoudshistorie</h4>
+          <span class="text-2xs text-neutral-500">Uitgevoerd onderhoud (door gebruiker opgegeven)</span>
+        </div>
+
+        <!-- Add maintenance event form -->
+        <form id="form-add-event" class="bg-neutral-950 p-3 rounded-xl border border-neutral-800 space-y-2">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div>
+              <label for="input-event-date" class="block text-3xs font-bold text-neutral-400 mb-0.5">Datum *</label>
+              <input type="date" id="input-event-date" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-orange-500" required>
+            </div>
+            <div>
+              <label for="select-event-type" class="block text-3xs font-bold text-neutral-400 mb-0.5">Categorie *</label>
+              <select id="select-event-type" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-white text-xs focus:outline-none focus:border-orange-500">
+                <option value="GENERAL_SERVICE">Algemene beurt</option>
+                <option value="SPARK_PLUG">Bougie</option>
+                <option value="AIR_FILTER">Luchtfilter</option>
+                <option value="FUEL_FILTER">Brandstoffilter</option>
+                <option value="CHAIN">Zaagketting</option>
+                <option value="BAR">Zaagblad</option>
+                <option value="CARBURETOR">Carburateur</option>
+                <option value="FUEL_SYSTEM">Brandstofsysteem</option>
+                <option value="STARTER">Starter / Koord</option>
+                <option value="CLUTCH">Koppeling</option>
+                <option value="CUTTING_ATTACHMENT">Snijgarnituur</option>
+                <option value="OTHER">Overig</option>
+              </select>
+            </div>
+            <div>
+              <label for="input-event-label" class="block text-3xs font-bold text-neutral-400 mb-0.5">Omschrijving *</label>
+              <input type="text" id="input-event-label" maxlength="100" placeholder="bv. Bougie vervangen" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500" required>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2 pt-1">
+            <input type="text" id="input-event-note" maxlength="500" placeholder="Notitie (optioneel, bv. NGK BPMR7A gemonteerd)" class="flex-1 bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+            <button type="submit" class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-1.5 rounded-lg transition cursor-pointer whitespace-nowrap">
+              Onderhoud toevoegen
+            </button>
+          </div>
+        </form>
+
+        <!-- Events timeline list -->
+        <div id="detail-events-list" class="space-y-1.5"></div>
+      </section>
+
+      <!-- Section 5: Onderhoudsplanning & Herinneringen (Phase 38B) -->
+      <section class="space-y-2.5">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-400">5. Onderhoudsplanning & Herinneringen</h4>
+          <span class="text-2xs text-neutral-500">Gebruikersplanning (geen fabrieksinterval)</span>
+        </div>
+
+        <!-- Add reminder form -->
+        <form id="form-add-reminder" class="bg-neutral-950 p-3 rounded-xl border border-neutral-800 space-y-2">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div>
+              <label for="input-rem-date" class="block text-3xs font-bold text-neutral-400 mb-0.5">Herinneringsdatum *</label>
+              <input type="date" id="input-rem-date" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-orange-500" required>
+            </div>
+            <div>
+              <label for="select-rem-type" class="block text-3xs font-bold text-neutral-400 mb-0.5">Categorie *</label>
+              <select id="select-rem-type" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-white text-xs focus:outline-none focus:border-orange-500">
+                <option value="GENERAL_SERVICE">Algemene beurt</option>
+                <option value="SPARK_PLUG">Bougie controleren/vervangen</option>
+                <option value="AIR_FILTER">Luchtfilter reinigen</option>
+                <option value="FUEL_FILTER">Brandstoffilter vervangen</option>
+                <option value="CHAIN">Ketting slijpen</option>
+                <option value="BAR">Zaagblad ontbramen</option>
+                <option value="CARBURETOR">Carburateur nazien</option>
+                <option value="FUEL_SYSTEM">Brandstof verversen</option>
+                <option value="STARTER">Starter inspecteren</option>
+                <option value="CLUTCH">Koppeling controleren</option>
+                <option value="CUTTING_ATTACHMENT">Snijgarnituur nakijken</option>
+                <option value="OTHER">Overig onderhoud</option>
+              </select>
+            </div>
+            <div>
+              <label for="input-rem-label" class="block text-3xs font-bold text-neutral-400 mb-0.5">Taakomschrijving *</label>
+              <input type="text" id="input-rem-label" maxlength="100" placeholder="bv. Luchtfilter reinigen" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500" required>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2 pt-1">
+            <input type="text" id="input-rem-note" maxlength="500" placeholder="Extra opmerking (optioneel)" class="flex-1 bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+            <button type="submit" class="bg-neutral-800 hover:bg-orange-600 text-white font-bold text-xs px-4 py-1.5 rounded-lg transition cursor-pointer whitespace-nowrap">
+              Onderhoud plannen
+            </button>
+          </div>
+        </form>
+
+        <!-- Reminders list -->
+        <div id="detail-reminders-list" class="space-y-1.5"></div>
+      </section>
+
+      <!-- Section 6: Eigen Notities -->
+      <section class="space-y-2.5">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-400">6. Vrije Notities</h4>
+          <span class="text-2xs text-neutral-500">Persoonlijke notities</span>
         </div>
 
         <!-- Add note form -->
         <form id="form-add-note" class="bg-neutral-950 p-3 rounded-xl border border-neutral-800 space-y-2">
           <div class="flex flex-col sm:flex-row gap-2">
             <input type="date" id="input-note-date" class="bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-orange-500">
-            <input type="text" id="input-note-text" maxlength="300" placeholder="bv. Bougie vervangen, luchtfilter gereinigd..." class="flex-1 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500" required>
+            <input type="text" id="input-note-text" maxlength="500" placeholder="bv. Zaagblad 40cm aangeschaft..." class="flex-1 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500" required>
             <button type="submit" class="bg-neutral-800 hover:bg-orange-600 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition cursor-pointer whitespace-nowrap">Notitie opslaan</button>
           </div>
         </form>
@@ -449,7 +598,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         <div id="detail-notes-list" class="space-y-1.5"></div>
       </section>
 
-      <!-- Section 5: Officiële Bronnen & Disclaimer -->
+      <!-- Section 7: Officiële Bronnen & Disclaimer -->
       <section class="bg-neutral-950/60 p-3 rounded-xl border border-neutral-800/80 space-y-1 text-2xs text-neutral-400">
         <div id="detail-source-meta" class="font-mono text-neutral-300"></div>
         <p class="leading-relaxed">
@@ -467,6 +616,36 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         </button>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Complete Reminder Modal -->
+  <div id="modal-complete-rem" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl relative text-xs">
+      <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+        <h4 class="text-sm font-bold text-white">Herinnering afronden</h4>
+        <button id="btn-close-complete-rem" class="text-neutral-400 hover:text-white font-bold p-1 cursor-pointer">✕</button>
+      </div>
+      <p id="complete-rem-label" class="text-white font-medium"></p>
+      
+      <div class="bg-neutral-950 p-3 rounded-xl border border-neutral-800 space-y-2.5">
+        <label class="flex items-start gap-2 cursor-pointer">
+          <input type="checkbox" id="check-create-service-event" class="mt-0.5 rounded border-neutral-700 text-orange-600 focus:ring-orange-500 cursor-pointer">
+          <span class="text-neutral-200 font-semibold leading-tight">
+            Ook toevoegen aan onderhoudshistorie
+          </span>
+        </label>
+        
+        <div id="complete-event-date-wrap" class="hidden space-y-1 pt-1 border-t border-neutral-900">
+          <label for="input-complete-event-date" class="block text-3xs font-bold text-neutral-400">Uitvoerdatum onderhoud</label>
+          <input type="date" id="input-complete-event-date" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-orange-500">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-neutral-800">
+        <button type="button" id="btn-cancel-complete-rem" class="px-3 py-1.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 font-bold cursor-pointer">Annuleren</button>
+        <button type="button" id="btn-confirm-complete-rem" class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold cursor-pointer">Bevestigen</button>
+      </div>
     </div>
   </div>
 
@@ -489,33 +668,110 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       createDossierObject,
       updateDossierUserData,
       addDossierNote,
-      hydrateDossierEvidence,
+      addMaintenanceEvent,
+      deleteMaintenanceEvent,
+      addReminder,
+      deleteReminder,
+      completeReminder,
+      generateReminderIcs,
+      exportDossierBackup,
+      importDossierBackup,
+      evaluateReminderState,
+      isWithinSoonWindow,
+      calculateEffectiveLastServiceDate,
+      getLocalTodayString,
       setSafeText,
       IDENTITY_STATUSES,
-      IDENTITY_SOURCES
+      IDENTITY_SOURCES,
+      REMINDER_STATES,
+      hydrateDossierEvidence
     } from '/src/components/MachineDossierManager.js';
 
     let activeDossierId = null;
+    let currentFilter = 'all'; // 'all' | 'soon' | 'overdue'
+    let pendingCompleteReminderId = null;
+
+    function getDossierMetrics(dossiers) {
+      const todayStr = getLocalTodayString();
+      let totalReminders = 0;
+      let soonCount = 0;
+      let overdueCount = 0;
+
+      for (const d of dossiers) {
+        const reminders = (d.maintenance && Array.isArray(d.maintenance.reminders)) ? d.maintenance.reminders : [];
+        for (const rem of reminders) {
+          if (!rem.completed) {
+            totalReminders++;
+            const state = evaluateReminderState(rem, todayStr);
+            if (state === REMINDER_STATES.VERLOPEN) {
+              overdueCount++;
+            } else if (isWithinSoonWindow(rem.due_date, todayStr)) {
+              soonCount++;
+            }
+          }
+        }
+      }
+
+      return {
+        machineCount: dossiers.length,
+        totalReminders,
+        soonCount,
+        overdueCount
+      };
+    }
 
     function renderDossierList() {
       const dossiers = loadDossiers();
       const grid = document.getElementById('dossier-grid');
       const empty = document.getElementById('dossier-empty');
       const badge = document.getElementById('dossier-count-badge');
+      const todayStr = getLocalTodayString();
+
+      // Compute metrics
+      const metrics = getDossierMetrics(dossiers);
+      document.getElementById('metric-machines-count').textContent = String(metrics.machineCount);
+      document.getElementById('metric-reminders-count').textContent = String(metrics.totalReminders);
+      document.getElementById('metric-soon-count').textContent = String(metrics.soonCount);
+      document.getElementById('metric-overdue-count').textContent = String(metrics.overdueCount);
+
+      document.getElementById('filter-count-all').textContent = String(metrics.machineCount);
+      document.getElementById('filter-count-soon').textContent = String(metrics.soonCount);
+      document.getElementById('filter-count-overdue').textContent = String(metrics.overdueCount);
 
       badge.textContent = String(dossiers.length);
       grid.replaceChildren();
 
-      if (dossiers.length === 0) {
+      // Filter dossiers
+      let filteredDossiers = dossiers;
+      if (currentFilter === 'soon') {
+        filteredDossiers = dossiers.filter((d) => {
+          const rems = (d.maintenance && Array.isArray(d.maintenance.reminders)) ? d.maintenance.reminders : [];
+          return rems.some((r) => !r.completed && isWithinSoonWindow(r.due_date, todayStr));
+        });
+      } else if (currentFilter === 'overdue') {
+        filteredDossiers = dossiers.filter((d) => {
+          const rems = (d.maintenance && Array.isArray(d.maintenance.reminders)) ? d.maintenance.reminders : [];
+          return rems.some((r) => !r.completed && evaluateReminderState(r, todayStr) === REMINDER_STATES.VERLOPEN);
+        });
+      }
+
+      if (filteredDossiers.length === 0) {
         grid.classList.add('hidden');
         empty.classList.remove('hidden');
+        if (dossiers.length > 0) {
+          document.getElementById('empty-title').textContent = 'Geen machines in dit filter';
+          document.getElementById('empty-desc').textContent = 'Er zijn momenteel geen machines die voldoen aan het geselecteerde onderhoudsfilter.';
+        } else {
+          document.getElementById('empty-title').textContent = 'Nog geen machines opgeslagen';
+          document.getElementById('empty-desc').textContent = 'Voeg uw eerste STIHL-machine toe om onderhoudsnotities bij te houden en altijd direct toegang te hebben tot geverifieerde fabrieksspecificaties.';
+        }
         return;
       }
 
       grid.classList.remove('hidden');
       empty.classList.add('hidden');
 
-      for (const d of dossiers) {
+      for (const d of filteredDossiers) {
         const card = document.createElement('article');
         card.className = 'bg-neutral-900 border border-neutral-800 hover:border-orange-500/50 p-4 sm:p-5 rounded-2xl space-y-3 transition shadow-lg flex flex-col justify-between';
 
@@ -559,28 +815,19 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           serialP.textContent = 'Serienummer: Niet opgegeven';
         }
 
-        const yearP = document.createElement('p');
-        if (d.machine && d.machine.purchase_year) {
-          yearP.textContent = 'Aankoopjaar: ' + d.machine.purchase_year + ' (door gebruiker opgegeven)';
-        } else {
-          yearP.textContent = 'Aankoopjaar: Niet opgegeven';
-        }
-
+        const effectiveDate = calculateEffectiveLastServiceDate(d);
         const serviceP = document.createElement('p');
-        if (d.maintenance && d.maintenance.last_service_date) {
-          serviceP.textContent = 'Laatste onderhoud: ' + d.maintenance.last_service_date + ' (door gebruiker opgegeven)';
-        } else {
-          serviceP.textContent = 'Laatste onderhoud: Nog geen';
-        }
+        serviceP.textContent = 'Laatste onderhoud: ' + (effectiveDate || 'Nog geen');
 
-        const notesP = document.createElement('p');
-        const noteCount = (d.maintenance && d.maintenance.notes) ? d.maintenance.notes.length : 0;
-        notesP.textContent = 'Onderhoudsnotities: ' + noteCount;
+        const activeReminders = (d.maintenance && Array.isArray(d.maintenance.reminders))
+          ? d.maintenance.reminders.filter((r) => !r.completed)
+          : [];
+        const remP = document.createElement('p');
+        remP.textContent = 'Gepland onderhoud: ' + activeReminders.length;
 
         metaDiv.appendChild(serialP);
-        metaDiv.appendChild(yearP);
         metaDiv.appendChild(serviceP);
-        metaDiv.appendChild(notesP);
+        metaDiv.appendChild(remP);
 
         topDiv.appendChild(tagRow);
         topDiv.appendChild(title);
@@ -603,9 +850,243 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       }
     }
 
+    function renderEventsList(dossier) {
+      const list = document.getElementById('detail-events-list');
+      list.replaceChildren();
+
+      const events = (dossier.maintenance && Array.isArray(dossier.maintenance.events)) ? dossier.maintenance.events : [];
+      if (events.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'text-neutral-500 text-2xs py-2 italic text-center';
+        empty.textContent = 'Nog geen onderhoud vastgelegd.';
+        list.appendChild(empty);
+        return;
+      }
+
+      for (const ev of events) {
+        const item = document.createElement('div');
+        item.className = 'bg-neutral-950 p-2.5 rounded-lg border border-neutral-800 flex items-start justify-between gap-2';
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'space-y-0.5 flex-1';
+
+        const metaRow = document.createElement('div');
+        metaRow.className = 'flex items-center gap-2 text-3xs';
+
+        const dSpan = document.createElement('span');
+        dSpan.className = 'font-mono text-neutral-400 font-bold';
+        dSpan.textContent = ev.date;
+
+        const typeBadge = document.createElement('span');
+        typeBadge.className = 'px-1.5 py-0.2 rounded bg-neutral-800 text-neutral-300 font-mono';
+        typeBadge.textContent = ev.type || 'GENERAL_SERVICE';
+
+        metaRow.appendChild(dSpan);
+        metaRow.appendChild(typeBadge);
+
+        const labelP = document.createElement('p');
+        labelP.className = 'text-xs text-white font-bold';
+        setSafeText(labelP, ev.label);
+
+        textDiv.appendChild(metaRow);
+        textDiv.appendChild(labelP);
+
+        if (ev.note) {
+          const noteP = document.createElement('p');
+          noteP.className = 'text-2xs text-neutral-400';
+          setSafeText(noteP, ev.note);
+          textDiv.appendChild(noteP);
+        }
+
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'text-neutral-500 hover:text-red-400 text-xs p-1 cursor-pointer';
+        delBtn.textContent = '🗑️';
+        delBtn.onclick = () => {
+          deleteMaintenanceEvent(dossier.dossier_id, ev.id);
+          const updated = loadDossiers().find((item) => item.dossier_id === dossier.dossier_id);
+          if (updated) {
+            renderEventsList(updated);
+            setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(updated) || 'Nog geen');
+            renderDossierList();
+          }
+        };
+
+        item.appendChild(textDiv);
+        item.appendChild(delBtn);
+        list.appendChild(item);
+      }
+    }
+
+    function renderRemindersList(dossier) {
+      const list = document.getElementById('detail-reminders-list');
+      list.replaceChildren();
+
+      const reminders = (dossier.maintenance && Array.isArray(dossier.maintenance.reminders)) ? dossier.maintenance.reminders : [];
+      if (reminders.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'text-neutral-500 text-2xs py-2 italic text-center';
+        empty.textContent = 'Geen onderhoud gepland.';
+        list.appendChild(empty);
+        return;
+      }
+
+      const todayStr = getLocalTodayString();
+
+      for (const rem of reminders) {
+        const state = evaluateReminderState(rem, todayStr);
+        const item = document.createElement('div');
+        item.className = 'bg-neutral-950 p-2.5 rounded-lg border border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2';
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'space-y-0.5 flex-1';
+
+        const metaRow = document.createElement('div');
+        metaRow.className = 'flex items-center gap-2 text-3xs';
+
+        const stateBadge = document.createElement('span');
+        if (state === REMINDER_STATES.AFGEROND) {
+          stateBadge.className = 'px-1.5 py-0.5 rounded font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+          stateBadge.textContent = '✓ Afgerond';
+        } else if (state === REMINDER_STATES.VERLOPEN) {
+          stateBadge.className = 'px-1.5 py-0.5 rounded font-bold bg-red-500/20 text-red-400 border border-red-500/30';
+          stateBadge.textContent = '⚠ Verlopen';
+        } else if (state === REMINDER_STATES.VANDAAG) {
+          stateBadge.className = 'px-1.5 py-0.5 rounded font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30';
+          stateBadge.textContent = '● Vandaag';
+        } else {
+          stateBadge.className = 'px-1.5 py-0.5 rounded font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30';
+          stateBadge.textContent = 'Gepland';
+        }
+
+        const dSpan = document.createElement('span');
+        dSpan.className = 'font-mono text-neutral-400';
+        dSpan.textContent = rem.due_date;
+
+        metaRow.appendChild(stateBadge);
+        metaRow.appendChild(dSpan);
+
+        const labelP = document.createElement('p');
+        labelP.className = 'text-xs text-white font-bold';
+        setSafeText(labelP, rem.label);
+
+        textDiv.appendChild(metaRow);
+        textDiv.appendChild(labelP);
+
+        if (rem.note) {
+          const noteP = document.createElement('p');
+          noteP.className = 'text-2xs text-neutral-400';
+          setSafeText(noteP, rem.note);
+          textDiv.appendChild(noteP);
+        }
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'flex items-center gap-1.5 self-end sm:self-center';
+
+        if (!rem.completed) {
+          const completeBtn = document.createElement('button');
+          completeBtn.type = 'button';
+          completeBtn.className = 'px-2 py-1 rounded bg-emerald-700/50 hover:bg-emerald-600 text-emerald-200 text-3xs font-bold cursor-pointer';
+          completeBtn.textContent = '✓ Afronden';
+          completeBtn.onclick = () => openCompleteReminderModal(rem);
+          actionsDiv.appendChild(completeBtn);
+        }
+
+        const icsBtn = document.createElement('button');
+        icsBtn.type = 'button';
+        icsBtn.className = 'px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-3xs font-bold cursor-pointer';
+        icsBtn.textContent = '📅 .ics';
+        icsBtn.onclick = () => {
+          const icsContent = generateReminderIcs({
+            modelName: dossier.identity.model_name,
+            dueDate: rem.due_date,
+            type: rem.type,
+            label: rem.label
+          });
+          downloadTextFile(icsContent, 'onderhoud-stihl-' + dossier.identity.model_slug + '-' + rem.due_date + '.ics', 'text/calendar;charset=utf-8');
+        };
+        actionsDiv.appendChild(icsBtn);
+
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'text-neutral-500 hover:text-red-400 text-xs p-1 cursor-pointer';
+        delBtn.textContent = '🗑️';
+        delBtn.onclick = () => {
+          deleteReminder(dossier.dossier_id, rem.id);
+          const updated = loadDossiers().find((item) => item.dossier_id === dossier.dossier_id);
+          if (updated) {
+            renderRemindersList(updated);
+            renderDossierList();
+          }
+        };
+        actionsDiv.appendChild(delBtn);
+
+        item.appendChild(textDiv);
+        item.appendChild(actionsDiv);
+        list.appendChild(item);
+      }
+    }
+
+    function renderNotesList(dossier) {
+      const list = document.getElementById('detail-notes-list');
+      list.replaceChildren();
+
+      const notes = (dossier.maintenance && Array.isArray(dossier.maintenance.notes)) ? dossier.maintenance.notes : [];
+      if (notes.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'text-neutral-500 text-2xs py-1 italic text-center';
+        empty.textContent = 'Nog geen notities geregistreerd.';
+        list.appendChild(empty);
+        return;
+      }
+
+      for (const note of notes) {
+        const item = document.createElement('div');
+        item.className = 'bg-neutral-950 p-2.5 rounded-lg border border-neutral-800 flex items-start justify-between gap-2';
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'space-y-0.5';
+
+        const dSpan = document.createElement('span');
+        dSpan.className = 'text-3xs font-mono text-neutral-500 block';
+        dSpan.textContent = note.date;
+
+        const p = document.createElement('p');
+        p.className = 'text-xs text-neutral-200';
+        setSafeText(p, note.text);
+
+        textDiv.appendChild(dSpan);
+        textDiv.appendChild(p);
+        item.appendChild(textDiv);
+        list.appendChild(item);
+      }
+    }
+
+    function downloadTextFile(content, fileName, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function openCompleteReminderModal(rem) {
+      pendingCompleteReminderId = rem.id;
+      const modal = document.getElementById('modal-complete-rem');
+      setSafeText(document.getElementById('complete-rem-label'), rem.label);
+      document.getElementById('check-create-service-event').checked = false;
+      document.getElementById('complete-event-date-wrap').classList.add('hidden');
+      document.getElementById('input-complete-event-date').value = getLocalTodayString();
+      modal.classList.remove('hidden');
+    }
+
     async function openDossierDetail(dossierId) {
       const dossiers = loadDossiers();
-      const d = dossiers.find(item => item.dossier_id === dossierId);
+      const d = dossiers.find((item) => item.dossier_id === dossierId);
       if (!d) return;
 
       activeDossierId = d.dossier_id;
@@ -628,8 +1109,17 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       setSafeText(document.getElementById('detail-serial-text'), d.machine.serial_number || 'Niet opgegeven');
       setSafeText(document.getElementById('detail-year-text'), d.machine.purchase_year ? String(d.machine.purchase_year) : 'Niet opgegeven');
       setSafeText(document.getElementById('detail-last-service-text'), (d.maintenance && d.maintenance.last_service_date) ? d.maintenance.last_service_date : 'Nog geen');
+      setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(d) || 'Nog geen');
       document.getElementById('edit-last-service-box')?.classList.add('hidden');
 
+      // Set default date inputs to today
+      const todayStr = getLocalTodayString();
+      document.getElementById('input-event-date').value = todayStr;
+      document.getElementById('input-rem-date').value = todayStr;
+      document.getElementById('input-note-date').value = todayStr;
+
+      renderEventsList(d);
+      renderRemindersList(d);
       renderNotesList(d);
 
       // Hydrate official specs dynamically
@@ -698,7 +1188,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         }
       }
 
-      // Check for 046 stroke conflict
+      // 046 stroke conflict safety
       if (d.identity.model_slug === '046' && fields.stroke_mm && fields.stroke_mm.evidence_status === 'OFFICIAL_CONFLICTED') {
         const warnRow = document.createElement('div');
         warnRow.className = 'text-amber-400 text-2xs p-2 rounded bg-amber-950/40 border border-amber-800/40';
@@ -728,7 +1218,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
 
       let renderedMaintCount = 0;
       for (const item of maintList) {
-        if (item.chainsawOnly && !isChainsaw) continue; // Category safety!
+        if (item.chainsawOnly && !isChainsaw) continue;
         if (specs[item.key] !== undefined) {
           const row = document.createElement('div');
           row.className = 'flex justify-between items-center py-1 border-b border-neutral-900 text-xs';
@@ -756,42 +1246,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       }
     }
 
-    function renderNotesList(dossier) {
-      const list = document.getElementById('detail-notes-list');
-      list.replaceChildren();
-
-      const notes = (dossier.maintenance && dossier.maintenance.notes) ? dossier.maintenance.notes : [];
-      if (notes.length === 0) {
-        const empty = document.createElement('p');
-        empty.className = 'text-neutral-500 text-2xs py-1 italic';
-        empty.textContent = 'Nog geen onderhoudsnotities geregistreerd.';
-        list.appendChild(empty);
-        return;
-      }
-
-      for (const note of notes) {
-        const item = document.createElement('div');
-        item.className = 'bg-neutral-950 p-2.5 rounded-lg border border-neutral-800 flex items-start justify-between gap-2';
-
-        const textDiv = document.createElement('div');
-        textDiv.className = 'space-y-0.5';
-
-        const dSpan = document.createElement('span');
-        dSpan.className = 'text-3xs font-mono text-neutral-500 block';
-        dSpan.textContent = note.date;
-
-        const p = document.createElement('p');
-        p.className = 'text-xs text-neutral-200';
-        setSafeText(p, note.text); // SAFE DOM TEXT SINK
-
-        textDiv.appendChild(dSpan);
-        textDiv.appendChild(p);
-        item.appendChild(textDiv);
-        list.appendChild(item);
-      }
-    }
-
-    // Event listeners
+    // Event listeners initialization
     document.addEventListener('DOMContentLoaded', () => {
       renderDossierList();
 
@@ -805,6 +1260,25 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         }
       }
 
+      // Filter button clicks
+      const setFilter = (filter) => {
+        currentFilter = filter;
+        document.getElementById('filter-btn-all').className = filter === 'all'
+          ? 'px-2.5 py-1 rounded-lg font-bold bg-orange-600 text-white cursor-pointer'
+          : 'px-2.5 py-1 rounded-lg font-bold text-neutral-400 hover:text-white cursor-pointer';
+        document.getElementById('filter-btn-soon').className = filter === 'soon'
+          ? 'px-2.5 py-1 rounded-lg font-bold bg-orange-600 text-white cursor-pointer'
+          : 'px-2.5 py-1 rounded-lg font-bold text-neutral-400 hover:text-white cursor-pointer';
+        document.getElementById('filter-btn-overdue').className = filter === 'overdue'
+          ? 'px-2.5 py-1 rounded-lg font-bold bg-orange-600 text-white cursor-pointer'
+          : 'px-2.5 py-1 rounded-lg font-bold text-neutral-400 hover:text-white cursor-pointer';
+        renderDossierList();
+      };
+
+      document.getElementById('filter-btn-all')?.addEventListener('click', () => setFilter('all'));
+      document.getElementById('filter-btn-soon')?.addEventListener('click', () => setFilter('soon'));
+      document.getElementById('filter-btn-overdue')?.addEventListener('click', () => setFilter('overdue'));
+
       // Add modal triggers
       const openAdd = () => {
         document.getElementById('add-error').classList.add('hidden');
@@ -817,7 +1291,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       document.getElementById('btn-close-add')?.addEventListener('click', closeAdd);
       document.getElementById('btn-cancel-add')?.addEventListener('click', closeAdd);
 
-      // Close detail
+      // Close detail modal
       const closeDetail = () => {
         document.getElementById('modal-detail').classList.add('hidden');
         activeDossierId = null;
@@ -881,6 +1355,82 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         }
       });
 
+      // Form Add Event Submit
+      document.getElementById('form-add-event')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!activeDossierId) return;
+
+        const date = document.getElementById('input-event-date').value;
+        const type = document.getElementById('select-event-type').value;
+        const label = document.getElementById('input-event-label').value;
+        const note = document.getElementById('input-event-note').value;
+
+        const res = addMaintenanceEvent(activeDossierId, { date, type, label, note });
+        if (res.success && res.dossier) {
+          document.getElementById('input-event-label').value = '';
+          document.getElementById('input-event-note').value = '';
+          renderEventsList(res.dossier);
+          setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(res.dossier) || 'Nog geen');
+          renderDossierList();
+        }
+      });
+
+      // Form Add Reminder Submit
+      document.getElementById('form-add-reminder')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!activeDossierId) return;
+
+        const dueDate = document.getElementById('input-rem-date').value;
+        const type = document.getElementById('select-rem-type').value;
+        const label = document.getElementById('input-rem-label').value;
+        const note = document.getElementById('input-rem-note').value;
+
+        const res = addReminder(activeDossierId, { dueDate, type, label, note });
+        if (res.success && res.dossier) {
+          document.getElementById('input-rem-label').value = '';
+          document.getElementById('input-rem-note').value = '';
+          renderRemindersList(res.dossier);
+          renderDossierList();
+        }
+      });
+
+      // Complete reminder checkbox toggle
+      document.getElementById('check-create-service-event')?.addEventListener('change', (e) => {
+        const wrap = document.getElementById('complete-event-date-wrap');
+        if (e.target.checked) wrap.classList.remove('hidden');
+        else wrap.classList.add('hidden');
+      });
+
+      // Confirm complete reminder
+      document.getElementById('btn-confirm-complete-rem')?.addEventListener('click', () => {
+        if (!activeDossierId || !pendingCompleteReminderId) return;
+        const createEvent = document.getElementById('check-create-service-event').checked;
+        const eventDate = document.getElementById('input-complete-event-date').value;
+
+        const res = completeReminder(activeDossierId, pendingCompleteReminderId, {
+          createEvent,
+          eventDate
+        });
+
+        if (res.success && res.dossier) {
+          document.getElementById('modal-complete-rem').classList.add('hidden');
+          pendingCompleteReminderId = null;
+          renderRemindersList(res.dossier);
+          if (createEvent) {
+            renderEventsList(res.dossier);
+            setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(res.dossier) || 'Nog geen');
+          }
+          renderDossierList();
+        }
+      });
+
+      const closeCompleteModal = () => {
+        document.getElementById('modal-complete-rem').classList.add('hidden');
+        pendingCompleteReminderId = null;
+      };
+      document.getElementById('btn-close-complete-rem')?.addEventListener('click', closeCompleteModal);
+      document.getElementById('btn-cancel-complete-rem')?.addEventListener('click', closeCompleteModal);
+
       // Form Add Note Submit
       document.getElementById('form-add-note')?.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -889,7 +1439,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         const textInput = document.getElementById('input-note-text');
         const dateInput = document.getElementById('input-note-date');
         const text = textInput.value;
-        const date = dateInput.value || new Date().toISOString().split('T')[0];
+        const date = dateInput.value || getLocalTodayString();
 
         if (!text.trim()) return;
 
@@ -922,6 +1472,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         if (res.success && res.dossier) {
           document.getElementById('edit-last-service-box')?.classList.add('hidden');
           setSafeText(document.getElementById('detail-last-service-text'), res.dossier.maintenance.last_service_date || 'Nog geen');
+          setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(res.dossier) || 'Nog geen');
           renderDossierList();
         }
       });
@@ -932,8 +1483,48 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         if (res.success && res.dossier) {
           document.getElementById('edit-last-service-box')?.classList.add('hidden');
           setSafeText(document.getElementById('detail-last-service-text'), 'Nog geen');
+          setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(res.dossier) || 'Nog geen');
           renderDossierList();
         }
+      });
+
+      // Export Backup JSON
+      document.getElementById('btn-export-backup')?.addEventListener('click', () => {
+        const backupObj = exportDossierBackup();
+        const jsonStr = JSON.stringify(backupObj, null, 2);
+        const dateStr = getLocalTodayString();
+        downloadTextFile(jsonStr, 'stihldecoder-machines-backup-' + dateStr + '.json', 'application/json;charset=utf-8');
+      });
+
+      // Import Backup JSON Trigger & Handler
+      const fileInput = document.getElementById('input-import-backup-file');
+      document.getElementById('btn-import-backup-trigger')?.addEventListener('click', () => {
+        fileInput.value = '';
+        fileInput.click();
+      });
+
+      fileInput?.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        const alertBox = document.getElementById('storage-status-alert');
+        alertBox.className = 'hidden';
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const content = event.target.result;
+          const res = importDossierBackup(content);
+          alertBox.classList.remove('hidden');
+          if (res.success) {
+            alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-emerald-950/50 border border-emerald-800/80 text-emerald-300';
+            alertBox.textContent = '✅ Back-up succesvol geïmporteerd! ' + res.importedCount + ' machines toegevoegd.';
+            renderDossierList();
+          } else {
+            alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-red-950/50 border border-red-800/80 text-red-300';
+            alertBox.textContent = '❌ ' + (res.error || 'Import mislukt.');
+          }
+        };
+        reader.readAsText(file);
       });
 
       // Delete Dossier

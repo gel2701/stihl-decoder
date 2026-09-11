@@ -1,0 +1,29 @@
+{
+  "phase": "Phase38B",
+  "audit_type": "STORAGE_MIGRATION",
+  "baseline_sha": "e8de9e8296e6a52c509d9af8b5412c89397f7d19",
+  "old_storage_key": "stihl_machine_dossiers_v1",
+  "new_storage_key": "stihl_machine_dossiers_v2",
+  "old_schema_version": 1,
+  "new_schema_version": 2,
+  "migration_rule_condition": "storage.getItem(V2_KEY) === null",
+  "empty_v2_resurrects_v1": false,
+  "invalid_v2_resurrects_v1": false,
+  "v1_removed_after_successful_migration": true,
+  "v1_notes_auto_promoted_to_service_events": false,
+  "v1_user_field_value_changes": 0,
+  "v1_identity_semantic_changes": 0,
+  "v1_migration_truncations": 0,
+  "test_scenarios": [
+    "v1_empty_storage",
+    "v1_single_dossier",
+    "v1_multiple_dossiers",
+    "v1_with_user_notes",
+    "v1_with_manual_last_service_date",
+    "v1_corrupt_json_safe_recovery",
+    "v2_already_exists_skip_migration",
+    "v2_empty_array_never_resurrects_v1",
+    "v2_corrupted_json_never_resurrects_v1"
+  ],
+  "status": "PASS"
+}

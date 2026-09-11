@@ -1,0 +1,56 @@
+{
+  "phase": "Phase38B",
+  "audit_type": "MAINTENANCE_SEMANTICS",
+  "baseline_sha": "e8de9e8296e6a52c509d9af8b5412c89397f7d19",
+  "official_maintenance_intervals_invented": 0,
+  "spec_to_interval_inference": 0,
+  "age_to_interval_inference": 0,
+  "serial_to_interval_inference": 0,
+  "manual_last_service_silently_overwritten": 0,
+  "reminder_completion_auto_creates_service_event": 0,
+  "invalid_calendar_dates_accepted": 0,
+  "local_date_day_shift_errors": 0,
+  "soon_window_days": 30,
+  "maintenance_event_types": [
+    "GENERAL_SERVICE",
+    "SPARK_PLUG",
+    "AIR_FILTER",
+    "FUEL_FILTER",
+    "CHAIN",
+    "BAR",
+    "CARBURETOR",
+    "FUEL_SYSTEM",
+    "STARTER",
+    "CLUTCH",
+    "CUTTING_ATTACHMENT",
+    "OTHER"
+  ],
+  "reminder_states": [
+    "GEPLAND",
+    "VANDAAG",
+    "VERLOPEN",
+    "AFGEROND"
+  ],
+  "event_schema": {
+    "required": [
+      "id",
+      "date",
+      "type",
+      "label",
+      "source"
+    ],
+    "source_constraint": "USER_PROVIDED"
+  },
+  "reminder_schema": {
+    "required": [
+      "id",
+      "due_date",
+      "type",
+      "label",
+      "source",
+      "completed"
+    ],
+    "source_constraint": "USER_PROVIDED"
+  },
+  "status": "PASS"
+}

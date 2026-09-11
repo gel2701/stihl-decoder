@@ -1,0 +1,25 @@
+{
+  "phase": "Phase38B",
+  "audit_type": "BACKUP_AND_IMPORT_SECURITY",
+  "baseline_sha": "e8de9e8296e6a52c509d9af8b5412c89397f7d19",
+  "backup_format": "stihldecoder-machine-backup",
+  "backup_format_version": 1,
+  "dossier_schema_version": 2,
+  "size_bounds": {
+    "max_backup_bytes": 1048576,
+    "max_dossiers": 100,
+    "max_events_per_dossier": 100,
+    "max_reminders_per_dossier": 50,
+    "max_nickname_length": 50,
+    "max_label_length": 100,
+    "max_note_length": 500
+  },
+  "prototype_pollution_protection": "PASS",
+  "field_by_field_construction": "PASS",
+  "atomic_storage_transaction": "PASS",
+  "partial_invalid_backup_imports": 0,
+  "partial_storage_corruption_on_quota_failure": 0,
+  "silent_dossier_overwrites_on_id_collision": 0,
+  "xss_injection_execution": 0,
+  "status": "PASS"
+}

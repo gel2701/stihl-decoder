@@ -301,7 +301,14 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'scripts/phase38a_machine_dossier_audit.js',
       'tests/phase38a_machine_dossier_mvp.test.js',
       'data/phase38a3_confirmed_spec_parity_audit.json',
-      'tests/phase38a3_confirmed_spec_parity.test.js'
+      'tests/phase38a3_confirmed_spec_parity.test.js',
+      'tests/phase38b_maintenance_return_loop.test.js',
+      'data/phase38b_storage_migration_audit.json',
+      'data/phase38b_maintenance_semantics_audit.json',
+      'data/phase38b_privacy_audit.json',
+      'data/phase38b_backup_import_audit.json',
+      'data/phase38b_user_journey_audit.json',
+      'data/phase38b_final_report.json'
     ];
 
     for (const relFile of candidateFiles) {

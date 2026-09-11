@@ -1,0 +1,71 @@
+{
+  "phase": "Phase38B",
+  "audit_type": "USER_JOURNEYS",
+  "baseline_sha": "e8de9e8296e6a52c509d9af8b5412c89397f7d19",
+  "journeys": [
+    {
+      "id": 1,
+      "title": "Existing MS 310 dossier adds maintenance event and reminder",
+      "steps": [
+        "Load MS 310",
+        "Add maintenance event",
+        "Add reminder",
+        "Reload storage"
+      ],
+      "result": "PASS"
+    },
+    {
+      "id": 2,
+      "title": "Reminder due date state transitions",
+      "steps": [
+        "Set past due date -> VERLOPEN",
+        "Update to today -> VANDAAG",
+        "Update to future -> GEPLAND"
+      ],
+      "result": "PASS"
+    },
+    {
+      "id": 3,
+      "title": "Reminder completion with optional maintenance event",
+      "steps": [
+        "Complete reminder without event -> reminder marked completed only",
+        "Complete with event -> event added with confirmed user date"
+      ],
+      "result": "PASS"
+    },
+    {
+      "id": 4,
+      "title": "Backup export and restore",
+      "steps": [
+        "Export backup JSON",
+        "Clear storage",
+        "Import backup JSON",
+        "Verify user data restored and evidence rehydrated independently"
+      ],
+      "result": "PASS"
+    },
+    {
+      "id": 5,
+      "title": "Calendar .ics export",
+      "steps": [
+        "Generate .ics",
+        "Validate RFC 5545 compliance",
+        "Verify all-day DTSTART;VALUE=DATE",
+        "Verify zero serial and zero notes leakage"
+      ],
+      "result": "PASS"
+    },
+    {
+      "id": 6,
+      "title": "Multiple machines isolation",
+      "steps": [
+        "Two MS 310 dossiers",
+        "Independent maintenance events",
+        "Independent reminders",
+        "Verify zero cross-dossier leakage"
+      ],
+      "result": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
