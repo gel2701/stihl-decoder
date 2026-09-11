@@ -30,9 +30,9 @@ if (fs.existsSync(PUBLIC_FACTS_PATH)) {
 
 console.log('=== Running Phase 38C: Manual Model Correction Test Suite ===\n');
 
-// 1. REPRODUCE SERIAL 185078584
-console.log('Test 1: Serial 185078584 decoder baseline');
-const res1850 = decodeStihlCode('185078584', database);
+// 1. REPRODUCE SYNTHETIC SERIAL FIXTURE 185000000
+console.log('Test 1: Synthetic serial 185000000 decoder baseline');
+const res1850 = decodeStihlCode('185000000', database);
 assert.strictEqual(res1850.success, true, 'Decode must succeed');
 assert.strictEqual(res1850.modelIdentityStatus, 'PROBABLE_MODEL_SERIES', 'Must resolve to PROBABLE_MODEL_SERIES');
 assert.ok(res1850.probableModelSeries.includes('261'), 'Probable series must reference 261');
@@ -77,8 +77,8 @@ console.log('✓ Test 3 passed: Variant isolation and query normalization verifi
 
 // 4. KNOWN MODEL SELECTION OUTSIDE PREDICTED SERIES
 console.log('Test 4: Known model selection outside predicted series');
-// Serial 185078584 predicts MS 261 series, but user selects MS 170
-const resConfirmedOutside = decodeStihlCode('185078584', database, { confirmedModel: 'MS 170' });
+// Synthetic serial 185000000 predicts MS 261 series, but user selects MS 170
+const resConfirmedOutside = decodeStihlCode('185000000', database, { confirmedModel: 'MS 170' });
 assert.strictEqual(resConfirmedOutside.success, true);
 assert.strictEqual(resConfirmedOutside.modelIdentityStatus, 'USER_CONFIRMED_MODEL');
 assert.strictEqual(resConfirmedOutside.confirmedModel, 'MS 170');
@@ -103,7 +103,7 @@ assert.throws(() => {
   createDossierObject({
     model_name: 'MS 251 / C',
     model_slug: 'ms-251-c',
-    serial_number: '185078584',
+    serial_number: '185000000',
     identity_status: 'USER_REPORTED_UNVERIFIED_MODEL',
     identity_source: 'MANUAL_FREE_TEXT'
   });
@@ -122,12 +122,13 @@ const unverifiedDossierObj = {
   maintenance: { notes: [], events: [], reminders: [] }
 };
 const valResult = validateDossierSchema(unverifiedDossierObj);
+
 // 5b. MS 251 identity / evidence boundary & no legacy fallback
 const ms251ExactFound = findRegisteredModel('MS 251', allIdentities);
 assert.strictEqual(ms251ExactFound, null, 'MS 251 must not be in registered safe identities (CANONICAL_DATABASE or PUBLIC_EVIDENCE)');
 const direct251 = decodeStihlCode('MS 251', database);
 assert.strictEqual(Object.keys(direct251.technicalSpecs || {}).length, 0, 'Direct MS 251 must yield 0 technical specs');
-const manual251 = decodeStihlCode('185078584', database, { confirmedModel: 'MS 251' });
+const manual251 = decodeStihlCode('185000000', database, { confirmedModel: 'MS 251' });
 assert.strictEqual(Object.keys(manual251.technicalSpecs || {}).length, 0, 'Manual MS 251 must yield 0 technical specs');
 
 console.log('✓ Test 5 passed: Unknown model is not saveable to dossier, MS 251 identity/evidence boundary verified');
@@ -142,7 +143,7 @@ db.serialize(() => {
     assert.ok(row, 'Table field_observations must exist in schema');
   });
 
-  const serialHash = crypto.createHash('sha256').update('185078584_test').digest('hex');
+  const serialHash = crypto.createHash('sha256').update('185000000_test').digest('hex');
   const dedupeKey = crypto.createHash('sha256').update(serialHash + ':ms-251-c').digest('hex');
   const obsId1 = 'obs-test-' + Date.now() + '-1';
   const obsId2 = 'obs-test-' + Date.now() + '-2';
@@ -154,7 +155,7 @@ db.serialize(() => {
     matched_model_slug, matched_model_name, observation_source,
     verification_status, consent_version
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING', 'v1')`, [
-    obsId1, dedupeKey, '185078584_test', serialHash,
+    obsId1, dedupeKey, '185000000_test', serialHash,
     'PROBABLE_MODEL_SERIES', 'MS 261', '["ms-261","ms-261-c-m"]',
     'MS 251 / C', 'ms 251 c',
     null, null, 'TYPEPLATE'
@@ -168,7 +169,7 @@ db.serialize(() => {
       matched_model_slug, matched_model_name, observation_source,
       verification_status, consent_version
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING', 'v1')`, [
-      obsId2, dedupeKey, '185078584_test', serialHash,
+      obsId2, dedupeKey, '185000000_test', serialHash,
       'PROBABLE_MODEL_SERIES', 'MS 261', '["ms-261","ms-261-c-m"]',
       'MS 251 / C', 'ms 251 c',
       null, null, 'TYPEPLATE'
@@ -178,7 +179,7 @@ db.serialize(() => {
       console.log('✓ Test 6 passed: Table field_observations and unique dedupe_key enforced');
 
       // Cleanup test rows
-      db.run('DELETE FROM field_observations WHERE serial_normalized = ?', ['185078584_test'], async () => {
+      db.run('DELETE FROM field_observations WHERE serial_normalized = ?', ['185000000_test'], async () => {
         await runAsyncTests();
       });
     });
@@ -274,7 +275,7 @@ async function runAsyncTests() {
   const noConsentRes = await makeRequest('/api/field-observation', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: { serial: '185078584', reportedModel: 'MS 251 / C', observationSource: 'TYPEPLATE', consent: false }
+    body: { serial: '185000000', reportedModel: 'MS 251 / C', observationSource: 'TYPEPLATE', consent: false }
   });
   assert.strictEqual(noConsentRes.status, 400);
   assert.strictEqual(noConsentRes.body.error, 'CONSENT_REQUIRED');
@@ -287,7 +288,7 @@ async function runAsyncTests() {
       'Content-Type': 'application/json',
       'sec-fetch-site': 'cross-site'
     },
-    body: { serial: '185078584', reportedModel: 'MS 251 / C', observationSource: 'TYPEPLATE', consent: true }
+    body: { serial: '185000000', reportedModel: 'MS 251 / C', observationSource: 'TYPEPLATE', consent: true }
   });
   assert.strictEqual(crossOriginRes.status, 403);
   assert.strictEqual(crossOriginRes.body.error, 'FORBIDDEN');
@@ -295,7 +296,7 @@ async function runAsyncTests() {
 
   // 10d. POST /api/field-observation valid submission + deduplication
   const validObs = {
-    serial: '185078584',
+    serial: '185000000',
     reportedModel: 'MS 251 / C',
     observationSource: 'TYPEPLATE',
     consent: true
@@ -324,7 +325,7 @@ async function runAsyncTests() {
 
   // Verify in database that exactly 1 row was created
   const dbRows = await new Promise((resolve) => {
-    db.all("SELECT * FROM field_observations WHERE serial_normalized = '185078584'", (err, rows) => resolve(rows || []));
+    db.all("SELECT * FROM field_observations WHERE serial_normalized = '185000000'", (err, rows) => resolve(rows || []));
   });
   assert.strictEqual(dbRows.length, 1, 'Two duplicate HTTP requests must result in exactly 1 database row');
   console.log('✓ Test 10d passed: Valid observation and atomic deduplication verified (2 HTTP requests -> 1 DB row)');
@@ -382,45 +383,45 @@ async function runAsyncTests() {
   // A. No-consent click attempt
   const harnessA = new ClientSubmitHarness(async () => ({ ok: true, data: { success: true } }));
   harnessA.checkbox.checked = false;
-  await harnessA.clickSubmit('185078584', 'MS 251');
+  await harnessA.clickSubmit('185000000', 'MS 251');
   assert.strictEqual(harnessA.postCount, 0, 'No consent => 0 POST requests');
   assert.strictEqual(harnessA.button.disabled, false, 'Button remains enabled after no-consent attempt');
   assert.ok(harnessA.feedback.text.includes('toestemming'), 'Feedback informs user consent is required');
 
   // B. Recovery without reload: user checks box and clicks submit
   harnessA.checkbox.checked = true;
-  await harnessA.clickSubmit('185078584', 'MS 251');
+  await harnessA.clickSubmit('185000000', 'MS 251');
   assert.strictEqual(harnessA.postCount, 1, 'Consented click => exactly 1 POST');
   assert.strictEqual(harnessA.button.disabled, true, 'Button disabled after success');
   // Duplicate click attempt after success
-  await harnessA.clickSubmit('185078584', 'MS 251');
+  await harnessA.clickSubmit('185000000', 'MS 251');
   assert.strictEqual(harnessA.postCount, 1, 'Duplicate click after success prevented (SUCCESS_DOUBLE_SUBMIT_PROTECTION)');
 
   // C. Network failure recovery
   const harnessNetwork = new ClientSubmitHarness(async () => { throw new Error('Network error'); });
   harnessNetwork.checkbox.checked = true;
-  await harnessNetwork.clickSubmit('185078584', 'MS 251');
+  await harnessNetwork.clickSubmit('185000000', 'MS 251');
   assert.strictEqual(harnessNetwork.postCount, 1);
   assert.strictEqual(harnessNetwork.button.disabled, false, 'Button re-enabled after network error');
 
   // D. HTTP 500 recovery
   const harness500 = new ClientSubmitHarness(async () => ({ ok: false, status: 500, data: { error: 'INTERNAL_ERROR' } }));
   harness500.checkbox.checked = true;
-  await harness500.clickSubmit('185078584', 'MS 251');
+  await harness500.clickSubmit('185000000', 'MS 251');
   assert.strictEqual(harness500.postCount, 1);
   assert.strictEqual(harness500.button.disabled, false, 'Button re-enabled after HTTP 500');
 
   // E. HTTP 429 recovery
   const harness429 = new ClientSubmitHarness(async () => ({ ok: false, status: 429, data: { error: 'RATE_LIMIT_EXCEEDED' } }));
   harness429.checkbox.checked = true;
-  await harness429.clickSubmit('185078584', 'MS 251');
+  await harness429.clickSubmit('185000000', 'MS 251');
   assert.strictEqual(harness429.postCount, 1);
   assert.strictEqual(harness429.button.disabled, false, 'Button re-enabled after HTTP 429');
 
   console.log('✓ Test 11 passed: Submit button recovery, no-consent safety, and double-submit protection verified');
 
   // Clean up test observation from db
-  db.run('DELETE FROM field_observations WHERE serial_normalized = ?', ['185078584'], () => {
+  db.run('DELETE FROM field_observations WHERE serial_normalized = ?', ['185000000'], () => {
     console.log('\nALL PHASE 38C TESTS PASSED!');
     process.exit(0);
   });
