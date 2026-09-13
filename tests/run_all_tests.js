@@ -57,7 +57,8 @@ export const testFiles = [
   'tests/phase38a_machine_dossier_mvp.test.js',
   'tests/phase38a3_confirmed_spec_parity.test.js',
   'tests/phase38b_maintenance_return_loop.test.js',
-  'tests/phase38c_manual_model_correction.test.js'
+  'tests/phase38c_manual_model_correction.test.js',
+  'tests/phase38d_ms251_evidence_activation.test.js'
 ];
 
 function sha256Text(value) {

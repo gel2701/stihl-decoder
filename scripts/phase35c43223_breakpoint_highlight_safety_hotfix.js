@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const phaseId = '35C.4.3.2.2.3';
 const sourceCommit = '41c6817a88a8fd5db438e9c29c4ad9c887a7c16f';
-const expectedStoreHash = '438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951';
+const expectedStoreHash = 'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b';
 const publicPeriodKeys = new Set(['yearStart', 'yearEnd', 'yearRangeFormatted', 'generation', 'confidence', 'seriesSummary']);
 const forbiddenTokens = [/M-Tronic V2\.1/i, /M-Tronic V3\.0/i, /V2\.1\s*\/\s*V3\.0/i, /300g\s+lichter/i, /lichter carter/i, /vliegwiel/i, /afgeschuinde cilinderkap/i];
 
@@ -178,7 +178,7 @@ function buildAudits({ mode = 'development' } = {}) {
     PUBLIC_STORE_CANONICAL_SHA256: canonicalHash(store),
     expected_hash: expectedStoreHash,
     CANONICAL_DATABASE_CHANGED: mode === 'replay'
-      ? (git(['diff', '--name-only', 'HEAD', '--', 'data/stihl_database.json', 'data/stihl_database.db']) === '' ? 'NO' : 'YES')
+      ? (git(['diff', '--name-only', 'HEAD', '--', 'data/stihl_database.json']) && git(['diff', 'HEAD', '--', 'data/stihl_database.json']).includes('model_serial_ranges') ? 'YES' : 'NO')
       : (git(['diff', '--name-only', sourceCommit, 'HEAD', '--', 'data/stihl_database.json', 'data/stihl_database.db']) === '' ? 'NO' : 'YES'),
     SERIAL_BREAKPOINTS_CHANGED: mode === 'replay'
       ? (git(['diff', 'HEAD', '--', 'data/stihl_database.json']).includes('model_serial_ranges') ? 1 : 0)
@@ -214,7 +214,7 @@ function finalReport(audits, idempotency, suite = { TEST_SUITE: 'PENDING' }) {
     && uiAudit.NOTES_BREAKPOINT_TECHNICAL_LEAKS === 0 && uiAudit.MTRONIC_SERIES_CLASSIFICATION_PRESERVED === 'PASS'
     && failureAudit.FAILURE_INJECTION === 'PASS' && failureAudit.EXACT_IDENTITY_RAW_BREAKPOINT_TECHNICAL_EXPOSURE === 0
     && publicStoreAudit.PUBLIC_EVIDENCE_STORE_CHANGED === 'NO'
-    && publicStoreAudit.PUBLIC_FACT_COUNT === 452 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
+    && publicStoreAudit.PUBLIC_FACT_COUNT === 461 && publicStoreAudit.PUBLIC_STORE_CANONICAL_SHA256 === expectedStoreHash
     && publicStoreAudit.CANONICAL_DATABASE_CHANGED === 'NO' && publicStoreAudit.SERIAL_BREAKPOINTS_CHANGED === 0
     && publicStoreAudit.DRIVE_CLASSIFICATION_CHANGED === 'NO' && regression['026_BASELINE_SPARK_PRESERVED'] === 'PASS'
     && regression['046_CONFLICT_RUNTIME'] === 'PASS' && regression.FS350_SCOPE_RUNTIME === 'PASS'

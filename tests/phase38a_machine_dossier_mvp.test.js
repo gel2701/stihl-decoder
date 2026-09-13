@@ -59,7 +59,7 @@ global.localStorage = mockStorage;
 // ============================================================================
 console.log('  Testing 1: test_dossier_readiness_matrix...');
 const modelSlugs = Object.keys(store.model_index);
-assert.strictEqual(modelSlugs.length, 49, 'Index must have 49 models');
+assert.strictEqual(modelSlugs.length, 50, 'Index must have 50 models');
 
 const MAINTENANCE_FIELDS = new Set([
   'spark_plug',
@@ -89,10 +89,10 @@ for (const slug of modelSlugs) {
   }
 }
 
-assert.strictEqual(readyCount, 47, 'Exactly 47 models must be dossier-ready (>=5 facts & >=1 maint fact)');
+assert.strictEqual(readyCount, 48, 'Exactly 48 models must be dossier-ready (>=5 facts & >=1 maint fact)');
 assert.strictEqual(limitedCount, 2, 'Exactly 2 models must have limited official data');
 assert.deepStrictEqual(limitedModels.sort(), ['ts-410', 'ts-420'], 'Limited models must be ts-410 and ts-420');
-console.log('    ✓ 47 models dossier-ready, 2 limited (ts-410, ts-420)');
+console.log('    ✓ 48 models dossier-ready, 2 limited (ts-410, ts-420)');
 
 // ============================================================================
 // Test 2: test_probable_series_blocks_dossier_save
@@ -291,7 +291,7 @@ console.log('    ✓ Zero 3rd party scripts and zero external QR requests verifi
 console.log('  Testing 14: test_fact_store_immutability...');
 const rawFactStoreText = fs.readFileSync(path.join(rootDir, 'data', 'public_evidence_facts.json'), 'utf8');
 const factStore = JSON.parse(rawFactStoreText);
-assert.strictEqual(factStore.facts.length, 452, 'PUBLIC_FACT_COUNT must be strictly 452');
+assert.strictEqual(factStore.facts.length, 461, 'PUBLIC_FACT_COUNT must be strictly 461');
 
 function stable(value) {
   if (Array.isArray(value)) return `[${value.map(stable).join(',')}]`;
@@ -301,7 +301,7 @@ function stable(value) {
 const canonicalSha256 = crypto.createHash('sha256').update(stable(factStore)).digest('hex');
 assert.strictEqual(
   canonicalSha256,
-  '438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951',
+  'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b',
   'Fact store canonical SHA256 must match Phase 37C candidate hash exactly'
 );
 console.log('    ✓ Fact store immutability verified (452 facts, hash intact)');

@@ -1,0 +1,136 @@
+{
+  "promoted_model_slug": "ms-251",
+  "model_name": "MS 251",
+  "facts_before": 452,
+  "facts_added": 9,
+  "facts_after": 461,
+  "existing_facts_changed": 0,
+  "existing_facts_removed": 0,
+  "promoted_facts_count": 9,
+  "promoted_facts": [
+    {
+      "fact_id": "c0375b64d00089fc",
+      "field": "displacement_cc",
+      "raw_value": "45,6 cm 3",
+      "normalized_value": 45.6,
+      "unit": "cc",
+      "measurement_definition": "ENGINE_DISPLACEMENT",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "52e4d1bd59536cf2",
+      "field": "bore_mm",
+      "raw_value": "44,0 mm",
+      "normalized_value": 44,
+      "unit": "mm",
+      "measurement_definition": "CYLINDER_BORE",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "f129065174e5d663",
+      "field": "stroke_mm",
+      "raw_value": "30,0 mm",
+      "normalized_value": 30,
+      "unit": "mm",
+      "measurement_definition": "PISTON_STROKE",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "2e8ff4a1d0a244fd",
+      "field": "power_kw",
+      "raw_value": "2,2 kW (3,0 ch) à 9500 tr/mn",
+      "normalized_value": 2.2,
+      "unit": "kW",
+      "measurement_definition": "ENGINE_OUTPUT_POWER",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "94f6a2154fc72ecc",
+      "field": "idle_speed_rpm",
+      "raw_value": "2800 tr/mn",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_IDLE_SPEED",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "91bea50c24ae9e06",
+      "field": "clutch_speed_rpm",
+      "raw_value": "3500 tr/mn",
+      "normalized_value": 3500,
+      "unit": "rpm",
+      "measurement_definition": "CLUTCH_ENGAGEMENT_SPEED",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "f8fe7365d9435532",
+      "field": "max_speed_rpm",
+      "raw_value": "13000 tr/mn",
+      "normalized_value": 13000,
+      "unit": "rpm",
+      "measurement_definition": "ENGINE_MAX_SPEED",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "a0531b56c2e3792c",
+      "field": "spark_plug",
+      "raw_value": "NGK CMR 6 H",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR 6 H"
+        }
+      ],
+      "unit": null,
+      "measurement_definition": "NOT_APPLICABLE",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    },
+    {
+      "fact_id": "dc33c71e02cd95d9",
+      "field": "electrode_gap_mm",
+      "raw_value": "0,5 mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "measurement_definition": "SPARK_PLUG_ELECTRODE_GAP",
+      "display_eligible": true,
+      "single_value_eligible": true,
+      "pdf_page": 6,
+      "printed_page": 5
+    }
+  ],
+  "canonical_naming_conformance": {
+    "idle_speed_rpm": "ENGINE_IDLE_SPEED",
+    "max_speed_rpm": "ENGINE_MAX_SPEED",
+    "clutch_speed_rpm": "CLUTCH_ENGAGEMENT_SPEED",
+    "electrode_gap_mm": "SPARK_PLUG_ELECTRODE_GAP",
+    "power_kw": "ENGINE_OUTPUT_POWER"
+  },
+  "unjustified_conversions": {
+    "ch_to_bhp": 0,
+    "power_rpm_standalone": 0
+  }
+}

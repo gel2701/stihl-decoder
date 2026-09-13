@@ -28,7 +28,7 @@ function stable(value) {
 // 1. PUBLIC EVIDENCE STORE INTEGRITY & BASELINE INVARIANCE
 // ============================================================================
 const store = database.public_evidence;
-assert.strictEqual(store.facts.length, 452, 'Public fact count must be exactly 452');
+assert.strictEqual(store.facts.length, 461, 'Public fact count must be exactly 461');
 
 let phase37aStoreRaw;
 try {
@@ -106,7 +106,7 @@ const invData = JSON.parse(fs.readFileSync(invPath, 'utf8'));
 assert.ok(invData.total_sources >= 11, 'Must register official source manuals');
 
 // Verify every new fact (259..451) has valid official provenance and exact page locator match
-const newFacts = store.facts.slice(259);
+const newFacts = store.facts.slice(259, 452);
 assert.strictEqual(newFacts.length, 193, 'Must have exactly 193 new promoted facts');
 
 let locatorMismatches = 0;

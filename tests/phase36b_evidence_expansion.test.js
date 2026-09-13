@@ -34,7 +34,7 @@ function stable(value) {
 
 const storeHash = crypto.createHash('sha256').update(stable(store)).digest('hex');
 // Active canonical store hash: 438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951
-assert.strictEqual(storeHash, '438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951', 'Store hash must match current canonical hash');
+assert.strictEqual(storeHash, 'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b', 'Store hash must match current canonical hash');
 
 // Verify baseline 0..123 invariance
 assert.strictEqual(store.facts[0].fact_id, '1c0c06cc89c979a3', 'Baseline fact 0 preserved');

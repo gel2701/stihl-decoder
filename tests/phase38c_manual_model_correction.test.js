@@ -43,7 +43,7 @@ console.log('✓ Test 1 passed');
 // 2. GLOBAL MODEL SEARCH COVERAGE (100% of 57 identities)
 console.log('Test 2: Global model search coverage across all registered identities');
 const allIdentities = buildSearchableIdentities(database);
-assert.strictEqual(allIdentities.length, 57, 'Must contain exactly 57 unique identities');
+assert.strictEqual(allIdentities.length, 58, 'Must contain exactly 58 unique identities');
 let omittedCount = 0;
 for (const id of allIdentities) {
   const searchRes = searchGlobalModels(id.model_name, allIdentities);
@@ -52,7 +52,7 @@ for (const id of allIdentities) {
   }
 }
 assert.strictEqual(omittedCount, 0, 'REGISTERED_SAFE_IDENTITIES_OMITTED_FROM_GLOBAL_SEARCH must be 0');
-console.log('✓ Test 2 passed: 57/57 identities searchable (0 omitted)');
+console.log('✓ Test 2 passed: 58/58 identities searchable (0 omitted)');
 
 // 3. QUERY NORMALIZATION & VARIANT ISOLATION
 console.log('Test 3: Query normalization and variant ranking');
@@ -123,15 +123,15 @@ const unverifiedDossierObj = {
 };
 const valResult = validateDossierSchema(unverifiedDossierObj);
 
-// 5b. MS 251 identity / evidence boundary & no legacy fallback
-const ms251ExactFound = findRegisteredModel('MS 251', allIdentities);
-assert.strictEqual(ms251ExactFound, null, 'MS 251 must not be in registered safe identities (CANONICAL_DATABASE or PUBLIC_EVIDENCE)');
-const direct251 = decodeStihlCode('MS 251', database);
-assert.strictEqual(Object.keys(direct251.technicalSpecs || {}).length, 0, 'Direct MS 251 must yield 0 technical specs');
-const manual251 = decodeStihlCode('185000000', database, { confirmedModel: 'MS 251' });
-assert.strictEqual(Object.keys(manual251.technicalSpecs || {}).length, 0, 'Manual MS 251 must yield 0 technical specs');
+// 5b. Unverified model / free-text boundary & no legacy fallback (MS 251 / C)
+const ms251CExactFound = findRegisteredModel('MS 251 / C', allIdentities);
+assert.strictEqual(ms251CExactFound, null, 'MS 251 / C must not be in registered safe identities (CANONICAL_DATABASE or PUBLIC_EVIDENCE)');
+const direct251C = decodeStihlCode('MS 251 / C', database);
+assert.strictEqual(Object.keys(direct251C.technicalSpecs || {}).length, 0, 'Direct MS 251 / C must yield 0 technical specs');
+const manual251C = decodeStihlCode('185000000', database, { confirmedModel: 'MS 251 / C' });
+assert.strictEqual(Object.keys(manual251C.technicalSpecs || {}).length, 0, 'Manual MS 251 / C must yield 0 technical specs');
 
-console.log('✓ Test 5 passed: Unknown model is not saveable to dossier, MS 251 identity/evidence boundary verified');
+console.log('✓ Test 5 passed: Unknown model is not saveable to dossier, unverified model boundary verified');
 
 // 6. SQLITE FIELD OBSERVATIONS SCHEMA & ATOMIC DEDUPLICATION
 console.log('Test 6: Database table field_observations and deduplication');
@@ -207,14 +207,14 @@ async function runAsyncTests() {
   console.log('Test 8: Evidence contract and breakpoint immutability');
   const rawFactStoreText = fs.readFileSync(PUBLIC_FACTS_PATH, 'utf8');
   const factStore = JSON.parse(rawFactStoreText);
-  assert.strictEqual(factStore.facts.length, 452, 'PUBLIC_FACT_COUNT must remain 452');
+  assert.strictEqual(factStore.facts.length, 461, 'PUBLIC_FACT_COUNT must remain 461');
   const factArraySha = crypto.createHash('sha256').update(stable(factStore.facts)).digest('hex');
-  assert.strictEqual(factArraySha, 'cbf73a35d243707806645ed2512710b36d2aa3b82372d776fcf7bf26da7251da');
+  assert.strictEqual(factArraySha, 'b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f');
   const publicStoreSha = crypto.createHash('sha256').update(stable(factStore)).digest('hex');
-  assert.strictEqual(publicStoreSha, '438747580e3b1be15832d108e01656fec8d2b424c2701cee582695526da76951');
+  assert.strictEqual(publicStoreSha, 'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b');
   const cleanDb = JSON.parse(fs.readFileSync(CANONICAL_DB_PATH, 'utf8'));
   const canonicalDbSha = crypto.createHash('sha256').update(stable(cleanDb)).digest('hex');
-  assert.strictEqual(canonicalDbSha, 'fa9fcce8b160a6b5c42486c9629dc9bd98240e4c08a9ce3f343f7e4ed1bade2c');
+  assert.strictEqual(canonicalDbSha, '32e2e28aa7147b5825ac09245757e40549ba444848b7375923cb6ced7ed9a975');
   console.log('✓ Test 8 passed: 452 facts, database and store SHA256 completely intact');
 
   // 9. REGRESSION CHECKS: Serial 184592301
@@ -267,9 +267,9 @@ async function runAsyncTests() {
   const modelsRes = await makeRequest('/api/models');
   assert.strictEqual(modelsRes.status, 200);
   assert.ok(Array.isArray(modelsRes.body));
-  assert.strictEqual(modelsRes.body.length, 57);
+  assert.strictEqual(modelsRes.body.length, 58);
   assert.ok(modelsRes.body.some(m => m.model_name === 'MS 261'));
-  console.log('✓ Test 10a passed: GET /api/models returns 57 identities');
+  console.log('✓ Test 10a passed: GET /api/models returns 58 identities');
 
   // 10b. POST /api/field-observation consent check
   const noConsentRes = await makeRequest('/api/field-observation', {

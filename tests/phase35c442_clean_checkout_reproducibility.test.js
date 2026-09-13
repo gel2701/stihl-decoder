@@ -164,7 +164,7 @@ const statusLines = statusOutput ? statusOutput.split('\n').filter(Boolean) : []
 let prodFilesChanged = 0;
 let canonicalDbChanged = 'NO';
 let publicStoreChanged = 'NO';
-let publicFactCount = 452;
+let publicFactCount = 461;
 
 const pubStorePath = path.join(rootDir, 'data', 'public_evidence_facts.json');
 if (fs.existsSync(pubStorePath)) {
@@ -214,7 +214,7 @@ statusLines.forEach((line) => {
 assert.strictEqual(prodFilesChanged, 0, 'PRODUCTION_FILES_CHANGED must be 0');
 assert.strictEqual(canonicalDbChanged, 'NO', 'CANONICAL_DATABASE_CHANGED must be NO');
 assert.strictEqual(publicStoreChanged, 'NO', 'PUBLIC_EVIDENCE_STORE_CHANGED must be NO');
-assert.strictEqual(publicFactCount, 452, 'PUBLIC_FACT_COUNT must be 452 in Phase 37A candidate');
+assert.strictEqual(publicFactCount, 461, 'PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate');
 
 // 9. Simulated Clean Checkout Test
 if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
@@ -322,7 +322,14 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       'data/phase38c_field_observation_audit.json',
       'data/phase38c_breakpoint_immutability_audit.json',
       'data/phase38c_privacy_consent_audit.json',
-      'data/phase38c_final_report.json'
+      'data/phase38c_final_report.json',
+      'tests/phase38d_ms251_evidence_activation.test.js',
+      'data/phase38d_ms251_source_inventory.json',
+      'data/phase38d_ms251_source_page_map.json',
+      'data/phase38d_ms251_scope_audit.json',
+      'data/phase38d_ms251_conflict_audit.json',
+      'data/phase38d_ms251_promotion_audit.json',
+      'data/phase38d_final_report.json'
     ];
 
     for (const relFile of candidateFiles) {

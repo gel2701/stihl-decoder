@@ -1,0 +1,124 @@
+{
+  "source_document_id": "0455-737-0223",
+  "pdf_page": 6,
+  "printed_page": 5,
+  "section": "Caractéristiques techniques / 2.1 Moteur",
+  "header": "MS 231, MS 231 C, MS 251, MS 251 C",
+  "columns": [
+    "MS 231",
+    "MS 251"
+  ],
+  "extracted_ms251_rows": [
+    {
+      "row": "Cylindrée",
+      "raw_value": "45,6 cm3",
+      "canonical_field": "displacement_cc",
+      "normalized_value": 45.6,
+      "unit": "cc",
+      "display_eligible": true
+    },
+    {
+      "row": "Alésage du cylindre",
+      "raw_value": "44,0 mm",
+      "canonical_field": "bore_mm",
+      "normalized_value": 44,
+      "unit": "mm",
+      "display_eligible": true
+    },
+    {
+      "row": "Course du piston",
+      "raw_value": "30,0 mm",
+      "canonical_field": "stroke_mm",
+      "normalized_value": 30,
+      "unit": "mm",
+      "display_eligible": true
+    },
+    {
+      "row": "Puissance suivant ISO 7293",
+      "raw_value": "2,2 kW (3,0 ch) à 9500 tr/mn",
+      "canonical_field": "power_kw",
+      "normalized_value": 2.2,
+      "unit": "kW",
+      "display_eligible": true,
+      "secondary_power_raw": "3,0 ch",
+      "power_speed_rpm": 9500
+    },
+    {
+      "row": "Régime max. admissible (avec guide-chaîne et chaîne)",
+      "raw_value": "13000 tr/mn",
+      "canonical_field": "max_speed_rpm",
+      "normalized_value": 13000,
+      "unit": "rpm",
+      "display_eligible": true
+    },
+    {
+      "row": "Régime de ralenti",
+      "raw_value": "2800 tr/mn",
+      "canonical_field": "idle_speed_rpm",
+      "normalized_value": 2800,
+      "unit": "rpm",
+      "display_eligible": true
+    },
+    {
+      "row": "Régime d'embrayage",
+      "raw_value": "3500 tr/mn",
+      "canonical_field": "clutch_speed_rpm",
+      "normalized_value": 3500,
+      "unit": "rpm",
+      "display_eligible": true
+    },
+    {
+      "row": "Bougie (antiparasitée)",
+      "raw_value": "NGK CMR 6 H",
+      "canonical_field": "spark_plug",
+      "normalized_value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR 6 H"
+        }
+      ],
+      "unit": null,
+      "display_eligible": true
+    },
+    {
+      "row": "Écartement des électrodes",
+      "raw_value": "0,5 mm",
+      "canonical_field": "electrode_gap_mm",
+      "normalized_value": 0.5,
+      "unit": "mm",
+      "display_eligible": true
+    }
+  ],
+  "service_only_rows": [
+    {
+      "row": "Contrôle d'étanchéité du carter avec surpression",
+      "raw_value": "p+ = 0,5 bar",
+      "public": false
+    },
+    {
+      "row": "Contrôle d'étanchéité du carter avec dépression",
+      "raw_value": "p- = 0,5 bar",
+      "public": false
+    },
+    {
+      "row": "Contrôle d'étanchéité du carburateur avec surpression",
+      "raw_value": "p+ = 0,8 bar",
+      "public": false
+    },
+    {
+      "row": "Fonctionnement de l'aération du réservoir avec surpression",
+      "raw_value": "p+ = 0,5 bar",
+      "public": false
+    },
+    {
+      "row": "Entrefer entre module d'allumage et hélice",
+      "raw_value": "0,30 (+ 0,05/- 0,10) mm",
+      "public": false
+    },
+    {
+      "row": "Débit d'huile pompe Ematic",
+      "raw_value": "8,0 (+/- 3,0) cm3/mn à 10000 tr/mn",
+      "public": false
+    }
+  ]
+}

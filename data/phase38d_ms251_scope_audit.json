@@ -1,0 +1,33 @@
+{
+  "document_scope": "STIHL MS 231, 251",
+  "ms231_cross_contamination": 0,
+  "ms231_leaks_prevented": [
+    {
+      "field": "displacement_cc",
+      "ms231_value": 40.6,
+      "ms251_value": 45.6,
+      "isolation_status": "SAFE"
+    },
+    {
+      "field": "bore_mm",
+      "ms231_value": 41.5,
+      "ms251_value": 44,
+      "isolation_status": "SAFE"
+    },
+    {
+      "field": "power_kw",
+      "ms231_value": 2,
+      "ms251_value": 2.2,
+      "isolation_status": "SAFE"
+    }
+  ],
+  "audit_metrics": {
+    "ms231_to_ms251_leaks": 0,
+    "whole_document_inheritance": 0,
+    "unsupported_generic_c_variants_created": 0
+  },
+  "service_only_facts_count": 6,
+  "service_only_public_display_facts": 0,
+  "service_only_isolation_status": "PASS",
+  "generic_c_variant_registered": false
+}

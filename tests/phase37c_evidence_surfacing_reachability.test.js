@@ -31,9 +31,9 @@ console.log('▶ Running Phase 37C Evidence Surfacing & Reachability Tests...');
 // Test 1: Index integrity
 // ============================================================================
 console.log('  Testing Test 1: Index integrity...');
-assert.strictEqual(store.facts.length, 452, 'PUBLIC_FACT_COUNT must be exactly 452');
+assert.strictEqual(store.facts.length, 461, 'PUBLIC_FACT_COUNT must be exactly 461');
 const modelSlugs = Object.keys(store.model_index);
-assert.strictEqual(modelSlugs.length, 49, 'Evidence index must contain exactly 49 models');
+assert.strictEqual(modelSlugs.length, 50, 'Evidence index must contain exactly 50 models');
 
 let totalIndexedFactIds = 0;
 for (const slug of modelSlugs) {
@@ -42,12 +42,12 @@ for (const slug of modelSlugs) {
   assert.ok(entry.fact_ids.length > 0, `${slug} must have at least 1 fact_id`);
   totalIndexedFactIds += entry.fact_ids.length;
 }
-assert.strictEqual(totalIndexedFactIds, 452, 'Sum of all fact_ids in model_index must equal total facts (452)');
+assert.strictEqual(totalIndexedFactIds, 461, 'Sum of all fact_ids in model_index must equal total facts (461)');
 
-// Verify single-value reachability: 451 single-value eligible, 1 conflicted fail-closed
+// Verify single-value reachability: 451 single-value eligible + 9 new = 460 eligible, 1 conflicted fail-closed
 const eligibleFacts = store.facts.filter((f) => f.display_eligible && f.public_evidence_status !== 'OFFICIAL_CONFLICTED');
 const conflictedFacts = store.facts.filter((f) => f.public_evidence_status === 'OFFICIAL_CONFLICTED');
-assert.strictEqual(eligibleFacts.length, 451, 'Must have exactly 451 display-eligible single-value facts');
+assert.strictEqual(eligibleFacts.length, 460, 'Must have exactly 460 display-eligible single-value facts');
 assert.strictEqual(conflictedFacts.length, 1, 'Must have exactly 1 conflicted fact (046 stroke_mm)');
 assert.strictEqual(conflictedFacts[0].model_slug, '046');
 assert.strictEqual(conflictedFacts[0].field, 'stroke_mm');
@@ -61,9 +61,9 @@ assert.strictEqual(res046.publicEvidenceFields.stroke_mm?.evidence_status, 'OFFI
 console.log('  ✅ Test 1 Passed: Index integrity verified (49 models, 452 facts, 451 eligible, 1 conflicted blocked).');
 
 // ============================================================================
-// Test 2: Model queries (147 variations)
+// Test 2: Model queries (150 variations)
 // ============================================================================
-console.log('  Testing Test 2: Model queries (147 variations)...');
+console.log('  Testing Test 2: Model queries (150 variations)...');
 let queryCount = 0;
 for (const slug of modelSlugs) {
   const entry = store.model_index[slug];
@@ -85,7 +85,7 @@ for (const slug of modelSlugs) {
     assert.ok(Object.keys(res.technicalSpecs || {}).length > 0, `Query "${q}" must have available technical specs`);
   }
 }
-assert.strictEqual(queryCount, 147, 'Must test exactly 147 model query variations');
+assert.strictEqual(queryCount, 150, 'Must test exactly 150 model query variations');
 console.log(`  ✅ Test 2 Passed: All ${queryCount} model queries resolve with valid category, facts and specs.`);
 
 // ============================================================================
