@@ -241,7 +241,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       <div class="space-y-0.5">
         <strong class="font-bold text-emerald-300 block">Privacy-first opslag:</strong>
         <p class="text-emerald-300/80 leading-relaxed">
-          Uw persoonlijke machine- en onderhoudsgegevens worden alleen op dit apparaat opgeslagen. Voor actuele technische specificaties wordt uitsluitend het STIHL-model opgevraagd bij STIHLDecoder.
+          Uw persoonlijke machinegegevens worden alleen op dit apparaat opgeslagen. Voor actuele technische gegevens kan alleen het STIHL-model worden opgevraagd bij STIHLDecoder. Onderhoudsgegevens blijven eveneens lokaal op dit apparaat.
         </p>
       </div>
     </section>
@@ -263,17 +263,6 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       <div class="bg-neutral-900 border border-neutral-800 p-3.5 rounded-2xl text-center space-y-1">
         <span class="text-2xs text-neutral-400 block font-medium">Verlopen onderhoud</span>
         <span id="metric-overdue-count" class="text-2xl font-black text-red-400">0</span>
-      </div>
-    </section>
-
-    <!-- Privacy Notice -->
-    <section class="bg-emerald-950/30 border border-emerald-800/50 p-4 rounded-2xl text-xs text-emerald-200 flex items-start sm:items-center gap-3">
-      <span class="text-xl flex-shrink-0">🔒</span>
-      <div class="space-y-0.5">
-        <strong class="font-bold text-emerald-300 block">Privacy-first opslag:</strong>
-        <p class="text-emerald-300/80 leading-relaxed">
-          Uw persoonlijke machinegegevens worden alleen op dit apparaat opgeslagen. Voor actuele technische gegevens kan alleen het STIHL-model worden opgevraagd bij STIHLDecoder.
-        </p>
       </div>
     </section>
 

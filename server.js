@@ -857,10 +857,18 @@ function resolveStaticFilePath(pathname) {
     return path.join(__dirname, 'index.html');
   }
 
-  if (PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
-    const resolved = path.resolve(path.join(__dirname, `.${pathname}`));
-    const allowedDir = path.resolve(path.join(__dirname, prefix.slice(1)));
-    return resolved.startsWith(allowedDir) ? resolved : null;
+  const publicPrefix = PUBLIC_PREFIXES.find((prefix) => pathname.startsWith(prefix));
+  if (publicPrefix) {
+    const allowedDir = path.resolve(__dirname, publicPrefix.slice(1));
+    const resolved = path.resolve(allowedDir, pathname.slice(publicPrefix.length));
+    const relativePath = path.relative(allowedDir, resolved);
+
+    // Only serve files that remain inside the requested public directory.
+    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+      return null;
+    }
+
+    return resolved;
   }
 
   if (PUBLIC_EXACT_FILES.has(pathname)) {
