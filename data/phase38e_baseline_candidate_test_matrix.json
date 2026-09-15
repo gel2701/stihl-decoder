@@ -1,0 +1,12 @@
+{
+  "phase": "38E.1",
+  "status": "INCOMPLETE_NOT_ACCEPTED",
+  "reason": "The full central suite-by-suite baseline/candidate comparison has not been executed in this turn. Historical suite outcomes may not be inferred from prior reports.",
+  "completed_comparisons": [
+    { "suite": "tests/phase38e_baseline_architecture.test.js", "baseline": "NOT_APPLICABLE (new candidate-only suite)", "candidate": "PASS", "duration_ms": 3800, "artifacts": [], "difference": "EXPECTED_NEW_SUITE" },
+    { "suite": "tests/phase38a_machine_dossier_mvp.test.js", "baseline": "NOT_RERUN", "candidate": "PASS (28/28)", "difference": "BASELINE_COMPARISON_PENDING" },
+    { "suite": "tests/passport_css_ux_hotfix.test.js", "baseline": "NOT_RERUN", "candidate": "PASS", "difference": "BASELINE_COMPARISON_PENDING" }
+  ],
+  "required_remaining_method": "Run every entry from tests/run_all_tests.js individually in the unmodified 6911620 baseline and the candidate with identical NODE_ENV=test and a 90-second timeout; use 180 seconds for phase35c442_clean_checkout_reproducibility.",
+  "new_candidate_regressions_proven_absent": false
+}

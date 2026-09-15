@@ -16,6 +16,7 @@ import {
   sanitizeSparkPlugValue
 } from '../src/publicEvidence.js';
 import { main as runPhase35c422, evaluatePublicEvidenceCandidate } from './phase35c422_public_evidence_eligibility.js';
+import { resolveImmutableReferenceCommit } from './immutable_reference_commit.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -526,7 +527,7 @@ function buildIdempotencyAudit() {
 
 function buildPreflight() {
   const head = git(['rev-parse', 'HEAD']);
-  const originMain = git(['rev-parse', 'origin/main']);
+  const originMain = resolveImmutableReferenceCommit({ cwd: rootDir });
   const worktree = git(['status', '--short']);
   const failures = [];
   if (head !== SOURCE_COMMIT) failures.push('HEAD_BEFORE_NOT_EXPECTED_BASELINE');

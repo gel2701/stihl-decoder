@@ -1,0 +1,17 @@
+{
+  "phase": "38E",
+  "scope": "Read-only evidence architecture only",
+  "allowed_changes": ["baseline manifest", "pure validator", "failure-injection test", "test registration", "read-only next-batch planning artifacts"],
+  "explicitly_unchanged": ["server.js", "src/components/IntentPageTemplate.js", "CSS assets", "routes", "decoder logic", "localStorage schema", "data/public_evidence_facts.json", "data/stihl_database.json"],
+  "evidence_integrity": {
+    "public_fact_count": 461,
+    "distinct_model_count": 50,
+    "canonical_database_model_count": 56,
+    "historical_database_model_count_note": "73 was reported by an earlier evidence phase; Phase 38E observed 56 models in the current canonical JSON and makes no database change.",
+    "ms251_fact_count": 9,
+    "immutable_prefix_count": 461,
+    "public_evidence_git_blob": "df2a883f13e4059f71893842b6d81831f11df9be",
+    "database_git_blob": "856253c95b6fac06f0024ea642b5b0bb53511ca6"
+  },
+  "result": "No public fact activation, database promotion, UI change, route change, or deployment is in scope."
+}

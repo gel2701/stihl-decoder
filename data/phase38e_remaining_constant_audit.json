@@ -1,0 +1,13 @@
+{
+  "phase": "38E.1",
+  "scan_terms": ["461", "452", "b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f", "c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b", "32e2e28aa7147b5825ac09245757e40549ba444848b7375923cb6ced7ed9a975", "df2a883f13e4059f71893842b6d81831f11df9be", "856253c95b6fac06f0024ea642b5b0bb53511ca6"],
+  "result": "PASS",
+  "forbidden_current_duplicate_count": 0,
+  "classification": [
+    { "category": "CENTRAL_MANIFEST", "locations": ["data/public_evidence_baseline_manifest.json", "src/utils/evidenceBaselineValidator.js", "tests/phase38e_baseline_architecture.test.js"], "reason": "only current production baseline authority and its consumer" },
+    { "category": "ALLOWED_HISTORICAL_REPLAY", "locations": ["scripts/phase35c4322_series_drive_classification.js", "scripts/phase35c43223_breakpoint_highlight_safety_hotfix.js", "scripts/phase35c43221_validator_replay_hotfix.js", "scripts/phase35c43211_postcommit_replay_hotfix.js", "scripts/phase35c432111_self_replay_ancestry_hotfix.js", "tests/phase36a_safe_technical_preview.test.js", "tests/phase36b_evidence_expansion.test.js", "tests/phase38a_machine_dossier_mvp.test.js"], "reason": "phase-local snapshots/checkpoints remain immutable" },
+    { "category": "ALLOWED_DOCUMENTATION", "locations": ["data/phase38e_*.json"], "reason": "audit evidence and planning, not executable baseline ownership" },
+    { "category": "FALSE_POSITIVE", "locations": ["technical values, source document IDs, CSS utility classes and historical generated reports"], "reason": "numeric/hash-like text is not a current evidence baseline check" }
+  ],
+  "centralization_proof": "All new current-baseline validation enters through public_evidence_baseline_manifest.json and validatePublicEvidenceBaseline(); no old replay validator was modified."
+}

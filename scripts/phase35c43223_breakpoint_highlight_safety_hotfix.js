@@ -5,6 +5,7 @@ import { execFileSync, spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { decodeStihlCode } from '../src/decoder.js';
 import { buildPassportViewModel, renderStihlPassportHtml } from '../src/components/StihlPassportGenerator.js';
+import { resolveImmutableReferenceCommit } from './immutable_reference_commit.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
@@ -191,7 +192,7 @@ function buildAudits({ mode = 'development' } = {}) {
     ,REAL_PUBLIC_STORE_WRITE_ATTEMPTED: 'NO'
     ,REAL_PUBLIC_STORE_BYTE_STABLE: storeText === storeTextAfter ? 'PASS' : 'FAIL'
   };
-  const preflight = { SOURCE_COMMIT: sourceCommit, MODE: mode, HEAD: git(['rev-parse', 'HEAD']), ORIGIN_MAIN: git(['rev-parse', 'origin/main']) };
+  const preflight = { SOURCE_COMMIT: sourceCommit, MODE: mode, HEAD: git(['rev-parse', 'HEAD']), ORIGIN_MAIN: resolveImmutableReferenceCommit({ cwd: rootDir }) };
   const exactBaseline = preflight.HEAD === sourceCommit && preflight.ORIGIN_MAIN === sourceCommit;
   const replayBaseline = isAncestor(sourceCommit, preflight.HEAD) && isAncestor(sourceCommit, preflight.ORIGIN_MAIN);
   preflight.PRECHECK = mode === 'replay' ? (replayBaseline ? 'PASS' : 'FAIL') : (exactBaseline ? 'PASS' : 'FAIL');

@@ -1,0 +1,13 @@
+{
+  "phase": "38E",
+  "current_baseline_authority": "data/public_evidence_baseline_manifest.json",
+  "validator": "src/utils/evidenceBaselineValidator.js",
+  "dependencies": [
+    { "consumer": "tests/phase38e_baseline_architecture.test.js", "uses_manifest": true, "purpose": "current production-baseline integrity and failure injection" },
+    { "consumer": "tests/run_all_tests.js", "uses_manifest": false, "purpose": "registers the Phase 38E test only; never writes or regenerates a manifest" },
+    { "consumer": "data/public_evidence_facts.json", "uses_manifest": false, "purpose": "read-only validated store" },
+    { "consumer": "data/stihl_database.json", "uses_manifest": false, "purpose": "read-only canonical database hash input" },
+    { "consumer": "Phase 35C historical scripts/tests", "uses_manifest": false, "purpose": "retain phase-local replay assertions and failure semantics" }
+  ],
+  "centralization_policy": "Only newly introduced current-baseline validation consumes the manifest. Historical replay constants remain phase-local and immutable."
+}

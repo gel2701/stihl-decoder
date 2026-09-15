@@ -5,6 +5,7 @@ import crypto from 'crypto';
 import { execFileSync } from 'child_process';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { runHarnessMutationProbe, runHarnessReadOnlyProbe, runTestSuite, testFiles as harnessTestFiles } from '../tests/run_all_tests.js';
+import { resolveImmutableReferenceCommit } from './immutable_reference_commit.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -184,7 +185,7 @@ function resolveCurrentRefs(options = {}) {
   const currentHead = options.currentHead || tryResolveRef('HEAD');
   const currentOriginMain = Object.prototype.hasOwnProperty.call(options, 'currentOriginMain')
     ? options.currentOriginMain
-    : tryResolveRef('origin/main');
+    : resolveImmutableReferenceCommit({ cwd: rootDir });
 
   return { currentHead, currentOriginMain };
 }

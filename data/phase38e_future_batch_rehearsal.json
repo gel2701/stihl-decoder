@@ -1,0 +1,18 @@
+{
+  "phase": "38E.1",
+  "execution": "in-memory fixture inside tests/phase38e_baseline_architecture.test.js; no synthetic fact written to a repository data store",
+  "baseline_fact_count": 461,
+  "rehearsal_fact_count": 462,
+  "checks": {
+    "append_without_manifest_update": "FAIL_EXPECTED",
+    "explicit_append_only_manifest_update": "PASS",
+    "original_461_prefix_intact": "PASS",
+    "new_462_prefix_protected": "PASS",
+    "mutation_of_original_fact": "FAIL_EXPECTED",
+    "removal_of_synthetic_fact_without_manifest_update": "FAIL_EXPECTED",
+    "historical_replay_constants_changed": "NO"
+  },
+  "expected_real_batch_file_types": ["data/public_evidence_facts.json", "data/stihl_database.json when promoted", "data/public_evidence_baseline_manifest.json", "batch-specific tests and audit artifacts"],
+  "not_expected": ["Phase 35C/36/37/38 historical tests", "historical replay validators", "UI", "routes", "decoder logic", "CSS"],
+  "synthetic_data_present_in_real_evidence": false
+}

@@ -8,6 +8,7 @@ import { resolveMachineClassification } from '../src/driveClassification.js';
 import { buildPassportViewModel } from '../src/components/StihlPassportGenerator.js';
 import { flattenPublicFactValue } from '../src/publicEvidence.js';
 import { runTestSuite } from '../tests/run_all_tests.js';
+import { resolveImmutableReferenceCommit } from './immutable_reference_commit.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
@@ -81,8 +82,8 @@ function hasDetection(audit, key) { return Array.isArray(audit[key]) ? audit[key
 
 function buildAudits({ includeSuite = false, mode = 'development' } = {}) {
   const head = git(['rev-parse', 'HEAD']);
-  const originMain = git(['rev-parse', 'origin/main']);
-  const mergeBase = git(['merge-base', 'HEAD', 'origin/main']);
+  const originMain = resolveImmutableReferenceCommit({ cwd: rootDir });
+  const mergeBase = git(['merge-base', 'HEAD', originMain]);
   const preflight = {
     generated_at: new Date().toISOString(), BASELINE_COMMIT, CURRENT_HEAD: head, CURRENT_ORIGIN_MAIN: originMain, MERGE_BASE: mergeBase,
     MODE: mode,

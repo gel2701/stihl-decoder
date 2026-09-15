@@ -16,6 +16,7 @@ import {
   runImmutableReplay,
   main as runPhase35c43211
 } from './phase35c43211_postcommit_replay_hotfix.js';
+import { resolveImmutableReferenceCommit } from './immutable_reference_commit.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,7 +62,7 @@ export function buildDevelopmentBaselinePrecheck(options = {}) {
   const currentHead = options.currentHead || tryResolveRef('HEAD');
   const currentOriginMain = Object.prototype.hasOwnProperty.call(options, 'currentOriginMain')
     ? options.currentOriginMain
-    : tryResolveRef('origin/main');
+    : resolveImmutableReferenceCommit({ cwd: rootDir });
   const currentMergeBase = Object.prototype.hasOwnProperty.call(options, 'currentMergeBase')
     ? options.currentMergeBase
     : (currentHead && currentOriginMain ? git(['merge-base', currentHead, currentOriginMain]) : null);
@@ -87,7 +88,7 @@ export function buildReplayAncestryAudit(options = {}) {
   const currentHead = options.currentHead || tryResolveRef('HEAD');
   const currentOriginMain = Object.prototype.hasOwnProperty.call(options, 'currentOriginMain')
     ? options.currentOriginMain
-    : tryResolveRef('origin/main');
+    : resolveImmutableReferenceCommit({ cwd: rootDir });
   const replay = runImmutableReplay({ currentHead, currentOriginMain });
 
   return {

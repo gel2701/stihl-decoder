@@ -1,0 +1,14 @@
+{
+  "phase": "38E",
+  "status": "NO_NEW_PUBLIC_FACTS",
+  "queue": [
+    { "model_slug": "ms-240", "reason": "Document is locally available, but the technical table page must be confirmed before field extraction; no fact is eligible yet.", "blocker": "PAGE_AND_COLUMN_REVIEW_REQUIRED" },
+    { "model_slug": "ms-661", "reason": "MS 661 and MS 661 C-M share a source heading; scope must be recorded per asserted field.", "blocker": "VARIANT_SCOPE_REVIEW_REQUIRED" },
+    { "model_slug": "ms-171", "reason": "Multi-column table requires column-to-model mapping preservation.", "blocker": "COLUMN_BINDING_REVIEW_REQUIRED" },
+    { "model_slug": "ms-181", "reason": "Multi-column table includes an MS 181 C label; base-model mapping must be explicit.", "blocker": "VARIANT_SCOPE_REVIEW_REQUIRED" },
+    { "model_slug": "ms-211", "reason": "Multi-column table includes an MS 211 C label; base-model mapping must be explicit.", "blocker": "VARIANT_SCOPE_REVIEW_REQUIRED" },
+    { "model_slug": "ms-311", "reason": "No conflict observed in planning; independent source/corroboration review remains required.", "blocker": "SECOND_SOURCE_REVIEW_REQUIRED" },
+    { "model_slug": "ms-391", "reason": "No conflict observed in planning; independent source/corroboration review remains required.", "blocker": "SECOND_SOURCE_REVIEW_REQUIRED" },
+    { "model_slug": "ms-241-c", "reason": "No conflict observed in planning; independent source/corroboration review remains required.", "blocker": "SECOND_SOURCE_REVIEW_REQUIRED" }
+  ]
+}

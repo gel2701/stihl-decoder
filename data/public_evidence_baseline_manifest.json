@@ -1,0 +1,36 @@
+{
+  "schema_version": "public-evidence-baseline-v1",
+  "baseline_id": "phase38e-production-6911620",
+  "approved_phase": "38D.2 plus CSS/UX hotfix zonder evidencewijziging",
+  "created_from_commit": "691162042045b32da91f48de4fd0102bb4f269d2",
+  "baseline_commit_timestamp": "2026-09-14T19:53:50+02:00",
+  "fact_count": 461,
+  "distinct_model_count": 50,
+  "fact_array_canonical_sha256": "b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f",
+  "public_store_canonical_sha256": "c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b",
+  "canonical_database_sha256": "32e2e28aa7147b5825ac09245757e40549ba444848b7375923cb6ced7ed9a975",
+  "immutable_prefix_count": 461,
+  "immutable_prefix_canonical_sha256": "b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f",
+  "model_fact_counts": {
+    "009": 8, "017": 8, "018": 8, "026": 10, "036": 8, "044": 8, "046": 9, "088": 8,
+    "br-500": 9, "br-550": 9, "br-600": 8, "br-700": 9, "fs-120": 10, "fs-200": 10,
+    "fs-350": 7, "fs-38": 9, "fs-410-c-m": 10, "fs-460-c-em": 9, "fs-490-c-m": 10, "hs-45": 8,
+    "ms-170": 10, "ms-180": 12, "ms-200": 9, "ms-200-t": 9, "ms-201-t": 12, "ms-201-tc-m": 11,
+    "ms-210": 10, "ms-230": 10, "ms-250": 10, "ms-251": 9, "ms-260": 8, "ms-261": 13,
+    "ms-261-c-m": 13, "ms-270": 9, "ms-280": 9, "ms-290": 10, "ms-310": 12, "ms-341": 9,
+    "ms-360": 8, "ms-361": 9, "ms-362-c-m": 11, "ms-390": 11, "ms-440": 9, "ms-441": 9,
+    "ms-460": 8, "ms-461": 9, "sr-430": 9, "sr-450": 10, "ts-410": 4, "ts-420": 4
+  },
+  "historical_prefixes": [
+    {
+      "baseline_id": "phase35c432-public-activation",
+      "fact_count": 114,
+      "historical_public_store_canonical_sha256": "ebbde40f2f206be69b1de6d987135ade3e254baa7e70205018d14d086c7fa676",
+      "current_prefix_fact_array_canonical_sha256": "e30fc0ec94742cdd1a85d2fd1c3d492a2c82ee320543987643332dfdaebe548a",
+      "validation_scope": "historical replay only; never substitutes the current baseline"
+    }
+  ],
+  "hash_algorithm": "SHA-256 over UTF-8 canonical JSON",
+  "canonicalization_algorithm": "recursive lexicographic object-key ordering; arrays retain source order; JavaScript JSON number serialization; no whitespace; LF/CRLF independent",
+  "manifest_status": "APPROVED_READ_ONLY_BASELINE"
+}

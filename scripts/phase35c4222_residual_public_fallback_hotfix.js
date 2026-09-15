@@ -12,6 +12,7 @@ import { renderModelPartsPageHtml } from '../src/components/ModelPartsPageTempla
 import { renderStihlPassportHtml } from '../src/components/StihlPassportGenerator.js';
 import { buildStructuredData } from '../src/components/StructuredData.js';
 import { buildPublicEvidenceFields, sanitizeSparkPlugValue } from '../src/publicEvidence.js';
+import { resolveImmutableReferenceCommit } from './immutable_reference_commit.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -767,8 +768,8 @@ function buildIdempotencyAudit(beforeOverlay) {
 
 function buildPreflight() {
   const head = git(['rev-parse', 'HEAD']);
-  const originMain = git(['rev-parse', 'origin/main']);
-  const mergeBase = git(['merge-base', 'HEAD', 'origin/main']);
+  const originMain = resolveImmutableReferenceCommit({ cwd: rootDir });
+  const mergeBase = git(['merge-base', 'HEAD', originMain]);
   const worktree = git(['status', '--short']);
   const failures = [];
   if (head !== SOURCE_COMMIT) failures.push('HEAD_BEFORE_NOT_EXPECTED_BASELINE');

@@ -13,6 +13,7 @@ import {
 import {
   runHygienicPipeline as runPipeline441
 } from '../scripts/phase35c441_provenance_metrics_integrity_hotfix.js';
+import { resolveImmutableReferenceCommit } from '../scripts/immutable_reference_commit.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -221,17 +222,18 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
   console.log('⏩ Skipping nested clean checkout simulation (already in clean checkout child process)');
 } else {
   console.log('🧪 Simulating clean checkout test suite execution via git clone...');
+  const referenceCommit = resolveImmutableReferenceCommit({ cwd: rootDir });
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-decoder-clean-test-'));
 
   try {
     // Execute git clone --local to get full repository history & refs
     execFileSync('git', ['clone', '-q', '--local', rootDir, tempDir], { encoding: 'utf8' });
 
-    // Ensure origin/main ref exists in tempDir for historical commit checks without ambiguous branch
-    try {
-      const rootOriginMain = execFileSync('git', ['rev-parse', 'origin/main'], { cwd: rootDir, encoding: 'utf8' }).trim();
-      execFileSync('git', ['update-ref', 'refs/remotes/origin/main', rootOriginMain], { cwd: tempDir, encoding: 'utf8' });
-    } catch {}
+    const clonedReferenceCommit = resolveImmutableReferenceCommit({
+      cwd: tempDir,
+      env: { REFERENCE_COMMIT: referenceCommit }
+    });
+    assert.strictEqual(clonedReferenceCommit, referenceCommit);
 
     // Link node_modules so dependencies resolved via package.json are present
     const srcModules = path.join(rootDir, 'node_modules');
@@ -351,7 +353,12 @@ if (process.env.REPRODUCIBILITY_NESTED_RUN === '1') {
       cwd: tempDir,
       encoding: 'utf8',
       maxBuffer: 1024 * 1024 * 64,
-      env: { ...process.env, STIHLUSA_SOURCE_PATH: '', REPRODUCIBILITY_NESTED_RUN: '1' }
+      env: {
+        ...process.env,
+        REFERENCE_COMMIT: referenceCommit,
+        STIHLUSA_SOURCE_PATH: '',
+        REPRODUCIBILITY_NESTED_RUN: '1'
+      }
     });
 
     assert.strictEqual(suiteResult.status, 0, `Clean checkout full suite failed: ${suiteResult.stderr || suiteResult.stdout || 'unknown error'}`);
