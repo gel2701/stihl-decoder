@@ -18,6 +18,12 @@ const FIELD_MAP = [
   [/^motor\b/i, 'engine_type']
 ];
 
+const MODEL_PREFIXES = [
+  'MS', 'MSE', 'MSA', 'FS', 'FSA', 'FR', 'BR', 'BGA', 'BG', 'HS', 'HSA', 'HL', 'HLA',
+  'HT', 'HTA', 'KM', 'KMA', 'TS', 'TSA', 'BT', 'RE', 'RMA', 'RM', 'GTA', 'SEA', 'SHA',
+  'SE', 'SG', 'SR', 'RB', 'RLA', 'RGA', 'RMI', 'KGA', 'KOA'
+];
+
 function decodeEntities(value = '') {
   return String(value)
     .replace(/&nbsp;|&#160;/gi, ' ')
@@ -46,13 +52,30 @@ function numberPt(value) {
   return Number.isFinite(n) ? n : null;
 }
 
-function normalizeModelName(title = '') {
-  const cleaned = text(title)
-    .replace(/^STIHL\s+/i, '')
-    .replace(/^(motosserra|ro[cç]adeira|soprador|aparador|podador|lavadora|cortador|perfurador)\s+(a\s+combust[aã]o\s+|el[eé]tric[oa]\s+|a\s+bateria\s+)?/i, '')
-    .trim();
-  const match = cleaned.match(/\b((?:MS|MSE|MSA|FS|FSA|BR|BGA|BG|HS|HSA|HT|HTA|KM|KMA|TS|TSA|BT|RE|RMA|RM)\s*[-A-Z0-9.]+(?:\s+[A-Z][A-Z0-9-]*)?)\b/i);
-  return (match ? match[1] : cleaned).replace(/\s+/g, ' ').trim().toUpperCase();
+function detectModelName(value = '') {
+  const normalized = text(value)
+    .replace(/[_/]+/g, ' ')
+    .replace(/-/g, ' ')
+    .toUpperCase();
+  const prefixGroup = MODEL_PREFIXES.sort((a, b) => b.length - a.length).join('|');
+  const regex = new RegExp(`\\b(${prefixGroup})\\s*([0-9]{2,4}(?:\\.[0-9]+)?)(?:\\s*([A-Z]{1,3}(?:\\s*[A-Z]{1,3})?))?\\b`, 'i');
+  const match = normalized.match(regex);
+  if (!match) return null;
+  const suffixRaw = String(match[3] || '').replace(/\s+/g, '-').toUpperCase();
+  const ignoredSuffixes = new Set(['COM', 'KIT', 'SEM']);
+  const suffix = suffixRaw && !ignoredSuffixes.has(suffixRaw) ? ` ${suffixRaw}` : '';
+  return `${match[1].toUpperCase()} ${match[2]}${suffix}`;
+}
+
+function modelNameFromTitleAndUrl(title, url) {
+  const fromTitle = detectModelName(title);
+  if (fromTitle) return fromTitle;
+  try {
+    const pathHint = new URL(url).pathname.replace(/[-_]/g, ' ');
+    return detectModelName(pathHint);
+  } catch {
+    return null;
+  }
 }
 
 function extractFirst(html, regex) {
@@ -85,23 +108,32 @@ function absoluteUrl(href, baseUrl) {
   try { return new URL(href, baseUrl).href; } catch { return null; }
 }
 
+function isValidManualHref(href = '') {
+  return /\.pdf(?:$|\?)/i.test(href)
+    && !/(?:^|\/)(?:undefined|null)(?:$|[/?#])/i.test(href)
+    && !/(?:^|\/)NA\.pdf(?:$|\?)/i.test(href);
+}
+
 function extractManualUrl(html, baseUrl) {
-  const anchors = collectAnchors(html);
-  const preferred = anchors.find((a) => /manual|instru[cç][oõ]es|baixar|download/i.test(`${a.label} ${a.href}`) && /\.pdf(?:$|\?)/i.test(a.href));
-  const fallback = anchors.find((a) => /\.pdf(?:$|\?)/i.test(a.href));
-  return absoluteUrl((preferred || fallback)?.href, baseUrl);
+  const anchors = collectAnchors(html).filter((a) => isValidManualHref(a.href));
+  const preferred = anchors.find((a) => /manual|instru[cç][oõ]es|baixar|download/i.test(`${a.label} ${a.href}`));
+  const selected = preferred || anchors[0];
+  return selected ? absoluteUrl(selected.href, baseUrl) : null;
 }
 
 function extractImages(html, baseUrl) {
-  const urls = new Set();
+  const urls = new Map();
   const regex = /<(?:img|source)\b[^>]*(?:src|data-src|srcset)=["']([^"']+)["'][^>]*>/gi;
   let match;
   while ((match = regex.exec(String(html)))) {
-    const first = match[1].split(',')[0].trim().split(/\s+/)[0];
+    const first = decodeEntities(match[1]).split(',')[0].trim().split(/\s+/)[0];
     const url = absoluteUrl(first, baseUrl);
-    if (url && /stihl|vtexassets/i.test(url)) urls.add(url);
+    if (!url || !/stihl|vtexassets/i.test(url) || /\.svg(?:$|\?)/i.test(url)) continue;
+    const idMatch = url.match(/\/arquivos\/ids\/(\d+)/i);
+    const key = idMatch ? `vtex-id:${idMatch[1]}` : url.split('?')[0];
+    if (!urls.has(key)) urls.set(key, url);
   }
-  return [...urls];
+  return [...urls.values()];
 }
 
 function extractDescription(html) {
@@ -132,8 +164,7 @@ function parseSpecItemsFallback(html) {
     'Capacidade do tanque de óleo (ml)', 'Capacidade do tanque de combustível (ml)'
   ];
   const specs = {};
-  for (let i = 0; i < knownLabels.length; i += 1) {
-    const label = knownLabels[i];
+  for (const label of knownLabels) {
     const start = plain.indexOf(label);
     if (start < 0) continue;
     const valueStart = start + label.length;
@@ -150,6 +181,14 @@ function parseSpecItemsFallback(html) {
   return specs;
 }
 
+function normalizePitch(value) {
+  return String(value || '')
+    .replace(/[”“″]/g, '"')
+    .replace(/\s*\/\s*/g, '/')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export function normalizeSpecs(rawSpecs = {}) {
   const normalized = {};
   for (const [label, rawValue] of Object.entries(rawSpecs)) {
@@ -161,6 +200,8 @@ export function normalizeSpecs(rawSpecs = {}) {
     } else if (key === 'vibration_m_s2') {
       const nums = String(rawValue).match(/\d+(?:[.,]\d+)?/g) || [];
       value = nums.slice(0, 2).map((n) => Number(n.replace(',', '.')));
+    } else if (key === 'chain_pitch') {
+      value = normalizePitch(rawValue);
     }
     if (value !== null && value !== '' && !(Array.isArray(value) && value.length === 0)) normalized[key] = value;
   }
@@ -172,16 +213,18 @@ export function parseOfficialProductHtml(html, { url, market = DEFAULT_MARKET, r
   const title = extractTitle(html);
   if (!title) throw new Error(`No product title found for ${url}`);
   const rawSpecs = Object.keys(parseSpecItemsByClasses(html)).length ? parseSpecItemsByClasses(html) : parseSpecItemsFallback(html);
-  const modelName = normalizeModelName(title);
+  const modelName = modelNameFromTitleAndUrl(title, url);
   const payload = {
-    schema_version: 1,
+    schema_version: 2,
     source_class: 'OFFICIAL_MANUFACTURER_PRODUCT_PAGE',
     source_name: DEFAULT_SOURCE,
     market,
     promotion_status: 'CANDIDATE',
     source_url: url,
     retrieved_at: retrievedAt,
+    record_type: modelName ? 'MACHINE_MODEL' : 'ACCESSORY_OR_CONSUMABLE',
     model_name: modelName,
+    product_name: title,
     title,
     product_reference: extractReference(html),
     description: extractDescription(html),
@@ -194,10 +237,18 @@ export function parseOfficialProductHtml(html, { url, market = DEFAULT_MARKET, r
   return payload;
 }
 
+function comparable(field, value) {
+  if (field === 'chain_pitch') return normalizePitch(value).toUpperCase();
+  if (typeof value === 'number') return value;
+  return String(value ?? '').trim().toUpperCase();
+}
+
 export function compareCandidateToDatabase(candidate, database) {
   const models = Array.isArray(database?.models) ? database.models : [];
   const needle = String(candidate.model_name || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
-  const model = models.find((m) => String(m.model_name || '').replace(/[^A-Z0-9]/gi, '').toUpperCase() === needle) || null;
+  const model = needle
+    ? models.find((m) => String(m.model_name || '').replace(/[^A-Z0-9]/gi, '').toUpperCase() === needle) || null
+    : null;
   const comparison = {};
   const pairs = {
     displacement_cc: 'displacement_cc', power_kw: 'power_kw', weight_kg: 'weight_kg', chain_pitch: 'chain_pitch'
@@ -209,7 +260,11 @@ export function compareCandidateToDatabase(candidate, database) {
     comparison[candidateKey] = {
       incoming,
       current,
-      status: current === null ? 'DATABASE_MISSING' : String(current) === String(incoming) ? 'MATCH' : 'CONFLICT_REVIEW_REQUIRED'
+      status: current === null
+        ? 'DATABASE_MISSING'
+        : comparable(candidateKey, current) === comparable(candidateKey, incoming)
+          ? 'MATCH'
+          : 'CONFLICT_REVIEW_REQUIRED'
     };
   }
   return {
@@ -226,7 +281,19 @@ export function discoverProductUrls(html, catalogUrl) {
   const urls = new Set();
   for (const { href } of collectAnchors(html)) {
     const url = absoluteUrl(href, catalogUrl);
-    if (url && /loja\.stihl\.com\.br/i.test(url) && /\/p(?:\?|$)/i.test(url)) urls.add(url);
+    if (url && /loja\.stihl\.com\.br/i.test(url) && /\/p(?:\?|$)/i.test(url)) urls.add(url.split('?')[0]);
   }
   return [...urls].sort();
+}
+
+export function productUrlFromVtexRecord(product, origin) {
+  if (!product || typeof product !== 'object') return null;
+  if (typeof product.link === 'string' && product.link) {
+    const url = absoluteUrl(product.link, origin);
+    return url ? url.split('?')[0] : null;
+  }
+  if (typeof product.linkText === 'string' && product.linkText) {
+    return absoluteUrl(`/${product.linkText.replace(/^\/+|\/+$/g, '')}/p`, origin);
+  }
+  return null;
 }
