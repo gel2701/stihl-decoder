@@ -34,14 +34,46 @@ const conflicts = [];
 const additions = [];
 const manuals = [];
 const productReferences = [];
+const accessories = [];
+let machineRecords = 0;
 
 for (const row of harvest.results || []) {
   const candidate = row.candidate || {};
   const comparison = row.comparison || {};
-  if (candidate.manual_url) manuals.push({ model_name: candidate.model_name, url: candidate.manual_url });
-  if (candidate.product_reference) productReferences.push({ model_name: candidate.model_name, reference: candidate.product_reference });
-  if (comparison.model_match) matchedModels.push({ model_name: candidate.model_name, database_model_id: comparison.database_model_id });
-  else newModels.push({ model_name: candidate.model_name, product_reference: candidate.product_reference, source_url: candidate.source_url });
+  const isMachine = candidate.record_type === 'MACHINE_MODEL' && Boolean(candidate.model_name);
+
+  if (candidate.manual_url) {
+    manuals.push({
+      model_name: candidate.model_name,
+      product_name: candidate.product_name,
+      record_type: candidate.record_type,
+      url: candidate.manual_url
+    });
+  }
+  if (candidate.product_reference) {
+    productReferences.push({
+      model_name: candidate.model_name,
+      product_name: candidate.product_name,
+      record_type: candidate.record_type,
+      reference: candidate.product_reference
+    });
+  }
+
+  if (!isMachine) {
+    accessories.push({
+      product_name: candidate.product_name || candidate.title,
+      product_reference: candidate.product_reference,
+      source_url: candidate.source_url
+    });
+    continue;
+  }
+
+  machineRecords += 1;
+  if (comparison.model_match) {
+    matchedModels.push({ model_name: candidate.model_name, database_model_id: comparison.database_model_id });
+  } else {
+    newModels.push({ model_name: candidate.model_name, product_reference: candidate.product_reference, source_url: candidate.source_url });
+  }
 
   for (const [field, detail] of Object.entries(comparison.comparison || {})) {
     if (detail.status in counters) counters[detail.status] += 1;
@@ -61,18 +93,22 @@ for (const row of harvest.results || []) {
 
 const unique = (rows, key) => [...new Map(rows.map((row) => [row[key], row])).values()];
 const summary = {
-  schema_version: 1,
+  schema_version: 2,
   generated_at: new Date().toISOString(),
   source_harvest: path.relative(ROOT, inputPath),
   market: harvest.market,
   source_class: harvest.source_class,
+  catalog_discovery: harvest.catalog_discovery || null,
   automatic_promotion_allowed: false,
   requested_urls: harvest.requested_urls || 0,
   harvested: harvest.harvested || 0,
   failed: harvest.failed || 0,
+  machine_records: machineRecords,
+  accessory_or_consumable_records: accessories.length,
   matched_models: unique(matchedModels, 'model_name').length,
   new_models: unique(newModels, 'model_name').length,
   official_manuals_found: unique(manuals, 'url').length,
+  official_machine_manuals_found: unique(manuals.filter((m) => m.record_type === 'MACHINE_MODEL'), 'url').length,
   product_references_found: productReferences.length,
   field_comparison: counters,
   review_required: conflicts.length > 0 || additions.length > 0 || newModels.length > 0,
@@ -80,6 +116,7 @@ const summary = {
   database_addition_candidates: additions,
   conflicts,
   official_manuals: unique(manuals, 'url'),
+  accessory_or_consumable_products: accessories,
   errors: harvest.errors || []
 };
 
@@ -96,9 +133,12 @@ const lines = [
   `- Requested product URLs: **${summary.requested_urls}**`,
   `- Successfully harvested: **${summary.harvested}**`,
   `- Failed: **${summary.failed}**`,
+  `- Machine records: **${summary.machine_records}**`,
+  `- Accessory/consumable records: **${summary.accessory_or_consumable_records}**`,
   `- Existing models matched: **${summary.matched_models}**`,
   `- New model candidates: **${summary.new_models}**`,
   `- Official manuals found: **${summary.official_manuals_found}**`,
+  `- Official machine manuals found: **${summary.official_machine_manuals_found}**`,
   `- STIHL product references found: **${summary.product_references_found}**`,
   `- Field matches: **${counters.MATCH}**`,
   `- Missing database fields: **${counters.DATABASE_MISSING}**`,
@@ -107,15 +147,21 @@ const lines = [
   '',
   '## New model candidates',
   '',
-  ...summary.new_model_candidates.slice(0, 100).map((r) => `- ${r.model_name}${r.product_reference ? ` — ${r.product_reference}` : ''}`),
+  ...(summary.new_model_candidates.length
+    ? summary.new_model_candidates.map((r) => `- ${r.model_name}${r.product_reference ? ` — ${r.product_reference}` : ''}`)
+    : ['- None']),
   '',
   '## Database additions',
   '',
-  ...summary.database_addition_candidates.slice(0, 200).map((r) => `- ${r.model_name}: ${r.field} = ${JSON.stringify(r.incoming)}`),
+  ...(summary.database_addition_candidates.length
+    ? summary.database_addition_candidates.map((r) => `- ${r.model_name}: ${r.field} = ${JSON.stringify(r.incoming)}`)
+    : ['- None']),
   '',
   '## Conflicts requiring review',
   '',
-  ...summary.conflicts.slice(0, 200).map((r) => `- ${r.model_name}: ${r.field} — database ${JSON.stringify(r.current)} vs ${r.market} ${JSON.stringify(r.incoming)}`),
+  ...(summary.conflicts.length
+    ? summary.conflicts.map((r) => `- ${r.model_name}: ${r.field} — database ${JSON.stringify(r.current)} vs ${r.market} ${JSON.stringify(r.incoming)}`)
+    : ['- None']),
   '',
   '## Errors',
   '',
