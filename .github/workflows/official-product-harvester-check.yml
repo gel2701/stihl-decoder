@@ -1,0 +1,21 @@
+name: Official Product Harvester Check
+
+on:
+  push:
+    branches:
+      - feature/official-product-harvester-v1
+  workflow_dispatch:
+
+jobs:
+  harvester:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:official-harvester
+      - name: Live STIHL Brazil smoke harvest
+        run: npm run harvest:stihl:official -- --url https://loja.stihl.com.br/motosserra-ms-162/p --market BR --dry-run
