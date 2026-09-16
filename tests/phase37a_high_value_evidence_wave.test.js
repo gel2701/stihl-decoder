@@ -28,7 +28,7 @@ function stable(value) {
 // 1. PUBLIC EVIDENCE STORE INTEGRITY & BASELINE INVARIANCE
 // ============================================================================
 const store = database.public_evidence;
-assert.strictEqual(store.facts.length, 461, 'Public fact count must be exactly 461');
+assert.strictEqual(store.facts.length, 474, 'Public fact count must be exactly 474');
 
 let phase37aStoreRaw;
 try {

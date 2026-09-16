@@ -94,7 +94,7 @@ console.log('  ✓ MS 251 identity metadata verified; MS 251 C registered as can
 // Test 3: Public Evidence Promotion & Field Coverage
 // ============================================================================
 console.log('Test 3: Public evidence promotion & field coverage...');
-assert.strictEqual(store.facts.length, 461, 'Total facts must be exactly 461 (452 + 9)');
+assert.strictEqual(store.facts.length, 474, 'Total facts must be exactly 474 (452 + 9 + 13)');
 const ms251Facts = store.facts.filter(f => f.model_slug === 'ms-251');
 assert.strictEqual(ms251Facts.length, 9, 'Must have exactly 9 promoted facts for MS 251');
 

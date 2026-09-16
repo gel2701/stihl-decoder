@@ -31,7 +31,7 @@ console.log('▶ Running Phase 37C Evidence Surfacing & Reachability Tests...');
 // Test 1: Index integrity
 // ============================================================================
 console.log('  Testing Test 1: Index integrity...');
-assert.strictEqual(store.facts.length, 461, 'PUBLIC_FACT_COUNT must be exactly 461');
+assert.strictEqual(store.facts.length, 474, 'PUBLIC_FACT_COUNT must be exactly 474');
 const modelSlugs = Object.keys(store.model_index);
 assert.strictEqual(modelSlugs.length, 50, 'Evidence index must contain exactly 50 models');
 
@@ -42,7 +42,7 @@ for (const slug of modelSlugs) {
   assert.ok(entry.fact_ids.length > 0, `${slug} must have at least 1 fact_id`);
   totalIndexedFactIds += entry.fact_ids.length;
 }
-assert.strictEqual(totalIndexedFactIds, 461, 'Sum of all fact_ids in model_index must equal total facts (461)');
+assert.strictEqual(totalIndexedFactIds, 474, 'Sum of all fact_ids in model_index must equal total facts (474)');
 
 // Verify single-value reachability: 451 single-value eligible + 9 new = 460 eligible, 1 conflicted fail-closed
 const eligibleFacts = store.facts.filter((f) => f.display_eligible && f.public_evidence_status !== 'OFFICIAL_CONFLICTED');

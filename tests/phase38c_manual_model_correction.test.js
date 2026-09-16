@@ -209,11 +209,11 @@ async function runAsyncTests() {
   console.log('Test 8: Evidence contract and breakpoint immutability');
   const rawFactStoreText = fs.readFileSync(PUBLIC_FACTS_PATH, 'utf8');
   const factStore = JSON.parse(rawFactStoreText);
-  assert.strictEqual(factStore.facts.length, 461, 'PUBLIC_FACT_COUNT must remain 461');
+  assert.strictEqual(factStore.facts.length, 474, 'PUBLIC_FACT_COUNT must remain 474');
   const factArraySha = crypto.createHash('sha256').update(stable(factStore.facts)).digest('hex');
-  assert.strictEqual(factArraySha, 'b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f');
+  assert.strictEqual(factArraySha, '2ef63726618b269ed2c4aaf88a98dc43bd87a6b113a1c4b98fb1a7878a3c53bc');
   const publicStoreSha = crypto.createHash('sha256').update(stable(factStore)).digest('hex');
-  assert.strictEqual(publicStoreSha, 'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b');
+  assert.strictEqual(publicStoreSha, '05f68660b9d486ab5a8f559d8b511e2f387f28034da4afb7fac8415135ac3e48');
   const cleanDb = JSON.parse(fs.readFileSync(CANONICAL_DB_PATH, 'utf8'));
   const canonicalDbSha = crypto.createHash('sha256').update(stable(cleanDb)).digest('hex');
   assert.strictEqual(canonicalDbSha, 'da438fdd859ecf86abd955c7162bf751109505467990a00e99808e5098b31baf');

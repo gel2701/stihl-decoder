@@ -1,0 +1,98 @@
+{
+  "phase_id": "39C",
+  "phase_name": "Evidence Activation",
+  "model": "MS 251 C",
+  "model_slug": "ms-251-c",
+  "result": "PASS",
+  "timestamp_utc": "2026-09-16T12:00:00Z",
+  "commits": {
+    "baseline_reference": "6378ede18523bb9d9dfbd86cebf020f203fb9b42",
+    "phase_39a_commit": "554f6bce2e8bbf331022c3291d3db54b1c8d0d84",
+    "phase_39b_commit": "bb9dc806e24e938c766f284c4da225d6af68f501",
+    "phase_39c_commit": "PENDING_COMMIT"
+  },
+  "public_evidence_activation": {
+    "before_fact_count": 461,
+    "after_fact_count": 474,
+    "facts_appended": 13,
+    "blocked_fields_activated": 0,
+    "immutable_prefix_verified": true,
+    "canonical_database_changed": false
+  },
+  "new_fact_ids": [
+    "b8765d462561e48f",
+    "d3b855e0d86808d5",
+    "bf25029251b2437c",
+    "2ef5c585f61d5a19",
+    "040f06f55f856c1a",
+    "3b0d30e28f256154",
+    "2a67846ec9e8c88e",
+    "a748b0db538f43d4",
+    "32606201b483a08c",
+    "95c358b785d0b09f",
+    "e80212c0a58e31a2",
+    "b6a74bb44db9a515",
+    "0967540b49f88853"
+  ],
+  "fields_activated": [
+    "displacement_cc",
+    "bore_mm",
+    "stroke_mm",
+    "power_kw",
+    "idle_speed_rpm",
+    "fuel_tank_l",
+    "oil_tank_l",
+    "spark_plug",
+    "spark_plug_gap_mm",
+    "sound_pressure_db",
+    "sound_power_db",
+    "vibration_left",
+    "vibration_right"
+  ],
+  "blocked_fields_NOT_activated": [
+    "weight_kg",
+    "max_speed_rpm",
+    "clutch_speed_rpm"
+  ],
+  "canonical_hashes": {
+    "new_fact_array_sha256": "2ef63726618b269ed2c4aaf88a98dc43bd87a6b113a1c4b98fb1a7878a3c53bc",
+    "new_store_sha256": "05f68660b9d486ab5a8f559d8b511e2f387f28034da4afb7fac8415135ac3e48",
+    "immutable_prefix_hash": "b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f"
+  },
+  "baseline_manifest": {
+    "baseline_id": "phase39c-ms251c-evidence-activation",
+    "fact_count": 474,
+    "distinct_model_count": 51
+  },
+  "source_binding": {
+    "source_a": {
+      "doc_id": "0455-737-0223",
+      "sha256_prefix": "704a528a...",
+      "role": "Service manual — MS 251 C in header only, not in spec tables",
+      "facts_extracted": 0
+    },
+    "source_b": {
+      "doc_id": "0458-737-5521-C",
+      "sha256_prefix": "97BEB6D9...",
+      "role": "Instruction manual — MS 251 C tech data + conformity declarations",
+      "facts_extracted": 13
+    }
+  },
+  "test_results": {
+    "phase_39c_test": "14/14 PASS",
+    "phase_38f1_test": "8/8 PASS",
+    "phase_39b_test": "SKIPPED (pre-activation baseline, historical test)"
+  },
+  "test_updates_required": [
+    "phase36a_safe_technical_preview.test.js: 461→474 fact count",
+    "phase36b_evidence_expansion.test.js: store hash updated",
+    "phase37a_high_value_evidence_wave.test.js: 461→474 fact count",
+    "phase37c_evidence_surfacing_reachability.test.js: 461→474 fact count",
+    "phase38a_machine_dossier_mvp.test.js: 461→474 fact count",
+    "phase38c_manual_model_correction.test.js: 461→474 fact count",
+    "phase38d_ms251_evidence_activation.test.js: 461→474 fact count",
+    "phase38e_baseline_architecture.test.js: rehearsal manifest 462→475"
+  ],
+  "next_step": "Phase 39D: Merge to main + deploy to production",
+  "deployment_status": "STOPPED_BEFORE_DEPLOYMENT"
+}

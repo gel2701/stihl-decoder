@@ -291,7 +291,7 @@ console.log('    ✓ Zero 3rd party scripts and zero external QR requests verifi
 console.log('  Testing 14: test_fact_store_immutability...');
 const rawFactStoreText = fs.readFileSync(path.join(rootDir, 'data', 'public_evidence_facts.json'), 'utf8');
 const factStore = JSON.parse(rawFactStoreText);
-assert.strictEqual(factStore.facts.length, 461, 'PUBLIC_FACT_COUNT must be strictly 461');
+assert.strictEqual(factStore.facts.length, 474, 'PUBLIC_FACT_COUNT must be strictly 474');
 
 function stable(value) {
   if (Array.isArray(value)) return `[${value.map(stable).join(',')}]`;
@@ -301,7 +301,7 @@ function stable(value) {
 const canonicalSha256 = crypto.createHash('sha256').update(stable(factStore)).digest('hex');
 assert.strictEqual(
   canonicalSha256,
-  'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b',
+  '05f68660b9d486ab5a8f559d8b511e2f387f28034da4afb7fac8415135ac3e48',
   'Fact store canonical SHA256 must match Phase 37C candidate hash exactly'
 );
 console.log('    ✓ Fact store immutability verified (452 facts, hash intact)');
