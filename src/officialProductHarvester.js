@@ -208,7 +208,7 @@ function normalizePitch(value) {
     .replace(/,/g, '.')
     .replace(/\s+/g, ' ')
     .trim();
-  const match = source.match(/(\d+\s*\/\s*\d+|0?\.\d+)\s*["']?\s*(P)?\b?/i);
+  const match = source.match(/(\d+\s*\/\s*\d+|0?\.\d+)\s*["']?\s*(P)?/i);
   if (!match) return source.replace(/\s*\/\s*/g, '/');
   let token = match[1].replace(/\s*\/\s*/g, '/');
   if (/^0\.\d+$/.test(token)) token = token.slice(1);
