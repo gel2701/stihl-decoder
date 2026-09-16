@@ -83,6 +83,16 @@ const fseCandidate = parseOfficialProductHtml(fseFixture, { url: 'https://loja.s
 assert.equal(fseCandidate.record_type, 'MACHINE_MODEL');
 assert.equal(fseCandidate.model_name, 'FSE 60');
 
+const batteryMachineFixture = `<html><head><title>Motosserra a bateria MSA 70 C-B com bateria AK 30 e carregador AL 101 | STIHL</title></head><body><h1>Motosserra a bateria MSA 70 C-B com bateria AK 30 e carregador AL 101</h1></body></html>`;
+const batteryMachineCandidate = parseOfficialProductHtml(batteryMachineFixture, { url: 'https://loja.stihl.com.br/motosserra-msa-70-c-b-com-bateria-e-carregador/p' });
+assert.equal(batteryMachineCandidate.record_type, 'MACHINE_MODEL');
+assert.equal(batteryMachineCandidate.model_name, 'MSA 70 C-B');
+
+const standaloneBatteryFixture = `<html><head><title>Bateria AK 20 | STIHL</title></head><body><h1>Bateria AK 20</h1></body></html>`;
+const standaloneBatteryCandidate = parseOfficialProductHtml(standaloneBatteryFixture, { url: 'https://loja.stihl.com.br/bateria-ak-20/p' });
+assert.equal(standaloneBatteryCandidate.record_type, 'ACCESSORY_OR_CONSUMABLE');
+assert.equal(standaloneBatteryCandidate.model_name, null);
+
 const mowerFixture = `<html><head><title>Cortador de grama RM 2 R | STIHL</title></head><body><h1>Cortador de grama RM 2 R</h1></body></html>`;
 const mowerCandidate = parseOfficialProductHtml(mowerFixture, { url: 'https://loja.stihl.com.br/cortador-de-grama-rm-2-r/p' });
 assert.equal(mowerCandidate.record_type, 'MACHINE_MODEL');
