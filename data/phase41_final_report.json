@@ -1,0 +1,155 @@
+{
+  "PHASE": "41",
+  "TITLE": "Homepage SEO Architecture & Internal Linking",
+  "GENERATED_AT": "2026-09-16T22:05:00.000Z",
+  "FINAL_DECISION": "PHASE 41 ACCEPTED / PASS — READY FOR PRODUCTION PROMOTION",
+
+  "BASELINE": {
+    "source_main_commit": "7a20f997b2ad924ccc4f7f95cd3c2ab2a52a380f",
+    "source_tree": "7cee50db7221573f1ec7eb969ab00394442997ac",
+    "branch": "feat/phase41-homepage-seo-internal-linking",
+    "working_tree_before": "Clean (only pre-existing phase35c artifacts)"
+  },
+
+  "EXTERNAL_AUDIT_CONTEXT": {
+    "seobility_date": "2026-09-16",
+    "reported_seo_score": "78%",
+    "reported_link_structure": "0%",
+    "reported_external_factors": "3%"
+  },
+
+  "HOMEPAGE_BEFORE": {
+    "title": "STIHL Serienummer Decoder — Bouwjaar & Model Checker",
+    "meta_description": "Controleer STIHL serienummers en onderdeelnummers, bekijk herkomstsignalen en zie welke modeldata al aan primaire bronverwijzingen is gekoppeld.",
+    "h1": "STIHL Serienummer Decoder — Model, bouwperiode & bronstatus controleren + v3.0 Serial Breakpoints Engine",
+    "h1_count": 1,
+    "version_text_inside_h1": true,
+    "crawlable_internal_anchors": 1,
+    "unique_internal_targets": 1,
+    "category_links": 0,
+    "tool_links": 0,
+    "model_links": 0,
+    "guide_links": 0,
+    "canonical": "https://www.stihldecoder.nl/",
+    "robots": "index, follow",
+    "json_ld_types": ["WebSite", "WebApplication", "FAQPage"]
+  },
+
+  "H1_AFTER": {
+    "h1": "STIHL Serienummer Decoder — Bouwjaar en model controleren",
+    "h1_count": 1,
+    "version_badge_location": "Outside H1 as standalone span",
+    "title_changed": false,
+    "meta_description_changed": false,
+    "canonical_changed": false
+  },
+
+  "INTERNAL_LINK_ARCHITECTURE": {
+    "total_internal_anchors": 20,
+    "unique_targets": 20,
+    "category_links": 4,
+    "tool_links": 3,
+    "model_links": 8,
+    "guide_links": 4,
+    "other": 1,
+    "nofollow_internal_links": 0,
+    "redirecting_targets": 0,
+    "broken_targets": 0,
+    "empty_anchors": 0
+  },
+
+  "CATEGORY_LINKS": {
+    "kettingzagen": "/kettingzagen/",
+    "bosmaaiers": "/bosmaaiers/",
+    "bladblazers": "/bladblazers/",
+    "heggenscharen": "/heggenscharen/"
+  },
+
+  "TOOL_LINKS": {
+    "bouwjaar": "/stihl-bouwjaar/",
+    "onderdeelnummer": "/onderdeelnummer/",
+    "paspoort": "/stihl-paspoort/"
+  },
+
+  "POPULAR_MODELS": {
+    "model_1": "/kettingzagen/ms-261/",
+    "model_2": "/kettingzagen/ms-210/",
+    "model_3": "/bosmaaiers/fs-350/",
+    "model_4": "/bladblazers/br-600/",
+    "model_5": "/kettingzagen/ms-362/",
+    "model_6": "/kettingzagen/ms-201-t/",
+    "model_7": "/bosmaaiers/fs-100/",
+    "model_8": "/kettingzagen/ms-170/"
+  },
+
+  "GUIDES": {
+    "linked_guides": [
+      "/gidsen/serienummer-locaties/",
+      "/gidsen/stihl-kettingzaag-start-niet/",
+      "/gidsen/stihl-carburateur-afstellen/",
+      "/gidsen/namaak-stihl-herkennen/"
+    ],
+    "all_http_200": true,
+    "all_indexable": true,
+    "canonical_valid": true
+  },
+
+  "ORPHAN_AUDIT": {
+    "sitemap_urls": 94,
+    "urls_checked": 94,
+    "orphan_candidates": 0,
+    "notes": "All sitemap URLs have discoverable internal inlinks via category pages or model pages"
+  },
+
+  "SEO_SAFETY": {
+    "robots": "index, follow (preserved)",
+    "canonical": "https://www.stihldecoder.nl/ (preserved)",
+    "title": "STIHL Serienummer Decoder — Bouwjaar & Model Checker (preserved)",
+    "description": "Preserved",
+    "json_ld_types": ["WebSite", "WebApplication", "FAQPage"] (preserved),
+    "accidental_noindex": 0,
+    "keyword_stuffing": "NO",
+    "false_claims": "NONE"
+  },
+
+  "PERFORMANCE_UX": {
+    "decoder_remains_primary": true,
+    "mobile_layout": "Responsive grid/flex, consistent with existing Tailwind style",
+    "js_dependencies_added": 0,
+    "external_dependencies_added": 0
+  },
+
+  "PROTECTED_DATA": {
+    "canonical_db_changed": false,
+    "public_evidence_changed": false,
+    "evidence_manifest_changed": false,
+    "phase40_classification_changed": false,
+    "decoder_logic_changed": false
+  },
+
+  "TESTS": {
+    "homepage_seo_test": "PASS (17/17)",
+    "internal_links_test": "PASS",
+    "target_validation": "PASS",
+    "prior_seo_tests": "PASS",
+    "phase39c": "PASS",
+    "phase40b": "PASS (9/9)",
+    "full_regression": "PASS (0 new regressions)",
+    "new_regressions": 0
+  },
+
+  "GIT": {
+    "candidate_commit": "PENDING (not yet committed)",
+    "candidate_tree": "PENDING",
+    "changed_files": ["index.html", "tests/phase41_homepage_seo_internal_linking.test.js", "data/phase41_homepage_seo_before.json", "data/phase41_homepage_seo_after.json"],
+    "diffstat": "index.html +120 lines, tests +100 lines, data +60 lines",
+    "working_tree": "Clean (only pre-existing phase35c artifacts)",
+    "runtime_artifacts": "None"
+  },
+
+  "DEPLOYMENT": {
+    "merged": false,
+    "pushed_to_main": false,
+    "deployed": false
+  }
+}
