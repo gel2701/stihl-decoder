@@ -1,0 +1,49 @@
+{
+  "phase": "38F1",
+  "audit_type": "MS 251 C Identity Registration",
+  "baseline_commit": "c9699e476a936b129e59bf78aeee39f25776c39c",
+  "decision": "REGISTER_CANONICAL_IDENTITY",
+  "identity": {
+    "id": "stihl_ms_251_c",
+    "slug": "ms-251-c",
+    "model_name": "MS 251 C",
+    "category_slug": "kettingzagen",
+    "fuel_type": "PETROL_2STROKE"
+  },
+  "evidence_basis": {
+    "source_document_id": "0455-737-0223",
+    "source_document_title": "STIHL MS 231, 251 Manuel de service",
+    "source_class": "OFFICIAL_SERVICE_MANUAL",
+    "source_authority": "OFFICIAL_SERVICE_DOCUMENT",
+    "models_covered_in_header": ["MS 231", "MS 231 C", "MS 251", "MS 251 C"],
+    "models_explicitly_spec_table_proven": ["MS 231", "MS 251"],
+    "proven_feature_variants": ["MS 251 C-BE", "MS 251 C-BEQ"],
+    "generic_ms251c_in_header": true,
+    "generic_ms251c_in_spec_table": false,
+    "rationale": "MS 251 C is explicitly listed in the service manual header as a covered model. The C variant is a Comfort variant with ErgoStart and quick chain tensioner. Engine specifications are shared with MS 251 (same engine platform). The variant-specific differences are in the starting/handle system, not engine specs."
+  },
+  "spec_parity_analysis": {
+    "displacement_cc": { "ms251": 45.6, "ms251c": 45.6, "safe_to_share": true, "source": "Same engine platform, identical displacement" },
+    "bore_mm": { "ms251": 44, "ms251c": 44, "safe_to_share": true, "source": "Same engine platform, identical bore" },
+    "stroke_mm": { "ms251": 30, "ms251c": 30, "safe_to_share": true, "source": "Same engine platform, identical stroke" },
+    "power_kw": { "ms251": 2.2, "ms251c": 2.2, "safe_to_share": true, "source": "Same engine platform, identical power output" },
+    "idle_speed_rpm": { "ms251": 2800, "ms251c": 2800, "safe_to_share": true, "source": "Same engine platform, identical idle speed" },
+    "clutch_speed_rpm": { "ms251": 3500, "ms251c": 3500, "safe_to_share": true, "source": "Same engine platform, identical clutch speed" },
+    "max_speed_rpm": { "ms251": 13000, "ms251c": 13000, "safe_to_share": true, "source": "Same engine platform, identical max speed" },
+    "spark_plug": { "ms251": "NGK CMR 6 H", "ms251c": "NGK CMR 6 H", "safe_to_share": true, "source": "Same engine platform, identical spark plug" },
+    "electrode_gap_mm": { "ms251": 0.5, "ms251c": 0.5, "safe_to_share": true, "source": "Same engine platform, identical electrode gap" }
+  },
+  "normalization_support": [
+    "MS 251 C",
+    "MS251 C",
+    "MS251C",
+    "MS 251/C",
+    "MS251/C"
+  ],
+  "isolation_preserved": {
+    "ms251_vs_ms251c": true,
+    "ms251c_vs_ms251cbe": true,
+    "ms251c_vs_ms251cbeq": true,
+    "unknown_free_text_unverified": true
+  }
+}

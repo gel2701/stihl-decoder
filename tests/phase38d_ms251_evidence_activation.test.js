@@ -83,10 +83,12 @@ assert.strictEqual(ms251Model.displacement_cc, undefined, 'Duplicate displacemen
 assert.strictEqual(ms251Model.power_kw, undefined, 'Duplicate power_kw must NOT exist on model object');
 assert.strictEqual(ms251Model.weight_kg, undefined, 'Duplicate weight_kg must NOT exist on model object');
 
-// Check that no generic MS 251 C or variant was created
+// Phase 38F.1: MS 251 C is now a registered canonical identity (doc 0455-737-0223)
 const ms251C = database.models.find(m => m.slug === 'ms-251-c' || m.model_name === 'MS 251 C');
-assert.strictEqual(ms251C, undefined, 'Generic MS 251 C must NOT be created');
-console.log('  ✓ MS 251 identity metadata verified with zero duplicate technical sources');
+assert.ok(ms251C, 'MS 251 C must be a registered canonical identity (Phase 38F.1)');
+assert.strictEqual(ms251C.slug, 'ms-251-c');
+assert.strictEqual(ms251C.model_name, 'MS 251 C');
+console.log('  ✓ MS 251 identity metadata verified; MS 251 C registered as canonical (Phase 38F.1)');
 
 // ============================================================================
 // Test 3: Public Evidence Promotion & Field Coverage
@@ -211,7 +213,7 @@ console.log('  ✓ Direct MS 251 query returns all 9 evidence specifications');
 // ============================================================================
 console.log('Test 7: Global model search integration & variant safety...');
 const identities = buildSearchableIdentities(database);
-assert.strictEqual(identities.length, 58, 'Should have 58 searchable identities (57 baseline + 1 MS 251)');
+assert.strictEqual(identities.length, 59, 'Should have 59 searchable identities (57 baseline + 1 MS 251 + 1 MS 251 C)');
 
 const searchExact = searchGlobalModels('MS 251', database);
 assert.ok(searchExact.length > 0, 'Search for MS 251 must return results');
@@ -222,12 +224,14 @@ const findExact = findRegisteredModel('MS 251', database);
 assert.ok(findExact, 'findRegisteredModel must find MS 251');
 assert.strictEqual(findExact.model_name, 'MS 251');
 
-// Test MS 251 / C variant safety: typing MS 251 / C must NOT exact-resolve to canonical variant
+// Phase 38F.1: MS 251 / C now resolves as registered canonical identity
 const findC = findRegisteredModel('MS 251 / C', database);
-assert.strictEqual(findC, null, 'findRegisteredModel for MS 251 / C must be null (no auto-alias)');
+assert.ok(findC, 'findRegisteredModel for MS 251 / C must resolve to ms-251-c (Phase 38F.1)');
+assert.strictEqual(findC.slug, 'ms-251-c');
 const findDashC = findRegisteredModel('MS 251 C', database);
-assert.strictEqual(findDashC, null, 'findRegisteredModel for MS 251 C must be null');
-console.log('  ✓ Global search finds MS 251; generic MS 251 / C does not auto-resolve');
+assert.ok(findDashC, 'findRegisteredModel for MS 251 C must resolve to ms-251-c (Phase 38F.1)');
+assert.strictEqual(findDashC.slug, 'ms-251-c');
+console.log('  ✓ Global search finds MS 251; MS 251 C resolves as registered canonical identity');
 
 // ============================================================================
 // Test 8: Model-Assist Selection & 100% Spec Parity

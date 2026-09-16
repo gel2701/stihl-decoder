@@ -43,7 +43,7 @@ console.log('✓ Test 1 passed');
 // 2. GLOBAL MODEL SEARCH COVERAGE (100% of 57 identities)
 console.log('Test 2: Global model search coverage across all registered identities');
 const allIdentities = buildSearchableIdentities(database);
-assert.strictEqual(allIdentities.length, 58, 'Must contain exactly 58 unique identities');
+assert.strictEqual(allIdentities.length, 59, 'Must contain exactly 59 unique identities (58 baseline + 1 MS 251 C)');
 let omittedCount = 0;
 for (const id of allIdentities) {
   const searchRes = searchGlobalModels(id.model_name, allIdentities);
@@ -52,7 +52,7 @@ for (const id of allIdentities) {
   }
 }
 assert.strictEqual(omittedCount, 0, 'REGISTERED_SAFE_IDENTITIES_OMITTED_FROM_GLOBAL_SEARCH must be 0');
-console.log('✓ Test 2 passed: 58/58 identities searchable (0 omitted)');
+console.log('✓ Test 2 passed: 59/59 identities searchable (0 omitted)');
 
 // 3. QUERY NORMALIZATION & VARIANT ISOLATION
 console.log('Test 3: Query normalization and variant ranking');
@@ -91,12 +91,13 @@ assert.strictEqual(resConfirmedOutside.technicalSpecs.displacement_cc, directMs1
 assert.strictEqual(resConfirmedOutside.technicalSpecs.power_kw, directMs170.technicalSpecs.power_kw);
 console.log('✓ Test 4 passed: User confirmed model outside series preserves spec parity without spoofing exactModel');
 
-// 5. UNKNOWN FREE-TEXT MODEL (e.g. MS 251 / C)
-console.log('Test 5: Unknown free-text model safety');
+// 5. REGISTERED MODEL (e.g. MS 251 / C - now registered as MS 251 C via Phase 38F.1)
+console.log('Test 5: Registered model lookup (MS 251 / C)');
 const ms251Found = findRegisteredModel('MS 251 / C', allIdentities);
-assert.strictEqual(ms251Found, null, 'MS 251 / C must NOT be in registered safe identities');
+assert.ok(ms251Found !== null, 'MS 251 / C must now be in registered safe identities (Phase 38F.1)');
+assert.strictEqual(ms251Found.slug, 'ms-251-c', 'MS 251 / C must resolve to ms-251-c');
 
-// Dossier rejection of USER_REPORTED_UNVERIFIED_MODEL
+// Dossier rejection of USER_REPORTED_UNVERIFIED_MODEL still holds
 assert.ok(!DOSSIER_SAVEABLE_IDENTITY_STATUSES.includes('USER_REPORTED_UNVERIFIED_MODEL'), 'USER_REPORTED_UNVERIFIED_MODEL must not be saveable');
 
 assert.throws(() => {
@@ -123,15 +124,16 @@ const unverifiedDossierObj = {
 };
 const valResult = validateDossierSchema(unverifiedDossierObj);
 
-// 5b. Unverified model / free-text boundary & no legacy fallback (MS 251 / C)
+// 5b. Registered model lookup & spec resolution (MS 251 / C)
 const ms251CExactFound = findRegisteredModel('MS 251 / C', allIdentities);
-assert.strictEqual(ms251CExactFound, null, 'MS 251 / C must not be in registered safe identities (CANONICAL_DATABASE or PUBLIC_EVIDENCE)');
+assert.ok(ms251CExactFound !== null, 'MS 251 / C must be in registered safe identities (Phase 38F.1)');
+assert.strictEqual(ms251CExactFound.slug, 'ms-251-c');
 const direct251C = decodeStihlCode('MS 251 / C', database);
-assert.strictEqual(Object.keys(direct251C.technicalSpecs || {}).length, 0, 'Direct MS 251 / C must yield 0 technical specs');
+assert.strictEqual(direct251C.success, true, 'Direct MS 251 / C must resolve successfully');
 const manual251C = decodeStihlCode('185000000', database, { confirmedModel: 'MS 251 / C' });
-assert.strictEqual(Object.keys(manual251C.technicalSpecs || {}).length, 0, 'Manual MS 251 / C must yield 0 technical specs');
+assert.strictEqual(manual251C.success, true, 'Manual MS 251 / C must resolve successfully');
 
-console.log('✓ Test 5 passed: Unknown model is not saveable to dossier, unverified model boundary verified');
+console.log('✓ Test 5 passed: MS 251 / C now resolves as registered model (Phase 38F.1), USER_REPORTED_UNVERIFIED_MODEL boundary preserved');
 
 // 6. SQLITE FIELD OBSERVATIONS SCHEMA & ATOMIC DEDUPLICATION
 console.log('Test 6: Database table field_observations and deduplication');
@@ -214,7 +216,7 @@ async function runAsyncTests() {
   assert.strictEqual(publicStoreSha, 'c8f5af0c22ba5a922f48c45056fe2a0fab3f0c34de383536646df041dee6738b');
   const cleanDb = JSON.parse(fs.readFileSync(CANONICAL_DB_PATH, 'utf8'));
   const canonicalDbSha = crypto.createHash('sha256').update(stable(cleanDb)).digest('hex');
-  assert.strictEqual(canonicalDbSha, '32e2e28aa7147b5825ac09245757e40549ba444848b7375923cb6ced7ed9a975');
+  assert.strictEqual(canonicalDbSha, 'da438fdd859ecf86abd955c7162bf751109505467990a00e99808e5098b31baf');
   console.log('✓ Test 8 passed: 452 facts, database and store SHA256 completely intact');
 
   // 9. REGRESSION CHECKS: Serial 184592301
@@ -267,9 +269,9 @@ async function runAsyncTests() {
   const modelsRes = await makeRequest('/api/models');
   assert.strictEqual(modelsRes.status, 200);
   assert.ok(Array.isArray(modelsRes.body));
-  assert.strictEqual(modelsRes.body.length, 58);
+  assert.strictEqual(modelsRes.body.length, 59);
   assert.ok(modelsRes.body.some(m => m.model_name === 'MS 261'));
-  console.log('✓ Test 10a passed: GET /api/models returns 58 identities');
+  console.log('✓ Test 10a passed: GET /api/models returns 59 identities');
 
   // 10b. POST /api/field-observation consent check
   const noConsentRes = await makeRequest('/api/field-observation', {
