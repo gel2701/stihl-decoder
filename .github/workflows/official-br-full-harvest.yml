@@ -1,9 +1,6 @@
 name: Official BR Full Harvest
 
 on:
-  push:
-    branches:
-      - feature/official-br-full-harvest-2026-09-17
   workflow_dispatch:
 
 jobs:
