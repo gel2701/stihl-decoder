@@ -25,7 +25,7 @@ const MODEL_PREFIXES = [
   'RB', 'RLA', 'RGA', 'RMI', 'KGA', 'KOA', 'MH', 'WP', 'EHC', 'ASA', 'GR', 'IR'
 ];
 
-const ACCESSORY_PRODUCT_REGEX = /\b(?:corrente|sabre|l[aâ]mina|cabe[cç]ote|fio de corte|bateria|carregador|[oó]leo|lubrificante|detergente|mangueira|escova|filtro|vela de igni[cç][aã]o|protetor|cinto|arn[eê]s|kit de afia[cç][aã]o|lima|disco de corte|bico|adaptador|extens[aã]o|acess[oó]rio)\b/i;
+const ACCESSORY_PRODUCT_REGEX = /\b(?:corrente|sabre|l[aâ]mina|cabe[cç]ote|fio de corte|[oó]leo|lubrificante|detergente|mangueira|escova|filtro|vela de igni[cç][aã]o|protetor|cinto|arn[eê]s|kit de afia[cç][aã]o|lima|disco de corte|bico|adaptador|extens[aã]o|acess[oó]rio)\b/i;
 
 function decodeEntities(value = '') {
   return String(value)
