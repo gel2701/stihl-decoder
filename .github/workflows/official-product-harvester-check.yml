@@ -1,0 +1,30 @@
+name: Official Product Harvester Check
+
+on:
+  push:
+    paths:
+      - 'src/officialProductHarvester.js'
+      - 'scripts/harvest_stihl_official_products.js'
+      - 'tests/official_product_harvester.test.js'
+      - 'package.json'
+      - '.github/workflows/official-product-harvester-check.yml'
+  pull_request:
+    paths:
+      - 'src/officialProductHarvester.js'
+      - 'scripts/harvest_stihl_official_products.js'
+      - 'tests/official_product_harvester.test.js'
+      - 'package.json'
+      - '.github/workflows/official-product-harvester-check.yml'
+  workflow_dispatch:
+
+jobs:
+  harvester:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:official-harvester
