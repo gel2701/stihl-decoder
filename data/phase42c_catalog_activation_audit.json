@@ -1,0 +1,131 @@
+{
+  "phase": "42C",
+  "title": "Catalog Identity Activation Audit",
+  "generated_at": "2026-09-17T10:00:00.000Z",
+  "total_new_models": 5,
+  "per_model_audit": [
+    {
+      "model_name": "BG 56",
+      "slug": "bg-56",
+      "id": "stihl_bg_56",
+      "canonical_record_created": true,
+      "aliases": ["BG 56"],
+      "core5": {
+        "product_category": "Bladblazer",
+        "product_type": "Handbladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "BLOWING",
+        "completeness": 5
+      },
+      "route": "/bladblazers/bg-56/",
+      "category_route": "/bladblazers/",
+      "sitemap_status": "INCLUDED_VIA_CATEGORY",
+      "source_candidate_reference": "0458-296-8621-C",
+      "search_verified": true,
+      "ui_verified": true,
+      "data_confidence": "IDENTITY_ONLY",
+      "model_status": "IDENTITY_ACTIVE",
+      "technical_specs_added": false
+    },
+    {
+      "model_name": "BG 66",
+      "slug": "bg-66",
+      "id": "stihl_bg_66",
+      "canonical_record_created": true,
+      "aliases": ["BG 66"],
+      "core5": {
+        "product_category": "Bladblazer",
+        "product_type": "Handbladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "BLOWING",
+        "completeness": 5
+      },
+      "route": "/bladblazers/bg-66/",
+      "category_route": "/bladblazers/",
+      "sitemap_status": "INCLUDED_VIA_CATEGORY",
+      "source_candidate_reference": "0458-296-8621-C",
+      "search_verified": true,
+      "ui_verified": true,
+      "data_confidence": "IDENTITY_ONLY",
+      "model_status": "IDENTITY_ACTIVE",
+      "technical_specs_added": false
+    },
+    {
+      "model_name": "BG 86",
+      "slug": "bg-86",
+      "id": "stihl_bg_86",
+      "canonical_record_created": true,
+      "aliases": ["BG 86"],
+      "core5": {
+        "product_category": "Bladblazer",
+        "product_type": "Handbladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "BLOWING",
+        "completeness": 5
+      },
+      "route": "/bladblazers/bg-86/",
+      "category_route": "/bladblazers/",
+      "sitemap_status": "INCLUDED_VIA_CATEGORY",
+      "source_candidate_reference": "0458-296-8621-C",
+      "search_verified": true,
+      "ui_verified": true,
+      "data_confidence": "IDENTITY_ONLY",
+      "model_status": "IDENTITY_ACTIVE",
+      "technical_specs_added": false,
+      "notes": "BG 86 C-E variant isolated in notes; base model registered"
+    },
+    {
+      "model_name": "SH 56",
+      "slug": "sh-56",
+      "id": "stihl_sh_56",
+      "canonical_record_created": true,
+      "aliases": ["SH 56"],
+      "core5": {
+        "product_category": "Zuig-/blaasmachine",
+        "product_type": "Zuighakselaar",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "BLOWING",
+        "completeness": 5
+      },
+      "route": "/bladblazers/sh-56/",
+      "category_route": "/bladblazers/",
+      "sitemap_status": "INCLUDED_VIA_CATEGORY",
+      "source_candidate_reference": "0458-296-8621-C",
+      "search_verified": true,
+      "ui_verified": true,
+      "data_confidence": "IDENTITY_ONLY",
+      "model_status": "IDENTITY_ACTIVE",
+      "technical_specs_added": false,
+      "notes": "Vacuum/shredder functions; routes under bladblazers per Option B"
+    },
+    {
+      "model_name": "SH 86",
+      "slug": "sh-86",
+      "id": "stihl_sh_86",
+      "canonical_record_created": true,
+      "aliases": ["SH 86"],
+      "core5": {
+        "product_category": "Zuig-/blaasmachine",
+        "product_type": "Zuighakselaar",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "BLOWING",
+        "completeness": 5
+      },
+      "route": "/bladblazers/sh-86/",
+      "category_route": "/bladblazers/",
+      "sitemap_status": "INCLUDED_VIA_CATEGORY",
+      "source_candidate_reference": "0458-296-8621-C",
+      "search_verified": true,
+      "ui_verified": true,
+      "data_confidence": "IDENTITY_ONLY",
+      "model_status": "IDENTITY_ACTIVE",
+      "technical_specs_added": false,
+      "notes": "SH 86 C-E variant isolated in notes; vacuum/shredder functions"
+    }
+  ]
+}

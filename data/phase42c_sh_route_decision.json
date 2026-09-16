@@ -1,0 +1,41 @@
+{
+  "phase": "42C",
+  "title": "SH Route Decision — Zuig-/blaasmachine Routing",
+  "generated_at": "2026-09-17T10:00:00.000Z",
+  "decision": {
+    "OPTION_A": {
+      "route": "/zuig-blaasmachines/sh-56/",
+      "description": "New dedicated category route for Zuig-/blaasmachine models",
+      "requires_new_category": true,
+      "requires_template_changes": true,
+      "requires_sitemap_addition": true,
+      "requires_known_categories_update": true,
+      "impact": "HIGH — new category infrastructure needed"
+    },
+    "OPTION_B": {
+      "route": "/bladblazers/sh-56/",
+      "description": "Existing bladblazers category — SH machines are fundamentally blowers with vacuum/shredder capability",
+      "requires_new_category": false,
+      "requires_template_changes": false,
+      "requires_sitemap_addition": false,
+      "requires_known_categories_update": false,
+      "impact": "NONE — leverages existing architecture"
+    },
+    "SELECTED": "OPTION_B",
+    "reason": "Existing architecture maps SH prefix → bladblazers via normalizeCategorySlug(). Minimal disruption. SH machines are fundamentally blowers with vacuum/shredder capability. Internal product_category 'Zuig-/blaasmachine' preserved in basic_classification for metadata."
+  },
+  "routing_impact": "None — SH models route under existing /bladblazers/ category",
+  "seo_impact": "Consistent with existing BG models in same category",
+  "sitemap_impact": "No new category needed",
+  "internal_link_impact": "Category page /bladblazers/ already exists",
+  "normalizeCategorySlug_alignment": {
+    "SH_prefix_mapped_to": "bladblazers",
+    "function_line": "src/categoryWhitelist.js:62",
+    "evidence": "name.startsWith('SH') → CATEGORY_TYPES.BLOWER"
+  },
+  "known_categories_check": {
+    "bladblazers_in_known_categories": true,
+    "zuig-blaasmachines_in_known_categories": false,
+    "no_new_entry_needed": true
+  }
+}

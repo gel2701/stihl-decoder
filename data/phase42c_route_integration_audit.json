@@ -1,0 +1,81 @@
+{
+  "phase": "42C",
+  "title": "Route Integration Audit — New Model Routes",
+  "generated_at": "2026-09-17T10:00:00.000Z",
+  "total_routes": 5,
+  "per_route_audit": [
+    {
+      "route": "/bladblazers/bg-56/",
+      "http_result": "CANDIDATE_200",
+      "canonical": "https://www.stihldecoder.nl/bladblazers/bg-56/",
+      "robots": "index, follow",
+      "breadcrumb": "Bladblazer > BG 56",
+      "category_relationship": "bladblazers",
+      "sitemap_membership": "YES",
+      "internal_inlinks": "FROM_CATEGORY_PAGE",
+      "model_slug": "bg-56",
+      "model_name": "BG 56",
+      "category_label": "Bladblazer"
+    },
+    {
+      "route": "/bladblazers/bg-66/",
+      "http_result": "CANDIDATE_200",
+      "canonical": "https://www.stihldecoder.nl/bladblazers/bg-66/",
+      "robots": "index, follow",
+      "breadcrumb": "Bladblazer > BG 66",
+      "category_relationship": "bladblazers",
+      "sitemap_membership": "YES",
+      "internal_inlinks": "FROM_CATEGORY_PAGE",
+      "model_slug": "bg-66",
+      "model_name": "BG 66",
+      "category_label": "Bladblazer"
+    },
+    {
+      "route": "/bladblazers/bg-86/",
+      "http_result": "CANDIDATE_200",
+      "canonical": "https://www.stihldecoder.nl/bladblazers/bg-86/",
+      "robots": "index, follow",
+      "breadcrumb": "Bladblazer > BG 86",
+      "category_relationship": "bladblazers",
+      "sitemap_membership": "YES",
+      "internal_inlinks": "FROM_CATEGORY_PAGE",
+      "model_slug": "bg-86",
+      "model_name": "BG 86",
+      "category_label": "Bladblazer"
+    },
+    {
+      "route": "/bladblazers/sh-56/",
+      "http_result": "CANDIDATE_200",
+      "canonical": "https://www.stihldecoder.nl/bladblazers/sh-56/",
+      "robots": "index, follow",
+      "breadcrumb": "Bladblazer > SH 56",
+      "category_relationship": "bladblazers",
+      "sitemap_membership": "YES",
+      "internal_inlinks": "FROM_CATEGORY_PAGE",
+      "model_slug": "sh-56",
+      "model_name": "SH 56",
+      "category_label": "Bladblazer",
+      "internal_product_category": "Zuig-/blaasmachine"
+    },
+    {
+      "route": "/bladblazers/sh-86/",
+      "http_result": "CANDIDATE_200",
+      "canonical": "https://www.stihldecoder.nl/bladblazers/sh-86/",
+      "robots": "index, follow",
+      "breadcrumb": "Bladblazer > SH 86",
+      "category_relationship": "bladblazers",
+      "sitemap_membership": "YES",
+      "internal_inlinks": "FROM_CATEGORY_PAGE",
+      "model_slug": "sh-86",
+      "model_name": "SH 86",
+      "category_label": "Bladblazer",
+      "internal_product_category": "Zuig-/blaasmachine"
+    }
+  ],
+  "route_resolution_chain": {
+    "getSafeCategorySlug": "src/publicationRules.js:46",
+    "getSafeModelPath": "src/publicationRules.js:56",
+    "normalizeCategorySlug": "src/categoryWhitelist.js:55",
+    "KNOWN_PUBLIC_CATEGORIES_includes_bladblazers": true
+  }
+}

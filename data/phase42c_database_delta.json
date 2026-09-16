@@ -1,0 +1,53 @@
+{
+  "phase": "42C",
+  "title": "Database Delta — Phase 42C Identity Activation",
+  "generated_at": "2026-09-17T10:00:00.000Z",
+  "before_count": 57,
+  "after_count": 62,
+  "added": 5,
+  "removed": 0,
+  "modified_existing": 0,
+  "new_models": [
+    {
+      "slug": "bg-56",
+      "id": "stihl_bg_56",
+      "model_name": "BG 56",
+      "category_slug": "bladblazers",
+      "data_confidence": "IDENTITY_ONLY"
+    },
+    {
+      "slug": "bg-66",
+      "id": "stihl_bg_66",
+      "model_name": "BG 66",
+      "category_slug": "bladblazers",
+      "data_confidence": "IDENTITY_ONLY"
+    },
+    {
+      "slug": "bg-86",
+      "id": "stihl_bg_86",
+      "model_name": "BG 86",
+      "category_slug": "bladblazers",
+      "data_confidence": "IDENTITY_ONLY"
+    },
+    {
+      "slug": "sh-56",
+      "id": "stihl_sh_56",
+      "model_name": "SH 56",
+      "category_slug": "bladblazers",
+      "data_confidence": "IDENTITY_ONLY"
+    },
+    {
+      "slug": "sh-86",
+      "id": "stihl_sh_86",
+      "model_name": "SH 86",
+      "category_slug": "bladblazers",
+      "data_confidence": "IDENTITY_ONLY"
+    }
+  ],
+  "removed_models": [],
+  "modified_models": [],
+  "hash_before": "b92cc78e046a7eb52e5e3c38c42c0e53f8f986fa9a23f5dc2a3d24092de13560",
+  "hash_after": "b92cc78e046a7eb52e5e3c38c42c0e53f8f986fa9a23f5dc2a3d24092de13560",
+  "hash_changed": false,
+  "hash_note": "Hash unchanged because activation script already wrote to database; this audit documents the delta"
+}
