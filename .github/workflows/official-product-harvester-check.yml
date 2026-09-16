@@ -2,8 +2,19 @@ name: Official Product Harvester Check
 
 on:
   push:
-    branches:
-      - feature/official-product-harvester-v1
+    paths:
+      - 'src/officialProductHarvester.js'
+      - 'scripts/harvest_stihl_official_products.js'
+      - 'tests/official_product_harvester.test.js'
+      - 'package.json'
+      - '.github/workflows/official-product-harvester-check.yml'
+  pull_request:
+    paths:
+      - 'src/officialProductHarvester.js'
+      - 'scripts/harvest_stihl_official_products.js'
+      - 'tests/official_product_harvester.test.js'
+      - 'package.json'
+      - '.github/workflows/official-product-harvester-check.yml'
   workflow_dispatch:
 
 jobs:
@@ -17,5 +28,3 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test:official-harvester
-      - name: Live STIHL Brazil smoke harvest
-        run: npm run harvest:stihl:official -- --url https://loja.stihl.com.br/motosserra-ms-162/p --market BR --dry-run
