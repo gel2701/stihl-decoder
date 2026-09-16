@@ -19,10 +19,13 @@ const FIELD_MAP = [
 ];
 
 const MODEL_PREFIXES = [
-  'MS', 'MSE', 'MSA', 'FS', 'FSA', 'FR', 'BR', 'BGA', 'BG', 'HS', 'HSA', 'HL', 'HLA',
-  'HT', 'HTA', 'KM', 'KMA', 'TS', 'TSA', 'BT', 'RE', 'RMA', 'RM', 'GTA', 'SEA', 'SHA',
-  'SE', 'SG', 'SR', 'RB', 'RLA', 'RGA', 'RMI', 'KGA', 'KOA'
+  'MS', 'MSE', 'MSA', 'FS', 'FSA', 'FSE', 'FR', 'BR', 'BGA', 'BGE', 'BG', 'SH',
+  'HS', 'HSA', 'HSE', 'HL', 'HLA', 'HT', 'HTA', 'KM', 'KMA', 'TS', 'TSA', 'BT',
+  'RE', 'REA', 'RCA', 'RMA', 'RM', 'GTA', 'SEA', 'SHA', 'SE', 'SG', 'SGA', 'SR',
+  'RB', 'RLA', 'RGA', 'RMI', 'KGA', 'KOA', 'MH', 'WP', 'EHC', 'ASA', 'GR', 'IR'
 ];
+
+const ACCESSORY_PRODUCT_REGEX = /\b(?:corrente|sabre|l[aâ]mina|cabe[cç]ote|fio de corte|bateria|carregador|[oó]leo|lubrificante|detergente|mangueira|escova|filtro|vela de igni[cç][aã]o|protetor|cinto|arn[eê]s|kit de afia[cç][aã]o|lima|disco de corte|bico|adaptador|extens[aã]o|acess[oó]rio)\b/i;
 
 function decodeEntities(value = '') {
   return String(value)
@@ -57,8 +60,8 @@ function detectModelName(value = '') {
     .replace(/[_/]+/g, ' ')
     .replace(/-/g, ' ')
     .toUpperCase();
-  const prefixGroup = MODEL_PREFIXES.sort((a, b) => b.length - a.length).join('|');
-  const regex = new RegExp(`\\b(${prefixGroup})\\s*([0-9]{2,4}(?:\\.[0-9]+)?)(?:\\s*([A-Z]{1,3}(?:\\s*[A-Z]{1,3})?))?\\b`, 'i');
+  const prefixGroup = [...MODEL_PREFIXES].sort((a, b) => b.length - a.length).join('|');
+  const regex = new RegExp(`\\b(${prefixGroup})\\s*([0-9]{1,4}(?:\\.[0-9]+)?)(?:\\s*([A-Z]{1,4}(?:\\s*[A-Z]{1,4})?))?\\b`, 'i');
   const match = normalized.match(regex);
   if (!match) return null;
   const suffixRaw = String(match[3] || '').replace(/\s+/g, '-').toUpperCase();
@@ -76,6 +79,16 @@ function modelNameFromTitleAndUrl(title, url) {
   } catch {
     return null;
   }
+}
+
+function looksLikeAccessory(title, url = '') {
+  const combined = `${text(title)} ${String(url).replace(/[-_/]+/g, ' ')}`;
+  if (ACCESSORY_PRODUCT_REGEX.test(combined)) return true;
+  try {
+    const pathname = new URL(url).pathname.toLowerCase();
+    if (/\/(?:\d{2,3}-)?rm-\d+(?:-|\/|$)/i.test(pathname) && !/cortador|cortador-de-grama|cortador-a-combustao/i.test(pathname)) return true;
+  } catch {}
+  return false;
 }
 
 function extractFirst(html, regex) {
@@ -109,9 +122,16 @@ function absoluteUrl(href, baseUrl) {
 }
 
 function isValidManualHref(href = '') {
-  return /\.pdf(?:$|\?)/i.test(href)
-    && !/(?:^|\/)(?:undefined|null)(?:$|[/?#])/i.test(href)
-    && !/(?:^|\/)NA\.pdf(?:$|\?)/i.test(href);
+  if (!/\.pdf(?:$|\?)/i.test(href)) return false;
+  if (/(?:^|\/)(?:undefined|null)(?:$|[/?#])/i.test(href)) return false;
+  try {
+    const url = new URL(href, 'https://example.invalid');
+    const basename = decodeURIComponent(url.pathname.split('/').pop() || '').trim().toLowerCase();
+    if (!basename || ['.pdf', '..pdf', 'na.pdf', 'undefined.pdf', 'null.pdf'].includes(basename)) return false;
+  } catch {
+    return false;
+  }
+  return true;
 }
 
 function extractManualUrl(html, baseUrl) {
@@ -159,9 +179,10 @@ function parseSpecItemsFallback(html) {
   const plain = text(html);
   const knownLabels = [
     'Potência (kW/cv)', 'Cilindrada (cm³)', 'Tipo de sabre e tamanho (cm/pol)', 'Corrente',
-    'Passo da corrente', 'Peso (kg)', 'Motor', 'Nível de pressão sonora dB(A)',
-    'Nível de potência sonora dB(A)', 'Nível de vibração esquerda/direita (m/s²)',
-    'Capacidade do tanque de óleo (ml)', 'Capacidade do tanque de combustível (ml)'
+    'Modelo da corrente', 'Tipo da corrente STIHL', 'Passo da corrente', 'Peso (kg)', 'Motor',
+    'Nível de pressão sonora dB(A)', 'Nível de potência sonora dB(A)',
+    'Nível de vibração esquerda/direita (m/s²)', 'Capacidade do tanque de óleo (ml)',
+    'Capacidade do tanque de combustível (ml)'
   ];
   const specs = {};
   for (const label of knownLabels) {
@@ -182,11 +203,16 @@ function parseSpecItemsFallback(html) {
 }
 
 function normalizePitch(value) {
-  return String(value || '')
-    .replace(/[”“″]/g, '"')
-    .replace(/\s*\/\s*/g, '/')
+  const source = String(value || '')
+    .replace(/[”“″’]/g, '"')
+    .replace(/,/g, '.')
     .replace(/\s+/g, ' ')
     .trim();
+  const match = source.match(/(\d+\s*\/\s*\d+|0?\.\d+)\s*["']?\s*(P)?\b?/i);
+  if (!match) return source.replace(/\s*\/\s*/g, '/');
+  let token = match[1].replace(/\s*\/\s*/g, '/');
+  if (/^0\.\d+$/.test(token)) token = token.slice(1);
+  return `${token}"${match[2] ? ' P' : ''}`;
 }
 
 export function normalizeSpecs(rawSpecs = {}) {
@@ -213,7 +239,10 @@ export function parseOfficialProductHtml(html, { url, market = DEFAULT_MARKET, r
   const title = extractTitle(html);
   if (!title) throw new Error(`No product title found for ${url}`);
   const rawSpecs = Object.keys(parseSpecItemsByClasses(html)).length ? parseSpecItemsByClasses(html) : parseSpecItemsFallback(html);
-  const modelName = modelNameFromTitleAndUrl(title, url);
+  const detectedModelName = modelNameFromTitleAndUrl(title, url);
+  const accessoryLike = looksLikeAccessory(title, url);
+  const recordType = detectedModelName && !accessoryLike ? 'MACHINE_MODEL' : 'ACCESSORY_OR_CONSUMABLE';
+  const modelName = recordType === 'MACHINE_MODEL' ? detectedModelName : null;
   const payload = {
     schema_version: 2,
     source_class: 'OFFICIAL_MANUFACTURER_PRODUCT_PAGE',
@@ -222,7 +251,7 @@ export function parseOfficialProductHtml(html, { url, market = DEFAULT_MARKET, r
     promotion_status: 'CANDIDATE',
     source_url: url,
     retrieved_at: retrievedAt,
-    record_type: modelName ? 'MACHINE_MODEL' : 'ACCESSORY_OR_CONSUMABLE',
+    record_type: recordType,
     model_name: modelName,
     product_name: title,
     title,
