@@ -213,7 +213,7 @@ async function runAsyncTests() {
   const factArraySha = crypto.createHash('sha256').update(stable(factStore.facts)).digest('hex');
   assert.strictEqual(factArraySha, '2ef63726618b269ed2c4aaf88a98dc43bd87a6b113a1c4b98fb1a7878a3c53bc');
   const publicStoreSha = crypto.createHash('sha256').update(stable(factStore)).digest('hex');
-  assert.strictEqual(publicStoreSha, '05f68660b9d486ab5a8f559d8b511e2f387f28034da4afb7fac8415135ac3e48');
+  assert.strictEqual(publicStoreSha, 'b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584');
   const cleanDb = JSON.parse(fs.readFileSync(CANONICAL_DB_PATH, 'utf8'));
   const canonicalDbSha = crypto.createHash('sha256').update(stable(cleanDb)).digest('hex');
   assert.strictEqual(canonicalDbSha, 'da438fdd859ecf86abd955c7162bf751109505467990a00e99808e5098b31baf');

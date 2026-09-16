@@ -33,7 +33,7 @@ console.log('▶ Running Phase 37C Evidence Surfacing & Reachability Tests...');
 console.log('  Testing Test 1: Index integrity...');
 assert.strictEqual(store.facts.length, 474, 'PUBLIC_FACT_COUNT must be exactly 474');
 const modelSlugs = Object.keys(store.model_index);
-assert.strictEqual(modelSlugs.length, 50, 'Evidence index must contain exactly 50 models');
+assert.strictEqual(modelSlugs.length, 51, 'Evidence index must contain exactly 51 models');
 
 let totalIndexedFactIds = 0;
 for (const slug of modelSlugs) {

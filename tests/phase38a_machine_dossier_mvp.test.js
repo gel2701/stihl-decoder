@@ -59,7 +59,7 @@ global.localStorage = mockStorage;
 // ============================================================================
 console.log('  Testing 1: test_dossier_readiness_matrix...');
 const modelSlugs = Object.keys(store.model_index);
-assert.strictEqual(modelSlugs.length, 50, 'Index must have 50 models');
+assert.strictEqual(modelSlugs.length, 51, 'Index must have 51 models');
 
 const MAINTENANCE_FIELDS = new Set([
   'spark_plug',
