@@ -1,0 +1,42 @@
+name: Official BR Full Harvest
+
+on:
+  push:
+    branches:
+      - feature/official-br-full-harvest-2026-09-17
+  workflow_dispatch:
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:official-harvester
+      - name: Harvest complete STIHL Brazil catalog
+        run: >-
+          npm run harvest:stihl:official --
+          --catalog-url https://loja.stihl.com.br/todos-os-produtos
+          --market BR
+          --out data/generated/official-br-harvest
+      - name: Build comparison report
+        run: >-
+          node scripts/report_official_product_harvest.js
+          --input-dir data/generated/official-br-harvest
+          --out data/generated/official-br-report
+      - name: Show harvest files
+        run: find data/generated/official-br-harvest data/generated/official-br-report -maxdepth 1 -type f -print -exec wc -c {} \;
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-br-full-harvest
+          path: |
+            data/generated/official-br-harvest/*.json
+            data/generated/official-br-report/*.json
+            data/generated/official-br-report/*.md
+          if-no-files-found: error
+          retention-days: 30
