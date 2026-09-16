@@ -1,0 +1,29 @@
+name: STIHL Harvester Validation
+
+on:
+  push:
+    branches:
+      - feat/stihl-official-harvester-2026-09-17
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Harvester unit and isolation tests
+        run: npm run test:stihl-harvester
+      - name: Live official catalog smoke test
+        run: node scripts/stihl_official_harvester.js --max=3
+      - name: Stable regression tests
+        run: |
+          node tests/decoder.test.js
+          node tests/baseline.test.js
+          node tests/phase38a3_confirmed_spec_parity.test.js
+          node tests/phase38b_maintenance_return_loop.test.js
+          node tests/phase38d_ms251_evidence_activation.test.js
+          node tests/phase38e_baseline_architecture.test.js
