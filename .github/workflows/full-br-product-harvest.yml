@@ -1,0 +1,52 @@
+name: Full STIHL Brazil Product Harvest
+
+on:
+  push:
+    branches:
+      - ops/full-br-harvest-2026-09-17
+  workflow_dispatch:
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:official-harvester
+      - name: Harvest full STIHL Brazil catalogue
+        run: npm run harvest:stihl:official -- --catalog-url https://loja.stihl.com.br/todos-os-produtos --market BR
+      - name: Build harvest summary
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from 'fs';
+          import path from 'path';
+          const dir='data/candidate_evidence/official_products';
+          const files=fs.readdirSync(dir).filter(f=>f.endsWith('.json')).sort();
+          const file=path.join(dir,files.at(-1));
+          const r=JSON.parse(fs.readFileSync(file,'utf8'));
+          const matched=r.results.filter(x=>x.comparison.model_match).length;
+          const fresh=r.results.length-matched;
+          let conflicts=0, matches=0, missing=0;
+          const manuals=r.results.filter(x=>x.candidate.manual_url).length;
+          const refs=r.results.filter(x=>x.candidate.product_reference).length;
+          for (const x of r.results) for (const v of Object.values(x.comparison.comparison||{})) {
+            if(v.status==='CONFLICT_REVIEW_REQUIRED') conflicts++;
+            if(v.status==='MATCH') matches++;
+            if(v.status==='DATABASE_MISSING') missing++;
+          }
+          const summary={run_at:r.run_at,requested_urls:r.requested_urls,harvested:r.harvested,failed:r.failed,matched_existing_models:matched,new_model_candidates:fresh,official_references:refs,official_manuals:manuals,field_matches:matches,field_conflicts:conflicts,database_missing_fields:missing,automatic_promotion_allowed:r.automatic_promotion_allowed,source_file:file};
+          fs.writeFileSync('harvest_summary.json',JSON.stringify(summary,null,2)+'\n');
+          console.log(JSON.stringify(summary,null,2));
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stihl-br-full-harvest-2026-09-17
+          path: |
+            data/candidate_evidence/official_products/*.json
+            harvest_summary.json
+          retention-days: 30
