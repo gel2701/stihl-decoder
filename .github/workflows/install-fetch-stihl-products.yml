@@ -1,0 +1,36 @@
+name: Install fetch-stihl-products
+
+on:
+  push:
+    branches:
+      - chore/install-fetch-stihl-products-2026-09-17
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chore/install-fetch-stihl-products-2026-09-17
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm install --save-exact fetch-stihl-products@2.0.5
+      - run: npm test
+      - name: Commit generated package lock
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No dependency changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: install fetch-stihl-products 2.0.5"
+          git push origin HEAD:chore/install-fetch-stihl-products-2026-09-17
