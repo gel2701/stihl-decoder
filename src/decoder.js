@@ -298,6 +298,7 @@ export function analyzeModelQuery(modelStr, database) {
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, resolvedModelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
 
+  const basicClassification = matchedModelSpec?.basic_classification || overlayModel?.basic_classification || null;
   const verification = matchedModelSpec ? getModelVerificationSummary(matchedModelSpec) : null;
   const driveClassification = resolveMachineClassification({
     identityStatus: matchedModelSpec ? 'EXACT_MODEL_IDENTIFIED' : 'MODEL_NOT_IDENTIFIED',
@@ -350,7 +351,8 @@ export function analyzeModelQuery(modelStr, database) {
       notes: relationship.notes
     } : null,
     technicalSpecs: overlaySpecs.technicalSpecs,
-    safeTechnicalPreview: { available: false, mode: 'PROBABLE_SERIES_PREVIEW', fields: [] }
+    safeTechnicalPreview: { available: false, mode: 'PROBABLE_SERIES_PREVIEW', fields: [] },
+    basic_classification: basicClassification
   };
 }
 
@@ -427,6 +429,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
+  const basicClassification = modelData?.basic_classification || null;
   const verification = modelData ? getModelVerificationSummary(modelData) : null;
   const driveClassification = resolveMachineClassification({
     identityStatus,
@@ -577,6 +580,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       ? overlaySpecs.technicalSpecs
       : {},
     safeTechnicalPreview,
+    basic_classification: isModelConfirmedOrIdentified ? basicClassification : null,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
     notes: !rangeMatch
       ? 'Productieperiode nog niet uit dit serienummer afgeleid. Vul het model van het typeplaatje in voor een completer resultaat.'

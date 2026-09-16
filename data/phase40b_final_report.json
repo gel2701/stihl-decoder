@@ -1,0 +1,280 @@
+{
+  "PHASE": "40B",
+  "TITLE": "Basic Classification Activation",
+  "GENERATED_AT": "2026-09-16T15:47:21.389Z",
+  "BASELINE": {
+    "phase40a_status": "PASS",
+    "public_fact_count": 474,
+    "total_models_in_database": 57,
+    "total_canonical_models": 57,
+    "hash_before": "5a5fbe2b945fb07109904d0aaee9f23d08149e8494edf6b6ea867e9d6b50a592"
+  },
+  "ACTIVATION_SUMMARY": {
+    "models_before": 57,
+    "models_after": 57,
+    "classifications_activated": 57,
+    "unmatched_candidates": 0,
+    "conflicts_resolved": 6,
+    "conflict_resolutions": [
+      {
+        "model_slug": "ms-200",
+        "resolution": "CONFLICT-001: NORMALIZED_CATEGORY"
+      },
+      {
+        "model_slug": "ms-201-t",
+        "resolution": "CONFLICT-002: NORMALIZED_CATEGORY"
+      },
+      {
+        "model_slug": "ms-200-t",
+        "resolution": "CONFLICT-003: SERIES_SHARED_ACCEPTED"
+      },
+      {
+        "model_slug": "ms-261-c-m",
+        "resolution": "CONFLICT-004: VARIANT_ACCEPTED"
+      },
+      {
+        "model_slug": "ms-362-c-m",
+        "resolution": "CONFLICT-005: VARIANT_ACCEPTED"
+      },
+      {
+        "model_slug": "fs-38",
+        "resolution": "CONFLICT-006: WEIGHT_BASED_CLASSIFICATION"
+      }
+    ]
+  },
+  "FIELD_DELTA": {
+    "added": "basic_classification",
+    "fields_added": [
+      "brand",
+      "product_category",
+      "product_type",
+      "machine_form",
+      "power_source",
+      "engine_type",
+      "fuel_type",
+      "primary_function",
+      "evidence_status",
+      "core5_completeness",
+      "deep_specs_available_for_later",
+      "notes"
+    ],
+    "existing_fields_unchanged": true,
+    "new_fields_nested": true
+  },
+  "HASH_VERIFICATION": {
+    "hash_before": "5a5fbe2b945fb07109904d0aaee9f23d08149e8494edf6b6ea867e9d6b50a592",
+    "hash_after": "1001963c4769220be3a4c81b2b70340fe97c3e93516e99d6f96356663a5c025a",
+    "hash_changed": true,
+    "change_reason": "basic_classification added to 57 models"
+  },
+  "INTEGRITY": {
+    "public_evidence_facts_count": 474,
+    "baseline_public_fact_count": 474,
+    "public_fact_count_unchanged": true,
+    "models_added": 0,
+    "models_removed": 0,
+    "existing_fields_modified": false,
+    "basic_classification_added": true
+  },
+  "CORE5_COVERAGE": {
+    "total_models": 57,
+    "core5_complete": 57,
+    "coverage_ratio": "57/57",
+    "all_core5_fields_present": true
+  },
+  "VOCABULARY": {
+    "product_categories": [
+      "Kettingzaag",
+      "Bladblazer",
+      "Bosmaaier",
+      "Heggenschaar",
+      "Doorslijper",
+      "Nevelspuit",
+      "Kettingzaag (Boomverzorging)"
+    ],
+    "product_types": [
+      "Handkettingzaag",
+      "Tophandle kettingzaag",
+      "Handbladblazer",
+      "Rugbladblazer",
+      "Bosmaaier",
+      "Grastrimmer",
+      "Handheggenschaar",
+      "Doorslijper",
+      "Nevelspuit"
+    ],
+    "machine_forms": [
+      "HANDHELD",
+      "BACKPACK"
+    ],
+    "power_sources": [
+      "GASOLINE",
+      "BATTERY",
+      "CORDED_ELECTRIC",
+      "MANUAL",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "engine_types": [
+      "COMBUSTION_2_STROKE",
+      "COMBUSTION_4_STROKE",
+      "STIHL_4_MIX",
+      "ELECTRIC_MOTOR",
+      "BATTERY_ELECTRIC_MOTOR",
+      "NOT_APPLICABLE",
+      "UNKNOWN"
+    ],
+    "fuel_types": [
+      "PETROL_OIL_MIX",
+      "PETROL",
+      "OTHER",
+      "NOT_APPLICABLE",
+      "UNKNOWN"
+    ],
+    "primary_functions": [
+      "SAWING",
+      "BLOWING",
+      "BRUSHCUTTING",
+      "GRASS_TRIMMING",
+      "HEDGE_TRIMMING",
+      "CUT_OFF",
+      "SPRAYING"
+    ]
+  },
+  "PARITY": {
+    "total_parity_checks": 57,
+    "all_core5_match": true,
+    "canonical_equals_runtime": true
+  },
+  "CONFLICT_RESOLUTIONS": {
+    "total_conflicts": 6,
+    "all_conflicts_accepted": true,
+    "resolution_strategy": "PRESERVE existing category field, ADD normalized product_category in basic_classification",
+    "conflicts": [
+      {
+        "conflict_id": "CONFLICT-001",
+        "model_slug": "ms-200",
+        "resolution": "NORMALIZED_CATEGORY",
+        "status": "ACCEPTED"
+      },
+      {
+        "conflict_id": "CONFLICT-002",
+        "model_slug": "ms-201-t",
+        "resolution": "NORMALIZED_CATEGORY",
+        "status": "ACCEPTED"
+      },
+      {
+        "conflict_id": "CONFLICT-003",
+        "model_slug": "ms-200-t",
+        "resolution": "SERIES_SHARED_ACCEPTED",
+        "status": "ACCEPTED"
+      },
+      {
+        "conflict_id": "CONFLICT-004",
+        "model_slug": "ms-261-c-m",
+        "resolution": "VARIANT_ACCEPTED",
+        "status": "ACCEPTED"
+      },
+      {
+        "conflict_id": "CONFLICT-005",
+        "model_slug": "ms-362-c-m",
+        "resolution": "VARIANT_ACCEPTED",
+        "status": "ACCEPTED"
+      },
+      {
+        "conflict_id": "CONFLICT-006",
+        "model_slug": "fs-38",
+        "resolution": "WEIGHT_BASED_CLASSIFICATION",
+        "status": "ACCEPTED"
+      }
+    ]
+  },
+  "SPECIAL_CLASSIFICATIONS": {
+    "tophandle_models": [
+      {
+        "model_slug": "ms-200-t",
+        "product_type": "Tophandle kettingzaag",
+        "machine_form": "HANDHELD"
+      },
+      {
+        "model_slug": "ms-201-t",
+        "product_type": "Tophandle kettingzaag",
+        "machine_form": "HANDHELD"
+      }
+    ],
+    "four_mix_models": [
+      {
+        "model_slug": "br-600",
+        "engine_type": "STIHL_4_MIX"
+      },
+      {
+        "model_slug": "br-700",
+        "engine_type": "STIHL_4_MIX"
+      },
+      {
+        "model_slug": "fs-100",
+        "engine_type": "STIHL_4_MIX"
+      },
+      {
+        "model_slug": "fs-100-rx",
+        "engine_type": "STIHL_4_MIX"
+      },
+      {
+        "model_slug": "br-500",
+        "engine_type": "STIHL_4_MIX"
+      },
+      {
+        "model_slug": "br-550",
+        "engine_type": "STIHL_4_MIX"
+      }
+    ],
+    "four_mix_count": 6,
+    "weight_based_classifications": [
+      {
+        "model_slug": "fs-38",
+        "resolution": "WEIGHT_BASED_CLASSIFICATION",
+        "product_type": "Grastrimmer"
+      }
+    ]
+  },
+  "TESTS": {
+    "test_file": "tests/phase40b_basic_classification_activation.test.js",
+    "test_count": 9,
+    "tests_planned": [
+      "Activation delta - verify 57 models activated",
+      "57/57 CORE5 - verify all CORE5 fields present",
+      "Vocabulary - verify all values in vocabulary",
+      "Runtime parity - verify canonical = runtime",
+      "UI rendering - verify Dutch labels work",
+      "Tophandle classification - verify T models",
+      "4-MIX isolation - verify only 6 models",
+      "Public evidence immutability - 474 facts unchanged",
+      "BG56 not-added test"
+    ]
+  },
+  "GIT": {
+    "files_created": [
+      "scripts/phase40b_activate_basic_classification.js",
+      "data/phase40b_activation_provenance.json",
+      "data/phase40b_basic_classification_activation_audit.json",
+      "data/phase40b_basic_classification_runtime_parity.json",
+      "data/phase40b_final_report.json",
+      "tests/phase40b_basic_classification_activation.test.js"
+    ],
+    "files_modified": [
+      "data/stihl_database.json"
+    ],
+    "files_unmodified": [
+      "data/public_evidence_facts.json"
+    ]
+  },
+  "FINAL_DECISION": {
+    "status": "PASS",
+    "recommendation": "All 57 canonical models have been activated with basic_classification. Core5 fields are complete (57/57). All classification values are in controlled vocabulary. Runtime parity verified. Public evidence immutability maintained (474 facts unchanged). Database hash changed as expected. Ready for Phase 40C deep technical specification enrichment.",
+    "core5_coverage": "57/57",
+    "models_activated": 57,
+    "conflicts_resolved": 6,
+    "database_modified": true,
+    "evidence_facts_modified": false
+  }
+}

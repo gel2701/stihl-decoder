@@ -1,0 +1,913 @@
+{
+  "generated_at": "2026-09-16T15:49:18.186Z",
+  "phase": "40B",
+  "dry_run": true,
+  "summary": {
+    "models_before": 57,
+    "models_after": 57,
+    "classifications_activated": 57,
+    "unmatched_candidates": 0,
+    "fields_delta": {
+      "added": "basic_classification",
+      "fields_added": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function",
+        "evidence_status",
+        "core5_completeness",
+        "deep_specs_available_for_later",
+        "notes"
+      ]
+    },
+    "hash_before": "1001963c4769220be3a4c81b2b70340fe97c3e93516e99d6f96356663a5c025a",
+    "hash_after": "1001963c4769220be3a4c81b2b70340fe97c3e93516e99d6f96356663a5c025a"
+  },
+  "per_model_audit": [
+    {
+      "slug": "ms-170",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-180",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-200",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": "CONFLICT-001: NORMALIZED_CATEGORY"
+    },
+    {
+      "slug": "ms-210",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-230",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-250",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-260",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-261",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-270",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-280",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-290",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-310",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-311",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-340",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-341",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-360",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-361",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-362",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-390",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-400",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-441",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-460",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-350",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "br-600",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "hs-45",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-462",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-201-t",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": "CONFLICT-002: NORMALIZED_CATEGORY"
+    },
+    {
+      "slug": "fs-460",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "br-700",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ts-420",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-100",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-100-rx",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "009",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "017",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "018",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "026",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "036",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "044",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "046",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "088",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "br-500",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "br-550",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-120",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-200",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-38",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": "CONFLICT-006: WEIGHT_BASED_CLASSIFICATION"
+    },
+    {
+      "slug": "fs-410-c-m",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "fs-490-c-m",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-200-t",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": "CONFLICT-003: SERIES_SHARED_ACCEPTED"
+    },
+    {
+      "slug": "ms-261-c-m",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": "CONFLICT-004: VARIANT_ACCEPTED"
+    },
+    {
+      "slug": "ms-362-c-m",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": "CONFLICT-005: VARIANT_ACCEPTED"
+    },
+    {
+      "slug": "ms-440",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-461",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "sr-430",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "sr-450",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ts-410",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-251",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    },
+    {
+      "slug": "ms-251-c",
+      "status": "ACTIVATED",
+      "fields": [
+        "brand",
+        "product_category",
+        "product_type",
+        "machine_form",
+        "power_source",
+        "engine_type",
+        "fuel_type",
+        "primary_function"
+      ],
+      "conflict_resolution": null
+    }
+  ],
+  "conflict_resolutions": [
+    {
+      "model_slug": "ms-200",
+      "resolution": "CONFLICT-001: NORMALIZED_CATEGORY"
+    },
+    {
+      "model_slug": "ms-201-t",
+      "resolution": "CONFLICT-002: NORMALIZED_CATEGORY"
+    },
+    {
+      "model_slug": "ms-200-t",
+      "resolution": "CONFLICT-003: SERIES_SHARED_ACCEPTED"
+    },
+    {
+      "model_slug": "ms-261-c-m",
+      "resolution": "CONFLICT-004: VARIANT_ACCEPTED"
+    },
+    {
+      "model_slug": "ms-362-c-m",
+      "resolution": "CONFLICT-005: VARIANT_ACCEPTED"
+    },
+    {
+      "model_slug": "fs-38",
+      "resolution": "CONFLICT-006: WEIGHT_BASED_CLASSIFICATION"
+    }
+  ]
+}

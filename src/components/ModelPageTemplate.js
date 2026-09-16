@@ -330,6 +330,30 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </div>
     </section>
 
+    ${model.basic_classification ? `
+    <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-5 space-y-3">
+      <h3 class="text-sm font-bold text-white border-b border-gray-800 pb-2">Machineclassificatie</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div class="space-y-0.5">
+          <span class="text-gray-400 block">Producttype</span>
+          <span class="text-white font-bold">${model.basic_classification.product_type || 'Onbekend'}</span>
+        </div>
+        <div class="space-y-0.5">
+          <span class="text-gray-400 block">Machinevorm</span>
+          <span class="text-white font-bold">${{HANDHELD:'Handgedragen',WHEELED:'Op wielen',BACKPACK:'Rugmodel',TRUCK:'Opvrachtwagen',BATTERY:'Accu'}[model.basic_classification.machine_form] || model.basic_classification.machine_form}</span>
+        </div>
+        <div class="space-y-0.5">
+          <span class="text-gray-400 block">Aandrijving</span>
+          <span class="text-white font-bold">${{GASOLINE:'Benzine',ELECTRIC:'Elektrisch',BATTERY:'Accu',MANUAL:'Handkracht'}[model.basic_classification.power_source] || model.basic_classification.power_source}</span>
+        </div>
+        <div class="space-y-0.5">
+          <span class="text-gray-400 block">Hoofdfunctie</span>
+          <span class="text-white font-bold">${{SAWING:'Zagen',BLOWING:'Blazen',TRIMMING:'Maaien',HEDGE_TRIMMING:'Heggensnede',CUTTING:'Snoeien',PRUNING:'Snoeien',CLEANING:'Reinigen',SPRAYING:'Besproeien'}[model.basic_classification.primary_function] || model.basic_classification.primary_function}</span>
+        </div>
+      </div>
+    </section>
+    ` : ''}
+
     <!-- Premium Machine Passport Pro MVP -->
     ${passportProCardHtml}
 
