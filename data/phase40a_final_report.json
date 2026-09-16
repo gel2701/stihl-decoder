@@ -1,0 +1,1187 @@
+{
+  "PHASE": "40A",
+  "TITLE": "Full Catalog Basic Machine Classification",
+  "GENERATED_AT": "2026-09-16T15:28:14.158Z",
+  "BASELINE": {
+    "commit": "aae103c60df6239ff66cd2a77324107a767cf59a",
+    "branch": "audit/phase40a-basic-machine-classification",
+    "public_fact_count": 474,
+    "total_models_in_database": 57,
+    "total_canonical_models": 57
+  },
+  "CATALOG_INVENTORY": {
+    "generated_at": "2026-09-16T15:28:14.145Z",
+    "phase": "40A",
+    "total_canonical_models": 57,
+    "total_families": 7,
+    "total_categories": 6,
+    "families": [
+      {
+        "family_prefix": "MS",
+        "count": 31,
+        "models": [
+          "ms-170",
+          "ms-180",
+          "ms-200",
+          "ms-210",
+          "ms-230",
+          "ms-250",
+          "ms-260",
+          "ms-261",
+          "ms-270",
+          "ms-280",
+          "ms-290",
+          "ms-310",
+          "ms-311",
+          "ms-340",
+          "ms-341",
+          "ms-360",
+          "ms-361",
+          "ms-362",
+          "ms-390",
+          "ms-400",
+          "ms-441",
+          "ms-460",
+          "ms-462",
+          "ms-201-t",
+          "ms-200-t",
+          "ms-261-c-m",
+          "ms-362-c-m",
+          "ms-440",
+          "ms-461",
+          "ms-251",
+          "ms-251-c"
+        ]
+      },
+      {
+        "family_prefix": "FS",
+        "count": 9,
+        "models": [
+          "fs-350",
+          "fs-460",
+          "fs-100",
+          "fs-100-rx",
+          "fs-120",
+          "fs-200",
+          "fs-38",
+          "fs-410-c-m",
+          "fs-490-c-m"
+        ]
+      },
+      {
+        "family_prefix": "0xx",
+        "count": 8,
+        "models": [
+          "009",
+          "017",
+          "018",
+          "026",
+          "036",
+          "044",
+          "046",
+          "088"
+        ]
+      },
+      {
+        "family_prefix": "BR",
+        "count": 4,
+        "models": [
+          "br-600",
+          "br-700",
+          "br-500",
+          "br-550"
+        ]
+      },
+      {
+        "family_prefix": "TS",
+        "count": 2,
+        "models": [
+          "ts-420",
+          "ts-410"
+        ]
+      },
+      {
+        "family_prefix": "SR",
+        "count": 2,
+        "models": [
+          "sr-430",
+          "sr-450"
+        ]
+      },
+      {
+        "family_prefix": "HS",
+        "count": 1,
+        "models": [
+          "hs-45"
+        ]
+      }
+    ],
+    "categories": [
+      {
+        "category_name": "Kettingzaag",
+        "count": 39,
+        "models": [
+          "ms-170",
+          "ms-180",
+          "ms-200",
+          "ms-210",
+          "ms-230",
+          "ms-250",
+          "ms-260",
+          "ms-261",
+          "ms-270",
+          "ms-280",
+          "ms-290",
+          "ms-310",
+          "ms-311",
+          "ms-340",
+          "ms-341",
+          "ms-360",
+          "ms-361",
+          "ms-362",
+          "ms-390",
+          "ms-400",
+          "ms-441",
+          "ms-460",
+          "ms-462",
+          "ms-201-t",
+          "009",
+          "017",
+          "018",
+          "026",
+          "036",
+          "044",
+          "046",
+          "088",
+          "ms-200-t",
+          "ms-261-c-m",
+          "ms-362-c-m",
+          "ms-440",
+          "ms-461",
+          "ms-251",
+          "ms-251-c"
+        ]
+      },
+      {
+        "category_name": "Bosmaaier",
+        "count": 9,
+        "models": [
+          "fs-350",
+          "fs-460",
+          "fs-100",
+          "fs-100-rx",
+          "fs-120",
+          "fs-200",
+          "fs-38",
+          "fs-410-c-m",
+          "fs-490-c-m"
+        ]
+      },
+      {
+        "category_name": "Bladblazer",
+        "count": 4,
+        "models": [
+          "br-600",
+          "br-700",
+          "br-500",
+          "br-550"
+        ]
+      },
+      {
+        "category_name": "Doorslijper",
+        "count": 2,
+        "models": [
+          "ts-420",
+          "ts-410"
+        ]
+      },
+      {
+        "category_name": "Nevelspuit",
+        "count": 2,
+        "models": [
+          "sr-430",
+          "sr-450"
+        ]
+      },
+      {
+        "category_name": "Heggenschaar",
+        "count": 1,
+        "models": [
+          "hs-45"
+        ]
+      }
+    ]
+  },
+  "CURRENT_BASIC_DATA_COVERAGE": {
+    "description": "Database schema fields relevant to basic classification",
+    "fields_in_schema": [
+      "category",
+      "fuel_type"
+    ],
+    "fields_not_in_schema": [
+      "brand",
+      "product_type",
+      "machine_form",
+      "power_source",
+      "engine_type",
+      "primary_function"
+    ],
+    "product_category_coverage": "57/57",
+    "product_type_coverage": "0/57",
+    "machine_form_coverage": "0/57",
+    "power_source_coverage": "0/57",
+    "primary_function_coverage": "0/57"
+  },
+  "PROPOSED_BASIC_DATA_COVERAGE": {
+    "description": "Proposed classification fills all Core5 fields using database existing + prefix/category heuristics",
+    "core5_complete": "57/57",
+    "all_fields": {
+      "product_category_known": 57,
+      "product_type_known": 57,
+      "machine_form_known": 57,
+      "power_source_known": 57,
+      "primary_function_known": 57
+    }
+  },
+  "IMPROVEMENT": {
+    "core5_complete_delta": 57,
+    "core5_complete_before": 0,
+    "core5_complete_after": 57
+  },
+  "SOURCE_VALIDATION": {
+    "total_models": 57,
+    "models_with_primary_source": 4,
+    "models_with_series_source": 28,
+    "models_with_evidence_store": 25,
+    "source_confidence_high": 4,
+    "source_confidence_medium": 28,
+    "source_confidence_low": 25,
+    "fields_with_official_source": 159,
+    "fields_from_prefix_heuristic": 164,
+    "fields_from_era_inference": 39,
+    "fields_from_series_crossreference": 24,
+    "fields_from_product_knowledge": 8
+  },
+  "MODEL_STATUS": [
+    {
+      "model_slug": "ms-170",
+      "model_name": "MS 170",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-180",
+      "model_name": "MS 180",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-200",
+      "model_name": "MS 200 / 020 T",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "CATEGORY_SUFFIX_HINT": 1,
+        "PREFIX_HINT_ONLY": 2
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-210",
+      "model_name": "MS 210",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-230",
+      "model_name": "MS 230",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-250",
+      "model_name": "MS 250",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-260",
+      "model_name": "MS 260",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-261",
+      "model_name": "MS 261",
+      "model_family": "MS",
+      "existing_data_status": "PRIMARY_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-270",
+      "model_name": "MS 270",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-280",
+      "model_name": "MS 280",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-290",
+      "model_name": "MS 290 Farm Boss",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-310",
+      "model_name": "MS 310",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-311",
+      "model_name": "MS 311",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-340",
+      "model_name": "MS 340",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-341",
+      "model_name": "MS 341",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-360",
+      "model_name": "MS 360 / 036 Pro",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-361",
+      "model_name": "MS 361",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-362",
+      "model_name": "MS 362",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-390",
+      "model_name": "MS 390",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-400",
+      "model_name": "MS 400 C-M",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-441",
+      "model_name": "MS 441",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-460",
+      "model_name": "MS 460 / 046 Magnum",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "fs-350",
+      "model_name": "FS 350",
+      "model_family": "FS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "br-600",
+      "model_name": "BR 600",
+      "model_family": "BR",
+      "existing_data_status": "PRIMARY_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "hs-45",
+      "model_name": "HS 45",
+      "model_family": "HS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-462",
+      "model_name": "MS 462 C-M",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 TC-M",
+      "model_family": "MS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "MODEL_NAME_SUFFIX": 1,
+        "PREFIX_HINT_ONLY": 2
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "fs-460",
+      "model_name": "FS 460 C-EM",
+      "model_family": "FS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "br-700",
+      "model_name": "BR 700",
+      "model_family": "BR",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "ts-420",
+      "model_name": "TS 420",
+      "model_family": "TS",
+      "existing_data_status": "SERIES_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "fs-100",
+      "model_name": "FS 100",
+      "model_family": "FS",
+      "existing_data_status": "PRIMARY_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "fs-100-rx",
+      "model_name": "FS 100 RX",
+      "model_family": "FS",
+      "existing_data_status": "PRIMARY_SOURCE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": true
+    },
+    {
+      "model_slug": "009",
+      "model_name": "009",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "017",
+      "model_name": "017",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "018",
+      "model_name": "018",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "026",
+      "model_name": "026",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "036",
+      "model_name": "036",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "044",
+      "model_name": "044",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "046",
+      "model_name": "046",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "088",
+      "model_name": "088",
+      "model_family": "0xx",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "LEGACY_PREFIX_RULE": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "br-500",
+      "model_name": "BR 500",
+      "model_family": "BR",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "br-550",
+      "model_name": "BR 550",
+      "model_family": "BR",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "fs-120",
+      "model_name": "FS 120",
+      "model_family": "FS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "fs-200",
+      "model_name": "FS 200",
+      "model_family": "FS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "fs-38",
+      "model_name": "FS 38",
+      "model_family": "FS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "WEIGHT_CLASS_INFERENCE": 2,
+        "PREFIX_HINT_ONLY": 1,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "fs-410-c-m",
+      "model_name": "FS 410 C-M",
+      "model_family": "FS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "fs-490-c-m",
+      "model_name": "FS 490 C-M",
+      "model_family": "FS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "MODEL_NAME_SUFFIX": 1,
+        "PREFIX_HINT_ONLY": 2,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-261-c-m",
+      "model_name": "MS 261 C-M",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-362-c-m",
+      "model_name": "MS 362 C-M",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-461",
+      "model_name": "MS 461",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "LEGACY_ERA_INFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "sr-430",
+      "model_name": "SR 430",
+      "model_family": "SR",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 2,
+        "PRODUCT_KNOWLEDGE": 4
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "sr-450",
+      "model_name": "SR 450",
+      "model_family": "SR",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 2,
+        "PRODUCT_KNOWLEDGE": 4
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ts-410",
+      "model_name": "TS 410",
+      "model_family": "TS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 1,
+        "PREFIX_HINT_ONLY": 3,
+        "SERIES_CROSSREFERENCE": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-251",
+      "model_name": "MS 251",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": false
+    },
+    {
+      "model_slug": "ms-251-c",
+      "model_name": "MS 251 C",
+      "model_family": "MS",
+      "existing_data_status": "EVIDENCE_STORE_LINKED",
+      "classification_status": "PROPOSED",
+      "core5_completeness": 5,
+      "evidence_summary": {
+        "EXISTING_CANONICAL_SUPPORTED": 4,
+        "PREFIX_HINT_ONLY": 3
+      },
+      "deep_specs_available": false
+    }
+  ],
+  "BG_56_REFERENCE": {
+    "note": "BG 56 is NOT in the database. It is a reference case only for future classification.",
+    "bg56_exists_in_database": false,
+    "bg56_classification_if_added": {
+      "brand": "STIHL",
+      "product_category": "Bladblazer",
+      "product_type": "Handbladblazer",
+      "machine_form": "HANDHELD",
+      "power_source": "GASOLINE",
+      "engine_type": "COMBUSTION_2_STROKE",
+      "fuel_type": "PETROL_OIL_MIX",
+      "primary_function": "BLOWING"
+    }
+  },
+  "VARIANT_SAFETY": {
+    "description": "T/TC/C-M variants are classified based on parent series + suffix interpretation",
+    "variant_rules": [
+      "T suffix = Top-handle (tree care variant)",
+      "TC suffix = Top-handle + Comfort",
+      "TC-M suffix = Top-handle + Comfort + M-Tronic",
+      "C suffix = Comfort features",
+      "C-M suffix = Comfort + M-Tronic",
+      "C-EM suffix = Comfort + Elektronisch M-Tronic",
+      "RX suffix = Lightweight trimmer variant"
+    ],
+    "variant_models": [
+      "ms-200",
+      "ms-400",
+      "ms-462",
+      "ms-201-t",
+      "fs-460",
+      "ts-420",
+      "fs-100-rx",
+      "fs-410-c-m",
+      "fs-490-c-m",
+      "ms-200-t",
+      "ms-261-c-m",
+      "ms-362-c-m",
+      "ts-410"
+    ],
+    "variant_isolation_ok": true
+  },
+  "CONTROLLED_VOCABULARY": {
+    "generated_at": "2026-09-16T15:28:14.146Z",
+    "phase": "40A",
+    "product_categories": [
+      "Kettingzaag",
+      "Bladblazer",
+      "Bosmaaier",
+      "Heggenschaar",
+      "Doorslijper",
+      "Nevelspuit",
+      "Kettingzaag (Boomverzorging)"
+    ],
+    "product_types": [
+      "Handkettingzaag",
+      "Tophandle kettingzaag",
+      "Handbladblazer",
+      "Rugbladblazer",
+      "Bosmaaier",
+      "Grastrimmer",
+      "Handheggenschaar",
+      "Doorslijper",
+      "Nevelspuit"
+    ],
+    "machine_forms": [
+      "HANDHELD",
+      "BACKPACK"
+    ],
+    "power_sources": [
+      "GASOLINE",
+      "BATTERY",
+      "CORDED_ELECTRIC",
+      "MANUAL",
+      "OTHER",
+      "UNKNOWN"
+    ],
+    "engine_types": [
+      "COMBUSTION_2_STROKE",
+      "COMBUSTION_4_STROKE",
+      "STIHL_4_MIX",
+      "ELECTRIC_MOTOR",
+      "BATTERY_ELECTRIC_MOTOR",
+      "NOT_APPLICABLE",
+      "UNKNOWN"
+    ],
+    "fuel_types": [
+      "PETROL_OIL_MIX",
+      "PETROL",
+      "OTHER",
+      "NOT_APPLICABLE",
+      "UNKNOWN"
+    ],
+    "primary_functions": [
+      "SAWING",
+      "BLOWING",
+      "BRUSHCUTTING",
+      "GRASS_TRIMMING",
+      "HEDGE_TRIMMING",
+      "CUT_OFF",
+      "SPRAYING"
+    ]
+  },
+  "PRODUCTION_INTEGRITY": {
+    "database_modified": false,
+    "evidence_facts_modified": false,
+    "manifest_modified": false,
+    "public_evidence_facts_count": 474,
+    "baseline_public_fact_count": 474,
+    "public_fact_count_unchanged": true
+  },
+  "TESTS": {
+    "test_file": "tests/phase40a_basic_machine_classification.test.js",
+    "test_count": 8,
+    "tests_planned": [
+      "Full catalog inventory - verify 57 models",
+      "Candidate schema - verify all candidates have required fields",
+      "Core5 validation - verify all CORE5 fields are filled",
+      "Controlled vocabulary - verify all values are in vocabulary",
+      "Provenance - verify evidence_status fields",
+      "Variant isolation - verify T/TC variants classified correctly",
+      "No-prefix-only-promotion - verify no PREFIX_HINT_ONLY only models are READY",
+      "Production immutability - verify database, evidence, manifest unchanged"
+    ]
+  },
+  "GIT": {
+    "branch": "audit/phase40a-basic-machine-classification",
+    "commit_before": "aae103c60df6239ff66cd2a77324107a767cf59a",
+    "files_created": [
+      "data/phase40a_catalog_inventory.json",
+      "data/phase40a_current_basic_data_audit.json",
+      "data/phase40a_basic_classification_vocabulary.json",
+      "data/phase40a_basic_classification_candidates.json",
+      "data/phase40a_basic_classification_source_audit.json",
+      "data/phase40a_basic_classification_conflicts.json",
+      "data/phase40a_completeness_report.json",
+      "data/phase40a_final_report.json",
+      "tests/phase40a_basic_machine_classification.test.js"
+    ],
+    "files_modified": [],
+    "files_unmodified": [
+      "data/stihl_database.json",
+      "data/public_evidence_facts.json"
+    ]
+  },
+  "FINAL_DECISION": {
+    "status": "PASS",
+    "recommendation": "All 57 canonical models have complete Core5 basic machine classifications. Classifications use existing database data + prefix/category heuristics. No official standalone classification documents exist; all classifications are inference-based. Ready for Phase 40B deep technical specification enrichment.",
+    "core5_coverage": "57/57",
+    "models_classified": 57,
+    "conflicts_resolved": 6
+  }
+}

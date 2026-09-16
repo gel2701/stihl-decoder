@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-09-16T15:28:14.144Z",
+  "phase": "40A",
+  "total_conflicts": 6,
+  "conflicts": [
+    {
+      "conflict_id": "CONFLICT-001",
+      "model_slug": "ms-200",
+      "model_name": "MS 200 / 020 T",
+      "conflict_type": "CATEGORY_DIVERGENCE",
+      "database_category": "Kettingzaag (Boomverzorging)",
+      "proposed_category": "Kettingzaag",
+      "rationale": "Database stores category as \"Kettingzaag (Boomverzorging)\" indicating tree care specialization. Classification normalizes to standard \"Kettingzaag\". product_type \"Tophandle kettingzaag\" captures the specialized form.",
+      "evidence_status": "ACCEPTED",
+      "resolution": "NORMALIZED_CATEGORY"
+    },
+    {
+      "conflict_id": "CONFLICT-002",
+      "model_slug": "ms-201-t",
+      "model_name": "MS 201 TC-M",
+      "conflict_type": "CATEGORY_DIVERGENCE",
+      "database_category": "Kettingzaag (Boomverzorging)",
+      "proposed_category": "Kettingzaag",
+      "rationale": "Database stores category as \"Kettingzaag (Boomverzorging)\". Classification normalizes to standard \"Kettingzaag\". T suffix and product_type \"Tophandle kettingzaag\" capture specialization.",
+      "evidence_status": "ACCEPTED",
+      "resolution": "NORMALIZED_CATEGORY"
+    },
+    {
+      "conflict_id": "CONFLICT-003",
+      "model_slug": "ms-200-t",
+      "model_name": "MS 200 T",
+      "conflict_type": "SERIES_CODE_SHARED_BUT_CATEGORY_DIFFERS",
+      "database_category": "Kettingzaag",
+      "proposed_category": "Kettingzaag",
+      "series_code": "1129",
+      "related_models": [
+        "ms-200",
+        "ms-200-t"
+      ],
+      "rationale": "MS 200 T shares series_code 1129 with MS 200 / 020 T. MS 200 has category \"Kettingzaag (Boomverzorging)\" in database, MS 200 T has \"Kettingzaag\". Both are top-handle saws from same series.",
+      "evidence_status": "ACCEPTED",
+      "resolution": "SERIES_SHARED_ACCEPTED"
+    },
+    {
+      "conflict_id": "CONFLICT-004",
+      "model_slug": "ms-261-c-m",
+      "model_name": "MS 261 C-M",
+      "conflict_type": "VARIANT_SAME_CLASSIFICATION_DIFFERENT_SERIES",
+      "database_category": "Kettingzaag",
+      "proposed_category": "Kettingzaag",
+      "series_code": "1141",
+      "related_series": "1141",
+      "related_models": [
+        "ms-261",
+        "ms-261-c-m"
+      ],
+      "rationale": "MS 261 (series 1141) and MS 261 C-M (series 1141) share same classification. C-M variant adds M-Tronic carburetor.",
+      "evidence_status": "ACCEPTED",
+      "resolution": "VARIANT_ACCEPTED"
+    },
+    {
+      "conflict_id": "CONFLICT-005",
+      "model_slug": "ms-362-c-m",
+      "model_name": "MS 362 C-M",
+      "conflict_type": "VARIANT_SAME_CLASSIFICATION_DIFFERENT_SERIES",
+      "database_category": "Kettingzaag",
+      "proposed_category": "Kettingzaag",
+      "series_code": "1140",
+      "related_models": [
+        "ms-362",
+        "ms-362-c-m"
+      ],
+      "rationale": "MS 362 and MS 362 C-M share classification. C-M adds M-Tronic.",
+      "evidence_status": "ACCEPTED",
+      "resolution": "VARIANT_ACCEPTED"
+    },
+    {
+      "conflict_id": "CONFLICT-006",
+      "model_slug": "fs-38",
+      "model_name": "FS 38",
+      "conflict_type": "PRODUCT_TYPE_DIVERGENCE",
+      "database_category": "Bosmaaier",
+      "proposed_category": "Bosmaaier",
+      "proposed_product_type": "Grastrimmer",
+      "related_products_same_category": [
+        "FS 100",
+        "FS 120",
+        "FS 200",
+        "FS 350",
+        "FS 410 C-M",
+        "FS 460 C-EM",
+        "FS 490 C-M"
+      ],
+      "rationale": "FS 38 is a very light model classified as Grastrimmer (light grass trimmer) instead of heavy Bosmaaier (brushcutter). Weight-based inference applied.",
+      "evidence_status": "ACCEPTED",
+      "resolution": "WEIGHT_BASED_CLASSIFICATION"
+    }
+  ]
+}
