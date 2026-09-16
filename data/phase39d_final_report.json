@@ -1,0 +1,173 @@
+{
+  "phase_id": "39D",
+  "phase_name": "MS 251 C Production Promotion, Deployment & Live Verification",
+  "result": "PASS",
+  "timestamp_utc": "2026-09-16T14:30:00Z",
+
+  "accepted_input": {
+    "phase_39c_original_commit": "acd7812090f260662e793d35543e2f9662233589",
+    "phase_39c_original_tree": "a0e591f9a7e2d75e4c30bdcc9c42d95deda0b310",
+    "model_index_fix_commit": "9a529b22df075e032b810c33eda2e97173ac6122",
+    "test_fixes_commit": "60d7bcca0f587c9dd9f1c26aa2fef0cc039e815b",
+    "final_main_commit": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "final_main_tree": "b96f82da83fa388dcc8366bf6e54016508c42c81",
+    "promotion_checkout_clean": "YES",
+    "unrelated_unstaged_files_excluded": "25 phase35c audit artifacts + 1 test db"
+  },
+
+  "pre_promotion_evidence": {
+    "fact_count": 474,
+    "ms_251_facts": 9,
+    "ms_251_c_facts": 13,
+    "immutable_first_461": "UNCHANGED",
+    "blocked_fields_activated": 0,
+    "candidate_tree_match": "YES (after model_index fix + test fixes)"
+  },
+
+  "model_index_fix": {
+    "description": "Phase 39C omitted ms-251-c entry from model_index. Fixed by adding 13 fact_ids to model_index['ms-251-c']",
+    "store_hash_before": "05f68660b9d486ab5a8f559d8b511e2f387f28034da4afb7fac8415135ac3e48",
+    "store_hash_after": "b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584",
+    "fact_array_hash_unchanged": true,
+    "immutable_prefix_hash_unchanged": true
+  },
+
+  "baseline_test_audit": {
+    "baseline_test_files_changed": 10,
+    "current_baseline_updates": 10,
+    "historical_replay_mutations": 0,
+    "files_updated": [
+      "phase36a_safe_technical_preview.test.js: store hash",
+      "phase36b_evidence_expansion.test.js: store hash",
+      "phase37a_high_value_evidence_wave.test.js: 461→474",
+      "phase37c_evidence_surfacing_reachability.test.js: 461→474, 50→51 models, 460→473 eligible",
+      "phase38a_machine_dossier_mvp.test.js: 461→474, 50→51 models, 48→49 dossier-ready",
+      "phase38c_manual_model_correction.test.js: 461→474, store hash",
+      "phase38d_ms251_evidence_activation.test.js: 461→474",
+      "phase38e_baseline_architecture.test.js: rehearsal manifest 462→475, distinct_model_count 51→52",
+      "phase39b_ms251c_evidence_staging.test.js: 461→474, store hash, TEST 9 duplicate assertion"
+    ]
+  },
+
+  "tests": {
+    "phase_38e": "PASS",
+    "phase_38f1": "PASS (8/8)",
+    "phase_39b": "PASS (10/10)",
+    "phase_39c": "PASS (14/14)",
+    "full_regression": "17 pre-existing failures (missing packages + baseline drift), 0 regressions",
+    "regressions": 0
+  },
+
+  "promotion": {
+    "method": "fast-forward merge to main",
+    "final_main_commit": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "final_main_tree": "b96f82da83fa388dcc8366bf6e54016508c42c81",
+    "accepted_tree_preserved": "YES",
+    "origin/main": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "push": "SUCCESS"
+  },
+
+  "deployment": {
+    "provider": "Render.com",
+    "trigger": "auto-deploy from main",
+    "deployed_commit": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "main_deploy_commit_match": "YES",
+    "status": "LIVE",
+    "deployed_at": "2026-09-16T14:19:31.831Z",
+    "primary_url": "https://www.stihldecoder.nl"
+  },
+
+  "version": {
+    "live_commit": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "branch": "main",
+    "environment": "production",
+    "database_connected": true,
+    "database_persistent": true,
+    "analytics_schema_ready": false,
+    "last_error": null
+  },
+
+  "live_ms_251_c": {
+    "identity": "MS 251 C",
+    "slug": "ms-251-c",
+    "page_status": 200,
+    "canonical": "https://www.stihldecoder.nl/kettingzagen/ms-251-c/",
+    "public_facts_in_store": 13,
+    "evidence_fields_on_page": 7,
+    "evidence_fields_in_store_not_rendered": 6,
+    "blocked_fields_exposed": 0,
+    "note": "6 fields (fuel_tank_l, oil_tank_l, sound_pressure_db, sound_power_db, vibration_left, vibration_right) are in evidence store but not rendered in model page template (by design)"
+  },
+
+  "variant_isolation": {
+    "ms_251_facts": 9,
+    "ms_251_c_facts": 13,
+    "ms251_to_ms251c_leakage": 0,
+    "ms251c_to_ms251_leakage": 0,
+    "c_be_false_inheritance": "404 (correctly not registered)",
+    "c_beq_false_inheritance": "N/A"
+  },
+
+  "unknown_model": {
+    "input": "MS 9999 TURBO",
+    "registered": "NO",
+    "page_status": 404,
+    "warning": "YES (404 page)"
+  },
+
+  "public_evidence": {
+    "total_facts": 474,
+    "facts_added_vs_pre_39c": 13,
+    "existing_facts_mutated": 0,
+    "facts_removed": 0,
+    "immutable_prefix": "UNCHANGED",
+    "active_ms_251_c_facts": 13,
+    "blocked_fields_active": 0
+  },
+
+  "core_production": {
+    "homepage": 200,
+    "serial_decoder": 200,
+    "build_year": 200,
+    "part_number": 200,
+    "passport": 200,
+    "category_pages": "ALL 200",
+    "structural_5xx": 0,
+    "js_failures": 0
+  },
+
+  "seo": {
+    "robots": "PASS",
+    "sitemap": "PASS (94 URLs)",
+    "canonicals": "PASS",
+    "meta_robots": "index, follow",
+    "structured_data": "PRESENT",
+    "accidental_noindex": 0
+  },
+
+  "runtime": {
+    "startup_errors": 0,
+    "database_errors": 0,
+    "public_evidence_errors": 0,
+    "ongoing_5xx": 0,
+    "transient_deploy_errors": 0
+  },
+
+  "git_final": {
+    "head": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "origin_main": "e05b9e2f9e25e832c764d20ccf16d2a6987d6917",
+    "tree": "b96f82da83fa388dcc8366bf6e54016508c42c81",
+    "accepted_tree_match": "YES",
+    "unrelated_phase35c_files_included": 0
+  },
+
+  "changes_during_phase_39d": {
+    "code": 0,
+    "evidence": 0,
+    "canonical_database": 0,
+    "tests": 10,
+    "post_acceptance_tree_drift": "model_index fix + test fixes (bug corrections)"
+  },
+
+  "final_decision": "PHASE 39D COMPLETE / PROMOTED / DEPLOYED / VERIFIED / PASS"
+}
