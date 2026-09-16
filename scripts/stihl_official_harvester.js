@@ -25,7 +25,7 @@ const MODEL_PREFIXES = [
 
 const SPEC_ALIASES = [
   { match: ['cilindrada'], field: 'displacement_cc', unit: 'cc' },
-  { match: ['potencia kw', 'potencia (kw', 'potencia maxima kw'], field: 'power_kw', unit: 'kW' },
+  { match: ['potencia kw', 'potencia maxima kw'], field: 'power_kw', unit: 'kW' },
   { match: ['peso kg'], field: 'weight_kg', unit: 'kg' },
   { match: ['capacidade do tanque de combustivel ml'], field: 'fuel_tank_l', unit: 'l', scale: 0.001 },
   { match: ['capacidade do tanque de combustivel l'], field: 'fuel_tank_l', unit: 'l' },
@@ -49,7 +49,7 @@ export function normalizeText(value) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[³²]/g, (char) => (char === '³' ? '3' : '2'))
-    .replace(/[^a-zA-Z0-9/()."' -]+/g, ' ')
+    .replace(/[^a-zA-Z0-9/"' -]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
@@ -62,7 +62,12 @@ export function parseLocaleNumber(value) {
   const match = text.match(/-?\d[\d.]*([,]\d+)?|-?\d+(?:\.\d+)?/);
   if (!match) return null;
   let token = match[0];
-  if (token.includes(',')) token = token.replace(/\./g, '').replace(',', '.');
+  if (token.includes(',')) {
+    token = token.replace(/\./g, '').replace(',', '.');
+  } else {
+    const dotCount = (token.match(/\./g) || []).length;
+    if (dotCount > 1 || /^-?\d{1,3}\.\d{3}$/.test(token)) token = token.replace(/\./g, '');
+  }
   const number = Number(token);
   return Number.isFinite(number) ? number : null;
 }
