@@ -1,0 +1,78 @@
+{
+  "phase": "39A",
+  "audit_timestamp": "2026-09-16T12:00:00.000Z",
+  "sources": [
+    {
+      "source_id": "SOURCE_A",
+      "document_id": "0455-737-0223",
+      "document_title": "STIHL MS 231, 251 Manuel de service",
+      "official_domain": "ssc.stihl.com",
+      "document_revision": "RA_737_00_02_01",
+      "publication_date": "2010-10",
+      "language": "fr",
+      "market_region": "EU (generic)",
+      "total_pages": 114,
+      "sha256": "704a528a7b9b0350e1ef84e683da6393d982ff23152670903c30a71956430d0b",
+      "source_url": "LOCAL_ARCHIVE (batch3:66)",
+      "local_archive_path": "data/phase38d_ms251_source_inventory.json (reference)",
+      "source_class": "OFFICIAL_SERVICE_MANUAL",
+      "source_authority": "OFFICIAL_SERVICE_DOCUMENT",
+      "models_covered_in_header": ["MS 231", "MS 231 C", "MS 251", "MS 251 C"],
+      "models_explicitly_spec_table_proven": ["MS 231", "MS 251"],
+      "generic_ms251_c_in_header": true,
+      "generic_ms251_c_in_spec_table": false,
+      "proven_feature_variants": [
+        {
+          "variant": "MS 251 C-BEQ",
+          "page": 4,
+          "context": "QuickStop Super (Q) / ErgoStart (E) / Quick chain tensioner (B)"
+        },
+        {
+          "variant": "MS 251 C-BE",
+          "page": 33,
+          "context": "6.4 Tension rapide de la chaîne"
+        }
+      ],
+      "used_in_phase38d": true,
+      "phase38d_conclusion": "generic_ms251_c_explicitly_documented: NO",
+      "reusable_for_phase39a": true,
+      "notes": "MS 251 C appears in document header but NOT in spec tables. Spec tables only cover MS 231 and MS 251."
+    },
+    {
+      "source_id": "SOURCE_B",
+      "document_id": "0458-737-5521-C",
+      "document_title": "STIHL MS 231, 251 Instrucțiuni de utilizare (Instruction Manual)",
+      "official_domain": "ssc.stihl.com",
+      "document_revision": "04_01",
+      "publication_date": "2022-08-01 (per conformity declaration)",
+      "language": "ro (Romanian translation)",
+      "market_region": "EU + UKCA",
+      "total_pages": 48,
+      "sha256": "97BEB6D9432A49454673E19AD904C37E22AB17A4A3CAD4C78D2E3B601965F59A",
+      "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-737-5521-C_ZBA_04_01.pdf",
+      "local_archive_path": "data/source_b_0458-737-5521-C.pdf",
+      "source_class": "OFFICIAL_INSTRUCTION_MANUAL",
+      "source_authority": "OFFICIAL_MANUAL",
+      "models_covered_in_header": ["MS 231", "MS 251"],
+      "models_in_tech_data_sections": ["MS 231", "MS 231 C", "MS 251", "MS 251 C"],
+      "models_in_conformity_declaration": ["MS 231", "MS 231 C", "MS 231 C-BE", "MS 251", "MS 251 C", "MS 251 C-BE"],
+      "generic_ms251_c_in_tech_data": true,
+      "generic_ms251_c_in_conformity": true,
+      "key_pages": {
+        "tech_data_engine": 42,
+        "tech_data_noise_vibration": 43,
+        "conformity_eu": 44,
+        "conformity_ukca": 45
+      },
+      "used_in_phase38d": false,
+      "new_for_phase39a": true,
+      "notes": "MS 251 C appears in technical data sections (33.1.2) and conformity declarations with explicit separate specifications."
+    }
+  ],
+  "third_party_sources": [],
+  "source_authenticity_summary": {
+    "all_sources_official": true,
+    "no_third_party_as_primary": true,
+    "document_integrity_verified": true
+  }
+}

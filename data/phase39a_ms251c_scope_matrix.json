@@ -1,0 +1,96 @@
+{
+  "phase": "39A",
+  "audit_timestamp": "2026-09-16T12:00:00.000Z",
+  "model_scope_matrix": [
+    {
+      "model": "MS 251",
+      "explicitly_named": true,
+      "source": "SOURCE_A + SOURCE_B",
+      "page": "SOURCE_A: spec table p6 | SOURCE_B: tech data p42-43",
+      "table_or_heading": "33.1.2 MS 251, MS 251 C",
+      "scope": "EXACT_MODEL",
+      "status": "DOCUMENTED_EXACT"
+    },
+    {
+      "model": "MS 251 C",
+      "explicitly_named": true,
+      "source": "SOURCE_B",
+      "page": "tech data p42 section 33.1.2, p43 noise/vibration tables, p44-45 conformity declarations",
+      "table_or_heading": "33.1.2 MS 251, MS 251 C | 33.5 Weight: MS 251 C cu ErgoStart | 33.7.1-33.7.3 noise/vibration tables | EU/UKCA conformity declarations",
+      "scope": "EXACT_MODEL",
+      "status": "DOCUMENTED_EXACT",
+      "strongest_evidence": "EU conformity declaration lists MS 251 C as separate type",
+      "eu_conformity_page": 44,
+      "ukca_conformity_page": 45,
+      "tech_data_page": 42,
+      "noise_vibration_page": 43
+    },
+    {
+      "model": "MS 251 C-BE",
+      "explicitly_named": true,
+      "source": "SOURCE_A + SOURCE_B",
+      "page": "SOURCE_A: p33 (chain tensioning) | SOURCE_B: p44-45 conformity declarations",
+      "table_or_heading": "EU conformity: Tip: MS 251 C-BE | UKCA conformity: Tip: MS 251 C-BE",
+      "scope": "EXACT_MODEL",
+      "status": "DOCUMENTED_EXACT",
+      "notes": "Listed as separate type in conformity declarations. No separate tech data specs (shares MS 251 C specs)."
+    },
+    {
+      "model": "MS 251 C-BEQ",
+      "explicitly_named": true,
+      "source": "SOURCE_A",
+      "page": "SOURCE_A: p4",
+      "table_or_heading": "Feature description: QuickStop Super (Q) / ErgoStart (E) / Quick chain tensioner (B)",
+      "scope": "EXACT_MODEL",
+      "status": "DOCUMENTED_EXACT",
+      "notes": "Mentioned in service manual as feature variant. NOT listed in Source B conformity declarations."
+    }
+  ],
+  "scope_classification_definitions": {
+    "EXACT_MODEL": "Document mentions the specific model name exactly",
+    "SHARED_TABLE_EXPLICIT_MODELS": "Model appears in shared technical table with explicit heading covering multiple models",
+    "VARIANT_SPECIFIC": "Value is specific to a variant/sub-model",
+    "FAMILY_LEVEL": "Value applies to entire model family",
+    "AMBIGUOUS": "Scope cannot be definitively determined",
+    "NOT_DOCUMENTED": "Model not mentioned in source"
+  },
+  "generic_ms_251_c_evaluation": {
+    "question": "IS 'MS 251 C' ITSELF AN OFFICIALLY DOCUMENTED MODEL/TYPE?",
+    "answer": "YES",
+    "strongest_evidence": {
+      "source": "SOURCE_B (0458-737-5521-C)",
+      "page": 44,
+      "heading": "EU Conformity Declaration - Tip: MS 251 C",
+      "context": "Listed as separate type alongside MS 251 and MS 251 C-BE"
+    },
+    "additional_evidence": [
+      {
+        "source": "SOURCE_B",
+        "page": 42,
+        "section": "33.1.2 MS 251, MS 251 C",
+        "context": "Technical data heading explicitly groups MS 251 and MS 251 C together"
+      },
+      {
+        "source": "SOURCE_B",
+        "page": 43,
+        "section": "33.7.1-33.7.3 Noise/Vibration tables",
+        "context": "MS 251 C listed as separate row in noise and vibration tables"
+      },
+      {
+        "source": "SOURCE_B",
+        "page": 45,
+        "section": "UKCA Conformity Declaration",
+        "context": "MS 251 C listed as separate type"
+      },
+      {
+        "source": "SOURCE_A",
+        "page": "header",
+        "section": "Document cover/header",
+        "context": "MS 251 C listed in document header models_covered_in_header"
+      }
+    ],
+    "phase38d_historical_conclusion": "generic_ms251_c_explicitly_documented: NO",
+    "phase39a_conclusion": "generic_ms251_c_explicitly_documented: YES",
+    "reason_for_difference": "Phase 38D examined Source A (service manual) where MS 251 C appears in header but NOT in spec tables. Phase 39A additionally examined Source B (instruction manual) where MS 251 C appears explicitly in technical data section 33.1.2, noise/vibration tables 33.7.1-33.7.3, and EU/UKCA conformity declarations as a separate type. The instruction manual provides stronger explicit documentation than the service manual."
+  }
+}

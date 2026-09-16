@@ -1,0 +1,96 @@
+{
+  "phase": "39A",
+  "audit_timestamp": "2026-09-16T12:00:00.000Z",
+  "conflict_review": {
+    "official_source_conflicts": 0,
+    "unresolved_conflicts": 0,
+    "conflict_details": []
+  },
+  "configuration_dependent_fields": [
+    {
+      "field": "weight_kg",
+      "source": "SOURCE_B p43 section 33.5",
+      "configurations": [
+        {
+          "model": "MS 251",
+          "value": 4.8,
+          "condition": "Standard"
+        },
+        {
+          "model": "MS 251 C",
+          "value": 5.1,
+          "condition": "cu ErgoStart i tensionare rapid a lanului"
+        }
+      ],
+      "resolution": "CONFIGURATION_DEPENDENT - cannot use single scalar for MS 251 C"
+    }
+  ],
+  "variant_isolation": {
+    "can_ms251c_fact_apply_to_c_be": "NO",
+    "can_c_be_fact_apply_to_ms251c": "NO",
+    "can_c_beq_fact_apply_to_ms251c": "NO",
+    "reason": "No explicit evidence that C-BE or C-BEQ share values with generic MS 251 C. Each is a separate type in conformity declarations.",
+    "c_be_isolation_notes": "MS 251 C-BE listed as separate type in EU/UKCA conformity declarations. No separate tech data specs found - shares engine specs with MS 251 C but has different equipment (ErgoStart + Quick chain tensioner).",
+    "c_beq_isolation_notes": "MS 251 C-BEQ mentioned in Source A (service manual) as feature variant. NOT listed in Source B conformity declarations. Shares engine specs but has additional QuickStop Super feature."
+  },
+  "cross_source_comparison": [
+    {
+      "field": "displacement_cc",
+      "source_a_value": 45.6,
+      "source_b_value": 45.6,
+      "match": true,
+      "conflict": false
+    },
+    {
+      "field": "bore_mm",
+      "source_a_value": 44,
+      "source_b_value": 44,
+      "match": true,
+      "conflict": false
+    },
+    {
+      "field": "stroke_mm",
+      "source_a_value": 30,
+      "source_b_value": 30,
+      "match": true,
+      "conflict": false
+    },
+    {
+      "field": "power_kw",
+      "source_a_value": 2.2,
+      "source_b_value": 2.2,
+      "match": true,
+      "conflict": false
+    },
+    {
+      "field": "idle_speed_rpm",
+      "source_a_value": 2800,
+      "source_b_value": 2800,
+      "match": true,
+      "conflict": false,
+      "note": "Source B footnote: conform ISO 11681 +/- 50 1/min"
+    },
+    {
+      "field": "spark_plug",
+      "source_a_value": "NGK CMR 6 H",
+      "source_b_value": "NGK CMR6H",
+      "match": true,
+      "conflict": false,
+      "note": "Same plug, minor formatting difference (space vs no space)"
+    },
+    {
+      "field": "electrode_gap_mm",
+      "source_a_value": 0.5,
+      "source_b_value": 0.5,
+      "match": true,
+      "conflict": false
+    }
+  ],
+  "historical_phase38d_integrity": {
+    "phase38d_final_report_changed": false,
+    "phase38d_scope_audit_changed": false,
+    "phase38d_source_inventory_changed": false,
+    "phase38d_promotion_audit_changed": false,
+    "notes": "All Phase 38D artifacts remain unchanged"
+  }
+}

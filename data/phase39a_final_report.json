@@ -1,0 +1,122 @@
+{
+  "phase": "39A",
+  "audit_timestamp": "2026-09-16T12:00:00.000Z",
+  "baseline": {
+    "commit": "6378ede18523bb9d9dfbd86cebf020f203fb9b42",
+    "tree": "61e4392281051bc72e009608403cbe652b5d6316",
+    "branch": "audit/phase39a-ms251c-evidence-scope",
+    "working_tree_before": "CLEAN"
+  },
+  "source_authentication": {
+    "source_a": {
+      "document_id": "0455-737-0223",
+      "title": "STIHL MS 231, 251 Manuel de service",
+      "official": true,
+      "domain": "ssc.stihl.com",
+      "revision_date": "2010-10",
+      "language_market": "FR / EU",
+      "sha256": "704a528a7b9b0350e1ef84e683da6393d982ff23152670903c30a71956430d0b",
+      "ms_251_named": true,
+      "ms_251_c_named": true,
+      "c_be_named": true,
+      "c_beq_named": true
+    },
+    "source_b": {
+      "document_id": "0458-737-5521-C",
+      "title": "STIHL MS 231, 251 Instruction Manual",
+      "official": true,
+      "domain": "ssc.stihl.com",
+      "revision_date": "2022-08-01",
+      "language_market": "RO / EU+UKCA",
+      "sha256": "97BEB6D9432A49454673E19AD904C37E22AB17A4A3CAD4C78D2E3B601965F59A",
+      "ms_251_named": true,
+      "ms_251_c_named": true,
+      "c_be_named": true,
+      "c_beq_named": false
+    }
+  },
+  "identity_scope": {
+    "generic_ms_251_c_explicitly_documented": "YES",
+    "strongest_evidence": "EU conformity declaration (Source B p44) lists MS 251 C as separate type",
+    "page": 44,
+    "heading": "EU Conformity Declaration - Tip: MS 251 C",
+    "phase_38d_historical_conclusion": "generic_ms251_c_explicitly_documented: NO",
+    "phase_39a_conclusion": "generic_ms251_c_explicitly_documented: YES",
+    "reason_for_difference": "Phase 38D examined Source A (service manual) where MS 251 C appears in header but NOT in spec tables. Phase 39A additionally examined Source B (instruction manual) where MS 251 C appears explicitly in technical data section 33.1.2, noise/vibration tables 33.7.1-33.7.3, and EU/UKCA conformity declarations as a separate type. The instruction manual provides stronger explicit documentation than the service manual."
+  },
+  "field_results": {
+    "displacement_cc": "PROMOTABLE_SHARED_EXPLICIT",
+    "bore_mm": "PROMOTABLE_SHARED_EXPLICIT",
+    "stroke_mm": "PROMOTABLE_SHARED_EXPLICIT",
+    "power_kw": "PROMOTABLE_SHARED_EXPLICIT",
+    "idle_speed_rpm": "PROMOTABLE_SHARED_EXPLICIT",
+    "max_speed_rpm": "INSUFFICIENT_SCOPE",
+    "clutch_speed_rpm": "INSUFFICIENT_SCOPE",
+    "weight_kg": "CONFIGURATION_DEPENDENT",
+    "fuel_tank_l": "PROMOTABLE_SHARED_EXPLICIT",
+    "oil_tank_l": "PROMOTABLE_SHARED_EXPLICIT",
+    "spark_plug": "PROMOTABLE_SHARED_EXPLICIT",
+    "spark_plug_gap_mm": "PROMOTABLE_SHARED_EXPLICIT",
+    "sound_pressure_db": "PROMOTABLE_SHARED_EXPLICIT",
+    "sound_power_db": "PROMOTABLE_SHARED_EXPLICIT",
+    "vibration_left": "PROMOTABLE_SHARED_EXPLICIT",
+    "vibration_right": "PROMOTABLE_SHARED_EXPLICIT"
+  },
+  "variant_isolation": {
+    "ms_251_vs_ms_251_c": "SAME_ENGINE_SPECS_DIFFERENT_EQUIPMENT",
+    "ms_251_c_vs_c_be": "SEPARATE_TYPES_IN_CONFORMITY_DECLARATIONS",
+    "ms_251_c_vs_c_beq": "SEPARATE_TYPES_IN_SERVICE_MANUAL",
+    "unsafe_cross_variant_assumptions_found": false
+  },
+  "conflicts": {
+    "official_source_conflicts": 0,
+    "configuration_dependent_fields": ["weight_kg"],
+    "unresolved_fields": []
+  },
+  "current_ms_251_public_facts": {
+    "existing_ms_251_facts_reviewed": 9,
+    "same_source_applicability_to_ms_251_c": {
+      "displacement_cc": "YES - same engine family",
+      "bore_mm": "YES - same engine family",
+      "stroke_mm": "YES - same engine family",
+      "power_kw": "YES - same engine family",
+      "idle_speed_rpm": "YES - same engine family",
+      "clutch_speed_rpm": "INSUFFICIENT_SCOPE - not in Source B for MS 251 C",
+      "max_speed_rpm": "INSUFFICIENT_SCOPE - not in Source B for MS 251 C",
+      "spark_plug": "YES - shared ignition system",
+      "electrode_gap_mm": "YES - shared ignition system"
+    },
+    "candidate_shared_fields": ["displacement_cc", "bore_mm", "stroke_mm", "power_kw", "idle_speed_rpm", "spark_plug", "electrode_gap_mm"],
+    "fields_requiring_distinct_ms_251_c_evidence": ["weight_kg"]
+  },
+  "safe_for_next_phase": {
+    "promotable_exact_fields": [],
+    "promotable_shared_explicit_fields": [
+      {"field": "displacement_cc", "value": 45.6, "unit": "cc", "source": "0458-737-5521-C", "page": 42, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "bore_mm", "value": 44, "unit": "mm", "source": "0458-737-5521-C", "page": 42, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "stroke_mm", "value": 30, "unit": "mm", "source": "0458-737-5521-C", "page": 42, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "power_kw", "value": 2.2, "unit": "kW", "source": "0458-737-5521-C", "page": 42, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "idle_speed_rpm", "value": 2800, "unit": "rpm", "source": "0458-737-5521-C", "page": 42, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "fuel_tank_l", "value": 0.39, "unit": "l", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "oil_tank_l", "value": 0.2, "unit": "l", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "spark_plug", "value": "NGK CMR 6 H", "unit": null, "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "spark_plug_gap_mm", "value": 0.5, "unit": "mm", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "sound_pressure_db", "value": 103, "unit": "dB(A)", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "sound_power_db", "value": 113, "unit": "dB(A)", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "vibration_left", "value": 3.9, "unit": "m/s²", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"},
+      {"field": "vibration_right", "value": 3.9, "unit": "m/s²", "source": "0458-737-5521-C", "page": 43, "scope": "SHARED_TABLE_EXPLICIT_MODELS"}
+    ],
+    "not_promotable_fields": [
+      {"field": "weight_kg", "reason": "CONFIGURATION_DEPENDENT - MS 251: 4.8 kg, MS 251 C with ErgoStart: 5.1 kg"},
+      {"field": "max_speed_rpm", "reason": "INSUFFICIENT_SCOPE - not documented for MS 251 C in Source B"},
+      {"field": "clutch_speed_rpm", "reason": "INSUFFICIENT_SCOPE - not documented for MS 251 C in Source B"}
+    ]
+  },
+  "integrity": {
+    "canonical_database_changed": false,
+    "public_evidence_changed": false,
+    "baseline_manifest_changed": false,
+    "runtime_code_changed": false,
+    "historical_phase_38d_artifacts_changed": false
+  }
+}
