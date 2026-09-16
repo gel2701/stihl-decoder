@@ -1,0 +1,67 @@
+{
+  "PHASE": "41",
+  "TITLE": "Homepage SEO Architecture & Internal Linking — Production Promotion Report",
+  "GENERATED_AT": "2026-09-17T00:10:00.000Z",
+  "FINAL_DECISION": "PHASE 41 COMPLETE / PROMOTED / DEPLOYED / LIVE VERIFIED / PASS",
+
+  "ACCEPTED_INPUT": {
+    "phase41_commit": "6c0b3b7133af281d653b893b2a5f6d03de126e77",
+    "phase41_tree": "d1725f11caad3b03b913e946967b32879ed10324",
+    "candidate_branch": "feat/phase41-homepage-seo-internal-linking"
+  },
+
+  "PROMOTION": {
+    "method": "cherry-pick 6c0b3b7 onto main",
+    "final_main_commit": "3f58f18f6b56b1f55c4277baad05ce3181ec0ee9",
+    "final_main_tree": "d1725f11caad3b03b913e946967b32879ed10324",
+    "accepted_tree_match": "YES",
+    "push": "SUCCESS (7a20f99..3f58f18 main -> main)"
+  },
+
+  "DEPLOYMENT": {
+    "provider": "Render.com",
+    "status": "LIVE",
+    "deployed_commit": "3f58f18f6b56b1f55c4277baad05ce3181ec0ee9",
+    "deployed_at": "2026-09-16T22:06:25.424Z"
+  },
+
+  "LIVE_VERIFICATION": {
+    "h1_count": 1,
+    "h1_text": "STIHL Serienummer Decoder — Bouwjaar en model controleren",
+    "version_badge_outside_h1": true,
+    "unique_internal_targets": 20,
+    "category_links": 4,
+    "tool_links": 3,
+    "model_links": 8,
+    "guide_links": 4,
+    "canonical_preserved": true,
+    "robots_preserved": true,
+    "decoder_function_intact": true,
+    "basic_classification_57_57": true,
+    "public_facts_474": true,
+    "no_new_4xx_5xx": true,
+    "no_js_errors": true
+  },
+
+  "TESTS": {
+    "phase41_seo_test": "PASS (17/17)",
+    "phase38e": "PASS",
+    "phase39c": "PASS",
+    "phase40b": "PASS (9/9)",
+    "new_regressions": 0
+  },
+
+  "PROTECTED_DATA": {
+    "database_changed": false,
+    "public_evidence_changed": false,
+    "classification_drift": 0,
+    "decoder_logic_changed": false
+  },
+
+  "GIT_FINAL": {
+    "HEAD": "3f58f18f6b56b1f55c4277baad05ce3181ec0ee9",
+    "origin_main": "3f58f18f6b56b1f55c4277baad05ce3181ec0ee9",
+    "tree": "d1725f11caad3b03b913e946967b32879ed10324",
+    "accepted_tree_match": "YES"
+  }
+}
