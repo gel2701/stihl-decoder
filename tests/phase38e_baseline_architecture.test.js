@@ -83,7 +83,7 @@ assert.strictEqual(validatePublicEvidenceBaseline({ manifest, publicEvidenceStor
 const rehearsalManifest = clone(manifest);
 rehearsalManifest.baseline_id = 'phase38e-rehearsal-475';
 rehearsalManifest.fact_count = 475;
-rehearsalManifest.distinct_model_count = 51;
+rehearsalManifest.distinct_model_count = 52;
 rehearsalManifest.fact_array_canonical_sha256 = hashCanonicalValue(rehearsalStore.facts);
 rehearsalManifest.public_store_canonical_sha256 = hashCanonicalValue(rehearsalStore);
 rehearsalManifest.immutable_prefix_count = 475;

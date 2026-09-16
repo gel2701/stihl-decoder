@@ -147,9 +147,9 @@ function normalizeValueForEquality(field, value) {
 // ========== TEST 8: Public Store Immutability ==========
 {
   const facts = PUBLIC_STORE.facts;
-  assert.strictEqual(facts.length, 461, 'Public store must have 461 facts');
+  assert.strictEqual(facts.length, 474, 'Public store must have 474 facts');
 
-  const expectedFactArrayHash = 'b167075a9ca7e04ce521210824c41bc76082bd3154ac9bcb8a6b97b712a58b7f';
+  const expectedFactArrayHash = '2ef63726618b269ed2c4aaf88a98dc43bd87a6b113a1c4b98fb1a7878a3c53bc';
   const computedHash = hashCanonicalValue(facts);
   assert.strictEqual(computedHash, expectedFactArrayHash, 'Public store fact array hash must match baseline');
   console.log('TEST 8 PASS: Public store immutability verified');
@@ -169,8 +169,8 @@ function normalizeValueForEquality(field, value) {
     }
   }
 
-  assert.strictEqual(newIds, 13, 'Expected 13 new unique fact IDs');
-  assert.strictEqual(duplicateIds, 0, 'No duplicate IDs with existing store');
+  assert.strictEqual(newIds, 0, 'All 13 candidate fact IDs are now in the store (post-activation)');
+  assert.strictEqual(duplicateIds, 13, 'All 13 candidate fact IDs are duplicates of existing store facts');
   console.log('TEST 9 PASS: Synthetic append validation passed');
 }
 
