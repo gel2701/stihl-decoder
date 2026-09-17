@@ -16,7 +16,7 @@ const CORE5_FIELDS = ['product_category', 'product_type', 'machine_form', 'power
 const models = database.models || database;
 const modelArray = Array.isArray(models) ? models : Object.values(models);
 
-// Phase 42C added 5 new models (BG 56, BG 66, BG 86, SH 56, SH 86)
+// Phase 42C added 5 new models, Phase 42D added facts
 const NEW_PHASE42C_SLUGS = ['bg-56', 'bg-66', 'bg-86', 'sh-56', 'sh-86'];
 const ORIGINAL_57_COUNT = 57;
 const TOTAL_AFTER_PHASE42C = 62;
@@ -112,8 +112,9 @@ describe('Phase 40B: Basic Classification Activation', () => {
     }
   });
 
-  it('T8: Public evidence immutability — 474 facts unchanged', () => {
-    expect(evidenceFacts.facts.length).toBe(474);
+  it('T8: Public evidence — facts increased by Phase 42D activation', () => {
+    // Phase 42D activated 18 new facts: 474 + 18 = 492
+    expect(evidenceFacts.facts.length).toBe(492);
   });
 
   it('T9: Phase 42C new models — correctly present with CORE5', () => {

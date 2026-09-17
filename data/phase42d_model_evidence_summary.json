@@ -1,0 +1,885 @@
+{
+  "phase": "42D",
+  "title": "Model Evidence Summary",
+  "generated_at": "2026-09-17T00:10:19.797Z",
+  "total_models": 55,
+  "models": {
+    "026": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "bore_mm",
+        "stroke_mm",
+        "idle_speed_rpm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "electrode_gap_mm",
+        "spark_plug",
+        "displacement_cc",
+        "power_kw",
+        "power_hp"
+      ]
+    },
+    "046": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "idle_speed_rpm",
+        "fuel_tank_l",
+        "electrode_gap_mm",
+        "spark_plug",
+        "power_kw",
+        "power_hp"
+      ]
+    },
+    "ts-410": {
+      "before": 4,
+      "after": 4,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "ts-420": {
+      "before": 4,
+      "after": 4,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "009": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "017": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "018": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "036": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "044": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "088": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "ms-260": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "ms-360": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "ms-460": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "spark_plug",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "fs-350": {
+      "before": 7,
+      "after": 7,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "electrode_gap_mm",
+        "idle_speed_rpm"
+      ]
+    },
+    "hs-45": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "electrode_gap_mm",
+        "idle_speed_rpm",
+        "max_engine_speed_rpm"
+      ]
+    },
+    "ms-170": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "electrode_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg"
+      ]
+    },
+    "ms-261": {
+      "before": 13,
+      "after": 13,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "max_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "ms-261-c-m": {
+      "before": 13,
+      "after": 13,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "max_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "ms-180": {
+      "before": 12,
+      "after": 12,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "max_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "br-600": {
+      "before": 8,
+      "after": 8,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg",
+        "blowing_force_n"
+      ]
+    },
+    "ms-201-tc-m": {
+      "before": 11,
+      "after": 11,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "fs-460-c-em": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg"
+      ]
+    },
+    "ms-210": {
+      "before": 10,
+      "after": 12,
+      "delta": 2,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch",
+        "power_hp",
+        "idle_speed_rpm"
+      ]
+    },
+    "ms-230": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "ms-250": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "ms-290": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "ms-362-c-m": {
+      "before": 11,
+      "after": 11,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "fs-38": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg"
+      ]
+    },
+    "sr-430": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg"
+      ]
+    },
+    "ms-310": {
+      "before": 12,
+      "after": 12,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "ms-390": {
+      "before": 11,
+      "after": 11,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch"
+      ]
+    },
+    "br-500": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg",
+        "blowing_force_n"
+      ]
+    },
+    "br-550": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg",
+        "blowing_force_n"
+      ]
+    },
+    "br-700": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg",
+        "blowing_force_n"
+      ]
+    },
+    "ms-201-t": {
+      "before": 12,
+      "after": 13,
+      "delta": 1,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "weight_kg",
+        "chain_pitch",
+        "max_power_speed_rpm"
+      ]
+    },
+    "fs-120": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "max_speed_rpm",
+        "fuel_tank_l",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "fs-200": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "max_speed_rpm",
+        "fuel_tank_l",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "sr-450": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg"
+      ]
+    },
+    "fs-410-c-m": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg"
+      ]
+    },
+    "fs-490-c-m": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "idle_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "fuel_tank_l",
+        "weight_kg"
+      ]
+    },
+    "ms-341": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-361": {
+      "before": 9,
+      "after": 10,
+      "delta": 1,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "power_hp"
+      ]
+    },
+    "ms-270": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-280": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-200": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-200-t": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-440": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-441": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-461": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "max_engine_speed_rpm",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "spark_plug",
+        "spark_plug_gap_mm"
+      ]
+    },
+    "ms-251": {
+      "before": 9,
+      "after": 9,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "clutch_speed_rpm",
+        "max_speed_rpm",
+        "spark_plug",
+        "electrode_gap_mm"
+      ]
+    },
+    "ms-251-c": {
+      "before": 13,
+      "after": 13,
+      "delta": 0,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "idle_speed_rpm",
+        "fuel_tank_l",
+        "oil_tank_l",
+        "spark_plug",
+        "spark_plug_gap_mm",
+        "sound_pressure_db",
+        "sound_power_db",
+        "vibration_left",
+        "vibration_right"
+      ]
+    },
+    "fs-460": {
+      "before": 0,
+      "after": 6,
+      "delta": 6,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw",
+        "power_hp",
+        "weight_kg"
+      ]
+    },
+    "ms-362": {
+      "before": 0,
+      "after": 4,
+      "delta": 4,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm",
+        "power_kw"
+      ]
+    },
+    "ms-400": {
+      "before": 0,
+      "after": 3,
+      "delta": 3,
+      "fields": [
+        "displacement_cc",
+        "bore_mm",
+        "stroke_mm"
+      ]
+    },
+    "ms-311": {
+      "before": 0,
+      "after": 1,
+      "delta": 1,
+      "fields": [
+        "displacement_cc"
+      ]
+    }
+  }
+}
