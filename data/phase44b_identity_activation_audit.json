@@ -1,0 +1,336 @@
+{
+  "audit_id": "phase44b_identity_activation_audit",
+  "audit_date": "2026-09-17T04:43:28.819Z",
+  "phase44a_commit": "4c1d7bd250e5feae48de7be742d5cd34af4d22af",
+  "phase44a_tree": "6b39663b68f7d415673abc2c61555b5979ab1e0b",
+  "input_total": 21,
+  "activated": 21,
+  "already_canonical": 0,
+  "blocked": 0,
+  "unaccounted": 0,
+  "sub_batch_1": {
+    "count": 11,
+    "models": [
+      {
+        "candidate_id": "15",
+        "model_name": "MS 182",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1148-011-3062",
+        "slug": "ms-182",
+        "aliases": [
+          "MS182"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "1",
+        "model_name": "MS 162",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1148-011-3013",
+        "slug": "ms-162",
+        "aliases": [
+          "MS162"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "83",
+        "model_name": "FS 161",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4147-012-2307",
+        "slug": "fs-161",
+        "aliases": [
+          "FS161"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "35",
+        "model_name": "BG 50",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4229-200-0004",
+        "slug": "bg-50",
+        "aliases": [
+          "BG50"
+        ],
+        "category": "Bladblazer",
+        "category_slug": "bladblazers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "3",
+        "model_name": "MS 172",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1148-011-3032",
+        "slug": "ms-172",
+        "aliases": [
+          "MS172"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "84",
+        "model_name": "FS 221",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4147-012-2309",
+        "slug": "fs-221",
+        "aliases": [
+          "FS221"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "49",
+        "model_name": "FS 55",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4140-012-2337",
+        "slug": "fs-55",
+        "aliases": [
+          "FS55"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "145",
+        "model_name": "MS 363",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "MB01-011-3061",
+        "slug": "ms-363",
+        "aliases": [
+          "MS363"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "133",
+        "model_name": "BR 800",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4283-200-0000",
+        "slug": "br-800",
+        "aliases": [
+          "BR800"
+        ],
+        "category": "Bladblazer",
+        "category_slug": "bladblazers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "130",
+        "model_name": "FS 131",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4180-011-2367",
+        "slug": "fs-131",
+        "aliases": [
+          "FS131"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "129",
+        "model_name": "FS 85",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4137-011-2359",
+        "slug": "fs-85",
+        "aliases": [
+          "FS85"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      }
+    ]
+  },
+  "sub_batch_2": {
+    "count": 10,
+    "models": [
+      {
+        "candidate_id": "127",
+        "model_name": "FS 80",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4137-011-2360",
+        "slug": "fs-80",
+        "aliases": [
+          "FS80"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "93",
+        "model_name": "MS 661",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1144-011-3059",
+        "slug": "ms-661",
+        "aliases": [
+          "MS661"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "88",
+        "model_name": "FR 410",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4147-011-3317",
+        "slug": "fr-410",
+        "aliases": [
+          "FR410"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "86",
+        "model_name": "FS 351",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4147-012-2313",
+        "slug": "fs-351",
+        "aliases": [
+          "FS351"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "85",
+        "model_name": "FS 291",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4147-012-2311",
+        "slug": "fs-291",
+        "aliases": [
+          "FS291"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "78",
+        "model_name": "FS 55 R",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4140-012-2345",
+        "slug": "fs-55-r",
+        "aliases": [
+          "FS55R"
+        ],
+        "category": "Bosmaaier",
+        "category_slug": "bosmaaiers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "54",
+        "model_name": "MS 382",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1119-011-3052",
+        "slug": "ms-382",
+        "aliases": [
+          "MS382"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "39",
+        "model_name": "BR 420",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "4203-200-0012",
+        "slug": "br-420",
+        "aliases": [
+          "BR420"
+        ],
+        "category": "Bladblazer",
+        "category_slug": "bladblazers",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "4",
+        "model_name": "MS 172 C-BE",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1148-011-3033",
+        "slug": "ms-172-c-be",
+        "aliases": [
+          "MS172C-BE"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      },
+      {
+        "candidate_id": "2",
+        "model_name": "MS 212",
+        "source": "STIHL BR VTEX Catalog",
+        "article_reference": "1148-011-3092",
+        "slug": "ms-212",
+        "aliases": [
+          "MS212"
+        ],
+        "category": "Kettingzaag",
+        "category_slug": "kettingzagen",
+        "core5": 5,
+        "final_disposition": "ACTIVATE_IDENTITY_CORE5",
+        "reason": "Valid canonical identity from official BR catalog"
+      }
+    ]
+  }
+}

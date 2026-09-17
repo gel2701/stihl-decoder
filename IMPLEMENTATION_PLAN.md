@@ -612,27 +612,140 @@ Establish the full authoritative BR catalog from STIHL's official e-commerce pla
 
 ---
 
-## Phase 44B — BR Tier 1 Model Activation (PLANNED / NEXT)
+## Phase 44B — BR Tier 1 Canonical Identity & CORE5 Activation
+
+**Status:** COMPLETE — CANDIDATE ONLY (2026-09-17)
+**Branch:** `feat/phase44b-br-tier1-identity-activation`
+**Base commit:** `4c1d7bd250e5feae48de7be742d5cd34af4d22af` (Phase 44A)
+**Base tree:** `6b39663b68f7d415673abc2c61555b5979ab1e0b` (Phase 44A)
+
+### Goal
+
+Activate 21 Tier 1 high-priority machine models from Phase 44A with canonical identity and CORE5 classification.
+
+### Activation results
+
+| Metric | Value |
+|---|---|
+| Input Tier 1 models | 21 |
+| Activated | 21 |
+| Already canonical | 0 |
+| Blocked | 0 |
+| Models before | 62 |
+| Models after | 83 |
+
+### Sub-batch execution
+
+- **Sub-batch 1:** 11 models (MS 182, MS 162, FS 161, BG 50, MS 172, FS 221, FS 55, MS 363, BR 800, FS 131, FS 85)
+- **Sub-batch 2:** 10 models (FS 80, MS 661, FR 410, FS 351, FS 291, FS 55 R, MS 382, BR 420, MS 172 C-BE, MS 212)
+- Both sub-batches passed all gates
+
+### Activated models
+
+| Model | Slug | Category | CORE5 | Aliases |
+|---|---|---|---|---|
+| MS 182 | ms-182 | Kettingzaag | 5/5 | MS182 |
+| MS 162 | ms-162 | Kettingzaag | 5/5 | MS162 |
+| FS 161 | fs-161 | Bosmaaier | 5/5 | FS161 |
+| BG 50 | bg-50 | Bladblazer | 5/5 | BG50 |
+| MS 172 | ms-172 | Kettingzaag | 5/5 | MS172 |
+| FS 221 | fs-221 | Bosmaaier | 5/5 | FS221 |
+| FS 55 | fs-55 | Bosmaaier | 5/5 | FS55 |
+| MS 363 | ms-363 | Kettingzaag | 5/5 | MS363 |
+| BR 800 | br-800 | Bladblazer | 5/5 | BR800 |
+| FS 131 | fs-131 | Bosmaaier | 5/5 | FS131 |
+| FS 85 | fs-85 | Bosmaaier | 5/5 | FS85 |
+| FS 80 | fs-80 | Bosmaaier | 5/5 | FS80 |
+| MS 661 | ms-661 | Kettingzaag | 5/5 | MS661 |
+| FR 410 | fr-410 | Bosmaaier | 5/5 | FR410 |
+| FS 351 | fs-351 | Bosmaaier | 5/5 | FS351 |
+| FS 291 | fs-291 | Bosmaaier | 5/5 | FS291 |
+| FS 55 R | fs-55-r | Bosmaaier | 5/5 | FS55R |
+| MS 382 | ms-382 | Kettingzaag | 5/5 | MS382 |
+| BR 420 | br-420 | Bladblazer | 5/5 | BR420 |
+| MS 172 C-BE | ms-172-c-be | Kettingzaag | 5/5 | MS172C-BE |
+| MS 212 | ms-212 | Kettingzaag | 5/5 | MS212 |
+
+### Policy compliance
+
+- production_confidence: UNKNOWN (all new models)
+- specs_verified: false (all new models)
+- Public facts: 512 (unchanged)
+- Technical facts added: 0
+- Existing 62 models mutated: 0
+- Suffix preservation: 100%
+- Slug collisions: 0
+- Alias collisions: 0
+
+### Tests
+
+- canonical_policy: PASS
+- official_product_harvester: PASS
+- Phase 39C: PASS (14/14)
+- Phase 44B: PASS (all gates)
+- New regressions: 0
+
+### Output artifacts
+
+1. `data/phase44b_identity_dispositions.json` — 21 model dispositions
+2. `data/phase44b_existing_model_immutability_audit.json` — 62 existing models unchanged
+3. `data/phase44b_identity_activation_audit.json` — Identity activation details
+4. `data/phase44b_core5_activation_audit.json` — CORE5 5/5 for all activated
+5. `data/phase44b_route_integration_audit.json` — Route integration details
+6. `data/phase44b_search_integration_audit.json` — Search integration details
+7. `data/phase44b_batch_accounting.json` — Batch accounting
+8. `data/public_evidence_baseline_manifest.json` — Updated manifest
+
+### Not in scope for Phase 44B
+
+- Technical evidence activation (deferred to Phase 44C)
+- Tier 2/3 models (future phases)
+- Accessory schema (separate future domain)
+- STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
+- Production promotion (deferred to Phase 44D)
+
+---
+
+## Phase 44C — BR Tier 1 Technical Evidence Reconciliation & Activation (PLANNED / NEXT)
 
 **Status:** PLANNED / NOT YET ACTIVE
 
 ### Goal
 
-Activate 21 Tier 1 high-priority machine models with official evidence from the VTEX catalog.
+Review official BR technical fields per activated model, separate global-safe vs BR market-specific values, and stage/activate safe technical evidence.
 
 ### Scope
 
-- 21 Tier 1 models from Phase 44A batch definition
-- Update `stihl_database.json` with new model entries
-- Update `public_evidence_facts.json` with evidence facts
-- Run regression tests
-- Commit and potentially deploy
+- 21 Tier 1 models activated in Phase 44B
+- Official BR technical specifications from VTEX catalog
+- Manual evidence verification where available
 
-### Models to activate
+### Not in scope for Phase 44C
 
-MS 162, MS 172, MS 182, MS 212, MS 363, MS 382, FS 161, FS 221, FS 55, BG 50, and 11 more Tier 1 candidates
+- Production promotion (deferred to Phase 44D)
+- Tier 2/3 models (future phases)
+- Accessory schema (separate future domain)
+- STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
 
-### Not in scope for Phase 44B
+---
+
+## Phase 44D — Tier 1 Production Promotion & Live Verification (PLANNED / FUTURE)
+
+**Status:** PLANNED / NOT YET ACTIVE
+
+### Goal
+
+Promote Phase 44B/C candidates to production and verify live deployment.
+
+### Scope
+
+- Cherry-pick Phase 44B/C commits to main
+- Deploy to Render
+- Verify live routes
+- Verify sitemap
+- Verify search
+
+### Not in scope for Phase 44D
 
 - Tier 2/3 models (future phases)
 - Accessory schema (separate future domain)

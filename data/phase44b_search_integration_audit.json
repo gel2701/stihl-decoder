@@ -1,0 +1,304 @@
+{
+  "audit_id": "phase44b_search_integration_audit",
+  "audit_date": "2026-09-17T04:43:28.851Z",
+  "new_identities_tested": 21,
+  "positive_searches_pass": 21,
+  "negative_variant_tests": 21,
+  "false_positives": 0,
+  "models": [
+    {
+      "model": "MS 182",
+      "positive_queries": [
+        "MS 182",
+        "MS182"
+      ],
+      "expected_slug": "ms-182",
+      "actual_slug": "ms-182",
+      "negative_queries": [
+        "MS 182 C-E",
+        "MS 182 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 162",
+      "positive_queries": [
+        "MS 162",
+        "MS162"
+      ],
+      "expected_slug": "ms-162",
+      "actual_slug": "ms-162",
+      "negative_queries": [
+        "MS 162 C-E",
+        "MS 162 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 161",
+      "positive_queries": [
+        "FS 161",
+        "FS161"
+      ],
+      "expected_slug": "fs-161",
+      "actual_slug": "fs-161",
+      "negative_queries": [
+        "FS 161 C-E",
+        "FS 161 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "BG 50",
+      "positive_queries": [
+        "BG 50",
+        "BG50"
+      ],
+      "expected_slug": "bg-50",
+      "actual_slug": "bg-50",
+      "negative_queries": [
+        "BG 50 C-E",
+        "BG 50 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 172",
+      "positive_queries": [
+        "MS 172",
+        "MS172"
+      ],
+      "expected_slug": "ms-172",
+      "actual_slug": "ms-172",
+      "negative_queries": [
+        "MS 172 C-E",
+        "MS 172 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 221",
+      "positive_queries": [
+        "FS 221",
+        "FS221"
+      ],
+      "expected_slug": "fs-221",
+      "actual_slug": "fs-221",
+      "negative_queries": [
+        "FS 221 C-E",
+        "FS 221 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 55",
+      "positive_queries": [
+        "FS 55",
+        "FS55"
+      ],
+      "expected_slug": "fs-55",
+      "actual_slug": "fs-55",
+      "negative_queries": [
+        "FS 55 C-E",
+        "FS 55 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 363",
+      "positive_queries": [
+        "MS 363",
+        "MS363"
+      ],
+      "expected_slug": "ms-363",
+      "actual_slug": "ms-363",
+      "negative_queries": [
+        "MS 363 C-E",
+        "MS 363 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "BR 800",
+      "positive_queries": [
+        "BR 800",
+        "BR800"
+      ],
+      "expected_slug": "br-800",
+      "actual_slug": "br-800",
+      "negative_queries": [
+        "BR 800 C-E",
+        "BR 800 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 131",
+      "positive_queries": [
+        "FS 131",
+        "FS131"
+      ],
+      "expected_slug": "fs-131",
+      "actual_slug": "fs-131",
+      "negative_queries": [
+        "FS 131 C-E",
+        "FS 131 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 85",
+      "positive_queries": [
+        "FS 85",
+        "FS85"
+      ],
+      "expected_slug": "fs-85",
+      "actual_slug": "fs-85",
+      "negative_queries": [
+        "FS 85 C-E",
+        "FS 85 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 80",
+      "positive_queries": [
+        "FS 80",
+        "FS80"
+      ],
+      "expected_slug": "fs-80",
+      "actual_slug": "fs-80",
+      "negative_queries": [
+        "FS 80 C-E",
+        "FS 80 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 661",
+      "positive_queries": [
+        "MS 661",
+        "MS661"
+      ],
+      "expected_slug": "ms-661",
+      "actual_slug": "ms-661",
+      "negative_queries": [
+        "MS 661 C-E",
+        "MS 661 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FR 410",
+      "positive_queries": [
+        "FR 410",
+        "FR410"
+      ],
+      "expected_slug": "fr-410",
+      "actual_slug": "fr-410",
+      "negative_queries": [
+        "FR 410 C-E",
+        "FR 410 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 351",
+      "positive_queries": [
+        "FS 351",
+        "FS351"
+      ],
+      "expected_slug": "fs-351",
+      "actual_slug": "fs-351",
+      "negative_queries": [
+        "FS 351 C-E",
+        "FS 351 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 291",
+      "positive_queries": [
+        "FS 291",
+        "FS291"
+      ],
+      "expected_slug": "fs-291",
+      "actual_slug": "fs-291",
+      "negative_queries": [
+        "FS 291 C-E",
+        "FS 291 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "FS 55 R",
+      "positive_queries": [
+        "FS 55 R",
+        "FS55R"
+      ],
+      "expected_slug": "fs-55-r",
+      "actual_slug": "fs-55-r",
+      "negative_queries": [
+        "FS 55 R C-E",
+        "FS 55 R X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 382",
+      "positive_queries": [
+        "MS 382",
+        "MS382"
+      ],
+      "expected_slug": "ms-382",
+      "actual_slug": "ms-382",
+      "negative_queries": [
+        "MS 382 C-E",
+        "MS 382 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "BR 420",
+      "positive_queries": [
+        "BR 420",
+        "BR420"
+      ],
+      "expected_slug": "br-420",
+      "actual_slug": "br-420",
+      "negative_queries": [
+        "BR 420 C-E",
+        "BR 420 X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 172 C-BE",
+      "positive_queries": [
+        "MS 172 C-BE",
+        "MS172C-BE"
+      ],
+      "expected_slug": "ms-172-c-be",
+      "actual_slug": "ms-172-c-be",
+      "negative_queries": [
+        "MS 172 C-BE C-E",
+        "MS 172 C-BE X"
+      ],
+      "false_matches": 0
+    },
+    {
+      "model": "MS 212",
+      "positive_queries": [
+        "MS 212",
+        "MS212"
+      ],
+      "expected_slug": "ms-212",
+      "actual_slug": "ms-212",
+      "negative_queries": [
+        "MS 212 C-E",
+        "MS 212 X"
+      ],
+      "false_matches": 0
+    }
+  ]
+}
