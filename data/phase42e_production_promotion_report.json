@@ -1,0 +1,217 @@
+{
+  "phase": "42E",
+  "title": "Combined Catalog & Evidence Production Promotion",
+  "timestamp": "2026-09-17T03:10:00Z",
+  "accepted_input": {
+    "phase_42c_commit": "c333f79847f3168c94583f331edb6afcee7cea21",
+    "phase_42c_tree": "2e0202ec030bd17e942d862eb11937a4ed72ce1f",
+    "phase_42d_commit_original": "9da1820d6e3293a9fb932834cdf8be12fd3cf2b7",
+    "phase_42d_tree_original": "917b6dfb55344400a20751575876d822fab6bba5",
+    "phase_42d_commit_remediated": "7ca970265ab6f507eec82c655c14837d474e1a83",
+    "feature_branch": "feat/official-product-harvester-br",
+    "candidate_reproducible": true,
+    "candidate_branch_pushed": true
+  },
+  "remediation": {
+    "trigger": "canonical_policy.test.js regression (IDENTITY_ONLY vs UNKNOWN)",
+    "action": "Set production_confidence = UNKNOWN for BG 56, BG 66, BG 86, SH 56, SH 86",
+    "test_modified": false,
+    "identities_changed": false,
+    "evidence_changed": false
+  },
+  "production_baseline": {
+    "origin_main_before": "c2b0ee9025fe666b3bb7cbea443e325303850099",
+    "baseline_tree": "5b5d7cd12832fc50dde7fb00a4e5761611fdc3da",
+    "unexpected_drift": false,
+    "drift_description": "origin/main moved from 7015e4c to c2b0ee9 (unrelated harvester code, no conflicts)"
+  },
+  "promotion": {
+    "method": "cherry-pick Phase 42C + Phase 42D onto updated main",
+    "promoted_main_commit": "0b36132259946471474231156d10534dd9868be4",
+    "promoted_main_tree": "ccd78cbf39deac9676823ede6fd20851c5b6c4d2",
+    "exact_tree_match_candidate": false,
+    "tree_diff_reason": "main includes additional harvester code from c2b0ee9 (non-overlapping)",
+    "critical_files_match": true,
+    "working_tree": "clean",
+    "push": "SUCCESS"
+  },
+  "pre_promotion_state": {
+    "canonical_models": 62,
+    "core5": "62/62",
+    "public_facts": 492,
+    "ms201tcm_canonical_records": 1,
+    "package_fetch_stihl_version": "2.0.5",
+    "runtime_imports": 0
+  },
+  "pre_promotion_tests": {
+    "phase_39c": "14/14 PASS",
+    "phase_40b": "9/9 PASS",
+    "phase_41": "17/17 PASS",
+    "phase_42d": "20/20 PASS",
+    "canonical_policy": "PASS",
+    "full_regression": "20 pre-existing failures (hardcoded counts, missing env vars)",
+    "new_regressions": 0
+  },
+  "post_promotion_local": {
+    "canonical_models": 62,
+    "core5": "62/62",
+    "public_facts": 492,
+    "phase_39c": "14/14 PASS",
+    "phase_40b": "9/9 PASS",
+    "phase_41": "17/17 PASS",
+    "phase_42d": "20/20 PASS",
+    "canonical_policy": "PASS",
+    "new_regressions": 0
+  },
+  "deployment": {
+    "provider": "Render.com",
+    "deployed_commit": "0b36132259946471474231156d10534dd9868be4",
+    "deployed_tree": "ccd78cbf39deac9676823ede6fd20851c5b6c4d2",
+    "accepted_tree_match": "CRITICAL_FILES_MATCH",
+    "status": "LIVE",
+    "deployed_at": "2026-09-17T03:05:00Z"
+  },
+  "live_catalog": {
+    "canonical_models": 62,
+    "core5": "62/62",
+    "public_facts": 492
+  },
+  "live_new_models": {
+    "bg_56": {
+      "route": "/bladblazers/bg-56/",
+      "http": 200,
+      "canonical": "self",
+      "robots": "index, follow",
+      "classification": "Handbladblazer / Handgedragen / Benzine / Blazen",
+      "search": "resolves via client-side JS",
+      "category_inlink": "/bladblazers/",
+      "sitemap": "present",
+      "technical_facts": 0
+    },
+    "bg_66": {
+      "route": "/bladblazers/bg-66/",
+      "http": 200,
+      "canonical": "self",
+      "robots": "index, follow",
+      "classification": "Handbladblazer / Handgedragen / Benzine / Blazen",
+      "search": "resolves via client-side JS",
+      "category_inlink": "/bladblazers/",
+      "sitemap": "present",
+      "technical_facts": 0
+    },
+    "bg_86": {
+      "route": "/bladblazers/bg-86/",
+      "http": 200,
+      "canonical": "self",
+      "robots": "index, follow",
+      "classification": "Handbladblazer / Handgedragen / Benzine / Blazen",
+      "search": "resolves via client-side JS",
+      "c_e_isolation": "BG 86 C-E not registered as BG 86",
+      "category_inlink": "/bladblazers/",
+      "sitemap": "present",
+      "technical_facts": 0
+    },
+    "sh_56": {
+      "route": "/bladblazers/sh-56/",
+      "http": 200,
+      "canonical": "self",
+      "robots": "index, follow",
+      "classification": "Zuighakselaar / Handgedragen / Benzine / Blazen",
+      "secondary_functions": "Zuigen / Versnipperen",
+      "search": "resolves via client-side JS",
+      "c_e_isolation": "SH 56 C-E not registered as SH 56",
+      "category_inlink": "/bladblazers/",
+      "sitemap": "present",
+      "alternate_route_duplicate": "none",
+      "technical_facts": 0
+    },
+    "sh_86": {
+      "route": "/bladblazers/sh-86/",
+      "http": 200,
+      "canonical": "self",
+      "robots": "index, follow",
+      "classification": "Zuighakselaar / Handgedragen / Benzine / Blazen",
+      "secondary_functions": "Zuigen / Versnipperen",
+      "search": "resolves via client-side JS",
+      "c_e_isolation": "SH 86 C-E not registered as SH 86",
+      "category_inlink": "/bladblazers/",
+      "sitemap": "present",
+      "alternate_route_duplicate": "none",
+      "technical_facts": 0
+    }
+  },
+  "live_ms201tcm": {
+    "canonical_records": 1,
+    "route": "/kettingzagen/ms-201-t/",
+    "slug": "ms-201-t",
+    "http": 200,
+    "alias_resolution": "existing ms-201-t",
+    "technical_facts": 13,
+    "max_power_speed_rpm": "present on ms-201-t",
+    "ms201t_isolation": "preserved",
+    "evidence_leakage": 0,
+    "duplicate_route": "none"
+  },
+  "evidence": {
+    "fs_460_c_em": 8,
+    "ms_210": 11,
+    "fs_350": 9,
+    "ms_361": 12,
+    "ms_362_cm": 12,
+    "ms_400_cm": 9,
+    "ms_311": 12,
+    "hs_45": 11,
+    "ms_201tcm": 13,
+    "ms_251": 9,
+    "ms_251_c": 13,
+    "config_dependent_blocked_activated": 0
+  },
+  "sitemap": {
+    "new_model_urls": 10,
+    "broken": 0,
+    "redirects": 0,
+    "duplicates": 0,
+    "canonical_mismatches": 0,
+    "alternate_sh_urls": 0
+  },
+  "phase_41_freeze": {
+    "h1_count": 1,
+    "h1_text": "STIHL Serienummer Decoder — Bouwjaar en model controleren",
+    "internal_targets": 20,
+    "canonical": "https://www.stihldecoder.nl/",
+    "robots": "index, follow",
+    "homepage_drift": false
+  },
+  "fetch_stihl_products": {
+    "version": "2.0.5",
+    "dev_dependency": true,
+    "package_parity": true,
+    "lockfile_parity": true,
+    "runtime_imports": 0,
+    "production_dependency": false
+  },
+  "runtime_health": {
+    "home_http": 200,
+    "new_route_4xx": 0,
+    "new_5xx": 0,
+    "client_js_errors": 0,
+    "render_startup_errors": 0
+  },
+  "hash_tree_parity": {
+    "db_hash_parity": true,
+    "public_evidence_hash_parity": true,
+    "manifest_hash_parity": true,
+    "package_json_parity": true,
+    "package_lock_parity": true,
+    "decoder_parity": true,
+    "homepage_parity": true,
+    "critical_files_parity": true
+  },
+  "final_git": {
+    "deployed_application_commit": "0b36132259946471474231156d10534dd9868be4",
+    "deployed_application_tree": "ccd78cbf39deac9676823ede6fd20851c5b6c4d2",
+    "origin_main": "0b36132259946471474231156d10534dd9868be4",
+    "current_main_tree": "ccd78cbf39deac9676823ede6fd20851c5b6c4d2"
+  },
+  "final_decision": "PHASE 42E COMPLETE / PROMOTED / DEPLOYED / LIVE VERIFIED / PASS"
+}
