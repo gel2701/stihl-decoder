@@ -1,0 +1,51 @@
+{
+  "PHASE": "42D",
+  "TITLE": "Technical Evidence Activation Audit",
+  "GENERATED_AT": "2026-09-17T00:10:19.797Z",
+  "FINAL_DECISION": "PHASE 42D ACCEPTED / PASS - TECHNICAL EVIDENCE ACTIVATION COMPLETE",
+  "BASELINE": {
+    "public_facts_before": 474,
+    "models_before": 62,
+    "sha256_before": "02e473d19ee36d69795f93524e60bfd7be2fd63f457a80d97125ac9566c72f9a"
+  },
+  "ACTIVATION": {
+    "stream_a_candidates": 51,
+    "stream_a_activated": 17,
+    "stream_a_blocked": 34,
+    "stream_b_candidates": 14,
+    "stream_b_activated": 1,
+    "stream_b_blocked": 13,
+    "total_activated": 18,
+    "total_blocked": 47
+  },
+  "BLOCKING_REASONS": {
+    "already_present": 28,
+    "duplicate": 1,
+    "config_dependent_blocked": 1,
+    "value_conflict": 17,
+    "model_not_found": 0,
+    "fact_id_collision": 0
+  },
+  "POST_ACTIVATION": {
+    "public_facts_after": 492,
+    "models_after": 62,
+    "sha256_after": "bf9bacb3a6454118f10a7c5f5790b36cee93bf318f9f1a5ed2b191f438644f35",
+    "fact_id_integrity": "PASS"
+  },
+  "CANONICAL_MAPPING": {
+    "ms-201-tc-m": "ms-201-t",
+    "fs-460": "fs-460",
+    "ms-210": "ms-210",
+    "fs-350": "fs-350",
+    "ms-361": "ms-361",
+    "ms-362": "ms-362",
+    "ms-400": "ms-400",
+    "ms-311": "ms-311",
+    "hs-45": "hs-45"
+  },
+  "IMMUTABILITY_CHECKS": {
+    "db_62_models": "PASS",
+    "core5_62_62": "PASS",
+    "public_fact_count": "PASS"
+  }
+}

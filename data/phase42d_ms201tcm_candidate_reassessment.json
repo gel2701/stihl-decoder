@@ -1,0 +1,155 @@
+{
+  "phase": "42D",
+  "title": "MS 201 TC-M Candidate Reassessment",
+  "generated_at": "2026-09-17T00:10:19.797Z",
+  "total": 14,
+  "activated": 1,
+  "blocked": 13,
+  "dispositions": [
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "displacement_cc",
+      "value": 35.2,
+      "unit": "cc",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has displacement_cc=35.2",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "bore_mm",
+      "value": 40,
+      "unit": "mm",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has bore_mm=40",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "stroke_mm",
+      "value": 28,
+      "unit": "mm",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has stroke_mm=28",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "power_kw",
+      "value": 1.8,
+      "unit": "kW",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has power_kw=1.8",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "power_hp",
+      "value": 2.4,
+      "unit": "hp",
+      "disposition": "DUPLICATE",
+      "reason": "ms-201-t already has power_hp=2.4; exact duplicate",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "idle_speed_rpm",
+      "value": 3000,
+      "unit": "rpm",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has idle_speed_rpm=3000",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "spark_plug",
+      "value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR 6 H"
+        }
+      ],
+      "unit": "",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has spark_plug=CMR 6 H",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "spark_plug_gap_mm",
+      "value": 0.5,
+      "unit": "mm",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has spark_plug_gap_mm=0.5",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "fuel_tank_l",
+      "value": 0.31,
+      "unit": "L",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has fuel_tank_l=0.31",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "oil_tank_l",
+      "value": 0.22,
+      "unit": "L",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has oil_tank_l=0.22",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "weight_kg",
+      "value": 3.7,
+      "unit": "kg",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has weight_kg=3.7",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "chain_pitch",
+      "value": "3/8 P",
+      "unit": "",
+      "disposition": "ALREADY_PRESENT",
+      "reason": "ms-201-t already has chain_pitch=3/8 P",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "sound_pressure_db",
+      "value": 99,
+      "unit": "dB(A)",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "reason": "Configuration-dependent; varies by operator condition",
+      "fact_id": null
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "canonical_slug": "ms-201-t",
+      "field": "max_power_speed_rpm",
+      "value": 10000,
+      "unit": "rpm",
+      "disposition": "ACTIVATE",
+      "reason": "New field for ms-201-t; max power speed RPM",
+      "fact_id": "17e1e2fd936e420c"
+    }
+  ]
+}

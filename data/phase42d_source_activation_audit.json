@@ -1,0 +1,147 @@
+{
+  "phase": "42D",
+  "title": "Source Activation Audit",
+  "generated_at": "2026-09-17T00:10:19.797Z",
+  "total_sources": 7,
+  "sources": {
+    "0458-296-5301": {
+      "facts": [
+        {
+          "fact_id": "4a404fb9f2f23ab8",
+          "model_slug": "ms-210",
+          "field": "power_hp"
+        },
+        {
+          "fact_id": "7403494da69c8d8a",
+          "model_slug": "ms-210",
+          "field": "idle_speed_rpm"
+        }
+      ],
+      "streams": [
+        "A"
+      ]
+    },
+    "0458-296-3401": {
+      "facts": [
+        {
+          "fact_id": "a6ba6e0620b764aa",
+          "model_slug": "ms-361",
+          "field": "power_hp"
+        }
+      ],
+      "streams": [
+        "A"
+      ]
+    },
+    "0458-296-6402": {
+      "facts": [
+        {
+          "fact_id": "d78395668208be62",
+          "model_slug": "fs-460",
+          "field": "displacement_cc"
+        },
+        {
+          "fact_id": "9ce3a306db3a2229",
+          "model_slug": "fs-460",
+          "field": "bore_mm"
+        },
+        {
+          "fact_id": "53d321eb283fac83",
+          "model_slug": "fs-460",
+          "field": "stroke_mm"
+        },
+        {
+          "fact_id": "034a62830e700e7b",
+          "model_slug": "fs-460",
+          "field": "power_kw"
+        },
+        {
+          "fact_id": "4fdc69b899342060",
+          "model_slug": "fs-460",
+          "field": "power_hp"
+        },
+        {
+          "fact_id": "8e9cad78d758b881",
+          "model_slug": "fs-460",
+          "field": "weight_kg"
+        }
+      ],
+      "streams": [
+        "A"
+      ]
+    },
+    "0458-296-3402": {
+      "facts": [
+        {
+          "fact_id": "4a7e6441c2315454",
+          "model_slug": "ms-362",
+          "field": "displacement_cc"
+        },
+        {
+          "fact_id": "a25b7825796f4683",
+          "model_slug": "ms-362",
+          "field": "bore_mm"
+        },
+        {
+          "fact_id": "997ff8d60a30e901",
+          "model_slug": "ms-362",
+          "field": "stroke_mm"
+        },
+        {
+          "fact_id": "d74173c67d531208",
+          "model_slug": "ms-362",
+          "field": "power_kw"
+        }
+      ],
+      "streams": [
+        "A"
+      ]
+    },
+    "0458-296-3403": {
+      "facts": [
+        {
+          "fact_id": "ecf651608a6f6078",
+          "model_slug": "ms-400",
+          "field": "displacement_cc"
+        },
+        {
+          "fact_id": "dd36bcad47d09f5f",
+          "model_slug": "ms-400",
+          "field": "bore_mm"
+        },
+        {
+          "fact_id": "dd526c0e07d9246f",
+          "model_slug": "ms-400",
+          "field": "stroke_mm"
+        }
+      ],
+      "streams": [
+        "A"
+      ]
+    },
+    "0458-296-3404": {
+      "facts": [
+        {
+          "fact_id": "c85ec232975d20b1",
+          "model_slug": "ms-311",
+          "field": "displacement_cc"
+        }
+      ],
+      "streams": [
+        "A"
+      ]
+    },
+    "0458-296-tc-m": {
+      "facts": [
+        {
+          "fact_id": "17e1e2fd936e420c",
+          "model_slug": "ms-201-t",
+          "field": "max_power_speed_rpm"
+        }
+      ],
+      "streams": [
+        "B"
+      ]
+    }
+  }
+}

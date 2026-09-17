@@ -1,0 +1,141 @@
+{
+  "phase": "42D",
+  "title": "MS 201 TC-M Legacy Candidate Reassessment",
+  "generated_at": "2026-09-17T12:00:00.000Z",
+  "total_candidates": 14,
+  "legacy_slug": "ms-201-tc-m",
+  "canonical_slug": "ms-201-t",
+  "candidates": [
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "displacement_cc",
+      "value": 35.2,
+      "unit": "cc",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has displacement_cc=35.2"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "bore_mm",
+      "value": 40,
+      "unit": "mm",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has bore_mm=40"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "stroke_mm",
+      "value": 28,
+      "unit": "mm",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has stroke_mm=28"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "power_kw",
+      "value": 1.8,
+      "unit": "kW",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has power_kw=1.8"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "power_hp",
+      "value": 2.4,
+      "unit": "hp",
+      "disposition": "DUPLICATE",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has power_hp=2.4; exact duplicate"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "idle_speed_rpm",
+      "value": 3000,
+      "unit": "rpm",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has idle_speed_rpm=3000"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "spark_plug",
+      "value": [
+        {
+          "manufacturer": "NGK",
+          "model": "CMR 6 H"
+        }
+      ],
+      "unit": "",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has spark_plug=CMR 6 H"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "spark_plug_gap_mm",
+      "value": 0.5,
+      "unit": "mm",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has spark_plug_gap_mm=0.5"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "fuel_tank_l",
+      "value": 0.31,
+      "unit": "L",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has fuel_tank_l=0.31"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "oil_tank_l",
+      "value": 0.22,
+      "unit": "L",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has oil_tank_l=0.22"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "weight_kg",
+      "value": 3.7,
+      "unit": "kg",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has weight_kg=3.7"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "chain_pitch",
+      "value": "3/8 P",
+      "unit": "",
+      "disposition": "ALREADY_PRESENT",
+      "canonical_field_exists": true,
+      "reason": "ms-201-t already has chain_pitch=3/8 P"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "sound_pressure_db",
+      "value": 99,
+      "unit": "dB(A)",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "canonical_field_exists": false,
+      "reason": "Configuration-dependent; varies by operator condition"
+    },
+    {
+      "legacy_slug": "ms-201-tc-m",
+      "field": "max_power_speed_rpm",
+      "value": 10000,
+      "unit": "rpm",
+      "disposition": "ACTIVATE",
+      "canonical_field_exists": false,
+      "reason": "New field for ms-201-t; max power speed RPM"
+    }
+  ]
+}
