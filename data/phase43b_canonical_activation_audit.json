@@ -1,0 +1,134 @@
+{
+  "phase": "43B",
+  "title": "Canonical Activation Audit",
+  "generated_at": "2026-09-17T03:01:41.188Z",
+  "total_models": 5,
+  "total_facts": 20,
+  "models": {
+    "ms-260": {
+      "facts": [
+        {
+          "fact_id": "d1737cbc6c14ac83",
+          "field": "sound_pressure_db",
+          "value": 99
+        },
+        {
+          "fact_id": "e4fa01bfd2aed7ee",
+          "field": "sound_power_db",
+          "value": 113
+        },
+        {
+          "fact_id": "1201a8b325d71918",
+          "field": "vibration_left",
+          "value": 3.6
+        },
+        {
+          "fact_id": "c94e67d5a2927c81",
+          "field": "vibration_right",
+          "value": 4.1
+        },
+        {
+          "fact_id": "8f574831654e9d99",
+          "field": "oil_tank_ml",
+          "value": 290
+        },
+        {
+          "fact_id": "af1c8e807aa10bfb",
+          "field": "fuel_tank_ml",
+          "value": 460
+        }
+      ],
+      "model_name": "MS 260"
+    },
+    "ms-261": {
+      "facts": [
+        {
+          "fact_id": "08b8898b91b70a9a",
+          "field": "sound_pressure_db",
+          "value": 105
+        },
+        {
+          "fact_id": "92218422b87e6292",
+          "field": "sound_power_db",
+          "value": 115
+        },
+        {
+          "fact_id": "ef608db36c68e184",
+          "field": "vibration_left",
+          "value": 3.5
+        },
+        {
+          "fact_id": "dca6b16f028c0633",
+          "field": "vibration_right",
+          "value": 3.5
+        }
+      ],
+      "model_name": "MS 261"
+    },
+    "hs-45": {
+      "facts": [
+        {
+          "fact_id": "34f28e5958158b86",
+          "field": "sound_pressure_db",
+          "value": 97
+        },
+        {
+          "fact_id": "0093ae993f2b6f77",
+          "field": "sound_power_db",
+          "value": 107
+        },
+        {
+          "fact_id": "d49d7576eaa38122",
+          "field": "vibration_left",
+          "value": 10
+        },
+        {
+          "fact_id": "1bd8e219b115beeb",
+          "field": "vibration_right",
+          "value": 9
+        }
+      ],
+      "model_name": "HS 45"
+    },
+    "fs-120": {
+      "facts": [
+        {
+          "fact_id": "fc089432bb576874",
+          "field": "weight_kg",
+          "value": 6.3
+        },
+        {
+          "fact_id": "bce89ed45db1b624",
+          "field": "sound_pressure_db",
+          "value": 99
+        },
+        {
+          "fact_id": "e1902e740b546fd1",
+          "field": "sound_power_db",
+          "value": 110
+        },
+        {
+          "fact_id": "f35b62699382e82d",
+          "field": "vibration_left",
+          "value": 5.9
+        },
+        {
+          "fact_id": "be1c7915b18f8cc6",
+          "field": "vibration_right",
+          "value": 4.2
+        }
+      ],
+      "model_name": "FS 120"
+    },
+    "br-600": {
+      "facts": [
+        {
+          "fact_id": "bf387bfd73e6ca79",
+          "field": "sound_power_db",
+          "value": 100
+        }
+      ],
+      "model_name": "BR 600"
+    }
+  }
+}

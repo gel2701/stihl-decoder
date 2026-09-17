@@ -82,9 +82,9 @@ test('T6: Canonical database unchanged (62 models)', () => {
   assert.equal(models.length, 62);
 });
 
-// T7: Public evidence unchanged (492 facts)
-test('T7: Public evidence unchanged (492 facts)', () => {
-  assert.equal(facts.facts.length, 492);
+// T7: Public evidence at expected count (492 baseline + 20 Phase 43B = 512)
+test('T7: Public evidence at expected count (512)', () => {
+  assert.equal(facts.facts.length, 512);
 });
 
 // T8: HIGH_VALUE candidates exist
