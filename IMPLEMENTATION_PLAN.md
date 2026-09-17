@@ -11,6 +11,170 @@ This plan tracks future product and architecture work that builds on the immutab
 
 ---
 
+## Planned — Official Evidence Reconciliation: BR Batch 1
+
+**Status:** PLANNED / NEXT DATA-QUALITY PHASE  
+**Origin:** Full first-party STIHL Brazil product harvest: 200/200 products harvested, 0 failed, with canonical STIHL data left byte-identical.
+
+### Goal
+
+Use the completed STIHL Brazil official-product harvest to strengthen existing STIHLDecoder records through controlled evidence reconciliation, while preserving market-specific differences and the existing review/promotion architecture.
+
+The first reconciliation batch must focus on already known machine models before any large-scale onboarding of new BR-only/current products.
+
+### Current harvest baseline
+
+- 200 unique official STIHL Brazil products discovered via the deterministic product sitemap;
+- 200/200 successfully harvested;
+- 8 existing STIHLDecoder model matches;
+- 128 new machine/product model candidates;
+- 64 ambiguous accessory records (chains, guide bars and other non-machine products);
+- 200/200 official STIHL article/reference numbers;
+- 135 products with official manuals;
+- 43 `DATABASE_MISSING` field verdicts across the 8 matched models;
+- 24 `HIGH_VALUE_DATABASE_CANDIDATES`;
+- 0 `CONFLICT_REVIEW_REQUIRED` verdicts;
+- 3 `POSSIBLE_MARKET_VARIANT` differences;
+- automatic promotion disabled;
+- canonical `stihl_database.json` and `public_evidence_facts.json` unchanged.
+
+### BR Batch 1 — existing-model reconciliation
+
+Review the 8 existing model matches first:
+
+- MS 260
+- MS 261
+- HS 45
+- SR 430
+- SR 450
+- FS 120
+- FS 38
+- BR 600
+
+For each matched model:
+
+1. verify model identity and STIHL article/reference provenance;
+2. reconcile every comparable technical field;
+3. classify exact matches separately from missing canonical fields;
+4. review the 24 high-value candidates individually;
+5. attach supporting official source URL, market and retrieval metadata;
+6. attach official manual evidence where available;
+7. do not promote market-specific values into EU/NL canonical data without explicit review;
+8. create a review record for every proposed canonical change.
+
+### High-value candidate rules
+
+A `HIGH_VALUE_DATABASE_CANDIDATE` is eligible for review only when:
+
+- the source is an official STIHL manufacturer page or document;
+- the model match is exact or otherwise unambiguous;
+- the canonical database currently lacks the field;
+- the value is technically clear and normalized;
+- no conflicting official evidence exists;
+- no BR/EU/NL market-variant risk is present;
+- provenance can be retained at field level.
+
+**Hard rule:** high-value status is not permission for automatic promotion.
+
+### Market variants
+
+The current harvest found three values that must stay market-aware:
+
+- MS 261 power: BR `2.95 kW` vs current DB `3.0 kW`;
+- MS 260 weight: BR `4.9 kg` vs current DB `4.8 kg`;
+- BR 600 weight: BR `10.1 kg` vs current DB `10.3 kg`.
+
+These must be classified as `POSSIBLE_MARKET_VARIANT` unless independent evidence establishes that the canonical value itself is wrong.
+
+Do not silently overwrite EU/NL values with BR product-page values.
+
+### Missing-field priorities
+
+Prioritize technically useful fields currently absent from matched records, especially:
+
+- vibration left/right;
+- fuel tank capacity;
+- oil tank capacity;
+- sound pressure;
+- sound power;
+- displacement where missing;
+- power where missing;
+- weight where missing;
+- chain/guide-bar specifications where unambiguous.
+
+Examples from the harvest that deserve early review include:
+
+- MS 260 / MS 261 vibration and tank data;
+- FS 38 / FS 120 vibration and tank data;
+- SR 430 / SR 450 displacement, power and weight.
+
+### Official manuals
+
+Treat the 135 discovered official manual links as documentation/evidence sources rather than merely product-page metadata.
+
+For matched models:
+
+- associate manuals with the exact model/reference where possible;
+- retain market/language metadata;
+- record verification status (`VERIFIED_OK`, `UNREACHABLE`, etc.);
+- do not treat an unreachable URL as proof that the document is invalid;
+- flag broken STIHL-hosted links for review rather than deleting the evidence record.
+
+### Accessory separation
+
+The 64 ambiguous chain/bar/accessory results must not be forced into the machine `models` collection.
+
+Plan a separate product/part evidence domain for:
+
+- saw chains;
+- guide bars;
+- cutting attachments;
+- batteries/chargers where they are not machine models;
+- other accessories and consumables.
+
+No fuzzy machine matching is allowed for these records.
+
+### Phase after BR Batch 1 — new model intake
+
+Only after the 8 matched models and evidence rules are reconciled should STIHLDecoder process the 128 new model candidates.
+
+Recommended order:
+
+1. high-confidence machine models with complete official specifications;
+2. current chainsaws and power tools absent from the database;
+3. battery machines and newer product families;
+4. secondary categories such as pressure washers;
+5. accessories only after a dedicated part/product schema exists.
+
+Initial high-interest candidates include MS 162, MS 172, MS 182, MS 212, MS 363 and MS 382 because the official BR source provides rich multi-field specifications.
+
+### Dependency cleanup follow-up
+
+`fetch-stihl-products@2.0.5` appears redundant after completion of the first-party harvester and is the source of the currently identified legacy `npm audit` dependency chain.
+
+Before removal:
+
+1. verify no scripts/tests/runtime paths import it;
+2. remove it on a separate focused change;
+3. regenerate lockfile;
+4. rerun CI and security audit;
+5. classify any remaining findings independently.
+
+### Acceptance criteria
+
+BR Batch 1 is complete only when:
+
+- all 8 existing model matches have an explicit field-by-field review;
+- all 24 high-value candidates have a documented decision;
+- the 3 market variants remain market-scoped unless separately proven otherwise;
+- official manuals are linked as evidence where appropriate;
+- no accessory is promoted as a machine model;
+- all canonical changes, if any, pass the existing evidence/promotion process;
+- no automatic promotion path is introduced;
+- canonical safety/regression tests remain green relative to baseline.
+
+---
+
 ## Planned — STIHL Paspoort 2.0: Warranty & Service History
 
 **Status:** PLANNED / NOT YET ACTIVE  
@@ -134,4 +298,4 @@ This turns STIHLDecoder from primarily a decoding/reference tool into a long-liv
 
 ## Backlog note
 
-Keep this feature planned until current official product/evidence harvesting and canonical-data work is stable. Re-evaluate scope before activation so the private account/data architecture is designed deliberately rather than added onto the public evidence store.
+Prioritize the official evidence reconciliation/data-quality work before activating STIHL Paspoort 2.0. Re-evaluate Paspoort 2.0 scope only after the harvester/evidence pipeline and canonical-data review process are stable, so the private account/data architecture is designed deliberately rather than added onto the public evidence store.
