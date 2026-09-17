@@ -354,10 +354,98 @@ All in `data/`:
 
 ### Phase 43B readiness
 
-- 22 HIGH_VALUE candidates identified for Phase 43B activation
+- 20 HIGH_VALUE candidates identified for Phase 43B activation (of 32 total; 12 already present in public evidence)
 - 0 new models to onboard (SR 430/450 already exist)
 - 0 accessories in scope
 - Canonical DB frozen; promotion requires explicit Phase 43B approval
+
+---
+
+## Phase 43B — BR Batch 1 High-Value Evidence Activation
+
+**Status:** ACTIVATION CANDIDATE COMPLETE (2026-09-17)
+**Branch:** `feat/phase43b-br-batch1-evidence-activation`
+**Parent:** `fc076a8` (Phase 43A)
+
+### Activation results
+
+| Category | Count |
+|---|---|
+| Phase 43A READY inputs | 32 |
+| Canonical + evidence activated | 20 |
+| Already present equivalent | 12 |
+| Market variant blocked | 3 |
+| Configuration dependent blocked | 0 |
+| Unaccounted | 0 |
+
+### Canonical database
+
+- Models before: 62
+- Models after: 62 (unchanged)
+- CORE5: 62/62
+- production_confidence: all UNKNOWN
+- specs_verified: no true values introduced
+
+### Public evidence
+
+- Facts before: 492
+- Facts added: 20
+- Facts after: 512
+- Old facts removed: 0
+- Old facts mutated: 0
+- Fact ID collisions: 0
+
+### Market variant safety
+
+- MS 261 power: preserved at 3.0 kW (not BR 2.95)
+- MS 260 weight: preserved at 4.8 kg (not BR 4.9)
+- BR 600 weight: preserved at 10.3 kg (not BR 10.1)
+- Market variants canonicalized: 0
+
+### Models affected (5 of 8)
+
+- MS 260: +6 fields (sound_pressure, sound_power, vibration_left/right, oil_tank, fuel_tank)
+- MS 261: +4 fields (sound_pressure, sound_power, vibration_left/right)
+- HS 45: +4 fields (sound_pressure, sound_power, vibration_left/right)
+- FS 120: +5 fields (weight, sound_pressure, sound_power, vibration_left/right)
+- BR 600: +1 field (sound_power)
+- SR 430: 0 new canonical writes (all fields already in public evidence)
+- SR 450: 0 new canonical writes (all fields already in public evidence)
+- FS 38: 0 new canonical writes (all fields already in public evidence)
+
+### DATABASE_MISSING crosswalk
+
+- 26 DATABASE_MISSING fields reported by Phase 43A
+- 20 overlap with HIGH_VALUE candidates (activated)
+- 6 in DATABASE_MISSING only (already present in public evidence from other sources)
+- 12 in HIGH_VALUE only (fields not in DATABASE_MISSING disposition but available from BR pages)
+
+### Artifacts produced (7 files)
+
+All in `data/`:
+1. `phase43b_ready_candidate_crosswalk.json`
+2. `phase43b_database_missing_high_value_crosswalk.json`
+3. `phase43b_model_field_delta.json`
+4. `phase43b_source_activation_audit.json`
+5. `phase43b_canonical_activation_audit.json`
+6. `phase43b_blocked_candidates.json`
+7. `phase43b_public_evidence_activation.json`
+
+### Tests
+
+- Phase 43B tests: 20/20 PASS
+- All regression gates: PASS
+- canonical_policy: PASS
+- Phase 39C: PASS
+- Phase 40B: PASS (updated fact count)
+- Phase 41: PASS
+- Phase 42D: PASS (updated fact count)
+- Phase 43A: PASS (updated fact count)
+- Harvester: PASS
+
+### Next
+
+Phase 43C — BR Batch 1 Production Promotion & Live Verification
 
 ---
 

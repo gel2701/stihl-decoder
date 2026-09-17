@@ -1,0 +1,294 @@
+{
+  "phase": "43B",
+  "title": "DATABASE_MISSING High Value Crosswalk",
+  "generated_at": "2026-09-17T03:01:41.188Z",
+  "explanation": {
+    "total_database_missing": 26,
+    "total_high_value_candidates": 32,
+    "discrepancy": 6,
+    "note": "26 DATABASE_MISSING entries vs 32 high_value candidates. 20 DATABASE_MISSING entries overlap with high_value_review. 6 DATABASE_MISSING entries excluded from high_value_review (FS 38 sound/vibration, MS 261 oil/fuel). 12 high_value candidates not in DATABASE_MISSING (ALREADY_PRESENT_EQUIVALENT: SR 430, SR 450, FS 38 displacement/power/weight/fuel)."
+  },
+  "database_missing_in_high_value": 20,
+  "database_missing_not_in_high_value": 6,
+  "high_value_not_in_database_missing": 12,
+  "database_missing_only_entries": [
+    {
+      "model_name": "MS 261",
+      "model_slug": "stihl_ms_261_cm",
+      "field": "oil_tank_ml",
+      "raw_value": 270,
+      "reason": "Excluded from high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 261",
+      "model_slug": "stihl_ms_261_cm",
+      "field": "fuel_tank_ml",
+      "raw_value": 500,
+      "reason": "Excluded from high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 38",
+      "model_slug": "stihl_fs_38",
+      "field": "sound_pressure_db",
+      "raw_value": 94,
+      "reason": "Excluded from high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 38",
+      "model_slug": "stihl_fs_38",
+      "field": "sound_power_db",
+      "raw_value": 108,
+      "reason": "Excluded from high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 38",
+      "model_slug": "stihl_fs_38",
+      "field": "vibration_left",
+      "raw_value": 8,
+      "reason": "Excluded from high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 38",
+      "model_slug": "stihl_fs_38",
+      "field": "vibration_right",
+      "raw_value": 8,
+      "reason": "Excluded from high_value_candidate_review"
+    }
+  ],
+  "entries": [
+    {
+      "model_name": "MS 260",
+      "input_model_slug": "stihl_ms_260",
+      "canonical_slug": "ms-260",
+      "field": "sound_pressure_db",
+      "raw_value": 99,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 260",
+      "input_model_slug": "stihl_ms_260",
+      "canonical_slug": "ms-260",
+      "field": "sound_power_db",
+      "raw_value": 113,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 260",
+      "input_model_slug": "stihl_ms_260",
+      "canonical_slug": "ms-260",
+      "field": "vibration_left",
+      "raw_value": 3.6,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 260",
+      "input_model_slug": "stihl_ms_260",
+      "canonical_slug": "ms-260",
+      "field": "vibration_right",
+      "raw_value": 4.1,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 260",
+      "input_model_slug": "stihl_ms_260",
+      "canonical_slug": "ms-260",
+      "field": "oil_tank_ml",
+      "raw_value": 290,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 260",
+      "input_model_slug": "stihl_ms_260",
+      "canonical_slug": "ms-260",
+      "field": "fuel_tank_ml",
+      "raw_value": 460,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 261",
+      "input_model_slug": "stihl_ms_261_cm",
+      "canonical_slug": "ms-261",
+      "field": "sound_pressure_db",
+      "raw_value": 105,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 261",
+      "input_model_slug": "stihl_ms_261_cm",
+      "canonical_slug": "ms-261",
+      "field": "sound_power_db",
+      "raw_value": 115,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 261",
+      "input_model_slug": "stihl_ms_261_cm",
+      "canonical_slug": "ms-261",
+      "field": "vibration_left",
+      "raw_value": 3.5,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 261",
+      "input_model_slug": "stihl_ms_261_cm",
+      "canonical_slug": "ms-261",
+      "field": "vibration_right",
+      "raw_value": 3.5,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "MS 261",
+      "input_model_slug": "stihl_ms_261_cm",
+      "canonical_slug": "ms-261",
+      "field": "oil_tank_ml",
+      "raw_value": 270,
+      "in_high_value_review": false,
+      "note": "DATABASE_MISSING but excluded from high_value_candidate_review (not selected for activation batch)"
+    },
+    {
+      "model_name": "MS 261",
+      "input_model_slug": "stihl_ms_261_cm",
+      "canonical_slug": "ms-261",
+      "field": "fuel_tank_ml",
+      "raw_value": 500,
+      "in_high_value_review": false,
+      "note": "DATABASE_MISSING but excluded from high_value_candidate_review (not selected for activation batch)"
+    },
+    {
+      "model_name": "HS 45",
+      "input_model_slug": "stihl_hs_45",
+      "canonical_slug": "hs-45",
+      "field": "sound_pressure_db",
+      "raw_value": 97,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "HS 45",
+      "input_model_slug": "stihl_hs_45",
+      "canonical_slug": "hs-45",
+      "field": "sound_power_db",
+      "raw_value": 107,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "HS 45",
+      "input_model_slug": "stihl_hs_45",
+      "canonical_slug": "hs-45",
+      "field": "vibration_left",
+      "raw_value": 10,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "HS 45",
+      "input_model_slug": "stihl_hs_45",
+      "canonical_slug": "hs-45",
+      "field": "vibration_right",
+      "raw_value": 9,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 120",
+      "input_model_slug": "stihl_fs_120",
+      "canonical_slug": "fs-120",
+      "field": "weight_kg",
+      "raw_value": 6.3,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 120",
+      "input_model_slug": "stihl_fs_120",
+      "canonical_slug": "fs-120",
+      "field": "sound_pressure_db",
+      "raw_value": 99,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 120",
+      "input_model_slug": "stihl_fs_120",
+      "canonical_slug": "fs-120",
+      "field": "sound_power_db",
+      "raw_value": 110,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 120",
+      "input_model_slug": "stihl_fs_120",
+      "canonical_slug": "fs-120",
+      "field": "vibration_left",
+      "raw_value": 5.9,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 120",
+      "input_model_slug": "stihl_fs_120",
+      "canonical_slug": "fs-120",
+      "field": "vibration_right",
+      "raw_value": 4.2,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    },
+    {
+      "model_name": "FS 38",
+      "input_model_slug": "stihl_fs_38",
+      "canonical_slug": "fs-38",
+      "field": "sound_pressure_db",
+      "raw_value": 94,
+      "in_high_value_review": false,
+      "note": "DATABASE_MISSING but excluded from high_value_candidate_review (not selected for activation batch)"
+    },
+    {
+      "model_name": "FS 38",
+      "input_model_slug": "stihl_fs_38",
+      "canonical_slug": "fs-38",
+      "field": "sound_power_db",
+      "raw_value": 108,
+      "in_high_value_review": false,
+      "note": "DATABASE_MISSING but excluded from high_value_candidate_review (not selected for activation batch)"
+    },
+    {
+      "model_name": "FS 38",
+      "input_model_slug": "stihl_fs_38",
+      "canonical_slug": "fs-38",
+      "field": "vibration_left",
+      "raw_value": 8,
+      "in_high_value_review": false,
+      "note": "DATABASE_MISSING but excluded from high_value_candidate_review (not selected for activation batch)"
+    },
+    {
+      "model_name": "FS 38",
+      "input_model_slug": "stihl_fs_38",
+      "canonical_slug": "fs-38",
+      "field": "vibration_right",
+      "raw_value": 8,
+      "in_high_value_review": false,
+      "note": "DATABASE_MISSING but excluded from high_value_candidate_review (not selected for activation batch)"
+    },
+    {
+      "model_name": "BR 600",
+      "input_model_slug": "stihl_br_600",
+      "canonical_slug": "br-600",
+      "field": "sound_power_db",
+      "raw_value": 100,
+      "in_high_value_review": true,
+      "note": "Included in high_value_candidate_review"
+    }
+  ]
+}

@@ -1022,7 +1022,13 @@
         "core5_completeness": 5,
         "deep_specs_available_for_later": true,
         "notes": ""
-      }
+      },
+      "sound_pressure_db": 99,
+      "sound_power_db": 113,
+      "vibration_left": 3.6,
+      "vibration_right": 4.1,
+      "oil_tank_ml": 290,
+      "fuel_tank_ml": 460
     },
     {
       "id": "stihl_ms_261_cm",
@@ -1161,7 +1167,11 @@
         "core5_completeness": 5,
         "deep_specs_available_for_later": true,
         "notes": "M-Tronic electronic carburetor; C-M designation in series_id indicates M-Tronic variant."
-      }
+      },
+      "sound_pressure_db": 105,
+      "sound_power_db": 115,
+      "vibration_left": 3.5,
+      "vibration_right": 3.5
     },
     {
       "id": "stihl_ms_270",
@@ -3388,7 +3398,8 @@
         "core5_completeness": 5,
         "deep_specs_available_for_later": true,
         "notes": "4-Mix engine (4-stroke without separate oil sump). Backpack blower at 10.3 kg."
-      }
+      },
+      "sound_power_db": 100
     },
     {
       "id": "stihl_hs_45",
@@ -3527,7 +3538,11 @@
         "core5_completeness": 5,
         "deep_specs_available_for_later": true,
         "notes": ""
-      }
+      },
+      "sound_pressure_db": 97,
+      "sound_power_db": 107,
+      "vibration_left": 10,
+      "vibration_right": 9
     },
     {
       "id": "stihl_ms_462_cm",
@@ -5017,7 +5032,12 @@
         "core5_completeness": 5,
         "deep_specs_available_for_later": false,
         "notes": "No fuel_type in database. Legacy professional brushcutter, era-appropriate 2-stroke classification."
-      }
+      },
+      "weight_kg": 6.3,
+      "sound_pressure_db": 99,
+      "sound_power_db": 110,
+      "vibration_left": 5.9,
+      "vibration_right": 4.2
     },
     {
       "id": "stihl_fs_200",

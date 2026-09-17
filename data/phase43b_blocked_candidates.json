@@ -1,0 +1,134 @@
+{
+  "phase": "43B",
+  "title": "Blocked Candidates",
+  "generated_at": "2026-09-17T03:01:41.188Z",
+  "total_blocked": 15,
+  "categories": {
+    "market_variant_risk": 3,
+    "already_present": 12
+  },
+  "market_variants": [
+    {
+      "model_name": "MS 261",
+      "input_model_slug": null,
+      "canonical_slug": "ms-261",
+      "field": "power_kw",
+      "raw_value": 2.95,
+      "block_reason": "MARKET_VARIANT_RISK",
+      "br_value": 2.95,
+      "canonical_value": 3,
+      "block_detail": "BR market rating rounding difference",
+      "note": "Excluded from high_value_candidate_review in Phase 43A; recorded here for completeness"
+    },
+    {
+      "model_name": "MS 260",
+      "input_model_slug": null,
+      "canonical_slug": "ms-260",
+      "field": "weight_kg",
+      "raw_value": 4.9,
+      "block_reason": "MARKET_VARIANT_RISK",
+      "br_value": 4.9,
+      "canonical_value": 4.8,
+      "block_detail": "BR market config difference (bar/chain included)",
+      "note": "Excluded from high_value_candidate_review in Phase 43A; recorded here for completeness"
+    },
+    {
+      "model_name": "BR 600",
+      "input_model_slug": null,
+      "canonical_slug": "br-600",
+      "field": "weight_kg",
+      "raw_value": 10.1,
+      "block_reason": "MARKET_VARIANT_RISK",
+      "br_value": 10.1,
+      "canonical_value": 10.3,
+      "block_detail": "BR market config difference (tube/nozzle)",
+      "note": "Excluded from high_value_candidate_review in Phase 43A; recorded here for completeness"
+    }
+  ],
+  "already_present_equivalents": [
+    {
+      "model_name": "SR 430",
+      "canonical_slug": "sr-430",
+      "field": "displacement_cc",
+      "raw_value": 63.3,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 430",
+      "canonical_slug": "sr-430",
+      "field": "power_kw",
+      "raw_value": 2.9,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 430",
+      "canonical_slug": "sr-430",
+      "field": "weight_kg",
+      "raw_value": 12.2,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 430",
+      "canonical_slug": "sr-430",
+      "field": "fuel_tank_l",
+      "raw_value": 1.7,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 450",
+      "canonical_slug": "sr-450",
+      "field": "displacement_cc",
+      "raw_value": 63.3,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 450",
+      "canonical_slug": "sr-450",
+      "field": "power_kw",
+      "raw_value": 2.9,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 450",
+      "canonical_slug": "sr-450",
+      "field": "weight_kg",
+      "raw_value": 12.8,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "SR 450",
+      "canonical_slug": "sr-450",
+      "field": "fuel_tank_l",
+      "raw_value": 1.7,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "FS 38",
+      "canonical_slug": "fs-38",
+      "field": "displacement_cc",
+      "raw_value": 27.2,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "FS 38",
+      "canonical_slug": "fs-38",
+      "field": "power_kw",
+      "raw_value": 0.65,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "FS 38",
+      "canonical_slug": "fs-38",
+      "field": "weight_kg",
+      "raw_value": 4.1,
+      "reason": "Value already present in public_evidence_facts.json"
+    },
+    {
+      "model_name": "FS 38",
+      "canonical_slug": "fs-38",
+      "field": "fuel_tank_l",
+      "raw_value": 0.33,
+      "reason": "Value already present in public_evidence_facts.json"
+    }
+  ]
+}

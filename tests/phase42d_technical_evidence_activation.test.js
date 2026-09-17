@@ -116,9 +116,10 @@ console.log('  PASS (all ' + modelsWithFacts.size + ' models with facts in summa
 
 // T12: Public fact count equation
 console.log('\nT12: Public fact count equation...');
-const expected = 474 + finalReport.ACTIVATION.total_activated;
+const phase43bNewFacts = 20;
+const expected = 474 + finalReport.ACTIVATION.total_activated + phase43bNewFacts;
 assert.strictEqual(evidenceFacts.facts.length, expected);
-console.log('  PASS (474 + ' + finalReport.ACTIVATION.total_activated + ' = ' + evidenceFacts.facts.length + ')');
+console.log('  PASS (474 + ' + finalReport.ACTIVATION.total_activated + ' + ' + phase43bNewFacts + ' = ' + evidenceFacts.facts.length + ')');
 
 // T13: MS201 canonical mapping
 console.log('\nT13: MS201 canonical mapping...');

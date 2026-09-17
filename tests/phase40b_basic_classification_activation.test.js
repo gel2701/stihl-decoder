@@ -112,9 +112,9 @@ describe('Phase 40B: Basic Classification Activation', () => {
     }
   });
 
-  it('T8: Public evidence — facts increased by Phase 42D activation', () => {
-    // Phase 42D activated 18 new facts: 474 + 18 = 492
-    expect(evidenceFacts.facts.length).toBe(492);
+  it('T8: Public evidence — facts increased by Phase 42D + 43B activation', () => {
+    // Phase 42D activated 18 new facts, Phase 43B activated 20: 474 + 18 + 20 = 512
+    expect(evidenceFacts.facts.length).toBe(512);
   });
 
   it('T9: Phase 42C new models — correctly present with CORE5', () => {
