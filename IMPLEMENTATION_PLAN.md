@@ -449,6 +449,104 @@ Phase 43C — BR Batch 1 Production Promotion & Live Verification
 
 ---
 
+## Phase 43C — BR Batch 1 Production Promotion & Live Verification
+
+**Status:** COMPLETE — PROMOTED / DEPLOYED / LIVE VERIFIED (2026-09-17)
+**Branch:** `main` (cherry-picked from `feat/phase43b-br-batch1-evidence-activation`)
+**Promoted commit:** `6ecacb31e59e4ead247fb39ef9c10138fe2c7a59`
+**Promoted tree:** `59e3d1e76f3d1a322534f0a89072c338649cdbeb`
+
+### Promotion results
+
+- Cherry-pick method: Phase 43A (`8bec12f`) then Phase 43B (`6ecacb3`) onto main
+- Conflicts: 0
+- Post-promotion tests: all PASS
+- Live deployment: Render auto-deploy from main
+- Live verification: HTTP 200, 114 sitemap URLs, all target routes present
+
+### Final BR Batch 1 state
+
+| Metric | Value |
+|---|---|
+| Existing models reviewed | 8 |
+| Canonical fields added | 20 |
+| Public evidence facts added | 20 |
+| Fact count | 492 → 512 |
+| Market variants preserved | 3 |
+| Canonical overwrites | 0 |
+| Non-target mutations | 0 |
+| Canonical models | 62 |
+| CORE5 | 62/62 |
+
+### Live verification
+
+- Homepage: HTTP 200
+- Sitemap: 114 URLs
+- Target model routes: all present (ms-260, ms-261, hs-45, sr-430, sr-450, fs-120, fs-38, br-600)
+- Phase 42C routes: BG 56/66/86, SH 56/86, MS 201 T-CM all present
+- production_confidence: all UNKNOWN
+- specs_verified: no true values
+
+### Tests
+
+- canonical_policy: PASS
+- Phase 39C: PASS
+- Phase 40B: PASS
+- Phase 41: PASS
+- Phase 42D: PASS
+- Phase 43A: PASS
+- Phase 43B: 20/20 PASS
+- Harvester: PASS
+- New regressions: 0
+
+---
+
+## Phase 44A — BR New Model Intake Audit & Prioritization (PLANNED / NEXT)
+
+**Status:** PLANNED / NOT YET ACTIVE
+
+### Goal
+
+Review the deferred BR machine/product candidates from the Phase 43A harvest and classify them for potential future onboarding.
+
+### Scope
+
+- 128 new machine/product model candidates from BR harvest
+- 64 ambiguous accessory records (deferred — separate schema needed)
+- Priority models: MS 162, MS 172, MS 182, MS 212, MS 363, MS 382
+
+### Classification categories
+
+```
+HIGH_CONFIDENCE_MACHINE
+BATTERY_MACHINE
+CHAINSAW
+BRUSHCUTTER_TRIMMER
+BLOWER
+SPRAYER
+HEDGE_TRIMMER
+PRESSURE_WASHER
+OTHER_MACHINE
+ACCESSORY_LIKE
+AMBIGUOUS
+```
+
+### Recommended intake order
+
+1. High-confidence machine models with rich official evidence
+2. Current chainsaws/tools missing from DB
+3. Battery machines/newer families
+4. Secondary categories
+5. Accessories only after separate schema
+
+### Not in scope for Phase 44A
+
+- Accessory schema implementation (separate future domain)
+- fetch-stihl-products cleanup (separate future change)
+- STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
+
+---
+
 ## Backlog note
 
 Prioritize the official evidence reconciliation/data-quality work before activating STIHL Paspoort 2.0. Re-evaluate Paspoort 2.0 scope only after the harvester/evidence pipeline and canonical-data review process are stable, so the private account/data architecture is designed deliberately rather than added onto the public evidence store.

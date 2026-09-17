@@ -1,0 +1,148 @@
+{
+  "phase": "43C",
+  "title": "BR Batch 1 Production Promotion & Live Verification Report",
+  "generated_at": "2026-09-17T06:10:00.000Z",
+  "status": "COMPLETE",
+  "accepted_input": {
+    "phase43a_commit": "fc076a8f87175aa1c5a75f22ba954cd1bc379daa",
+    "phase43a_tree": "7ecdce3f6cdf84d005cd98ddac397c583a05d21b",
+    "phase43b_commit": "e058e0b8b3c1a2e1f6aeb36986cefbe78e5dedc5",
+    "phase43b_tree": "59e3d1e76f3d1a322534f0a89072c338649cdbeb",
+    "remote_feature_branch": "feat/phase43b-br-batch1-evidence-activation",
+    "remote_sha": "e058e0b8b3c1a2e1f6aeb36986cefbe78e5dedc5",
+    "candidate_reproducible": true
+  },
+  "accounting_reconciliation": {
+    "ready_input_count": 32,
+    "activated_ready_count": 20,
+    "already_present_ready_count": 12,
+    "other_ready_dispositions": [],
+    "ready_unaccounted": 0,
+    "market_variant_review_total": 3,
+    "market_variant_ids": ["MS 261_power_kw", "MS 260_weight_kg", "BR 600_weight_kg"],
+    "market_variant_overlap_with_ready": 0,
+    "market_variant_write_count": 0,
+    "double_counted_records": 0,
+    "unexplained_accounting_errors": 0
+  },
+  "promotion": {
+    "method": "cherry-pick",
+    "phase43a_promoted": true,
+    "phase43b_promoted": true,
+    "promoted_main_commit": "6ecacb31e59e4ead247fb39ef9c10138fe2c7a59",
+    "promoted_main_tree": "59e3d1e76f3d1a322534f0a89072c338649cdbeb",
+    "exact_tree_parity": true,
+    "phase43b_blob_parity": true,
+    "conflicts": 0
+  },
+  "candidate_state": {
+    "canonical_models": 62,
+    "core5": "62/62",
+    "public_facts": 512,
+    "new_canonical_fields": 20,
+    "existing_fields_overwritten": 0,
+    "non_target_mutations": 0,
+    "new_public_facts": 20,
+    "fact_id_collisions": 0,
+    "semantic_duplicates": 0,
+    "index_integrity": "PASS"
+  },
+  "market_variant_safety": {
+    "ms260_weight_canonical": 4.8,
+    "ms260_weight_br": 4.9,
+    "ms260_protected": true,
+    "ms261_power_canonical": 3.0,
+    "ms261_power_br": 2.95,
+    "ms261_protected": true,
+    "br600_weight_canonical": 10.3,
+    "br600_weight_br": 10.1,
+    "br600_protected": true,
+    "market_variants_canonicalized": 0
+  },
+  "per_model": {
+    "ms_260": {
+      "new_fields": ["sound_pressure_db", "sound_power_db", "vibration_left", "vibration_right", "oil_tank_ml", "fuel_tank_ml"],
+      "new_field_count": 6,
+      "evidence_facts_added": 6,
+      "weight_canonical": 4.8,
+      "weight_br": 4.9,
+      "market_variant_protected": true
+    },
+    "ms_261": {
+      "new_fields": ["sound_pressure_db", "sound_power_db", "vibration_left", "vibration_right"],
+      "new_field_count": 4,
+      "evidence_facts_added": 4,
+      "power_canonical": 3.0,
+      "power_br": 2.95,
+      "market_variant_protected": true
+    },
+    "hs_45": {
+      "new_fields": ["sound_pressure_db", "sound_power_db", "vibration_left", "vibration_right"],
+      "new_field_count": 4,
+      "evidence_facts_added": 4
+    },
+    "sr_430": {
+      "new_canonical_fields": 0,
+      "already_present_fields": 4,
+      "identity_scope": "variant_match"
+    },
+    "sr_450": {
+      "new_canonical_fields": 0,
+      "already_present_fields": 4,
+      "identity_scope": "variant_match"
+    },
+    "fs_120": {
+      "new_fields": ["weight_kg", "sound_pressure_db", "sound_power_db", "vibration_left", "vibration_right"],
+      "new_field_count": 5,
+      "evidence_facts_added": 5
+    },
+    "fs_38": {
+      "new_canonical_fields": 0,
+      "already_present_fields": 4
+    },
+    "br_600": {
+      "new_fields": ["sound_power_db"],
+      "new_field_count": 1,
+      "evidence_facts_added": 1,
+      "weight_canonical": 10.3,
+      "weight_br": 10.1,
+      "market_variant_protected": true
+    }
+  },
+  "tests": {
+    "canonical_policy": "PASS",
+    "phase39c": "PASS",
+    "phase40b": "PASS",
+    "phase41": "PASS",
+    "phase42d": "PASS",
+    "phase43a": "PASS",
+    "phase43b": "20/20 PASS",
+    "harvester": "PASS",
+    "new_regressions": 0
+  },
+  "deployment": {
+    "provider": "Render",
+    "deployed_commit": "6ecacb31e59e4ead247fb39ef9c10138fe2c7a59",
+    "status": "LIVE",
+    "deployed_sha_matches_promoted_main": true
+  },
+  "live_verification": {
+    "homepage_http": 200,
+    "sitemap_urls": 114,
+    "canonical_models": 62,
+    "core5": "62/62",
+    "public_facts": 512,
+    "new_5xx": 0,
+    "startup_errors": 0,
+    "target_model_routes": "all present"
+  },
+  "implementation_plan": {
+    "phase43a_checkpoint_preserved": true,
+    "phase43b_checkpoint_preserved": true,
+    "phase43c_checkpoint_added": true,
+    "br_batch_1_status": "COMPLETE — PROMOTED / DEPLOYED / LIVE VERIFIED",
+    "phase44a_planned": true,
+    "passport_2_status": "NOT ACTIVE"
+  },
+  "final_decision": "PHASE 43C COMPLETE — BR BATCH 1 PROMOTED / DEPLOYED / LIVE VERIFIED / IMPLEMENTATION PLAN UPDATED / PASS"
+}

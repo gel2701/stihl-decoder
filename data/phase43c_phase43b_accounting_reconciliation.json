@@ -1,0 +1,107 @@
+{
+  "phase": "43C",
+  "title": "Phase 43B Accounting Reconciliation",
+  "generated_at": "2026-09-17T03:15:00.000Z",
+  "ready_input_count": 32,
+  "activated_ready_count": 20,
+  "already_present_ready_count": 12,
+  "other_ready_dispositions": [],
+  "ready_unaccounted": 0,
+  "market_variant_review_total": 3,
+  "market_variant_ids": [
+    "ms-261::power_kw",
+    "ms-260::weight_kg",
+    "br-600::weight_kg"
+  ],
+  "market_variant_overlap_with_ready": 0,
+  "market_variant_write_count": 0,
+  "double_counted_records": 0,
+  "unexplained_accounting_errors": 0,
+  "per_model": [
+    {
+      "model_name": "MS 260",
+      "canonical_slug": "ms-260",
+      "reviewed_fields": 6,
+      "ready_fields": 6,
+      "activated_fields": 6,
+      "already_present_fields": 0,
+      "protected_market_variants": 1,
+      "total_accounted": 6
+    },
+    {
+      "model_name": "MS 261",
+      "canonical_slug": "ms-261",
+      "reviewed_fields": 4,
+      "ready_fields": 4,
+      "activated_fields": 4,
+      "already_present_fields": 0,
+      "protected_market_variants": 1,
+      "total_accounted": 4
+    },
+    {
+      "model_name": "HS 45",
+      "canonical_slug": "hs-45",
+      "reviewed_fields": 4,
+      "ready_fields": 4,
+      "activated_fields": 4,
+      "already_present_fields": 0,
+      "protected_market_variants": 0,
+      "total_accounted": 4
+    },
+    {
+      "model_name": "FS 120",
+      "canonical_slug": "fs-120",
+      "reviewed_fields": 5,
+      "ready_fields": 5,
+      "activated_fields": 5,
+      "already_present_fields": 0,
+      "protected_market_variants": 0,
+      "total_accounted": 5
+    },
+    {
+      "model_name": "SR 430",
+      "canonical_slug": "sr-430",
+      "reviewed_fields": 4,
+      "ready_fields": 4,
+      "activated_fields": 0,
+      "already_present_fields": 4,
+      "protected_market_variants": 0,
+      "total_accounted": 4
+    },
+    {
+      "model_name": "SR 450",
+      "canonical_slug": "sr-450",
+      "reviewed_fields": 4,
+      "ready_fields": 4,
+      "activated_fields": 0,
+      "already_present_fields": 4,
+      "protected_market_variants": 0,
+      "total_accounted": 4
+    },
+    {
+      "model_name": "FS 38",
+      "canonical_slug": "fs-38",
+      "reviewed_fields": 4,
+      "ready_fields": 4,
+      "activated_fields": 0,
+      "already_present_fields": 4,
+      "protected_market_variants": 0,
+      "total_accounted": 4
+    },
+    {
+      "model_name": "BR 600",
+      "canonical_slug": "br-600",
+      "reviewed_fields": 1,
+      "ready_fields": 1,
+      "activated_fields": 1,
+      "already_present_fields": 0,
+      "protected_market_variants": 1,
+      "total_accounted": 1
+    }
+  ],
+  "accounting_equations": {
+    "READY_INPUT = ACTIVATED + ALREADY_PRESENT + OTHER": "32 = 20 + 12 + 0",
+    "READY_UNACCOUNTED": 0,
+    "MARKET_VARIANT_OVERLAP": 0
+  }
+}
