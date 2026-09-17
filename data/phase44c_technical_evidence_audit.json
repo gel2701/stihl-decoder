@@ -1,0 +1,1514 @@
+{
+  "phase": "44C",
+  "timestamp": "2026-09-17T06:50:33.381Z",
+  "models_before": 83,
+  "models_after": 83,
+  "facts_before": 512,
+  "facts_after": 701,
+  "facts_added": 189,
+  "canonical_writes": 189,
+  "blocked_candidates": 8,
+  "dispositions": [
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "fields_activated": 7,
+      "fields_blocked": 0
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "fields_activated": 7,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "fields_activated": 8,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "fields_activated": 6,
+      "fields_blocked": 1
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "fields_activated": 6,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "fields_activated": 8,
+      "fields_blocked": 0
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "fields_activated": 12,
+      "fields_blocked": 0
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "fields_activated": 7,
+      "fields_blocked": 0
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "fields_activated": 8,
+      "fields_blocked": 1
+    }
+  ],
+  "canonical_writes_detail": [
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "displacement_cc",
+      "value": 35.8,
+      "raw": "35,8"
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "power_kw",
+      "value": 1.6,
+      "raw": "1,6 / 2,2"
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "sound_pressure_db",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "sound_power_db",
+      "value": 112,
+      "raw": "112"
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "fuel_tank_ml",
+      "value": 396,
+      "raw": "396"
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "oil_tank_ml",
+      "value": 280,
+      "raw": "280"
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "vibration_left_ms2",
+      "value": 2.5,
+      "raw": "2,5 "
+    },
+    {
+      "model": "MS 182",
+      "slug": "ms-182",
+      "field": "vibration_right_ms2",
+      "value": 3.4,
+      "raw": " 3,4"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "displacement_cc",
+      "value": 30.1,
+      "raw": "30,1"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "power_kw",
+      "value": 1.3,
+      "raw": "1,3"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "sound_pressure_db",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "sound_power_db",
+      "value": 110,
+      "raw": "110"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "fuel_tank_ml",
+      "value": 396,
+      "raw": "396"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "oil_tank_ml",
+      "value": 280,
+      "raw": "280"
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "vibration_left_ms2",
+      "value": 3.7,
+      "raw": "3,7 "
+    },
+    {
+      "model": "MS 162",
+      "slug": "ms-162",
+      "field": "vibration_right_ms2",
+      "value": 3.7,
+      "raw": " 3,7"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "displacement_cc",
+      "value": 37.7,
+      "raw": "37,7"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "power_kw",
+      "value": 1.5,
+      "raw": "1,5/2,0"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "weight_kg",
+      "value": 7.5,
+      "raw": "7,5"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "sound_pressure_db",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "sound_power_db",
+      "value": 109,
+      "raw": "109"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "fuel_tank_l",
+      "value": 0.75,
+      "raw": "0,75"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "cutting_diameter_mm",
+      "value": 420,
+      "raw": "420"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "total_length_cm",
+      "value": 177.5,
+      "raw": "177,5"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "vibration_nylon_left_ms2",
+      "value": 7,
+      "raw": "7,0 "
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "vibration_nylon_right_ms2",
+      "value": 6,
+      "raw": " 6,0"
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "vibration_blade_left_ms2",
+      "value": 4,
+      "raw": "4,0 "
+    },
+    {
+      "model": "FS 161",
+      "slug": "fs-161",
+      "field": "vibration_blade_right_ms2",
+      "value": 4.7,
+      "raw": " 4,7"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "displacement_cc",
+      "value": 27.2,
+      "raw": "27,2"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "power_kw",
+      "value": 0.7,
+      "raw": "0,7"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "weight_kg",
+      "value": 3.6,
+      "raw": "3,6"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "sound_pressure_db",
+      "value": 105,
+      "raw": "105"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "air_volume_m3h",
+      "value": 700,
+      "raw": "700"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "air_velocity_ms",
+      "value": 59,
+      "raw": "59"
+    },
+    {
+      "model": "BG 50",
+      "slug": "bg-50",
+      "field": "blowing_force_n",
+      "value": 13,
+      "raw": "13"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "displacement_cc",
+      "value": 31.8,
+      "raw": "31,8"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "power_kw",
+      "value": 1.5,
+      "raw": "1,5"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "sound_pressure_db",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "sound_power_db",
+      "value": 110,
+      "raw": "110"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "fuel_tank_ml",
+      "value": 396,
+      "raw": "396"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "oil_tank_ml",
+      "value": 280,
+      "raw": "280"
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "vibration_left_ms2",
+      "value": 3,
+      "raw": "3,0 "
+    },
+    {
+      "model": "MS 172",
+      "slug": "ms-172",
+      "field": "vibration_right_ms2",
+      "value": 3.4,
+      "raw": " 3,4"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "displacement_cc",
+      "value": 37.7,
+      "raw": "37,7"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "power_kw",
+      "value": 1.7,
+      "raw": "1,7"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "weight_kg",
+      "value": 7.7,
+      "raw": "7,7"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "sound_pressure_db",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "sound_power_db",
+      "value": 110,
+      "raw": "110"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "fuel_tank_l",
+      "value": 0.75,
+      "raw": "0,75"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "cutting_diameter_mm",
+      "value": 420,
+      "raw": "420"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "total_length_cm",
+      "value": 177.5,
+      "raw": "177,5"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "vibration_nylon_left_ms2",
+      "value": 5.7,
+      "raw": "5,7 "
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "vibration_nylon_right_ms2",
+      "value": 5.8,
+      "raw": " 5,8"
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "vibration_blade_left_ms2",
+      "value": 4.6,
+      "raw": "4,6 "
+    },
+    {
+      "model": "FS 221",
+      "slug": "fs-221",
+      "field": "vibration_blade_right_ms2",
+      "value": 4.7,
+      "raw": " 4,7"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "displacement_cc",
+      "value": 27.2,
+      "raw": "27,2"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "power_kw",
+      "value": 0.75,
+      "raw": "0,75/1,0"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "weight_kg",
+      "value": 4.8,
+      "raw": "4,8"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "sound_pressure_db",
+      "value": 94,
+      "raw": "94 / 95"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "sound_power_db",
+      "value": 107,
+      "raw": "107 / 108"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "fuel_tank_l",
+      "value": 0.33,
+      "raw": "0,33"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "cutting_diameter_mm",
+      "value": 230,
+      "raw": "230 / 420"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "total_length_cm",
+      "value": 170,
+      "raw": "170"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "vibration_nylon_left_ms2",
+      "value": 5.5,
+      "raw": "5,5 "
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "vibration_nylon_right_ms2",
+      "value": 5.5,
+      "raw": " 5,5"
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "vibration_blade_left_ms2",
+      "value": 6.8,
+      "raw": "6,8 "
+    },
+    {
+      "model": "FS 55",
+      "slug": "fs-55",
+      "field": "vibration_blade_right_ms2",
+      "value": 5.6,
+      "raw": " 5,6"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "displacement_cc",
+      "value": 63,
+      "raw": "63"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "power_kw",
+      "value": 3.5,
+      "raw": "3,5 / -"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "sound_pressure_db",
+      "value": 107,
+      "raw": "107"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "sound_power_db",
+      "value": 115,
+      "raw": "115"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "fuel_tank_ml",
+      "value": 634,
+      "raw": "634"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "oil_tank_ml",
+      "value": 311,
+      "raw": "311"
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "vibration_left_ms2",
+      "value": 3.9,
+      "raw": "3,9 "
+    },
+    {
+      "model": "MS 363",
+      "slug": "ms-363",
+      "field": "vibration_right_ms2",
+      "value": 4.6,
+      "raw": " 4,6"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "displacement_cc",
+      "value": 79.9,
+      "raw": "79,9"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "power_kw",
+      "value": 3.2,
+      "raw": "3,2"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "weight_kg",
+      "value": 10.6,
+      "raw": "10,6"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "sound_power_db",
+      "value": 112,
+      "raw": "112"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "air_volume_m3h",
+      "value": 2025,
+      "raw": "2.025"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "air_velocity_ms",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "model": "BR 800",
+      "slug": "br-800",
+      "field": "blowing_force_n",
+      "value": 41,
+      "raw": "41"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "displacement_cc",
+      "value": 36.3,
+      "raw": "36,3"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "power_kw",
+      "value": 1.4,
+      "raw": "1,4/1,9"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "weight_kg",
+      "value": 5.8,
+      "raw": "5,8"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "sound_pressure_db",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "sound_power_db",
+      "value": 109,
+      "raw": "109"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "fuel_tank_l",
+      "value": 0.71,
+      "raw": "0,71"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "cutting_diameter_mm",
+      "value": 250,
+      "raw": "250"
+    },
+    {
+      "model": "FS 131",
+      "slug": "fs-131",
+      "field": "total_length_cm",
+      "value": 180,
+      "raw": "180"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "displacement_cc",
+      "value": 25.4,
+      "raw": "25,4"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "power_kw",
+      "value": 0.95,
+      "raw": "0,95/1,3"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "weight_kg",
+      "value": 5.2,
+      "raw": "5,2"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "sound_pressure_db",
+      "value": 94,
+      "raw": "94"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "sound_power_db",
+      "value": 109,
+      "raw": "109"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "fuel_tank_l",
+      "value": 0.44,
+      "raw": "0,44"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "cutting_diameter_mm",
+      "value": 250,
+      "raw": "250 / 420"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "total_length_cm",
+      "value": 176,
+      "raw": "176"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "vibration_nylon_left_ms2",
+      "value": 2.9,
+      "raw": "2,9 "
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "vibration_nylon_right_ms2",
+      "value": 3.6,
+      "raw": " 3,6"
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "vibration_blade_left_ms2",
+      "value": 2.1,
+      "raw": "2,1 "
+    },
+    {
+      "model": "FS 85",
+      "slug": "fs-85",
+      "field": "vibration_blade_right_ms2",
+      "value": 3.3,
+      "raw": " 3,3"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "displacement_cc",
+      "value": 25.4,
+      "raw": "25,4"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "power_kw",
+      "value": 0.95,
+      "raw": "0,95/1,3"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "weight_kg",
+      "value": 5,
+      "raw": "5,0"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "sound_pressure_db",
+      "value": 96,
+      "raw": "96 / 94"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "sound_power_db",
+      "value": 110,
+      "raw": "110 / 109"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "fuel_tank_l",
+      "value": 0.44,
+      "raw": "0,44"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "cutting_diameter_mm",
+      "value": 250,
+      "raw": "250 / 420"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "total_length_cm",
+      "value": 176,
+      "raw": "176"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "vibration_nylon_left_ms2",
+      "value": 3.2,
+      "raw": "3,2 "
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "vibration_nylon_right_ms2",
+      "value": 3.6,
+      "raw": " 3,6"
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "vibration_blade_left_ms2",
+      "value": 2.4,
+      "raw": "2,4 "
+    },
+    {
+      "model": "FS 80",
+      "slug": "fs-80",
+      "field": "vibration_blade_right_ms2",
+      "value": 3.1,
+      "raw": " 3,1"
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "field": "displacement_cc",
+      "value": 91.1,
+      "raw": "91,1"
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "field": "power_kw",
+      "value": 5.4,
+      "raw": "5,4 / 7,3"
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "field": "sound_pressure_db",
+      "value": 105,
+      "raw": "105"
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "field": "sound_power_db",
+      "value": 118,
+      "raw": "118"
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "field": "vibration_left_ms2",
+      "value": 6.9,
+      "raw": "6,9"
+    },
+    {
+      "model": "MS 661",
+      "slug": "ms-661",
+      "field": "vibration_right_ms2",
+      "value": 5.6,
+      "raw": "5,6"
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "field": "displacement_cc",
+      "value": 41.6,
+      "raw": "41,6"
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "field": "power_kw",
+      "value": 2,
+      "raw": "2,0"
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "field": "weight_kg",
+      "value": 10.73,
+      "raw": "10,73"
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "field": "sound_pressure_db",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "field": "sound_power_db",
+      "value": 114,
+      "raw": "114"
+    },
+    {
+      "model": "FR 410",
+      "slug": "fr-410",
+      "field": "fuel_tank_l",
+      "value": 0.75,
+      "raw": "0,75"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "displacement_cc",
+      "value": 37.7,
+      "raw": "37,7"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "power_kw",
+      "value": 1.7,
+      "raw": "1,7"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "weight_kg",
+      "value": 8.8,
+      "raw": "8,8"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "sound_pressure_db",
+      "value": 99,
+      "raw": "99 / 100"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "sound_power_db",
+      "value": 111,
+      "raw": "111"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "fuel_tank_l",
+      "value": 0.75,
+      "raw": "0,75"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "cutting_diameter_mm",
+      "value": 420,
+      "raw": "420"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "total_length_cm",
+      "value": 185,
+      "raw": "185"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "vibration_nylon_left_ms2",
+      "value": 2.6,
+      "raw": "2,6 "
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "vibration_nylon_right_ms2",
+      "value": 2.3,
+      "raw": " 2,3"
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "vibration_blade_left_ms2",
+      "value": 2.7,
+      "raw": "2,7 "
+    },
+    {
+      "model": "FS 351",
+      "slug": "fs-351",
+      "field": "vibration_blade_right_ms2",
+      "value": 2.6,
+      "raw": " 2,6"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "displacement_cc",
+      "value": 41.6,
+      "raw": "41,6"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "power_kw",
+      "value": 2,
+      "raw": "2,0 / -"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "weight_kg",
+      "value": 8.8,
+      "raw": "8,8"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "sound_pressure_db",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "sound_power_db",
+      "value": 111,
+      "raw": "111"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "fuel_tank_l",
+      "value": 0.75,
+      "raw": "0,75"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "cutting_diameter_mm",
+      "value": 420,
+      "raw": "420"
+    },
+    {
+      "model": "FS 291",
+      "slug": "fs-291",
+      "field": "total_length_cm",
+      "value": 177.5,
+      "raw": "177,5"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "displacement_cc",
+      "value": 27.2,
+      "raw": "27,2"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "power_kw",
+      "value": 0.75,
+      "raw": "0,75 / 1,0"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "weight_kg",
+      "value": 4.4,
+      "raw": "4,4"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "sound_pressure_db",
+      "value": 95,
+      "raw": "95 / 94"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "sound_power_db",
+      "value": 108,
+      "raw": "108 / 107"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "fuel_tank_l",
+      "value": 0.33,
+      "raw": "0,33"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "cutting_diameter_mm",
+      "value": 420,
+      "raw": "420 / 230 mm"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "total_length_cm",
+      "value": 172,
+      "raw": "172"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "vibration_nylon_left_ms2",
+      "value": 8.5,
+      "raw": "8,5 "
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "vibration_nylon_right_ms2",
+      "value": 8.5,
+      "raw": " 8,5"
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "vibration_blade_left_ms2",
+      "value": 8.5,
+      "raw": "8,5 "
+    },
+    {
+      "model": "FS 55 R",
+      "slug": "fs-55-r",
+      "field": "vibration_blade_right_ms2",
+      "value": 9,
+      "raw": " 9,0"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "displacement_cc",
+      "value": 72.2,
+      "raw": "72,2"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "power_kw",
+      "value": 3.9,
+      "raw": "3,9 / 5,3"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "sound_pressure_db",
+      "value": 106,
+      "raw": "106"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "sound_power_db",
+      "value": 118,
+      "raw": "118"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "fuel_tank_ml",
+      "value": 680,
+      "raw": "680"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "oil_tank_ml",
+      "value": 360,
+      "raw": "360"
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "vibration_left_ms2",
+      "value": 5.4,
+      "raw": "5,4 "
+    },
+    {
+      "model": "MS 382",
+      "slug": "ms-382",
+      "field": "vibration_right_ms2",
+      "value": 5.4,
+      "raw": " 5,4"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "displacement_cc",
+      "value": 56.5,
+      "raw": "56,5"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "power_kw",
+      "value": 2.6,
+      "raw": "2,6"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "weight_kg",
+      "value": 9.1,
+      "raw": "9,1"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "sound_power_db",
+      "value": 108,
+      "raw": "108"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "air_volume_m3h",
+      "value": 1.26,
+      "raw": "1,260"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "air_velocity_ms",
+      "value": 80,
+      "raw": "80"
+    },
+    {
+      "model": "BR 420",
+      "slug": "br-420",
+      "field": "blowing_force_n",
+      "value": 19,
+      "raw": "19"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "displacement_cc",
+      "value": 31.8,
+      "raw": "31,8"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "power_kw",
+      "value": 1.5,
+      "raw": "1,5"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "sound_pressure_db",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "sound_power_db",
+      "value": 110,
+      "raw": "110"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "fuel_tank_ml",
+      "value": 396,
+      "raw": "396"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "oil_tank_ml",
+      "value": 280,
+      "raw": "280"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "vibration_left_ms2",
+      "value": 3,
+      "raw": "3,0 "
+    },
+    {
+      "model": "MS 172 C-BE",
+      "slug": "ms-172-c-be",
+      "field": "vibration_right_ms2",
+      "value": 3.4,
+      "raw": " 3,4"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "displacement_cc",
+      "value": 38.6,
+      "raw": "38,6"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "power_kw",
+      "value": 1.8,
+      "raw": "1,8"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "sound_pressure_db",
+      "value": 103,
+      "raw": "103"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "sound_power_db",
+      "value": 113,
+      "raw": "113"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "fuel_tank_ml",
+      "value": 396,
+      "raw": "396"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "oil_tank_ml",
+      "value": 280,
+      "raw": "280"
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "vibration_left_ms2",
+      "value": 3.1,
+      "raw": "3,1 "
+    },
+    {
+      "model": "MS 212",
+      "slug": "ms-212",
+      "field": "vibration_right_ms2",
+      "value": 3.7,
+      "raw": " 3,7"
+    }
+  ],
+  "blocked_detail": [
+    {
+      "model": "MS 182",
+      "field": "weight_kg",
+      "raw": "4,6 - sem conjunto de corte",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 162",
+      "field": "weight_kg",
+      "raw": "4,5 - sem conjunto de corte",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 172",
+      "field": "weight_kg",
+      "raw": "4,5 - sem conjunto de corte",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 363",
+      "field": "weight_kg",
+      "raw": "5,5 - somente máquina",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 661",
+      "field": "weight_kg",
+      "raw": "7,4",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 382",
+      "field": "weight_kg",
+      "raw": "6,2",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 172 C-BE",
+      "field": "weight_kg",
+      "raw": "4,8 - sem conjunto de corte",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MS 212",
+      "field": "weight_kg",
+      "raw": "4,6 - sem conjunto de corte",
+      "reason": "CONFIGURATION_DEPENDENT_BLOCKED"
+    }
+  ]
+}

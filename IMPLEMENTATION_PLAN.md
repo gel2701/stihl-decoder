@@ -706,26 +706,24 @@ Activate 21 Tier 1 high-priority machine models from Phase 44A with canonical id
 
 ---
 
-## Phase 44C — BR Tier 1 Technical Evidence Reconciliation & Activation (PLANNED / NEXT)
+## Phase 44C — BR Tier 1 Technical Evidence Reconciliation & Activation
 
-**Status:** PLANNED / NOT YET ACTIVE
+**Status:** COMPLETE ✅
 
-### Goal
+### Outcome
 
-Review official BR technical fields per activated model, separate global-safe vs BR market-specific values, and stage/activate safe technical evidence.
+Technical evidence activation for 21 BR Tier 1 models from official STIHL BR product pages.
 
-### Scope
-
-- 21 Tier 1 models activated in Phase 44B
-- Official BR technical specifications from VTEX catalog
-- Manual evidence verification where available
-
-### Not in scope for Phase 44C
-
-- Production promotion (deferred to Phase 44D)
-- Tier 2/3 models (future phases)
-- Accessory schema (separate future domain)
-- STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
+- Models: 83 → 83 (frozen)
+- CORE5: 83/83 (frozen)
+- Public facts: 512 → **701** (+189)
+- Canonical field writes: 189
+- Blocked candidates: 8 (all: weight_kg CONFIGURATION_DEPENDENT_BLOCKED for chainsaws)
+- Existing canonical field overwrites: 0
+- production_confidence: UNKNOWN (all)
+- specs_verified: false (all)
+- Branch: `feat/phase44c-br-tier1-technical-evidence`
+- All regression tests PASS
 
 ---
 
