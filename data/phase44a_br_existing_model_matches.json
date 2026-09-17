@@ -1,0 +1,1408 @@
+{
+  "match_id": "phase44a_br_existing_model_matches",
+  "match_date": "2026-09-17T04:25:58.134Z",
+  "total_matches": 13,
+  "matches": [
+    {
+      "catalog": {
+        "id": "59",
+        "name": "Roçadeira a combustão FS 120",
+        "reference": "4134-011-2376",
+        "type": "BRUSHCUTTER",
+        "category": "machine",
+        "linkText": "rocadeira-fs-120",
+        "modelInfo": {
+          "prefix": "FS 120",
+          "number": 120
+        }
+      },
+      "database": {
+        "id": "stihl_fs_120",
+        "slug": "fs-120",
+        "category_slug": "bosmaaiers",
+        "series_code": "4134",
+        "model_name": "FS 120",
+        "category": "Bosmaaier",
+        "fuel_type": null,
+        "fuel_type_label": null,
+        "is_discontinued": null,
+        "data_confidence": "UNKNOWN",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "public_evidence_facts.json",
+        "provenance": {
+          "source_type": "official_evidence_store",
+          "source_title": "STIHL Public Evidence Facts Store",
+          "confidence": "UNKNOWN",
+          "verification_status": "EVIDENCE_STORE_LINKED"
+        },
+        "data_status": "EVIDENCE_STORE_LINKED",
+        "field_verification": {},
+        "model_status": "EVIDENCE_STORE_LINKED",
+        "series_identification": "4134",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Bosmaaier",
+          "product_type": "Bosmaaier",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "BRUSHCUTTING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "LEGACY_ERA_INFERENCE",
+            "engine_type": "LEGACY_ERA_INFERENCE",
+            "fuel_type": "LEGACY_ERA_INFERENCE",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": false,
+          "notes": "No fuel_type in database. Legacy professional brushcutter, era-appropriate 2-stroke classification."
+        },
+        "weight_kg": 6.3,
+        "sound_pressure_db": 99,
+        "sound_power_db": 110,
+        "vibration_left": 5.9,
+        "vibration_right": 4.2
+      }
+    },
+    {
+      "catalog": {
+        "id": "240",
+        "name": "Motosserra a combustão MS 261",
+        "reference": "1141-200-MS261",
+        "type": "CHAINSAW",
+        "category": "machine",
+        "linkText": "motosserra-a-combustao-ms-261",
+        "modelInfo": {
+          "prefix": "MS 261",
+          "number": 261
+        }
+      },
+      "database": {
+        "id": "stihl_ms_261_cm",
+        "slug": "ms-261",
+        "category_slug": "kettingzagen",
+        "series_code": "1141",
+        "model_name": "MS 261",
+        "category": "Kettingzaag",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt M-Tronic)",
+        "displacement_cc": 50.2,
+        "power_kw": 3,
+        "power_hp": 4.1,
+        "weight_kg": 4.9,
+        "spark_plug": "NGK CMR6H",
+        "electrode_gap_mm": 0.5,
+        "carb_h_setting": "Elektronisch (M-Tronic)",
+        "carb_l_setting": "Elektronisch (M-Tronic)",
+        "carb_la_setting": "M-Tronic",
+        "chain_pitch": ".325\"",
+        "chain_gauge_mm": 1.3,
+        "oil_mix_ratio": "1:50",
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "MEDIUM",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "0458-573-8621-D - STIHL MS 261 Instruction Manual",
+        "provenance": {
+          "source_type": "official_stihl_instruction_manual",
+          "source_title": "STIHL MS 261 Instruction Manual",
+          "source_document_number": "0458-573-8621-D",
+          "source_revision": "Rev. 2021",
+          "source_year": null,
+          "confidence": "MEDIUM",
+          "verification_status": "PRIMARY_SOURCE_LINKED",
+          "legacy_reference": null,
+          "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
+        },
+        "data_status": "PRIMARY_SOURCE_LINKED",
+        "field_verification": {
+          "displacement_cc": {
+            "value": 50.2,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "power_kw": {
+            "value": 3,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "power_hp": {
+            "value": 4.1,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "weight_kg": {
+            "value": 4.9,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "spark_plug": {
+            "value": "NGK CMR6H",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "electrode_gap_mm": {
+            "value": 0.5,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "carb_h_setting": {
+            "value": "Elektronisch (M-Tronic)",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "carb_l_setting": {
+            "value": "Elektronisch (M-Tronic)",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "carb_la_setting": {
+            "value": "M-Tronic",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "chain_pitch": {
+            "value": ".325\"",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "chain_gauge_mm": {
+            "value": 1.3,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "oil_mix_ratio": {
+            "value": "1:50",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-573-8621-D",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          }
+        },
+        "model_status": "PRIMARY_SOURCE_LINKED",
+        "series_identification": "1141",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Kettingzaag",
+          "product_type": "Handkettingzaag",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "SAWING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "EXISTING_CANONICAL_SUPPORTED",
+            "engine_type": "EXISTING_CANONICAL_SUPPORTED",
+            "fuel_type": "EXISTING_CANONICAL_SUPPORTED",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "M-Tronic electronic carburetor; C-M designation in series_id indicates M-Tronic variant."
+        },
+        "sound_pressure_db": 105,
+        "sound_power_db": 115,
+        "vibration_left": 3.5,
+        "vibration_right": 3.5
+      }
+    },
+    {
+      "catalog": {
+        "id": "96",
+        "name": "Aspirador a combustão SH 56",
+        "reference": "4241-200-0015",
+        "type": "VACUUM",
+        "category": "machine",
+        "linkText": "aspirador-sh-56",
+        "modelInfo": null
+      },
+      "database": {
+        "id": "stihl_sh_56",
+        "slug": "sh-56",
+        "category_slug": "bladblazers",
+        "series_code": null,
+        "model_name": "SH 56",
+        "category": "Bladblazer",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt)",
+        "displacement_cc": null,
+        "power_kw": null,
+        "power_hp": null,
+        "weight_kg": null,
+        "spark_plug": null,
+        "electrode_gap_mm": null,
+        "carb_h_setting": null,
+        "carb_l_setting": null,
+        "carb_la_setting": null,
+        "chain_pitch": null,
+        "chain_gauge_mm": null,
+        "oil_mix_ratio": null,
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "IDENTITY_ONLY",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": 0,
+        "data_source": "STIHL Instruction Manual 0458-296-8621-C",
+        "provenance": {
+          "verification_status": "IDENTITY_VERIFIED",
+          "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+          "source_reference": "0458-296-8621-C",
+          "last_verified": "2026-09-17T00:09:28.963Z"
+        },
+        "data_status": "IDENTITY_ACTIVE",
+        "field_verification": {},
+        "model_status": "IDENTITY_ACTIVE",
+        "series_identification": null,
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Zuig-/blaasmachine",
+          "product_type": "Zuighakselaar",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "BLOWING",
+          "evidence_status": {
+            "product_category": "OFFICIAL_EXACT_MODEL",
+            "product_type": "OFFICIAL_EXACT_MODEL",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "OFFICIAL_EXACT_MODEL",
+            "primary_function": "OFFICIAL_EXACT_MODEL"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "Identity from STIHL multi-model manual 0458-296-8621-C. Vacuum/shredder functions. Technical specs pending Phase 42D."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "87",
+        "name": "Roçadeira a combustão FS 460",
+        "reference": "4147-012-2315",
+        "type": "BRUSHCUTTER",
+        "category": "machine",
+        "linkText": "rocadeira-fs-460",
+        "modelInfo": {
+          "prefix": "FS 460",
+          "number": 460
+        }
+      },
+      "database": {
+        "id": "stihl_fs_460_cem",
+        "slug": "fs-460",
+        "category_slug": "bosmaaiers",
+        "series_code": "4147",
+        "model_name": "FS 460 C-EM",
+        "category": "Bosmaaier",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt M-Tronic Profi)",
+        "displacement_cc": 45.6,
+        "power_kw": 2.2,
+        "power_hp": 3,
+        "weight_kg": 8.5,
+        "spark_plug": "NGK CMR6H",
+        "electrode_gap_mm": 0.5,
+        "carb_h_setting": "Elektronisch (M-Tronic)",
+        "carb_l_setting": "Elektronisch (M-Tronic)",
+        "carb_la_setting": "M-Tronic",
+        "chain_pitch": null,
+        "chain_gauge_mm": null,
+        "oil_mix_ratio": "1:50",
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "LOW",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "STIHL Werkplaatshandboek 4147",
+        "provenance": {
+          "source_type": "series_workshop_manual",
+          "source_title": "STIHL Werkplaatshandboek 4147",
+          "source_document_number": null,
+          "source_revision": null,
+          "source_year": null,
+          "confidence": "LOW",
+          "verification_status": "SERIES_SOURCE_LINKED",
+          "legacy_reference": "STIHL Werkplaatshandboek 4147",
+          "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+        },
+        "data_status": "SERIES_SOURCE_LINKED",
+        "field_verification": {
+          "displacement_cc": {
+            "value": 45.6,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_kw": {
+            "value": 2.2,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_hp": {
+            "value": 3,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "weight_kg": {
+            "value": 8.5,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "spark_plug": {
+            "value": "NGK CMR6H",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "electrode_gap_mm": {
+            "value": 0.5,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_h_setting": {
+            "value": "Elektronisch (M-Tronic)",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_l_setting": {
+            "value": "Elektronisch (M-Tronic)",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_la_setting": {
+            "value": "M-Tronic",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_pitch": {
+            "value": null,
+            "status": "PRIMARY_SOURCE_PENDING",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_gauge_mm": {
+            "value": null,
+            "status": "PRIMARY_SOURCE_PENDING",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "oil_mix_ratio": {
+            "value": "1:50",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 4147",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          }
+        },
+        "model_status": "SERIES_SOURCE_LINKED",
+        "series_identification": "4147",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Bosmaaier",
+          "product_type": "Bosmaaier",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "BRUSHCUTTING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "EXISTING_CANONICAL_SUPPORTED",
+            "engine_type": "EXISTING_CANONICAL_SUPPORTED",
+            "fuel_type": "EXISTING_CANONICAL_SUPPORTED",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "C-EM suffix: C = Comfort, EM = Elektronisch M-Tronic. Heavy professional brushcutter at 8.5 kg."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "77",
+        "name": "Roçadeira a combustão FS 38",
+        "reference": "4140-012-2362",
+        "type": "BRUSHCUTTER",
+        "category": "machine",
+        "linkText": "rocadeira-fs-38",
+        "modelInfo": {
+          "prefix": "FS 38",
+          "number": 38
+        }
+      },
+      "database": {
+        "id": "stihl_fs_38",
+        "slug": "fs-38",
+        "category_slug": "bosmaaiers",
+        "series_code": "4140",
+        "model_name": "FS 38",
+        "category": "Bosmaaier",
+        "fuel_type": null,
+        "fuel_type_label": null,
+        "is_discontinued": null,
+        "data_confidence": "UNKNOWN",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "public_evidence_facts.json",
+        "provenance": {
+          "source_type": "official_evidence_store",
+          "source_title": "STIHL Public Evidence Facts Store",
+          "confidence": "UNKNOWN",
+          "verification_status": "EVIDENCE_STORE_LINKED"
+        },
+        "data_status": "EVIDENCE_STORE_LINKED",
+        "field_verification": {},
+        "model_status": "EVIDENCE_STORE_LINKED",
+        "series_identification": "4140",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Bosmaaier",
+          "product_type": "Grastrimmer",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "GRASS_TRIMMING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "WEIGHT_CLASS_INFERENCE",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "LEGACY_ERA_INFERENCE",
+            "engine_type": "LEGACY_ERA_INFERENCE",
+            "fuel_type": "LEGACY_ERA_INFERENCE",
+            "primary_function": "WEIGHT_CLASS_INFERENCE"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": false,
+          "notes": "No fuel_type in database. Very light model — classified as Grastrimmer (light grass trimmer) rather than heavy Bosmaaier."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "68",
+        "name": "Motosserra a combustão MS 260",
+        "reference": "1121-011-3090",
+        "type": "CHAINSAW",
+        "category": "machine",
+        "linkText": "motosserra-ms-260",
+        "modelInfo": {
+          "prefix": "MS 260",
+          "number": 260
+        }
+      },
+      "database": {
+        "id": "stihl_ms_260",
+        "slug": "ms-260",
+        "category_slug": "kettingzagen",
+        "series_code": "1121",
+        "model_name": "MS 260",
+        "category": "Kettingzaag",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt Klassiek)",
+        "displacement_cc": 50.2,
+        "power_kw": 2.6,
+        "power_hp": 3.5,
+        "weight_kg": 4.8,
+        "spark_plug": "NGK BPMR7A / Bosch WSR6F",
+        "electrode_gap_mm": 0.5,
+        "carb_h_setting": "1 slag open",
+        "carb_l_setting": "1 slag open",
+        "carb_la_setting": "2800 RPM",
+        "chain_pitch": ".325\"",
+        "chain_gauge_mm": 1.6,
+        "oil_mix_ratio": "1:50",
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 1,
+        "data_confidence": "LOW",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "STIHL Werkplaatshandboek 1121",
+        "provenance": {
+          "source_type": "series_workshop_manual",
+          "source_title": "STIHL Werkplaatshandboek 1121",
+          "source_document_number": null,
+          "source_revision": null,
+          "source_year": null,
+          "confidence": "LOW",
+          "verification_status": "SERIES_SOURCE_LINKED",
+          "legacy_reference": "STIHL Werkplaatshandboek 1121",
+          "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+        },
+        "data_status": "SERIES_SOURCE_LINKED",
+        "field_verification": {
+          "displacement_cc": {
+            "value": 50.2,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_kw": {
+            "value": 2.6,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_hp": {
+            "value": 3.5,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "weight_kg": {
+            "value": 4.8,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "spark_plug": {
+            "value": "NGK BPMR7A / Bosch WSR6F",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "electrode_gap_mm": {
+            "value": 0.5,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_h_setting": {
+            "value": "1 slag open",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_l_setting": {
+            "value": "1 slag open",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_la_setting": {
+            "value": "2800 RPM",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_pitch": {
+            "value": ".325\"",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_gauge_mm": {
+            "value": 1.6,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "oil_mix_ratio": {
+            "value": "1:50",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1121",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          }
+        },
+        "model_status": "SERIES_SOURCE_LINKED",
+        "series_identification": "1121",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Kettingzaag",
+          "product_type": "Handkettingzaag",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "SAWING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "EXISTING_CANONICAL_SUPPORTED",
+            "engine_type": "EXISTING_CANONICAL_SUPPORTED",
+            "fuel_type": "EXISTING_CANONICAL_SUPPORTED",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": ""
+        },
+        "sound_pressure_db": 99,
+        "sound_power_db": 113,
+        "vibration_left": 3.6,
+        "vibration_right": 4.1,
+        "oil_tank_ml": 290,
+        "fuel_tank_ml": 460
+      }
+    },
+    {
+      "catalog": {
+        "id": "56",
+        "name": "Motosserra a combustão MS 462",
+        "reference": "1142-011-3011",
+        "type": "CHAINSAW",
+        "category": "machine",
+        "linkText": "motosserra-ms-462",
+        "modelInfo": {
+          "prefix": "MS 462",
+          "number": 462
+        }
+      },
+      "database": {
+        "id": "stihl_ms_462_cm",
+        "slug": "ms-462",
+        "category_slug": "kettingzagen",
+        "series_code": "1142",
+        "model_name": "MS 462 C-M",
+        "category": "Kettingzaag",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt M-Tronic 3.0)",
+        "displacement_cc": 72.2,
+        "power_kw": 4.4,
+        "power_hp": 6,
+        "weight_kg": 6,
+        "spark_plug": "NGK CMR6H",
+        "electrode_gap_mm": 0.5,
+        "carb_h_setting": "Elektronisch (M-Tronic V3.0)",
+        "carb_l_setting": "Elektronisch (M-Tronic V3.0)",
+        "carb_la_setting": "M-Tronic",
+        "chain_pitch": "3/8\"",
+        "chain_gauge_mm": 1.6,
+        "oil_mix_ratio": "1:50",
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "LOW",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "STIHL Werkplaatshandboek 1142",
+        "provenance": {
+          "source_type": "series_workshop_manual",
+          "source_title": "STIHL Werkplaatshandboek 1142",
+          "source_document_number": null,
+          "source_revision": null,
+          "source_year": null,
+          "confidence": "LOW",
+          "verification_status": "SERIES_SOURCE_LINKED",
+          "legacy_reference": "STIHL Werkplaatshandboek 1142",
+          "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+        },
+        "data_status": "SERIES_SOURCE_LINKED",
+        "field_verification": {
+          "displacement_cc": {
+            "value": 72.2,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_kw": {
+            "value": 4.4,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_hp": {
+            "value": 6,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "weight_kg": {
+            "value": 6,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "spark_plug": {
+            "value": "NGK CMR6H",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "electrode_gap_mm": {
+            "value": 0.5,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_h_setting": {
+            "value": "Elektronisch (M-Tronic V3.0)",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_l_setting": {
+            "value": "Elektronisch (M-Tronic V3.0)",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_la_setting": {
+            "value": "M-Tronic",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_pitch": {
+            "value": "3/8\"",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_gauge_mm": {
+            "value": 1.6,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "oil_mix_ratio": {
+            "value": "1:50",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Werkplaatshandboek 1142",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          }
+        },
+        "model_status": "SERIES_SOURCE_LINKED",
+        "series_identification": "1142",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Kettingzaag",
+          "product_type": "Handkettingzaag",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "SAWING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "EXISTING_CANONICAL_SUPPORTED",
+            "engine_type": "EXISTING_CANONICAL_SUPPORTED",
+            "fuel_type": "EXISTING_CANONICAL_SUPPORTED",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "C-M indicates M-Tronic V3.0 electronic carburetor."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "38",
+        "name": "Soprador a combustão BR 600",
+        "reference": "4282-200-0026",
+        "type": "BLOWER",
+        "category": "machine",
+        "linkText": "soprador-br-600",
+        "modelInfo": {
+          "prefix": "BR 600",
+          "number": 600
+        }
+      },
+      "database": {
+        "id": "stihl_br_600",
+        "slug": "br-600",
+        "category_slug": "bladblazers",
+        "series_code": "4282",
+        "model_name": "BR 600",
+        "category": "Bladblazer",
+        "fuel_type": "PETROL_4MIX",
+        "fuel_type_label": "Benzine (4-Mix Gepatenteerd)",
+        "displacement_cc": 64.8,
+        "power_kw": 2.8,
+        "power_hp": 3.8,
+        "weight_kg": 10.3,
+        "spark_plug": "NGK CMR6H",
+        "electrode_gap_mm": 0.5,
+        "carb_h_setting": "1 slag open",
+        "carb_l_setting": "1 slag open",
+        "carb_la_setting": "2800 RPM",
+        "chain_pitch": null,
+        "chain_gauge_mm": null,
+        "oil_mix_ratio": "1:50",
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "MEDIUM",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "0458-452-8621-J - STIHL BR 500 / BR 600 Instruction Manual",
+        "provenance": {
+          "source_type": "official_stihl_instruction_manual",
+          "source_title": "STIHL BR 500 / BR 600 Instruction Manual",
+          "source_document_number": "0458-452-8621-J",
+          "source_revision": "Rev. 2022-J",
+          "source_year": null,
+          "confidence": "MEDIUM",
+          "verification_status": "PRIMARY_SOURCE_LINKED",
+          "legacy_reference": null,
+          "note": "Primaire handleiding gekoppeld; veldniveau paginareferenties moeten nog expliciet worden vastgelegd."
+        },
+        "data_status": "PRIMARY_SOURCE_LINKED",
+        "blowing_force_n": 32,
+        "max_air_velocity_ms": 106,
+        "fuel_tank_l": 1.4,
+        "field_verification": {
+          "displacement_cc": {
+            "value": 64.8,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "power_kw": {
+            "value": 2.8,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "power_hp": {
+            "value": 3.8,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "weight_kg": {
+            "value": 10.3,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "spark_plug": {
+            "value": "NGK CMR6H",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "electrode_gap_mm": {
+            "value": 0.5,
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "carb_h_setting": {
+            "value": "1 slag open",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "carb_l_setting": {
+            "value": "1 slag open",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "carb_la_setting": {
+            "value": "2800 RPM",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "chain_pitch": {
+            "value": null,
+            "status": "PRIMARY_SOURCE_PENDING",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "chain_gauge_mm": {
+            "value": null,
+            "status": "PRIMARY_SOURCE_PENDING",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          },
+          "oil_mix_ratio": {
+            "value": "1:50",
+            "status": "DOCUMENT_LINKED",
+            "source": "0458-452-8621-J",
+            "note": "Waarde aanwezig in een gekoppelde primaire handleiding; paginaniveau-verwijzing ontbreekt nog."
+          }
+        },
+        "model_status": "PRIMARY_SOURCE_LINKED",
+        "series_identification": "4282",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Bladblazer",
+          "product_type": "Rugbladblazer",
+          "machine_form": "BACKPACK",
+          "power_source": "GASOLINE",
+          "engine_type": "STIHL_4_MIX",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "BLOWING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "EXISTING_CANONICAL_SUPPORTED",
+            "engine_type": "EXISTING_CANONICAL_SUPPORTED",
+            "fuel_type": "EXISTING_CANONICAL_SUPPORTED",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "4-Mix engine (4-stroke without separate oil sump). Backpack blower at 10.3 kg."
+        },
+        "sound_power_db": 100
+      }
+    },
+    {
+      "catalog": {
+        "id": "37",
+        "name": "Soprador a combustão BG 86 C-E",
+        "reference": "4241-200-0017",
+        "type": "BLOWER",
+        "category": "machine",
+        "linkText": "soprador-bg-86-c-e",
+        "modelInfo": {
+          "prefix": "BG 86",
+          "number": 86
+        }
+      },
+      "database": {
+        "id": "stihl_bg_86",
+        "slug": "bg-86",
+        "category_slug": "bladblazers",
+        "series_code": null,
+        "model_name": "BG 86",
+        "category": "Bladblazer",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt)",
+        "displacement_cc": null,
+        "power_kw": null,
+        "power_hp": null,
+        "weight_kg": null,
+        "spark_plug": null,
+        "electrode_gap_mm": null,
+        "carb_h_setting": null,
+        "carb_l_setting": null,
+        "carb_la_setting": null,
+        "chain_pitch": null,
+        "chain_gauge_mm": null,
+        "oil_mix_ratio": null,
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "IDENTITY_ONLY",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": 0,
+        "data_source": "STIHL Instruction Manual 0458-296-8621-C",
+        "provenance": {
+          "verification_status": "IDENTITY_VERIFIED",
+          "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+          "source_reference": "0458-296-8621-C",
+          "last_verified": "2026-09-17T00:09:28.963Z"
+        },
+        "data_status": "IDENTITY_ACTIVE",
+        "field_verification": {},
+        "model_status": "IDENTITY_ACTIVE",
+        "series_identification": null,
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Bladblazer",
+          "product_type": "Handbladblazer",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "BLOWING",
+          "evidence_status": {
+            "product_category": "OFFICIAL_EXACT_MODEL",
+            "product_type": "OFFICIAL_EXACT_MODEL",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "OFFICIAL_EXACT_MODEL",
+            "primary_function": "OFFICIAL_EXACT_MODEL"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "Identity from STIHL multi-model manual 0458-296-8621-C. BG 86 C-E variant isolated. Technical specs pending Phase 42D."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "36",
+        "name": "Soprador a combustão BG 56",
+        "reference": "4241-200-0016",
+        "type": "BLOWER",
+        "category": "machine",
+        "linkText": "soprador-bg-56",
+        "modelInfo": {
+          "prefix": "BG 56",
+          "number": 56
+        }
+      },
+      "database": {
+        "id": "stihl_bg_56",
+        "slug": "bg-56",
+        "category_slug": "bladblazers",
+        "series_code": null,
+        "model_name": "BG 56",
+        "category": "Bladblazer",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt)",
+        "displacement_cc": null,
+        "power_kw": null,
+        "power_hp": null,
+        "weight_kg": null,
+        "spark_plug": null,
+        "electrode_gap_mm": null,
+        "carb_h_setting": null,
+        "carb_l_setting": null,
+        "carb_la_setting": null,
+        "chain_pitch": null,
+        "chain_gauge_mm": null,
+        "oil_mix_ratio": null,
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "IDENTITY_ONLY",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": 0,
+        "data_source": "STIHL Instruction Manual 0458-296-8621-C",
+        "provenance": {
+          "verification_status": "IDENTITY_VERIFIED",
+          "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+          "source_reference": "0458-296-8621-C",
+          "last_verified": "2026-09-17T00:09:28.962Z"
+        },
+        "data_status": "IDENTITY_ACTIVE",
+        "field_verification": {},
+        "model_status": "IDENTITY_ACTIVE",
+        "series_identification": null,
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Bladblazer",
+          "product_type": "Handbladblazer",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "BLOWING",
+          "evidence_status": {
+            "product_category": "OFFICIAL_EXACT_MODEL",
+            "product_type": "OFFICIAL_EXACT_MODEL",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "OFFICIAL_EXACT_MODEL",
+            "primary_function": "OFFICIAL_EXACT_MODEL"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": "Identity from STIHL multi-model manual 0458-296-8621-C. Technical specs pending Phase 42D."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "30",
+        "name": "Pulverizador a combustão SR 450",
+        "reference": "4244-200-0001",
+        "type": "SPRAYER",
+        "category": "machine",
+        "linkText": "pulverizador-sr-450",
+        "modelInfo": {
+          "prefix": "SR 450",
+          "number": 450
+        }
+      },
+      "database": {
+        "id": "stihl_sr_450",
+        "slug": "sr-450",
+        "category_slug": "nevelspuiten",
+        "series_code": "4244",
+        "model_name": "SR 450",
+        "category": "Nevelspuit",
+        "fuel_type": null,
+        "fuel_type_label": null,
+        "is_discontinued": null,
+        "data_confidence": "UNKNOWN",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "public_evidence_facts.json",
+        "provenance": {
+          "source_type": "official_evidence_store",
+          "source_title": "STIHL Public Evidence Facts Store",
+          "confidence": "UNKNOWN",
+          "verification_status": "EVIDENCE_STORE_LINKED"
+        },
+        "data_status": "EVIDENCE_STORE_LINKED",
+        "field_verification": {},
+        "model_status": "EVIDENCE_STORE_LINKED",
+        "series_identification": "4244",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Nevelspuit",
+          "product_type": "Nevelspuit",
+          "machine_form": "BACKPACK",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "SPRAYING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PRODUCT_KNOWLEDGE",
+            "power_source": "PRODUCT_KNOWLEDGE",
+            "engine_type": "PRODUCT_KNOWLEDGE",
+            "fuel_type": "PRODUCT_KNOWLEDGE",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": false,
+          "notes": "No fuel_type in database. STIHL SR 450 is a known backpack mistblower/sprayer with 2-stroke engine."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "29",
+        "name": "Pulverizador a combustão SR 430",
+        "reference": "4244-200-0000",
+        "type": "SPRAYER",
+        "category": "machine",
+        "linkText": "pulverizador-sr-430",
+        "modelInfo": {
+          "prefix": "SR 430",
+          "number": 430
+        }
+      },
+      "database": {
+        "id": "stihl_sr_430",
+        "slug": "sr-430",
+        "category_slug": "nevelspuiten",
+        "series_code": "4244",
+        "model_name": "SR 430",
+        "category": "Nevelspuit",
+        "fuel_type": null,
+        "fuel_type_label": null,
+        "is_discontinued": null,
+        "data_confidence": "UNKNOWN",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "public_evidence_facts.json",
+        "provenance": {
+          "source_type": "official_evidence_store",
+          "source_title": "STIHL Public Evidence Facts Store",
+          "confidence": "UNKNOWN",
+          "verification_status": "EVIDENCE_STORE_LINKED"
+        },
+        "data_status": "EVIDENCE_STORE_LINKED",
+        "field_verification": {},
+        "model_status": "EVIDENCE_STORE_LINKED",
+        "series_identification": "4244",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Nevelspuit",
+          "product_type": "Nevelspuit",
+          "machine_form": "BACKPACK",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "SPRAYING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PRODUCT_KNOWLEDGE",
+            "power_source": "PRODUCT_KNOWLEDGE",
+            "engine_type": "PRODUCT_KNOWLEDGE",
+            "fuel_type": "PRODUCT_KNOWLEDGE",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": false,
+          "notes": "No fuel_type in database. STIHL SR 430 is a known backpack mistblower/sprayer with 2-stroke engine."
+        }
+      }
+    },
+    {
+      "catalog": {
+        "id": "16",
+        "name": "Podador a combustão HS 45",
+        "reference": "4228-011-2930",
+        "type": "HEDGE_TRIMMER",
+        "category": "machine",
+        "linkText": "podador-hs-45",
+        "modelInfo": {
+          "prefix": "HS 45",
+          "number": 45
+        }
+      },
+      "database": {
+        "id": "stihl_hs_45",
+        "slug": "hs-45",
+        "category_slug": "heggenscharen",
+        "series_code": "4228",
+        "model_name": "HS 45",
+        "category": "Heggenschaar",
+        "fuel_type": "PETROL_2STROKE",
+        "fuel_type_label": "Benzine (2-Takt)",
+        "displacement_cc": 27.2,
+        "power_kw": 0.75,
+        "power_hp": 1,
+        "weight_kg": 4.7,
+        "spark_plug": "NGK BPMR7A",
+        "electrode_gap_mm": 0.5,
+        "carb_h_setting": "1 slag open",
+        "carb_l_setting": "1 slag open",
+        "carb_la_setting": "2800 RPM",
+        "chain_pitch": null,
+        "chain_gauge_mm": null,
+        "oil_mix_ratio": "1:50",
+        "battery_system": null,
+        "voltage_v": null,
+        "is_discontinued": 0,
+        "data_confidence": "LOW",
+        "production_confidence": "UNKNOWN",
+        "specs_verified": false,
+        "data_source": "STIHL Service Manual 4228",
+        "provenance": {
+          "source_type": "series_service_manual",
+          "source_title": "STIHL Service Manual 4228",
+          "source_document_number": null,
+          "source_revision": null,
+          "source_year": null,
+          "confidence": "LOW",
+          "verification_status": "SERIES_SOURCE_LINKED",
+          "legacy_reference": "STIHL Service Manual 4228",
+          "note": "Series- of familiehandboek gekoppeld vanuit bestaande repositorysporen; modelspecifieke primaire handleiding en paginaniveau-verwijzingen ontbreken nog."
+        },
+        "data_status": "SERIES_SOURCE_LINKED",
+        "field_verification": {
+          "displacement_cc": {
+            "value": 27.2,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_kw": {
+            "value": 0.75,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "power_hp": {
+            "value": 1,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "weight_kg": {
+            "value": 4.7,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "spark_plug": {
+            "value": "NGK BPMR7A",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "electrode_gap_mm": {
+            "value": 0.5,
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_h_setting": {
+            "value": "1 slag open",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_l_setting": {
+            "value": "1 slag open",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "carb_la_setting": {
+            "value": "2800 RPM",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_pitch": {
+            "value": null,
+            "status": "PRIMARY_SOURCE_PENDING",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "chain_gauge_mm": {
+            "value": null,
+            "status": "PRIMARY_SOURCE_PENDING",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          },
+          "oil_mix_ratio": {
+            "value": "1:50",
+            "status": "SERIES_REFERENCE_LINKED",
+            "source": "STIHL Service Manual 4228",
+            "note": "Waarde is gekoppeld aan een series- of familiehandboek uit de repositorygeschiedenis; modelspecifieke primaire bron en paginaniveau-verwijzing ontbreken nog."
+          }
+        },
+        "model_status": "SERIES_SOURCE_LINKED",
+        "series_identification": "4228",
+        "basic_classification": {
+          "brand": "STIHL",
+          "product_category": "Heggenschaar",
+          "product_type": "Handheggenschaar",
+          "machine_form": "HANDHELD",
+          "power_source": "GASOLINE",
+          "engine_type": "COMBUSTION_2_STROKE",
+          "fuel_type": "PETROL_OIL_MIX",
+          "primary_function": "HEDGE_TRIMMING",
+          "evidence_status": {
+            "product_category": "EXISTING_CANONICAL_SUPPORTED",
+            "product_type": "PREFIX_HINT_ONLY",
+            "machine_form": "PREFIX_HINT_ONLY",
+            "power_source": "EXISTING_CANONICAL_SUPPORTED",
+            "engine_type": "EXISTING_CANONICAL_SUPPORTED",
+            "fuel_type": "EXISTING_CANONICAL_SUPPORTED",
+            "primary_function": "PREFIX_HINT_ONLY"
+          },
+          "core5_completeness": 5,
+          "deep_specs_available_for_later": true,
+          "notes": ""
+        },
+        "sound_pressure_db": 97,
+        "sound_power_db": 107,
+        "vibration_left": 10,
+        "vibration_right": 9
+      }
+    }
+  ]
+}

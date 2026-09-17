@@ -1,0 +1,27 @@
+{
+  "disposition_id": "phase44a_br_product_dispositions",
+  "disposition_date": "2026-09-17T04:25:58.134Z",
+  "total_products": 201,
+  "dispositions": {
+    "machines": {
+      "count": 118,
+      "status": "CLASSIFIED",
+      "next_action": "Phase 44B activation for Tier 1 models"
+    },
+    "accessories": {
+      "count": 71,
+      "status": "DEFERRED",
+      "next_action": "Separate schema implementation required"
+    },
+    "unknown": {
+      "count": 12,
+      "status": "REVIEW_REQUIRED",
+      "next_action": "Manual review for classification"
+    },
+    "matched_with_existing": {
+      "count": 13,
+      "status": "RECONCILED",
+      "next_action": "Evidence enrichment for existing models"
+    }
+  }
+}

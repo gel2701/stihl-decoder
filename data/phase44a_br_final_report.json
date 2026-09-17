@@ -1,0 +1,205 @@
+{
+  "report_id": "phase44a_br_full_catalog_intake_final_report",
+  "report_date": "2026-09-17T04:25:58.134Z",
+  "phase": "44A",
+  "phase_name": "BR Full Catalog Harvest, New Model Intake Audit & Prioritization",
+  "status": "COMPLETE",
+  "execution_summary": {
+    "branch": "audit/phase44a-br-full-catalog-intake",
+    "base_commit": "947eb3e5ac8345abb3f1c7aac7bd9191487f5c02",
+    "execution_time": "2026-09-17T04:25:58.134Z",
+    "tools_used": [
+      "VTEX Catalog System API",
+      "First-party harvester (src/officialProductHarvester.js)",
+      "Custom analysis scripts"
+    ]
+  },
+  "catalog_discovery": {
+    "total_products": 201,
+    "discovery_method": "VTEX API pagination",
+    "source_url": "https://loja.stihl.com.br/api/catalog_system/pub/products/search"
+  },
+  "classification_results": {
+    "machines": 118,
+    "accessories": 71,
+    "unknown": 12
+  },
+  "reconciliation_results": {
+    "existing_database_models": 62,
+    "matched_with_existing": 13,
+    "new_candidates": 105
+  },
+  "prioritization_results": {
+    "tier_1_high": 21,
+    "tier_2_medium": 72,
+    "tier_3_low": 12,
+    "tier_4_deferred": 0
+  },
+  "phase44b_preparation": {
+    "batch_id": "phase44b_br_tier1",
+    "batch_name": "BR Tier 1 High-Priority Models",
+    "total_models": 21,
+    "estimated_activation_date": "2026-09-18",
+    "models": [
+      {
+        "name": "Motosserra a combustão MS 182",
+        "reference": "1148-011-3062",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_182"
+      },
+      {
+        "name": "Motosserra a combustão MS 162",
+        "reference": "1148-011-3013",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_162"
+      },
+      {
+        "name": "Roçadeira a combustão FS 161",
+        "reference": "4147-012-2307",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_161"
+      },
+      {
+        "name": "Soprador a combustão BG 50",
+        "reference": "4229-200-0004",
+        "type": "BLOWER",
+        "model_slug": "stihl_soprador_a_combust_o_bg_50"
+      },
+      {
+        "name": "Motosserra a combustão MS 172",
+        "reference": "1148-011-3032",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_172"
+      },
+      {
+        "name": "Roçadeira a combustão FS 221",
+        "reference": "4147-012-2309",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_221"
+      },
+      {
+        "name": "Roçadeira a Combustão FS 55",
+        "reference": "4140-012-2337",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_55"
+      },
+      {
+        "name": "Motosserra a combustão MS 363",
+        "reference": "MB01-011-3061",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_363"
+      },
+      {
+        "name": "Soprador a combustão BR 800",
+        "reference": "4283-200-0000",
+        "type": "BLOWER",
+        "model_slug": "stihl_soprador_a_combust_o_br_800"
+      },
+      {
+        "name": "Roçadeira a combustão FS 131",
+        "reference": "4180-011-2367",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_131"
+      },
+      {
+        "name": "Roçadeira a combustão FS 85",
+        "reference": "4137-011-2359",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_85"
+      },
+      {
+        "name": "Roçadeira a combustão FS 80",
+        "reference": "4137-011-2360",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_80"
+      },
+      {
+        "name": "Motosserra a combustão MS 661",
+        "reference": "1144-011-3059",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_661"
+      },
+      {
+        "name": "Roçadeira a combustão FR 410",
+        "reference": "4147-011-3317",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fr_410"
+      },
+      {
+        "name": "Roçadeira a combustão FS 351",
+        "reference": "4147-012-2313",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_351"
+      },
+      {
+        "name": "Roçadeira a combustão FS 291",
+        "reference": "4147-012-2311",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_291"
+      },
+      {
+        "name": "Roçadeira a combustão FS 55 R",
+        "reference": "4140-012-2345",
+        "type": "BRUSHCUTTER",
+        "model_slug": "stihl_ro_adeira_a_combust_o_fs_55_r"
+      },
+      {
+        "name": "Motosserra a combustão MS 382",
+        "reference": "1119-011-3052",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_382"
+      },
+      {
+        "name": "Soprador costal a combustão BR 420",
+        "reference": "4203-200-0012",
+        "type": "BLOWER",
+        "model_slug": "stihl_soprador_costal_a_combust_o_br_420"
+      },
+      {
+        "name": "Motosserra a combustão MS 172 C-BE",
+        "reference": "1148-011-3033",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_172_c_be"
+      },
+      {
+        "name": "Motosserra a combustão MS 212",
+        "reference": "1148-011-3092",
+        "type": "CHAINSAW",
+        "model_slug": "stihl_motosserra_a_combust_o_ms_212"
+      }
+    ]
+  },
+  "output_artifacts": [
+    "data/phase44a_vtex_full_catalog.json",
+    "data/phase44a_br_catalog_classified.json",
+    "data/phase44a_br_catalog_machines.json",
+    "data/phase44a_br_catalog_accessories.json",
+    "data/phase44a_br_catalog_analysis.json",
+    "data/phase44a_br_intake_prioritization.json",
+    "data/phase44a_br_new_candidates_prioritized.json",
+    "data/phase44b_br_batch_definition.json",
+    "data/phase44a_br_source_manifest.json",
+    "data/phase44a_br_product_dispositions.json",
+    "data/phase44a_br_existing_model_matches.json",
+    "data/phase44a_br_new_machine_candidates.json",
+    "data/phase44a_br_accessory_inventory.json",
+    "data/phase44a_br_ambiguous_inventory.json",
+    "data/phase44a_br_core5_staging.json",
+    "data/phase44a_br_final_report.json"
+  ],
+  "next_steps": [
+    "Phase 44B: Activate Tier 1 models with official evidence",
+    "Phase 44B: Update stihl_database.json with new models",
+    "Phase 44B: Update public_evidence_facts.json with evidence facts",
+    "Phase 44B: Run regression tests",
+    "Future: Implement accessory schema for Tier 4 items",
+    "Future: Manual review for ambiguous items"
+  ],
+  "gates": {
+    "no_production_mutation": true,
+    "no_deployment": true,
+    "no_merge": true,
+    "all_artifacts_created": true,
+    "regression_tests_passed": true
+  }
+}

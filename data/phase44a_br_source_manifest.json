@@ -1,0 +1,13 @@
+{
+  "manifest_id": "phase44a_br_source_manifest",
+  "manifest_date": "2026-09-17T04:25:58.133Z",
+  "source_type": "VTEX_CATALOG_API",
+  "source_url": "https://loja.stihl.com.br/api/catalog_system/pub/products/search",
+  "catalog_page_url": "https://loja.stihl.com.br",
+  "market": "BR",
+  "total_products_discovered": 201,
+  "discovery_method": "VTEX API pagination (50 per batch)",
+  "batches_fetched": 5,
+  "harvest_tool": "First-party harvester (src/officialProductHarvester.js)",
+  "notes": "Full catalog discovered via VTEX catalog system API. Products classified into machines vs accessories."
+}

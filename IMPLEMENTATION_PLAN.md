@@ -501,48 +501,141 @@ Phase 43C — BR Batch 1 Production Promotion & Live Verification
 
 ---
 
-## Phase 44A — BR New Model Intake Audit & Prioritization (PLANNED / NEXT)
+## Phase 44A — BR Full Catalog Harvest, New Model Intake Audit & Prioritization
 
-**Status:** PLANNED / NOT YET ACTIVE
+**Status:** COMPLETE — AUDIT-ONLY (2026-09-17)
+**Branch:** `audit/phase44a-br-full-catalog-intake`
+**Base commit:** `947eb3e5ac8345abb3f1c7aac7bd9191487f5c02`
 
 ### Goal
 
-Review the deferred BR machine/product candidates from the Phase 43A harvest and classify them for potential future onboarding.
+Establish the full authoritative BR catalog from STIHL's official e-commerce platform, separate machines from accessories, reconcile against the existing 62-model database, and prioritize new candidates for Phase 44B activation.
 
-### Scope
+### Catalog discovery
 
-- 128 new machine/product model candidates from BR harvest
-- 64 ambiguous accessory records (deferred — separate schema needed)
-- Priority models: MS 162, MS 172, MS 182, MS 212, MS 363, MS 382
+- **Source:** VTEX Catalog System API (`https://loja.stihl.com.br/api/catalog_system/pub/products/search`)
+- **Method:** API pagination (50 products per batch, 5 batches)
+- **Total products discovered:** 201
+- **Historical plan correction:** Previous plan cited 200 products from first-party harvester; actual VTEX API discovery yielded 201
 
-### Classification categories
+### Classification results
 
-```
-HIGH_CONFIDENCE_MACHINE
-BATTERY_MACHINE
-CHAINSAW
-BRUSHCUTTER_TRIMMER
-BLOWER
-SPRAYER
-HEDGE_TRIMMER
-PRESSURE_WASHER
-OTHER_MACHINE
-ACCESSORY_LIKE
-AMBIGUOUS
-```
+| Category | Count |
+|---|---|
+| Machines | 118 |
+| Accessories | 71 |
+| Unknown | 12 |
+| **Total** | **201** |
 
-### Recommended intake order
+### Machine type breakdown
 
-1. High-confidence machine models with rich official evidence
-2. Current chainsaws/tools missing from DB
-3. Battery machines/newer families
-4. Secondary categories
-5. Accessories only after separate schema
+| Type | Count |
+|---|---|
+| BRUSHCUTTER | 20 |
+| CHAINSAW | 19 |
+| HEDGE_TRIMMER | 18 |
+| PRESSURE_WASHER | 11 |
+| BLOWER | 9 |
+| LAWNMOWER | 9 |
+| SPRAYER | 9 |
+| VACUUM | 7 |
+| GENERATOR | 4 |
+| PRUNING_SAW | 4 |
+| WATER_PUMP | 3 |
+| CIRCULAR_SAW | 2 |
+| PRUNING_SHEARS | 1 |
+| AUGER | 1 |
+| TILLER | 1 |
+
+### Reconciliation with existing database
+
+- Existing database models: 62
+- Matched with catalog: 13
+- New machine candidates: 105
+
+### Priority tier assignment
+
+| Tier | Description | Count |
+|---|---|---|
+| TIER_1_HIGH | High-demand combustion machines with references | 21 |
+| TIER_2_MEDIUM | Battery-powered or medium-demand machines | 72 |
+| TIER_3_LOW | Specialized equipment or ambiguous naming | 12 |
+| TIER_4_DEFERRED | Accessories (separate schema required) | 0 |
+
+### Phase 44B batch definition
+
+- **Batch ID:** `phase44b_br_tier1`
+- **Total models:** 21
+- **Estimated activation date:** 2026-09-18
+- **Models:** MS 162, MS 172, MS 182, MS 212, MS 363, MS 382, FS 161, FS 221, FS 55, BG 50, and 11 more Tier 1 candidates
+
+### Output artifacts
+
+1. `data/phase44a_vtex_full_catalog.json` — Full VTEX catalog (201 products)
+2. `data/phase44a_br_catalog_classified.json` — All products classified
+3. `data/phase44a_br_catalog_machines.json` — Machine subset (118)
+4. `data/phase44a_br_catalog_accessories.json` — Accessory subset (71)
+5. `data/phase44a_br_catalog_analysis.json` — Analysis results
+6. `data/phase44a_br_intake_prioritization.json` — Priority tier report
+7. `data/phase44a_br_new_candidates_prioritized.json` — 105 new candidates with tiers
+8. `data/phase44b_br_batch_definition.json` — Phase 44B batch (21 models)
+9. `data/phase44a_br_source_manifest.json` — Source manifest
+10. `data/phase44a_br_product_dispositions.json` — Product dispositions
+11. `data/phase44a_br_existing_model_matches.json` — 13 existing model matches
+12. `data/phase44a_br_new_machine_candidates.json` — 105 new machine candidates
+13. `data/phase44a_br_accessory_inventory.json` — 71 accessories (deferred)
+14. `data/phase44a_br_ambiguous_inventory.json` — 12 unknown items
+15. `data/phase44a_br_core5_staging.json` — CORE5 staging report
+16. `data/phase44a_br_final_report.json` — Final Phase 44A report
+
+### Gates
+
+- No production data mutation: PASS
+- No deployment: PASS
+- No merge to main: PASS
+- All artifacts created: PASS
+- Regression tests: PASS
+
+### Tests
+
+- canonical_policy: PASS
+- official_product_harvester: PASS
+- Phase 39C: PASS (14/14)
+- New regressions: 0
 
 ### Not in scope for Phase 44A
 
 - Accessory schema implementation (separate future domain)
 - fetch-stihl-products cleanup (separate future change)
+- STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
+- Production data writes (deferred to Phase 44B)
+
+---
+
+## Phase 44B — BR Tier 1 Model Activation (PLANNED / NEXT)
+
+**Status:** PLANNED / NOT YET ACTIVE
+
+### Goal
+
+Activate 21 Tier 1 high-priority machine models with official evidence from the VTEX catalog.
+
+### Scope
+
+- 21 Tier 1 models from Phase 44A batch definition
+- Update `stihl_database.json` with new model entries
+- Update `public_evidence_facts.json` with evidence facts
+- Run regression tests
+- Commit and potentially deploy
+
+### Models to activate
+
+MS 162, MS 172, MS 182, MS 212, MS 363, MS 382, FS 161, FS 221, FS 55, BG 50, and 11 more Tier 1 candidates
+
+### Not in scope for Phase 44B
+
+- Tier 2/3 models (future phases)
+- Accessory schema (separate future domain)
 - STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
 
 ---
