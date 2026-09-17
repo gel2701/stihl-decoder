@@ -16,6 +16,8 @@
     "audit:document-authority": "node scripts/phase35_document_authority_validation.js",
     "audit:https-production": "node scripts/live_https_production_crawl.js",
     "baseline:seo": "node scripts/build_phase34a_seo_baseline.js",
+    "harvest:official:br": "node scripts/harvest_stihl_official_products.js",
+    "harvest:official:smoke": "node scripts/harvest_stihl_official_products.js --limit 3 --concurrency 2",
     "freeze:test": "node scripts/verify_seo_freeze_negative.js"
   },
   "keywords": [

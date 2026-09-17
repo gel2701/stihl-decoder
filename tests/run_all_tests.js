@@ -59,7 +59,12 @@ export const testFiles = [
   'tests/phase38b_maintenance_return_loop.test.js',
   'tests/phase38c_manual_model_correction.test.js',
   'tests/phase38d_ms251_evidence_activation.test.js',
-  'tests/phase38e_baseline_architecture.test.js'
+  'tests/phase38e_baseline_architecture.test.js',
+  'tests/official_harvester_discovery.test.js',
+  'tests/official_harvester_parsing.test.js',
+  'tests/official_harvester_normalize.test.js',
+  'tests/official_harvester_evidence.test.js',
+  'tests/official_harvester_safety.test.js'
 ];
 
 function sha256Text(value) {

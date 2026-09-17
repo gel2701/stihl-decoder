@@ -1,0 +1,30 @@
+name: Official harvest (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Max products (0 = full catalog)'
+        required: false
+        default: '0'
+      concurrency:
+        description: 'Concurrent product fetches'
+        required: false
+        default: '4'
+
+jobs:
+  harvest-br:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/harvest_stihl_official_products.js --limit "${{ inputs.limit }}" --concurrency "${{ inputs.concurrency }}"
+      - run: node tests/official_harvester_discovery.test.js && node tests/official_harvester_parsing.test.js && node tests/official_harvester_normalize.test.js && node tests/official_harvester_evidence.test.js && node tests/official_harvester_safety.test.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-products-BR
+          path: data/generated/official_products/BR/
