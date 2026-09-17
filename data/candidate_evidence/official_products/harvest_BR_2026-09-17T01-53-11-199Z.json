@@ -1,0 +1,538 @@
+{
+  "schema_version": 1,
+  "run_at": "2026-09-17T01:53:11.199Z",
+  "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+  "market": "BR",
+  "automatic_promotion_allowed": false,
+  "requested_urls": 8,
+  "harvested": 8,
+  "failed": 0,
+  "results": [
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/motosserra-ms-260/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "MS 260",
+        "title": "Motosserra a combustão MS 260",
+        "product_reference": "1121-011-3090",
+        "description": "Descubra a motosserra STIHL MS 260: potência de 3,1 cv, sistema antivibratório, partida fácil e conjunto de corte versátil. Ideal para uso agropecuário e florestal.",
+        "specs": {
+          "power_kw": 2.6,
+          "displacement_cc": 50.2,
+          "guide_bar": "Rollomatic E - 40/16\"",
+          "chain_model": "26 RS Rapid Super",
+          "chain_pitch": "0,325”",
+          "weight_kg": 4.9,
+          "engine_type": "2 Tempos",
+          "sound_pressure_db": 99,
+          "sound_power_db": 113,
+          "vibration_m_s2": [
+            3.6,
+            4.1
+          ],
+          "oil_tank_ml": 290,
+          "fuel_tank_ml": 460
+        },
+        "raw_specs": {
+          "Potência (kW/cv)": "2,6 / 3,5",
+          "Cilindrada (cm³)": "50,2",
+          "Tipo de sabre e tamanho (cm/pol)": "Rollomatic E - 40/16\"",
+          "Corrente": "26 RS Rapid Super",
+          "Passo da corrente": "0,325”",
+          "Peso (kg)": "4,9",
+          "Motor": "2 Tempos",
+          "Nível de pressão sonora dB(A)": "99",
+          "Nível de potência sonora dB(A)": "113",
+          "Nível de vibração esquerda/direita (m/s²)": "3,6/4,1",
+          "Capacidade do tanque de óleo (ml)": "290",
+          "Capacidade do tanque de combustível (ml)": "460"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/motosserra-ms-260-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155611-600-800?v=638343541415600000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155610-600-800?v=638973405388700000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155611-150-auto?v=638343541415600000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155610-150-auto?v=638973405388700000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "6df65cc240f64408b3dca4cb3d439f87d13669751ed28f1822426a870a72c55b"
+      },
+      "comparison": {
+        "model_match": true,
+        "database_model_id": "stihl_ms_260",
+        "database_model_name": "MS 260",
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 50.2,
+            "current": 50.2,
+            "status": "MATCH"
+          },
+          "power_kw": {
+            "incoming": 2.6,
+            "current": 2.6,
+            "status": "MATCH"
+          },
+          "weight_kg": {
+            "incoming": 4.9,
+            "current": 4.8,
+            "status": "CONFLICT_REVIEW_REQUIRED"
+          },
+          "chain_pitch": {
+            "incoming": "0,325”",
+            "current": ".325\"",
+            "status": "CONFLICT_REVIEW_REQUIRED"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/motosserra-a-combustao-ms-261/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "MS 261",
+        "title": "Motosserra a combustão MS 261",
+        "product_reference": null,
+        "description": "Motosserra STIHL MS 261 profissional com motor 2-MIX, filtro HD2, sistema antivibração e excelente relação peso-potência.",
+        "specs": {
+          "power_kw": 2.95,
+          "displacement_cc": 50.2,
+          "guide_bar": "Light 04 - 40/16 e 45/18",
+          "chain_model": "23 RS Pro Rapid Super",
+          "chain_pitch": ".325",
+          "weight_kg": 4.9,
+          "sound_pressure_db": 105,
+          "sound_power_db": 115,
+          "vibration_m_s2": [
+            3.5,
+            3.5
+          ],
+          "oil_tank_ml": 270,
+          "fuel_tank_ml": 500
+        },
+        "raw_specs": {
+          "Potência (kW/cv)": "2,95 / 4,1",
+          "Cilindrada (cm³)": "50,2",
+          "Tipo de sabre e tamanho (cm/pol)": "Light 04 - 40/16 e 45/18",
+          "Corrente": "23 RS Pro Rapid Super",
+          "Passo da corrente": ".325",
+          "Peso (kg)": "4,9 - somente máquina",
+          "Nível de pressão sonora dB(A)": "105",
+          "Nível de potência sonora dB(A)": "115",
+          "Nível de vibração esquerda/direita (m/s²)": "3,5 / 3,5",
+          "Capacidade do tanque de óleo (ml)": "270",
+          "Capacidade do tanque de combustível (ml)": "500"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/ms-261-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/157188-600-800?v=639203183742430000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/157189-600-800?v=639203183742770000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/157188-150-auto?v=639203183742430000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/157189-150-auto?v=639203183742770000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "62b56608e719bd0850c25c6eee39467e13ca6486fe20f35abd6908a60a565aaa"
+      },
+      "comparison": {
+        "model_match": true,
+        "database_model_id": "stihl_ms_261_cm",
+        "database_model_name": "MS 261",
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 50.2,
+            "current": 50.2,
+            "status": "MATCH"
+          },
+          "power_kw": {
+            "incoming": 2.95,
+            "current": 3,
+            "status": "CONFLICT_REVIEW_REQUIRED"
+          },
+          "weight_kg": {
+            "incoming": 4.9,
+            "current": 4.9,
+            "status": "MATCH"
+          },
+          "chain_pitch": {
+            "incoming": ".325",
+            "current": ".325\"",
+            "status": "CONFLICT_REVIEW_REQUIRED"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/podador-hs-45/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "HS 45",
+        "title": "Podador a combustão HS 45",
+        "product_reference": "4228-011-2930-O",
+        "description": "O Podador HS 45 da STIHL é a escolha perfeita para profissionais de conservação e jardinagem. Com um design ergonômico e lâminas eficientes de alta qualidade, este podador oferece desempenho superior e durabilidade. Ideal para cortar galhos finos e manter a beleza de seus jardins. Garanta o seu Podador HS 45 hoje.",
+        "specs": {
+          "displacement_cc": 27.2,
+          "weight_kg": 4.7,
+          "engine_type": "2 Tempos Comprimento total (cm) 95 Espaçamento entre os dentes mm 30 Rotação (rpm) 3,800",
+          "sound_pressure_db": 97,
+          "sound_power_db": 107,
+          "vibration_m_s2": [
+            10,
+            9
+          ]
+        },
+        "raw_specs": {
+          "Cilindrada (cm³)": "27,2 Potência (kW/CV) 0,75/ 1,0 Comprimento de corte (cm/pol) 45/18",
+          "Peso (kg)": "4,7",
+          "Motor": "2 Tempos Comprimento total (cm) 95 Espaçamento entre os dentes mm 30 Rotação (rpm) 3,800",
+          "Nível de pressão sonora dB(A)": "97",
+          "Nível de potência sonora dB(A)": "107",
+          "Nível de vibração esquerda/direita (m/s²)": "10,0 / 9,0"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/hs-45-podador-450-18-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155510-600-800?v=638334262753570000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155510-150-auto?v=638334262753570000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "a8b6a7bc408879cb46cbff0baa30eefc6b3e514333094341644bae8a57f44ead"
+      },
+      "comparison": {
+        "model_match": true,
+        "database_model_id": "stihl_hs_45",
+        "database_model_name": "HS 45",
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 27.2,
+            "current": 27.2,
+            "status": "MATCH"
+          },
+          "weight_kg": {
+            "incoming": 4.7,
+            "current": 4.7,
+            "status": "MATCH"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/pulverizador-sr-430/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "PULVERIZADOR A COMBUSTÃO SR 430",
+        "title": "Pulverizador a combustão SR 430",
+        "product_reference": "4244-200-0000-O",
+        "description": "Adquira o Pulverizador SR 430 da STIHL para obter um alto desempenho na pulverização de suas atividades agropecuárias. Este pulverizador potente e durável atende às demandas de agricultores e pecuaristas de forma eficaz. Garanta o seu agora!",
+        "specs": {
+          "displacement_cc": 63.3,
+          "weight_kg": 12.2,
+          "engine_type": "2-MIX"
+        },
+        "raw_specs": {
+          "Cilindrada (cm³)": "63,3",
+          "Peso (kg)": "12,2 Volume do recipiente (l) 14 Volume de ar (m³/h) 920 Distância de pulverização horiz. / vert. (m) 14,5 / 13",
+          "Motor": "2-MIX"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/pulverizador-sr-430-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155483-600-800?v=638334249900830000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156286-600-800?v=638483683564870000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156287-600-800?v=638483683807700000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156288-600-800?v=638483684071430000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156297-600-800?v=638483715402970000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155483-150-auto?v=638334249900830000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156286-150-auto?v=638483683564870000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156287-150-auto?v=638483683807700000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156288-150-auto?v=638483684071430000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156297-150-auto?v=638483715402970000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "b6fbaa1de344f5221fc754a70375528c3c5381f0f2b3c4bcd04db27206495617"
+      },
+      "comparison": {
+        "model_match": false,
+        "database_model_id": null,
+        "database_model_name": null,
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 63.3,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          },
+          "weight_kg": {
+            "incoming": 12.2,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/pulverizador-sr-450/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "PULVERIZADOR A COMBUSTÃO SR 450",
+        "title": "Pulverizador a combustão SR 450",
+        "product_reference": "4244-200-0001-O",
+        "description": "Adquira o Pulverizador SR 450 da STIHL para obter desempenho superior na pulverização de suas atividades agropecuárias. Este pulverizador potente, versátil e durável atende às demandas de agricultores e pecuaristas de forma eficiente. Garanta o seu agora!",
+        "specs": {
+          "displacement_cc": 63.3,
+          "weight_kg": 12.8,
+          "engine_type": "2-MIX"
+        },
+        "raw_specs": {
+          "Cilindrada (cm³)": "63,3",
+          "Peso (kg)": "12,8 Volume do recipiente (l) 14 Volume de ar (m³/h) 920 Distância de pulverização horiz. / vert. (m) 14,5 / 13",
+          "Motor": "2-MIX"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/pulverizador-sr-450-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155484-600-800?v=638334250349370000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156290-600-800?v=639222488499370000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156316-600-800?v=639222488500030000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156317-600-800?v=639222488500030000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156318-600-800?v=639222488500170000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155484-150-auto?v=638334250349370000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156290-150-auto?v=639222488499370000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156316-150-auto?v=639222488500030000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156317-150-auto?v=639222488500030000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156318-150-auto?v=639222488500170000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "519d2f0d93ce6b8431a260ee3a2eb4884635478f1a8cb3cb6ec3aea198b0d609"
+      },
+      "comparison": {
+        "model_match": false,
+        "database_model_id": null,
+        "database_model_name": null,
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 63.3,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          },
+          "weight_kg": {
+            "incoming": 12.8,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/rocadeira-fs-120/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "FS 120",
+        "title": "Roçadeira a combustão FS 120",
+        "product_reference": "4134-011-2376-A",
+        "description": "FS 120 STIHL alto desempenho em diversos tipos de trabalhos. Potente e confiável é a opção ideal para profissionais que buscam eficiência e durabilidade.",
+        "specs": {
+          "displacement_cc": 30.8,
+          "weight_kg": 6.3,
+          "engine_type": "2 Tempos Capacidade do tanque de combustível (l) 0,64 Nivel de vibração esquerda/direita nylon (m/s²) 4,9 / 3,5 Nivel de vibração esquerda/direita lâmina (m/s²) 4,9 / 3,5",
+          "sound_pressure_db": 99,
+          "sound_power_db": 110
+        },
+        "raw_specs": {
+          "Cilindrada (cm³)": "30,8 Ferramenta de corte TrimCut C 32-2 / 3 facas 250 mm",
+          "Peso (kg)": "6,3 Diametro ferramenta de corte (mm) 420 / 250 Eixo de transmissão na haste Rígido Comprimento total s/ ferramenta de corte (cm) 177",
+          "Motor": "2 Tempos Capacidade do tanque de combustível (l) 0,64 Nivel de vibração esquerda/direita nylon (m/s²) 4,9 / 3,5 Nivel de vibração esquerda/direita lâmina (m/s²) 4,9 / 3,5",
+          "Nível de pressão sonora dB(A)": "99 / 101",
+          "Nível de potência sonora dB(A)": "110 / 112"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/rocadeira-fs-120-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/157090-600-800?v=639174918477270000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/157090-150-auto?v=639174918477270000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "46a4793fc593af1f95f866440fefa0963d9c4661b6503cddb432f2c480dea634"
+      },
+      "comparison": {
+        "model_match": true,
+        "database_model_id": "stihl_fs_120",
+        "database_model_name": "FS 120",
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 30.8,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          },
+          "weight_kg": {
+            "incoming": 6.3,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/rocadeira-fs-38/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "FS 38",
+        "title": "Roçadeira a combustão FS 38",
+        "product_reference": "4140-012-2362-A",
+        "description": "Adquira a Roçadeira FS 38 da STIHL para realizar tarefas de corte ocasionais em seu jardim e terrenos pequenos. Leve e eficaz, esta roçadeira é a escolha perfeita para manter seu espaço limpo e bem cuidado. Garanta a sua agora!",
+        "specs": {
+          "displacement_cc": 27.2,
+          "weight_kg": 4.1,
+          "engine_type": "2 Tempos Capacidade do tanque de combustível (l) 0,33",
+          "sound_pressure_db": 94,
+          "sound_power_db": 108
+        },
+        "raw_specs": {
+          "Cilindrada (cm³)": "27,2 Ferramenta de corte AutoCut C 6-2",
+          "Peso (kg)": "4,1 Diametro ferramenta de corte (mm) 380 Eixo de transmissão na haste Flexível Comprimento total s/ ferramenta de corte (cm) 147",
+          "Motor": "2 Tempos Capacidade do tanque de combustível (l) 0,33",
+          "Nível de pressão sonora dB(A)": "94",
+          "Nível de potência sonora dB(A)": "108 Nivel de vibração esquerda/direita (m/s²) 8,0/8,0"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/rocadeira-fs-38-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155646-600-800?v=638344375793200000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156294-600-800?v=638738531655400000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156295-600-800?v=638738531655400000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156296-600-800?v=638738531655400000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155646-150-auto?v=638344375793200000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156294-150-auto?v=638738531655400000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156295-150-auto?v=638738531655400000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156296-150-auto?v=638738531655400000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "87ddfb44abece9fa96d23e2d4b4dffc3b087f8e17712e39b7867573c11516417"
+      },
+      "comparison": {
+        "model_match": true,
+        "database_model_id": "stihl_fs_38",
+        "database_model_name": "FS 38",
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 27.2,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          },
+          "weight_kg": {
+            "incoming": 4.1,
+            "current": null,
+            "status": "DATABASE_MISSING"
+          }
+        }
+      }
+    },
+    {
+      "candidate": {
+        "schema_version": 1,
+        "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+        "source_name": "STIHL_BR_OFFICIAL_STORE",
+        "market": "BR",
+        "promotion_status": "CANDIDATE",
+        "source_url": "https://loja.stihl.com.br/soprador-br-600/p",
+        "retrieved_at": "2026-09-17T01:53:11.199Z",
+        "model_name": "BR 600",
+        "title": "Soprador a combustão BR 600",
+        "product_reference": "4282-200-0026-O",
+        "description": "Adquira o Soprador BR 600 da STIHL para construção civil. Uma ferramenta poderosa para limpar grandes áreas de detritos e folhas. Eficiência e conforto garantidos.",
+        "specs": {
+          "displacement_cc": 64.8,
+          "weight_kg": 10.1,
+          "engine_type": "4-MIX",
+          "sound_power_db": 100
+        },
+        "raw_specs": {
+          "Cilindrada (cm³)": "64,8 Potência (kW) 2,8 Vazão máx. de ar (m³/h) 1.720 Velocidade máxima do ar (m/s) 106 Força de sopro (N) 32",
+          "Peso (kg)": "10,1",
+          "Motor": "4-MIX",
+          "Nível de potência sonora dB(A)": "100"
+        },
+        "manual_url": "https://loja.stihl.com.br/arquivos/br-600-magnum-soprador-costal-manual-de-instrucao.pdf",
+        "images": [
+          "https://stihlferramentas.vtexassets.com/assets/vtex.file-manager-graphql/images/ee1dbd8f-02ea-4e35-bc6c-8ac29e235cb9___6c96dd149641679c1d5c9221626f0077.svg",
+          "https://stihlferramentas.vtexassets.com/assets/vtex/assets-builder/stihlferramentas.loja-stihlferramentas/13.0.85/svg/login-icon-desk___5f8695ee3255a2537d550e952b7442dc.svg",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155861-600-800?v=638378938192500000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156298-600-800?v=639201517716970000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156299-600-800?v=639201517717270000&amp;width=600&amp;height=800&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/155861-150-auto?v=638378938192500000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156298-150-auto?v=639201517716970000&amp;width=150&amp;height=auto&amp;aspect=true",
+          "https://stihlferramentas.vtexassets.com/arquivos/ids/156299-150-auto?v=639201517717270000&amp;width=150&amp;height=auto&amp;aspect=true"
+        ],
+        "evidence_hash": "4a8429f0d12fca59007a75d560d50ca9d00d233b8b57c605fafe70eb4edf99ed"
+      },
+      "comparison": {
+        "model_match": true,
+        "database_model_id": "stihl_br_600",
+        "database_model_name": "BR 600",
+        "market": "BR",
+        "automatic_promotion_allowed": false,
+        "comparison": {
+          "displacement_cc": {
+            "incoming": 64.8,
+            "current": 64.8,
+            "status": "MATCH"
+          },
+          "weight_kg": {
+            "incoming": 10.1,
+            "current": 10.3,
+            "status": "CONFLICT_REVIEW_REQUIRED"
+          }
+        }
+      }
+    }
+  ],
+  "errors": []
+}

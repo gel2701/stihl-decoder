@@ -296,6 +296,71 @@ This turns STIHLDecoder from primarily a decoding/reference tool into a long-liv
 
 ---
 
+## Phase 43A — BR Batch 1 Execution Checkpoint
+
+**Status:** EXECUTED (2026-09-17)
+**Branch:** `audit/phase43a-br-batch1-evidence-reconciliation`
+**Commits:** none yet (artifacts created, tests pending)
+
+### Harvest execution
+
+- Harvest artifact: `data/candidate_evidence/official_products/harvest_BR_2026-09-17T01-53-11-199Z.json`
+- Scope: 8 target models only (full 200-product harvest not executed)
+- 8/8 harvested, 0 failed
+- 6 exact model matches, 2 variant matches (SR 430/450 — harvester name mismatch, models already exist in database)
+- automatic_promotion_allowed: false
+
+### Reconciliation results
+
+| Category | Count |
+|---|---|
+| Total field comparisons | 57 |
+| EXACT_MATCH | 13 |
+| POSSIBLE_MARKET_VARIANT | 3 |
+| ALREADY_PRESENT_EQUIVALENT | 15 |
+| DATABASE_MISSING (true new) | 26 |
+| NOT_COMPARABLE | 0 |
+
+### Market variants (3 confirmed)
+
+- MS 261 power: BR 2.95 kW vs canonical 3.0 kW
+- MS 260 weight: BR 4.9 kg vs canonical 4.8 kg
+- BR 600 weight: BR 10.1 kg vs canonical 10.3 kg
+
+### SR 430/450 identity note
+
+Harvester reported "new model" for SR 430/450 due to Portuguese product name prefix ("PULVERIZADOR A COMBUSTAO"). Models already exist in database with 9-10 public evidence facts each. All BR values match existing evidence.
+
+### Canonical data changes
+
+- `stihl_database.json`: NO CHANGES (frozen)
+- `public_evidence_facts.json`: NO CHANGES (frozen)
+
+### Artifacts produced (12 files)
+
+All in `data/`:
+1. `phase43a_br_source_manifest.json`
+2. `phase43a_br_model_identity_review.json`
+3. `phase43a_br_field_reconciliation.json`
+4. `phase43a_br_database_missing_disposition.json`
+5. `phase43a_br_high_value_candidate_review.json`
+6. `phase43a_br_market_variant_review.json`
+7. `phase43a_br_manual_evidence_audit.json`
+8. `phase43a_br_accessory_exclusion_audit.json`
+9. `phase43a_br_deferred_new_model_inventory.json`
+10. `phase43a_br_phase43b_ready_candidates.json`
+11. `phase43a_br_coverage_summary.json`
+12. `phase43a_br_final_report.json`
+
+### Phase 43B readiness
+
+- 22 HIGH_VALUE candidates identified for Phase 43B activation
+- 0 new models to onboard (SR 430/450 already exist)
+- 0 accessories in scope
+- Canonical DB frozen; promotion requires explicit Phase 43B approval
+
+---
+
 ## Backlog note
 
 Prioritize the official evidence reconciliation/data-quality work before activating STIHL Paspoort 2.0. Re-evaluate Paspoort 2.0 scope only after the harvester/evidence pipeline and canonical-data review process are stable, so the private account/data architecture is designed deliberately rather than added onto the public evidence store.
