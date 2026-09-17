@@ -1,0 +1,327 @@
+{
+  "phase": "43A",
+  "generated_at": "2026-09-17T02:07:12.884Z",
+  "market": "BR",
+  "source": "loja.stihl.com.br",
+  "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+  "run_at": "2026-09-17T01:53:11.199Z",
+  "harvest_summary": {
+    "requested_urls": 8,
+    "harvested": 8,
+    "failed": 0,
+    "success_rate": "100%"
+  },
+  "identity_summary": {
+    "total_models": 8,
+    "exact_model_matches": 6,
+    "explicit_variant_matches": 2,
+    "unmatched": 0,
+    "matched_model_names": [
+      "MS 260",
+      "MS 261",
+      "HS 45",
+      "FS 120",
+      "FS 38",
+      "BR 600"
+    ],
+    "variant_matched_model_names": [
+      "SR 430",
+      "SR 450"
+    ],
+    "unmatched_reason": "SR 430/SR 450 harvester matching failed due to Portuguese product name mismatch, but models already exist in database."
+  },
+  "field_reconciliation_summary": {
+    "total_field_comparisons": 57,
+    "disposition_counts": {
+      "EXACT_MATCH": 13,
+      "POSSIBLE_MARKET_VARIANT": 3,
+      "ALREADY_PRESENT_EQUIVALENT": 15,
+      "DATABASE_MISSING": 26,
+      "NOT_COMPARABLE": 0
+    }
+  },
+  "market_variants": {
+    "total": 3,
+    "details": [
+      {
+        "model": "MS 261",
+        "field": "power_kw",
+        "br": 2.95,
+        "canonical": 3,
+        "delta": -0.05,
+        "disposition": "POSSIBLE_MARKET_VARIANT"
+      },
+      {
+        "model": "MS 260",
+        "field": "weight_kg",
+        "br": 4.9,
+        "canonical": 4.8,
+        "delta": 0.1,
+        "disposition": "POSSIBLE_MARKET_VARIANT"
+      },
+      {
+        "model": "BR 600",
+        "field": "weight_kg",
+        "br": 10.1,
+        "canonical": 10.3,
+        "delta": -0.2,
+        "disposition": "POSSIBLE_MARKET_VARIANT"
+      }
+    ]
+  },
+  "database_missing_analysis": {
+    "total_from_harvester": 26,
+    "stale_in_public_evidence": 0,
+    "true_new_from_harvest": 26,
+    "entries": [
+      {
+        "model": "MS 260",
+        "field": "sound_pressure_db",
+        "br_value": 99,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 260",
+        "field": "sound_power_db",
+        "br_value": 113,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 260",
+        "field": "vibration_left",
+        "br_value": 3.6,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 260",
+        "field": "vibration_right",
+        "br_value": 4.1,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 260",
+        "field": "oil_tank_ml",
+        "br_value": 290,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 260",
+        "field": "fuel_tank_ml",
+        "br_value": 460,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 261",
+        "field": "sound_pressure_db",
+        "br_value": 105,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 261",
+        "field": "sound_power_db",
+        "br_value": 115,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 261",
+        "field": "vibration_left",
+        "br_value": 3.5,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 261",
+        "field": "vibration_right",
+        "br_value": 3.5,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 261",
+        "field": "oil_tank_ml",
+        "br_value": 270,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "MS 261",
+        "field": "fuel_tank_ml",
+        "br_value": 500,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "HS 45",
+        "field": "sound_pressure_db",
+        "br_value": 97,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "HS 45",
+        "field": "sound_power_db",
+        "br_value": 107,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "HS 45",
+        "field": "vibration_left",
+        "br_value": 10,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "HS 45",
+        "field": "vibration_right",
+        "br_value": 9,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 120",
+        "field": "weight_kg",
+        "br_value": 6.3,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 120",
+        "field": "sound_pressure_db",
+        "br_value": 99,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 120",
+        "field": "sound_power_db",
+        "br_value": 110,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 120",
+        "field": "vibration_left",
+        "br_value": 5.9,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 120",
+        "field": "vibration_right",
+        "br_value": 4.2,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 38",
+        "field": "sound_pressure_db",
+        "br_value": 94,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 38",
+        "field": "sound_power_db",
+        "br_value": 108,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 38",
+        "field": "vibration_left",
+        "br_value": 8,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "FS 38",
+        "field": "vibration_right",
+        "br_value": 8,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      },
+      {
+        "model": "BR 600",
+        "field": "sound_power_db",
+        "br_value": 100,
+        "exists_in_public_evidence": false,
+        "public_evidence_value": null
+      }
+    ]
+  },
+  "high_value_candidates": {
+    "total_reviewed": 32,
+    "new_high_value": 20,
+    "already_present": 12,
+    "per_model": {
+      "MS 260": 6,
+      "MS 261": 4,
+      "HS 45": 4,
+      "FS 120": 5,
+      "BR 600": 1
+    }
+  },
+  "phase43b_readiness": {
+    "total_ready_candidates": 20,
+    "per_model": {
+      "MS 260": 6,
+      "MS 261": 4,
+      "HS 45": 4,
+      "FS 120": 5,
+      "BR 600": 1
+    },
+    "fields": [
+      "sound_pressure_db",
+      "sound_power_db",
+      "vibration_left",
+      "vibration_right",
+      "oil_tank_ml",
+      "fuel_tank_ml",
+      "weight_kg"
+    ]
+  },
+  "manual_evidence": {
+    "status": "NOT_CHECKED",
+    "models_with_manual_mentioned": 8,
+    "manual_urls_extracted": 0,
+    "manual_fetched": 0,
+    "note": "All 8 product pages mention \"Manual de instrução\" in package contents. Manual URLs not extracted."
+  },
+  "accessory_exclusion": {
+    "accessory_records": 0,
+    "note": "All 8 harvested records are machines. No accessories in scope."
+  },
+  "deferred_new_models": {
+    "new_models": 0,
+    "note": "SR 430 and SR 450 already exist in database. No truly new models discovered."
+  },
+  "action_items": [
+    "Activate 20 Phase 43B candidates (high-value fields from BR harvest)",
+    "Review 3 market variants (MS 261 power, MS 260 weight, BR 600 weight) for canonical update decision",
+    "Consider extracting manual URLs from BR product pages in future harvests",
+    "Execute full 200-product BR harvest to expand coverage"
+  ],
+  "files_generated": [
+    "phase43a_br_source_manifest.json",
+    "phase43a_br_model_identity_review.json",
+    "phase43a_br_field_reconciliation.json",
+    "phase43a_br_database_missing_disposition.json",
+    "phase43a_br_high_value_candidate_review.json",
+    "phase43a_br_market_variant_review.json",
+    "phase43a_br_manual_evidence_audit.json",
+    "phase43a_br_accessory_exclusion_audit.json",
+    "phase43a_br_deferred_new_model_inventory.json",
+    "phase43a_br_phase43b_ready_candidates.json",
+    "phase43a_br_coverage_summary.json",
+    "phase43a_br_final_report.json"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "phase": "43A",
+  "harvest_artifact": "data/candidate_evidence/official_products/harvest_BR_2026-09-17T01-53-11-199Z.json",
+  "artifact_schema_version": 1,
+  "market": "BR",
+  "run_at": "2026-09-17T01:53:11.199Z",
+  "source_class": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+  "automatic_promotion_allowed": false,
+  "requested_urls": 8,
+  "harvested": 8,
+  "failed": 0,
+  "existing_model_matches": 6,
+  "unmatched_models": 2,
+  "unmatched_model_names": [
+    "SR 430",
+    "SR 450"
+  ],
+  "unmatched_reason": "Harvester matching logic could not match 'PULVERIZADOR A COMBUSTAO SR 430/450' to existing database slugs sr-430/sr-450. Models exist in database with public evidence facts.",
+  "deferred_new_candidates": 0,
+  "accessory_records": 0,
+  "plan_baseline_count": 200,
+  "actual_harvest_count": 8,
+  "scope": "Phase 43A target models only - full 200-product harvest not yet executed"
+}

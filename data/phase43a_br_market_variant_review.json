@@ -1,0 +1,59 @@
+{
+  "phase": "43A",
+  "generated_at": "2026-09-17T02:07:12.875Z",
+  "market": "BR",
+  "total_market_variants": 3,
+  "variants": [
+    {
+      "model_name": "MS 261",
+      "model_slug": "stihl_ms_261_cm",
+      "field": "power_kw",
+      "br_value": 2.95,
+      "br_unit": "kW",
+      "canonical_value": 3,
+      "canonical_unit": "kW",
+      "difference": -0.05,
+      "percentage_delta": -1.67,
+      "disposition": "POSSIBLE_MARKET_VARIANT",
+      "source_url": "https://loja.stihl.com.br/motosserra-ms-261-cm",
+      "source_type": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+      "retrieved_at": "2026-09-17T01:53:11.199Z",
+      "confidence": "HIGH",
+      "notes": "BR page lists 2.95kW vs canonical 3.0kW. Likely a rounding/market-specific rating difference."
+    },
+    {
+      "model_name": "MS 260",
+      "model_slug": "stihl_ms_260",
+      "field": "weight_kg",
+      "br_value": 4.9,
+      "br_unit": "kg",
+      "canonical_value": 4.8,
+      "canonical_unit": "kg",
+      "difference": 0.1,
+      "percentage_delta": 2.08,
+      "disposition": "POSSIBLE_MARKET_VARIANT",
+      "source_url": "https://loja.stihl.com.br/motosserra-ms-260",
+      "source_type": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+      "retrieved_at": "2026-09-17T01:53:11.199Z",
+      "confidence": "MEDIUM",
+      "notes": "BR page lists 4.9kg vs canonical 4.8kg. Small weight difference may reflect market-specific configuration (bar/chain included)."
+    },
+    {
+      "model_name": "BR 600",
+      "model_slug": "stihl_br_600",
+      "field": "weight_kg",
+      "br_value": 10.1,
+      "br_unit": "kg",
+      "canonical_value": 10.3,
+      "canonical_unit": "kg",
+      "difference": -0.2,
+      "percentage_delta": -1.94,
+      "disposition": "POSSIBLE_MARKET_VARIANT",
+      "source_url": "https://loja.stihl.com.br/aspirador-de-folhas-br-600",
+      "source_type": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE",
+      "retrieved_at": "2026-09-17T01:53:11.199Z",
+      "confidence": "MEDIUM",
+      "notes": "BR page lists 10.1kg vs canonical 10.3kg. Small weight difference may reflect market-specific tube/nozzle configuration."
+    }
+  ]
+}

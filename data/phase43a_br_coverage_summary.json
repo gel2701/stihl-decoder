@@ -1,0 +1,105 @@
+{
+  "phase": "43A",
+  "generated_at": "2026-09-17T02:07:12.883Z",
+  "market": "BR",
+  "total_models_harvested": 8,
+  "total_field_comparisons": 57,
+  "disposition_counts": {
+    "EXACT_MATCH": 13,
+    "POSSIBLE_MARKET_VARIANT": 3,
+    "ALREADY_PRESENT_EQUIVALENT": 15,
+    "DATABASE_MISSING": 26,
+    "NOT_COMPARABLE": 0
+  },
+  "high_value_new_candidates": 20,
+  "phase43b_ready_candidates": 20,
+  "market_variants_identified": 3,
+  "models_with_exact_match": 6,
+  "models_with_variant_match": 2,
+  "models_unmatched": 0,
+  "database_missing_stale": 0,
+  "database_missing_true_new": 26,
+  "per_model_summary": [
+    {
+      "model_name": "MS 260",
+      "model_slug": "stihl_ms_260",
+      "identity_status": "EXACT_MODEL_MATCH",
+      "total_fields": 10,
+      "disposition_breakdown": {
+        "EXACT_MATCH": 3,
+        "POSSIBLE_MARKET_VARIANT": 1,
+        "DATABASE_MISSING": 6
+      }
+    },
+    {
+      "model_name": "MS 261",
+      "model_slug": "stihl_ms_261_cm",
+      "identity_status": "EXACT_MODEL_MATCH",
+      "total_fields": 10,
+      "disposition_breakdown": {
+        "EXACT_MATCH": 3,
+        "POSSIBLE_MARKET_VARIANT": 1,
+        "DATABASE_MISSING": 6
+      }
+    },
+    {
+      "model_name": "HS 45",
+      "model_slug": "stihl_hs_45",
+      "identity_status": "EXACT_MODEL_MATCH",
+      "total_fields": 7,
+      "disposition_breakdown": {
+        "EXACT_MATCH": 3,
+        "DATABASE_MISSING": 4
+      }
+    },
+    {
+      "model_name": "SR 430",
+      "model_slug": "sr-430",
+      "identity_status": "EXPLICIT_VARIANT_MATCH",
+      "total_fields": 4,
+      "disposition_breakdown": {
+        "ALREADY_PRESENT_EQUIVALENT": 4
+      }
+    },
+    {
+      "model_name": "SR 450",
+      "model_slug": "sr-450",
+      "identity_status": "EXPLICIT_VARIANT_MATCH",
+      "total_fields": 4,
+      "disposition_breakdown": {
+        "ALREADY_PRESENT_EQUIVALENT": 4
+      }
+    },
+    {
+      "model_name": "FS 120",
+      "model_slug": "stihl_fs_120",
+      "identity_status": "EXACT_MODEL_MATCH",
+      "total_fields": 8,
+      "disposition_breakdown": {
+        "ALREADY_PRESENT_EQUIVALENT": 3,
+        "DATABASE_MISSING": 5
+      }
+    },
+    {
+      "model_name": "FS 38",
+      "model_slug": "stihl_fs_38",
+      "identity_status": "EXACT_MODEL_MATCH",
+      "total_fields": 8,
+      "disposition_breakdown": {
+        "ALREADY_PRESENT_EQUIVALENT": 4,
+        "DATABASE_MISSING": 4
+      }
+    },
+    {
+      "model_name": "BR 600",
+      "model_slug": "stihl_br_600",
+      "identity_status": "EXACT_MODEL_MATCH",
+      "total_fields": 6,
+      "disposition_breakdown": {
+        "EXACT_MATCH": 4,
+        "POSSIBLE_MARKET_VARIANT": 1,
+        "DATABASE_MISSING": 1
+      }
+    }
+  ]
+}
