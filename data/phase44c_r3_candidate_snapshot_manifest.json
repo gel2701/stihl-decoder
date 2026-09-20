@@ -1,0 +1,127 @@
+{
+  "phase": "44C-R3",
+  "purpose": "Immutable checkpoint of exact existing R2 worktree; NOT acceptance",
+  "base_commit": "15fefa2a4f30b4616aaf393c7b59a1219ae4149b",
+  "files": [
+    {
+      "path": "IMPLEMENTATION_PLAN.md",
+      "bytes": 29514,
+      "sha256": "6ccf874a1fa428769a8c250fe423040ac7547761796dc983c4d0f8b4452306bb",
+      "git_blob": "1294e01b66b512dc11f56a7119f1efae0fd382d4"
+    },
+    {
+      "path": "data/public_evidence_baseline_manifest.json",
+      "bytes": 3197,
+      "sha256": "66ca104dca426a022f7bb620ae5cc304d0c4649e6443a02d742664435f091703",
+      "git_blob": "bfcc6666fdd05d8bfc8b3d8f148197123bfb0c7d"
+    },
+    {
+      "path": "data/public_evidence_facts.json",
+      "bytes": 1341517,
+      "sha256": "c0797f8c4d30e93cf74621a69c309f87e481d8b137744a19a8ddb6fbb71e3287",
+      "git_blob": "800c47ff3897ada75faab94f8f6ca106423d4c00"
+    },
+    {
+      "path": "data/stihl_database.json",
+      "bytes": 330650,
+      "sha256": "e6869b8c792c43b6c0f759d09c993a180d9b0479de23fcd0c01c86dc9d35c011",
+      "git_blob": "b06d9b838f20e971b0564f0835a1e42af69d4e61"
+    },
+    {
+      "path": "scripts/phase44c_activate_tier1_evidence.js",
+      "bytes": 298,
+      "sha256": "bf06cbd214b2052a4c4c10e85152609d2cb349c9f1efa18f871d47dabcfaa6b1",
+      "git_blob": "f785e52becc8e23877ff9ff5db4ece8a4ca103b6"
+    },
+    {
+      "path": "data/phase44c_r2_blocked_candidates.json",
+      "bytes": 66288,
+      "sha256": "2e106438afc74f1612af34080108665ffbd94c013d120c3792a7e9b255893f83",
+      "git_blob": "4ebb7980b9301f4fe0633b7e5d75bda53f059067"
+    },
+    {
+      "path": "data/phase44c_r2_candidate_ledger.json",
+      "bytes": 302865,
+      "sha256": "05331c172d1b2fbcf8e8e03a345c1a0c0729978a1da478e9e95d88fd2407a2d8",
+      "git_blob": "d79720e73cdd19c778b6a3697e37a77411c73ca3"
+    },
+    {
+      "path": "data/phase44c_r2_canonical_delta.json",
+      "bytes": 65807,
+      "sha256": "9c128cf8eebd21916f3a48235fb2f0b208099e1540d3d4c552c5c984303f7103",
+      "git_blob": "43b2dd204060116eb4e285ae54f8dca0b1d30bd8"
+    },
+    {
+      "path": "data/phase44c_r2_fact_id_crosswalk.json",
+      "bytes": 69210,
+      "sha256": "5dcd2bfeeabd5a83f50f129157feacbde2d94f66fad5a1d5514c52e75f80ca84",
+      "git_blob": "f726c6c4dbadee2edf0b81c5bd63c39cfb2fdc7f"
+    },
+    {
+      "path": "data/phase44c_r2_hash_audit.json",
+      "bytes": 2355,
+      "sha256": "e0bfc4afc003ae152defe9a505bf9e766127dd848f450e6337950b96fa0f4396",
+      "git_blob": "6b6bbb8a35d120527efd43370b1167bc158b39e4"
+    },
+    {
+      "path": "data/phase44c_r2_index_integrity.json",
+      "bytes": 28545,
+      "sha256": "8234c6d15846291dac914f75885bafa31fd74bd5188b10681108d3c7b9621887",
+      "git_blob": "5719b4237357551ca5f4d9991e48f45e1da44891"
+    },
+    {
+      "path": "data/phase44c_r2_locale_numeric_audit.json",
+      "bytes": 189272,
+      "sha256": "b82f24297565c422dfbb8f5ccae5caa5aa730c574e97df89872395d4ee82762d",
+      "git_blob": "34fdf28ab68f842c625701f76158c063b891792e"
+    },
+    {
+      "path": "data/phase44c_r2_multivalue_audit.json",
+      "bytes": 110891,
+      "sha256": "163e89e9227c0b0b8111e809f62dc5ce8426373427b2941e44a59b780f14a693",
+      "git_blob": "1f89d37eaa788443a50b0aff705f3d3ab81b7cc8"
+    },
+    {
+      "path": "data/phase44c_r2_regression_report.json",
+      "bytes": 46623,
+      "sha256": "23182c3e2f78defe1b1731dec56a7faa865b384ea5f2db7dafcd28c423d1bdae",
+      "git_blob": "c80fdef7dc4b27fefd5be5c9331229b817a58b51"
+    },
+    {
+      "path": "data/phase44c_r2_runtime_resolution.json",
+      "bytes": 39816,
+      "sha256": "d8c60ca4e4d3d9bd8a63714c41c307894c5a75dabcb28fc662e94cf92c379a67",
+      "git_blob": "898c377e5a262b1227ded63e1f9f11d45855d77c"
+    },
+    {
+      "path": "data/phase44c_r2_semantic_reconciliation.json",
+      "bytes": 319143,
+      "sha256": "4fffa472ddf3b496448c294f4446fd1310c8a30f1984a55df983b566515c2aab",
+      "git_blob": "4fbb86ce09ef77b6ff10b763250e18dc55ce5e2a"
+    },
+    {
+      "path": "data/phase44c_r2_unit_audit.json",
+      "bytes": 72552,
+      "sha256": "15d5d67b7ac7e19771d1788123510c20e6c1a7456b646dfc8cdb22989f569ddf",
+      "git_blob": "1ca12a326e14e7d1d3176d347e9cb9ae1e10f1c6"
+    },
+    {
+      "path": "scripts/phase44c_r2_reconcile_technical_evidence.js",
+      "bytes": 22117,
+      "sha256": "692be2292f77ec767e2c9f2ba01ee2150cc4913edcda86a4484d59581865959f",
+      "git_blob": "b45e002a1581ebeaf256edb0ffc8b32cf0bb8a87"
+    },
+    {
+      "path": "tests/phase44c_r2_semantic_reconstruction.test.js",
+      "bytes": 13690,
+      "sha256": "3179f214d6fabf262c54c15cf329a87952cc8fc4a1f84245a4641e43ddde7890",
+      "git_blob": "7f3a70f81f7d25632a1d1aaafc8a59abeab9793e"
+    }
+  ],
+  "patch": {
+    "path": "C:\\Users\\GelliusSnippe\\.agents\\scratch\\phase44c_r2_candidate.patch",
+    "sha256": "8f1b61901cdd3273f0fc2d5de3140d89e854fe48ce8ffe55c5b992a5784a7ebd",
+    "bytes": 1784522
+  },
+  "file_count": 19
+}

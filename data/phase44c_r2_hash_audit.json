@@ -1,0 +1,47 @@
+{
+  "hash_type": "SHA-256; before bytes from Git blob, after working bytes normalized CRLF to LF for like-for-like comparison",
+  "files": [
+    {
+      "path": "data/stihl_database.json",
+      "phase44b": "8f55b447413240a7882e3cba312a806d86bb61fdc3496f4e3af74d9259052394",
+      "rejected_phase44c": "748e92e71f02ec2861846d21ba361856b54bd1b2dab0648c7df7cb9e19e081e0",
+      "r2": "e6869b8c792c43b6c0f759d09c993a180d9b0479de23fcd0c01c86dc9d35c011"
+    },
+    {
+      "path": "data/public_evidence_facts.json",
+      "phase44b": "2c1ad3d729f5a544b7a34269d97b014951d19b060eb932a4efaaab8895bb95e7",
+      "rejected_phase44c": "3ee3bb2ba41492851ffa5e81a6fd2cc2a9e8e3d54b68e46abe227e297a67b093",
+      "r2": "c0797f8c4d30e93cf74621a69c309f87e481d8b137744a19a8ddb6fbb71e3287"
+    },
+    {
+      "path": "data/public_evidence_baseline_manifest.json",
+      "phase44b": "c590c3ef41dae179fad6fd7f7b29276d5e4005ad7b1bc6a490fef6185671ccad",
+      "rejected_phase44c": "499b989ab29c9b6b3f48de3f1b79ab88099c1b1a19bb33a986e9104c9232ffa4",
+      "r2": "66ca104dca426a022f7bb620ae5cc304d0c4649e6443a02d742664435f091703"
+    },
+    {
+      "path": "src/publicEvidence.js",
+      "phase44b": "df7ea6ab5597405921fd8f3a9af43c9dc0868e7a4b2c29c57a9f52504ebc0796",
+      "rejected_phase44c": "df7ea6ab5597405921fd8f3a9af43c9dc0868e7a4b2c29c57a9f52504ebc0796",
+      "r2": "df7ea6ab5597405921fd8f3a9af43c9dc0868e7a4b2c29c57a9f52504ebc0796"
+    },
+    {
+      "path": "src/globalModelSearch.js",
+      "phase44b": "b0b8932aa9d7fa2d48787307972a536f72381722be0b0ffc6afde3165262a69f",
+      "rejected_phase44c": "b0b8932aa9d7fa2d48787307972a536f72381722be0b0ffc6afde3165262a69f",
+      "r2": "b0b8932aa9d7fa2d48787307972a536f72381722be0b0ffc6afde3165262a69f"
+    },
+    {
+      "path": "package.json",
+      "phase44b": "e6dc9b54707b05eee7586729156a8e434b5234b17cf76f07d97bbb568b6d2c71",
+      "rejected_phase44c": "e6dc9b54707b05eee7586729156a8e434b5234b17cf76f07d97bbb568b6d2c71",
+      "r2": "e6dc9b54707b05eee7586729156a8e434b5234b17cf76f07d97bbb568b6d2c71"
+    },
+    {
+      "path": "package-lock.json",
+      "phase44b": "1d4a149c0e2386ba94976af90af42cbd8b52f26eeec7647749355970f4dd2fce",
+      "rejected_phase44c": "1d4a149c0e2386ba94976af90af42cbd8b52f26eeec7647749355970f4dd2fce",
+      "r2": "1d4a149c0e2386ba94976af90af42cbd8b52f26eeec7647749355970f4dd2fce"
+    }
+  ]
+}

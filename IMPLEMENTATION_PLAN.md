@@ -754,3 +754,30 @@ Promote Phase 44B/C candidates to production and verify live deployment.
 ## Backlog note
 
 Prioritize the official evidence reconciliation/data-quality work before activating STIHL Paspoort 2.0. Re-evaluate Paspoort 2.0 scope only after the harvester/evidence pipeline and canonical-data review process are stable, so the private account/data architecture is designed deliberately rather than added onto the public evidence store.
+
+
+## Phase 44C-R2 — Technical Evidence Semantic Reconstruction & Runtime Remediation
+
+**Status:** HARD STOP — semantic reconstruction locally validated; mandatory full regression gate FAILED.
+
+- Original Phase44C (`15fefa2`) is **REJECTED FOR PRODUCTION**: runtime schema/index defects, unit defects and unsafe scalar collapse. Historical Phase44C completion text above records the original claim, not production acceptance.
+- Phase44D preflight: HARD STOP; no promotion or deployment.
+- Phase44C-R1: HARD STOP after unit and multivalue defects were confirmed; no remediation committed.
+- R2 reconstructed from exact Phase44B (`0c00214`) and frozen Phase44C captured sources. No new source research.
+- 197 candidates accounted: 153 safe canonical fields and public facts, 44 blocked; 36 original Phase44C writes rolled back.
+- 83 models, CORE5 83/83; 512 unchanged baseline facts + 153 safe facts = 665 facts.
+- 11 configuration pairs blocked; BR800 and BR420 air-volume punctuation blocked as ambiguous; 10 incomplete kW/CV records and 13 weights lacking measurement definition also blocked.
+- 44 vibration components retain explicit left/right binding; 8 original chainsaw weights remain blocked.
+- All 153 retained facts resolve through existing runtime; old facts/indexes/runtime behavior unchanged, including 38 unindexed baseline facts.
+- Targeted tests and actual repeat execution PASS. Full regression must pass before acceptance.
+- Phase44D: **PENDING R2 ACCEPTANCE / NOT READY FOR RETRY** until regression verification succeeds.
+- Main and production unchanged. Tier2/Tier3/accessories/unknown and Passport 2.0 remain deferred.
+
+### R2 regression checkpoint
+
+- Existing full runner executed in isolated worktrees: 49 files, 23 PASS / 26 FAIL on both rejected Phase44C and R2. Zero additional failing files; full behavioral equivalence is not established by those counts.
+- Native dependency installation failed under Node 25 and Node 24 (better-sqlite3 build requires unavailable Visual Studio C++ tooling). Other failures include historical fixed-count assertions, replay reference configuration, and preserved baseline evidence debt.
+- Phase39C initially exposed unnecessary baseline-ID drift in R2 manifest metadata. The historical baseline ID was preserved, and the unchanged Phase39C suite now passes.
+- The new scoped index test initially compared filtered extant references with the entire baseline index. It now compares all non-R2 references exactly, including pre-existing stale references; no baseline index entries were repaired or dropped. Existing tests remain unchanged.
+- See `data/phase44c_r2_regression_report.json` for paired results. R2 targeted runtime tests PASS; overall R2 acceptance remains HARD STOP.
+- No R2 commit or remote push; no main mutation or deployment. Phase44D remains blocked pending separate resolution/acceptance.

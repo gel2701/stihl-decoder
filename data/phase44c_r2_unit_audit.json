@@ -1,0 +1,1972 @@
+[
+  {
+    "model": "ms-182",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-182",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "ms-182",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-182",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-182",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-182",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-182",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-182",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-162",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-162",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "ms-162",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-162",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-162",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-162",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-162",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-162",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-161",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-161",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "fs-161",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-161",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-161",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-161",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-161",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": "mm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-161",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-161",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-161",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-161",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-161",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "bg-50",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "bg-50",
+    "field": "power_kw",
+    "source_label": "Potência (kW)",
+    "raw_unit_representation": "Potência (kW)",
+    "old_unit": "kW",
+    "canonical_unit": "kW",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "bg-50",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "bg-50",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "bg-50",
+    "field": "air_volume_m3h",
+    "source_label": "Vazão máx. de ar (m³/h)",
+    "raw_unit_representation": "Vazão máx. de ar (m³/h)",
+    "old_unit": "m³/h",
+    "canonical_unit": "m³/h",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "bg-50",
+    "field": "air_velocity_ms",
+    "source_label": "Velocidade máxima do ar (m/s)",
+    "raw_unit_representation": "Velocidade máxima do ar (m/s)",
+    "old_unit": "m/s",
+    "canonical_unit": "m/s",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "bg-50",
+    "field": "blowing_force_n",
+    "source_label": "Força de sopro (N)",
+    "raw_unit_representation": "Força de sopro (N)",
+    "old_unit": "N",
+    "canonical_unit": "N",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-172",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "ms-172",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-172",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-221",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-221",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-221",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-221",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-221",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-221",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-221",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": "mm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-221",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-221",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-221",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-221",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-221",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-55",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "fs-55",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-55",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-55",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-55",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-55",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-55",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-55",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-363",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-363",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "ms-363",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-363",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-363",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-363",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-363",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-363",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "br-800",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "br-800",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "br-800",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "br-800",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "br-800",
+    "field": "air_volume_m3h",
+    "source_label": "Vazão máx. de ar (m³/h)",
+    "raw_unit_representation": "Vazão máx. de ar (m³/h)",
+    "old_unit": "m³/h",
+    "canonical_unit": null,
+    "reason": "Captured text has no explicit separator metadata; both decimal and grouping interpretations possible.",
+    "status": "LOCALE_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "br-800",
+    "field": "air_velocity_ms",
+    "source_label": "Velocidade máxima do ar (m/s)",
+    "raw_unit_representation": "Velocidade máxima do ar (m/s)",
+    "old_unit": "m/s",
+    "canonical_unit": "m/s",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "br-800",
+    "field": "blowing_force_n",
+    "source_label": "Força de sopro (N)",
+    "raw_unit_representation": "Força de sopro (N)",
+    "old_unit": "N",
+    "canonical_unit": "N",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-131",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-131",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "fs-131",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-131",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-131",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-131",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-131",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": "mm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-131",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-85",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-85",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "fs-85",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-85",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-85",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-85",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-85",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-85",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-85",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-85",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-85",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-85",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-80",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-80",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "fs-80",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-80",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-80",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-80",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-80",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-80",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-80",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-80",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-80",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-80",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-661",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-661",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "ms-661",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-661",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-661",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-661",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fr-410",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fr-410",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fr-410",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fr-410",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fr-410",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fr-410",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-351",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-351",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-351",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-351",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-351",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-351",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-351",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": "mm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-351",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-351",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-351",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-351",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-351",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-291",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-291",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-291",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-291",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-291",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-291",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-291",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": "mm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-291",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "power_kw",
+    "source_label": "Potência (kW/CV)",
+    "raw_unit_representation": "Potência (kW/CV)",
+    "old_unit": "kW/CV",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "fuel_tank_l",
+    "source_label": "Capacidade do tanque de combustível (l)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (l)",
+    "old_unit": "l",
+    "canonical_unit": "l",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "cutting_diameter_mm",
+    "source_label": "Diametro ferramenta de corte (mm)",
+    "raw_unit_representation": "Diametro ferramenta de corte (mm)",
+    "old_unit": "mm",
+    "canonical_unit": null,
+    "reason": "Multiple values are not an unconditional scalar; no configuration flattening.",
+    "status": "CONFIGURATION_MULTI_VALUE_BLOCKED"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "total_length_cm",
+    "source_label": "Comprimento total s/ ferramenta de corte (cm)",
+    "raw_unit_representation": "Comprimento total s/ ferramenta de corte (cm)",
+    "old_unit": "cm",
+    "canonical_unit": "cm",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "vibration_nylon_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "vibration_nylon_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita nylon (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "vibration_blade_left_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "fs-55-r",
+    "field": "vibration_blade_right_ms2",
+    "source_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "raw_unit_representation": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-382",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-382",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": "kW",
+    "reason": "Ordered kW/CV pair passes fixed conversion sanity; only kW retained.",
+    "status": "SAFE_DUAL_UNIT_NORMALIZATION"
+  },
+  {
+    "model": "ms-382",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-382",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-382",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-382",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-382",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-382",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "br-420",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "br-420",
+    "field": "power_kw",
+    "source_label": "Potência (kW)",
+    "raw_unit_representation": "Potência (kW)",
+    "old_unit": "kW",
+    "canonical_unit": "kW",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "br-420",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": "kg",
+    "canonical_unit": null,
+    "reason": "Peso (kg) does not specify dry/powerhead measurement definition; do not invent weight scope.",
+    "status": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "br-420",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "br-420",
+    "field": "air_volume_m3h",
+    "source_label": "Vazão máx. de ar (m³/h)",
+    "raw_unit_representation": "Vazão máx. de ar (m³/h)",
+    "old_unit": "m³/h",
+    "canonical_unit": null,
+    "reason": "Captured text has no explicit separator metadata; both decimal and grouping interpretations possible.",
+    "status": "LOCALE_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "br-420",
+    "field": "air_velocity_ms",
+    "source_label": "Velocidade máxima do ar (m/s)",
+    "raw_unit_representation": "Velocidade máxima do ar (m/s)",
+    "old_unit": "m/s",
+    "canonical_unit": "m/s",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "br-420",
+    "field": "blowing_force_n",
+    "source_label": "Força de sopro (N)",
+    "raw_unit_representation": "Força de sopro (N)",
+    "old_unit": "N",
+    "canonical_unit": "N",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-212",
+    "field": "displacement_cc",
+    "source_label": "Cilindrada (cm³)",
+    "raw_unit_representation": "Cilindrada (cm³)",
+    "old_unit": "cm³",
+    "canonical_unit": "cm³",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_LOCALE_NORMALIZATION"
+  },
+  {
+    "model": "ms-212",
+    "field": "power_kw",
+    "source_label": "Potência (kW/cv)",
+    "raw_unit_representation": "Potência (kW/cv)",
+    "old_unit": "kW/cv",
+    "canonical_unit": null,
+    "reason": "Combined kW/CV heading lacks a complete pair; conversion sanity cannot be established.",
+    "status": "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED"
+  },
+  {
+    "model": "ms-212",
+    "field": "sound_pressure_db",
+    "source_label": "Nível de pressão sonora dB(A)",
+    "raw_unit_representation": "Nível de pressão sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-212",
+    "field": "sound_power_db",
+    "source_label": "Nível de potência sonora dB(A)",
+    "raw_unit_representation": "Nível de potência sonora dB(A)",
+    "old_unit": "A",
+    "canonical_unit": "dB(A)",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-212",
+    "field": "fuel_tank_ml",
+    "source_label": "Capacidade do tanque de combustível (ml)",
+    "raw_unit_representation": "Capacidade do tanque de combustível (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-212",
+    "field": "oil_tank_ml",
+    "source_label": "Capacidade do tanque de óleo (ml)",
+    "raw_unit_representation": "Capacidade do tanque de óleo (ml)",
+    "old_unit": "ml",
+    "canonical_unit": "ml",
+    "reason": "Exact scalar label and complete numeric token; explicit field unit.",
+    "status": "SAFE_SINGLE_VALUE"
+  },
+  {
+    "model": "ms-212",
+    "field": "vibration_left_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-212",
+    "field": "vibration_right_ms2",
+    "source_label": "Nível de vibração esquerda/direita (m/s²)",
+    "raw_unit_representation": "Nível de vibração esquerda/direita (m/s²)",
+    "old_unit": "m/s²",
+    "canonical_unit": "m/s²",
+    "reason": "Captured label explicitly binds left/right and, where present, nylon/blade.",
+    "status": "SAFE_COMPOUND_COMPONENT"
+  },
+  {
+    "model": "ms-182",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-162",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-172",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-363",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-661",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-382",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-172-c-be",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  },
+  {
+    "model": "ms-212",
+    "field": "weight_kg",
+    "source_label": "Peso (kg)",
+    "raw_unit_representation": "Peso (kg)",
+    "old_unit": null,
+    "canonical_unit": null,
+    "reason": "Original chainsaw configuration-dependent weight remains blocked.",
+    "status": "PREVIOUSLY_BLOCKED_PRESERVED"
+  }
+]

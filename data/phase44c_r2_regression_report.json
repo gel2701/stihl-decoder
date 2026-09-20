@@ -1,0 +1,440 @@
+{
+  "phase": "44C-R2",
+  "decision": "HARD STOP",
+  "reason": "Mandatory full regression PASS not achieved; 26/49 files fail on both exact rejected Phase44C and R2. No additional failing files, but equal failure counts do not prove full behavioral equivalence.",
+  "targeted": {
+    "groups": 19,
+    "status": "PASS",
+    "runtime_safe_facts": 153
+  },
+  "full": {
+    "baseline": {
+      "pass": 23,
+      "fail": 26
+    },
+    "candidate": {
+      "pass": 23,
+      "fail": 26
+    },
+    "new_failing_files": 0,
+    "new_regressions": "NOT PROVEN ZERO",
+    "results": [
+      {
+        "suite": "tests/decoder.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/baseline.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/render_www_alignment.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/production_validation.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/audit_remediation.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/canonical_policy.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase34_seo_integrity.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Sitemap URL count must remain stable at 94.\n\n146 !== 94\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase34_seo_integrity.test.js:70:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Sitemap URL count must remain stable at 94.\n\n146 !== 94\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase34_seo_integrity.test.js:70:8"
+      },
+      {
+        "suite": "tests/phase34b_cleanup.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35_document_authority.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c21_integrity_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c3_legacy_library_graph.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c31_legacy_graph_validation_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c432111_self_replay_ancestry_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at resolveCurrentRefs (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:188:7)\n    at runImmutableReplay (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:302:46)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:590:11",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at resolveCurrentRefs (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:188:7)\n    at runImmutableReplay (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:302:46)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:590:11"
+      },
+      {
+        "suite": "tests/phase35c43221_validator_replay_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildAudits (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43221_validator_replay_hotfix.js:85:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43221_validator_replay_hotfix.js:241:17)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c43221_validator_replay_hotfix.test.js:4:22",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildAudits (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43221_validator_replay_hotfix.js:85:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43221_validator_replay_hotfix.js:241:17)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c43221_validator_replay_hotfix.test.js:4:22"
+      },
+      {
+        "suite": "tests/phase35c4322_series_drive_classification.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildAudits (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43223_breakpoint_highlight_safety_hotfix.js:195:111)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43223_breakpoint_highlight_safety_hotfix.js:232:17)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js:26:22",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildAudits (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43223_breakpoint_highlight_safety_hotfix.js:195:111)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43223_breakpoint_highlight_safety_hotfix.js:232:17)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js:26:22"
+      },
+      {
+        "suite": "tests/phase35c432241_validator_integrity_restore.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildAudits (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43221_validator_replay_hotfix.js:85:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43221_validator_replay_hotfix.js:241:17)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c432241_validator_integrity_restore.test.js:15:22",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildAudits (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43221_validator_replay_hotfix.js:85:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43221_validator_replay_hotfix.js:241:17)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c432241_validator_integrity_restore.test.js:15:22"
+      },
+      {
+        "suite": "tests/phase35c43211_postcommit_replay_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at resolveCurrentRefs (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:188:7)\n    at buildPreflightReport (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:247:46)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:881:21)",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at resolveCurrentRefs (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:188:7)\n    at buildPreflightReport (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:247:46)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c43211_postcommit_replay_hotfix.js:881:21)"
+      },
+      {
+        "suite": "tests/phase35c4321_nested_fallback_hotfix.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c432_public_evidence_activation.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c431_scs_promotion_safety_hotfix.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c43_scs_machine_dossier_graph.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c4_verified_fact_recovery.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'better-sqlite3' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c21_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c421_failure_injection_integrity_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdfjs-dist' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c421_failure_injection_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdfjs-dist' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c421_failure_injection_integrity_hotfix.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c422_public_evidence_eligibility.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c4221_public_evidence_safety_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildPreflight (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c4221_public_evidence_safety_hotfix.js:530:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c4221_public_evidence_safety_hotfix.js:616:21)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c4221_public_evidence_safety_hotfix.test.js:12:16",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildPreflight (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c4221_public_evidence_safety_hotfix.js:530:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c4221_public_evidence_safety_hotfix.js:616:21)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c4221_public_evidence_safety_hotfix.test.js:12:16"
+      },
+      {
+        "suite": "tests/phase35c4222_residual_public_fallback_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildPreflight (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c4222_residual_public_fallback_hotfix.js:771:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/scripts/phase35c4222_residual_public_fallback_hotfix.js:885:21)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c4222_residual_public_fallback_hotfix.test.js:13:16",
+        "candidate_error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA\n    at resolveImmutableReferenceCommit (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/immutable_reference_commit.js:12:11)\n    at buildPreflight (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c4222_residual_public_fallback_hotfix.js:771:22)\n    at main (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/scripts/phase35c4222_residual_public_fallback_hotfix.js:885:21)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c4222_residual_public_fallback_hotfix.test.js:13:16"
+      },
+      {
+        "suite": "tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase35c42_targeted_archive_intake.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdfjs-dist' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-baseline-tests\\scripts\\phase35c42_targeted_archive_intake.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)",
+        "candidate_error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pdfjs-dist' imported from C:\\Users\\GelliusSnippe\\.agents\\stihl-decoder-phase44c-r2-tests\\scripts\\phase35c42_targeted_archive_intake.js\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)"
+      },
+      {
+        "suite": "tests/phase35c44_stihlusa_source_hygiene.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate\n\n701 !== 461\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c44_stihlusa_source_hygiene.test.js:26:8 {",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate\n\n665 !== 461\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c44_stihlusa_source_hygiene.test.js:26:8 {"
+      },
+      {
+        "suite": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate\n\n701 !== 461\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c441_provenance_metrics_integrity_hotfix.test.js:33:8 {",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate\n\n665 !== 461\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c441_provenance_metrics_integrity_hotfix.test.js:33:8 {"
+      },
+      {
+        "suite": "tests/phase35c442_clean_checkout_reproducibility.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate\n\n701 !== 461\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase35c442_clean_checkout_reproducibility.test.js:218:8 {",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate\n\n665 !== 461\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase35c442_clean_checkout_reproducibility.test.js:218:8 {"
+      },
+      {
+        "suite": "tests/phase36_serial_user_value_engine.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase36_ms170_realworld_acceptance.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase36_model_assisted_decode.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase36_serial_chronology.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase36c_ui_user_value_acceptance.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase36a_safe_technical_preview.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474\n\n701 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase36a_safe_technical_preview.test.js:344:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474\n\n665 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase36a_safe_technical_preview.test.js:344:8"
+      },
+      {
+        "suite": "tests/phase36b_evidence_expansion.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash\n+ actual - expected\n\n+ '058e4df8dbdceb1f94c8e3bfd42c2b27f2dcdae962565de9d863f85907860a9e'\n- 'b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584'",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash\n+ actual - expected\n\n+ 'a7c3101df738d5b73783fdcf0908d9e7f341ba4b24033ff3bc2a84156e8ea123'\n- 'b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584'"
+      },
+      {
+        "suite": "tests/phase37a_high_value_evidence_wave.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474\n\n701 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase37a_high_value_evidence_wave.test.js:31:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474\n\n665 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase37a_high_value_evidence_wave.test.js:31:8"
+      },
+      {
+        "suite": "tests/phase37c_evidence_surfacing_reachability.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474\n\n701 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase37c_evidence_surfacing_reachability.test.js:34:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474\n\n665 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase37c_evidence_surfacing_reachability.test.js:34:8"
+      },
+      {
+        "suite": "tests/phase38a_machine_dossier_mvp.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Exactly 48 models must be dossier-ready (>=5 facts & >=1 maint fact)\n\n49 !== 48\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase38a_machine_dossier_mvp.test.js:92:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Index must have 51 models\n\n72 !== 51\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase38a_machine_dossier_mvp.test.js:62:8"
+      },
+      {
+        "suite": "tests/phase38a3_confirmed_spec_parity.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": null,
+        "candidate_error": null
+      },
+      {
+        "suite": "tests/phase38b_maintenance_return_loop.test.js",
+        "baseline_status": "PASS",
+        "candidate_status": "PASS",
+        "classification": "EQUIVALENT_PASS",
+        "baseline_error": "[MachineDossierManager] Storage write failed: Error [QuotaExceededError]: QuotaExceededError\n    at MockLocalStorage.setItem (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase38b_maintenance_return_loop.test.js:79:19)\n    at saveDossier (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/src/components/MachineDossierManager.js:567:13)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase38b_maintenance_return_loop.test.js:486:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)",
+        "candidate_error": "[MachineDossierManager] Storage write failed: Error [QuotaExceededError]: QuotaExceededError\n    at MockLocalStorage.setItem (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase38b_maintenance_return_loop.test.js:79:19)\n    at saveDossier (file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/src/components/MachineDossierManager.js:567:13)\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase38b_maintenance_return_loop.test.js:486:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)"
+      },
+      {
+        "suite": "tests/phase38c_manual_model_correction.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_EQUIVALENT_FAIL",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Must contain exactly 59 unique identities (58 baseline + 1 MS 251 C)\n\n85 !== 59\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase38c_manual_model_correction.test.js:46:8 {",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Must contain exactly 59 unique identities (58 baseline + 1 MS 251 C)\n\n85 !== 59\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase38c_manual_model_correction.test.js:46:8 {"
+      },
+      {
+        "suite": "tests/phase38d_ms251_evidence_activation.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)\n\n701 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase38d_ms251_evidence_activation.test.js:97:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)\n\n665 !== 474\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase38d_ms251_evidence_activation.test.js:97:8"
+      },
+      {
+        "suite": "tests/phase38e_baseline_architecture.test.js",
+        "baseline_status": "FAIL",
+        "candidate_status": "FAIL",
+        "classification": "PRE_EXISTING_FAILURE_DIFFERENT_DETAILS_REQUIRES_REVIEW",
+        "baseline_error": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_FACT_COUNT_MISMATCH\",\"message\":\"Aantal facts wijkt af.\",\"details\":{\"expected\":512,\"actual\":701}},{\"code\":\"ERR_FACT_ARRAY_HASH_MISMATCH\",\"message\":\"Facts-arrayhash wijkt af.\",\"details\":{}},{\"code\":\"ERR_PUBLIC_STORE_HASH_MISMATCH\",\"message\":\"Public-storehash wijkt af.\",\"details\":{}},{\"code\":\"ERR_CANONICAL_DATABASE_HASH_MISMATCH\",\"message\":\"Canonical-databasehash wijkt af.\",\"details\":{}},{\"code\":\"ERR_MODEL_FACT_COUNT_MISMATCH\",\"message\":\"Model-facttelling wijkt af.\",\"details\":{\"expected\":{\"026\":10,\"046\":9,\"ts-410\":4,\"ts-420\":4,\"009\":8,\"017\":8,\"018\":8,\"036\":8,\"044\":8,\"088\":8,\"ms-260\":8,\"ms-360\":8,\"ms-460\":8,\"fs-350\":7,\"hs-45\":8,\"ms-170\":10,\"ms-261\":13,\"ms-261-c-m\":13,\"ms-180\":12,\"br-600\":8,\"ms-201-tc-m\":11,\"fs-460-c-em\":9,\"ms-210\":10,\"ms-230\":10,\"ms-250\":10,\"ms-290\":10,\"ms-362-c-m\":11,\"fs-38\":9,\"sr-430\":9,\"ms-310\":12,\"ms-390\":11,\"br-500\":9,\"br-550\":9,\"br-700\":9,\"ms-201-t\":12,\"fs-120\":10,\"fs-200\":10,\"sr-450\":10,\"fs-410-c-m\":10,\"fs-490-c-m\":10,\"ms-341\":9,\"ms-361\":9,\"ms-270\":9,\"ms-280\":9,\"ms-200\":9,\"ms-200-t\":9,\"ms-440\":9,\"ms-441\":9,\"ms-461\":9,\"ms-251\":9,\"ms-251-c\":13},\"actual\":{\"026\":10,\"046\":9,\"ts-410\":4,\"ts-420\":4,\"009\":8,\"017\":8,\"018\":8,\"036\":8,\"044\":8,\"088\":8,\"ms-260\":14,\"ms-360\":8,\"ms-460\":8,\"fs-350\":7,\"hs-45\":12,\"ms-170\":10,\"ms-261\":17,\"ms-261-c-m\":13,\"ms-180\":12,\"br-600\":9,\"ms-201-tc-m\":11,\"fs-460-c-em\":9,\"ms-210\":12,\"ms-230\":10,\"ms-250\":10,\"ms-290\":10,\"ms-362-c-m\":11,\"fs-38\":9,\"sr-430\":9,\"ms-310\":12,\"ms-390\":11,\"br-500\":9,\"br-550\":9,\"br-700\":9,\"ms-201-t\":13,\"fs-120\":15,\"fs-200\":10,\"sr-450\":10,\"fs-410-c-m\":10,\"fs-490-c-m\":10,\"ms-341\":9,\"ms-361\":10,\"ms-270\":9,\"ms-280\":9,\"ms-200\":9,\"ms-200-t\":9,\"ms-440\":9,\"ms-441\":9,\"ms-461\":9,\"ms-251\":9,\"ms-251-c\":13,\"fs-460\":6,\"ms-362\":4,\"ms-400\":3,\"ms-311\":1,\"ms-182\":8,\"ms-162\":8,\"fs-161\":12,\"bg-50\":7,\"ms-172\":8,\"fs-221\":12,\"fs-55\":12,\"ms-363\":8,\"br-800\":7,\"fs-131\":8,\"fs-85\":12,\"fs-80\":12,\"ms-661\":6,\"fr-410\":6,\"fs-351\":12,\"fs-291\":8,\"fs-55-r\":12,\"ms-382\":8,\"br-420\":7,\"ms-172-c-be\":8,\"ms-212\":8}}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d1737cbc6c14ac83\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e4fa01bfd2aed7ee\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1201a8b325d71918\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"c94e67d5a2927c81\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"8f574831654e9d99\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"af1c8e807aa10bfb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"08b8898b91b70a9a\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"92218422b87e6292\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"ef608db36c68e184\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"dca6b16f028c0633\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"34f28e5958158b86\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"0093ae993f2b6f77\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d49d7576eaa38122\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1bd8e219b115beeb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"fc089432bb576874\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bce89ed45db1b624\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e1902e740b546fd1\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"f35b62699382e82d\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"be1c7915b18f8cc6\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bf387bfd73e6ca79\"}}]\n\nfalse !== true\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-baseline-tests/tests/phase38e_baseline_architecture.test.js:70:8",
+        "candidate_error": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d1737cbc6c14ac83\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e4fa01bfd2aed7ee\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1201a8b325d71918\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"c94e67d5a2927c81\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"8f574831654e9d99\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"af1c8e807aa10bfb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"08b8898b91b70a9a\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"92218422b87e6292\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"ef608db36c68e184\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"dca6b16f028c0633\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"34f28e5958158b86\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"0093ae993f2b6f77\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d49d7576eaa38122\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1bd8e219b115beeb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"fc089432bb576874\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bce89ed45db1b624\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e1902e740b546fd1\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"f35b62699382e82d\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"be1c7915b18f8cc6\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bf387bfd73e6ca79\"}}]\n\nfalse !== true\n\n    at file:///C:/Users/GelliusSnippe/.agents/stihl-decoder-phase44c-r2-tests/tests/phase38e_baseline_architecture.test.js:70:8"
+      }
+    ]
+  },
+  "required_suites": {
+    "canonical_policy": "PASS",
+    "official_product_harvester": "PASS",
+    "phase39c": "PASS after preserving historical manifest baseline ID; existing test unchanged",
+    "phase41": "PASS",
+    "phase40b": "FAIL both; 5 passed / 4 failed",
+    "phase42d": "FAIL both: historical 62-model assertion",
+    "phase43a": "FAIL both: historical model/fact count assertions",
+    "phase43b": "FAIL both: historical model/fact count assertions",
+    "phase37c": "FAIL both: historical 474-fact assertion",
+    "phase44a": "No dedicated suite in accepted tree; frozen lineage checks PASS",
+    "phase44b": "No dedicated suite in accepted tree; identity/CORE5/baseline invariants PASS"
+  },
+  "environment": {
+    "node_full": "24.21.0",
+    "vitest": "3.x isolated test runtime",
+    "npm_ci_node25": "FAIL better-sqlite3 native build; Visual Studio C++ unavailable",
+    "npm_ci_node24": "FAIL better-sqlite3 native build; Visual Studio C++ unavailable",
+    "dependency_files_changed": false
+  },
+  "idempotence": "Actual second execute byte-identical for all 13 generated files",
+  "promoted": false,
+  "pushed": false,
+  "deployed": false
+}
