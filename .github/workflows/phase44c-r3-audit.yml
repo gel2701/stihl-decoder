@@ -1,0 +1,59 @@
+name: Phase44C R3 immutable audit
+on:
+  push:
+    branches: [audit/phase44c-r3-regression-equivalence]
+    paths:
+      - .github/workflows/phase44c-r3-audit.yml
+      - scripts/phase44c_r3_run_matrix.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  immutable-matrix:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.2
+          cache: npm
+      - name: Prepare exact P B C snapshots
+        run: |
+          export R3_AUDIT_ROOT="$RUNNER_TEMP/phase44c-r3"
+          mkdir -p "$R3_AUDIT_ROOT/temp"
+          echo "R3_AUDIT_ROOT=$R3_AUDIT_ROOT" >> "$GITHUB_ENV"
+          echo "R3_NPM_CLI=$(readlink -f "$(command -v npm)")" >> "$GITHUB_ENV"
+          git fetch origin --prune
+          test "$(git rev-parse origin/main)" = 947eb3e5ac8345abb3f1c7aac7bd9191487f5c02
+          git worktree add --detach "$R3_AUDIT_ROOT/P" 947eb3e5ac8345abb3f1c7aac7bd9191487f5c02
+          git worktree add --detach "$R3_AUDIT_ROOT/B" 0c00214888a67f90eb2a6466ceb0d85b166e5314
+          git worktree add --detach "$R3_AUDIT_ROOT/C" 7fde0027ffdf93fbe9276d6b7f831a337bd3dc51
+      - name: npm ci in all three snapshots
+        run: |
+          for state in P B C; do
+            (cd "$R3_AUDIT_ROOT/$state" && npm ci) 2>&1 | tee "$R3_AUDIT_ROOT/npm-ci-$state.log"
+          done
+      - name: Run exact unchanged test files individually
+        run: node scripts/phase44c_r3_run_matrix.cjs
+      - name: Preserve audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase44c-r3-raw-matrix
+          path: |
+            ${{ env.R3_AUDIT_ROOT }}/*-results.json
+            ${{ env.R3_AUDIT_ROOT }}/test-universe.json
+            ${{ env.R3_AUDIT_ROOT }}/npm-ci-*.log
+      - name: Emit portable compressed results
+        if: always()
+        run: |
+          node - <<'NODE'
+          const fs = require('fs'), path = require('path'), zlib = require('zlib');
+          for (const file of ['test-universe.json','P-results.json','B-results.json','C-results.json']) {
+            const p=path.join(process.env.R3_AUDIT_ROOT,file);
+            if(fs.existsSync(p)) console.log('R3_RESULT '+file+' '+zlib.gzipSync(fs.readFileSync(p)).toString('base64'));
+          }
+          NODE
