@@ -1,0 +1,529 @@
+{
+  "production": {
+    "run": 35180278876,
+    "job": 105070721855,
+    "commit": "947eb3e5ac8345abb3f1c7aac7bd9191487f5c02",
+    "node": "v22.23.2",
+    "npm": "10.9.8",
+    "npm_ci": "PASS",
+    "npm_test": "FAIL",
+    "failed": 27,
+    "tests": [
+      {
+        "file": "tests/decoder.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/baseline.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/render_www_alignment.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/production_validation.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/audit_remediation.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/canonical_policy.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase34_seo_integrity.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Sitemap URL count must remain stable at 94."
+      },
+      {
+        "file": "tests/phase34b_cleanup.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35_document_authority.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c21_integrity_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c3_legacy_library_graph.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c31_legacy_graph_validation_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Unable to resolve a Python runtime with pypdf. Set PHASE35_PYTHON or install pypdf in python/python3."
+      },
+      {
+        "file": "tests/phase35c432111_self_replay_ancestry_hotfix.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "file": "tests/phase35c43221_validator_replay_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4322_series_drive_classification.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5:data/phase35c4322_final_report.json",
+        "fatal": "fatal: path 'data/phase35c4322_final_report.json' exists on disk, but not in '16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5'"
+      },
+      {
+        "file": "tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c432241_validator_integrity_restore.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c43211_postcommit_replay_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4321_nested_fallback_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 64f38d59595858c1092d951c391f98f86720d0c9:data/phase35c4321_final_report.json",
+        "fatal": "fatal: path 'data/phase35c4321_final_report.json' exists on disk, but not in '64f38d59595858c1092d951c391f98f86720d0c9'"
+      },
+      {
+        "file": "tests/phase35c432_public_evidence_activation.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show dcdef90942256a409cd274bbcb9fb6788a1a13a5:data/phase35c432_final_report.json",
+        "fatal": "fatal: path 'data/phase35c432_final_report.json' exists on disk, but not in 'dcdef90942256a409cd274bbcb9fb6788a1a13a5'"
+      },
+      {
+        "file": "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 356040404fc81c8b69d4d259697b58ec2ca67c1a:data/phase35c4311_final_report.json",
+        "fatal": "fatal: path 'data/phase35c4311_final_report.json' exists on disk, but not in '356040404fc81c8b69d4d259697b58ec2ca67c1a'"
+      },
+      {
+        "file": "tests/phase35c431_scs_promotion_safety_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 4457b41d7fed36274fd9d98ef74600df27898789:data/phase35c431_final_report.json",
+        "fatal": "fatal: path 'data/phase35c431_final_report.json' exists on disk, but not in '4457b41d7fed36274fd9d98ef74600df27898789'"
+      },
+      {
+        "file": "tests/phase35c43_scs_machine_dossier_graph.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c4_verified_fact_recovery.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "file": "tests/phase35c421_failure_injection_integrity_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c422_public_evidence_eligibility.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show ab2410e3f23d63483c1aadd4a7735328ec2b50e9:data/phase35c422_final_report.json",
+        "fatal": "fatal: path 'data/phase35c422_final_report.json' exists on disk, but not in 'ab2410e3f23d63483c1aadd4a7735328ec2b50e9'"
+      },
+      {
+        "file": "tests/phase35c4221_public_evidence_safety_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4222_residual_public_fallback_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c42_targeted_archive_intake.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c44_stihlusa_source_hygiene.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate"
+      },
+      {
+        "file": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate"
+      },
+      {
+        "file": "tests/phase35c442_clean_checkout_reproducibility.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate"
+      },
+      {
+        "file": "tests/phase36_serial_user_value_engine.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36_ms170_realworld_acceptance.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36_model_assisted_decode.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36_serial_chronology.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36c_ui_user_value_acceptance.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36a_safe_technical_preview.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474"
+      },
+      {
+        "file": "tests/phase36b_evidence_expansion.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash"
+      },
+      {
+        "file": "tests/phase37a_high_value_evidence_wave.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474"
+      },
+      {
+        "file": "tests/phase37c_evidence_surfacing_reachability.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474"
+      },
+      {
+        "file": "tests/phase38a_machine_dossier_mvp.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Exactly 48 models must be dossier-ready (>=5 facts & >=1 maint fact)"
+      },
+      {
+        "file": "tests/phase38a3_confirmed_spec_parity.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase38b_maintenance_return_loop.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase38c_manual_model_correction.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Must contain exactly 59 unique identities (58 baseline + 1 MS 251 C)"
+      },
+      {
+        "file": "tests/phase38d_ms251_evidence_activation.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)"
+      },
+      {
+        "file": "tests/phase38e_baseline_architecture.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_FACT_ARRAY_HASH_MISMATCH\",\"message\":\"Facts-arrayhash wijkt af.\",\"details\":{}},{\"code\":\"ERR_PUBLIC_STORE_HASH_MISMATCH\",\"mess"
+      }
+    ]
+  },
+  "candidate": {
+    "run": 35524758271,
+    "job": 106114870661,
+    "commit": "28140424fe1ca1dae98a2ed0085d28702afec737",
+    "node": "v22.23.2",
+    "npm": "10.9.8",
+    "npm_ci": "PASS",
+    "npm_test": "FAIL",
+    "failed": 27,
+    "tests": [
+      {
+        "file": "tests/decoder.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/baseline.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/render_www_alignment.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/production_validation.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/audit_remediation.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/canonical_policy.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase34_seo_integrity.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Sitemap URL count must remain stable at 94."
+      },
+      {
+        "file": "tests/phase34b_cleanup.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35_document_authority.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c21_integrity_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c3_legacy_library_graph.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c31_legacy_graph_validation_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Unable to resolve a Python runtime with pypdf. Set PHASE35_PYTHON or install pypdf in python/python3."
+      },
+      {
+        "file": "tests/phase35c432111_self_replay_ancestry_hotfix.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "file": "tests/phase35c43221_validator_replay_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4322_series_drive_classification.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5:data/phase35c4322_final_report.json",
+        "fatal": "fatal: path 'data/phase35c4322_final_report.json' exists on disk, but not in '16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5'"
+      },
+      {
+        "file": "tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c432241_validator_integrity_restore.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c43211_postcommit_replay_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4321_nested_fallback_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 64f38d59595858c1092d951c391f98f86720d0c9:data/phase35c4321_final_report.json",
+        "fatal": "fatal: path 'data/phase35c4321_final_report.json' exists on disk, but not in '64f38d59595858c1092d951c391f98f86720d0c9'"
+      },
+      {
+        "file": "tests/phase35c432_public_evidence_activation.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show dcdef90942256a409cd274bbcb9fb6788a1a13a5:data/phase35c432_final_report.json",
+        "fatal": "fatal: path 'data/phase35c432_final_report.json' exists on disk, but not in 'dcdef90942256a409cd274bbcb9fb6788a1a13a5'"
+      },
+      {
+        "file": "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 356040404fc81c8b69d4d259697b58ec2ca67c1a:data/phase35c4311_final_report.json",
+        "fatal": "fatal: path 'data/phase35c4311_final_report.json' exists on disk, but not in '356040404fc81c8b69d4d259697b58ec2ca67c1a'"
+      },
+      {
+        "file": "tests/phase35c431_scs_promotion_safety_hotfix.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show 4457b41d7fed36274fd9d98ef74600df27898789:data/phase35c431_final_report.json",
+        "fatal": "fatal: path 'data/phase35c431_final_report.json' exists on disk, but not in '4457b41d7fed36274fd9d98ef74600df27898789'"
+      },
+      {
+        "file": "tests/phase35c43_scs_machine_dossier_graph.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c4_verified_fact_recovery.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "file": "tests/phase35c421_failure_injection_integrity_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c422_public_evidence_eligibility.test.js",
+        "fail": true,
+        "error": "Error: Command failed: git show ab2410e3f23d63483c1aadd4a7735328ec2b50e9:data/phase35c422_final_report.json",
+        "fatal": "fatal: path 'data/phase35c422_final_report.json' exists on disk, but not in 'ab2410e3f23d63483c1aadd4a7735328ec2b50e9'"
+      },
+      {
+        "file": "tests/phase35c4221_public_evidence_safety_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4222_residual_public_fallback_hotfix.test.js",
+        "fail": true,
+        "error": "Error: REFERENCE_COMMIT must be an explicit 40-character commit SHA"
+      },
+      {
+        "file": "tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c42_targeted_archive_intake.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase35c44_stihlusa_source_hygiene.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate"
+      },
+      {
+        "file": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate"
+      },
+      {
+        "file": "tests/phase35c442_clean_checkout_reproducibility.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate"
+      },
+      {
+        "file": "tests/phase36_serial_user_value_engine.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36_ms170_realworld_acceptance.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36_model_assisted_decode.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36_serial_chronology.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36c_ui_user_value_acceptance.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase36a_safe_technical_preview.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474"
+      },
+      {
+        "file": "tests/phase36b_evidence_expansion.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash"
+      },
+      {
+        "file": "tests/phase37a_high_value_evidence_wave.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474"
+      },
+      {
+        "file": "tests/phase37c_evidence_surfacing_reachability.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474"
+      },
+      {
+        "file": "tests/phase38a_machine_dossier_mvp.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Index must have 51 models"
+      },
+      {
+        "file": "tests/phase38a3_confirmed_spec_parity.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase38b_maintenance_return_loop.test.js",
+        "fail": false
+      },
+      {
+        "file": "tests/phase38c_manual_model_correction.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Must contain exactly 59 unique identities (58 baseline + 1 MS 251 C)"
+      },
+      {
+        "file": "tests/phase38d_ms251_evidence_activation.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)"
+      },
+      {
+        "file": "tests/phase38e_baseline_architecture.test.js",
+        "fail": true,
+        "error": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d1737cbc6c14ac83\"}},"
+      }
+    ]
+  },
+  "failure_set_explained": true,
+  "unexplained_ci_only_failures": 0,
+  "extra_shallow_checkout_failures": [
+    {
+      "file": "tests/phase35c4322_series_drive_classification.test.js",
+      "fail": true,
+      "error": "Error: Command failed: git show 16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5:data/phase35c4322_final_report.json",
+      "fatal": "fatal: path 'data/phase35c4322_final_report.json' exists on disk, but not in '16eb5dfb519605c7c4b40ff2e99afe9ba567dfc5'"
+    },
+    {
+      "file": "tests/phase35c4321_nested_fallback_hotfix.test.js",
+      "fail": true,
+      "error": "Error: Command failed: git show 64f38d59595858c1092d951c391f98f86720d0c9:data/phase35c4321_final_report.json",
+      "fatal": "fatal: path 'data/phase35c4321_final_report.json' exists on disk, but not in '64f38d59595858c1092d951c391f98f86720d0c9'"
+    },
+    {
+      "file": "tests/phase35c432_public_evidence_activation.test.js",
+      "fail": true,
+      "error": "Error: Command failed: git show dcdef90942256a409cd274bbcb9fb6788a1a13a5:data/phase35c432_final_report.json",
+      "fatal": "fatal: path 'data/phase35c432_final_report.json' exists on disk, but not in 'dcdef90942256a409cd274bbcb9fb6788a1a13a5'"
+    },
+    {
+      "file": "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+      "fail": true,
+      "error": "Error: Command failed: git show 356040404fc81c8b69d4d259697b58ec2ca67c1a:data/phase35c4311_final_report.json",
+      "fatal": "fatal: path 'data/phase35c4311_final_report.json' exists on disk, but not in '356040404fc81c8b69d4d259697b58ec2ca67c1a'"
+    },
+    {
+      "file": "tests/phase35c431_scs_promotion_safety_hotfix.test.js",
+      "fail": true,
+      "error": "Error: Command failed: git show 4457b41d7fed36274fd9d98ef74600df27898789:data/phase35c431_final_report.json",
+      "fatal": "fatal: path 'data/phase35c431_final_report.json' exists on disk, but not in '4457b41d7fed36274fd9d98ef74600df27898789'"
+    },
+    {
+      "file": "tests/phase35c422_public_evidence_eligibility.test.js",
+      "fail": true,
+      "error": "Error: Command failed: git show ab2410e3f23d63483c1aadd4a7735328ec2b50e9:data/phase35c422_final_report.json",
+      "fatal": "fatal: path 'data/phase35c422_final_report.json' exists on disk, but not in 'ab2410e3f23d63483c1aadd4a7735328ec2b50e9'"
+    }
+  ],
+  "explanation": "Unchanged CI uses checkout@v4 default depth 1. Six fixed historical git-show references fail in both production and candidate CI, while full-history immutable P/B/C all pass these six. Self-replay ancestry fails earlier in shallow CI (missing historical ancestry); full-history reaches shared missing REFERENCE_COMMIT prerequisite. Remaining failures match semantic causes in matrix.",
+  "log_sha256": {
+    "production": "6049634d42e67d4581a6d696a8d948a44945cef7c16585b5126cc565baa3cca3",
+    "candidate": "9860f6b2c17d96f98dcb24c977c48afe0d5b2604195c1baf5a51659861c221dd"
+  }
+}

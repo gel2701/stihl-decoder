@@ -1,0 +1,258 @@
+{
+  "runner": "tests/run_all_tests.js",
+  "runner_sha256": "6bf7bae625e9850f9a75f0f1caf6c57422edd2bff745a419f101670ef72c02ab",
+  "runner_blob": "62af1444d89e81bd0d9b6c27bdf2dcb7a602984d",
+  "count": 49,
+  "files": [
+    "tests/decoder.test.js",
+    "tests/baseline.test.js",
+    "tests/render_www_alignment.test.js",
+    "tests/production_validation.test.js",
+    "tests/audit_remediation.test.js",
+    "tests/canonical_policy.test.js",
+    "tests/phase34_seo_integrity.test.js",
+    "tests/phase34b_cleanup.test.js",
+    "tests/phase35_document_authority.test.js",
+    "tests/phase35c21_integrity_hotfix.test.js",
+    "tests/phase35c3_legacy_library_graph.test.js",
+    "tests/phase35c31_legacy_graph_validation_hotfix.test.js",
+    "tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js",
+    "tests/phase35c432111_self_replay_ancestry_hotfix.test.js",
+    "tests/phase35c43221_validator_replay_hotfix.test.js",
+    "tests/phase35c4322_series_drive_classification.test.js",
+    "tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js",
+    "tests/phase35c432241_validator_integrity_restore.test.js",
+    "tests/phase35c43211_postcommit_replay_hotfix.test.js",
+    "tests/phase35c4321_nested_fallback_hotfix.test.js",
+    "tests/phase35c432_public_evidence_activation.test.js",
+    "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+    "tests/phase35c431_scs_promotion_safety_hotfix.test.js",
+    "tests/phase35c43_scs_machine_dossier_graph.test.js",
+    "tests/phase35c4_verified_fact_recovery.test.js",
+    "tests/phase35c421_failure_injection_integrity_hotfix.test.js",
+    "tests/phase35c422_public_evidence_eligibility.test.js",
+    "tests/phase35c4221_public_evidence_safety_hotfix.test.js",
+    "tests/phase35c4222_residual_public_fallback_hotfix.test.js",
+    "tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js",
+    "tests/phase35c42_targeted_archive_intake.test.js",
+    "tests/phase35c44_stihlusa_source_hygiene.test.js",
+    "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js",
+    "tests/phase35c442_clean_checkout_reproducibility.test.js",
+    "tests/phase36_serial_user_value_engine.test.js",
+    "tests/phase36_ms170_realworld_acceptance.test.js",
+    "tests/phase36_model_assisted_decode.test.js",
+    "tests/phase36_serial_chronology.test.js",
+    "tests/phase36c_ui_user_value_acceptance.test.js",
+    "tests/phase36a_safe_technical_preview.test.js",
+    "tests/phase36b_evidence_expansion.test.js",
+    "tests/phase37a_high_value_evidence_wave.test.js",
+    "tests/phase37c_evidence_surfacing_reachability.test.js",
+    "tests/phase38a_machine_dossier_mvp.test.js",
+    "tests/phase38a3_confirmed_spec_parity.test.js",
+    "tests/phase38b_maintenance_return_loop.test.js",
+    "tests/phase38c_manual_model_correction.test.js",
+    "tests/phase38d_ms251_evidence_activation.test.js",
+    "tests/phase38e_baseline_architecture.test.js"
+  ],
+  "test_code_parity": true,
+  "runner_sha_kind": "SHA256 of Linux LF checkout bytes",
+  "test_files": [
+    {
+      "file": "tests/decoder.test.js",
+      "blob": "b9d302e5a5254cfe95a15da79c33519aa1975f32"
+    },
+    {
+      "file": "tests/baseline.test.js",
+      "blob": "e2c5a6160755359b5d4316124a2eeb0278e8c31a"
+    },
+    {
+      "file": "tests/render_www_alignment.test.js",
+      "blob": "80751f0824b23bba90eccbe7b597f144b4d610bb"
+    },
+    {
+      "file": "tests/production_validation.test.js",
+      "blob": "65a84a9029f37b018118de1ec876a9507f253270"
+    },
+    {
+      "file": "tests/audit_remediation.test.js",
+      "blob": "9811e26144c04b75a1c3aa9100cf4c1a866739b2"
+    },
+    {
+      "file": "tests/canonical_policy.test.js",
+      "blob": "2e6196e9a8800d4ea16ef582e65377f8023510ec"
+    },
+    {
+      "file": "tests/phase34_seo_integrity.test.js",
+      "blob": "7d57e9df916af7e4560aa74d7ff88ec2ff3cf6ba"
+    },
+    {
+      "file": "tests/phase34b_cleanup.test.js",
+      "blob": "49eab40a62886ecfcdf402cf0cdab747a3dfb14d"
+    },
+    {
+      "file": "tests/phase35_document_authority.test.js",
+      "blob": "c2df8be3592c6ec762600b28c304cf2ccb223174"
+    },
+    {
+      "file": "tests/phase35c21_integrity_hotfix.test.js",
+      "blob": "f8f8dff7a7f4857a12d0ef17ac2be29395255d42"
+    },
+    {
+      "file": "tests/phase35c3_legacy_library_graph.test.js",
+      "blob": "2edba5e6965969b57645b8ef18eaef75a4ef2499"
+    },
+    {
+      "file": "tests/phase35c31_legacy_graph_validation_hotfix.test.js",
+      "blob": "bddc81212e4f1c182f6e159d302e2368d3800171"
+    },
+    {
+      "file": "tests/phase35c32_validator_integrity_reproducibility_hotfix.test.js",
+      "blob": "81d1a18d4c17943980a7b7e56c3aba4641f9ad22"
+    },
+    {
+      "file": "tests/phase35c432111_self_replay_ancestry_hotfix.test.js",
+      "blob": "128598190847f5de4fa3bdac597f23dabc345dfe"
+    },
+    {
+      "file": "tests/phase35c43221_validator_replay_hotfix.test.js",
+      "blob": "b7ccdadcfa92c0f1b2c535afe4a3359405772c18"
+    },
+    {
+      "file": "tests/phase35c4322_series_drive_classification.test.js",
+      "blob": "699695f6d42033459a02a1f4ef84dfb28663a1ca"
+    },
+    {
+      "file": "tests/phase35c43223_breakpoint_highlight_safety_hotfix.test.js",
+      "blob": "16ac8cb632b8fdb0cad9fe0d3384fa24333236ef"
+    },
+    {
+      "file": "tests/phase35c432241_validator_integrity_restore.test.js",
+      "blob": "f0a926ecd84952015e40a05f6aeacb8f46e0d265"
+    },
+    {
+      "file": "tests/phase35c43211_postcommit_replay_hotfix.test.js",
+      "blob": "6ba9233f25a104fea4cf99fa8a3a1cd479f6469c"
+    },
+    {
+      "file": "tests/phase35c4321_nested_fallback_hotfix.test.js",
+      "blob": "11ae999fcbbdd07f3f35870cbefa91465f20aa9e"
+    },
+    {
+      "file": "tests/phase35c432_public_evidence_activation.test.js",
+      "blob": "8ddd8fb21445c3a919500845f4d88a972b37551c"
+    },
+    {
+      "file": "tests/phase35c4311_immutable_public_baseline_hotfix.test.js",
+      "blob": "79663031d5245a3e175fd51c35f3fe0da588943f"
+    },
+    {
+      "file": "tests/phase35c431_scs_promotion_safety_hotfix.test.js",
+      "blob": "628fcf1610482d01abba873f1be86bf35adc0ba4"
+    },
+    {
+      "file": "tests/phase35c43_scs_machine_dossier_graph.test.js",
+      "blob": "b2a8364eb2ea5e7e54d10f38ed579697892bbfcc"
+    },
+    {
+      "file": "tests/phase35c4_verified_fact_recovery.test.js",
+      "blob": "b0186e087d972fb9f2f12cd397b5332f780a9f46"
+    },
+    {
+      "file": "tests/phase35c421_failure_injection_integrity_hotfix.test.js",
+      "blob": "86ce5b0889555a043b602635af4380c69eb1f741"
+    },
+    {
+      "file": "tests/phase35c422_public_evidence_eligibility.test.js",
+      "blob": "eaf100bf5e8b5800199f1da674830c7c73332460"
+    },
+    {
+      "file": "tests/phase35c4221_public_evidence_safety_hotfix.test.js",
+      "blob": "f8582eaffd1bcd2b176c7eb9d1a4932e421dd405"
+    },
+    {
+      "file": "tests/phase35c4222_residual_public_fallback_hotfix.test.js",
+      "blob": "03cfaee84ca2112a880559453382fab0b60a5bcf"
+    },
+    {
+      "file": "tests/phase35c4223_conflict_provenance_schema_binding_hotfix.test.js",
+      "blob": "8bf1ad9bd69f4580e7353e64640e530a2007c20f"
+    },
+    {
+      "file": "tests/phase35c42_targeted_archive_intake.test.js",
+      "blob": "f857b0f9bf1c980b2421ac76423cb12f17a469dc"
+    },
+    {
+      "file": "tests/phase35c44_stihlusa_source_hygiene.test.js",
+      "blob": "c30da1596128e0a905244d08042015384a835d4b"
+    },
+    {
+      "file": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js",
+      "blob": "b7e055d341f6deff6b9efc9fd47bd046cebf6850"
+    },
+    {
+      "file": "tests/phase35c442_clean_checkout_reproducibility.test.js",
+      "blob": "8a1422f4533a53fcf400227c74e844f315c2ce96"
+    },
+    {
+      "file": "tests/phase36_serial_user_value_engine.test.js",
+      "blob": "6ddd5dae52549aa398503b550872d0359140e3a3"
+    },
+    {
+      "file": "tests/phase36_ms170_realworld_acceptance.test.js",
+      "blob": "499210e10d25352d58d14fec5ce34fe1f41d8898"
+    },
+    {
+      "file": "tests/phase36_model_assisted_decode.test.js",
+      "blob": "c66c4d41598a9f95172f2b33ed4fd766067ea46f"
+    },
+    {
+      "file": "tests/phase36_serial_chronology.test.js",
+      "blob": "296cb3c59ad4c781fe9cb5d181bfd685f8abaceb"
+    },
+    {
+      "file": "tests/phase36c_ui_user_value_acceptance.test.js",
+      "blob": "f78283476ca672cb3ec3e17e12efe1f4477f187a"
+    },
+    {
+      "file": "tests/phase36a_safe_technical_preview.test.js",
+      "blob": "82397a72995ee32158b08f8deb41bff46f49524e"
+    },
+    {
+      "file": "tests/phase36b_evidence_expansion.test.js",
+      "blob": "37d3d1d001ba7586dacf99f5f8623a2102bd4a3b"
+    },
+    {
+      "file": "tests/phase37a_high_value_evidence_wave.test.js",
+      "blob": "d1fa6ba6a3d0832d373b535251e6b3d75528d4e9"
+    },
+    {
+      "file": "tests/phase37c_evidence_surfacing_reachability.test.js",
+      "blob": "ff7725025cf870bed82b40dd40c610bb97159f87"
+    },
+    {
+      "file": "tests/phase38a_machine_dossier_mvp.test.js",
+      "blob": "41a9ce235d5b6d3e3efef7740bac4ad6b3d4b97e"
+    },
+    {
+      "file": "tests/phase38a3_confirmed_spec_parity.test.js",
+      "blob": "04386b47251cc64592fa26b285dd75d19e62b1f1"
+    },
+    {
+      "file": "tests/phase38b_maintenance_return_loop.test.js",
+      "blob": "c353e370852c372439eab061570d833a40364198"
+    },
+    {
+      "file": "tests/phase38c_manual_model_correction.test.js",
+      "blob": "12a6b229e58c8dbfd151c62f4c65221d07ca4dbd"
+    },
+    {
+      "file": "tests/phase38d_ms251_evidence_activation.test.js",
+      "blob": "690390000790d5cd7410ec4d32ab8db4d055fe09"
+    },
+    {
+      "file": "tests/phase38e_baseline_architecture.test.js",
+      "blob": "9bc542b0014df39fe84be40925912e4b779a72b8"
+    }
+  ],
+  "unaccounted": 0
+}

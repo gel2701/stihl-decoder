@@ -1,0 +1,6113 @@
+{
+  "status": "PASS",
+  "role": "Supplementary read-only source-guided first-failure-masking analysis; not replacement authoritative matrix; Node22 Windows, no dependency installation claim.",
+  "node": "v22.23.2",
+  "results": {
+    "P": {
+      "node": "v22.23.2",
+      "models": 62,
+      "facts": 512,
+      "index_models": 51,
+      "ready": [
+        "026",
+        "046",
+        "009",
+        "017",
+        "018",
+        "036",
+        "044",
+        "088",
+        "ms-260",
+        "ms-360",
+        "ms-460",
+        "fs-350",
+        "hs-45",
+        "ms-170",
+        "ms-261",
+        "ms-261-c-m",
+        "ms-180",
+        "br-600",
+        "ms-201-tc-m",
+        "fs-460-c-em",
+        "ms-210",
+        "ms-230",
+        "ms-250",
+        "ms-290",
+        "ms-362-c-m",
+        "fs-38",
+        "sr-430",
+        "ms-310",
+        "ms-390",
+        "br-500",
+        "br-550",
+        "br-700",
+        "ms-201-t",
+        "fs-120",
+        "fs-200",
+        "sr-450",
+        "fs-410-c-m",
+        "fs-490-c-m",
+        "ms-341",
+        "ms-361",
+        "ms-270",
+        "ms-280",
+        "ms-200",
+        "ms-200-t",
+        "ms-440",
+        "ms-441",
+        "ms-461",
+        "ms-251",
+        "ms-251-c"
+      ],
+      "limited": [
+        "ts-410",
+        "ts-420"
+      ],
+      "queries": [
+        {
+          "slug": "026",
+          "q": "026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "026",
+          "q": "026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "026",
+          "q": "STIHL 026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "STIHL 046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "ts-410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "TS 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "STIHL TS 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "ts-420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "TS 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "STIHL TS 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "STIHL 009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "STIHL 017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "STIHL 018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "STIHL 036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "STIHL 044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "STIHL 088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "ms-260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "MS 260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "STIHL MS 260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "ms-360",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "MS 360 / 036 Pro",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "STIHL MS 360 / 036 Pro",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "ms-460",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "MS 460 / 046 Magnum",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "STIHL MS 460 / 046 Magnum",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "fs-350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "FS 350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "STIHL FS 350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "hs-45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "HS 45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "STIHL HS 45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "ms-170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "MS 170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "STIHL MS 170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "ms-261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "MS 261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "STIHL MS 261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "ms-261-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "MS 261 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "STIHL MS 261 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "ms-180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "MS 180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "STIHL MS 180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "br-600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "BR 600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "STIHL BR 600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "ms-201-tc-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "MS 201 TC-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "STIHL MS 201 TC-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "fs-460-c-em",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "FS 460 C-EM",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "STIHL FS 460 C-EM",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "ms-210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "MS 210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "STIHL MS 210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "ms-230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "MS 230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "STIHL MS 230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "ms-250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "MS 250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "STIHL MS 250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "ms-290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "MS 290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "STIHL MS 290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "ms-362-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "MS 362 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "STIHL MS 362 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "fs-38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "FS 38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "STIHL FS 38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "sr-430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "SR 430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "STIHL SR 430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "ms-310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "MS 310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "STIHL MS 310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "ms-390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "MS 390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "STIHL MS 390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "br-500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "BR 500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "STIHL BR 500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "br-550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "BR 550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "STIHL BR 550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "br-700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "BR 700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "STIHL BR 700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "ms-201-t",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "MS 201 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "STIHL MS 201 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "fs-120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "FS 120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "STIHL FS 120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "fs-200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "FS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "STIHL FS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "sr-450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "SR 450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "STIHL SR 450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "fs-410-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "FS 410 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "STIHL FS 410 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "fs-490-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "FS 490 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "STIHL FS 490 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "ms-341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "MS 341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "STIHL MS 341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "ms-361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "MS 361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "STIHL MS 361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "ms-270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "MS 270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "STIHL MS 270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "ms-280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "MS 280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "STIHL MS 280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "ms-200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "MS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "STIHL MS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "ms-200-t",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "MS 200 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "STIHL MS 200 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "ms-440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "MS 440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "STIHL MS 440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "ms-441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "MS 441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "STIHL MS 441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "ms-461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "MS 461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "STIHL MS 461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "ms-251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "MS 251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "STIHL MS 251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251-c",
+          "q": "ms-251-c",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-251-c",
+          "success": false,
+          "facts": 0,
+          "specs": 0,
+          "ok": false
+        },
+        {
+          "slug": "ms-251-c",
+          "q": "STIHL undefined",
+          "success": false,
+          "type": "MODEL_DECODE",
+          "facts": 0,
+          "specs": 0,
+          "ok": false
+        }
+      ],
+      "validator_errors": [
+        {
+          "code": "ERR_FACT_ARRAY_HASH_MISMATCH",
+          "message": "Facts-arrayhash wijkt af.",
+          "details": {}
+        },
+        {
+          "code": "ERR_PUBLIC_STORE_HASH_MISMATCH",
+          "message": "Public-storehash wijkt af.",
+          "details": {}
+        },
+        {
+          "code": "ERR_CANONICAL_DATABASE_HASH_MISMATCH",
+          "message": "Canonical-databasehash wijkt af.",
+          "details": {}
+        },
+        {
+          "code": "ERR_MODEL_FACT_COUNT_MISMATCH",
+          "message": "Model-facttelling wijkt af.",
+          "details": {
+            "expected": {
+              "026": 10,
+              "046": 9,
+              "ts-410": 4,
+              "ts-420": 4,
+              "009": 8,
+              "017": 8,
+              "018": 8,
+              "036": 8,
+              "044": 8,
+              "088": 8,
+              "ms-260": 8,
+              "ms-360": 8,
+              "ms-460": 8,
+              "fs-350": 7,
+              "hs-45": 8,
+              "ms-170": 10,
+              "ms-261": 13,
+              "ms-261-c-m": 13,
+              "ms-180": 12,
+              "br-600": 8,
+              "ms-201-tc-m": 11,
+              "fs-460-c-em": 9,
+              "ms-210": 10,
+              "ms-230": 10,
+              "ms-250": 10,
+              "ms-290": 10,
+              "ms-362-c-m": 11,
+              "fs-38": 9,
+              "sr-430": 9,
+              "ms-310": 12,
+              "ms-390": 11,
+              "br-500": 9,
+              "br-550": 9,
+              "br-700": 9,
+              "ms-201-t": 12,
+              "fs-120": 10,
+              "fs-200": 10,
+              "sr-450": 10,
+              "fs-410-c-m": 10,
+              "fs-490-c-m": 10,
+              "ms-341": 9,
+              "ms-361": 9,
+              "ms-270": 9,
+              "ms-280": 9,
+              "ms-200": 9,
+              "ms-200-t": 9,
+              "ms-440": 9,
+              "ms-441": 9,
+              "ms-461": 9,
+              "ms-251": 9,
+              "ms-251-c": 13
+            },
+            "actual": {
+              "026": 10,
+              "046": 9,
+              "ts-410": 4,
+              "ts-420": 4,
+              "009": 8,
+              "017": 8,
+              "018": 8,
+              "036": 8,
+              "044": 8,
+              "088": 8,
+              "ms-260": 14,
+              "ms-360": 8,
+              "ms-460": 8,
+              "fs-350": 7,
+              "hs-45": 12,
+              "ms-170": 10,
+              "ms-261": 17,
+              "ms-261-c-m": 13,
+              "ms-180": 12,
+              "br-600": 9,
+              "ms-201-tc-m": 11,
+              "fs-460-c-em": 9,
+              "ms-210": 12,
+              "ms-230": 10,
+              "ms-250": 10,
+              "ms-290": 10,
+              "ms-362-c-m": 11,
+              "fs-38": 9,
+              "sr-430": 9,
+              "ms-310": 12,
+              "ms-390": 11,
+              "br-500": 9,
+              "br-550": 9,
+              "br-700": 9,
+              "ms-201-t": 13,
+              "fs-120": 15,
+              "fs-200": 10,
+              "sr-450": 10,
+              "fs-410-c-m": 10,
+              "fs-490-c-m": 10,
+              "ms-341": 9,
+              "ms-361": 10,
+              "ms-270": 9,
+              "ms-280": 9,
+              "ms-200": 9,
+              "ms-200-t": 9,
+              "ms-440": 9,
+              "ms-441": 9,
+              "ms-461": 9,
+              "ms-251": 9,
+              "ms-251-c": 13,
+              "fs-460": 6,
+              "ms-362": 4,
+              "ms-400": 3,
+              "ms-311": 1
+            }
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "d1737cbc6c14ac83"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "e4fa01bfd2aed7ee"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "1201a8b325d71918"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "c94e67d5a2927c81"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "8f574831654e9d99"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "af1c8e807aa10bfb"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "08b8898b91b70a9a"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "92218422b87e6292"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "ef608db36c68e184"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "dca6b16f028c0633"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "34f28e5958158b86"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "0093ae993f2b6f77"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "d49d7576eaa38122"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "1bd8e219b115beeb"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "fc089432bb576874"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "bce89ed45db1b624"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "e1902e740b546fd1"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "f35b62699382e82d"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "be1c7915b18f8cc6"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "bf387bfd73e6ca79"
+          }
+        }
+      ]
+    },
+    "B": {
+      "node": "v22.23.2",
+      "models": 83,
+      "facts": 512,
+      "index_models": 51,
+      "ready": [
+        "026",
+        "046",
+        "009",
+        "017",
+        "018",
+        "036",
+        "044",
+        "088",
+        "ms-260",
+        "ms-360",
+        "ms-460",
+        "fs-350",
+        "hs-45",
+        "ms-170",
+        "ms-261",
+        "ms-261-c-m",
+        "ms-180",
+        "br-600",
+        "ms-201-tc-m",
+        "fs-460-c-em",
+        "ms-210",
+        "ms-230",
+        "ms-250",
+        "ms-290",
+        "ms-362-c-m",
+        "fs-38",
+        "sr-430",
+        "ms-310",
+        "ms-390",
+        "br-500",
+        "br-550",
+        "br-700",
+        "ms-201-t",
+        "fs-120",
+        "fs-200",
+        "sr-450",
+        "fs-410-c-m",
+        "fs-490-c-m",
+        "ms-341",
+        "ms-361",
+        "ms-270",
+        "ms-280",
+        "ms-200",
+        "ms-200-t",
+        "ms-440",
+        "ms-441",
+        "ms-461",
+        "ms-251",
+        "ms-251-c"
+      ],
+      "limited": [
+        "ts-410",
+        "ts-420"
+      ],
+      "queries": [
+        {
+          "slug": "026",
+          "q": "026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "026",
+          "q": "026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "026",
+          "q": "STIHL 026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "STIHL 046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "ts-410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "TS 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "STIHL TS 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "ts-420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "TS 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "STIHL TS 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "STIHL 009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "STIHL 017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "STIHL 018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "STIHL 036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "STIHL 044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "STIHL 088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "ms-260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "MS 260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "STIHL MS 260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "ms-360",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "MS 360 / 036 Pro",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "STIHL MS 360 / 036 Pro",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "ms-460",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "MS 460 / 046 Magnum",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "STIHL MS 460 / 046 Magnum",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "fs-350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "FS 350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "STIHL FS 350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "hs-45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "HS 45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "STIHL HS 45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "ms-170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "MS 170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "STIHL MS 170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "ms-261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "MS 261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "STIHL MS 261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "ms-261-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "MS 261 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "STIHL MS 261 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "ms-180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "MS 180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "STIHL MS 180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "br-600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "BR 600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "STIHL BR 600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "ms-201-tc-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "MS 201 TC-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "STIHL MS 201 TC-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "fs-460-c-em",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "FS 460 C-EM",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "STIHL FS 460 C-EM",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "ms-210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "MS 210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "STIHL MS 210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "ms-230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "MS 230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "STIHL MS 230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "ms-250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "MS 250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "STIHL MS 250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "ms-290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "MS 290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "STIHL MS 290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "ms-362-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "MS 362 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "STIHL MS 362 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "fs-38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "FS 38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "STIHL FS 38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "sr-430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "SR 430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "STIHL SR 430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "ms-310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "MS 310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "STIHL MS 310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "ms-390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "MS 390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "STIHL MS 390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "br-500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "BR 500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "STIHL BR 500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "br-550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "BR 550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "STIHL BR 550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "br-700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "BR 700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "STIHL BR 700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "ms-201-t",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "MS 201 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "STIHL MS 201 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "fs-120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "FS 120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "STIHL FS 120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "fs-200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "FS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "STIHL FS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "sr-450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "SR 450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "STIHL SR 450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "fs-410-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "FS 410 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "STIHL FS 410 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "fs-490-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "FS 490 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "STIHL FS 490 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "ms-341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "MS 341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "STIHL MS 341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "ms-361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "MS 361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "STIHL MS 361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "ms-270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "MS 270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "STIHL MS 270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "ms-280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "MS 280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "STIHL MS 280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "ms-200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "MS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "STIHL MS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "ms-200-t",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "MS 200 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "STIHL MS 200 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "ms-440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "MS 440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "STIHL MS 440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "ms-441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "MS 441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "STIHL MS 441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "ms-461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "MS 461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "STIHL MS 461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "ms-251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "MS 251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "STIHL MS 251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251-c",
+          "q": "ms-251-c",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-251-c",
+          "success": false,
+          "facts": 0,
+          "specs": 0,
+          "ok": false
+        },
+        {
+          "slug": "ms-251-c",
+          "q": "STIHL undefined",
+          "success": false,
+          "type": "MODEL_DECODE",
+          "facts": 0,
+          "specs": 0,
+          "ok": false
+        }
+      ],
+      "validator_errors": [
+        {
+          "code": "ERR_FACT_ARRAY_HASH_MISMATCH",
+          "message": "Facts-arrayhash wijkt af.",
+          "details": {}
+        },
+        {
+          "code": "ERR_PUBLIC_STORE_HASH_MISMATCH",
+          "message": "Public-storehash wijkt af.",
+          "details": {}
+        },
+        {
+          "code": "ERR_CANONICAL_DATABASE_HASH_MISMATCH",
+          "message": "Canonical-databasehash wijkt af.",
+          "details": {}
+        },
+        {
+          "code": "ERR_MODEL_FACT_COUNT_MISMATCH",
+          "message": "Model-facttelling wijkt af.",
+          "details": {
+            "expected": {
+              "026": 10,
+              "046": 9,
+              "ts-410": 4,
+              "ts-420": 4,
+              "009": 8,
+              "017": 8,
+              "018": 8,
+              "036": 8,
+              "044": 8,
+              "088": 8,
+              "ms-260": 8,
+              "ms-360": 8,
+              "ms-460": 8,
+              "fs-350": 7,
+              "hs-45": 8,
+              "ms-170": 10,
+              "ms-261": 13,
+              "ms-261-c-m": 13,
+              "ms-180": 12,
+              "br-600": 8,
+              "ms-201-tc-m": 11,
+              "fs-460-c-em": 9,
+              "ms-210": 10,
+              "ms-230": 10,
+              "ms-250": 10,
+              "ms-290": 10,
+              "ms-362-c-m": 11,
+              "fs-38": 9,
+              "sr-430": 9,
+              "ms-310": 12,
+              "ms-390": 11,
+              "br-500": 9,
+              "br-550": 9,
+              "br-700": 9,
+              "ms-201-t": 12,
+              "fs-120": 10,
+              "fs-200": 10,
+              "sr-450": 10,
+              "fs-410-c-m": 10,
+              "fs-490-c-m": 10,
+              "ms-341": 9,
+              "ms-361": 9,
+              "ms-270": 9,
+              "ms-280": 9,
+              "ms-200": 9,
+              "ms-200-t": 9,
+              "ms-440": 9,
+              "ms-441": 9,
+              "ms-461": 9,
+              "ms-251": 9,
+              "ms-251-c": 13
+            },
+            "actual": {
+              "026": 10,
+              "046": 9,
+              "ts-410": 4,
+              "ts-420": 4,
+              "009": 8,
+              "017": 8,
+              "018": 8,
+              "036": 8,
+              "044": 8,
+              "088": 8,
+              "ms-260": 14,
+              "ms-360": 8,
+              "ms-460": 8,
+              "fs-350": 7,
+              "hs-45": 12,
+              "ms-170": 10,
+              "ms-261": 17,
+              "ms-261-c-m": 13,
+              "ms-180": 12,
+              "br-600": 9,
+              "ms-201-tc-m": 11,
+              "fs-460-c-em": 9,
+              "ms-210": 12,
+              "ms-230": 10,
+              "ms-250": 10,
+              "ms-290": 10,
+              "ms-362-c-m": 11,
+              "fs-38": 9,
+              "sr-430": 9,
+              "ms-310": 12,
+              "ms-390": 11,
+              "br-500": 9,
+              "br-550": 9,
+              "br-700": 9,
+              "ms-201-t": 13,
+              "fs-120": 15,
+              "fs-200": 10,
+              "sr-450": 10,
+              "fs-410-c-m": 10,
+              "fs-490-c-m": 10,
+              "ms-341": 9,
+              "ms-361": 10,
+              "ms-270": 9,
+              "ms-280": 9,
+              "ms-200": 9,
+              "ms-200-t": 9,
+              "ms-440": 9,
+              "ms-441": 9,
+              "ms-461": 9,
+              "ms-251": 9,
+              "ms-251-c": 13,
+              "fs-460": 6,
+              "ms-362": 4,
+              "ms-400": 3,
+              "ms-311": 1
+            }
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "d1737cbc6c14ac83"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "e4fa01bfd2aed7ee"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "1201a8b325d71918"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "c94e67d5a2927c81"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "8f574831654e9d99"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "af1c8e807aa10bfb"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "08b8898b91b70a9a"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "92218422b87e6292"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "ef608db36c68e184"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "dca6b16f028c0633"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "34f28e5958158b86"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "0093ae993f2b6f77"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "d49d7576eaa38122"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "1bd8e219b115beeb"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "fc089432bb576874"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "bce89ed45db1b624"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "e1902e740b546fd1"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "f35b62699382e82d"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "be1c7915b18f8cc6"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "bf387bfd73e6ca79"
+          }
+        }
+      ]
+    },
+    "C": {
+      "node": "v22.23.2",
+      "models": 83,
+      "facts": 665,
+      "index_models": 72,
+      "ready": [
+        "026",
+        "046",
+        "009",
+        "017",
+        "018",
+        "036",
+        "044",
+        "088",
+        "ms-260",
+        "ms-360",
+        "ms-460",
+        "fs-350",
+        "hs-45",
+        "ms-170",
+        "ms-261",
+        "ms-261-c-m",
+        "ms-180",
+        "br-600",
+        "ms-201-tc-m",
+        "fs-460-c-em",
+        "ms-210",
+        "ms-230",
+        "ms-250",
+        "ms-290",
+        "ms-362-c-m",
+        "fs-38",
+        "sr-430",
+        "ms-310",
+        "ms-390",
+        "br-500",
+        "br-550",
+        "br-700",
+        "ms-201-t",
+        "fs-120",
+        "fs-200",
+        "sr-450",
+        "fs-410-c-m",
+        "fs-490-c-m",
+        "ms-341",
+        "ms-361",
+        "ms-270",
+        "ms-280",
+        "ms-200",
+        "ms-200-t",
+        "ms-440",
+        "ms-441",
+        "ms-461",
+        "ms-251",
+        "ms-251-c"
+      ],
+      "limited": [
+        "ts-410",
+        "ts-420",
+        "ms-182",
+        "ms-162",
+        "fs-161",
+        "bg-50",
+        "ms-172",
+        "fs-221",
+        "fs-55",
+        "ms-363",
+        "br-800",
+        "fs-131",
+        "fs-85",
+        "fs-80",
+        "ms-661",
+        "fr-410",
+        "fs-351",
+        "fs-291",
+        "fs-55-r",
+        "ms-382",
+        "br-420",
+        "ms-172-c-be",
+        "ms-212"
+      ],
+      "queries": [
+        {
+          "slug": "026",
+          "q": "026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "026",
+          "q": "026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "026",
+          "q": "STIHL 026",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "046",
+          "q": "STIHL 046",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "ts-410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "TS 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-410",
+          "q": "STIHL TS 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "ts-420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "TS 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "ts-420",
+          "q": "STIHL TS 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Doorslijper",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "009",
+          "q": "STIHL 009",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "017",
+          "q": "STIHL 017",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "018",
+          "q": "STIHL 018",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "036",
+          "q": "STIHL 036",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "044",
+          "q": "STIHL 044",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "088",
+          "q": "STIHL 088",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "ms-260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "MS 260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-260",
+          "q": "STIHL MS 260",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "ms-360",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "MS 360 / 036 Pro",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-360",
+          "q": "STIHL MS 360 / 036 Pro",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "ms-460",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "MS 460 / 046 Magnum",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-460",
+          "q": "STIHL MS 460 / 046 Magnum",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "fs-350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "FS 350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-350",
+          "q": "STIHL FS 350",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "hs-45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "HS 45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "hs-45",
+          "q": "STIHL HS 45",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Heggenschaar",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "ms-170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "MS 170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-170",
+          "q": "STIHL MS 170",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "ms-261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "MS 261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261",
+          "q": "STIHL MS 261",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "ms-261-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "MS 261 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-261-c-m",
+          "q": "STIHL MS 261 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "ms-180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "MS 180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-180",
+          "q": "STIHL MS 180",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "br-600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "BR 600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-600",
+          "q": "STIHL BR 600",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "ms-201-tc-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "MS 201 TC-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-tc-m",
+          "q": "STIHL MS 201 TC-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "fs-460-c-em",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "FS 460 C-EM",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-460-c-em",
+          "q": "STIHL FS 460 C-EM",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "ms-210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "MS 210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-210",
+          "q": "STIHL MS 210",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "ms-230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "MS 230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-230",
+          "q": "STIHL MS 230",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "ms-250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "MS 250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-250",
+          "q": "STIHL MS 250",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "ms-290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "MS 290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-290",
+          "q": "STIHL MS 290",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "ms-362-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "MS 362 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-362-c-m",
+          "q": "STIHL MS 362 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "fs-38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "FS 38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-38",
+          "q": "STIHL FS 38",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "sr-430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "SR 430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "sr-430",
+          "q": "STIHL SR 430",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "ms-310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "MS 310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-310",
+          "q": "STIHL MS 310",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "ms-390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "MS 390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "ms-390",
+          "q": "STIHL MS 390",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "br-500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "BR 500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-500",
+          "q": "STIHL BR 500",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "br-550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "BR 550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-550",
+          "q": "STIHL BR 550",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "br-700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "BR 700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "br-700",
+          "q": "STIHL BR 700",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "ms-201-t",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "MS 201 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "ms-201-t",
+          "q": "STIHL MS 201 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 12,
+          "specs": 12,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "fs-120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "FS 120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-120",
+          "q": "STIHL FS 120",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "fs-200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "FS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-200",
+          "q": "STIHL FS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "sr-450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "SR 450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "sr-450",
+          "q": "STIHL SR 450",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Nevelspuit",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "fs-410-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "FS 410 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-410-c-m",
+          "q": "STIHL FS 410 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "fs-490-c-m",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "FS 490 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-490-c-m",
+          "q": "STIHL FS 490 C-M",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "ms-341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "MS 341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-341",
+          "q": "STIHL MS 341",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "ms-361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "MS 361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-361",
+          "q": "STIHL MS 361",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "ms-270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "MS 270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-270",
+          "q": "STIHL MS 270",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "ms-280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "MS 280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-280",
+          "q": "STIHL MS 280",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "ms-200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "MS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200",
+          "q": "STIHL MS 200",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag (Boomverzorging)",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "ms-200-t",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "MS 200 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-200-t",
+          "q": "STIHL MS 200 T",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "ms-440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "MS 440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-440",
+          "q": "STIHL MS 440",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "ms-441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "MS 441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-441",
+          "q": "STIHL MS 441",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "ms-461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "MS 461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-461",
+          "q": "STIHL MS 461",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "ms-251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "MS 251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251",
+          "q": "STIHL MS 251",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "ms-251-c",
+          "q": "ms-251-c",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 13,
+          "specs": 13,
+          "ok": true
+        },
+        {
+          "slug": "ms-251-c",
+          "success": false,
+          "facts": 0,
+          "specs": 0,
+          "ok": false
+        },
+        {
+          "slug": "ms-251-c",
+          "q": "STIHL undefined",
+          "success": false,
+          "type": "MODEL_DECODE",
+          "facts": 0,
+          "specs": 0,
+          "ok": false
+        },
+        {
+          "slug": "ms-182",
+          "q": "ms-182",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-182",
+          "q": "MS 182",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-182",
+          "q": "STIHL MS 182",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-162",
+          "q": "ms-162",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-162",
+          "q": "MS 162",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-162",
+          "q": "STIHL MS 162",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-161",
+          "q": "fs-161",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-161",
+          "q": "FS 161",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "fs-161",
+          "q": "STIHL FS 161",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 11,
+          "specs": 11,
+          "ok": true
+        },
+        {
+          "slug": "bg-50",
+          "q": "bg-50",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "bg-50",
+          "q": "BG 50",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "bg-50",
+          "q": "STIHL BG 50",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "ms-172",
+          "q": "ms-172",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-172",
+          "q": "MS 172",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-172",
+          "q": "STIHL MS 172",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-221",
+          "q": "fs-221",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-221",
+          "q": "FS 221",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-221",
+          "q": "STIHL FS 221",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-55",
+          "q": "fs-55",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-55",
+          "q": "FS 55",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-55",
+          "q": "STIHL FS 55",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-363",
+          "q": "ms-363",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-363",
+          "q": "MS 363",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-363",
+          "q": "STIHL MS 363",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "br-800",
+          "q": "br-800",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "br-800",
+          "q": "BR 800",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "br-800",
+          "q": "STIHL BR 800",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "fs-131",
+          "q": "fs-131",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-131",
+          "q": "FS 131",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-131",
+          "q": "STIHL FS 131",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "fs-85",
+          "q": "fs-85",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-85",
+          "q": "FS 85",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-85",
+          "q": "STIHL FS 85",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 10,
+          "specs": 10,
+          "ok": true
+        },
+        {
+          "slug": "fs-80",
+          "q": "fs-80",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-80",
+          "q": "FS 80",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-80",
+          "q": "STIHL FS 80",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-661",
+          "q": "ms-661",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "ms-661",
+          "q": "MS 661",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "ms-661",
+          "q": "STIHL MS 661",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "fr-410",
+          "q": "fr-410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "fr-410",
+          "q": "FR 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "fr-410",
+          "q": "STIHL FR 410",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 4,
+          "specs": 4,
+          "ok": true
+        },
+        {
+          "slug": "fs-351",
+          "q": "fs-351",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-351",
+          "q": "FS 351",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-351",
+          "q": "STIHL FS 351",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 9,
+          "specs": 9,
+          "ok": true
+        },
+        {
+          "slug": "fs-291",
+          "q": "fs-291",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "fs-291",
+          "q": "FS 291",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "fs-291",
+          "q": "STIHL FS 291",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 6,
+          "specs": 6,
+          "ok": true
+        },
+        {
+          "slug": "fs-55-r",
+          "q": "fs-55-r",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-55-r",
+          "q": "FS 55 R",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "fs-55-r",
+          "q": "STIHL FS 55 R",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bosmaaier",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-382",
+          "q": "ms-382",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-382",
+          "q": "MS 382",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "ms-382",
+          "q": "STIHL MS 382",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 8,
+          "specs": 8,
+          "ok": true
+        },
+        {
+          "slug": "br-420",
+          "q": "br-420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 5,
+          "specs": 5,
+          "ok": true
+        },
+        {
+          "slug": "br-420",
+          "q": "BR 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 5,
+          "specs": 5,
+          "ok": true
+        },
+        {
+          "slug": "br-420",
+          "q": "STIHL BR 420",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Bladblazer",
+          "facts": 5,
+          "specs": 5,
+          "ok": true
+        },
+        {
+          "slug": "ms-172-c-be",
+          "q": "ms-172-c-be",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-172-c-be",
+          "q": "MS 172 C-BE",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-172-c-be",
+          "q": "STIHL MS 172 C-BE",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-212",
+          "q": "ms-212",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-212",
+          "q": "MS 212",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        },
+        {
+          "slug": "ms-212",
+          "q": "STIHL MS 212",
+          "success": true,
+          "type": "MODEL_DECODE",
+          "category": "Kettingzaag",
+          "facts": 7,
+          "specs": 7,
+          "ok": true
+        }
+      ],
+      "validator_errors": [
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "d1737cbc6c14ac83"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "e4fa01bfd2aed7ee"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "1201a8b325d71918"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "c94e67d5a2927c81"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "8f574831654e9d99"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "af1c8e807aa10bfb"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "08b8898b91b70a9a"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "92218422b87e6292"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "ef608db36c68e184"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "dca6b16f028c0633"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "34f28e5958158b86"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "0093ae993f2b6f77"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "d49d7576eaa38122"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "1bd8e219b115beeb"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "fc089432bb576874"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "bce89ed45db1b624"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "e1902e740b546fd1"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "f35b62699382e82d"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "be1c7915b18f8cc6"
+          }
+        },
+        {
+          "code": "ERR_PROMOTION_INVALID_EVIDENCE",
+          "message": "Actieve promotie mist documentidentiteit.",
+          "details": {
+            "fact_id": "bf387bfd73e6ca79"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "reviewed": 10,
+  "total": 10,
+  "tests": [
+    {
+      "file": "tests/phase35c44_stihlusa_source_hygiene.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c44_stihlusa_source_hygiene.test.js:26:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "512,",
+          "expected": "461,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c44_stihlusa_source_hygiene.test.js:26:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "512,",
+          "expected": "461,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c44_stihlusa_source_hygiene.test.js:26:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "665,",
+          "expected": "461,"
+        }
+      },
+      "root_cause_P_B_C": "Stale public-fact count 461 at line 26; P/B=512, C=665.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Fixture pipeline reaches FINAL_STATUS PASS and no auto promotion/store mutation before count failure. Remaining fixture classification/provenance logic and source fixture are unchanged. Current R2 safety suite verifies all new facts.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js:33:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "512,",
+          "expected": "461,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js:33:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "512,",
+          "expected": "461,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c441_provenance_metrics_integrity_hotfix.test.js:33:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "665,",
+          "expected": "461,"
+        }
+      },
+      "root_cause_P_B_C": "Stale public-fact count 461 at line 33; P/B=512, C=665.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Production/source/public-store mutation assertions before the count pass. Later metrics operate on the same 14-record fixture and unchanged pipeline; no candidate-specific fixture input.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase35c442_clean_checkout_reproducibility.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c442_clean_checkout_reproducibility.test.js:218:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "512,",
+          "expected": "461,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c442_clean_checkout_reproducibility.test.js:218:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "512,",
+          "expected": "461,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase35c442_clean_checkout_reproducibility.test.js:218:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be 461 in Phase 38D candidate",
+          "actual": "665,",
+          "expected": "461,"
+        }
+      },
+      "root_cause_P_B_C": "Stale public-fact count 461 at line 218; P/B=512, C=665.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Path isolation, fixture execution/idempotence, failure injections and no production/canonical/store writes pass before line 218. Later nested clone requires REFERENCE_COMMIT, unset in all three: pre-existing configuration debt, not claimed as an executed PASS.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase36a_safe_technical_preview.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase36a_safe_technical_preview.test.js:344:8",
+          "message": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase36a_safe_technical_preview.test.js:344:8",
+          "message": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase36a_safe_technical_preview.test.js:344:8",
+          "message": "AssertionError [ERR_ASSERTION]: Public fact count must remain exactly 474",
+          "actual": "665,",
+          "expected": "474,"
+        }
+      },
+      "root_cause_P_B_C": "Stale count 474 at line 344; P/B=512, C=665.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "All preceding substantive preview, blocked-value, serial, schema and category assertions execute successfully. Only historical fixed store hash follows line 344.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase36b_evidence_expansion.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase36b_evidence_expansion.test.js:37:8",
+          "message": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash",
+          "actual": "'01c6d30a76730a5bffc2b436c361a8c444e31bd14dbb386de9f7b3a563158478',",
+          "expected": "'b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584',"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase36b_evidence_expansion.test.js:37:8",
+          "message": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash",
+          "actual": "'01c6d30a76730a5bffc2b436c361a8c444e31bd14dbb386de9f7b3a563158478',",
+          "expected": "'b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584',"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase36b_evidence_expansion.test.js:37:8",
+          "message": "AssertionError [ERR_ASSERTION]: Store hash must match current canonical hash",
+          "actual": "'a7c3101df738d5b73783fdcf0908d9e7f341ba4b24033ff3bc2a84156e8ea123',",
+          "expected": "'b73f5ec707ae562000f878d40b10494c125503d621ee679b83390bd2c7362584',"
+        }
+      },
+      "root_cause_P_B_C": "Stale whole-store canonical hash b73f5ec7... at line 37; both 512-fact baseline and 665-fact candidate legitimately differ.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Later provenance loop inspects immutable facts 124..258. R2 targeted verifies all original 512 objects and all original runtime field maps unchanged; historical named-model fixtures and runtime code are unchanged.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase37a_high_value_evidence_wave.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase37a_high_value_evidence_wave.test.js:31:8",
+          "message": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase37a_high_value_evidence_wave.test.js:31:8",
+          "message": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase37a_high_value_evidence_wave.test.js:31:8",
+          "message": "AssertionError [ERR_ASSERTION]: Public fact count must be exactly 474",
+          "actual": "665,",
+          "expected": "474,"
+        }
+      },
+      "root_cause_P_B_C": "Stale count 474 at line 31; P/B=512, C=665.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Historical 259-fact prefix/index-alias and named-model assertions are covered by unchanged original 512 facts and ALL legacy indexes plus old runtime parity in R2 targeted. Source artifacts and runtime are unchanged.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase37c_evidence_surfacing_reachability.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase37c_evidence_surfacing_reachability.test.js:34:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase37c_evidence_surfacing_reachability.test.js:34:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase37c_evidence_surfacing_reachability.test.js:34:8",
+          "message": "AssertionError [ERR_ASSERTION]: PUBLIC_FACT_COUNT must be exactly 474",
+          "actual": "665,",
+          "expected": "474,"
+        }
+      },
+      "root_cause_P_B_C": "Stale count 474 at line 34; P/B=512, C=665. Later fixed index/count/query expectations are also historical.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Independent unchanged-runtime probe evaluates all three query forms for every index: P/B 153 queries, C 216. Same two pre-existing ms-251-c queries fail because model_name is absent; all 63 new queries pass. Existing conflicted fact and old runtime field maps unchanged; current targeted verifies new indexes, variants and blocked values.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase38a_machine_dossier_mvp.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38a_machine_dossier_mvp.test.js:92:8",
+          "message": "AssertionError [ERR_ASSERTION]: Exactly 48 models must be dossier-ready (>=5 facts & >=1 maint fact)",
+          "actual": "49,",
+          "expected": "48,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38a_machine_dossier_mvp.test.js:92:8",
+          "message": "AssertionError [ERR_ASSERTION]: Exactly 48 models must be dossier-ready (>=5 facts & >=1 maint fact)",
+          "actual": "49,",
+          "expected": "48,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38a_machine_dossier_mvp.test.js:62:8",
+          "message": "AssertionError [ERR_ASSERTION]: Index must have 51 models",
+          "actual": "72,",
+          "expected": "51,"
+        }
+      },
+      "root_cause_P_B_C": "First-failure masking between stale aggregate assertions: P/B line 92 (49 ready !=48); C line 62 (72 indexed !=51).",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Probe evaluates both sides of the masked logic without editing tests: ready slugs remain exactly the same 49; added 21 technical-only models add 21 limited dossiers (2→23). Both failed assertions concern obsolete catalog totals, not dossier safety. Existing dossier persistence/confirmed-spec suites pass and old runtime fields unchanged.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase38d_ms251_evidence_activation.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38d_ms251_evidence_activation.test.js:97:8",
+          "message": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38d_ms251_evidence_activation.test.js:97:8",
+          "message": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)",
+          "actual": "512,",
+          "expected": "474,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38d_ms251_evidence_activation.test.js:97:8",
+          "message": "AssertionError [ERR_ASSERTION]: Total facts must be exactly 474 (452 + 9 + 13)",
+          "actual": "665,",
+          "expected": "474,"
+        }
+      },
+      "root_cause_P_B_C": "Stale count 474 at line 97; P/B=512, C=665.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Document availability/hash checks execute before count assertion. MS251 facts and all old runtime maps remain identical; existing confirmed-spec parity passes. Added facts belong only to the 21 Tier1 models.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    },
+    {
+      "file": "tests/phase38e_baseline_architecture.test.js",
+      "P": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38e_baseline_architecture.test.js:70:8",
+          "message": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_FACT_ARRAY_HASH_MISMATCH\",\"message\":\"Facts-arrayhash wijkt af.\",\"details\":{}},{\"code\":\"ERR_PUBLIC_STORE_HASH_MISMATCH\",\"message\":\"Public-storehash wijkt af.\",\"details\":{}},{\"code\":\"ERR_CANONICAL_DATABASE_HASH_MISMATCH\",\"message\":\"Canonical-databasehash wijkt af.\",\"details\":{}},{\"code\":\"ERR_MODEL_FACT_COUNT_MISMATCH\",\"message\":\"Model-facttelling wijkt af.\",\"details\":{\"expected\":{\"026\":10,\"046\":9,\"ts-410\":4,\"ts-420\":4,\"009\":8,\"017\":8,\"018\":8,\"036\":8,\"044\":8,\"088\":8,\"ms-260\":8,\"ms-360\":8,\"ms-460\":8,\"fs-350\":7,\"hs-45\":8,\"ms-170\":10,\"ms-261\":13,\"ms-261-c-m\":13,\"ms-180\":12,\"br-600\":8,\"ms-201-tc-m\":11,\"fs-460-c-em\":9,\"ms-210\":10,\"ms-230\":10,\"ms-250\":10,\"ms-290\":10,\"ms-362-c-m\":11,\"fs-38\":9,\"sr-430\":9,\"ms-310\":12,\"ms-390\":11,\"br-500\":9,\"br-550\":9,\"br-700\":9,\"ms-201-t\":12,\"fs-120\":10,\"fs-200\":10,\"sr-450\":10,\"fs-410-c-m\":10,\"fs-490-c-m\":10,\"ms-341\":9,\"ms-361\":9,\"ms-270\":9,\"ms-280\":9,\"ms-200\":9,\"ms-200-t\":9,\"ms-440\":9,\"ms-441\":9,\"ms-461\":9,\"ms-251\":9,\"ms-251-c\":13},\"actual\":{\"026\":10,\"046\":9,\"ts-410\":4,\"ts-420\":4,\"009\":8,\"017\":8,\"018\":8,\"036\":8,\"044\":8,\"088\":8,\"ms-260\":14,\"ms-360\":8,\"ms-460\":8,\"fs-350\":7,\"hs-45\":12,\"ms-170\":10,\"ms-261\":17,\"ms-261-c-m\":13,\"ms-180\":12,\"br-600\":9,\"ms-201-tc-m\":11,\"fs-460-c-em\":9,\"ms-210\":12,\"ms-230\":10,\"ms-250\":10,\"ms-290\":10,\"ms-362-c-m\":11,\"fs-38\":9,\"sr-430\":9,\"ms-310\":12,\"ms-390\":11,\"br-500\":9,\"br-550\":9,\"br-700\":9,\"ms-201-t\":13,\"fs-120\":15,\"fs-200\":10,\"sr-450\":10,\"fs-410-c-m\":10,\"fs-490-c-m\":10,\"ms-341\":9,\"ms-361\":10,\"ms-270\":9,\"ms-280\":9,\"ms-200\":9,\"ms-200-t\":9,\"ms-440\":9,\"ms-441\":9,\"ms-461\":9,\"ms-251\":9,\"ms-251-c\":13,\"fs-460\":6,\"ms-362\":4,\"ms-400\":3,\"ms-311\":1}}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d1737cbc6c14ac83\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e4fa01bfd2aed7ee\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1201a8b325d71918\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"c94e67d5a2927c81\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"8f574831654e9d99\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"af1c8e807aa10bfb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"08b8898b91b70a9a\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"92218422b87e6292\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"ef608db36c68e184\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"dca6b16f028c0633\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"34f28e5958158b86\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"0093ae993f2b6f77\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d49d7576eaa38122\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1bd8e219b115beeb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"fc089432bb576874\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bce89ed45db1b624\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e1902e740b546fd1\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"f35b62699382e82d\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"be1c7915b18f8cc6\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bf387bfd73e6ca79\"}}]",
+          "actual": "false,",
+          "expected": "true,"
+        }
+      },
+      "B": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38e_baseline_architecture.test.js:70:8",
+          "message": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_FACT_ARRAY_HASH_MISMATCH\",\"message\":\"Facts-arrayhash wijkt af.\",\"details\":{}},{\"code\":\"ERR_PUBLIC_STORE_HASH_MISMATCH\",\"message\":\"Public-storehash wijkt af.\",\"details\":{}},{\"code\":\"ERR_CANONICAL_DATABASE_HASH_MISMATCH\",\"message\":\"Canonical-databasehash wijkt af.\",\"details\":{}},{\"code\":\"ERR_MODEL_FACT_COUNT_MISMATCH\",\"message\":\"Model-facttelling wijkt af.\",\"details\":{\"expected\":{\"026\":10,\"046\":9,\"ts-410\":4,\"ts-420\":4,\"009\":8,\"017\":8,\"018\":8,\"036\":8,\"044\":8,\"088\":8,\"ms-260\":8,\"ms-360\":8,\"ms-460\":8,\"fs-350\":7,\"hs-45\":8,\"ms-170\":10,\"ms-261\":13,\"ms-261-c-m\":13,\"ms-180\":12,\"br-600\":8,\"ms-201-tc-m\":11,\"fs-460-c-em\":9,\"ms-210\":10,\"ms-230\":10,\"ms-250\":10,\"ms-290\":10,\"ms-362-c-m\":11,\"fs-38\":9,\"sr-430\":9,\"ms-310\":12,\"ms-390\":11,\"br-500\":9,\"br-550\":9,\"br-700\":9,\"ms-201-t\":12,\"fs-120\":10,\"fs-200\":10,\"sr-450\":10,\"fs-410-c-m\":10,\"fs-490-c-m\":10,\"ms-341\":9,\"ms-361\":9,\"ms-270\":9,\"ms-280\":9,\"ms-200\":9,\"ms-200-t\":9,\"ms-440\":9,\"ms-441\":9,\"ms-461\":9,\"ms-251\":9,\"ms-251-c\":13},\"actual\":{\"026\":10,\"046\":9,\"ts-410\":4,\"ts-420\":4,\"009\":8,\"017\":8,\"018\":8,\"036\":8,\"044\":8,\"088\":8,\"ms-260\":14,\"ms-360\":8,\"ms-460\":8,\"fs-350\":7,\"hs-45\":12,\"ms-170\":10,\"ms-261\":17,\"ms-261-c-m\":13,\"ms-180\":12,\"br-600\":9,\"ms-201-tc-m\":11,\"fs-460-c-em\":9,\"ms-210\":12,\"ms-230\":10,\"ms-250\":10,\"ms-290\":10,\"ms-362-c-m\":11,\"fs-38\":9,\"sr-430\":9,\"ms-310\":12,\"ms-390\":11,\"br-500\":9,\"br-550\":9,\"br-700\":9,\"ms-201-t\":13,\"fs-120\":15,\"fs-200\":10,\"sr-450\":10,\"fs-410-c-m\":10,\"fs-490-c-m\":10,\"ms-341\":9,\"ms-361\":10,\"ms-270\":9,\"ms-280\":9,\"ms-200\":9,\"ms-200-t\":9,\"ms-440\":9,\"ms-441\":9,\"ms-461\":9,\"ms-251\":9,\"ms-251-c\":13,\"fs-460\":6,\"ms-362\":4,\"ms-400\":3,\"ms-311\":1}}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d1737cbc6c14ac83\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e4fa01bfd2aed7ee\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1201a8b325d71918\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"c94e67d5a2927c81\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"8f574831654e9d99\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"af1c8e807aa10bfb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"08b8898b91b70a9a\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"92218422b87e6292\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"ef608db36c68e184\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"dca6b16f028c0633\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"34f28e5958158b86\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"0093ae993f2b6f77\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d49d7576eaa38122\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1bd8e219b115beeb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"fc089432bb576874\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bce89ed45db1b624\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e1902e740b546fd1\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"f35b62699382e82d\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"be1c7915b18f8cc6\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bf387bfd73e6ca79\"}}]",
+          "actual": "false,",
+          "expected": "true,"
+        }
+      },
+      "C": {
+        "status": "FAIL",
+        "first_assertion": {
+          "location": "tests/phase38e_baseline_architecture.test.js:70:8",
+          "message": "AssertionError [ERR_ASSERTION]: [{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d1737cbc6c14ac83\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e4fa01bfd2aed7ee\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1201a8b325d71918\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"c94e67d5a2927c81\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"8f574831654e9d99\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"af1c8e807aa10bfb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"08b8898b91b70a9a\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"92218422b87e6292\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"ef608db36c68e184\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"dca6b16f028c0633\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"34f28e5958158b86\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"0093ae993f2b6f77\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"d49d7576eaa38122\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"1bd8e219b115beeb\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"fc089432bb576874\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bce89ed45db1b624\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"e1902e740b546fd1\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"f35b62699382e82d\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"be1c7915b18f8cc6\"}},{\"code\":\"ERR_PROMOTION_INVALID_EVIDENCE\",\"message\":\"Actieve promotie mist documentidentiteit.\",\"details\":{\"fact_id\":\"bf387bfd73e6ca79\"}}]",
+          "actual": "false,",
+          "expected": "true,"
+        }
+      },
+      "root_cause_P_B_C": "Same validator-valid assertion line 70: P/B have 24 errors; C has only the same 20 pre-existing missing-document-identity errors.",
+      "historical_fixed_expectation": true,
+      "candidate_only_behavior": false,
+      "first_failure_masking": "Parsed error objects prove all C findings equal the baseline subset by code, message and fact_id. R2 updated manifest removes four stale hash/count findings. No new candidate fact is implicated; targeted validator and negative controls pass.",
+      "P_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "B_TO_C": "PRE_EXISTING_EQUIVALENT_FAIL",
+      "evidence": [
+        "phase44c_r3_regression_matrix.json",
+        "phase44c_r3_semantic_probe.json",
+        "tests/phase44c_r2_semantic_reconstruction.test.js"
+      ]
+    }
+  ]
+}

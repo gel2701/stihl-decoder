@@ -727,17 +727,17 @@ Technical evidence activation for 21 BR Tier 1 models from official STIHL BR pro
 
 ---
 
-## Phase 44D — Tier 1 Production Promotion & Live Verification (PLANNED / FUTURE)
+## Phase 44D — Tier 1 Production Promotion & Live Verification (READY FOR RETRY)
 
-**Status:** PLANNED / NOT YET ACTIVE
+**Status:** READY FOR RETRY after Phase44C-R3 regression proof; not executed. Explicit acceptance is required before starting Phase44D.
 
 ### Goal
 
-Promote Phase 44B/C candidates to production and verify live deployment.
+Promote the accepted Phase44B + Phase44C-R2/R3 candidate to production and verify live deployment. Original Phase44C remains rejected.
 
 ### Scope
 
-- Cherry-pick Phase 44B/C commits to main
+- Prepare promotion from the accepted R2/R3 tree, preserving the rollback of unsafe original Phase44C fields
 - Deploy to Render
 - Verify live routes
 - Verify sitemap
@@ -758,7 +758,7 @@ Prioritize the official evidence reconciliation/data-quality work before activat
 
 ## Phase 44C-R2 — Technical Evidence Semantic Reconstruction & Runtime Remediation
 
-**Status:** HARD STOP — semantic reconstruction locally validated; mandatory full regression gate FAILED.
+**Historical R2 status:** HARD STOP — semantic reconstruction locally validated; regression equivalence was not yet established. Superseded by the R3 proof below; the original R2 report remains unchanged as historical evidence.
 
 - Original Phase44C (`15fefa2`) is **REJECTED FOR PRODUCTION**: runtime schema/index defects, unit defects and unsafe scalar collapse. Historical Phase44C completion text above records the original claim, not production acceptance.
 - Phase44D preflight: HARD STOP; no promotion or deployment.
@@ -781,3 +781,23 @@ Prioritize the official evidence reconciliation/data-quality work before activat
 - The new scoped index test initially compared filtered extant references with the entire baseline index. It now compares all non-R2 references exactly, including pre-existing stale references; no baseline index entries were repaired or dropped. Existing tests remain unchanged.
 - See `data/phase44c_r2_regression_report.json` for paired results. R2 targeted runtime tests PASS; overall R2 acceptance remains HARD STOP.
 - No R2 commit or remote push; no main mutation or deployment. Phase44D remains blocked pending separate resolution/acceptance.
+
+## Phase 44C-R3 — Immutable Regression Equivalence & CI Reproducibility
+
+**Status:** PASS — R2 semantic reconstruction accepted as feature candidate; zero new regressions under Node22. Phase44D READY FOR RETRY, not executed.
+
+- Immutable production P: `947eb3e5ac8345abb3f1c7aac7bd9191487f5c02` (tree `c0a5739787343d57c5dcd5fa8c0065abc4e18849`).
+- Immutable Phase44B B: `0c00214888a67f90eb2a6466ceb0d85b166e5314` (tree `8fb0681cc4dd96dba528a827250cdfcc8a6cbde3`).
+- Exact R2 checkpoint C: `7fde0027ffdf93fbe9276d6b7f831a337bd3dc51` (tree `ca6e823a5e06c96920b3a4b55f38fa5e87ad2883`). Snapshot manifest records all 19 original changed R2 files and binary patch checksum.
+- Authoritative fallback: GitHub Actions run `35524758295`, Ubuntu 24.04.5 x64, Node22.23.2, npm10.9.8; separate clean `npm ci` PASS for P/B/C. Same package/lock/49 test blobs, timeout 120 seconds and real `origin/main=P`; full Git history. Windows setup was abandoned after the hosted environment succeeded; no compiler or package remediation.
+- All 147 individual executions accounted for: each snapshot 28 PASS / 21 FAIL. Both P→C and B→C: 28 EQUIVALENT_PASS, 21 PRE_EXISTING_EQUIVALENT_FAIL, 0 TIMEOUT, 0 methodology reclassifications, **0 REGRESSION**.
+- All 10 formerly differing failures reviewed at assertion level. Fixed counts/hashes and first-failure masking explain the differences. Read-only probe confirms the same 49 ready dossiers, all 63 added model queries pass, and the same two legacy ms-251-c query failures. Candidate validator has only the exact same 20 baseline missing-document-identity findings; four stale baseline hash/count findings are removed.
+- R2 targeted: 19 groups PASS on hosted Node22; canonical policy and official harvester PASS. 83 models, CORE5 83/83, 665 facts, 153 safe fields/facts, runtime and canonical parity 153/153, 44 blocked, zero original 512 fact/index mutations, 38 baseline unindexed facts untouched. Deterministic reconstruction/idempotence PASS.
+- Production CI run `35180278876` and candidate CI run `35524758271` both use Node22.23.2/npm10.9.8, `npm ci` PASS, `npm test` FAIL with the same 27-file failure set. Six extra CI failures come from default shallow checkout missing pinned historical Git objects; all six pass for full-history P/B/C. No unexplained CI-only failures.
+- Required proof: `data/phase44c_r3_test_universe.json`, `phase44c_r3_environment_manifest.json`, `phase44c_r3_regression_matrix.json`, `phase44c_r3_differing_failure_analysis.json`, plus semantic probe and CI confirmation artifacts. Raw per-file stdout/stderr, exits and timings are retained in the matrix.
+- Original Phase44C: REJECTED. Phase44C-R1: HARD STOP. Phase44C-R2: semantic reconstruction validated. Phase44C-R3: regression equivalence validated under Node22.
+- R3 production-data/runtime/historical-test/package changes: zero. Main remains P; no Render deployment. This is feature-candidate acceptance only; Tier1 is not live.
+
+### Historical regression debt — planning only
+
+Historical regression suite contains stale fixed-count/baseline assertions, missing replay-reference/pypdf setup, shallow-history assumptions and legacy source-path/query fixtures. No historical tests were edited or modernized. Consider a separate TEST BASELINE MODERNIZATION phase only after production promotion, preserving historical fixtures and negative controls. Do not repair the 38 baseline-unindexed facts in R3.

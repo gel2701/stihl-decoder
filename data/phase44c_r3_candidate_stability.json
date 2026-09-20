@@ -1,0 +1,20 @@
+{
+  "phase": "44C-R3",
+  "checkpoint_commit": "7fde0027ffdf93fbe9276d6b7f831a337bd3dc51",
+  "checkpoint_tree": "ca6e823a5e06c96920b3a4b55f38fa5e87ad2883",
+  "original_r2_worktree_files_verified_against_snapshot_sha256": 19,
+  "original_r2_worktree_files_changed": 0,
+  "candidate_non_plan_r2_files_verified_against_snapshot_git_blobs": 18,
+  "candidate_non_plan_r2_files_changed": 0,
+  "production_data_changed_during_r3": false,
+  "historical_tests_changed": false,
+  "runtime_changed": false,
+  "packages_changed": false,
+  "protected_data_drift_in_all_149_hosted_test_invocations": 0,
+  "candidate_reproducible": true,
+  "main": "947eb3e5ac8345abb3f1c7aac7bd9191487f5c02",
+  "main_changed": false,
+  "deployed": false,
+  "allowed_post_matrix_change": "IMPLEMENTATION_PLAN.md updated only after PASS; R3 audit scripts/workflow/artifacts added",
+  "raw_snapshot_sha_note": "Original manifest SHA256 values bind original working bytes. Git blob hashes bind reproducible commit content independent of Windows CRLF/Linux LF checkout conversion."
+}
