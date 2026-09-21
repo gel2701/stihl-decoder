@@ -969,37 +969,45 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ## Phase 46A — BR Tier 2 Remaining Existing-Route Identity Review & Wave 2 Definition
 
-**Status:** COMPLETE / AUDIT PASS ✅
+**Historical 46A status:** AUDIT COMPLETED — but MSE 170 C-BQ lineage remediation required (`1208-200-0320` superseded by R1 below).
 
-### Scope & Intake
+---
 
-- **Intake count:** **12** remaining Tier 2 identities using existing site routes
-- **Original confidence:** **8 HIGH**, **4 MEDIUM** (parser failure review)
-- **Current 98-model collision audit:** **12/12 PASS** (0 name, 0 slug, 0 alias, 0 search-normalization, 0 reference collisions)
-- **Suffix safety:** **4/4** (MSE 170 C-BQ, MSE 141 C-Q, HS 82 R, MSA 190 T suffixes preserved)
-- **Power source safety:** **6/6** mains-electric models classified `ELECTRIC` (not `BATTERY`)
-- **TSA 230 special case:** Cut-off machine (`Doorslijper`) on existing `/doorslijpers/` route, 0 lawnmower leakage, 0 runtime changes required
-- **HSA 26 bundle safety:** Reconciled to single identity (`STANDALONE_AND_KIT`), standalone reference `HA03-011-3503` prioritized
-- **MEDIUM candidates reviewed:** **4/4** upgraded to HIGH on verified official catalog evidence (`BGE 71`, `FSE 41`, `HSE 52`, `FSE 60`)
-- **CORE5 staging:** **12/12** complete (5/5) using canonical repository vocabulary (staging only, 0 DB writes)
-- **Route readiness:** **12/12** route ready across existing categories (`kettingzagen`, `heggenscharen`, `bosmaaiers`, `bladblazers`, `doorslijpers`); 0 code changes required
-- **Final Dispositions:**
-  - `WAVE2_READY_HIGH`: **8**
-  - `WAVE2_READY_UPGRADED_FROM_MEDIUM`: **4**
-  - `DEFER_MEDIUM_CONFIDENCE`: **0**
-  - `BLOCKED`: **0**
-- **Wave 2 selection:** Exactly **12** identities defined for Phase 46B activation in `data/phase46a_phase46b_wave2_definition.json`
-- **Deferred backlog preserved:** 36 `CATEGORY_ARCHITECTURE_REQUIRED`, Tier 3 (12), accessories (71), unknown (12), baseline 38 unindexed debt untouched
+## Phase 46A-R1 — Wave 2 Source Lineage Remediation
+
+**Status:** COMPLETE / REMEDIATION PASS ✅
+
+### Lineage Reconciliation & Audit Summary
+
+- **Remediation root cause:** Phase 46A had hardcoded an erroneous reference (`1208-200-0320`) and record ID (`60`) for MSE 170 C-BQ.
+- **Authoritative MSE 170 C-BQ lineage:**
+  - Product record ID: **62** (from `data/phase44a_vtex_full_catalog.json` and `data/phase45a_tier2_unique_identity_inventory.json`)
+  - Canonical product-level reference: **`1209-011-M170`**
+  - Item-level electrical SKU variants: `1209-011-4008` (127 V), `1209-011-4009` (220 V) preserved as item variants only
+  - Zero references to `1208-200-0320` retained
+- **Dynamic lineage resolution:** Lineage for all 12 candidates is dynamically and deterministically derived from accepted authoritative inventory (`data/phase45a_tier2_unique_identity_inventory.json`) and catalog (`data/phase44a_vtex_full_catalog.json`).
+- **12/12 Lineage Parity:**
+  - `source_record_ids` parity: **12/12 (100%)**
+  - `official_reference` parity: **12/12 (100%)**
+  - HSA 26 bundle lineage: Standalone record `27` (`HA03-011-3503`) prioritized; kit record `28` (`HA03-011-26SET`) tracked as bundle variant under single canonical identity.
+  - TSA 230: Record `181` (`4864-011-6620`), cut-off machine on existing `/doorslijpers/` route, 0 lawnmower leakage.
+  - MSE 141 C-Q: Record `61` (`1208-200-0308/09`) preserved unchanged.
+- **Current 98-model collision audit:** **12/12 PASS** (0 name, 0 slug, 0 alias, 0 search-normalization, 0 reference collisions).
+- **Suffix & power source safety:** Preserved across all 12 (mains-electric models: `ELECTRIC`; battery: `BATTERY`; gasoline: `GASOLINE`).
+- **CORE5 staging:** **12/12** complete (5/5) using canonical repository vocabulary (staging only, 0 DB writes).
+- **Route readiness:** **12/12** route ready across existing categories (`kettingzagen`, `heggenscharen`, `bosmaaiers`, `bladblazers`, `doorslijpers`); 0 code changes required.
+- **Wave 2 selection:** Exactly **12** identities verified and defined for Phase 46B activation in `data/phase46a_phase46b_wave2_definition.json`.
+- **Deferred backlog preserved:** 36 `CATEGORY_ARCHITECTURE_REQUIRED`, Tier 3 (12), accessories (71), unknown (12), baseline 38 unindexed debt untouched.
 
 ---
 
 ## Phase 46B — BR Tier 2 Wave 2 Canonical Identity & CORE5 Activation
 
-**Status:** PLANNED / NOT STARTED ⏳
+**Status:** READY / PLANNED ⏳
 
 ### Target Scope
 
-- Activate the 12 selected Phase 46A Wave 2 identities into canonical `data/stihl_database.json`
+- Activate the 12 selected Phase 46A-R1 Wave 2 identities into canonical `data/stihl_database.json`
 - Populate CORE5 classification (5/5) using canonical vocabulary
 - Keep all technical fields null
 - Freeze public evidence facts (remain 721)
