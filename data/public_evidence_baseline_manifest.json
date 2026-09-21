@@ -4,11 +4,11 @@
   "approved_phase": "44C-R2 CANDIDATE ONLY",
   "created_from_commit": "15fefa2a4f30b4616aaf393c7b59a1219ae4149b",
   "baseline_commit_timestamp": "2026-09-17T08:58:42+02:00",
-  "fact_count": 665,
-  "distinct_model_count": 76,
+  "fact_count": 721,
+  "distinct_model_count": 91,
   "fact_array_canonical_sha256": "ffa72d3b4dc1918cfaf36621c9c411c6e1ef7c1e8c583e77c436156a2890172a",
-  "public_store_canonical_sha256": "a7c3101df738d5b73783fdcf0908d9e7f341ba4b24033ff3bc2a84156e8ea123",
-  "canonical_database_sha256": "f34de9a8eac09f70c12bfb57c66ed8adc4af6007c5fc41de61e91389da69181f",
+  "public_store_canonical_sha256": "1892b296ca4a91207d805eb2c613260a975f4199edb04c20628a194fb3eae5c3",
+  "canonical_database_sha256": "2c44a2b60a990ba1ea80f04fc3e8574561641fd9b5e7fc628fffdafe6ec21078",
   "immutable_prefix_count": 512,
   "immutable_prefix_canonical_sha256": "26d82a8fbc395347600ee883b919dc58ff2bc6d6ffeff67a63eaf9c4a850285a",
   "model_fact_counts": {
@@ -101,10 +101,10 @@
   "hash_algorithm": "SHA-256 over UTF-8 canonical JSON",
   "canonicalization_algorithm": "recursive lexicographic object-key ordering; arrays retain source order; JavaScript JSON number serialization; no whitespace; LF/CRLF independent",
   "manifest_status": "CANDIDATE_ONLY_NOT_PRODUCTION_APPROVED",
-  "last_updated": "2026-09-21T20:12:03.992Z",
-  "phase": "44C-R2",
+  "last_updated": "2026-09-21T20:24:24.239Z",
+  "phase": "45C",
   "canonical_model_count": 98,
-  "canonical_db_hash": "597080e48bf1213bf3dd710e15662a7aa52f5700d423c51b362528a0ea42c9c3",
-  "public_fact_count": 665,
-  "public_evidence_hash": "e13618a438aad006893721e5934dc40745369a3a4f0622790b0cbbaac7ca3434"
+  "canonical_db_hash": "09d6c5c0bd47d58e389b01140cb18fe97ea539c6f47591a0f6a9e55b956887ce",
+  "public_fact_count": 721,
+  "public_evidence_hash": "82fe14149d1e92edbcdfefdde8bb7355f1abbf5557e6d0d6212d292b885a8622"
 }

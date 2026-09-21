@@ -1,0 +1,566 @@
+{
+  "phase": "45C",
+  "total_writes": 56,
+  "writes": [
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 77,
+      "unit": "dB(A)",
+      "fact_id": "560b826da8b90c07",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 87,
+      "unit": "dB(A)",
+      "fact_id": "59a518d57811c0ad",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 1.7,
+      "unit": "m/s²",
+      "fact_id": "944cf43172a59944",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 4.9,
+      "unit": "m/s²",
+      "fact_id": "50dc25e971cbbb57",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "air_volume_m3h",
+      "before": null,
+      "after": 430,
+      "unit": "m³/h",
+      "fact_id": "dcc121d238e62723",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "air_velocity_ms",
+      "before": null,
+      "after": 43,
+      "unit": "m/s",
+      "fact_id": "c694e205fae26827",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 75,
+      "unit": "dB(A)",
+      "fact_id": "b752f59316a59fe6",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 2,
+      "unit": "m/s²",
+      "fact_id": "c51432fa1bc6c83f",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 69,
+      "unit": "dB(A)",
+      "fact_id": "aa39cadb30f14d08",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 82,
+      "unit": "dB(A)",
+      "fact_id": "37df7ee4ca42a712",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 0.9,
+      "unit": "m/s²",
+      "fact_id": "23e7851c2eb6515b",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 1.6,
+      "unit": "m/s²",
+      "fact_id": "0a79e798299c1a36",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 74,
+      "unit": "dB(A)",
+      "fact_id": "857f37d9cfbec19f",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 84,
+      "unit": "dB(A)",
+      "fact_id": "67573d02ba36dbdf",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 1.5,
+      "unit": "m/s²",
+      "fact_id": "602a8d274174a38a",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 1.5,
+      "unit": "m/s²",
+      "fact_id": "40781b741bfa66dd",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 82,
+      "unit": "dB(A)",
+      "fact_id": "975f56c60ee147f3",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 90,
+      "unit": "dB(A)",
+      "fact_id": "eeddf28912352ffc",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 94,
+      "unit": "dB(A)",
+      "fact_id": "7bf8b273cd206baa",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 1,
+      "unit": "m/s²",
+      "fact_id": "6b5f9d31af514da4",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 82,
+      "unit": "dB(A)",
+      "fact_id": "c73a73ac1bc2bae2",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 90,
+      "unit": "dB(A)",
+      "fact_id": "b567c82dca512e5a",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 76,
+      "unit": "dB(A)",
+      "fact_id": "e64667e030bbcb8e",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 84,
+      "unit": "dB(A)",
+      "fact_id": "673103735ea0c7d5",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 0.8,
+      "unit": "m/s²",
+      "fact_id": "f73fd83fc1319f1a",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 1,
+      "unit": "m/s²",
+      "fact_id": "a62c15a025e11210",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 76,
+      "unit": "dB(A)",
+      "fact_id": "df3fc1eb37f06150",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 89,
+      "unit": "dB(A)",
+      "fact_id": "1fc0ff96cb424b8b",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 4.8,
+      "unit": "m/s²",
+      "fact_id": "c96f2ca691327c89",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 3.6,
+      "unit": "m/s²",
+      "fact_id": "d687a64aebdd0e71",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 83,
+      "unit": "dB(A)",
+      "fact_id": "5b1350bb977d011d",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 94,
+      "unit": "dB(A)",
+      "fact_id": "1d5755cea5a1c5a9",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 3.4,
+      "unit": "m/s²",
+      "fact_id": "07ab0f99e81c210a",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 3.2,
+      "unit": "m/s²",
+      "fact_id": "d75880aa8ef9ba66",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 88,
+      "unit": "dB(A)",
+      "fact_id": "0ff4b30f3521c180",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 99,
+      "unit": "dB(A)",
+      "fact_id": "7b05a5d4823b59b4",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 2,
+      "unit": "m/s²",
+      "fact_id": "20176a0afd991cac",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 2,
+      "unit": "m/s²",
+      "fact_id": "5b362668cc6d1ac8",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 80,
+      "unit": "dB(A)",
+      "fact_id": "66283e9d48bcf58a",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 92,
+      "unit": "dB(A)",
+      "fact_id": "c9deb518e4315c99",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_nylon_left_ms2",
+      "before": null,
+      "after": 2,
+      "unit": "m/s²",
+      "fact_id": "84adc08a19bdb879",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_nylon_right_ms2",
+      "before": null,
+      "after": 2.9,
+      "unit": "m/s²",
+      "fact_id": "445bb7c875ee9b77",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_blade_left_ms2",
+      "before": null,
+      "after": 1.8,
+      "unit": "m/s²",
+      "fact_id": "2fb6676af40375d2",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_blade_right_ms2",
+      "before": null,
+      "after": 2.1,
+      "unit": "m/s²",
+      "fact_id": "40f5e09928e1d081",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 89,
+      "unit": "dB(A)",
+      "fact_id": "6bda3fc07db3d63d",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 100,
+      "unit": "dB(A)",
+      "fact_id": "9f3a3ba9faac8dfb",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 3.6,
+      "unit": "m/s²",
+      "fact_id": "58fe1ec2edbc2b5f",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 4.8,
+      "unit": "m/s²",
+      "fact_id": "9d265ab1ae27da38",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 84,
+      "unit": "dB(A)",
+      "fact_id": "d5c2b0ed9016ffc2",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 95,
+      "unit": "dB(A)",
+      "fact_id": "a27431e379f696b8",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 4.5,
+      "unit": "m/s²",
+      "fact_id": "fa7e42c29ededd1e",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 4,
+      "unit": "m/s²",
+      "fact_id": "4b6a9e20bb188df1",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "sound_pressure_db",
+      "before": null,
+      "after": 83,
+      "unit": "dB(A)",
+      "fact_id": "237dcfde988a884f",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "sound_power_db",
+      "before": null,
+      "after": 94,
+      "unit": "dB(A)",
+      "fact_id": "f302861a77a384ee",
+      "disposition": "SAFE_SINGLE_VALUE"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "vibration_left_ms2",
+      "before": null,
+      "after": 3.4,
+      "unit": "m/s²",
+      "fact_id": "875b0d0b7745d312",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "vibration_right_ms2",
+      "before": null,
+      "after": 3.2,
+      "unit": "m/s²",
+      "fact_id": "c9240e49810a9de9",
+      "disposition": "SAFE_COMPOUND_COMPONENT"
+    }
+  ]
+}

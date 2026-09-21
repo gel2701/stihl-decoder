@@ -876,17 +876,29 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ---
 
-## Phase 45C — BR Tier 2 Wave 1 Technical Evidence Reconciliation (PLANNED / NOT STARTED)
+## Phase 45C — BR Tier 2 Wave 1 Technical Evidence Reconciliation
 
-**Status:** PLANNED / NOT STARTED
+**Status:** CANDIDATE COMPLETE ✅ — technical evidence reconciled from official STIHL Brazil sources, safe canonical fields and public facts activated, runtime-verified. Ready for Phase 45D production promotion.
 
-### Scope
+### Scope & Results
 
-Reconcile technical evidence from official STIHL Brazil product pages for the 15 activated Wave 1 identities:
-- Field-level public evidence fact extraction
-- Semantic safety checks (dB units, compound vibration left/right, multi-configuration values)
-- Blocked candidate safety review
-- Canonical technical field activation with strict parity to evidence
+- **Target models:** 15 Wave 1 identities
+- **Models count:** **98** (unchanged)
+- **CORE5 completeness:** **98/98** (unchanged)
+- **Source captures:** 15/15 HTTP 200 from official STIHL Brazil product pages, hashed and frozen
+- **Raw candidate entries:** **175**
+- **Safe canonical technical writes:** **56** (sound_pressure_db, sound_power_db, air_volume_m3h, air_velocity_ms, vibration_left/right_ms2, vibration_nylon/blade)
+- **Safe public evidence facts added:** **56**
+- **Public facts total:** **721** (665 baseline + 56 = 721)
+- **Blocked candidates:** **131** (charger mains voltage 127/220V, battery runtime tables, charging times, ambiguous weight definitions, multi-attachment cutting tool ranges)
+- **Non-null overwrites:** **0** (all writes had null before values)
+- **Technical writes to pre-45B 83 models:** **0**
+- **Pre-existing 665 facts mutated:** **0**
+- **Pre-existing 38 unindexed baseline debt:** **38** (untouched)
+- **Model index & Field index:** 56/56 indexed
+- **Runtime resolvable & canonical parity:** 56/56 PASS
+- **Production confidence:** UNKNOWN (all 98 models)
+- **Specs verified:** false (all 98 models)
 
 ---
 
@@ -896,7 +908,7 @@ Reconcile technical evidence from official STIHL Brazil product pages for the 15
 
 ### Scope
 
-- Fast-forward promotion to main after Phase 45C completion and regression equivalence proof
+- Fast-forward promotion to main after Phase 45C candidate acceptance
 - Deploy to Render
 - Live validation of 98 models, routes, search, and technical evidence
 - Sitemaps and SEO verification

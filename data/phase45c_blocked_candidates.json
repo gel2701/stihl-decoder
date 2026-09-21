@@ -1,0 +1,1054 @@
+{
+  "phase": "45C",
+  "total_blocked": 131,
+  "blocked": [
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "PolyCut 2-2",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,1 - somente máquina",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "250",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Comprimento total s/ ferramenta de corte (cm)",
+      "rawVal": "110",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "18",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "Lâminas Plásticas - 20 min",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador LK 45 - 210 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "1,5 - sem bateria",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "10.8",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Autonomia com a bateria recomendada (min)",
+      "rawVal": "Potência mínima: 8  / Potência máxima: 25",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AS 2",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "AutoCut C 3-2 (fio 1,6 mm) / Feramenta opcional PolyCut 3-2 (lâminas plásticas)",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,9 - sem bateria",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "280",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Comprimento total (cm)",
+      "rawVal": "147 - 164",
+      "reason": "Total length varies with attachment or telescopic adjustment; scalar write blocked.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Rot. máx. (rpm)",
+      "rawVal": "8.500",
+      "reason": "RPM is configuration-dependent or unsupported as an unconditional canonical scalar.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 10 - 25 min",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AK 10",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 101 - AK 10 - 95 min / Carregador AL 101 - AK 20 - 180 min / Carregador AL 101 - AK 30S - 205 min / Carregador AL 301 - AK 10 - 40 min / Carregador AL 301 - AK 20 - 50 min / Carregador AL 301 - AK 30S - 60 min / Carregador AL 501 - AK 10 - 45 min / Carregador AL 101 - AK 20 - 55 min / Carregador AL 101 - AK 30S - 60 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,7",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "10,8",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tecnologia da bateria",
+      "rawVal": "Íons de Lítio",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "45",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "22",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "40",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Peso sem bateria e lâminas (kg)",
+      "rawVal": "3,5",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tempo de carregamento da bateria (min)",
+      "rawVal": "Carregador AL 1 - 70 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tensão Nominal (V)",
+      "rawVal": "10,8",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,1 - sem bateria",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "10,8",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "50",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "24",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AS 2 até 80",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "≤ 84",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Volume do saco de coleta (l)",
+      "rawVal": "40",
+      "reason": "Operating mode dependent (blower vs vacuum configuration for SHA 56).",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 20 ≥ 25",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Sucção (m³/h)",
+      "rawVal": "510",
+      "reason": "Operating mode dependent (blower vs vacuum configuration for SHA 56).",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Peso s/ bateria (kg)",
+      "rawVal": "3,2 - Soprador / 4,2 - Aspirador",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2 - sem bateria",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "10,8",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "45",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "22",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AS 2 até 40",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,6",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Motor",
+      "rawVal": "EC",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "60",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "34",
+      "reason": "Field not part of approved canonical scalar schema.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 200 até 125",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Tempo de carregamento da bateria (min)",
+      "rawVal": "Carregador AL 301 - até 200 min I Carregador AL 500 - até 45 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "Polycut 3-2",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,4 - somente máquina",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "230 Lâmina plástica / 250 Fio de Nylon",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Comprimento total s/ ferramenta de corte (cm)",
+      "rawVal": "116",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Comprimento total (cm)",
+      "rawVal": "134",
+      "reason": "Total length varies with attachment or telescopic adjustment; scalar write blocked.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "10,8",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AS 2 até 19",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AS 2",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL1 até 70 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 30/12&quot;",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4” P",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,5 - sem bateria",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AK 20",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 20 até 40",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AK",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 101 - até  180 min | Carregador AL 301 - até 55 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 30/12&quot;",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4&quot;P",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,1",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 200",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 200 até 42",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - 55 min | Carregador AL 500 30 - 45 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "AutoCut C 26-2 / Lâmina 260-2",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "4,9",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "AutoCut C 26-2 -420 mm / Lâmina 260-2 - 260mm",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Comprimento total s/ ferramenta de corte (cm)",
+      "rawVal": "188",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 300 S até 45 (fio)",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 300 S",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - 70 min | Carregador AL 500 - 45 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 35/14",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "61 PS3 Pro Picco Super Corrente",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "3/8” P",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,6",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 300 S",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 300 S até 37",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - até 70 min | Carregador AL 500 - até 45 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 35/14",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4” P",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,3",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 300 S",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 300 S até 50",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - até 70 min | Carregador AL 500 - até 45 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 30/12&quot;",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4” P",
+      "reason": "Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,5 - sem bateria",
+      "reason": "Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "reason": "Motor description is qualitative / non-scalar.",
+      "disposition": "NOT_CANONICAL_FIELD"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "reason": "Battery platform voltage deferred to complete electrical evidence verification.",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AK 30",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 30 até 45",
+      "reason": "Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AK",
+      "reason": "Battery system string is not a scalar technical metric; deferred to system architecture.",
+      "disposition": "EVIDENCE_ONLY_SCOPED"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 101 - até 205 min | Carregador AL 301 - até 60 min",
+      "reason": "Charging time is a charger/battery property, not machine property.",
+      "disposition": "CHARGER_SPEC_BLOCKED"
+    }
+  ]
+}

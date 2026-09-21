@@ -1,0 +1,1732 @@
+{
+  "phase": "45C",
+  "total_candidates": 187,
+  "safe_count": 56,
+  "blocked_count": 131,
+  "ledger": [
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "PolyCut 2-2",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,1 - somente máquina",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "250",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Comprimento total s/ ferramenta de corte (cm)",
+      "rawVal": "110",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "77",
+      "value": 77,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "560b826da8b90c07"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "87",
+      "value": 87,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "59a518d57811c0ad"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "1,7 / 4,9",
+      "value": 1.7,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "944cf43172a59944"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "1,7 / 4,9",
+      "value": 4.9,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "50dc25e971cbbb57"
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "18",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "Lâminas Plásticas - 20 min",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador LK 45 - 210 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "air_volume_m3h",
+      "rawLabel": "Vazão máx. de ar (m³/h)",
+      "rawVal": "430",
+      "value": 430,
+      "unit": "m³/h",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "dcc121d238e62723"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "air_velocity_ms",
+      "rawLabel": "Velocidade máxima do ar (m/s)",
+      "rawVal": "43",
+      "value": 43,
+      "unit": "m/s",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "c694e205fae26827"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "1,5 - sem bateria",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "75",
+      "value": 75,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "b752f59316a59fe6"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "2",
+      "value": 2,
+      "unit": "m/s²",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "c51432fa1bc6c83f"
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "10.8",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Autonomia com a bateria recomendada (min)",
+      "rawVal": "Potência mínima: 8  / Potência máxima: 25",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "BGA 30",
+      "slug": "bga-30",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AS 2",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "AutoCut C 3-2 (fio 1,6 mm) / Feramenta opcional PolyCut 3-2 (lâminas plásticas)",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,9 - sem bateria",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "280",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Comprimento total (cm)",
+      "rawVal": "147 - 164",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "69",
+      "value": 69,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "aa39cadb30f14d08"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "82",
+      "value": 82,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "37df7ee4ca42a712"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "0,9 / 1,6",
+      "value": 0.9,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "23e7851c2eb6515b"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "0,9 / 1,6",
+      "value": 1.6,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "0a79e798299c1a36"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Rot. máx. (rpm)",
+      "rawVal": "8.500",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 10 - 25 min",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AK 10",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 101 - AK 10 - 95 min / Carregador AL 101 - AK 20 - 180 min / Carregador AL 101 - AK 30S - 205 min / Carregador AL 301 - AK 10 - 40 min / Carregador AL 301 - AK 20 - 50 min / Carregador AL 301 - AK 30S - 60 min / Carregador AL 501 - AK 10 - 45 min / Carregador AL 101 - AK 20 - 55 min / Carregador AL 101 - AK 30S - 60 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,7",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "74",
+      "value": 74,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "857f37d9cfbec19f"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "84",
+      "value": 84,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "67573d02ba36dbdf"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "1,5 - 1,5",
+      "value": 1.5,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "602a8d274174a38a"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "1,5 - 1,5",
+      "value": 1.5,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "40781b741bfa66dd"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "10,8",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tecnologia da bateria",
+      "rawVal": "Íons de Lítio",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "45",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "22",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "40",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Peso sem bateria e lâminas (kg)",
+      "rawVal": "3,5",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tempo de carregamento da bateria (min)",
+      "rawVal": "Carregador AL 1 - 70 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "rawLabel": "Tensão Nominal (V)",
+      "rawVal": "10,8",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,1 - sem bateria",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "82",
+      "value": 82,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "975f56c60ee147f3"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "90",
+      "value": 90,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "eeddf28912352ffc"
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Motor",
+      "rawVal": "DC",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "10,8",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "50",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "24",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AS 2 até 80",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 40",
+      "slug": "hsa-40",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "≤ 84",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "94",
+      "value": 94,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "7bf8b273cd206baa"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Volume do saco de coleta (l)",
+      "rawVal": "40",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 20 ≥ 25",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Sucção (m³/h)",
+      "rawVal": "510",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Vibração Máxima (m/s²)",
+      "rawVal": "1",
+      "value": 1,
+      "unit": "m/s²",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "6b5f9d31af514da4"
+    },
+    {
+      "model": "SHA 56",
+      "slug": "sha-56",
+      "rawLabel": "Peso s/ bateria (kg)",
+      "rawVal": "3,2 - Soprador / 4,2 - Aspirador",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2 - sem bateria",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "82",
+      "value": 82,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "c73a73ac1bc2bae2"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "90",
+      "value": 90,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "b567c82dca512e5a"
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "10,8",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "45",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "22",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AS 2 até 40",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 30",
+      "slug": "hsa-30",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AS",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,6",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "76",
+      "value": 76,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "e64667e030bbcb8e"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "84",
+      "value": 84,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "673103735ea0c7d5"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "0,8 / 1,0",
+      "value": 0.8,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "f73fd83fc1319f1a"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "0,8 / 1,0",
+      "value": 1,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "a62c15a025e11210"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Motor",
+      "rawVal": "EC",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Tensão da bateria (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Comprimento de corte (cm)",
+      "rawVal": "60",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Espaçamento entre os dentes mm",
+      "rawVal": "34",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 200 até 125",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "rawLabel": "Tempo de carregamento da bateria (min)",
+      "rawVal": "Carregador AL 301 - até 200 min I Carregador AL 500 - até 45 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "Polycut 3-2",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,4 - somente máquina",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "230 Lâmina plástica / 250 Fio de Nylon",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Comprimento total s/ ferramenta de corte (cm)",
+      "rawVal": "116",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Comprimento total (cm)",
+      "rawVal": "134",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "76",
+      "value": 76,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "df3fc1eb37f06150"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "89",
+      "value": 89,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "1fc0ff96cb424b8b"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "4,8/3,6",
+      "value": 4.8,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "c96f2ca691327c89"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita (m/s²)",
+      "rawVal": "4,8/3,6",
+      "value": 3.6,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "d687a64aebdd0e71"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "10,8",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AS 2 até 19",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AS 2",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL1 até 70 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 30/12&quot;",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4” P",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,5 - sem bateria",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "83",
+      "value": 83,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "5b1350bb977d011d"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "94",
+      "value": 94,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "1d5755cea5a1c5a9"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "3,4/3,2",
+      "value": 3.4,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "07ab0f99e81c210a"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "3,4/3,2",
+      "value": 3.2,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "d75880aa8ef9ba66"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AK 20",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 20 até 40",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AK",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 101 - até  180 min | Carregador AL 301 - até 55 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 30/12&quot;",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4&quot;P",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,1",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "88",
+      "value": 88,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "0ff4b30f3521c180"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "99",
+      "value": 99,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "7b05a5d4823b59b4"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "2,0 / 2,0",
+      "value": 2,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "20176a0afd991cac"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "2,0 / 2,0",
+      "value": 2,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "5b362668cc6d1ac8"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 200",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 200 até 42",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - 55 min | Carregador AL 500 30 - 45 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Ferramenta de corte",
+      "rawVal": "AutoCut C 26-2 / Lâmina 260-2",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "4,9",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Diametro ferramenta de corte (mm)",
+      "rawVal": "AutoCut C 26-2 -420 mm / Lâmina 260-2 - 260mm",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Comprimento total s/ ferramenta de corte (cm)",
+      "rawVal": "188",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "80",
+      "value": 80,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "66283e9d48bcf58a"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "92",
+      "value": 92,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "c9deb518e4315c99"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 300 S até 45 (fio)",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 300 S",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - 70 min | Carregador AL 500 - 45 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_nylon_left_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita nylon (m/s²)",
+      "rawVal": "2,0 / 2,9",
+      "value": 2,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "configuration": "nylon",
+      "fact_id": "84adc08a19bdb879"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_nylon_right_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita nylon (m/s²)",
+      "rawVal": "2,0 / 2,9",
+      "value": 2.9,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "configuration": "nylon",
+      "fact_id": "445bb7c875ee9b77"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_blade_left_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+      "rawVal": "1,8 / 2,1",
+      "value": 1.8,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "configuration": "blade",
+      "fact_id": "2fb6676af40375d2"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field": "vibration_blade_right_ms2",
+      "rawLabel": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+      "rawVal": "1,8 / 2,1",
+      "value": 2.1,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "configuration": "blade",
+      "fact_id": "40f5e09928e1d081"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 35/14",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "61 PS3 Pro Picco Super Corrente",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "3/8” P",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,6",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "89",
+      "value": 89,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "6bda3fc07db3d63d"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "100",
+      "value": 100,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "9f3a3ba9faac8dfb"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "3,6 / 4,8",
+      "value": 3.6,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "58fe1ec2edbc2b5f"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "3,6 / 4,8",
+      "value": 4.8,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "9d265ab1ae27da38"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 300 S",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 300 S até 37",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - até 70 min | Carregador AL 500 - até 45 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 35/14",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4” P",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "3,3",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "84",
+      "value": 84,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "d5c2b0ed9016ffc2"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "95",
+      "value": 95,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "a27431e379f696b8"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "4,5 / 4,0",
+      "value": 4.5,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "fa7e42c29ededd1e"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "4,5 / 4,0",
+      "value": 4,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "4b6a9e20bb188df1"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AP 300 S",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AP 300 S até 50",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AP",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 301 - até 70 min | Carregador AL 500 - até 45 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Tipo de sabre e tamanho (cm/pol)",
+      "rawVal": "Rollomatic E - 30/12&quot;",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Corrente",
+      "rawVal": "71 PM3 Picco Micro Corrente",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Passo da corrente",
+      "rawVal": "1/4” P",
+      "disposition": "CONFIGURATION_DEPENDENT_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Peso (kg)",
+      "rawVal": "2,5 - sem bateria",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Motor",
+      "rawVal": "Bateria",
+      "disposition": "NOT_CANONICAL_FIELD",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "sound_pressure_db",
+      "rawLabel": "Nível de pressão sonora dB(A)",
+      "rawVal": "83",
+      "value": 83,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "237dcfde988a884f"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "sound_power_db",
+      "rawLabel": "Nível de potência sonora dB(A)",
+      "rawVal": "94",
+      "value": 94,
+      "unit": "dB(A)",
+      "disposition": "SAFE_SINGLE_VALUE",
+      "safe": true,
+      "fact_id": "f302861a77a384ee"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "vibration_left_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "3,4/3,2",
+      "value": 3.4,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "875b0d0b7745d312"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field": "vibration_right_ms2",
+      "rawLabel": "Nível de vibração esquerda/direita (m/s²)",
+      "rawVal": "3,4/3,2",
+      "value": 3.2,
+      "unit": "m/s²",
+      "disposition": "SAFE_COMPOUND_COMPONENT",
+      "safe": true,
+      "fact_id": "c9240e49810a9de9"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Tensão nominal (V)",
+      "rawVal": "36",
+      "disposition": "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Bateria recomendada",
+      "rawVal": "AK 30",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Autonomia com bateria (min)",
+      "rawVal": "AK 30 até 45",
+      "disposition": "BATTERY_CONFIGURATION_BLOCKED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Sistema de bateria",
+      "rawVal": "AK",
+      "disposition": "EVIDENCE_ONLY_SCOPED",
+      "safe": false
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "rawLabel": "Tempo de carga da bateria (min)",
+      "rawVal": "Carregador AL 101 - até 205 min | Carregador AL 301 - até 60 min",
+      "disposition": "CHARGER_SPEC_BLOCKED",
+      "safe": false
+    }
+  ]
+}
