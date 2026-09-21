@@ -1,0 +1,160 @@
+{
+  "phase": "45C-R1",
+  "timestamp": "2026-09-21T20:40:03.103Z",
+  "accounting_summary": {
+    "raw_source_rows": 175,
+    "rows_producing_1_semantic_candidate": 163,
+    "rows_producing_2_plus_semantic_candidates": 12,
+    "expanded_semantic_components": 24,
+    "net_expansion_delta": 12,
+    "final_semantic_ledger_rows": 187,
+    "arithmetic_verification": "163 + (12 * 2) = 187 (PASS)"
+  },
+  "expansion_explanation": "In the original Phase 45C textual report, 175 raw technical DOM rows were cited, while phase45c_candidate_ledger.json contained 187 items. This difference is fully accounted for by 12 compound vibration specification rows (10 left/right dual-handle values and 2 FSA 135 nylon/blade dual-handle values) which each expand into 2 distinct semantic candidate ledger rows (12 * 2 = 24 candidates). 163 single-component rows + 24 compound component candidates = exactly 187 semantic ledger rows.",
+  "compound_rows_detail": [
+    {
+      "model": "FSA 45",
+      "slug": "fsa-45",
+      "field_label": "Nivel de vibração esquerda/direita (m/s²)",
+      "raw_value": "1,7 / 4,9",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "FSA 50",
+      "slug": "fsa-50",
+      "field_label": "Nivel de vibração esquerda/direita (m/s²)",
+      "raw_value": "0,9 / 1,6",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "HLA 40",
+      "slug": "hla-40",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "1,5 - 1,5",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "HSA 100",
+      "slug": "hsa-100",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "0,8 / 1,0",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "FSA 30",
+      "slug": "fsa-30",
+      "field_label": "Nivel de vibração esquerda/direita (m/s²)",
+      "raw_value": "4,8/3,6",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "slug": "msa-60-c-b",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "3,4/3,2",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "slug": "msa-160-c-b",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "2,0 / 2,0",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field_label": "Nivel de vibração esquerda/direita nylon (m/s²)",
+      "raw_value": "2,0 / 2,9",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_nylon_left_ms2",
+        "vibration_nylon_right_ms2"
+      ],
+      "expansion_reason": "Attachment-specific vibration (nylon line or metal blade) split into discrete left and right handle components"
+    },
+    {
+      "model": "FSA 135",
+      "slug": "fsa-135",
+      "field_label": "Nivel de vibração esquerda/direita lâmina (m/s²)",
+      "raw_value": "1,8 / 2,1",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_blade_left_ms2",
+        "vibration_blade_right_ms2"
+      ],
+      "expansion_reason": "Attachment-specific vibration (nylon line or metal blade) split into discrete left and right handle components"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "slug": "msa-220-c-b",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "3,6 / 4,8",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "slug": "msa-200-c-b",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "4,5 / 4,0",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "slug": "msa-70-c-b",
+      "field_label": "Nível de vibração esquerda/direita (m/s²)",
+      "raw_value": "3,4/3,2",
+      "expansion_count": 2,
+      "expanded_components": [
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ],
+      "expansion_reason": "Dual handle vibration measurement (left/right) split into discrete left and right handle components"
+    }
+  ]
+}

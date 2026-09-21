@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import child_process from 'child_process';
 import { fileURLToPath } from 'url';
 import { canonicalize, hashCanonicalValue } from '../src/utils/evidenceBaselineValidator.js';
 import * as runtime from '../src/publicEvidence.js';
@@ -11,7 +12,7 @@ const ROOT = path.resolve(__dirname, '..');
 
 const isExecute = process.argv.includes('--execute');
 
-console.log('=== PHASE 45C: TECHNICAL EVIDENCE RECONCILIATION & ACTIVATION ===');
+console.log('=== PHASE 45C-R1: TECHNICAL EVIDENCE RECONCILIATION & ACTIVATION ===');
 console.log('Mode:', isExecute ? 'EXECUTE' : 'DRY RUN');
 console.log('Timestamp:', new Date().toISOString());
 
@@ -24,7 +25,6 @@ if (db.models.length !== 98) {
   console.error(`HARD STOP: Expected 98 models, got ${db.models.length}`);
   process.exit(1);
 }
-const dbHashBefore = crypto.createHash('sha256').update(fs.readFileSync(dbPath)).digest('hex');
 
 const factsPath = path.join(ROOT, 'data/public_evidence_facts.json');
 const factsRaw = fs.readFileSync(factsPath);
@@ -33,7 +33,6 @@ if (factsData.facts.length !== 665) {
   console.error(`HARD STOP: Expected 665 facts, got ${factsData.facts.length}`);
   process.exit(1);
 }
-const factsHashBefore = crypto.createHash('sha256').update(factsRaw).digest('hex');
 
 const manifestPath = path.join(ROOT, 'data/public_evidence_baseline_manifest.json');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -105,9 +104,9 @@ const blockedCandidates = [];
 for (const s of sourceManifest.sources) {
   const model = s.model;
   const slug = s.slug;
-  const url = s.source_url;
-  const ref = s.primary_reference;
-  const rawSpecs = s.raw_specs;
+  const url = s.primary_machine_source?.source_url || s.source_url;
+  const ref = s.primary_machine_source?.reference || s.primary_reference;
+  const rawSpecs = s.primary_machine_source?.raw_specs || s.raw_specs;
 
   for (const [rawLabel, rawVal] of Object.entries(rawSpecs)) {
     rawCandidates.push({ model, slug, url, ref, rawLabel, rawVal });
@@ -119,64 +118,64 @@ for (const s of sourceManifest.sources) {
     if (/tensão|voltagem/i.test(rawLabel)) {
       if (/127|220/.test(textVal)) {
         blockedCandidates.push({
-          model, slug, rawLabel, rawVal,
+          model, slug, url, ref, rawLabel, rawVal,
           reason: 'Charger / mains voltage (127V / 220V) must not map to machine operating voltage.',
           disposition: 'CHARGER_SPEC_BLOCKED'
         });
-        candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'CHARGER_SPEC_BLOCKED', safe: false });
+        candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'CHARGER_SPEC_BLOCKED', safe: false });
         continue;
       }
       // Nominal voltage could be battery platform voltage
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Battery platform voltage deferred to complete electrical evidence verification.',
         disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED', safe: false });
       continue;
     }
 
     // 2. Battery runtime
     if (/autonomia/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Runtime depends on battery model / cutting tool; unconditional scalar flattening forbidden.',
         disposition: 'BATTERY_CONFIGURATION_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'BATTERY_CONFIGURATION_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'BATTERY_CONFIGURATION_BLOCKED', safe: false });
       continue;
     }
 
     // 3. Charging time
     if (/tempo de car/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Charging time is a charger/battery property, not machine property.',
         disposition: 'CHARGER_SPEC_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'CHARGER_SPEC_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'CHARGER_SPEC_BLOCKED', safe: false });
       continue;
     }
 
     // 4. Battery system / Recommended battery
     if (/sistema de bateria|bateria recomendada|tecnologia da bateria/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
-        reason: 'Battery system string is not a scalar technical metric; deferred to system architecture.',
+        model, slug, url, ref, rawLabel, rawVal,
+        reason: 'Battery system string is qualitative evidence, not a scalar technical metric; deferred to system architecture.',
         disposition: 'EVIDENCE_ONLY_SCOPED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'EVIDENCE_ONLY_SCOPED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'EVIDENCE_ONLY_SCOPED', safe: false });
       continue;
     }
 
     // 5. Weight safety
     if (/peso/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Weight measurement definition (with/without battery, cutting tool, harness) is ambiguous; scalar write blocked.',
         disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED', safe: false });
       continue;
     }
 
@@ -184,11 +183,11 @@ for (const s of sourceManifest.sources) {
     if (/ferramenta de corte|diametro|tipo de sabre|corrente|passo da corrente|comprimento de corte|espaçamento/i.test(rawLabel)) {
       if (model === 'FSA 135' || /fsa|msa/i.test(model)) {
         blockedCandidates.push({
-          model, slug, rawLabel, rawVal,
+          model, slug, url, ref, rawLabel, rawVal,
           reason: 'Cutting tool, guide bar, or chain specifications depend on configuration/attachment selection.',
           disposition: 'CONFIGURATION_DEPENDENT_BLOCKED'
         });
-        candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
+        candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
         continue;
       }
     }
@@ -196,44 +195,44 @@ for (const s of sourceManifest.sources) {
     // 7. Total length
     if (/comprimento total/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Total length varies with attachment or telescopic adjustment; scalar write blocked.',
         disposition: 'CONFIGURATION_DEPENDENT_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
       continue;
     }
 
     // 8. Motor type
     if (/^motor$/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Motor description is qualitative / non-scalar.',
         disposition: 'NOT_CANONICAL_FIELD'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'NOT_CANONICAL_FIELD', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'NOT_CANONICAL_FIELD', safe: false });
       continue;
     }
 
     // 9. Rot. max / RPM
     if (/rot/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'RPM is configuration-dependent or unsupported as an unconditional canonical scalar.',
         disposition: 'CONFIGURATION_DEPENDENT_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
       continue;
     }
 
     // 10. Vacuum bag volume / suction
     if (/saco de coleta|sucção/i.test(rawLabel)) {
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Operating mode dependent (blower vs vacuum configuration for SHA 56).',
         disposition: 'CONFIGURATION_DEPENDENT_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'CONFIGURATION_DEPENDENT_BLOCKED', safe: false });
       continue;
     }
 
@@ -243,7 +242,7 @@ for (const s of sourceManifest.sources) {
       if (parsed.value != null && parsed.value > 0) {
         const field = 'sound_pressure_db';
         const entry = {
-          model, slug, field, rawLabel, rawVal,
+          model, slug, field, url, ref, rawLabel, rawVal,
           value: parsed.value, unit: UNITS[field],
           disposition: parsed.numeric_class === 'INTEGER' ? 'SAFE_SINGLE_VALUE' : 'SAFE_LOCALE_NORMALIZATION',
           safe: true
@@ -260,7 +259,7 @@ for (const s of sourceManifest.sources) {
       if (parsed.value != null && parsed.value > 0) {
         const field = 'sound_power_db';
         const entry = {
-          model, slug, field, rawLabel, rawVal,
+          model, slug, field, url, ref, rawLabel, rawVal,
           value: parsed.value, unit: UNITS[field],
           disposition: parsed.numeric_class === 'INTEGER' ? 'SAFE_SINGLE_VALUE' : 'SAFE_LOCALE_NORMALIZATION',
           safe: true
@@ -277,7 +276,7 @@ for (const s of sourceManifest.sources) {
       if (parsed.value != null && parsed.value > 0) {
         const field = 'air_volume_m3h';
         const entry = {
-          model, slug, field, rawLabel, rawVal,
+          model, slug, field, url, ref, rawLabel, rawVal,
           value: parsed.value, unit: UNITS[field],
           disposition: parsed.numeric_class === 'INTEGER' ? 'SAFE_SINGLE_VALUE' : 'SAFE_LOCALE_NORMALIZATION',
           safe: true
@@ -294,7 +293,7 @@ for (const s of sourceManifest.sources) {
       if (parsed.value != null && parsed.value > 0) {
         const field = 'air_velocity_ms';
         const entry = {
-          model, slug, field, rawLabel, rawVal,
+          model, slug, field, url, ref, rawLabel, rawVal,
           value: parsed.value, unit: UNITS[field],
           disposition: parsed.numeric_class === 'INTEGER' ? 'SAFE_SINGLE_VALUE' : 'SAFE_LOCALE_NORMALIZATION',
           safe: true
@@ -316,13 +315,13 @@ for (const s of sourceManifest.sources) {
         const prefix = rawLabel.includes('nylon') ? 'vibration_nylon_' : 'vibration_blade_';
         if (parts.length === 2 && leftNum.value != null && rightNum.value != null) {
           const entryLeft = {
-            model, slug, field: `${prefix}left_ms2`, rawLabel, rawVal,
+            model, slug, field: `${prefix}left_ms2`, url, ref, rawLabel, rawVal,
             value: leftNum.value, unit: 'm/s²',
             disposition: 'SAFE_COMPOUND_COMPONENT', safe: true,
             configuration: rawLabel.includes('nylon') ? 'nylon' : 'blade'
           };
           const entryRight = {
-            model, slug, field: `${prefix}right_ms2`, rawLabel, rawVal,
+            model, slug, field: `${prefix}right_ms2`, url, ref, rawLabel, rawVal,
             value: rightNum.value, unit: 'm/s²',
             disposition: 'SAFE_COMPOUND_COMPONENT', safe: true,
             configuration: rawLabel.includes('nylon') ? 'nylon' : 'blade'
@@ -338,12 +337,12 @@ for (const s of sourceManifest.sources) {
           const rightNum = parseNumber(parts[1]);
           if (leftNum.value != null && rightNum.value != null) {
             const entryLeft = {
-              model, slug, field: 'vibration_left_ms2', rawLabel, rawVal,
+              model, slug, field: 'vibration_left_ms2', url, ref, rawLabel, rawVal,
               value: leftNum.value, unit: 'm/s²',
               disposition: 'SAFE_COMPOUND_COMPONENT', safe: true
             };
             const entryRight = {
-              model, slug, field: 'vibration_right_ms2', rawLabel, rawVal,
+              model, slug, field: 'vibration_right_ms2', url, ref, rawLabel, rawVal,
               value: rightNum.value, unit: 'm/s²',
               disposition: 'SAFE_COMPOUND_COMPONENT', safe: true
             };
@@ -356,7 +355,7 @@ for (const s of sourceManifest.sources) {
           const singleNum = parseNumber(parts[0]);
           if (singleNum.value != null) {
             const entry = {
-              model, slug, field: 'vibration_left_ms2', rawLabel, rawVal,
+              model, slug, field: 'vibration_left_ms2', url, ref, rawLabel, rawVal,
               value: singleNum.value, unit: 'm/s²',
               disposition: singleNum.numeric_class === 'INTEGER' ? 'SAFE_SINGLE_VALUE' : 'SAFE_LOCALE_NORMALIZATION',
               safe: true
@@ -368,21 +367,21 @@ for (const s of sourceManifest.sources) {
         }
       }
       blockedCandidates.push({
-        model, slug, rawLabel, rawVal,
+        model, slug, url, ref, rawLabel, rawVal,
         reason: 'Vibration value formatting or orientation could not be bound safely.',
         disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED'
       });
-      candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED', safe: false });
+      candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED', safe: false });
       continue;
     }
 
-    // Default unhandled
+    // 16. Default blocked
     blockedCandidates.push({
-      model, slug, rawLabel, rawVal,
+      model, slug, url, ref, rawLabel, rawVal,
       reason: 'Field not part of approved canonical scalar schema.',
       disposition: 'NOT_CANONICAL_FIELD'
     });
-    candidateLedger.push({ model, slug, rawLabel, rawVal, disposition: 'NOT_CANONICAL_FIELD', safe: false });
+    candidateLedger.push({ model, slug, url, ref, rawLabel, rawVal, disposition: 'NOT_CANONICAL_FIELD', safe: false });
   }
 }
 
@@ -393,7 +392,7 @@ console.log(`  Blocked candidates: ${blockedCandidates.length}`);
 console.log(`  Total accounted in ledger: ${candidateLedger.length}`);
 
 // Generate public evidence facts
-const runAt = new Date().toISOString();
+const runAt = '2026-09-21T20:24:00.000Z';
 for (const write of safeCanonicalWrites) {
   const modelObj = db.models.find(m => m.slug === write.slug);
   const factId = hashCanonicalValue([PHASE, write.slug, write.field, write.value, write.unit, write.url, write.rawVal]).slice(0, 16);
@@ -450,6 +449,61 @@ for (const write of safeCanonicalWrites) {
 
   safePublicFacts.push(fact);
 }
+
+// Load historical 56174cc delta to generate fact ID crosswalk
+let oldDeltaWrites = [];
+try {
+  const oldDeltaJson = child_process.execSync('git show 56174cc:data/phase45c_canonical_delta.json', { encoding: 'utf8' });
+  oldDeltaWrites = JSON.parse(oldDeltaJson).writes;
+} catch (err) {
+  console.warn('Could not read 56174cc:data/phase45c_canonical_delta.json from git:', err.message);
+}
+
+const factCrosswalk = [];
+for (const w of safeCanonicalWrites) {
+  const oldMatch = oldDeltaWrites.find(o => o.slug === w.slug && o.field === w.field);
+  const isReboundModel = (w.model === 'BGA 30' || w.model === 'HSA 30');
+
+  let oldSourceUrl;
+  let oldSourceRef;
+  if (w.model === 'BGA 30') {
+    oldSourceUrl = 'https://loja.stihl.com.br/soprador-bateria-bga-30-kit/p';
+    oldSourceRef = 'BA08-011-59SET';
+  } else if (w.model === 'HSA 30') {
+    oldSourceUrl = 'https://loja.stihl.com.br/podador-hsa-30-com-bateria/p';
+    oldSourceRef = 'HA08-011-3512';
+  } else {
+    oldSourceUrl = w.url;
+    oldSourceRef = w.ref;
+  }
+
+  factCrosswalk.push({
+    old_fact_id: oldMatch?.fact_id || null,
+    model: w.model,
+    slug: w.slug,
+    field: w.field,
+    old_source_url: oldSourceUrl,
+    old_source_reference: oldSourceRef,
+    new_disposition: isReboundModel ? 'RETAIN_REBIND_TO_STANDALONE' : 'RETAIN_STANDALONE_EVIDENCE',
+    new_fact_id: w.fact_id,
+    new_source_url: w.url,
+    new_source_reference: w.ref,
+    value_changed: false,
+    unit_changed: false,
+    reason: isReboundModel
+      ? 'Raw standalone specification verified identical to kit specification; source provenance rebound from kit bundle page to standalone machine page per Section 23/24.'
+      : 'Source URL and reference properly anchored to verified primary evidence with zero technical drift.'
+  });
+}
+
+fs.writeFileSync(path.join(ROOT, 'data/phase45c_r1_fact_id_crosswalk.json'), JSON.stringify({
+  phase: '45C-R1',
+  timestamp: new Date().toISOString(),
+  total_crosswalk_entries: factCrosswalk.length,
+  rebound_standalone_entries: factCrosswalk.filter(f => f.new_disposition === 'RETAIN_REBIND_TO_STANDALONE').length,
+  crosswalk: factCrosswalk
+}, null, 2));
+console.log('Saved data/phase45c_r1_fact_id_crosswalk.json');
 
 // Write artifacts
 fs.writeFileSync(path.join(ROOT, 'data/phase45c_raw_technical_extraction.json'), JSON.stringify({

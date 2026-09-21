@@ -1,0 +1,58 @@
+{
+  "phase": "45C-R1",
+  "timestamp": "2026-09-21T20:40:03.109Z",
+  "extraction_to_ledger": {
+    "raw_extraction_rows": 175,
+    "compound_source_rows": 12,
+    "additional_semantic_components": 12,
+    "semantic_ledger_total": 187,
+    "equation": "175 + 12 = 187",
+    "equation_match": true
+  },
+  "ledger_partition": {
+    "safe_candidates": 56,
+    "non_safe_candidates": 131,
+    "semantic_ledger_total": 187,
+    "equation": "56 + 131 = 187",
+    "equation_match": true
+  },
+  "disposition_breakdown": {
+    "SAFE_SINGLE_VALUE": 32,
+    "SAFE_DUAL_UNIT_NORMALIZATION": 0,
+    "SAFE_COMPOUND_COMPONENT": 24,
+    "SAFE_LOCALE_NORMALIZATION": 0,
+    "EVIDENCE_ONLY_SCOPED": 20,
+    "CONFIGURATION_DEPENDENT_BLOCKED": 31,
+    "BATTERY_CONFIGURATION_BLOCKED": 15,
+    "BUNDLE_SPEC_BLOCKED": 0,
+    "CHARGER_SPEC_BLOCKED": 11,
+    "LOCALE_AMBIGUOUS_BLOCKED": 0,
+    "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED": 0,
+    "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED": 31,
+    "VARIANT_SCOPE_BLOCKED": 0,
+    "SOURCE_SCOPE_BLOCKED": 0,
+    "CONFLICT_BLOCKED": 0,
+    "NOT_CANONICAL_FIELD": 23
+  },
+  "disposition_sum_check": {
+    "disposition_sum": 187,
+    "semantic_ledger_total": 187,
+    "equation_match": true
+  },
+  "canonical_and_evidence_equality": {
+    "safe_canonical_writes": 56,
+    "safe_public_facts": 56,
+    "equation_match": true,
+    "baseline_public_facts": 665,
+    "final_public_facts": 721,
+    "equation": "665 + 56 = 721"
+  },
+  "evidence_only_scoped_clarification": {
+    "classification": "EVIDENCE_ONLY_SCOPED",
+    "count": 20,
+    "status": "NON_PROMOTED_CANDIDATE_EVIDENCE",
+    "activated_as_public_facts": false,
+    "included_in_public_evidence_facts_json": false,
+    "reason": "Qualitative battery system, recommended battery, and battery technology specifications are retained in evidence audit ledgers but blocked from scalar canonical database and public facts store until comprehensive battery architecture is implemented."
+  }
+}

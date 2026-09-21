@@ -1,0 +1,444 @@
+{
+  "phase": "45C-R1",
+  "audit_timestamp": "2026-09-21T20:39:40.428Z",
+  "summary": {
+    "standalone_plus_kit_groups": 3,
+    "standalone_primary": "3/3",
+    "kit_only_groups": 2,
+    "kit_only_correctly_retained": "2/2",
+    "total_conflicts": 0
+  },
+  "groups": [
+    {
+      "model": "BGA 30",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone": {
+        "record_id": "149",
+        "reference": "BA08-011-5900",
+        "url": "https://loja.stihl.com.br/soprador-bateria-bga-30/p",
+        "file": "data/candidate_evidence/phase45c_wave1/bga-30_source.html",
+        "sha256": "5b3aa983a0bca42a219c2950eb6a28c3e5f269801c65285d51f82589631e1004",
+        "spec_count": 10,
+        "technical_fields": {
+          "Vazão máx. de ar (m³/h)": "430",
+          "Velocidade máxima do ar (m/s)": "43",
+          "Peso (kg)": "1,5 - sem bateria",
+          "Nível de pressão sonora dB(A)": "75",
+          "Nivel de vibração esquerda/direita (m/s²)": "2",
+          "Motor": "DC",
+          "Tensão nominal (V)": "10.8",
+          "Autonomia com a bateria recomendada (min)": "Potência mínima: 8  / Potência máxima: 25",
+          "Sistema de bateria": "AS",
+          "Bateria recomendada": "AS 2"
+        }
+      },
+      "kit": {
+        "record_id": "150",
+        "reference": "BA08-011-59SET",
+        "url": "https://loja.stihl.com.br/soprador-bateria-bga-30-kit/p",
+        "file": "data/candidate_evidence/phase45c_wave1/bga-30_kit_source.html",
+        "sha256": "97de41bd44f3aaa92c4cfae202236f32572eeb42095fd4e04a4494c3d56dfcec",
+        "spec_count": 10,
+        "technical_fields": {
+          "Vazão máx. de ar (m³/h)": "430",
+          "Velocidade máxima do ar (m/s)": "43",
+          "Peso (kg)": "1,5 - sem bateria",
+          "Nível de pressão sonora dB(A)": "75",
+          "Nivel de vibração esquerda/direita (m/s²)": "2",
+          "Motor": "DC",
+          "Tensão nominal (V)": "10.8",
+          "Autonomia com a bateria recomendada (min)": "Potência mínima: 8  / Potência máxima: 25",
+          "Sistema de bateria": "AS",
+          "Bateria recomendada": "AS 2"
+        }
+      },
+      "comparison": {
+        "total_unique_fields": 10,
+        "identical_fields_count": 10,
+        "identical_fields": [
+          "Vazão máx. de ar (m³/h)",
+          "Velocidade máxima do ar (m/s)",
+          "Peso (kg)",
+          "Nível de pressão sonora dB(A)",
+          "Nivel de vibração esquerda/direita (m/s²)",
+          "Motor",
+          "Tensão nominal (V)",
+          "Autonomia com a bateria recomendada (min)",
+          "Sistema de bateria",
+          "Bateria recomendada"
+        ],
+        "different_fields_count": 0,
+        "different_fields": [],
+        "kit_only_fields_count": 0,
+        "kit_only_fields": [],
+        "standalone_only_fields_count": 0,
+        "standalone_only_fields": [],
+        "conflicts_count": 0,
+        "conflicts": [],
+        "all_field_comparisons": [
+          {
+            "field_label": "Vazão máx. de ar (m³/h)",
+            "standalone_value": "430",
+            "kit_value": "430",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Velocidade máxima do ar (m/s)",
+            "standalone_value": "43",
+            "kit_value": "43",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Peso (kg)",
+            "standalone_value": "1,5 - sem bateria",
+            "kit_value": "1,5 - sem bateria",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nível de pressão sonora dB(A)",
+            "standalone_value": "75",
+            "kit_value": "75",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nivel de vibração esquerda/direita (m/s²)",
+            "standalone_value": "2",
+            "kit_value": "2",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Motor",
+            "standalone_value": "DC",
+            "kit_value": "DC",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Tensão nominal (V)",
+            "standalone_value": "10.8",
+            "kit_value": "10.8",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Autonomia com a bateria recomendada (min)",
+            "standalone_value": "Potência mínima: 8  / Potência máxima: 25",
+            "kit_value": "Potência mínima: 8  / Potência máxima: 25",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Sistema de bateria",
+            "standalone_value": "AS",
+            "kit_value": "AS",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Bateria recomendada",
+            "standalone_value": "AS 2",
+            "kit_value": "AS 2",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          }
+        ]
+      },
+      "reconciliation_verdict": "STANDALONE_PRECEDENCE_PROVEN_ZERO_CONFLICTS"
+    },
+    {
+      "model": "FSA 50",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone": {
+        "record_id": "242",
+        "reference": "FA11-011-5700",
+        "url": "https://loja.stihl.com.br/fsa-50/p",
+        "file": "data/candidate_evidence/phase45c_wave1/fsa-50_source.html",
+        "sha256": "d301c4ee9caa638b284e73e6db8d4805551367c1a596237206d9a16161280ae0",
+        "spec_count": 13,
+        "technical_fields": {
+          "Ferramenta de corte": "AutoCut C 3-2 (fio 1,6 mm) / Feramenta opcional PolyCut 3-2 (lâminas plásticas)",
+          "Peso (kg)": "2,9 - sem bateria",
+          "Diametro ferramenta de corte (mm)": "280",
+          "Comprimento total (cm)": "147 - 164",
+          "Nível de pressão sonora dB(A)": "69",
+          "Nível de potência sonora dB(A)": "82",
+          "Nivel de vibração esquerda/direita (m/s²)": "0,9 / 1,6",
+          "Rot. máx. (rpm)": "8.500",
+          "Motor": "DC",
+          "Tensão nominal (V)": "36",
+          "Autonomia com bateria (min)": "AK 10 - 25 min",
+          "Bateria recomendada": "AK 10",
+          "Tempo de carga da bateria (min)": "Carregador AL 101 - AK 10 - 95 min / Carregador AL 101 - AK 20 - 180 min / Carregador AL 101 - AK 30S - 205 min / Carregador AL 301 - AK 10 - 40 min / Carregador AL 301 - AK 20 - 50 min / Carregador AL 301 - AK 30S - 60 min / Carregador AL 501 - AK 10 - 45 min / Carregador AL 101 - AK 20 - 55 min / Carregador AL 101 - AK 30S - 60 min"
+        }
+      },
+      "kit": {
+        "record_id": "243",
+        "reference": "FA11-011-57SET",
+        "url": "https://loja.stihl.com.br/fsa-50-kit/p",
+        "file": "data/candidate_evidence/phase45c_wave1/fsa-50_kit_source.html",
+        "sha256": "6e98789b38d80cfba8a5276d74dc1a44bf28fa66e138a85298396d423f1820dc",
+        "spec_count": 13,
+        "technical_fields": {
+          "Ferramenta de corte": "AutoCut C 3-2 (fio 1,6 mm) / Feramenta opcional PolyCut 3-2 (lâminas plásticas)",
+          "Peso (kg)": "2,9 - sem bateria",
+          "Diametro ferramenta de corte (mm)": "280",
+          "Comprimento total (cm)": "147 - 164",
+          "Nível de pressão sonora dB(A)": "69",
+          "Nível de potência sonora dB(A)": "82",
+          "Nivel de vibração esquerda/direita (m/s²)": "0,9 / 1,6",
+          "Rot. máx. (rpm)": "8.500",
+          "Motor": "DC",
+          "Tensão nominal (V)": "36",
+          "Autonomia com bateria (min)": "AK 10 - 25 min",
+          "Bateria recomendada": "AK 10",
+          "Tempo de carga da bateria (min)": "Carregador AL 101 - AK 10 - 95 min / Carregador AL 101 - AK 20 - 180 min / Carregador AL 101 - AK 30S - 205 min / Carregador AL 301 - AK 10 - 40 min / Carregador AL 301 - AK 20 - 50 min / Carregador AL 301 - AK 30S - 60 min / Carregador AL 501 - AK 10 - 45 min / Carregador AL 101 - AK 20 - 55 min / Carregador AL 101 - AK 30S - 60 min"
+        }
+      },
+      "comparison": {
+        "total_unique_fields": 13,
+        "identical_fields_count": 13,
+        "identical_fields": [
+          "Ferramenta de corte",
+          "Peso (kg)",
+          "Diametro ferramenta de corte (mm)",
+          "Comprimento total (cm)",
+          "Nível de pressão sonora dB(A)",
+          "Nível de potência sonora dB(A)",
+          "Nivel de vibração esquerda/direita (m/s²)",
+          "Rot. máx. (rpm)",
+          "Motor",
+          "Tensão nominal (V)",
+          "Autonomia com bateria (min)",
+          "Bateria recomendada",
+          "Tempo de carga da bateria (min)"
+        ],
+        "different_fields_count": 0,
+        "different_fields": [],
+        "kit_only_fields_count": 0,
+        "kit_only_fields": [],
+        "standalone_only_fields_count": 0,
+        "standalone_only_fields": [],
+        "conflicts_count": 0,
+        "conflicts": [],
+        "all_field_comparisons": [
+          {
+            "field_label": "Ferramenta de corte",
+            "standalone_value": "AutoCut C 3-2 (fio 1,6 mm) / Feramenta opcional PolyCut 3-2 (lâminas plásticas)",
+            "kit_value": "AutoCut C 3-2 (fio 1,6 mm) / Feramenta opcional PolyCut 3-2 (lâminas plásticas)",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Peso (kg)",
+            "standalone_value": "2,9 - sem bateria",
+            "kit_value": "2,9 - sem bateria",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Diametro ferramenta de corte (mm)",
+            "standalone_value": "280",
+            "kit_value": "280",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Comprimento total (cm)",
+            "standalone_value": "147 - 164",
+            "kit_value": "147 - 164",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nível de pressão sonora dB(A)",
+            "standalone_value": "69",
+            "kit_value": "69",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nível de potência sonora dB(A)",
+            "standalone_value": "82",
+            "kit_value": "82",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nivel de vibração esquerda/direita (m/s²)",
+            "standalone_value": "0,9 / 1,6",
+            "kit_value": "0,9 / 1,6",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Rot. máx. (rpm)",
+            "standalone_value": "8.500",
+            "kit_value": "8.500",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Motor",
+            "standalone_value": "DC",
+            "kit_value": "DC",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Tensão nominal (V)",
+            "standalone_value": "36",
+            "kit_value": "36",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Autonomia com bateria (min)",
+            "standalone_value": "AK 10 - 25 min",
+            "kit_value": "AK 10 - 25 min",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Bateria recomendada",
+            "standalone_value": "AK 10",
+            "kit_value": "AK 10",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Tempo de carga da bateria (min)",
+            "standalone_value": "Carregador AL 101 - AK 10 - 95 min / Carregador AL 101 - AK 20 - 180 min / Carregador AL 101 - AK 30S - 205 min / Carregador AL 301 - AK 10 - 40 min / Carregador AL 301 - AK 20 - 50 min / Carregador AL 301 - AK 30S - 60 min / Carregador AL 501 - AK 10 - 45 min / Carregador AL 101 - AK 20 - 55 min / Carregador AL 101 - AK 30S - 60 min",
+            "kit_value": "Carregador AL 101 - AK 10 - 95 min / Carregador AL 101 - AK 20 - 180 min / Carregador AL 101 - AK 30S - 205 min / Carregador AL 301 - AK 10 - 40 min / Carregador AL 301 - AK 20 - 50 min / Carregador AL 301 - AK 30S - 60 min / Carregador AL 501 - AK 10 - 45 min / Carregador AL 101 - AK 20 - 55 min / Carregador AL 101 - AK 30S - 60 min",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          }
+        ]
+      },
+      "reconciliation_verdict": "STANDALONE_PRECEDENCE_PROVEN_ZERO_CONFLICTS"
+    },
+    {
+      "model": "HSA 30",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone": {
+        "record_id": "6",
+        "reference": "HA08-011-3504",
+        "url": "https://loja.stihl.com.br/podador-hsa-30/p",
+        "file": "data/candidate_evidence/phase45c_wave1/hsa-30_source.html",
+        "sha256": "f7f81b21cacdaadf4556c2883524af8db74537cc657175e55b98df325a78b3b5",
+        "spec_count": 9,
+        "technical_fields": {
+          "Peso (kg)": "2 - sem bateria",
+          "Nível de pressão sonora dB(A)": "82",
+          "Nível de potência sonora dB(A)": "90",
+          "Motor": "Bateria",
+          "Tensão da bateria (V)": "10,8",
+          "Comprimento de corte (cm)": "45",
+          "Espaçamento entre os dentes mm": "22",
+          "Autonomia com bateria (min)": "AS 2 até 40",
+          "Sistema de bateria": "AS"
+        }
+      },
+      "kit": {
+        "record_id": "139",
+        "reference": "HA08-011-3512",
+        "url": "https://loja.stihl.com.br/podador-hsa-30-com-bateria/p",
+        "file": "data/candidate_evidence/phase45c_wave1/hsa-30_kit_source.html",
+        "sha256": "4f389a88db797cc1b57caeaa611c814dd404e27519499902323b84ca4f05af4d",
+        "spec_count": 9,
+        "technical_fields": {
+          "Peso (kg)": "2 - sem bateria",
+          "Nível de pressão sonora dB(A)": "82",
+          "Nível de potência sonora dB(A)": "90",
+          "Motor": "Bateria",
+          "Tensão da bateria (V)": "10,8",
+          "Comprimento de corte (cm)": "45",
+          "Espaçamento entre os dentes mm": "22",
+          "Autonomia com bateria (min)": "AS 2 até 40",
+          "Sistema de bateria": "AS"
+        }
+      },
+      "comparison": {
+        "total_unique_fields": 9,
+        "identical_fields_count": 9,
+        "identical_fields": [
+          "Peso (kg)",
+          "Nível de pressão sonora dB(A)",
+          "Nível de potência sonora dB(A)",
+          "Motor",
+          "Tensão da bateria (V)",
+          "Comprimento de corte (cm)",
+          "Espaçamento entre os dentes mm",
+          "Autonomia com bateria (min)",
+          "Sistema de bateria"
+        ],
+        "different_fields_count": 0,
+        "different_fields": [],
+        "kit_only_fields_count": 0,
+        "kit_only_fields": [],
+        "standalone_only_fields_count": 0,
+        "standalone_only_fields": [],
+        "conflicts_count": 0,
+        "conflicts": [],
+        "all_field_comparisons": [
+          {
+            "field_label": "Peso (kg)",
+            "standalone_value": "2 - sem bateria",
+            "kit_value": "2 - sem bateria",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nível de pressão sonora dB(A)",
+            "standalone_value": "82",
+            "kit_value": "82",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Nível de potência sonora dB(A)",
+            "standalone_value": "90",
+            "kit_value": "90",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Motor",
+            "standalone_value": "Bateria",
+            "kit_value": "Bateria",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Tensão da bateria (V)",
+            "standalone_value": "10,8",
+            "kit_value": "10,8",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Comprimento de corte (cm)",
+            "standalone_value": "45",
+            "kit_value": "45",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Espaçamento entre os dentes mm",
+            "standalone_value": "22",
+            "kit_value": "22",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Autonomia com bateria (min)",
+            "standalone_value": "AS 2 até 40",
+            "kit_value": "AS 2 até 40",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          },
+          {
+            "field_label": "Sistema de bateria",
+            "standalone_value": "AS",
+            "kit_value": "AS",
+            "classification": "IDENTICAL_MACHINE_SPEC"
+          }
+        ]
+      },
+      "reconciliation_verdict": "STANDALONE_PRECEDENCE_PROVEN_ZERO_CONFLICTS"
+    }
+  ],
+  "kit_only_models": [
+    {
+      "model": "HSA 40",
+      "bundle_status": "KIT_ONLY",
+      "classification": "KIT_ONLY_IDENTITY_SOURCE",
+      "primary_reference": "HA08-011-35SET",
+      "source_url": "https://loja.stihl.com.br/podador-a-bateria-hsa-40-kit/p",
+      "falsely_labelled_standalone": false,
+      "reason": "Model offered exclusively as kit in Brazilian market catalog"
+    },
+    {
+      "model": "FSA 30",
+      "bundle_status": "KIT_ONLY",
+      "classification": "KIT_ONLY_IDENTITY_SOURCE",
+      "primary_reference": "FA10-011-57SET",
+      "source_url": "https://loja.stihl.com.br/rocadeira-a-bateria-fsa-30-set/p",
+      "falsely_labelled_standalone": false,
+      "reason": "Model offered exclusively as kit in Brazilian market catalog"
+    }
+  ]
+}

@@ -878,37 +878,59 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ## Phase 45C — BR Tier 2 Wave 1 Technical Evidence Reconciliation
 
-**Status:** CANDIDATE COMPLETE ✅ — technical evidence reconciled from official STIHL Brazil sources, safe canonical fields and public facts activated, runtime-verified. Ready for Phase 45D production promotion.
+**Status:** NOT ACCEPTED FOR PRODUCTION ⚠️ — candidate required remediation; standalone source precedence not proven for BGA 30 / HSA 30, and raw-to-ledger candidate expansion was not explicitly accounted for in reporting. Superseded by Phase 45C-R1.
 
 ### Scope & Results
 
 - **Target models:** 15 Wave 1 identities
-- **Models count:** **98** (unchanged)
-- **CORE5 completeness:** **98/98** (unchanged)
-- **Source captures:** 15/15 HTTP 200 from official STIHL Brazil product pages, hashed and frozen
-- **Raw candidate entries:** **175**
-- **Safe canonical technical writes:** **56** (sound_pressure_db, sound_power_db, air_volume_m3h, air_velocity_ms, vibration_left/right_ms2, vibration_nylon/blade)
+- **Models count:** **98**
+- **CORE5 completeness:** **98/98**
+- **Findings leading to R1:**
+  - `phase45c_capture_sources.mjs` selected sources by array position rather than standalone precedence, causing BGA 30 and HSA 30 to anchor to kit URLs/references.
+  - Textual report cited 175 raw candidates, leaving the 187 semantic ledger rows mathematically unexplained.
+
+---
+
+## Phase 45C-R1 — Standalone Source Precedence & Evidence Accounting Remediation
+
+**Status:** PASS ✅ — standalone machine source precedence proven (3/3), kit-only sources preserved (2/2), 0 conflicts, candidate expansion audit complete (175 raw DOM rows + 12 compound rows = 187 semantic ledger rows), accounting fully reconciled, 28/28 targeted assertions pass. Ready for Phase 45D production promotion.
+
+### Scope & Remediated Results
+
+- **Target models:** 15 Wave 1 identities
+- **Models count:** **98** (83 pre-45B + 15 Wave 1)
+- **CORE5 completeness:** **98/98**
+- **Standalone source precedence:** **3/3** (BGA 30, HSA 30, FSA 50 anchored to exact standalone product pages and references)
+- **Kit-only classifications:** **2/2** (HSA 40 and FSA 30 correctly retained as `KIT_ONLY_IDENTITY_SOURCE`)
+- **Source selection algorithm:** Fully order-independent and deterministic across catalog variations
+- **Machine-spec comparison:** All 3 groups (BGA 30, HSA 30, FSA 50) verified 100% identical machine specs between standalone and kit pages (0 conflicts)
+- **Fact ID crosswalk:** 6 rebound facts (4 BGA 30, 2 HSA 30) explicitly crosswalked from kit to standalone provenance (`RETAIN_REBIND_TO_STANDALONE`)
+- **Raw candidate DOM rows:** **175**
+- **Compound source rows:** **12** (10 dual-handle left/right vibration + 2 FSA 135 nylon/blade dual-handle vibration)
+- **Semantic ledger rows:** **187** (163 single-component rows + 24 compound component candidates = 187)
+- **Ledger partition:**
+  - **SAFE:** **56** (32 `SAFE_SINGLE_VALUE`, 24 `SAFE_COMPOUND_COMPONENT`)
+  - **NON-SAFE:** **131** (31 `CONFIGURATION_DEPENDENT_BLOCKED`, 31 `FIELD_SEMANTIC_AMBIGUOUS_BLOCKED`, 23 `NOT_CANONICAL_FIELD`, 15 `BATTERY_CONFIGURATION_BLOCKED`, 11 `CHARGER_SPEC_BLOCKED`, 20 `EVIDENCE_ONLY_SCOPED`)
+  - **Sum:** 56 + 131 = 187 (PASS)
+- **Safe canonical writes:** **56**
 - **Safe public evidence facts added:** **56**
 - **Public facts total:** **721** (665 baseline + 56 = 721)
-- **Blocked candidates:** **131** (charger mains voltage 127/220V, battery runtime tables, charging times, ambiguous weight definitions, multi-attachment cutting tool ranges)
-- **Non-null overwrites:** **0** (all writes had null before values)
-- **Technical writes to pre-45B 83 models:** **0**
 - **Pre-existing 665 facts mutated:** **0**
 - **Pre-existing 38 unindexed baseline debt:** **38** (untouched)
-- **Model index & Field index:** 56/56 indexed
+- **Model index & Field index:** 56/56 indexed with zero stale IDs
 - **Runtime resolvable & canonical parity:** 56/56 PASS
 - **Production confidence:** UNKNOWN (all 98 models)
 - **Specs verified:** false (all 98 models)
 
 ---
 
-## Phase 45D — BR Tier 2 Wave 1 Production Promotion & Live Verification (PLANNED / NOT STARTED)
+## Phase 45D — BR Tier 2 Wave 1 Production Promotion & Live Verification
 
-**Status:** PLANNED / NOT STARTED
+**Status:** READY FOR RETRY ⏳ (blocked pending Phase 45C-R1 acceptance)
 
 ### Scope
 
-- Fast-forward promotion to main after Phase 45C candidate acceptance
+- Fast-forward promotion to main after Phase 45C-R1 candidate acceptance
 - Deploy to Render
 - Live validation of 98 models, routes, search, and technical evidence
 - Sitemaps and SEO verification
