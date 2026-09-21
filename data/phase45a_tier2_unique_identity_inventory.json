@@ -1,0 +1,1851 @@
+{
+  "phase": "45A",
+  "unique_identity_count": 63,
+  "identities": [
+    {
+      "canonical_model": "FSA 45",
+      "proposed_slug": "fsa-45",
+      "references": [
+        "4512-011-5707"
+      ],
+      "product_records": [
+        {
+          "id": "79",
+          "name": "Roçadeira a bateria FSA 45",
+          "ref": "4512-011-5707",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "brushcutter",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bosmaaiers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "BGA 30",
+      "proposed_slug": "bga-30",
+      "references": [
+        "BA08-011-59SET",
+        "BA08-011-5900"
+      ],
+      "product_records": [
+        {
+          "id": "150",
+          "name": "Soprador a bateria BGA 30 com Carregador + 2 baterias",
+          "ref": "BA08-011-59SET",
+          "kit": true
+        },
+        {
+          "id": "149",
+          "name": "Soprador a bateria BGA 30",
+          "ref": "BA08-011-5900",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "BA08-011-5900",
+      "kit_refs": [
+        "BA08-011-59SET"
+      ],
+      "semantic_type": "blower",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bladblazers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "BGE 71",
+      "proposed_slug": "bge-71",
+      "references": [
+        "4811-011-BGE71"
+      ],
+      "product_records": [
+        {
+          "id": "42",
+          "name": "Soprador elétrico BGE 71",
+          "ref": "4811-011-BGE71",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "blower",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bladblazers",
+      "priority": "45B_WAVE2_READY",
+      "priority_reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "canonical_model": "RE 90.0",
+      "proposed_slug": "re-900",
+      "references": [
+        "RE02-011-RE90"
+      ],
+      "product_records": [
+        {
+          "id": "13",
+          "name": "Lavadora de Alta Pressão RE 90.0",
+          "ref": "RE02-011-RE90",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "FSA 50",
+      "proposed_slug": "fsa-50",
+      "references": [
+        "FA11-011-5700",
+        "FA11-011-57SET"
+      ],
+      "product_records": [
+        {
+          "id": "242",
+          "name": "Roçadeira a bateria FSA 50",
+          "ref": "FA11-011-5700",
+          "kit": false
+        },
+        {
+          "id": "243",
+          "name": "Roçadeira a bateria FSA 50 com carregador + bateria",
+          "ref": "FA11-011-57SET",
+          "kit": true
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "FA11-011-5700",
+      "kit_refs": [
+        "FA11-011-57SET"
+      ],
+      "semantic_type": "brushcutter",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bosmaaiers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HLA 40",
+      "proposed_slug": "hla-40",
+      "references": [
+        "HA10-011-2900"
+      ],
+      "product_records": [
+        {
+          "id": "239",
+          "name": "Podador de Altura a bateria HLA 40",
+          "ref": "HA10-011-2900",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HTA 30",
+      "proposed_slug": "hta-30",
+      "references": [
+        "LA05-011-6413",
+        "LA05-011-6403"
+      ],
+      "product_records": [
+        {
+          "id": "236",
+          "name": "Motopoda a bateria HTA 30 com bateria e carregador",
+          "ref": "LA05-011-6413",
+          "kit": true
+        },
+        {
+          "id": "235",
+          "name": "Motopoda a bateria HTA 30",
+          "ref": "LA05-011-6403",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "LA05-011-6403",
+      "kit_refs": [
+        "LA05-011-6413"
+      ],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "RMA 348",
+      "proposed_slug": "rma-348",
+      "references": [
+        "WA31-011-1410"
+      ],
+      "product_records": [
+        {
+          "id": "234",
+          "name": "Cortador de grama a bateria RMA 348",
+          "ref": "WA31-011-1410",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "HSA 40",
+      "proposed_slug": "hsa-40",
+      "references": [
+        "HA08-011-35SET"
+      ],
+      "product_records": [
+        {
+          "id": "200",
+          "name": "Podador a bateria HSA 40 com carregador + 2 baterias",
+          "ref": "HA08-011-35SET",
+          "kit": true
+        }
+      ],
+      "bundle_status": "KIT_ONLY",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "RM 253 T",
+      "proposed_slug": "rm-253-t",
+      "references": [
+        "WB22-200-0000"
+      ],
+      "product_records": [
+        {
+          "id": "193",
+          "name": "Cortador de Grama a Combustão RM 253 T",
+          "ref": "WB22-200-0000",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "T",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "RM 253",
+      "proposed_slug": "rm-253",
+      "references": [
+        "WB22-200-0001"
+      ],
+      "product_records": [
+        {
+          "id": "192",
+          "name": "Cortador de Grama a Combustão RM 253",
+          "ref": "WB22-200-0001",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "RM 248",
+      "proposed_slug": "rm-248",
+      "references": [
+        "WB21-200-0000"
+      ],
+      "product_records": [
+        {
+          "id": "191",
+          "name": "Cortador de Grama a Combustão RM 248",
+          "ref": "WB21-200-0000",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "RM 2 R",
+      "proposed_slug": "rm-2-r",
+      "references": [
+        "6357-011-3417"
+      ],
+      "product_records": [
+        {
+          "id": "190",
+          "name": "Cortador de Grama a Combustão RM 2 R",
+          "ref": "6357-011-3417",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "R",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "GTA 40",
+      "proposed_slug": "gta-40",
+      "references": [
+        "GA04-011-69SET",
+        "GA04-011-6903"
+      ],
+      "product_records": [
+        {
+          "id": "187",
+          "name": "Cortador de galhos a bateria GTA 40 com carregador + 2 baterias",
+          "ref": "GA04-011-69SET",
+          "kit": true
+        },
+        {
+          "id": "186",
+          "name": "Cortador de galhos a bateria GTA 40",
+          "ref": "GA04-011-6903",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "GA04-011-6903",
+      "kit_refs": [
+        "GA04-011-69SET"
+      ],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "RMA 353 V",
+      "proposed_slug": "rma-353-v",
+      "references": [
+        "WA32-011-1430"
+      ],
+      "product_records": [
+        {
+          "id": "185",
+          "name": "Cortador de Grama a Bateria RMA 353 V",
+          "ref": "WA32-011-1430",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "V",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "RMA 353",
+      "proposed_slug": "rma-353",
+      "references": [
+        "WA32-011-1410"
+      ],
+      "product_records": [
+        {
+          "id": "184",
+          "name": "Cortador de Grama a Bateria RMA 353",
+          "ref": "WA32-011-1410",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "RE 110 Plus",
+      "proposed_slug": "re-110-plus",
+      "references": [
+        "4950-011-453RE"
+      ],
+      "product_records": [
+        {
+          "id": "178",
+          "name": "Lavadora de Alta Pressão RE 110 Plus",
+          "ref": "4950-011-453RE",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "Plus",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "RCA 20",
+      "proposed_slug": "rca-20",
+      "references": [
+        "RA0201176SET",
+        "RA05-011-7605"
+      ],
+      "product_records": [
+        {
+          "id": "173",
+          "name": "Lavadora de Pressão a Bateria RCA 20 com carregador + 2 baterias",
+          "ref": "RA0201176SET",
+          "kit": true
+        },
+        {
+          "id": "174",
+          "name": "Lavadora de Pressão a bateria RCA 20",
+          "ref": "RA05-011-7605",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "RA05-011-7605",
+      "kit_refs": [
+        "RA0201176SET"
+      ],
+      "semantic_type": "pressure_washer",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "ASA 20",
+      "proposed_slug": "asa-20",
+      "references": [
+        "VA05-011-6200"
+      ],
+      "product_records": [
+        {
+          "id": "153",
+          "name": "Tesoura de poda a bateria ASA 20",
+          "ref": "VA05-011-6200",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pruning_shears",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_shears\" needs architecture"
+    },
+    {
+      "canonical_model": "REA 100 Plus",
+      "proposed_slug": "rea-100-plus",
+      "references": [
+        "RA01-011-7615"
+      ],
+      "product_records": [
+        {
+          "id": "152",
+          "name": "Lavadora de Alta Pressão a Bateria REA 100 Plus",
+          "ref": "RA01-011-7615",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "Plus",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "SHA 56",
+      "proposed_slug": "sha-56",
+      "references": [
+        "SA02-011-7100"
+      ],
+      "product_records": [
+        {
+          "id": "142",
+          "name": "Aspirador e Triturador a bateria SHA 56",
+          "ref": "SA02-011-7100",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "vacuum_shredder",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bladblazers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HSA 30",
+      "proposed_slug": "hsa-30",
+      "references": [
+        "HA08-011-3512",
+        "HA08-011-3504"
+      ],
+      "product_records": [
+        {
+          "id": "139",
+          "name": "Podador a Bateria HSA 30  com Carregador + Bateria",
+          "ref": "HA08-011-3512",
+          "kit": true
+        },
+        {
+          "id": "6",
+          "name": "Podador a Bateria HSA 30",
+          "ref": "HA08-011-3504",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "HA08-011-3504",
+      "kit_refs": [
+        "HA08-011-3512"
+      ],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HSA 100",
+      "proposed_slug": "hsa-100",
+      "references": [
+        "HA07-011-3500"
+      ],
+      "product_records": [
+        {
+          "id": "137",
+          "name": "Podador a Bateria HSA 100",
+          "ref": "HA07-011-3500",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "FSA 30",
+      "proposed_slug": "fsa-30",
+      "references": [
+        "FA10-011-57SET"
+      ],
+      "product_records": [
+        {
+          "id": "124",
+          "name": "Roçadeira a bateria FSA 30 com Carregador + Bateria",
+          "ref": "FA10-011-57SET",
+          "kit": true
+        }
+      ],
+      "bundle_status": "KIT_ONLY",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "brushcutter",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bosmaaiers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "SEA 20",
+      "proposed_slug": "sea-20",
+      "references": [
+        "SA03-011-73SET",
+        "SA03-011-7304"
+      ],
+      "product_records": [
+        {
+          "id": "123",
+          "name": "Aspirador de Pó a Bateria SEA 20 com Carregador + Bateria",
+          "ref": "SA03-011-73SET",
+          "kit": true
+        },
+        {
+          "id": "122",
+          "name": "Aspirador de pó a bateria SEA 20",
+          "ref": "SA03-011-7304",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "SA03-011-7304",
+      "kit_refs": [
+        "SA03-011-73SET"
+      ],
+      "semantic_type": "vacuum",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"vacuum\" needs architecture"
+    },
+    {
+      "canonical_model": "MSA 60 C-B",
+      "proposed_slug": "msa-60-c-b",
+      "references": [
+        "MA04-011-5803"
+      ],
+      "product_records": [
+        {
+          "id": "104",
+          "name": "Motosserra a bateria MSA 60 C-B",
+          "ref": "MA04-011-5803",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-B",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HTA 50",
+      "proposed_slug": "hta-50",
+      "references": [
+        "LA02-011-6403"
+      ],
+      "product_records": [
+        {
+          "id": "103",
+          "name": "Motopoda a bateria HTA 50",
+          "ref": "LA02-011-6403",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "RMA 235",
+      "proposed_slug": "rma-235",
+      "references": [
+        "6311-011-1417"
+      ],
+      "product_records": [
+        {
+          "id": "100",
+          "name": "Cortador de grama a bateria RMA 235",
+          "ref": "6311-011-1417",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "lawnmower",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "canonical_model": "HTA 86",
+      "proposed_slug": "hta-86",
+      "references": [
+        "LA03-011-6434"
+      ],
+      "product_records": [
+        {
+          "id": "98",
+          "name": "Motopoda a bateria HTA 86",
+          "ref": "LA03-011-6434",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "MSA 160 C-B",
+      "proposed_slug": "msa-160-c-b",
+      "references": [
+        "MA03-200-0001"
+      ],
+      "product_records": [
+        {
+          "id": "94",
+          "name": "Motosserra a bateria MSA 160 C-B",
+          "ref": "MA03-200-0001",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-B",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "FSA 135",
+      "proposed_slug": "fsa-135",
+      "references": [
+        "FA01-011-5700"
+      ],
+      "product_records": [
+        {
+          "id": "90",
+          "name": "Roçadeira a bateria FSA 135",
+          "ref": "FA01-011-5700",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "brushcutter",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bosmaaiers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "SR 420",
+      "proposed_slug": "sr-420",
+      "references": [
+        "4203-200-0011"
+      ],
+      "product_records": [
+        {
+          "id": "89",
+          "name": "Pulverizador a combustão SR 420",
+          "ref": "4203-200-0011",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "MSA 220 C-B",
+      "proposed_slug": "msa-220-c-b",
+      "references": [
+        "MA03-011-5815"
+      ],
+      "product_records": [
+        {
+          "id": "76",
+          "name": "Motosserra a bateria MSA 220 C-B",
+          "ref": "MA03-011-5815",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-B",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 200 C-B",
+      "proposed_slug": "msa-200-c-b",
+      "references": [
+        "MA03-200-0024"
+      ],
+      "product_records": [
+        {
+          "id": "75",
+          "name": "Motosserra a bateria MSA 200 C-B",
+          "ref": "MA03-200-0024",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-B",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 70 C-B",
+      "proposed_slug": "msa-70-c-b",
+      "references": [
+        "MA04-011-5819"
+      ],
+      "product_records": [
+        {
+          "id": "74",
+          "name": "Motosserra a bateria MSA 70 C-B",
+          "ref": "MA04-011-5819",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-B",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HT 75",
+      "proposed_slug": "ht-75",
+      "references": [
+        "4138-011-0626"
+      ],
+      "product_records": [
+        {
+          "id": "66",
+          "name": "Motopoda a combustão HT 75",
+          "ref": "4138-011-0626",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "MSE 170 C-BQ",
+      "proposed_slug": "mse-170-c-bq",
+      "references": [
+        "1209-011-M170"
+      ],
+      "product_records": [
+        {
+          "id": "62",
+          "name": "Motosserra elétrica MSE 170 C-BQ",
+          "ref": "1209-011-M170",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-BQ",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSE 141 C-Q",
+      "proposed_slug": "mse-141-c-q",
+      "references": [
+        "1208-200-0308/09"
+      ],
+      "product_records": [
+        {
+          "id": "61",
+          "name": "Motosserra elétrica MSE 141 C-Q",
+          "ref": "1208-200-0308/09",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "C-Q",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HTA 135",
+      "proposed_slug": "hta-135",
+      "references": [
+        "LA01-200-0004"
+      ],
+      "product_records": [
+        {
+          "id": "55",
+          "name": "Motopoda a bateria HTA 135",
+          "ref": "LA01-200-0004",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "FSE 41",
+      "proposed_slug": "fse-41",
+      "references": [
+        "4815-011-FSE41"
+      ],
+      "product_records": [
+        {
+          "id": "50",
+          "name": "Roçadeira elétrica FSE 41",
+          "ref": "4815-011-FSE41",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "brushcutter",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bosmaaiers",
+      "priority": "45B_WAVE2_READY",
+      "priority_reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "canonical_model": "SG 71",
+      "proposed_slug": "sg-71",
+      "references": [
+        "4255-019-4973"
+      ],
+      "product_records": [
+        {
+          "id": "34",
+          "name": "Pulverizador manual SG 71",
+          "ref": "4255-019-4973",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "SG 20",
+      "proposed_slug": "sg-20",
+      "references": [
+        "4247-019-4900"
+      ],
+      "product_records": [
+        {
+          "id": "33",
+          "name": "Pulverizador manual SG 20",
+          "ref": "4247-019-4900",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "SG 31",
+      "proposed_slug": "sg-31",
+      "references": [
+        "4255-019-4932"
+      ],
+      "product_records": [
+        {
+          "id": "32",
+          "name": "Pulverizador manual SG 31",
+          "ref": "4255-019-4932",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "SG 11",
+      "proposed_slug": "sg-11",
+      "references": [
+        "4255-019-4914"
+      ],
+      "product_records": [
+        {
+          "id": "31",
+          "name": "Pulverizador manual SG 11",
+          "ref": "4255-019-4914",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "HSA 26",
+      "proposed_slug": "hsa-26",
+      "references": [
+        "HA03-011-26SET",
+        "HA03-011-3503"
+      ],
+      "product_records": [
+        {
+          "id": "28",
+          "name": "Podador de arbustos a bateria HSA 26 com Carregador + Bateria",
+          "ref": "HA03-011-26SET",
+          "kit": true
+        },
+        {
+          "id": "27",
+          "name": "Podador de arbustos a bateria HSA 26",
+          "ref": "HA03-011-3503",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "HA03-011-3503",
+      "kit_refs": [
+        "HA03-011-26SET"
+      ],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "GTA 26",
+      "proposed_slug": "gta-26",
+      "references": [
+        "GA01-011-26SET",
+        "GA01-011-6903"
+      ],
+      "product_records": [
+        {
+          "id": "25",
+          "name": "Cortador de galhos a Bateria GTA 26 com Carregador + Bateria",
+          "ref": "GA01-011-26SET",
+          "kit": true
+        },
+        {
+          "id": "24",
+          "name": "Cortador de galhos a bateria GTA 26",
+          "ref": "GA01-011-6903",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "standalone_ref": "GA01-011-6903",
+      "kit_refs": [
+        "GA01-011-26SET"
+      ],
+      "semantic_type": "pruning_saw",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "canonical_model": "HLA 66",
+      "proposed_slug": "hla-66",
+      "references": [
+        "4859-011-2914"
+      ],
+      "product_records": [
+        {
+          "id": "23",
+          "name": "Podador de altura a bateria HLA 66",
+          "ref": "4859-011-2914",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HSE 52",
+      "proposed_slug": "hse-52",
+      "references": [
+        "4818-011-HSE52"
+      ],
+      "product_records": [
+        {
+          "id": "21",
+          "name": "Podador elétrico HSE 52",
+          "ref": "4818-011-HSE52",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE2_READY",
+      "priority_reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "canonical_model": "HS 82 R",
+      "proposed_slug": "hs-82-r",
+      "references": [
+        "4237-200-0018"
+      ],
+      "product_records": [
+        {
+          "id": "17",
+          "name": "Podador a combustão HS 82 R",
+          "ref": "4237-200-0018",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "R",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "RE 90 Plus",
+      "proposed_slug": "re-90-plus",
+      "references": [
+        "RE02-011-RE90P"
+      ],
+      "product_records": [
+        {
+          "id": "14",
+          "name": "Lavadora de Alta Pressão RE 90 PLUS",
+          "ref": "RE02-011-RE90P",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "Plus",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "RE 145",
+      "proposed_slug": "re-145",
+      "references": [
+        "4950-011-RE145"
+      ],
+      "product_records": [
+        {
+          "id": "12",
+          "name": "Lavadora de alta pressão RE 145",
+          "ref": "4950-011-RE145",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "RE 80.0",
+      "proposed_slug": "re-800",
+      "references": [
+        "RE02-011-RE080"
+      ],
+      "product_records": [
+        {
+          "id": "10",
+          "name": "Lavadora de alta pressão RE 80.0",
+          "ref": "RE02-011-RE080",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "RE 80 X",
+      "proposed_slug": "re-80-x",
+      "references": [
+        "RE02-011-RE80X"
+      ],
+      "product_records": [
+        {
+          "id": "9",
+          "name": "Lavadora de alta pressão RE 80 X",
+          "ref": "RE02-011-RE80X",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "X",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "RE 100",
+      "proposed_slug": "re-100",
+      "references": [
+        "4950-011-45RE"
+      ],
+      "product_records": [
+        {
+          "id": "8",
+          "name": "Lavadora de Alta Pressão RE 100",
+          "ref": "4950-011-45RE",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "MSA 190 T",
+      "proposed_slug": "msa-190-t",
+      "references": [
+        "MA05-200-0008"
+      ],
+      "product_records": [
+        {
+          "id": "238",
+          "name": "Motosserra a bateria MSA 190 T",
+          "ref": "MA05-200-0008",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "chainsaw",
+      "suffix": "T",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "kettingzagen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "SGA 30",
+      "proposed_slug": "sga-30",
+      "references": [
+        "SA09-011-7000"
+      ],
+      "product_records": [
+        {
+          "id": "233",
+          "name": "Pulverizador a bateria SGA 30",
+          "ref": "SA09-011-7000",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "SGA 2000",
+      "proposed_slug": "sga-2000",
+      "references": [
+        "SA12-011-7000"
+      ],
+      "product_records": [
+        {
+          "id": "232",
+          "name": "Pulverizador a bateria SGA 2000",
+          "ref": "SA12-011-7000",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "sprayer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "canonical_model": "TSA 230",
+      "proposed_slug": "tsa-230",
+      "references": [
+        "4864-011-6620"
+      ],
+      "product_records": [
+        {
+          "id": "181",
+          "name": "Cortador a disco a bateria  TSA 230",
+          "ref": "4864-011-6620",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "cut_off_machine",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "doorslijpers",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "SEA 100 L",
+      "proposed_slug": "sea-100-l",
+      "references": [
+        "SA04-011-7315"
+      ],
+      "product_records": [
+        {
+          "id": "180",
+          "name": "Aspirador de pó e liquídos a bateria SEA 100 L",
+          "ref": "SA04-011-7315",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "vacuum",
+      "suffix": "L",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"vacuum\" needs architecture"
+    },
+    {
+      "canonical_model": "SEA 60 L",
+      "proposed_slug": "sea-60-l",
+      "references": [
+        "SA04-011-7305"
+      ],
+      "product_records": [
+        {
+          "id": "179",
+          "name": "Aspirador de pó e liquídos a bateria SEA 60 L",
+          "ref": "SA04-011-7305",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "vacuum",
+      "suffix": "L",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"vacuum\" needs architecture"
+    },
+    {
+      "canonical_model": "REA 60 Plus",
+      "proposed_slug": "rea-60-plus",
+      "references": [
+        "RA01-011-7605"
+      ],
+      "product_records": [
+        {
+          "id": "151",
+          "name": "Lavadora de Alta Pressão a Bateria REA 60 Plus",
+          "ref": "RA01-011-7605",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "pressure_washer",
+      "suffix": "Plus",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "route_category": null,
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "priority_reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "canonical_model": "FSE 60",
+      "proposed_slug": "fse-60",
+      "references": [
+        "4809-011-FSE60"
+      ],
+      "product_records": [
+        {
+          "id": "48",
+          "name": "Roçadeira elétrica FSE 60",
+          "ref": "4809-011-FSE60",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "brushcutter",
+      "suffix": "",
+      "identity_confidence": "MEDIUM",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "bosmaaiers",
+      "priority": "45B_WAVE2_READY",
+      "priority_reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "canonical_model": "HLA 56",
+      "proposed_slug": "hla-56",
+      "references": [
+        "HA01-011-2903"
+      ],
+      "product_records": [
+        {
+          "id": "26",
+          "name": "Podador de altura a bateria HLA 56",
+          "ref": "HA01-011-2903",
+          "kit": false
+        }
+      ],
+      "bundle_status": "STANDALONE",
+      "standalone_ref": null,
+      "kit_refs": [],
+      "semantic_type": "hedge_trimmer",
+      "suffix": "",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "collision_with": null,
+      "variant_family": [],
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "route_category": "heggenscharen",
+      "priority": "45B_WAVE1_READY",
+      "priority_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    }
+  ]
+}

@@ -1,0 +1,641 @@
+{
+  "phase": "45A",
+  "total_identities": 63,
+  "distribution": {
+    "45B_WAVE1_READY": 23,
+    "45B_WAVE2_READY": 4,
+    "CATEGORY_ARCHITECTURE_REQUIRED": 36
+  },
+  "identities": [
+    {
+      "model": "FSA 45",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "BGA 30",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "BGE 71",
+      "priority": "45B_WAVE2_READY",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "model": "RE 90.0",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "FSA 50",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HLA 40",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HTA 30",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "RMA 348",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "HSA 40",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "RM 253 T",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "RM 253",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "RM 248",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "RM 2 R",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "GTA 40",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "RMA 353 V",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "RMA 353",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "RE 110 Plus",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "RCA 20",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "ASA 20",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_shears\" needs architecture"
+    },
+    {
+      "model": "REA 100 Plus",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "SHA 56",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HSA 30",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HSA 100",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "FSA 30",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "SEA 20",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"vacuum\" needs architecture"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HTA 50",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "RMA 235",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"lawnmower\" needs architecture"
+    },
+    {
+      "model": "HTA 86",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "FSA 135",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "SR 420",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HT 75",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "MSE 170 C-BQ",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "MSE 141 C-Q",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HTA 135",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "FSE 41",
+      "priority": "45B_WAVE2_READY",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "model": "SG 71",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "SG 20",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "SG 31",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "SG 11",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "HSA 26",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "GTA 26",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pruning_saw\" needs architecture"
+    },
+    {
+      "model": "HLA 66",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "HSE 52",
+      "priority": "45B_WAVE2_READY",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "model": "HS 82 R",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "RE 90 Plus",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "RE 145",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "RE 80.0",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "RE 80 X",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "RE 100",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "MSA 190 T",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "SGA 30",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "SGA 2000",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"sprayer\" needs architecture"
+    },
+    {
+      "model": "TSA 230",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "model": "SEA 100 L",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"vacuum\" needs architecture"
+    },
+    {
+      "model": "SEA 60 L",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "HIGH",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"vacuum\" needs architecture"
+    },
+    {
+      "model": "REA 60 Plus",
+      "priority": "CATEGORY_ARCHITECTURE_REQUIRED",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "NEW_CATEGORY_ARCHITECTURE_REQUIRED",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "New category \"pressure_washer\" needs architecture"
+    },
+    {
+      "model": "FSE 60",
+      "priority": "45B_WAVE2_READY",
+      "identity_confidence": "MEDIUM",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "Route-ready and collision-free, lower confidence"
+    },
+    {
+      "model": "HLA 56",
+      "priority": "45B_WAVE1_READY",
+      "identity_confidence": "HIGH",
+      "route_readiness": "ROUTE_READY_EXISTING_CATEGORY",
+      "core5_readiness": "5/5",
+      "collision_safety": "NONE",
+      "source_quality": "PHASE44A_CATALOG",
+      "reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "phase": "45A",
+  "bundle_groups_count": 9,
+  "total_bundle_duplicates": 9,
+  "groups": {
+    "BGA 30": {
+      "model": "BGA 30",
+      "records": [
+        {
+          "id": "150",
+          "name": "Soprador a bateria BGA 30 com Carregador + 2 baterias",
+          "ref": "BA08-011-59SET",
+          "kit": true
+        },
+        {
+          "id": "149",
+          "name": "Soprador a bateria BGA 30",
+          "ref": "BA08-011-5900",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "BA08-011-5900",
+      "kit_refs": [
+        "BA08-011-59SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "FSA 50": {
+      "model": "FSA 50",
+      "records": [
+        {
+          "id": "242",
+          "name": "Roçadeira a bateria FSA 50",
+          "ref": "FA11-011-5700",
+          "kit": false
+        },
+        {
+          "id": "243",
+          "name": "Roçadeira a bateria FSA 50 com carregador + bateria",
+          "ref": "FA11-011-57SET",
+          "kit": true
+        }
+      ],
+      "standalone_ref": "FA11-011-5700",
+      "kit_refs": [
+        "FA11-011-57SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "HTA 30": {
+      "model": "HTA 30",
+      "records": [
+        {
+          "id": "236",
+          "name": "Motopoda a bateria HTA 30 com bateria e carregador",
+          "ref": "LA05-011-6413",
+          "kit": true
+        },
+        {
+          "id": "235",
+          "name": "Motopoda a bateria HTA 30",
+          "ref": "LA05-011-6403",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "LA05-011-6403",
+      "kit_refs": [
+        "LA05-011-6413"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "GTA 40": {
+      "model": "GTA 40",
+      "records": [
+        {
+          "id": "187",
+          "name": "Cortador de galhos a bateria GTA 40 com carregador + 2 baterias",
+          "ref": "GA04-011-69SET",
+          "kit": true
+        },
+        {
+          "id": "186",
+          "name": "Cortador de galhos a bateria GTA 40",
+          "ref": "GA04-011-6903",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "GA04-011-6903",
+      "kit_refs": [
+        "GA04-011-69SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "RCA 20": {
+      "model": "RCA 20",
+      "records": [
+        {
+          "id": "173",
+          "name": "Lavadora de Pressão a Bateria RCA 20 com carregador + 2 baterias",
+          "ref": "RA0201176SET",
+          "kit": true
+        },
+        {
+          "id": "174",
+          "name": "Lavadora de Pressão a bateria RCA 20",
+          "ref": "RA05-011-7605",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "RA05-011-7605",
+      "kit_refs": [
+        "RA0201176SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "HSA 30": {
+      "model": "HSA 30",
+      "records": [
+        {
+          "id": "139",
+          "name": "Podador a Bateria HSA 30  com Carregador + Bateria",
+          "ref": "HA08-011-3512",
+          "kit": true
+        },
+        {
+          "id": "6",
+          "name": "Podador a Bateria HSA 30",
+          "ref": "HA08-011-3504",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "HA08-011-3504",
+      "kit_refs": [
+        "HA08-011-3512"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "SEA 20": {
+      "model": "SEA 20",
+      "records": [
+        {
+          "id": "123",
+          "name": "Aspirador de Pó a Bateria SEA 20 com Carregador + Bateria",
+          "ref": "SA03-011-73SET",
+          "kit": true
+        },
+        {
+          "id": "122",
+          "name": "Aspirador de pó a bateria SEA 20",
+          "ref": "SA03-011-7304",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "SA03-011-7304",
+      "kit_refs": [
+        "SA03-011-73SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "HSA 26": {
+      "model": "HSA 26",
+      "records": [
+        {
+          "id": "28",
+          "name": "Podador de arbustos a bateria HSA 26 com Carregador + Bateria",
+          "ref": "HA03-011-26SET",
+          "kit": true
+        },
+        {
+          "id": "27",
+          "name": "Podador de arbustos a bateria HSA 26",
+          "ref": "HA03-011-3503",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "HA03-011-3503",
+      "kit_refs": [
+        "HA03-011-26SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    },
+    "GTA 26": {
+      "model": "GTA 26",
+      "records": [
+        {
+          "id": "25",
+          "name": "Cortador de galhos a Bateria GTA 26 com Carregador + Bateria",
+          "ref": "GA01-011-26SET",
+          "kit": true
+        },
+        {
+          "id": "24",
+          "name": "Cortador de galhos a bateria GTA 26",
+          "ref": "GA01-011-6903",
+          "kit": false
+        }
+      ],
+      "standalone_ref": "GA01-011-6903",
+      "kit_refs": [
+        "GA01-011-26SET"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "canonical_identity_count": 1,
+      "disposition": "BUNDLE_DUPLICATE",
+      "reason": "Base tool + kit bundle = 1 identity"
+    }
+  }
+}

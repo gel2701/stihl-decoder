@@ -778,28 +778,93 @@ See `data/phase44d_tier1_production_report.json`.
 
 ---
 
-## Phase 45A — BR Tier 2 Identity Review & Batch Prioritization (PLANNED / NOT STARTED)
+## Phase 45A — BR Tier 2 Identity Review & Batch Prioritization
 
-**Status:** PLANNED / NOT STARTED
+**Status:** COMPLETE ✅ — audit complete, identities reconciled, Phase 45B Wave 1 defined.
 
 ### Goal
 
-Review the remaining 72 Tier 2 BR machine candidates for identity activation eligibility and batch prioritization.
+Review the 72 Tier 2 BR machine candidates from Phase 44A intake for identity activation eligibility, bundle deduplication, category architecture readiness, and batch prioritization.
 
-### Deferred scope from Phase 44
+### Key Audit Findings
 
-- Tier 2 machine candidates: **72**
+- **Total input records:** 72 product records from `phase44a_br_new_candidates_prioritized.json` (TIER_2_MEDIUM)
+- **Accounted records:** 72/72 (100%)
+- **Unique machine identities:** **63**
+- **Bundle duplicates:** **9** (all kit/battery/charger bundles matching standalone tool or duplicate kit SKUs)
+- **Existing canonical exact collisions:** **0** (checked against all 83 current production models)
+- **Slug / alias collisions:** **0**
+- **modelInfo-null records reviewed:** **18/18** parsed and reviewed
+- **Category architecture readiness:**
+  - Route-ready existing categories: **27** identities (chainsaws, brushcutters, blowers, hedge trimmers)
+  - New category architecture required: **36** identities (pressure washers, lawnmowers, sprayers, vacuums, pruning saws/shears, cut-off machines)
+- **CORE5 staging:** 63/63 identities staged with complete 5/5 attributes
+- **Priority classification:**
+  - `45B_WAVE1_READY`: **23** identities
+  - `45B_WAVE2_READY`: **4** identities
+  - `CATEGORY_ARCHITECTURE_REQUIRED`: **36** identities
+
+### Accounting Equation
+
+```text
+72 product records = 63 unique machine identities + 9 bundle duplicate records
+```
+
+### Phase 45B Wave 1 Selection
+
+Wave 1 selects **15** high-confidence, route-ready, collision-free identities fitting existing website category architecture (`kettingzagen`, `bosmaaiers`, `bladblazers`, `heggenscharen`):
+
+1. **FSA 45** (brushcutter / `bosmaaiers`)
+2. **BGA 30** (blower / `bladblazers`)
+3. **FSA 50** (brushcutter / `bosmaaiers`)
+4. **HLA 40** (hedge trimmer / `heggenscharen`)
+5. **HSA 40** (hedge trimmer / `heggenscharen`)
+6. **SHA 56** (vacuum shredder / `bladblazers`)
+7. **HSA 30** (hedge trimmer / `heggenscharen`)
+8. **HSA 100** (hedge trimmer / `heggenscharen`)
+9. **FSA 30** (brushcutter / `bosmaaiers`)
+10. **MSA 60 C-B** (chainsaw / `kettingzagen`)
+11. **MSA 160 C-B** (chainsaw / `kettingzagen`)
+12. **FSA 135** (brushcutter / `bosmaaiers`)
+13. **MSA 220 C-B** (chainsaw / `kettingzagen`)
+14. **MSA 200 C-B** (chainsaw / `kettingzagen`)
+15. **MSA 70 C-B** (chainsaw / `kettingzagen`)
+
+### Deferred Scope from Phase 45A
+
+- Wave 2 route-ready candidates: **12** identities (including 8 remaining 45B_WAVE1_READY candidates and 4 45B_WAVE2_READY)
+- New category architecture candidates: **36** identities
 - Tier 3 machine candidates: **12**
 - Accessories: **71**
 - Unknown/ambiguous records: **12**
+- Historical test baseline modernization: deferred
+- Baseline 38 unindexed facts: deferred
+- STIHL Paspoort 2.0: PLANNED / NOT YET ACTIVE
 
-### Not in scope
+---
 
-- Tier 2 activation (Phase 45B)
-- Tier 3 / accessories / unknown activation
-- STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
-- Historical test baseline modernization
-- Baseline-unindexed 38 facts repair
+## Phase 45B — BR Tier 2 Wave 1 Canonical Identity & CORE5 Activation (PLANNED / NOT STARTED)
+
+**Status:** PLANNED / NOT STARTED
+
+### Scope
+
+Activate the 15 selected Wave 1 canonical machine identities with CORE5 classification in `data/stihl_database.json`.
+
+- Models: 83 → 98 (+15)
+- CORE5: 98/98 (5/5 completeness)
+- Public facts: 665 (frozen — no technical facts in Phase 45B)
+- Canonical technical fields: frozen
+- Production confidence: UNKNOWN
+- Specs verified: false
+
+### Not in scope for Phase 45B
+
+- Technical evidence reconciliation (deferred to Phase 45C)
+- Production promotion (deferred to Phase 45D)
+- New category routes (pressure washers, lawnmowers, etc.)
+- Tier 2 Wave 2+ identities
+- Tier 3 / accessories / unknown
 
 ---
 

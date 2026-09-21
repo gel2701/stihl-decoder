@@ -1,0 +1,343 @@
+{
+  "phase": "45A",
+  "wave1_count": 15,
+  "target_range": "8-15",
+  "identities": [
+    {
+      "canonical_model": "FSA 45",
+      "source_record_ids": [
+        "79"
+      ],
+      "references": [
+        "4512-011-5707"
+      ],
+      "proposed_slug": "fsa-45",
+      "core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "route_category": "bosmaaiers",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "BGA 30",
+      "source_record_ids": [
+        "150",
+        "149"
+      ],
+      "references": [
+        "BA08-011-59SET",
+        "BA08-011-5900"
+      ],
+      "proposed_slug": "bga-30",
+      "core5": {
+        "product_category": "blower",
+        "product_type": "blower",
+        "machine_form": "handheld_blower",
+        "power_source": "battery",
+        "primary_function": "debris_blowing"
+      },
+      "route_category": "bladblazers",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "FSA 50",
+      "source_record_ids": [
+        "242",
+        "243"
+      ],
+      "references": [
+        "FA11-011-5700",
+        "FA11-011-57SET"
+      ],
+      "proposed_slug": "fsa-50",
+      "core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "route_category": "bosmaaiers",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HLA 40",
+      "source_record_ids": [
+        "239"
+      ],
+      "references": [
+        "HA10-011-2900"
+      ],
+      "proposed_slug": "hla-40",
+      "core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "pole_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "route_category": "heggenscharen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HSA 40",
+      "source_record_ids": [
+        "200"
+      ],
+      "references": [
+        "HA08-011-35SET"
+      ],
+      "proposed_slug": "hsa-40",
+      "core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "handheld_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "route_category": "heggenscharen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "KIT_ONLY",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "SHA 56",
+      "source_record_ids": [
+        "142"
+      ],
+      "references": [
+        "SA02-011-7100"
+      ],
+      "proposed_slug": "sha-56",
+      "core5": {
+        "product_category": "vacuum_shredder",
+        "product_type": "vacuum_shredder",
+        "machine_form": "handheld_vacuum_shredder",
+        "power_source": "battery",
+        "primary_function": "debris_collection"
+      },
+      "route_category": "bladblazers",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HSA 30",
+      "source_record_ids": [
+        "139",
+        "6"
+      ],
+      "references": [
+        "HA08-011-3512",
+        "HA08-011-3504"
+      ],
+      "proposed_slug": "hsa-30",
+      "core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "handheld_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "route_category": "heggenscharen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "HSA 100",
+      "source_record_ids": [
+        "137"
+      ],
+      "references": [
+        "HA07-011-3500"
+      ],
+      "proposed_slug": "hsa-100",
+      "core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "handheld_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "route_category": "heggenscharen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "FSA 30",
+      "source_record_ids": [
+        "124"
+      ],
+      "references": [
+        "FA10-011-57SET"
+      ],
+      "proposed_slug": "fsa-30",
+      "core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "route_category": "bosmaaiers",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "KIT_ONLY",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 60 C-B",
+      "source_record_ids": [
+        "104"
+      ],
+      "references": [
+        "MA04-011-5803"
+      ],
+      "proposed_slug": "msa-60-c-b",
+      "core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "route_category": "kettingzagen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 160 C-B",
+      "source_record_ids": [
+        "94"
+      ],
+      "references": [
+        "MA03-200-0001"
+      ],
+      "proposed_slug": "msa-160-c-b",
+      "core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "route_category": "kettingzagen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "FSA 135",
+      "source_record_ids": [
+        "90"
+      ],
+      "references": [
+        "FA01-011-5700"
+      ],
+      "proposed_slug": "fsa-135",
+      "core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "route_category": "bosmaaiers",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 220 C-B",
+      "source_record_ids": [
+        "76"
+      ],
+      "references": [
+        "MA03-011-5815"
+      ],
+      "proposed_slug": "msa-220-c-b",
+      "core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "route_category": "kettingzagen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 200 C-B",
+      "source_record_ids": [
+        "75"
+      ],
+      "references": [
+        "MA03-200-0024"
+      ],
+      "proposed_slug": "msa-200-c-b",
+      "core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "route_category": "kettingzagen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    },
+    {
+      "canonical_model": "MSA 70 C-B",
+      "source_record_ids": [
+        "74"
+      ],
+      "references": [
+        "MA04-011-5819"
+      ],
+      "proposed_slug": "msa-70-c-b",
+      "core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "route_category": "kettingzagen",
+      "identity_confidence": "HIGH",
+      "collision": "NONE",
+      "bundle_status": "STANDALONE",
+      "selection_reason": "All gates pass: HIGH confidence, route-ready, collision-free, CORE5 complete"
+    }
+  ]
+}

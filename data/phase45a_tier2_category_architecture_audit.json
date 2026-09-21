@@ -1,0 +1,693 @@
+{
+  "phase": "45A",
+  "identities": [
+    {
+      "model": "FSA 45",
+      "phase44a_type": "BRUSHCUTTER",
+      "semantic_class": "brushcutter",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bosmaaiers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "BGA 30",
+      "phase44a_type": "BLOWER",
+      "semantic_class": "blower",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bladblazers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "BGE 71",
+      "phase44a_type": "BLOWER",
+      "semantic_class": "blower",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bladblazers",
+      "phase45b_readiness": "45B_WAVE2_READY"
+    },
+    {
+      "model": "RE 90.0",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "FSA 50",
+      "phase44a_type": "BRUSHCUTTER",
+      "semantic_class": "brushcutter",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bosmaaiers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HLA 40",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HTA 30",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RMA 348",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "HSA 40",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "RM 253 T",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RM 253",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RM 248",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RM 2 R",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "GTA 40",
+      "phase44a_type": "PRUNING_SAW",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RMA 353 V",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RMA 353",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RE 110 Plus",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RCA 20",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "ASA 20",
+      "phase44a_type": "PRUNING_SHEARS",
+      "semantic_class": "pruning_shears",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_shears",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "REA 100 Plus",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "SHA 56",
+      "phase44a_type": "VACUUM",
+      "semantic_class": "vacuum_shredder",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bladblazers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HSA 30",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HSA 100",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "FSA 30",
+      "phase44a_type": "BRUSHCUTTER",
+      "semantic_class": "brushcutter",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bosmaaiers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "SEA 20",
+      "phase44a_type": "VACUUM",
+      "semantic_class": "vacuum",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "vacuum",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HTA 50",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RMA 235",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "lawnmower",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "lawnmower",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "HTA 86",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "FSA 135",
+      "phase44a_type": "BRUSHCUTTER",
+      "semantic_class": "brushcutter",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bosmaaiers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "SR 420",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HT 75",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "MSE 170 C-BQ",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "MSE 141 C-Q",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HTA 135",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "FSE 41",
+      "phase44a_type": "BRUSHCUTTER",
+      "semantic_class": "brushcutter",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bosmaaiers",
+      "phase45b_readiness": "45B_WAVE2_READY"
+    },
+    {
+      "model": "SG 71",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "SG 20",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "SG 31",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "SG 11",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "HSA 26",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "GTA 26",
+      "phase44a_type": "PRUNING_SAW",
+      "semantic_class": "pruning_saw",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pruning_saw",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "HLA 66",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "HSE 52",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE2_READY"
+    },
+    {
+      "model": "HS 82 R",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "RE 90 Plus",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RE 145",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RE 80.0",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RE 80 X",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "RE 100",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "MSA 190 T",
+      "phase44a_type": "CHAINSAW",
+      "semantic_class": "chainsaw",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "kettingzagen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "SGA 30",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "SGA 2000",
+      "phase44a_type": "SPRAYER",
+      "semantic_class": "sprayer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "sprayer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "TSA 230",
+      "phase44a_type": "LAWNMOWER",
+      "semantic_class": "cut_off_machine",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "doorslijpers",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    },
+    {
+      "model": "SEA 100 L",
+      "phase44a_type": "VACUUM",
+      "semantic_class": "vacuum",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "vacuum",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "SEA 60 L",
+      "phase44a_type": "VACUUM",
+      "semantic_class": "vacuum",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "vacuum",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "REA 60 Plus",
+      "phase44a_type": "PRESSURE_WASHER",
+      "semantic_class": "pressure_washer",
+      "existing_route_available": false,
+      "new_route_required": true,
+      "existing_category_safe": false,
+      "recommended_category": "pressure_washer",
+      "phase45b_readiness": "CATEGORY_ARCHITECTURE_REQUIRED"
+    },
+    {
+      "model": "FSE 60",
+      "phase44a_type": "BRUSHCUTTER",
+      "semantic_class": "brushcutter",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "bosmaaiers",
+      "phase45b_readiness": "45B_WAVE2_READY"
+    },
+    {
+      "model": "HLA 56",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "semantic_class": "hedge_trimmer",
+      "existing_route_available": true,
+      "new_route_required": false,
+      "existing_category_safe": true,
+      "recommended_category": "heggenscharen",
+      "phase45b_readiness": "45B_WAVE1_READY"
+    }
+  ],
+  "category_corrections": [
+    {
+      "record_id": "236",
+      "model": "HTA 30",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "corrected_type": "pruning_saw",
+      "reason": "Product name \"Motopoda a bateria HTA 30 com bateria e carregador\" indicates pruning_saw, not HEDGE_TRIMMER"
+    },
+    {
+      "record_id": "235",
+      "model": "HTA 30",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "corrected_type": "pruning_saw",
+      "reason": "Product name \"Motopoda a bateria HTA 30\" indicates pruning_saw, not HEDGE_TRIMMER"
+    },
+    {
+      "record_id": "142",
+      "model": "SHA 56",
+      "phase44a_type": "VACUUM",
+      "corrected_type": "vacuum_shredder",
+      "reason": "Product name \"Aspirador e Triturador a bateria SHA 56\" indicates vacuum_shredder, not VACUUM"
+    },
+    {
+      "record_id": "103",
+      "model": "HTA 50",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "corrected_type": "pruning_saw",
+      "reason": "Product name \"Motopoda a bateria HTA 50\" indicates pruning_saw, not HEDGE_TRIMMER"
+    },
+    {
+      "record_id": "98",
+      "model": "HTA 86",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "corrected_type": "pruning_saw",
+      "reason": "Product name \"Motopoda a bateria HTA 86\" indicates pruning_saw, not HEDGE_TRIMMER"
+    },
+    {
+      "record_id": "66",
+      "model": "HT 75",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "corrected_type": "pruning_saw",
+      "reason": "Product name \"Motopoda a combustão HT 75\" indicates pruning_saw, not HEDGE_TRIMMER"
+    },
+    {
+      "record_id": "55",
+      "model": "HTA 135",
+      "phase44a_type": "HEDGE_TRIMMER",
+      "corrected_type": "pruning_saw",
+      "reason": "Product name \"Motopoda a bateria HTA 135\" indicates pruning_saw, not HEDGE_TRIMMER"
+    },
+    {
+      "record_id": "181",
+      "model": "TSA 230",
+      "phase44a_type": "LAWNMOWER",
+      "corrected_type": "cut_off_machine",
+      "reason": "Product name \"Cortador a disco a bateria  TSA 230\" indicates cut_off_machine, not LAWNMOWER"
+    }
+  ]
+}
