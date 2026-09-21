@@ -926,14 +926,50 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ## Phase 45D — BR Tier 2 Wave 1 Production Promotion & Live Verification
 
-**Status:** READY FOR RETRY ⏳ (blocked pending Phase 45C-R1 acceptance)
+**Status:** COMPLETE / LIVE / VERIFIED ✅
 
-### Scope
+### Promotion & Deployment Summary
 
-- Fast-forward promotion to main after Phase 45C-R1 candidate acceptance
-- Deploy to Render
-- Live validation of 98 models, routes, search, and technical evidence
-- Sitemaps and SEO verification
+- **Promoted commit:** `f0e4fba6e6641991cd1845f358029828e706fad5`
+- **Promoted tree:** `3c0d917f462801a46c297b749407d0ffa4e31f30`
+- **Method:** Fast-forward only (linear history, ahead 4, behind 0 from previous main baseline `bf4183e`)
+- **Parity:** Exact tree parity verified, zero application data drift
+- **Render Deployment:** Live deployed commit `f0e4fba6e6641991cd1845f358029828e706fad5`, HTTP 200, database connected & persistent (schema v3)
+
+### Production Verification State
+
+- **Total models:** **98** (83 previous + 15 Wave 1)
+- **CORE5 completeness:** **98/98**
+- **Public evidence facts:** **721** (665 previous + 56 Wave 1)
+- **Safe canonical technical fields:** **56**
+- **Non-safe candidates blocked:** **131** (0 leaks of charger mains 127V/220V, 0 un-flattened weights)
+- **Baseline unindexed debt:** **38** (preserved untouched)
+- **Wave 1 routes (15/15 HTTP 200):**
+  - `/bosmaaiers/fsa-45/`
+  - `/bladblazers/bga-30/`
+  - `/bosmaaiers/fsa-50/`
+  - `/heggenscharen/hla-40/`
+  - `/heggenscharen/hsa-40/`
+  - `/bladblazers/sha-56/`
+  - `/heggenscharen/hsa-30/`
+  - `/heggenscharen/hsa-100/`
+  - `/bosmaaiers/fsa-30/`
+  - `/kettingzagen/msa-60-c-b/`
+  - `/kettingzagen/msa-160-c-b/`
+  - `/bosmaaiers/fsa-135/`
+  - `/kettingzagen/msa-220-c-b/`
+  - `/kettingzagen/msa-200-c-b/`
+  - `/kettingzagen/msa-70-c-b/`
+- **Sitemap:** All 15 Wave 1 model URLs present and valid in `sitemap.xml`
+- **Category inlinks:** All 15 models accessible from their respective category hubs (0 orphan models)
+- **Zero regressions:** Verified across all prior production models (MS 182, MS 172, MS 172 C-BE, FS 55, FS 55 R, MS 661, BR 800, BR 420, MS 251 C, BG 56, BG 66, BG 86, SH 56, SH 86, MS 260, MS 261, BR 600, MS 201 TC-M)
+- **Production checkpoint report:** `data/phase45d_wave1_production_report.json`
+
+---
+
+## Phase 46A — BR Tier 2 Wave 2 Intake & Prioritization
+
+**Status:** PLANNED / NOT STARTED ⏳
 
 ---
 

@@ -1,0 +1,98 @@
+{
+  "phase": "45D",
+  "title": "BR Tier 2 Wave 1 Production Promotion & Live Verification",
+  "created_at": "2026-09-21T22:58:00+02:00",
+
+  "main_baseline": {
+    "commit": "bf4183e1637c98f30356a670ff299728f0e59a13",
+    "tree": "8059ace6d54722d39bc4b761222bd56d6a1fcb4d",
+    "description": "Phase 44D production baseline (83 models, 665 facts)"
+  },
+
+  "accepted_candidate": {
+    "commit": "f0e4fba6e6641991cd1845f358029828e706fad5",
+    "tree": "3c0d917f462801a46c297b749407d0ffa4e31f30",
+    "branch": "fix/phase45c-r1-standalone-source-precedence",
+    "description": "Phase 45C-R1 standalone source precedence & evidence accounting remediation"
+  },
+
+  "promotion": {
+    "method": "FAST_FORWARD",
+    "from": "bf4183e1637c98f30356a670ff299728f0e59a13",
+    "to": "f0e4fba6e6641991cd1845f358029828e706fad5",
+    "promoted_main_sha": "f0e4fba6e6641991cd1845f358029828e706fad5",
+    "promoted_main_tree": "3c0d917f462801a46c297b749407d0ffa4e31f30",
+    "linear_history": true,
+    "ahead_count": 4,
+    "behind_count": 0,
+    "exact_tree_parity": true,
+    "drift_classification": "NONE"
+  },
+
+  "deployment": {
+    "provider": "Render",
+    "deployed_commit": "f0e4fba6e6641991cd1845f358029828e706fad5",
+    "status": "LIVE",
+    "deployed_sha_matches_main": true,
+    "edge_cdn": "Cloudflare",
+    "deployed_at": "2026-09-21T20:57:04.926Z"
+  },
+
+  "data_state": {
+    "models": 98,
+    "core5": "98/98",
+    "baseline_models": 83,
+    "wave1_models": 15,
+    "baseline_facts": 665,
+    "wave1_safe_facts": 56,
+    "final_facts": 721,
+    "safe_canonical_technical_fields": 56,
+    "blocked_candidates": 131,
+    "baseline_unindexed_debt": 38,
+    "baseline_unindexed_mutated": 0,
+    "original_665_mutated": 0,
+    "equation": "665 + 56 = 721"
+  },
+
+  "wave1_identities": {
+    "count": 15,
+    "models": [
+      "FSA 45", "BGA 30", "FSA 50", "HLA 40", "HSA 40",
+      "SHA 56", "HSA 30", "HSA 100", "FSA 30", "MSA 60 C-B",
+      "MSA 160 C-B", "FSA 135", "MSA 220 C-B", "MSA 200 C-B",
+      "MSA 70 C-B"
+    ],
+    "all_routes_http_200": true,
+    "all_in_sitemap": true,
+    "orphan_models": 0
+  },
+
+  "safe_candidate_protection": {
+    "charger_mains_voltage_leaks": 0,
+    "weight_without_battery_flattened_to_weight_kg": 0,
+    "non_safe_candidates_blocked": 131
+  },
+
+  "live_verification": {
+    "homepage_http": 200,
+    "sitemap_http": 200,
+    "sitemap_wave1_urls_present": 15,
+    "api_version_http": 200,
+    "deployed_git_commit": "f0e4fba6e6641991cd1845f358029828e706fad5",
+    "database_connected": true,
+    "database_persistent": true,
+    "schema_version": 3,
+    "wave1_routes_http_200": "15/15",
+    "prior_production_regression_routes_http_200": "17/17",
+    "h1_text": "STIHL Serienummer Decoder — Bouwjaar en model controleren",
+    "h1_count": 1
+  },
+
+  "canonical_policy": {
+    "production_confidence_unknown": "98/98",
+    "specs_verified_true": 0,
+    "policy_pass": true
+  },
+
+  "final_decision": "PHASE 45D COMPLETE — BR TIER 2 WAVE 1 PROMOTED / DEPLOYED / LIVE VERIFIED / 98 MODELS / 721 FACTS / 56 SAFE TECHNICAL FIELDS / 15 WAVE 1 ROUTES HTTP 200 / PASS"
+}
