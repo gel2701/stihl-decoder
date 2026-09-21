@@ -1,0 +1,61 @@
+{
+  "report_version": "serial_recovery_root_cause_v1",
+  "generated_at": "2026-09-22T01:08:45Z",
+  "last_known_good_commit": {
+    "commit": "4c0de6f5645fc2196da0de573dd46062342bee9a",
+    "date": "2026-08-24T17:42:07+02:00",
+    "description": "Complete Stihl Decoder v1.1 release with StopHeling scan, static model cards, and complete database. Contained 13 serial ranges spanning Plants 1, 2, 3, and 8, covering chainsaws, blowers (BR 340/420, BR 600), and brushcutters (FS 120/250, FS 130). No model acted as a mass fallback."
+  },
+  "first_bad_commit": {
+    "commit": "40d3cb7f4bce462d5f306ab90a3d6e0c7c9de371",
+    "date": "2026-08-26T01:59:11+02:00",
+    "description": "Implement Serial Breakpoints Engine. Introduced two fatal flaws: (1) Synthesized 25M serial range 145000000–169999999 for MS 260 by merging BR 340/420 (145-159M) and MS 260 Laat (160-169M); (2) Added unconditional mass fallback in decoder.js: '|| database.models.find(m => m.id === \\'stihl_ms_261_cm\\') || database.models[0]', causing 100% of tested serials across all plants to resolve to MS 261 C-M."
+  },
+  "data_loss_commits": [
+    {
+      "commit": "45c3b49",
+      "date": "2026-08-25T19:30:00+02:00",
+      "summary": "Pruned 9 out of 13 historical ranges (041 AV, 026 Vroeg, MS 260 Laat, MS 500i, MS 290 family, BR 340/420, FS 130, FS 120/250) from stihl_database.json."
+    },
+    {
+      "commit": "40d3cb7",
+      "date": "2026-08-26T01:59:11+02:00",
+      "summary": "Omitted Plant 2 (BR 600) and Plant 8 (MS 170) from stihl_database.json when switching from serial_breakpoints to model_serial_ranges, leaving them stranded in seed.js."
+    },
+    {
+      "commit": "a43b6e3",
+      "date": "2026-08-26T02:48:23+02:00",
+      "summary": "Removed MS 201 ranges from model_serial_ranges to align strictly with pilot SEO pages, reducing active canonical database to only 3 ranges in Plant 1."
+    }
+  ],
+  "logic_regression_commits": [
+    {
+      "commit": "40d3cb7",
+      "summary": "Unconditional fallback to MS 261 C-M or database.models[0], plus synthetic 25M range for MS 260."
+    },
+    {
+      "commit": "c3cf8a4",
+      "summary": "Mass prefix heuristics in decoder.js: '18/17' -> MS 261, '14/15/16' -> MS 260, fallback -> 'MS 261 C-M Gen 2', fallback category -> 'Kettingzaag'. Mapped 95% of test serials to MS 260 / 261."
+    }
+  ],
+  "later_partial_remediations": [
+    {
+      "commit": "1f7dacb",
+      "summary": "Removed hardcoded startsWith prefix logic and MS 261 fallback from decoder.js, but left the synthetic 25M MS 260 range in stihl_database.json."
+    },
+    {
+      "commit": "fcc2765",
+      "summary": "Blocked technical specs from attaching to breakpoint records."
+    },
+    {
+      "commit": "ff23744",
+      "summary": "Added SerialChronologyResolver and modelAssist, but froze canonical database at the 3 Plant 1 ranges."
+    }
+  ],
+  "current_residual_defect": {
+    "database_defect": "data/stihl_database.json contains only 3 ranges (all Plant 1). The MS 260 range (145000000–169999999) covers 25,000,000 serials, absorbing 15,000,000 serials that historically belonged to BR 340/420 blowers. Plant 2, 3, 4, 5, 8, 9 have 0 ranges.",
+    "engine_defect": "Absence of explicit multi-level resolution (EXACT vs PROBABLE vs FAMILY vs PLANT_AND_PERIOD vs UNRESOLVED). StihlRangeResolver returns null if >1 match occurs, preventing graceful multi-candidate Model Assist.",
+    "ui_state_defect": "index.html does not reset currentModelName, currentYearsFormatted, or rendered text fields upon new handleDecode() search, creating potential stale-state leakage after decoding MS 260.",
+    "seed_drift_defect": "data/seed.js retains obsolete serialBreakpointsData from commit 90bb431 while data/seed.cjs loads from data/stihl_database.json."
+  }
+}

@@ -1023,3 +1023,59 @@ Prioritize the official evidence reconciliation/data-quality work before activat
 ### Historical regression debt — planning only
 
 Historical regression suite contains stale fixed-count/baseline assertions, missing replay-reference/pypdf setup, shallow-history assumptions and legacy source-path/query fixtures. No historical tests were edited or modernized. Consider a separate TEST BASELINE MODERNIZATION phase only after production promotion, preserving historical fixtures and negative controls. Do not repair the 38 baseline-unindexed facts in R3.
+
+---
+
+## SERIAL DECODER RECOVERY — Historical Regression Audit & Range Engine Repair
+
+**Status:** RECOVERY CANDIDATE COMPLETE / PASS (Awaiting User Production Review)
+**Branch:** `fix/serial-decoder-historical-recovery`
+**Baseline Commit:** `00fd2c81de132a8d0887a4dbd223f79897cc549e` (Phase 45D Main)
+**Protected State:** Models: 98, CORE5: 98/98, Public Evidence Facts: 721 (byte-frozen)
+
+### 1. Root Cause
+- **Last Known-Good Commit:** `45c3b49` (Phase 30, containing 15 discrete, verified historical ranges across plants 1, 2, 3).
+- **First Bad Commit / Range Collapse:** `40d3cb7` (Phase 35.1), which synthetically merged discrete ranges into a monolithic 25,000,000 range (`145000000–169999999`) assigned to MS 260, absorbing 15,000,000 blower serials (`145M–159M` BR 340 / BR 420), and dropping Plant 2 (BR 600) and Plant 8 (MS 170).
+- **Fallback Regression Commit:** `c3cf8a4` (Phase 36), which introduced broad prefix/family fallback heuristics (`14/15/16 -> MS 260`, `17/18 -> MS 261`), defaulting arbitrary Plant 1 serials to `MS 261 C-M Gen 2` and default category `Kettingzaag`.
+- **UI State Leakage:** `index.html` failed to reset `currentModelName`, `currentYearsFormatted`, and DOM text elements (`res-model`, `res-serial-display`, `model-assist-*`) at the start of `handleDecode()`, allowing previous search results to persist when an unmapped or invalid code was entered.
+- **Source-of-Truth Drift:** `data/seed.js` was obsolete dead code with outdated ranges; `data/seed.cjs` was the active SQLite builder. SQLite and JSON had drifted in active range count.
+
+### 2. Recovered Data & Range Inventory
+- Reconstructed 8 canonical, non-overlapping, verified serial ranges:
+  1. `stihl_026` (DE, Plant 1): `120000000–139999999` (1989–1997, 026 / MS 260 Vroeg)
+  2. `stihl_br_420` (DE, Plant 1): `145000000–159999999` (1999–2009, BR 340 / BR 420 Blower) — *Liberated 15M serials falsely attributed to MS 260*
+  3. `stihl_ms_260` (DE, Plant 1): `160000000–169999999` (2002–2011, MS 260 Laat)
+  4. `stihl_ms_261_cm` (DE, Plant 1): `171000000–179999999` (2010–2016, MS 261 Gen 1)
+  5. `stihl_ms_261_cm` (DE, Plant 1): `180000000–199999999` (2016–2024, MS 261 C-M Gen 2)
+  6. `stihl_ms_290` (US, Plant 2): `240000000–269999999` (1993–2011, MS 290 Farm Boss)
+  7. `stihl_br_600` (US, Plant 2): `270000000–289999999` (2006–2020, BR 600 4-Mix Blower)
+  8. `stihl_fs_120` (BR, Plant 3): `330000000–350000000` (1997–2014, FS 120 Bosmaaier)
+- Plant 8 (China) unassisted serials (`824061159`) preserved fail-closed as `MODEL_NOT_IDENTIFIED` with `modelAssistAvailable: true` per Phase 36 acceptance contract.
+
+### 3. Engine Architecture & Policy Alignment
+- Overhaul of `StihlRangeResolver.js` & `.ts` with `findMatches()` and explicit overlap classification (`UNIQUE_RANGE_MATCH`, `SAME_MODEL_OVERLAP`, `AMBIGUOUS_MULTI_CANDIDATE`).
+- Strict separation: Plant/Factory vs Production Chronology vs Model Family vs Exact Model.
+- Probable model series never inherits exact technical specifications (`technicalSpecs: {}` fail-closed).
+- Rebuilt `data/stihl_database.json` and synchronized `data/stihl_database.db` via `seed.cjs`.
+
+### 4. Verification & Invariants
+- **10,000 Deterministic Distribution Test:**
+  - Total Serials Tested: 10,000 across valid plants (1, 2, 3, 4, 5, 8, 9).
+  - MS 260 count: 417 (4.17%) — down from >95% false fallback rate.
+  - MS 261 count: 418 (4.18%).
+  - Other models/families: 1,241 (12.41%).
+  - Honest Unknown / Format-only: 7,924 (79.24%).
+  - Suspicious concentration alert (>25%): NO.
+  - Critical mass fallback (>50%): NO.
+- **API vs UI Parity Audit:** 13/13 test cases PASS; sequential state reset PASS; zero leakage.
+- **Recovery Acceptance Test Suite (`tests/serial_decoder_recovery.test.js`):** 26/26 gates PASS (100%).
+- **Phase 45C-R1 Regression Suite:** 28/28 PASS.
+- **Phase 36 Chronology & User-Value Suites:** 100% PASS.
+- **Canonical Policy & Harvester Suites:** PASS.
+
+### 5. Candidate Status
+- Candidate branch `fix/serial-decoder-historical-recovery` ready.
+- Merged to main: NO.
+- Deployed to Render: NO.
+- Phase 46 branches untouched.
+- STOPPED for explicit user review.

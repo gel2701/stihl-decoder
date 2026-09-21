@@ -1,0 +1,120 @@
+{
+  "audit_version": "distribution_10k_v1",
+  "generated_at": "2026-09-21T23:11:39.895Z",
+  "total_tested": 10000,
+  "plants_tested": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "8",
+    "9"
+  ],
+  "model_counts": {
+    "UNKNOWN": 7924,
+    "MS 261 / MS 261 C-M": 418,
+    "MS 260 / 026": 417,
+    "MS 290 Farm Boss / MS 310 / MS 390": 447,
+    "FS 350 / FS 120 / FS 200": 290,
+    "BR 600 / BR 700 / BR 500 / BR 550": 286,
+    "BR 420 (Ruggedragen Bladblazer)": 218
+  },
+  "category_counts": {
+    "Onbekend": 7924,
+    "Kettingzaag": 1282,
+    "Bosmaaier": 290,
+    "Bladblazer": 504
+  },
+  "status_counts": {
+    "MODEL_NOT_IDENTIFIED": 7924,
+    "PROBABLE_MODEL_SERIES": 2076
+  },
+  "plant_breakdown": {
+    "1": {
+      "total": 1429,
+      "models": {
+        "UNKNOWN": 376,
+        "MS 261 / MS 261 C-M": 418,
+        "MS 260 / 026": 417,
+        "BR 420 (Ruggedragen Bladblazer)": 218
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 376,
+        "PROBABLE_MODEL_SERIES": 1053
+      }
+    },
+    "2": {
+      "total": 1429,
+      "models": {
+        "UNKNOWN": 696,
+        "MS 290 Farm Boss / MS 310 / MS 390": 447,
+        "BR 600 / BR 700 / BR 500 / BR 550": 286
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 696,
+        "PROBABLE_MODEL_SERIES": 733
+      }
+    },
+    "3": {
+      "total": 1429,
+      "models": {
+        "UNKNOWN": 1139,
+        "FS 350 / FS 120 / FS 200": 290
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 1139,
+        "PROBABLE_MODEL_SERIES": 290
+      }
+    },
+    "4": {
+      "total": 1429,
+      "models": {
+        "UNKNOWN": 1429
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 1429
+      }
+    },
+    "5": {
+      "total": 1428,
+      "models": {
+        "UNKNOWN": 1428
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 1428
+      }
+    },
+    "8": {
+      "total": 1428,
+      "models": {
+        "UNKNOWN": 1428
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 1428
+      }
+    },
+    "9": {
+      "total": 1428,
+      "models": {
+        "UNKNOWN": 1428
+      },
+      "statuses": {
+        "MODEL_NOT_IDENTIFIED": 1428
+      }
+    }
+  },
+  "concentrations": {
+    "ms260_count": 417,
+    "ms260_percentage": 4.17,
+    "ms261_count": 418,
+    "ms261_percentage": 4.18,
+    "other_count": 1241,
+    "other_percentage": 12.41,
+    "unknown_count": 7924,
+    "unknown_percentage": 79.24,
+    "is_ms260_concentration_alert": false,
+    "is_ms261_concentration_alert": false,
+    "is_critical_mass_fallback": false
+  }
+}

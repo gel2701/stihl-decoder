@@ -1,0 +1,74 @@
+{
+  "audit_version": "serial_recovery_overlap_v1",
+  "generated_at": "2026-09-22T01:08:00Z",
+  "silent_first_match_conflicts": 0,
+  "total_audited_overlaps": 6,
+  "overlaps": [
+    {
+      "overlap_id": "ovl_01_ms261_ms201_gen1",
+      "range_a": { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 171000000, "end": 179999999, "generation": "MS 261 Gen 1" },
+      "range_b": { "model_id": "stihl_ms_201_tc_m", "plant_code": "1", "start": 175000000, "end": 184999999, "generation": "MS 201 T (Pre-M-Tronic / V1)" },
+      "intersection": { "start": 175000000, "end": 179999999, "span": 5000000 },
+      "plant_code": "1",
+      "same_model": false,
+      "same_family": false,
+      "conflict_severity": "HIGH",
+      "resolution_rule": "AMBIGUOUS_MULTI_CANDIDATE: Do not pick first item. Return PROBABLE_MODEL_SERIES with multi-candidate Model Assist (MS 261 / MS 201), exactModel remains null."
+    },
+    {
+      "overlap_id": "ovl_02_ms261_ms201_gen2a",
+      "range_a": { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 180000000, "end": 199999999, "generation": "MS 261 C-M Gen 2" },
+      "range_b": { "model_id": "stihl_ms_201_tc_m", "plant_code": "1", "start": 175000000, "end": 184999999, "generation": "MS 201 T (Pre-M-Tronic / V1)" },
+      "intersection": { "start": 180000000, "end": 184999999, "span": 5000000 },
+      "plant_code": "1",
+      "same_model": false,
+      "same_family": false,
+      "conflict_severity": "HIGH",
+      "resolution_rule": "AMBIGUOUS_MULTI_CANDIDATE: Multi-candidate Model Assist prompt; no silent first-match assignment."
+    },
+    {
+      "overlap_id": "ovl_03_ms261_ms201_gen2b",
+      "range_a": { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 180000000, "end": 199999999, "generation": "MS 261 C-M Gen 2" },
+      "range_b": { "model_id": "stihl_ms_201_tc_m", "plant_code": "1", "start": 185000000, "end": 199999999, "generation": "MS 201 TC-M (M-Tronic)" },
+      "intersection": { "start": 185000000, "end": 199999999, "span": 15000000 },
+      "plant_code": "1",
+      "same_model": false,
+      "same_family": false,
+      "conflict_severity": "HIGH",
+      "resolution_rule": "AMBIGUOUS_MULTI_CANDIDATE: Distinguish standard professional chainsaw (MS 261) from arborists tophandle (MS 201) via Model Assist confirmation."
+    },
+    {
+      "overlap_id": "ovl_04_ms261_ms500i",
+      "range_a": { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 180000000, "end": 199999999, "generation": "MS 261 C-M Gen 2" },
+      "range_b": { "model_id": "stihl_ms_500i", "plant_code": "1", "start": 195000000, "end": 199999999, "generation": "MS 500i Injection" },
+      "intersection": { "start": 195000000, "end": 199999999, "span": 5000000 },
+      "plant_code": "1",
+      "same_model": false,
+      "same_family": false,
+      "conflict_severity": "HIGH",
+      "resolution_rule": "AMBIGUOUS_MULTI_CANDIDATE: High-end fuel-injected MS 500i vs M-Tronic MS 261 cannot be distinguished by serial alone. Require user model confirmation."
+    },
+    {
+      "overlap_id": "ovl_05_ms260_fs130",
+      "range_a": { "model_id": "stihl_ms_260", "plant_code": "1", "start": 160000000, "end": 169999999, "generation": "MS 260 (Laat)" },
+      "range_b": { "model_id": "stihl_fs_130", "plant_code": "1", "start": 165000000, "end": 178000000, "generation": "FS 130 4-Mix" },
+      "intersection": { "start": 165000000, "end": 169999999, "span": 5000000 },
+      "plant_code": "1",
+      "same_model": false,
+      "same_family": false,
+      "conflict_severity": "CRITICAL",
+      "resolution_rule": "CROSS_CATEGORY_COLLISION: Kettingzaag vs Bosmaaier. Serial alone establishes Plant 1 2002–2011 production chronology only; machine category is unverified until confirmed."
+    },
+    {
+      "overlap_id": "ovl_06_ms261_fs130",
+      "range_a": { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 171000000, "end": 179999999, "generation": "MS 261 Gen 1" },
+      "range_b": { "model_id": "stihl_fs_130", "plant_code": "1", "start": 165000000, "end": 178000000, "generation": "FS 130 4-Mix" },
+      "intersection": { "start": 171000000, "end": 178000000, "span": 7000000 },
+      "plant_code": "1",
+      "same_model": false,
+      "same_family": false,
+      "conflict_severity": "CRITICAL",
+      "resolution_rule": "CROSS_CATEGORY_COLLISION: Chainsaw vs Brushcutter. Serial alone establishes Plant 1 2006–2016 production chronology only; machine category is unverified until confirmed."
+    }
+  ]
+}

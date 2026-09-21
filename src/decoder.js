@@ -419,7 +419,12 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   const modelName = modelData
     ? modelData.model_name
     : (probableModelSeries || 'Nog niet definitief bevestigd');
-  const category = modelData ? (modelData.category || modelData.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend');
+  const rangeDirectModel = rangeMatch?.model_id && Array.isArray(database.models)
+    ? database.models.find(m => m.id === rangeMatch.model_id)
+    : null;
+  const category = modelData
+    ? (modelData.category || modelData.category_slug)
+    : (rangeDirectModel ? (rangeDirectModel.category || rangeDirectModel.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend'));
   const overlayModelKey = modelData ? (modelData.slug || modelData.model_name) : null;
   const overlaySpecs = overlayModelKey
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, modelName)
@@ -528,6 +533,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       confidence: confirmedModel ? 'USER_CONFIRMED' : (rangeMatch?.confidence || 'LOW'),
       rangeModelId: rangeMatch?.model_id || null,
       rangeId: rangeMatch?.range_id || null,
+      matchType: rangeMatch?.match_type || (rangeMatch ? 'UNIQUE_RANGE_MATCH' : 'NONE'),
+      matchReason: rangeMatch?.matchReason || (rangeMatch ? 'Serienummer valt binnen een bekende historische fabrieksreeks.' : 'Alleen fabriekscode-indicatie'),
+      rangeMatches: rangeMatch?.rangeMatches || (rangeMatch ? [rangeMatch] : []),
       serialFormat: {
         status: isAlphanumeric ? 'FORMAT_ONLY' : 'SERIAL_FORMAT_RECOGNIZED',
         chronologyCompatible: isAlphanumeric ? 'NO' : (rangeMatch ? 'YES' : 'NO')

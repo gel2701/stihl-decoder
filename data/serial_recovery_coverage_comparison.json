@@ -1,0 +1,129 @@
+{
+  "comparison_version": "serial_recovery_coverage_v1",
+  "generated_at": "2026-09-22T01:09:00Z",
+  "metrics": {
+    "historical_range_count_v1": 13,
+    "current_range_count_baseline": 3,
+    "recovered_accepted_range_count": 8,
+    "historical_plants_covered": ["1", "2", "3", "8"],
+    "current_plants_covered": ["1"],
+    "recovered_plants_covered": ["1", "2", "3"],
+    "models_represented_current": ["MS 260", "MS 261 C-M"],
+    "models_represented_recovered": [
+      "MS 260",
+      "MS 261 C-M",
+      "026 / MS 260 Vroeg",
+      "BR 420",
+      "BR 600",
+      "MS 290",
+      "FS 120"
+    ],
+    "categories_represented_current": ["Kettingzaag"],
+    "categories_represented_recovered": ["Kettingzaag", "Bladblazer", "Bosmaaier"],
+    "resolution_levels": {
+      "exact_model": "Supported via user confirmation (USER_CONFIRMED_MODEL) or verified single-model breakpoint.",
+      "probable_model_series": "Supported via verified serial ranges (PROBABLE_MODEL_SERIES).",
+      "model_family": "Supported via 11-digit parts prefix or registered family codes.",
+      "plant_and_period_only": "Returned when serial format and plant are verified but no model range applies.",
+      "unresolved": "Returned for invalid format or unanchored special serials."
+    }
+  },
+  "ranges": [
+    {
+      "range_id": "rec_02_026_early",
+      "model_id": "stihl_026",
+      "model_name": "STIHL 026 / MS 260 (Vroeg)",
+      "plant_code": "1",
+      "serial_start": 120000000,
+      "serial_end": 139999999,
+      "year_start": 1989,
+      "year_end": 1997,
+      "generation": "026 / MS 260 Vroege Serie (Metalen Remhendel)",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_03_br420",
+      "model_id": "stihl_br_420",
+      "model_name": "BR 420 (Ruggedragen Bladblazer)",
+      "plant_code": "1",
+      "serial_start": 145000000,
+      "serial_end": 159999999,
+      "year_start": 1999,
+      "year_end": 2009,
+      "generation": "BR 340 / BR 420 Serie",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_04_ms260_late",
+      "model_id": "stihl_ms_260",
+      "model_name": "MS 260 (Klassiek / Analoog)",
+      "plant_code": "1",
+      "serial_start": 160000000,
+      "serial_end": 169999999,
+      "year_start": 2002,
+      "year_end": 2011,
+      "generation": "MS 260 Late Serie (Transparante Tank)",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_05_ms261_gen1",
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "MS 261 / MS 261 C-M Gen 1",
+      "plant_code": "1",
+      "serial_start": 171000000,
+      "serial_end": 179999999,
+      "year_start": 2010,
+      "year_end": 2016,
+      "generation": "MS 261 / MS 261 C-M Gen 1",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_06_ms261_gen2",
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "MS 261 C-M Gen 2 (Facelift / V2)",
+      "plant_code": "1",
+      "serial_start": 180000000,
+      "serial_end": 199999999,
+      "year_start": 2016,
+      "year_end": null,
+      "generation": "MS 261 C-M Gen 2 (Facelift / V2)",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_07_ms290_family",
+      "model_id": "stihl_ms_290",
+      "model_name": "MS 290 / MS 310 / MS 390 (VS Productie)",
+      "plant_code": "2",
+      "serial_start": 240000000,
+      "serial_end": 269999999,
+      "year_start": 1998,
+      "year_end": 2012,
+      "generation": "MS 290 Serie (Virginia Beach US)",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_08_br600",
+      "model_id": "stihl_br_600",
+      "model_name": "BR 600 (4-Mix Rugblazer)",
+      "plant_code": "2",
+      "serial_start": 270000000,
+      "serial_end": 289999999,
+      "year_start": 2007,
+      "year_end": 2017,
+      "generation": "BR 600 Gen 1 (Virginia Beach US)",
+      "confidence": "HIGH"
+    },
+    {
+      "range_id": "rec_09_fs120",
+      "model_id": "stihl_fs_120",
+      "model_name": "FS 120 / FS 250 (Brazilië Serie)",
+      "plant_code": "3",
+      "serial_start": 330000000,
+      "serial_end": 350000000,
+      "year_start": 2002,
+      "year_end": 2015,
+      "generation": "FS 120 / FS 250 (São Leopoldo)",
+      "confidence": "HIGH"
+    }
+  ]
+}

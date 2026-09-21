@@ -1,0 +1,53 @@
+{
+  "audit_version": "serial_recovery_seed_drift_v1",
+  "generated_at": "2026-09-22T01:08:15Z",
+  "authoritative_source_of_truth": "data/stihl_database.json",
+  "seed_script_current_authority": "data/seed.cjs",
+  "seed_script_legacy_deprecated": "data/seed.js",
+  "files_compared": [
+    "data/seed.js",
+    "data/seed.cjs",
+    "data/stihl_database.json",
+    "data/stihl_database.db"
+  ],
+  "drift_findings": [
+    {
+      "source": "data/seed.js",
+      "status": "ABANDONED_LEGACY_DEAD_CODE",
+      "schema_used": "serial_breakpoints (hardcoded array)",
+      "ranges_found": [
+        { "model_id": "stihl_ms_261_c_m", "plant_code": "1", "start": 175000000, "end": 179999999, "generation": "MS 261 Gen 1" },
+        { "model_id": "stihl_ms_261_c_m", "plant_code": "1", "start": 180000000, "end": 189999999, "generation": "MS 261 Gen 2" },
+        { "model_id": "stihl_br_600", "plant_code": "2", "start": 270000000, "end": 289999999, "generation": "BR 600 Gen 1 (Virginia Beach US)" },
+        { "model_id": "stihl_ms_170", "plant_code": "8", "start": 800000000, "end": 899999999, "generation": "MS 170 / 180 (Qingdao China Assembly)" }
+      ],
+      "discrepancy_explanation": "Created in commit 90bb431. When commit 40d3cb7 migrated to model_serial_ranges and dynamic JSON loading in seed.cjs, seed.js was abandoned without being deleted or updated."
+    },
+    {
+      "source": "data/seed.cjs",
+      "status": "ACTIVE_SEED_RUNNER",
+      "schema_used": "model_serial_ranges (dynamically loaded from stihl_database.json)",
+      "ranges_found": "Mirrors stihl_database.json exactly via 'for (const range of database.model_serial_ranges || [])'",
+      "discrepancy_explanation": "No drift from stihl_database.json. Invoked by 'npm run data:seed'."
+    },
+    {
+      "source": "data/stihl_database.json",
+      "status": "CANONICAL_AUTHORITY",
+      "schema_used": "model_serial_ranges",
+      "ranges_count": 3,
+      "ranges_found": [
+        { "model_id": "stihl_ms_260", "plant_code": "1", "start": 145000000, "end": 169999999 },
+        { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 171000000, "end": 179999999 },
+        { "model_id": "stihl_ms_261_cm", "plant_code": "1", "start": 180000000, "end": 199999999 }
+      ],
+      "discrepancy_explanation": "Defective baseline state: contains only 3 ranges in Plant 1, missing Plant 2/3/8 ranges, and retains the 25M synthetic MS 260 range."
+    },
+    {
+      "source": "data/stihl_database.db",
+      "status": "DERIVED_SQLITE_PERSISTENCE",
+      "schema_used": "model_serial_ranges",
+      "discrepancy_explanation": "Synchronized with stihl_database.json whenever seed.cjs executes."
+    }
+  ],
+  "root_cause_summary": "data/seed.js preserved the older 4 serial_breakpoints from commit 90bb431, creating confusion with data/stihl_database.json which had model_serial_ranges. data/seed.cjs is the actual operational script, and data/stihl_database.json is the runtime authority loaded by server.js."
+}

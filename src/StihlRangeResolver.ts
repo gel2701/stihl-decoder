@@ -1,77 +1,115 @@
 export interface ProductionPeriodResult {
-  yearRangeFormatted: string; // e.g. "2016 – Heden" or "2010 – 2016"
+  match_type?: string;
+  isAmbiguous?: boolean;
+  range_id?: string | null;
+  model_id?: string | null;
+  model_name?: string | null;
+  plant_code?: string | null;
+  serial_start?: number;
+  serial_end?: number;
+  yearRangeFormatted: string;
   yearStart: number;
   yearEnd: number | null;
   generation: string;
   seriesSummary?: string;
+  matchReason?: string;
   confidence: 'HIGH' | 'MEDIUM' | 'ESTIMATED';
+  rangeMatches?: any[];
+  candidates?: string[];
 }
 
 export class StihlRangeResolver {
-  /**
-   * Bepaalt het exacte bouwjaar en generatie op basis van serie-breakpoints.
-   */
+  public static findMatches(numericSerial: number, plantCode: string, database?: any): any[] {
+    const db = database || {};
+    const ranges = db.model_serial_ranges || db.serial_breakpoints || [];
+
+    if (!Array.isArray(ranges)) return [];
+
+    return ranges.filter((r: any) =>
+      (r.plant_code === plantCode || !r.plant_code) &&
+      numericSerial >= r.serial_start && numericSerial <= r.serial_end
+    ).sort((a: any, b: any) => {
+      const plantRank = Number(Boolean(b.plant_code)) - Number(Boolean(a.plant_code));
+      if (plantRank) return plantRank;
+      return (Number(a.serial_end) - Number(a.serial_start)) - (Number(b.serial_end) - Number(b.serial_start));
+    });
+  }
+
   public static resolve(
     numericSerial: number,
     plantCode: string,
     database?: any
-  ): ProductionPeriodResult {
-    const db = database || {};
-    const ranges = db.model_serial_ranges || db.serial_breakpoints || [];
+  ): ProductionPeriodResult | null {
+    const matches = this.findMatches(numericSerial, plantCode, database);
 
-    if (Array.isArray(ranges)) {
-      const match = ranges.find((r: any) => 
-        (r.plant_code === plantCode || !r.plant_code) &&
-        numericSerial >= r.serial_start &&
-        numericSerial <= r.serial_end
-      );
-
-      if (match) {
-        return {
-          yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `${match.year_start} – Heden`,
-          yearStart: match.year_start,
-          yearEnd: match.year_end || null,
-          generation: match.generation_name || match.generation || "Waarschijnlijke uitvoering",
-          confidence: (match.confidence_level as any) || 'HIGH',
-          seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.'
-        };
-      }
+    if (matches.length === 0) {
+      return null;
     }
 
-    if (plantCode === '1') {
-      if (numericSerial >= 180000000) {
-        return {
-          yearRangeFormatted: "2016 – Heden",
-          yearStart: 2016,
-          yearEnd: null,
-          generation: "Modern productietijdperk",
-          confidence: 'MEDIUM'
-        };
-      } else if (numericSerial >= 170000000) {
-        return {
-          yearRangeFormatted: "2010 – 2016",
-          yearStart: 2010,
-          yearEnd: 2016,
-          generation: "Vroege moderne productiereeks",
-          confidence: 'MEDIUM'
-        };
-      } else if (numericSerial >= 140000000) {
-        return {
-          yearRangeFormatted: "2000 – 2010",
-          yearStart: 2000,
-          yearEnd: 2010,
-          generation: "Klassiek Tijdperk (MS-Serie Introductie)",
-          confidence: 'MEDIUM'
-        };
-      }
+    const uniqueModelIds = new Set(matches.map((m: any) => m.model_id).filter(Boolean));
+
+    if (matches.length === 1) {
+      const match = matches[0];
+      return {
+        match_type: 'UNIQUE_RANGE_MATCH',
+        range_id: match.range_id || match.id || null,
+        model_id: match.model_id || null,
+        model_name: match.model_name || null,
+        plant_code: match.plant_code || null,
+        serial_start: match.serial_start,
+        serial_end: match.serial_end,
+        yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `vanaf circa ${match.year_start}`,
+        yearStart: match.year_start,
+        yearEnd: match.year_end || null,
+        generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
+        confidence: match.confidence_level || 'HIGH',
+        matchReason: 'Serienummer valt binnen een unieke historische fabrieksreeks.',
+        seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.',
+        rangeMatches: matches
+      };
     }
 
+    if (uniqueModelIds.size === 1) {
+      const match = matches[0];
+      return {
+        match_type: 'SAME_MODEL_OVERLAP',
+        range_id: match.range_id || match.id || null,
+        model_id: match.model_id || null,
+        model_name: match.model_name || null,
+        plant_code: match.plant_code || null,
+        serial_start: match.serial_start,
+        serial_end: match.serial_end,
+        yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `vanaf circa ${match.year_start}`,
+        yearStart: match.year_start,
+        yearEnd: match.year_end || null,
+        generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
+        confidence: match.confidence_level || 'HIGH',
+        matchReason: 'Serienummer valt binnen overlappende revisies van hetzelfde model.',
+        seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.',
+        rangeMatches: matches
+      };
+    }
+
+    const candidateNames = [...new Set(matches.map((m: any) => m.model_name || m.generation_name || m.model_id).filter(Boolean))];
+    const firstMatch = matches[0];
     return {
-      yearRangeFormatted: "Ca. 2011 – 2020",
-      yearStart: 2011,
-      yearEnd: 2020,
-      generation: "Standaard Productiereeks",
-      confidence: 'ESTIMATED'
+      match_type: 'AMBIGUOUS_MULTI_CANDIDATE',
+      isAmbiguous: true,
+      range_id: null,
+      model_id: null,
+      model_name: candidateNames.join(' / '),
+      plant_code: firstMatch.plant_code || plantCode,
+      serial_start: Math.min(...matches.map((m: any) => m.serial_start)),
+      serial_end: Math.max(...matches.map((m: any) => m.serial_end)),
+      yearRangeFormatted: firstMatch.year_end ? `${firstMatch.year_start} – ${firstMatch.year_end}` : `vanaf circa ${firstMatch.year_start}`,
+      yearStart: Math.min(...matches.map((m: any) => m.year_start)),
+      yearEnd: matches.some((m: any) => !m.year_end) ? null : Math.max(...matches.map((m: any) => m.year_end)),
+      generation: 'Mogelijk meerdere modelreeksen in dit serienummerbereik',
+      confidence: 'MEDIUM',
+      matchReason: 'Serienummer valt binnen een bereik waarin meerdere STIHL modellen zijn geproduceerd.',
+      seriesSummary: 'Meerdere modellen delen dit numerieke bereik; modelbevestiging via typeplaatje vereist.',
+      candidates: candidateNames,
+      rangeMatches: matches
     };
   }
 }

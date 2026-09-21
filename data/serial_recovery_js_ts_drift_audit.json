@@ -1,0 +1,31 @@
+{
+  "audit_version": "serial_recovery_js_ts_drift_v1",
+  "generated_at": "2026-09-22T01:08:30Z",
+  "runtime_authority": "src/StihlRangeResolver.js",
+  "uncompiled_ts_file": "src/StihlRangeResolver.ts",
+  "summary": "src/StihlRangeResolver.js is the sole module executed by Node.js in production (server.js and src/decoder.js import .js). src/StihlRangeResolver.ts was created in commit 40d3cb7 and never updated, creating serious semantic divergence.",
+  "divergences": [
+    {
+      "area": "Array Search & Conflict Resolution",
+      "StihlRangeResolver_js": "Uses ranges.filter(...) followed by deterministic sort by plant specificity and narrowest range span. Returns null if matches.length !== 1 to prevent silent conflict resolution.",
+      "StihlRangeResolver_ts": "Uses ranges.find(...) which suffers from silent first-match bias.",
+      "severity": "HIGH",
+      "drift_status": "SEMANTIC_DRIFT"
+    },
+    {
+      "area": "Hardcoded Plant 1 Era Fallbacks",
+      "StihlRangeResolver_js": "Contains zero hardcoded era fallbacks. If no range in database matches, it returns null cleanly.",
+      "StihlRangeResolver_ts": "Contains hardcoded Plant 1 fallback logic (>=180M -> 2016-Heden, >=170M -> 2010-2016, >=140M -> 2000-2010) and default 'Ca. 2011 – 2020'.",
+      "severity": "CRITICAL",
+      "drift_status": "OBSOLETE_HEURISTIC_PRESENT_IN_TS"
+    },
+    {
+      "area": "Return Object Schema",
+      "StihlRangeResolver_js": "Returns range_id, model_id, model_name, plant_code, serial_start, serial_end, yearRangeFormatted, yearStart, yearEnd, generation, confidence, source_class, source_ref, evidence_scope, seriesSummary.",
+      "StihlRangeResolver_ts": "Returns only yearRangeFormatted, yearStart, yearEnd, generation, confidence, seriesSummary. Lacks model_id and range metadata.",
+      "severity": "HIGH",
+      "drift_status": "SCHEMA_DIVERGENCE"
+    }
+  ],
+  "action_required": "Align src/StihlRangeResolver.ts with the production-tested logic of src/StihlRangeResolver.js to prevent future developer confusion, while ensuring src/StihlRangeResolver.js remains the single runtime authority."
+}

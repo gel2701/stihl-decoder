@@ -1,0 +1,168 @@
+[
+  {
+    "commit": "4c0de6f",
+    "date": "2026-08-24T17:42:07+02:00",
+    "label": "v1.1 Initial release",
+    "range_count": 13,
+    "models_covered": [
+      "STIHL 041 AV / Farm Boss",
+      "STIHL 026 / MS 260 (Vroeg)",
+      "STIHL MS 260 (Laat)",
+      "STIHL MS 261 C-M (Generatie 1)",
+      "STIHL MS 261 C-M (Generatie 2 / Facelift)",
+      "STIHL MS 261 C-M (Generatie 3 / Huidig)",
+      "STIHL MS 500i (Injection)",
+      "STIHL MS 290 / MS 310 / MS 390 (VS Productie)",
+      "STIHL BR 340 / BR 420 (Rugblazer)",
+      "STIHL BR 600 (4-Mix Rugblazer)",
+      "STIHL FS 130 / KM 130 (4-Mix Bosmaaier)",
+      "STIHL FS 120 / FS 250 (Brazilië Serie)",
+      "STIHL MS 170 / MS 180 (China Qingdao)"
+    ],
+    "plants_covered": ["1", "2", "3", "8"],
+    "resolver_behavior": "Linear range lookup across serial_ranges in stihl_database.json. Supports chainsaws, blowers, and brushcutters.",
+    "fallback_behavior": "If no range matched, estimateYearBySerial gave broad decade estimate per plant code.",
+    "default_model_behavior": "Fallback model string was 'STIHL Benzine / Accu Machine' (no specific model forced).",
+    "notable_regression": "None (initial diverse baseline, but broad ranges were partly estimated)."
+  },
+  {
+    "commit": "45c3b49",
+    "date": "2026-08-25T19:30:00+02:00",
+    "label": "Suffix guide & letter decoder enrichment",
+    "range_count": 4,
+    "models_covered": [
+      "STIHL MS 261 C-M (Generatie 1)",
+      "STIHL MS 261 C-M (Generatie 2 / Facelift)",
+      "STIHL BR 600 (4-Mix Rugblazer)",
+      "STIHL MS 170 / MS 180 (China Qingdao)"
+    ],
+    "plants_covered": ["1", "2", "8"],
+    "resolver_behavior": "Trimmed down to 4 representative serial_ranges.",
+    "fallback_behavior": "estimateYearBySerial per plant.",
+    "default_model_behavior": "'STIHL Benzine / Accu Machine' fallback.",
+    "notable_regression": "First data loss: 9 of 13 historical ranges removed from stihl_database.json (041 AV, 026/MS 260 Vroeg, MS 260 Laat, MS 500i, MS 290, BR 340/420, FS 130, FS 120)."
+  },
+  {
+    "commit": "90bb431",
+    "date": "2026-08-26T00:53:22+02:00",
+    "label": "Engine v2.0 with SQLite & seed scripts",
+    "range_count": 4,
+    "models_covered": [
+      "stihl_ms_261_c_m",
+      "stihl_br_600",
+      "stihl_ms_170"
+    ],
+    "plants_covered": ["1", "2", "8"],
+    "resolver_behavior": "serial_breakpoints table introduced in SQLite and stihl_database.json.",
+    "fallback_behavior": "serialStr.substring(0, 4) series_code heuristic introduced in decoder.js.",
+    "default_model_behavior": "If series_code matched a model, assigned model_name without range verification.",
+    "notable_regression": "series_code substring(0,4) heuristic conflated part family with machine serial numbers."
+  },
+  {
+    "commit": "40d3cb7",
+    "date": "2026-08-26T01:59:11+02:00",
+    "label": "Implement Serial Breakpoints Engine",
+    "range_count": 5,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261",
+      "stihl_ms_261_cm",
+      "stihl_ms_201_tc_m"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "Introduced StihlRangeResolver and model_serial_ranges table. First-match array resolution.",
+    "fallback_behavior": "Hardcoded default in decoder.js: '|| database.models.find(m => m.id === \\'stihl_ms_261_cm\\') || database.models[0]'.",
+    "default_model_behavior": "MASS DEFAULT: 100% of unmapped serials blindly resolved to MS 261 C-M! All plants defaulted to Waiblingen Germany.",
+    "notable_regression": "Critical double regression: (1) Synthesized 25M range 145000000–169999999 for MS 260, merging BR 340/420 and MS 260 Laat. (2) Mass default to MS 261 C-M."
+  },
+  {
+    "commit": "a43b6e3",
+    "date": "2026-08-26T02:48:23+02:00",
+    "label": "Phased SEO Engine & pilot model pages",
+    "range_count": 3,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261_cm"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "model_serial_ranges pruned to match pilot SEO model pages (MS 260, MS 261). MS 201 dropped.",
+    "fallback_behavior": "Retained mass fallback to MS 261 C-M.",
+    "default_model_behavior": "100% fallback to MS 261 C-M.",
+    "notable_regression": "Further range data loss: MS 201 ranges deleted, leaving only 3 ranges in canonical database."
+  },
+  {
+    "commit": "c3cf8a4",
+    "date": "2026-08-28T15:52:24+02:00",
+    "label": "FIX: Restored full serial number breakpoint resolution",
+    "range_count": 3,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261_cm"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "Attempted to fix unresolved serials by adding hardcoded prefix matching in decoder.js: 18/17 -> MS 261, 14/15/16 -> MS 260.",
+    "fallback_behavior": "Fallback model set to 'MS 261 C-M Gen 2', fallback category 'Kettingzaag'.",
+    "default_model_behavior": "Every 14/15/16 serial became MS 260. Every 17/18 serial became MS 261. All other serials defaulted to MS 261 C-M Gen 2.",
+    "notable_regression": "Mass fallback heuristic: 95% of all test serials forced to MS 260 or MS 261."
+  },
+  {
+    "commit": "1f7dacb",
+    "date": "2026-08-28T23:25:30+02:00",
+    "label": "FASE 34 SEO integrity hardening & zero fallbacks",
+    "range_count": 3,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261_cm"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "Removed hardcoded startsWith prefix logic and MS 261 C-M Gen 2 default from decoder.js.",
+    "fallback_behavior": "Returned 'Onbekend Model' when rangeMatch was null.",
+    "default_model_behavior": "No default model string in decoder.js.",
+    "notable_regression": "Left the synthetic 25M range 145000000–169999999 for MS 260 in stihl_database.json, leaving 145M-169.9M mapped to MS 260."
+  },
+  {
+    "commit": "fcc2765",
+    "date": "2026-09-03T00:43:47+02:00",
+    "label": "Phase 35C.4.3.2.2.3 block unevidenced breakpoint technical claims",
+    "range_count": 3,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261_cm"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "StihlRangeResolver filtered matches; technical claims blocked from breakpoint records.",
+    "fallback_behavior": "Fail-closed on technical specs when identity is not exact.",
+    "default_model_behavior": "Zero default model.",
+    "notable_regression": "Range dataset remained frozen at 3 Plant 1 ranges; 145M-169.9M still mapped to MS 260."
+  },
+  {
+    "commit": "ff23744",
+    "date": "2026-09-07T02:28:40+02:00",
+    "label": "Phase 36 serial resolution, model assist and MS 170 evidence",
+    "range_count": 3,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261_cm"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "Added SerialChronologyResolver and modelAssist. Staged MS 170 evidence gate.",
+    "fallback_behavior": "Exact model null, probable series surfaced when range matched.",
+    "default_model_behavior": "Zero default model, but 3 ranges remained authority.",
+    "notable_regression": "Frozen at 3 ranges. Range audit Phase 36 officially recorded total_ranges = 3."
+  },
+  {
+    "commit": "00fd2c8",
+    "date": "2026-09-22T00:40:00+02:00",
+    "label": "Current Production Baseline (Phase 45D)",
+    "range_count": 3,
+    "models_covered": [
+      "stihl_ms_260",
+      "stihl_ms_261_cm"
+    ],
+    "plants_covered": ["1"],
+    "resolver_behavior": "Identical to Phase 36. Resolves 145M-169.9M to MS 260 (Klassiek / Analoog), 171M-199.9M to MS 261.",
+    "fallback_behavior": "Zero default model, but 100% of other plants return MODEL_NOT_IDENTIFIED.",
+    "default_model_behavior": "No model literal fallback in decoder.js, but 25M range in stihl_database.json acts as mass MS 260 attractor for Plant 1.",
+    "notable_regression": "Residual defect: 25M MS 260 range, absence of Plant 2/3/8 ranges, client UI state residue."
+  }
+]

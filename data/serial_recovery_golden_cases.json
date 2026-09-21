@@ -1,0 +1,112 @@
+[
+  {
+    "case_id": "gc_01_184592301",
+    "serial": "184592301",
+    "historical_expected_behavior": "Plant 1 (Waiblingen DE), 2016–Heden, probable series MS 261 C-M Gen 2, unconfirmed specs empty, modelAssist available.",
+    "source": "tests/baseline.test.js, tests/phase36a_safe_technical_preview.test.js, index.html",
+    "current_behavior": "PROBABLE_MODEL_SERIES MS 261 C-M Gen 2 (Facelift / V2), technicalSpecs empty.",
+    "recovered_expected_behavior": "PROBABLE_MODEL_SERIES MS 261 C-M Gen 2 (Facelift / V2), technicalSpecs empty, modelAssist available.",
+    "confidence": "HIGH",
+    "decision": "KEEP",
+    "reason": "Core regression test fixture for modern M-Tronic era. Must remain 100% stable."
+  },
+  {
+    "case_id": "gc_02_161984210",
+    "serial": "161984210",
+    "historical_expected_behavior": "Plant 1 (Waiblingen DE), 2002–2011, probable series MS 260, unconfirmed specs empty.",
+    "source": "tests/phase38a_machine_dossier_mvp.test.js",
+    "current_behavior": "PROBABLE_MODEL_SERIES MS 260 (Klassiek / Analoog).",
+    "recovered_expected_behavior": "PROBABLE_MODEL_SERIES MS 260 (Klassiek / Analoog) via late 160M–169.9M range.",
+    "confidence": "HIGH",
+    "decision": "KEEP",
+    "reason": "Authentic late MS 260 test fixture used in machine dossier tests. Preserved in 160M-169.9M range."
+  },
+  {
+    "case_id": "gc_03_824061159",
+    "serial": "824061159",
+    "historical_expected_behavior": "Plant 8 (Qingdao CN), country/location null (fail-closed), MODEL_NOT_IDENTIFIED, modelAssist available. Confirmed with MS 170.",
+    "source": "tests/phase36_ms170_realworld_acceptance.test.js",
+    "current_behavior": "MODEL_NOT_IDENTIFIED, country null, modelAssist available.",
+    "recovered_expected_behavior": "MODEL_NOT_IDENTIFIED, country null, modelAssist available, unlocks MS 170 upon user confirmation.",
+    "confidence": "HIGH",
+    "decision": "KEEP",
+    "reason": "Phase 36 acceptance contract strictly mandates unassisted Plant 8 serials must not fake model identity."
+  },
+  {
+    "case_id": "gc_04_150123456",
+    "serial": "150123456",
+    "historical_expected_behavior": "Originally BR 340 / BR 420 (1999–2009) in commit 4c0de6f.",
+    "source": "data/stihl_database.json (4c0de6f)",
+    "current_behavior": "BUG: Resolved to MS 260 (Klassiek / Analoog) due to synthetic 25M MS 260 range.",
+    "recovered_expected_behavior": "PROBABLE_MODEL_SERIES BR 420 (Ruggedragen Bladblazer), 1999–2009, NOT MS 260.",
+    "confidence": "HIGH",
+    "decision": "CORRECT",
+    "reason": "Remediates the primary user complaint where random serials in 14x/15x falsely resolved to MS 260."
+  },
+  {
+    "case_id": "gc_05_270123456",
+    "serial": "270123456",
+    "historical_expected_behavior": "Plant 2 (Virginia Beach US), BR 600 4-Mix Blower (2007–2017).",
+    "source": "data/seed.js, data/stihl_database.json (4c0de6f, 90bb431)",
+    "current_behavior": "MODEL_NOT_IDENTIFIED (zero Plant 2 ranges in current DB).",
+    "recovered_expected_behavior": "PROBABLE_MODEL_SERIES BR 600 (4-Mix Rugblazer), Plant 2 US, 2007–2017.",
+    "confidence": "HIGH",
+    "decision": "CORRECT",
+    "reason": "Restores verified historical Plant 2 range from seed.js."
+  },
+  {
+    "case_id": "gc_06_330123456",
+    "serial": "330123456",
+    "historical_expected_behavior": "Plant 3 (São Leopoldo BR), FS 120 / FS 250 (2002–2015).",
+    "source": "data/stihl_database.json (4c0de6f)",
+    "current_behavior": "MODEL_NOT_IDENTIFIED.",
+    "recovered_expected_behavior": "PROBABLE_MODEL_SERIES FS 120 / FS 250 (Brazilië Serie), Plant 3, 2002–2015.",
+    "confidence": "HIGH",
+    "decision": "CORRECT",
+    "reason": "Restores verified historical Plant 3 range from 4c0de6f."
+  },
+  {
+    "case_id": "gc_07_125000000",
+    "serial": "125000000",
+    "historical_expected_behavior": "Plant 1 (Waiblingen DE), 026 / MS 260 Vroeg (1989–1997).",
+    "source": "data/stihl_database.json (4c0de6f)",
+    "current_behavior": "MODEL_NOT_IDENTIFIED.",
+    "recovered_expected_behavior": "PROBABLE_MODEL_SERIES 026 / MS 260 Vroeg (1989–1997).",
+    "confidence": "HIGH",
+    "decision": "CORRECT",
+    "reason": "Restores early 026 historical range, providing accurate distinction from late MS 260."
+  },
+  {
+    "case_id": "gc_08_140000000",
+    "serial": "140000000",
+    "historical_expected_behavior": "Plant 1 unmapped transition period (ca. 1997–1999).",
+    "source": "src/decoder.js",
+    "current_behavior": "MODEL_NOT_IDENTIFIED (factory validated Plant 1 Germany).",
+    "recovered_expected_behavior": "MODEL_NOT_IDENTIFIED / PLANT_AND_PERIOD_ONLY (Plant 1 Germany, ca. 1997–2000). Zero default model.",
+    "confidence": "MEDIUM",
+    "decision": "KEEP",
+    "reason": "Must NOT fall back to MS 260 without evidence."
+  },
+  {
+    "case_id": "gc_09_999999999",
+    "serial": "999999999",
+    "historical_expected_behavior": "Definitive counterfeit test serial.",
+    "source": "data/stihl_database.json (counterfeit_rules)",
+    "current_behavior": "isCounterfeit: true, riskLevel: DEFINITIVE_FAKE.",
+    "recovered_expected_behavior": "isCounterfeit: true, riskLevel: DEFINITIVE_FAKE.",
+    "confidence": "HIGH",
+    "decision": "KEEP",
+    "reason": "Counterfeit rules must remain 100% intact."
+  },
+  {
+    "case_id": "gc_10_11210210800",
+    "serial": "11210210800",
+    "historical_expected_behavior": "11-digit part number (Teilenummer) for 1121 series.",
+    "source": "src/decoder.js (analyzePartNumber)",
+    "current_behavior": "type: PART_NUMBER, familyCode: 1121, isWarning: true.",
+    "recovered_expected_behavior": "type: PART_NUMBER, familyCode: 1121, isWarning: true, warning that part number does not prove machine serial.",
+    "confidence": "HIGH",
+    "decision": "KEEP",
+    "reason": "Part number separation must remain 100% preserved."
+  }
+]

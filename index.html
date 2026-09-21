@@ -1108,7 +1108,7 @@
       const safePreviewCard = document.getElementById('safe-technical-preview-card');
       const safePreviewGrid = document.getElementById('safe-preview-fields-grid');
       const specsGridContainer = document.getElementById('specs-grid-container');
-      let currentSerial = '184592301';
+      let currentSerial = '';
       let currentModelName = 'Niet vastgesteld';
       let currentYearsFormatted = 'Niet vastgesteld';
       let currentDecodeResult = null;
@@ -1159,6 +1159,20 @@
         currentDecodeResult = null;
         manualModelOverride = null;
         currentSelectedModelSlug = null;
+        currentSerial = '';
+        currentModelName = 'Niet vastgesteld';
+        currentYearsFormatted = 'Niet vastgesteld';
+
+        const resModelEl = document.getElementById('res-model');
+        if (resModelEl) resModelEl.innerText = 'Niet vastgesteld';
+        const resSerialEl = document.getElementById('res-serial-display');
+        if (resSerialEl) resSerialEl.innerText = '';
+        const assistSeriesName = document.getElementById('model-assist-series-name');
+        if (assistSeriesName) assistSeriesName.innerText = '';
+        const assistButtons = document.getElementById('model-assist-buttons');
+        if (assistButtons) assistButtons.innerHTML = '';
+        const assistConfirmedName = document.getElementById('model-assist-confirmed-name');
+        if (assistConfirmedName) assistConfirmedName.innerText = '';
 
         const mismatchWarn = document.getElementById('model-mismatch-warning');
         const unverifiedWarn = document.getElementById('model-unverified-warning');
