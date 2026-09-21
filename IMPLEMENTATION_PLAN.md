@@ -727,27 +727,79 @@ Technical evidence activation for 21 BR Tier 1 models from official STIHL BR pro
 
 ---
 
-## Phase 44D — Tier 1 Production Promotion & Live Verification (READY FOR RETRY)
+## Phase 44D — BR Tier 1 Production Promotion & Live Verification
 
-**Status:** READY FOR RETRY after Phase44C-R3 regression proof; not executed. Explicit acceptance is required before starting Phase44D.
+**Status:** COMPLETE ✅ — promoted, deployed, live verified 2026-09-21.
+
+### Result
+
+BR Tier 1 candidate (R2/R3 accepted tree) promoted to production via fast-forward. Original Phase44C remains REJECTED.
+
+- **Promotion method:** FAST-FORWARD from `947eb3e` to `eae6f8e`
+- **Promoted main:** `eae6f8e883cc95a87cf1f21c9d97ed73ac19f5dd`
+- **Promoted tree:** `5adc68af6c7d34d3a40dbf387dfbb2f32a6985c2`
+- **Deployment:** Render — LIVE, deployed SHA matches promoted main
+- **Rejected Phase44C deployed:** NO
+
+### Production state
+
+- Models: **83**
+- CORE5: **83/83**
+- Baseline facts: 512 (0 mutated, 0 removed)
+- Safe new facts: 153
+- Final public facts: **665** (512 + 153)
+- Safe canonical technical fields: **153**
+- Blocked candidates: **44** (all protected in production)
+- Baseline unindexed debt: **38** (unchanged, 0 newly indexed)
+
+### Verification results
+
+- R2/R3 data parity: IDENTICAL (all 3 canonical data files + src/ + package files)
+- Regression: 0 new candidate-only regressions (P→C: 28 EP / 21 EHF / 0 R; B→C: 28 EP / 21 EHF / 0 R)
+- Canonical policy: 83/83 production_confidence=UNKNOWN, 0 specs_verified=true
+- 21/21 Tier1 routes: HTTP 200
+- 10/10 prior identity routes: HTTP 200
+- 8/8 blocked chainsaw weights: PROTECTED
+- Variant isolation (MS172/MS172 C-BE, FS55/FS55 R): PASS, 0 cross-leakage
+- Phase43 market variants (MS261 3.0kW, MS260 4.8kg, BR600 10.3kg): 3/3 PROTECTED
+- Sitemap: 146 URLs, 0 duplicates, 0 broken, 21/21 Tier1 present
+- Homepage H1: correct, count=1
+- 0 orphan Tier1 pages (all linked from category pages)
+- Dependency freeze: package.json/lock unchanged, fetch-stihl-products=2.0.5 devDep only, 0 runtime imports
+- R3 audit workflow: EXISTS, production runtime impact=NONE
+
+### BR Tier 1 Pipeline Status
+
+**COMPLETE.** 21 Tier1 identities + 153 safe technical canonical fields and evidence facts live in production with 44 blocked unsafe/ambiguous candidates protected.
+
+### Phase44D production report
+
+See `data/phase44d_tier1_production_report.json`.
+
+---
+
+## Phase 45A — BR Tier 2 Identity Review & Batch Prioritization (PLANNED / NOT STARTED)
+
+**Status:** PLANNED / NOT STARTED
 
 ### Goal
 
-Promote the accepted Phase44B + Phase44C-R2/R3 candidate to production and verify live deployment. Original Phase44C remains rejected.
+Review the remaining 72 Tier 2 BR machine candidates for identity activation eligibility and batch prioritization.
 
-### Scope
+### Deferred scope from Phase 44
 
-- Prepare promotion from the accepted R2/R3 tree, preserving the rollback of unsafe original Phase44C fields
-- Deploy to Render
-- Verify live routes
-- Verify sitemap
-- Verify search
+- Tier 2 machine candidates: **72**
+- Tier 3 machine candidates: **12**
+- Accessories: **71**
+- Unknown/ambiguous records: **12**
 
-### Not in scope for Phase 44D
+### Not in scope
 
-- Tier 2/3 models (future phases)
-- Accessory schema (separate future domain)
+- Tier 2 activation (Phase 45B)
+- Tier 3 / accessories / unknown activation
 - STIHL Paspoort 2.0 (remains PLANNED / NOT YET ACTIVE)
+- Historical test baseline modernization
+- Baseline-unindexed 38 facts repair
 
 ---
 
