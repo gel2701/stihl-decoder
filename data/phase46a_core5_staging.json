@@ -1,0 +1,164 @@
+{
+  "phase": "46A",
+  "created_at": "2026-09-22T00:25:00+02:00",
+  "total_staged": 12,
+  "staging_status": "STAGING_ONLY_NO_CANONICAL_WRITE",
+  "candidates": [
+    {
+      "model": "MSE 170 C-BQ",
+      "proposed_slug": "mse-170-c-bq",
+      "core5": {
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "SAWING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Mains-electric rear-handle chainsaw; category Kettingzaag, power_source ELECTRIC, primary_function SAWING"
+    },
+    {
+      "model": "MSE 141 C-Q",
+      "proposed_slug": "mse-141-c-q",
+      "core5": {
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "SAWING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Mains-electric rear-handle chainsaw; category Kettingzaag, power_source ELECTRIC, primary_function SAWING"
+    },
+    {
+      "model": "HSA 26",
+      "proposed_slug": "hsa-26",
+      "core5": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Battery-powered handheld shrub/hedge shear; category Heggenschaar, power_source BATTERY, primary_function HEDGE_TRIMMING"
+    },
+    {
+      "model": "HLA 66",
+      "proposed_slug": "hla-66",
+      "core5": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Battery-powered pole hedge trimmer mapped into existing /heggenscharen/ route architecture; pole hedge trimmer distinction preserved in machine notes"
+    },
+    {
+      "model": "HS 82 R",
+      "proposed_slug": "hs-82-r",
+      "core5": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Gasoline hedge trimmer (pruning revision R with large tooth spacing); power_source GASOLINE, primary_function HEDGE_TRIMMING"
+    },
+    {
+      "model": "MSA 190 T",
+      "proposed_slug": "msa-190-t",
+      "core5": {
+        "product_category": "Kettingzaag",
+        "product_type": "Tophandle kettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "SAWING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Battery-powered arboriculture top-handle chainsaw (T suffix); product_type Tophandle kettingzaag, power_source BATTERY, primary_function SAWING"
+    },
+    {
+      "model": "TSA 230",
+      "proposed_slug": "tsa-230",
+      "core5": {
+        "product_category": "Doorslijper",
+        "product_type": "Doorslijper",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "CUT_OFF"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Battery-powered cut-off machine (cortador a disco); category Doorslijper, existing /doorslijpers/ route, power_source BATTERY, primary_function CUT_OFF. Phase44A lawnmower mislabeling eradicated."
+    },
+    {
+      "model": "HLA 56",
+      "proposed_slug": "hla-56",
+      "core5": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Battery-powered pole hedge trimmer mapped into existing /heggenscharen/ route architecture; pole hedge trimmer distinction preserved in machine notes"
+    },
+    {
+      "model": "BGE 71",
+      "proposed_slug": "bge-71",
+      "core5": {
+        "product_category": "Bladblazer",
+        "product_type": "Handbladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "BLOWING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Mains-electric handheld blower; category Bladblazer, power_source ELECTRIC, primary_function BLOWING. Upgraded on exact official product name and stable reference."
+    },
+    {
+      "model": "FSE 41",
+      "proposed_slug": "fse-41",
+      "core5": {
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "CUTTING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Mains-electric grass trimmer / brushcutter; category Bosmaaier, power_source ELECTRIC, primary_function CUTTING. Upgraded on exact official product name and stable reference."
+    },
+    {
+      "model": "HSE 52",
+      "proposed_slug": "hse-52",
+      "core5": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Mains-electric handheld hedge trimmer; category Heggenschaar, power_source ELECTRIC, primary_function HEDGE_TRIMMING. Upgraded on exact official product name and stable reference."
+    },
+    {
+      "model": "FSE 60",
+      "proposed_slug": "fse-60",
+      "core5": {
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "CUTTING"
+      },
+      "completeness": "5/5",
+      "canonical_vocabulary_mapping_rationale": "Mains-electric grass trimmer / brushcutter; category Bosmaaier, power_source ELECTRIC, primary_function CUTTING. Upgraded on exact official product name and stable reference."
+    }
+  ]
+}
