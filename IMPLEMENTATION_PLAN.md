@@ -967,9 +967,55 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ---
 
-## Phase 46A — BR Tier 2 Wave 2 Intake & Prioritization
+## Phase 46A — BR Tier 2 Remaining Existing-Route Identity Review & Wave 2 Definition
+
+**Status:** COMPLETE / AUDIT PASS ✅
+
+### Scope & Intake
+
+- **Intake count:** **12** remaining Tier 2 identities using existing site routes
+- **Original confidence:** **8 HIGH**, **4 MEDIUM** (parser failure review)
+- **Current 98-model collision audit:** **12/12 PASS** (0 name, 0 slug, 0 alias, 0 search-normalization, 0 reference collisions)
+- **Suffix safety:** **4/4** (MSE 170 C-BQ, MSE 141 C-Q, HS 82 R, MSA 190 T suffixes preserved)
+- **Power source safety:** **6/6** mains-electric models classified `ELECTRIC` (not `BATTERY`)
+- **TSA 230 special case:** Cut-off machine (`Doorslijper`) on existing `/doorslijpers/` route, 0 lawnmower leakage, 0 runtime changes required
+- **HSA 26 bundle safety:** Reconciled to single identity (`STANDALONE_AND_KIT`), standalone reference `HA03-011-3503` prioritized
+- **MEDIUM candidates reviewed:** **4/4** upgraded to HIGH on verified official catalog evidence (`BGE 71`, `FSE 41`, `HSE 52`, `FSE 60`)
+- **CORE5 staging:** **12/12** complete (5/5) using canonical repository vocabulary (staging only, 0 DB writes)
+- **Route readiness:** **12/12** route ready across existing categories (`kettingzagen`, `heggenscharen`, `bosmaaiers`, `bladblazers`, `doorslijpers`); 0 code changes required
+- **Final Dispositions:**
+  - `WAVE2_READY_HIGH`: **8**
+  - `WAVE2_READY_UPGRADED_FROM_MEDIUM`: **4**
+  - `DEFER_MEDIUM_CONFIDENCE`: **0**
+  - `BLOCKED`: **0**
+- **Wave 2 selection:** Exactly **12** identities defined for Phase 46B activation in `data/phase46a_phase46b_wave2_definition.json`
+- **Deferred backlog preserved:** 36 `CATEGORY_ARCHITECTURE_REQUIRED`, Tier 3 (12), accessories (71), unknown (12), baseline 38 unindexed debt untouched
+
+---
+
+## Phase 46B — BR Tier 2 Wave 2 Canonical Identity & CORE5 Activation
 
 **Status:** PLANNED / NOT STARTED ⏳
+
+### Target Scope
+
+- Activate the 12 selected Phase 46A Wave 2 identities into canonical `data/stihl_database.json`
+- Populate CORE5 classification (5/5) using canonical vocabulary
+- Keep all technical fields null
+- Freeze public evidence facts (remain 721)
+- Verify routes, search, sitemaps, and zero regressions
+
+---
+
+## Phase 46C — BR Tier 2 Wave 2 Technical Evidence Reconciliation
+
+**Status:** RESERVED ⏳
+
+---
+
+## Phase 46D — BR Tier 2 Wave 2 Production Promotion & Live Verification
+
+**Status:** RESERVED ⏳
 
 ---
 

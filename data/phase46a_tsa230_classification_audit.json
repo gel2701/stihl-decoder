@@ -1,0 +1,38 @@
+{
+  "phase": "46A",
+  "created_at": "2026-09-22T00:25:00+02:00",
+  "model": "TSA 230",
+  "phase44a_raw_type": "LAWNMOWER",
+  "phase45a_corrected_semantic_type": "cut_off_machine",
+  "official_product_name": "Cortador a disco a bateria  TSA 230",
+  "reference": "4864-011-6620",
+  "project_drive_classification": {
+    "machine_type": "CUT_OFF_MACHINE",
+    "power_source": "BATTERY",
+    "drive_type": "BATTERY_ELECTRIC"
+  },
+  "existing_route_support": {
+    "route": "/doorslijpers/",
+    "server_known_category": true,
+    "category_page_template": true,
+    "sitemap_category": true,
+    "search_support": true,
+    "code_change_required": false
+  },
+  "proposed_canonical_category": "Doorslijper",
+  "category_slug": "doorslijpers",
+  "core5_staging": {
+    "product_category": "Doorslijper",
+    "product_type": "Doorslijper",
+    "machine_form": "HANDHELD",
+    "power_source": "BATTERY",
+    "primary_function": "CUT_OFF"
+  },
+  "old_lawnmower_leakage_checks": {
+    "lawnmower_references_count": 0,
+    "lawnmower_category_leakage": false,
+    "leakage_passed": true
+  },
+  "result": "PASS_CUT_OFF_MACHINE_VALIDATED",
+  "final_disposition": "WAVE2_READY_HIGH"
+}

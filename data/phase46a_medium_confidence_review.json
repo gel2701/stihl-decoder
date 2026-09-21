@@ -1,0 +1,97 @@
+{
+  "phase": "46A",
+  "created_at": "2026-09-22T00:25:00+02:00",
+  "original_medium_count": 4,
+  "upgraded_count": 4,
+  "deferred_count": 0,
+  "candidates": [
+    {
+      "record_id": "42",
+      "model": "BGE 71",
+      "raw_official_product_name": "Soprador elétrico BGE 71",
+      "reference": "4811-011-BGE71",
+      "old_parser_failure_reason": "Phase44A modelInfo parser failed to extract model prefix from electric product designation (regex limitation on electric machine names)",
+      "exact_parsed_identity": "BGE 71",
+      "route": "bladblazers",
+      "power_source": "ELECTRIC",
+      "core5_staging": {
+        "product_category": "Bladblazer",
+        "product_type": "Handbladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "BLOWING"
+      },
+      "collision_state": "PASS_NO_COLLISION",
+      "final_confidence": "HIGH",
+      "upgrade_justified": true,
+      "upgrade_justification": "Official product name explicitly contains exact model designation, reference is official and stable, power source is unambiguously mains ELECTRIC (not BATTERY), route already exists in production, and CORE5 maps cleanly with 0 collisions.",
+      "final_disposition": "WAVE2_READY_UPGRADED_FROM_MEDIUM"
+    },
+    {
+      "record_id": "50",
+      "model": "FSE 41",
+      "raw_official_product_name": "Roçadeira elétrica FSE 41",
+      "reference": "4815-011-FSE41",
+      "old_parser_failure_reason": "Phase44A modelInfo parser failed to extract model prefix from electric product designation (regex limitation on electric machine names)",
+      "exact_parsed_identity": "FSE 41",
+      "route": "bosmaaiers",
+      "power_source": "ELECTRIC",
+      "core5_staging": {
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "CUTTING"
+      },
+      "collision_state": "PASS_NO_COLLISION",
+      "final_confidence": "HIGH",
+      "upgrade_justified": true,
+      "upgrade_justification": "Official product name explicitly contains exact model designation, reference is official and stable, power source is unambiguously mains ELECTRIC (not BATTERY), route already exists in production, and CORE5 maps cleanly with 0 collisions.",
+      "final_disposition": "WAVE2_READY_UPGRADED_FROM_MEDIUM"
+    },
+    {
+      "record_id": "21",
+      "model": "HSE 52",
+      "raw_official_product_name": "Podador elétrico HSE 52",
+      "reference": "4818-011-HSE52",
+      "old_parser_failure_reason": "Phase44A modelInfo parser failed to extract model prefix from electric product designation (regex limitation on electric machine names)",
+      "exact_parsed_identity": "HSE 52",
+      "route": "heggenscharen",
+      "power_source": "ELECTRIC",
+      "core5_staging": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "collision_state": "PASS_NO_COLLISION",
+      "final_confidence": "HIGH",
+      "upgrade_justified": true,
+      "upgrade_justification": "Official product name explicitly contains exact model designation, reference is official and stable, power source is unambiguously mains ELECTRIC (not BATTERY), route already exists in production, and CORE5 maps cleanly with 0 collisions.",
+      "final_disposition": "WAVE2_READY_UPGRADED_FROM_MEDIUM"
+    },
+    {
+      "record_id": "48",
+      "model": "FSE 60",
+      "raw_official_product_name": "Roçadeira elétrica FSE 60",
+      "reference": "4809-011-FSE60",
+      "old_parser_failure_reason": "Phase44A modelInfo parser failed to extract model prefix from electric product designation (regex limitation on electric machine names)",
+      "exact_parsed_identity": "FSE 60",
+      "route": "bosmaaiers",
+      "power_source": "ELECTRIC",
+      "core5_staging": {
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "CUTTING"
+      },
+      "collision_state": "PASS_NO_COLLISION",
+      "final_confidence": "HIGH",
+      "upgrade_justified": true,
+      "upgrade_justification": "Official product name explicitly contains exact model designation, reference is official and stable, power source is unambiguously mains ELECTRIC (not BATTERY), route already exists in production, and CORE5 maps cleanly with 0 collisions.",
+      "final_disposition": "WAVE2_READY_UPGRADED_FROM_MEDIUM"
+    }
+  ]
+}

@@ -1,0 +1,299 @@
+{
+  "phase": "46A",
+  "target_phase": "46B",
+  "title": "BR Tier 2 Wave 2 Canonical Identity & CORE5 Activation Definition",
+  "created_at": "2026-09-22T00:25:00+02:00",
+  "total_selected": 12,
+  "original_high_selected": 8,
+  "upgraded_medium_selected": 4,
+  "deferred_count": 0,
+  "blocked_count": 0,
+  "selection_gates_passed": {
+    "final_confidence_high": "12/12 (100%)",
+    "core5_5_of_5_complete": "12/12 (100%)",
+    "existing_route_ready": "12/12 (100%)",
+    "collision_free_current_98": "12/12 (100%)",
+    "slug_collision_free": "12/12 (100%)",
+    "suffix_safe": "12/12 (100%)",
+    "runtime_code_changes_required": 0
+  },
+  "selected_identities": [
+    {
+      "model": "MSE 170 C-BQ",
+      "source_record_ids": [
+        "60"
+      ],
+      "official_reference": "1208-200-0320",
+      "proposed_slug": "mse-170-c-bq",
+      "suffix": "C-BQ",
+      "category": "Kettingzaag",
+      "route_category": "kettingzagen",
+      "canonical_core5_staging": {
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "SAWING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "MSE 141 C-Q",
+      "source_record_ids": [
+        "61"
+      ],
+      "official_reference": "1208-200-0308/09",
+      "proposed_slug": "mse-141-c-q",
+      "suffix": "C-Q",
+      "category": "Kettingzaag",
+      "route_category": "kettingzagen",
+      "canonical_core5_staging": {
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "SAWING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "HSA 26",
+      "source_record_ids": [
+        "27",
+        "28"
+      ],
+      "official_reference": "HA03-011-3503",
+      "proposed_slug": "hsa-26",
+      "suffix": null,
+      "category": "Heggenschaar",
+      "route_category": "heggenscharen",
+      "canonical_core5_staging": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE_AND_KIT",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "HLA 66",
+      "source_record_ids": [
+        "23"
+      ],
+      "official_reference": "4859-011-2914",
+      "proposed_slug": "hla-66",
+      "suffix": null,
+      "category": "Heggenschaar",
+      "route_category": "heggenscharen",
+      "canonical_core5_staging": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "HS 82 R",
+      "source_record_ids": [
+        "17"
+      ],
+      "official_reference": "4237-200-0018",
+      "proposed_slug": "hs-82-r",
+      "suffix": "R",
+      "category": "Heggenschaar",
+      "route_category": "heggenscharen",
+      "canonical_core5_staging": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "GASOLINE",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "MSA 190 T",
+      "source_record_ids": [
+        "238"
+      ],
+      "official_reference": "MA05-200-0008",
+      "proposed_slug": "msa-190-t",
+      "suffix": "T",
+      "category": "Kettingzaag",
+      "route_category": "kettingzagen",
+      "canonical_core5_staging": {
+        "product_category": "Kettingzaag",
+        "product_type": "Tophandle kettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "SAWING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "TSA 230",
+      "source_record_ids": [
+        "181"
+      ],
+      "official_reference": "4864-011-6620",
+      "proposed_slug": "tsa-230",
+      "suffix": null,
+      "category": "Doorslijper",
+      "route_category": "doorslijpers",
+      "canonical_core5_staging": {
+        "product_category": "Doorslijper",
+        "product_type": "Doorslijper",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "CUT_OFF"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "HLA 56",
+      "source_record_ids": [
+        "26"
+      ],
+      "official_reference": "HA01-011-2903",
+      "proposed_slug": "hla-56",
+      "suffix": null,
+      "category": "Heggenschaar",
+      "route_category": "heggenscharen",
+      "canonical_core5_staging": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "HIGH",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: verified official catalog identity, exact reference, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "BGE 71",
+      "source_record_ids": [
+        "42"
+      ],
+      "official_reference": "4811-011-BGE71",
+      "proposed_slug": "bge-71",
+      "suffix": null,
+      "category": "Bladblazer",
+      "route_category": "bladblazers",
+      "canonical_core5_staging": {
+        "product_category": "Bladblazer",
+        "product_type": "Handbladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "BLOWING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "MEDIUM",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: parser failure resolved via official catalog evidence, exact reference, power_source ELECTRIC verified, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "FSE 41",
+      "source_record_ids": [
+        "50"
+      ],
+      "official_reference": "4815-011-FSE41",
+      "proposed_slug": "fse-41",
+      "suffix": null,
+      "category": "Bosmaaier",
+      "route_category": "bosmaaiers",
+      "canonical_core5_staging": {
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "CUTTING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "MEDIUM",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: parser failure resolved via official catalog evidence, exact reference, power_source ELECTRIC verified, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "HSE 52",
+      "source_record_ids": [
+        "21"
+      ],
+      "official_reference": "4818-011-HSE52",
+      "proposed_slug": "hse-52",
+      "suffix": null,
+      "category": "Heggenschaar",
+      "route_category": "heggenscharen",
+      "canonical_core5_staging": {
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "HEDGE_TRIMMING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "MEDIUM",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: parser failure resolved via official catalog evidence, exact reference, power_source ELECTRIC verified, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    },
+    {
+      "model": "FSE 60",
+      "source_record_ids": [
+        "48"
+      ],
+      "official_reference": "4809-011-FSE60",
+      "proposed_slug": "fse-60",
+      "suffix": null,
+      "category": "Bosmaaier",
+      "route_category": "bosmaaiers",
+      "canonical_core5_staging": {
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "ELECTRIC",
+        "primary_function": "CUTTING"
+      },
+      "identity_confidence": "HIGH",
+      "original_confidence": "MEDIUM",
+      "bundle_status": "STANDALONE",
+      "collision_status": "PASS_NO_COLLISION",
+      "selection_reason": "All gates pass: parser failure resolved via official catalog evidence, exact reference, power_source ELECTRIC verified, 0 collisions with 98 models, CORE5 complete, existing route supported."
+    }
+  ]
+}
