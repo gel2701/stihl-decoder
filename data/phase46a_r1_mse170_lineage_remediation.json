@@ -1,0 +1,32 @@
+{
+  "phase": "46A-R1",
+  "created_at": "2026-09-22T00:38:00+02:00",
+  "model": "MSE 170 C-BQ",
+  "old_record_id": "60",
+  "old_reference": "1208-200-0320",
+  "new_record_id": "62",
+  "new_reference": "1209-011-M170",
+  "authoritative_sources": [
+    "data/phase44a_vtex_full_catalog.json",
+    "data/phase45a_tier2_unique_identity_inventory.json"
+  ],
+  "sku_variants": [
+    {
+      "reference": "1209-011-4008",
+      "name": "MSE 170 C-BQ - 127 V",
+      "itemId": "117"
+    },
+    {
+      "reference": "1209-011-4009",
+      "name": "MSE 170 C-BQ - 220 V",
+      "itemId": "118"
+    }
+  ],
+  "catalog_product_name": "Motosserra elétrica MSE 170 C-BQ",
+  "catalog_linkText": "motosserra-mse-170-c-bq",
+  "identity_unchanged": "YES",
+  "slug_unchanged": "YES",
+  "core5_unchanged": "YES",
+  "route_unchanged": "YES",
+  "remediation_status": "RESOLVED_TO_AUTHORITATIVE_CATALOG_LINEAGE"
+}
