@@ -1,0 +1,367 @@
+{
+  "phase": "45B",
+  "total_mappings": 15,
+  "ambiguous_mappings": 0,
+  "mappings": [
+    {
+      "model": "FSA 45",
+      "phase45a_semantic_core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "FS 55 / FS 161 (Bosmaaier / Bosmaaier / CUTTING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "BGA 30",
+      "phase45a_semantic_core5": {
+        "product_category": "blower",
+        "product_type": "blower",
+        "machine_form": "handheld_blower",
+        "power_source": "battery",
+        "primary_function": "debris_blowing"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bladblazer",
+        "product_type": "Bladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "BLOWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "BG 50 / BG 56 (Bladblazer / Bladblazer / BLOWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "FSA 50",
+      "phase45a_semantic_core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "FS 55 / FS 161 (Bosmaaier / Bosmaaier / CUTTING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "HLA 40",
+      "phase45a_semantic_core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "pole_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "HS 45 (Heggenschaar / Handheggenschaar / HEDGE_TRIMMING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "HSA 40",
+      "phase45a_semantic_core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "handheld_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "HS 45 (Heggenschaar / Handheggenschaar / HEDGE_TRIMMING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "SHA 56",
+      "phase45a_semantic_core5": {
+        "product_category": "vacuum_shredder",
+        "product_type": "vacuum_shredder",
+        "machine_form": "handheld_vacuum_shredder",
+        "power_source": "battery",
+        "primary_function": "debris_collection"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Zuig-/blaasmachine",
+        "product_type": "Zuighakselaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "BLOWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "SH 56 / SH 86 (Zuig-/blaasmachine / Zuighakselaar / BLOWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "HSA 30",
+      "phase45a_semantic_core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "handheld_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "HS 45 (Heggenschaar / Handheggenschaar / HEDGE_TRIMMING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "HSA 100",
+      "phase45a_semantic_core5": {
+        "product_category": "hedge_trimmer",
+        "product_type": "hedge_trimmer",
+        "machine_form": "handheld_hedge_trimmer",
+        "power_source": "battery",
+        "primary_function": "hedge_trimming"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "HS 45 (Heggenschaar / Handheggenschaar / HEDGE_TRIMMING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "FSA 30",
+      "phase45a_semantic_core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "FS 55 / FS 161 (Bosmaaier / Bosmaaier / CUTTING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "MSA 60 C-B",
+      "phase45a_semantic_core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "MS 170 / MS 182 (Kettingzaag / Handkettingzaag / SAWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "MSA 160 C-B",
+      "phase45a_semantic_core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "MS 170 / MS 182 (Kettingzaag / Handkettingzaag / SAWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "FSA 135",
+      "phase45a_semantic_core5": {
+        "product_category": "brushcutter",
+        "product_type": "brushcutter",
+        "machine_form": "handheld_brushcutter",
+        "power_source": "battery",
+        "primary_function": "vegetation_clearing"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "FS 55 / FS 161 (Bosmaaier / Bosmaaier / CUTTING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "MSA 220 C-B",
+      "phase45a_semantic_core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "MS 170 / MS 182 (Kettingzaag / Handkettingzaag / SAWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "MSA 200 C-B",
+      "phase45a_semantic_core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "MS 170 / MS 182 (Kettingzaag / Handkettingzaag / SAWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    },
+    {
+      "model": "MSA 70 C-B",
+      "phase45a_semantic_core5": {
+        "product_category": "chainsaw",
+        "product_type": "chainsaw",
+        "machine_form": "handheld_chainsaw",
+        "power_source": "battery",
+        "primary_function": "wood_cutting"
+      },
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "core5_completeness": 5
+      },
+      "analogous_existing_model": "MS 170 / MS 182 (Kettingzaag / Handkettingzaag / SAWING)",
+      "ambiguity": "NONE",
+      "result": "MAPPED_CANONICAL_EXACT"
+    }
+  ]
+}

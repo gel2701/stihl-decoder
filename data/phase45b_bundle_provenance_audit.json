@@ -1,0 +1,55 @@
+{
+  "phase": "45B",
+  "bundle_groups": [
+    {
+      "model": "BGA 30",
+      "standalone_reference": "BA08-011-5900",
+      "kit_references": [
+        "BA08-011-59SET"
+      ],
+      "primary_identity_source": "BA08-011-5900",
+      "kit_only": false,
+      "technical_bundle_contents_promoted": false
+    },
+    {
+      "model": "FSA 50",
+      "standalone_reference": "FA11-011-5700",
+      "kit_references": [
+        "FA11-011-57SET"
+      ],
+      "primary_identity_source": "FA11-011-5700",
+      "kit_only": false,
+      "technical_bundle_contents_promoted": false
+    },
+    {
+      "model": "HSA 30",
+      "standalone_reference": "HA08-011-3504",
+      "kit_references": [
+        "HA08-011-3512"
+      ],
+      "primary_identity_source": "HA08-011-3504",
+      "kit_only": false,
+      "technical_bundle_contents_promoted": false
+    },
+    {
+      "model": "HSA 40",
+      "standalone_reference": null,
+      "kit_references": [
+        "HA08-011-35SET"
+      ],
+      "primary_identity_source": "HA08-011-35SET",
+      "kit_only": true,
+      "technical_bundle_contents_promoted": false
+    },
+    {
+      "model": "FSA 30",
+      "standalone_reference": null,
+      "kit_references": [
+        "FA10-011-57SET"
+      ],
+      "primary_identity_source": "FA10-011-57SET",
+      "kit_only": true,
+      "technical_bundle_contents_promoted": false
+    }
+  ]
+}

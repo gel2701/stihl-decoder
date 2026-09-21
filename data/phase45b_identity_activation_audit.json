@@ -1,0 +1,596 @@
+{
+  "phase": "45B",
+  "total_activated": 15,
+  "sub_batch_1_count": 8,
+  "sub_batch_2_count": 7,
+  "identities": [
+    {
+      "sub_batch": 1,
+      "input_model": "FSA 45",
+      "model_id": "stihl_fsa_45",
+      "slug": "fsa-45",
+      "route_category": "bosmaaiers",
+      "category": "Bosmaaier",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "4512-011-5707",
+      "source_record_ids": [
+        "79"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "BGA 30",
+      "model_id": "stihl_bga_30",
+      "slug": "bga-30",
+      "route_category": "bladblazers",
+      "category": "Bladblazer",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bladblazer",
+        "product_type": "Bladblazer",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "BLOWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "BA08-011-59SET",
+      "source_record_ids": [
+        "150",
+        "149"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "FSA 50",
+      "model_id": "stihl_fsa_50",
+      "slug": "fsa-50",
+      "route_category": "bosmaaiers",
+      "category": "Bosmaaier",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "FA11-011-5700",
+      "source_record_ids": [
+        "242",
+        "243"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "HLA 40",
+      "model_id": "stihl_hla_40",
+      "slug": "hla-40",
+      "route_category": "heggenscharen",
+      "category": "Heggenschaar",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "HA10-011-2900",
+      "source_record_ids": [
+        "239"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "HSA 40",
+      "model_id": "stihl_hsa_40",
+      "slug": "hsa-40",
+      "route_category": "heggenscharen",
+      "category": "Heggenschaar",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": "KIT_ONLY_IDENTITY_SOURCE: Activated from official kit bundle product. Technical bundle equipment excluded from identity."
+      },
+      "primary_reference": "HA08-011-35SET",
+      "source_record_ids": [
+        "200"
+      ],
+      "bundle_status": "KIT_ONLY",
+      "is_kit_only": true,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "SHA 56",
+      "model_id": "stihl_sha_56",
+      "slug": "sha-56",
+      "route_category": "bladblazers",
+      "category": "Bladblazer",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Zuig-/blaasmachine",
+        "product_type": "Zuighakselaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "BLOWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "SA02-011-7100",
+      "source_record_ids": [
+        "142"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "HSA 30",
+      "model_id": "stihl_hsa_30",
+      "slug": "hsa-30",
+      "route_category": "heggenscharen",
+      "category": "Heggenschaar",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "HA08-011-3512",
+      "source_record_ids": [
+        "139",
+        "6"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 1,
+      "input_model": "HSA 100",
+      "model_id": "stihl_hsa_100",
+      "slug": "hsa-100",
+      "route_category": "heggenscharen",
+      "category": "Heggenschaar",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Heggenschaar",
+        "product_type": "Handheggenschaar",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "HEDGE_TRIMMING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "HA07-011-3500",
+      "source_record_ids": [
+        "137"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "FSA 30",
+      "model_id": "stihl_fsa_30",
+      "slug": "fsa-30",
+      "route_category": "bosmaaiers",
+      "category": "Bosmaaier",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": "KIT_ONLY_IDENTITY_SOURCE: Activated from official kit bundle product. Technical bundle equipment excluded from identity."
+      },
+      "primary_reference": "FA10-011-57SET",
+      "source_record_ids": [
+        "124"
+      ],
+      "bundle_status": "KIT_ONLY",
+      "is_kit_only": true,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "MSA 60 C-B",
+      "model_id": "stihl_msa_60_c-b",
+      "slug": "msa-60-c-b",
+      "route_category": "kettingzagen",
+      "category": "Kettingzaag",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "MA04-011-5803",
+      "source_record_ids": [
+        "104"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "MSA 160 C-B",
+      "model_id": "stihl_msa_160_c-b",
+      "slug": "msa-160-c-b",
+      "route_category": "kettingzagen",
+      "category": "Kettingzaag",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "MA03-200-0001",
+      "source_record_ids": [
+        "94"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "FSA 135",
+      "model_id": "stihl_fsa_135",
+      "slug": "fsa-135",
+      "route_category": "bosmaaiers",
+      "category": "Bosmaaier",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Bosmaaier",
+        "product_type": "Bosmaaier",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "CUTTING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "FA01-011-5700",
+      "source_record_ids": [
+        "90"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "MSA 220 C-B",
+      "model_id": "stihl_msa_220_c-b",
+      "slug": "msa-220-c-b",
+      "route_category": "kettingzagen",
+      "category": "Kettingzaag",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "MA03-011-5815",
+      "source_record_ids": [
+        "76"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "MSA 200 C-B",
+      "model_id": "stihl_msa_200_c-b",
+      "slug": "msa-200-c-b",
+      "route_category": "kettingzagen",
+      "category": "Kettingzaag",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "MA03-200-0024",
+      "source_record_ids": [
+        "75"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    },
+    {
+      "sub_batch": 2,
+      "input_model": "MSA 70 C-B",
+      "model_id": "stihl_msa_70_c-b",
+      "slug": "msa-70-c-b",
+      "route_category": "kettingzagen",
+      "category": "Kettingzaag",
+      "canonical_core5": {
+        "brand": "STIHL",
+        "product_category": "Kettingzaag",
+        "product_type": "Handkettingzaag",
+        "machine_form": "HANDHELD",
+        "power_source": "BATTERY",
+        "engine_type": null,
+        "fuel_type": null,
+        "primary_function": "SAWING",
+        "evidence_status": {
+          "product_category": "EXISTING_CANONICAL_SUPPORTED",
+          "product_type": "PREFIX_HINT_ONLY",
+          "machine_form": "PREFIX_HINT_ONLY",
+          "power_source": "EXISTING_CANONICAL_SUPPORTED",
+          "engine_type": "PREFIX_HINT_ONLY",
+          "fuel_type": "PREFIX_HINT_ONLY",
+          "primary_function": "PREFIX_HINT_ONLY"
+        },
+        "core5_completeness": 5,
+        "deep_specs_available_for_later": true,
+        "notes": ""
+      },
+      "primary_reference": "MA04-011-5819",
+      "source_record_ids": [
+        "74"
+      ],
+      "bundle_status": "STANDALONE",
+      "is_kit_only": false,
+      "production_confidence": "UNKNOWN",
+      "specs_verified": false,
+      "disposition": "ACTIVATED_CANONICAL_IDENTITY"
+    }
+  ]
+}

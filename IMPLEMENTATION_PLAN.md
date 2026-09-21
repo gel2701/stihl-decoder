@@ -843,28 +843,63 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ---
 
-## Phase 45B — BR Tier 2 Wave 1 Canonical Identity & CORE5 Activation (PLANNED / NOT STARTED)
+## Phase 45B — BR Tier 2 Wave 1 Canonical Identity & CORE5 Activation
+
+**Status:** CANDIDATE COMPLETE ✅ — 15 Wave 1 identities activated in canonical database, CORE5 98/98, facts frozen at 665. Ready for Phase 45C technical evidence reconciliation.
+
+### Scope & Results
+
+- **Input:** 15 Wave 1 identities from Phase 45A definition
+- **Activated:** 15 (FSA 45, BGA 30, FSA 50, HLA 40, HSA 40, SHA 56, HSA 30, HSA 100, FSA 30, MSA 60 C-B, MSA 160 C-B, FSA 135, MSA 220 C-B, MSA 200 C-B, MSA 70 C-B)
+- **Blocked:** 0
+- **Already canonical:** 0
+- **Models after:** **98** (83 + 15 = 98)
+- **CORE5 after:** **98/98** (all 5/5 completeness, mapped to canonical controlled vocabulary)
+- **Public facts:** **665** (frozen — 0 added, 0 removed, 0 mutated, byte-identical hash)
+- **Technical fields:** **null** across all 14 protected fields (0 technical additions, battery_system = null)
+- **Production confidence:** UNKNOWN (all 98 models)
+- **Specs verified:** false (0 violations)
+- **Sub-batch 1:** 8 models activated (FSA 45, BGA 30, FSA 50, HLA 40, HSA 40, SHA 56, HSA 30, HSA 100)
+- **Sub-batch 2:** 7 models activated (FSA 30, MSA 60 C-B, MSA 160 C-B, FSA 135, MSA 220 C-B, MSA 200 C-B, MSA 70 C-B)
+
+### Deferred Scope from Phase 45B
+
+- Remaining Wave 1-ready identities: **8** deferred
+- Wave 2-ready identities: **4** deferred
+- New category architecture candidates: **36** deferred
+- Tier 3 machine candidates: **12**
+- Accessories: **71**
+- Unknown/ambiguous records: **12**
+- Historical test baseline modernization: deferred
+- Baseline 38 unindexed facts: deferred
+- STIHL Paspoort 2.0: PLANNED / NOT YET ACTIVE
+
+---
+
+## Phase 45C — BR Tier 2 Wave 1 Technical Evidence Reconciliation (PLANNED / NOT STARTED)
 
 **Status:** PLANNED / NOT STARTED
 
 ### Scope
 
-Activate the 15 selected Wave 1 canonical machine identities with CORE5 classification in `data/stihl_database.json`.
+Reconcile technical evidence from official STIHL Brazil product pages for the 15 activated Wave 1 identities:
+- Field-level public evidence fact extraction
+- Semantic safety checks (dB units, compound vibration left/right, multi-configuration values)
+- Blocked candidate safety review
+- Canonical technical field activation with strict parity to evidence
 
-- Models: 83 → 98 (+15)
-- CORE5: 98/98 (5/5 completeness)
-- Public facts: 665 (frozen — no technical facts in Phase 45B)
-- Canonical technical fields: frozen
-- Production confidence: UNKNOWN
-- Specs verified: false
+---
 
-### Not in scope for Phase 45B
+## Phase 45D — BR Tier 2 Wave 1 Production Promotion & Live Verification (PLANNED / NOT STARTED)
 
-- Technical evidence reconciliation (deferred to Phase 45C)
-- Production promotion (deferred to Phase 45D)
-- New category routes (pressure washers, lawnmowers, etc.)
-- Tier 2 Wave 2+ identities
-- Tier 3 / accessories / unknown
+**Status:** PLANNED / NOT STARTED
+
+### Scope
+
+- Fast-forward promotion to main after Phase 45C completion and regression equivalence proof
+- Deploy to Render
+- Live validation of 98 models, routes, search, and technical evidence
+- Sitemaps and SEO verification
 
 ---
 
