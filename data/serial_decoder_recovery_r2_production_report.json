@@ -1,0 +1,228 @@
+{
+  "phase": "SERIAL_DECODER_RECOVERY_R2",
+  "title": "Family Candidate Scope & Display Integrity Production Report",
+  "timestamp": "2026-09-22T01:30:14.833Z",
+  "production_url": "https://www.stihldecoder.nl",
+  "git": {
+    "promoted_commit": "ca44deaba75f868ba6a42cb4fa43901b8bd53c21",
+    "promoted_tree": "25cba4def385f4cb7fdcf36a1478418c0058ccf4",
+    "base_commit": "0c0dfa37cce3e52471bdf100457cdc6ff20992d6",
+    "promotion_method": "FAST_FORWARD_ONLY"
+  },
+  "invariants": {
+    "canonical_models_count": 98,
+    "core5_completeness": "98/98",
+    "public_evidence_facts": 721,
+    "active_serial_ranges": 8,
+    "confidence_distribution": {
+      "high": 0,
+      "medium": 8,
+      "low": 0
+    }
+  },
+  "candidate_scope_remediation": {
+    "before_r2": {
+      "expansion_rule": "Auto-expand to all canonical models sharing series_code",
+      "display_label_rule": "Rebuilt dynamically from validCandidates.map(c => c.name).join(\" / \")",
+      "defects_observed": [
+        "275000000 expanded BR 600 to BR 600 / BR 700 / BR 500 / BR 550",
+        "335000000 expanded FS 120 to FS 350 / FS 120 / FS 200",
+        "150123456 overwrote BR 340 / BR 420 to BR 420, erasing BR 340"
+      ]
+    },
+    "after_r2": {
+      "expansion_rule": "Strictly scoped to explicit candidate_model_ids on serial range definition",
+      "display_label_rule": "Authoritative range_display_name preserved independently of candidate array",
+      "remediated_results": [
+        "275000000 displays BR 600 Reeks with candidate BR 600 only (BR 500/550/700 excluded)",
+        "335000000 displays FS 120 / FS 250 with candidate FS 120 only (FS 200/350 excluded)",
+        "150123456 preserves BR 340 / BR 420 display label while offering canonical BR 420 candidate"
+      ]
+    }
+  },
+  "live_verification_matrix": [
+    {
+      "serial": "125000000",
+      "model": "026 / MS 260",
+      "probableModelSeries": "026 / MS 260",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "MODEL_FAMILY_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "026",
+          "name": "026"
+        },
+        {
+          "slug": "ms-260",
+          "name": "MS 260"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "150123456",
+      "model": "BR 340 / BR 420",
+      "probableModelSeries": "BR 340 / BR 420",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "MODEL_FAMILY_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "br-420",
+          "name": "BR 420"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "160500000",
+      "model": "MS 260",
+      "probableModelSeries": "MS 260",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "PROBABLE_MODEL_SERIES_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "ms-260",
+          "name": "MS 260"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "161984210",
+      "model": "MS 260",
+      "probableModelSeries": "MS 260",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "PROBABLE_MODEL_SERIES_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "ms-260",
+          "name": "MS 260"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "175000000",
+      "model": "MS 261 / MS 261 C-M",
+      "probableModelSeries": "MS 261 / MS 261 C-M",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "PROBABLE_MODEL_SERIES_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "ms-261",
+          "name": "MS 261"
+        },
+        {
+          "slug": "ms-261-c-m",
+          "name": "MS 261 C-M"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "184592301",
+      "model": "MS 261 C-M Gen 2",
+      "probableModelSeries": "MS 261 C-M Gen 2",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "PROBABLE_MODEL_SERIES_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "ms-261-c-m",
+          "name": "MS 261 C-M"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "250000000",
+      "model": "MS 290 / MS 310 / MS 390",
+      "probableModelSeries": "MS 290 / MS 310 / MS 390",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "MODEL_FAMILY_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "ms-290",
+          "name": "MS 290 Farm Boss"
+        },
+        {
+          "slug": "ms-310",
+          "name": "MS 310"
+        },
+        {
+          "slug": "ms-390",
+          "name": "MS 390"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "275000000",
+      "model": "BR 600 Reeks",
+      "probableModelSeries": "BR 600 Reeks",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "PROBABLE_MODEL_SERIES_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "br-600",
+          "name": "BR 600"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "335000000",
+      "model": "FS 120 / FS 250",
+      "probableModelSeries": "FS 120 / FS 250",
+      "modelIdentityStatus": "PROBABLE_MODEL_SERIES",
+      "rangeSemanticLevel": "MODEL_FAMILY_RANGE",
+      "confidence": "MEDIUM",
+      "candidates": [
+        {
+          "slug": "fs-120",
+          "name": "FS 120"
+        }
+      ],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": true
+    },
+    {
+      "serial": "412345678",
+      "model": "Nog niet definitief bevestigd",
+      "probableModelSeries": null,
+      "modelIdentityStatus": "MODEL_NOT_IDENTIFIED",
+      "rangeSemanticLevel": "FORMAT_ONLY",
+      "confidence": "UNKNOWN",
+      "candidates": [],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": false
+    },
+    {
+      "serial": "824061159",
+      "model": "Nog niet definitief bevestigd",
+      "probableModelSeries": null,
+      "modelIdentityStatus": "MODEL_NOT_IDENTIFIED",
+      "rangeSemanticLevel": "FORMAT_ONLY",
+      "confidence": "UNKNOWN",
+      "candidates": [],
+      "technicalSpecsCount": 0,
+      "safePreviewAvailable": false
+    }
+  ],
+  "status": "PRODUCTION_VERIFIED_LIVE_PASS"
+}
