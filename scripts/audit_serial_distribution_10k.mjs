@@ -52,6 +52,9 @@ let ms260Count = 0;
 let ms261Count = 0;
 let unknownCount = 0;
 let otherCount = 0;
+let highProbableCount = 0;
+let mediumProbableCount = 0;
+let lowProbableCount = 0;
 
 for (let i = 0; i < SAMPLE_COUNT; i++) {
   // Distribute evenly across valid plants
@@ -74,6 +77,14 @@ for (let i = 0; i < SAMPLE_COUNT; i++) {
   distribution.plant_breakdown[plant].models[modelKey] = (distribution.plant_breakdown[plant].models[modelKey] || 0) + 1;
   distribution.plant_breakdown[plant].statuses[statusKey] = (distribution.plant_breakdown[plant].statuses[statusKey] || 0) + 1;
 
+  const isProbable = (res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES');
+  if (isProbable) {
+    const conf = res.serialResolution?.confidence || 'LOW';
+    if (conf === 'HIGH') highProbableCount++;
+    else if (conf === 'MEDIUM') mediumProbableCount++;
+    else lowProbableCount++;
+  }
+
   if (modelKey.includes('260') || (res.probableModelSeries && res.probableModelSeries.includes('260'))) {
     ms260Count++;
   } else if (modelKey.includes('261') || (res.probableModelSeries && res.probableModelSeries.includes('261'))) {
@@ -94,6 +105,9 @@ distribution.concentrations = {
   other_percentage: Number(((otherCount / SAMPLE_COUNT) * 100).toFixed(2)),
   unknown_count: unknownCount,
   unknown_percentage: Number(((unknownCount / SAMPLE_COUNT) * 100).toFixed(2)),
+  high_probable_count: highProbableCount,
+  medium_probable_count: mediumProbableCount,
+  low_probable_count: lowProbableCount,
   is_ms260_concentration_alert: ((ms260Count / SAMPLE_COUNT) > 0.25),
   is_ms261_concentration_alert: ((ms261Count / SAMPLE_COUNT) > 0.25),
   is_critical_mass_fallback: ((ms260Count / SAMPLE_COUNT) > 0.50 || (ms261Count / SAMPLE_COUNT) > 0.50)
@@ -105,6 +119,9 @@ console.log(`  MS 260 count: ${ms260Count} (${distribution.concentrations.ms260_
 console.log(`  MS 261 count: ${ms261Count} (${distribution.concentrations.ms261_percentage}%)`);
 console.log(`  Other models/families: ${otherCount} (${distribution.concentrations.other_percentage}%)`);
 console.log(`  Unknown / Not Identified: ${unknownCount} (${distribution.concentrations.unknown_percentage}%)`);
+console.log(`  HIGH-confidence probable results: ${highProbableCount}`);
+console.log(`  MEDIUM-confidence probable results: ${mediumProbableCount}`);
+console.log(`  LOW-confidence probable results: ${lowProbableCount}`);
 console.log(`  MS260 Concentration Alert (>25%): ${distribution.concentrations.is_ms260_concentration_alert ? 'YES ⚠️' : 'NO ✅'}`);
 console.log(`  Critical Mass Fallback (>50%): ${distribution.concentrations.is_critical_mass_fallback ? 'YES ❌' : 'NO ✅'}`);
 

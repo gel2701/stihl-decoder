@@ -153,11 +153,13 @@ function recreateSqliteDatabase(database) {
       generation_name VARCHAR(100) NOT NULL,
       technical_changes TEXT,
       confidence_level VARCHAR(20) DEFAULT 'LOW',
+      range_evidence_class VARCHAR(50),
+      range_semantic_level VARCHAR(50),
       FOREIGN KEY (model_id) REFERENCES models(id)
     )`);
     db.run(`CREATE INDEX idx_serial_lookup ON model_serial_ranges (plant_code, serial_start, serial_end)`);
 
-    const rangeStmt = db.prepare(`INSERT INTO model_serial_ranges (model_id, plant_code, serial_start, serial_end, year_start, year_end, generation_name, technical_changes, confidence_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    const rangeStmt = db.prepare(`INSERT INTO model_serial_ranges (model_id, plant_code, serial_start, serial_end, year_start, year_end, generation_name, technical_changes, confidence_level, range_evidence_class, range_semantic_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     for (const range of database.model_serial_ranges || []) {
       rangeStmt.run(
         range.model_id,
@@ -168,7 +170,9 @@ function recreateSqliteDatabase(database) {
         range.year_end ?? null,
         range.generation_name,
         range.technical_changes || null,
-        range.confidence_level || 'LOW'
+        range.confidence_level || 'LOW',
+        range.range_evidence_class || null,
+        range.range_semantic_level || null
       );
     }
     rangeStmt.finalize();

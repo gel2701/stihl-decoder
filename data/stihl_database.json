@@ -8749,8 +8749,9 @@
   ],
   "model_serial_ranges": [
     {
+      "range_id": "range_1121_026_early",
       "model_id": "stihl_026",
-      "model_name": "STIHL 026 / MS 260 (Vroeg)",
+      "model_name": "STIHL 026 / MS 260 Reeks",
       "plant_code": "1",
       "serial_start": 120000000,
       "serial_end": 139999999,
@@ -8758,11 +8759,20 @@
       "year_end": 1997,
       "generation_name": "026 / MS 260 Vroege Serie (Metalen Remhendel)",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [],
+      "historical_source_commits": [
+        "4c0de6f"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Vroege 026/MS 260 historische fabrieksreeks uit Duitsland (Waiblingen). Betreft een modellenfamilie (026 en vroege MS 260); geen primaire STIHL-bron voor exacte grenzen 120M-139M."
     },
     {
+      "range_id": "range_4224_br420",
       "model_id": "stihl_br_420",
-      "model_name": "BR 420 (Ruggedragen Bladblazer)",
+      "model_name": "STIHL BR 340 / BR 420 Reeks",
       "plant_code": "1",
       "serial_start": 145000000,
       "serial_end": 159999999,
@@ -8770,11 +8780,20 @@
       "year_end": 2009,
       "generation_name": "BR 340 / BR 420 Serie",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [],
+      "historical_source_commits": [
+        "4c0de6f"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Historische bladblazerreeks die 15 miljoen serienummers bevrijdt van foutieve MS 260 classificatie. Representeert de BR 340 / BR 420 familie. Exacte numerieke grenzen zijn repository-overgeleverd."
     },
     {
+      "range_id": "range_1121_ms260_late",
       "model_id": "stihl_ms_260",
-      "model_name": "MS 260 (Klassiek / Analoog)",
+      "model_name": "STIHL MS 260 Reeks (Laat)",
       "plant_code": "1",
       "serial_start": 160000000,
       "serial_end": 169999999,
@@ -8782,11 +8801,20 @@
       "year_end": 2011,
       "generation_name": "MS 260 Late Serie (Transparante Tank)",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [],
+      "historical_source_commits": [
+        "4c0de6f"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Historische fabrieksreeks voor late MS 260 (2002–2011) met transparante tank. Geïsoleerd van eerdere 25M synthetische collaps. Exacte grenzen zijn repository-overgeleverd."
     },
     {
+      "range_id": "range_1141_ms261_gen1",
       "model_id": "stihl_ms_261_cm",
-      "model_name": "MS 261 / MS 261 C-M Gen 1",
+      "model_name": "STIHL MS 261 / MS 261 C-M Gen 1",
       "plant_code": "1",
       "serial_start": 171000000,
       "serial_end": 179999999,
@@ -8794,11 +8822,24 @@
       "year_end": 2016,
       "generation_name": "MS 261 / MS 261 C-M Gen 1",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_CORROBORATED",
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [
+        "TI-2010-044 (unverified legacy code reference in seed.js 90bb431)"
+      ],
+      "historical_source_commits": [
+        "4c0de6f",
+        "40d3cb7",
+        "a43b6e3"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Gecorreleerd met introductie 1141-serie (2010). Referentie TI-2010-044 is een legacy code placeholder zonder openbare verificatie. Geclassificeerd als gecorrobreerde historische reeks met MEDIUM zekerheid."
     },
     {
+      "range_id": "range_1141_ms261_gen2",
       "model_id": "stihl_ms_261_cm",
-      "model_name": "MS 261 C-M Gen 2 (Facelift / V2)",
+      "model_name": "STIHL MS 261 C-M Gen 2 (Facelift)",
       "plant_code": "1",
       "serial_start": 180000000,
       "serial_end": 199999999,
@@ -8806,11 +8847,23 @@
       "year_end": null,
       "generation_name": "MS 261 C-M Gen 2 (Facelift / V2)",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_CORROBORATED",
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [
+        "TI-2016-018 (unverified legacy code reference in seed.js 90bb431)"
+      ],
+      "historical_source_commits": [
+        "4c0de6f",
+        "40d3cb7"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Gecorreleerd met MS 261 C-M facelift (2016-2024). Referentie TI-2016-018 is een legacy code placeholder zonder openbare verificatie. Geclassificeerd als gecorrobreerde historische reeks met MEDIUM zekerheid."
     },
     {
+      "range_id": "range_1127_ms290_family",
       "model_id": "stihl_ms_290",
-      "model_name": "MS 290 / MS 310 / MS 390 (VS Productie)",
+      "model_name": "STIHL MS 290 / MS 310 / MS 390 Reeks",
       "plant_code": "2",
       "serial_start": 240000000,
       "serial_end": 269999999,
@@ -8818,11 +8871,20 @@
       "year_end": 2012,
       "generation_name": "MS 290 Serie (Virginia Beach US)",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [],
+      "historical_source_commits": [
+        "4c0de6f"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Plant 2 (Virginia Beach US) reeks voor serie 1127. Beslaat expliciet de MS 290 / 310 / 390 familie; semantic level is MODEL_FAMILY_RANGE met ondersteuning voor alle 3 modellen in Model Assist."
     },
     {
+      "range_id": "range_4282_br600",
       "model_id": "stihl_br_600",
-      "model_name": "BR 600 (4-Mix Rugblazer)",
+      "model_name": "STIHL BR 600 Reeks (4-Mix)",
       "plant_code": "2",
       "serial_start": 270000000,
       "serial_end": 289999999,
@@ -8830,11 +8892,22 @@
       "year_end": 2017,
       "generation_name": "BR 600 Gen 1 (Virginia Beach US)",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [
+        "TI-2007-009 (unverified legacy code reference in seed.js 90bb431)"
+      ],
+      "historical_source_commits": [
+        "4c0de6f"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Plant 2 (Virginia Beach US) bladblazerreeks voor BR 600 (2007-2017). Bulletin TI-2007-009 niet openbaar geverifieerd. Historische indicatie met MEDIUM zekerheid; ontkoppeld van kettingzaag-aannames."
     },
     {
+      "range_id": "range_4134_fs120_family",
       "model_id": "stihl_fs_120",
-      "model_name": "FS 120 / FS 250 (Brazilië Serie)",
+      "model_name": "STIHL FS 120 / FS 250 Reeks",
       "plant_code": "3",
       "serial_start": 330000000,
       "serial_end": 350000000,
@@ -8842,7 +8915,15 @@
       "year_end": 2015,
       "generation_name": "FS 120 / FS 250 (São Leopoldo)",
       "technical_changes": null,
-      "confidence_level": "HIGH"
+      "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
+      "source_refs": [],
+      "historical_source_commits": [
+        "4c0de6f"
+      ],
+      "confidence_level": "MEDIUM",
+      "confidence_reason": "Plant 3 (São Leopoldo, Brazilië) bosmaaierreeks voor serie 4134. Beslaat de FS 120 / 250 familie. Model Assist presenteert relevante familieleden; geen primaire STIHL-bron voor numerieke grenzen."
     }
   ],
   "theft_checks": [],

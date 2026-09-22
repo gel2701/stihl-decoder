@@ -26,6 +26,7 @@ const canonicalModelIds = new Set((currentDb.models || []).map(m => m.id));
 const newRanges = coverageData.ranges.map(r => {
   const modelIdValid = r.model_id && canonicalModelIds.has(r.model_id);
   return {
+    range_id: r.range_id,
     model_id: modelIdValid ? r.model_id : null,
     model_name: r.model_name,
     plant_code: String(r.plant_code),
@@ -35,7 +36,13 @@ const newRanges = coverageData.ranges.map(r => {
     year_end: r.year_end || null,
     generation_name: r.generation,
     technical_changes: r.technical_changes || null,
-    confidence_level: r.confidence || 'HIGH'
+    range_evidence_class: r.range_evidence_class || 'HISTORICAL_REPOSITORY_EVIDENCE',
+    range_semantic_level: r.range_semantic_level || 'PROBABLE_MODEL_SERIES_RANGE',
+    source_status: r.source_status || 'HISTORICAL_REPOSITORY_VERIFIED',
+    source_refs: r.source_refs || [],
+    historical_source_commits: r.historical_source_commits || [],
+    confidence_level: r.confidence || 'MEDIUM',
+    confidence_reason: r.confidence_reason || null
   };
 });
 

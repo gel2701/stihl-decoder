@@ -1,6 +1,6 @@
 {
   "audit_version": "distribution_10k_v1",
-  "generated_at": "2026-09-21T23:11:39.895Z",
+  "generated_at": "2026-09-22T01:04:41.411Z",
   "total_tested": 10000,
   "plants_tested": [
     "1",
@@ -18,7 +18,7 @@
     "MS 290 Farm Boss / MS 310 / MS 390": 447,
     "FS 350 / FS 120 / FS 200": 290,
     "BR 600 / BR 700 / BR 500 / BR 550": 286,
-    "BR 420 (Ruggedragen Bladblazer)": 218
+    "BR 420": 218
   },
   "category_counts": {
     "Onbekend": 7924,
@@ -37,7 +37,7 @@
         "UNKNOWN": 376,
         "MS 261 / MS 261 C-M": 418,
         "MS 260 / 026": 417,
-        "BR 420 (Ruggedragen Bladblazer)": 218
+        "BR 420": 218
       },
       "statuses": {
         "MODEL_NOT_IDENTIFIED": 376,
@@ -113,6 +113,9 @@
     "other_percentage": 12.41,
     "unknown_count": 7924,
     "unknown_percentage": 79.24,
+    "high_probable_count": 0,
+    "medium_probable_count": 2076,
+    "low_probable_count": 0,
     "is_ms260_concentration_alert": false,
     "is_ms261_concentration_alert": false,
     "is_critical_mass_fallback": false

@@ -1,0 +1,67 @@
+{
+  "audit_version": "serial_recovery_r1_source_reference_audit_v1",
+  "generated_at": "2026-09-22T02:00:00Z",
+  "methodology": "Systematic audit of all Technical Information (TI) and documentary references historically cited in repository seed scripts and commit artifacts for serial number breakpoints.",
+  "summary": {
+    "total_references_audited": 4,
+    "verified_found_count": 0,
+    "referenced_but_not_retrieved_count": 0,
+    "not_found_count": 0,
+    "legacy_code_only_count": 4,
+    "phantom_sources_granting_high_confidence": 0
+  },
+  "references": [
+    {
+      "reference_id": "TI-2010-044",
+      "associated_models": ["MS 261 Gen 1", "MS 261 C-M Gen 1"],
+      "associated_range": "171000000–179999999 (Plant 1)",
+      "first_appearance_in_repo": "commit 90bb431 (data/seed.js)",
+      "claimed_semantic": "Introduction of Series 1141 with M-Tronic 2.1 electronic engine management and angled cylinder shroud.",
+      "retrieval_status": "LEGACY_CODE_ONLY",
+      "classification": "LEGACY_CODE_ONLY",
+      "official_stihl_verification": "NO. Public and dealer archive search reveals STIHL uses format TI [Number].[Year] (e.g. TI 51.2010), not TI-YYYY-NNN. Document was entered as a placeholder code string in early seed script without archival retrieval.",
+      "grants_high_confidence": false,
+      "calibrated_confidence": "MEDIUM",
+      "notes": "Treated strictly as historical internal project nomenclature; cannot be used to substantiate PRIMARY_DOCUMENTED or HIGH confidence."
+    },
+    {
+      "reference_id": "TI-2016-018",
+      "associated_models": ["MS 261 C-M Gen 2 (Facelift)"],
+      "associated_range": "180000000–199999999 (Plant 1)",
+      "first_appearance_in_repo": "commit 90bb431 (data/seed.js)",
+      "claimed_semantic": "Facelift version with flatter cylinder shroud, 300g weight reduction, and M-Tronic V3.0.",
+      "retrieval_status": "LEGACY_CODE_ONLY",
+      "classification": "LEGACY_CODE_ONLY",
+      "official_stihl_verification": "NO. No official STIHL technical bulletin with identifier TI-2016-018 is retrievable in open primary documentation.",
+      "grants_high_confidence": false,
+      "calibrated_confidence": "MEDIUM",
+      "notes": "Corroborated by physical existence of MS 261 C-M V2 from 2016, but exact numerical boundary 180000000 remains historical repository evidence."
+    },
+    {
+      "reference_id": "TI-2007-009",
+      "associated_models": ["BR 600 Gen 1 (4-Mix)"],
+      "associated_range": "270000000–289999999 (Plant 2)",
+      "first_appearance_in_repo": "commit 90bb431 (data/seed.js)",
+      "claimed_semantic": "Early Virginia Beach US production of BR 600 backpack blower with 4-Mix engine technology.",
+      "retrieval_status": "LEGACY_CODE_ONLY",
+      "classification": "LEGACY_CODE_ONLY",
+      "official_stihl_verification": "NO. Identifier is legacy code only from commit 90bb431.",
+      "grants_high_confidence": false,
+      "calibrated_confidence": "MEDIUM",
+      "notes": "Validates plant 2 US blower production period (2007-2017), but does not constitute verified primary document."
+    },
+    {
+      "reference_id": "TI-2012-088",
+      "associated_models": ["MS 170 / MS 180 (Qingdao China)"],
+      "associated_range": "800000000–899999999 (Plant 8)",
+      "first_appearance_in_repo": "commit 90bb431 (data/seed.js)",
+      "claimed_semantic": "Qingdao China assembly of entry-level chainsaws.",
+      "retrieval_status": "LEGACY_CODE_ONLY",
+      "classification": "LEGACY_CODE_ONLY",
+      "official_stihl_verification": "NO. Overly broad 100M synthetic block across entire factory.",
+      "grants_high_confidence": false,
+      "calibrated_confidence": "REJECTED_AS_DIRECT_RANGE",
+      "notes": "Rejected as direct range in Phase 36/Recovery; preserved fail-closed as MODEL_NOT_IDENTIFIED with Model Assist available."
+    }
+  ]
+}

@@ -1068,6 +1068,200 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
   - Suspicious concentration alert (>25%): NO.
   - Critical mass fallback (>50%): NO.
 - **API vs UI Parity Audit:** 13/13 test cases PASS; sequential state reset PASS; zero leakage.
+---
+
+## Phase 45C — BR Tier 2 Wave 1 Technical Evidence Reconciliation
+
+**Status:** NOT ACCEPTED FOR PRODUCTION ⚠️ — candidate required remediation; standalone source precedence not proven for BGA 30 / HSA 30, and raw-to-ledger candidate expansion was not explicitly accounted for in reporting. Superseded by Phase 45C-R1.
+
+### Scope & Results
+
+- **Target models:** 15 Wave 1 identities
+- **Models count:** **98**
+- **CORE5 completeness:** **98/98**
+- **Findings leading to R1:**
+  - `phase45c_capture_sources.mjs` selected sources by array position rather than standalone precedence, causing BGA 30 and HSA 30 to anchor to kit URLs/references.
+  - Textual report cited 175 raw candidates, leaving the 187 semantic ledger rows mathematically unexplained.
+
+---
+
+## Phase 45C-R1 — Standalone Source Precedence & Evidence Accounting Remediation
+
+**Status:** PASS ✅ — standalone machine source precedence proven (3/3), kit-only sources preserved (2/2), 0 conflicts, candidate expansion audit complete (175 raw DOM rows + 12 compound rows = 187 semantic ledger rows), accounting fully reconciled, 28/28 targeted assertions pass. Ready for Phase 45D production promotion.
+
+### Scope & Remediated Results
+
+- **Target models:** 15 Wave 1 identities
+- **Models count:** **98** (83 pre-45B + 15 Wave 1)
+- **CORE5 completeness:** **98/98**
+- **Standalone source precedence:** **3/3** (BGA 30, HSA 30, FSA 50 anchored to exact standalone product pages and references)
+- **Kit-only classifications:** **2/2** (HSA 40 and FSA 30 correctly retained as `KIT_ONLY_IDENTITY_SOURCE`)
+- **Source selection algorithm:** Fully order-independent and deterministic across catalog variations
+- **Machine-spec comparison:** All 3 groups (BGA 30, HSA 30, FSA 50) verified 100% identical machine specs between standalone and kit pages (0 conflicts)
+- **Fact ID crosswalk:** 6 rebound facts (4 BGA 30, 2 HSA 30) explicitly crosswalked from kit to standalone provenance (`RETAIN_REBIND_TO_STANDALONE`)
+- **Raw candidate DOM rows:** **175**
+- **Compound source rows:** **12** (10 dual-handle left/right vibration + 2 FSA 135 nylon/blade dual-handle vibration)
+- **Semantic ledger rows:** **187** (163 single-component rows + 24 compound component candidates = 187)
+- **Ledger partition:**
+  - **SAFE:** **56** (32 `SAFE_SINGLE_VALUE`, 24 `SAFE_COMPOUND_COMPONENT`)
+  - **NON-SAFE:** **131** (31 `CONFIGURATION_DEPENDENT_BLOCKED`, 31 `FIELD_SEMANTIC_AMBIGUOUS_BLOCKED`, 23 `NOT_CANONICAL_FIELD`, 15 `BATTERY_CONFIGURATION_BLOCKED`, 11 `CHARGER_SPEC_BLOCKED`, 20 `EVIDENCE_ONLY_SCOPED`)
+  - **Sum:** 56 + 131 = 187 (PASS)
+- **Safe canonical writes:** **56**
+- **Safe public evidence facts added:** **56**
+- **Public facts total:** **721** (665 baseline + 56 = 721)
+- **Pre-existing 665 facts mutated:** **0**
+- **Pre-existing 38 unindexed baseline debt:** **38** (untouched)
+- **Model index & Field index:** 56/56 indexed with zero stale IDs
+- **Runtime resolvable & canonical parity:** 56/56 PASS
+- **Production confidence:** UNKNOWN (all 98 models)
+- **Specs verified:** false (all 98 models)
+
+---
+
+## Phase 45D — BR Tier 2 Wave 1 Production Promotion & Live Verification
+
+**Status:** COMPLETE / LIVE / VERIFIED ✅
+
+### Promotion & Deployment Summary
+
+- **Promoted commit:** `f0e4fba6e6641991cd1845f358029828e706fad5`
+- **Promoted tree:** `3c0d917f462801a46c297b749407d0ffa4e31f30`
+- **Method:** Fast-forward only (linear history, ahead 4, behind 0 from previous main baseline `bf4183e`)
+- **Parity:** Exact tree parity verified, zero application data drift
+- **Render Deployment:** Live deployed commit `f0e4fba6e6641991cd1845f358029828e706fad5`, HTTP 200, database connected & persistent (schema v3)
+
+### Production Verification State
+
+- **Total models:** **98** (83 previous + 15 Wave 1)
+- **CORE5 completeness:** **98/98**
+- **Public evidence facts:** **721** (665 previous + 56 Wave 1)
+- **Safe canonical technical fields:** **56**
+- **Non-safe candidates blocked:** **131** (0 leaks of charger mains 127V/220V, 0 un-flattened weights)
+- **Baseline unindexed debt:** **38** (preserved untouched)
+- **Wave 1 routes (15/15 HTTP 200):**
+  - `/bosmaaiers/fsa-45/`
+  - `/bladblazers/bga-30/`
+  - `/bosmaaiers/fsa-50/`
+  - `/heggenscharen/hla-40/`
+  - `/heggenscharen/hsa-40/`
+  - `/bladblazers/sha-56/`
+  - `/heggenscharen/hsa-30/`
+  - `/heggenscharen/hsa-100/`
+  - `/bosmaaiers/fsa-30/`
+  - `/kettingzagen/msa-60-c-b/`
+  - `/kettingzagen/msa-160-c-b/`
+  - `/bosmaaiers/fsa-135/`
+  - `/kettingzagen/msa-220-c-b/`
+  - `/kettingzagen/msa-200-c-b/`
+  - `/kettingzagen/msa-70-c-b/`
+- **Sitemap:** All 15 Wave 1 model URLs present and valid in `sitemap.xml`
+- **Category inlinks:** All 15 models accessible from their respective category hubs (0 orphan models)
+- **Zero regressions:** Verified across all prior production models (MS 182, MS 172, MS 172 C-BE, FS 55, FS 55 R, MS 661, BR 800, BR 420, MS 251 C, BG 56, BG 66, BG 86, SH 56, SH 86, MS 260, MS 261, BR 600, MS 201 TC-M)
+- **Production checkpoint report:** `data/phase45d_wave1_production_report.json`
+
+---
+
+## Phase 46A — BR Tier 2 Wave 2 Intake & Prioritization
+
+**Status:** PLANNED / NOT STARTED ⏳
+
+---
+
+## Backlog note
+
+Prioritize the official evidence reconciliation/data-quality work before activating STIHL Paspoort 2.0. Re-evaluate Paspoort 2.0 scope only after the harvester/evidence pipeline and canonical-data review process are stable, so the private account/data architecture is designed deliberately rather than added onto the public evidence store.
+
+
+## Phase 44C-R2 — Technical Evidence Semantic Reconstruction & Runtime Remediation
+
+**Historical R2 status:** HARD STOP — semantic reconstruction locally validated; regression equivalence was not yet established. Superseded by the R3 proof below; the original R2 report remains unchanged as historical evidence.
+
+- Original Phase44C (`15fefa2`) is **REJECTED FOR PRODUCTION**: runtime schema/index defects, unit defects and unsafe scalar collapse. Historical Phase44C completion text above records the original claim, not production acceptance.
+- Phase44D preflight: HARD STOP; no promotion or deployment.
+- Phase44C-R1: HARD STOP after unit and multivalue defects were confirmed; no remediation committed.
+- R2 reconstructed from exact Phase44B (`0c00214`) and frozen Phase44C captured sources. No new source research.
+- 197 candidates accounted: 153 safe canonical fields and public facts, 44 blocked; 36 original Phase44C writes rolled back.
+- 83 models, CORE5 83/83; 512 unchanged baseline facts + 153 safe facts = 665 facts.
+- 11 configuration pairs blocked; BR800 and BR420 air-volume punctuation blocked as ambiguous; 10 incomplete kW/CV records and 13 weights lacking measurement definition also blocked.
+- 44 vibration components retain explicit left/right binding; 8 original chainsaw weights remain blocked.
+- All 153 retained facts resolve through existing runtime; old facts/indexes/runtime behavior unchanged, including 38 unindexed baseline facts.
+- Targeted tests and actual repeat execution PASS. Full regression must pass before acceptance.
+- Phase44D: **PENDING R2 ACCEPTANCE / NOT READY FOR RETRY** until regression verification succeeds.
+- Main and production unchanged. Tier2/Tier3/accessories/unknown and Passport 2.0 remain deferred.
+
+### R2 regression checkpoint
+
+- Existing full runner executed in isolated worktrees: 49 files, 23 PASS / 26 FAIL on both rejected Phase44C and R2. Zero additional failing files; full behavioral equivalence is not established by those counts.
+- Native dependency installation failed under Node 25 and Node 24 (better-sqlite3 build requires unavailable Visual Studio C++ tooling). Other failures include historical fixed-count assertions, replay reference configuration, and preserved baseline evidence debt.
+- Phase39C initially exposed unnecessary baseline-ID drift in R2 manifest metadata. The historical baseline ID was preserved, and the unchanged Phase39C suite now passes.
+- The new scoped index test initially compared filtered extant references with the entire baseline index. It now compares all non-R2 references exactly, including pre-existing stale references; no baseline index entries were repaired or dropped. Existing tests remain unchanged.
+- See `data/phase44c_r2_regression_report.json` for paired results. R2 targeted runtime tests PASS; overall R2 acceptance remains HARD STOP.
+- No R2 commit or remote push; no main mutation or deployment. Phase44D remains blocked pending separate resolution/acceptance.
+
+## Phase 44C-R3 — Immutable Regression Equivalence & CI Reproducibility
+
+**Status:** PASS — R2 semantic reconstruction accepted as feature candidate; zero new regressions under Node22. Phase44D READY FOR RETRY, not executed.
+
+- Immutable production P: `947eb3e5ac8345abb3f1c7aac7bd9191487f5c02` (tree `c0a5739787343d57c5dcd5fa8c0065abc4e18849`).
+- Immutable Phase44B B: `0c00214888a67f90eb2a6466ceb0d85b166e5314` (tree `8fb0681cc4dd96dba528a827250cdfcc8a6cbde3`).
+- Exact R2 checkpoint C: `7fde0027ffdf93fbe9276d6b7f831a337bd3dc51` (tree `ca6e823a5e06c96920b3a4b55f38fa5e87ad2883`). Snapshot manifest records all 19 original changed R2 files and binary patch checksum.
+- Authoritative fallback: GitHub Actions run `35524758295`, Ubuntu 24.04.5 x64, Node22.23.2, npm10.9.8; separate clean `npm ci` PASS for P/B/C. Same package/lock/49 test blobs, timeout 120 seconds and real `origin/main=P`; full Git history. Windows setup was abandoned after the hosted environment succeeded; no compiler or package remediation.
+- All 147 individual executions accounted for: each snapshot 28 PASS / 21 FAIL. Both P→C and B→C: 28 EQUIVALENT_PASS, 21 PRE_EXISTING_EQUIVALENT_FAIL, 0 TIMEOUT, 0 methodology reclassifications, **0 REGRESSION**.
+- All 10 formerly differing failures reviewed at assertion level. Fixed counts/hashes and first-failure masking explain the differences. Read-only probe confirms the same 49 ready dossiers, all 63 added model queries pass, and the same two legacy ms-251-c query failures. Candidate validator has only the exact same 20 baseline missing-document-identity findings; four stale baseline hash/count findings are removed.
+- R2 targeted: 19 groups PASS on hosted Node22; canonical policy and official harvester PASS. 83 models, CORE5 83/83, 665 facts, 153 safe fields/facts, runtime and canonical parity 153/153, 44 blocked, zero original 512 fact/index mutations, 38 baseline unindexed facts untouched. Deterministic reconstruction/idempotence PASS.
+- Production CI run `35180278876` and candidate CI run `35524758271` both use Node22.23.2/npm10.9.8, `npm ci` PASS, `npm test` FAIL with the same 27-file failure set. Six extra CI failures come from default shallow checkout missing pinned historical Git objects; all six pass for full-history P/B/C. No unexplained CI-only failures.
+- Required proof: `data/phase44c_r3_test_universe.json`, `phase44c_r3_environment_manifest.json`, `phase44c_r3_regression_matrix.json`, `phase44c_r3_differing_failure_analysis.json`, plus semantic probe and CI confirmation artifacts. Raw per-file stdout/stderr, exits and timings are retained in the matrix.
+- Original Phase44C: REJECTED. Phase44C-R1: HARD STOP. Phase44C-R2: semantic reconstruction validated. Phase44C-R3: regression equivalence validated under Node22.
+- R3 production-data/runtime/historical-test/package changes: zero. Main remains P; no Render deployment. This is feature-candidate acceptance only; Tier1 is not live.
+
+### Historical regression debt — planning only
+
+Historical regression suite contains stale fixed-count/baseline assertions, missing replay-reference/pypdf setup, shallow-history assumptions and legacy source-path/query fixtures. No historical tests were edited or modernized. Consider a separate TEST BASELINE MODERNIZATION phase only after production promotion, preserving historical fixtures and negative controls. Do not repair the 38 baseline-unindexed facts in R3.
+
+---
+
+## SERIAL DECODER RECOVERY — Historical Regression Audit & Range Engine Repair
+
+**Status:** RECOVERY CANDIDATE COMPLETE / PASS (Awaiting User Production Review)
+**Branch:** `fix/serial-decoder-historical-recovery`
+**Baseline Commit:** `00fd2c81de132a8d0887a4dbd223f79897cc549e` (Phase 45D Main)
+**Protected State:** Models: 98, CORE5: 98/98, Public Evidence Facts: 721 (byte-frozen)
+
+### 1. Root Cause
+- **Last Known-Good Commit:** `45c3b49` (Phase 30, containing 15 discrete, verified historical ranges across plants 1, 2, 3).
+- **First Bad Commit / Range Collapse:** `40d3cb7` (Phase 35.1), which synthetically merged discrete ranges into a monolithic 25,000,000 range (`145000000–169999999`) assigned to MS 260, absorbing 15,000,000 blower serials (`145M–159M` BR 340 / BR 420), and dropping Plant 2 (BR 600) and Plant 8 (MS 170).
+- **Fallback Regression Commit:** `c3cf8a4` (Phase 36), which introduced broad prefix/family fallback heuristics (`14/15/16 -> MS 260`, `17/18 -> MS 261`), defaulting arbitrary Plant 1 serials to `MS 261 C-M Gen 2` and default category `Kettingzaag`.
+- **UI State Leakage:** `index.html` failed to reset `currentModelName`, `currentYearsFormatted`, and DOM text elements (`res-model`, `res-serial-display`, `model-assist-*`) at the start of `handleDecode()`, allowing previous search results to persist when an unmapped or invalid code was entered.
+- **Source-of-Truth Drift:** `data/seed.js` was obsolete dead code with outdated ranges; `data/seed.cjs` was the active SQLite builder. SQLite and JSON had drifted in active range count.
+
+### 2. Recovered Data & Range Inventory
+- Reconstructed 8 canonical, non-overlapping, verified serial ranges:
+  1. `stihl_026` (DE, Plant 1): `120000000–139999999` (1989–1997, 026 / MS 260 Vroeg)
+  2. `stihl_br_420` (DE, Plant 1): `145000000–159999999` (1999–2009, BR 340 / BR 420 Blower) — *Liberated 15M serials falsely attributed to MS 260*
+  3. `stihl_ms_260` (DE, Plant 1): `160000000–169999999` (2002–2011, MS 260 Laat)
+  4. `stihl_ms_261_cm` (DE, Plant 1): `171000000–179999999` (2010–2016, MS 261 Gen 1)
+  5. `stihl_ms_261_cm` (DE, Plant 1): `180000000–199999999` (2016–2024, MS 261 C-M Gen 2)
+  6. `stihl_ms_290` (US, Plant 2): `240000000–269999999` (1993–2011, MS 290 Farm Boss)
+  7. `stihl_br_600` (US, Plant 2): `270000000–289999999` (2006–2020, BR 600 4-Mix Blower)
+  8. `stihl_fs_120` (BR, Plant 3): `330000000–350000000` (1997–2014, FS 120 Bosmaaier)
+- Plant 8 (China) unassisted serials (`824061159`) preserved fail-closed as `MODEL_NOT_IDENTIFIED` with `modelAssistAvailable: true` per Phase 36 acceptance contract.
+
+### 3. Engine Architecture & Policy Alignment
+- Overhaul of `StihlRangeResolver.js` & `.ts` with `findMatches()` and explicit overlap classification (`UNIQUE_RANGE_MATCH`, `SAME_MODEL_OVERLAP`, `AMBIGUOUS_MULTI_CANDIDATE`).
+- Strict separation: Plant/Factory vs Production Chronology vs Model Family vs Exact Model.
+- Probable model series never inherits exact technical specifications (`technicalSpecs: {}` fail-closed).
+- Rebuilt `data/stihl_database.json` and synchronized `data/stihl_database.db` via `seed.cjs`.
+
+### 4. Verification & Invariants
+- **10,000 Deterministic Distribution Test:**
+  - Total Serials Tested: 10,000 across valid plants (1, 2, 3, 4, 5, 8, 9).
+  - MS 260 count: 417 (4.17%) — down from >95% false fallback rate.
+  - MS 261 count: 418 (4.18%).
+  - Other models/families: 1,241 (12.41%).
+  - Honest Unknown / Format-only: 7,924 (79.24%).
+  - Suspicious concentration alert (>25%): NO.
+  - Critical mass fallback (>50%): NO.
+- **API vs UI Parity Audit:** 13/13 test cases PASS; sequential state reset PASS; zero leakage.
 - **Recovery Acceptance Test Suite (`tests/serial_decoder_recovery.test.js`):** 26/26 gates PASS (100%).
 - **Phase 45C-R1 Regression Suite:** 28/28 PASS.
 - **Phase 36 Chronology & User-Value Suites:** 100% PASS.
@@ -1079,3 +1273,67 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 - Deployed to Render: NO.
 - Phase 46 branches untouched.
 - STOPPED for explicit user review.
+
+---
+
+## SERIAL DECODER RECOVERY R1 — Range Provenance, Confidence & Historical-Evidence Calibration
+
+**Status:** REMEDIATION CANDIDATE COMPLETE / PASS (Awaiting User Review)  
+**Branch:** `fix/serial-decoder-recovery-r1-evidence-calibration`  
+**Base Commit:** `9a8075ccfc7842a48c4d7da4436aec57542dd060` (Serial Decoder Recovery)  
+**Protected State:** Models: 98, CORE5: 98/98, Public Evidence Facts: 721 (byte-frozen)  
+
+### 1. Objectives & Provenance Calibration
+- **Core Principle:** Prevent false certainty (schijnzekerheid) by distinguishing primary-documented ranges from historical repository evidence, calibrating confidence levels, and classifying family vs series semantics honestly.
+- **Audit of Historical TI References (`data/serial_recovery_r1_source_reference_audit.json`):**
+  - Audited 4 legacy references: `TI-2010-044`, `TI-2016-018`, `TI-2007-009`, `TI-2012-088`.
+  - Findings: STIHL technical bulletins format as `TI [Number].[Year]` (e.g., `TI 51.2010`), not `TI-YYYY-NNN`. All 4 are legacy code string placeholders originating in early `seed.js`.
+  - All 4 classified as `LEGACY_CODE_ONLY`.
+  - Zero phantom sources grant HIGH confidence.
+- **Confidence Calibration:**
+  - HIGH Confidence: 0 (0.0%) — No range possesses open, authoritative primary manufacturer range breakpoint documentation.
+  - MEDIUM Confidence: 8 (100.0%) — Sound internal consistency, factory match, zero surviving conflicts, substantiated by historical repository evidence or era correlation.
+  - LOW Confidence: 0 (0.0%).
+  - Unsupported HIGH confidence count: 0.
+- **Evidence Classes:**
+  - PRIMARY_DOCUMENTED: 0
+  - HISTORICAL_REPOSITORY_EVIDENCE: 6 (`stihl_026` early, `stihl_br_420`, `stihl_ms_260` late, `stihl_ms_290` family, `stihl_br_600`, `stihl_fs_120` family)
+  - HISTORICAL_REPOSITORY_CORROBORATED: 2 (`stihl_ms_261_cm` Gen 1, `stihl_ms_261_cm` Gen 2)
+  - HEURISTIC: 0
+- **Semantic Levels:**
+  - `MODEL_FAMILY_RANGE`: 4 ranges (`026 / MS 260 Vroeg`, `BR 340 / BR 420`, `MS 290 / MS 310 / MS 390`, `FS 120 / FS 250`) where the range represents a platform family and Model Assist presents confirmed model choices.
+  - `PROBABLE_MODEL_SERIES_RANGE`: 4 ranges (`MS 260 Laat`, `MS 261 Gen 1`, `MS 261 Gen 2`, `BR 600`) representing historical model series.
+
+### 2. Runtime & Engine Updates
+- `src/StihlRangeResolver.js` & `src/StihlRangeResolver.ts`:
+  - Propagate `range_evidence_class`, `range_semantic_level`, `confidence: MEDIUM`, `confidence_reason`.
+  - Output calibrated `matchReason`: `'Serienummer valt binnen een bekende historische modelreeks.'` (historical) or `'Serienummer valt binnen een door primaire STIHL-bron ondersteunde modelreeks.'` (primary).
+- `src/decoder.js`:
+  - Expose `rangeEvidenceClass`, `rangeSemanticLevel`, `confidence`, `confidenceReason` in `serialResolution`.
+  - Calibrate `serialResolution.level`: returns `MODEL_FAMILY_RANGE` for family ranges, `HISTORICAL_SERIAL_RANGE` for probable series ranges, `PRIMARY_VERIFIED_SERIAL_RANGE` only when backed by primary evidence, or `USER_CONFIRMED_MODEL`.
+  - `buildModelAssist` updated: retains candidates regardless of whether public evidence facts exist, ensuring catalog-only models (like BR 420) are surfaced.
+  - Fail-closed specifications: probable and family ranges return `technicalSpecs: {}` and `safeTechnicalPreview.available: true`.
+
+### 3. Database & Deprecation Alignment
+- `data/seed.js`: Added explicit deprecation header directing to canonical source of truth `data/stihl_database.json`.
+- `data/seed.cjs`: Schema updated to include `range_evidence_class` and `range_semantic_level` on `model_serial_ranges`; SQLite rebuilt and verified in byte parity.
+
+### 4. Verification Suite Results
+- **R1 Acceptance Suite (`tests/serial_decoder_recovery_r1_evidence.test.js`):** 26/26 gates PASS (100%).
+- **Recovery Acceptance Suite (`tests/serial_decoder_recovery.test.js`):** 26/26 gates PASS (100%).
+- **10,000 Deterministic Distribution Test:**
+  - Tested: 10,000 across plants 1–9.
+  - MS 260: 4.17%, MS 261: 4.18%, Other: 12.41%, Unknown/Format: 79.24%.
+  - High probable count: 0 (0.0%), Medium probable count: 2,076 (20.76%), Low: 0 (0.0%).
+  - Concentration alert: NO, Critical mass fallback: NO.
+- **API vs UI Parity Audit (`scripts/audit_api_ui_parity.mjs`):** 13/13 PASS; sequential state reset PASS.
+- **Phase 45C-R1 Regression Suite (`tests/phase45c_r1_source_precedence.test.js`):** 28/28 PASS.
+- **Canonical Policy & Harvester Suites:** PASS.
+- **Phase 36 Chronology & User-Value Suites:** PASS.
+
+### 5. Candidate Status
+- Branch: `fix/serial-decoder-recovery-r1-evidence-calibration`
+- Merged to main: NO.
+- Deployed to Render: NO.
+- Phase 46 branches untouched.
+- STOPPED for user review.

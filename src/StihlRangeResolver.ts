@@ -50,20 +50,31 @@ export class StihlRangeResolver {
 
     if (matches.length === 1) {
       const match = matches[0];
+      const isPrimary = (match.range_evidence_class === 'PRIMARY_DOCUMENTED');
+      const matchReason = isPrimary
+        ? 'Serienummer valt binnen een door primaire STIHL-bron ondersteunde modelreeks.'
+        : 'Serienummer valt binnen een bekende historische modelreeks.';
+
       return {
         match_type: 'UNIQUE_RANGE_MATCH',
         range_id: match.range_id || match.id || null,
         model_id: match.model_id || null,
         model_name: match.model_name || null,
         plant_code: match.plant_code || null,
+        range_evidence_class: match.range_evidence_class || 'HISTORICAL_REPOSITORY_EVIDENCE',
+        range_semantic_level: match.range_semantic_level || 'PROBABLE_MODEL_SERIES_RANGE',
+        confidence: match.confidence_level || 'MEDIUM',
+        confidence_reason: match.confidence_reason || null,
+        source_status: match.source_status || 'HISTORICAL_REPOSITORY_VERIFIED',
+        source_refs: match.source_refs || [],
+        historical_source_commits: match.historical_source_commits || [],
         serial_start: match.serial_start,
         serial_end: match.serial_end,
         yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `vanaf circa ${match.year_start}`,
         yearStart: match.year_start,
         yearEnd: match.year_end || null,
         generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
-        confidence: match.confidence_level || 'HIGH',
-        matchReason: 'Serienummer valt binnen een unieke historische fabrieksreeks.',
+        matchReason,
         seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.',
         rangeMatches: matches
       };
@@ -71,20 +82,31 @@ export class StihlRangeResolver {
 
     if (uniqueModelIds.size === 1) {
       const match = matches[0];
+      const isPrimary = (match.range_evidence_class === 'PRIMARY_DOCUMENTED');
+      const matchReason = isPrimary
+        ? 'Serienummer valt binnen een door primaire STIHL-bron ondersteunde modelreeks.'
+        : 'Serienummer valt binnen een bekende historische modelreeks.';
+
       return {
         match_type: 'SAME_MODEL_OVERLAP',
         range_id: match.range_id || match.id || null,
         model_id: match.model_id || null,
         model_name: match.model_name || null,
         plant_code: match.plant_code || null,
+        range_evidence_class: match.range_evidence_class || 'HISTORICAL_REPOSITORY_EVIDENCE',
+        range_semantic_level: match.range_semantic_level || 'PROBABLE_MODEL_SERIES_RANGE',
+        confidence: match.confidence_level || 'MEDIUM',
+        confidence_reason: match.confidence_reason || null,
+        source_status: match.source_status || 'HISTORICAL_REPOSITORY_VERIFIED',
+        source_refs: match.source_refs || [],
+        historical_source_commits: match.historical_source_commits || [],
         serial_start: match.serial_start,
         serial_end: match.serial_end,
         yearRangeFormatted: match.year_end ? `${match.year_start} – ${match.year_end}` : `vanaf circa ${match.year_start}`,
         yearStart: match.year_start,
         yearEnd: match.year_end || null,
         generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
-        confidence: match.confidence_level || 'HIGH',
-        matchReason: 'Serienummer valt binnen overlappende revisies van hetzelfde model.',
+        matchReason,
         seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.',
         rangeMatches: matches
       };
@@ -99,13 +121,19 @@ export class StihlRangeResolver {
       model_id: null,
       model_name: candidateNames.join(' / '),
       plant_code: firstMatch.plant_code || plantCode,
+      range_evidence_class: 'HISTORICAL_REPOSITORY_EVIDENCE',
+      range_semantic_level: 'MODEL_FAMILY_RANGE',
+      confidence: 'MEDIUM',
+      confidence_reason: 'Meerdere historische reeksen overlappen in dit bereik.',
+      source_status: 'HISTORICAL_REPOSITORY_CONFLICTED',
+      source_refs: [],
+      historical_source_commits: [],
       serial_start: Math.min(...matches.map((m: any) => m.serial_start)),
       serial_end: Math.max(...matches.map((m: any) => m.serial_end)),
       yearRangeFormatted: firstMatch.year_end ? `${firstMatch.year_start} – ${firstMatch.year_end}` : `vanaf circa ${firstMatch.year_start}`,
       yearStart: Math.min(...matches.map((m: any) => m.year_start)),
       yearEnd: matches.some((m: any) => !m.year_end) ? null : Math.max(...matches.map((m: any) => m.year_end)),
       generation: 'Mogelijk meerdere modelreeksen in dit serienummerbereik',
-      confidence: 'MEDIUM',
       matchReason: 'Serienummer valt binnen een bereik waarin meerdere STIHL modellen zijn geproduceerd.',
       seriesSummary: 'Meerdere modellen delen dit numerieke bereik; modelbevestiging via typeplaatje vereist.',
       candidates: candidateNames,

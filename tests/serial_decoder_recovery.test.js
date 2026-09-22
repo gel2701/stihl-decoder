@@ -55,7 +55,7 @@ for (const pt of plantTests) {
 // Gate 5: Historical MS 260 case
 const ms260Res = decodeStihlCode('160500000', canonicalDatabase);
 assert.ok(ms260Res.exactModel?.includes('MS 260') || ms260Res.probableModelSeries?.includes('MS 260'), 'Gate 5: Serial 160500000 must resolve to MS 260');
-assert.strictEqual(ms260Res.serialResolution?.matchReason, 'Serienummer valt binnen een unieke historische fabrieksreeks.', 'Gate 5b: Match reason must reflect unique historical factory range');
+assert.strictEqual(ms260Res.serialResolution?.matchReason, 'Serienummer valt binnen een bekende historische modelreeks.', 'Gate 5b: Match reason must reflect calibrated historical range');
 
 // Gate 6: Historical MS 261 case
 const ms261Gen1 = decodeStihlCode('175000000', canonicalDatabase);

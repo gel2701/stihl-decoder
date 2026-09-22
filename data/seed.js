@@ -1,3 +1,10 @@
+/**
+ * DEPRECATED — LEGACY SEED SCRIPT (Historical Reference Only)
+ * DO NOT USE FOR RUNTIME OR EXPORTS.
+ * Authoritative canonical store: data/stihl_database.json
+ * Authoritative SQLite builder: data/seed.cjs
+ */
+
 const fs = require('fs');
 const path = require('path');
 

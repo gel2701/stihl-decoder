@@ -73,10 +73,15 @@ function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, datab
     candidatesFound = models.filter((m) => String(m.series_code) === String(seriesCode));
   }
 
-  if (candidatesFound.length === 0 && probableModelSeries) {
+  if (directModel && !candidatesFound.some((c) => c.slug === directModel.slug)) {
+    candidatesFound.push(directModel);
+  }
+
+  if (probableModelSeries) {
     const parts = String(probableModelSeries).split(/\s*[\/,]\s*|\s+of\s+|\s+or\s+/i).map((p) => p.trim()).filter(Boolean);
     for (const part of parts) {
-      const m = findModelInDatabase(part, models);
+      const cleanPart = part.replace(/^STIHL\s+/i, '').replace(/\s+Reeks.*$/i, '').trim();
+      const m = findModelInDatabase(cleanPart, models) || findModelInDatabase(part, models);
       if (m && !candidatesFound.some((c) => c.slug === m.slug)) {
         candidatesFound.push(m);
       }
@@ -88,14 +93,12 @@ function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, datab
     const cat = m.category_slug || m.category || 'kettingzagen';
     const specs = buildDisplayTechnicalSpecs(m.slug, database, cat, m.model_name);
     const hasSpecs = Object.keys(specs.technicalSpecs || {}).length > 0;
-    if (hasSpecs) {
-      validCandidates.push({
-        slug: m.slug,
-        name: m.model_name,
-        category: cat,
-        hasSpecs: true
-      });
-    }
+    validCandidates.push({
+      slug: m.slug,
+      name: m.model_name,
+      category: cat,
+      hasSpecs: Boolean(hasSpecs)
+    });
   }
 
   const seriesName = validCandidates.length > 0
@@ -497,6 +500,16 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       };
 
   const resolvedModelName = modelData ? modelData.model_name : (probableModelSeries || null);
+  const rangeEvidenceClass = rangeMatch?.range_evidence_class || null;
+  const rangeSemanticLevel = rangeMatch?.range_semantic_level || null;
+  const resolutionLevel = confirmedModel
+    ? 'USER_CONFIRMED_MODEL'
+    : rangeMatch?.model_id
+      ? (rangeEvidenceClass === 'PRIMARY_DOCUMENTED'
+          ? 'PRIMARY_VERIFIED_SERIAL_RANGE'
+          : (rangeSemanticLevel === 'MODEL_FAMILY_RANGE' ? 'MODEL_FAMILY_RANGE' : 'HISTORICAL_SERIAL_RANGE'))
+      : 'FORMAT_ONLY';
+
   const safeTechnicalPreview = buildSafeTechnicalPreview(
     {
       modelIdentityStatus: identityStatus,
@@ -505,7 +518,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       model: modelName,
       serialResolution: {
         rangeModelId: rangeMatch?.model_id || null,
-        level: confirmedModel ? 'USER_CONFIRMED_MODEL' : rangeMatch?.model_id ? 'VERIFIED_SERIAL_RANGE_MODEL' : 'FORMAT_ONLY'
+        level: resolutionLevel
       },
       seriesCode: rangeMatch?.range_id || (rangeMatch?.model_id ? database.models?.find((m) => m.id === rangeMatch.model_id)?.series_code : null),
       category,
@@ -529,12 +542,16 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     modelIdentityStatus: identityStatus,
     modelIdentitySource: confirmedModel ? 'USER_INPUT' : (rangeMatch ? 'SERIAL_RANGE' : 'SERIAL_FORMAT'),
     serialResolution: {
-      level: confirmedModel ? 'USER_CONFIRMED_MODEL' : rangeMatch?.model_id ? 'VERIFIED_SERIAL_RANGE_MODEL' : 'FORMAT_ONLY',
+      level: resolutionLevel,
       confidence: confirmedModel ? 'USER_CONFIRMED' : (rangeMatch?.confidence || 'LOW'),
+      confidenceReason: rangeMatch?.confidence_reason || null,
+      rangeEvidenceClass: rangeEvidenceClass,
+      rangeSemanticLevel: rangeSemanticLevel,
+      sourceStatus: rangeMatch?.source_status || (rangeMatch ? 'HISTORICAL_REPOSITORY_VERIFIED' : null),
       rangeModelId: rangeMatch?.model_id || null,
       rangeId: rangeMatch?.range_id || null,
       matchType: rangeMatch?.match_type || (rangeMatch ? 'UNIQUE_RANGE_MATCH' : 'NONE'),
-      matchReason: rangeMatch?.matchReason || (rangeMatch ? 'Serienummer valt binnen een bekende historische fabrieksreeks.' : 'Alleen fabriekscode-indicatie'),
+      matchReason: rangeMatch?.matchReason || (rangeMatch ? 'Serienummer valt binnen een bekende historische modelreeks.' : 'Alleen fabriekscode-indicatie'),
       rangeMatches: rangeMatch?.rangeMatches || (rangeMatch ? [rangeMatch] : []),
       serialFormat: {
         status: isAlphanumeric ? 'FORMAT_ONLY' : 'SERIAL_FORMAT_RECOGNIZED',
