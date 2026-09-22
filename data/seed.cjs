@@ -155,11 +155,13 @@ function recreateSqliteDatabase(database) {
       confidence_level VARCHAR(20) DEFAULT 'LOW',
       range_evidence_class VARCHAR(50),
       range_semantic_level VARCHAR(50),
+      range_display_name VARCHAR(100),
+      candidate_model_ids TEXT,
       FOREIGN KEY (model_id) REFERENCES models(id)
     )`);
     db.run(`CREATE INDEX idx_serial_lookup ON model_serial_ranges (plant_code, serial_start, serial_end)`);
 
-    const rangeStmt = db.prepare(`INSERT INTO model_serial_ranges (model_id, plant_code, serial_start, serial_end, year_start, year_end, generation_name, technical_changes, confidence_level, range_evidence_class, range_semantic_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    const rangeStmt = db.prepare(`INSERT INTO model_serial_ranges (model_id, plant_code, serial_start, serial_end, year_start, year_end, generation_name, technical_changes, confidence_level, range_evidence_class, range_semantic_level, range_display_name, candidate_model_ids) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     for (const range of database.model_serial_ranges || []) {
       rangeStmt.run(
         range.model_id,
@@ -172,7 +174,9 @@ function recreateSqliteDatabase(database) {
         range.technical_changes || null,
         range.confidence_level || 'LOW',
         range.range_evidence_class || null,
-        range.range_semantic_level || null
+        range.range_semantic_level || null,
+        range.range_display_name || range.model_name || null,
+        Array.isArray(range.candidate_model_ids) ? JSON.stringify(range.candidate_model_ids) : null
       );
     }
     rangeStmt.finalize();

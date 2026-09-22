@@ -1,6 +1,6 @@
 {
   "audit_version": "distribution_10k_v1",
-  "generated_at": "2026-09-22T01:04:41.411Z",
+  "generated_at": "2026-09-22T01:26:44.306Z",
   "total_tested": 10000,
   "plants_tested": [
     "1",
@@ -13,12 +13,14 @@
   ],
   "model_counts": {
     "UNKNOWN": 7924,
-    "MS 261 / MS 261 C-M": 418,
-    "MS 260 / 026": 417,
-    "MS 290 Farm Boss / MS 310 / MS 390": 447,
-    "FS 350 / FS 120 / FS 200": 290,
-    "BR 600 / BR 700 / BR 500 / BR 550": 286,
-    "BR 420": 218
+    "MS 261 / MS 261 C-M": 144,
+    "026 / MS 260": 282,
+    "MS 290 / MS 310 / MS 390": 447,
+    "FS 120 / FS 250": 290,
+    "BR 600 Reeks": 286,
+    "MS 261 C-M Gen 2": 274,
+    "BR 340 / BR 420": 218,
+    "MS 260": 135
   },
   "category_counts": {
     "Onbekend": 7924,
@@ -35,9 +37,11 @@
       "total": 1429,
       "models": {
         "UNKNOWN": 376,
-        "MS 261 / MS 261 C-M": 418,
-        "MS 260 / 026": 417,
-        "BR 420": 218
+        "MS 261 / MS 261 C-M": 144,
+        "026 / MS 260": 282,
+        "MS 261 C-M Gen 2": 274,
+        "BR 340 / BR 420": 218,
+        "MS 260": 135
       },
       "statuses": {
         "MODEL_NOT_IDENTIFIED": 376,
@@ -48,8 +52,8 @@
       "total": 1429,
       "models": {
         "UNKNOWN": 696,
-        "MS 290 Farm Boss / MS 310 / MS 390": 447,
-        "BR 600 / BR 700 / BR 500 / BR 550": 286
+        "MS 290 / MS 310 / MS 390": 447,
+        "BR 600 Reeks": 286
       },
       "statuses": {
         "MODEL_NOT_IDENTIFIED": 696,
@@ -60,7 +64,7 @@
       "total": 1429,
       "models": {
         "UNKNOWN": 1139,
-        "FS 350 / FS 120 / FS 200": 290
+        "FS 120 / FS 250": 290
       },
       "statuses": {
         "MODEL_NOT_IDENTIFIED": 1139,

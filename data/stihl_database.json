@@ -8766,6 +8766,11 @@
       "historical_source_commits": [
         "4c0de6f"
       ],
+      "range_display_name": "026 / MS 260",
+      "candidate_model_ids": [
+        "stihl_026",
+        "stihl_ms_260"
+      ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Vroege 026/MS 260 historische fabrieksreeks uit Duitsland (Waiblingen). Betreft een modellenfamilie (026 en vroege MS 260); geen primaire STIHL-bron voor exacte grenzen 120M-139M."
     },
@@ -8787,6 +8792,10 @@
       "historical_source_commits": [
         "4c0de6f"
       ],
+      "range_display_name": "BR 340 / BR 420",
+      "candidate_model_ids": [
+        "stihl_br_420"
+      ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Historische bladblazerreeks die 15 miljoen serienummers bevrijdt van foutieve MS 260 classificatie. Representeert de BR 340 / BR 420 familie. Exacte numerieke grenzen zijn repository-overgeleverd."
     },
@@ -8807,6 +8816,10 @@
       "source_refs": [],
       "historical_source_commits": [
         "4c0de6f"
+      ],
+      "range_display_name": "MS 260",
+      "candidate_model_ids": [
+        "stihl_ms_260"
       ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Historische fabrieksreeks voor late MS 260 (2002–2011) met transparante tank. Geïsoleerd van eerdere 25M synthetische collaps. Exacte grenzen zijn repository-overgeleverd."
@@ -8833,6 +8846,11 @@
         "40d3cb7",
         "a43b6e3"
       ],
+      "range_display_name": "MS 261 / MS 261 C-M",
+      "candidate_model_ids": [
+        "stihl_ms_261_cm",
+        "stihl_ms_261_c_m"
+      ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Gecorreleerd met introductie 1141-serie (2010). Referentie TI-2010-044 is een legacy code placeholder zonder openbare verificatie. Geclassificeerd als gecorrobreerde historische reeks met MEDIUM zekerheid."
     },
@@ -8857,6 +8875,10 @@
         "4c0de6f",
         "40d3cb7"
       ],
+      "range_display_name": "MS 261 C-M Gen 2",
+      "candidate_model_ids": [
+        "stihl_ms_261_c_m"
+      ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Gecorreleerd met MS 261 C-M facelift (2016-2024). Referentie TI-2016-018 is een legacy code placeholder zonder openbare verificatie. Geclassificeerd als gecorrobreerde historische reeks met MEDIUM zekerheid."
     },
@@ -8877,6 +8899,12 @@
       "source_refs": [],
       "historical_source_commits": [
         "4c0de6f"
+      ],
+      "range_display_name": "MS 290 / MS 310 / MS 390",
+      "candidate_model_ids": [
+        "stihl_ms_290",
+        "stihl_ms_310",
+        "stihl_ms_390"
       ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Plant 2 (Virginia Beach US) reeks voor serie 1127. Beslaat expliciet de MS 290 / 310 / 390 familie; semantic level is MODEL_FAMILY_RANGE met ondersteuning voor alle 3 modellen in Model Assist."
@@ -8901,6 +8929,10 @@
       "historical_source_commits": [
         "4c0de6f"
       ],
+      "range_display_name": "BR 600 Reeks",
+      "candidate_model_ids": [
+        "stihl_br_600"
+      ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Plant 2 (Virginia Beach US) bladblazerreeks voor BR 600 (2007-2017). Bulletin TI-2007-009 niet openbaar geverifieerd. Historische indicatie met MEDIUM zekerheid; ontkoppeld van kettingzaag-aannames."
     },
@@ -8921,6 +8953,10 @@
       "source_refs": [],
       "historical_source_commits": [
         "4c0de6f"
+      ],
+      "range_display_name": "FS 120 / FS 250",
+      "candidate_model_ids": [
+        "stihl_fs_120"
       ],
       "confidence_level": "MEDIUM",
       "confidence_reason": "Plant 3 (São Leopoldo, Brazilië) bosmaaierreeks voor serie 4134. Beslaat de FS 120 / 250 familie. Model Assist presenteert relevante familieleden; geen primaire STIHL-bron voor numerieke grenzen."

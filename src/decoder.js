@@ -55,7 +55,7 @@ function buildDisplayTechnicalSpecs(modelKey, database, category, modelName) {
 }
 
 function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, database) {
-  if (identityStatus !== 'PROBABLE_MODEL_SERIES') {
+  if (identityStatus !== 'PROBABLE_MODEL_SERIES' || !rangeMatch) {
     return {
       available: false,
       series: probableModelSeries || null,
@@ -64,30 +64,26 @@ function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, datab
   }
 
   const models = Array.isArray(database.models) ? database.models : [];
-  const rangeModelId = rangeMatch?.model_id;
-  const directModel = rangeModelId ? models.find((m) => m.id === rangeModelId) : null;
-  const seriesCode = directModel?.series_code || rangeMatch?.range_id || null;
-
-  let candidatesFound = [];
-  if (seriesCode) {
-    candidatesFound = models.filter((m) => String(m.series_code) === String(seriesCode));
+  
+  // 1. Determine explicitly supported candidate model IDs
+  // If candidate_model_ids is provided, it is authoritative.
+  // Otherwise fall back to model_id if present.
+  let explicitCandidateIds = [];
+  if (Array.isArray(rangeMatch.candidate_model_ids) && rangeMatch.candidate_model_ids.length > 0) {
+    explicitCandidateIds = rangeMatch.candidate_model_ids;
+  } else if (rangeMatch.model_id) {
+    explicitCandidateIds = [rangeMatch.model_id];
   }
 
-  if (directModel && !candidatesFound.some((c) => c.slug === directModel.slug)) {
-    candidatesFound.push(directModel);
-  }
-
-  if (probableModelSeries) {
-    const parts = String(probableModelSeries).split(/\s*[\/,]\s*|\s+of\s+|\s+or\s+/i).map((p) => p.trim()).filter(Boolean);
-    for (const part of parts) {
-      const cleanPart = part.replace(/^STIHL\s+/i, '').replace(/\s+Reeks.*$/i, '').trim();
-      const m = findModelInDatabase(cleanPart, models) || findModelInDatabase(part, models);
-      if (m && !candidatesFound.some((c) => c.slug === m.slug)) {
-        candidatesFound.push(m);
-      }
+  const candidatesFound = [];
+  for (const candidateId of explicitCandidateIds) {
+    const m = models.find((mod) => mod.id === candidateId || mod.slug === candidateId);
+    if (m && !candidatesFound.some((c) => c.slug === m.slug)) {
+      candidatesFound.push(m);
     }
   }
 
+  // 2. Format valid candidates
   const validCandidates = [];
   for (const m of candidatesFound) {
     const cat = m.category_slug || m.category || 'kettingzagen';
@@ -101,13 +97,12 @@ function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, datab
     });
   }
 
-  const seriesName = validCandidates.length > 0
-    ? validCandidates.map((c) => c.name).join(' / ')
-    : (probableModelSeries || null);
+  // 3. Authoritative display identity: MUST NOT be overwritten from candidate list
+  const displaySeries = rangeMatch.range_display_name || rangeMatch.model_name || probableModelSeries || null;
 
   return {
     available: validCandidates.length > 0,
-    series: seriesName,
+    series: displaySeries,
     candidates: validCandidates
   };
 }
@@ -409,14 +404,14 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   if (confirmedModel) {
     modelData = confirmedModel;
   }
-  const rawProbableSeries = rangeMatch ? (rangeMatch.model_name || rangeMatch.generation || null) : null;
+  const rawProbableSeries = rangeMatch ? (rangeMatch.range_display_name || rangeMatch.model_name || rangeMatch.generation || null) : null;
   const rawIdentityStatus = modelData
     ? (confirmedModel ? 'USER_CONFIRMED_MODEL' : 'EXACT_MODEL_IDENTIFIED')
     : rawProbableSeries
       ? 'PROBABLE_MODEL_SERIES'
       : 'MODEL_NOT_IDENTIFIED';
   const modelAssist = buildModelAssist(rawIdentityStatus, rangeMatch, rawProbableSeries, database);
-  const probableModelSeries = modelAssist.available ? modelAssist.series : rawProbableSeries;
+  const probableModelSeries = rawProbableSeries;
   const identityStatus = rawIdentityStatus;
   const isModelConfirmedOrIdentified = identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL';
   const modelName = modelData
@@ -550,6 +545,8 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       sourceStatus: rangeMatch?.source_status || (rangeMatch ? 'HISTORICAL_REPOSITORY_VERIFIED' : null),
       rangeModelId: rangeMatch?.model_id || null,
       rangeId: rangeMatch?.range_id || null,
+      rangeDisplayName: rangeMatch?.range_display_name || rangeMatch?.model_name || null,
+      candidateModelIds: rangeMatch?.candidate_model_ids || [],
       matchType: rangeMatch?.match_type || (rangeMatch ? 'UNIQUE_RANGE_MATCH' : 'NONE'),
       matchReason: rangeMatch?.matchReason || (rangeMatch ? 'Serienummer valt binnen een bekende historische modelreeks.' : 'Alleen fabriekscode-indicatie'),
       rangeMatches: rangeMatch?.rangeMatches || (rangeMatch ? [rangeMatch] : []),

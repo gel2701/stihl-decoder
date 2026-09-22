@@ -1364,3 +1364,41 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 - **Specification Safety:** Zero technical specs leaked before explicit user confirmation (`technicalSpecs: {}` fail-closed).
 - **Other Systems:** Part Number Decoder, Model Search, StopHeling all operational without regressions.
 
+---
+
+## SERIAL DECODER RECOVERY R2 — Family Candidate Scope & Display Integrity Hotfix
+
+**Status:** COMPLETE / VERIFIED ✅  
+**Branch:** `fix/serial-decoder-recovery-r2-family-scope`  
+**Base Commit:** `0c0dfa37cce3e52471bdf100457cdc6ff20992d6` (tree `759379344bb0e23d1d419af0a462e5ec6f134dc3`)  
+**Parent Baseline:** Production `main`  
+
+### Root Causes Remediated
+1. **Unsafe Series Code Candidate Expansion:**
+   - Previous behavior in `src/decoder.js` expanded Model Assist candidates to all canonical models sharing `series_code`.
+   - `series_code` is not an authoritative definition of serial range candidate support. For instance, series `4282` includes BR 500, BR 550, BR 600, BR 700, but historical serial range `270000000–289999999` is specific to the BR 600. Similarly, series `4134` includes FS 120, FS 200, FS 350, whereas range `330000000–350000000` corresponds only to FS 120 / FS 250.
+   - **Remediation:** `series_code` is no longer treated as serial-range candidate authority. Candidates are strictly and explicitly sourced from `candidate_model_ids` stored directly on the range definition, with a fallback only to the direct `model_id`. Unrelated same-series models are completely excluded.
+
+2. **Overwriting Range Display Identity from Candidates:**
+   - Previous behavior synthesized `probableModelSeries` dynamically by joining candidate names (`validCandidates.map(c => c.name).join(' / ')`).
+   - When non-canonical family members (such as BR 340 in BR 340 / BR 420, or FS 250 in FS 120 / FS 250) were not present in the canonical 98-model database, joining candidates stripped the non-canonical family members from the user-facing range label.
+   - **Remediation:** Decoupled **Range Display Identity** from **Model Assist Candidates**. The range display identity is sourced authoritatively from `range_display_name` (or `model_name`) and is never rebuilt or overwritten from candidate arrays. Historical multi-model labels remain intact even if one of the models is not yet in the canonical catalog.
+
+### Range Candidate & Display Scope Matrix
+- `range_1121_026_early` (Plant 1: 120M–139M): Display: `026 / MS 260` | Candidates: `026`, `MS 260`
+- `range_4224_br420` (Plant 1: 145M–159M): Display: `BR 340 / BR 420` | Candidates: `BR 420` (BR 340 preserved in display)
+- `range_1121_ms260_late` (Plant 1: 160M–169M): Display: `MS 260` | Candidates: `MS 260`
+- `range_1141_ms261_gen1` (Plant 1: 171M–179M): Display: `MS 261 / MS 261 C-M` | Candidates: `MS 261`, `MS 261 C-M`
+- `range_1141_ms261_gen2` (Plant 1: 180M–199M): Display: `MS 261 C-M Gen 2` | Candidates: `MS 261 C-M` (Facelift)
+- `range_1127_ms290_family` (Plant 2: 240M–269M): Display: `MS 290 / MS 310 / MS 390` | Candidates: `MS 290 Farm Boss`, `MS 310`, `MS 390`
+- `range_4282_br600` (Plant 2: 270M–289M): Display: `BR 600 Reeks` | Candidates: `BR 600` (BR 500, BR 550, BR 700 excluded)
+- `range_4134_fs120_family` (Plant 3: 330M–350M): Display: `FS 120 / FS 250` | Candidates: `FS 120` (FS 200, FS 350 excluded; FS 250 preserved in display)
+
+### Verification Summary
+- **R2 Acceptance Suite (`tests/serial_decoder_recovery_r2_family_scope.test.js`):** 30/30 gates PASS (100%).
+- **R1 Evidence Suite (`tests/serial_decoder_recovery_r1_evidence.test.js`):** 26/26 gates PASS (100%).
+- **Recovery Suite (`tests/serial_decoder_recovery.test.js`):** 26/26 gates PASS (100%).
+- **API vs UI Parity Audit:** PASS (13/13).
+- **10,000 Distribution Audit:** PASS (MS 260: 4.17%, MS 261: 4.18%, Alert: NO, Fallback: NO).
+- **Idempotence Rebuild:** PASS (Second run diff = 0).
+- **Canonical Model & Evidence Invariants:** 98 models, 98/98 CORE5 completeness, 721 public facts frozen byte-identical.

@@ -1,0 +1,230 @@
+{
+  "phase": "SERIAL_DECODER_RECOVERY_R2",
+  "title": "Family Candidate Scope & Display Integrity Hotfix Audit",
+  "timestamp": "2026-09-22T01:25:25.654Z",
+  "total_active_ranges": 8,
+  "ranges": [
+    {
+      "range_id": "range_1121_026_early",
+      "range_display_identity": "026 / MS 260",
+      "semantic_level": "MODEL_FAMILY_RANGE",
+      "direct_model_id": "stihl_026",
+      "series_code": "1121",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_ms_260",
+        "stihl_026"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_026",
+        "stihl_ms_260"
+      ],
+      "excluded_same_series_canonical_models": [],
+      "historical_non_canonical_family_members": [],
+      "final_display_label": "026 / MS 260",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_026",
+          "slug": "026"
+        },
+        {
+          "id": "stihl_ms_260",
+          "slug": "ms-260"
+        }
+      ]
+    },
+    {
+      "range_id": "range_4224_br420",
+      "range_display_identity": "BR 340 / BR 420",
+      "semantic_level": "MODEL_FAMILY_RANGE",
+      "direct_model_id": "stihl_br_420",
+      "series_code": null,
+      "all_canonical_models_sharing_series_code": [
+        "stihl_br_420"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_br_420"
+      ],
+      "excluded_same_series_canonical_models": [],
+      "historical_non_canonical_family_members": [
+        "BR 340"
+      ],
+      "final_display_label": "BR 340 / BR 420",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_br_420",
+          "slug": "br-420"
+        }
+      ]
+    },
+    {
+      "range_id": "range_1121_ms260_late",
+      "range_display_identity": "MS 260",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "direct_model_id": "stihl_ms_260",
+      "series_code": "1121",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_ms_260",
+        "stihl_026"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_ms_260"
+      ],
+      "excluded_same_series_canonical_models": [
+        "stihl_026"
+      ],
+      "historical_non_canonical_family_members": [],
+      "final_display_label": "MS 260",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_ms_260",
+          "slug": "ms-260"
+        }
+      ]
+    },
+    {
+      "range_id": "range_1141_ms261_gen1",
+      "range_display_identity": "MS 261 / MS 261 C-M",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "direct_model_id": "stihl_ms_261_cm",
+      "series_code": "1141",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_ms_261_cm",
+        "stihl_ms_261_c_m"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_ms_261_cm",
+        "stihl_ms_261_c_m"
+      ],
+      "excluded_same_series_canonical_models": [],
+      "historical_non_canonical_family_members": [],
+      "final_display_label": "MS 261 / MS 261 C-M",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_ms_261_cm",
+          "slug": "ms-261"
+        },
+        {
+          "id": "stihl_ms_261_c_m",
+          "slug": "ms-261-c-m"
+        }
+      ]
+    },
+    {
+      "range_id": "range_1141_ms261_gen2",
+      "range_display_identity": "MS 261 C-M Gen 2",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "direct_model_id": "stihl_ms_261_cm",
+      "series_code": "1141",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_ms_261_cm",
+        "stihl_ms_261_c_m"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_ms_261_c_m"
+      ],
+      "excluded_same_series_canonical_models": [
+        "stihl_ms_261_cm"
+      ],
+      "historical_non_canonical_family_members": [],
+      "final_display_label": "MS 261 C-M Gen 2",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_ms_261_c_m",
+          "slug": "ms-261-c-m"
+        }
+      ]
+    },
+    {
+      "range_id": "range_1127_ms290_family",
+      "range_display_identity": "MS 290 / MS 310 / MS 390",
+      "semantic_level": "MODEL_FAMILY_RANGE",
+      "direct_model_id": "stihl_ms_290",
+      "series_code": "1127",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_ms_290",
+        "stihl_ms_310",
+        "stihl_ms_390"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_ms_290",
+        "stihl_ms_310",
+        "stihl_ms_390"
+      ],
+      "excluded_same_series_canonical_models": [],
+      "historical_non_canonical_family_members": [],
+      "final_display_label": "MS 290 / MS 310 / MS 390",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_ms_290",
+          "slug": "ms-290"
+        },
+        {
+          "id": "stihl_ms_310",
+          "slug": "ms-310"
+        },
+        {
+          "id": "stihl_ms_390",
+          "slug": "ms-390"
+        }
+      ]
+    },
+    {
+      "range_id": "range_4282_br600",
+      "range_display_identity": "BR 600 Reeks",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "direct_model_id": "stihl_br_600",
+      "series_code": "4282",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_br_600",
+        "stihl_br_700",
+        "stihl_br_500",
+        "stihl_br_550"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_br_600"
+      ],
+      "excluded_same_series_canonical_models": [
+        "stihl_br_700",
+        "stihl_br_500",
+        "stihl_br_550"
+      ],
+      "historical_non_canonical_family_members": [],
+      "final_display_label": "BR 600 Reeks",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_br_600",
+          "slug": "br-600"
+        }
+      ]
+    },
+    {
+      "range_id": "range_4134_fs120_family",
+      "range_display_identity": "FS 120 / FS 250",
+      "semantic_level": "MODEL_FAMILY_RANGE",
+      "direct_model_id": "stihl_fs_120",
+      "series_code": "4134",
+      "all_canonical_models_sharing_series_code": [
+        "stihl_fs_350",
+        "stihl_fs_120",
+        "stihl_fs_200"
+      ],
+      "explicit_supported_candidate_ids": [
+        "stihl_fs_120"
+      ],
+      "excluded_same_series_canonical_models": [
+        "stihl_fs_350",
+        "stihl_fs_200"
+      ],
+      "historical_non_canonical_family_members": [
+        "FS 250"
+      ],
+      "final_display_label": "FS 120 / FS 250",
+      "final_model_assist_candidates": [
+        {
+          "id": "stihl_fs_120",
+          "slug": "fs-120"
+        }
+      ]
+    }
+  ]
+}

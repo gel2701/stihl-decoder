@@ -41,6 +41,8 @@ const newRanges = coverageData.ranges.map(r => {
     source_status: r.source_status || 'HISTORICAL_REPOSITORY_VERIFIED',
     source_refs: r.source_refs || [],
     historical_source_commits: r.historical_source_commits || [],
+    range_display_name: r.range_display_name || r.model_name,
+    candidate_model_ids: r.candidate_model_ids || (modelIdValid ? [r.model_id] : []),
     confidence_level: r.confidence || 'MEDIUM',
     confidence_reason: r.confidence_reason || null
   };
