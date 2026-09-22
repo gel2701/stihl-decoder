@@ -1333,7 +1333,34 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 
 ### 5. Candidate Status
 - Branch: `fix/serial-decoder-recovery-r1-evidence-calibration`
-- Merged to main: NO.
-- Deployed to Render: NO.
-- Phase 46 branches untouched.
-- STOPPED for user review.
+- Status: MERGED TO MAIN & DEPLOYED TO PRODUCTION ✅
+
+---
+
+## SERIAL DECODER RECOVERY — PRODUCTION PROMOTION & LIVE VERIFICATION
+
+**Status:** COMPLETE / LIVE / VERIFIED ✅  
+**Deployment Date:** 2026-09-22T01:15:09.127Z  
+**Promoted Commit:** `170284798c05d18b29e49479f3f95f4010a96ec3`  
+**Promoted Tree:** `2351b6e3221b6d580f33b5dcd30ac4c64b13828b`  
+**Parent Baseline:** `00fd2c81de132a8d0887a4dbd223f79897cc549e` (Phase 45D)  
+**Promotion Method:** FAST-FORWARD ONLY (linear history, ahead 2, behind 0)  
+
+### Checkpoint Summary
+- **FUNCTIONAL RECOVERY:** COMPLETE ✅
+- **R1 EVIDENCE CALIBRATION:** COMPLETE ✅
+- **PRODUCTION PROMOTION:** COMPLETE ✅
+- **LIVE VERIFIED:** YES ✅
+- **PHASE 46 STATUS:** PARKED (Untouched, awaiting explicit user authorization)
+
+### Verified Live Production State
+- **URL:** `https://www.stihldecoder.nl`
+- **Render Service:** Live on commit `170284798c05d18b29e49479f3f95f4010a96ec3` (`HTTP 200`, persistent disk schema v3).
+- **Models:** 98 (98/98 CORE5 completeness).
+- **Public Evidence Facts:** 721 (byte-frozen, 0 mutations).
+- **Active Serial Ranges:** 8 (0 HIGH, 8 MEDIUM, 0 LOW; 4 `MODEL_FAMILY_RANGE`, 4 `PROBABLE_MODEL_SERIES_RANGE`).
+- **MS 260 / MS 261 Mass Fallback:** Completely eliminated (`150123456` resolves cleanly to `BR 420` Bladblazer family; generic fallback = 0).
+- **UI State Reset:** Verified sequentially (`160500000 -> 412345678` and `150123456 -> 824061159` have zero stale residue).
+- **Specification Safety:** Zero technical specs leaked before explicit user confirmation (`technicalSpecs: {}` fail-closed).
+- **Other Systems:** Part Number Decoder, Model Search, StopHeling all operational without regressions.
+

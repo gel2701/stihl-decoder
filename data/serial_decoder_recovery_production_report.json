@@ -1,0 +1,250 @@
+{
+  "phase": "SERIAL_DECODER_RECOVERY_PRODUCTION_PROMOTION",
+  "title": "STIHL Serial Decoder Recovery — Production Promotion & Live Verification",
+  "generated_at": "2026-09-22T03:16:30+02:00",
+
+  "main_baseline": {
+    "commit": "00fd2c81de132a8d0887a4dbd223f79897cc549e",
+    "tree": "4cb06e168f238a7e46600b5829c2d8aa73c1ff35",
+    "description": "Phase 45D production baseline (98 models, 721 facts)"
+  },
+
+  "functional_recovery": {
+    "commit": "9a8075ccfc7842a48c4d7da4436aec57542dd060",
+    "tree": "daa1f29ae4c30f940f31e38c14d8492803fa919f",
+    "description": "Historical serial ranges recovery & mass MS260 fallback excision"
+  },
+
+  "accepted_candidate": {
+    "commit": "170284798c05d18b29e49479f3f95f4010a96ec3",
+    "tree": "2351b6e3221b6d580f33b5dcd30ac4c64b13828b",
+    "branch": "fix/serial-decoder-recovery-r1-evidence-calibration",
+    "description": "R1 range provenance, confidence & historical-evidence calibration"
+  },
+
+  "promotion": {
+    "method": "FAST_FORWARD",
+    "from": "00fd2c81de132a8d0887a4dbd223f79897cc549e",
+    "to": "170284798c05d18b29e49479f3f95f4010a96ec3",
+    "promoted_main_sha": "170284798c05d18b29e49479f3f95f4010a96ec3",
+    "promoted_main_tree": "2351b6e3221b6d580f33b5dcd30ac4c64b13828b",
+    "linear_history": true,
+    "ahead_count": 2,
+    "behind_count": 0,
+    "exact_tree_parity": true,
+    "drift_classification": "NONE"
+  },
+
+  "deployment": {
+    "provider": "Render",
+    "deployed_commit": "170284798c05d18b29e49479f3f95f4010a96ec3",
+    "status": "LIVE",
+    "deployed_sha_matches_main": true,
+    "edge_cdn": "Cloudflare",
+    "deployed_at": "2026-09-22T01:15:09.127Z",
+    "database": {
+      "connected": true,
+      "persistent": true,
+      "path_type": "persistent_disk",
+      "analytics_schema_ready": true,
+      "schema_version": 3,
+      "last_error": null
+    }
+  },
+
+  "data_state": {
+    "models": 98,
+    "core5": "98/98",
+    "public_evidence_facts": 721,
+    "active_serial_ranges": 8,
+    "json_sqlite_parity": true
+  },
+
+  "confidence_distribution": {
+    "HIGH": 0,
+    "MEDIUM": 8,
+    "LOW": 0,
+    "unsupported_high_count": 0
+  },
+
+  "evidence_distribution": {
+    "PRIMARY_DOCUMENTED": 0,
+    "PRIMARY_DOCUMENTED_PARTIAL": 0,
+    "HISTORICAL_REPOSITORY_EVIDENCE": 6,
+    "HISTORICAL_REPOSITORY_CORROBORATED": 2,
+    "HEURISTIC": 0
+  },
+
+  "semantic_distribution": {
+    "MODEL_FAMILY_RANGE": 4,
+    "PROBABLE_MODEL_SERIES_RANGE": 4,
+    "EXACT_MODEL_RANGE": 0
+  },
+
+  "active_ranges": [
+    {
+      "range_id": "range_1121_026_early",
+      "model_id": "stihl_026",
+      "model_name": "STIHL 026 / MS 260 Reeks",
+      "plant_code": "1",
+      "serial_bounds": "120000000–139999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "semantic_level": "MODEL_FAMILY_RANGE"
+    },
+    {
+      "range_id": "range_4224_br420",
+      "model_id": "stihl_br_420",
+      "model_name": "STIHL BR 340 / BR 420 Reeks",
+      "plant_code": "1",
+      "serial_bounds": "145000000–159999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "semantic_level": "MODEL_FAMILY_RANGE"
+    },
+    {
+      "range_id": "range_1121_ms260_late",
+      "model_id": "stihl_ms_260",
+      "model_name": "STIHL MS 260 Reeks (Laat)",
+      "plant_code": "1",
+      "serial_bounds": "160000000–169999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE"
+    },
+    {
+      "range_id": "range_1141_ms261_gen1",
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "STIHL MS 261 / MS 261 C-M Gen 1",
+      "plant_code": "1",
+      "serial_bounds": "171000000–179999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_CORROBORATED",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE"
+    },
+    {
+      "range_id": "range_1141_ms261_gen2",
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "STIHL MS 261 C-M Gen 2 (Facelift)",
+      "plant_code": "1",
+      "serial_bounds": "180000000–199999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_CORROBORATED",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE"
+    },
+    {
+      "range_id": "range_1127_ms290_family",
+      "model_id": "stihl_ms_290",
+      "model_name": "STIHL MS 290 / MS 310 / MS 390 Reeks",
+      "plant_code": "2",
+      "serial_bounds": "240000000–269999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "semantic_level": "MODEL_FAMILY_RANGE"
+    },
+    {
+      "range_id": "range_4282_br600",
+      "model_id": "stihl_br_600",
+      "model_name": "STIHL BR 600 Reeks (4-Mix)",
+      "plant_code": "2",
+      "serial_bounds": "270000000–289999999",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "semantic_level": "PROBABLE_MODEL_SERIES_RANGE"
+    },
+    {
+      "range_id": "range_4134_fs120_family",
+      "model_id": "stihl_fs_120",
+      "model_name": "STIHL FS 120 / FS 250 Reeks",
+      "plant_code": "3",
+      "serial_bounds": "330000000–350000000",
+      "confidence": "MEDIUM",
+      "evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
+      "semantic_level": "MODEL_FAMILY_RANGE"
+    }
+  ],
+
+  "distribution_10k": {
+    "total_tested": 10000,
+    "ms260_count": 417,
+    "ms260_percentage": 4.17,
+    "ms261_count": 418,
+    "ms261_percentage": 4.18,
+    "other_count": 1241,
+    "other_percentage": 12.41,
+    "unknown_count": 7924,
+    "unknown_percentage": 79.24,
+    "high_probable_count": 0,
+    "medium_probable_count": 2076,
+    "low_probable_count": 0,
+    "is_ms260_concentration_alert": false,
+    "is_ms261_concentration_alert": false,
+    "is_critical_mass_fallback": false
+  },
+
+  "live_verification_results": {
+    "150123456_gate": {
+      "input": "150123456",
+      "resolved_model": "BR 420",
+      "category": "Bladblazer",
+      "status": "PROBABLE_MODEL_SERIES",
+      "level": "MODEL_FAMILY_RANGE",
+      "confidence": "MEDIUM",
+      "range_id": "range_4224_br420",
+      "technical_specs_exposed": false,
+      "safe_preview_available": true,
+      "verdict": "PASS"
+    },
+    "161984210_gate": {
+      "input": "161984210",
+      "resolved_model": "MS 260 / 026",
+      "category": "Kettingzaag",
+      "status": "PROBABLE_MODEL_SERIES",
+      "level": "HISTORICAL_SERIAL_RANGE",
+      "confidence": "MEDIUM",
+      "range_id": "range_1121_ms260_late",
+      "technical_specs_exposed": false,
+      "safe_preview_available": true,
+      "verdict": "PASS"
+    },
+    "ui_stale_state_reset": {
+      "sequence_1": {
+        "step_1": "160500000 (MS 260)",
+        "step_2": "412345678 (Plant 4 unmapped)",
+        "step_2_displayed": "Nog niet definitief bevestigd",
+        "ms260_residue": false,
+        "verdict": "PASS"
+      },
+      "sequence_2": {
+        "step_1": "150123456 (BR 420)",
+        "step_2": "824061159 (Plant 8 unmapped)",
+        "step_2_displayed": "Nog niet definitief bevestigd",
+        "br420_residue": false,
+        "verdict": "PASS"
+      }
+    },
+    "api_ui_parity": "PASS",
+    "part_number_decoder": {
+      "input": "1123 020 1200",
+      "type": "PART_NUMBER",
+      "familyCode": "1123",
+      "verdict": "PASS"
+    },
+    "model_search": {
+      "models_tested": ["MS 261 C-M", "MS 260", "BR 600", "FS 120"],
+      "type": "MODEL_DECODE",
+      "verdict": "PASS"
+    },
+    "stopheling_integration": {
+      "url_present": true,
+      "target_domain": "stopheling.nl",
+      "verdict": "PASS"
+    },
+    "live_health": {
+      "http_status": 200,
+      "startup_errors": 0,
+      "5xx_errors": 0,
+      "database_errors": 0
+    }
+  }
+}
