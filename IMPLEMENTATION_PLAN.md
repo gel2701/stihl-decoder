@@ -1493,8 +1493,9 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 
 ## PHASE 46B — BR TIER 2 WAVE 2 CANONICAL IDENTITY & CORE5 ACTIVATION
 
-**Status:** CANDIDATE COMPLETE / AWAITING REVIEW 🔍
+**Status:** ACCEPTED BASELINE ✅
 **Branch:** `feat/phase46b-br-tier2-wave2-identity`
+**Commit:** `b1af87bffe196290098aa079804f2e5b9c0a5509` (tree `abc4717d6ed1385e2939a2040a9267f6d0ce476f`)
 **Base Commit:** `64c76596257bcc3c99f1b75a4864c349dbe7ed46` (Phase 46A-R2, tree `38cc1a5b44e32194274c4bfc41d13887a2ca1f43`)
 **Target Scope:** Exactly 12 accepted BR Tier 2 Wave 2 identities activated into canonical database.
 
@@ -1530,8 +1531,62 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 
 ---
 
-## NEXT PHASE — PHASE 46C: BR TIER 2 WAVE 2 TECHNICAL EVIDENCE RECONCILIATION
+## PHASE 46C — BR TIER 2 WAVE 2 TECHNICAL EVIDENCE RECONCILIATION & SAFE ACTIVATION
+
+**Status:** CANDIDATE COMPLETE / AWAITING REVIEW 🔍
+**Branch:** `feat/phase46c-br-tier2-wave2-technical-evidence`
+**Base Commit:** `b1af87bffe196290098aa079804f2e5b9c0a5509` (tree `abc4717d6ed1385e2939a2040a9267f6d0ce476f`)
+**Target Scope:** Official STIHL Brazil source capture, raw extraction, semantic reconciliation, and safe canonical/public evidence activation across the 12 Wave 2 models.
+
+### Evidence & Accounting Checkpoint
+- **Official Sources Frozen:** 13 HTML files (12 primary machine + 1 secondary HSA 26 kit) in `data/candidate_evidence/phase46c/` with deterministic SHA-256 hashes recorded in `data/phase46c_source_manifest.json`.
+- **Raw Rows Extracted:** Exactly 146 raw specification rows across all 13 source captures (`data/phase46c_raw_extraction_ledger.json`).
+- **Semantic Expansions:** Exactly 10 explicit expansions (9 dual-vibration left/right splits + 1 HS 82 R compound power kW/hp split).
+- **Semantic Ledger:** Exactly 156 rows (146 raw + 10 expansions; 100% mathematically balanced in `data/phase46c_semantic_reconciliation_ledger.json`).
+- **Safe Canonical Writes:** Exactly 40 writes across the 12 Wave 2 models (`data/phase46c_canonical_delta.json`).
+- **Blocked / Evidence-Only Rows:** Exactly 116 rows (108 blocked, 8 evidence-only scoped; 0 silent drops).
+- **Disposition Breakdown:**
+  - `SAFE_SINGLE_VALUE`: 19
+  - `SAFE_DUAL_UNIT_NORMALIZATION`: 1 (HS 82 R displacement `22.7 cm3`)
+  - `SAFE_COMPOUND_COMPONENT`: 20 (HS 82 R power `0.7 kW` & `1.0 hp`, plus 18 vibration handle components)
+  - `CONFIGURATION_MULTI_VALUE_BLOCKED`: 6 (mains 127/220V on 6 electric models; 0 machine voltage writes)
+  - `CONFIGURATION_DEPENDENT_BLOCKED`: 40 (cutting lengths, guide bars, dual sound levels)
+  - `BATTERY_CONFIGURATION_BLOCKED`: 10 (battery runtimes)
+  - `CHARGER_SPEC_BLOCKED`: 6 (charger charging times)
+  - `FIELD_SEMANTIC_AMBIGUOUS_BLOCKED`: 30 (dry weights without attachment, MSA 190 T sound ranges, TSA 230 vibration inequality, electrical motor power)
+  - `NOT_CANONICAL_FIELD`: 15 (cable lengths, qualitative motor types, air force)
+  - `EVIDENCE_ONLY_SCOPED`: 9 (battery platform designations)
+
+### Activated Safe Technical Metrics by Model
+1. **MSE 170 C-BQ** (4): `sound_pressure_db: 92`, `sound_power_db: 103`, `vibration_left_ms2: 2.9`, `vibration_right_ms2: 3.4`
+2. **MSE 141 C-Q** (4): `sound_pressure_db: 90`, `sound_power_db: 101`, `vibration_left_ms2: 3.3`, `vibration_right_ms2: 4.2`
+3. **HSA 26** (0): All specifications blocked / evidence-only (quality over coverage; kit charger/battery values blocked)
+4. **HLA 66** (4): `sound_pressure_db: 80`, `sound_power_db: 94`, `vibration_left_ms2: 3.5`, `vibration_right_ms2: 3.5`
+5. **HS 82 R** (7): `displacement_cc: 22.7`, `power_kw: 0.7`, `power_hp: 1.0`, `sound_pressure_db: 94`, `sound_power_db: 107`, `vibration_left_ms2: 2.7`, `vibration_right_ms2: 3.1`
+6. **MSA 190 T** (2): `vibration_left_ms2: 3.9`, `vibration_right_ms2: 3.8` (sound ranges `91-101` and `99-101` safely blocked)
+7. **TSA 230** (2): `sound_pressure_db: 104`, `sound_power_db: 115` (vibration inequality `< 4,3` safely blocked)
+8. **HLA 56** (4): `sound_pressure_db: 77`, `sound_power_db: 88`, `vibration_left_ms2: 1.5`, `vibration_right_ms2: 1.5`
+9. **BGE 71** (3): `air_volume_m3h: 670`, `air_velocity_ms: 66`, `sound_power_db: 101`
+10. **FSE 41** (4): `sound_pressure_db: 87`, `sound_power_db: 96`, `vibration_left_ms2: 2.2`, `vibration_right_ms2: 1.3`
+11. **HSE 52** (4): `sound_pressure_db: 84`, `sound_power_db: 95`, `vibration_left_ms2: 3.1`, `vibration_right_ms2: 1.5`
+12. **FSE 60** (2): `vibration_left_ms2: 3.9`, `vibration_right_ms2: 3.6` (dual sound levels `95/83` and `104/94` safely blocked)
+
+### Invariant & Integrity Protections
+- **Pre-Wave 2 Baseline Models:** 98 existing models remain 100% byte-identical and untouched in canonical data.
+- **Serial Decoder Recovery R2 Intact:** Exactly 8 serial ranges frozen (0 HIGH, 8 MEDIUM, 0 LOW). Zero range drift or scope change.
+- **Public Evidence Store:** 721 baseline facts immutable + 40 new safe facts = 761 total facts in `data/public_evidence_facts.json`.
+- **Public Evidence Indexing:** 100% of 40 new facts indexed in `model_index` and `field_index`.
+- **Unindexed Fact Debt:** Frozen strictly at baseline 38 (zero new unindexed debt introduced).
+- **SQLite Database Parity:** `data/stihl_database.db` rebuilt from canonical JSON via `data/seed.cjs`: 110 models, 8 ranges, exact technical field parity.
+- **Testing & Parity:**
+  - `tests/phase46c_wave2_technical_evidence.test.js`: 34/34 gates PASS (100%).
+  - `tests/phase46b_wave2_identity_activation.test.js`: 36/36 gates PASS (100%).
+  - Core test suites, SEO pilot pages, and 10k serial distribution audit PASS (100%).
+
+---
+
+## NEXT PHASE — PHASE 46D: BR TIER 2 WAVE 2 PRODUCTION PROMOTION & LIVE VERIFICATION
 
 **Status:** RESERVED / NOT STARTED 🔒
-**Scope:** Reconcile technical evidence and safe public facts for the 12 activated Wave 2 models.
-**Prerequisites:** Phase 46B review and candidate acceptance. Automatic execution forbidden.
+**Scope:** Exact fast-forward promotion to `main`, deployment to Render, and live HTTP/UI verification.
+**Prerequisites:** Phase 46C candidate review and explicit user authorization. Automatic promotion forbidden.

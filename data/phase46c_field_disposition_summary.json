@@ -1,0 +1,27 @@
+{
+  "phase": "46C",
+  "total_raw_rows": 146,
+  "total_semantic_expansions": 10,
+  "total_semantic_rows": 156,
+  "disposition_counts": {
+    "SAFE_SINGLE_VALUE": 19,
+    "SAFE_DUAL_UNIT_NORMALIZATION": 1,
+    "SAFE_COMPOUND_COMPONENT": 20,
+    "EVIDENCE_ONLY_SCOPED": 9,
+    "CONFIGURATION_MULTI_VALUE_BLOCKED": 6,
+    "CONFIGURATION_DEPENDENT_BLOCKED": 40,
+    "BATTERY_CONFIGURATION_BLOCKED": 10,
+    "CHARGER_SPEC_BLOCKED": 6,
+    "FIELD_SEMANTIC_AMBIGUOUS_BLOCKED": 30,
+    "UNIT_SEMANTIC_AMBIGUOUS_BLOCKED": 0,
+    "VARIANT_AMBIGUOUS_BLOCKED": 0,
+    "NOT_CANONICAL_FIELD": 15,
+    "DUPLICATE_EQUIVALENT": 0,
+    "SOURCE_CONFLICT_BLOCKED": 0,
+    "UNSUPPORTED_SOURCE_BLOCKED": 0
+  },
+  "safe_canonical_writes": 40,
+  "blocked_rows": 108,
+  "evidence_only_rows": 8,
+  "accounting_balanced": true
+}

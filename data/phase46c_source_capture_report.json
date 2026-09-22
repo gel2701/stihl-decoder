@@ -1,0 +1,133 @@
+{
+  "phase": "46C",
+  "created_at": "2026-09-22T11:22:48.434Z",
+  "sources_discovered": 13,
+  "sources_captured": 13,
+  "sources_accepted": 13,
+  "sources_rejected": 0,
+  "missing_sources": 0,
+  "models": [
+    {
+      "model": "MSE 170 C-BQ",
+      "slug": "mse-170-c-bq",
+      "primary_source": "https://loja.stihl.com.br/motosserra-mse-170-c-bq/p",
+      "primary_hash": "46e2b0d3c93d43d96e84b1e8dfc2d8ac14ac246738c0b6668b29179f0d34c01d",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "MSE 141 C-Q",
+      "slug": "mse-141-c-q",
+      "primary_source": "https://loja.stihl.com.br/motosserra-mse-141-c-q/p",
+      "primary_hash": "f74b2554840ab2bf08f5f1a2aac813724a2f7b6bd9ade4e4d7ccb06f0956ee29",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "HSA 26",
+      "slug": "hsa-26",
+      "primary_source": "https://loja.stihl.com.br/podador-arbustos-bateria-hsa-26/p",
+      "primary_hash": "59e00242ba52b7394ea2dbf13bebb6c2504edf464230e4f84e3e5eba942bce08",
+      "secondary_sources": [
+        "https://loja.stihl.com.br/kit-podador-arbustos-bateria-hsa-26/p"
+      ],
+      "bundle_status": "STANDALONE_AND_KIT",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "HLA 66",
+      "slug": "hla-66",
+      "primary_source": "https://loja.stihl.com.br/podador-de-altura-a-bateria-hla-66/p",
+      "primary_hash": "8259781a857c78f91acbf8749edfc15f6285848b6251f28eee0e1933f523be9d",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "HS 82 R",
+      "slug": "hs-82-r",
+      "primary_source": "https://loja.stihl.com.br/podador-hs-82-r/p",
+      "primary_hash": "e23515336ed7a5bf9c4717c0668c24d049465524cab82fe7efe598ff5cc0f698",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "MSA 190 T",
+      "slug": "msa-190-t",
+      "primary_source": "https://loja.stihl.com.br/msa-190-t/p",
+      "primary_hash": "4c6a614405ee0d5ecf780f851f4cfead61c9f9f6ce0cade6422cf7f8a2f1b651",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "TSA 230",
+      "slug": "tsa-230",
+      "primary_source": "https://loja.stihl.com.br/cortador-disco-a-bateria-tsa-230/p",
+      "primary_hash": "96ceb075ca573cf69368bd9af0f9d68d5ffbbb7d560676ca994c5ee77d6bbcc3",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "HLA 56",
+      "slug": "hla-56",
+      "primary_source": "https://loja.stihl.com.br/podador-de-altura-a-bateria-hla-56/p",
+      "primary_hash": "55e23778d69e1eeb8f40dc82d94c9235f4c5101cb0c37c9b7176a47678a24a33",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "BGE 71",
+      "slug": "bge-71",
+      "primary_source": "https://loja.stihl.com.br/soprador-eletrico-bge-71/p",
+      "primary_hash": "87ac948046a67a4548983078f96fbbb6be6b1bb6b764f07b9c874a068b98e81d",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "FSE 41",
+      "slug": "fse-41",
+      "primary_source": "https://loja.stihl.com.br/aparador-eletrico-fse-41/p",
+      "primary_hash": "5a0bcd02638753eca0324e7266a524e3adef4f19d7a45ba4199b773656adab8b",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "HSE 52",
+      "slug": "hse-52",
+      "primary_source": "https://loja.stihl.com.br/podador-eletrico-hse-52/p",
+      "primary_hash": "f1821abb3001b202a0bde7f7efd9e579a6a4b803175cf6ab33e19728a539c5f5",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    },
+    {
+      "model": "FSE 60",
+      "slug": "fse-60",
+      "primary_source": "https://loja.stihl.com.br/-rocadeira-eletrica-fse-60/p",
+      "primary_hash": "8ac485cadf10579bdbf928fc91baf4915f517914b9c640e3a77c66c586e0fa0e",
+      "secondary_sources": [],
+      "bundle_status": "STANDALONE",
+      "conflicts": 0,
+      "status": "ACCEPTED"
+    }
+  ]
+}

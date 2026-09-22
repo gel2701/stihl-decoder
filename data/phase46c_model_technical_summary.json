@@ -1,0 +1,585 @@
+{
+  "phase": "46C",
+  "total_models": 12,
+  "summary": [
+    {
+      "model": "MSE 170 C-BQ",
+      "slug": "mse-170-c-bq",
+      "raw_rows": 11,
+      "semantic_rows": 12,
+      "safe_canonical_writes": 4,
+      "public_facts_created": 4,
+      "evidence_only_rows": 0,
+      "blocked_rows": 8,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 92,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 103,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 2.9,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 3.4,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "MSE 141 C-Q",
+      "slug": "mse-141-c-q",
+      "raw_rows": 11,
+      "semantic_rows": 12,
+      "safe_canonical_writes": 4,
+      "public_facts_created": 4,
+      "evidence_only_rows": 0,
+      "blocked_rows": 8,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 90,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 101,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 3.3,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 4.2,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "HSA 26",
+      "slug": "hsa-26",
+      "raw_rows": 25,
+      "semantic_rows": 25,
+      "safe_canonical_writes": 0,
+      "public_facts_created": 0,
+      "evidence_only_rows": 1,
+      "blocked_rows": 24,
+      "conflicts": 0,
+      "activated_fields": [],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "sound_pressure_db",
+        "sound_power_db",
+        "vibration_left_ms2",
+        "vibration_right_ms2",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "HLA 66",
+      "slug": "hla-66",
+      "raw_rows": 12,
+      "semantic_rows": 13,
+      "safe_canonical_writes": 4,
+      "public_facts_created": 4,
+      "evidence_only_rows": 1,
+      "blocked_rows": 8,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 80,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 94,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 3.5,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 3.5,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "HS 82 R",
+      "slug": "hs-82-r",
+      "raw_rows": 11,
+      "semantic_rows": 13,
+      "safe_canonical_writes": 7,
+      "public_facts_created": 7,
+      "evidence_only_rows": 0,
+      "blocked_rows": 6,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "displacement_cc",
+          "value": 22.7,
+          "unit": "cm3"
+        },
+        {
+          "field": "power_kw",
+          "value": 0.7,
+          "unit": "kW"
+        },
+        {
+          "field": "power_hp",
+          "value": 1,
+          "unit": "hp"
+        },
+        {
+          "field": "sound_pressure_db",
+          "value": 94,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 107,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 2.7,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 3.1,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "MSA 190 T",
+      "slug": "msa-190-t",
+      "raw_rows": 16,
+      "semantic_rows": 17,
+      "safe_canonical_writes": 2,
+      "public_facts_created": 2,
+      "evidence_only_rows": 3,
+      "blocked_rows": 12,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "vibration_left_ms2",
+          "value": 3.9,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 3.8,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "sound_pressure_db",
+        "sound_power_db",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "TSA 230",
+      "slug": "tsa-230",
+      "raw_rows": 13,
+      "semantic_rows": 13,
+      "safe_canonical_writes": 2,
+      "public_facts_created": 2,
+      "evidence_only_rows": 2,
+      "blocked_rows": 9,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 104,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 115,
+          "unit": "dB(A)"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "vibration_left_ms2",
+        "vibration_right_ms2",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "HLA 56",
+      "slug": "hla-56",
+      "raw_rows": 11,
+      "semantic_rows": 12,
+      "safe_canonical_writes": 4,
+      "public_facts_created": 4,
+      "evidence_only_rows": 1,
+      "blocked_rows": 7,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 77,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 88,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 1.5,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 1.5,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "BGE 71",
+      "slug": "bge-71",
+      "raw_rows": 6,
+      "semantic_rows": 6,
+      "safe_canonical_writes": 3,
+      "public_facts_created": 3,
+      "evidence_only_rows": 0,
+      "blocked_rows": 3,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "air_volume_m3h",
+          "value": 670,
+          "unit": "m³/h"
+        },
+        {
+          "field": "air_velocity_ms",
+          "value": 66,
+          "unit": "m/s"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 101,
+          "unit": "dB(A)"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "sound_pressure_db",
+        "vibration_left_ms2",
+        "vibration_right_ms2"
+      ]
+    },
+    {
+      "model": "FSE 41",
+      "slug": "fse-41",
+      "raw_rows": 10,
+      "semantic_rows": 11,
+      "safe_canonical_writes": 4,
+      "public_facts_created": 4,
+      "evidence_only_rows": 0,
+      "blocked_rows": 7,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 87,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 96,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 2.2,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 1.3,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "HSE 52",
+      "slug": "hse-52",
+      "raw_rows": 10,
+      "semantic_rows": 11,
+      "safe_canonical_writes": 4,
+      "public_facts_created": 4,
+      "evidence_only_rows": 0,
+      "blocked_rows": 7,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "sound_pressure_db",
+          "value": 84,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "sound_power_db",
+          "value": 95,
+          "unit": "dB(A)"
+        },
+        {
+          "field": "vibration_left_ms2",
+          "value": 3.1,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 1.5,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    },
+    {
+      "model": "FSE 60",
+      "slug": "fse-60",
+      "raw_rows": 10,
+      "semantic_rows": 11,
+      "safe_canonical_writes": 2,
+      "public_facts_created": 2,
+      "evidence_only_rows": 0,
+      "blocked_rows": 9,
+      "conflicts": 0,
+      "activated_fields": [
+        {
+          "field": "vibration_left_ms2",
+          "value": 3.9,
+          "unit": "m/s²"
+        },
+        {
+          "field": "vibration_right_ms2",
+          "value": 3.6,
+          "unit": "m/s²"
+        }
+      ],
+      "remaining_null_fields": [
+        "displacement_cc",
+        "power_kw",
+        "power_hp",
+        "weight_kg",
+        "spark_plug",
+        "electrode_gap_mm",
+        "carb_h_setting",
+        "carb_l_setting",
+        "carb_la_setting",
+        "chain_pitch",
+        "chain_gauge_mm",
+        "oil_mix_ratio",
+        "battery_system",
+        "voltage_v",
+        "sound_pressure_db",
+        "sound_power_db",
+        "air_volume_m3h",
+        "air_velocity_ms"
+      ]
+    }
+  ]
+}
