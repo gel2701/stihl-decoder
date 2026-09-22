@@ -1488,3 +1488,50 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 - **10,000 Distribution Audit:** PASS (MS 260: 4.17%, MS 261: 4.18%, Alert: NO, Fallback: NO).
 - **Idempotence Rebuild:** PASS (Second run diff = 0).
 - **Canonical Model & Evidence Invariants:** 98 models, 98/98 CORE5 completeness, 721 public facts frozen byte-identical.
+
+---
+
+## PHASE 46B — BR TIER 2 WAVE 2 CANONICAL IDENTITY & CORE5 ACTIVATION
+
+**Status:** CANDIDATE COMPLETE / AWAITING REVIEW 🔍
+**Branch:** `feat/phase46b-br-tier2-wave2-identity`
+**Base Commit:** `64c76596257bcc3c99f1b75a4864c349dbe7ed46` (Phase 46A-R2, tree `38cc1a5b44e32194274c4bfc41d13887a2ca1f43`)
+**Target Scope:** Exactly 12 accepted BR Tier 2 Wave 2 identities activated into canonical database.
+
+### Checkpoint Summary
+- **Canonical Model Equation:** 98 existing + 12 activated = 110 models (100% unique IDs, 100% unique slugs).
+- **CORE5 Completeness:** 98/98 -> 110/110 complete (5/5). Canonical vocabulary strictly enforced; zero lowercase staging strings leaked.
+- **Existing Models:** 98 existing canonical records remain 100% byte-identical and immutable.
+- **Public Evidence:** Exactly 721 facts frozen (0 added, 0 removed, 0 mutated, SHA-256 hash unchanged). Baseline 38 unindexed facts debt preserved.
+- **Serial Decoder Protection:** 8 serial ranges frozen (0 HIGH, 8 MEDIUM, 0 LOW). Zero candidate scope drift; BR 600, FS 120 / FS 250, and BR 340 / BR 420 scopes preserved identically.
+- **Suffix Integrity:** Exact suffixes preserved for `MSE 170 C-BQ` (`C-BQ`), `MSE 141 C-Q` (`C-Q`), `HS 82 R` (`R`), `MSA 190 T` (`T`).
+- **Mains-Electric Safety:** All 6 mains-electric models (`MSE 170 C-BQ`, `MSE 141 C-Q`, `BGE 71`, `FSE 41`, `HSE 52`, `FSE 60`) configured with `power_source: ELECTRIC` (NOT BATTERY/GASOLINE), `fuel_type_label: null`, `voltage_v: null`.
+- **HSA 26 Bundle Integrity:** Exactly 1 canonical identity created with primary standalone record 27 (`HA03-011-3503`) paired with secondary kit record 28 (`HA03-011-26SET`). Zero kit technical values promoted; kit not separately activated.
+- **TSA 230 Categorization:** Categorized as `Doorslijper` (`category_slug: doorslijpers`, `primary_function: CUT_OFF`, `machine_form: HANDHELD`). Zero lawnmower leakage.
+- **Technical Null Freeze:** All 18 protected technical fields (`displacement_cc`, `power_kw`, `power_hp`, `weight_kg`, `spark_plug`, `electrode_gap_mm`, `carb_h_setting`, `carb_l_setting`, `carb_la_setting`, `chain_pitch`, `chain_gauge_mm`, `oil_mix_ratio`, `battery_system`, `voltage_v`, `sound_pressure_db`, `sound_power_db`, `vibration_left_ms2`, `vibration_right_ms2`) strictly `null` across all 12 models.
+- **Production Confidence Policy:** `production_confidence: 'UNKNOWN'`, `specs_verified: false` across all 110 models.
+- **Router / Search Parity:** 12/12 routes resolve cleanly under existing application routes; 12/12 category listings active; 12/12 exact search hits; negative suffix queries verified without false stripping. Zero runtime code changes.
+- **SQLite Parity:** `data/stihl_database.db` rebuilt deterministically via `data/seed.cjs`: 110 models, 8 ranges with 8/8 exact column parity.
+- **Testing:** 36/36 tests in `tests/phase46b_wave2_identity_activation.test.js` PASS (100%).
+
+### Activated Wave 2 Identities (12)
+1. **MSE 170 C-BQ** (`stihl_mse_170_c-bq` / `mse-170-c-bq`): Kettingzaag, `/kettingzagen/mse-170-c-bq/`, Primary Rec: 62 (`1209-011-M170`), Power: ELECTRIC.
+2. **MSE 141 C-Q** (`stihl_mse_141_c-q` / `mse-141-c-q`): Kettingzaag, `/kettingzagen/mse-141-c-q/`, Primary Rec: 61 (`1208-200-0308/09`), Power: ELECTRIC.
+3. **HSA 26** (`stihl_hsa_26` / `hsa-26`): Heggenschaar, `/heggenscharen/hsa-26/`, Primary Rec: 27 (`HA03-011-3503`), Secondary Rec: 28 (`HA03-011-26SET`), Power: BATTERY.
+4. **HLA 66** (`stihl_hla_66` / `hla-66`): Heggenschaar, `/heggenscharen/hla-66/`, Primary Rec: 23 (`4859-011-2914`), Power: BATTERY.
+5. **HS 82 R** (`stihl_hs_82_r` / `hs-82-r`): Heggenschaar, `/heggenscharen/hs-82-r/`, Primary Rec: 17 (`4237-200-0018`), Power: GASOLINE.
+6. **MSA 190 T** (`stihl_msa_190_t` / `msa-190-t`): Kettingzaag, `/kettingzagen/msa-190-t/`, Primary Rec: 238 (`MA05-200-0008`), Power: BATTERY.
+7. **TSA 230** (`stihl_tsa_230` / `tsa-230`): Doorslijper, `/doorslijpers/tsa-230/`, Primary Rec: 181 (`4864-011-6620`), Power: BATTERY.
+8. **HLA 56** (`stihl_hla_56` / `hla-56`): Heggenschaar, `/heggenscharen/hla-56/`, Primary Rec: 26 (`HA01-011-2903`), Power: BATTERY.
+9. **BGE 71** (`stihl_bge_71` / `bge-71`): Bladblazer, `/bladblazers/bge-71/`, Primary Rec: 42 (`4811-011-BGE71`), Power: ELECTRIC.
+10. **FSE 41** (`stihl_fse_41` / `fse-41`): Bosmaaier, `/bosmaaiers/fse-41/`, Primary Rec: 50 (`4815-011-FSE41`), Power: ELECTRIC.
+11. **HSE 52** (`stihl_hse_52` / `hse-52`): Heggenschaar, `/heggenscharen/hse-52/`, Primary Rec: 21 (`4818-011-HSE52`), Power: ELECTRIC.
+12. **FSE 60** (`stihl_fse_60` / `fse-60`): Bosmaaier, `/bosmaaiers/fse-60/`, Primary Rec: 48 (`4809-011-FSE60`), Power: ELECTRIC.
+
+---
+
+## NEXT PHASE — PHASE 46C: BR TIER 2 WAVE 2 TECHNICAL EVIDENCE RECONCILIATION
+
+**Status:** RESERVED / NOT STARTED 🔒
+**Scope:** Reconcile technical evidence and safe public facts for the 12 activated Wave 2 models.
+**Prerequisites:** Phase 46B review and candidate acceptance. Automatic execution forbidden.
