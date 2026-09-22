@@ -1,0 +1,136 @@
+{
+  "phase": "46D",
+  "title": "BR Tier 2 Wave 2 Production Promotion & Live Verification",
+  "created_at": "2026-09-22T14:32:00+02:00",
+
+  "main_baseline": {
+    "commit": "fb7cfa0c814b1be8decb349b6d1e4244989c646c",
+    "tree": "86543741b40f14c8b75ddea2b62c1e34403f421b",
+    "description": "Production main baseline (98 models, 721 facts, Serial Decoder Recovery R2 live)"
+  },
+
+  "accepted_candidate": {
+    "commit": "c1f30a3291a3b741cf02eb1b83706b1e7bede69a",
+    "tree": "4c1d3cd82c147f6242e3557ee91c103612f3d198",
+    "branch": "fix/phase46c-r1-accounting-regression-integrity",
+    "description": "Phase 46C-R1 immutable regression test methodology & evidence accounting remediation"
+  },
+
+  "promotion": {
+    "method": "FAST_FORWARD",
+    "from": "fb7cfa0c814b1be8decb349b6d1e4244989c646c",
+    "to": "c1f30a3291a3b741cf02eb1b83706b1e7bede69a",
+    "promoted_main_sha": "c1f30a3291a3b741cf02eb1b83706b1e7bede69a",
+    "promoted_main_tree": "4c1d3cd82c147f6242e3557ee91c103612f3d198",
+    "linear_history": true,
+    "ahead_count": 5,
+    "behind_count": 0,
+    "exact_tree_parity": true,
+    "drift_classification": "NONE"
+  },
+
+  "deployment": {
+    "provider": "Render",
+    "deployed_commit": "c1f30a3291a3b741cf02eb1b83706b1e7bede69a",
+    "status": "LIVE",
+    "deployed_sha_matches_main": true,
+    "edge_cdn": "Cloudflare",
+    "deployed_at": "2026-09-22T12:25:52.719Z"
+  },
+
+  "data_state": {
+    "models": 110,
+    "core5": "110/110",
+    "baseline_models": 98,
+    "wave2_models": 12,
+    "baseline_facts": 721,
+    "wave2_safe_facts": 40,
+    "final_facts": 761,
+    "safe_canonical_technical_fields": 40,
+    "blocked_candidates": 107,
+    "evidence_only_candidates": 9,
+    "baseline_unindexed_debt": 38,
+    "baseline_unindexed_mutated": 0,
+    "original_721_mutated": 0,
+    "equation": "721 + 40 = 761"
+  },
+
+  "wave2_identities": {
+    "count": 12,
+    "models": [
+      "MSE 170 C-BQ",
+      "MSE 141 C-Q",
+      "HSA 26",
+      "HLA 66",
+      "HS 82 R",
+      "MSA 190 T",
+      "TSA 230",
+      "HLA 56",
+      "BGE 71",
+      "FSE 41",
+      "HSE 52",
+      "FSE 60"
+    ],
+    "all_routes_http_200": true,
+    "all_in_sitemap": true,
+    "orphan_models": 0
+  },
+
+  "safe_candidate_protection": {
+    "mains_electric_voltage_leakage": 0,
+    "battery_runtime_and_charger_specs_blocked": 16,
+    "weight_without_attachment_leakage": 0,
+    "cutting_gear_and_guide_bar_blocked": 40,
+    "field_semantic_ambiguous_blocked": 30,
+    "not_canonical_field_blocked": 15,
+    "total_blocked_candidates_protected": 107
+  },
+
+  "serial_decoder_recovery_r2_matrix": {
+    "active_serial_ranges": 8,
+    "high_confidence_ranges": 0,
+    "medium_confidence_ranges": 8,
+    "low_confidence_ranges": 0,
+    "mass_ms260_ms261_fallback": "NONE",
+    "test_matrix": [
+      { "serial": "125000000", "plant": "Duitsland", "display_range": "026 / MS 260", "confidence": "MEDIUM", "level": "MODEL_FAMILY_RANGE", "candidates": ["stihl_026", "stihl_ms_260"], "specs_fail_closed": true },
+      { "serial": "150123456", "plant": "Duitsland", "display_range": "BR 340 / BR 420", "confidence": "MEDIUM", "level": "MODEL_FAMILY_RANGE", "candidates": ["stihl_br_420"], "specs_fail_closed": true },
+      { "serial": "160500000", "plant": "Duitsland", "display_range": "MS 260", "confidence": "MEDIUM", "level": "PROBABLE_MODEL_SERIES_RANGE", "candidates": ["stihl_ms_260"], "specs_fail_closed": true },
+      { "serial": "161984210", "plant": "Duitsland", "display_range": "MS 260", "confidence": "MEDIUM", "level": "PROBABLE_MODEL_SERIES_RANGE", "candidates": ["stihl_ms_260"], "specs_fail_closed": true },
+      { "serial": "175000000", "plant": "Duitsland", "display_range": "MS 261 / MS 261 C-M", "confidence": "MEDIUM", "level": "PROBABLE_MODEL_SERIES_RANGE", "candidates": ["stihl_ms_261_cm", "stihl_ms_261_c_m"], "specs_fail_closed": true },
+      { "serial": "184592301", "plant": "Duitsland", "display_range": "MS 261 C-M Gen 2", "confidence": "MEDIUM", "level": "PROBABLE_MODEL_SERIES_RANGE", "candidates": ["stihl_ms_261_c_m"], "specs_fail_closed": true },
+      { "serial": "250000000", "plant": "Verenigde Staten", "display_range": "MS 290 / MS 310 / MS 390", "confidence": "MEDIUM", "level": "MODEL_FAMILY_RANGE", "candidates": ["stihl_ms_290", "stihl_ms_310", "stihl_ms_390"], "specs_fail_closed": true },
+      { "serial": "275000000", "plant": "Verenigde Staten", "display_range": "BR 600 Reeks", "confidence": "MEDIUM", "level": "PROBABLE_MODEL_SERIES_RANGE", "candidates": ["stihl_br_600"], "specs_fail_closed": true },
+      { "serial": "335000000", "plant": "Brazilië", "display_range": "FS 120 / FS 250", "confidence": "MEDIUM", "level": "MODEL_FAMILY_RANGE", "candidates": ["stihl_fs_120"], "specs_fail_closed": true },
+      { "serial": "412345678", "plant": "Zwitserland", "display_range": null, "confidence": "LOW", "level": "FORMAT_ONLY", "candidates": [], "specs_fail_closed": true },
+      { "serial": "824061159", "plant": null, "display_range": null, "confidence": "LOW", "level": "FORMAT_ONLY", "candidates": [], "specs_fail_closed": true }
+    ],
+    "stale_ui_reset": "CLEAN (no residual series/range/model across sequential calls)",
+    "part_number_decoding": "PASS (1123 020 1200 recognized as PART_NUMBER with family 1123)",
+    "stopheling_link": "PASS (active link to https://www.stopheling.nl/nl/zoeken?q=...)"
+  },
+
+  "live_verification": {
+    "health_endpoints_http_200": "4/4",
+    "category_routes_http_200": "5/5",
+    "wave2_routes_http_200": "12/12",
+    "sitemap_http": 200,
+    "sitemap_wave2_urls_present": 12,
+    "api_version_http": 200,
+    "deployed_git_commit": "c1f30a3291a3b741cf02eb1b83706b1e7bede69a",
+    "database_connected": true,
+    "database_persistent": true,
+    "schema_version": 3,
+    "jsonld_present": "12/12",
+    "h1_text": "STIHL Serienummer Decoder — Bouwjaar en model controleren",
+    "h1_count": 1
+  },
+
+  "canonical_policy": {
+    "production_confidence_unknown": "110/110",
+    "specs_verified_true": 0,
+    "policy_pass": true
+  },
+
+  "final_decision": "PHASE 46D COMPLETE — BR TIER 2 WAVE 2 PROMOTED / DEPLOYED / LIVE VERIFIED / 110 MODELS / 761 FACTS / 40 SAFE TECHNICAL FIELDS / 107 BLOCKED CANDIDATES / SERIAL DECODER RECOVERY R2 VERIFIED / PASS"
+}

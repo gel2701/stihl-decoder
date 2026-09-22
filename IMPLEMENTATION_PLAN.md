@@ -1623,8 +1623,34 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 
 ---
 
-## NEXT PHASE — PHASE 46D: BR TIER 2 WAVE 2 PRODUCTION PROMOTION & LIVE VERIFICATION
+## PHASE 46D — BR TIER 2 WAVE 2 PRODUCTION PROMOTION & LIVE VERIFICATION
 
-**Status:** RESERVED / NOT STARTED 🔒
-**Scope:** Exact fast-forward promotion to `main`, deployment to Render, and live HTTP/UI verification.
-**Prerequisites:** Phase 46C / 46C-R1 candidate review and explicit user authorization. Automatic promotion forbidden.
+**Status:** COMPLETE / LIVE / VERIFIED ✅  
+**Deployment Date:** 2026-09-22T12:25:52.719Z  
+**Promoted Commit:** `c1f30a3291a3b741cf02eb1b83706b1e7bede69a`  
+**Promoted Tree:** `4c1d3cd82c147f6242e3557ee91c103612f3d198`  
+**Parent Baseline:** `fb7cfa0c814b1be8decb349b6d1e4244989c646c` (Production Main)  
+**Promotion Method:** FAST-FORWARD ONLY (linear history, ahead 5, behind 0)  
+
+### Checkpoint Summary
+- **PROMOTION METHOD:** Fast-forward promotion from `fb7cfa0` to `c1f30a3` with zero merge commit and exact tree parity (`4c1d3cd82c147f6242e3557ee91c103612f3d198`).
+- **RENDER DEPLOYMENT:** Confirmed LIVE on commit `c1f30a3291a3b741cf02eb1b83706b1e7bede69a` via `/api/version` (`database.connected: true`, `database.persistent: true`, `schema_version: 3`).
+- **CANONICAL DATABASE:** Expanded safely from 98 to 110 models (12 Wave 2 models: MSE 170 C-BQ, MSE 141 C-Q, HSA 26, HLA 66, HS 82 R, MSA 190 T, TSA 230, HLA 56, BGE 71, FSE 41, HSE 52, FSE 60). 110/110 CORE5 completeness (5/5). 98 existing models untouched.
+- **PUBLIC EVIDENCE STORE:** 721 baseline facts + 40 new safe facts = 761 facts total. Baseline 38 unindexed debt frozen; zero new unindexed debt.
+- **SAFE TECHNICAL FIELDS:** Exactly 40 safe canonical technical fields activated across Wave 2 models.
+- **BLOCKED CANDIDATE PROTECTION:** Exactly 107 candidates blocked (40 cutting gear/guide bars, 30 ambiguous/dry weights, 16 battery runtime & charger specs, 6 mains 127V/220V voltage, 15 not canonical fields) + 9 evidence-only scoped. Zero leakage into canonical data or user-facing templates.
+- **SERIAL DECODER RECOVERY R2 VERIFIED:** Exactly 8 serial ranges active (0 HIGH, 8 MEDIUM, 0 LOW). Zero candidate scope drift. All 11 test serials verified live against production API with zero MS260/MS261 mass fallback.
+- **LIVE HEALTH & ROUTES:** 4/4 health endpoints HTTP 200; 12/12 Wave 2 routes HTTP 200; 5/5 category listings HTTP 200; 12/12 present in `sitemap.xml`; JSON-LD valid across sampled routes.
+- **CANONICAL POLICY:** `production_confidence: UNKNOWN` (110/110), `specs_verified: false` (0 true).
+
+### Phase 46D Production Report
+See `data/phase46d_wave2_production_report.json`.
+
+---
+
+## NEXT PHASE — PHASE 47: BR TIER 2 WAVE 3 INTAKE & REMAINING PORTFOLIO PLANNING
+
+**Status:** RESERVED / NOT STARTED 🔒  
+**Scope:** Scope and audit remaining Tier 2 machine identities and category expansion.  
+**Prerequisites:** Phase 46D production completion and explicit user authorization.
+
