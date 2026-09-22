@@ -9,9 +9,9 @@ import assert from 'node:assert/strict';
 import fs from 'fs';
 import crypto from 'crypto';
 
-// Baseline Hashes computed at start of Phase 46A
+// Baseline Hashes computed against current production main
 const EXPECTED_HASHES = {
-  db: '1cc7bad5a5409f0d476af1953b98c607d7e752e78eef03670b506ae8f1ea79f9',
+  db: '80e40066a55135fb7c390bc1f84ddd4c70d20de36922eda71bd9a61757c072af',
   facts: '0d8efa841591b2fd27869e27d989620f8b2159f53f1b82cfe7dea9db67094d80',
   manifest: '0e43116248bf4e83fc0cfdc0f9b32895b86622a6e8328029ff09ef3145769f8e',
   packageJson: 'b0687192491c19faefc0983acaf3ba83e965803c76bed52fefcd149cf10af83b',

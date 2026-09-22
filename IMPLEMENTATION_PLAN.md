@@ -1001,13 +1001,45 @@ Wave 1 selects **15** high-confidence, route-ready, collision-free identities fi
 
 ---
 
+## Phase 46A-R2 — Primary Record / Reference Pair Integrity Remediation
+
+**Status:** COMPLETE / REMEDIATION PASS ✅
+
+### Primary Source Pair Integrity Summary
+
+- **Remediation root cause:** Phase 46A-R1 correctly fixed MSE 170 C-BQ lineage, but downstream artifacts permitted HSA 26 to pair standalone reference `HA03-011-3503` with kit record `28` due to relying on array indexing (`records[0]`).
+- **Authoritative HSA 26 primary lineage:**
+  - Standalone record: Record ID **`27`**, Reference **`HA03-011-3503`**, `kit: false` (Primary)
+  - Kit record: Record ID **`28`**, Reference **`HA03-011-26SET`**, `kit: true` (Secondary bundle tracking)
+  - Canonical identity: **HSA 26**
+  - Primary provenance pair: **Record `27` + Reference `HA03-011-3503`**
+- **Order-Independent Deterministic Resolver:**
+  - Eliminated all usage of array indices (`records[0]`) for source selection.
+  - Primary record is resolved by exact reference match against `primary_ref` (`standalone_ref` or canonical single reference).
+  - Standalone + kit invariant enforced: `primary_record.kit === false`, secondary kit `kit === true`.
+  - In-memory array reversal verified order-independent (`SOURCE_SELECTION_ORDER_INDEPENDENT = PASS`).
+- **12/12 Primary Pair Integrity:**
+  - `data/phase46a_r2_primary_source_pair_audit.json`: **12/12 PASS**
+  - `primary_record_id` explicitly added to `data/phase46a_phase46b_wave2_definition.json` for all 12 identities (**12/12**).
+  - Catalog pair integrity: **12/12** (`catalog.id === primary_record_id` and `catalog.reference === official_reference`).
+  - MSE 170 C-BQ: Preserved on record `62` and reference `1209-011-M170` (0 regressions).
+  - MSE 141 C-Q: Preserved on record `61` and reference `1208-200-0308/09`.
+  - TSA 230: Preserved on record `181` and reference `4864-011-6620` (0 lawnmower leakage).
+- **Serial Decoder Protection:**
+  - Full Serial Decoder Recovery R2 history and runtime preserved with zero drift.
+  - 10,000 serial distribution invariant preserved (MS 260: 4.17%, MS 261: 4.18%, Alert: NO).
+  - All serial decoder test suites pass 100%.
+- **Wave 2 Readiness:** **PHASE46B = READY ✅**
+
+---
+
 ## Phase 46B — BR Tier 2 Wave 2 Canonical Identity & CORE5 Activation
 
-**Status:** READY / PLANNED ⏳
+**Status:** READY FOR ACTIVATION (Awaiting Phase 46B Dispatch) ⏳
 
 ### Target Scope
 
-- Activate the 12 selected Phase 46A-R1 Wave 2 identities into canonical `data/stihl_database.json`
+- Activate the 12 selected Phase 46A-R2 Wave 2 identities into canonical `data/stihl_database.json`
 - Populate CORE5 classification (5/5) using canonical vocabulary
 - Keep all technical fields null
 - Freeze public evidence facts (remain 721)

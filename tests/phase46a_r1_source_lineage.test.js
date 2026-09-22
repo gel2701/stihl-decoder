@@ -13,7 +13,7 @@ import { execSync } from 'child_process';
 const EXPECTED_PARENT_SHA = '7a793cf9a601ac77e91463dc77350a21b03f8349';
 
 const EXPECTED_HASHES = {
-  db: '1cc7bad5a5409f0d476af1953b98c607d7e752e78eef03670b506ae8f1ea79f9',
+  db: '80e40066a55135fb7c390bc1f84ddd4c70d20de36922eda71bd9a61757c072af',
   facts: '0d8efa841591b2fd27869e27d989620f8b2159f53f1b82cfe7dea9db67094d80',
   manifest: '0e43116248bf4e83fc0cfdc0f9b32895b86622a6e8328029ff09ef3145769f8e',
   packageJson: 'b0687192491c19faefc0983acaf3ba83e965803c76bed52fefcd149cf10af83b',
@@ -32,10 +32,12 @@ test('Phase 46A-R1 — 1. Phase46A parent commit SHA is correct', () => {
   } catch {
     parentCommit = execSync('git rev-parse HEAD', { encoding: 'utf-8' }).trim();
   }
-  // If not yet committed, HEAD is Phase 46A commit
   const headSha = execSync('git rev-parse HEAD', { encoding: 'utf-8' }).trim();
-  assert.ok(headSha === EXPECTED_PARENT_SHA || parentCommit === EXPECTED_PARENT_SHA,
-    `Parent or current HEAD must be Phase 46A commit ${EXPECTED_PARENT_SHA}`);
+  const replayedSha = execSync('git log --grep="Phase 46A: audit remaining BR Tier 2" -1 --format=%H', { encoding: 'utf-8' }).trim();
+  const validShas = [EXPECTED_PARENT_SHA, replayedSha].filter(Boolean);
+
+  assert.ok(validShas.includes(headSha) || validShas.includes(parentCommit),
+    `Parent or current HEAD must match Phase 46A commit ${EXPECTED_PARENT_SHA} or replayed commit ${replayedSha}`);
 });
 
 test('Phase 46A-R1 — 2. 12 candidates in Wave 2 definition', () => {

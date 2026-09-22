@@ -1,8 +1,8 @@
 {
-  "phase": "46A-R1",
+  "phase": "46A-R2",
   "target_phase": "46B",
   "title": "BR Tier 2 Wave 2 Canonical Identity & CORE5 Activation Definition",
-  "created_at": "2026-09-22T00:38:00+02:00",
+  "created_at": "2026-09-22T06:50:00+02:00",
   "total_selected": 12,
   "original_high_selected": 8,
   "upgraded_medium_selected": 4,
@@ -15,6 +15,7 @@
     "collision_free_current_98": "12/12 (100%)",
     "slug_collision_free": "12/12 (100%)",
     "suffix_safe": "12/12 (100%)",
+    "primary_record_id_present": "12/12 (100%)",
     "source_record_id_parity": "12/12 (100%)",
     "official_reference_parity": "12/12 (100%)",
     "runtime_code_changes_required": 0
@@ -22,6 +23,7 @@
   "selected_identities": [
     {
       "model": "MSE 170 C-BQ",
+      "primary_record_id": "62",
       "source_record_ids": [
         "62"
       ],
@@ -45,6 +47,7 @@
     },
     {
       "model": "MSE 141 C-Q",
+      "primary_record_id": "61",
       "source_record_ids": [
         "61"
       ],
@@ -68,9 +71,10 @@
     },
     {
       "model": "HSA 26",
+      "primary_record_id": "27",
       "source_record_ids": [
-        "28",
-        "27"
+        "27",
+        "28"
       ],
       "official_reference": "HA03-011-3503",
       "proposed_slug": "hsa-26",
@@ -92,6 +96,7 @@
     },
     {
       "model": "HLA 66",
+      "primary_record_id": "23",
       "source_record_ids": [
         "23"
       ],
@@ -115,6 +120,7 @@
     },
     {
       "model": "HS 82 R",
+      "primary_record_id": "17",
       "source_record_ids": [
         "17"
       ],
@@ -138,6 +144,7 @@
     },
     {
       "model": "MSA 190 T",
+      "primary_record_id": "238",
       "source_record_ids": [
         "238"
       ],
@@ -161,6 +168,7 @@
     },
     {
       "model": "TSA 230",
+      "primary_record_id": "181",
       "source_record_ids": [
         "181"
       ],
@@ -184,6 +192,7 @@
     },
     {
       "model": "HLA 56",
+      "primary_record_id": "26",
       "source_record_ids": [
         "26"
       ],
@@ -207,6 +216,7 @@
     },
     {
       "model": "BGE 71",
+      "primary_record_id": "42",
       "source_record_ids": [
         "42"
       ],
@@ -230,6 +240,7 @@
     },
     {
       "model": "FSE 41",
+      "primary_record_id": "50",
       "source_record_ids": [
         "50"
       ],
@@ -253,6 +264,7 @@
     },
     {
       "model": "HSE 52",
+      "primary_record_id": "21",
       "source_record_ids": [
         "21"
       ],
@@ -276,6 +288,7 @@
     },
     {
       "model": "FSE 60",
+      "primary_record_id": "48",
       "source_record_ids": [
         "48"
       ],
