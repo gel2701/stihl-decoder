@@ -1,0 +1,424 @@
+{
+  "phase": "46C-R1",
+  "generated_at": "2026-09-22T11:57:41.358Z",
+  "total_tests": 36,
+  "classifications_summary": {
+    "EQUIVALENT_PASS": 32,
+    "EXPECTED_PHASE_PROGRESSION": 4,
+    "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+    "REGRESSION": 0
+  },
+  "regression_detected": false,
+  "tests": [
+    {
+      "test_number": 1,
+      "test_name": "Phase 46B — 1. Exact accepted Phase46A-R2 input",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Wave 2 input definition artifact hash remains identical to accepted Phase46A-R2.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 2,
+      "test_name": "Phase 46B — 2. Exact 12 selected in Wave 2 definition",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Exactly 12 Wave 2 identities selected.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 3,
+      "test_name": "Phase 46B — 3. Model equation valid: 98 + 12 = 110",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Canonical model count remains exactly 110.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 4,
+      "test_name": "Phase 46B — 4. Only selected Wave 2 models activated",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Activated models strictly match the 12 Wave 2 identities.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 5,
+      "test_name": "Phase 46B — 5. Existing 98 models remain immutable",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "First 98 canonical models remain 100% immutable and byte-identical.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 6,
+      "test_name": "Phase 46B — 6. Unique IDs across all 110 models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "All 110 canonical IDs are unique.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 7,
+      "test_name": "Phase 46B — 7. Unique slugs across all 110 models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "All 110 canonical slugs are unique.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 8,
+      "test_name": "Phase 46B — 8. No invented aliases on activated models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "No invented aliases present on any of the 12 activated models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 9,
+      "test_name": "Phase 46B — 9. CORE5 canonical vocabulary valid across all 12 activated",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Canonical vocabulary strictly adhered to for all 12 models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 10,
+      "test_name": "Phase 46B — 10. CORE5 complete 5/5 for all 12 activated and all 110 models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "CORE5 completeness is 110/110 complete (5/5).",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 11,
+      "test_name": "Phase 46B — 11. MSE 170 C-BQ retains exact suffix C-BQ",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Exact suffix C-BQ preserved in name and slug.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 12,
+      "test_name": "Phase 46B — 12. MSE 141 C-Q retains exact suffix C-Q",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Exact suffix C-Q preserved in name and slug.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 13,
+      "test_name": "Phase 46B — 13. HS 82 R retains exact suffix R",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Exact suffix R preserved in name and slug.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 14,
+      "test_name": "Phase 46B — 14. MSA 190 T retains exact suffix T",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Exact suffix T preserved in name and slug.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 15,
+      "test_name": "Phase 46B — 15. HSA 26 exists as exactly one canonical identity",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "HSA 26 is uniquely activated as single machine record.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 16,
+      "test_name": "Phase 46B — 16. HSA 26 has primary record 27 and reference HA03-011-3503",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Primary record 27 and reference HA03-011-3503 intact.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 17,
+      "test_name": "Phase 46B — 17. HSA 26 kit (record 28) not separately activated",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Kit record 28 not separately activated into canonical DB.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 18,
+      "test_name": "Phase 46B — 18. TSA 230 category is Doorslijper with category_slug doorslijpers",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "TSA 230 correctly categorized under doorslijpers.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 19,
+      "test_name": "Phase 46B — 19. TSA 230 primary_function is CUT_OFF",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "primary_function is CUT_OFF.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 20,
+      "test_name": "Phase 46B — 20. TSA 230 has zero lawnmower leakage",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Zero lawnmower classification strings.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 21,
+      "test_name": "Phase 46B — 21. All 6 mains-electric models have power_source ELECTRIC and no fake Accu label",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "All 6 mains-electric models correctly designated ELECTRIC with null fuel_type.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 22,
+      "test_name": "Phase 46B — 22. Technical fields strictly null across all 12 activated models",
+      "baseline_result": "PASS",
+      "candidate_result": "FAIL",
+      "classification": "EXPECTED_PHASE_PROGRESSION",
+      "reason": "Phase 46C legitimately activated exactly 40 safe technical fields from verified official STIHL evidence. The failure in this historical gate is expected as fields are no longer null.",
+      "linked_phase46c_items": [
+        "mse-170-c-bq.sound_pressure_db = 92",
+        "mse-170-c-bq.sound_power_db = 103",
+        "mse-170-c-bq.vibration_left_ms2 = 2.9",
+        "mse-170-c-bq.vibration_right_ms2 = 3.4",
+        "mse-141-c-q.sound_pressure_db = 90",
+        "mse-141-c-q.sound_power_db = 101",
+        "mse-141-c-q.vibration_left_ms2 = 3.3",
+        "mse-141-c-q.vibration_right_ms2 = 4.2",
+        "hla-66.sound_pressure_db = 80",
+        "hla-66.sound_power_db = 94",
+        "hla-66.vibration_left_ms2 = 3.5",
+        "hla-66.vibration_right_ms2 = 3.5",
+        "hs-82-r.displacement_cc = 22.7",
+        "hs-82-r.power_kw = 0.7",
+        "hs-82-r.power_hp = 1",
+        "hs-82-r.sound_pressure_db = 94",
+        "hs-82-r.sound_power_db = 107",
+        "hs-82-r.vibration_left_ms2 = 2.7",
+        "hs-82-r.vibration_right_ms2 = 3.1",
+        "msa-190-t.vibration_left_ms2 = 3.9",
+        "msa-190-t.vibration_right_ms2 = 3.8",
+        "tsa-230.sound_pressure_db = 104",
+        "tsa-230.sound_power_db = 115",
+        "hla-56.sound_pressure_db = 77",
+        "hla-56.sound_power_db = 88",
+        "hla-56.vibration_left_ms2 = 1.5",
+        "hla-56.vibration_right_ms2 = 1.5",
+        "bge-71.air_volume_m3h = 670",
+        "bge-71.air_velocity_ms = 66",
+        "bge-71.sound_power_db = 101",
+        "fse-41.sound_pressure_db = 87",
+        "fse-41.sound_power_db = 96",
+        "fse-41.vibration_left_ms2 = 2.2",
+        "fse-41.vibration_right_ms2 = 1.3",
+        "hse-52.sound_pressure_db = 84",
+        "hse-52.sound_power_db = 95",
+        "hse-52.vibration_left_ms2 = 3.1",
+        "hse-52.vibration_right_ms2 = 1.5",
+        "fse-60.vibration_left_ms2 = 3.9",
+        "fse-60.vibration_right_ms2 = 3.6"
+      ]
+    },
+    {
+      "test_number": 23,
+      "test_name": "Phase 46B — 23. battery_system is null for all 12 activated models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "battery_system remains strictly null across all 12 models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 24,
+      "test_name": "Phase 46B — 24. voltage_v is null for all 12 activated models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "voltage_v remains strictly null across all 12 models (multi-voltage safety enforced).",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 25,
+      "test_name": "Phase 46B — 25. production_confidence is UNKNOWN for all 110 models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "production_confidence policy UNKNOWN preserved across all 110 models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 26,
+      "test_name": "Phase 46B — 26. specs_verified is false for all 110 models (true count = 0)",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "specs_verified remains false for all 110 models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 27,
+      "test_name": "Phase 46B — 27. Public facts count remains exactly 721",
+      "baseline_result": "PASS",
+      "candidate_result": "FAIL",
+      "classification": "EXPECTED_PHASE_PROGRESSION",
+      "reason": "Phase 46C appended exactly 40 verified public facts (721 -> 761 total facts). The failure in this historical gate is expected.",
+      "linked_phase46c_items": [
+        "Total facts: 721 -> 761 (+40 safe facts)"
+      ]
+    },
+    {
+      "test_number": 28,
+      "test_name": "Phase 46B — 28. Public facts file hash remains unchanged",
+      "baseline_result": "PASS",
+      "candidate_result": "FAIL",
+      "classification": "EXPECTED_PHASE_PROGRESSION",
+      "reason": "Public evidence facts file hash legitimately changed due to appending 40 new verified facts in Phase 46C.",
+      "linked_phase46c_items": [
+        "Hash changed from Phase 46B 0d8efa... to Phase 46C 6fd584..."
+      ]
+    },
+    {
+      "test_number": 29,
+      "test_name": "Phase 46B — 29. Routes resolve 12/12 for all activated models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "All 12 models resolve cleanly to expected routes.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 30,
+      "test_name": "Phase 46B — 30. Category listings include 12/12 activated models without orphans",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "All 12 models present in category listings.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 31,
+      "test_name": "Phase 46B — 31. Exact search hits 12/12 activated models",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Search index returns exact hit for all 12 models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 32,
+      "test_name": "Phase 46B — 32. Suffix negative search tests pass (no false suffix stripping)",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Suffix queries do not falsely hit suffixed models.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 33,
+      "test_name": "Phase 46B — 33. Serial ranges count remains strictly 8",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Serial ranges count strictly frozen at 8.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 34,
+      "test_name": "Phase 46B — 34. Serial range metadata 8/8 identical with 0 HIGH, 8 MEDIUM, 0 LOW",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "Serial range confidence levels strictly identical.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 35,
+      "test_name": "Phase 46B — 35. Serial decoder R2 candidate scopes unchanged",
+      "baseline_result": "PASS",
+      "candidate_result": "PASS",
+      "classification": "EQUIVALENT_PASS",
+      "reason": "BR 600, FS 120 / FS 250, and BR 340 / BR 420 scopes preserved identically.",
+      "linked_phase46c_items": []
+    },
+    {
+      "test_number": 36,
+      "test_name": "Phase 46B — 36. Zero Phase 46C technical evidence activated",
+      "baseline_result": "PASS",
+      "candidate_result": "FAIL",
+      "classification": "EXPECTED_PHASE_PROGRESSION",
+      "reason": "Phase 46C safely activated 40 verified technical fields. The failure in this historical gate is expected as Phase 46C is now active.",
+      "linked_phase46c_items": [
+        "mse-170-c-bq.sound_pressure_db",
+        "mse-170-c-bq.sound_power_db",
+        "mse-170-c-bq.vibration_left_ms2",
+        "mse-170-c-bq.vibration_right_ms2",
+        "mse-141-c-q.sound_pressure_db",
+        "mse-141-c-q.sound_power_db",
+        "mse-141-c-q.vibration_left_ms2",
+        "mse-141-c-q.vibration_right_ms2",
+        "hla-66.sound_pressure_db",
+        "hla-66.sound_power_db",
+        "hla-66.vibration_left_ms2",
+        "hla-66.vibration_right_ms2",
+        "hs-82-r.displacement_cc",
+        "hs-82-r.power_kw",
+        "hs-82-r.power_hp",
+        "hs-82-r.sound_pressure_db",
+        "hs-82-r.sound_power_db",
+        "hs-82-r.vibration_left_ms2",
+        "hs-82-r.vibration_right_ms2",
+        "msa-190-t.vibration_left_ms2",
+        "msa-190-t.vibration_right_ms2",
+        "tsa-230.sound_pressure_db",
+        "tsa-230.sound_power_db",
+        "hla-56.sound_pressure_db",
+        "hla-56.sound_power_db",
+        "hla-56.vibration_left_ms2",
+        "hla-56.vibration_right_ms2",
+        "bge-71.air_volume_m3h",
+        "bge-71.air_velocity_ms",
+        "bge-71.sound_power_db",
+        "fse-41.sound_pressure_db",
+        "fse-41.sound_power_db",
+        "fse-41.vibration_left_ms2",
+        "fse-41.vibration_right_ms2",
+        "hse-52.sound_pressure_db",
+        "hse-52.sound_power_db",
+        "hse-52.vibration_left_ms2",
+        "hse-52.vibration_right_ms2",
+        "fse-60.vibration_left_ms2",
+        "fse-60.vibration_right_ms2"
+      ]
+    }
+  ]
+}

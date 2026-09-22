@@ -837,14 +837,68 @@ console.log(`Semantic expansion rows: ${expansionRows}`);
 console.log(`Semantic ledger rows: ${semanticRowsTotal}`);
 console.log(`Equation check: ${rawRowsTotal} raw + ${expansionRows} expansions = ${semanticRowsTotal} semantic rows: ${rawRowsTotal + expansionRows === semanticRowsTotal ? 'BALANCED ✅' : 'FAIL ❌'}`);
 
-const safeWritesTotal = safeWrites.length;
+// 3. Disposition categories & ledger derivation
+const SAFE_DISPOSITIONS = new Set([
+  'SAFE_SINGLE_VALUE',
+  'SAFE_DUAL_UNIT_NORMALIZATION',
+  'SAFE_COMPOUND_COMPONENT'
+]);
+
+const EVIDENCE_ONLY_DISPOSITIONS = new Set([
+  'EVIDENCE_ONLY_SCOPED'
+]);
+
+const BLOCKED_DISPOSITIONS = new Set([
+  'CONFIGURATION_MULTI_VALUE_BLOCKED',
+  'CONFIGURATION_DEPENDENT_BLOCKED',
+  'BATTERY_CONFIGURATION_BLOCKED',
+  'CHARGER_SPEC_BLOCKED',
+  'FIELD_SEMANTIC_AMBIGUOUS_BLOCKED',
+  'UNIT_SEMANTIC_AMBIGUOUS_BLOCKED',
+  'VARIANT_AMBIGUOUS_BLOCKED',
+  'NOT_CANONICAL_FIELD',
+  'DUPLICATE_EQUIVALENT',
+  'SOURCE_CONFLICT_BLOCKED',
+  'UNSUPPORTED_SOURCE_BLOCKED'
+]);
+
+const safeWritesTotal = semanticLedger.filter(r => SAFE_DISPOSITIONS.has(r.disposition)).length;
+const blockedRowsTotal = semanticLedger.filter(r => BLOCKED_DISPOSITIONS.has(r.disposition)).length;
+const evidenceOnlyRowsTotal = semanticLedger.filter(r => EVIDENCE_ONLY_DISPOSITIONS.has(r.disposition)).length;
 const dispositionSum = Object.values(dispositionCounts).reduce((a, b) => a + b, 0);
+
 console.log(`Total dispositions sum: ${dispositionSum} (matches semantic rows: ${dispositionSum === semanticRowsTotal ? 'YES ✅' : 'NO ❌'})`);
+console.log(`Safe writes (SAFE_*): ${safeWritesTotal}`);
+console.log(`Blocked rows (*_BLOCKED / NOT_CANONICAL): ${blockedRowsTotal}`);
+console.log(`Evidence only rows (EVIDENCE_ONLY_*): ${evidenceOnlyRowsTotal}`);
+console.log(`Accounting equation: ${safeWritesTotal} safe + ${blockedRowsTotal} blocked + ${evidenceOnlyRowsTotal} evidence-only = ${safeWritesTotal + blockedRowsTotal + evidenceOnlyRowsTotal} (ledger: ${semanticRowsTotal})`);
 
 const safeEquationSum = dispositionCounts.SAFE_SINGLE_VALUE + dispositionCounts.SAFE_DUAL_UNIT_NORMALIZATION + dispositionCounts.SAFE_COMPOUND_COMPONENT;
 console.log(`Safe writes equation: ${dispositionCounts.SAFE_SINGLE_VALUE} (SINGLE) + ${dispositionCounts.SAFE_DUAL_UNIT_NORMALIZATION} (DUAL_NORM) + ${dispositionCounts.SAFE_COMPOUND_COMPONENT} (COMPOUND) = ${safeEquationSum} (matches safe canonical writes: ${safeEquationSum === safeWritesTotal ? 'YES ✅' : 'NO ❌'})`);
 
-// 3. Build Canonical Delta
+// Strict Accounting Assertions
+if (safeWritesTotal !== 40) {
+  console.error(`HARD STOP: Expected exactly 40 safe writes, got ${safeWritesTotal}`);
+  process.exit(1);
+}
+if (blockedRowsTotal !== 107) {
+  console.error(`HARD STOP: Expected exactly 107 blocked rows, got ${blockedRowsTotal}`);
+  process.exit(1);
+}
+if (evidenceOnlyRowsTotal !== 9) {
+  console.error(`HARD STOP: Expected exactly 9 evidence-only rows, got ${evidenceOnlyRowsTotal}`);
+  process.exit(1);
+}
+if (safeWritesTotal + blockedRowsTotal + evidenceOnlyRowsTotal !== semanticRowsTotal) {
+  console.error(`HARD STOP: Accounting sum ${safeWritesTotal + blockedRowsTotal + evidenceOnlyRowsTotal} !== ${semanticRowsTotal}`);
+  process.exit(1);
+}
+if (dispositionSum !== semanticRowsTotal) {
+  console.error(`HARD STOP: Disposition sum ${dispositionSum} !== ${semanticRowsTotal}`);
+  process.exit(1);
+}
+
+// 4. Build Canonical Delta
 const canonicalDelta = [];
 for (const w of safeWrites) {
   canonicalDelta.push({
@@ -863,7 +917,7 @@ for (const w of safeWrites) {
   });
 }
 
-// 4. Build Fact Crosswalk
+// 5. Build Fact Crosswalk
 const factCrosswalk = safeWrites.map(w => ({
   model: w.model,
   slug: w.slug,
@@ -876,7 +930,7 @@ const factCrosswalk = safeWrites.map(w => ({
   source_url: w.source_url
 }));
 
-// 5. Build Field Disposition Summary
+// 6. Build Field Disposition Summary
 const fieldDispositionSummary = {
   phase: '46C',
   total_raw_rows: rawRowsTotal,
@@ -884,18 +938,18 @@ const fieldDispositionSummary = {
   total_semantic_rows: semanticRowsTotal,
   disposition_counts: dispositionCounts,
   safe_canonical_writes: safeWritesTotal,
-  blocked_rows: blockedRows.length,
-  evidence_only_rows: evidenceOnlyRows.length,
-  accounting_balanced: rawRowsTotal + expansionRows === semanticRowsTotal && dispositionSum === semanticRowsTotal
+  blocked_rows: blockedRowsTotal,
+  evidence_only_rows: evidenceOnlyRowsTotal,
+  accounting_balanced: (safeWritesTotal + blockedRowsTotal + evidenceOnlyRowsTotal === semanticRowsTotal) && (dispositionSum === semanticRowsTotal)
 };
 
-// 6. Build Model-by-Model Summary
+// 7. Build Model-by-Model Summary
 const modelTechnicalSummary = sourceManifest.sources.map(s => {
   const modelRaw = rawLedger.filter(r => r.model === s.model);
   const modelSemantic = semanticLedger.filter(r => r.model === s.model);
-  const modelWrites = safeWrites.filter(w => w.model === s.model);
-  const modelBlocked = blockedRows.filter(b => b.model === s.model);
-  const modelEvidenceOnly = evidenceOnlyRows.filter(e => e.model === s.model);
+  const modelWrites = semanticLedger.filter(r => r.model === s.model && SAFE_DISPOSITIONS.has(r.disposition));
+  const modelBlocked = semanticLedger.filter(r => r.model === s.model && BLOCKED_DISPOSITIONS.has(r.disposition));
+  const modelEvidenceOnly = semanticLedger.filter(r => r.model === s.model && EVIDENCE_ONLY_DISPOSITIONS.has(r.disposition));
 
   return {
     model: s.model,
@@ -970,14 +1024,19 @@ if (isExecute) {
       console.error(`HARD STOP: Target model not found: ${delta.slug}`);
       process.exit(1);
     }
-    model[delta.field] = delta.new_value;
-    writeCount++;
+    if (model[delta.field] !== delta.new_value) {
+      model[delta.field] = delta.new_value;
+      writeCount++;
+    }
   }
-  console.log(`Applied ${writeCount} canonical technical writes across ${targetSlugs.size} models.`);
 
-  // Write updated canonical database
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
-  console.log(`Updated ${dbPath}`);
+  if (writeCount > 0) {
+    console.log(`Applied ${writeCount} canonical technical writes across ${targetSlugs.size} models.`);
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+    console.log(`Updated ${dbPath}`);
+  } else {
+    console.log(`All ${canonicalDelta.length} canonical technical writes already applied. No db writes.`);
+  }
 
   // 2. Build and append 40 new public facts
   const newPublicFacts = safeWrites.map(w => ({
@@ -1029,62 +1088,67 @@ if (isExecute) {
   // Append new facts (idempotent)
   const existingFactIds = new Set(oldFactsList.map(f => f.fact_id));
   const factsToAppend = newPublicFacts.filter(f => !existingFactIds.has(f.fact_id));
-  const finalFactsList = [...oldFactsList, ...factsToAppend];
-  factsData.facts = finalFactsList;
 
-  // Update model_index and field_index
-  if (!factsData.model_index) factsData.model_index = {};
-  if (!factsData.field_index) factsData.field_index = {};
+  if (factsToAppend.length > 0) {
+    const finalFactsList = [...oldFactsList, ...factsToAppend];
+    factsData.facts = finalFactsList;
 
-  for (const nf of newPublicFacts) {
-    if (!factsData.model_index[nf.model_slug]) {
-      factsData.model_index[nf.model_slug] = {
-        model_name: nf.model_name,
-        category: nf.category,
-        aliases: [
-          nf.model_slug,
-          nf.model_name,
-          `STIHL ${nf.model_name}`,
-          nf.model_name.replace(/[\s\-_]+/g, '')
-        ],
-        fact_ids: []
-      };
-    }
-    if (!factsData.model_index[nf.model_slug].fact_ids.includes(nf.fact_id)) {
-      factsData.model_index[nf.model_slug].fact_ids.push(nf.fact_id);
+    for (const nf of factsToAppend) {
+      if (!factsData.model_index[nf.model_slug]) {
+        factsData.model_index[nf.model_slug] = {
+          model_name: nf.model_name,
+          category: nf.category,
+          aliases: [
+            nf.model_slug,
+            nf.model_name,
+            `STIHL ${nf.model_name}`,
+            nf.model_name.replace(/[\s\-_]+/g, '')
+          ],
+          fact_ids: []
+        };
+      }
+      if (!factsData.model_index[nf.model_slug].fact_ids.includes(nf.fact_id)) {
+        factsData.model_index[nf.model_slug].fact_ids.push(nf.fact_id);
+      }
+
+      if (!factsData.field_index[nf.model_slug]) {
+        factsData.field_index[nf.model_slug] = {};
+      }
+      factsData.field_index[nf.model_slug][nf.field] = nf.fact_id;
     }
 
-    if (!factsData.field_index[nf.model_slug]) {
-      factsData.field_index[nf.model_slug] = {};
-    }
-    factsData.field_index[nf.model_slug][nf.field] = nf.fact_id;
+    factsData.phase = '46C';
+    factsData.last_updated = '2026-09-22T11:31:01.664Z';
+
+    fs.writeFileSync(factsPath, JSON.stringify(factsData, null, 2));
+    console.log(`Updated ${factsPath}: ${oldFactsList.length} -> ${finalFactsList.length} public facts.`);
+
+    // 3. Update public evidence baseline manifest
+    const newFactsRaw = fs.readFileSync(factsPath);
+    const newFactsHash = crypto.createHash('sha256').update(newFactsRaw).digest('hex');
+    const newDbHash = crypto.createHash('sha256').update(JSON.stringify(db.models)).digest('hex');
+
+    manifest.phase = '46C';
+    manifest.canonical_model_count = db.models.length;
+    manifest.canonical_db_hash = newDbHash;
+    manifest.public_fact_count = finalFactsList.length;
+    manifest.public_evidence_hash = newFactsHash;
+    manifest.last_updated = '2026-09-22T11:31:01.664Z';
+
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+    console.log(`Updated ${manifestPath}: public_fact_count = ${manifest.public_fact_count}`);
+  } else {
+    console.log(`Public evidence store already contains all ${newPublicFacts.length} Phase 46C facts. No new facts to append.`);
   }
 
-  factsData.phase = '46C';
-  factsData.last_updated = new Date().toISOString();
-
-  fs.writeFileSync(factsPath, JSON.stringify(factsData, null, 2));
-  console.log(`Updated ${factsPath}: ${oldFactsList.length} -> ${finalFactsList.length} public facts.`);
-
-  // 3. Update public evidence baseline manifest
-  const newFactsRaw = fs.readFileSync(factsPath);
-  const newFactsHash = crypto.createHash('sha256').update(newFactsRaw).digest('hex');
-  const newDbHash = crypto.createHash('sha256').update(JSON.stringify(db.models)).digest('hex');
-
-  manifest.phase = '46C';
-  manifest.canonical_model_count = db.models.length;
-  manifest.canonical_db_hash = newDbHash;
-  manifest.public_fact_count = finalFactsList.length;
-  manifest.public_evidence_hash = newFactsHash;
-  manifest.last_updated = new Date().toISOString();
-
-  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-  console.log(`Updated ${manifestPath}: public_fact_count = ${manifest.public_fact_count}`);
-
-  // 4. Rebuild SQLite database
-  console.log('\n--- REBUILDING SQLITE DATABASE (seed.cjs) ---');
-  execSync('node data/seed.cjs', { cwd: ROOT, stdio: 'inherit' });
-  console.log('SQLite database rebuild complete.');
+  // 4. Rebuild SQLite database if writes occurred or db missing
+  if (writeCount > 0 || !fs.existsSync(path.join(ROOT, 'data/stihl_database.db'))) {
+    console.log('\n--- REBUILDING SQLITE DATABASE (seed.cjs) ---');
+    execSync('node data/seed.cjs', { cwd: ROOT, stdio: 'inherit' });
+    console.log('SQLite database rebuild complete.');
+  } else {
+    console.log('SQLite database already in sync. Rebuild skipped.');
+  }
 
   console.log('\n✅ PHASE 46C EXECUTION COMPLETED SUCCESSFULLY.');
 } else {

@@ -1,0 +1,222 @@
+{
+  "phase": "46C-R1",
+  "generated_at": "2026-09-22T11:57:56.845Z",
+  "suites": [
+    {
+      "suite": "tests/phase46b_wave2_identity_activation.test.js",
+      "total": 36,
+      "pass": 32,
+      "fail": 4,
+      "classifications": {
+        "EQUIVALENT_PASS": 32,
+        "EXPECTED_PHASE_PROGRESSION": 4,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "All 4 fails are 1:1 linked to Phase 46C 40 technical writes and 40 public facts."
+    },
+    {
+      "suite": "tests/phase46c_wave2_technical_evidence.test.js",
+      "total": 43,
+      "pass": 43,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 43,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS across all 43 gates and model technical spec verifications."
+    },
+    {
+      "suite": "tests/phase46a_remaining_route_ready_audit.test.js",
+      "total": 26,
+      "pass": 21,
+      "fail": 5,
+      "classifications": {
+        "EQUIVALENT_PASS": 21,
+        "EXPECTED_PHASE_PROGRESSION": 5,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "Fails are pre-activation gates asserting DB had 98 models and 721 facts before Wave 2 was activated."
+    },
+    {
+      "suite": "tests/phase46a_r1_source_lineage.test.js",
+      "total": 24,
+      "pass": 23,
+      "fail": 1,
+      "classifications": {
+        "EQUIVALENT_PASS": 23,
+        "EXPECTED_PHASE_PROGRESSION": 1,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "Fail is manifest hash check against historical 98-model baseline."
+    },
+    {
+      "suite": "tests/phase46a_r2_primary_source_pair.test.js",
+      "total": 27,
+      "pass": 25,
+      "fail": 2,
+      "classifications": {
+        "EQUIVALENT_PASS": 25,
+        "EXPECTED_PHASE_PROGRESSION": 2,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "Fails are pre-activation assertions of 98 models and 721 facts."
+    },
+    {
+      "suite": "tests/serial_decoder_recovery.test.js",
+      "total": 26,
+      "pass": 24,
+      "fail": 2,
+      "classifications": {
+        "EQUIVALENT_PASS": 24,
+        "EXPECTED_PHASE_PROGRESSION": 2,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "Gates 1 and 2 assert 98 models and 721 facts from recovery baseline; functional serial decoding passes."
+    },
+    {
+      "suite": "tests/serial_decoder_recovery_r1_evidence.test.js",
+      "total": 26,
+      "pass": 23,
+      "fail": 3,
+      "classifications": {
+        "EQUIVALENT_PASS": 23,
+        "EXPECTED_PHASE_PROGRESSION": 3,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "Gates 1 (branch name), 2 (98 models), and 4 (721 facts) fail due to phase progression; all 8 ranges pass."
+    },
+    {
+      "suite": "tests/serial_decoder_recovery_r2_family_scope.test.js",
+      "total": 30,
+      "pass": 27,
+      "fail": 3,
+      "classifications": {
+        "EQUIVALENT_PASS": 27,
+        "EXPECTED_PHASE_PROGRESSION": 3,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "Gates 1 (branch name), 2 (98 models), and 3 (721 facts) fail due to phase progression; all scope/display tests pass."
+    },
+    {
+      "suite": "tests/phase45c_r1_source_precedence.test.js",
+      "total": 10,
+      "pass": 10,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 10,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "tests/canonical_policy.test.js",
+      "total": 1,
+      "pass": 1,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 1,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "tests/decoder.test.js",
+      "total": 6,
+      "pass": 6,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 6,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "tests/official_product_harvester.test.js",
+      "total": 1,
+      "pass": 1,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 1,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "tests/phase36_serial_chronology.test.js",
+      "total": 1,
+      "pass": 1,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 1,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "tests/phase36_serial_user_value_engine.test.js",
+      "total": 1,
+      "pass": 1,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 1,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "scripts/audit_api_ui_parity.mjs",
+      "total": 13,
+      "pass": 13,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 13,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "100% PASS."
+    },
+    {
+      "suite": "scripts/audit_serial_distribution_10k.mjs",
+      "total": 10000,
+      "pass": 10000,
+      "fail": 0,
+      "classifications": {
+        "EQUIVALENT_PASS": 10000,
+        "EXPECTED_PHASE_PROGRESSION": 0,
+        "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+        "REGRESSION": 0
+      },
+      "note": "MS 260: 4.17%, MS 261: 4.18%, Alert: NO, Fallback: NO."
+    }
+  ],
+  "totals": {
+    "EQUIVALENT_PASS": 10251,
+    "EXPECTED_PHASE_PROGRESSION": 20,
+    "PRE_EXISTING_EQUIVALENT_FAIL": 0,
+    "PRE_EXISTING_EQUIVALENT_TIMEOUT": 0,
+    "REGRESSION": 0
+  },
+  "regression_detected": false
+}

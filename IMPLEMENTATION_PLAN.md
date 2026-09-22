@@ -1585,8 +1585,46 @@ Historical regression suite contains stale fixed-count/baseline assertions, miss
 
 ---
 
+## PHASE 46C-R1 — EVIDENCE ACCOUNTING, IMMUTABLE REGRESSION TESTS & REPRODUCIBILITY REMEDIATION
+
+**Status:** CANDIDATE COMPLETE / AWAITING REVIEW 🔍
+**Branch:** `fix/phase46c-r1-accounting-regression-integrity`
+**Base Commit:** `b63774459e69aa2dc4d952733bbdf0c992276ffd` (tree `fd7aad69d8a4e4de6f02eb61d383dacf56ffa46d`)
+**Parent Lineage:** `b1af87bffe196290098aa079804f2e5b9c0a5509` (tree `abc4717d6ed1385e2939a2040a9267f6d0ce476f`)
+**Target Scope:** Immutable regression test methodology restoration, programmatic derivation of exact disposition accounting, committed byte source hash verification, and idempotence proof.
+
+### Remediation Checkpoint Summary
+- **Historical Test Restored:** `tests/phase46b_wave2_identity_activation.test.js` restored byte-for-byte from Phase 46B parent commit `b1af87b...` (git blob: `166f3e7115228b5ffb866829a1d08e523a4ba860`). Historical tests are never modified to accept forward state.
+- **Phase 46B Test Execution & Classification:** 32 passed, 4 failed (tests 22, 27, 28, 36). All 4 failures are 1:1 classified as `EXPECTED_PHASE_PROGRESSION` in `data/phase46c_r1_phase46b_regression_classification.json`, with `REGRESSION = 0`.
+- **Exact Accounting Reconciled:** Derivation in `scripts/phase46c_reconcile_wave2_technical_evidence.mjs` and `data/phase46c_field_disposition_summary.json` computed directly from `data/phase46c_semantic_reconciliation_ledger.json`:
+  - `SAFE_SINGLE_VALUE`: 19
+  - `SAFE_DUAL_UNIT_NORMALIZATION`: 1
+  - `SAFE_COMPOUND_COMPONENT`: 20
+  - **SAFE TOTAL:** 40
+  - `EVIDENCE_ONLY_SCOPED`: 9
+  - **EVIDENCE_ONLY TOTAL:** 9
+  - `CONFIGURATION_MULTI_VALUE_BLOCKED`: 6
+  - `CONFIGURATION_DEPENDENT_BLOCKED`: 40
+  - `BATTERY_CONFIGURATION_BLOCKED`: 10
+  - `CHARGER_SPEC_BLOCKED`: 6
+  - `FIELD_SEMANTIC_AMBIGUOUS_BLOCKED`: 30
+  - `NOT_CANONICAL_FIELD`: 15
+  - **BLOCKED TOTAL:** 107
+  - **GRAND TOTAL:** 40 + 9 + 107 = 156 (`accounting_balanced: true`).
+- **Source File Byte Verification:** All 13 frozen files in `data/candidate_evidence/phase46c/` verified against `data/phase46c_source_manifest.json` (13/13 SHA-256 byte matches).
+- **Source Hash Chain & Delta Crosswalk:** 40/40 canonical delta writes and 40/40 public facts trace directly to manifest and actual source file SHA-256 hashes.
+- **Baseline Fact Immutability:** All 721 baseline facts identical to parent (721/721 exact match). Deterministic SHA-256 canonical hash `c50e3d6dda8b44d10617a2e6b52f46b2a62dd1e66d53878fe2ddfcaf4db6d3f1` verified.
+- **Indexing & Debt Freeze:** 40/40 new facts indexed in `model_index` and `field_index`. Baseline unindexed debt frozen at 38; new unindexed debt = 0.
+- **Model Invariants:** Pre-Wave 2 98 models remain 98/98 byte/semantic identical to parent. 110/110 models identity and CORE5 remain 100% identical. Exactly 40 scalar differences exist between parent and current canonical database, all targeting Wave 2.
+- **Runtime/Package Freeze:** 11 files verified byte-for-byte identical to parent commit with zero drift.
+- **Idempotence Proof:** Timestamp drift resolved; consecutive runs yield `SECOND_RUN_DIFF = 0` recorded in `data/phase46c_r1_idempotence_audit.json` (`status: PASS_ZERO_DIFF`).
+- **Strengthened Test Suite:** `tests/phase46c_wave2_technical_evidence.test.js` updated with 43 gates covering Sections 18–37 (43/43 PASS).
+- **Full Regression Matrix:** `data/phase46c_r1_regression_matrix.json` covers all suites with 10,251 EQUIVALENT_PASS, 20 EXPECTED_PHASE_PROGRESSION, 0 REGRESSION.
+
+---
+
 ## NEXT PHASE — PHASE 46D: BR TIER 2 WAVE 2 PRODUCTION PROMOTION & LIVE VERIFICATION
 
 **Status:** RESERVED / NOT STARTED 🔒
 **Scope:** Exact fast-forward promotion to `main`, deployment to Render, and live HTTP/UI verification.
-**Prerequisites:** Phase 46C candidate review and explicit user authorization. Automatic promotion forbidden.
+**Prerequisites:** Phase 46C / 46C-R1 candidate review and explicit user authorization. Automatic promotion forbidden.

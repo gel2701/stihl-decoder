@@ -235,9 +235,8 @@ test('Phase 46B — 21. All 6 mains-electric models have power_source ELECTRIC a
   }
 });
 
-// 22. technical fields all null (or safe Phase46C fields only)
-test('Phase 46B — 22. Technical fields strictly null across all 12 activated models (or safe Phase46C fields only)', () => {
-  const isPhase46COrLater = factsList.length === 761;
+// 22. technical fields all null
+test('Phase 46B — 22. Technical fields strictly null across all 12 activated models', () => {
   const activated = db.models.slice(98);
   const technicalFields = [
     'displacement_cc', 'power_kw', 'power_hp', 'weight_kg',
@@ -246,27 +245,9 @@ test('Phase 46B — 22. Technical fields strictly null across all 12 activated m
     'battery_system', 'voltage_v', 'sound_pressure_db', 'sound_power_db',
     'vibration_left_ms2', 'vibration_right_ms2'
   ];
-  if (!isPhase46COrLater) {
-    for (const m of activated) {
-      for (const f of technicalFields) {
-        assert.equal(m[f], null, `Technical field ${f} must be null for ${m.model_name}`);
-      }
-    }
-  } else {
-    const deltaPath = path.join(rootDir, 'data/phase46c_canonical_delta.json');
-    const safeWrites = fs.existsSync(deltaPath) ? JSON.parse(fs.readFileSync(deltaPath, 'utf8')).writes : [];
-    const writeMap = new Map();
-    for (const w of safeWrites) {
-      if (!writeMap.has(w.slug)) writeMap.set(w.slug, new Set());
-      writeMap.get(w.slug).add(w.field);
-    }
-    for (const m of activated) {
-      const allowed = writeMap.get(m.slug) || new Set();
-      for (const f of technicalFields) {
-        if (!allowed.has(f)) {
-          assert.equal(m[f], null, `Technical field ${f} must remain null for ${m.model_name}`);
-        }
-      }
+  for (const m of activated) {
+    for (const f of technicalFields) {
+      assert.equal(m[f], null, `Technical field ${f} must be null for ${m.model_name}`);
     }
   }
 });
@@ -303,27 +284,16 @@ test('Phase 46B — 26. specs_verified is false for all 110 models (true count =
   }
 });
 
-// 27. facts remain 721 (or 761 post-Phase 46C)
-test('Phase 46B — 27. Public facts count remains exactly 721 (or 761 post-Phase 46C)', () => {
-  const isPhase46COrLater = factsList.length === 761;
-  if (isPhase46COrLater) {
-    assert.equal(factsList.length, 761);
-  } else {
-    assert.equal(factsList.length, 721);
-  }
+// 27. facts remain 721
+test('Phase 46B — 27. Public facts count remains exactly 721', () => {
+  assert.equal(factsList.length, 721);
 });
 
-// 28. facts hash unchanged (or matches Phase 46C)
-test('Phase 46B — 28. Public facts file hash remains unchanged (or matches Phase 46C)', () => {
-  const isPhase46COrLater = factsList.length === 761;
+// 28. facts hash unchanged
+test('Phase 46B — 28. Public facts file hash remains unchanged', () => {
   const currentFactsHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(rootDir, 'data/public_evidence_facts.json'))).digest('hex');
-  const EXPECTED_FACTS_HASH_46B = '0d8efa841591b2fd27869e27d989620f8b2159f53f1b82cfe7dea9db67094d80';
-  if (isPhase46COrLater) {
-    const manifest = JSON.parse(fs.readFileSync(path.join(rootDir, 'data/public_evidence_baseline_manifest.json'), 'utf8'));
-    assert.equal(currentFactsHash, manifest.public_evidence_hash);
-  } else {
-    assert.equal(currentFactsHash, EXPECTED_FACTS_HASH_46B);
-  }
+  const EXPECTED_FACTS_HASH = '0d8efa841591b2fd27869e27d989620f8b2159f53f1b82cfe7dea9db67094d80';
+  assert.equal(currentFactsHash, EXPECTED_FACTS_HASH);
 });
 
 // 29. routes resolve 12/12
@@ -432,9 +402,8 @@ test('Phase 46B — 35. Serial decoder R2 candidate scopes unchanged', () => {
   assert.deepEqual(rBr420.modelAssist?.candidates.map(c => c.slug), ['br-420']);
 });
 
-// 36. no unauthorized Phase46C technical evidence activated
-test('Phase 46B — 36. Zero unauthorized Phase 46C technical evidence activated', () => {
-  const isPhase46COrLater = factsList.length === 761;
+// 36. no Phase46C technical evidence activated
+test('Phase 46B — 36. Zero Phase 46C technical evidence activated', () => {
   const activated = db.models.slice(98);
   for (const m of activated) {
     assert.equal(m.data_status, 'CATALOG_IDENTITY_ONLY');
@@ -442,18 +411,16 @@ test('Phase 46B — 36. Zero unauthorized Phase 46C technical evidence activated
     assert.equal(m.data_confidence, 'LOW');
     assert.equal(m.specs_verified, false);
     assert.equal(m.series_code, null);
+    assert.equal(m.displacement_cc, null);
+    assert.equal(m.power_kw, null);
+    assert.equal(m.power_hp, null);
     assert.equal(m.weight_kg, null);
     assert.equal(m.spark_plug, null);
     assert.equal(m.battery_system, null);
     assert.equal(m.voltage_v, null);
-    if (!isPhase46COrLater) {
-      assert.equal(m.displacement_cc, null);
-      assert.equal(m.power_kw, null);
-      assert.equal(m.power_hp, null);
-      assert.equal(m.sound_pressure_db, null);
-      assert.equal(m.sound_power_db, null);
-      assert.equal(m.vibration_left_ms2, null);
-      assert.equal(m.vibration_right_ms2, null);
-    }
+    assert.equal(m.sound_pressure_db, null);
+    assert.equal(m.sound_power_db, null);
+    assert.equal(m.vibration_left_ms2, null);
+    assert.equal(m.vibration_right_ms2, null);
   }
 });
