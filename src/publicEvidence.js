@@ -1,12 +1,12 @@
 export const PUBLIC_EVIDENCE_SCHEMA = 'public-evidence-v1';
 
-const DISPLAY_ELIGIBLE_STATUSES = new Set([
+export const DISPLAY_ELIGIBLE_STATUSES = new Set([
   'CANONICAL_VERIFIED',
   'OFFICIAL_DOCUMENTED',
   'OFFICIAL_CONFLICTED'
 ]);
 
-const SINGLE_VALUE_ELIGIBLE_STATUSES = new Set([
+export const SINGLE_VALUE_ELIGIBLE_STATUSES = new Set([
   'CANONICAL_VERIFIED',
   'OFFICIAL_DOCUMENTED'
 ]);
@@ -349,11 +349,16 @@ export function getPublicStatusLabel(status) {
 }
 
 export function isPublicDisplayEligibleFact(fact) {
-  return Boolean(fact && fact.display_eligible && DISPLAY_ELIGIBLE_STATUSES.has(fact.public_evidence_status));
+  if (!fact || !fact.display_eligible) return false;
+  const status = fact.public_evidence_status || fact.evidence_status || fact.source_status;
+  return DISPLAY_ELIGIBLE_STATUSES.has(status);
 }
 
 export function isSingleValuePublicFact(fact) {
-  return Boolean(fact && fact.display_eligible && SINGLE_VALUE_ELIGIBLE_STATUSES.has(fact.public_evidence_status));
+  if (!fact || !fact.display_eligible) return false;
+  if (fact.single_value_eligible === false) return false;
+  const status = fact.public_evidence_status || fact.evidence_status || fact.source_status;
+  return SINGLE_VALUE_ELIGIBLE_STATUSES.has(status);
 }
 
 export function getPreferredPublicFact(fieldFacts = []) {

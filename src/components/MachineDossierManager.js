@@ -1368,7 +1368,7 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
           officialProductName: matchedAnchor.model_name,
           modelName: matchedAnchor.model_name,
           canonicalModelId: matchedAnchor.canonical_model_id,
-          verifiedAt: matchedAnchor.verification_date || matchedAnchor.verified_at || '2026-09-22',
+          verifiedAt: matchedAnchor.verification_date || matchedAnchor.verified_at || null,
           source: matchedAnchor.source || 'MY_STIHL'
         }
       };
@@ -1402,7 +1402,7 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
       target.identity.identity_status = IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED;
       target.identity.identity_source = 'OFFICIAL_STIHL_LOOKUP';
       target.identity.official_product_name = officialAnchor.officialProductName || officialAnchor.modelName;
-      target.identity.verified_at = officialAnchor.verifiedAt || '2026-09-22';
+      target.identity.verified_at = officialAnchor.verifiedAt || null;
       target.identity.official_source = officialAnchor.source || 'MY_STIHL';
       target.identity.canonical_model_id = officialAnchor.canonicalModelId;
       target.identity.conflict = null;
@@ -1454,7 +1454,7 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
         canonical_model_name: canonicalModelName,
         canonical_category: canonicalCategory,
         canonical_series_code: canonicalSeriesCode,
-        official_verified_at: officialAnchor.verifiedAt || '2026-09-22',
+        official_verified_at: officialAnchor.verifiedAt || null,
         detected_at: getLocalTodayString()
       };
 
@@ -1542,7 +1542,7 @@ export function resolveDossierConflict(dossierId, resolutionAction, customStorag
     target.identity.category = canonicalCategory;
     target.identity.series_code = canonicalSeriesCode;
     target.identity.official_product_name = conflict.official_product_name || conflict.official_model_name;
-    target.identity.verified_at = conflict.official_verified_at || '2026-09-22';
+    target.identity.verified_at = conflict.official_verified_at || null;
     target.identity.identity_status = IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED;
     target.identity.identity_source = 'OFFICIAL_STIHL_LOOKUP';
     target.machine.serial_number = conflict.conflicting_serial;

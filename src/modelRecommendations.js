@@ -32,24 +32,137 @@ export const RECOMMENDATION_TYPES = Object.freeze({
 export const AFFILIATE_DISCLOSURE_NOTICE =
   'Bij sommige links kunnen wij een vergoeding ontvangen. Dit heeft geen invloed op de technische informatie.';
 
-function findEligibleEvidence(evidenceList, modelSlug, field) {
-  if (!Array.isArray(evidenceList) || evidenceList.length === 0) return null;
+import {
+  isPublicDisplayEligibleFact,
+  isSingleValuePublicFact,
+  DISPLAY_ELIGIBLE_STATUSES,
+  SINGLE_VALUE_ELIGIBLE_STATUSES
+} from './publicEvidence.js';
+
+export function valueMatches(evOrValue, expectedValue) {
+  if (expectedValue === null || expectedValue === undefined) return true;
+  if (evOrValue === null || evOrValue === undefined) return false;
+
+  const rawCandidates = [];
+  if (typeof evOrValue === 'object') {
+    if (evOrValue.normalized_value !== undefined && evOrValue.normalized_value !== null) rawCandidates.push(evOrValue.normalized_value);
+    if (evOrValue.value !== undefined && evOrValue.value !== null) rawCandidates.push(evOrValue.value);
+    if (evOrValue.display_value !== undefined && evOrValue.display_value !== null) rawCandidates.push(evOrValue.display_value);
+    if (evOrValue.raw_value !== undefined && evOrValue.raw_value !== null) rawCandidates.push(evOrValue.raw_value);
+    if (evOrValue.comparison_value !== undefined && evOrValue.comparison_value !== null) rawCandidates.push(evOrValue.comparison_value);
+  } else {
+    rawCandidates.push(evOrValue);
+  }
+
+  if (rawCandidates.length === 0) return false;
+
+  const flatCandidates = [];
+  for (const c of rawCandidates) {
+    if (Array.isArray(c)) {
+      for (const item of c) {
+        if (item && typeof item === 'object') {
+          if (item.manufacturer || item.model) {
+            flatCandidates.push([item.manufacturer, item.model].filter(Boolean).join(' '));
+          }
+        } else if (item != null) {
+          flatCandidates.push(String(item));
+        }
+      }
+    } else if (c && typeof c === 'object') {
+      if (c.manufacturer || c.model) {
+        flatCandidates.push([c.manufacturer, c.model].filter(Boolean).join(' '));
+      }
+    } else {
+      flatCandidates.push(String(c));
+    }
+  }
+
+  const cleanAlphanumeric = (val) => String(val || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const targetClean = cleanAlphanumeric(expectedValue);
+  if (!targetClean) return false;
+
+  const rawTargetNum = String(expectedValue).replace(',', '.').replace(/[^0-9.]/g, '');
+  const targetNum = Number(rawTargetNum);
+  const isTargetNumeric = rawTargetNum.length > 0 && !isNaN(targetNum) && targetNum > 0 && /^[0-9.,\s]+(mm|cc|kw|kg|l)?$/i.test(String(expectedValue).trim());
+
+  for (const cand of flatCandidates) {
+    const candClean = cleanAlphanumeric(cand);
+    if (candClean === targetClean) return true;
+
+    if (cand.includes(' / ') || cand.includes(' or ') || cand.includes(',')) {
+      const parts = cand.split(/[\/,]|\bor\b/i).map(cleanAlphanumeric);
+      if (parts.includes(targetClean)) return true;
+    }
+
+    if (isTargetNumeric) {
+      const rawCandNum = String(cand).replace(',', '.').replace(/[^0-9.]/g, '');
+      const candNum = Number(rawCandNum);
+      if (rawCandNum.length > 0 && !isNaN(candNum) && Math.abs(candNum - targetNum) < 1e-5) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+export function findEligibleEvidence(evidenceList, modelSlug, field, expectedValue = null) {
+  let list = [];
+  if (Array.isArray(evidenceList)) {
+    list = evidenceList;
+  } else if (evidenceList && typeof evidenceList === 'object') {
+    list = Object.values(evidenceList);
+  }
+  if (list.length === 0) return null;
+
   const normalizedSlug = String(modelSlug || '').trim().toLowerCase();
-  return evidenceList.find((ev) => {
+
+  return list.find((ev) => {
     if (!ev) return false;
+
+    // 1. Model scope gate
     const evSlug = String(ev.model_slug || ev.slug || '').trim().toLowerCase();
     const evModelId = String(ev.model_id || ev.canonical_model_id || '').trim().toLowerCase();
-    const matchesScope = evSlug === normalizedSlug || evModelId === normalizedSlug || evModelId === `stihl_${normalizedSlug.replace(/-/g, '_')}`;
+    const matchesScope = evSlug === normalizedSlug ||
+                         evModelId === normalizedSlug ||
+                         evModelId === `stihl_${normalizedSlug.replace(/-/g, '_')}`;
     if (!matchesScope) return false;
-    if (ev.display_eligible !== true) return false;
-    if (ev.field && ev.field !== field && ev.field_name !== field) return false;
 
-    const status = String(ev.public_evidence_status || ev.source_status || ev.status || '').toUpperCase();
-    const isReliableStatus = ['OFFICIAL_DOCUMENTED', 'VERIFIED', 'ESTABLISHED', 'CONFIRMED'].includes(status);
+    // 2. Strict evidence field matching
+    const evidenceField = ev.field || ev.field_name || ev.canonical_field || null;
+    if (!evidenceField || evidenceField !== field) {
+      return false;
+    }
+
+    // 3. Central public evidence policy & eligibility gates
+    if (ev.display_eligible !== true) return false;
+
+    const status = String(ev.public_evidence_status || ev.evidence_status || ev.source_status || '').toUpperCase();
+    const isReliableStatus = DISPLAY_ELIGIBLE_STATUSES.has(status) ||
+                             ['VERIFIED', 'ESTABLISHED', 'CONFIRMED'].includes(status);
     const sourceClass = String(ev.source_class || '').toUpperCase();
     const isReliableClass = ['OFFICIAL_MANUAL', 'OFFICIAL_PARTS_LIST', 'PRIMARY_SOURCE', 'STIHL_OFFICIAL', 'MANUFACTURER_DOCUMENT'].includes(sourceClass);
 
-    return isReliableStatus || isReliableClass;
+    if (!isReliableStatus && !isReliableClass) {
+      return false;
+    }
+
+    // 4. Single-value eligibility gate
+    if (ev.single_value_eligible === false) {
+      return false;
+    }
+    if (status === 'OFFICIAL_CONFLICTED') {
+      return false;
+    }
+
+    // 5. Evidence value matching
+    if (expectedValue !== null && expectedValue !== undefined) {
+      if (!valueMatches(ev, expectedValue)) {
+        return false;
+      }
+    }
+
+    return true;
   }) || null;
 }
 
@@ -80,7 +193,7 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
   if (isCombustion) {
     const sparkPlugSpec = technicalSpecs.spark_plug ? String(technicalSpecs.spark_plug).trim() : null;
     const gapSpec = technicalSpecs.electrode_gap_mm ? `${technicalSpecs.electrode_gap_mm} mm` : null;
-    const sparkEvidence = findEligibleEvidence(evidenceList, modelSlug, 'spark_plug');
+    const sparkEvidence = sparkPlugSpec ? findEligibleEvidence(evidenceList, modelSlug, 'spark_plug', sparkPlugSpec) : null;
 
     if (sparkPlugSpec && sparkEvidence) {
       recommendations.push({
@@ -92,7 +205,7 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
           compatibility_status: COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY,
           display_claim: `Geschikt voor jouw STIHL ${modelName}`,
           display_guidance: `Fabrieksspecificatie: ${sparkPlugSpec}${gapSpec ? ` (elektrodenafstand ${gapSpec})` : ''}`,
-          evidence_basis: ['OFFICIAL_DOCUMENTED_EVIDENCE', `spark_plug: ${sparkPlugSpec}`, sparkEvidence.source_class || sparkEvidence.public_evidence_status],
+          evidence_basis: ['OFFICIAL_DOCUMENTED_EVIDENCE', `spark_plug: ${sparkPlugSpec}`, sparkEvidence.source_class || sparkEvidence.public_evidence_status || sparkEvidence.evidence_status],
           technical_spec_ref: {
             field: 'spark_plug',
             value: sparkPlugSpec,
@@ -178,13 +291,59 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
     const gauge = technicalSpecs.chain_gauge_mm ? `${technicalSpecs.chain_gauge_mm} mm` : null;
     const driveLinks = technicalSpecs.drive_links || technicalSpecs.drive_link_count || technicalSpecs.chain_drive_links || null;
 
-    const chainEvidence = findEligibleEvidence(evidenceList, modelSlug, 'chain') ||
-                          findEligibleEvidence(evidenceList, modelSlug, 'chain_pitch');
+    let normalizedEvidence = [];
+    if (Array.isArray(evidenceList)) {
+      normalizedEvidence = evidenceList;
+    } else if (evidenceList && typeof evidenceList === 'object') {
+      normalizedEvidence = Object.values(evidenceList);
+    }
 
-    const hasFullConfig = Boolean(pitch && gauge && driveLinks && chainEvidence);
-    const hasExplicitPartRecord = Boolean(chainEvidence && (chainEvidence.part_type === 'chain' || chainEvidence.drive_links || chainEvidence.full_config));
+    // Explicit official part configuration record check
+    const explicitCompletePartRecord = normalizedEvidence.find((ev) => {
+      if (!ev) return false;
+      const isPart = ev.part_type === 'chain' || ev.configuration_type === 'chain' || ev.full_config === true;
+      if (!isPart) return false;
+      if (ev.display_eligible !== true) return false;
+      const status = String(ev.public_evidence_status || ev.evidence_status || ev.source_status || '').toUpperCase();
+      const isReliableStatus = DISPLAY_ELIGIBLE_STATUSES.has(status) || ['VERIFIED', 'ESTABLISHED', 'CONFIRMED'].includes(status);
+      const isReliableClass = ['OFFICIAL_MANUAL', 'OFFICIAL_PARTS_LIST', 'PRIMARY_SOURCE', 'STIHL_OFFICIAL', 'MANUFACTURER_DOCUMENT'].includes(String(ev.source_class || '').toUpperCase());
+      if (!isReliableStatus && !isReliableClass) return false;
+      if (status === 'OFFICIAL_CONFLICTED') return false;
 
-    if (hasFullConfig || hasExplicitPartRecord) {
+      const evSlug = String(ev.model_slug || ev.slug || '').trim().toLowerCase();
+      const evModelId = String(ev.model_id || ev.canonical_model_id || '').trim().toLowerCase();
+      const matchesScope = evSlug === modelSlug || evModelId === modelSlug || evModelId === `stihl_${modelSlug.replace(/-/g, '_')}`;
+      if (!matchesScope) return false;
+
+      const evPitch = ev.pitch || ev.chain_pitch;
+      const evGauge = ev.gauge || ev.chain_gauge_mm;
+      const evLinks = ev.drive_links || ev.drive_link_count || ev.links;
+
+      if (!evPitch || !evGauge || !evLinks) return false;
+      return valueMatches(evPitch, pitch) && valueMatches(evGauge, gauge) && valueMatches(evLinks, driveLinks);
+    });
+
+    // Alternatively, pitch, gauge, and drive_links must ALL be individually evidenced with matching values
+    const pitchEvidence = pitch ? (
+      findEligibleEvidence(evidenceList, modelSlug, 'chain_pitch', pitch) ||
+      findEligibleEvidence(evidenceList, modelSlug, 'pitch', pitch)
+    ) : null;
+
+    const gaugeEvidence = gauge ? (
+      findEligibleEvidence(evidenceList, modelSlug, 'chain_gauge_mm', gauge) ||
+      findEligibleEvidence(evidenceList, modelSlug, 'chain_gauge', gauge) ||
+      findEligibleEvidence(evidenceList, modelSlug, 'gauge', gauge)
+    ) : null;
+
+    const driveLinksEvidence = driveLinks ? (
+      findEligibleEvidence(evidenceList, modelSlug, 'drive_links', driveLinks) ||
+      findEligibleEvidence(evidenceList, modelSlug, 'drive_link_count', driveLinks) ||
+      findEligibleEvidence(evidenceList, modelSlug, 'chain_drive_links', driveLinks)
+    ) : null;
+
+    const allThreeEvidenced = Boolean(pitchEvidence && gaugeEvidence && driveLinksEvidence);
+
+    if (explicitCompletePartRecord || allThreeEvidenced) {
       recommendations.push({
         recommendation_id: `rec_${modelSlug}_chain`,
         recommendation_type: RECOMMENDATION_TYPES.CHAIN,

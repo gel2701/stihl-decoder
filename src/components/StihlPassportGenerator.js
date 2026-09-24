@@ -7,39 +7,79 @@ import { normalizeCategorySlug, CATEGORY_TYPES } from '../categoryWhitelist.js';
 import { getClassificationContextLabel } from '../driveClassification.js';
 import { buildModelRecommendations, renderPassportRecommendationSlotsHtml } from '../modelRecommendations.js';
 import { resolvePlantRecord } from '../decoder.js';
+import { isPublicDisplayEligibleFact, getPublicEvidenceFactsForModel, buildPublicEvidenceFields } from '../publicEvidence.js';
 
 function compactText(value, fallback = 'Niet vastgesteld') {
   const text = String(value || '').trim();
   return text || fallback;
 }
 
-function getFactSourceTag(field, data) {
-  const fact = (data.publicEvidenceFacts || []).find((f) => f.field === field);
-  const meta = fact?.meta;
-  if (meta?.sourceDocumentId && meta?.sourceEdition) {
-    const pageStr = meta.printedPage ? `, p. ${meta.printedPage}` : '';
-    return `(✓ STIHL ${meta.sourceDocumentId} Ed. ${meta.sourceEdition}${pageStr})`;
+export function getEligibleFact(field, data = {}) {
+  const facts = Array.isArray(data.publicEvidenceFacts) ? data.publicEvidenceFacts : [];
+  const fact = facts.find((f) => {
+    const fField = f?.field || f?.field_name || f?.canonical_field;
+    return fField === field && isPublicDisplayEligibleFact(f);
+  });
+  if (fact) return fact;
+
+  const fields = data.publicEvidenceFields || {};
+  const fieldEntry = fields[field];
+  if (fieldEntry && fieldEntry.display_eligible && isPublicDisplayEligibleFact(fieldEntry)) {
+    return fieldEntry;
   }
-  if (meta?.sourceDocumentId) {
-    const pageStr = meta.printedPage ? `, p. ${meta.printedPage}` : '';
-    return `(✓ STIHL ${meta.sourceDocumentId}${pageStr})`;
-  }
-  return '(✓ Officieel bevestigd)';
+  return null;
 }
 
-function buildSafePassportSpecRows(data) {
+export function getFactSourceTag(field, data = {}) {
+  const fact = getEligibleFact(field, data);
+  if (!fact) return ''; // Geen concrete eligible fact -> GEEN official badge/tag!
+
+  const meta = fact.meta || fact;
+  const docId = meta.sourceDocumentId || meta.source_document_id || fact.source_document_id;
+  const edition = meta.sourceEdition || meta.source_edition || fact.source_edition;
+  const printedPage = meta.printedPage || meta.printed_page || fact.printed_page;
+
+  if (docId && edition) {
+    const pageStr = printedPage ? `, p. ${printedPage}` : '';
+    return `(✓ STIHL ${docId} Ed. ${edition}${pageStr})`;
+  }
+  if (docId) {
+    const pageStr = printedPage ? `, p. ${printedPage}` : '';
+    return `(✓ STIHL ${docId}${pageStr})`;
+  }
+
+  const status = fact.public_evidence_status || fact.evidence_status || meta.status;
+  if (status === 'CANONICAL_VERIFIED' || status === 'OFFICIAL_DOCUMENTED') {
+    return '(✓ Officieel bevestigd)';
+  }
+  return '';
+}
+
+export function buildSafePassportSpecRows(data = {}) {
   const specs = data.technicalSpecs && typeof data.technicalSpecs === 'object' ? data.technicalSpecs : {};
   const rows = [];
 
-  if (specs.displacement_cc) rows.push(`Motorinhoud: ${specs.displacement_cc} cc ${getFactSourceTag('displacement_cc', data)}`);
-  if (specs.power_kw) rows.push(`Vermogen: ${specs.power_kw} kW ${getFactSourceTag('power_kw', data)}`);
-  if (specs.idle_speed_rpm) rows.push(`Stationair toerental: ${specs.idle_speed_rpm} 1/min ${getFactSourceTag('idle_speed_rpm', data)}`);
-  if (specs.spark_plug) rows.push(`Bougie: ${specs.spark_plug} ${getFactSourceTag('spark_plug', data)}`);
-  if (specs.electrode_gap_mm) rows.push(`Elektrodenafstand: ${specs.electrode_gap_mm} mm ${getFactSourceTag('electrode_gap_mm', data)}`);
-  if (specs.fuel_tank_l) rows.push(`Brandstoftank: ${specs.fuel_tank_l} l ${getFactSourceTag('fuel_tank_l', data)}`);
-  if (specs.oil_tank_l) rows.push(`Olietank: ${specs.oil_tank_l} l ${getFactSourceTag('oil_tank_l', data)}`);
-  if (specs.weight_kg) rows.push(`Gewicht: ${specs.weight_kg} kg ${getFactSourceTag('weight_kg', data)}`);
-  if (specs.chain_pitch && specs.chain_gauge_mm) rows.push(`Kettingsteek: ${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm`);
+  const addRow = (label, value, unit, field) => {
+    if (value === null || value === undefined || value === '') return;
+    const tag = getFactSourceTag(field, data);
+    const tagSuffix = tag ? ` ${tag}` : '';
+    const unitSuffix = unit ? ` ${unit}` : '';
+    rows.push(`${label}: ${value}${unitSuffix}${tagSuffix}`.trim());
+  };
+
+  addRow('Motorinhoud', specs.displacement_cc, 'cc', 'displacement_cc');
+  addRow('Vermogen', specs.power_kw, 'kW', 'power_kw');
+  addRow('Stationair toerental', specs.idle_speed_rpm, '1/min', 'idle_speed_rpm');
+  addRow('Bougie', specs.spark_plug, null, 'spark_plug');
+  addRow('Elektrodenafstand', specs.electrode_gap_mm, 'mm', 'electrode_gap_mm');
+  addRow('Brandstoftank', specs.fuel_tank_l, 'l', 'fuel_tank_l');
+  addRow('Olietank', specs.oil_tank_l, 'l', 'oil_tank_l');
+  addRow('Gewicht', specs.weight_kg, 'kg', 'weight_kg');
+  if (specs.chain_pitch && specs.chain_gauge_mm) {
+    const chainTag = getFactSourceTag('chain_pitch', data);
+    const chainSuffix = chainTag ? ` ${chainTag}` : '';
+    rows.push(`Kettingsteek: ${specs.chain_pitch} @ ${specs.chain_gauge_mm} mm${chainSuffix}`.trim());
+  }
 
   return rows;
 }
@@ -191,7 +231,20 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     identityExplanation = 'Technische specificaties zijn niet aan dit serienummer gekoppeld zolang het exacte model niet voldoende is bevestigd.';
   }
 
-  const technicalSpecRows = buildSafePassportSpecRows(data);
+  const facts = (data.publicEvidenceFacts && data.publicEvidenceFacts.length > 0)
+    ? data.publicEvidenceFacts
+    : (db && modelSlug ? getPublicEvidenceFactsForModel(modelSlug, db) : []);
+  const evidenceFields = (data.publicEvidenceFields && Object.keys(data.publicEvidenceFields).length > 0)
+    ? data.publicEvidenceFields
+    : (db && modelSlug ? buildPublicEvidenceFields(modelSlug, db) : {});
+
+  const enrichedData = {
+    ...data,
+    publicEvidenceFacts: facts,
+    publicEvidenceFields: evidenceFields
+  };
+
+  const technicalSpecRows = buildSafePassportSpecRows(enrichedData);
   const hasTechnicalSpecs = technicalSpecRows.length > 0;
   const driveClassification = data.driveClassification || null;
   const driveContextLabel = getClassificationContextLabel(driveClassification);
@@ -227,7 +280,7 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
   const recommendations = data.recommendations || buildModelRecommendations(
     { model_slug: modelSlug, model_name: model, category: categoryStr, series_code: seriesCode },
     data.technicalSpecs || {},
-    { compatibilityEvidence: data.publicEvidenceFacts || data.compatibilityEvidence }
+    { compatibilityEvidence: (data.publicEvidenceFacts && data.publicEvidenceFacts.length > 0) ? data.publicEvidenceFacts : (data.compatibilityEvidence || facts) }
   );
 
   return {
@@ -258,7 +311,9 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     theftCheck,
     publicUrl,
     qrUrl,
-    recommendations
+    recommendations,
+    publicEvidenceFacts: facts,
+    publicEvidenceFields: evidenceFields
   };
 }
 

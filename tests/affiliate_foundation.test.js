@@ -72,6 +72,7 @@ console.log('  ✅ Gate A Passed: spark_plug without evidence yields SPECIFICATI
 const eligibleSparkEvidence = [{
   model_slug: 'ms-440',
   field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
   display_eligible: true,
   public_evidence_status: 'OFFICIAL_DOCUMENTED',
   source_class: 'OFFICIAL_MANUAL'
@@ -110,7 +111,10 @@ console.log('  ✅ Gate C Passed: partial chain spec yields SPECIFICATION_MATCH_
 // Gate D: complete officially proven chain configuration -> VERIFIED_MODEL_COMPATIBILITY
 const eligibleChainEvidence = [{
   model_slug: 'ms-440',
-  field: 'chain',
+  part_type: 'chain',
+  pitch: '3/8"',
+  gauge: '1.6 mm',
+  drive_links: 72,
   display_eligible: true,
   public_evidence_status: 'OFFICIAL_DOCUMENTED',
   source_class: 'OFFICIAL_PARTS_LIST'
