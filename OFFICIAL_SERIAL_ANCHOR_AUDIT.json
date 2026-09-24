@@ -1,0 +1,54 @@
+{
+  "schema_version": "official-serial-anchor-audit-v1",
+  "audit_timestamp": "2026-09-22T22:05:00Z",
+  "provenance": {
+    "source_system": "MY STIHL (app.stihl.com)",
+    "endpoint": "GraphQL unregisteredProduct",
+    "verification_method": "READ_ONLY_OFFICIAL_LOOKUP",
+    "credentials_exposed": false
+  },
+  "verified_anchor": {
+    "serial_number": "163118080",
+    "factory_code": "1",
+    "factory_location": "Waiblingen, Duitsland",
+    "official_product_name": "MS 440-Z 3/8\" RIM Magnum Motorsäge",
+    "canonical_model_id": "stihl_ms_440",
+    "category": "Kettingzaag",
+    "category_slug": "kettingzagen",
+    "drive_type": "Benzine",
+    "drive_classification": "PETROL_2STROKE",
+    "source": "MY_STIHL",
+    "source_url": "https://app.stihl.com/nl-nl/mystihl/tools/add",
+    "verification_date": "2026-09-22",
+    "verification_method": "authenticated MY STIHL serial lookup",
+    "evidence_type": "OFFICIAL_WEB_LOOKUP",
+    "verification_status": "OFFICIAL_STIHL_LOOKUP"
+  },
+  "contradiction_summary": {
+    "historical_hypothesis": "Serial block 160000000–169999999 was modeled as exclusively STIHL MS 260 Late Serie (range_1121_ms260_late)",
+    "official_fact": "Serial 163118080 officially identified by STIHL as MS 440-Z 3/8\" RIM Magnum Motorsäge",
+    "conflict_severity": "PROVEN_CONTRADICTION",
+    "resolution_action": "Implemented Priority 1 OfficialSerialAnchorResolver and degraded range_1121_ms260_late to HISTORICAL_PRODUCTION_RANGE"
+  },
+  "architecture_layer": {
+    "primary_resolver": "src/OfficialSerialAnchorResolver.js",
+    "typescript_definition": "src/OfficialSerialAnchorResolver.ts",
+    "json_backing_store": "data/official_serial_anchors.json",
+    "database_json_key": "stihl_database.json -> official_serial_anchors",
+    "sqlite_table": "stihl_database.db -> official_serial_anchors",
+    "priority_level": 1,
+    "pass_through_conditions": [
+      "identityStatus === 'EXACT_MODEL_IDENTIFIED'",
+      "identitySource === 'OFFICIAL_STIHL_LOOKUP'",
+      "probableModelSeries === null",
+      "modelAssistAvailable === false"
+    ]
+  },
+  "test_verification": {
+    "test_file": "tests/official_serial_anchor_and_range_semantics.test.js",
+    "total_tests": 8,
+    "passed_tests": 8,
+    "failed_tests": 0,
+    "status": "ALL_TESTS_PASSING"
+  }
+}

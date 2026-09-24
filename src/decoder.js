@@ -8,6 +8,7 @@ import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
 import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { SerialChronologyResolver } from './SerialChronologyResolver.js';
+import { OfficialSerialAnchorResolver } from './OfficialSerialAnchorResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
 import { resolveMachineClassification } from './driveClassification.js';
 import {
@@ -64,7 +65,7 @@ function buildModelAssist(identityStatus, rangeMatch, probableModelSeries, datab
   }
 
   const models = Array.isArray(database.models) ? database.models : [];
-  
+
   // 1. Determine explicitly supported candidate model IDs
   // If candidate_model_ids is provided, it is authoritative.
   // Otherwise fall back to model_id if present.
@@ -394,6 +395,19 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   const isAlphanumeric = Boolean(options.isAlphanumeric || !/^\d+$/.test(serialStr));
   const numericSerial = parseInt(serialStr, 10);
   const rangeMatch = (!isAlphanumeric && /^\d{8,10}$/.test(serialStr)) ? StihlRangeResolver.resolve(numericSerial, factoryDigit, database) : null;
+  const officialAnchor = (!isAlphanumeric && /^\d{8,10}$/.test(serialStr))
+    ? OfficialSerialAnchorResolver.resolve(serialStr, database, options)
+    : null;
+
+  let anchorCanonicalModel = null;
+  if (officialAnchor) {
+    if (officialAnchor.canonical_model_id && Array.isArray(database?.models)) {
+      anchorCanonicalModel = database.models.find(m => m.id === officialAnchor.canonical_model_id);
+    }
+    if (!anchorCanonicalModel && officialAnchor.model_name && Array.isArray(database?.models)) {
+      anchorCanonicalModel = findModelInDatabase(officialAnchor.model_name, database.models);
+    }
+  }
 
   let modelData = null;
   const confirmedModelInput = options.confirmedModel || options.userConfirmedModel || null;
@@ -401,59 +415,113 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   if (confirmedModelInput && !confirmedModel) {
     return { success: false, status: 'MODEL_CONFIRMATION_REQUIRED', error: 'Het opgegeven model is niet exact herkend. Kies een model uit de lijst.' };
   }
-  if (confirmedModel) {
+
+  if (officialAnchor) {
+    modelData = anchorCanonicalModel || {
+      id: officialAnchor.canonical_model_id || null,
+      model_name: officialAnchor.model_name,
+      category: officialAnchor.category,
+      category_slug: officialAnchor.category?.toLowerCase() || 'kettingzagen'
+    };
+  } else if (confirmedModel) {
     modelData = confirmedModel;
   }
-  const rawProbableSeries = rangeMatch ? (rangeMatch.range_display_name || rangeMatch.model_name || rangeMatch.generation || null) : null;
-  const rawIdentityStatus = modelData
-    ? (confirmedModel ? 'USER_CONFIRMED_MODEL' : 'EXACT_MODEL_IDENTIFIED')
-    : rawProbableSeries
-      ? 'PROBABLE_MODEL_SERIES'
-      : 'MODEL_NOT_IDENTIFIED';
-  const modelAssist = buildModelAssist(rawIdentityStatus, rangeMatch, rawProbableSeries, database);
+
+  const isHistoricalOnly = rangeMatch && rangeMatch.range_semantic_level === 'HISTORICAL_PRODUCTION_RANGE';
+
+  const rawProbableSeries = (officialAnchor || isHistoricalOnly)
+    ? null
+    : (rangeMatch ? (rangeMatch.range_display_name || rangeMatch.model_name || rangeMatch.generation || null) : null);
+
+  const rawIdentityStatus = officialAnchor
+    ? 'EXACT_MODEL_IDENTIFIED'
+    : (modelData
+      ? (confirmedModel ? 'USER_CONFIRMED_MODEL' : 'EXACT_MODEL_IDENTIFIED')
+      : (rawProbableSeries
+        ? 'PROBABLE_MODEL_SERIES'
+        : 'MODEL_NOT_IDENTIFIED'));
+
+  const identitySource = officialAnchor
+    ? 'OFFICIAL_STIHL_LOOKUP'
+    : (confirmedModel
+      ? 'USER_INPUT'
+      : (rangeMatch ? 'SERIAL_RANGE' : 'SERIAL_FORMAT'));
+
+  const modelAssist = officialAnchor
+    ? { available: false, series: null, candidates: [] }
+    : buildModelAssist(rawIdentityStatus, rangeMatch, rawProbableSeries, database);
+
   const probableModelSeries = rawProbableSeries;
   const identityStatus = rawIdentityStatus;
-  const isModelConfirmedOrIdentified = identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL';
-  const modelName = modelData
-    ? modelData.model_name
-    : (probableModelSeries || 'Nog niet definitief bevestigd');
+  const isModelConfirmedOrIdentified = Boolean(officialAnchor || identityStatus === 'EXACT_MODEL_IDENTIFIED' || identityStatus === 'USER_CONFIRMED_MODEL');
+
+  const modelName = officialAnchor
+    ? officialAnchor.model_name
+    : (modelData
+      ? modelData.model_name
+      : (probableModelSeries || 'Nog niet definitief bevestigd'));
+
+  const resolvedModelName = officialAnchor
+    ? officialAnchor.model_name
+    : (modelData ? modelData.model_name : (probableModelSeries || null));
+
+  const exactModel = officialAnchor
+    ? officialAnchor.model_name
+    : (identityStatus === 'EXACT_MODEL_IDENTIFIED' ? (modelData ? modelData.model_name : null) : null);
+
   const rangeDirectModel = rangeMatch?.model_id && Array.isArray(database.models)
     ? database.models.find(m => m.id === rangeMatch.model_id)
     : null;
-  const category = modelData
-    ? (modelData.category || modelData.category_slug)
-    : (rangeDirectModel ? (rangeDirectModel.category || rangeDirectModel.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend'));
-  const overlayModelKey = modelData ? (modelData.slug || modelData.model_name) : null;
+
+  const category = officialAnchor
+    ? (officialAnchor.category || (anchorCanonicalModel ? (anchorCanonicalModel.category || anchorCanonicalModel.category_slug) : 'Kettingzaag'))
+    : (modelData
+      ? (modelData.category || modelData.category_slug)
+      : (rangeDirectModel ? (rangeDirectModel.category || rangeDirectModel.category_slug) : (rangeMatch ? 'STIHL Machine' : 'Onbekend')));
+
+  const overlayModelKey = officialAnchor
+    ? (anchorCanonicalModel?.slug || anchorCanonicalModel?.model_name || null)
+    : (modelData ? (modelData.slug || modelData.model_name) : null);
+
   const overlaySpecs = overlayModelKey
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, modelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
+
   const estimatedYears = rangeMatch?.yearRangeFormatted || null;
-  const generation = rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (seriereferentie)` : 'Niet vastgesteld');
+  const generation = officialAnchor
+    ? (rangeMatch?.generation || `${officialAnchor.model_name} (officiële registratie)`)
+    : (rangeMatch ? rangeMatch.generation : (modelData ? `${modelData.model_name} (seriereferentie)` : 'Niet vastgesteld'));
 
   const stopHelingUrl = `https://www.stopheling.nl/nl/zoeken?q=${encodeURIComponent(serialStr)}`;
 
-  const basicClassification = modelData?.basic_classification || null;
-  const verification = modelData ? getModelVerificationSummary(modelData) : null;
+  const basicClassification = (anchorCanonicalModel || modelData)?.basic_classification || null;
+  const verification = (anchorCanonicalModel || modelData) ? getModelVerificationSummary(anchorCanonicalModel || modelData) : null;
   const driveClassification = resolveMachineClassification({
     identityStatus,
-    exactModel: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? modelData : null,
+    exactModel: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? (anchorCanonicalModel || modelData) : null,
     confirmedModel: confirmedModel,
-    resolvedModel: modelData ? modelData.model_name : null,
+    resolvedModel: resolvedModelName,
     probableModelSeries,
     modelKey: modelName,
     category
   });
+
   const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
-  const sourceStatus = isModelConfirmedOrIdentified && publicSourceSummary?.display_fact_count
-    ? publicSourceSummary.primaryStatus
-    : verification
-      ? verification.dataStatus
-      : 'PRIMARY_SOURCE_PENDING';
-  const sourceStatusLabel = isModelConfirmedOrIdentified && publicSourceSummary?.display_fact_count
-    ? `Bronstatus: ${publicSourceSummary.summaryLabel}`
-    : verification
-      ? `Bronstatus: ${verification.badgeLabel}`
-      : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
+  const sourceStatus = officialAnchor
+    ? 'OFFICIAL_STIHL_LOOKUP'
+    : (isModelConfirmedOrIdentified && publicSourceSummary?.display_fact_count
+      ? publicSourceSummary.primaryStatus
+      : (verification
+        ? verification.dataStatus
+        : 'PRIMARY_SOURCE_PENDING'));
+
+  const sourceStatusLabel = officialAnchor
+    ? 'Bronstatus: Officiële MY STIHL productlookup'
+    : (isModelConfirmedOrIdentified && publicSourceSummary?.display_fact_count
+      ? `Bronstatus: ${publicSourceSummary.summaryLabel}`
+      : (verification
+        ? `Bronstatus: ${verification.badgeLabel}`
+        : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd'));
 
   // Serial ranges support a production-period indication only. Technical claims
   // must come through the field-level public evidence gate, never range metadata.
@@ -462,10 +530,10 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     yearEnd: rangeMatch?.yearEnd ?? null,
     yearRangeFormatted: estimatedYears,
     generation: rangeMatch?.generation || generation,
-    confidence: rangeMatch?.confidence || 'UNKNOWN',
+    confidence: officialAnchor ? 'MEDIUM' : (rangeMatch?.confidence || 'UNKNOWN'),
     ...(identityStatus === 'PROBABLE_MODEL_SERIES'
       ? { seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.' }
-      : {})
+      : (officialAnchor && rangeMatch ? { seriesSummary: 'Productieperiode ontleend aan historische fabrieksreeks; model officieel bevestigd door STIHL.' } : {}))
   };
 
   const chronologyAnchors = options.anchors || database.serial_chronology_anchors || database.chronology_anchors || null;
@@ -494,16 +562,17 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
         provenance: null
       };
 
-  const resolvedModelName = modelData ? modelData.model_name : (probableModelSeries || null);
-  const rangeEvidenceClass = rangeMatch?.range_evidence_class || null;
-  const rangeSemanticLevel = rangeMatch?.range_semantic_level || null;
-  const resolutionLevel = confirmedModel
-    ? 'USER_CONFIRMED_MODEL'
-    : rangeMatch?.model_id
-      ? (rangeEvidenceClass === 'PRIMARY_DOCUMENTED'
-          ? 'PRIMARY_VERIFIED_SERIAL_RANGE'
-          : (rangeSemanticLevel === 'MODEL_FAMILY_RANGE' ? 'MODEL_FAMILY_RANGE' : 'HISTORICAL_SERIAL_RANGE'))
-      : 'FORMAT_ONLY';
+  const rangeEvidenceClass = officialAnchor ? 'OFFICIAL_STIHL_LOOKUP' : (rangeMatch?.range_evidence_class || null);
+  const rangeSemanticLevel = officialAnchor ? 'OFFICIAL_PRODUCT_IDENTITY' : (rangeMatch?.range_semantic_level || null);
+  const resolutionLevel = officialAnchor
+    ? 'OFFICIAL_STIHL_LOOKUP'
+    : (confirmedModel
+      ? 'USER_CONFIRMED_MODEL'
+      : (rangeMatch?.model_id
+        ? (rangeEvidenceClass === 'PRIMARY_DOCUMENTED'
+            ? 'PRIMARY_VERIFIED_SERIAL_RANGE'
+            : (rangeSemanticLevel === 'MODEL_FAMILY_RANGE' ? 'MODEL_FAMILY_RANGE' : 'HISTORICAL_SERIAL_RANGE'))
+        : 'FORMAT_ONLY'));
 
   const safeTechnicalPreview = buildSafeTechnicalPreview(
     {
@@ -512,10 +581,12 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       probableModelSeries,
       model: modelName,
       serialResolution: {
-        rangeModelId: rangeMatch?.model_id || null,
+        rangeModelId: officialAnchor ? (officialAnchor.canonical_model_id || null) : (rangeMatch?.model_id || null),
         level: resolutionLevel
       },
-      seriesCode: rangeMatch?.range_id || (rangeMatch?.model_id ? database.models?.find((m) => m.id === rangeMatch.model_id)?.series_code : null),
+      seriesCode: officialAnchor
+        ? (anchorCanonicalModel?.series_code || '1128')
+        : (rangeMatch?.range_id || (rangeMatch?.model_id ? database.models?.find((m) => m.id === rangeMatch.model_id)?.series_code : null)),
       category,
       driveClassification,
       fuel_type_label: driveClassification.display_label
@@ -533,34 +604,54 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     model: modelName,
     resolvedModel: resolvedModelName,
     confirmedModel: confirmedModel ? confirmedModel.model_name : null,
-    exactModel: identityStatus === 'EXACT_MODEL_IDENTIFIED' ? (modelData ? modelData.model_name : null) : null,
+    exactModel,
+    identityStatus,
+    identitySource,
     modelIdentityStatus: identityStatus,
-    modelIdentitySource: confirmedModel ? 'USER_INPUT' : (rangeMatch ? 'SERIAL_RANGE' : 'SERIAL_FORMAT'),
+    modelIdentitySource: identitySource,
+    candidateModelIds: officialAnchor
+      ? (officialAnchor.canonical_model_id ? [officialAnchor.canonical_model_id] : [])
+      : (rangeMatch?.candidate_model_ids || []),
+    officialAnchor: officialAnchor ? {
+      source: officialAnchor.source,
+      verificationStatus: officialAnchor.verification_status,
+      verifiedAt: officialAnchor.verified_at || null,
+      canonicalModelId: officialAnchor.canonical_model_id || null,
+      modelName: officialAnchor.model_name
+    } : null,
     serialResolution: {
       level: resolutionLevel,
-      confidence: confirmedModel ? 'USER_CONFIRMED' : (rangeMatch?.confidence || 'LOW'),
-      confidenceReason: rangeMatch?.confidence_reason || null,
+      confidence: officialAnchor ? 'HIGH' : (confirmedModel ? 'USER_CONFIRMED' : (rangeMatch?.confidence || 'LOW')),
+      confidenceReason: officialAnchor
+        ? 'Serienummer is geverifieerd via officiële MY STIHL productlookup.'
+        : (rangeMatch?.confidence_reason || null),
       rangeEvidenceClass: rangeEvidenceClass,
       rangeSemanticLevel: rangeSemanticLevel,
-      sourceStatus: rangeMatch?.source_status || (rangeMatch ? 'HISTORICAL_REPOSITORY_VERIFIED' : null),
-      rangeModelId: rangeMatch?.model_id || null,
-      rangeId: rangeMatch?.range_id || null,
-      rangeDisplayName: rangeMatch?.range_display_name || rangeMatch?.model_name || null,
-      candidateModelIds: rangeMatch?.candidate_model_ids || [],
-      matchType: rangeMatch?.match_type || (rangeMatch ? 'UNIQUE_RANGE_MATCH' : 'NONE'),
-      matchReason: rangeMatch?.matchReason || (rangeMatch ? 'Serienummer valt binnen een bekende historische modelreeks.' : 'Alleen fabriekscode-indicatie'),
-      rangeMatches: rangeMatch?.rangeMatches || (rangeMatch ? [rangeMatch] : []),
+      sourceStatus: officialAnchor ? 'OFFICIAL_STIHL_LOOKUP' : (rangeMatch?.source_status || (rangeMatch ? 'HISTORICAL_REPOSITORY_VERIFIED' : null)),
+      rangeModelId: officialAnchor ? (officialAnchor.canonical_model_id || null) : (rangeMatch?.model_id || null),
+      rangeId: officialAnchor ? 'official_serial_anchor' : (rangeMatch?.range_id || null),
+      rangeDisplayName: officialAnchor ? officialAnchor.model_name : (rangeMatch?.range_display_name || rangeMatch?.model_name || null),
+      candidateModelIds: officialAnchor
+        ? (officialAnchor.canonical_model_id ? [officialAnchor.canonical_model_id] : [])
+        : (rangeMatch?.candidate_model_ids || []),
+      matchType: officialAnchor ? 'OFFICIAL_ANCHOR_MATCH' : (rangeMatch?.match_type || (rangeMatch ? 'UNIQUE_RANGE_MATCH' : 'NONE')),
+      matchReason: officialAnchor
+        ? 'Serienummer officieel geïdentificeerd via MY STIHL productlookup.'
+        : (rangeMatch?.matchReason || (rangeMatch ? 'Serienummer valt binnen een bekende historische modelreeks.' : 'Alleen fabriekscode-indicatie')),
+      rangeMatches: officialAnchor ? [] : (rangeMatch?.rangeMatches || (rangeMatch ? [rangeMatch] : [])),
       serialFormat: {
         status: isAlphanumeric ? 'FORMAT_ONLY' : 'SERIAL_FORMAT_RECOGNIZED',
-        chronologyCompatible: isAlphanumeric ? 'NO' : (rangeMatch ? 'YES' : 'NO')
+        chronologyCompatible: isAlphanumeric ? 'NO' : (rangeMatch || officialAnchor ? 'YES' : 'NO')
       },
-      nextActions: (modelData && !confirmedModel)
-        ? ['Controleer het typeplaatje en STIHL voor bevestiging.']
-        : confirmedModel
-          ? ['Model bevestigd door gebruiker. Technische specificaties gekoppeld uit officiële bronnen.']
-          : ['Weet je welk model dit is? Vul het model van het typeplaatje in voor volledige specificaties.']
+      nextActions: officialAnchor
+        ? ['Model en uitvoering officieel geverifieerd via STIHL administratie.']
+        : ((modelData && !confirmedModel)
+          ? ['Controleer het typeplaatje en STIHL voor bevestiging.']
+          : confirmedModel
+            ? ['Model bevestigd door gebruiker. Technische specificaties gekoppeld uit officiële bronnen.']
+            : ['Weet je welk model dit is? Vul het model van het typeplaatje in voor volledige specificaties.'])
     },
-    modelAssistAvailable: !confirmedModel && (!modelData || identityStatus !== 'EXACT_MODEL_IDENTIFIED'),
+    modelAssistAvailable: !officialAnchor && !confirmedModel && (!modelData || identityStatus !== 'EXACT_MODEL_IDENTIFIED'),
     modelAssist,
     probableModelSeries,
     production,
@@ -572,23 +663,29 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
       year: options.userProvidedYear,
       status: 'USER_PROVIDED_YEAR'
     } : null,
-    identityLabel: identityStatus === 'EXACT_MODEL_IDENTIFIED'
-      ? 'Geïdentificeerd model'
-      : identityStatus === 'USER_CONFIRMED_MODEL'
-        ? 'Model bevestigd door gebruiker'
-        : identityStatus === 'PROBABLE_MODEL_SERIES'
-          ? 'Waarschijnlijke modelreeks'
-          : 'Modelidentificatie',
+    identityLabel: officialAnchor
+      ? 'Door STIHL geïdentificeerd model'
+      : (identityStatus === 'EXACT_MODEL_IDENTIFIED'
+        ? 'Geïdentificeerd model'
+        : (identityStatus === 'USER_CONFIRMED_MODEL'
+          ? 'Model bevestigd door gebruiker'
+          : (rangeMatch?.range_semantic_level === 'HISTORICAL_PRODUCTION_RANGE'
+            ? 'Historische serienummerreeks'
+            : (identityStatus === 'PROBABLE_MODEL_SERIES'
+              ? 'Waarschijnlijke modelreeks'
+              : 'Modelidentificatie')))),
     category,
     productionPeriod,
     estimatedYears,
     generation,
-    confidence: confirmedModel ? 'HIGH' : (rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW'),
-    confidenceLabel: identityStatus === 'EXACT_MODEL_IDENTIFIED'
-      ? 'Exact model geïdentificeerd'
-      : identityStatus === 'USER_CONFIRMED_MODEL'
-        ? 'Model door gebruiker bevestigd'
-        : (rangeMatch ? 'Breakpoint-gebaseerde indicatie' : 'Fabriekscode-indicatie'),
+    confidence: officialAnchor ? 'HIGH' : (confirmedModel ? 'HIGH' : (rangeMatch ? (rangeMatch.confidence || 'MEDIUM') : 'LOW')),
+    confidenceLabel: officialAnchor
+      ? 'Exact model geïdentificeerd (officiële STIHL registratie)'
+      : (identityStatus === 'EXACT_MODEL_IDENTIFIED'
+        ? 'Exact model geïdentificeerd'
+        : (identityStatus === 'USER_CONFIRMED_MODEL'
+          ? 'Model door gebruiker bevestigd'
+          : (rangeMatch ? (rangeMatch.range_semantic_level === 'HISTORICAL_PRODUCTION_RANGE' ? 'Historische productieperiode-indicatie' : 'Breakpoint-gebaseerde indicatie') : 'Fabriekscode-indicatie'))),
     sourceStatus,
     sourceStatusLabel,
     driveClassification,
@@ -604,11 +701,15 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     safeTechnicalPreview,
     basic_classification: isModelConfirmedOrIdentified ? basicClassification : null,
     counterfeitCheck: counterfeitEvaluation || { isCounterfeit: false, riskLevel: 'LOW', reason: 'Geen risico gedetecteerd.' },
-    notes: !rangeMatch
-      ? 'Productieperiode nog niet uit dit serienummer afgeleid. Vul het model van het typeplaatje in voor een completer resultaat.'
-      : identityStatus === 'PROBABLE_MODEL_SERIES'
-      ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}). Exact model en uitvoering zijn nog niet definitief bevestigd.`
-      : (rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : (factoryData.country ? `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit}.`)),
+    notes: officialAnchor
+      ? `Serienummer officieel geïdentificeerd als ${officialAnchor.model_name} via officiële MY STIHL productlookup.`
+      : (!rangeMatch
+        ? 'Productieperiode nog niet uit dit serienummer afgeleid. Vul het model van het typeplaatje in voor een completer resultaat.'
+        : (identityStatus === 'PROBABLE_MODEL_SERIES'
+          ? (rangeMatch.range_semantic_level === 'HISTORICAL_PRODUCTION_RANGE'
+            ? `Serienummer valt binnen een historische fabrieksreeks (${estimatedYears}). Exact model en uitvoering zijn nog niet definitief bevestigd.`
+            : `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}). Exact model en uitvoering zijn nog niet definitief bevestigd.`)
+          : (rangeMatch ? `Serienummer valt binnen een bekende reeks en geeft een breakpoint-gebaseerde indicatie (${estimatedYears}).` : (factoryData.country ? `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit} (${factoryData.country}).` : `Serienummerformaat gevalideerd op fabriekscode ${factoryDigit}.`)))),
     stopHelingUrl,
     stopHelingTip: "Controleer bij aankoop van een gebruikte machine of het serienummer als gestolen staat geregistreerd."
   };

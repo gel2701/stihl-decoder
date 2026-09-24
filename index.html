@@ -1397,11 +1397,15 @@
         document.getElementById('res-model').innerText = currentModelName;
         const modelLabelEl = document.getElementById('res-model-label');
         if (modelLabelEl) {
-          modelLabelEl.innerText = res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
-            ? 'Waarschijnlijke modelreeks:'
-            : (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
-              ? 'Model bevestigd door gebruiker:'
-              : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:'));
+          modelLabelEl.innerText = res.modelIdentitySource === 'OFFICIAL_STIHL_LOOKUP'
+            ? 'Door STIHL geïdentificeerd model:'
+            : (res.serialResolution?.rangeSemanticLevel === 'HISTORICAL_PRODUCTION_RANGE' || res.identityLabel === 'Historische serienummerreeks'
+              ? 'Historische serienummerreeks:'
+              : (res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES'
+                ? 'Waarschijnlijke modelreeks:'
+                : (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
+                  ? 'Model bevestigd door gebruiker:'
+                  : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:'))));
         }
 
         // Model Assist handling
@@ -1541,9 +1545,11 @@
               : 'Specificaties voor geïdentificeerd model';
           }
           if (specsBadgeEl) {
-            specsBadgeEl.innerText = res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
-              ? 'Model door gebruiker bevestigd'
-              : 'Exact model geverifieerd';
+            specsBadgeEl.innerText = res.modelIdentitySource === 'OFFICIAL_STIHL_LOOKUP'
+              ? 'Officieel via STIHL geverifieerd'
+              : (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
+                ? 'Model door gebruiker bevestigd'
+                : 'Exact model geverifieerd');
             specsBadgeEl.className = 'text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
             specsBadgeEl.classList.remove('hidden');
           }

@@ -9655,28 +9655,26 @@
     },
     {
       "range_id": "range_1121_ms260_late",
-      "model_id": "stihl_ms_260",
-      "model_name": "STIHL MS 260 Reeks (Laat)",
+      "model_id": null,
+      "model_name": "Historische productieperiode fabriek 1",
       "plant_code": "1",
       "serial_start": 160000000,
       "serial_end": 169999999,
       "year_start": 2002,
       "year_end": 2011,
-      "generation_name": "MS 260 Late Serie (Transparante Tank)",
+      "generation_name": "Historische productieperiode (2002–2011)",
       "technical_changes": null,
       "range_evidence_class": "HISTORICAL_REPOSITORY_EVIDENCE",
-      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "range_semantic_level": "HISTORICAL_PRODUCTION_RANGE",
       "source_status": "HISTORICAL_REPOSITORY_VERIFIED",
       "source_refs": [],
       "historical_source_commits": [
         "4c0de6f"
       ],
-      "range_display_name": "MS 260",
-      "candidate_model_ids": [
-        "stihl_ms_260"
-      ],
+      "range_display_name": "Historische serienummerreeks",
+      "candidate_model_ids": [],
       "confidence_level": "MEDIUM",
-      "confidence_reason": "Historische fabrieksreeks voor late MS 260 (2002–2011) met transparante tank. Geïsoleerd van eerdere 25M synthetische collaps. Exacte grenzen zijn repository-overgeleverd."
+      "confidence_reason": "Historische fabrieksreeks fabriek 1 (2002–2011). Door officiële MY STIHL lookup 163118080 (MS 440) bewezen niet-exclusief voor MS 260. Dient uitsluitend als chronologische productieperiode-indicatie zonder specifieke modelsuggesties."
     },
     {
       "range_id": "range_1141_ms261_gen1",
@@ -9934,5 +9932,20 @@
     "homepage_data_source": "/api/decode",
     "rebuilt_at": "2026-08-28T21:58:08.234Z",
     "policy_note": "Deze repository behandelt JSON als canonieke bron voor model- en contentdata. SQLite is afgeleid en niet de primaire bron voor modelclaims."
-  }
+  },
+  "official_serial_anchors": [
+    {
+      "serial_number": "163118080",
+      "model_name": "MS 440-Z 3/8\" RIM Magnum Motorsäge",
+      "canonical_model_id": "stihl_ms_440",
+      "category": "Kettingzaag",
+      "drive_type": "Benzine",
+      "source": "MY_STIHL",
+      "source_url": "https://app.stihl.com/nl-nl/mystihl/tools/add",
+      "verification_date": "2026-09-22",
+      "verification_method": "authenticated MY STIHL serial lookup",
+      "evidence_type": "OFFICIAL_WEB_LOOKUP",
+      "verification_status": "OFFICIAL_STIHL_LOOKUP"
+    }
+  ]
 }

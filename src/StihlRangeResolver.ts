@@ -51,15 +51,21 @@ export class StihlRangeResolver {
     if (matches.length === 1) {
       const match = matches[0];
       const isPrimary = (match.range_evidence_class === 'PRIMARY_DOCUMENTED');
+      const isHistoricalProduction = (match.range_semantic_level === 'HISTORICAL_PRODUCTION_RANGE' || match.range_semantic_level === 'SERIAL_CHRONOLOGY_RANGE' || match.range_semantic_level === 'MODEL_CANDIDATE_RANGE');
+      const hasMultipleCandidates = Array.isArray(match.candidate_model_ids) && match.candidate_model_ids.length > 1;
+      const isExclusive = isPrimary || (!isHistoricalProduction && !hasMultipleCandidates && Boolean(match.model_id));
+
       const matchReason = isPrimary
         ? 'Serienummer valt binnen een door primaire STIHL-bron ondersteunde modelreeks.'
-        : 'Serienummer valt binnen een bekende historische modelreeks.';
+        : isHistoricalProduction
+          ? 'Serienummer valt binnen een historische productieperiode.'
+          : 'Serienummer valt binnen een bekende historische modelreeks.';
 
       return {
         match_type: 'UNIQUE_RANGE_MATCH',
         range_id: match.range_id || match.id || null,
-        model_id: match.model_id || null,
-        model_name: match.model_name || null,
+        model_id: isExclusive ? (match.model_id || null) : null,
+        model_name: isExclusive ? (match.model_name || null) : (match.range_display_name || match.model_name || null),
         range_display_name: match.range_display_name || match.model_name || null,
         candidate_model_ids: match.candidate_model_ids || (match.model_id ? [match.model_id] : []),
         plant_code: match.plant_code || null,
@@ -77,7 +83,9 @@ export class StihlRangeResolver {
         yearEnd: match.year_end || null,
         generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
         matchReason,
-        seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.',
+        seriesSummary: isExclusive
+          ? 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.'
+          : 'Breakpoint-gebaseerde indicatie van de productieperiode; exacte model- en technische uitvoering is niet bevestigd.',
         rangeMatches: matches
       };
     }
@@ -85,15 +93,21 @@ export class StihlRangeResolver {
     if (uniqueModelIds.size === 1) {
       const match = matches[0];
       const isPrimary = (match.range_evidence_class === 'PRIMARY_DOCUMENTED');
+      const isHistoricalProduction = (match.range_semantic_level === 'HISTORICAL_PRODUCTION_RANGE' || match.range_semantic_level === 'SERIAL_CHRONOLOGY_RANGE' || match.range_semantic_level === 'MODEL_CANDIDATE_RANGE');
+      const hasMultipleCandidates = Array.isArray(match.candidate_model_ids) && match.candidate_model_ids.length > 1;
+      const isExclusive = isPrimary || (!isHistoricalProduction && !hasMultipleCandidates && Boolean(match.model_id));
+
       const matchReason = isPrimary
         ? 'Serienummer valt binnen een door primaire STIHL-bron ondersteunde modelreeks.'
-        : 'Serienummer valt binnen een bekende historische modelreeks.';
+        : isHistoricalProduction
+          ? 'Serienummer valt binnen een historische productieperiode.'
+          : 'Serienummer valt binnen een bekende historische modelreeks.';
 
       return {
         match_type: 'SAME_MODEL_OVERLAP',
         range_id: match.range_id || match.id || null,
-        model_id: match.model_id || null,
-        model_name: match.model_name || null,
+        model_id: isExclusive ? (match.model_id || null) : null,
+        model_name: isExclusive ? (match.model_name || null) : (match.range_display_name || match.model_name || null),
         range_display_name: match.range_display_name || match.model_name || null,
         candidate_model_ids: match.candidate_model_ids || (match.model_id ? [match.model_id] : []),
         plant_code: match.plant_code || null,
@@ -111,7 +125,9 @@ export class StihlRangeResolver {
         yearEnd: match.year_end || null,
         generation: match.generation_name || match.generation || 'Waarschijnlijke uitvoering',
         matchReason,
-        seriesSummary: 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.',
+        seriesSummary: isExclusive
+          ? 'Breakpoint-gebaseerde indicatie van de modelreeks; exacte technische uitvoering is niet bevestigd.'
+          : 'Breakpoint-gebaseerde indicatie van de productieperiode; exacte model- en technische uitvoering is niet bevestigd.',
         rangeMatches: matches
       };
     }

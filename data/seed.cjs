@@ -144,7 +144,7 @@ function recreateSqliteDatabase(database) {
 
     db.run(`CREATE TABLE IF NOT EXISTS model_serial_ranges (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      model_id VARCHAR(50) NOT NULL,
+      model_id VARCHAR(50),
       plant_code CHAR(1) NOT NULL,
       serial_start BIGINT NOT NULL,
       serial_end BIGINT NOT NULL,
@@ -164,7 +164,7 @@ function recreateSqliteDatabase(database) {
     const rangeStmt = db.prepare(`INSERT INTO model_serial_ranges (model_id, plant_code, serial_start, serial_end, year_start, year_end, generation_name, technical_changes, confidence_level, range_evidence_class, range_semantic_level, range_display_name, candidate_model_ids) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     for (const range of database.model_serial_ranges || []) {
       rangeStmt.run(
-        range.model_id,
+        range.model_id || null,
         range.plant_code,
         range.serial_start,
         range.serial_end,
@@ -180,6 +180,47 @@ function recreateSqliteDatabase(database) {
       );
     }
     rangeStmt.finalize();
+
+    const officialAnchorsPath = path.join(__dirname, 'official_serial_anchors.json');
+    let officialAnchors = [];
+    if (fs.existsSync(officialAnchorsPath)) {
+      const parsedAnchors = JSON.parse(fs.readFileSync(officialAnchorsPath, 'utf8'));
+      officialAnchors = Array.isArray(parsedAnchors.anchors) ? parsedAnchors.anchors : [];
+    } else if (Array.isArray(database.official_serial_anchors)) {
+      officialAnchors = database.official_serial_anchors;
+    }
+
+    db.run(`CREATE TABLE IF NOT EXISTS official_serial_anchors (
+      serial_number VARCHAR(20) PRIMARY KEY,
+      model_name VARCHAR(100) NOT NULL,
+      canonical_model_id VARCHAR(50),
+      category VARCHAR(50),
+      drive_type VARCHAR(50),
+      source VARCHAR(50) NOT NULL,
+      source_url TEXT,
+      verification_date VARCHAR(30),
+      verification_method TEXT,
+      evidence_type VARCHAR(50),
+      verification_status VARCHAR(50) NOT NULL
+    )`);
+
+    const anchorStmt = db.prepare(`INSERT INTO official_serial_anchors VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    for (const anchor of officialAnchors) {
+      anchorStmt.run(
+        anchor.serial_number,
+        anchor.model_name,
+        anchor.canonical_model_id || null,
+        anchor.category || null,
+        anchor.drive_type || null,
+        anchor.source,
+        anchor.source_url || null,
+        anchor.verification_date || anchor.verified_at || null,
+        anchor.verification_method || null,
+        anchor.evidence_type || null,
+        anchor.verification_status
+      );
+    }
+    anchorStmt.finalize();
 
     db.run(`CREATE TABLE IF NOT EXISTS analytics_events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

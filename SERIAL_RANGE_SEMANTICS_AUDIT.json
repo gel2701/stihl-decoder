@@ -1,0 +1,150 @@
+{
+  "schema_version": "serial-range-semantics-audit-v1",
+  "audit_timestamp": "2026-09-22T22:06:00Z",
+  "total_ranges": 8,
+  "ranges": [
+    {
+      "range_id": "range_1121_026_early",
+      "plant_code": "1",
+      "serial_start": 120000000,
+      "serial_end": 139999999,
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "model_id": "stihl_026",
+      "model_name": "STIHL 026 / MS 260 Reeks",
+      "range_display_name": "026 / MS 260",
+      "candidate_model_ids": [
+        "stihl_026",
+        "stihl_ms_260"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_FAMILY_RANGE",
+      "contradiction_risk": "LOW",
+      "notes": "Representeert de vroege 026/MS 260 familie in Waiblingen. Geen overclaim naar exact model zonder bevestiging."
+    },
+    {
+      "range_id": "range_4224_br420",
+      "plant_code": "1",
+      "serial_start": 145000000,
+      "serial_end": 159999999,
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "model_id": "stihl_br_420",
+      "model_name": "STIHL BR 340 / BR 420 Reeks",
+      "range_display_name": "BR 340 / BR 420",
+      "candidate_model_ids": [
+        "stihl_br_420"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_FAMILY_RANGE",
+      "contradiction_risk": "LOW",
+      "notes": "Historische bladblazerreeks. Geen conflicterende officiële lookups bekend."
+    },
+    {
+      "range_id": "range_1121_ms260_late",
+      "plant_code": "1",
+      "serial_start": 160000000,
+      "serial_end": 169999999,
+      "range_semantic_level": "HISTORICAL_PRODUCTION_RANGE",
+      "model_id": null,
+      "model_name": "Historische productieperiode fabriek 1",
+      "range_display_name": "Historische serienummerreeks",
+      "candidate_model_ids": [],
+      "confidence_level": "MEDIUM",
+      "audit_status": "REMEDIATED_HISTORICAL_RANGE",
+      "contradiction_risk": "RESOLVED_CONTRADICTION",
+      "notes": "Voorheen geclassificeerd als exclusief MS 260. Door officiële MY STIHL lookup 163118080 bewezen niet-exclusief (MS 440). Model_id gedegradeerd naar null, semantic level naar HISTORICAL_PRODUCTION_RANGE, en candidate_model_ids leeggemaakt om ongefundeerde aannames over onbekende serienummers te voorkomen."
+    },
+    {
+      "range_id": "range_1141_ms261_gen1",
+      "plant_code": "1",
+      "serial_start": 171000000,
+      "serial_end": 179999999,
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "STIHL MS 261 / MS 261 C-M Gen 1",
+      "range_display_name": "MS 261 / MS 261 C-M",
+      "candidate_model_ids": [
+        "stihl_ms_261_cm",
+        "stihl_ms_261_c_m"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_PROBABLE_SERIES",
+      "contradiction_risk": "LOW",
+      "notes": "Gecorreleerd met introductie van de 1141 reeks (2010). Geen conflicterende officiële lookups bekend."
+    },
+    {
+      "range_id": "range_1141_ms261_gen2",
+      "plant_code": "1",
+      "serial_start": 180000000,
+      "serial_end": 199999999,
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "model_id": "stihl_ms_261_cm",
+      "model_name": "STIHL MS 261 C-M Gen 2 (Facelift)",
+      "range_display_name": "MS 261 C-M Gen 2",
+      "candidate_model_ids": [
+        "stihl_ms_261_c_m"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_PROBABLE_SERIES",
+      "contradiction_risk": "LOW",
+      "notes": "Gecorreleerd met facelift MS 261 C-M. Geen conflicterende officiële lookups bekend."
+    },
+    {
+      "range_id": "range_1127_ms290_family",
+      "plant_code": "2",
+      "serial_start": 240000000,
+      "serial_end": 269999999,
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "model_id": "stihl_ms_290",
+      "model_name": "STIHL MS 290 / MS 310 / MS 390 Reeks",
+      "range_display_name": "MS 290 / MS 310 / MS 390",
+      "candidate_model_ids": [
+        "stihl_ms_290",
+        "stihl_ms_310",
+        "stihl_ms_390"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_FAMILY_RANGE",
+      "contradiction_risk": "LOW",
+      "notes": "Plant 2 Virginia Beach reeks voor 1127 serie. Ondersteunt alle 3 familieleden in Model Assist."
+    },
+    {
+      "range_id": "range_4282_br600",
+      "plant_code": "2",
+      "serial_start": 270000000,
+      "serial_end": 289999999,
+      "range_semantic_level": "PROBABLE_MODEL_SERIES_RANGE",
+      "model_id": "stihl_br_600",
+      "model_name": "STIHL BR 600 Reeks (4-Mix)",
+      "range_display_name": "BR 600 Reeks",
+      "candidate_model_ids": [
+        "stihl_br_600"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_PROBABLE_SERIES",
+      "contradiction_risk": "LOW",
+      "notes": "Plant 2 Virginia Beach bladblazerreeks voor BR 600. Geen conflicterende officiële lookups bekend."
+    },
+    {
+      "range_id": "range_4134_fs120_family",
+      "plant_code": "3",
+      "serial_start": 330000000,
+      "serial_end": 350000000,
+      "range_semantic_level": "MODEL_FAMILY_RANGE",
+      "model_id": "stihl_fs_120",
+      "model_name": "STIHL FS 120 / FS 250 Reeks",
+      "range_display_name": "FS 120 / FS 250",
+      "candidate_model_ids": [
+        "stihl_fs_120"
+      ],
+      "confidence_level": "MEDIUM",
+      "audit_status": "VALID_FAMILY_RANGE",
+      "contradiction_risk": "LOW",
+      "notes": "Plant 3 São Leopoldo bosmaaierreeks voor 4134 serie. Geen conflicterende officiële lookups bekend."
+    }
+  ],
+  "parity_audit": {
+    "json_database": "data/stihl_database.json",
+    "sqlite_database": "data/stihl_database.db",
+    "parity_status": "EXACT_PARITY_VERIFIED"
+  }
+}
