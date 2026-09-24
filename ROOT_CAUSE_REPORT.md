@@ -118,18 +118,19 @@ In `index.html` zijn de weergavelabels en badges aangepast:
 
 ## 6. Fase 7: Regressietestsuite & Verificatie
 
-In `tests/official_serial_anchor_and_range_semantics.test.js` zijn 8 geautomatiseerde regressietests geïmplementeerd:
-- **Test A:** Serienummer `163118080` decodeert direct naar `MS 440-Z 3/8" RIM Magnum Motorsäge`, status `EXACT_MODEL_IDENTIFIED`, bron `OFFICIAL_STIHL_LOOKUP`. Bevat onder geen enkele property `MS 260` of `026`.
-- **Test B:** Onverankerd serienummer `160500000` binnen `160000000–169999999` claimt géén exact model (`exactModel: null`), label `Historische serienummerreeks`, en biedt in Model Assist zowel `MS 260` als `MS 440` aan.
+In `tests/official_serial_anchor_and_range_semantics.test.js` zijn 9 geautomatiseerde regressietests geïmplementeerd:
+- **Test A:** Serienummer `163118080` decodeert direct naar `MS 440-Z 3/8" RIM Magnum Motorsäge`, status `EXACT_MODEL_IDENTIFIED`, bron `OFFICIAL_STIHL_LOOKUP`, `verifiedAt: "2026-09-22"`. Bevat onder geen enkele property `MS 260` of `026`.
+- **Test B:** Onverankerd serienummer `160500000` binnen `160000000–169999999` claimt géén exact model (`exactModel: null`), geen waarschijnlijke reeks (`probableModelSeries: null`), status `MODEL_NOT_IDENTIFIED`, bron `SERIAL_RANGE`, informatielabel `Historische serienummerreeks`, en geen modelsuggesties (`candidateModelIds: []`, `modelAssist.candidates: []`).
 - **Test C:** Fabriekscode 1 (Waiblingen / Duitsland) en chronologieformaat blijven intact.
 - **Test D:** 11-cijferige onderdeelnummerdecoder (Teilenummer) blijft stabiel.
 - **Test E:** Global model search vindt zowel `MS 440` als `MS 260`.
 - **Test F:** StopHeling URL-integratie blijft behouden.
 - **Test G:** SQLite parity tussen JSON en DB tabel `official_serial_anchors` en `model_serial_ranges`.
 - **Test H:** Public facts integriteit behouden op 761 facts.
+- **Test I:** Canonical Model Isolation (het canonieke model `stihl_ms_440` overschrijft nooit de officiële variantnaam).
 
 **Testresultaat:**
-`8 passed, 0 failed` (100% clean).
+`9 passed, 0 failed` (100% clean).
 
 ---
 

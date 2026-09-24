@@ -47,6 +47,14 @@ test('Test A: Official Serial Anchor Resolution for 163118080 (MS 440 Magnum)', 
   assert.strictEqual(res.modelIdentitySource, 'OFFICIAL_STIHL_LOOKUP');
   assert.strictEqual(res.identityLabel, 'Door STIHL geïdentificeerd model');
 
+  // Official Anchor verifiedAt assertion
+  assert.ok(res.officialAnchor, 'officialAnchor must be present on result');
+  assert.strictEqual(res.officialAnchor.verifiedAt, '2026-09-22', 'officialAnchor.verifiedAt must be exactly "2026-09-22"');
+  assert.strictEqual(res.officialAnchor.source, 'MY_STIHL');
+  assert.strictEqual(res.officialAnchor.verificationStatus, 'OFFICIAL_STIHL_LOOKUP');
+  assert.strictEqual(res.officialAnchor.canonicalModelId, 'stihl_ms_440');
+  assert.strictEqual(res.officialAnchor.modelName, 'MS 440-Z 3/8" RIM Magnum Motorsäge');
+
   // 4. Hard Gate: Under NO code path should MS 260 / 026 be returned
   assert.strictEqual(res.probableModelSeries, null, 'probableModelSeries must be null, never MS 260');
   assert.strictEqual(res.modelAssistAvailable, false, 'modelAssistAvailable must be false');
@@ -169,7 +177,7 @@ test('Test G: Canonical Source of Truth & SQLite/JSON Parity', (t) => {
   assert.strictEqual(canonicalAnchor.source, 'MY_STIHL');
   assert.strictEqual(canonicalAnchor.source_url, 'https://app.stihl.com/nl-nl/mystihl/tools/add');
   assert.strictEqual(canonicalAnchor.verification_date, '2026-09-22');
-  assert.strictEqual(canonicalAnchor.verification_method, 'authenticated MY STIHL serial lookup');
+  assert.strictEqual(canonicalAnchor.verification_method, 'authenticated MY STIHL UI lookup');
   assert.strictEqual(canonicalAnchor.evidence_type, 'OFFICIAL_WEB_LOOKUP');
   assert.strictEqual(canonicalAnchor.verification_status, 'OFFICIAL_STIHL_LOOKUP');
   assert.strictEqual(canonicalAnchor.model_name, 'MS 440-Z 3/8" RIM Magnum Motorsäge');

@@ -615,7 +615,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     officialAnchor: officialAnchor ? {
       source: officialAnchor.source,
       verificationStatus: officialAnchor.verification_status,
-      verifiedAt: officialAnchor.verified_at || null,
+      verifiedAt: officialAnchor.verification_date || officialAnchor.verified_at || null,
       canonicalModelId: officialAnchor.canonical_model_id || null,
       modelName: officialAnchor.model_name
     } : null,
