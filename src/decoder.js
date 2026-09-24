@@ -753,7 +753,9 @@ export function analyzePartNumber(partStr, database) {
   };
 }
 
-function resolvePlantRecord(database, factoryDigit) {
+export function resolvePlantRecord(database, factoryDigit) {
+  if (!database || !factoryDigit) return null;
+
   if (database.factories && database.factories[factoryDigit]) {
     return database.factories[factoryDigit];
   }

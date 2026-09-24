@@ -48,43 +48,104 @@ assert.strictEqual(COMPATIBILITY_STATUSES.CONFLICTED, 'CONFLICTED');
 console.log('  ✅ Test 2 Passed: Compatibility status hierarchy verified.\n');
 
 // ============================================================================
-// Test 3: Recommendation Slots Generation (Zero Fictional Affiliate Links)
+// Test 3: Recommendation Gates A-F Verification
 // ============================================================================
-console.log('▶ Test 3: Recommendations generation for MS 440...');
+console.log('▶ Test 3: Recommendation Gates A-F verification for MS 440...');
 const ms440Model = {
   model_slug: 'ms-440',
   model_name: 'MS 440',
   category: 'Kettingzaag',
   series_code: '1128'
 };
-const ms440Specs = {
-  displacement_cc: '70.7',
-  power_kw: '4.0',
-  spark_plug: 'Bosch WSR6F',
+
+// Gate A: technicalSpecs.spark_plug present, but NO evidence -> NIET VERIFIED (SPECIFICATION_MATCH_ONLY)
+const recsNoEvidence = buildModelRecommendations(ms440Model, { spark_plug: 'Bosch WSR6F' });
+const sparkNoEv = recsNoEvidence.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkNoEv.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Gate A: spark_plug without documented evidence MUST be SPECIFICATION_MATCH_ONLY (never VERIFIED)'
+);
+console.log('  ✅ Gate A Passed: spark_plug without evidence yields SPECIFICATION_MATCH_ONLY.');
+
+// Gate B: spark plug + exact model-specific eligible evidence -> VERIFIED_MODEL_COMPATIBILITY
+const eligibleSparkEvidence = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  display_eligible: true,
+  public_evidence_status: 'OFFICIAL_DOCUMENTED',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsWithSparkEv = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: eligibleSparkEvidence }
+);
+const sparkWithEv = recsWithSparkEv.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkWithEv.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY,
+  'Gate B: spark_plug with model-specific eligible evidence MUST be VERIFIED_MODEL_COMPATIBILITY'
+);
+console.log('  ✅ Gate B Passed: spark_plug with eligible evidence yields VERIFIED_MODEL_COMPATIBILITY.');
+
+// Gate C: chain pitch + gauge without drive links -> SPECIFICATION_MATCH_ONLY
+const recsPartialChain = buildModelRecommendations(ms440Model, {
   chain_pitch: '3/8"',
   chain_gauge_mm: '1.6'
-};
+});
+const chainPartial = recsPartialChain.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.CHAIN);
+assert.strictEqual(
+  chainPartial.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Gate C: chain pitch + gauge without drive links MUST be SPECIFICATION_MATCH_ONLY'
+);
+assert.strictEqual(
+  chainPartial.technical_compatibility.display_claim,
+  'Steek en dikte komen overeen; controleer aantal aandrijfschakels en zwaardconfiguratie.',
+  'Gate C: must provide cautious guidance regarding drive links'
+);
+console.log('  ✅ Gate C Passed: partial chain spec yields SPECIFICATION_MATCH_ONLY.');
 
-const recs = buildModelRecommendations(ms440Model, ms440Specs);
-assert(recs.recommendations.length >= 3, 'Must have at least 3 relevant slots for chainsaw');
+// Gate D: complete officially proven chain configuration -> VERIFIED_MODEL_COMPATIBILITY
+const eligibleChainEvidence = [{
+  model_slug: 'ms-440',
+  field: 'chain',
+  display_eligible: true,
+  public_evidence_status: 'OFFICIAL_DOCUMENTED',
+  source_class: 'OFFICIAL_PARTS_LIST'
+}];
+const recsFullChain = buildModelRecommendations(
+  ms440Model,
+  {
+    chain_pitch: '3/8"',
+    chain_gauge_mm: '1.6',
+    drive_links: 72
+  },
+  { compatibilityEvidence: eligibleChainEvidence }
+);
+const chainFull = recsFullChain.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.CHAIN);
+assert.strictEqual(
+  chainFull.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY,
+  'Gate D: complete chain config with evidence MUST be VERIFIED_MODEL_COMPATIBILITY'
+);
+console.log('  ✅ Gate D Passed: full chain configuration yields VERIFIED_MODEL_COMPATIBILITY.');
 
-for (const rec of recs.recommendations) {
-  // Layer 3 check: Zero fictional affiliate links or active offers
-  assert.strictEqual(rec.commercial_offers.offers_active, false, 'offers_active must be false (no active affiliate deals)');
-  assert.deepStrictEqual(rec.commercial_offers.offers, [], 'offers array must be strictly empty');
+// Gate E & F: offers remain [] and offers_active remains false, zero merchant URLs
+for (const r of [...recsNoEvidence.recommendations, ...recsWithSparkEv.recommendations, ...recsFullChain.recommendations]) {
+  assert.strictEqual(r.commercial_offers.offers_active, false, 'Gate E: offers_active must be strictly false');
+  assert.deepStrictEqual(r.commercial_offers.offers, [], 'Gate E: offers must be empty array');
+  const serialized = JSON.stringify(r.commercial_offers);
+  assert(!serialized.includes('http://') && !serialized.includes('https://'), 'Gate F: Zero merchant URLs');
 }
-
-const sparkRec = recs.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
-assert(sparkRec, 'Must have spark_plug slot');
-assert.strictEqual(sparkRec.technical_compatibility.technical_spec_ref.value, 'Bosch WSR6F');
-assert.strictEqual(sparkRec.technical_compatibility.compatibility_status, COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY);
-console.log('  ✅ Test 3 Passed: Zero fictional affiliate links; specs matched cleanly.\n');
+console.log('  ✅ Gate E & F Passed: Zero offers, zero affiliate merchant URLs.\n');
 
 // ============================================================================
 // Test 4: Recommendation Slots HTML Rendering
 // ============================================================================
 console.log('▶ Test 4: Passport recommendation slots HTML rendering...');
-const slotsHtml = renderPassportRecommendationSlotsHtml(recs);
+const slotsHtml = renderPassportRecommendationSlotsHtml(recsWithSparkEv);
 assert(slotsHtml.includes('Benodigdheden & Onderhoud voor STIHL MS 440'), 'Must include header');
 assert(slotsHtml.includes('Geverifieerd compatibel'), 'Must render verified fit badge');
 assert(!slotsHtml.includes('koop nu bij'), 'Must NOT contain fake affiliate merchant copy');
@@ -92,7 +153,7 @@ assert(!slotsHtml.includes('bol.com') && !slotsHtml.includes('amazon'), 'Zero me
 console.log('  ✅ Test 4 Passed: HTML renders safely with zero merchant contamination.\n');
 
 // ============================================================================
-// Test 5: Analytics Privacy & Event Types
+// Test 5: Analytics & Privacy Guarantees
 // ============================================================================
 console.log('▶ Test 5: Analytics Tracker privacy and event integrity...');
 assert(EVENT_TYPES.MACHINE_ADDED, 'Must have MACHINE_ADDED');

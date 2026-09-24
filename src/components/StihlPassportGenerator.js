@@ -6,6 +6,7 @@
 import { normalizeCategorySlug, CATEGORY_TYPES } from '../categoryWhitelist.js';
 import { getClassificationContextLabel } from '../driveClassification.js';
 import { buildModelRecommendations, renderPassportRecommendationSlotsHtml } from '../modelRecommendations.js';
+import { resolvePlantRecord } from '../decoder.js';
 
 function compactText(value, fallback = 'Niet vastgesteld') {
   const text = String(value || '').trim();
@@ -43,7 +44,8 @@ function buildSafePassportSpecRows(data) {
   return rows;
 }
 
-export function buildPassportViewModel(data = {}) {
+export function buildPassportViewModel(data = {}, databaseOrResult = null) {
+  const db = databaseOrResult || data.database || null;
   const serialRaw = data.cleanedSerial || data.serialNumber || data.serial || (data.machine && data.machine.serial_number) || '';
   const serial = typeof serialRaw === 'string' ? serialRaw.trim() : (serialRaw ? String(serialRaw).trim() : '');
   const hasSerial = Boolean(serial && serial !== 'null' && serial !== 'undefined');
@@ -125,25 +127,19 @@ export function buildPassportViewModel(data = {}) {
   if (hasSerial) {
     const rawCountry = data.machine?.factory_country || data.factory_country || data.plantInfo?.country || data.factory?.country || null;
     const rawLocation = data.machine?.factory_location || data.factory_location || data.plantInfo?.location || data.factory?.location || data.factory?.facility || null;
-    const factoryCode = data.factory?.code || data.plantInfo?.code || data.plantInfo?.plant_code || (serial.length >= 1 ? serial.charAt(0) : null);
 
-    const STIHL_PLANT_MAP = {
-      '1': { country: 'Duitsland', location: 'Waiblingen' },
-      '2': { country: 'Verenigde Staten', location: 'Virginia Beach (Plant 1)' },
-      '3': { country: 'Brazilië', location: 'São Leopoldo' },
-      '4': { country: 'Zwitserland', location: 'Stihl Kettenwerk' },
-      '5': { country: 'Verenigde Staten', location: 'Virginia Beach (Plant 2)' },
-      '8': { country: 'China', location: 'Qingdao' },
-      '9': { country: 'Speciaal / Internationale Assemblage', location: 'Diverse locaties' }
-    };
-
-    if (rawCountry) {
+    if (!rawCountry && db) {
+      const factoryCode = data.factory?.code || data.plantInfo?.code || data.plantInfo?.plant_code || (serial.length >= 1 ? serial.charAt(0) : null);
+      const plantRecord = resolvePlantRecord(db, factoryCode);
+      if (plantRecord && (plantRecord.country || plantRecord.country_name)) {
+        const c = plantRecord.country_name || plantRecord.country;
+        const loc = plantRecord.plant_location || plantRecord.location || plantRecord.facility;
+        country = loc ? `${c} (${loc})` : c;
+      } else {
+        country = 'Niet vastgesteld';
+      }
+    } else if (rawCountry) {
       country = rawLocation ? `${rawCountry} (${rawLocation})` : rawCountry;
-    } else if (factoryCode && STIHL_PLANT_MAP[factoryCode]) {
-      const fInfo = STIHL_PLANT_MAP[factoryCode];
-      country = fInfo.location ? `${fInfo.country} (${fInfo.location})` : fInfo.country;
-    } else if (factoryCode) {
-      country = `Fabriekscode ${factoryCode} — locatie nog niet bevestigd`;
     } else {
       country = 'Niet vastgesteld';
     }
@@ -218,25 +214,26 @@ export function buildPassportViewModel(data = {}) {
     };
   }
 
-  // Canonical QR URL: never output `?s=null` or `?s=`
-  let publicUrl = 'https://www.stihldecoder.nl/';
-  if (hasSerial) {
-    publicUrl = `https://www.stihldecoder.nl/?s=${encodeURIComponent(serial)}`;
-  } else if (catSlug && modelSlug) {
-    publicUrl = `https://www.stihldecoder.nl/${catSlug}/${modelSlug}/`;
-  }
+  // Canonical Model QR URL: Always points to the public canonical model page.
+  // CRITICAL PRIVACY GATE: NEVER include serial numbers or query params in external QR requests!
+  const safeCatSlug = catSlug || 'kettingzagen';
+  const safeModelSlug = modelSlug || '';
+  const publicUrl = (safeCatSlug && safeModelSlug)
+    ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
+    : 'https://www.stihldecoder.nl/';
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicUrl)}`;
 
   // Safe recommendations
   const recommendations = data.recommendations || buildModelRecommendations(
     { model_slug: modelSlug, model_name: model, category: categoryStr, series_code: seriesCode },
-    data.technicalSpecs || {}
+    data.technicalSpecs || {},
+    { compatibilityEvidence: data.publicEvidenceFacts || data.compatibilityEvidence }
   );
 
   return {
     serial: hasSerial ? serial : null,
     hasSerial,
-    formattedSerial,
+    formattedSerial: hasSerial ? formattedSerial : 'Nog niet toegevoegd',
     passportMode,
     model,
     modelSlug,
@@ -265,8 +262,8 @@ export function buildPassportViewModel(data = {}) {
   };
 }
 
-export function renderStihlPassportHtml(data) {
-  const passport = buildPassportViewModel(data);
+export function renderStihlPassportHtml(data, databaseOrResult = null) {
+  const passport = buildPassportViewModel(data, databaseOrResult);
   const {
     serial,
     hasSerial,
@@ -344,7 +341,7 @@ export function renderStihlPassportHtml(data) {
 
       <!-- Grid with Category Specifications -->
       <div class="grid grid-cols-2 gap-3 text-xs">
-        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
+        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800" data-serial="${serial || ''}">
           <span class="text-2xs text-neutral-400 block font-medium">Serienummer</span>
           <span class="font-mono text-base font-bold text-white tracking-wider">${formattedSerial}</span>
         </div>

@@ -24,7 +24,8 @@ export const currentProductionSuites = [
   'tests/decoder.test.js',
   'tests/model_first_passport.test.js',
   'tests/passport_serial_enrichment.test.js',
-  'tests/affiliate_foundation.test.js'
+  'tests/affiliate_foundation.test.js',
+  'tests/passport_hardening.test.js'
 ];
 
 console.log('===============================================================');

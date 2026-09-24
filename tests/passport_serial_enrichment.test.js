@@ -156,7 +156,8 @@ assert.strictEqual(switchRes.success, true);
 
 const switchedDossier = loadDossiers(mockStorage).find(d => d.dossier_id === ms260Dossier2.dossier_id);
 assert.strictEqual(switchedDossier.identity.model_slug, 'ms-440');
-assert.strictEqual(switchedDossier.identity.model_name, 'MS 440-Z 3/8" RIM Magnum Motorsäge');
+assert.strictEqual(switchedDossier.identity.model_name, 'MS 440', 'model_name must remain canonical model name');
+assert.strictEqual(switchedDossier.identity.canonical_model_id, 'stihl_ms_440');
 assert.strictEqual(switchedDossier.identity.official_product_name, 'MS 440-Z 3/8" RIM Magnum Motorsäge');
 assert.strictEqual(switchedDossier.identity.verified_at, '2026-09-22');
 assert.strictEqual(switchedDossier.machine.serial_number, '163118080');

@@ -32,11 +32,34 @@ export const RECOMMENDATION_TYPES = Object.freeze({
 export const AFFILIATE_DISCLOSURE_NOTICE =
   'Bij sommige links kunnen wij een vergoeding ontvangen. Dit heeft geen invloed op de technische informatie.';
 
+function findEligibleEvidence(evidenceList, modelSlug, field) {
+  if (!Array.isArray(evidenceList) || evidenceList.length === 0) return null;
+  const normalizedSlug = String(modelSlug || '').trim().toLowerCase();
+  return evidenceList.find((ev) => {
+    if (!ev) return false;
+    const evSlug = String(ev.model_slug || ev.slug || '').trim().toLowerCase();
+    const evModelId = String(ev.model_id || ev.canonical_model_id || '').trim().toLowerCase();
+    const matchesScope = evSlug === normalizedSlug || evModelId === normalizedSlug || evModelId === `stihl_${normalizedSlug.replace(/-/g, '_')}`;
+    if (!matchesScope) return false;
+    if (ev.display_eligible !== true) return false;
+    if (ev.field && ev.field !== field && ev.field_name !== field) return false;
+
+    const status = String(ev.public_evidence_status || ev.source_status || ev.status || '').toUpperCase();
+    const isReliableStatus = ['OFFICIAL_DOCUMENTED', 'VERIFIED', 'ESTABLISHED', 'CONFIRMED'].includes(status);
+    const sourceClass = String(ev.source_class || '').toUpperCase();
+    const isReliableClass = ['OFFICIAL_MANUAL', 'OFFICIAL_PARTS_LIST', 'PRIMARY_SOURCE', 'STIHL_OFFICIAL', 'MANUFACTURER_DOCUMENT'].includes(sourceClass);
+
+    return isReliableStatus || isReliableClass;
+  }) || null;
+}
+
 /**
  * Builds safe recommendation slots for a STIHL machine.
  *
  * Strictly enforces that:
- * - VERIFIED_MODEL_COMPATIBILITY is ONLY used when verifiable technical evidence exists.
+ * - VERIFIED_MODEL_COMPATIBILITY requires explicit, display-eligible evidence with reliable source provenance.
+ * - Technical specs without documented evidence yield SPECIFICATION_MATCH_ONLY (never VERIFIED).
+ * - Partial chain specs (pitch+gauge without drive link count or official part record) yield SPECIFICATION_MATCH_ONLY.
  * - Fictional merchants and affiliate links are NEVER generated.
  * - Commercial offers remain empty until legitimate partnerships are established.
  */
@@ -45,6 +68,8 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
   const modelName = String(identity.model_name || identity.name || 'STIHL Machine').trim();
   const category = String(identity.category || 'Kettingzaag').trim();
   const seriesCode = identity.series_code || null;
+
+  const evidenceList = options.compatibilityEvidence || options.publicEvidenceFacts || options.evidence || options.publicEvidenceFields || technicalSpecs._evidence || [];
 
   const isChainsaw = category.toLowerCase().includes('kettingzaag') || category.toLowerCase().includes('chainsaw');
   const isCombustion = technicalSpecs.fuel_tank_l != null || technicalSpecs.displacement_cc != null || technicalSpecs.spark_plug != null;
@@ -55,8 +80,9 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
   if (isCombustion) {
     const sparkPlugSpec = technicalSpecs.spark_plug ? String(technicalSpecs.spark_plug).trim() : null;
     const gapSpec = technicalSpecs.electrode_gap_mm ? `${technicalSpecs.electrode_gap_mm} mm` : null;
+    const sparkEvidence = findEligibleEvidence(evidenceList, modelSlug, 'spark_plug');
 
-    if (sparkPlugSpec) {
+    if (sparkPlugSpec && sparkEvidence) {
       recommendations.push({
         recommendation_id: `rec_${modelSlug}_spark_plug`,
         recommendation_type: RECOMMENDATION_TYPES.SPARK_PLUG,
@@ -66,7 +92,30 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
           compatibility_status: COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY,
           display_claim: `Geschikt voor jouw STIHL ${modelName}`,
           display_guidance: `Fabrieksspecificatie: ${sparkPlugSpec}${gapSpec ? ` (elektrodenafstand ${gapSpec})` : ''}`,
-          evidence_basis: ['OFFICIAL_SPECIFICATION_MATCH', `spark_plug: ${sparkPlugSpec}`],
+          evidence_basis: ['OFFICIAL_DOCUMENTED_EVIDENCE', `spark_plug: ${sparkPlugSpec}`, sparkEvidence.source_class || sparkEvidence.public_evidence_status],
+          technical_spec_ref: {
+            field: 'spark_plug',
+            value: sparkPlugSpec,
+            unit: null
+          }
+        },
+        commercial_offers: {
+          offers_active: false,
+          disclosure_template: AFFILIATE_DISCLOSURE_NOTICE,
+          offers: []
+        }
+      });
+    } else if (sparkPlugSpec) {
+      recommendations.push({
+        recommendation_id: `rec_${modelSlug}_spark_plug`,
+        recommendation_type: RECOMMENDATION_TYPES.SPARK_PLUG,
+        category_slug: 'bougies',
+        label: 'Bougie',
+        technical_compatibility: {
+          compatibility_status: COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+          display_claim: 'Specificatiematch op basis van technische gegevens',
+          display_guidance: `Opgegeven type: ${sparkPlugSpec}${gapSpec ? ` (${gapSpec})` : ''}. Controleer typeplaatje of handleiding vóór installatie.`,
+          evidence_basis: ['SPECIFICATION_MATCH_WITHOUT_VERIFIED_DOCUMENT_EVIDENCE', `spark_plug: ${sparkPlugSpec}`],
           technical_spec_ref: {
             field: 'spark_plug',
             value: sparkPlugSpec,
@@ -86,7 +135,7 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
         category_slug: 'bougies',
         label: 'Bougie controleren',
         technical_compatibility: {
-          compatibility_status: COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+          compatibility_status: COMPATIBILITY_STATUSES.UNVERIFIED,
           display_claim: 'Controleer bougietype vóór bestelling',
           display_guidance: 'Raadpleeg de handleiding of het typeplaatje voor de voorgeschreven warmtewaarde.',
           evidence_basis: ['CATEGORY_INFERENCE'],
@@ -127,8 +176,15 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
   if (isChainsaw) {
     const pitch = technicalSpecs.chain_pitch ? String(technicalSpecs.chain_pitch).trim() : null;
     const gauge = technicalSpecs.chain_gauge_mm ? `${technicalSpecs.chain_gauge_mm} mm` : null;
+    const driveLinks = technicalSpecs.drive_links || technicalSpecs.drive_link_count || technicalSpecs.chain_drive_links || null;
 
-    if (pitch && gauge) {
+    const chainEvidence = findEligibleEvidence(evidenceList, modelSlug, 'chain') ||
+                          findEligibleEvidence(evidenceList, modelSlug, 'chain_pitch');
+
+    const hasFullConfig = Boolean(pitch && gauge && driveLinks && chainEvidence);
+    const hasExplicitPartRecord = Boolean(chainEvidence && (chainEvidence.part_type === 'chain' || chainEvidence.drive_links || chainEvidence.full_config));
+
+    if (hasFullConfig || hasExplicitPartRecord) {
       recommendations.push({
         recommendation_id: `rec_${modelSlug}_chain`,
         recommendation_type: RECOMMENDATION_TYPES.CHAIN,
@@ -137,8 +193,31 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
         technical_compatibility: {
           compatibility_status: COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY,
           display_claim: `Geschikt voor jouw STIHL ${modelName}`,
-          display_guidance: `Kettingsteek: ${pitch}, aandrijfschakeldikte: ${gauge}`,
-          evidence_basis: ['OFFICIAL_SPECIFICATION_MATCH', `pitch: ${pitch}`, `gauge: ${gauge}`],
+          display_guidance: `Kettingsteek: ${pitch}, aandrijfschakeldikte: ${gauge}${driveLinks ? `, aandrijfschakels: ${driveLinks}` : ''}`,
+          evidence_basis: ['OFFICIAL_DOCUMENTED_EVIDENCE', `pitch: ${pitch}`, `gauge: ${gauge}`, `drive_links: ${driveLinks}`],
+          technical_spec_ref: {
+            field: 'chain',
+            value: `${pitch} @ ${gauge}${driveLinks ? ` (${driveLinks}L)` : ''}`,
+            unit: null
+          }
+        },
+        commercial_offers: {
+          offers_active: false,
+          disclosure_template: AFFILIATE_DISCLOSURE_NOTICE,
+          offers: []
+        }
+      });
+    } else if (pitch && gauge) {
+      recommendations.push({
+        recommendation_id: `rec_${modelSlug}_chain`,
+        recommendation_type: RECOMMENDATION_TYPES.CHAIN,
+        category_slug: 'zaagkettingen',
+        label: 'Zaagketting',
+        technical_compatibility: {
+          compatibility_status: COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+          display_claim: 'Steek en dikte komen overeen; controleer aantal aandrijfschakels en zwaardconfiguratie.',
+          display_guidance: `Kettingsteek: ${pitch}, aandrijfschakeldikte: ${gauge}. Het benodigde aantal schakels hangt af van het gemonteerde zaagblad.`,
+          evidence_basis: ['PARTIAL_SPECIFICATION_MATCH', `pitch: ${pitch}`, `gauge: ${gauge}`],
           technical_spec_ref: {
             field: 'chain_pitch',
             value: `${pitch} @ ${gauge}`,
@@ -158,7 +237,7 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
         category_slug: 'zaagkettingen',
         label: 'Zaagketting kiezen',
         technical_compatibility: {
-          compatibility_status: COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+          compatibility_status: COMPATIBILITY_STATUSES.UNVERIFIED,
           display_claim: 'Controleer steek, dikte en aantal schakels vóór aankoop',
           display_guidance: 'De exacte kettingmaat hangt af van het gemonteerde zaagblad.',
           evidence_basis: ['CATEGORY_INFERENCE'],
@@ -180,8 +259,8 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
       label: 'Kettingzaagolie',
       technical_compatibility: {
         compatibility_status: COMPATIBILITY_STATUSES.GENERIC_CATEGORY_RECOMMENDATION,
-        display_claim: 'Geschikt voor alle STIHL-kettingzagen',
-        display_guidance: 'Gebruik biologisch afbreekbare of minerale hechtolie met goede viscositeit.',
+        display_claim: 'Kettingolie voor kettingzaagtoepassingen',
+        display_guidance: 'Gebruik hechtolie voor zaagkettingen met goede viscositeit en smeringseigenschappen.',
         evidence_basis: ['CATEGORY_STANDARD'],
         technical_spec_ref: null
       },
@@ -222,8 +301,8 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
       label: '2-Takt Mengsmering',
       technical_compatibility: {
         compatibility_status: COMPATIBILITY_STATUSES.GENERIC_CATEGORY_RECOMMENDATION,
-        display_claim: 'Aanbevolen mengverhouding 1:50 (STIHL 2-takt olie)',
-        display_guidance: 'Gebruik hoogwaardige STIHL HP / HP Ultra of kant-en-klare alkylaatbenzine (MotoMix).',
+        display_claim: 'Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.',
+        display_guidance: 'Raadpleeg de handleiding van jouw model voor de exacte mengverhouding (vaak 1:50 bij STIHL 2-takt olie of gebruik kant-en-klare alkylaatbenzine).',
         evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
         technical_spec_ref: null
       },

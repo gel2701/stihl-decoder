@@ -6,8 +6,11 @@ export interface PassportData {
   modelName: string;
   categorySlug?: string | null;
   modelSlug?: string | null;
-  country: string;
-  productionYears: string;
+  country?: string | null;
+  productionYears?: string | null;
+  passportMode?: 'MODEL_ONLY' | 'MODEL_WITH_SERIAL' | 'OFFICIAL_SERIAL_VERIFIED';
+  officialProductName?: string | null;
+  officialVerifiedAt?: string | null;
   powerHp?: number | null;
   powerKw?: number | null;
   displacementCc?: number | null;
@@ -15,7 +18,7 @@ export interface PassportData {
   theftCheck?: {
     isStolen?: boolean;
     userSelfReported?: boolean;
-    checkedAt: string;
+    checkedAt?: string | null;
     statusLabel: string;
   } | null;
 }
@@ -24,12 +27,19 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
   const passportRef = useRef<HTMLDivElement>(null);
   const hasSerial = Boolean(data.serialNumber && data.serialNumber.trim());
 
+  const passportMode = data.passportMode || (
+    data.officialProductName || data.officialVerifiedAt
+      ? 'OFFICIAL_SERIAL_VERIFIED'
+      : (hasSerial ? 'MODEL_WITH_SERIAL' : 'MODEL_ONLY')
+  );
+
   const downloadImage = async () => {
     if (!passportRef.current) return;
     try {
       const dataUrl = await toPng(passportRef.current, { quality: 0.95, pixelRatio: 2 });
       const link = document.createElement('a');
-      link.download = `stihl-machinepaspoort-${data.serialNumber || 'model'}.png`;
+      const fileSerial = hasSerial ? (data.serialNumber || 'serial') : 'model';
+      link.download = `stihl-machinepaspoort-${fileSerial}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -38,15 +48,38 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
   };
 
   const isSelfReported = data.theftCheck ? Boolean(data.theftCheck.userSelfReported) : false;
-  const publicTargetUrl = hasSerial
-    ? `https://www.stihldecoder.nl/?s=${encodeURIComponent(data.serialNumber || '')}`
-    : `https://www.stihldecoder.nl/${data.categorySlug || 'modellen'}/${data.modelSlug || ''}`;
+
+  // Canonical Model QR URL: Always points to the public canonical model page.
+  // CRITICAL PRIVACY GATE: NEVER include serial numbers or query params in external QR requests!
+  const safeCatSlug = data.categorySlug || 'kettingzagen';
+  const safeModelSlug = data.modelSlug || (data.modelName ? data.modelName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : '');
+  const publicTargetUrl = (safeCatSlug && safeModelSlug)
+    ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
+    : 'https://www.stihldecoder.nl/';
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicTargetUrl)}`;
+
   const technicalRows = [
     data.displacementCc ? `${data.displacementCc} cc` : null,
     data.powerKw ? `${data.powerKw} kW` : (data.powerHp ? `${data.powerHp} pk` : null),
     data.chainInfo || null
   ].filter(Boolean) as string[];
+
+  let badgeText = 'INDICATIEF OVERZICHT';
+  if (passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
+    badgeText = '✓ OFFICIEEL STIHL';
+  } else if (passportMode === 'MODEL_ONLY') {
+    badgeText = 'MODELPASPOORT';
+  } else if (isSelfReported) {
+    badgeText = 'ZELF GERAPPORTEERD';
+  }
+
+  const countryText = hasSerial
+    ? (data.country || 'Niet vastgesteld')
+    : 'Nog niet gekoppeld (geen serienummer)';
+
+  const yearsText = hasSerial
+    ? (data.productionYears || 'Niet vastgesteld')
+    : 'Niet opgegeven';
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -65,46 +98,57 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
               STIHL Machinepaspoort
             </span>
             <h2 className="text-3xl font-black tracking-tight text-white mt-0.5">{data.modelName}</h2>
+            {data.officialProductName && (
+              <span className="text-xs font-semibold text-emerald-400 block mt-0.5">
+                {data.officialProductName}
+              </span>
+            )}
           </div>
           <div className="flex flex-col items-end gap-1">
             <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wider">
-              {hasSerial ? 'INDICATIEF OVERZICHT' : 'MODELPASPOORT'}
+              {badgeText}
             </span>
           </div>
         </div>
 
-        {/* Stop Heling Veiligheidsbalk (Full Width Highlight) */}
-        <div className="p-3 rounded-xl border flex items-center justify-between bg-neutral-900 border-neutral-700 text-neutral-300">
-          <div className="flex items-center gap-2.5">
-            <span className="text-lg">{isSelfReported ? '📋' : 'ℹ️'}</span>
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider block">
-                Stop Heling Diefstalcontrole Status
-              </span>
-              <span className="text-sm font-semibold text-white">
-                {data.theftCheck ? data.theftCheck.statusLabel : 'Niet gecontroleerd via StopHeling'}
-              </span>
+        {/* Stop Heling Veiligheidsbalk (Alleen tonen bij serienummer) */}
+        {passportMode !== 'MODEL_ONLY' && (
+          <div className="p-3 rounded-xl border flex items-center justify-between bg-neutral-900 border-neutral-700 text-neutral-300">
+            <div className="flex items-center gap-2.5">
+              <span className="text-lg">{isSelfReported ? '📋' : 'ℹ️'}</span>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider block">
+                  Stop Heling Diefstalcontrole Status
+                </span>
+                <span className="text-sm font-semibold text-white">
+                  {data.theftCheck ? data.theftCheck.statusLabel : 'Niet gecontroleerd via StopHeling'}
+                </span>
+              </div>
             </div>
+            {data.theftCheck?.checkedAt && (
+              <div className="text-right text-[11px] text-neutral-400">
+                <span>Datum:</span>
+                <span className="font-mono text-white font-bold block">{data.theftCheck.checkedAt}</span>
+              </div>
+            )}
           </div>
-          <div className="text-right text-[11px] text-neutral-400">
-            <span>Datum:</span>
-            <span className="font-mono text-white font-bold block">{data.theftCheck ? data.theftCheck.checkedAt : '26-08-2026'}</span>
-          </div>
-        </div>
+        )}
 
         {/* Technische Details Grid met Zaaggroep Spec */}
         <div className="grid grid-cols-2 gap-3 my-1">
-          <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
+          <div className={`p-3 rounded-xl border ${hasSerial ? 'bg-neutral-900/90 border-neutral-800' : 'bg-neutral-900/90 border-dashed border-neutral-800'}`}>
             <span className="text-[11px] text-neutral-400 block font-medium">Serienummer</span>
-            <span className="font-mono text-lg font-bold text-white tracking-wider">{data.serialNumber}</span>
+            <span className={`text-base font-bold ${hasSerial ? 'font-mono text-white tracking-wider' : 'text-neutral-400 italic'}`}>
+              {hasSerial ? data.serialNumber : 'Nog niet toegevoegd'}
+            </span>
           </div>
           <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
             <span className="text-[11px] text-neutral-400 block font-medium">Herkomst / Fabriek</span>
-            <span className="text-base font-bold text-white">{data.country}</span>
+            <span className="text-sm font-bold text-white">{countryText}</span>
           </div>
           <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
             <span className="text-[11px] text-neutral-400 block font-medium">Geschat Bouwjaar</span>
-            <span className="text-base font-bold text-orange-400">{data.productionYears}</span>
+            <span className="text-sm font-bold text-orange-400">{yearsText}</span>
           </div>
           <div className="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2">
             <span className="text-[11px] text-neutral-400 block font-medium">

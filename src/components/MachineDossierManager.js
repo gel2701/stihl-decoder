@@ -6,6 +6,8 @@
  * atomic JSON backup import/export, and privacy-isolated evidence hydration.
  */
 
+import { resolvePlantRecord } from '../decoder.js';
+
 export const DOSSIER_STORAGE_KEY_V1 = 'stihl_machine_dossiers_v1';
 export const DOSSIER_STORAGE_KEY_V2 = 'stihl_machine_dossiers_v2';
 export const DOSSIER_STORAGE_KEY = DOSSIER_STORAGE_KEY_V2;
@@ -1373,21 +1375,13 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
     }
   }
 
-  const factoryCode = cleanSerial.length >= 1 ? cleanSerial.charAt(0) : null;
-  const STIHL_PLANT_MAP = {
-    '1': { country: 'Duitsland', location: 'Waiblingen' },
-    '2': { country: 'Verenigde Staten', location: 'Virginia Beach (Plant 1)' },
-    '3': { country: 'Brazilië', location: 'São Leopoldo' },
-    '4': { country: 'Zwitserland', location: 'Stihl Kettenwerk' },
-    '5': { country: 'Verenigde Staten', location: 'Virginia Beach (Plant 2)' },
-    '8': { country: 'China', location: 'Qingdao' },
-    '9': { country: 'Speciaal / Internationale Assemblage', location: 'Diverse locaties' }
-  };
-
-  const factoryInfo = (databaseOrResult && databaseOrResult.factory_codes && factoryCode && databaseOrResult.factory_codes[factoryCode])
-    ? databaseOrResult.factory_codes[factoryCode]
-    : (STIHL_PLANT_MAP[factoryCode] || decodeResult?.factory || null);
-
+  const factoryDigit = cleanSerial.length >= 1 ? cleanSerial.charAt(0) : null;
+  const plantRecord = (databaseOrResult && factoryDigit) ? resolvePlantRecord(databaseOrResult, factoryDigit) : null;
+  const factoryInfo = plantRecord ? {
+    code: factoryDigit,
+    country: plantRecord.country_name || plantRecord.country || null,
+    location: plantRecord.plant_location || plantRecord.location || null
+  } : (decodeResult?.factory?.country ? decodeResult.factory : null);
   const officialAnchor = decodeResult?.officialAnchor || null;
 
   if (officialAnchor) {
@@ -1428,14 +1422,38 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
       };
     } else {
       // CONFLICT: e.g. stored MS 260 vs official MS 440
+      // Lookup canonical model details from database
+      let canonicalModelName = null;
+      let canonicalCategory = null;
+      let canonicalSeriesCode = null;
+      const db = databaseOrResult || (typeof window !== 'undefined' ? window.__STIHL_DB__ : null);
+      if (db && db.models) {
+        const canonicalId = officialAnchor.canonicalModelId;
+        const dbModel = Array.isArray(db.models)
+          ? db.models.find(m => m.id === canonicalId || m.model_id === canonicalId || m.slug === anchorCanonical)
+          : (db.models[canonicalId] || db.models[anchorCanonical]);
+        if (dbModel) {
+          canonicalModelName = dbModel.model_name || dbModel.name;
+          canonicalCategory = dbModel.category || null;
+          canonicalSeriesCode = dbModel.series_code || null;
+        }
+      }
+      if (!canonicalModelName) {
+        canonicalModelName = anchorCanonical.toUpperCase().replace(/^STIHL-?/, '').replace(/-/g, ' ');
+      }
+
       const conflictData = {
         has_conflict: true,
         status: 'IDENTITY_CONFLICT',
         conflicting_serial: cleanSerial,
         stored_model_name: target.identity.model_name,
         stored_model_slug: target.identity.model_slug,
+        official_product_name: officialAnchor.officialProductName || officialAnchor.modelName,
         official_model_name: officialAnchor.officialProductName || officialAnchor.modelName,
         official_canonical_id: officialAnchor.canonicalModelId,
+        canonical_model_name: canonicalModelName,
+        canonical_category: canonicalCategory,
+        canonical_series_code: canonicalSeriesCode,
         official_verified_at: officialAnchor.verifiedAt || '2026-09-22',
         detected_at: getLocalTodayString()
       };
@@ -1450,7 +1468,7 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
         status: 'IDENTITY_CONFLICT',
         message: 'Het ingevoerde serienummer is door STIHL gekoppeld aan een ander model.',
         storedModel: target.identity.model_name,
-        officialModel: conflictData.official_model_name,
+        officialModel: conflictData.official_product_name,
         conflictingSerial: cleanSerial,
         dossier: target
       };
@@ -1481,7 +1499,7 @@ export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResul
  * - 'SWITCH_TO_OFFICIAL': Accepts the official STIHL identity and switches model.
  * - 'KEEP_STORED': Keeps the user-stored model and clears the conflicting serial attempt.
  */
-export function resolveDossierConflict(dossierId, resolutionAction, customStorage = null) {
+export function resolveDossierConflict(dossierId, resolutionAction, customStorage = null, database = null) {
   const storage = getStorage(customStorage);
   if (!storage) return { success: false, error: 'Opslaan op dit apparaat is niet beschikbaar.' };
 
@@ -1495,12 +1513,36 @@ export function resolveDossierConflict(dossierId, resolutionAction, customStorag
   const conflict = target.identity.conflict;
 
   if (resolutionAction === 'SWITCH_TO_OFFICIAL') {
-    const newSlug = conflict.official_canonical_id ? conflict.official_canonical_id.replace(/^stihl[-_]/, '').replace(/_/g, '-') : target.identity.model_slug;
+    const canonicalId = conflict.official_canonical_id;
+    const newSlug = canonicalId ? canonicalId.replace(/^stihl[-_]/, '').replace(/_/g, '-') : target.identity.model_slug;
+
+    let canonicalModelName = conflict.canonical_model_name || null;
+    let canonicalCategory = conflict.canonical_category || target.identity.category;
+    let canonicalSeriesCode = conflict.canonical_series_code || target.identity.series_code;
+
+    const db = database || (typeof window !== 'undefined' ? window.__STIHL_DB__ : null);
+    if (db && db.models) {
+      const dbModel = Array.isArray(db.models)
+        ? db.models.find(m => m.id === canonicalId || m.model_id === canonicalId || m.slug === newSlug)
+        : (db.models[canonicalId] || db.models[newSlug]);
+      if (dbModel) {
+        canonicalModelName = dbModel.model_name || dbModel.name;
+        if (dbModel.category) canonicalCategory = dbModel.category;
+        if (dbModel.series_code) canonicalSeriesCode = dbModel.series_code;
+      }
+    }
+
+    if (!canonicalModelName) {
+      canonicalModelName = newSlug.toUpperCase().replace(/^STIHL-?/, '').replace(/-/g, ' ');
+    }
+
     target.identity.model_slug = newSlug;
-    target.identity.model_name = conflict.official_model_name;
-    target.identity.official_product_name = conflict.official_model_name;
-    target.identity.verified_at = conflict.official_verified_at;
-    target.identity.canonical_model_id = conflict.official_canonical_id;
+    target.identity.model_name = canonicalModelName;
+    target.identity.canonical_model_id = canonicalId;
+    target.identity.category = canonicalCategory;
+    target.identity.series_code = canonicalSeriesCode;
+    target.identity.official_product_name = conflict.official_product_name || conflict.official_model_name;
+    target.identity.verified_at = conflict.official_verified_at || '2026-09-22';
     target.identity.identity_status = IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED;
     target.identity.identity_source = 'OFFICIAL_STIHL_LOOKUP';
     target.machine.serial_number = conflict.conflicting_serial;
