@@ -21,7 +21,10 @@ export const currentProductionSuites = [
   'tests/phase36_serial_user_value_engine.test.js',
   'tests/render_www_alignment.test.js',
   'tests/production_validation.test.js',
-  'tests/decoder.test.js'
+  'tests/decoder.test.js',
+  'tests/model_first_passport.test.js',
+  'tests/passport_serial_enrichment.test.js',
+  'tests/affiliate_foundation.test.js'
 ];
 
 console.log('===============================================================');

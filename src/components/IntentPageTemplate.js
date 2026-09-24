@@ -70,7 +70,7 @@ export function renderIntentPageHtml(intent, database, baseUrl = PRIMARY_ORIGIN)
 
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full space-y-8">
-    
+
     <!-- Breadcrumbs -->
     ${breadcrumbsHtml}
 
@@ -98,15 +98,15 @@ export function renderIntentPageHtml(intent, database, baseUrl = PRIMARY_ORIGIN)
       </div>
 
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
-        <input 
-          type="text" 
-          name="q" 
-          placeholder="Voer het serienummer in..." 
+        <input
+          type="text"
+          name="q"
+          placeholder="Voer het serienummer in..."
           class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
           autocomplete="off"
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 flex items-center justify-center gap-2 cursor-pointer"
         >
           <span>Controleer</span>
@@ -213,7 +213,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
 
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full space-y-6">
-    
+
     <!-- Breadcrumbs -->
     ${breadcrumbsHtml}
 
@@ -372,7 +372,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         </div>
 
         <div>
-          <label for="input-serial" class="block font-bold text-neutral-300 mb-1">Serienummer (optioneel)</label>
+          <label for="input-serial" class="block font-bold text-neutral-300 mb-1">Serienummer (optioneel) - Je kunt dit ook later toevoegen</label>
           <input type="text" id="input-serial" maxlength="30" placeholder="bv. 184592301" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white font-mono placeholder-neutral-500 focus:outline-none focus:border-orange-500">
           <span class="block text-2xs text-neutral-400 mt-1">Blijft uitsluitend lokaal opgeslagen als gebruikersinvoer.</span>
         </div>
@@ -402,7 +402,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
   <!-- Detail / Dossier Modal -->
   <div id="modal-detail" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-2xl w-full p-5 sm:p-7 space-y-5 shadow-2xl my-auto text-xs relative max-h-[90vh] overflow-y-auto">
-      
+
       <!-- Top header -->
       <div class="flex items-start justify-between border-b border-neutral-800 pb-4">
         <div>
@@ -413,7 +413,12 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           <h3 id="detail-title" class="text-2xl font-black text-white mt-1"></h3>
           <p id="detail-nickname" class="text-xs text-orange-400 font-bold mt-0.5"></p>
         </div>
-        <button id="btn-close-detail" class="text-neutral-400 hover:text-white text-xl font-bold p-1 cursor-pointer">✕</button>
+        <div class="flex items-center gap-2">
+          <button id="btn-detail-view-passport" type="button" class="bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white border border-orange-500/30 text-2xs font-bold px-3 py-1.5 rounded-lg transition cursor-pointer flex items-center gap-1">
+            <span>📄 Machinepaspoort</span>
+          </button>
+          <button id="btn-close-detail" class="text-neutral-400 hover:text-white text-xl font-bold p-1 cursor-pointer">✕</button>
+        </div>
       </div>
 
       <!-- Section 1: Identiteit & Gebruikersdata -->
@@ -426,7 +431,10 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           </div>
           <div>
             <span class="text-2xs text-neutral-500 block">Serienummer (door gebruiker ingevoerd)</span>
-            <span id="detail-serial-text" class="font-mono text-white font-bold"></span>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span id="detail-serial-text" class="font-mono text-white font-bold"></span>
+              <button type="button" id="btn-detail-add-serial" class="hidden text-3xs text-orange-400 hover:text-orange-300 underline cursor-pointer">+ Toevoegen</button>
+            </div>
           </div>
           <div>
             <span class="text-2xs text-neutral-500 block">Aankoopjaar (door gebruiker opgegeven)</span>
@@ -616,7 +624,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         <button id="btn-close-complete-rem" class="text-neutral-400 hover:text-white font-bold p-1 cursor-pointer">✕</button>
       </div>
       <p id="complete-rem-label" class="text-white font-medium"></p>
-      
+
       <div class="bg-neutral-950 p-3 rounded-xl border border-neutral-800 space-y-2.5">
         <label class="flex items-start gap-2 cursor-pointer">
           <input type="checkbox" id="check-create-service-event" class="mt-0.5 rounded border-neutral-700 text-orange-600 focus:ring-orange-500 cursor-pointer">
@@ -624,7 +632,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
             Ook toevoegen aan onderhoudshistorie
           </span>
         </label>
-        
+
         <div id="complete-event-date-wrap" class="hidden space-y-1 pt-1 border-t border-neutral-900">
           <label for="input-complete-event-date" class="block text-3xs font-bold text-neutral-400">Uitvoerdatum onderhoud</label>
           <input type="date" id="input-complete-event-date" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-orange-500">
@@ -638,6 +646,88 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
     </div>
   </div>
 
+  <!-- Machine Passport Preview Modal -->
+  <div id="modal-passport" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-4 shadow-2xl my-auto text-xs relative max-h-[95vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>📄 STIHL Machinepaspoort</span>
+        </h3>
+        <button id="btn-close-passport" class="text-neutral-400 hover:text-white text-lg font-bold p-1 cursor-pointer">✕</button>
+      </div>
+      <div id="passport-preview-container" class="py-2"></div>
+      <div class="flex items-center justify-between pt-3 border-t border-neutral-800">
+        <div class="flex items-center gap-2">
+          <button id="btn-print-passport" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold px-3 py-2 rounded-xl transition cursor-pointer text-xs flex items-center gap-1.5">
+            <span>🖨️ Afdrukken</span>
+          </button>
+          <button id="btn-download-passport" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold px-3 py-2 rounded-xl transition cursor-pointer text-xs flex items-center gap-1.5">
+            <span>💾 Afbeelding downloaden</span>
+          </button>
+        </div>
+        <button id="btn-close-passport-bottom" type="button" class="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl cursor-pointer">
+          Sluiten
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enrich Serial Modal -->
+  <div id="modal-enrich-serial" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl relative text-xs">
+      <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span>🔢 Serienummer toevoegen</span>
+        </h3>
+        <button id="btn-close-enrich-serial" class="text-neutral-400 hover:text-white text-lg font-bold p-1 cursor-pointer">✕</button>
+      </div>
+      <p id="enrich-serial-target-text" class="text-neutral-300 font-medium"></p>
+      <form id="form-enrich-serial" class="space-y-3">
+        <div>
+          <label for="input-enrich-serial-val" class="block font-bold text-neutral-300 mb-1">Serienummer (9 cijfers)</label>
+          <input type="text" id="input-enrich-serial-val" maxlength="30" placeholder="bv. 163118080" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white font-mono placeholder-neutral-500 focus:outline-none focus:border-orange-500" required>
+          <span class="block text-3xs text-neutral-400 mt-1">Wordt geverifieerd tegen officiële fabrieks- en serienummerbronnen.</span>
+        </div>
+        <div id="enrich-serial-error" class="hidden p-3 rounded-xl bg-red-950/50 border border-red-800/80 text-red-300 text-xs font-semibold"></div>
+        <div class="flex items-center justify-end gap-2.5 pt-2 border-t border-neutral-800">
+          <button type="button" id="btn-cancel-enrich-serial" class="px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 font-bold cursor-pointer">Annuleren</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold cursor-pointer shadow-md">Serienummer koppelen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Identity Conflict Modal -->
+  <div id="modal-conflict" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-neutral-900 border border-red-500/50 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative text-xs">
+      <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span class="text-red-400 text-lg">⚠️</span>
+          <span>Serienummer Contradictie Gedetecteerd</span>
+        </h3>
+        <button id="btn-close-conflict" class="text-neutral-400 hover:text-white text-lg font-bold p-1 cursor-pointer">✕</button>
+      </div>
+      <div class="bg-red-950/30 border border-red-800/40 p-3.5 rounded-xl space-y-2 text-neutral-300 leading-relaxed">
+        <p>
+          Het opgegeven serienummer <strong id="conflict-serial-display" class="font-mono text-white"></strong> is via officiële fabrieksdata geverifieerd als:
+        </p>
+        <p class="text-sm font-black text-orange-400" id="conflict-official-display"></p>
+        <p class="text-2xs text-neutral-400">
+          Dit verschilt van uw huidige opgeslagen model: <strong id="conflict-stored-display" class="text-white"></strong>. Er is géén automatische overschrijving uitgevoerd.
+        </p>
+      </div>
+      <p class="text-neutral-300 text-2xs font-semibold">Wat wilt u doen?</p>
+      <div class="flex flex-col sm:flex-row gap-2 pt-2 border-t border-neutral-800">
+        <button type="button" id="btn-conflict-switch" class="flex-1 bg-orange-600 hover:bg-orange-500 text-white font-bold py-2.5 px-3 rounded-xl transition cursor-pointer text-center">
+          Model bijwerken naar <span id="conflict-btn-switch-label"></span>
+        </button>
+        <button type="button" id="btn-conflict-keep" class="flex-1 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 font-bold py-2.5 px-3 rounded-xl transition cursor-pointer text-center">
+          Huidig model behouden
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer with Legal Disclaimer -->
   <footer class="border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500 mt-12">
     <div class="max-w-6xl mx-auto px-4 space-y-3">
@@ -647,6 +737,14 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       </p>
     </div>
   </footer>
+
+  <!-- STIHL Data Injection for Client Validation -->
+  <script>
+    window.__STIHL_DB__ = {
+      official_serial_anchors: ${JSON.stringify(database?.official_serial_anchors || {})},
+      factory_codes: ${JSON.stringify(database?.factory_codes || {})}
+    };
+  </script>
 
   <!-- Machine Dossier Hub Client Logic (Browser-Safe, Zero Third-Party JS) -->
   <script type="module">
@@ -673,8 +771,14 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       IDENTITY_STATUSES,
       IDENTITY_SOURCES,
       REMINDER_STATES,
-      hydrateDossierEvidence
+      hydrateDossierEvidence,
+      enrichDossierWithSerial,
+      resolveDossierConflict
     } from '/src/components/MachineDossierManager.js';
+    import {
+      renderStihlPassportHtml,
+      downloadStihlPassportImage
+    } from '/src/components/StihlPassportGenerator.js';
 
     let activeDossierId = null;
     let currentFilter = 'all'; // 'all' | 'soon' | 'overdue'
@@ -824,13 +928,41 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         topDiv.appendChild(metaDiv);
 
         const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'pt-2 border-t border-neutral-800/80 flex items-center justify-between gap-2';
+        actionsDiv.className = 'pt-2 border-t border-neutral-800/80 flex flex-wrap items-center gap-1.5';
+
+        const passportBtn = document.createElement('button');
+        passportBtn.type = 'button';
+        passportBtn.className = 'flex-1 bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white border border-orange-500/30 text-2xs font-bold py-2 px-2.5 rounded-xl transition cursor-pointer text-center whitespace-nowrap';
+        passportBtn.textContent = '📄 Paspoort bekijken';
+        passportBtn.onclick = () => openPassportModal(d.dossier_id);
+        actionsDiv.appendChild(passportBtn);
+
+        if (!d.machine || !d.machine.serial_number) {
+          const enrichBtn = document.createElement('button');
+          enrichBtn.type = 'button';
+          enrichBtn.className = 'bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 text-2xs font-bold py-2 px-2.5 rounded-xl transition cursor-pointer text-center whitespace-nowrap';
+          enrichBtn.textContent = '➕ Serienummer';
+          enrichBtn.onclick = () => openEnrichSerialModal(d.dossier_id);
+          actionsDiv.appendChild(enrichBtn);
+        }
+
+        const maintBtn = document.createElement('button');
+        maintBtn.type = 'button';
+        maintBtn.className = 'bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 text-2xs font-bold py-2 px-2.5 rounded-xl transition cursor-pointer text-center whitespace-nowrap';
+        maintBtn.textContent = '🛠️ Onderhoud';
+        maintBtn.onclick = () => {
+          openDossierDetail(d.dossier_id);
+          setTimeout(() => {
+            document.getElementById('form-add-event')?.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        };
+        actionsDiv.appendChild(maintBtn);
 
         const viewBtn = document.createElement('button');
-        viewBtn.className = 'flex-1 bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white border border-orange-500/30 text-xs font-bold py-2 rounded-xl transition cursor-pointer';
-        viewBtn.textContent = 'Bekijk dossier →';
+        viewBtn.type = 'button';
+        viewBtn.className = 'text-neutral-400 hover:text-white text-2xs font-medium py-2 px-2 transition cursor-pointer';
+        viewBtn.textContent = 'Dossier →';
         viewBtn.onclick = () => openDossierDetail(d.dossier_id);
-
         actionsDiv.appendChild(viewBtn);
 
         card.appendChild(topDiv);
@@ -1073,6 +1205,34 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       modal.classList.remove('hidden');
     }
 
+    let activePassportDossier = null;
+    let targetEnrichDossierId = null;
+    let activeConflictDossierId = null;
+
+    function openPassportModal(dossierId) {
+      const dossiers = loadDossiers();
+      const d = dossiers.find((item) => item.dossier_id === dossierId);
+      if (!d) return;
+      activePassportDossier = d;
+      const container = document.getElementById('passport-preview-container');
+      if (container) {
+        container.innerHTML = renderStihlPassportHtml(d);
+      }
+      document.getElementById('modal-passport')?.classList.remove('hidden');
+    }
+
+    function openEnrichSerialModal(dossierId) {
+      const dossiers = loadDossiers();
+      const d = dossiers.find((item) => item.dossier_id === dossierId);
+      if (!d) return;
+      targetEnrichDossierId = dossierId;
+      setSafeText(document.getElementById('enrich-serial-target-text'), 'Koppel een 9-cijferig STIHL serienummer aan uw STIHL ' + d.identity.model_name + '.');
+      const input = document.getElementById('input-enrich-serial-val');
+      if (input) input.value = '';
+      document.getElementById('enrich-serial-error')?.classList.add('hidden');
+      document.getElementById('modal-enrich-serial')?.classList.remove('hidden');
+    }
+
     async function openDossierDetail(dossierId) {
       const dossiers = loadDossiers();
       const d = dossiers.find((item) => item.dossier_id === dossierId);
@@ -1096,6 +1256,22 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
 
       setSafeText(document.getElementById('detail-identity-text'), d.identity.model_name + ' (' + d.identity.category + ')');
       setSafeText(document.getElementById('detail-serial-text'), d.machine.serial_number || 'Niet opgegeven');
+
+      const detailAddSerialBtn = document.getElementById('btn-detail-add-serial');
+      if (detailAddSerialBtn) {
+        if (!d.machine.serial_number) {
+          detailAddSerialBtn.classList.remove('hidden');
+          detailAddSerialBtn.onclick = () => openEnrichSerialModal(d.dossier_id);
+        } else {
+          detailAddSerialBtn.classList.add('hidden');
+        }
+      }
+
+      const detailViewPassBtn = document.getElementById('btn-detail-view-passport');
+      if (detailViewPassBtn) {
+        detailViewPassBtn.onclick = () => openPassportModal(d.dossier_id);
+      }
+
       setSafeText(document.getElementById('detail-year-text'), d.machine.purchase_year ? String(d.machine.purchase_year) : 'Niet opgegeven');
       setSafeText(document.getElementById('detail-last-service-text'), (d.maintenance && d.maintenance.last_service_date) ? d.maintenance.last_service_date : 'Nog geen');
       setSafeText(document.getElementById('detail-effective-service-text'), calculateEffectiveLastServiceDate(d) || 'Nog geen');
@@ -1161,7 +1337,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         if (specs[item.key] !== undefined) {
           const row = document.createElement('div');
           row.className = 'flex justify-between items-center py-1 border-b border-neutral-900 text-xs';
-          
+
           const lSpan = document.createElement('span');
           lSpan.className = 'text-neutral-400';
           lSpan.textContent = item.label;
@@ -1211,7 +1387,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         if (specs[item.key] !== undefined) {
           const row = document.createElement('div');
           row.className = 'flex justify-between items-center py-1 border-b border-neutral-900 text-xs';
-          
+
           const lSpan = document.createElement('span');
           lSpan.className = 'text-neutral-400';
           lSpan.textContent = item.label;
@@ -1514,6 +1690,86 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           }
         };
         reader.readAsText(file);
+      });
+
+      // Passport Modal Controls
+      const closePassport = () => document.getElementById('modal-passport')?.classList.add('hidden');
+      document.getElementById('btn-close-passport')?.addEventListener('click', closePassport);
+      document.getElementById('btn-close-passport-bottom')?.addEventListener('click', closePassport);
+      document.getElementById('btn-print-passport')?.addEventListener('click', () => window.print());
+      document.getElementById('btn-download-passport')?.addEventListener('click', () => {
+        if (activePassportDossier) {
+          downloadStihlPassportImage(activePassportDossier);
+        }
+      });
+
+      // Enrich Serial Modal Controls
+      const closeEnrichSerial = () => document.getElementById('modal-enrich-serial')?.classList.add('hidden');
+      document.getElementById('btn-close-enrich-serial')?.addEventListener('click', closeEnrichSerial);
+      document.getElementById('btn-cancel-enrich-serial')?.addEventListener('click', closeEnrichSerial);
+
+      document.getElementById('form-enrich-serial')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!targetEnrichDossierId) return;
+
+        const serialInput = document.getElementById('input-enrich-serial-val');
+        const serialVal = (serialInput?.value || '').trim();
+        const errDiv = document.getElementById('enrich-serial-error');
+        if (errDiv) errDiv.classList.add('hidden');
+
+        try {
+          const res = enrichDossierWithSerial(targetEnrichDossierId, serialVal, window.__STIHL_DB__ || null);
+          if (res.status === 'IDENTITY_CONFLICT') {
+            closeEnrichSerial();
+            activeConflictDossierId = targetEnrichDossierId;
+            setSafeText(document.getElementById('conflict-serial-display'), res.conflictingSerial || serialVal);
+            setSafeText(document.getElementById('conflict-official-display'), res.officialModel || 'Ander model');
+            setSafeText(document.getElementById('conflict-stored-display'), res.storedModel || 'Opgeslagen model');
+            setSafeText(document.getElementById('conflict-btn-switch-label'), res.officialModel || 'Officieel model');
+            document.getElementById('modal-conflict')?.classList.remove('hidden');
+            return;
+          }
+
+          if (!res.success) {
+            if (errDiv) {
+              errDiv.textContent = res.error || 'Kon serienummer niet koppelen.';
+              errDiv.classList.remove('hidden');
+            }
+            return;
+          }
+
+          closeEnrichSerial();
+          renderDossierList();
+          if (activeDossierId === targetEnrichDossierId) {
+            openDossierDetail(activeDossierId);
+          }
+        } catch (err) {
+          if (errDiv) {
+            errDiv.textContent = err.message || 'Kon serienummer niet koppelen.';
+            errDiv.classList.remove('hidden');
+          }
+        }
+      });
+
+      // Conflict Modal Controls
+      const closeConflict = () => document.getElementById('modal-conflict')?.classList.add('hidden');
+      document.getElementById('btn-close-conflict')?.addEventListener('click', closeConflict);
+
+      document.getElementById('btn-conflict-switch')?.addEventListener('click', () => {
+        if (!activeConflictDossierId) return;
+        resolveDossierConflict(activeConflictDossierId, 'SWITCH_TO_OFFICIAL');
+        closeConflict();
+        renderDossierList();
+        if (activeDossierId === activeConflictDossierId) {
+          openDossierDetail(activeDossierId);
+        }
+      });
+
+      document.getElementById('btn-conflict-keep')?.addEventListener('click', () => {
+        if (!activeConflictDossierId) return;
+        resolveDossierConflict(activeConflictDossierId, 'KEEP_STORED');
+        closeConflict();
+        renderDossierList();
       });
 
       // Delete Dossier

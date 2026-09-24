@@ -215,7 +215,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
 
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full space-y-8">
-    
+
     <!-- Breadcrumbs -->
     ${breadcrumbsHtml}
 
@@ -253,27 +253,30 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </div>
 
       <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
-        <input 
-          type="text" 
-          name="q" 
-          placeholder="Voer het serienummer in van uw ${model.model_name}..." 
+        <input
+          type="text"
+          name="q"
+          placeholder="Voer het serienummer in van uw ${model.model_name}..."
           class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
           autocomplete="off"
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 flex items-center justify-center gap-2 cursor-pointer"
         >
           <span>Analyseer Serienummer</span>
         </button>
       </form>
       <div class="pt-3 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span class="text-xs text-gray-400">Bezit u deze STIHL ${model.model_name}?</span>
-        <a 
-          href="/stihl-paspoort/#add=${encodeURIComponent(slug)}" 
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 transition text-xs font-semibold cursor-pointer"
+        <div class="space-y-0.5">
+          <span class="text-xs font-bold text-white block">Heb je deze machine?</span>
+          <span class="text-2xs text-gray-400 block">Bewaar je machinegegevens, onderhoud en serienummer in je eigen STIHL Machinepaspoort.</span>
+        </div>
+        <a
+          href="/stihl-paspoort/#add=${encodeURIComponent(slug)}"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white transition text-xs font-bold shadow-md cursor-pointer whitespace-nowrap"
         >
-          <span>📋 Maak machinepaspoort voor deze machine →</span>
+          <span>Voeg hem toe aan Mijn STIHL →</span>
         </a>
       </div>
     </section>
@@ -353,6 +356,27 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </div>
     </section>
     ` : ''}
+
+    <!-- Model-First Machine Passport CTA (Phase 47) -->
+    <section class="bg-gradient-to-br from-gray-900 via-gray-900 to-orange-950/30 border border-orange-500/30 rounded-2xl p-6 shadow-xl space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="px-2.5 py-0.5 rounded-full text-2xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block">
+            Mijn STIHL
+          </span>
+          <h3 class="text-xl font-bold text-white">Heb je deze machine? Voeg hem toe aan Mijn STIHL</h3>
+          <p class="text-xs text-gray-300">
+            Bewaar je machinegegevens, onderhoud en serienummer in je eigen STIHL Machinepaspoort.
+          </p>
+        </div>
+        <a
+          href="/stihl-paspoort/#add=${slug}"
+          class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-5 py-3 rounded-xl transition text-xs text-center flex items-center justify-center gap-2 whitespace-nowrap shadow-lg shadow-orange-600/30"
+        >
+          <span>➕ Voeg toe aan paspoort</span>
+        </a>
+      </div>
+    </section>
 
     <!-- Premium Machine Passport Pro MVP -->
     ${passportProCardHtml}
@@ -442,7 +466,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
     <!-- Visible FAQs Section -->
     <section class="space-y-4 pt-4 border-t border-gray-800">
       <h3 class="text-xl font-bold text-white">Veelgestelde Vragen over STIHL ${model.model_name}</h3>
-      
+
       <div class="space-y-3 text-xs">
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
           <h4 class="font-bold text-white">Hoe oud is mijn STIHL ${model.model_name}?</h4>

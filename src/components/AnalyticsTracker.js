@@ -24,6 +24,13 @@ export const EVENT_TYPES = {
   PASSPORT_CREATED: 'passport_created',
   PASSPORT_PRO_VIEW: 'passport_pro_view',
   PASSPORT_PRO_CLICK: 'passport_pro_click',
+  MACHINE_ADDED: 'machine_added',
+  SERIAL_ADDED_TO_MACHINE: 'serial_added_to_machine',
+  IDENTITY_CONFLICT_DETECTED: 'identity_conflict_detected',
+  MAINTENANCE_ADDED: 'maintenance_added',
+  RECOMMENDATION_VIEWED: 'recommendation_viewed',
+  AFFILIATE_OFFER_IMPRESSION: 'affiliate_offer_impression',
+  AFFILIATE_OFFER_CLICK: 'affiliate_offer_click',
   PART_SEARCH: 'part_search',
   AFFILIATE_CLICK: 'affiliate_click',
   REPAIR_LEAD_STARTED: 'repair_lead_started',
@@ -43,7 +50,10 @@ const WHITELISTED_METADATA_KEYS = [
   'experiment_variant',
   'part_category',
   'pairSlug',
-  'model'
+  'model',
+  'recommendation_type',
+  'compatibility_status',
+  'conflict_type'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;
@@ -88,6 +98,7 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
       status: 'UNAVAILABLE',
       eventId,
       eventType,
+      metadata: cleanMetadata,
       reason: db ? 'SCHEMA_NOT_READY' : 'NO_DATABASE_CONNECTION'
     };
   }
@@ -106,12 +117,13 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
       status: 'DB_WRITE_ERROR',
       eventId,
       eventType,
+      metadata: cleanMetadata,
       reason: err.message
     };
   }
 
   console.log(`[EventTracked-Persistent] ${eventType}`, metadataJson);
-  return { status: 'QUEUED', eventId, eventType, isTest };
+  return { status: 'QUEUED', eventId, eventType, metadata: cleanMetadata, isTest };
 }
 
 function readAnalyticsEventsFromJson() {

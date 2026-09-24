@@ -207,6 +207,9 @@ export function validateDossierSchema(dossier, expectedVersion = DOSSIER_SCHEMA_
   if (!DOSSIER_SAVEABLE_IDENTITY_STATUSES.includes(dossier.identity.identity_status)) return false;
 
   if (!dossier.machine || typeof dossier.machine !== 'object') return false;
+  if (dossier.machine.serial_number !== null && dossier.machine.serial_number !== undefined && typeof dossier.machine.serial_number !== 'string') {
+    return false;
+  }
   if (!dossier.maintenance || typeof dossier.maintenance !== 'object') return false;
   if (!Array.isArray(dossier.maintenance.notes)) return false;
 
@@ -248,6 +251,19 @@ export function createDossierObject({
   lastServiceDate = null,
   last_service_date = null,
   maintenance = null,
+  officialProductName = null,
+  official_product_name = null,
+  verifiedAt = null,
+  verified_at = null,
+  officialSource = null,
+  official_source = null,
+  canonicalModelId = null,
+  canonical_model_id = null,
+  conflict = null,
+  factoryCountry = null,
+  factory_country = null,
+  factoryLocation = null,
+  factory_location = null,
   notes = [],
   events = [],
   reminders = [],
@@ -261,6 +277,12 @@ export function createDossierObject({
   const pYear = purchaseYear != null ? purchaseYear : purchase_year;
   const sCode = seriesCode || series_code;
   const sDate = lastServiceDate || last_service_date || (maintenance && maintenance.last_service_date);
+  const offProdName = officialProductName || official_product_name || null;
+  const verDate = verifiedAt || verified_at || null;
+  const offSrc = officialSource || official_source || null;
+  const canonId = canonicalModelId || canonical_model_id || null;
+  const fCountry = factoryCountry || factory_country || null;
+  const fLocation = factoryLocation || factory_location || null;
 
   if (idStatus === IDENTITY_STATUSES.PROBABLE_MODEL_SERIES) {
     throw new Error('Cannot create final dossier from unconfirmed PROBABLE_MODEL_SERIES.');
@@ -312,12 +334,19 @@ export function createDossierObject({
       category: category ? String(category).trim() : 'Onbekend',
       series_code: sCode ? String(sCode).trim() : null,
       identity_status: idStatus,
-      identity_source: idSource || (idStatus === IDENTITY_STATUSES.USER_CONFIRMED_MODEL ? IDENTITY_SOURCES.USER_CONFIRMED : IDENTITY_SOURCES.EXACT_CANONICAL_DECODE)
+      identity_source: idSource || (idStatus === IDENTITY_STATUSES.USER_CONFIRMED_MODEL ? IDENTITY_SOURCES.USER_CONFIRMED : IDENTITY_SOURCES.EXACT_CANONICAL_DECODE),
+      official_product_name: offProdName,
+      official_source: offSrc,
+      verified_at: verDate,
+      canonical_model_id: canonId,
+      conflict: conflict || null
     },
     machine: {
       serial_number: cleanSerial || null,
       nickname: cleanNickname || null,
-      purchase_year: cleanYear && !isNaN(cleanYear) ? cleanYear : null
+      purchase_year: cleanYear && !isNaN(cleanYear) ? cleanYear : null,
+      factory_country: fCountry,
+      factory_location: fLocation
     },
     maintenance: {
       last_service_date: cleanLastServiceDate || null,
@@ -347,9 +376,17 @@ function decorateDossierAliases(d) {
   d.series_code = d.identity.series_code;
   d.identity_status = d.identity.identity_status;
   d.identity_source = d.identity.identity_source;
+  d.official_product_name = d.identity.official_product_name || null;
+  d.verified_at = d.identity.verified_at || null;
+  d.official_source = d.identity.official_source || null;
+  d.canonical_model_id = d.identity.canonical_model_id || null;
+  d.conflict = d.identity.conflict || null;
+  d.has_conflict = Boolean(d.identity.conflict && d.identity.conflict.has_conflict);
   d.serial_number = d.machine.serial_number;
   d.nickname = d.machine.nickname;
   d.purchase_year = d.machine.purchase_year;
+  d.factory_country = d.machine.factory_country || null;
+  d.factory_location = d.machine.factory_location || null;
   d.manual_last_service_date = d.maintenance.last_service_date;
   d.effective_last_service_date = calculateEffectiveLastServiceDate(d);
   d.last_service_date = d.maintenance.last_service_date;
@@ -538,12 +575,19 @@ export function saveDossier(dossier, customStorage = null) {
         category: dossier.identity.category,
         series_code: dossier.identity.series_code,
         identity_status: dossier.identity.identity_status,
-        identity_source: dossier.identity.identity_source
+        identity_source: dossier.identity.identity_source,
+        official_product_name: dossier.identity.official_product_name || null,
+        official_source: dossier.identity.official_source || null,
+        verified_at: dossier.identity.verified_at || null,
+        canonical_model_id: dossier.identity.canonical_model_id || null,
+        conflict: dossier.identity.conflict || null
       },
       machine: {
         serial_number: dossier.machine.serial_number,
         nickname: dossier.machine.nickname,
-        purchase_year: dossier.machine.purchase_year
+        purchase_year: dossier.machine.purchase_year,
+        factory_country: dossier.machine.factory_country || null,
+        factory_location: dossier.machine.factory_location || null
       },
       maintenance: {
         last_service_date: dossier.maintenance.last_service_date,
@@ -967,12 +1011,19 @@ export function exportDossierBackup(customStorage = null, exportedAt = new Date(
       category: d.identity.category,
       series_code: d.identity.series_code,
       identity_status: d.identity.identity_status,
-      identity_source: d.identity.identity_source
+      identity_source: d.identity.identity_source,
+      official_product_name: d.identity.official_product_name || null,
+      official_source: d.identity.official_source || null,
+      verified_at: d.identity.verified_at || null,
+      canonical_model_id: d.identity.canonical_model_id || null,
+      conflict: d.identity.conflict || null
     },
     machine: {
       serial_number: d.machine.serial_number,
       nickname: d.machine.nickname,
-      purchase_year: d.machine.purchase_year
+      purchase_year: d.machine.purchase_year,
+      factory_country: d.machine.factory_country || null,
+      factory_location: d.machine.factory_location || null
     },
     maintenance: {
       last_service_date: d.maintenance.last_service_date,
@@ -1146,12 +1197,19 @@ export function importDossierBackup(backupInput, customStorage = null) {
         category: item.identity.category ? String(item.identity.category).trim() : 'Onbekend',
         series_code: item.identity.series_code ? String(item.identity.series_code).trim() : null,
         identity_status: item.identity.identity_status,
-        identity_source: item.identity.identity_source
+        identity_source: item.identity.identity_source,
+        official_product_name: item.identity.official_product_name ? String(item.identity.official_product_name).trim() : null,
+        official_source: item.identity.official_source ? String(item.identity.official_source).trim() : null,
+        verified_at: item.identity.verified_at ? String(item.identity.verified_at).trim() : null,
+        canonical_model_id: item.identity.canonical_model_id ? String(item.identity.canonical_model_id).trim() : null,
+        conflict: item.identity.conflict && typeof item.identity.conflict === 'object' ? item.identity.conflict : null
       },
       machine: {
         serial_number: item.machine.serial_number ? String(item.machine.serial_number).trim().substring(0, 30) : null,
         nickname: item.machine.nickname ? String(item.machine.nickname).trim().substring(0, MAX_NICKNAME_LENGTH) : null,
-        purchase_year: item.machine.purchase_year ? parseInt(item.machine.purchase_year, 10) : null
+        purchase_year: item.machine.purchase_year ? parseInt(item.machine.purchase_year, 10) : null,
+        factory_country: item.machine.factory_country ? String(item.machine.factory_country).trim() : null,
+        factory_location: item.machine.factory_location ? String(item.machine.factory_location).trim() : null
       },
       maintenance: {
         last_service_date: (item.maintenance.last_service_date && isValidCalendarDate(item.maintenance.last_service_date))
@@ -1250,4 +1308,212 @@ export async function hydrateDossierEvidence(dossier, fetchFn = null) {
 export function setSafeText(element, text, fallback = '—') {
   if (!element) return;
   element.textContent = text !== null && text !== undefined && String(text).trim() !== '' ? String(text) : fallback;
+}
+
+/**
+ * Enriches an existing saved machine dossier with a serial number.
+ *
+ * Rules:
+ * 1. Validates serial number format.
+ * 2. Checks for official serial anchors (MY STIHL lookup).
+ * 3. If official anchor exists:
+ *    - If anchor canonical model matches stored model:
+ *      Enriches with exact variant name (e.g. "MS 440-Z 3/8\" RIM Magnum Motorsäge"),
+ *      canonical model ID ("stihl_ms_440"), verification date ("2026-09-22"),
+ *      and sets identity_status: "EXACT_MODEL_IDENTIFIED".
+ *    - If anchor canonical model conflicts with stored model (e.g. stored "MS 260" vs anchor "MS 440"):
+ *      Detects IDENTITY_CONFLICT. Does NOT silently overwrite stored model!
+ *      Sets identity.conflict with audit details.
+ * 4. If no official anchor:
+ *    - Historical ranges (HISTORICAL_PRODUCTION_RANGE) NEVER overwrite user-confirmed model.
+ *    - Adds serial number and plant info without modifying user model.
+ */
+export function enrichDossierWithSerial(dossierId, serialNumber, databaseOrResult = null, options = {}, customStorage = null) {
+  if (!serialNumber || typeof serialNumber !== 'string') {
+    return { success: false, error: 'Serienummer ontbreekt.' };
+  }
+
+  const cleanSerial = serialNumber.trim().replace(/[^a-zA-Z0-9]/g, '');
+  if (cleanSerial.length < 8 || cleanSerial.length > 15) {
+    return { success: false, error: 'Ongeldig serienummerformaat (8-15 tekens vereist).' };
+  }
+
+  const storage = getStorage(customStorage);
+  if (!storage) return { success: false, error: 'Opslaan op dit apparaat is niet beschikbaar.' };
+
+  const existing = loadDossiers(storage);
+  const target = existing.find((d) => d.dossier_id === dossierId || d.id === dossierId);
+  if (!target) return { success: false, error: 'Dossier niet gevonden.' };
+
+  // Resolve decode result
+  let decodeResult = null;
+  if (options && typeof options.decodeFn === 'function') {
+    decodeResult = options.decodeFn(cleanSerial, databaseOrResult);
+  } else if (databaseOrResult && typeof databaseOrResult.success === 'boolean') {
+    decodeResult = databaseOrResult;
+  } else if (databaseOrResult && typeof databaseOrResult === 'object') {
+    // Check official_serial_anchors array
+    const anchors = Array.isArray(databaseOrResult.official_serial_anchors) ? databaseOrResult.official_serial_anchors : [];
+    const matchedAnchor = anchors.find((a) => a.serial_number === cleanSerial);
+    if (matchedAnchor) {
+      decodeResult = {
+        success: true,
+        cleaned: cleanSerial,
+        exactModel: matchedAnchor.model_name,
+        resolvedModel: matchedAnchor.canonical_model_id,
+        officialAnchor: {
+          serialNumber: matchedAnchor.serial_number,
+          officialProductName: matchedAnchor.model_name,
+          modelName: matchedAnchor.model_name,
+          canonicalModelId: matchedAnchor.canonical_model_id,
+          verifiedAt: matchedAnchor.verification_date || matchedAnchor.verified_at || '2026-09-22',
+          source: matchedAnchor.source || 'MY_STIHL'
+        }
+      };
+    }
+  }
+
+  const factoryCode = cleanSerial.length >= 1 ? cleanSerial.charAt(0) : null;
+  const STIHL_PLANT_MAP = {
+    '1': { country: 'Duitsland', location: 'Waiblingen' },
+    '2': { country: 'Verenigde Staten', location: 'Virginia Beach (Plant 1)' },
+    '3': { country: 'Brazilië', location: 'São Leopoldo' },
+    '4': { country: 'Zwitserland', location: 'Stihl Kettenwerk' },
+    '5': { country: 'Verenigde Staten', location: 'Virginia Beach (Plant 2)' },
+    '8': { country: 'China', location: 'Qingdao' },
+    '9': { country: 'Speciaal / Internationale Assemblage', location: 'Diverse locaties' }
+  };
+
+  const factoryInfo = (databaseOrResult && databaseOrResult.factory_codes && factoryCode && databaseOrResult.factory_codes[factoryCode])
+    ? databaseOrResult.factory_codes[factoryCode]
+    : (STIHL_PLANT_MAP[factoryCode] || decodeResult?.factory || null);
+
+  const officialAnchor = decodeResult?.officialAnchor || null;
+
+  if (officialAnchor) {
+    const anchorCanonical = String(officialAnchor.canonicalModelId || decodeResult?.resolvedModel || '').toLowerCase().replace(/^stihl[-_]/, '').replace(/_/g, '-');
+    const storedSlug = String(target.identity.model_slug || '').toLowerCase().replace(/^stihl[-_]/, '').replace(/_/g, '-');
+    const storedName = String(target.identity.model_name || '').toLowerCase().replace(/^stihl\s+/, '').replace(/\s+/g, '-');
+    const anchorName = String(officialAnchor.officialProductName || officialAnchor.modelName || '').toLowerCase();
+
+    // Check if anchor model matches stored model
+    const isModelMatch = storedSlug === anchorCanonical ||
+                         storedName === anchorCanonical ||
+                         anchorName.includes(storedSlug) ||
+                         (storedSlug === 'ms-440' && anchorCanonical === 'ms-440');
+
+    if (isModelMatch) {
+      // Clean official enrichment
+      target.machine.serial_number = cleanSerial;
+      target.identity.identity_status = IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED;
+      target.identity.identity_source = 'OFFICIAL_STIHL_LOOKUP';
+      target.identity.official_product_name = officialAnchor.officialProductName || officialAnchor.modelName;
+      target.identity.verified_at = officialAnchor.verifiedAt || '2026-09-22';
+      target.identity.official_source = officialAnchor.source || 'MY_STIHL';
+      target.identity.canonical_model_id = officialAnchor.canonicalModelId;
+      target.identity.conflict = null;
+
+      if (factoryInfo) {
+        target.machine.factory_country = factoryInfo.country || null;
+        target.machine.factory_location = factoryInfo.location || factoryInfo.facility || null;
+      }
+
+      target.updated_at = new Date().toISOString();
+      const saveRes = saveDossier(target, storage);
+      return {
+        success: true,
+        status: 'ENRICHED_OFFICIAL',
+        officialModel: target.identity.official_product_name,
+        dossier: saveRes.dossier
+      };
+    } else {
+      // CONFLICT: e.g. stored MS 260 vs official MS 440
+      const conflictData = {
+        has_conflict: true,
+        status: 'IDENTITY_CONFLICT',
+        conflicting_serial: cleanSerial,
+        stored_model_name: target.identity.model_name,
+        stored_model_slug: target.identity.model_slug,
+        official_model_name: officialAnchor.officialProductName || officialAnchor.modelName,
+        official_canonical_id: officialAnchor.canonicalModelId,
+        official_verified_at: officialAnchor.verifiedAt || '2026-09-22',
+        detected_at: getLocalTodayString()
+      };
+
+      // NEVER silently overwrite stored model!
+      target.identity.conflict = conflictData;
+      target.updated_at = new Date().toISOString();
+      saveDossier(target, storage);
+
+      return {
+        success: false,
+        status: 'IDENTITY_CONFLICT',
+        message: 'Het ingevoerde serienummer is door STIHL gekoppeld aan een ander model.',
+        storedModel: target.identity.model_name,
+        officialModel: conflictData.official_model_name,
+        conflictingSerial: cleanSerial,
+        dossier: target
+      };
+    }
+  }
+
+  // Regular serial number enrichment (non-official anchor)
+  target.machine.serial_number = cleanSerial;
+  if (factoryInfo) {
+    target.machine.factory_country = factoryInfo.country || null;
+    target.machine.factory_location = factoryInfo.location || factoryInfo.facility || null;
+  }
+  // Historical range does NOT overwrite stored model!
+  target.identity.conflict = null;
+  target.updated_at = new Date().toISOString();
+  const saveRes = saveDossier(target, storage);
+
+  return {
+    success: true,
+    status: 'ENRICHED_SERIAL',
+    dossier: saveRes.dossier
+  };
+}
+
+/**
+ * Explicitly resolves an identity conflict on a machine dossier.
+ * Options:
+ * - 'SWITCH_TO_OFFICIAL': Accepts the official STIHL identity and switches model.
+ * - 'KEEP_STORED': Keeps the user-stored model and clears the conflicting serial attempt.
+ */
+export function resolveDossierConflict(dossierId, resolutionAction, customStorage = null) {
+  const storage = getStorage(customStorage);
+  if (!storage) return { success: false, error: 'Opslaan op dit apparaat is niet beschikbaar.' };
+
+  const existing = loadDossiers(storage);
+  const target = existing.find((d) => d.dossier_id === dossierId || d.id === dossierId);
+  if (!target) return { success: false, error: 'Dossier niet gevonden.' };
+  if (!target.identity.conflict || !target.identity.conflict.has_conflict) {
+    return { success: false, error: 'Geen actief conflict gevonden voor dit dossier.' };
+  }
+
+  const conflict = target.identity.conflict;
+
+  if (resolutionAction === 'SWITCH_TO_OFFICIAL') {
+    const newSlug = conflict.official_canonical_id ? conflict.official_canonical_id.replace(/^stihl[-_]/, '').replace(/_/g, '-') : target.identity.model_slug;
+    target.identity.model_slug = newSlug;
+    target.identity.model_name = conflict.official_model_name;
+    target.identity.official_product_name = conflict.official_model_name;
+    target.identity.verified_at = conflict.official_verified_at;
+    target.identity.canonical_model_id = conflict.official_canonical_id;
+    target.identity.identity_status = IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED;
+    target.identity.identity_source = 'OFFICIAL_STIHL_LOOKUP';
+    target.machine.serial_number = conflict.conflicting_serial;
+    target.identity.conflict = null;
+    target.updated_at = new Date().toISOString();
+    return saveDossier(target, storage);
+  }
+
+  if (resolutionAction === 'KEEP_STORED') {
+    target.identity.conflict = null;
+    target.updated_at = new Date().toISOString();
+    return saveDossier(target, storage);
+  }
+
+  return { success: false, error: 'Onbekende resolutie-actie.' };
 }

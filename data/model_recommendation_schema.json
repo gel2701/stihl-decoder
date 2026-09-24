@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StihlModelRecommendationFoundation",
+  "description": "Architectural schema separating machine identity, technical compatibility, and commercial offers for STIHL models.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "machine_identity",
+    "recommendations"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["1.0.0"]
+    },
+    "machine_identity": {
+      "type": "object",
+      "required": ["model_slug", "model_name", "category"],
+      "properties": {
+        "model_slug": { "type": "string" },
+        "model_name": { "type": "string" },
+        "category": { "type": "string" },
+        "series_code": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "recommendation_id",
+          "recommendation_type",
+          "category_slug",
+          "label",
+          "technical_compatibility",
+          "commercial_offers"
+        ],
+        "properties": {
+          "recommendation_id": { "type": "string" },
+          "recommendation_type": {
+            "type": "string",
+            "enum": [
+              "spark_plug",
+              "air_filter",
+              "fuel_filter",
+              "chain",
+              "bar",
+              "chain_oil",
+              "two_stroke_oil",
+              "filing_tool",
+              "maintenance_tool",
+              "protective_gear"
+            ]
+          },
+          "category_slug": { "type": "string" },
+          "label": { "type": "string" },
+          "technical_compatibility": {
+            "type": "object",
+            "required": [
+              "compatibility_status",
+              "display_claim",
+              "evidence_basis"
+            ],
+            "properties": {
+              "compatibility_status": {
+                "type": "string",
+                "enum": [
+                  "VERIFIED_MODEL_COMPATIBILITY",
+                  "SPECIFICATION_MATCH_ONLY",
+                  "GENERIC_CATEGORY_RECOMMENDATION",
+                  "UNVERIFIED",
+                  "CONFLICTED"
+                ]
+              },
+              "display_claim": { "type": "string" },
+              "display_guidance": { "type": "string" },
+              "evidence_basis": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "technical_spec_ref": {
+                "type": ["object", "null"],
+                "properties": {
+                  "field": { "type": "string" },
+                  "value": { "type": ["string", "number", "null"] },
+                  "unit": { "type": ["string", "null"] }
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "commercial_offers": {
+            "type": "object",
+            "required": ["offers", "disclosure_template", "offers_active"],
+            "properties": {
+              "offers_active": { "type": "boolean" },
+              "disclosure_template": { "type": "string" },
+              "offers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["merchant", "url", "title"],
+                  "properties": {
+                    "merchant": { "type": "string" },
+                    "url": { "type": "string", "format": "uri" },
+                    "title": { "type": "string" },
+                    "price_eur": { "type": ["number", "null"] },
+                    "in_stock": { "type": ["boolean", "null"] },
+                    "affiliate_network": { "type": ["string", "null"] }
+                  }
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

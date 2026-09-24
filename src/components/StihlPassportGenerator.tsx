@@ -2,31 +2,34 @@ import React, { useRef } from 'react';
 import { toPng } from 'html-to-image';
 
 export interface PassportData {
-  serialNumber: string;
+  serialNumber?: string | null;
   modelName: string;
+  categorySlug?: string | null;
+  modelSlug?: string | null;
   country: string;
   productionYears: string;
   powerHp?: number | null;
   powerKw?: number | null;
   displacementCc?: number | null;
   chainInfo?: string;
-  theftCheck: {
+  theftCheck?: {
     isStolen?: boolean;
     userSelfReported?: boolean;
     checkedAt: string;
     statusLabel: string;
-  };
+  } | null;
 }
 
 export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data }) => {
   const passportRef = useRef<HTMLDivElement>(null);
+  const hasSerial = Boolean(data.serialNumber && data.serialNumber.trim());
 
   const downloadImage = async () => {
     if (!passportRef.current) return;
     try {
       const dataUrl = await toPng(passportRef.current, { quality: 0.95, pixelRatio: 2 });
       const link = document.createElement('a');
-      link.download = `stihl-serienummer-rapport-${data.serialNumber}.png`;
+      link.download = `stihl-machinepaspoort-${data.serialNumber || 'model'}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -35,7 +38,10 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
   };
 
   const isSelfReported = data.theftCheck ? Boolean(data.theftCheck.userSelfReported) : false;
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://www.stihldecoder.nl/?s=' + data.serialNumber)}`;
+  const publicTargetUrl = hasSerial
+    ? `https://www.stihldecoder.nl/?s=${encodeURIComponent(data.serialNumber || '')}`
+    : `https://www.stihldecoder.nl/${data.categorySlug || 'modellen'}/${data.modelSlug || ''}`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicTargetUrl)}`;
   const technicalRows = [
     data.displacementCc ? `${data.displacementCc} cc` : null,
     data.powerKw ? `${data.powerKw} kW` : (data.powerHp ? `${data.powerHp} pk` : null),
@@ -51,18 +57,18 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
       >
         {/* Subtiel gloei-effect */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
-        
+
         {/* Header */}
         <div className="flex justify-between items-start border-b border-neutral-800/80 pb-4">
           <div>
             <span className="text-[11px] font-mono uppercase tracking-widest text-orange-500 font-bold">
-              Serienummer Rapport (indicatief)
+              STIHL Machinepaspoort
             </span>
             <h2 className="text-3xl font-black tracking-tight text-white mt-0.5">{data.modelName}</h2>
           </div>
           <div className="flex flex-col items-end gap-1">
             <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wider">
-              INDICATIEF OVERZICHT
+              {hasSerial ? 'INDICATIEF OVERZICHT' : 'MODELPASPOORT'}
             </span>
           </div>
         </div>

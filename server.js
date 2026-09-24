@@ -77,9 +77,11 @@ const PUBLIC_EXACT_FILES = new Set([
   '/components/tools/GietklokHelper.js',
   '/src/components/StihlPassportGenerator.js',
   '/src/components/MachineDossierManager.js',
+  '/src/components/AnalyticsTracker.js',
   '/src/categoryWhitelist.js',
   '/src/driveClassification.js',
-  '/src/globalModelSearch.js'
+  '/src/globalModelSearch.js',
+  '/src/modelRecommendations.js'
 ]);
 
 const rateLimitMap = new Map();
@@ -497,8 +499,8 @@ const server = http.createServer(async (req, res) => {
     }
 
     const auditReport = generateSeoAuditReport(database, PRIMARY_ORIGIN);
-    res.writeHead(200, { 
-      'Content-Type': 'application/json; charset=UTF-8', 
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=UTF-8',
       'X-Robots-Tag': 'noindex, nofollow',
       'Access-Control-Allow-Origin': '*'
     });
