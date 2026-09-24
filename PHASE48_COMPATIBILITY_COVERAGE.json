@@ -1,0 +1,644 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-24T22:28:58.978Z",
+  "phase": "48",
+  "total_pilot_models": 8,
+  "summary": {
+    "total_recommendations": 88,
+    "total_verified": 26,
+    "total_specification_match": 36,
+    "total_generic_recommendations": 24,
+    "total_unverified": 2,
+    "total_oem_part_numbers": 24,
+    "total_commercial_offers": 0,
+    "total_active_affiliate_offers": 0,
+    "status_flags": {
+      "TECHNICAL_DATA_READY": true,
+      "COMMERCIAL_DATA_READY": true,
+      "AFFILIATE_LINKS_ACTIVE": false,
+      "DISCLOSURE_ACTIVE": false,
+      "ANALYTICS_READY": true
+    }
+  },
+  "models": {
+    "ms-170": {
+      "model_slug": "ms-170",
+      "model_name": "MS 170",
+      "series_code": "1130",
+      "verified_categories": [
+        "spark_plug",
+        "chain",
+        "bar"
+      ],
+      "specification_match_categories": [
+        "air_filter",
+        "fuel_filter",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms170_chain_30cm",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "drive_links": 44,
+          "bar_length_cm": 30,
+          "oem_part_number": "3610 000 0044",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms170_chain_35cm",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "drive_links": 50,
+          "bar_length_cm": 35,
+          "oem_part_number": "3610 000 0050",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms170_bar_30cm",
+          "mount_type": "3005 (STIHL Small Mount)",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "oem_part_number": "3005 000 3905",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms170_bar_35cm",
+          "mount_type": "3005 (STIHL Small Mount)",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "oem_part_number": "3005 000 3909",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3610 000 0044",
+          "category": "chain",
+          "title": "Bewezen ketting 30 cm (3/8\" P — 1,1 mm — 44L)"
+        },
+        {
+          "part_number": "3610 000 0050",
+          "category": "chain",
+          "title": "Bewezen ketting 35 cm (3/8\" P — 1,1 mm — 50L)"
+        },
+        {
+          "part_number": "3005 000 3905",
+          "category": "bar",
+          "title": "Bewezen zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+        },
+        {
+          "part_number": "3005 000 3909",
+          "category": "bar",
+          "title": "Bewezen zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-180": {
+      "model_slug": "ms-180",
+      "model_name": "MS 180",
+      "series_code": "1130",
+      "verified_categories": [
+        "spark_plug",
+        "chain",
+        "bar"
+      ],
+      "specification_match_categories": [
+        "air_filter",
+        "fuel_filter",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms180_chain_35cm",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "drive_links": 50,
+          "bar_length_cm": 35,
+          "oem_part_number": "3610 000 0050",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms180_chain_30cm",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "drive_links": 44,
+          "bar_length_cm": 30,
+          "oem_part_number": "3610 000 0044",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms180_bar_35cm",
+          "mount_type": "3005 (STIHL Small Mount)",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "oem_part_number": "3005 000 3909",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms180_bar_30cm",
+          "mount_type": "3005 (STIHL Small Mount)",
+          "pitch": "3/8\" P",
+          "gauge_mm": 1.1,
+          "oem_part_number": "3005 000 3905",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3610 000 0050",
+          "category": "chain",
+          "title": "Bewezen ketting 35 cm (3/8\" P — 1,1 mm — 50L)"
+        },
+        {
+          "part_number": "3610 000 0044",
+          "category": "chain",
+          "title": "Bewezen ketting 30 cm (3/8\" P — 1,1 mm — 44L)"
+        },
+        {
+          "part_number": "3005 000 3909",
+          "category": "bar",
+          "title": "Bewezen zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+        },
+        {
+          "part_number": "3005 000 3905",
+          "category": "bar",
+          "title": "Bewezen zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-251": {
+      "model_slug": "ms-251",
+      "model_name": "MS 251",
+      "series_code": "1143",
+      "verified_categories": [
+        "spark_plug",
+        "chain",
+        "bar"
+      ],
+      "specification_match_categories": [
+        "air_filter",
+        "fuel_filter",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms251_chain_35cm",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "drive_links": 62,
+          "bar_length_cm": 35,
+          "oem_part_number": "3639 000 0062",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms251_chain_40cm",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "drive_links": 67,
+          "bar_length_cm": 40,
+          "oem_part_number": "3639 000 0067",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms251_bar_35cm",
+          "mount_type": "3005 (STIHL Small Mount)",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3005 000 4709",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms251_bar_40cm",
+          "mount_type": "3005 (STIHL Small Mount)",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3005 000 4713",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3639 000 0062",
+          "category": "chain",
+          "title": "Bewezen ketting 35 cm (.325\" — 1,6 mm — 62L)"
+        },
+        {
+          "part_number": "3639 000 0067",
+          "category": "chain",
+          "title": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L)"
+        },
+        {
+          "part_number": "3005 000 4709",
+          "category": "bar",
+          "title": "Bewezen zaagblad 35 cm Rollomatic E (.325\" — 1,6 mm)"
+        },
+        {
+          "part_number": "3005 000 4713",
+          "category": "bar",
+          "title": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-260": {
+      "model_slug": "ms-260",
+      "model_name": "MS 260",
+      "series_code": "1121",
+      "verified_categories": [
+        "spark_plug",
+        "chain",
+        "bar"
+      ],
+      "specification_match_categories": [
+        "air_filter",
+        "fuel_filter",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms260_chain_40cm",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "drive_links": 67,
+          "bar_length_cm": 40,
+          "oem_part_number": "3639 000 0067",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms260_bar_40cm",
+          "mount_type": "3003 (STIHL Medium Mount)",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3003 000 6813",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3639 000 0067",
+          "category": "chain",
+          "title": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L)"
+        },
+        {
+          "part_number": "3003 000 6813",
+          "category": "bar",
+          "title": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-261": {
+      "model_slug": "ms-261",
+      "model_name": "MS 261",
+      "series_code": "1141",
+      "verified_categories": [
+        "spark_plug",
+        "chain",
+        "bar"
+      ],
+      "specification_match_categories": [
+        "air_filter",
+        "fuel_filter",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms261_chain_40cm_light04",
+          "pitch": ".325\"",
+          "gauge_mm": 1.3,
+          "drive_links": 67,
+          "bar_length_cm": 40,
+          "oem_part_number": "3690 000 0067",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms261_chain_40cm_std",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "drive_links": 67,
+          "bar_length_cm": 40,
+          "oem_part_number": "3639 000 0067",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms261_bar_40cm_light04",
+          "mount_type": "3003 (STIHL Medium Mount)",
+          "pitch": ".325\"",
+          "gauge_mm": 1.3,
+          "oem_part_number": "3003 000 3313",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        },
+        {
+          "recommendation_id": "compat_ms261_bar_40cm_rollomatic",
+          "mount_type": "3003 (STIHL Medium Mount)",
+          "pitch": ".325\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3003 000 6813",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3690 000 0067",
+          "category": "chain",
+          "title": "Bewezen ketting 40 cm (.325\" — 1,3 mm — 67L Light 04)"
+        },
+        {
+          "part_number": "3639 000 0067",
+          "category": "chain",
+          "title": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L Standaard)"
+        },
+        {
+          "part_number": "3003 000 3313",
+          "category": "bar",
+          "title": "Bewezen zaagblad 40 cm Light 04 (.325\" — 1,3 mm)"
+        },
+        {
+          "part_number": "3003 000 6813",
+          "category": "bar",
+          "title": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-362": {
+      "model_slug": "ms-362",
+      "model_name": "MS 362",
+      "series_code": "1140",
+      "verified_categories": [],
+      "specification_match_categories": [
+        "spark_plug",
+        "air_filter",
+        "fuel_filter",
+        "chain",
+        "bar",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms362_chain_45cm",
+          "pitch": "3/8\"",
+          "gauge_mm": 1.6,
+          "drive_links": 66,
+          "bar_length_cm": 45,
+          "oem_part_number": "3621 000 0066",
+          "status": "SPECIFICATION_MATCH_ONLY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms362_bar_45cm",
+          "mount_type": "3003 (STIHL Medium Mount)",
+          "pitch": "3/8\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3003 000 5217",
+          "status": "SPECIFICATION_MATCH_ONLY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3621 000 0066",
+          "category": "chain",
+          "title": "Specificatiematch 45 cm (3/8\" — 1,6 mm — 66L)"
+        },
+        {
+          "part_number": "3003 000 5217",
+          "category": "bar",
+          "title": "Specificatiematch 45 cm Rollomatic E (3/8\" — 1,6 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-440": {
+      "model_slug": "ms-440",
+      "model_name": "MS 440",
+      "series_code": "1128",
+      "verified_categories": [
+        "spark_plug",
+        "chain",
+        "bar"
+      ],
+      "specification_match_categories": [
+        "air_filter",
+        "fuel_filter",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms440_chain_50cm",
+          "pitch": "3/8\"",
+          "gauge_mm": 1.6,
+          "drive_links": 72,
+          "bar_length_cm": 50,
+          "oem_part_number": "3621 000 0072",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms440_bar_50cm",
+          "mount_type": "3003 (STIHL Medium Mount)",
+          "pitch": "3/8\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3003 000 5221",
+          "status": "VERIFIED_MODEL_COMPATIBILITY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3621 000 0072",
+          "category": "chain",
+          "title": "Bewezen ketting 50 cm (3/8\" — 1,6 mm — 72L)"
+        },
+        {
+          "part_number": "3003 000 5221",
+          "category": "bar",
+          "title": "Bewezen zaagblad 50 cm Rollomatic E / ES (3/8\" — 1,6 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    },
+    "ms-462": {
+      "model_slug": "ms-462",
+      "model_name": "MS 462 C-M",
+      "series_code": "1142",
+      "verified_categories": [],
+      "specification_match_categories": [
+        "spark_plug",
+        "chain",
+        "bar",
+        "filing_tool",
+        "maintenance_tool"
+      ],
+      "generic_categories": [
+        "chain_oil",
+        "two_stroke_oil",
+        "protective_gear"
+      ],
+      "unverified_categories": [
+        "air_filter",
+        "fuel_filter"
+      ],
+      "chain_configurations": [
+        {
+          "recommendation_id": "compat_ms462_chain_50cm",
+          "pitch": "3/8\"",
+          "gauge_mm": 1.6,
+          "drive_links": 72,
+          "bar_length_cm": 50,
+          "oem_part_number": "3621 000 0072",
+          "status": "SPECIFICATION_MATCH_ONLY"
+        }
+      ],
+      "guide_bar_configurations": [
+        {
+          "recommendation_id": "compat_ms462_bar_50cm",
+          "mount_type": "3003 (STIHL Medium Mount)",
+          "pitch": "3/8\"",
+          "gauge_mm": 1.6,
+          "oem_part_number": "3003 000 9421",
+          "status": "SPECIFICATION_MATCH_ONLY"
+        }
+      ],
+      "oem_part_numbers": [
+        {
+          "part_number": "3621 000 0072",
+          "category": "chain",
+          "title": "Specificatiematch 50 cm (3/8\" — 1,6 mm — 72L)"
+        },
+        {
+          "part_number": "3003 000 9421",
+          "category": "bar",
+          "title": "Specificatiematch 50 cm Rollomatic ES (3/8\" — 1,6 mm)"
+        }
+      ],
+      "commercial_offers_count": 0,
+      "active_affiliate_offers_count": 0,
+      "readiness_flags": {
+        "TECHNICAL_DATA_READY": true,
+        "COMMERCIAL_DATA_READY": true,
+        "AFFILIATE_LINKS_ACTIVE": false,
+        "DISCLOSURE_ACTIVE": false,
+        "ANALYTICS_READY": true
+      }
+    }
+  }
+}

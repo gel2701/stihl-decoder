@@ -41,7 +41,7 @@ export const EVENT_TYPES = {
   INTERNAL_MODEL_SEARCH: 'internal_model_search'
 };
 
-const WHITELISTED_METADATA_KEYS = [
+export const WHITELISTED_METADATA_KEYS = [
   'model_slug',
   'category',
   'source_page',
@@ -53,7 +53,11 @@ const WHITELISTED_METADATA_KEYS = [
   'model',
   'recommendation_type',
   'compatibility_status',
-  'conflict_type'
+  'conflict_type',
+  'recommendation_id',
+  'merchant_id',
+  'offer_id',
+  'placement'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

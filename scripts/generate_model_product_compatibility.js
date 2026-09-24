@@ -1,0 +1,1516 @@
+/**
+ * scripts/generate_model_product_compatibility.js
+ * Generates the canonical Phase 48 compatibility dataset for STIHLDecoder.nl.
+ */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+const db = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
+const evData = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'public_evidence_facts.json'), 'utf8'));
+const facts = Array.isArray(evData.facts) ? evData.facts : Object.values(evData.facts || {});
+
+const compatibilityData = {
+  schema_version: '1.0.0',
+  generated_at: '2026-09-25T00:00:00.000Z',
+  phase: '48',
+  policy: {
+    three_layer_separation: true,
+    no_merchant_compatibility_mutation: true,
+    unmonetized_baseline: true,
+    canonical_evidence_required_for_verified: true
+  },
+  models: {
+    'ms-170': {
+      machine_identity: {
+        model_slug: 'ms-170',
+        model_name: 'MS 170',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1130',
+        canonical_model_id: 'stihl_ms_170'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms170_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Geschikt voor jouw STIHL MS 170',
+            display_guidance: 'Fabrieksspecificatie: Bosch WSR 6 F of NGK BPMR 7 A (elektrodenafstand 0,5 mm).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-207-8321-B'],
+            evidence_fact_ids: ['b4ddfa891c796d8c', 'e22c259a3c45676b'],
+            specification: {
+              field: 'spark_plug',
+              value: 'Bosch WSR 6 F / NGK BPMR 7 A',
+              gap_mm: 0.5,
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms170_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Filtertype afhankelijk van motoruitvoering (2-MIX vs eerdere modellen)',
+            display_guidance: 'Service Kit 45 (1130 007 4103) voor 2-MIX motoren; Service Kit 6 (1130 007 4100) voor eerdere modellen. Controleer machinenummer.',
+            evidence_basis: ['OFFICIAL_SERVICE_KIT_CATALOG', '1130_007_4103', '1130_007_4100'],
+            evidence_fact_ids: [],
+            specification: {
+              field: 'air_filter',
+              oem_part_numbers: ['1130 007 4103', '1130 007 4100'],
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms170_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL brandstoffilter vilt',
+            display_guidance: 'Opgenomen in Service Kit 45 en Service Kit 6.',
+            evidence_basis: ['SERVICE_KIT_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: {
+              field: 'fuel_filter',
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms170_chain_30cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 30 cm (3/8" P — 1,1 mm — 44L)',
+            display_guidance: 'STIHL Picco Micro Mini 3 (61 PMM3). 44 aandrijfschakels voor 30 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'chain: 3/8" P @ 1.1 mm (44L)', 'oem: 3610 000 0044'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms170_chain_30cm_38p_11_44',
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              drive_links: 44,
+              guide_bar_length_cm: 30,
+              oem_part_number: '3610 000 0044',
+              chain_type: 'Picco Micro Mini 3 (61 PMM3)'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms170_chain_35cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 35 cm (3/8" P — 1,1 mm — 50L)',
+            display_guidance: 'STIHL Picco Micro Mini 3 (61 PMM3). 50 aandrijfschakels voor 35 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'chain: 3/8" P @ 1.1 mm (50L)', 'oem: 3610 000 0050'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms170_chain_35cm_38p_11_50',
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              drive_links: 50,
+              guide_bar_length_cm: 35,
+              oem_part_number: '3610 000 0050',
+              chain_type: 'Picco Micro Mini 3 (61 PMM3)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms170_bar_30cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 30 cm Rollomatic E Mini (3/8" P — 1,1 mm)',
+            display_guidance: 'STIHL Rollomatic E Mini zaagblad, 30 cm, aansluiting 3005. Combineer met ketting 3610 000 0044 (44L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'bar: 30cm Rollomatic E Mini', 'oem: 3005 000 3905'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 30,
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              mount_type: '3005 (STIHL Small Mount)',
+              oem_part_number: '3005 000 3905',
+              bar_type: 'Rollomatic E Mini',
+              compatible_chain_configuration_id: 'ms170_chain_30cm_38p_11_44'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms170_bar_35cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 35 cm Rollomatic E Mini (3/8" P — 1,1 mm)',
+            display_guidance: 'STIHL Rollomatic E Mini zaagblad, 35 cm, aansluiting 3005. Combineer met ketting 3610 000 0050 (50L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'bar: 35cm Rollomatic E Mini', 'oem: 3005 000 3909'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 35,
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              mount_type: '3005 (STIHL Small Mount)',
+              oem_part_number: '3005 000 3909',
+              bar_type: 'Rollomatic E Mini',
+              compatible_chain_configuration_id: 'ms170_chain_35cm_38p_11_50'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms170_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor kettingzaagtoepassingen',
+            display_guidance: 'Gebruik hechtolie voor zaagkettingen met goede viscositeit (bv. STIHL SynthPlus).',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms170_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms170_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 4,0 mm passend bij 3/8" P steek',
+            display_guidance: 'Gebruik een 4,0 mm ronde vijl voor 3/8" Picco kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 4.0, pitch: '3/8" P' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms170_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL MS 170 kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms170_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek, veiligheidsbril, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-180': {
+      machine_identity: {
+        model_slug: 'ms-180',
+        model_name: 'MS 180',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1130',
+        canonical_model_id: 'stihl_ms_180'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms180_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Geschikt voor jouw STIHL MS 180',
+            display_guidance: 'Fabrieksspecificatie: Bosch WSR 6 F of NGK BPMR 7 A (elektrodenafstand 0,5 mm).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-207-8321-B'],
+            evidence_fact_ids: ['b20a69a4c3177653', 'ac718952757a799e'],
+            specification: {
+              field: 'spark_plug',
+              value: 'Bosch WSR 6 F / NGK BPMR 7 A',
+              gap_mm: 0.5,
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms180_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Filtertype afhankelijk van motoruitvoering (2-MIX vs eerdere modellen)',
+            display_guidance: 'Service Kit 45 (1130 007 4103) voor 2-MIX motoren; Service Kit 6 (1130 007 4100) voor eerdere modellen.',
+            evidence_basis: ['OFFICIAL_SERVICE_KIT_CATALOG'],
+            evidence_fact_ids: [],
+            specification: {
+              field: 'air_filter',
+              oem_part_numbers: ['1130 007 4103', '1130 007 4100'],
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms180_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL brandstoffilter vilt',
+            display_guidance: 'Opgenomen in Service Kit 45 en Service Kit 6.',
+            evidence_basis: ['SERVICE_KIT_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: { field: 'fuel_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms180_chain_35cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 35 cm (3/8" P — 1,1 mm — 50L)',
+            display_guidance: 'STIHL Picco Micro Mini 3 (61 PMM3). 50 aandrijfschakels voor 35 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', 'chain_pitch: 3/8" P', 'fact_id: 77e694a1fe71c2c8', 'oem: 3610 000 0050'],
+            evidence_fact_ids: ['77e694a1fe71c2c8'],
+            specification: {
+              configuration_id: 'ms180_chain_35cm_38p_11_50',
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              drive_links: 50,
+              guide_bar_length_cm: 35,
+              oem_part_number: '3610 000 0050',
+              chain_type: 'Picco Micro Mini 3 (61 PMM3)'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms180_chain_30cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 30 cm (3/8" P — 1,1 mm — 44L)',
+            display_guidance: 'STIHL Picco Micro Mini 3 (61 PMM3). 44 aandrijfschakels voor 30 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', 'chain_pitch: 3/8" P', 'oem: 3610 000 0044'],
+            evidence_fact_ids: ['77e694a1fe71c2c8'],
+            specification: {
+              configuration_id: 'ms180_chain_30cm_38p_11_44',
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              drive_links: 44,
+              guide_bar_length_cm: 30,
+              oem_part_number: '3610 000 0044',
+              chain_type: 'Picco Micro Mini 3 (61 PMM3)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms180_bar_35cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 35 cm Rollomatic E Mini (3/8" P — 1,1 mm)',
+            display_guidance: 'STIHL Rollomatic E Mini, 35 cm, aansluiting 3005. Combineer met ketting 3610 000 0050 (50L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'oem: 3005 000 3909'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 35,
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              mount_type: '3005 (STIHL Small Mount)',
+              oem_part_number: '3005 000 3909',
+              bar_type: 'Rollomatic E Mini',
+              compatible_chain_configuration_id: 'ms180_chain_35cm_38p_11_50'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms180_bar_30cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 30 cm Rollomatic E Mini (3/8" P — 1,1 mm)',
+            display_guidance: 'STIHL Rollomatic E Mini, 30 cm, aansluiting 3005. Combineer met ketting 3610 000 0044 (44L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'oem: 3005 000 3905'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 30,
+              pitch: '3/8" P',
+              gauge_mm: 1.1,
+              mount_type: '3005 (STIHL Small Mount)',
+              oem_part_number: '3005 000 3905',
+              bar_type: 'Rollomatic E Mini',
+              compatible_chain_configuration_id: 'ms180_chain_30cm_38p_11_44'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms180_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor kettingzaagtoepassingen',
+            display_guidance: 'Gebruik kwalitatieve hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms180_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms180_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 4,0 mm passend bij 3/8" P steek',
+            display_guidance: 'Gebruik een 4,0 mm ronde vijl voor 3/8" Picco kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 4.0, pitch: '3/8" P' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms180_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL MS 180 kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms180_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek, veiligheidsbril, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-251': {
+      machine_identity: {
+        model_slug: 'ms-251',
+        model_name: 'MS 251',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1143',
+        canonical_model_id: 'stihl_ms_251'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms251_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Geschikt voor jouw STIHL MS 251',
+            display_guidance: 'Fabrieksspecificatie: NGK CMR 6 H of Bosch USR 4AC (elektrodenafstand 0,5 mm).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-737-5521-C', 'page: 42'],
+            evidence_fact_ids: ['a0531b56c2e3792c', 'dc33c71e02cd95d9'],
+            specification: {
+              field: 'spark_plug',
+              value: 'NGK CMR 6 H',
+              gap_mm: 0.5,
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms251_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Vlies-luchtfilter voor serie 1143 (MS 231 / MS 251)',
+            display_guidance: 'Onderdeel van STIHL Service Kit 15 (OEM 1143 007 4100).',
+            evidence_basis: ['OFFICIAL_SERVICE_KIT_CATALOG', '1143_007_4100'],
+            evidence_fact_ids: [],
+            specification: {
+              field: 'air_filter',
+              oem_part_numbers: ['1143 007 4100'],
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms251_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL vilt brandstoffilter',
+            display_guidance: 'Opgenomen in Service Kit 15 (1143 007 4100).',
+            evidence_basis: ['SERVICE_KIT_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: { field: 'fuel_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms251_chain_35cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 35 cm (.325" — 1,6 mm — 62L)',
+            display_guidance: 'STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 62 aandrijfschakels voor 35 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-737-5521-C', 'section: 33.6.5', 'oem: 3639 000 0062'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms251_chain_35cm_325_16_62',
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              drive_links: 62,
+              guide_bar_length_cm: 35,
+              oem_part_number: '3639 000 0062',
+              chain_type: 'Rapid Super (26 RS)'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms251_chain_40cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 40 cm (.325" — 1,6 mm — 67L)',
+            display_guidance: 'STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 67 aandrijfschakels voor 40 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-737-5521-C', 'section: 33.6.5', 'oem: 3639 000 0067'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms251_chain_40cm_325_16_67',
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              drive_links: 67,
+              guide_bar_length_cm: 40,
+              oem_part_number: '3639 000 0067',
+              chain_type: 'Rapid Super (26 RS)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms251_bar_35cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 35 cm Rollomatic E (.325" — 1,6 mm)',
+            display_guidance: 'STIHL Rollomatic E zaagblad, 35 cm, aansluiting 3005. Combineer met ketting 3639 000 0062 (62L).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-737-5521-C', 'section: 33.6.2', 'oem: 3005 000 4709'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 35,
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              mount_type: '3005 (STIHL Small Mount)',
+              oem_part_number: '3005 000 4709',
+              bar_type: 'Rollomatic E',
+              compatible_chain_configuration_id: 'ms251_chain_35cm_325_16_62'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms251_bar_40cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 40 cm Rollomatic E (.325" — 1,6 mm)',
+            display_guidance: 'STIHL Rollomatic E zaagblad, 40 cm, aansluiting 3005. Combineer met ketting 3639 000 0067 (67L).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-737-5521-C', 'section: 33.6.2', 'oem: 3005 000 4713'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 40,
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              mount_type: '3005 (STIHL Small Mount)',
+              oem_part_number: '3005 000 4713',
+              bar_type: 'Rollomatic E',
+              compatible_chain_configuration_id: 'ms251_chain_40cm_325_16_67'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms251_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor kettingzaagtoepassingen',
+            display_guidance: 'Gebruik kwalitatieve hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms251_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms251_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 4,8 mm passend bij .325" steek',
+            display_guidance: 'Gebruik een 4,8 mm ronde vijl voor .325" zaagkettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 4.8, pitch: '.325"' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms251_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL MS 251 kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms251_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek, veiligheidsbril, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-260': {
+      machine_identity: {
+        model_slug: 'ms-260',
+        model_name: 'MS 260',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1121',
+        canonical_model_id: 'stihl_ms_260'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms260_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Geschikt voor jouw STIHL MS 260',
+            display_guidance: 'Fabrieksspecificatie: Bosch WSR 6 F of NGK BPMR 7 A (elektrodenafstand 0,5 mm).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', 'STIHL technische dataset'],
+            evidence_fact_ids: ['b7c01f81612dcee5', '9daa52807138d128'],
+            specification: {
+              field: 'spark_plug',
+              value: 'BOSCH WSR 6 F / NGK BPMR 7 A',
+              gap_mm: 0.5,
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms260_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Filtertype voor STIHL MS 260 (vilt of gaas)',
+            display_guidance: 'Controleer of jouw machine een vilt- of gaasfilter gebruikt.',
+            evidence_basis: ['MODEL_SERIES_MATCH', 'series_1121'],
+            evidence_fact_ids: [],
+            specification: { field: 'air_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms260_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL brandstoffilter vilt',
+            display_guidance: 'Vervang het brandstoffilter regelmatig.',
+            evidence_basis: ['SERVICE_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: { field: 'fuel_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms260_chain_40cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 40 cm (.325" — 1,6 mm — 67L)',
+            display_guidance: 'STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 67 aandrijfschakels voor 40 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'chain: .325" @ 1.6 mm (67L)', 'oem: 3639 000 0067'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms260_chain_40cm_325_16_67',
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              drive_links: 67,
+              guide_bar_length_cm: 40,
+              oem_part_number: '3639 000 0067',
+              chain_type: 'Rapid Super (26 RS)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms260_bar_40cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 40 cm Rollomatic E (.325" — 1,6 mm)',
+            display_guidance: 'STIHL Rollomatic E zaagblad, 40 cm, aansluiting 3003. Combineer met ketting 3639 000 0067 (67L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'oem: 3003 000 6813'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 40,
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              mount_type: '3003 (STIHL Medium Mount)',
+              oem_part_number: '3003 000 6813',
+              bar_type: 'Rollomatic E',
+              compatible_chain_configuration_id: 'ms260_chain_40cm_325_16_67'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms260_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor kettingzaagtoepassingen',
+            display_guidance: 'Gebruik kwalitatieve hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms260_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms260_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 4,8 mm passend bij .325" steek',
+            display_guidance: 'Gebruik een 4,8 mm ronde vijl voor .325" kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 4.8, pitch: '.325"' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms260_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL MS 260 kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms260_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek, veiligheidsbril, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-261': {
+      machine_identity: {
+        model_slug: 'ms-261',
+        model_name: 'MS 261',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1141',
+        canonical_model_id: 'stihl_ms_261'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms261_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Geschikt voor jouw STIHL MS 261',
+            display_guidance: 'Fabrieksspecificatie: Bosch WSR 6 F of NGK BPMR 7 A (elektrodenafstand 0,5 mm).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0458-573-1521-C'],
+            evidence_fact_ids: ['6ccb7c0711129aaa', '1d4aa3cb80ed9f20'],
+            specification: {
+              field: 'spark_plug',
+              value: 'Bosch WSR 6 F / NGK BPMR 7 A',
+              gap_mm: 0.5,
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms261_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'HD2 ronde luchtfilter voor serie 1141 (MS 261 / MS 261 C-M)',
+            display_guidance: 'Onderdeel van STIHL Service Kit 11 (OEM 1140 007 4101).',
+            evidence_basis: ['OFFICIAL_SERVICE_KIT_CATALOG', '1140_007_4101'],
+            evidence_fact_ids: [],
+            specification: {
+              field: 'air_filter',
+              oem_part_numbers: ['1140 007 4101'],
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms261_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL brandstoffilter vilt',
+            display_guidance: 'Opgenomen in Service Kit 11 (1140 007 4101).',
+            evidence_basis: ['SERVICE_KIT_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: { field: 'fuel_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms261_chain_40cm_light04',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 40 cm (.325" — 1,3 mm — 67L Light 04)',
+            display_guidance: 'STIHL 23 RS Pro (Rapid Super Pro) of 23 RM3 Pro. 67 aandrijfschakels voor 40 cm Light 04 zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', 'chain_pitch: .325"', 'fact_id: 793b16cb7e446918', 'oem: 3690 000 0067'],
+            evidence_fact_ids: ['793b16cb7e446918'],
+            specification: {
+              configuration_id: 'ms261_chain_40cm_325_13_67',
+              pitch: '.325"',
+              gauge_mm: 1.3,
+              drive_links: 67,
+              guide_bar_length_cm: 40,
+              oem_part_number: '3690 000 0067',
+              chain_type: 'Rapid Super Pro (23 RS Pro)'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms261_chain_40cm_std',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 40 cm (.325" — 1,6 mm — 67L Standaard)',
+            display_guidance: 'STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 67 aandrijfschakels voor 40 cm standaard zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', 'chain_pitch: .325"', 'fact_id: 793b16cb7e446918', 'oem: 3639 000 0067'],
+            evidence_fact_ids: ['793b16cb7e446918'],
+            specification: {
+              configuration_id: 'ms261_chain_40cm_325_16_67',
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              drive_links: 67,
+              guide_bar_length_cm: 40,
+              oem_part_number: '3639 000 0067',
+              chain_type: 'Rapid Super (26 RS)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms261_bar_40cm_light04',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 40 cm Light 04 (.325" — 1,3 mm)',
+            display_guidance: 'STIHL Light 04 zaagblad, 40 cm, aansluiting 3003. Combineer met ketting 3690 000 0067 (67L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'oem: 3003 000 3313'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 40,
+              pitch: '.325"',
+              gauge_mm: 1.3,
+              mount_type: '3003 (STIHL Medium Mount)',
+              oem_part_number: '3003 000 3313',
+              bar_type: 'Light 04',
+              compatible_chain_configuration_id: 'ms261_chain_40cm_325_13_67'
+            },
+            commercial_offers: []
+          },
+          {
+            recommendation_id: 'compat_ms261_bar_40cm_rollomatic',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 40 cm Rollomatic E (.325" — 1,6 mm)',
+            display_guidance: 'STIHL Rollomatic E zaagblad, 40 cm, aansluiting 3003. Combineer met ketting 3639 000 0067 (67L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'oem: 3003 000 6813'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 40,
+              pitch: '.325"',
+              gauge_mm: 1.6,
+              mount_type: '3003 (STIHL Medium Mount)',
+              oem_part_number: '3003 000 6813',
+              bar_type: 'Rollomatic E',
+              compatible_chain_configuration_id: 'ms261_chain_40cm_325_16_67'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms261_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor professionele kettingzaagtoepassingen',
+            display_guidance: 'Gebruik kwalitatieve hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms261_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms261_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 4,8 mm passend bij .325" steek',
+            display_guidance: 'Gebruik een 4,8 mm ronde vijl voor .325" kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 4.8, pitch: '.325"' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms261_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL MS 261 kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms261_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek klasse 1, veiligheidshelm, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-362': {
+      machine_identity: {
+        model_slug: 'ms-362',
+        model_name: 'MS 362',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1140',
+        canonical_model_id: 'stihl_ms_362'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms362_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Specificatiematch: Bosch WSR 6 F / NGK BPMR 7 A',
+            display_guidance: 'Opgegeven type in STIHL werkplaatshandboeken. Controleer typeplaatje of handleiding vóór installatie.',
+            evidence_basis: ['SPECIFICATION_MATCH_WITHOUT_VERIFIED_DOCUMENT_EVIDENCE'],
+            evidence_fact_ids: [],
+            specification: { field: 'spark_plug', value: 'Bosch WSR 6 F / NGK BPMR 7 A', gap_mm: 0.5, unit: null },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms362_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'HD2 ronde luchtfilter voor serie 1140',
+            display_guidance: 'Onderdeel van Service Kit 11 (1140 007 4101) of Service Kit 10 (1140 007 4100). Controleer machinenummer.',
+            evidence_basis: ['SERVICE_KIT_CATALOG', '1140_007_4101'],
+            evidence_fact_ids: [],
+            specification: { field: 'air_filter', oem_part_numbers: ['1140 007 4101'], unit: null },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms362_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL vilt brandstoffilter',
+            display_guidance: 'Opgenomen in Service Kit 11.',
+            evidence_basis: ['SERVICE_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: { field: 'fuel_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms362_chain_45cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Specificatiematch 45 cm (3/8" — 1,6 mm — 66L)',
+            display_guidance: 'Standaardconfiguratie voor MS 362. Controleer aantal aandrijfschakels van het gemonteerde zaagblad.',
+            evidence_basis: ['SPECIFICATION_MATCH_ONLY', 'pitch: 3/8"', 'gauge: 1.6 mm', 'drive_links: 66'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms362_chain_45cm_38_16_66',
+              pitch: '3/8"',
+              gauge_mm: 1.6,
+              drive_links: 66,
+              guide_bar_length_cm: 45,
+              oem_part_number: '3621 000 0066',
+              chain_type: 'Rapid Super (36 RS)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms362_bar_45cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Specificatiematch 45 cm Rollomatic E (3/8" — 1,6 mm)',
+            display_guidance: 'STIHL Rollomatic E zaagblad, 45 cm, aansluiting 3003.',
+            evidence_basis: ['SPECIFICATION_MATCH_ONLY', 'oem: 3003 000 5217'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 45,
+              pitch: '3/8"',
+              gauge_mm: 1.6,
+              mount_type: '3003 (STIHL Medium Mount)',
+              oem_part_number: '3003 000 5217',
+              bar_type: 'Rollomatic E'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms362_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor kettingzaagtoepassingen',
+            display_guidance: 'Gebruik hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms362_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms362_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 5,2 mm passend bij 3/8" steek',
+            display_guidance: 'Gebruik een 5,2 mm ronde vijl voor 3/8" Rapid kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 5.2, pitch: '3/8"' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms362_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms362_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek klasse 1, veiligheidshelm, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-440': {
+      machine_identity: {
+        model_slug: 'ms-440',
+        model_name: 'MS 440',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1128',
+        canonical_model_id: 'stihl_ms_440'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms440_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Geschikt voor jouw STIHL MS 440',
+            display_guidance: 'Fabrieksspecificatie: Bosch WSR 6 F of NGK BPMR 7 A (elektrodenafstand 0,5 mm).',
+            evidence_basis: ['OFFICIAL_MANUAL_EVIDENCE', '0455-175-0223'],
+            evidence_fact_ids: ['c140aff355694886', 'bf445001c5521bc6'],
+            specification: {
+              field: 'spark_plug',
+              value: 'Bosch WSR 6 F / NGK BPMR 7 A',
+              gap_mm: 0.5,
+              unit: null
+            },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms440_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Filtertype voor STIHL MS 440 (HD2 of vlies)',
+            display_guidance: 'Controleer of jouw machine het standaard vliesfilter of het optionele HD2-filter gebruikt.',
+            evidence_basis: ['MODEL_SERIES_MATCH', 'series_1128'],
+            evidence_fact_ids: [],
+            specification: { field: 'air_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms440_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Standaard STIHL brandstoffilter vilt',
+            display_guidance: 'Vervang het brandstoffilter regelmatig.',
+            evidence_basis: ['SERVICE_SPECIFICATION'],
+            evidence_fact_ids: [],
+            specification: { field: 'fuel_filter', unit: null },
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms440_chain_50cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen ketting 50 cm (3/8" — 1,6 mm — 72L)',
+            display_guidance: 'STIHL Rapid Super (36 RS) of Rapid Micro (36 RM). 72 aandrijfschakels voor 50 cm zaagblad.',
+            evidence_basis: ['OFFICIAL_MANUAL_CONFIG', 'chain: 3/8" @ 1.6 mm (72L)', 'oem: 3621 000 0072'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms440_chain_50cm_38_16_72',
+              pitch: '3/8"',
+              gauge_mm: 1.6,
+              drive_links: 72,
+              guide_bar_length_cm: 50,
+              oem_part_number: '3621 000 0072',
+              chain_type: 'Rapid Super (36 RS)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms440_bar_50cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'VERIFIED_MODEL_COMPATIBILITY',
+            display_claim: 'Bewezen zaagblad 50 cm Rollomatic E / ES (3/8" — 1,6 mm)',
+            display_guidance: 'STIHL Rollomatic E / ES zaagblad, 50 cm, aansluiting 3003. Combineer met ketting 3621 000 0072 (72L).',
+            evidence_basis: ['OFFICIAL_STIHL_CATALOG_CONFIG', 'oem: 3003 000 5221 / 3003 000 9421'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 50,
+              pitch: '3/8"',
+              gauge_mm: 1.6,
+              mount_type: '3003 (STIHL Medium Mount)',
+              oem_part_number: '3003 000 5221',
+              bar_type: 'Rollomatic E',
+              compatible_chain_configuration_id: 'ms440_chain_50cm_38_16_72'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms440_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor professionele kettingzaagtoepassingen',
+            display_guidance: 'Gebruik hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms440_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms440_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 5,2 mm passend bij 3/8" steek',
+            display_guidance: 'Gebruik een 5,2 mm ronde vijl voor 3/8" Rapid kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 5.2, pitch: '3/8"' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms440_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL MS 440 kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms440_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek klasse 1, veiligheidshelm, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    },
+
+    'ms-462': {
+      machine_identity: {
+        model_slug: 'ms-462',
+        model_name: 'MS 462 C-M',
+        category: 'Kettingzaag',
+        category_slug: 'kettingzagen',
+        series_code: '1142',
+        canonical_model_id: 'stihl_ms_462_cm'
+      },
+      categories: {
+        spark_plug: [
+          {
+            recommendation_id: 'compat_ms462_spark_plug',
+            recommendation_type: 'spark_plug',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Specificatiematch: NGK CMR 6 H (elektrodenafstand 0,5 mm)',
+            display_guidance: 'Opgegeven in serie-werkplaatshandboek 1142. Documentfeiten op paginaniveau ontbreken momenteel in de database.',
+            evidence_basis: ['SERIES_WORKSHOP_MANUAL_1142'],
+            evidence_fact_ids: [],
+            specification: { field: 'spark_plug', value: 'NGK CMR 6 H', gap_mm: 0.5, unit: null },
+            commercial_offers: []
+          }
+        ],
+        air_filter: [
+          {
+            recommendation_id: 'compat_ms462_air_filter',
+            recommendation_type: 'air_filter',
+            compatibility_status: 'UNVERIFIED',
+            display_claim: 'Filtertype voor MS 462 verifiëren',
+            display_guidance: 'Raadpleeg de handleiding van jouw machine.',
+            evidence_basis: ['UNVERIFIED'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        fuel_filter: [
+          {
+            recommendation_id: 'compat_ms462_fuel_filter',
+            recommendation_type: 'fuel_filter',
+            compatibility_status: 'UNVERIFIED',
+            display_claim: 'Brandstoffilter voor MS 462 verifiëren',
+            display_guidance: 'Raadpleeg de handleiding van jouw machine.',
+            evidence_basis: ['UNVERIFIED'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        chain: [
+          {
+            recommendation_id: 'compat_ms462_chain_50cm',
+            recommendation_type: 'chain',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Specificatiematch 50 cm (3/8" — 1,6 mm — 72L)',
+            display_guidance: 'Standaard zaagketting voor MS 462. Controleer aantal aandrijfschakels van het gemonteerde zaagblad.',
+            evidence_basis: ['SPECIFICATION_MATCH_ONLY', 'pitch: 3/8"', 'gauge: 1.6 mm', 'drive_links: 72'],
+            evidence_fact_ids: [],
+            specification: {
+              configuration_id: 'ms462_chain_50cm_38_16_72',
+              pitch: '3/8"',
+              gauge_mm: 1.6,
+              drive_links: 72,
+              guide_bar_length_cm: 50,
+              oem_part_number: '3621 000 0072',
+              chain_type: 'Rapid Super (36 RS)'
+            },
+            commercial_offers: []
+          }
+        ],
+        bar: [
+          {
+            recommendation_id: 'compat_ms462_bar_50cm',
+            recommendation_type: 'bar',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Specificatiematch 50 cm Rollomatic ES (3/8" — 1,6 mm)',
+            display_guidance: 'Zaagblad aansluiting 3003.',
+            evidence_basis: ['SPECIFICATION_MATCH_ONLY'],
+            evidence_fact_ids: [],
+            specification: {
+              guide_bar_length_cm: 50,
+              pitch: '3/8"',
+              gauge_mm: 1.6,
+              mount_type: '3003 (STIHL Medium Mount)',
+              oem_part_number: '3003 000 9421',
+              bar_type: 'Rollomatic ES'
+            },
+            commercial_offers: []
+          }
+        ],
+        chain_oil: [
+          {
+            recommendation_id: 'compat_ms462_chain_oil',
+            recommendation_type: 'chain_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Kettingolie voor professionele kettingzaagtoepassingen',
+            display_guidance: 'Gebruik hechtolie voor zaagkettingen met goede viscositeit.',
+            evidence_basis: ['CATEGORY_STANDARD'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ],
+        two_stroke_oil: [
+          {
+            recommendation_id: 'compat_ms462_two_stroke_oil',
+            recommendation_type: 'two_stroke_oil',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: '2-Takt mengsmering (1:50) of alkylaatbrandstof',
+            display_guidance: 'Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.',
+            evidence_basis: ['STIHL_STANDARD_OPERATING_PROCEDURE'],
+            evidence_fact_ids: [],
+            specification: { mix_ratio: '1:50' },
+            commercial_offers: []
+          }
+        ],
+        filing_tool: [
+          {
+            recommendation_id: 'compat_ms462_filing_tool',
+            recommendation_type: 'filing_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Kettingvijl 5,2 mm passend bij 3/8" steek',
+            display_guidance: 'Gebruik een 5,2 mm ronde vijl voor 3/8" Rapid kettingen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { file_diameter_mm: 5.2, pitch: '3/8"' },
+            commercial_offers: []
+          }
+        ],
+        maintenance_tool: [
+          {
+            recommendation_id: 'compat_ms462_maintenance_tool',
+            recommendation_type: 'maintenance_tool',
+            compatibility_status: 'SPECIFICATION_MATCH_ONLY',
+            display_claim: 'Combisleutel 19-13 mm voor bougie en zwaardmoeren',
+            display_guidance: 'Standaard sleutelmaat voor STIHL kettingzagen.',
+            evidence_basis: ['MAINTENANCE_PRACTICE'],
+            evidence_fact_ids: [],
+            specification: { tool_type: 'combisleutel', socket_sizes: ['19mm', '13mm'] },
+            commercial_offers: []
+          }
+        ],
+        protective_gear: [
+          {
+            recommendation_id: 'compat_ms462_protective_gear',
+            recommendation_type: 'protective_gear',
+            compatibility_status: 'GENERIC_CATEGORY_RECOMMENDATION',
+            display_claim: 'Zaagbroek klasse 1, veiligheidshelm, gehoorbescherming en handschoenen',
+            display_guidance: 'Draag altijd persoonlijke beschermingsmiddelen conform EN 381 / ISO 11393.',
+            evidence_basis: ['SAFETY_REGULATIONS'],
+            evidence_fact_ids: [],
+            specification: null,
+            commercial_offers: []
+          }
+        ]
+      }
+    }
+  }
+};
+
+// Ensure top-level oem_part_number is always populated if defined in specification
+for (const model of Object.values(compatibilityData.models)) {
+  for (const recs of Object.values(model.categories)) {
+    for (const r of recs) {
+      if (!r.oem_part_number && r.specification?.oem_part_number) {
+        r.oem_part_number = r.specification.oem_part_number;
+      }
+    }
+  }
+}
+
+const targetPath = path.join(rootDir, 'data', 'model_product_compatibility.json');
+fs.writeFileSync(targetPath, JSON.stringify(compatibilityData, null, 2), 'utf8');
+console.log(`✅ Successfully generated ${targetPath} with ${Object.keys(compatibilityData.models).length} pilot models.`);
+

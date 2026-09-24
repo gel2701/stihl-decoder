@@ -26,7 +26,10 @@ export const currentProductionSuites = [
   'tests/passport_serial_enrichment.test.js',
   'tests/affiliate_foundation.test.js',
   'tests/passport_hardening.test.js',
-  'tests/evidence_integrity_hardening.test.js'
+  'tests/evidence_integrity_hardening.test.js',
+  'tests/phase48_compatibility_dataset.test.js',
+  'tests/phase48_commercial_offers.test.js',
+  'tests/phase48_ui_analytics.test.js'
 ];
 
 console.log('===============================================================');

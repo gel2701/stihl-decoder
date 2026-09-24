@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "policy": {
+    "no_cloaking": true,
+    "no_redirect_tricks": true,
+    "require_domain_allowlist": true,
+    "max_price_age_days": 7
+  },
+  "merchants": [
+    {
+      "merchant_id": "bol",
+      "name": "Bol.com",
+      "allowed_domains": [
+        "bol.com",
+        "www.bol.com",
+        "partnerplatform.bol.com"
+      ],
+      "affiliate_active": false,
+      "affiliate_network": "bol_partnerprogramma",
+      "notes": "Nederlandse marktplaats voor gereedschap en tuinonderdelen."
+    },
+    {
+      "merchant_id": "amazon_nl",
+      "name": "Amazon Nederland",
+      "allowed_domains": [
+        "amazon.nl",
+        "www.amazon.nl"
+      ],
+      "affiliate_active": false,
+      "affiliate_network": "amazon_associates",
+      "notes": "Amazon Associates partnernetwerk Nederland."
+    },
+    {
+      "merchant_id": "stihl_official",
+      "name": "STIHL Officiële Dealer Locator & Catalogus",
+      "allowed_domains": [
+        "stihl.nl",
+        "www.stihl.nl",
+        "stihl.be",
+        "www.stihl.be",
+        "stihl.de",
+        "www.stihl.de",
+        "support.stihl.com"
+      ],
+      "affiliate_active": false,
+      "affiliate_network": "direct_reference",
+      "notes": "Officiële STIHL dealerpagina's en catalogusreferenties (onbemonetiseerd, referentielaag)."
+    }
+  ]
+}

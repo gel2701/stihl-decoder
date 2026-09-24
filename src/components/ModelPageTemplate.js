@@ -9,6 +9,7 @@ import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
 import { renderPassportProMvpCard } from './PassportProMvp.js';
 import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.js';
+import { renderModelProductCompatibilitySection } from './ModelProductCompatibilitySection.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import {
@@ -380,6 +381,9 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
 
     <!-- Premium Machine Passport Pro MVP -->
     ${passportProCardHtml}
+
+    <!-- Onderdelen & onderhoud voor jouw STIHL (Phase 48) -->
+    ${renderModelProductCompatibilitySection(slug, model.model_name)}
 
     <!-- Lead MVPs Section (Repair & Sell) -->
     <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
