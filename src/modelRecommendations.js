@@ -39,9 +39,79 @@ import {
   SINGLE_VALUE_ELIGIBLE_STATUSES
 } from './publicEvidence.js';
 
-export function valueMatches(evOrValue, expectedValue) {
+export const FIELD_CANONICAL_UNITS = Object.freeze({
+  chain_gauge_mm: 'mm',
+  chain_gauge: 'mm',
+  gauge: 'mm',
+  chain_pitch_inch: 'inch',
+  chain_pitch: 'inch',
+  pitch: 'inch',
+  displacement_cc: 'cc',
+  power_kw: 'kw',
+  electrode_gap_mm: 'mm'
+});
+
+export function normalizeUnit(unitStr) {
+  if (!unitStr) return null;
+  const u = String(unitStr).trim().toLowerCase();
+  if (u === 'mm' || u === 'millimeter' || u === 'millimeters') return 'mm';
+  if (u === 'inch' || u === 'in' || u === '"' || u === '”' || u === 'inches') return 'inch';
+  if (u === 'cc' || u === 'cm³' || u === 'cm3') return 'cc';
+  if (u === 'kw' || u === 'kilowatt') return 'kw';
+  if (u === 'kg' || u === 'kilogram') return 'kg';
+  if (u === 'l' || u === 'liter' || u === 'litre') return 'l';
+  if (u === 'rpm') return 'rpm';
+  return u;
+}
+
+export function extractUnitFromString(str) {
+  if (typeof str !== 'string') return null;
+  const trimmed = str.trim();
+  const match = trimmed.match(/(?:^|\s|\d)(mm|inch|in|"|”|cc|cm³|cm3|kw|kg|l|rpm)$/i);
+  if (match) {
+    return normalizeUnit(match[1]);
+  }
+  return null;
+}
+
+export function extractEvidenceUnit(evOrValue) {
+  if (!evOrValue) return null;
+  if (typeof evOrValue === 'object') {
+    const rawUnit = evOrValue.normalized_unit || evOrValue.unit || evOrValue.meta?.unit;
+    if (rawUnit) return normalizeUnit(rawUnit);
+    for (const prop of ['normalized_value', 'value', 'display_value', 'raw_value', 'comparison_value']) {
+      if (typeof evOrValue[prop] === 'string') {
+        const u = extractUnitFromString(evOrValue[prop]);
+        if (u) return u;
+      }
+    }
+  } else if (typeof evOrValue === 'string') {
+    return extractUnitFromString(evOrValue);
+  }
+  return null;
+}
+
+export function valueMatches(evOrValue, expectedValue, field = null) {
   if (expectedValue === null || expectedValue === undefined) return true;
   if (evOrValue === null || evOrValue === undefined) return false;
+
+  const canonicalUnit = field && FIELD_CANONICAL_UNITS[field] ? FIELD_CANONICAL_UNITS[field] : null;
+  const evUnit = extractEvidenceUnit(evOrValue);
+  const expectedUnit = extractEvidenceUnit(expectedValue);
+
+  // Unit awareness enforcement:
+  // If field has a canonical unit and evidence specifies an incompatible unit: REJECT
+  if (canonicalUnit && evUnit && evUnit !== canonicalUnit) {
+    return false;
+  }
+  // If field has a canonical unit and expectedValue specifies an incompatible unit: REJECT
+  if (canonicalUnit && expectedUnit && expectedUnit !== canonicalUnit) {
+    return false;
+  }
+  // If both have explicit units and they mismatch: REJECT
+  if (expectedUnit && evUnit && expectedUnit !== evUnit) {
+    return false;
+  }
 
   const rawCandidates = [];
   if (typeof evOrValue === 'object') {
@@ -83,7 +153,7 @@ export function valueMatches(evOrValue, expectedValue) {
 
   const rawTargetNum = String(expectedValue).replace(',', '.').replace(/[^0-9.]/g, '');
   const targetNum = Number(rawTargetNum);
-  const isTargetNumeric = rawTargetNum.length > 0 && !isNaN(targetNum) && targetNum > 0 && /^[0-9.,\s]+(mm|cc|kw|kg|l)?$/i.test(String(expectedValue).trim());
+  const isTargetNumeric = rawTargetNum.length > 0 && !isNaN(targetNum) && targetNum > 0 && /^[0-9.,\s]+(mm|inch|in|"|”|cc|cm³|cm3|kw|kg|l)?$/i.test(String(expectedValue).trim());
 
   for (const cand of flatCandidates) {
     const candClean = cleanAlphanumeric(cand);
@@ -135,29 +205,13 @@ export function findEligibleEvidence(evidenceList, modelSlug, field, expectedVal
     }
 
     // 3. Central public evidence policy & eligibility gates
-    if (ev.display_eligible !== true) return false;
+    if (!isPublicDisplayEligibleFact(ev)) return false;
+    if (!isSingleValuePublicFact(ev)) return false;
+    if (ev.single_value_eligible !== true) return false;
 
-    const status = String(ev.public_evidence_status || ev.evidence_status || ev.source_status || '').toUpperCase();
-    const isReliableStatus = DISPLAY_ELIGIBLE_STATUSES.has(status) ||
-                             ['VERIFIED', 'ESTABLISHED', 'CONFIRMED'].includes(status);
-    const sourceClass = String(ev.source_class || '').toUpperCase();
-    const isReliableClass = ['OFFICIAL_MANUAL', 'OFFICIAL_PARTS_LIST', 'PRIMARY_SOURCE', 'STIHL_OFFICIAL', 'MANUFACTURER_DOCUMENT'].includes(sourceClass);
-
-    if (!isReliableStatus && !isReliableClass) {
-      return false;
-    }
-
-    // 4. Single-value eligibility gate
-    if (ev.single_value_eligible === false) {
-      return false;
-    }
-    if (status === 'OFFICIAL_CONFLICTED') {
-      return false;
-    }
-
-    // 5. Evidence value matching
+    // 4. Evidence value matching (unit-aware)
     if (expectedValue !== null && expectedValue !== undefined) {
-      if (!valueMatches(ev, expectedValue)) {
+      if (!valueMatches(ev, expectedValue, field)) {
         return false;
       }
     }
@@ -303,12 +357,9 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
       if (!ev) return false;
       const isPart = ev.part_type === 'chain' || ev.configuration_type === 'chain' || ev.full_config === true;
       if (!isPart) return false;
-      if (ev.display_eligible !== true) return false;
-      const status = String(ev.public_evidence_status || ev.evidence_status || ev.source_status || '').toUpperCase();
-      const isReliableStatus = DISPLAY_ELIGIBLE_STATUSES.has(status) || ['VERIFIED', 'ESTABLISHED', 'CONFIRMED'].includes(status);
-      const isReliableClass = ['OFFICIAL_MANUAL', 'OFFICIAL_PARTS_LIST', 'PRIMARY_SOURCE', 'STIHL_OFFICIAL', 'MANUFACTURER_DOCUMENT'].includes(String(ev.source_class || '').toUpperCase());
-      if (!isReliableStatus && !isReliableClass) return false;
-      if (status === 'OFFICIAL_CONFLICTED') return false;
+      if (!isPublicDisplayEligibleFact(ev)) return false;
+      if (!isSingleValuePublicFact(ev)) return false;
+      if (ev.single_value_eligible !== true) return false;
 
       const evSlug = String(ev.model_slug || ev.slug || '').trim().toLowerCase();
       const evModelId = String(ev.model_id || ev.canonical_model_id || '').trim().toLowerCase();
@@ -320,7 +371,9 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
       const evLinks = ev.drive_links || ev.drive_link_count || ev.links;
 
       if (!evPitch || !evGauge || !evLinks) return false;
-      return valueMatches(evPitch, pitch) && valueMatches(evGauge, gauge) && valueMatches(evLinks, driveLinks);
+      return valueMatches(evPitch, pitch, 'chain_pitch') &&
+             valueMatches(evGauge, gauge, 'chain_gauge_mm') &&
+             valueMatches(evLinks, driveLinks, 'drive_links');
     });
 
     // Alternatively, pitch, gauge, and drive_links must ALL be individually evidenced with matching values
@@ -341,7 +394,22 @@ export function buildModelRecommendations(identity = {}, technicalSpecs = {}, op
       findEligibleEvidence(evidenceList, modelSlug, 'chain_drive_links', driveLinks)
     ) : null;
 
-    const allThreeEvidenced = Boolean(pitchEvidence && gaugeEvidence && driveLinksEvidence);
+    let allThreeEvidenced = Boolean(pitchEvidence && gaugeEvidence && driveLinksEvidence);
+
+    // Strict configuration isolation check:
+    // If individual evidence pieces specify configurations, they must all belong to the same configuration.
+    if (allThreeEvidenced) {
+      const configs = [
+        pitchEvidence?.configuration || pitchEvidence?.config || pitchEvidence?.meta?.configuration,
+        gaugeEvidence?.configuration || gaugeEvidence?.config || gaugeEvidence?.meta?.configuration,
+        driveLinksEvidence?.configuration || driveLinksEvidence?.config || driveLinksEvidence?.meta?.configuration
+      ].filter(Boolean);
+
+      const uniqueConfigs = new Set(configs);
+      if (uniqueConfigs.size > 1) {
+        allThreeEvidenced = false;
+      }
+    }
 
     if (explicitCompletePartRecord || allThreeEvidenced) {
       recommendations.push({

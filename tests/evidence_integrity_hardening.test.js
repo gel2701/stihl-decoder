@@ -296,6 +296,7 @@ const allThreeChainEv = [
     field: 'chain_pitch',
     normalized_value: '3/8"',
     display_eligible: true,
+    single_value_eligible: true,
     public_evidence_status: 'OFFICIAL_DOCUMENTED',
     source_class: 'OFFICIAL_MANUAL'
   },
@@ -304,6 +305,7 @@ const allThreeChainEv = [
     field: 'chain_gauge_mm',
     normalized_value: '1.6 mm',
     display_eligible: true,
+    single_value_eligible: true,
     public_evidence_status: 'OFFICIAL_DOCUMENTED',
     source_class: 'OFFICIAL_MANUAL'
   },
@@ -312,6 +314,7 @@ const allThreeChainEv = [
     field: 'drive_links',
     normalized_value: 72,
     display_eligible: true,
+    single_value_eligible: true,
     public_evidence_status: 'OFFICIAL_DOCUMENTED',
     source_class: 'OFFICIAL_MANUAL'
   }
@@ -476,4 +479,300 @@ assert.strictEqual(specRowsWithEv[0], 'Motorinhoud: 70.7 cc (✓ STIHL 0458-260-
 assert.strictEqual(specRowsWithEv[1], 'Bougie: Bosch WSR6F (✓ Officieel bevestigd)');
 console.log('  ✅ Test L Passed: Passport source tags render valid provenance when evidence exists.');
 
-console.log('\n🎉 ALL PHASE 47B EVIDENCE INTEGRITY HARDENING TESTS PASSED 100% CLEANLY!');
+// ============================================================================
+// Test M: UNKNOWN status met source_class 'OFFICIAL_MANUAL' levert SPECIFICATION_MATCH_ONLY (geen VERIFIED)
+// ============================================================================
+console.log('▶ Test M: UNKNOWN status with source_class OFFICIAL_MANUAL...');
+const unknownManualEv = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
+  display_eligible: true,
+  single_value_eligible: true,
+  public_evidence_status: 'UNKNOWN',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsM = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: unknownManualEv }
+);
+const sparkM = recsM.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkM.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test M: UNKNOWN status with source_class OFFICIAL_MANUAL must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  findEligibleEvidence(unknownManualEv, 'ms-440', 'spark_plug', 'Bosch WSR6F'),
+  null,
+  'Test M: findEligibleEvidence must return null for UNKNOWN status regardless of source_class'
+);
+console.log('  ✅ Test M Passed: source_class OFFICIAL_MANUAL cannot promote UNKNOWN status to VERIFIED.');
+
+// ============================================================================
+// Test N: Non-canonical status 'VERIFIED' levert SPECIFICATION_MATCH_ONLY (geen VERIFIED)
+// ============================================================================
+console.log('▶ Test N: Non-canonical status VERIFIED...');
+const nonCanonicalStatusEv = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
+  display_eligible: true,
+  single_value_eligible: true,
+  public_evidence_status: 'VERIFIED',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsN = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: nonCanonicalStatusEv }
+);
+const sparkN = recsN.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkN.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test N: non-canonical status VERIFIED must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  findEligibleEvidence(nonCanonicalStatusEv, 'ms-440', 'spark_plug', 'Bosch WSR6F'),
+  null,
+  'Test N: findEligibleEvidence must reject non-canonical status VERIFIED'
+);
+console.log('  ✅ Test N Passed: Non-canonical status VERIFIED correctly rejected.');
+
+// ============================================================================
+// Test O: single_value_eligible: undefined levert SPECIFICATION_MATCH_ONLY
+// ============================================================================
+console.log('▶ Test O: single_value_eligible is undefined...');
+const undefinedSingleValueEv = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
+  display_eligible: true,
+  // single_value_eligible intentionally omitted / undefined
+  public_evidence_status: 'OFFICIAL_DOCUMENTED',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsO = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: undefinedSingleValueEv }
+);
+const sparkO = recsO.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkO.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test O: undefined single_value_eligible must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  findEligibleEvidence(undefinedSingleValueEv, 'ms-440', 'spark_plug', 'Bosch WSR6F'),
+  null,
+  'Test O: findEligibleEvidence must reject undefined single_value_eligible'
+);
+console.log('  ✅ Test O Passed: undefined single_value_eligible correctly rejected.');
+
+// ============================================================================
+// Test P: single_value_eligible: false levert SPECIFICATION_MATCH_ONLY
+// ============================================================================
+console.log('▶ Test P: single_value_eligible is false...');
+const falseSingleValueEv = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
+  display_eligible: true,
+  single_value_eligible: false,
+  public_evidence_status: 'OFFICIAL_DOCUMENTED',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsP = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: falseSingleValueEv }
+);
+const sparkP = recsP.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkP.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test P: single_value_eligible: false must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  findEligibleEvidence(falseSingleValueEv, 'ms-440', 'spark_plug', 'Bosch WSR6F'),
+  null,
+  'Test P: findEligibleEvidence must reject single_value_eligible: false'
+);
+console.log('  ✅ Test P Passed: single_value_eligible: false correctly rejected.');
+
+// ============================================================================
+// Test Q: Unit mismatch (1.6 inch vs 1.6 mm chain_gauge_mm) levert SPECIFICATION_MATCH_ONLY
+// ============================================================================
+console.log('▶ Test Q: Unit mismatch (1.6 inch vs 1.6 mm for chain_gauge_mm)...');
+const unitMismatchChainEv = [
+  {
+    model_slug: 'ms-440',
+    field: 'chain_pitch',
+    normalized_value: '3/8"',
+    unit: 'inch',
+    display_eligible: true,
+    single_value_eligible: true,
+    public_evidence_status: 'OFFICIAL_DOCUMENTED',
+    source_class: 'OFFICIAL_MANUAL'
+  },
+  {
+    model_slug: 'ms-440',
+    field: 'chain_gauge_mm',
+    normalized_value: 1.6,
+    unit: 'inch', // Deliberate mismatch with canonical field unit 'mm'
+    display_eligible: true,
+    single_value_eligible: true,
+    public_evidence_status: 'OFFICIAL_DOCUMENTED',
+    source_class: 'OFFICIAL_MANUAL'
+  },
+  {
+    model_slug: 'ms-440',
+    field: 'drive_links',
+    normalized_value: 72,
+    display_eligible: true,
+    single_value_eligible: true,
+    public_evidence_status: 'OFFICIAL_DOCUMENTED',
+    source_class: 'OFFICIAL_MANUAL'
+  }
+];
+const recsQ = buildModelRecommendations(
+  ms440Model,
+  {
+    chain_pitch: '3/8"',
+    chain_gauge_mm: '1.6',
+    drive_links: 72
+  },
+  { compatibilityEvidence: unitMismatchChainEv }
+);
+const chainQ = recsQ.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.CHAIN);
+assert.strictEqual(
+  chainQ.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test Q: unit mismatch (1.6 inch for chain_gauge_mm) must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  valueMatches({ normalized_value: 1.6, unit: 'inch' }, '1.6', 'chain_gauge_mm'),
+  false,
+  'Test Q: valueMatches must return false when evidence unit is inch but field is chain_gauge_mm'
+);
+console.log('  ✅ Test Q Passed: Unit mismatch (1.6 inch vs mm) strictly rejected.');
+
+// ============================================================================
+// Test R: Conflicterende chain configuraties (pitch van config A, links van config B) levert SPECIFICATION_MATCH_ONLY
+// ============================================================================
+console.log('▶ Test R: Conflicting chain configurations (config A vs config B)...');
+const conflictingConfigsChainEv = [
+  {
+    model_slug: 'ms-440',
+    field: 'chain_pitch',
+    normalized_value: '3/8"',
+    configuration: '50cm_rollomatic_es',
+    display_eligible: true,
+    single_value_eligible: true,
+    public_evidence_status: 'OFFICIAL_DOCUMENTED',
+    source_class: 'OFFICIAL_MANUAL'
+  },
+  {
+    model_slug: 'ms-440',
+    field: 'chain_gauge_mm',
+    normalized_value: '1.6 mm',
+    configuration: '50cm_rollomatic_es',
+    display_eligible: true,
+    single_value_eligible: true,
+    public_evidence_status: 'OFFICIAL_DOCUMENTED',
+    source_class: 'OFFICIAL_MANUAL'
+  },
+  {
+    model_slug: 'ms-440',
+    field: 'drive_links',
+    normalized_value: 72,
+    configuration: '40cm_rollomatic_e', // Deliberate conflicting configuration
+    display_eligible: true,
+    single_value_eligible: true,
+    public_evidence_status: 'OFFICIAL_DOCUMENTED',
+    source_class: 'OFFICIAL_MANUAL'
+  }
+];
+const recsR = buildModelRecommendations(
+  ms440Model,
+  {
+    chain_pitch: '3/8"',
+    chain_gauge_mm: '1.6',
+    drive_links: 72
+  },
+  { compatibilityEvidence: conflictingConfigsChainEv }
+);
+const chainR = recsR.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.CHAIN);
+assert.strictEqual(
+  chainR.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test R: mixing conflicting configurations must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+console.log('  ✅ Test R Passed: Mixed conflicting configurations downgraded to SPECIFICATION_MATCH_ONLY.');
+
+// ============================================================================
+// Test S: display_eligible: false levert SPECIFICATION_MATCH_ONLY
+// ============================================================================
+console.log('▶ Test S: display_eligible is false...');
+const falseDisplayEligibleEv = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
+  display_eligible: false,
+  single_value_eligible: true,
+  public_evidence_status: 'OFFICIAL_DOCUMENTED',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsS = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: falseDisplayEligibleEv }
+);
+const sparkS = recsS.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkS.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test S: display_eligible: false must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  findEligibleEvidence(falseDisplayEligibleEv, 'ms-440', 'spark_plug', 'Bosch WSR6F'),
+  null,
+  'Test S: findEligibleEvidence must reject display_eligible: false'
+);
+console.log('  ✅ Test S Passed: display_eligible: false strictly rejected.');
+
+// ============================================================================
+// Test T: public_evidence_status: 'OFFICIAL_CONFLICTED' levert SPECIFICATION_MATCH_ONLY
+// ============================================================================
+console.log('▶ Test T: public_evidence_status is OFFICIAL_CONFLICTED...');
+const conflictedEvidenceStatusEv = [{
+  model_slug: 'ms-440',
+  field: 'spark_plug',
+  normalized_value: 'Bosch WSR6F',
+  display_eligible: true,
+  single_value_eligible: false,
+  public_evidence_status: 'OFFICIAL_CONFLICTED',
+  source_class: 'OFFICIAL_MANUAL'
+}];
+const recsT = buildModelRecommendations(
+  ms440Model,
+  { spark_plug: 'Bosch WSR6F' },
+  { compatibilityEvidence: conflictedEvidenceStatusEv }
+);
+const sparkT = recsT.recommendations.find(s => s.recommendation_type === RECOMMENDATION_TYPES.SPARK_PLUG);
+assert.strictEqual(
+  sparkT.technical_compatibility.compatibility_status,
+  COMPATIBILITY_STATUSES.SPECIFICATION_MATCH_ONLY,
+  'Test T: OFFICIAL_CONFLICTED status must NOT yield VERIFIED_MODEL_COMPATIBILITY'
+);
+assert.strictEqual(
+  findEligibleEvidence(conflictedEvidenceStatusEv, 'ms-440', 'spark_plug', 'Bosch WSR6F'),
+  null,
+  'Test T: findEligibleEvidence must reject OFFICIAL_CONFLICTED status'
+);
+console.log('  ✅ Test T Passed: OFFICIAL_CONFLICTED status strictly rejected.');
+
+console.log('\n🎉 ALL PHASE 47B & 47C EVIDENCE INTEGRITY HARDENING TESTS PASSED 100% CLEANLY!');

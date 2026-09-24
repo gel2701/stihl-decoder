@@ -356,7 +356,7 @@ export function isPublicDisplayEligibleFact(fact) {
 
 export function isSingleValuePublicFact(fact) {
   if (!fact || !fact.display_eligible) return false;
-  if (fact.single_value_eligible === false) return false;
+  if (fact.single_value_eligible !== true) return false;
   const status = fact.public_evidence_status || fact.evidence_status || fact.source_status;
   return SINGLE_VALUE_ELIGIBLE_STATUSES.has(status);
 }

@@ -74,6 +74,7 @@ const eligibleSparkEvidence = [{
   field: 'spark_plug',
   normalized_value: 'Bosch WSR6F',
   display_eligible: true,
+  single_value_eligible: true,
   public_evidence_status: 'OFFICIAL_DOCUMENTED',
   source_class: 'OFFICIAL_MANUAL'
 }];
@@ -116,6 +117,7 @@ const eligibleChainEvidence = [{
   gauge: '1.6 mm',
   drive_links: 72,
   display_eligible: true,
+  single_value_eligible: true,
   public_evidence_status: 'OFFICIAL_DOCUMENTED',
   source_class: 'OFFICIAL_PARTS_LIST'
 }];

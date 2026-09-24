@@ -193,11 +193,12 @@ Phase 47B enforces complete zero-overclaim and provenance integrity across machi
   2. An explicit official complete part configuration record (`part_type === 'chain'`, `full_config === true`) matching all three parameters.
 - Partial specifications (e.g. pitch proven, but gauge and drive links unproven) strictly yield `SPECIFICATION_MATCH_ONLY` with cautious guidance.
 
-### 6.6 Passport Source-Tag Policy
-- In `getFactSourceTag()` and `buildSafePassportSpecRows()`:
-  - If a specification has no matching, display-eligible public fact, `getFactSourceTag()` returns an empty string `''`.
-  - Zero "silent verification": technical specification rows are NEVER decorated with `(✓ Officieel bevestigd)` without eligible evidence.
-  - Rows with documented provenance render document ID, edition, and page numbers (e.g. `(✓ STIHL 0458-260-0121 Ed. 2003, p. 42)`).
+### 6.7 Phase 47C Canonical Evidence Policy, Unit Matching & Configuration Isolation
+- **Canonical Public Evidence Status Only:** Single-value evidence must satisfy `isPublicDisplayEligibleFact(ev) === true`, `isSingleValuePublicFact(ev) === true`, and `ev.single_value_eligible === true`. Statuses like `UNKNOWN`, `VERIFIED`, `ESTABLISHED`, `CONFIRMED`, `SUPPORTED_ESTIMATE`, or `OFFICIAL_CONFLICTED` are strictly rejected.
+- **Elimination of `source_class` Status Override:** A high-trust source class (`OFFICIAL_MANUAL`, `OFFICIAL_PARTS_LIST`) can NEVER promote an unverified, conflicting, or non-canonical status to verified.
+- **Unit-Aware Value Matching:** `valueMatches(evOrValue, expectedValue, field)` matches against canonical field units (`chain_gauge_mm -> mm`, `chain_pitch_inch -> inch`, `displacement_cc -> cc`, `power_kw -> kw`, `electrode_gap_mm -> mm`). Unit mismatches (e.g. 1.6 inch vs 1.6 mm) are strictly rejected.
+- **Chain Configuration Isolation:** When combining individual evidence for pitch, gauge, and drive links, facts must belong to the exact same configuration; mixing conflicting configurations downgrades to `SPECIFICATION_MATCH_ONLY`.
+- **Adversarial Hardening Tests M through T:** Added tests M-T to [`tests/evidence_integrity_hardening.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/evidence_integrity_hardening.test.js) validating all negative injection vectors.
 
 ---
 
@@ -207,20 +208,20 @@ All 13 production test suites in the canonical production runner pass 100% clean
 
 | Suite Name | Tests / Scope | Status | Duration |
 |---|---|---|---|
-| `official_serial_anchor_and_range_semantics.test.js` | Official anchors & fail-closed historical ranges | ✅ PASS | 279ms |
-| `serial_decoder_recovery_current.test.js` | Serial decoder recovery, plant mapping, fallback checks | ✅ PASS | 315ms |
-| `baseline.test.js` | Core classification & engine baseline regression | ✅ PASS | 523ms |
-| `canonical_policy.test.js` | Canonical URL and SEO policy enforcement | ✅ PASS | 115ms |
-| `phase36_serial_user_value_engine.test.js` | Value estimation and user guidance engine | ✅ PASS | 156ms |
-| `render_www_alignment.test.js` | WWW routes and SSR template validation | ✅ PASS | 853ms |
-| `production_validation.test.js` | SEO topical authority, sitemap integrity, 0 errors | ✅ PASS | 2001ms |
-| `decoder.test.js` | SSR pilot pages and schema graphs | ✅ PASS | 258ms |
-| `model_first_passport.test.js` | Model-first dossiers, null serials, V1->V2 migration, CTA | ✅ PASS | 163ms |
-| `passport_serial_enrichment.test.js` | Serial enrichment, conflict detection, KEEP/SWITCH strategies | ✅ PASS | 182ms |
-| `affiliate_foundation.test.js` | 3-layer recommendation schema, Gates A-F, privacy tracker | ✅ PASS | 179ms |
-| `passport_hardening.test.js` | Phase 47A QR privacy, JS/TSX parity, identity decoupling | ✅ PASS | 230ms |
-| `evidence_integrity_hardening.test.js` | Phase 47B negative evidence injection (Tests A-L) | ✅ PASS | 182ms |
-| **Total** | **13 Suites / 120+ Assertions** | **✅ 100% PASS** | **~5.4s** |
+| `official_serial_anchor_and_range_semantics.test.js` | Official anchors & fail-closed historical ranges | ✅ PASS | ~400ms |
+| `serial_decoder_recovery_current.test.js` | Serial decoder recovery, plant mapping, fallback checks | ✅ PASS | ~350ms |
+| `baseline.test.js` | Core classification & engine baseline regression | ✅ PASS | ~1400ms |
+| `canonical_policy.test.js` | Canonical URL and SEO policy enforcement | ✅ PASS | ~135ms |
+| `phase36_serial_user_value_engine.test.js` | Value estimation and user guidance engine | ✅ PASS | ~186ms |
+| `render_www_alignment.test.js` | WWW routes and SSR template validation | ✅ PASS | ~1189ms |
+| `production_validation.test.js` | SEO topical authority, sitemap integrity, 0 errors | ✅ PASS | ~2771ms |
+| `decoder.test.js` | SSR pilot pages and schema graphs | ✅ PASS | ~387ms |
+| `model_first_passport.test.js` | Model-first dossiers, null serials, V1->V2 migration, CTA | ✅ PASS | ~216ms |
+| `passport_serial_enrichment.test.js` | Serial enrichment, conflict detection, KEEP/SWITCH strategies | ✅ PASS | ~371ms |
+| `affiliate_foundation.test.js` | 3-layer recommendation schema, Gates A-F, privacy tracker | ✅ PASS | ~1271ms |
+| `passport_hardening.test.js` | Phase 47A QR privacy, JS/TSX parity, identity decoupling | ✅ PASS | ~359ms |
+| `evidence_integrity_hardening.test.js` | Phase 47B & 47C adversarial negative evidence injection (Tests A-T) | ✅ PASS | ~1663ms |
+| **Total** | **13 Suites / 130+ Assertions** | **✅ 100% PASS** | **~10.5s** |
 
 ---
 
@@ -230,10 +231,10 @@ All 13 production test suites in the canonical production runner pass 100% clean
 - [`src/components/MachineDossierManager.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/components/MachineDossierManager.js): Centralized plant resolution; decoupled canonical model (`model_name`) from official product variant (`official_product_name`); replaced all hardcoded `2026-09-22` fallbacks with `null`.
 - [`src/components/StihlPassportGenerator.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/components/StihlPassportGenerator.js): Enforced QR privacy; hardened `getFactSourceTag` and `buildSafePassportSpecRows` to omit official badges when evidence is missing.
 - [`src/components/StihlPassportGenerator.tsx`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/components/StihlPassportGenerator.tsx): Full semantic parity with JS implementation; removed fake demonstration dates; suppressed StopHeling box on `MODEL_ONLY`.
-- [`src/publicEvidence.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/publicEvidence.js): Exported `DISPLAY_ELIGIBLE_STATUSES` and `SINGLE_VALUE_ELIGIBLE_STATUSES`; hardened `isPublicDisplayEligibleFact` and `isSingleValuePublicFact`.
-- [`src/modelRecommendations.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/modelRecommendations.js): Implemented `valueMatches`; hardened `findEligibleEvidence` with strict field, value, and single-value eligibility gates; enforced complete chain configuration requirements.
-- [`tests/evidence_integrity_hardening.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/evidence_integrity_hardening.test.js): New dedicated Phase 47B test suite testing adversarial negative evidence injection (A through L).
+- [`src/publicEvidence.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/publicEvidence.js): Exported `DISPLAY_ELIGIBLE_STATUSES` and `SINGLE_VALUE_ELIGIBLE_STATUSES`; hardened `isPublicDisplayEligibleFact` and `isSingleValuePublicFact` (explicit `single_value_eligible !== true`).
+- [`src/modelRecommendations.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/src/modelRecommendations.js): Implemented `valueMatches` with unit-aware matching and `FIELD_CANONICAL_UNITS`; hardened `findEligibleEvidence` eliminating `source_class` status overrides; enforced chain configuration isolation.
+- [`tests/evidence_integrity_hardening.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/evidence_integrity_hardening.test.js): New dedicated test suite testing adversarial negative evidence injection (A through T).
 - [`tests/passport_hardening.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/passport_hardening.test.js): Dedicated Phase 47A test suite testing QR privacy, parity, identity decoupling, and privacy.
-- [`tests/affiliate_foundation.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/affiliate_foundation.test.js): Upgraded Test 3 to verify Gates A-F with proven values.
+- [`tests/affiliate_foundation.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/affiliate_foundation.test.js): Upgraded Test 3 to verify Gates A-F with proven values and explicit `single_value_eligible: true`.
 - [`tests/passport_serial_enrichment.test.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/passport_serial_enrichment.test.js): Updated Test K to verify canonical `model_name = "MS 440"` vs `official_product_name`.
 - [`tests/run_current_production_tests.js`](file:///C:/Users/GelliusSnippe/.agents/stihl-decoder/tests/run_current_production_tests.js): Added `evidence_integrity_hardening.test.js` (13 suites total).
