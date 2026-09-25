@@ -197,7 +197,7 @@ function renderStructuredGuideBody(guide) {
         </section>
       ` : ''}
 
-      <!-- 5. Start Procedures (Cold vs Warm) -->
+      <!-- 5. Start Procedures (Layer A: Generic Principle, Layer B: Documented Examples) -->
       ${guide.startProcedures ? `
         <section id="startprocedure" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
           <h2 class="text-xl font-bold text-white flex items-center gap-2">
@@ -205,35 +205,81 @@ function renderStructuredGuideBody(guide) {
             Startprocedure: Koude Motor versus Warme Motor
           </h2>
 
-          <!-- Cold Start -->
-          <div class="space-y-4">
-            <div class="border-b border-gray-800 pb-2">
-              <h3 class="text-base font-bold text-orange-400">${guide.startProcedures.coldStart.title}</h3>
-              <p class="text-xs text-gray-400">${guide.startProcedures.coldStart.intro}</p>
+          ${guide.startProcedures.genericPrinciple ? `
+            <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
+              <h3 class="text-sm font-bold text-orange-400 flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-xs font-bold">A</span>
+                ${guide.startProcedures.genericPrinciple.heading || 'Basisprincipe voor Startprocedures'}
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">${guide.startProcedures.genericPrinciple.text}</p>
             </div>
-            <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
-              ${guide.startProcedures.coldStart.steps.map(s => `
-                <li class="pl-1 leading-relaxed">
-                  <strong class="text-white">${s.title}:</strong> ${s.text}
-                </li>
-              `).join('')}
-            </ol>
-          </div>
+          ` : ''}
 
-          <!-- Warm Start -->
-          <div class="space-y-4 pt-4 border-t border-gray-800">
-            <div class="border-b border-gray-800 pb-2">
-              <h3 class="text-base font-bold text-orange-400">${guide.startProcedures.warmStart.title}</h3>
-              <p class="text-xs text-gray-400">${guide.startProcedures.warmStart.intro}</p>
+          ${guide.startProcedures.documentedExamples ? `
+            <div class="space-y-4">
+              <h3 class="text-sm font-mono uppercase tracking-widest text-gray-400 font-bold flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold">B</span>
+                Gedocumenteerde Fabrieksvoorbeelden per Model
+              </h3>
+              <div class="grid grid-cols-1 gap-4">
+                ${Object.values(guide.startProcedures.documentedExamples).map(ex => `
+                  <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
+                    <div class="flex items-center justify-between flex-wrap gap-2 border-b border-gray-800 pb-2">
+                      <h4 class="font-bold text-white text-sm sm:text-base text-orange-400">${ex.modelLabel}</h4>
+                      <span class="px-2 py-0.5 rounded text-2xs font-mono font-semibold bg-gray-900 text-gray-300 border border-gray-700">
+                        Bron: ${ex.sourceDoc}
+                      </span>
+                    </div>
+                    ${ex.coldStartIntro ? `<p class="text-xs text-gray-400">${ex.coldStartIntro}</p>` : ''}
+                    <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
+                      ${ex.steps.map(s => `
+                        <li class="pl-1 leading-relaxed">
+                          <strong class="text-white">${s.title}:</strong> ${s.text}
+                          ${s.sourceRefs ? `<span class="inline-block ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-400 text-2xs font-mono rounded border border-gray-800">[${s.sourceRefs.join(', ')}]</span>` : ''}
+                        </li>
+                      `).join('')}
+                    </ol>
+                  </div>
+                `).join('')}
+              </div>
             </div>
-            <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
-              ${guide.startProcedures.warmStart.steps.map(s => `
-                <li class="pl-1 leading-relaxed">
-                  <strong class="text-white">${s.title}:</strong> ${s.text}
-                </li>
-              `).join('')}
-            </ol>
-          </div>
+          ` : ''}
+
+          ${guide.startProcedures.coldStart ? `
+            <!-- Cold Start (Legacy format) -->
+            <div class="space-y-4">
+              <div class="border-b border-gray-800 pb-2">
+                <h3 class="text-base font-bold text-orange-400">${guide.startProcedures.coldStart.title}</h3>
+                <p class="text-xs text-gray-400">${guide.startProcedures.coldStart.intro}</p>
+              </div>
+              <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
+                ${guide.startProcedures.coldStart.steps.map(s => `
+                  <li class="pl-1 leading-relaxed">
+                    <strong class="text-white">${s.title}:</strong> ${s.text}
+                    ${s.sourceRefs ? `<span class="inline-block ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-400 text-2xs font-mono rounded border border-gray-800">[${s.sourceRefs.join(', ')}]</span>` : ''}
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          ` : ''}
+
+          ${guide.startProcedures.warmStart ? `
+            <!-- Warm Start (Legacy format) -->
+            <div class="space-y-4 pt-4 border-t border-gray-800">
+              <div class="border-b border-gray-800 pb-2">
+                <h3 class="text-base font-bold text-orange-400">${guide.startProcedures.warmStart.title}</h3>
+                <p class="text-xs text-gray-400">${guide.startProcedures.warmStart.intro}</p>
+              </div>
+              <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
+                ${guide.startProcedures.warmStart.steps.map(s => `
+                  <li class="pl-1 leading-relaxed">
+                    <strong class="text-white">${s.title}:</strong> ${s.text}
+                    ${s.sourceRefs ? `<span class="inline-block ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-400 text-2xs font-mono rounded border border-gray-800">[${s.sourceRefs.join(', ')}]</span>` : ''}
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          ` : ''}
         </section>
       ` : ''}
 
@@ -243,25 +289,69 @@ function renderStructuredGuideBody(guide) {
           <div class="space-y-1">
             <h2 class="text-xl font-bold text-white flex items-center gap-2">
               <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">4</span>
-              ${guide.floodedEngineRecovery.title}
+              ${guide.floodedEngineRecovery.title || 'Verzopen Motor Herstellen'}
             </h2>
-            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">${guide.floodedEngineRecovery.explanation}</p>
+            ${guide.floodedEngineRecovery.explanation ? `<p class="text-xs sm:text-sm text-gray-300 leading-relaxed">${guide.floodedEngineRecovery.explanation}</p>` : ''}
           </div>
 
-          <div class="bg-amber-950/20 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-200">
-            <strong>Veiligheidsinstructie:</strong> ${guide.floodedEngineRecovery.safetyNotice}
-          </div>
+          ${guide.floodedEngineRecovery.safetyNotice ? `
+            <div class="bg-amber-950/20 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-200">
+              <strong>Veiligheidsinstructie:</strong> ${guide.floodedEngineRecovery.safetyNotice}
+            </div>
+          ` : ''}
 
-          <div class="space-y-3">
-            <h3 class="text-sm font-bold text-white">Stappenplan voor ontzopen en droogmaken:</h3>
-            <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
-              ${guide.floodedEngineRecovery.steps.map(s => `
-                <li class="pl-1 leading-relaxed">
-                  <strong class="text-white">${s.title}:</strong> ${s.text}
-                </li>
-              `).join('')}
-            </ol>
-          </div>
+          ${guide.floodedEngineRecovery.genericPrinciple ? `
+            <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
+              <h3 class="text-sm font-bold text-orange-400 flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-xs font-bold">A</span>
+                ${guide.floodedEngineRecovery.genericPrinciple.heading || 'Basisprincipe voor Verzopen Motor'}
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">${guide.floodedEngineRecovery.genericPrinciple.text}</p>
+            </div>
+          ` : ''}
+
+          ${guide.floodedEngineRecovery.documentedExamples ? `
+            <div class="space-y-4">
+              <h3 class="text-sm font-mono uppercase tracking-widest text-gray-400 font-bold flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold">B</span>
+                Gedocumenteerde Ontzopingsprocedures per Model
+              </h3>
+              <div class="grid grid-cols-1 gap-4">
+                ${Object.values(guide.floodedEngineRecovery.documentedExamples).map(ex => `
+                  <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
+                    <div class="flex items-center justify-between flex-wrap gap-2 border-b border-gray-800 pb-2">
+                      <h4 class="font-bold text-white text-sm sm:text-base text-orange-400">${ex.modelLabel}</h4>
+                      <span class="px-2 py-0.5 rounded text-2xs font-mono font-semibold bg-gray-900 text-gray-300 border border-gray-700">
+                        Bron: ${ex.sourceDoc}
+                      </span>
+                    </div>
+                    <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
+                      ${ex.steps.map(s => `
+                        <li class="pl-1 leading-relaxed">
+                          <strong class="text-white">${s.title}:</strong> ${s.text}
+                          ${s.sourceRefs ? `<span class="inline-block ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-400 text-2xs font-mono rounded border border-gray-800">[${s.sourceRefs.join(', ')}]</span>` : ''}
+                        </li>
+                      `).join('')}
+                    </ol>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          ${guide.floodedEngineRecovery.steps ? `
+            <div class="space-y-3">
+              <h3 class="text-sm font-bold text-white">Stappenplan voor ontzopen en droogmaken:</h3>
+              <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
+                ${guide.floodedEngineRecovery.steps.map(s => `
+                  <li class="pl-1 leading-relaxed">
+                    <strong class="text-white">${s.title}:</strong> ${s.text}
+                    ${s.sourceRefs ? `<span class="inline-block ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-400 text-2xs font-mono rounded border border-gray-800">[${s.sourceRefs.join(', ')}]</span>` : ''}
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          ` : ''}
         </section>
       ` : ''}
 
@@ -279,7 +369,7 @@ function renderStructuredGuideBody(guide) {
             <p class="text-xs sm:text-sm text-gray-300">${guide.technicalInspections.fuel.text}</p>
             <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
               <strong class="text-amber-400 font-semibold block">Let op brandstofveroudering:</strong>
-              <p>${guide.technicalInspections.fuel.agingWarning}</p>
+              <p>${guide.technicalInspections.fuel.agingNotice || guide.technicalInspections.fuel.agingWarning}</p>
             </div>
           </div>
 
@@ -363,13 +453,18 @@ function renderStructuredGuideBody(guide) {
             Bronnen en Beperkingen
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-            ${guide.sources.map(s => `
+            ${guide.sources.map(s => {
+              const pubId = s.publicationId || s.publication_id;
+              const label = pubId ? `Publicatie-ID: ${pubId}` : (s.sourceLabel ? `Bron-ID: ${s.sourceLabel}` : '');
+              const scope = s.modelScope || s.scope;
+              return `
               <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-1">
                 <strong class="text-white block font-semibold">${s.documentTitle}</strong>
-                <p class="text-gray-400 text-2xs font-mono">Publicatie-ID: ${s.publicationId} | Scope: ${s.modelScope}</p>
+                <p class="text-gray-400 text-2xs font-mono">${label}${label && scope ? ' | ' : ''}${scope ? `Scope: ${scope}` : ''}</p>
+                ${s.locator ? `<p class="text-gray-400 text-2xs font-mono">Vindplaats: ${s.locator}</p>` : ''}
                 <p class="text-gray-300 mt-1">${s.notes}</p>
               </div>
-            `).join('')}
+            `;}).join('')}
           </div>
           <div class="bg-gray-950/60 border border-gray-800 p-4 rounded-xl text-2xs text-gray-400 leading-relaxed">
             <strong>Beperking van aansprakelijkheid:</strong> Deze gids biedt onafhankelijke technische en informatieve richtlijnen. Raadpleeg bij afwijkingen of specialistische werkzaamheden altijd de officiële handleiding van uw specifieke machine of een gecertificeerde STIHL dealer.

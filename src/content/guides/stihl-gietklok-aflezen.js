@@ -69,10 +69,16 @@ export const stihlGietklokAflezenGuide = {
 
   sources: [
     {
+      source_id: 'src-iso-matrijs-norm',
+      canonical_document_id: null,
+      publication_id: null,
+      sourceLabel: 'DIN EN ISO Matrijsdatumconventies',
       documentTitle: 'Matrijsdatumcoderingsnormen (DIN EN ISO normeringen voor persgiet- en spuitgietmatrijzen)',
-      publicationId: 'ISO Matrijsconventies',
       sourceClass: 'TECHNICAL_STANDARD',
-      modelScope: 'Gegoten onderdelen en behuizingscomponenten',
+      modelScope: ['Gegoten onderdelen en behuizingscomponenten'],
+      locator: {
+        section: 'Mould dating conventions'
+      },
       notes: 'Conventies voor datumstempels en maandindicaties op spuitgietonderdelen.'
     }
   ],

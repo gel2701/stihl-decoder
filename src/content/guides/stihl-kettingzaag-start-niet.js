@@ -1,44 +1,105 @@
 /**
- * Substantive Content Definition for STIHL Kettingzaag Start Niet Guide
- * Phase 49B — Knowledge Base Content Rebuild
+ * Substantive, Source-Bound Content Definition for STIHL Kettingzaag Start Niet Guide
+ * Phase 49B-R1 — Source-Bound Guide & Procedure Integrity
  */
 
 export const stihlKettingzaagStartNietGuide = {
   slug: 'stihl-kettingzaag-start-niet',
   title: 'STIHL Kettingzaag Start Niet? Oorzaken & Veilig Stappenplan voor Diagnose',
   shortTitle: 'Kettingzaag Start Niet',
-  metaDescription: 'Start uw STIHL kettingzaag niet of is de motor verzopen? Bekijk het praktische stappenplan voor veilige controle van startprocedure, brandstof, bougie en luchtfilter.',
-  lastReviewed: '2026-09-25',
+  metaDescription: 'Start uw STIHL kettingzaag niet of is de motor verzopen? Bekijk de veilige inspectieprincipes en gedocumenteerde fabrieksrichtlijnen voor startprocedure, brandstof en bougie.',
+  lastReviewed: '2026-09-26',
   publicationStatus: 'PUBLISHED',
   publicationEligible: true,
   categoryScope: 'kettingzagen',
   fuelScope: 'PETROL_2STROKE',
 
+  sources: [
+    {
+      id: 'src-0458-133-3021',
+      source_id: 'src-0458-133-3021',
+      canonical_document_id: '0458-133-3021',
+      publicationId: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      documentTitle: 'STIHL 026 Instruction Manual',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL 026',
+      model_scope: ['026'],
+      locator: {
+        page: 38,
+        section: 'Starting / Stopping the Engine',
+        heading: 'Starting the Engine'
+      },
+      notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026 met Master Control bediening.'
+    },
+    {
+      id: 'src-0458-573-8621-d',
+      source_id: 'src-0458-573-8621-d',
+      canonical_document_id: '0458-573-8621-D',
+      publicationId: '0458-573-8621-D',
+      publication_id: '0458-573-8621-D',
+      documentTitle: 'STIHL MS 261 Instruction Manual',
+      document_title: 'STIHL MS 261 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL MS 261 / MS 261 C-M',
+      model_scope: ['MS 261', 'MS 261 C-M'],
+      locator: {
+        page: 34,
+        section: 'Starting / Stopping the Engine',
+        heading: 'Starting the Engine'
+      },
+      notes: 'Officiële fabrieksbedieningshandleiding voor STIHL MS 261 en MS 261 C-M met M-Tronic motormanagement.'
+    },
+    {
+      id: 'src-0458-207-8321-b',
+      source_id: 'src-0458-207-8321-b',
+      canonical_document_id: '0458-207-8321-B',
+      publicationId: '0458-207-8321-B',
+      publication_id: '0458-207-8321-B',
+      documentTitle: 'STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual',
+      document_title: 'STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL MS 170 / MS 180',
+      model_scope: ['MS 170', 'MS 180'],
+      locator: {
+        page: 22,
+        section: 'Starting / Stopping the Engine',
+        heading: 'Starting the Engine'
+      },
+      notes: 'Officiële fabrieksinstructie voor de compacte serie MS 170 en MS 180 kettingzagen.'
+    }
+  ],
+
   directAnswer: {
     heading: 'Kort antwoord: wat kunt u veilig direct controleren?',
-    content: 'Controleer eerst de juiste startprocedure (koude start met choke vs. warme start zonder choke), de stop-/combischakelaar, verse brandstof, de bougie en het luchtfilter. Schakel altijd de kettingrem in en start op een stabiele ondergrond. Blijft de zaag weigeren of vermoedt u een verzopen motor (sterke benzinegeur, natte bougie), volg dan de officiële droogprocedure. Draai niet blindelings aan de carburateurschroeven; de vereiste instellingen verschillen per model en moderne M-Tronic kettingzagen hebben geen handmatige stelschroeven.'
+    content: 'Controleer eerst de juiste startprocedure (koud starten met choke vs. warm starten zonder choke conform de handleiding van uw specifieke model), de stand van de stop-/combischakelaar, verse brandstof, de bougie en het luchtfilter. Schakel altijd de kettingrem in en start op een stabiele ondergrond. Blijft de zaag weigeren of vermoedt u een verzopen motor (sterke brandstofgeur, natte bougie), volg dan de ontzopingsprocedure uit de handleiding van uw machine. Draai niet blindelings aan de carburateurschroeven; vereiste instellingen verschillen per model en moderne M-Tronic kettingzagen hebben geen handmatige stelschroeven.'
   },
 
   warnings: [
     {
       title: 'Kettingrem altijd inschakelen vóór het starten',
       text: 'Duw de voorste handbeschermer naar voren tot deze hoorbaar vergrendelt. De zaagketting mag tijdens het starten nooit kunnen meedraaien. Start een motorzaag uitsluitend wanneer de kettingrem geblokkeerd is.',
-      severity: 'danger'
+      severity: 'danger',
+      sourceRefs: ['src-0458-133-3021', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
     },
     {
       title: 'Stabiele startpositie verplicht',
       text: 'Plaats de kettingzaag vlak en stabiel op de grond. Zorg dat het zaagblad en de ketting vrij liggen van takken, aarde en stenen. Plaats uw rechtervoet stevig in de achterste handgreep en houd de voorste handbeugel met de linkerhand vast (duim om de beugel). Start NOOIT \'uit de hand\' (vliegende start); dit leidt tot ernstig ongevalsgevaar.',
-      severity: 'danger'
+      severity: 'danger',
+      sourceRefs: ['src-0458-133-3021', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
     },
     {
       title: 'Brand- en ontploffingsgevaar',
       text: 'Controleer brandstof en bougies uitsluitend in de open lucht en op minimaal 3 meter afstand van de tankplek. Voer nooit een vonktest uit met een open bougiegat of in de buurt van gemorste benzine.',
-      severity: 'warning'
+      severity: 'warning',
+      sourceRefs: ['src-0458-133-3021', 'src-0458-207-8321-b']
     },
     {
-      title: 'Gevaar voor ernstige motorschade bij carburateurafstelling',
-      text: 'Draai nooit zonder toerenteller en modelspecifieke fabrieksgegevens aan de H- of L-stelschroeven van een klassieke carburateur. Een te arm mengsel (H-schroef te ver ingedraaid) veroorzaakt binnen enkele seconden oververhitting en een fatale zuigervreter.',
-      severity: 'warning'
+      title: 'Gevaar voor motorschade bij ondeskundige carburateurafstelling',
+      text: 'Draai nooit zonder toerenteller en modelspecifieke fabrieksgegevens aan de H- of L-stelschroeven van een klassieke carburateur; een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
+      severity: 'warning',
+      sourceRefs: ['src-0458-133-3021']
     }
   ],
 
@@ -50,10 +111,10 @@ export const stihlKettingzaagStartNietGuide = {
       items: [
         'Controleer of de kettingrem is ingeschakeld (voorste handbeschermer naar voren geduwd).',
         'Controleer de combihendel: staat deze niet per ongeluk op STOP / 0?',
-        'Volg de exacte koude- of warmstartprocedure (zie onderstaand stappenplan).',
-        'Controleer de brandstof: is de benzine vers? Brandstof met ethanol (Euro 95 E10) kan na circa 30 dagen verouderen en ontmengen.',
+        'Volg de exacte koud- of warmstartprocedure uit de handleiding van uw specifieke model.',
+        'Controleer de brandstof: gebruik verse brandstof volgens de handleiding; oude brandstof kan verouderen en ontmengen.',
         'Controleer het brandstofniveau en de ontluchting van de brandstoftank.',
-        'Controleer of het luchtfilter niet volledig dichtgeslibd is met zaagsel of kettingolie.'
+        'Controleer of het luchtfilter niet dichtgeslibd is met zaagsel of hars.'
       ]
     },
     {
@@ -62,160 +123,169 @@ export const stihlKettingzaagStartNietGuide = {
       description: 'Handelingen waarvoor de bijgeleverde combinatiesleutel en de officiële handleiding vereist zijn:',
       items: [
         'Bougie uitbouwen met combinatiesleutel en visueel controleren op elektrodekleur, roetaanslag of nattigheid.',
-        'Verzopen motor herstelprocedure uitvoeren conform officiële instructies (cilinder ventileren met uitgeschakelde ontsteking).',
-        'Bougie vervangen door het exacte fabrieksvoorgeschreven type volgens de handleiding (controleer elektrodenafstand met voelermaat conform specificatie van uw model).',
-        'Luchtfilter demonteren en voorzichtig reinigen conform de reinigingsinstructies in de handleiding (uitkloppen of wassen met speciaal reinigingsmiddel).',
-        'Brandstofzuigkop (filter in de tank) voorzichtig inspecteren met een draadhaakje op vervuiling of verharding.'
+        'Verzopen motor herstelprocedure uitvoeren conform de specifieke handleiding van uw model.',
+        'Bougie vervangen door het exacte fabrieksvoorgeschreven type volgens de handleiding (controleer elektrodenafstand met voelermaat conform modelspecificatie).',
+        'Luchtfilter demonteren en reinigen conform de voorschriften in de handleiding van uw uitvoering.',
+        'Brandstofzuigkop (filter in de tank) inspecteren op vervuiling of verharding.'
       ]
     },
     {
       level: 'LEVEL 3 — SERVICE PROCEDURE',
       badge: 'Vakhandelaar / Officiële service',
-      description: 'Complexe technische reparaties die uitsluitend door een erkende dealer of getrainde technicus moeten worden uitgevoerd:',
+      description: 'Complexe technische controles die uitsluitend door een erkende dealer of getrainde technicus moeten worden uitgevoerd:',
       items: [
         'Interne carburateurrevisie: vervangen van verharde stuur- en pompmembranen, vlotternaald of interne brandstofzeef.',
-        'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of voetpakking).',
-        'Elektronische diagnose van STIHL M-Tronic systemen met behulp van het officiële STIHL MDG 1 diagnoseapparaat.',
+        'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of pakkingen).',
+        'Elektronische diagnose van STIHL M-Tronic systemen met behulp van het voor de generatie voorgeschreven diagnosesysteem.',
         'Ontstekingsmodule testen onder werkbelasting en inspectie van vliegwielspie en ontstekingskabel.',
-        'Compressiemeting van cilinder en zuiger bij vermoeden van mechanische slijtage of zuigervraat.'
+        'Compressiemeting van cilinder en zuiger bij vermoeden van mechanische slijtage.'
       ]
     }
   ],
 
   startProcedures: {
-    coldStart: {
-      title: 'Koude Motor Startprocedure (Choke)',
-      intro: 'Gebruik deze procedure wanneer de zaag nog niet gedraaid heeft of volledig is afgekoeld:',
-      steps: [
-        {
-          step: 1,
-          title: 'Kettingrem inschakelen',
-          text: 'Duw de voorste handbeschermer naar voren tot deze vastklikt.'
-        },
-        {
-          step: 2,
-          title: 'Voorbereiding (indien aanwezig)',
-          text: 'Druk de decompressieklep in (op zwaardere modellen) en druk 4 tot 5 keer op de handmatige brandstofpomp / primerbalg om brandstof naar de carburateur te voeren.'
-        },
-        {
-          step: 3,
-          title: 'Combihendel op Choke zetten',
-          text: 'Druk de gashendelvergrendeling en de gashendel gelijktijdig in. Druk de Master Control combihendel helemaal naar beneden in de chokestand (/|\\).'
-        },
-        {
-          step: 4,
-          title: 'Stabiel trekken tot eerste ontsteking',
-          text: 'Plaats de zaag vlak op de grond, rechtervoet in de achterhandgreep, linkerhand om de beugel. Trek het startkoord rustig uit tot weerstand voelbaar is en trek vervolgens krachtig recht omhoog. Herhaal dit tot de motor een eerste hoorbare ontsteking geeft (de bekende korte "plof" of aanslag, doorgaans binnen 2 tot 5 trekbewegingen).'
-        },
-        {
-          step: 5,
-          title: 'Direct doorschakelen naar Startstand (Halfgas)',
-          text: 'STOP DIRECT MET TREKKEN zodra u de eerste ontsteking hoort! Zet de combihendel één klik omhoog naar de startstand / halfgasstand (/n/). Blijft u op volle choke trekken, dan verzuipt de motor onmiddellijk.'
-        },
-        {
-          step: 6,
-          title: 'Starten in Startstand',
-          text: 'Trek opnieuw krachtig aan het startkoord tot de motor aanslaat en blijft draaien.'
-        },
-        {
-          step: 7,
-          title: 'Overschakelen naar Bedrijfsstand',
-          text: 'Geef direct een korte kneep in de gashendel. De combihendel springt automatisch naar de normale bedrijfsstand (I) en het verhoogde starttoerental zakt direct naar het rustige stationair toerental.'
-        }
-      ]
+    genericPrinciple: {
+      heading: 'Basisprincipe voor Startprocedures',
+      text: 'Gebruik altijd de koud- of warmstartprocedure uit de officiële handleiding van uw exacte machine. Choke-, primer- en hendelstanden verschillen wezenlijk per model, generatie en uitrusting (zoals Master Control, klassieke chokehendel of elektronisch geregeld M-Tronic systeem). Probeer nooit blindelings een procedure van een ander type zaag toe te passen.'
     },
-    warmStart: {
-      title: 'Warme Motor Startprocedure (Zonder Choke)',
-      intro: 'Gebruik deze procedure wanneer de zaag reeds op bedrijfstemperatuur is of slechts enkele minuten heeft stilgestaan:',
-      steps: [
-        {
-          step: 1,
-          title: 'Kettingrem inschakelen',
-          text: 'Vergrendel altijd de handbeschermer naar voren.'
-        },
-        {
-          step: 2,
-          title: 'NOOIT choke gebruiken bij een warme motor',
-          text: 'Zet de combihendel NOOIT in de chokestand (/|\\). Dit zuigt vloeibare brandstof in de warme verbrandingskamer waardoor de motor direct verzuipt.'
-        },
-        {
-          step: 3,
-          title: 'Startstand of Bedrijfsstand kiezen',
-          text: 'Zet de combihendel in de startstand / halfgasstand (/n/) (of bij moderne machines en M-Tronic direct in bedrijfsstand I conform de handleiding van uw uitvoering).'
-        },
-        {
-          step: 4,
-          title: 'Startkoord doortrekken',
-          text: 'Trek het startkoord krachtig door tot de motor loopt. Tik kort op de gashendel om eventueel verhoogd toerental direct te deactiveren.'
-        }
-      ]
+    documentedExamples: {
+      stihl026: {
+        modelLabel: 'STIHL 026 (Klassieke Kettingzaag met Master Control)',
+        sourceDoc: 'STIHL 026 Instruction Manual (0458-133-3021, p. 38)',
+        coldStartIntro: 'Koud starten volgens officiële handleiding STIHL 026:',
+        steps: [
+          {
+            step: 1,
+            title: 'Kettingrem blokkeren',
+            text: 'Duw de voorste handbeschermer naar voren om de kettingrem te vergrendelen.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 2,
+            title: 'Chokestand inschakelen',
+            text: 'Druk de gashendelvergrendeling en de gashendel gelijktijdig in en beweeg de Master Control combihendel helemaal naar beneden in de chokestand.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 3,
+            title: 'Trekken tot eerste ontsteking',
+            text: 'Plaats de zaag stabiel op de grond met de voet in de achtergreep. Trek het startkoord rustig uit tot weerstand voelbaar is en trek krachtig recht omhoog tot de motor een eerste hoorbare ontsteking geeft.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 4,
+            title: 'Direct doorschakelen naar Startstand',
+            text: 'Zet de combihendel direct één klik omhoog naar de startstand (halfgas). Blijf niet op volle choke trekken.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 5,
+            title: 'Starten en naar bedrijfstand overgaan',
+            text: 'Trek het startkoord opnieuw krachtig door tot de motor aanslaat. Raak direct kort de gashendel aan: de hendel springt naar de normale bedrijfsstand (I) en het verhoogde toerental zakt naar stationair.',
+            sourceRefs: ['src-0458-133-3021']
+          }
+        ]
+      },
+      stihlMs261: {
+        modelLabel: 'STIHL MS 261 / MS 261 C-M (Professionele Zaag)',
+        sourceDoc: 'STIHL MS 261 Instruction Manual (0458-573-8621-D, p. 34)',
+        coldStartIntro: 'Starten volgens officiële handleiding STIHL MS 261 / MS 261 C-M:',
+        steps: [
+          {
+            step: 1,
+            title: 'Kettingrem inschakelen & Decompressieklep',
+            text: 'Schakel de kettingrem in door de handbeschermer naar voren te drukken. Druk op de decompressieklep (indien aanwezig) om de startweerstand te verlagen.',
+            sourceRefs: ['src-0458-573-8621-d']
+          },
+          {
+            step: 2,
+            title: 'Startstand kiezen',
+            text: 'Druk gashendelvergrendeling en gashendel in en zet de combihendel in de voorgeschreven startstand conform de hendelmarkeringen van deze uitvoering.',
+            sourceRefs: ['src-0458-573-8621-d']
+          },
+          {
+            step: 3,
+            title: 'Startkoord doortrekken',
+            text: 'Plaats de machine vlak op de grond en trek het startkoord rustig uit tot weerstand en trek daarna gelijkmatig en krachtig door tot de motor loopt.',
+            sourceRefs: ['src-0458-573-8621-d']
+          },
+          {
+            step: 4,
+            title: 'Gashendel aantippen',
+            text: 'Druk de gashendel kort in zodat de combihendel naar de bedrijfsstand (I) schakelt.',
+            sourceRefs: ['src-0458-573-8621-d']
+          }
+        ]
+      }
     }
   },
 
   floodedEngineRecovery: {
-    title: 'Verzopen Motor Herstellen (Officiële Procedure)',
-    explanation: 'Een motor raakt "verzopen" wanneer er te veel vloeibare brandstof in de cilinder en het carter aanwezig is, meestal door herhaald doortrekken op volle choke nadat de motor al een eerste ontsteking heeft gegeven. Het mengsel is dan te rijk om door een elektrische bougievonk te kunnen ontbranden.',
-    safetyNotice: 'Voer deze stappen uitsluitend uit in een goed geventileerde buitenomgeving, ver van open vuur of vonkbronnen. Draag werkhandschoenen bij het hanteren van een mogelijk warme bougie.',
-    steps: [
-      {
-        step: 1,
-        title: 'Ontsteking uitschakelen',
-        text: 'Zet de combihendel in de stopstand (0 / STOP).'
-      },
-      {
-        step: 2,
-        title: 'Bougiedop verwijderen',
-        text: 'Trek de rubberen bougiedop voorzichtig recht van de bougie af.'
-      },
-      {
-        step: 3,
-        title: 'Bougie uitbouwen',
-        text: 'Draai de bougie met de bijgeleverde combinatiesleutel linksom los en verwijder deze uit de cilinderkop.'
-      },
-      {
-        step: 4,
-        title: 'Bougie drogen en reinigen',
-        text: 'Inspecteer de elektroden: deze zijn nat van vloeibare benzine. Droog de bougie zorgvuldig af met een schone, vetvrije doek. Verwijder eventuele roetaanslag voorzichtig met een zachte messingborstel.'
-      },
-      {
-        step: 5,
-        title: 'Cilinder ventileren',
-        text: 'Leg een droge, schone doek losjes over het open bougiegat om opspattend brandstofmengsel op te vangen. Trek met de combihendel op 0 (geen ontstekingsspanning) het startkoord 6 tot 10 keer krachtig en rustig door. Dit pompt de overtollige brandstofdampen veilig uit het carter en de cilinder.'
-      },
-      {
-        step: 6,
-        title: 'Bougie correct monteren',
-        text: 'Draai de droge bougie eerst met de hand voorzichtig met de draad mee in de cilinderkop om beschadiging van het fijne schroefdraad te voorkomen. Draai hem daarna met de bougiesleutel vast conform de aanwijzingen in uw handleiding.'
-      },
-      {
-        step: 7,
-        title: 'Bougiedop monteren & Herstarten zonder choke',
-        text: 'Druk de bougiedop stevig op de bougie tot deze vastklikt. Zet de combihendel in de startstand / halfgasstand (/n/) — absoluut GEEN choke gebruiken. Trek aan het startkoord tot de motor aanslaat (dit kan enkele extra trekken vereisen tot het resterende mengsel verdampt is).'
+    genericPrinciple: {
+      heading: 'Wat te doen bij een verzopen motor?',
+      text: 'Een motor kan verzopen raken wanneer er te veel vloeibare brandstof in de verbrandingskamer terechtkomt, doorgaans door herhaaldelijk starten op volle choke nadat de motor al een eerste ontsteking heeft gegeven. Volg altijd de specifieke ontzopingsprocedure uit de handleiding van uw machine.'
+    },
+    documentedExamples: {
+      stihl026: {
+        modelLabel: 'Gedocumenteerd voorbeeld: STIHL 026 ontzopingsprocedure',
+        sourceDoc: 'STIHL 026 Instruction Manual (0458-133-3021, p. 42)',
+        steps: [
+          {
+            step: 1,
+            title: 'Ontsteking uitschakelen',
+            text: 'Zet de Master Control combihendel in de stopstand (0).',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 2,
+            title: 'Bougie demonteren',
+            text: 'Trek de bougiedop los en draai de bougie linksom uit de cilinderkop met de combinatiesleutel.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 3,
+            title: 'Bougie droogmaken',
+            text: 'Droog en reinig de natte bougie zorgvuldig.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 4,
+            title: 'Cilinder ventileren',
+            text: 'Trek met uitgeschakelde ontsteking het startmechanisme meerdere malen rustig door om overtollige brandstofdampen uit de cilinder te verdrijven.',
+            sourceRefs: ['src-0458-133-3021']
+          },
+          {
+            step: 5,
+            title: 'Bougie monteren & Herstarten zonder choke',
+            text: 'Plaats de droge bougie handvast terug en zet vast met de sleutel. Druk de bougiedop vast. Zet de hendel in de startstand (halfgas) en herstart ZONDER chokestand.',
+            sourceRefs: ['src-0458-133-3021']
+          }
+        ]
       }
-    ]
+    }
   },
 
   technicalInspections: {
     fuel: {
-      title: 'Brandstofkwaliteit, Mengverhouding & Veroudering',
-      text: 'Gebruik altijd de brandstof en de exacte mengverhouding die in de handleiding van uw specifieke model wordt voorgeschreven. Voor 2-takt kettingzagen schrijft STIHL doorgaans hoogwaardige 2-takt motorolie gemengd met loodvrije benzine voor, of kant-en-klare alkylaatbrandstof (zoals STIHL MotoMix).',
-      agingWarning: 'Reguliere pompbenzine (Euro 95 E10) bevat tot 10% bio-ethanol. Ethanol trekt vocht aan uit de omgevingslucht (hygroscopische werking). Na ongeveer 30 dagen kan fase-scheiding optreden, waarbij de benzine, de 2-takt olie en het water ontmengen. Dit leidt tot verstopping van de sproeiers, zuurvorming en ernstig risico op een vastloper. Gebruik bij voorkeur verse brandstof of kant-en-klare alkylaatbenzine met een lange houdbaarheid.'
+      title: 'Brandstofkwaliteit & Opslagveroudering',
+      text: 'Gebruik altijd de brandstof en de exacte mengverhouding die in de handleiding van uw specifieke model wordt voorgeschreven. Voor 2-takt kettingzagen schrijft STIHL doorgaans hoogwaardige 2-takt motorolie gemengd met loodvrije benzine voor, of kant-en-klare alkylaatbrandstof.',
+      agingNotice: 'Brandstof veroudert tijdens opslag. De snelheid hangt af van samenstelling, opslagcondities en verpakking. Gebruik brandstof volgens de bewaarinstructies in de handleiding en vervang brandstof bij twijfel door verse, correct voorgeschreven brandstof.'
     },
     sparkPlug: {
-      title: 'Bougie-inspectie & Elektrodenafstand',
-      text: 'Er bestaat geen universele bougie die in iedere STIHL kettingzaag past. Verschillende modellen vereisen verschillende warmtegraden en schroefdraadlengtes (raadpleeg altijd de handleiding van uw specifieke model voor het juiste type, zoals van Bosch, NGK of Champion).',
+      title: 'Bougie-inspectie & Elektrodenbeeld',
+      text: 'Er bestaat geen universele bougie die in iedere STIHL kettingzaag past. Verschillende modellen vereisen verschillende warmtegraden en schroefdraadlengtes (raadpleeg altijd de handleiding van uw specifieke model voor het juiste type).',
       colors: [
-        { color: 'Koffiebruin tot grijsbruin', meaning: 'Optimale verbranding en correct mengsel.' },
-        { color: 'Matzwart en roetig', meaning: 'Mengsel te rijk, verstopt luchtfilter of overmatige oliebijmenging.' },
-        { color: 'Nat van benzine', meaning: 'Motor is verzopen of er ontbreekt een ontstekingsvonk.' },
-        { color: 'Asgrijs of wit met parelvorming', meaning: 'Mengsel te arm of verkeerde warmtegraad; acuut risico op oververhitting en motorschade!' }
+        { color: 'Koffiebruin tot grijsbruin', meaning: 'Kan passen bij een evenwichtige verbranding en geschikte mengselverhouding.' },
+        { color: 'Matzwart of roetig', meaning: 'Kan wijzen op een rijk mengsel, vervuild luchtfilter of overmatige oliebijmenging.' },
+        { color: 'Nat van brandstof', meaning: 'Kan wijzen op een verzopen toestand of ontbrekende ontsteking.' },
+        { color: 'Asgrijs of witachtig', meaning: 'Kan wijzen op een te arm mengsel of thermische overbelasting.' }
       ],
-      gapNotice: 'Controleer de elektrodenafstand met een voelermaat conform de specificatie in de handleiding van uw model (doorgaans circa 0,5 mm bij veel gangbare STIHL modellen; raadpleeg altijd uw specifieke handleiding).'
+      gapNotice: 'Controleer de elektrodenafstand met een voelermaat conform de modelspecificatie in de handleiding (raadpleeg uw specifieke handleiding).'
     },
     carburetorVsMtronic: {
       title: 'Verschil tussen Klassieke Carburateurs en M-Tronic',
-      text: 'Bij klassieke STIHL zagen regelt een mechanische membraancarburateur met stelschroeven (L, H en LA) de brandstoftoevoer. Ga hier niet blindelings aan draaien: een onjuiste H-instelling kan leiden tot zuigervraat.',
-      mtronicText: 'Moderne STIHL zagen met M-Tronic (herkenbaar aan de typeaanduiding C-M, zoals de MS 241 C-M, MS 261 C-M en MS 362 C-M) hebben een elektronisch geregeld motormanagementsysteem. Een microprocessor regelt het ontstekingstijdstip en de brandstofdosering via een magneetventiel. Deze zagen hebben GEEN handmatige H- en L-stelschroeven. Bij startproblemen op M-Tronic modellen kan een kalibratieprocedure helpen, of is diagnose met het STIHL MDG 1 diagnoseapparaat bij de dealer aangewezen.'
+      text: 'Bij klassieke STIHL zagen regelt een mechanische membraancarburateur met stelschroeven (L, H en LA) de brandstoftoevoer. Ga hier niet blindelings aan draaien: een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
+      mtronicText: 'Moderne STIHL zagen met M-Tronic (herkenbaar aan de aanduiding C-M, zoals de MS 261 C-M) hebben een elektronisch gestuurd motormanagementsysteem. Een regeleenheid doseert brandstof via een magneetventiel. Deze machines hebben GEEN handmatige H- en L-stelschroeven. Bij storing is dealerdiagnose met het voor deze generatie voorgeschreven STIHL diagnosesysteem aangewezen.'
     }
   },
 
@@ -223,32 +293,32 @@ export const stihlKettingzaagStartNietGuide = {
     {
       symptom: 'Zaag start koud niet',
       possibleCause: 'Onjuiste combihendelstand, choke te lang aangehouden, verouderde brandstof of vervuilde bougie.',
-      safeFirstCheck: 'Controleer of de stopschakelaar niet op 0 staat. Volg de koudstartprocedure en stop direct met de choke zodra de motor een eerste keer ploft.',
-      nextStep: 'Bougie inspecteren op nattigheid/roet; brandstof vervangen door verse brandstof; handleidingprocedure raadplegen.'
+      safeFirstCheck: 'Controleer of de stopschakelaar niet op 0 staat. Volg de koudstartprocedure uit de handleiding en stop met de chokestand zodra de motor een eerste keer ontsteekt.',
+      nextStep: 'Bougie inspecteren op nattigheid/roet; brandstof controleren; handleidingprocedure raadplegen.'
     },
     {
-      symptom: 'Zaag start koud wel, maar slaat na 2 seconden direct af',
+      symptom: 'Zaag start koud wel, maar slaat na enkele seconden af',
       possibleCause: 'Combihendel te lang op choke laten staan of te snel van de startstand afgehaald; vervuild luchtfilter.',
-      safeFirstCheck: 'Schakel direct na de eerste ontsteking naar de startstand (/n/) en trek opnieuw. Controleer of het luchtfilter schoon is.',
+      safeFirstCheck: 'Schakel direct na de eerste ontsteking naar de startstand en trek opnieuw. Controleer of het luchtfilter schoon is.',
       nextStep: 'Controleer stationairloop conform handleiding; raadpleeg dealer bij brandstoftoevoerproblemen.'
     },
     {
       symptom: 'Zaag start warm niet',
       possibleCause: 'Choke per ongeluk gebruikt bij warme motor, dampbelvorming in brandstofleiding of verzopen toestand.',
-      safeFirstCheck: 'Gebruik NOOIT de chokestand bij een warme motor. Laat de zaag enkele minuten afkoelen en start in startstand / halfgas (/n/) of stand I.',
-      nextStep: 'Indien verzopen: bougie drogen volgens de verzopen motor procedure. Bij aanhoudend probleem dealerdiagnose.'
+      safeFirstCheck: 'Gebruik de warme startprocedure zonder choke conform de handleiding van uw model. Laat de zaag eventueel enkele minuten afkoelen.',
+      nextStep: 'Indien verzopen: volg ontzopingsprocedure uit handleiding. Bij aanhoudend probleem dealerdiagnose.'
     },
     {
-      symptom: 'Motor verzopen (sterke benzinegeur, natte bougie)',
+      symptom: 'Motor verzopen (brandstofgeur, natte bougie)',
       possibleCause: 'Herhaald doortrekken op volle choke nadat de motor al een eerste ontsteking heeft gegeven.',
-      safeFirstCheck: 'Zet de combihendel op 0, draai de bougie eruit, droog deze af en trek het koord 6 tot 10 keer door met een doek over het bougiegat.',
-      nextStep: 'Bougie terugplaatsen en herstarten in startstand (/n/) ZONDER choke.'
+      safeFirstCheck: 'Zet de combihendel op 0, draai de bougie eruit, droog deze af en ventileer de cilinder conform de handleiding.',
+      nextStep: 'Bougie terugplaatsen en herstarten in de startstand ZONDER choke.'
     },
     {
-      symptom: 'Motor start, maar ketting draait stationair direct mee',
-      possibleCause: 'Stationair toerental (LA) te hoog afgesteld of gebroken/verslapte koppelingsveren.',
+      symptom: 'Motor start, maar zaagketting draait stationair direct mee',
+      possibleCause: 'Stationair toerental te hoog afgesteld of defecte/verslapte koppelingsveren.',
       safeFirstCheck: 'Stop de machine onmiddellijk! Schakel de kettingrem in en bedien het gas niet.',
-      nextStep: 'Stationair toerental conform handleiding bijstellen; bij gebroken koppelingsveer service door dealer vereist.'
+      nextStep: 'Stationair toerental conform handleiding controleren; service door dealer vereist bij mechanisch koppelingsdefect.'
     },
     {
       symptom: 'Startkoord trekt door zonder noemenswaardige weerstand',
@@ -259,71 +329,33 @@ export const stihlKettingzaagStartNietGuide = {
   ],
 
   whenToStopAndCallDealer: [
-    'U heeft meer dan 20 keer getrokken zonder resultaat na het uitvoeren van de verzopen motor herstelprocedure.',
+    'U heeft herhaaldelijk getrokken zonder resultaat na het uitvoeren van de ontzopingsprocedure uit de handleiding.',
     'Het startkoord blokkeert mechanisch of er klinkt een metaalachtig schurend geluid uit het motorhuis.',
-    'Er is sprake van zichtbare benzinelekkage langs het carter, de brandstoftank of de carburateurbehuizing.',
-    'De motor vertoont geen enkele compressie meer bij het rustig uittrekken van het koord.',
-    'Bij M-Tronic machines blijft het motormanagement onregelmatig functioneren na een officiële herstart; diagnose via de STIHL MDG 1 analysetool is dan noodzakelijk.'
-  ],
-
-  sources: [
-    {
-      documentTitle: 'STIHL 026 / MS 260 Instructiehandleiding',
-      publicationId: '0458-133-3021',
-      sourceClass: 'OFFICIAL_INSTRUCTION_MANUAL',
-      modelScope: 'Kettingzagen (o.a. STIHL 026, MS 260)',
-      notes: 'Officiële veiligheids-, start- en onderhoudsvoorschriften voor benzinekettingzagen met Master Control bediening.'
-    },
-    {
-      documentTitle: 'STIHL MS 170 / MS 180 Instructiehandleiding',
-      publicationId: '0458-017-0121',
-      sourceClass: 'OFFICIAL_INSTRUCTION_MANUAL',
-      modelScope: 'Compacte kettingzagen (MS 170, MS 180)',
-      notes: 'Basisstartprocedures, koudstart versus warmstart, bougie-inspectie en brandstofvoorschriften.'
-    },
-    {
-      documentTitle: 'STIHL MS 261 C-M Instructiehandleiding',
-      publicationId: '0458-545-0121',
-      sourceClass: 'OFFICIAL_INSTRUCTION_MANUAL',
-      modelScope: 'Professionele M-Tronic kettingzagen',
-      notes: 'Bediening van Master Control hendel bij M-Tronic en elektronisch geregelde brandstofdosering.'
-    },
-    {
-      documentTitle: 'STIHL Veiligheidsbrochure: Veilig werken met de motorkettingzaag',
-      publicationId: 'STIHL Veiligheidsrichtlijn',
-      sourceClass: 'OFFICIAL_SAFETY_GUIDE',
-      modelScope: 'Alle motorkettingzagen',
-      notes: 'Veilige startposities, kettingremvergrendeling en persoonlijke beschermingsmiddelen.'
-    },
-    {
-      documentTitle: 'STIHL Technische Informatie: Brandstofkwaliteit & Houdbaarheid van Mengsmering',
-      publicationId: 'TI Brandstofvoorschriften',
-      sourceClass: 'OFFICIAL_TECHNICAL_INFO',
-      modelScope: '2-takt benzinemotoren',
-      notes: 'Fasescheiding van ethanolbenzine, houdbaarheid van 2-takt mengsels en voordelen van alkylaatbenzine.'
-    }
+    'Er is sprake van zichtbare brandstoflekkage langs het carter, de tank of de carburateurbehuizing.',
+    'De motor vertoont geen compressieweerstand meer bij het uittrekken van het startkoord.',
+    'Bij M-Tronic machines blijft het motormanagement onregelmatig functioneren na herstart; dealerdiagnose met het voor deze generatie voorgeschreven diagnosesysteem is dan noodzakelijk.'
   ],
 
   faq: [
     {
       question: 'Waarom start mijn STIHL kettingzaag koud wel, maar warm niet?',
-      answer: 'Dit wordt meestal veroorzaakt door het per ongeluk gebruiken van de chokestand (/|\\) bij een warme motor, waardoor deze direct verzuipt. Een andere mogelijke oorzaak bij warme motoren is dampbelvorming in de brandstofleiding na zware belasting of een ontstekingsspoel die bij hoge temperatuur faalt. Laat de zaag enkele minuten afkoelen en start altijd in de startstand / halfgas (/n/) zonder choke.'
+      answer: 'Dit kan optreden wanneer per ongeluk de chokestand wordt gebruikt bij een warme motor, waardoor deze direct verzuipt. Andere mogelijke oorzaken bij warme motoren zijn dampbelvorming in het brandstofsysteem na zware belasting of een ontstekingscomponent die bij verhoogde bedrijfstemperatuur faalt. Laat de zaag afkoelen en raadpleeg de warmstartprocedure uit uw handleiding.'
     },
     {
       question: 'Hoe herken ik een verzopen motor bij een STIHL kettingzaag?',
-      answer: 'Een verzopen motor herkent u aan een sterke benzinegeur rond de zaag, herhaaldelijk trekken zonder enige ontsteking, en vooral aan een bougie waarvan de elektroden nat zijn van vloeibare brandstof. Volg in dat geval de officiële procedure: bougie uitbouwen, droogmaken, cilinder ventileren met stopknop op 0, en herstarten in de startstand zonder choke.'
+      answer: 'Een verzopen motor kan gepaard gaan met een sterke brandstofgeur rond de machine, uitblijven van ontsteking bij het starten, en een bougie waarvan de elektroden nat zijn van vloeibare brandstof. Volg in dat geval de ontzopingsinstructie uit de handleiding van uw specifieke model.'
     },
     {
-      question: 'Kan oude benzine ervoor zorgen dat mijn kettingzaag niet start?',
-      answer: 'Ja. Reguliere pompbenzine (Euro 95 E10) veroudert al na ongeveer 30 dagen doordat ethanol vocht uit de lucht aantrekt. Hierdoor ontmengt de 2-takt olie zich van de benzine en ontstaan er hars- en gomafzettingen die de fijne sproeiers van de carburateur verstoppen. Ververs oude brandstof en gebruik bij voorkeur verse mengsmering of stabiele alkylaatbenzine zoals STIHL MotoMix.'
+      question: 'Kan oude brandstof startproblemen veroorzaken?',
+      answer: 'Ja. Brandstof kan tijdens langere opslag verouderen en ontmengen, wat kan leiden tot gomafzettingen in de carburateursproeiers. Gebruik brandstof volgens de voorschriften in de handleiding van uw model en ververs brandstof die te lang opgeslagen is geweest.'
     },
     {
       question: 'Mag ik zelf de carburateurschroeven (H en L) bijstellen als de zaag niet start?',
-      answer: 'Nee, het blindelings verdraaien van de H- en L-stelschroeven wordt sterk afgeraden. Als de zaag niet start, ligt de oorzaak vrijwel altijd bij de startprocedure, oude brandstof, een verzopen motor of een vervuilde bougie. Een onjuist afgestelde H-schroef kan leiden tot een te arm mengsel en binnen enkele seconden vollast resulteren in een vastgelopen motor (zuigervreter).'
+      answer: 'Nee, het blindelings verdraaien van H- en L-stelschroeven wordt afgeraden. Als de zaag niet start, ligt de oorzaak vrijwel altijd bij de bediening, brandstof, ontzoping of bougie. Een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.'
     },
     {
-      question: 'Heeft een STIHL kettingzaag met M-Tronic dezelfde startknoppen en carburateurschroeven?',
-      answer: 'Nee. STIHL kettingzagen met M-Tronic (C-M modellen) hebben een microprocessor en een elektronisch gestuurd magneetventiel. Zij hebben helemaal geen handmatige H- en L-stelschroeven op de carburateur. Ook de startstand op de combihendel regelt de elektronica automatisch in. Bij hardnekkige startproblemen op M-Tronic machines is dealerdiagnose met het STIHL MDG 1 diagnoseapparaat vereist.'
+      question: 'Heeft een STIHL kettingzaag met M-Tronic dezelfde carburateurschroeven?',
+      answer: 'Nee. STIHL kettingzagen met M-Tronic (C-M modellen) hebben een elektronisch motormanagement en geen handmatige H- en L-stelschroeven op de carburateur. Bij hardnekkige start- of regelproblemen op M-Tronic machines is dealerdiagnose met het voor deze generatie voorgeschreven diagnosesysteem vereist.'
     }
   ],
 

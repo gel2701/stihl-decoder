@@ -84,10 +84,16 @@ export const namaakStihlHerkennenGuide = {
 
   sources: [
     {
+      source_id: 'src-stihl-brand-protection',
+      canonical_document_id: null,
+      publication_id: null,
+      sourceLabel: 'STIHL Brand Protection Richtlijnen',
       documentTitle: 'STIHL Brand Protection: Waarschuwing tegen merkvervalsing en namaakproducten',
-      publicationId: 'STIHL Merkvervalsing Richtlijn',
       sourceClass: 'OFFICIAL_BRAND_PROTECTION',
-      modelScope: 'Alle motorgereedschappen',
+      modelScope: ['Alle motorgereedschappen'],
+      locator: {
+        section: 'Counterfeit identification'
+      },
       notes: 'Kenmerken van nagemaakte machines en veiligheidsrisico\'s van imitatiekettingzagen.'
     }
   ],

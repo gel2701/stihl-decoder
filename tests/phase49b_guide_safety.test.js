@@ -37,8 +37,10 @@ assert.strictEqual(guideHtml.includes('H 1 slag open'), false, 'Must not claim H
 assert.strictEqual(guideHtml.includes('L 1 slag open'), false, 'Must not claim L 1 slag open');
 assert.strictEqual(guideHtml.includes('standaard 1 slag'), false, 'Must not claim standard 1 turn');
 assert.strictEqual(guideHtml.includes('Draai nooit zonder toerenteller'), true, 'Must warn against adjusting without tachometer');
-assert.strictEqual(guideHtml.includes('zuigervreter'), true, 'Must warn about lean seizure risk');
-console.log('  ✅ Test 2 Passed: Universal carburetor claims strictly absent; lean seizure risks explicitly stated.');
+assert.strictEqual(guideHtml.includes('binnen enkele seconden'), false, 'Must not use sensational "binnen enkele seconden" rhetoric');
+assert.strictEqual(guideHtml.includes('fatale zuigervreter'), false, 'Must not use sensational "fatale zuigervreter" rhetoric');
+assert.strictEqual(guideHtml.includes('ontoereikende smering') || guideHtml.includes('oververhitting'), true, 'Must give sober warning on lean mix seizure risk');
+console.log('  ✅ Test 2 Passed: Universal carburetor claims strictly absent; sober lean seizure risks explicitly stated.');
 
 // 3. No Universal Spark Plug Claim
 console.log('\n▶ Test 3: Prohibition of universal spark plug claims...');
@@ -59,7 +61,7 @@ console.log('\n▶ Test 5: Repair liability wording verification...');
 assert.strictEqual(guideHtml.includes('dit lost uw probleem op'), false, 'Must not overclaim "dit lost uw probleem op"');
 assert.strictEqual(guideHtml.includes('gegarandeerde oplossing'), false, 'Must not claim guaranteed fix');
 assert.strictEqual(guideHtml.includes('Mogelijke oorzaak'), true, 'Must use cautious "Mogelijke oorzaak"');
-assert.strictEqual(guideHtml.includes('kan wijzen op') || guideHtml.includes('mogelijke oorzaak'), true, 'Must use prudent diagnostic terminology');
+assert.strictEqual(/kan wijzen op/i.test(guideHtml) || /mogelijke oorzaak/i.test(guideHtml), true, 'Must use prudent diagnostic terminology');
 console.log('  ✅ Test 5 Passed: Honest, non-committal diagnostic language used throughout.');
 
 // 6. Mandatory Safety Warnings

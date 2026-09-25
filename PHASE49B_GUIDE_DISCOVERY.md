@@ -31,17 +31,26 @@ Tevens wordt een **individuele publicatiegate** ingevoerd met drie statussen:
   - Instructiehandleidingen in database/registry (o.a. STIHL 026 / MS 260 Doc `0458-133-3021`, MS 170 / MS 180, MS 241 C-M Doc `292074624`, MS 290/310/390 Doc `1075196729`).
   - Geverifieerde startprocedures: Master Control combihendel standen (Choke `/\|/`, Halfgas `/n/`, Bedrijf `I`, Stop `0`).
   - Veiligheidsinvariants uit Phase 49A/B: Geen universele brandstofverhouding (1:50) zonder handleidingverwijzing; geen universele bougie/elektrodenafstand.
-- **Officiële Bronnen:**
-  - STIHL Instructiehandleidingen kettingzagen (o.a. 026/MS 260 `0458-133-3021`, MS 170/180 `0458-017-0121`, MS 261 C-M `0458-545-0121`).
-  - STIHL Veiligheidshandboek "Veilig werken met de motorkettingzaag".
-  - STIHL Technische Informatie inzake brandstofopslag (veroudering ethanolbenzine vs. alkylaatbenzine STIHL MotoMix).
+- **Officiële Bronnen (Phase 49B-R1 Canonical Audit):**
+  - Canonical documenten geverifieerd via `src/guideSourceResolver.js`:
+    * `0458-133-3021` — STIHL 026 Instruction Manual (strikt gescoped op 026, p. 38, 42).
+    * `0458-573-8621-D` — STIHL MS 261 / MS 261 C-M Instruction Manual (strikt gescoped op MS 261 / MS 261 C-M, p. 34).
+    * `0458-207-8321-B` — STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual (strikt gescoped op MS 170 / MS 180, p. 22).
+  - Afgewezen / gesaneerde bronnen uit eerdere draft:
+    * `0458-017-0121` — Niet-canoniek publicatienummer; vervangen door canoniek `0458-207-8321-B`.
+    * `0458-545-0121` — Niet-canoniek publicatienummer; vervangen door canoniek `0458-573-8621-D`.
+    * `STIHL Veiligheidsrichtlijn` — Vrije tekst zonder canoniek publicatie-ID; verwijderd als pseudo-publicatie.
+    * `TI Brandstofvoorschriften` — Vrije tekst zonder canoniek publicatie-ID; verwijderd als pseudo-publicatie.
+    * Bereik `0458-133-3021` verbreed naar `MS 260` — Verworpen wegens strikte documentgrenzen (document dekt alleen 026).
 - **Veiligheidsrisico:**
   - Snijletsel door draaiende ketting tijdens startpogingen (kettingrem moet ingeschakeld zijn, veilige stabiele grondpositie).
   - Brand- en explosiegevaar bij ontsnappende brandstofdampen of vonktesters bij open bougiegat.
-  - Motorschade (vastloper) door blind draaien aan carburateurschroeven of verkeerde mengsmering.
+  - Motorschade (oververhitting/vastloper) door blind draaien aan carburateurschroeven of verouderde brandstof.
   - Brandwonden door aanraken hete uitlaatdemper bij warmstartproblemen.
-- **Geschikte Scope:**
-  - Benzine-aangedreven 2-takt kettingzagen van STIHL.
+- **Geschikte Scope & Architectuur (Layer A + Layer B):**
+  - Geen valse universele procedures. Startprocedures en ontzopingsprocedures zijn gestructureerd in:
+    * *Layer A: Generic Safe Principle* — Algemene veiligheidsgrondbeginselen (combihendel, stabiele ondergrond, kettingrem, nooit blind choke blijven doortrekken).
+    * *Layer B: Documented Examples* — Expliciet per exact model en bron (STIHL 026 conform 0458-133-3021 p. 38/42, MS 261 conform 0458-573-8621-D p. 34).
   - Diagnose ingedeeld in duidelijke veiligheidsniveaus (Level 1: Veilige gebruikerscontrole; Level 2: Ervaren gebruiker / handleiding vereist; Level 3: Vakhandelaar / Serviceprocedure).
 - **Publicatiebesluit:** **`PUBLISHED`** (Voldoet aan alle criteria na volledige herbouw).
 

@@ -75,17 +75,31 @@ export const stihlCarburateurAfstellenGuide = {
 
   sources: [
     {
+      source_id: 'src-sm-carb-1068494421',
+      canonical_document_id: '1068494421',
+      publication_id: null,
+      sourceLabel: 'STIHL Service Manual: Carburetors',
       documentTitle: 'STIHL Service Manual: Carburetors',
-      publicationId: 'STIHL SM Carburetor',
       sourceClass: 'OFFICIAL_SERVICE_MANUAL',
-      modelScope: 'Carburateurmodellen algemeen',
+      modelScope: ['Carburateurmodellen algemeen'],
+      locator: {
+        section: 'Carburetor adjustment',
+        heading: 'Limiter caps and basic settings'
+      },
       notes: 'Werking van membraancarburateurs, limiter cap procedures en druktests.'
     },
     {
+      source_id: 'src-sm-028-1008738745',
+      canonical_document_id: '1008738745',
+      publication_id: null,
+      sourceLabel: 'STIHL 028 / 038 Service Manual',
       documentTitle: 'STIHL 028 / 038 Service Manual',
-      publicationId: '1008738745',
       sourceClass: 'OFFICIAL_SERVICE_MANUAL',
-      modelScope: 'Klassieke professionele kettingzagen',
+      modelScope: ['028', '038'],
+      locator: {
+        section: 'Carburetor',
+        heading: 'Standard setting'
+      },
       notes: 'Carburateur basisafstellingen en stationairregulering.'
     }
   ],

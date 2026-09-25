@@ -31,19 +31,19 @@ assert.strictEqual(guideHtml.includes('Controleer eerst de juiste startprocedure
 assert.strictEqual(guideHtml.includes('id="kort-antwoord"'), true, 'Must have #kort-antwoord section ID');
 console.log('  ✅ Test 1 Passed: Published guide renders a substantive direct answer card.');
 
-// 2. Substantive Body & Sections
+// 2. Substantive Body & Sections (Layer A + Layer B Architecture)
 console.log('\n▶ Test 2: Substantive sections and diagnostic tree verification...');
 assert.strictEqual(guideHtml.includes('id="inhoud"'), true, 'Must have table of contents');
-assert.strictEqual(guideHtml.includes('Koude Motor Startprocedure (Choke)'), true, 'Must have cold start procedure');
-assert.strictEqual(guideHtml.includes('Warme Motor Startprocedure (Zonder Choke)'), true, 'Must have warm start procedure');
-assert.strictEqual(guideHtml.includes('Verzopen Motor Herstellen (Officiële Procedure)'), true, 'Must have flooded engine recovery');
+assert.strictEqual(guideHtml.includes('Basisprincipe voor Startprocedures'), true, 'Must have Layer A generic start principle');
+assert.strictEqual(guideHtml.includes('Gedocumenteerde Fabrieksvoorbeelden per Model'), true, 'Must have Layer B documented start examples');
+assert.strictEqual(guideHtml.includes('Gedocumenteerde Ontzopingsprocedures per Model'), true, 'Must have Layer B documented flooded recovery examples');
 assert.strictEqual(guideHtml.includes('Probleem- en Oorzaakmatrix'), true, 'Must have troubleshooting matrix');
 assert.strictEqual(guideHtml.includes('<table'), true, 'Must render responsive HTML table for matrix');
 assert.strictEqual(guideHtml.includes('id="wanneer-dealer"'), true, 'Must have when to stop/call dealer section');
-console.log('  ✅ Test 2 Passed: Substantive structure, start tree, and troubleshooting matrix verified.');
+console.log('  ✅ Test 2 Passed: Substantive structure, start tree (Layer A/B), and troubleshooting matrix verified.');
 
-// 3. Structured Data Schema Alignment (FAQPage & HowTo)
-console.log('\n▶ Test 3: Schema.org structured data alignment (FAQPage & HowTo)...');
+// 3. Structured Data Schema Alignment (TechArticle & FAQPage, No Overbroad HowTo)
+console.log('\n▶ Test 3: Schema.org structured data alignment (TechArticle & FAQPage)...');
 const structuredGuide = getStructuredGuide('stihl-kettingzaag-start-niet');
 assert.ok(structuredGuide, 'Structured guide definition must exist');
 
@@ -71,9 +71,8 @@ for (const faqItem of structuredGuide.faq) {
 }
 
 const howTo = graph.find(item => item['@type'] === 'HowTo');
-assert.ok(howTo, 'HowTo schema must exist for published start-niet guide');
-assert.strictEqual(howTo.step.length, structuredGuide.floodedEngineRecovery.steps.length, 'HowTo steps must match recovery steps');
-console.log('  ✅ Test 3 Passed: TechArticle, FAQPage, and HowTo schemas match visible content 1:1.');
+assert.strictEqual(howTo, undefined, 'Generic start guide must NOT emit overbroad HowTo schema without universal procedure');
+console.log('  ✅ Test 3 Passed: TechArticle and FAQPage schemas align cleanly; overbroad HowTo omitted.');
 
 // 4. Gated HowTo Policy (No HowTo on M-Tronic reset)
 console.log('\n▶ Test 4: HowTo schema restriction for non-eligible guides...');

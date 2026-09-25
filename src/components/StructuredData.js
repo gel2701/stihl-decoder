@@ -187,20 +187,6 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
         }))
       });
     }
-
-    if (guide.slug === 'stihl-kettingzaag-start-niet' && guide.floodedEngineRecovery?.steps) {
-      graph.push({
-        '@type': 'HowTo',
-        'name': 'STIHL Kettingzaag Startprocedure & Verzopen Motor Herstellen',
-        'description': guide.metaDescription || guide.description,
-        'step': guide.floodedEngineRecovery.steps.map(s => ({
-          '@type': 'HowToStep',
-          'position': s.step,
-          'name': s.title,
-          'text': s.text
-        }))
-      });
-    }
   }
 
   // 5. Intent Page Schemas (PUBLISHED ONLY)

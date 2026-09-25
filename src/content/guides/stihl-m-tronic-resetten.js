@@ -48,7 +48,7 @@ export const stihlMTronicResettenGuide = {
       models: ['MS 261 C-M (vanaf serienummerwijziging)', 'MS 362 C-M (facelift)', 'MS 462 C-M', 'MS 661 C-M'],
       characteristics: 'Combihendel is voorzien van een specifiek kalibratiesymbool (driehoekje ▲).',
       procedureOverview: 'Kettingrem inschakelen. Combihendel in de start-/kalibratiestand (▲) zetten. Motor starten ZONDER gas te geven. Laat de motor exact 90 seconden (niet korter en niet overmatig langer) in deze stand stationair draaien. Schakel de motor daarna direct uit (combihendel naar 0). De basiskalibratiedata is opgeslagen in het geheugen.',
-      sourceDocument: 'STIHL Gebruiksaanwijzing MS 261 C-M (0458-545-0121) / TI 41.2017',
+      sourceDocument: 'STIHL Gebruiksaanwijzing MS 261 C-M (0458-573-8621-D)',
       section: 'M-Tronic kalibratiecyclus',
       publicationEligibility: 'DOCUMENTED_REFERENCE'
     },
@@ -65,17 +65,31 @@ export const stihlMTronicResettenGuide = {
 
   sources: [
     {
+      source_id: 'src-ms241-292074624',
+      canonical_document_id: '292074624',
+      publication_id: null,
+      sourceLabel: 'STIHL MS 241 C-M Owners Manual',
       documentTitle: 'STIHL MS 241 C-M Instruction Manual',
-      publicationId: '292074624',
       sourceClass: 'OFFICIAL_INSTRUCTION_MANUAL',
-      modelScope: 'MS 241 C-M',
+      modelScope: ['MS 241 C-M'],
+      locator: {
+        section: 'M-Tronic Engine Management',
+        heading: 'Calibration'
+      },
       notes: 'M-Tronic bediening en koud-/warmstartvoorschriften.'
     },
     {
-      documentTitle: 'STIHL MS 261 C-M Instruction Manual',
-      publicationId: '0458-545-0121',
+      source_id: 'src-ms261-0458-573-8621-d',
+      canonical_document_id: '0458-573-8621-D',
+      publication_id: '0458-573-8621-D',
+      documentTitle: 'STIHL MS 261 Instruction Manual',
       sourceClass: 'OFFICIAL_INSTRUCTION_MANUAL',
-      modelScope: 'MS 261 C-M',
+      modelScope: ['MS 261', 'MS 261 C-M'],
+      locator: {
+        page: 34,
+        section: 'Starting / Stopping the Engine',
+        heading: 'M-Tronic calibration'
+      },
       notes: 'Kalibratieprocedure met driehoekssymbool op combihendel.'
     }
   ],
@@ -86,8 +100,8 @@ export const stihlMTronicResettenGuide = {
       answer: 'Het M-Tronic motormanagementsysteem past de brandstoftoevoer continu aan op basis van luchtdruk, temperatuur en filterweerstand. Wanneer een ernstig vervuild luchtfilter wordt vervangen door een nieuw, schoon filter, krijgt de motor plotseling aanzienlijk meer lucht. Het systeem heeft dan enkele vollastsneden of een kalibratiecyclus nodig om de nieuwe mengverhouding in te leren.'
     },
     {
-      question: 'Wat is de functie van de STIHL MDG 1 diagnosetool?',
-      answer: 'De STIHL MDG 1 is een officiële dealer-diagnose-interface die via een diagnosestekker met de M-Tronic regeleenheid wordt verbonden. Hiermee kan de servicemonteur het foutgeheugen uitlezen, het aantal bedrijfsuren bekijken, de status van het magneetventiel testen en firmware-updates installeren.'
+      question: 'Wat is de functie van een officieel STIHL diagnosesysteem (zoals het MDG 1 systeem)?',
+      answer: 'Het officiële diagnosesysteem (zoals het STIHL MDG 1 systeem voor ondersteunde M-Tronic generaties) is een dealer-diagnose-interface die via een diagnosestekker met de M-Tronic regeleenheid wordt verbonden. Hiermee kan de servicemonteur het foutgeheugen uitlezen, het aantal bedrijfsuren bekijken, de status van het magneetventiel testen en eventuele updates uitvoeren.'
     }
   ]
 };

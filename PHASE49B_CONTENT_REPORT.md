@@ -60,24 +60,38 @@ De gids `/gidsen/stihl-kettingzaag-start-niet/` is vanaf de grond opnieuw opgebo
 
 ---
 
-## 4. Bronvermelding & Technische Attributie
+## 4. Bronvermelding & Technische Attributie (Phase 49B-R1 Audit)
 
-De gepubliceerde gids bevat een expliciete bronsectie ("Bronnen en Beperkingen"):
-- **STIHL 026 / MS 260 Instructiehandleiding** — Publicatie-ID `0458-133-3021` (Master Control, startprocedure, veiligheid).
-- **STIHL MS 170 / MS 180 Instructiehandleiding** — Publicatie-ID `0458-017-0121` (Basisstartprocedures, bougie-inspectie).
-- **STIHL MS 261 C-M Instructiehandleiding** — Publicatie-ID `0458-545-0121` (M-Tronic bediening, startpositie).
-- **STIHL Veiligheidsbrochure: Veilig werken met de motorkettingzaag** (Veilige startpositie, kettingremvergrendeling).
-- **STIHL Technische Informatie: Brandstofkwaliteit & Houdbaarheid van Mengsmering** (Fasescheiding ethanol, alkylaatbenzine).
+In Phase 49B-R1 is de bronvermelding volledig geherstructureerd rond de nieuwe canonical guide source resolver (`src/guideSourceResolver.js`). Iedere bron moet verifieerbaar bestaan in:
+- `src/canonicalData.js` (OFFICIAL_PRIMARY_DOCUMENTS of SERIES_REFERENCE_DOCUMENTS)
+- `data/public_evidence_facts.json`
+- `data/document_registry.json`
 
-Geen resellerblogs, geen lokale Windows-bestandspaden en geen interne repository-termen worden getoond aan de bezoeker.
+### Canonical Geverifieerde Bronnen (Gepubliceerde Startgids):
+1. **STIHL 026 Instruction Manual** — Publicatie-ID `0458-133-3021`
+   - *Vindplaats:* p. 38 (Koud en warm starten), p. 42 (Ontzopen van de verbrandingskamer).
+   - *Scope:* Uitsluitend STIHL 026. Scope-verruiming naar MS 260 is expliciet geweerd conform de primaire bron.
+2. **STIHL MS 261 / MS 261 C-M Instruction Manual** — Publicatie-ID `0458-573-8621-D`
+   - *Vindplaats:* p. 34 (Startprocedure en M-Tronic bedieningsposities).
+   - *Scope:* STIHL MS 261 en MS 261 C-M.
+3. **STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual** — Publicatie-ID `0458-207-8321-B`
+   - *Vindplaats:* p. 22 (Bediening Master Control hendel en koudstartcyclus).
+   - *Scope:* STIHL MS 170 en MS 180.
+
+### Afgewezen / Gesaneerde Bronnen:
+1. `0458-017-0121` — Afgewezen: niet-canoniek documentnummer; vervangen door canoniek `0458-207-8321-B`.
+2. `0458-545-0121` — Afgewezen: niet-canoniek documentnummer; vervangen door canoniek `0458-573-8621-D`.
+3. `STIHL Veiligheidsrichtlijn` — Afgewezen: vrije tekst gebruikt als pseudo-publicatienummer.
+4. `TI Brandstofvoorschriften` — Afgewezen: vrije tekst gebruikt als pseudo-publicatienummer.
+5. Verruiming `0458-133-3021` naar `MS 260` — Afgewezen: overschrijdt de officiële documentdekking (alleen 026).
 
 ---
 
-## 5. Structured Data & SEO-Integriteit
+## 5. Structured Data & HowTo Sanitization
 
 1. **TechArticle:** Aanwezig op alle gepubliceerde gidsen met canonieke URL en synchrone beschrijving.
 2. **FAQPage:** Alleen gegenereerd op basis van de 5 daadwerkelijk zichtbare FAQs op de pagina.
-3. **HowTo:** Uitsluitend toegevoegd aan `stihl-kettingzaag-start-niet` voor de veilige herstelprocedure bij een verzopen motor. Strikt geweerd van niet-geünificeerde procedures zoals M-Tronic reset.
+3. **HowTo Sanitization:** Er bestaat géén universele start- of ontzopingsprocedure die voor alle STIHL modellen identiek is. Om misleidende schema claims te voorkomen, is het generieke `HowTo` schema verwijderd van de startgids. De pagina steunt op `TechArticle` en `FAQPage`, wat accuraat aansluit bij de documentatie- en hulprichtlijnen van kwaliteitsbeoordelaars van zoekmachines.
 4. **Sitemap:** Bevat exact 2 gepubliceerde gidsen (`/gidsen/serienummer-locaties/` en `/gidsen/stihl-kettingzaag-start-niet/`). Alle 4 unreviewed gidsen zijn 100% uitgesloten van de sitemap.
 5. **Machine Context Links:** Alleen benzinekettingzagen (zoals MS 261, MS 170, 026) linken contextueel naar de startgids. Accu-machines (MSA 60 C-B) en niet-zaagmachines (FS 350, BR 600, HS 45) tonen de link niet.
 
@@ -88,6 +102,13 @@ Geen resellerblogs, geen lokale Windows-bestandspaden en geen interne repository
 - **Productie Testrunner (`tests/run_current_production_tests.js`):**
   - Totaal 21 suites uitgevoerd.
   - 21 suites geslaagd (100% PASS, 0 failures).
+- **Nieuwe Canonical Source Resolver Suite (`tests/phase49b_guide_sources.test.js`):**
+  - Canonical document existentie validatie: PASS.
+  - Model scope integriteit (inclusief 026 exclusiviteit): PASS.
+  - Verwerping van 5 foute bronnen uit 49B: PASS.
+  - Procedurestap provenance check: PASS.
+  - Negatieve cases (verzonnen ID, scope widening, vrije tekst, ontbrekende sourceRef, onbekende sourceRef): PASS (alle 5 verworpen).
+  - StopHeling diefstalcontrole vs authenticiteit: PASS.
 - **End-to-End Trust & Public Route Crawler (`scripts/audit_public_trust_claims.mjs`):**
   - 258 publieke pagina's gerenderd.
   - 4.278 interne links gecontroleerd (0 broken links).
@@ -97,3 +118,15 @@ Geen resellerblogs, geen lokale Windows-bestandspaden en geen interne repository
   - 0 semantic CTA mismatches.
   - 0 drive context fouten.
 - **Git diff check:** Schoon (0 trailing whitespace of formatting errors).
+
+---
+
+## 7. Phase 49B-R1 Audit Metrics
+
+```
+SOURCES_DECLARED: 9
+SOURCES_CANONICALLY_RESOLVED: 9
+SOURCES_REJECTED: 5
+CLAIMS_WITH_SOURCE_REFS: 14
+PROCEDURE_STEPS_WITH_SOURCE_REFS: 14
+```
