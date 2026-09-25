@@ -72,33 +72,46 @@ export function getPublicCategoryLabel(model) {
 
 export function getSerialLocationAnswer(categorySlug) {
   if (categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen') {
-    return 'Het serienummer staat ingeslagen in het metaal van het carter en kan daarnaast op het typeplaatje of de sticker staan.';
+    return 'Het unieke 9-cijferige serienummer staat meestal ingeslagen in het metaal van het carter (nabij de geluiddemper of velkam) en kan ook op een typeplaatjessticker op de handgreep of kettingrem staan. Reinig zaagsel en kettingolie om het nummer goed zichtbaar te maken. Let op: een 11-cijferig nummer is een gegoten onderdeelnummer en géén uniek serienummer. De exacte locatie verschilt per generatie.';
   }
   if (categorySlug === 'bosmaaiers') {
-    return 'Het serienummer staat op het motortypeplaatje of ingeslagen op het carter van de bosmaaier.';
+    return 'Het 9-cijferige serienummer bevindt zich op het motorhuis of ingeslagen op het carter (vaak nabij de brandstoftank of stuurboom) en op de identificatiesticker. Verwijder vuil en vet om het nummer goed af te lezen. Een 11-cijferig nummer is een onderdeelnummer en géén serienummer van de complete machine.';
   }
   if (categorySlug === 'bladblazers') {
-    return 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de bladblazer.';
+    return 'Het 9-cijferige serienummer staat op het motorblok of op de typeplaatsticker op de behuizing of het frame van de blazer. Zorg dat het oppervlak schoon is om het nummer te onderscheiden van 11-cijferige onderdeelnummers.';
   }
   if (categorySlug === 'heggenscharen') {
-    return 'Het serienummer staat op het carter of typeplaatje van de heggenschaar.';
+    return 'Het 9-cijferige serienummer bevindt zich op het aandrijfhuis of motorcarter en op het typeplaatje nabij de bedieningsgreep. Controleer op een 9-cijferige code; 11-cijferige codes zijn onderdeelnummers.';
   }
   if (categorySlug === 'doorslijpers') {
-    return 'Het serienummer staat ingeslagen op het motorhuis of typeplaatje van de doorslijper.';
+    return 'Het serienummer is ingeslagen in het metalen motorhuis of carter van de doorslijper en staat tevens op de fabriekstypeplaat. Bij intensief gebruikte machines kan reiniging van steenstof nodig zijn om de cijfers zichtbaar te maken.';
   }
   if (categorySlug === 'nevelspuiten') {
-    return 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de nevelspuit.';
+    return 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de nevelspuit. Reinig de behuizing voorzichtig om de stempel af te lezen.';
   }
-  return 'De exacte locatie van het serienummer verschilt per model. Controleer het typeplaatje en de passende STIHL documentatie voor uw uitvoering.';
+  return 'Het unieke 9-cijferige serienummer bevindt zich ingeslagen op het carter of motorhuis, of op de typeplaatjessticker van de machine. Reinig eventueel vuil voorzichtig om het nummer af te lezen. Let op dat een 11-cijferig nummer een onderdeelnummer is en géén uniek serienummer van de machine.';
 }
 
 export function getFuelTypeCode(model) {
-  const rawFuelType = typeof model?.fuel_type === 'string' ? model.fuel_type.toUpperCase() : null;
-  if (!rawFuelType) return 'UNKNOWN';
-  if (rawFuelType.startsWith('BATTERY')) return 'BATTERY';
-  if (rawFuelType.startsWith('ELECTRIC')) return 'ELECTRIC';
-  if (rawFuelType === 'PETROL_2STROKE') return 'PETROL_2STROKE';
-  if (rawFuelType === 'PETROL_4MIX') return 'PETROL_4MIX';
+  const rawFuelType = typeof model?.fuel_type === 'string'
+    ? model.fuel_type.toUpperCase()
+    : (typeof model?.basic_classification?.fuel_type === 'string' ? model.basic_classification.fuel_type.toUpperCase() : null);
+  const powerSource = typeof model?.power_source === 'string'
+    ? model.power_source.toUpperCase()
+    : (typeof model?.basic_classification?.power_source === 'string' ? model.basic_classification.power_source.toUpperCase() : null);
+
+  if (powerSource === 'BATTERY' || (rawFuelType && rawFuelType.startsWith('BATTERY'))) {
+    return 'BATTERY';
+  }
+  if (powerSource === 'ELECTRIC' || (rawFuelType && rawFuelType.startsWith('ELECTRIC'))) {
+    return 'ELECTRIC';
+  }
+  if (powerSource === 'GASOLINE' || powerSource === 'PETROL' || rawFuelType === 'PETROL_2STROKE' || rawFuelType === 'PETROL_OIL_MIX') {
+    return 'PETROL_2STROKE';
+  }
+  if (rawFuelType === 'PETROL_4MIX') {
+    return 'PETROL_4MIX';
+  }
   return 'UNKNOWN';
 }
 
@@ -231,4 +244,97 @@ export function getValuationPublicationState(model) {
     metaDescription: `Indicatieve waardepagina voor STIHL ${model?.model_name || 'machine'} met nog onvoldoende modelspecifieke marktdata voor een indexeerbare marktwaardeclaim.`,
     showPrice: false
   };
+}
+
+export const GUIDE_PUBLICATION_STATUS = {
+  'serienummer-locaties': 'PUBLISHED',
+  'stihl-gietklok-aflezen': 'HOLD',
+  'namaak-stihl-herkennen': 'HOLD',
+  'stihl-kettingzaag-start-niet': 'HOLD',
+  'stihl-carburateur-afstellen': 'HOLD',
+  'stihl-m-tronic-resetten': 'HOLD'
+};
+
+export const INTENT_PUBLICATION_STATUS = {
+  'stihl-paspoort': 'PUBLISHED',
+  'stihl-serienummer-decoder': 'HOLD',
+  'stihl-serienummer': 'HOLD',
+  'stihl-bouwjaar': 'HOLD',
+  'stihl-diefstalcheck': 'HOLD',
+  'stihl-waarde': 'HOLD',
+  'stihl-modellen': 'HOLD',
+  'waar-staat-serienummer-stihl': 'HOLD',
+  'stihl-serienummer-bouwjaar': 'HOLD',
+  'stihl-productiedatum': 'HOLD',
+  'stihl-model-herkennen': 'HOLD',
+  'stihl-typeplaatje': 'HOLD',
+  'stihl-serienummer-ongeldig': 'HOLD',
+  'stihl-tweedehands-checklist': 'HOLD'
+};
+
+export function getGuidePublicationStatus(slug) {
+  return GUIDE_PUBLICATION_STATUS[slug] || 'HOLD';
+}
+
+export function isGuidePublished(slug) {
+  return getGuidePublicationStatus(slug) === 'PUBLISHED';
+}
+
+export function getIntentPublicationStatus(slug) {
+  return INTENT_PUBLICATION_STATUS[slug] || 'HOLD';
+}
+
+export function isIntentPublished(slug) {
+  return getIntentPublicationStatus(slug) === 'PUBLISHED';
+}
+
+export function getRelevantPublicLinks(model, database) {
+  const links = [];
+  const categorySlug = getSafeCategorySlug(model);
+  const safePartsPath = getSafeModelPartsPath(model);
+  const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
+  const isBattery = isBatteryModel(model);
+  const isPetrol = isPetrolModel(model);
+
+  // 1. Category Hub
+  if (categorySlug) {
+    const categoryTitle = model?.category || 'Modellen';
+    links.push({ href: `/${categorySlug}/`, label: `${categoryTitle} Overzicht` });
+  }
+
+  // 2. Safe parts path
+  if (safePartsPath) {
+    links.push({ href: safePartsPath, label: `STIHL ${model?.model_name || 'Machine'} Onderdelen` });
+  }
+
+  // 3. Comparisons if registered
+  const comp = getRegisteredComparisonForModel(model, database);
+  if (comp) {
+    links.push({ href: `/vergelijk/${comp.comparisonSlug}/`, label: comp.entry.title });
+  }
+
+  // 4. Published Guides (strictly drive-context and category safe)
+  if (isGuidePublished('serienummer-locaties')) {
+    links.push({ href: '/gidsen/serienummer-locaties/', label: 'Serienummer Locaties Gids' });
+  }
+
+  if (isPetrol && isChainsaw && isGuidePublished('stihl-kettingzaag-start-niet')) {
+    links.push({ href: '/gidsen/stihl-kettingzaag-start-niet/', label: 'Kettingzaag Start Niet Guide' });
+  }
+  if (isPetrol && isGuidePublished('stihl-carburateur-afstellen')) {
+    links.push({ href: '/gidsen/stihl-carburateur-afstellen/', label: 'Carburateur Afstellen' });
+  }
+  if (isPetrol && isGuidePublished('stihl-m-tronic-resetten')) {
+    links.push({ href: '/gidsen/stihl-m-tronic-resetten/', label: 'M-Tronic Resetten' });
+  }
+
+  // 5. Published Tools / Hubs
+  if (isIntentPublished('stihl-paspoort')) {
+    links.push({ href: '/stihl-paspoort/', label: 'STIHL Machinepaspoort (Mijn STIHL)' });
+  }
+
+  // 6. Parts Hub
+  links.push({ href: '/onderdeelnummer/', label: 'STIHL Onderdeelnummers & Series' });
+
+  return links;
 }

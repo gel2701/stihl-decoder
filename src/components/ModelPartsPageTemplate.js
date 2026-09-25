@@ -1,6 +1,6 @@
 /**
  * Model Parts Compatibility Page SSR Template Renderer for STIHLDecoder.nl
- * Phase 28 Commercial Parts Cluster Architecture
+ * Phase 49A — User Trust & Drive Context Safety
  */
 
 import { buildStructuredData } from './StructuredData.js';
@@ -8,7 +8,13 @@ import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { renderAffiliateLink } from './AffiliateLink.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
-import { getSafeCategorySlug, getSafeModelPath } from '../publicationRules.js';
+import {
+  getSafeCategorySlug,
+  getSafeModelPath,
+  isPetrolModel,
+  isBatteryModel,
+  getRelevantPublicLinks
+} from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
 
@@ -57,10 +63,17 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
   const verification = getModelVerificationSummary(model);
 
+  const isPetrol = isPetrolModel(model);
+  const isBattery = isBatteryModel(model);
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
+  const isTrimmer = categorySlug === 'bosmaaiers' || (model.basic_classification && model.basic_classification.equipment_type === 'TRIMMER');
+
   const sparkState = getPublicTechnicalDisplayState(slug, 'spark_plug', database);
   const gapState = getPublicTechnicalDisplayState(slug, 'electrode_gap_mm', database);
-  const hasSparkData = sparkState.single_value_eligible || gapState.single_value_eligible;
+  const hasSparkData = isPetrol && (sparkState.single_value_eligible || gapState.single_value_eligible);
+
+  // Relevant public links for this specific machine context
+  const relevantLinks = getRelevantPublicLinks(model, database);
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -116,17 +129,20 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-        ${hasSparkData ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+        ${isPetrol ? `<div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
           <div class="flex justify-between items-center">
             <span class="font-bold text-white text-sm">Bougie & Ontsteking</span>
-            <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Elektrisch</span>
+            <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Ontsteking</span>
           </div>
-          <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'spark_plug', database)}</strong></p>
-          <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'electrode_gap_mm', database, (value) => `${value} mm`)}</strong></p>
+          ${hasSparkData ? `
+            <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'spark_plug', database)}</strong></p>
+            <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'electrode_gap_mm', database, (value) => `${value} mm`)}</strong></p>
+          ` : `
+            <p class="text-gray-300">• Bougietype & elektrodenafstand: Raadpleeg de originele handleiding van uw specifieke bouwjaarrevisie voor het goedgekeurde type (bijv. NGK / Bosch).</p>
+          `}
           <div class="pt-2">
             ${renderAffiliateLink({
               partName: `Bougie voor STIHL ${model.model_name}`,
-              searchQuery: `bougie STIHL ${model.model_name}`,
               category: 'spark_plug'
             })}
           </div>
@@ -138,46 +154,80 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <span class="font-bold text-white text-sm">Zaagketting & Geleideblad</span>
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Snijgarnituur</span>
             </div>
-            <p class="text-gray-300">• Technische kettingmaten worden alleen getoond zodra ze per veld betrouwbaar zijn gedocumenteerd.</p>
+            <p class="text-gray-300">• Technische kettingmaten (steek, schakeldikte, aantal aandrijfschakels) worden per uitvoering gespecificeerd in de handleiding.</p>
+            <p class="text-gray-300">• Zaagkettingolie: Gebruik kwalitatieve STIHL kettingolie voor continue smering van blad en zaagketting.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Zaagketting voor STIHL ${model.model_name}`,
-                searchQuery: `zaagketting STIHL ${model.model_name}`,
                 category: 'chain'
               })}
             </div>
           </div>
         ` : ''}
 
-        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-white text-sm">Carburateur & Membraanset</span>
-            <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Brandstof</span>
+        ${isTrimmer ? `
+          <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-white text-sm">Snijgarnituur & Trimmerdraad</span>
+              <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Snijgarnituur</span>
+            </div>
+            <p class="text-gray-300">• Geschikt voor STIHL maaidraad, PolyCut messen of AutoCut maaikop volgens de fabrieksrichtlijnen van dit model.</p>
+            <div class="pt-2">
+              ${renderAffiliateLink({
+                partName: `Snijgarnituur voor STIHL ${model.model_name}`,
+                category: 'trimmer_line'
+              })}
+            </div>
           </div>
-          <p class="text-gray-300">• Afstelwaarden worden pas getoond zodra ze per veld aan veilige bronstatus zijn gekoppeld.</p>
-          <div class="pt-2">
-            ${renderAffiliateLink({
-              partName: `Membraanset voor STIHL ${model.model_name}`,
-              searchQuery: `carburateur STIHL ${model.model_name}`,
-              category: 'carburetor'
-            })}
-          </div>
-        </div>
+        ` : ''}
 
-        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-white text-sm">Luchtfilter & Olie-element</span>
-            <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Filter</span>
+        ${isPetrol ? `
+          <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-white text-sm">Carburateur & Brandstofsysteem</span>
+              <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Brandstof</span>
+            </div>
+            <p class="text-gray-300">• Carburateurrevisiesets en brandstoffilters moeten exact overeenkomen met het carburateurfabrikaat (Zama / Walbro) van uw uitvoering.</p>
+            <div class="pt-2">
+              ${renderAffiliateLink({
+                partName: `Carburateuronderdelen voor STIHL ${model.model_name}`,
+                category: 'carburetor'
+              })}
+            </div>
           </div>
-          <p class="text-gray-300">• Filter- en menggegevens worden niet als technische waarheid getoond zonder veldniveau-evidence.</p>
-          <div class="pt-2">
-            ${renderAffiliateLink({
-              partName: `Luchtfilter voor STIHL ${model.model_name}`,
-              searchQuery: `luchtfilter STIHL ${model.model_name}`,
-              category: 'air_filter'
-            })}
+
+          <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-white text-sm">Luchtfilter & Filterelement</span>
+              <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Filter</span>
+            </div>
+            <p class="text-gray-300">• Controleer het filtertype (vilt, gaas of HD2) op basis van de bouwjaarrevisie en werkomstandigheden.</p>
+            <div class="pt-2">
+              ${renderAffiliateLink({
+                partName: `Luchtfilter voor STIHL ${model.model_name}`,
+                category: 'air_filter'
+              })}
+            </div>
           </div>
-        </div>
+        ` : ''}
+
+        ${isBattery ? `
+          <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-white text-sm">Accu & Laadtechniek</span>
+              <span class="text-2xs font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Accusysteem</span>
+            </div>
+            <p class="text-gray-300">• Accusysteem: <strong class="text-white">${model.battery_system || 'STIHL Accusysteem'}</strong></p>
+            ${model.voltage_v ? `<p class="text-gray-300">• Nominale spanning: <strong class="text-white">${model.voltage_v} V</strong></p>` : ''}
+            <p class="text-2xs text-gray-400">Gebruik uitsluitend originele STIHL accupacks en laders die geschikt zijn voor dit systeem.</p>
+            <div class="pt-2">
+              ${renderAffiliateLink({
+                partName: `Accu-accessoires voor STIHL ${model.model_name}`,
+                category: 'battery'
+              })}
+            </div>
+          </div>
+        ` : ''}
       </div>
     </section>
 
@@ -188,7 +238,9 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
         Belangrijk voor aankoop van onderdelen:
       </h3>
       <p>
-        Controleer altijd het serienummer van uw STIHL ${model.model_name} op het carter of typeplaatje voordat u onderdelen bestelt. Bij facelift- en M-Tronic generatiewijzigingen kunnen carteronderdelen en vliegwielen verschillen.
+        ${isBattery ? `Controleer altijd het serienummer en het typeplaatje van uw STIHL ${model.model_name} in het accuvak of op de behuizing voordat u onderdelen of snijgarnituur bestelt. Let goed op het passende accusysteem (${model.battery_system || 'aangewezen systeem'}).` : (
+          isPetrol ? `Controleer altijd het serienummer van uw STIHL ${model.model_name} op het carter of typeplaatje voordat u onderdelen bestelt. Bij productierevisies en M-Tronic generatiewijzigingen kunnen carteronderdelen en ontstekingsmodules verschillen.` : `Controleer altijd het serienummer en specificaties op het typeplaatje van uw STIHL ${model.model_name} voordat u onderdelen bestelt.`
+        )}
       </p>
     </section>
 
@@ -196,24 +248,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
       <h3 class="text-sm font-bold text-white">Relevante STIHL Gidsen & Kennisbank:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
-        <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
-        <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
-        <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
-        <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
-        <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
-        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Serienummer Rapport Maken</a>
-        <a href="/stihl-modellen/" class="hover:text-orange-400 hover:underline">→ STIHL Modellen Overzicht</a>
-        <a href="/waar-staat-serienummer-stihl/" class="hover:text-orange-400 hover:underline">→ Waar staat het serienummer</a>
-        <a href="/stihl-serienummer-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Serienummer vs Bouwjaar</a>
-        <a href="/stihl-productiedatum/" class="hover:text-orange-400 hover:underline">→ Productiedatum Gids</a>
-        <a href="/stihl-model-herkennen/" class="hover:text-orange-400 hover:underline">→ Model Herkennen</a>
-        <a href="/stihl-typeplaatje/" class="hover:text-orange-400 hover:underline">→ Typeplaatje Aflezen</a>
-        <a href="/stihl-serienummer-ongeldig/" class="hover:text-orange-400 hover:underline">→ Verdacht Serienummer</a>
-        <a href="/stihl-tweedehands-checklist/" class="hover:text-orange-400 hover:underline">→ Tweedehands Checklist</a>
-        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids</a>
-        <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
-        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
-        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
+        ${relevantLinks.map((l) => `<a href="${l.href}" class="hover:text-orange-400 hover:underline">→ ${l.label}</a>`).join('')}
       </div>
     </section>
 
@@ -229,6 +264,6 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     </div>
   </footer>
 
-</body>
+ </body>
 </html>`;
 }

@@ -151,7 +151,7 @@
   <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full space-y-10">
 
     <!-- Search Section -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 stihl-orange-glow relative overflow-hidden">
+    <section id="decoder" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 stihl-orange-glow relative overflow-hidden">
       <div class="max-w-2xl mx-auto text-center space-y-4 mb-6">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Voer een Stihl Serienummer, Onderdeelnummer of Model in
@@ -165,10 +165,10 @@
       <div class="max-w-xl mx-auto">
         <label for="code-input" class="sr-only">STIHL Serienummer, Model of Onderdeelnummer</label>
         <div class="relative flex items-center bg-gray-950 border border-gray-700 rounded-xl p-2 transition">
-          <input 
-            type="text" 
-            id="code-input" 
-            placeholder="Bijv. 184592301, MS 261 C-M of 1121 021 0800..." 
+          <input
+            type="text"
+            id="code-input"
+            placeholder="Bijv. 184592301, MS 261 C-M of 1121 021 0800..."
             class="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg font-mono font-semibold text-white placeholder-gray-500 focus:outline-none"
             autocomplete="off"
           />
@@ -405,14 +405,14 @@
 
         <!-- Main Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
+
           <!-- Machine & Factory Details -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
               Machine Gegevens
             </h4>
-            
+
             <div>
               <span id="res-model-label" class="text-xs text-gray-400">Geïdentificeerd model:</span>
               <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
@@ -513,9 +513,9 @@
                 <span class="text-xs text-gray-400 font-medium">Productieperiode-indicatie & uitvoering:</span>
                 <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Breakpoint-gebaseerde indicatie</span>
               </div>
-              
+
               <span id="res-years" class="text-xl font-extrabold text-orange-400 block font-mono">Niet vastgesteld</span>
-              
+
               <span id="res-generation" class="text-xs font-bold text-gray-100 block">
                 Niet vastgesteld
               </span>
@@ -559,7 +559,7 @@
               </h4>
               <span id="serial-specs-badge" class="hidden text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"></span>
             </div>
-            
+
             <div id="specs-grid-container" class="space-y-4">
               <!-- Section 1: Motor -->
               <div id="serial-sec-motor" class="bg-gray-900/80 rounded-xl p-4 border border-gray-800 space-y-2.5">
@@ -701,8 +701,8 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-2.5 self-stretch md:self-center justify-end">
-              <button 
-                id="stopheling-copy-btn" 
+              <button
+                id="stopheling-copy-btn"
                 class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-md shadow-blue-600/30 flex items-center gap-2 cursor-pointer"
                 aria-label="Kopieer serienummer naar klembord en open StopHeling.nl"
               >
@@ -1229,7 +1229,7 @@
           currentSerial = '';
           const modelName = res.input.toUpperCase();
           currentModelName = modelName;
-          
+
           document.getElementById('model-title-display').innerText = modelName;
           const modelCardNameEl = document.getElementById('model-card-name');
           if (modelCardNameEl) modelCardNameEl.innerText = modelName;
@@ -1717,6 +1717,16 @@
       if (searchBtn) searchBtn.addEventListener('click', handleDecode);
       if (inputEl) inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') handleDecode(); });
 
+      // Parameter Ingestion (Phase 49A)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialCode = (urlParams.get('q') || urlParams.get('s') || urlParams.get('code') || '').trim();
+        if (initialCode && inputEl) {
+          inputEl.value = initialCode;
+          handleDecode();
+        }
+      } catch (e) {}
+
       if (clearBtn) {
         clearBtn.addEventListener('click', () => {
           inputEl.value = '';
@@ -1844,8 +1854,8 @@
               userSelfReported: isSelfChecked,
               status: isSelfChecked ? 'USER_REPORTED_CLEAN' : 'UNVERIFIED',
               checkedAt: new Date().toLocaleDateString('nl-NL'),
-              statusLabel: isSelfChecked 
-                ? 'Zelf gerapporteerd door bezoeker (Niet geverifieerd door STIHL Decoder)' 
+              statusLabel: isSelfChecked
+                ? 'Zelf gerapporteerd door bezoeker (Niet geverifieerd door STIHL Decoder)'
                 : 'Niet gecontroleerd via StopHeling'
             }
           });

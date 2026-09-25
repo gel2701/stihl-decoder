@@ -3,11 +3,16 @@
  * Phase 35C.4.3.2.1 public-evidence-safe summary cards
  */
 
-import { getFuelDriveLabel, getSafeModelPath } from '../publicationRules.js';
+import { getFuelDriveLabel, getFuelTypeCode, getSafeModelPath } from '../publicationRules.js';
 import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
 
 export function getRelatedModels(targetModel, database) {
   if (!targetModel || !database || !database.models) return [];
+
+  const targetDrive = getFuelTypeCode(targetModel);
+  const isTargetBattery = targetDrive === 'BATTERY';
+  const isTargetPetrol = targetDrive === 'PETROL_2STROKE' || targetDrive === 'PETROL_4MIX';
+  const isTargetElectric = targetDrive === 'ELECTRIC';
 
   const allModels = database.models;
 
@@ -15,24 +20,47 @@ export function getRelatedModels(targetModel, database) {
     .filter(m => m.id !== targetModel.id)
     .map(m => {
       let score = 0;
-      // 1. Exact Category match (+10 pts)
-      if (m.category_slug === targetModel.category_slug || m.category === targetModel.category) score += 10;
-      
-      // 2. Exact Series Code match (+8 pts)
-      if (m.series_code && targetModel.series_code && m.series_code === targetModel.series_code) score += 8;
+      const candidateDrive = getFuelTypeCode(m);
 
-      // 3. Similar Displacement (+/- 15cc) (+5 pts)
-      if (m.displacement_cc && targetModel.displacement_cc) {
+      // Severe Drive Type Mismatch Penalty
+      if (isTargetBattery && candidateDrive !== 'BATTERY') {
+        score -= 50;
+      } else if (isTargetPetrol && candidateDrive !== 'PETROL_2STROKE' && candidateDrive !== 'PETROL_4MIX') {
+        score -= 50;
+      } else if (isTargetElectric && candidateDrive !== 'ELECTRIC') {
+        score -= 50;
+      }
+
+      // Drive Type Alignment Bonus
+      if (candidateDrive === targetDrive && targetDrive !== 'UNKNOWN') {
+        score += 15;
+      }
+
+      // Battery system match
+      if (isTargetBattery && m.battery_system && targetModel.battery_system && m.battery_system === targetModel.battery_system) {
+        score += 10;
+      }
+
+      // 1. Exact Category match (+10 pts)
+      if (m.category_slug === targetModel.category_slug || m.category === targetModel.category) {
+        score += 10;
+      }
+
+      // 2. Exact Series Code match (+8 pts)
+      if (m.series_code && targetModel.series_code && m.series_code === targetModel.series_code) {
+        score += 8;
+      }
+
+      // 3. Similar Displacement (+/- 15cc) (+5 pts) for petrol
+      if (isTargetPetrol && m.displacement_cc && targetModel.displacement_cc) {
         const diff = Math.abs(m.displacement_cc - targetModel.displacement_cc);
         if (diff <= 15) score += 5;
         if (diff <= 5) score += 3;
       }
 
-      // 4. Same Fuel Type (+3 pts)
-      if (m.fuel_type === targetModel.fuel_type) score += 3;
-
       return { model: m, score };
     })
+    .filter(item => item.score >= 10)
     .sort((a, b) => b.score - a.score)
     .slice(0, 4)
     .map(item => item.model);

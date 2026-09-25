@@ -7,8 +7,6 @@ import { buildStructuredData } from './StructuredData.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
-import { renderPassportProMvpCard } from './PassportProMvp.js';
-import { renderRepairLeadMvpCard, renderSellLeadMvpCard } from './LeadMvpForms.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import {
@@ -33,7 +31,8 @@ import {
   getSafeModelPath,
   getSerialLocationAnswer,
   getValuationPublicationState,
-  isBatteryModel
+  isBatteryModel,
+  getRelevantPublicLinks
 } from '../publicationRules.js';
 
 function renderFactEvidenceLine(fact) {
@@ -158,9 +157,6 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const comparisonPartnerPath = getSafeModelPath(comparisonPartner);
   const comparisonSlug = registeredComparison ? registeredComparison.comparisonSlug : null;
   const registeredComparisonLinks = getRegisteredComparisons(categorySlug).slice(0, 3);
-  const passportProCardHtml = renderPassportProMvpCard({ modelName: model.model_name, abVariant: 'B' });
-  const repairLeadCardHtml = renderRepairLeadMvpCard({ modelName: model.model_name });
-  const sellLeadCardHtml = renderSellLeadMvpCard({ modelName: model.model_name });
   const comparisonDatabase = comparisonPartner ? database : null;
   const modelComparisonPower = comparisonDatabase
     ? renderComparisonValue(slug, 'power_kw', comparisonDatabase, (value) => `${value} kW`)
@@ -242,31 +238,24 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </p>
     </header>
 
-    <!-- Prominent Decoder Tool Form -->
+    <!-- Prominent Decoder Tool Card -->
     <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl space-y-4 stihl-orange-glow">
-      <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-        <h2 class="text-lg font-bold text-orange-400 flex items-center gap-2">
-          <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          Serienummer van jouw STIHL ${model.model_name} controleren:
-        </h2>
-        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Serienummercontrole</span>
-      </div>
-
-      <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
-        <input
-          type="text"
-          name="q"
-          placeholder="Voer het serienummer in van uw ${model.model_name}..."
-          class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
-          autocomplete="off"
-        />
-        <button
-          type="submit"
-          class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 flex items-center justify-center gap-2 cursor-pointer"
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <h2 class="text-lg font-bold text-white">Serienummer van jouw STIHL ${model.model_name} controleren?</h2>
+          </div>
+          <p class="text-xs text-gray-300">Gebruik de interactieve serienummerdecoder op de homepage voor directe herkomst-, bouwjaar- en formaatcontrole.</p>
+        </div>
+        <a
+          href="/#decoder"
+          class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 text-xs flex items-center justify-center gap-2 whitespace-nowrap"
         >
-          <span>Analyseer Serienummer</span>
-        </button>
-      </form>
+          <span>Serienummer Controleren</span>
+          <span>→</span>
+        </a>
+      </div>
       <div class="pt-3 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div class="space-y-0.5">
           <span class="text-xs font-bold text-white block">Heb je deze machine?</span>
@@ -282,7 +271,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
     </section>
 
     <!-- Technical Specifications Grid -->
-    <section class="space-y-4">
+    <section id="technische-gegevens" class="space-y-4">
       <h2 class="text-2xl font-black border-b border-gray-800 pb-2 text-white flex items-center justify-between">
         <span>Fabrieksspecificaties STIHL ${model.model_name}</span>
         <span class="text-xs font-normal text-gray-400">${verification.badgeLabel}</span>
@@ -378,15 +367,6 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </div>
     </section>
 
-    <!-- Premium Machine Passport Pro MVP -->
-    ${passportProCardHtml}
-
-    <!-- Lead MVPs Section (Repair & Sell) -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      ${repairLeadCardHtml}
-      ${sellLeadCardHtml}
-    </section>
-
     <!-- Model Comparison Section -->
     ${comparisonPartner && comparisonPartnerPath && comparisonSlug ? `
       <section class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-4">
@@ -421,45 +401,26 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
     ` : ''}
 
     <!-- Conversion Funnel CTAs -->
-    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-      <a href="/stihl-paspoort/" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-orange-400 text-sm block group-hover:underline">📋 1. Maak Serienummer Rapport</span>
-        <span class="text-gray-400 block text-2xs">Download een onafhankelijk verkooprapport</span>
+    <section class="grid grid-cols-1 ${safePartsPath ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-4 text-xs">
+      <a href="/stihl-paspoort/#add=${encodeURIComponent(slug)}" class="bg-orange-600/20 hover:bg-orange-600/30 border border-orange-500/40 p-4 rounded-xl text-center space-y-1 block transition group">
+        <span class="font-bold text-orange-400 text-sm block group-hover:underline">📋 1. Voeg toe aan Mijn STIHL</span>
+        <span class="text-gray-400 block text-2xs">Sla machinegegevens en onderhoud op in uw machinepaspoort</span>
       </a>
-      <a href="/waarde/${slug}/" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-white text-sm block group-hover:underline">💶 2. Waardestatus bekijken</span>
-        <span class="text-gray-400 block text-2xs">${valuationState.canIndex ? 'Modelspecifieke marktwaarde' : 'Nog onvoldoende modelspecifieke marktdata'}</span>
+      <a href="#technische-gegevens" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
+        <span class="font-bold text-white text-sm block group-hover:underline">⚙️ 2. Specificaties</span>
+        <span class="text-gray-400 block text-2xs">Geverifieerde motorgegevens en bronstatus</span>
       </a>
       ${safePartsPath ? `<a href="${safePartsPath}" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-white text-sm block group-hover:underline">🔧 3. Bekijk Onderdelen</span>
-        <span class="text-gray-400 block text-2xs">${model.series_code ? `Modelgebonden onderdeleninformatie voor serie ${model.series_code}` : 'Onderdeleninformatie'}</span>
-      </a>` : `<div class="bg-gray-900 border border-gray-800 p-4 rounded-xl text-center space-y-1">
-        <span class="font-bold text-white text-sm block">🔧 3. Onderdelenroute onbekend</span>
-        <span class="text-gray-400 block text-2xs">Categorie ontbreekt of is niet veilig publiceerbaar</span>
-      </div>`}
+        <span class="text-gray-400 block text-2xs">${model.series_code ? `Modelgebonden onderdelen voor serie ${model.series_code}` : 'Modelgebonden onderdeleninformatie'}</span>
+      </a>` : ''}
     </section>
 
-    <!-- Interlinking Hub including all 6 Troubleshooting Guides -->
+    <!-- Interlinking Hub -->
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
-      <h3 class="text-sm font-bold text-white">Handige STIHL Gidsen & Kennisbank:</h3>
+      <h3 class="text-sm font-bold text-white">Relevante STIHL Gidsen & Kennisbank:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
-        <a href="/kettingzagen/" class="hover:text-orange-400 hover:underline">→ Kettingzagen Hub</a>
-        <a href="/bosmaaiers/" class="hover:text-orange-400 hover:underline">→ Bosmaaiers Hub</a>
-        <a href="/bladblazers/" class="hover:text-orange-400 hover:underline">→ Bladblazers Hub</a>
-        ${safePartsPath ? `<a href="${safePartsPath}" class="hover:text-orange-400 hover:underline">→ STIHL ${model.model_name} Onderdelen</a>` : ''}
-        ${registeredComparisonLinks.map((entry) => `<a href="/vergelijk/${entry.slug}/" class="hover:text-orange-400 hover:underline">→ ${entry.title}</a>`).join('')}
-        <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
-        <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
-        <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
-        <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
-        <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
-        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Serienummer Rapport Maken</a>
-        <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
-        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
-        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
-        <a href="/gidsen/stihl-kettingzaag-start-niet/" class="hover:text-orange-400 hover:underline font-bold text-orange-400">→ Kettingzaag Start Niet Guide</a>
-        <a href="/gidsen/stihl-carburateur-afstellen/" class="hover:text-orange-400 hover:underline font-bold text-orange-400">→ Carburateur Afstellen Guide</a>
-        <a href="/gidsen/stihl-m-tronic-resetten/" class="hover:text-orange-400 hover:underline font-bold text-orange-400">→ M-Tronic Resetten Guide</a>
+        ${getRelevantPublicLinks(model, database).map((l) => `<a href="${l.href}" class="hover:text-orange-400 hover:underline">→ ${l.label}</a>`).join('')}
       </div>
     </section>
 
@@ -468,13 +429,18 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       <h3 class="text-xl font-bold text-white">Veelgestelde Vragen over STIHL ${model.model_name}</h3>
 
       <div class="space-y-3 text-xs">
-        <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-          <h4 class="font-bold text-white">Hoe oud is mijn STIHL ${model.model_name}?</h4>
-          <p class="text-gray-300">Voer het serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.</p>
-        </div>
+        ${(() => {
+          const knownPeriod = model.production_years || (model.production_start_year ? `${model.production_start_year} - ${model.production_end_year || 'heden'}` : null) || model.year_introduced || model.production_period || null;
+          if (!knownPeriod) return '';
+          return `
+          <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
+            <h4 class="font-bold text-white">Hoe oud is mijn STIHL ${model.model_name}?</h4>
+            <p class="text-gray-300">De STIHL ${model.model_name} heeft een bekende productieperiode (${knownPeriod}). Het exacte bouwjaar van uw machine kan worden afgelezen op het fabriekstypeplaatje of via de gietklok (maand-/jaarstempel) op het carter.</p>
+          </div>`;
+        })()}
 
         <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800 space-y-1">
-          <h4 class="font-bold text-white">Waar vind ik het serienummer?</h4>
+          <h4 class="font-bold text-white">Waar vind ik het serienummer van de STIHL ${model.model_name}?</h4>
           <p class="text-gray-300">${getSerialLocationAnswer(categorySlug)}</p>
         </div>
       </div>

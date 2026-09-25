@@ -13,10 +13,19 @@ import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
 import { renderCategoryPageHtml } from './src/components/CategoryPageTemplate.js';
 import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplate.js';
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
+import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
-import { getSafeCategorySlug, getSafeModelPath, getSafeModelPartsPath, getValuationPublicationState, resolveComparisonRoute } from './src/publicationRules.js';
+import {
+  getSafeCategorySlug,
+  getSafeModelPath,
+  getSafeModelPartsPath,
+  getValuationPublicationState,
+  resolveComparisonRoute,
+  isGuidePublished,
+  isIntentPublished
+} from './src/publicationRules.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -238,18 +247,10 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 4. REST API Lead Submission MVP Routes
-  if (pathname === '/api/v1/leads/repair' && req.method === 'POST') {
-    logStihlEvent(EVENT_TYPES.REPAIR_LEAD_COMPLETED, {}, req.headers['user-agent']);
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.end('<article style="background:#111;color:#fff;padding:2rem;font-family:sans-serif;"><h2>✅ Reparatie Aanvraag Ontvangen!</h2><p>Wij nemen binnen 24 uur contact met u op.</p><a href="/" style="color:#f97316;">← Terug naar Home</a></article>');
-    return;
-  }
-
-  if (pathname === '/api/v1/leads/sell' && req.method === 'POST') {
-    logStihlEvent(EVENT_TYPES.SELL_LEAD_COMPLETED, {}, req.headers['user-agent']);
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.end('<article style="background:#111;color:#fff;padding:2rem;font-family:sans-serif;"><h2>✅ Verkoop Aanvraag Ontvangen!</h2><p>U ontvangt binnenkort een overnamebod op het opgegeven e-mailadres.</p><a href="/" style="color:#f97316;">← Terug naar Home</a></article>');
+  // 4. REST API Lead Submission MVP Routes (Deprecated / Decommissioned in Phase 49A)
+  if (pathname === '/api/v1/leads/repair' || pathname === '/api/v1/leads/sell') {
+    res.writeHead(410, { 'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify({ success: false, error: 'SERVICE_NOT_AVAILABLE' }));
     return;
   }
 
@@ -541,6 +542,10 @@ const server = http.createServer(async (req, res) => {
   // 11. Guides SSR Route (/gidsen/:slug/)
   if (pathname.startsWith('/gidsen/')) {
     const guideSlug = pathname.replace('/gidsen/', '').replace(/\/$/, '');
+    if (!isGuidePublished(guideSlug)) {
+      renderNotFound(res);
+      return;
+    }
     const guides = database.guides || [];
     const guide = guides.find(g => g.slug === guideSlug);
 
@@ -550,6 +555,8 @@ const server = http.createServer(async (req, res) => {
       res.end(html);
       return;
     }
+    renderNotFound(res);
+    return;
   }
 
   // 12. Intent Landing Pages
@@ -558,6 +565,10 @@ const server = http.createServer(async (req, res) => {
   const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
 
   if (matchedIntent) {
+    if (!isIntentPublished(matchedIntent.slug)) {
+      renderNotFound(res);
+      return;
+    }
     const html = renderIntentPageHtml(matchedIntent, database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
     res.end(html);
@@ -707,41 +718,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-function renderGuidePageHtml(guide, database, baseUrl) {
-  const canonicalUrl = `${baseUrl}/gidsen/${guide.slug}/`;
-
-  return `<!DOCTYPE html>
-<html lang="nl" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>${guide.title} | STIHLDecoder Gidsen</title>
-  <meta name="description" content="${guide.description}">
-  <link rel="canonical" href="${canonicalUrl}">
-  <meta name="robots" content="index, follow">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/css/tailwind.css">
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
-  <header class="border-b border-gray-800 bg-gray-900/80 p-4">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
-        <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
-        STIHL Decoder
-      </a>
-      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Home</a>
-    </div>
-  </header>
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
-      <h1 class="text-3xl font-extrabold text-white">${guide.title}</h1>
-      <p class="text-sm text-gray-300 leading-relaxed">${guide.description}</p>
-    </article>
-  </main>
-</body>
-</html>`;
-}
 
 function renderPartNumberHubHtml(database, baseUrl) {
   return `<!DOCTYPE html>
@@ -794,6 +770,19 @@ function renderPartNumberHubHtml(database, baseUrl) {
 }
 
 function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
+  const models = (database.models || []).filter((m) => m.series_code === seriesCode);
+  const modelsContent = models.length > 0
+    ? `<ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+        ${models.map((m) => {
+          const safePath = getSafeModelPath(m);
+          return `<li class="bg-gray-900/60 p-2.5 rounded-lg border border-gray-800/80">
+            ${safePath ? `<a href="${safePath}" class="font-bold text-orange-400 hover:underline">STIHL ${m.model_name}</a>` : `<span class="font-bold text-white">STIHL ${m.model_name}</span>`}
+            <span class="text-gray-400 text-2xs block">${m.category_name || m.category || 'STIHL Machine'}</span>
+          </li>`;
+        }).join('')}
+      </ul>`
+    : `<p class="text-gray-400 text-xs italic">Voor deze serie is momenteel nog geen betrouwbare modelkoppeling beschikbaar in de database.</p>`;
+
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
@@ -824,9 +813,14 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
       <p class="text-xs text-gray-300">
         Onderdeelnummers die beginnen met <strong>${seriesCode}</strong> behoren tot de STIHL ${seriesCode} modelfamilie.
       </p>
-      <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs">
-        <h3 class="font-bold text-white mb-2">Gekoppelde STIHL Modellen:</h3>
-        <p class="text-gray-300">MS 261 C-M, MS 260, MS 271, MS 291</p>
+      <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs space-y-3">
+        <h3 class="font-bold text-white text-sm">Gekoppelde STIHL Modellen:</h3>
+        ${modelsContent}
+      </div>
+      <div class="pt-2">
+        <a href="/#decoder" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition">
+          Verifieer serienummer via Decoder →
+        </a>
       </div>
     </article>
   </main>
@@ -887,7 +881,52 @@ function resolveStaticFilePath(pathname) {
 
 function renderNotFound(res) {
   res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
-  res.end('<h1>404 Niet Gevonden</h1><p>De gevraagde pagina bestaat niet op STIHLDecoder.nl.</p>');
+  res.end(`<!DOCTYPE html>
+<html lang="nl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Pagina niet gevonden | STIHLDecoder.nl</title>
+  <meta name="robots" content="noindex, follow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
+  <header class="border-b border-gray-800 bg-gray-900/80 p-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="w-8 h-8 rounded bg-orange-600 flex items-center justify-center font-black">S</span>
+        STIHL Decoder
+      </a>
+      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Home</a>
+    </div>
+  </header>
+  <main class="max-w-2xl mx-auto px-4 py-16 flex-1 w-full text-center space-y-6">
+    <div class="inline-flex p-4 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20 text-3xl font-black">
+      404
+    </div>
+    <h1 class="text-3xl font-extrabold text-white">Pagina niet gevonden</h1>
+    <p class="text-sm text-gray-400">
+      De opgevraagde pagina bestaat niet of is tijdelijk ingetrokken in het kader van kwaliteitsborging.
+    </p>
+    <div class="pt-4 flex flex-wrap justify-center gap-3 text-xs">
+      <a href="/#decoder" class="px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition">
+        Naar Serienummer Decoder
+      </a>
+      <a href="/kettingzagen/" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 font-medium transition">
+        Bekijk Modellen
+      </a>
+      <a href="/stihl-paspoort/" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 font-medium transition">
+        Mijn STIHL Paspoort
+      </a>
+    </div>
+  </main>
+  <footer class="border-t border-gray-800/80 py-6 text-center text-xs text-gray-500">
+    STIHLDecoder.nl — Onafhankelijke STIHL machine-identificatie
+  </footer>
+</body>
+</html>`);
 }
 
 async function readJsonBody(req, res) {

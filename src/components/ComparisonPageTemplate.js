@@ -98,7 +98,7 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_O
 
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full space-y-8">
-    
+
     <!-- Breadcrumbs -->
     ${breadcrumbsHtml}
 
@@ -185,50 +185,32 @@ export function renderComparisonPageHtml(pairSlug, database, baseUrl = PRIMARY_O
     </section>
 
     <!-- Prominent Decoder CTA -->
-    <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl space-y-3">
-      <h3 class="text-base font-bold text-white">Serienummer van uw machine verifiëren?</h3>
-      <p class="text-xs text-gray-300">
-        Voer het serienummer in voor formaat- en herkomstcontrole. Gebruik daarnaast het typeplaatje om het exacte model te bevestigen.
-      </p>
-      <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
-        <input 
-          type="text" 
-          name="q" 
-          placeholder="Voer het serienummer in..." 
-          class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-xs placeholder-gray-500 focus:outline-none focus:border-orange-500"
-          autocomplete="off"
-        />
-        <button 
-          type="submit" 
-          class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition text-xs flex items-center justify-center gap-2 cursor-pointer"
-        >
-          <span>Serienummer Controleren</span>
-        </button>
-      </form>
+    <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 stihl-orange-glow">
+      <div class="space-y-1">
+        <h3 class="text-base font-bold text-white">Serienummer van uw machine verifiëren?</h3>
+        <p class="text-xs text-gray-300">
+          Gebruik de interactieve serienummerdecoder op de homepage voor directe formaat- en herkomstcontrole.
+        </p>
+      </div>
+      <a
+        href="/#decoder"
+        class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 text-xs flex items-center justify-center gap-2 whitespace-nowrap"
+      >
+        <span>Serienummer Controleren</span>
+        <span>→</span>
+      </a>
     </section>
 
     <!-- Interlinking Hub -->
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
       <h3 class="text-sm font-bold text-white">Relevante STIHL Gidsen & Kennisbank:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
-        <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
-        <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
-        <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
-        <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
-        <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
-        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Serienummer Rapport Maken</a>
-        <a href="/stihl-modellen/" class="hover:text-orange-400 hover:underline">→ STIHL Modellen Overzicht</a>
-        <a href="/waar-staat-serienummer-stihl/" class="hover:text-orange-400 hover:underline">→ Waar staat het serienummer</a>
-        <a href="/stihl-serienummer-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Serienummer vs Bouwjaar</a>
-        <a href="/stihl-productiedatum/" class="hover:text-orange-400 hover:underline">→ Productiedatum Gids</a>
-        <a href="/stihl-model-herkennen/" class="hover:text-orange-400 hover:underline">→ Model Herkennen</a>
-        <a href="/stihl-typeplaatje/" class="hover:text-orange-400 hover:underline">→ Typeplaatje Aflezen</a>
-        <a href="/stihl-serienummer-ongeldig/" class="hover:text-orange-400 hover:underline">→ Verdacht Serienummer</a>
-        <a href="/stihl-tweedehands-checklist/" class="hover:text-orange-400 hover:underline">→ Tweedehands Checklist</a>
-        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids</a>
-        <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
-        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
-        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
+        <a href="/kettingzagen/" class="hover:text-orange-400 hover:underline">→ Kettingzagen Overzicht</a>
+        ${modelAPath ? `<a href="${modelAPath}" class="hover:text-orange-400 hover:underline">→ STIHL ${nameA} Modelgids</a>` : ''}
+        ${modelBPath ? `<a href="${modelBPath}" class="hover:text-orange-400 hover:underline">→ STIHL ${nameB} Modelgids</a>` : ''}
+        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties Gids</a>
+        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ STIHL Machinepaspoort (Mijn STIHL)</a>
+        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids & Series</a>
       </div>
     </section>
 

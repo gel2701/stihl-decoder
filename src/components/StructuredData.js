@@ -4,7 +4,13 @@
  */
 
 import { PRIMARY_ORIGIN } from '../config.js';
-import { getSerialLocationAnswer, getSafeCategorySlug, shouldPublishProductSchema } from '../publicationRules.js';
+import {
+  getSerialLocationAnswer,
+  getSafeCategorySlug,
+  shouldPublishProductSchema,
+  isGuidePublished,
+  isIntentPublished
+} from '../publicationRules.js';
 import { normalizePublicEvidenceModelKey } from '../publicEvidence.js';
 
 function buildSafeProductProperties(publicEvidenceFields = {}) {
@@ -131,24 +137,26 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
       });
     }
 
-    const faqs = [
-      {
+    const knownPeriod = model.production_years || (model.production_start_year ? `${model.production_start_year} - ${model.production_end_year || 'heden'}` : null) || model.year_introduced || model.production_period || null;
+    const faqs = [];
+    if (knownPeriod) {
+      faqs.push({
         '@type': 'Question',
         'name': `Hoe oud is mijn STIHL ${model.model_name}?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': `Voer het serienummer in voor formaat- en herkomstcontrole; gebruik daarnaast het typeplaatje om model en uitvoering van uw ${model.model_name} te bevestigen.`
+          'text': `De STIHL ${model.model_name} heeft een bekende productieperiode (${knownPeriod}). Het exacte bouwjaar van uw machine kan worden afgelezen op het fabriekstypeplaatje of via de gietklok (maand-/jaarstempel) op het carter.`
         }
-      },
-      {
-        '@type': 'Question',
-        'name': `Waar vind ik het serienummer?`,
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': getSerialLocationAnswer(categorySlug)
-        }
+      });
+    }
+    faqs.push({
+      '@type': 'Question',
+      'name': `Waar vind ik het serienummer van de STIHL ${model.model_name}?`,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': getSerialLocationAnswer(categorySlug)
       }
-    ];
+    });
 
     graph.push({
       '@type': 'FAQPage',
@@ -156,8 +164,8 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
     });
   }
 
-  // 4. Guide / Article Page Schemas
-  if (pageType === 'guide' && guide) {
+  // 4. Guide / Article Page Schemas (PUBLISHED ONLY)
+  if (pageType === 'guide' && guide && isGuidePublished(guide.slug)) {
     graph.push({
       '@type': 'TechArticle',
       'headline': guide.title,
@@ -167,8 +175,8 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
     });
   }
 
-  // 5. Intent Page Schemas
-  if (pageType === 'intent' && intent) {
+  // 5. Intent Page Schemas (PUBLISHED ONLY)
+  if (pageType === 'intent' && intent && isIntentPublished(intent.slug)) {
     graph.push({
       '@type': 'TechArticle',
       'headline': intent.title,

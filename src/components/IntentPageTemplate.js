@@ -87,31 +87,22 @@ export function renderIntentPageHtml(intent, database, baseUrl = PRIMARY_ORIGIN)
       </p>
     </header>
 
-    <!-- Prominent Decoder Tool Form -->
-    <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl space-y-4 stihl-orange-glow">
-      <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-        <h2 class="text-lg font-bold text-orange-400 flex items-center gap-2">
+    <!-- Prominent Decoder CTA Card -->
+    <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 stihl-orange-glow">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          Serienummer direct analyseren:
-        </h2>
-        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Formaat- en herkomstcheck</span>
+          <h2 class="text-lg font-bold text-white">Serienummer direct analyseren?</h2>
+        </div>
+        <p class="text-xs text-gray-300">Gebruik de interactieve serienummerdecoder op de homepage voor directe fabrieks- en formaatcontrole.</p>
       </div>
-
-      <form action="/" method="GET" class="flex flex-col sm:flex-row gap-3">
-        <input
-          type="text"
-          name="q"
-          placeholder="Voer het serienummer in..."
-          class="flex-1 bg-gray-950 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-base placeholder-gray-500 focus:outline-none focus:border-orange-500"
-          autocomplete="off"
-        />
-        <button
-          type="submit"
-          class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 flex items-center justify-center gap-2 cursor-pointer"
-        >
-          <span>Controleer</span>
-        </button>
-      </form>
+      <a
+        href="/#decoder"
+        class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 text-xs flex items-center justify-center gap-2 whitespace-nowrap"
+      >
+        <span>Serienummer Controleren</span>
+        <span>→</span>
+      </a>
     </section>
 
     <!-- Main Intent Body Content -->
@@ -138,24 +129,12 @@ export function renderIntentPageHtml(intent, database, baseUrl = PRIMARY_ORIGIN)
     <section class="bg-gray-900/60 border border-gray-800 p-5 rounded-2xl space-y-3 text-xs">
       <h3 class="text-sm font-bold text-white">Relevante STIHL Gidsen & Kennisbank:</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-300">
-        <a href="/stihl-serienummer-decoder/" class="hover:text-orange-400 hover:underline">→ Serienummer Decoder</a>
-        <a href="/stihl-serienummer/" class="hover:text-orange-400 hover:underline">→ Serienummer Aflezen</a>
-        <a href="/stihl-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Bouwjaar Controleren</a>
-        <a href="/stihl-diefstalcheck/" class="hover:text-orange-400 hover:underline">→ Diefstalcheck</a>
-        <a href="/stihl-waarde/" class="hover:text-orange-400 hover:underline">→ Waardebepaling</a>
-        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ Serienummer Rapport Maken</a>
-        <a href="/stihl-modellen/" class="hover:text-orange-400 hover:underline">→ STIHL Modellen</a>
-        <a href="/waar-staat-serienummer-stihl/" class="hover:text-orange-400 hover:underline">→ Waar staat het serienummer</a>
-        <a href="/stihl-serienummer-bouwjaar/" class="hover:text-orange-400 hover:underline">→ Serienummer vs Bouwjaar</a>
-        <a href="/stihl-productiedatum/" class="hover:text-orange-400 hover:underline">→ Productiedatum Gids</a>
-        <a href="/stihl-model-herkennen/" class="hover:text-orange-400 hover:underline">→ Model Herkennen</a>
-        <a href="/stihl-typeplaatje/" class="hover:text-orange-400 hover:underline">→ Typeplaatje Aflezen</a>
-        <a href="/stihl-serienummer-ongeldig/" class="hover:text-orange-400 hover:underline">→ Verdacht Serienummer</a>
-        <a href="/stihl-tweedehands-checklist/" class="hover:text-orange-400 hover:underline">→ Tweedehands Checklist</a>
-        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids</a>
-        <a href="/gidsen/stihl-gietklok-aflezen/" class="hover:text-orange-400 hover:underline">→ Gietklok Handleiding</a>
-        <a href="/gidsen/namaak-stihl-herkennen/" class="hover:text-orange-400 hover:underline">→ Namaak Herkennen</a>
-        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties</a>
+        <a href="/kettingzagen/" class="hover:text-orange-400 hover:underline">→ Kettingzagen Overzicht</a>
+        <a href="/bosmaaiers/" class="hover:text-orange-400 hover:underline">→ Bosmaaiers Overzicht</a>
+        <a href="/bladblazers/" class="hover:text-orange-400 hover:underline">→ Bladblazers Overzicht</a>
+        <a href="/gidsen/serienummer-locaties/" class="hover:text-orange-400 hover:underline">→ Serienummer Locaties Gids</a>
+        <a href="/stihl-paspoort/" class="hover:text-orange-400 hover:underline">→ STIHL Machinepaspoort (Mijn STIHL)</a>
+        <a href="/onderdeelnummer/" class="hover:text-orange-400 hover:underline">→ Onderdeelnummer Gids & Series</a>
       </div>
     </section>
 
@@ -207,7 +186,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           <p class="text-xs text-gray-400">Digitaal STIHL Machine Paspoort & Onderhoud</p>
         </div>
       </a>
-      <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Zoeken</a>
+      <a href="/#decoder" class="text-xs text-orange-400 font-bold hover:underline">← Naar Decoder</a>
     </div>
   </header>
 

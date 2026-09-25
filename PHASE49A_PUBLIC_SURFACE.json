@@ -1,0 +1,278 @@
+{
+  "audit_version": "1.0.0",
+  "audit_phase": "49A",
+  "created_at": "2026-09-25T03:45:00Z",
+  "inventory": [
+    {
+      "route_class": "homepage",
+      "routes": ["/"],
+      "component": "index.html",
+      "visible_claims": [
+        "STIHL Serienummer Decoder",
+        "Bouwjaar en model controleren",
+        "StopHeling-controlestatus via externe knop",
+        "Mijn machines paspoort link"
+      ],
+      "ctas": [
+        { "type": "button", "target": "#results-container", "action": "Analyseer Serienummer / Code", "status": "WORKING" },
+        { "type": "button", "target": "https://www.stopheling.nl", "action": "Kopieer serienummer & open StopHeling.nl", "status": "WORKING" },
+        { "type": "link", "target": "/stihl-paspoort/", "action": "📋 Mijn machines", "status": "WORKING" }
+      ],
+      "backend_functionality": "GET /api/decode and GET /api/models",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "ALL",
+      "status": "WORKING"
+    },
+    {
+      "route_class": "category_page",
+      "routes": ["/kettingzagen/", "/bosmaaiers/", "/bladblazers/", "/heggenscharen/", "/doorslijpers/"],
+      "component": "CategoryPageTemplate.js",
+      "visible_claims": [
+        "Gepubliceerde modellen overzicht",
+        "Direct serienummer controleren"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/<category>/<model>/", "action": "Modelgids openen", "status": "WORKING" },
+        { "type": "form", "target": "/", "action": "GET q", "status": "BROKEN", "remediation": "Replace with direct CTA to /#decoder" }
+      ],
+      "backend_functionality": "SSR HTML with database model filtering",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "CATEGORY_SCOPED",
+      "status": "MISLEADING"
+    },
+    {
+      "route_class": "model_page",
+      "routes": ["/<category>/<model-slug>/"],
+      "component": "ModelPageTemplate.js",
+      "visible_claims": [
+        "Geverifieerde specificaties & bronstatus",
+        "Serienummer Rapport Pro €4.99 (historical MVP)",
+        "Reparatie Service & 24u contact (historical MVP)",
+        "Direct Inkoopaanbod (historical MVP)",
+        "Mijn STIHL paspoort integratie"
+      ],
+      "ctas": [
+        { "type": "button", "target": "PassportPro modal", "action": "Bestel Pro Rapport €4.99", "status": "BROKEN", "remediation": "Remove fake paid product" },
+        { "type": "form", "target": "/api/v1/leads/repair", "action": "Verstuur Reparatie Aanvraag", "status": "BROKEN", "remediation": "Remove unhandled lead form" },
+        { "type": "form", "target": "/api/v1/leads/sell", "action": "Ontvang Bod", "status": "BROKEN", "remediation": "Remove unhandled lead form" },
+        { "type": "form", "target": "/", "action": "GET q", "status": "BROKEN", "remediation": "Replace with direct CTA to /#decoder" },
+        { "type": "link", "target": "/stihl-paspoort/#add=<slug>", "action": "Voeg toe aan paspoort", "status": "WORKING" },
+        { "type": "link", "target": "/<category>/<model>/onderdelen/", "action": "Bekijk Onderdelen", "status": "WORKING" }
+      ],
+      "backend_functionality": "SSR HTML with evidence facts and canonical model data",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "MODEL_SPECIFIC",
+      "status": "MISLEADING"
+    },
+    {
+      "route_class": "model_parts_page",
+      "routes": ["/<category>/<model-slug>/onderdelen/"],
+      "component": "ModelPartsPageTemplate.js",
+      "visible_claims": [
+        "Modelgebonden onderdeleninformatie",
+        "Carburateur & Membraanset (unconditional)",
+        "Bougie & Ontsteking (unconditional on spark data)",
+        "Zoek bougie/ketting buttons (fake search CTA)"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/onderdeelnummer/", "action": "Zoek bougie...", "status": "MISLEADING", "remediation": "Replace with Onderdeelnummers bekijken" },
+        { "type": "link", "target": "/<category>/<model>/", "action": "Terug naar Modelgids", "status": "WORKING" }
+      ],
+      "backend_functionality": "SSR HTML",
+      "content_completeness": "PARTIAL",
+      "machine_type_relevance": "IRRELEVANT_ON_BATTERY",
+      "status": "IRRELEVANT"
+    },
+    {
+      "route_class": "comparison_page",
+      "routes": ["/vergelijk/ms-170-vs-ms-180/", "/vergelijk/ms-260-vs-ms-261/", "/vergelijk/ms-361-vs-ms-362/"],
+      "component": "ComparisonPageTemplate.js",
+      "visible_claims": [
+        "Technische modelvergelijking op basis van evidence",
+        "Direct serienummer controleren formulier"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/<category>/<model>/", "action": "Modelgidsen bekijken", "status": "WORKING" },
+        { "type": "form", "target": "/", "action": "GET q", "status": "BROKEN", "remediation": "Replace with direct CTA to /#decoder" }
+      ],
+      "backend_functionality": "SSR HTML",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "CHAINSAW_ONLY",
+      "status": "WORKING"
+    },
+    {
+      "route_class": "valuation_preview",
+      "routes": ["/waarde/<slug>/"],
+      "component": "server.js (renderValuationHtml)",
+      "visible_claims": [
+        "Nog onvoldoende modelspecifieke marktdata",
+        "noindex, follow indicatieve status"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/<category>/<model>/", "action": "Bekijk modelgids", "status": "WORKING" }
+      ],
+      "backend_functionality": "SSR HTML with truthful no-data status",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "MODEL_SPECIFIC",
+      "status": "SAFE"
+    },
+    {
+      "route_class": "valuation_landing",
+      "routes": ["/stihl-waarde/"],
+      "component": "IntentPageTemplate.js",
+      "visible_claims": [
+        "STIHL Tweedehands Waardebepaling & Taxatie",
+        "Taxatie inschatting"
+      ],
+      "ctas": [
+        { "type": "form", "target": "/", "action": "GET q", "status": "BROKEN" }
+      ],
+      "backend_functionality": "None (thin content stub)",
+      "content_completeness": "THIN_CONTENT",
+      "machine_type_relevance": "GENERIC",
+      "status": "THIN_CONTENT"
+    },
+    {
+      "route_class": "theft_check_landing",
+      "routes": ["/stihl-diefstalcheck/"],
+      "component": "IntentPageTemplate.js",
+      "visible_claims": [
+        "STIHL Serienummer Diefstalcheck (StopHeling®)",
+        "StopHeling politiedatabase check"
+      ],
+      "ctas": [
+        { "type": "form", "target": "/", "action": "GET q", "status": "BROKEN" }
+      ],
+      "backend_functionality": "None (thin content stub)",
+      "content_completeness": "THIN_CONTENT",
+      "machine_type_relevance": "GENERIC",
+      "status": "THIN_CONTENT"
+    },
+    {
+      "route_class": "passport_hub",
+      "routes": ["/stihl-paspoort/"],
+      "component": "IntentPageTemplate.js (renderPassportHubHtml)",
+      "visible_claims": [
+        "Mijn STIHL Digitaal Machinepaspoort",
+        "Machines toevoegen, onderhoud bijhouden, JSON export, printen"
+      ],
+      "ctas": [
+        { "type": "button", "target": "local dossier", "action": "Machine toevoegen", "status": "WORKING" },
+        { "type": "button", "target": "local dossier", "action": "Onderhoud toevoegen", "status": "WORKING" },
+        { "type": "button", "target": "export", "action": "Exporteer JSON", "status": "WORKING" }
+      ],
+      "backend_functionality": "Client-side encrypted/local machine passport with canonical model linking",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "ALL",
+      "status": "WORKING"
+    },
+    {
+      "route_class": "intent_pages_other",
+      "routes": [
+        "/stihl-serienummer-decoder/",
+        "/stihl-serienummer/",
+        "/stihl-bouwjaar/",
+        "/stihl-modellen/",
+        "/waar-staat-serienummer-stihl/",
+        "/stihl-serienummer-bouwjaar/",
+        "/stihl-productiedatum/",
+        "/stihl-model-herkennen/",
+        "/stihl-typeplaatje/",
+        "/stihl-serienummer-ongeldig/",
+        "/stihl-tweedehands-checklist/"
+      ],
+      "component": "IntentPageTemplate.js",
+      "visible_claims": [
+        "SEO titles & 20-30 character stubs without substantive body"
+      ],
+      "ctas": [
+        { "type": "form", "target": "/", "action": "GET q", "status": "BROKEN" }
+      ],
+      "backend_functionality": "None",
+      "content_completeness": "THIN_CONTENT",
+      "machine_type_relevance": "GENERIC",
+      "status": "THIN_CONTENT"
+    },
+    {
+      "route_class": "guide_serial_locations",
+      "routes": ["/gidsen/serienummer-locaties/"],
+      "component": "server.js / GuidePageTemplate.js",
+      "visible_claims": [
+        "Waar staat het STIHL serienummer?"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/", "action": "Terug naar Home", "status": "WORKING" }
+      ],
+      "backend_functionality": "SSR HTML",
+      "content_completeness": "PRE_AUDIT_THIN_POST_AUDIT_SUBSTANTIVE",
+      "machine_type_relevance": "MULTI_CATEGORY",
+      "status": "WORKING"
+    },
+    {
+      "route_class": "guides_thin",
+      "routes": [
+        "/gidsen/stihl-gietklok-aflezen/",
+        "/gidsen/namaak-stihl-herkennen/",
+        "/gidsen/stihl-kettingzaag-start-niet/",
+        "/gidsen/stihl-carburateur-afstellen/",
+        "/gidsen/stihl-m-tronic-resetten/"
+      ],
+      "component": "server.js (renderGuidePageHtml)",
+      "visible_claims": [
+        "Title + description only (no substantive body or steps)"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/", "action": "Terug naar Home", "status": "WORKING" }
+      ],
+      "backend_functionality": "None",
+      "content_completeness": "THIN_CONTENT",
+      "machine_type_relevance": "VARIOUS",
+      "status": "THIN_CONTENT"
+    },
+    {
+      "route_class": "part_number_hub",
+      "routes": ["/onderdeelnummer/"],
+      "component": "server.js (renderPartNumberHubHtml)",
+      "visible_claims": [
+        "STIHL Onderdeelnummers & Reeksen (Teilenummer)",
+        "Serie-prefixes (1121, 1141, 1130)"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/onderdeelnummer/stihl-<prefix>/", "action": "Serie bekijken", "status": "WORKING" }
+      ],
+      "backend_functionality": "SSR HTML",
+      "content_completeness": "COMPLETE",
+      "machine_type_relevance": "PARTS_SERIES",
+      "status": "WORKING"
+    },
+    {
+      "route_class": "part_number_series",
+      "routes": ["/onderdeelnummer/stihl-:series/"],
+      "component": "server.js (renderPartNumberSeriesHtml)",
+      "visible_claims": [
+        "Gekoppelde STIHL Modellen: MS 261 C-M, MS 260, MS 271, MS 291 (hardcoded for all prefixes prior to Phase 49A)"
+      ],
+      "ctas": [
+        { "type": "link", "target": "/onderdeelnummer/", "action": "Alle Onderdeelnummers", "status": "WORKING" }
+      ],
+      "backend_functionality": "SSR HTML",
+      "content_completeness": "PRE_AUDIT_BROKEN_MAPPING_POST_AUDIT_DATABASE_DRIVEN",
+      "machine_type_relevance": "SERIES_SPECIFIC",
+      "status": "MISLEADING"
+    },
+    {
+      "route_class": "lead_api_endpoints",
+      "routes": ["/api/v1/leads/repair", "/api/v1/leads/sell"],
+      "component": "server.js",
+      "visible_claims": [
+        "Reparatie Aanvraag Ontvangen! Wij nemen binnen 24 uur contact met u op.",
+        "Verkoop Aanvraag Ontvangen! U ontvangt binnenkort een overnamebod."
+      ],
+      "ctas": [],
+      "backend_functionality": "Fake 200 HTML response without persisting or processing leads",
+      "content_completeness": "UNSUPPORTED",
+      "machine_type_relevance": "ALL",
+      "status": "BROKEN"
+    }
+  ]
+}

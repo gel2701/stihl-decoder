@@ -4,7 +4,14 @@
  */
 
 import { PRIMARY_ORIGIN } from '../config.js';
-import { getSafeCategorySlug, getSafeModelPartsPath, getSafeModelPath, INDEXABLE_COMPARISONS } from '../publicationRules.js';
+import {
+  getSafeCategorySlug,
+  getSafeModelPartsPath,
+  getSafeModelPath,
+  INDEXABLE_COMPARISONS,
+  isGuidePublished,
+  isIntentPublished
+} from '../publicationRules.js';
 
 export function collectSitemapDiagnostics(database = {}) {
   const models = database.models || [];
@@ -60,14 +67,16 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
     urls.push({ loc: `${baseUrl}/vergelijk/${comp}/`, priority: '0.8', changefreq: 'weekly' });
   });
 
-  // 5. Intent Landing Pages
+  // 5. Intent Landing Pages (PUBLISHED only)
   intentPages.forEach(ip => {
+    if (!isIntentPublished(ip.slug)) return;
     const lastmod = ip.updated_at || null;
     urls.push({ loc: `${baseUrl}/${ip.slug}/`, priority: '0.8', changefreq: 'monthly', lastmod });
   });
 
-  // 6. Guides
+  // 6. Guides (PUBLISHED only)
   guides.forEach(g => {
+    if (!isGuidePublished(g.slug)) return;
     const lastmod = g.updated_at || null;
     urls.push({ loc: `${baseUrl}/gidsen/${g.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod });
   });
