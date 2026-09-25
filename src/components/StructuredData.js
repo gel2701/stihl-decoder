@@ -169,10 +169,38 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
     graph.push({
       '@type': 'TechArticle',
       'headline': guide.title,
-      'description': guide.description,
+      'description': guide.metaDescription || guide.description,
       'url': canonicalUrl,
       'inLanguage': 'nl-NL'
     });
+
+    if (guide.faq && Array.isArray(guide.faq) && guide.faq.length > 0) {
+      graph.push({
+        '@type': 'FAQPage',
+        'mainEntity': guide.faq.map(item => ({
+          '@type': 'Question',
+          'name': item.question,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': item.answer
+          }
+        }))
+      });
+    }
+
+    if (guide.slug === 'stihl-kettingzaag-start-niet' && guide.floodedEngineRecovery?.steps) {
+      graph.push({
+        '@type': 'HowTo',
+        'name': 'STIHL Kettingzaag Startprocedure & Verzopen Motor Herstellen',
+        'description': guide.metaDescription || guide.description,
+        'step': guide.floodedEngineRecovery.steps.map(s => ({
+          '@type': 'HowToStep',
+          'position': s.step,
+          'name': s.title,
+          'text': s.text
+        }))
+      });
+    }
   }
 
   // 5. Intent Page Schemas (PUBLISHED ONLY)
