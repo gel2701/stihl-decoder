@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-24T22:28:58.978Z",
+  "generated_at": "2026-09-25T01:16:55.401Z",
   "phase": "48",
   "total_pilot_models": 8,
   "summary": {
     "total_recommendations": 88,
-    "total_verified": 26,
-    "total_specification_match": 36,
+    "total_verified": 6,
+    "total_specification_match": 56,
     "total_generic_recommendations": 24,
     "total_unverified": 2,
     "total_oem_part_numbers": 24,
@@ -26,13 +26,13 @@
       "model_name": "MS 170",
       "series_code": "1130",
       "verified_categories": [
-        "spark_plug",
-        "chain",
-        "bar"
+        "spark_plug"
       ],
       "specification_match_categories": [
         "air_filter",
         "fuel_filter",
+        "chain",
+        "bar",
         "filing_tool",
         "maintenance_tool"
       ],
@@ -50,7 +50,7 @@
           "drive_links": 44,
           "bar_length_cm": 30,
           "oem_part_number": "3610 000 0044",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms170_chain_35cm",
@@ -59,7 +59,7 @@
           "drive_links": 50,
           "bar_length_cm": 35,
           "oem_part_number": "3610 000 0050",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "guide_bar_configurations": [
@@ -69,7 +69,7 @@
           "pitch": "3/8\" P",
           "gauge_mm": 1.1,
           "oem_part_number": "3005 000 3905",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms170_bar_35cm",
@@ -77,29 +77,29 @@
           "pitch": "3/8\" P",
           "gauge_mm": 1.1,
           "oem_part_number": "3005 000 3909",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "oem_part_numbers": [
         {
           "part_number": "3610 000 0044",
           "category": "chain",
-          "title": "Bewezen ketting 30 cm (3/8\" P — 1,1 mm — 44L)"
+          "title": "Ketting 30 cm (3/8\" P — 1,1 mm — 44L)"
         },
         {
           "part_number": "3610 000 0050",
           "category": "chain",
-          "title": "Bewezen ketting 35 cm (3/8\" P — 1,1 mm — 50L)"
+          "title": "Ketting 35 cm (3/8\" P — 1,1 mm — 50L)"
         },
         {
           "part_number": "3005 000 3905",
           "category": "bar",
-          "title": "Bewezen zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+          "title": "Zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
         },
         {
           "part_number": "3005 000 3909",
           "category": "bar",
-          "title": "Bewezen zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+          "title": "Zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
         }
       ],
       "commercial_offers_count": 0,
@@ -117,13 +117,13 @@
       "model_name": "MS 180",
       "series_code": "1130",
       "verified_categories": [
-        "spark_plug",
-        "chain",
-        "bar"
+        "spark_plug"
       ],
       "specification_match_categories": [
         "air_filter",
         "fuel_filter",
+        "chain",
+        "bar",
         "filing_tool",
         "maintenance_tool"
       ],
@@ -141,7 +141,7 @@
           "drive_links": 50,
           "bar_length_cm": 35,
           "oem_part_number": "3610 000 0050",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms180_chain_30cm",
@@ -150,7 +150,7 @@
           "drive_links": 44,
           "bar_length_cm": 30,
           "oem_part_number": "3610 000 0044",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "guide_bar_configurations": [
@@ -160,7 +160,7 @@
           "pitch": "3/8\" P",
           "gauge_mm": 1.1,
           "oem_part_number": "3005 000 3909",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms180_bar_30cm",
@@ -168,29 +168,29 @@
           "pitch": "3/8\" P",
           "gauge_mm": 1.1,
           "oem_part_number": "3005 000 3905",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "oem_part_numbers": [
         {
           "part_number": "3610 000 0050",
           "category": "chain",
-          "title": "Bewezen ketting 35 cm (3/8\" P — 1,1 mm — 50L)"
+          "title": "Ketting 35 cm (3/8\" P — 1,1 mm — 50L)"
         },
         {
           "part_number": "3610 000 0044",
           "category": "chain",
-          "title": "Bewezen ketting 30 cm (3/8\" P — 1,1 mm — 44L)"
+          "title": "Ketting 30 cm (3/8\" P — 1,1 mm — 44L)"
         },
         {
           "part_number": "3005 000 3909",
           "category": "bar",
-          "title": "Bewezen zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+          "title": "Zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
         },
         {
           "part_number": "3005 000 3905",
           "category": "bar",
-          "title": "Bewezen zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
+          "title": "Zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)"
         }
       ],
       "commercial_offers_count": 0,
@@ -208,13 +208,13 @@
       "model_name": "MS 251",
       "series_code": "1143",
       "verified_categories": [
-        "spark_plug",
-        "chain",
-        "bar"
+        "spark_plug"
       ],
       "specification_match_categories": [
         "air_filter",
         "fuel_filter",
+        "chain",
+        "bar",
         "filing_tool",
         "maintenance_tool"
       ],
@@ -232,7 +232,7 @@
           "drive_links": 62,
           "bar_length_cm": 35,
           "oem_part_number": "3639 000 0062",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms251_chain_40cm",
@@ -241,7 +241,7 @@
           "drive_links": 67,
           "bar_length_cm": 40,
           "oem_part_number": "3639 000 0067",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "guide_bar_configurations": [
@@ -251,7 +251,7 @@
           "pitch": ".325\"",
           "gauge_mm": 1.6,
           "oem_part_number": "3005 000 4709",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms251_bar_40cm",
@@ -259,29 +259,29 @@
           "pitch": ".325\"",
           "gauge_mm": 1.6,
           "oem_part_number": "3005 000 4713",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "oem_part_numbers": [
         {
           "part_number": "3639 000 0062",
           "category": "chain",
-          "title": "Bewezen ketting 35 cm (.325\" — 1,6 mm — 62L)"
+          "title": "Ketting 35 cm (.325\" — 1,6 mm — 62L)"
         },
         {
           "part_number": "3639 000 0067",
           "category": "chain",
-          "title": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L)"
+          "title": "Ketting 40 cm (.325\" — 1,6 mm — 67L)"
         },
         {
           "part_number": "3005 000 4709",
           "category": "bar",
-          "title": "Bewezen zaagblad 35 cm Rollomatic E (.325\" — 1,6 mm)"
+          "title": "Zaagblad 35 cm Rollomatic E (.325\" — 1,6 mm)"
         },
         {
           "part_number": "3005 000 4713",
           "category": "bar",
-          "title": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
+          "title": "Zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
         }
       ],
       "commercial_offers_count": 0,
@@ -299,13 +299,13 @@
       "model_name": "MS 260",
       "series_code": "1121",
       "verified_categories": [
-        "spark_plug",
-        "chain",
-        "bar"
+        "spark_plug"
       ],
       "specification_match_categories": [
         "air_filter",
         "fuel_filter",
+        "chain",
+        "bar",
         "filing_tool",
         "maintenance_tool"
       ],
@@ -323,7 +323,7 @@
           "drive_links": 67,
           "bar_length_cm": 40,
           "oem_part_number": "3639 000 0067",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "guide_bar_configurations": [
@@ -333,19 +333,19 @@
           "pitch": ".325\"",
           "gauge_mm": 1.6,
           "oem_part_number": "3003 000 6813",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "oem_part_numbers": [
         {
           "part_number": "3639 000 0067",
           "category": "chain",
-          "title": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L)"
+          "title": "Ketting 40 cm (.325\" — 1,6 mm — 67L)"
         },
         {
           "part_number": "3003 000 6813",
           "category": "bar",
-          "title": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
+          "title": "Zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
         }
       ],
       "commercial_offers_count": 0,
@@ -363,13 +363,13 @@
       "model_name": "MS 261",
       "series_code": "1141",
       "verified_categories": [
-        "spark_plug",
-        "chain",
-        "bar"
+        "spark_plug"
       ],
       "specification_match_categories": [
         "air_filter",
         "fuel_filter",
+        "chain",
+        "bar",
         "filing_tool",
         "maintenance_tool"
       ],
@@ -387,7 +387,7 @@
           "drive_links": 67,
           "bar_length_cm": 40,
           "oem_part_number": "3690 000 0067",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms261_chain_40cm_std",
@@ -396,7 +396,7 @@
           "drive_links": 67,
           "bar_length_cm": 40,
           "oem_part_number": "3639 000 0067",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "guide_bar_configurations": [
@@ -406,7 +406,7 @@
           "pitch": ".325\"",
           "gauge_mm": 1.3,
           "oem_part_number": "3003 000 3313",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         },
         {
           "recommendation_id": "compat_ms261_bar_40cm_rollomatic",
@@ -414,29 +414,29 @@
           "pitch": ".325\"",
           "gauge_mm": 1.6,
           "oem_part_number": "3003 000 6813",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "oem_part_numbers": [
         {
           "part_number": "3690 000 0067",
           "category": "chain",
-          "title": "Bewezen ketting 40 cm (.325\" — 1,3 mm — 67L Light 04)"
+          "title": "Ketting 40 cm (.325\" — 1,3 mm — 67L Light 04)"
         },
         {
           "part_number": "3639 000 0067",
           "category": "chain",
-          "title": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L Standaard)"
+          "title": "Ketting 40 cm (.325\" — 1,6 mm — 67L Standaard)"
         },
         {
           "part_number": "3003 000 3313",
           "category": "bar",
-          "title": "Bewezen zaagblad 40 cm Light 04 (.325\" — 1,3 mm)"
+          "title": "Zaagblad 40 cm Light 04 (.325\" — 1,3 mm)"
         },
         {
           "part_number": "3003 000 6813",
           "category": "bar",
-          "title": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
+          "title": "Zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)"
         }
       ],
       "commercial_offers_count": 0,
@@ -517,13 +517,13 @@
       "model_name": "MS 440",
       "series_code": "1128",
       "verified_categories": [
-        "spark_plug",
-        "chain",
-        "bar"
+        "spark_plug"
       ],
       "specification_match_categories": [
         "air_filter",
         "fuel_filter",
+        "chain",
+        "bar",
         "filing_tool",
         "maintenance_tool"
       ],
@@ -541,7 +541,7 @@
           "drive_links": 72,
           "bar_length_cm": 50,
           "oem_part_number": "3621 000 0072",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "guide_bar_configurations": [
@@ -551,19 +551,19 @@
           "pitch": "3/8\"",
           "gauge_mm": 1.6,
           "oem_part_number": "3003 000 5221",
-          "status": "VERIFIED_MODEL_COMPATIBILITY"
+          "status": "SPECIFICATION_MATCH_ONLY"
         }
       ],
       "oem_part_numbers": [
         {
           "part_number": "3621 000 0072",
           "category": "chain",
-          "title": "Bewezen ketting 50 cm (3/8\" — 1,6 mm — 72L)"
+          "title": "Ketting 50 cm (3/8\" — 1,6 mm — 72L)"
         },
         {
           "part_number": "3003 000 5221",
           "category": "bar",
-          "title": "Bewezen zaagblad 50 cm Rollomatic E / ES (3/8\" — 1,6 mm)"
+          "title": "Zaagblad 50 cm Rollomatic E / ES (3/8\" — 1,6 mm)"
         }
       ],
       "commercial_offers_count": 0,

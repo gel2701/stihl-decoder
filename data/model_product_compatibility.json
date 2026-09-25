@@ -89,8 +89,8 @@
           {
             "recommendation_id": "compat_ms170_chain_30cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 30 cm (3/8\" P — 1,1 mm — 44L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 30 cm (3/8\" P — 1,1 mm — 44L)",
             "display_guidance": "STIHL Picco Micro Mini 3 (61 PMM3). 44 aandrijfschakels voor 30 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -113,8 +113,8 @@
           {
             "recommendation_id": "compat_ms170_chain_35cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 35 cm (3/8\" P — 1,1 mm — 50L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 35 cm (3/8\" P — 1,1 mm — 50L)",
             "display_guidance": "STIHL Picco Micro Mini 3 (61 PMM3). 50 aandrijfschakels voor 35 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -139,8 +139,8 @@
           {
             "recommendation_id": "compat_ms170_bar_30cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
             "display_guidance": "STIHL Rollomatic E Mini zaagblad, 30 cm, aansluiting 3005. Combineer met ketting 3610 000 0044 (44L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -163,8 +163,8 @@
           {
             "recommendation_id": "compat_ms170_bar_35cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
             "display_guidance": "STIHL Rollomatic E Mini zaagblad, 35 cm, aansluiting 3005. Combineer met ketting 3610 000 0050 (50L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -205,14 +205,14 @@
             "recommendation_id": "compat_ms170_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -351,8 +351,8 @@
           {
             "recommendation_id": "compat_ms180_chain_35cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 35 cm (3/8\" P — 1,1 mm — 50L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 35 cm (3/8\" P — 1,1 mm — 50L)",
             "display_guidance": "STIHL Picco Micro Mini 3 (61 PMM3). 50 aandrijfschakels voor 35 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -360,9 +360,7 @@
               "fact_id: 77e694a1fe71c2c8",
               "oem: 3610 000 0050"
             ],
-            "evidence_fact_ids": [
-              "77e694a1fe71c2c8"
-            ],
+            "evidence_fact_ids": [],
             "specification": {
               "configuration_id": "ms180_chain_35cm_38p_11_50",
               "pitch": "3/8\" P",
@@ -378,17 +376,15 @@
           {
             "recommendation_id": "compat_ms180_chain_30cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 30 cm (3/8\" P — 1,1 mm — 44L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 30 cm (3/8\" P — 1,1 mm — 44L)",
             "display_guidance": "STIHL Picco Micro Mini 3 (61 PMM3). 44 aandrijfschakels voor 30 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
               "chain_pitch: 3/8\" P",
               "oem: 3610 000 0044"
             ],
-            "evidence_fact_ids": [
-              "77e694a1fe71c2c8"
-            ],
+            "evidence_fact_ids": [],
             "specification": {
               "configuration_id": "ms180_chain_30cm_38p_11_44",
               "pitch": "3/8\" P",
@@ -406,8 +402,8 @@
           {
             "recommendation_id": "compat_ms180_bar_35cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 35 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
             "display_guidance": "STIHL Rollomatic E Mini, 35 cm, aansluiting 3005. Combineer met ketting 3610 000 0050 (50L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -429,8 +425,8 @@
           {
             "recommendation_id": "compat_ms180_bar_30cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 30 cm Rollomatic E Mini (3/8\" P — 1,1 mm)",
             "display_guidance": "STIHL Rollomatic E Mini, 30 cm, aansluiting 3005. Combineer met ketting 3610 000 0044 (44L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -470,14 +466,14 @@
             "recommendation_id": "compat_ms180_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -617,8 +613,8 @@
           {
             "recommendation_id": "compat_ms251_chain_35cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 35 cm (.325\" — 1,6 mm — 62L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 35 cm (.325\" — 1,6 mm — 62L)",
             "display_guidance": "STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 62 aandrijfschakels voor 35 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -642,8 +638,8 @@
           {
             "recommendation_id": "compat_ms251_chain_40cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 40 cm (.325\" — 1,6 mm — 67L)",
             "display_guidance": "STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 67 aandrijfschakels voor 40 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -669,8 +665,8 @@
           {
             "recommendation_id": "compat_ms251_bar_35cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 35 cm Rollomatic E (.325\" — 1,6 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 35 cm Rollomatic E (.325\" — 1,6 mm)",
             "display_guidance": "STIHL Rollomatic E zaagblad, 35 cm, aansluiting 3005. Combineer met ketting 3639 000 0062 (62L).",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -694,8 +690,8 @@
           {
             "recommendation_id": "compat_ms251_bar_40cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)",
             "display_guidance": "STIHL Rollomatic E zaagblad, 40 cm, aansluiting 3005. Combineer met ketting 3639 000 0067 (67L).",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -737,14 +733,14 @@
             "recommendation_id": "compat_ms251_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -880,8 +876,8 @@
           {
             "recommendation_id": "compat_ms260_chain_40cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 40 cm (.325\" — 1,6 mm — 67L)",
             "display_guidance": "STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 67 aandrijfschakels voor 40 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -906,8 +902,8 @@
           {
             "recommendation_id": "compat_ms260_bar_40cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)",
             "display_guidance": "STIHL Rollomatic E zaagblad, 40 cm, aansluiting 3003. Combineer met ketting 3639 000 0067 (67L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -947,14 +943,14 @@
             "recommendation_id": "compat_ms260_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -1093,8 +1089,8 @@
           {
             "recommendation_id": "compat_ms261_chain_40cm_light04",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 40 cm (.325\" — 1,3 mm — 67L Light 04)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 40 cm (.325\" — 1,3 mm — 67L Light 04)",
             "display_guidance": "STIHL 23 RS Pro (Rapid Super Pro) of 23 RM3 Pro. 67 aandrijfschakels voor 40 cm Light 04 zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -1102,9 +1098,7 @@
               "fact_id: 793b16cb7e446918",
               "oem: 3690 000 0067"
             ],
-            "evidence_fact_ids": [
-              "793b16cb7e446918"
-            ],
+            "evidence_fact_ids": [],
             "specification": {
               "configuration_id": "ms261_chain_40cm_325_13_67",
               "pitch": ".325\"",
@@ -1120,8 +1114,8 @@
           {
             "recommendation_id": "compat_ms261_chain_40cm_std",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 40 cm (.325\" — 1,6 mm — 67L Standaard)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 40 cm (.325\" — 1,6 mm — 67L Standaard)",
             "display_guidance": "STIHL Rapid Super (26 RS) of Rapid Micro 3 (26 RM3). 67 aandrijfschakels voor 40 cm standaard zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_EVIDENCE",
@@ -1129,9 +1123,7 @@
               "fact_id: 793b16cb7e446918",
               "oem: 3639 000 0067"
             ],
-            "evidence_fact_ids": [
-              "793b16cb7e446918"
-            ],
+            "evidence_fact_ids": [],
             "specification": {
               "configuration_id": "ms261_chain_40cm_325_16_67",
               "pitch": ".325\"",
@@ -1149,8 +1141,8 @@
           {
             "recommendation_id": "compat_ms261_bar_40cm_light04",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 40 cm Light 04 (.325\" — 1,3 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 40 cm Light 04 (.325\" — 1,3 mm)",
             "display_guidance": "STIHL Light 04 zaagblad, 40 cm, aansluiting 3003. Combineer met ketting 3690 000 0067 (67L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -1172,8 +1164,8 @@
           {
             "recommendation_id": "compat_ms261_bar_40cm_rollomatic",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 40 cm Rollomatic E (.325\" — 1,6 mm)",
             "display_guidance": "STIHL Rollomatic E zaagblad, 40 cm, aansluiting 3003. Combineer met ketting 3639 000 0067 (67L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -1213,14 +1205,14 @@
             "recommendation_id": "compat_ms261_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -1422,14 +1414,14 @@
             "recommendation_id": "compat_ms362_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -1565,8 +1557,8 @@
           {
             "recommendation_id": "compat_ms440_chain_50cm",
             "recommendation_type": "chain",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen ketting 50 cm (3/8\" — 1,6 mm — 72L)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Ketting 50 cm (3/8\" — 1,6 mm — 72L)",
             "display_guidance": "STIHL Rapid Super (36 RS) of Rapid Micro (36 RM). 72 aandrijfschakels voor 50 cm zaagblad.",
             "evidence_basis": [
               "OFFICIAL_MANUAL_CONFIG",
@@ -1591,8 +1583,8 @@
           {
             "recommendation_id": "compat_ms440_bar_50cm",
             "recommendation_type": "bar",
-            "compatibility_status": "VERIFIED_MODEL_COMPATIBILITY",
-            "display_claim": "Bewezen zaagblad 50 cm Rollomatic E / ES (3/8\" — 1,6 mm)",
+            "compatibility_status": "SPECIFICATION_MATCH_ONLY",
+            "display_claim": "Zaagblad 50 cm Rollomatic E / ES (3/8\" — 1,6 mm)",
             "display_guidance": "STIHL Rollomatic E / ES zaagblad, 50 cm, aansluiting 3003. Combineer met ketting 3621 000 0072 (72L).",
             "evidence_basis": [
               "OFFICIAL_STIHL_CATALOG_CONFIG",
@@ -1632,14 +1624,14 @@
             "recommendation_id": "compat_ms440_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }
@@ -1830,14 +1822,14 @@
             "recommendation_id": "compat_ms462_two_stroke_oil",
             "recommendation_type": "two_stroke_oil",
             "compatibility_status": "GENERIC_CATEGORY_RECOMMENDATION",
-            "display_claim": "2-Takt mengsmering (1:50) of alkylaatbrandstof",
-            "display_guidance": "Voorgeschreven mengverhouding 1:50 bij gebruik van STIHL 2-takt olie of STIHL MotoMix.",
+            "display_claim": "2-Takt mengsmering of alkylaatbrandstof",
+            "display_guidance": "Controleer de voorgeschreven brandstof/mengverhouding voor jouw model.",
             "evidence_basis": [
               "STIHL_STANDARD_OPERATING_PROCEDURE"
             ],
             "evidence_fact_ids": [],
             "specification": {
-              "mix_ratio": "1:50"
+              "product_type": "2-takt olie / alkylaatbrandstof"
             },
             "commercial_offers": []
           }

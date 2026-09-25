@@ -1,6 +1,6 @@
 /**
  * scripts/validate_model_product_compatibility.mjs
- * Validation script for Phase 48 compatibility dataset and commercial offers.
+ * Validation script for Phase 48 / 48A compatibility dataset and commercial offers.
  */
 
 import fs from 'fs';
@@ -18,7 +18,14 @@ const ALLOWED_COMPATIBILITY_STATUSES = new Set(Object.values(COMPATIBILITY_STATU
 
 const OEM_PART_NUMBER_REGEX = /^\d{4}\s\d{3}\s\d{4}$/;
 
-export function validateCompatibilityDataset() {
+const ELIGIBLE_PUBLIC_EVIDENCE_STATUSES = new Set([
+  'OFFICIAL_DOCUMENTED',
+  'OFFICIAL_VERIFIED',
+  'OFFICIAL_AUTHENTICATED',
+  'OFFICIAL_CANONICAL'
+]);
+
+export function validateCompatibilityDataset(customData = null) {
   const errors = [];
   const warnings = [];
 
@@ -31,7 +38,7 @@ export function validateCompatibilityDataset() {
   if (!fs.existsSync(dbPath)) errors.push(`Missing stihl_database.json at ${dbPath}`);
   if (!fs.existsSync(evPath)) errors.push(`Missing public_evidence_facts.json at ${evPath}`);
   if (!fs.existsSync(merchPath)) errors.push(`Missing affiliate_merchants.json at ${merchPath}`);
-  if (!fs.existsSync(compatPath)) errors.push(`Missing model_product_compatibility.json at ${compatPath}`);
+  if (!customData && !fs.existsSync(compatPath)) errors.push(`Missing model_product_compatibility.json at ${compatPath}`);
 
   if (errors.length > 0) {
     return { valid: false, errors, warnings };
@@ -40,7 +47,7 @@ export function validateCompatibilityDataset() {
   const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
   const evData = JSON.parse(fs.readFileSync(evPath, 'utf8'));
   const merchData = JSON.parse(fs.readFileSync(merchPath, 'utf8'));
-  const compatData = JSON.parse(fs.readFileSync(compatPath, 'utf8'));
+  const compatData = customData || JSON.parse(fs.readFileSync(compatPath, 'utf8'));
 
   const canonicalSlugs = new Set((db.models || []).map((m) => m.slug));
   const factsArray = Array.isArray(evData.facts) ? evData.facts : Object.values(evData.facts || {});
@@ -110,26 +117,62 @@ export function validateCompatibilityDataset() {
           errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": invalid compatibility_status "${rec.compatibility_status}"`);
         }
 
-        // 4. Validate evidence fact IDs
+        // 4. Hard Verified Evidence Contract: VERIFIED_MODEL_COMPATIBILITY
+        if (rec.compatibility_status === COMPATIBILITY_STATUSES.VERIFIED_MODEL_COMPATIBILITY) {
+          if (!Array.isArray(rec.evidence_fact_ids) || rec.evidence_fact_ids.length === 0) {
+            errors.push(
+              `Model "${modelSlug}" recommendation "${rec.recommendation_id}": VERIFIED_MODEL_COMPATIBILITY strictly requires canonical evidence in evidence_fact_ids, but evidence_fact_ids is empty`
+            );
+          }
+        }
+
+        // 5. Validate evidence fact IDs if present
         if (Array.isArray(rec.evidence_fact_ids)) {
           for (const factId of rec.evidence_fact_ids) {
             const fact = factsMap.get(factId);
             if (!fact) {
               errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": evidence_fact_id "${factId}" not found in public_evidence_facts.json`);
-            } else if (fact.model_slug !== modelSlug) {
-              errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": evidence_fact_id "${factId}" belongs to model "${fact.model_slug}", not "${modelSlug}"`);
+            } else {
+              if (fact.model_slug !== modelSlug) {
+                errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": evidence_fact_id "${factId}" belongs to model "${fact.model_slug}", not "${modelSlug}"`);
+              }
+
+              // Evidence eligibility checks
+              if (fact.display_eligible !== true) {
+                errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": fact "${factId}" has display_eligible !== true`);
+              }
+
+              if (fact.single_value_eligible !== true) {
+                errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": fact "${factId}" has single_value_eligible !== true`);
+              }
+
+              if (!ELIGIBLE_PUBLIC_EVIDENCE_STATUSES.has(fact.public_evidence_status)) {
+                errors.push(
+                  `Model "${modelSlug}" recommendation "${rec.recommendation_id}": fact "${factId}" has ineligible evidence status "${fact.public_evidence_status}"`
+                );
+              }
+
+              // Field-specific validation
+              if (rec.recommendation_type === 'spark_plug') {
+                const allowedFields = ['spark_plug', 'electrode_gap_mm', 'spark_plug_gap_mm'];
+                if (!allowedFields.includes(fact.field)) {
+                  errors.push(
+                    `Model "${modelSlug}" spark_plug "${rec.recommendation_id}": linked fact "${factId}" field "${fact.field}" is not a spark plug field`
+                  );
+                }
+              }
             }
           }
         }
 
-        // 5. Validate OEM Part Number format if present
+        // 6. Validate OEM Part Number format if present
         if (rec.oem_part_number != null) {
           if (!OEM_PART_NUMBER_REGEX.test(rec.oem_part_number)) {
             errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": oem_part_number "${rec.oem_part_number}" does not match STIHL format "xxxx xxx xxxx"`);
           }
         }
 
-        // 6. Validate chain configuration consistency
+        // 7. Validate chain configuration consistency
         if (rec.recommendation_type === RECOMMENDATION_TYPES.CHAIN && rec.specification) {
           const spec = rec.specification;
           if (spec.drive_links != null && (!Number.isInteger(spec.drive_links) || spec.drive_links <= 0)) {
@@ -147,7 +190,7 @@ export function validateCompatibilityDataset() {
           }
         }
 
-        // 7. Validate commercial offers if present
+        // 8. Validate commercial offers if present
         const offers = rec.commercial_offers?.offers || [];
         for (const offer of offers) {
           totalOffers++;
@@ -165,6 +208,13 @@ export function validateCompatibilityDataset() {
           }
 
           if (offer.status === COMMERCIAL_OFFER_STATUSES.ACTIVE_AFFILIATE) {
+            // Hard check: merchant must have affiliate_active === true
+            if (merch.affiliate_active !== true) {
+              errors.push(
+                `Model "${modelSlug}" recommendation "${rec.recommendation_id}": merchant "${offer.merchant_id}" has affiliate_active === false, cannot host ACTIVE_AFFILIATE offer`
+              );
+            }
+
             if (!offer.affiliate_url) {
               errors.push(`Model "${modelSlug}" recommendation "${rec.recommendation_id}": ACTIVE_AFFILIATE requires affiliate_url`);
             } else if (!isDomainAllowlisted(offer.affiliate_url, merch, merchantsList)) {

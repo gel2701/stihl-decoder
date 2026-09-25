@@ -1,6 +1,6 @@
 /**
  * commercialOffers.js
- * Phase 48 — Affiliate Compatibility Dataset & Commercial Pilot
+ * Phase 48 / 48A — Affiliate Compatibility Dataset & Commercial Pilot
  *
  * Implements the Provider-Independent Commercial Offer Ingestion Layer for STIHLDecoder.nl.
  *
@@ -19,6 +19,19 @@ export const COMMERCIAL_OFFER_STATUSES = Object.freeze({
 });
 
 export const DEFAULT_MAX_PRICE_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+/**
+ * Escapes unsafe HTML characters to prevent XSS in text and attributes.
+ */
+export function escapeHtml(val) {
+  if (val == null) return '';
+  return String(val)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 /**
  * Normalizes a raw commercial offer into the canonical contract.
@@ -178,6 +191,10 @@ export function validateCommercialOffer(offer, registeredMerchants = []) {
 
   // ACTIVE_AFFILIATE status hard requirements
   if (normalized.status === COMMERCIAL_OFFER_STATUSES.ACTIVE_AFFILIATE) {
+    if (merchant && merchant.affiliate_active !== true) {
+      errors.push(`merchant "${normalized.merchant_id}" is not active for affiliate offers (affiliate_active is false)`);
+    }
+
     if (!normalized.affiliate_url) {
       errors.push('ACTIVE_AFFILIATE status strictly requires a valid affiliate_url');
     } else if (merchant && !isDomainAllowlisted(normalized.affiliate_url, merchant, merchantList)) {
@@ -242,16 +259,48 @@ export function attachOfferToRecommendation(recommendation = {}, offer = {}, reg
 }
 
 /**
- * Filters and prepares displayable offers according to staleness and pricing policies.
+ * Filters and prepares displayable offers according to merchant activity, validation, and staleness policies.
  */
 export function getActiveOffersForRecommendation(recommendation = {}, options = {}) {
   const maxPriceAgeMs = options.maxPriceAgeMs || DEFAULT_MAX_PRICE_AGE_MS;
+  const registeredMerchants = options.registeredMerchants || [];
   const rawOffers = Array.isArray(recommendation.commercial_offers?.offers)
     ? recommendation.commercial_offers.offers
     : [];
 
+  let merchantList = [];
+  if (Array.isArray(registeredMerchants)) {
+    merchantList = registeredMerchants;
+  } else if (registeredMerchants?.merchants && Array.isArray(registeredMerchants.merchants)) {
+    merchantList = registeredMerchants.merchants;
+  }
+
   return rawOffers
-    .filter((offer) => offer && offer.status !== COMMERCIAL_OFFER_STATUSES.DISABLED && offer.status !== COMMERCIAL_OFFER_STATUSES.INVALID)
+    .filter((offer) => {
+      if (!offer || typeof offer !== 'object') return false;
+      if (offer.status === COMMERCIAL_OFFER_STATUSES.DISABLED || offer.status === COMMERCIAL_OFFER_STATUSES.INVALID) {
+        return false;
+      }
+
+      // If merchant registry is provided, validate offer and merchant activity
+      if (merchantList.length > 0) {
+        const merchant = merchantList.find((m) => m.merchant_id === offer.merchant_id);
+        if (!merchant) return false;
+
+        // If offer claims ACTIVE_AFFILIATE, merchant must have affiliate_active === true
+        if (offer.status === COMMERCIAL_OFFER_STATUSES.ACTIVE_AFFILIATE) {
+          if (merchant.affiliate_active !== true) return false;
+          if (!offer.affiliate_url) return false;
+          if (!isDomainAllowlisted(offer.affiliate_url, merchant, merchantList)) return false;
+        }
+
+        if (offer.product_url && !isDomainAllowlisted(offer.product_url, merchant, merchantList)) {
+          return false;
+        }
+      }
+
+      return true;
+    })
     .map((offer) => {
       const isStale = isOfferStale(offer, maxPriceAgeMs);
       return {
