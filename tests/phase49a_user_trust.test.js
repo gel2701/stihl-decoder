@@ -65,7 +65,20 @@ assert.strictEqual(ms261Html.includes('politiecertificering'), false, 'Must not 
 const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
 assert.strictEqual(indexHtml.includes('politiecertificering'), false, 'index.html must not claim police certification');
 assert.strictEqual(indexHtml.includes('id="decoder"'), true, 'index.html must have id="decoder" on search section');
-console.log('  ✅ Test 3 Passed: Claims verified honest with proper disclaimers.');
+
+// Regression checks on StopHeling copy
+assert.strictEqual(indexHtml.includes('StopHeling-controlestatus en een downloadbaar onafhankelijk rapport'), false, 'Must not claim automatic StopHeling-controlestatus');
+assert.strictEqual(indexHtml.includes('hulpmiddel voor controle via StopHeling'), true, 'Must describe StopHeling as assistance tool');
+
+// Regression checks on universal 9-digit and branding
+assert.strictEqual(indexHtml.includes('officieel serienummer bestaat uit exact 9 cijfers'), false, 'Must not contain universal 9-digit claim');
+assert.strictEqual(indexHtml.includes('Geverifieerde STIHL Machinegidsen'), false, 'Must not contain unverified branding');
+
+// Zero HOLD link leaks
+const holdLeaksRegex = /href=["'](\/stihl-(?:bouwjaar|modellen|serienummer-decoder|diefstalcheck|waarde|serienummer|serienummer-bouwjaar|productiedatum|model-herkennen|typeplaatje|serienummer-ongeldig|tweedehands-checklist)|\/waar-staat-serienummer-stihl|\/gidsen\/(?:stihl-gietklok-aflezen|namaak-stihl-herkennen|stihl-kettingzaag-start-niet|stihl-carburateur-afstellen|stihl-m-tronic-resetten))\/?["']/i;
+assert.strictEqual(holdLeaksRegex.test(indexHtml), false, 'index.html must have 0 HOLD link leaks');
+assert.strictEqual(holdLeaksRegex.test(catHtml), false, 'CategoryPage must have 0 HOLD link leaks');
+console.log('  ✅ Test 3 Passed: Claims verified honest with proper disclaimers and 0 HOLD leaks.');
 
 // 4. Lead endpoints return 410 Gone
 console.log('\n▶ Test 4: Lead API endpoints return 410 Gone...');

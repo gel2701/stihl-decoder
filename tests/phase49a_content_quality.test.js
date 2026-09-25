@@ -54,26 +54,45 @@ assert.strictEqual(guideHtml.includes('Ingeslagen Nummer versus Typeplaatjesstic
 assert.strictEqual(guideHtml.includes('11-cijferig'), true, 'Must warn against 11-digit part number');
 assert.strictEqual(guideHtml.includes('9-cijferig'), true, 'Must specify 9-digit serial number');
 assert.strictEqual(guideHtml.includes('/#decoder'), true, 'Must link to /#decoder');
+
+// Regression checks on branding and universal 9-digit claims
+assert.strictEqual(guideHtml.includes('Geverifieerde STIHL Machinegidsen'), false, 'Must not claim "Geverifieerde STIHL Machinegidsen" branding');
+assert.strictEqual(guideHtml.includes('Een officieel STIHL serienummer bestaat uit exact 9 cijfers'), false, 'Must not make universal 9-digit serial claim');
+assert.strictEqual(guideHtml.includes('STIHLDecoder Kennisbank'), true, 'Must use updated "STIHLDecoder Kennisbank" branding');
 console.log('  ✅ Test 1 Passed: Serial location guide is substantive, practical, and comprehensive.');
 
 // 2. Publication Gates & Sitemap Filtration
-console.log('\n▶ Test 2: Publication rules & Sitemap filtration...');
+console.log('\n▶ Test 2: Publication rules & Sitemap filtration for all HOLD resources...');
 assert.strictEqual(isGuidePublished('serienummer-locaties'), true);
-assert.strictEqual(isGuidePublished('stihl-mengsmering'), false);
-assert.strictEqual(isGuidePublished('stihl-bougies'), false);
 assert.strictEqual(isIntentPublished('stihl-paspoort'), true);
-assert.strictEqual(isIntentPublished('stihl-bouwjaar-controleren'), false);
 
 const sitemapXml = generateSitemapXml(baseUrl, database);
 assert.strictEqual(sitemapXml.includes('/gidsen/serienummer-locaties/'), true, 'Sitemap must contain published guide');
-assert.strictEqual(sitemapXml.includes('/gidsen/stihl-mengsmering/'), false, 'Sitemap must NOT contain HOLD guide');
-assert.strictEqual(sitemapXml.includes('/gidsen/stihl-bougies/'), false, 'Sitemap must NOT contain HOLD guide');
 assert.strictEqual(sitemapXml.includes('/stihl-paspoort/'), true, 'Sitemap must contain published intent');
-assert.strictEqual(sitemapXml.includes('/stihl-bouwjaar-controleren/'), false, 'Sitemap must NOT contain HOLD intent');
-console.log('  ✅ Test 2 Passed: Sitemap strictly excludes HOLD guides and intent pages.');
+
+const holdGuideSlugs = Object.entries(GUIDE_PUBLICATION_STATUS)
+  .filter(([_, status]) => status === 'HOLD')
+  .map(([slug]) => slug);
+assert.strictEqual(holdGuideSlugs.length, 5, 'Must have exactly 5 HOLD guides');
+
+for (const slug of holdGuideSlugs) {
+  assert.strictEqual(isGuidePublished(slug), false, `Guide ${slug} must be on HOLD`);
+  assert.strictEqual(sitemapXml.includes(`/gidsen/${slug}/`), false, `Sitemap must NOT contain HOLD guide /gidsen/${slug}/`);
+}
+
+const holdIntentSlugs = Object.entries(INTENT_PUBLICATION_STATUS)
+  .filter(([_, status]) => status === 'HOLD')
+  .map(([slug]) => slug);
+assert.strictEqual(holdIntentSlugs.length, 13, 'Must have exactly 13 HOLD intents');
+
+for (const slug of holdIntentSlugs) {
+  assert.strictEqual(isIntentPublished(slug), false, `Intent ${slug} must be on HOLD`);
+  assert.strictEqual(sitemapXml.includes(`/${slug}/`), false, `Sitemap must NOT contain HOLD intent /${slug}/`);
+}
+console.log('  ✅ Test 2 Passed: Sitemap strictly excludes all 5 HOLD guides and all 13 HOLD intent pages.');
 
 // 3. Server HTTP 404 on HOLD routes
-console.log('\n▶ Test 3: Server HTTP 404 behavior for HOLD pages...');
+console.log('\n▶ Test 3: Server HTTP 404 behavior for all HOLD pages...');
 const fetchStatus = (reqPath) => new Promise((resolve, reject) => {
   const req = http.get({
     hostname: 'localhost',
@@ -87,19 +106,24 @@ const fetchStatus = (reqPath) => new Promise((resolve, reject) => {
   req.on('error', reject);
 });
 
-const holdGuideRes = await fetchStatus('/gidsen/stihl-mengsmering/');
-assert.strictEqual(holdGuideRes.statusCode, 404, '/gidsen/stihl-mengsmering/ must return 404');
-assert.strictEqual(holdGuideRes.body.includes('Pagina niet gevonden'), true, 'Must render branded 404 page');
-
 const publishedGuideRes = await fetchStatus('/gidsen/serienummer-locaties/');
 assert.strictEqual(publishedGuideRes.statusCode, 200, '/gidsen/serienummer-locaties/ must return 200');
 
-const holdIntentRes = await fetchStatus('/stihl-bouwjaar-controleren/');
-assert.strictEqual(holdIntentRes.statusCode, 404, '/stihl-bouwjaar-controleren/ must return 404');
-
 const publishedIntentRes = await fetchStatus('/stihl-paspoort/');
 assert.strictEqual(publishedIntentRes.statusCode, 200, '/stihl-paspoort/ must return 200');
-console.log('  ✅ Test 3 Passed: Server cleanly serves 200 for PUBLISHED and 404 for HOLD pages.');
+
+for (const slug of holdGuideSlugs) {
+  const res = await fetchStatus(`/gidsen/${slug}/`);
+  assert.strictEqual(res.statusCode, 404, `/gidsen/${slug}/ must return 404`);
+  assert.strictEqual(res.body.includes('Pagina niet gevonden'), true, `Must render branded 404 page for /gidsen/${slug}/`);
+}
+
+for (const slug of holdIntentSlugs) {
+  const res = await fetchStatus(`/${slug}/`);
+  assert.strictEqual(res.statusCode, 404, `/${slug}/ must return 404`);
+  assert.strictEqual(res.body.includes('Pagina niet gevonden'), true, `Must render branded 404 page for /${slug}/`);
+}
+console.log('  ✅ Test 3 Passed: Server cleanly serves 200 for PUBLISHED and 404 for all HOLD pages.');
 
 // 4. FAQ Quality Gate in ModelPageTemplate & StructuredData
 console.log('\n▶ Test 4: FAQ Quality Gate for knownPeriod...');

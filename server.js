@@ -837,7 +837,7 @@ server.listen(PORT, () => {
   console.log(`   NODE_ENV=${process.env.NODE_ENV || 'development'}`);
 });
 
-export { server };
+export { server, renderPartNumberHubHtml, renderPartNumberSeriesHtml };
 
 function findModelBySlug(modelSlug, database) {
   const models = database.models || [];

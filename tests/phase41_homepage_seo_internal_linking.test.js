@@ -63,7 +63,7 @@ console.log('  PASS: All 4 category links present');
 
 // ─── Test 6: Tool links present ─────────────────────────────────────────
 console.log('Test 6: Tool links...');
-const requiredTools = ['/stihl-bouwjaar/', '/onderdeelnummer/', '/stihl-paspoort/'];
+const requiredTools = ['/gidsen/serienummer-locaties/', '/onderdeelnummer/', '/stihl-paspoort/'];
 for (const tool of requiredTools) {
   assert.ok(targets.has(tool), `Tool link ${tool} must be present`);
 }

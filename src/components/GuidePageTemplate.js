@@ -55,7 +55,7 @@ export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
             STIHL Decoder
             <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">Kennisbank</span>
           </span>
-          <p class="text-xs text-gray-400">Geverifieerde STIHL Machinegidsen</p>
+          <p class="text-xs text-gray-400">STIHLDecoder Kennisbank</p>
         </div>
       </a>
       <a href="/" class="text-xs text-orange-400 font-bold hover:underline">← Terug naar Home</a>
@@ -90,7 +90,7 @@ export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
     <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 stihl-orange-glow">
       <div class="space-y-1">
         <h3 class="text-lg font-bold text-white">Serienummer gevonden?</h3>
-        <p class="text-xs text-gray-400">Voer het 9-cijferige serienummer in onze decoder in voor directe formaat-, herkomst- en modelanalyse.</p>
+        <p class="text-xs text-gray-400">Voer het serienummer in onze decoder in voor directe formaat- en modelanalyse.</p>
       </div>
       <a href="/#decoder" class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-md shadow-orange-600/30 text-sm whitespace-nowrap">
         Serienummer Analyseren →
@@ -120,7 +120,7 @@ function renderSerialLocationGuideBody() {
           Wat is een STIHL Serienummer?
         </h2>
         <p>
-          Een officieel STIHL serienummer bestaat uit <strong>exact 9 cijfers</strong> (bijvoorbeeld <code class="bg-gray-950 px-2 py-0.5 rounded text-orange-400 font-mono">163118080</code>). Dit nummer wordt tijdens de fabrieksassemblage uniek toegekend aan de complete machine. Het eerste cijfer duidt de oorspronkelijke productielocatie/fabriek aan (zoals Duitsland, de VS, Brazilië of Oostenrijk).
+          Veel STIHL-machines gebruiken een 9-cijferig serienummer (bijvoorbeeld <code class="bg-gray-950 px-2 py-0.5 rounded text-orange-400 font-mono">163118080</code>). Neem het volledige serienummer exact over zoals het op de machine of het typeplaatje staat. De decoder kan bij bepaalde serienummerreeksen een herkomstindicatie geven. De zekerheid verschilt per reeks en productieperiode.
         </p>
         <div class="bg-blue-950/30 border border-blue-500/30 rounded-xl p-4 text-xs text-blue-200 space-y-2">
           <strong class="font-semibold text-blue-400 block">Cruciaal verschil: Serienummer vs. 11-cijferig Onderdeelnummer</strong>
@@ -154,43 +154,37 @@ function renderSerialLocationGuideBody() {
           <!-- Kettingzagen -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">1. Kettingzagen (MS / MSA / MSE)</h3>
-            <p><strong>Ingeslagen nummer:</strong> Bovenop of aan de rechterzijde van het metalen carter, vlakbij de uitlaat (geluiddemper) en de velkam (bumper spike).</p>
-            <p><strong>Sticker / Typeplaatje:</strong> Vaak aangebracht op de zwarte handbescherming (kettingremhendel) of op het achterste handvat.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> De exacte locatie verschilt per model en generatie. Controleer eerst het carter ingeslagen in het metaal (vaak aan de rechterzijde of bovenzijde, nabij uitlaat of velkam) of de identificatiesticker (zoals op de kettingremhendel of handgreep). Raadpleeg bij twijfel de handleiding van uw specifieke uitvoering.</p>
           </div>
 
           <!-- Bosmaaiers -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">2. Bosmaaiers & Trimmers (FS / FSA / FSE)</h3>
-            <p><strong>Op het motorcarter:</strong> Ingeslagen in het metaal aan de onder- of achterzijde van het motorblok, dichtbij de brandstoftank of accuhouder.</p>
-            <p><strong>Sticker:</strong> Op de aluminium stuurboom of het kunststof motorhuis.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> De positie kan variëren per serie en revisie. Controleer eerst het motorcarter (ingeslagen aan de onder- of achterzijde van het motorblok) of de typeplaatjessticker op de stuurboom of het motorhuis.</p>
           </div>
 
           <!-- Bladblazers -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">3. Bladblazers (BG / BGA / BR)</h3>
-            <p><strong>Handblazers:</strong> Op het motorhuis nabij de handgreep of onderop bij het aanzuigrooster.</p>
-            <p><strong>Ruggedragen blazers (BR):</strong> Op het motorblok op het rugframe of op de fabriekstypeplaat op de rugdrager.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> De locatie hangt af van het modeltype. Controleer bij handblazers het motorhuis nabij de handgreep of aanzuigzijde; bij ruggedragen blazers het motorblok op het frame of de typeplaat op de rugdrager.</p>
           </div>
 
           <!-- Heggenscharen -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">4. Heggenscharen (HS / HSA / HLA)</h3>
-            <p><strong>Op het tandwielhuis:</strong> Ingeslagen op het metalen aandrijfhuis of motorcarter.</p>
-            <p><strong>Typeplaatje:</strong> Op de onderzijde of zijkant van de behuizing nabij de handgrepen.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> Het nummer kan zich bevinden op het metalen aandrijfhuis of motorcarter, of op het typeplaatje nabij de bedieningshandgrepen. Raadpleeg de officiële handleiding van uw uitvoering.</p>
           </div>
 
           <!-- Doorslijpers -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">5. Doorslijpers (TS / TSA)</h3>
-            <p><strong>Op het carter:</strong> Ingeslagen op het carter onder het luchtfilterdeksel of nabij de voorste handbeugel.</p>
-            <p><strong>Typeplaat:</strong> Op het metalen typeplaatje aan de zijkant van de beschermkap.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> Staat doorgaans ingeslagen op het carter onder het filterdeksel of nabij de voorste handbeugel, of op de fabriekstypeplaat. Reinig steenstof voorzichtig om de tekens leesbaar te maken.</p>
           </div>
 
           <!-- Accu machines -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">6. Accu-machines (AK, AP, AS Systemen)</h3>
-            <p><strong>In het accuvak:</strong> Verwijder de accu en inspecteer de binnenzijde van de accuschacht op een barcode- en serienummersticker.</p>
-            <p><strong>Op de behuizing:</strong> Op het zilverkleurige typeplaatje met CE-markering op de motorbehuizing.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> Kan zich bevinden in het accuvak (verwijder altijd eerst de accu voor veilige inspectie) op een barcode- en serienummersticker, of op het typeplaatje op de motorbehuizing.</p>
           </div>
         </div>
       </section>

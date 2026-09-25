@@ -138,7 +138,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             <p class="text-gray-300">• Aanbevolen Bougie: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'spark_plug', database)}</strong></p>
             <p class="text-gray-300">• Elektrodenafstand: <strong class="text-white font-mono">${renderSafeTechnicalValue(model, 'electrode_gap_mm', database, (value) => `${value} mm`)}</strong></p>
           ` : `
-            <p class="text-gray-300">• Bougietype & elektrodenafstand: Raadpleeg de originele handleiding van uw specifieke bouwjaarrevisie voor het goedgekeurde type (bijv. NGK / Bosch).</p>
+            <p class="text-gray-300">• Bougietype & elektrodenafstand: Raadpleeg de handleiding van uw specifieke model en bouwjaar voor het goedgekeurde bougietype en de juiste elektrodenafstand.</p>
           `}
           <div class="pt-2">
             ${renderAffiliateLink({
@@ -155,7 +155,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Snijgarnituur</span>
             </div>
             <p class="text-gray-300">• Technische kettingmaten (steek, schakeldikte, aantal aandrijfschakels) worden per uitvoering gespecificeerd in de handleiding.</p>
-            <p class="text-gray-300">• Zaagkettingolie: Gebruik kwalitatieve STIHL kettingolie voor continue smering van blad en zaagketting.</p>
+            <p class="text-gray-300">• Zaagkettingolie: Controleer in de handleiding de aanbevolen kettingolie en viscositeit voor continue smering van blad en zaagketting.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Zaagketting voor STIHL ${model.model_name}`,
@@ -171,7 +171,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <span class="font-bold text-white text-sm">Snijgarnituur & Trimmerdraad</span>
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Snijgarnituur</span>
             </div>
-            <p class="text-gray-300">• Geschikt voor STIHL maaidraad, PolyCut messen of AutoCut maaikop volgens de fabrieksrichtlijnen van dit model.</p>
+            <p class="text-gray-300">• Snijgarnituur & Maaidraad: Controleer in de officiële handleiding welke maaidraad- of maaikopuitvoering voor dit specifieke model en bouwjaar is voorgeschreven.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Snijgarnituur voor STIHL ${model.model_name}`,
@@ -187,7 +187,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <span class="font-bold text-white text-sm">Carburateur & Brandstofsysteem</span>
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Brandstof</span>
             </div>
-            <p class="text-gray-300">• Carburateurrevisiesets en brandstoffilters moeten exact overeenkomen met het carburateurfabrikaat (Zama / Walbro) van uw uitvoering.</p>
+            <p class="text-gray-300">• Controleer in de handleiding of op de machine zelf welk carburateurfabrikaat en revisieset op uw specifieke uitvoering zijn gemonteerd.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Carburateuronderdelen voor STIHL ${model.model_name}`,
@@ -201,7 +201,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <span class="font-bold text-white text-sm">Luchtfilter & Filterelement</span>
               <span class="text-2xs font-mono text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded">Filter</span>
             </div>
-            <p class="text-gray-300">• Controleer het filtertype (vilt, gaas of HD2) op basis van de bouwjaarrevisie en werkomstandigheden.</p>
+            <p class="text-gray-300">• Controleer het filtertype en de voorgeschreven onderhoudsinterval op basis van de bouwjaarrevisie en werkomstandigheden.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Luchtfilter voor STIHL ${model.model_name}`,
@@ -219,7 +219,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             </div>
             <p class="text-gray-300">• Accusysteem: <strong class="text-white">${model.battery_system || 'STIHL Accusysteem'}</strong></p>
             ${model.voltage_v ? `<p class="text-gray-300">• Nominale spanning: <strong class="text-white">${model.voltage_v} V</strong></p>` : ''}
-            <p class="text-2xs text-gray-400">Gebruik uitsluitend originele STIHL accupacks en laders die geschikt zijn voor dit systeem.</p>
+            <p class="text-2xs text-gray-400">Controleer in de officiële handleiding welke accupacks en laders voor dit specifieke model zijn goedgekeurd.</p>
             <div class="pt-2">
               ${renderAffiliateLink({
                 partName: `Accu-accessoires voor STIHL ${model.model_name}`,

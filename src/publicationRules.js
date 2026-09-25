@@ -16,7 +16,7 @@ export const INDEXABLE_COMPARISONS = [
   'ms-361-vs-ms-362'
 ];
 
-const COMPARISON_REGISTRY = [
+export const COMPARISON_REGISTRY = [
   {
     slug: 'ms-170-vs-ms-180',
     categorySlug: 'kettingzagen',
@@ -72,24 +72,24 @@ export function getPublicCategoryLabel(model) {
 
 export function getSerialLocationAnswer(categorySlug) {
   if (categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen') {
-    return 'Het unieke 9-cijferige serienummer staat meestal ingeslagen in het metaal van het carter (nabij de geluiddemper of velkam) en kan ook op een typeplaatjessticker op de handgreep of kettingrem staan. Reinig zaagsel en kettingolie om het nummer goed zichtbaar te maken. Let op: een 11-cijferig nummer is een gegoten onderdeelnummer en géén uniek serienummer. De exacte locatie verschilt per generatie.';
+    return 'Het serienummer staat doorgaans ingeslagen in het metaal van het carter of op een typeplaatjessticker van de machine. Veelvoorkomende inspectiepunten zijn het carter nabij de uitlaatzijde, de kettingremhendel of de handgreep. Reinig eventueel zaagsel en kettingolie voorzichtig om de tekens goed af te lezen. Veel STIHL-machines gebruiken een 9-cijferig serienummer; let op dat een 11-cijferig nummer een gegoten onderdeelnummer (Teilenummer) aanduidt en géén machinenummer is. De exacte locatie verschilt per model en generatie; controleer bij twijfel de handleiding van uw specifieke uitvoering.';
   }
   if (categorySlug === 'bosmaaiers') {
-    return 'Het 9-cijferige serienummer bevindt zich op het motorhuis of ingeslagen op het carter (vaak nabij de brandstoftank of stuurboom) en op de identificatiesticker. Verwijder vuil en vet om het nummer goed af te lezen. Een 11-cijferig nummer is een onderdeelnummer en géén serienummer van de complete machine.';
+    return 'Het serienummer kan zich bevinden op het motorhuis, ingeslagen op het carter of op de identificatiesticker van de machine of stuurboom. Verwijder vuil en vet voorzichtig om het nummer goed af te lezen. Veel STIHL-machines hebben een 9-cijferig serienummer; een 11-cijferig nummer betreft een los onderdeelnummer. De exacte positie verschilt per model en bouwjaarrevisie.';
   }
   if (categorySlug === 'bladblazers') {
-    return 'Het 9-cijferige serienummer staat op het motorblok of op de typeplaatsticker op de behuizing of het frame van de blazer. Zorg dat het oppervlak schoon is om het nummer te onderscheiden van 11-cijferige onderdeelnummers.';
+    return 'Het serienummer bevindt zich veelal op het motorblok of op de typeplaatsticker op de behuizing of het frame van de blazer. Zorg dat het oppervlak schoon is om het serienummer te onderscheiden van een 11-cijferig onderdeelnummer. De exacte locatie verschilt per model en generatie.';
   }
   if (categorySlug === 'heggenscharen') {
-    return 'Het 9-cijferige serienummer bevindt zich op het aandrijfhuis of motorcarter en op het typeplaatje nabij de bedieningsgreep. Controleer op een 9-cijferige code; 11-cijferige codes zijn onderdeelnummers.';
+    return 'Het serienummer kan ingeslagen zijn op het aandrijfhuis of motorcarter, of vermeld staan op het typeplaatje nabij de bedieningsgreep. Controleer het complete nummer op de machine; een 11-cijferig nummer is een onderdeelnummer. De exacte locatie verschilt per uitvoering.';
   }
   if (categorySlug === 'doorslijpers') {
-    return 'Het serienummer is ingeslagen in het metalen motorhuis of carter van de doorslijper en staat tevens op de fabriekstypeplaat. Bij intensief gebruikte machines kan reiniging van steenstof nodig zijn om de cijfers zichtbaar te maken.';
+    return 'Het serienummer staat doorgaans ingeslagen in het metalen motorhuis of carter van de doorslijper en op de fabriekstypeplaat. Bij intensief gebruikte machines kan reiniging van steenstof nodig zijn om de tekens zichtbaar te maken. De exacte inspectiepositie verschilt per model.';
   }
   if (categorySlug === 'nevelspuiten') {
-    return 'Het serienummer bevindt zich op het motorblok of het typeplaatje van de nevelspuit. Reinig de behuizing voorzichtig om de stempel af te lezen.';
+    return 'Het serienummer bevindt zich doorgaans op het motorblok of het typeplaatje van de nevelspuit. Reinig de behuizing voorzichtig om de tekens af te lezen. De exacte inspectiepositie verschilt per model.';
   }
-  return 'Het unieke 9-cijferige serienummer bevindt zich ingeslagen op het carter of motorhuis, of op de typeplaatjessticker van de machine. Reinig eventueel vuil voorzichtig om het nummer af te lezen. Let op dat een 11-cijferig nummer een onderdeelnummer is en géén uniek serienummer van de machine.';
+  return 'Het serienummer bevindt zich doorgaans ingeslagen op het carter of motorhuis, of op de typeplaatjessticker van de machine. Reinig eventueel vuil voorzichtig om het nummer af te lezen. Veel STIHL-machines gebruiken een 9-cijferig serienummer; let op dat een 11-cijferig nummer een onderdeelnummer betreft en géén uniek machinenummer. De exacte locatie verschilt per model en generatie.';
 }
 
 export function getFuelTypeCode(model) {
