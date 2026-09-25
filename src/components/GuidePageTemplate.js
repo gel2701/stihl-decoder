@@ -125,7 +125,7 @@ function renderSerialLocationGuideBody() {
         <div class="bg-blue-950/30 border border-blue-500/30 rounded-xl p-4 text-xs text-blue-200 space-y-2">
           <strong class="font-semibold text-blue-400 block">Cruciaal verschil: Serienummer vs. 11-cijferig Onderdeelnummer</strong>
           <p>
-            Veel gebruikers verwarren een ingegoten onderdeelnummer met een serienummer. Een <strong>onderdeelnummer (Teilenummer)</strong> bestaat uit 11 cijfers (bijvoorbeeld <code class="bg-gray-950 px-1.5 py-0.5 rounded font-mono text-white">1121 021 0800</code>) en begint met een 4-cijferige serie-prefix. Dit nummer identificeert slechts een los gietdeel of deksel, en is <em>geen</em> unieke identificatie van de complete zaag of machine.
+            Veel gebruikers verwarren een onderdeelnummer of gietnummer met een serienummer. Een 11-cijferig STIHL onderdeelnummer identificeert een onderdeel, component of samenstelling en is niet het unieke serienummer van de complete machine. Een <strong>onderdeelnummer (Teilenummer)</strong> bestaat uit 11 cijfers (bijvoorbeeld <code class="bg-gray-950 px-1.5 py-0.5 rounded font-mono text-white">1121 021 0800</code>) en begint met een 4-cijferige serie-prefix. Let op het onderscheid (onderdeelnummer ≠ automatisch gietnummer): een fysiek ingegoten nummer KAN een onderdeelnummer zijn, maar beide termen zijn niet universeel synoniem.
           </p>
         </div>
       </section>
@@ -138,7 +138,7 @@ function renderSerialLocationGuideBody() {
         </h2>
         <ul class="space-y-2 list-disc list-inside text-xs sm:text-sm">
           <li><strong>Machine uitschakelen:</strong> Schakel de machine altijd volledig uit en laat een warme motor afkoelen.</li>
-          <li><strong>Accu verwijderen:</strong> Haal bij accumachines altijd eerst de accu uit het accuvak voordat u inspecteert.</li>
+          <li><strong>Accu veiligheid:</strong> Schakel de machine uit. Verwijder een uitneembare accu wanneer het ontwerp dat toestaat. Bij machines met geïntegreerde accu volgt u de uitschakel-/transportvergrendelingsprocedure uit de handleiding.</li>
           <li><strong>Olie en zaagsel verwijderen:</strong> Serienummers op kettingzagen zitten vaak bedekt onder aangekoekt kettingzaagsel en kleverige harsolie. Veeg de plek voorzichtig schoon met een droge doek of milde ontvetter. Krab niet met harde metalen voorwerpen over het carter om beschadiging van de stempel te voorkomen.</li>
         </ul>
       </section>
@@ -184,7 +184,7 @@ function renderSerialLocationGuideBody() {
           <!-- Accu machines -->
           <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
             <h3 class="font-bold text-white text-sm text-orange-400">6. Accu-machines (AK, AP, AS Systemen)</h3>
-            <p><strong>Veelvoorkomende inspectiepunten:</strong> Kan zich bevinden in het accuvak (verwijder altijd eerst de accu voor veilige inspectie) op een barcode- en serienummersticker, of op het typeplaatje op de motorbehuizing.</p>
+            <p><strong>Veelvoorkomende inspectiepunten:</strong> Kan zich bevinden in het accuvak (verwijder een uitneembare accu vooraf; volg bij geïntegreerde accu de veiligheidsprocedure) op een barcode- en serienummersticker, of op het typeplaatje op de motorbehuizing.</p>
           </div>
         </div>
       </section>
@@ -196,7 +196,7 @@ function renderSerialLocationGuideBody() {
           Ingeslagen Nummer versus Typeplaatjessticker
         </h2>
         <p>
-          Het <strong>ingeslagen nummer in het metalen carter</strong> is altijd leidend. Stickers kunnen in de loop der tijd door intensief gebruik, benzine of reinigingsmiddelen loslaten of onleesbaar worden. Bij tweedehands machines beschermt het controleren van het ingeslagen nummer u bovendien tegen machines waarvan kappen zijn gewisseld of die zijn samengesteld uit meerdere donor-machines.
+          Wanneer zowel een ingeslagen nummer als een typeplaatje aanwezig zijn, vergelijk beide. Welke identificatiemarkering aanwezig is verschilt per model en generatie. Stickers kunnen in de loop der tijd door intensief gebruik, benzine of reinigingsmiddelen loslaten of onleesbaar worden. Bij machines met een ingeslagen carternummer biedt deze markering extra zekerheid om na te gaan of behuizingsdelen niet zijn gewisseld met andere machines.
         </p>
         <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-200">
           <strong class="font-semibold text-amber-400 block mb-1">Let op: Exacte positie kan variëren per generatie</strong>

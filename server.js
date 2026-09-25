@@ -24,7 +24,12 @@ import {
   getValuationPublicationState,
   resolveComparisonRoute,
   isGuidePublished,
-  isIntentPublished
+  isIntentPublished,
+  CATEGORY_REGISTRY,
+  getGuideRouteConfig,
+  getIntentRouteConfig,
+  INTENT_ROUTE_CONFIG,
+  getCanonicalPartSeriesCodes
 } from './src/publicationRules.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -67,7 +72,7 @@ const MIME_TYPES = {
   '.webmanifest': 'application/manifest+json'
 };
 
-const KNOWN_CATEGORIES = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'accu-kettingzagen', 'doorslijpers', 'nevelspuiten'];
+const KNOWN_CATEGORIES = Object.keys(CATEGORY_REGISTRY);
 const MAX_JSON_BODY_BYTES = 32 * 1024;
 const PUBLIC_ROOT_FILES = new Set([
   'index.html',
@@ -427,10 +432,20 @@ const server = http.createServer(async (req, res) => {
 
   // 6. Category Landing Pages
   const cleanCategory = pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
-  if (KNOWN_CATEGORIES.includes(cleanCategory)) {
-    const categoryHtml = renderCategoryPageHtml(cleanCategory, database, PRIMARY_ORIGIN);
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.end(categoryHtml);
+  const categoryConfig = CATEGORY_REGISTRY[cleanCategory];
+  if (categoryConfig) {
+    if (categoryConfig.status === 'REDIRECT') {
+      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}${categoryConfig.destination}` });
+      res.end();
+      return;
+    }
+    if (categoryConfig.status === 'PUBLISHED') {
+      const categoryHtml = renderCategoryPageHtml(cleanCategory, database, PRIMARY_ORIGIN);
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+      res.end(categoryHtml);
+      return;
+    }
+    renderNotFound(res);
     return;
   }
 
@@ -542,18 +557,21 @@ const server = http.createServer(async (req, res) => {
   // 11. Guides SSR Route (/gidsen/:slug/)
   if (pathname.startsWith('/gidsen/')) {
     const guideSlug = pathname.replace('/gidsen/', '').replace(/\/$/, '');
-    if (!isGuidePublished(guideSlug)) {
-      renderNotFound(res);
+    const guideConfig = getGuideRouteConfig(guideSlug);
+    if (guideConfig.status === 'REDIRECT') {
+      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}${guideConfig.destination}` });
+      res.end();
       return;
     }
-    const guides = database.guides || [];
-    const guide = guides.find(g => g.slug === guideSlug);
-
-    if (guide) {
-      const html = renderGuidePageHtml(guide, database, PRIMARY_ORIGIN);
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-      res.end(html);
-      return;
+    if (guideConfig.status === 'PUBLISHED') {
+      const guides = database.guides || [];
+      const guide = guides.find(g => g.slug === guideSlug);
+      if (guide) {
+        const html = renderGuidePageHtml(guide, database, PRIMARY_ORIGIN);
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end(html);
+        return;
+      }
     }
     renderNotFound(res);
     return;
@@ -561,18 +579,29 @@ const server = http.createServer(async (req, res) => {
 
   // 12. Intent Landing Pages
   const cleanPath = pathname.replace(/^\//, '').replace(/\/$/, '');
-  const intentPages = database.intent_pages || [];
-  const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
-
-  if (matchedIntent) {
-    if (!isIntentPublished(matchedIntent.slug)) {
+  if (INTENT_ROUTE_CONFIG[cleanPath]) {
+    const intentConfig = getIntentRouteConfig(cleanPath);
+    if (intentConfig.status === 'REDIRECT') {
+      res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}${intentConfig.destination}` });
+      res.end();
+      return;
+    }
+    if (intentConfig.status === 'PUBLISHED') {
+      const intentPages = database.intent_pages || [];
+      const matchedIntent = intentPages.find(ip => ip.slug === cleanPath);
+      if (matchedIntent) {
+        const html = renderIntentPageHtml(matchedIntent, database, PRIMARY_ORIGIN);
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end(html);
+        return;
+      }
       renderNotFound(res);
       return;
     }
-    const html = renderIntentPageHtml(matchedIntent, database, PRIMARY_ORIGIN);
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-    res.end(html);
-    return;
+    if (intentConfig.status === 'HOLD') {
+      renderNotFound(res);
+      return;
+    }
   }
 
   // 13. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
@@ -720,6 +749,18 @@ const server = http.createServer(async (req, res) => {
 
 
 function renderPartNumberHubHtml(database, baseUrl) {
+  const seriesCodes = getCanonicalPartSeriesCodes(database);
+  const seriesCards = seriesCodes.map((code) => {
+    const models = (database.models || []).filter((m) => m.series_code === code);
+    const modelPreview = models.slice(0, 3).map((m) => m.model_name).join(', ') + (models.length > 3 ? '...' : '');
+    return `
+      <a href="/onderdeelnummer/stihl-${code}/" class="bg-gray-950 p-3 rounded-xl border border-gray-800 hover:border-orange-500 block">
+        <span class="font-mono font-bold text-orange-400">Serie ${code}</span>
+        <span class="text-gray-400 block text-2xs truncate">${modelPreview || 'STIHL Machines'}</span>
+      </a>
+    `;
+  }).join('');
+
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
@@ -750,18 +791,7 @@ function renderPartNumberHubHtml(database, baseUrl) {
         STIHL onderdeelnummers (11 cijfers) beginnen met een 4-cijferige serie-prefix die de machinetechnische familie aanduidt.
       </p>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs pt-2">
-        <a href="/onderdeelnummer/stihl-1121/" class="bg-gray-950 p-3 rounded-xl border border-gray-800 hover:border-orange-500 block">
-          <span class="font-mono font-bold text-orange-400">Serie 1121</span>
-          <span class="text-gray-400 block text-2xs">MS 260 / 026 Pro</span>
-        </a>
-        <a href="/onderdeelnummer/stihl-1141/" class="bg-gray-950 p-3 rounded-xl border border-gray-800 hover:border-orange-500 block">
-          <span class="font-mono font-bold text-orange-400">Serie 1141</span>
-          <span class="text-gray-400 block text-2xs">MS 261 / MS 261 C-M</span>
-        </a>
-        <a href="/onderdeelnummer/stihl-1130/" class="bg-gray-950 p-3 rounded-xl border border-gray-800 hover:border-orange-500 block">
-          <span class="font-mono font-bold text-orange-400">Serie 1130</span>
-          <span class="text-gray-400 block text-2xs">MS 170 / MS 180</span>
-        </a>
+        ${seriesCards}
       </div>
     </article>
   </main>

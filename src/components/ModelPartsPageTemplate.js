@@ -72,6 +72,9 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const gapState = getPublicTechnicalDisplayState(slug, 'electrode_gap_mm', database);
   const hasSparkData = isPetrol && (sparkState.single_value_eligible || gapState.single_value_eligible);
 
+  const batterySystemState = getPublicTechnicalDisplayState(slug, 'battery_system', database);
+  const voltageState = getPublicTechnicalDisplayState(slug, 'voltage_v', database);
+
   // Relevant public links for this specific machine context
   const relevantLinks = getRelevantPublicLinks(model, database);
 
@@ -217,8 +220,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <span class="font-bold text-white text-sm">Accu & Laadtechniek</span>
               <span class="text-2xs font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Accusysteem</span>
             </div>
-            <p class="text-gray-300">• Accusysteem: <strong class="text-white">${model.battery_system || 'STIHL Accusysteem'}</strong></p>
-            ${model.voltage_v ? `<p class="text-gray-300">• Nominale spanning: <strong class="text-white">${model.voltage_v} V</strong></p>` : ''}
+            ${batterySystemState.single_value_eligible ? `
+              <p class="text-gray-300">• Accusysteem: <strong class="text-white">${formatPublicTechnicalValue(batterySystemState)}</strong></p>
+            ` : `
+              <p class="text-gray-300">• Accusysteem: Raadpleeg de officiële handleiding of het typeplaatje voor het goedgekeurde accusysteem.</p>
+            `}
+            ${voltageState.single_value_eligible ? `
+              <p class="text-gray-300">• Nominale spanning: <strong class="text-white">${formatPublicTechnicalValue(voltageState, (v) => `${v} V`)}</strong></p>
+            ` : ''}
             <p class="text-2xs text-gray-400">Controleer in de officiële handleiding welke accupacks en laders voor dit specifieke model zijn goedgekeurd.</p>
             <div class="pt-2">
               ${renderAffiliateLink({

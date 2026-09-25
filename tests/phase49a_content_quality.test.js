@@ -83,16 +83,16 @@ for (const slug of holdGuideSlugs) {
 const holdIntentSlugs = Object.entries(INTENT_PUBLICATION_STATUS)
   .filter(([_, status]) => status === 'HOLD')
   .map(([slug]) => slug);
-assert.strictEqual(holdIntentSlugs.length, 13, 'Must have exactly 13 HOLD intents');
+assert.strictEqual(holdIntentSlugs.length, 11, 'Must have exactly 11 HOLD intents');
 
 for (const slug of holdIntentSlugs) {
   assert.strictEqual(isIntentPublished(slug), false, `Intent ${slug} must be on HOLD`);
   assert.strictEqual(sitemapXml.includes(`/${slug}/`), false, `Sitemap must NOT contain HOLD intent /${slug}/`);
 }
-console.log('  ✅ Test 2 Passed: Sitemap strictly excludes all 5 HOLD guides and all 13 HOLD intent pages.');
+console.log('  ✅ Test 2 Passed: Sitemap strictly excludes all 5 HOLD guides and all 11 HOLD intent pages.');
 
-// 3. Server HTTP 404 on HOLD routes
-console.log('\n▶ Test 3: Server HTTP 404 behavior for all HOLD pages...');
+// 3. Server HTTP 404 on HOLD routes & 301 on Redirect routes
+console.log('\n▶ Test 3: Server HTTP 404 behavior for HOLD pages & 301 for redirects...');
 const fetchStatus = (reqPath) => new Promise((resolve, reject) => {
   const req = http.get({
     hostname: 'localhost',
@@ -101,7 +101,7 @@ const fetchStatus = (reqPath) => new Promise((resolve, reject) => {
   }, (res) => {
     let body = '';
     res.on('data', chunk => body += chunk);
-    res.on('end', () => resolve({ statusCode: res.statusCode, body }));
+    res.on('end', () => resolve({ statusCode: res.statusCode, headers: res.headers, body }));
   });
   req.on('error', reject);
 });
@@ -111,6 +111,19 @@ assert.strictEqual(publishedGuideRes.statusCode, 200, '/gidsen/serienummer-locat
 
 const publishedIntentRes = await fetchStatus('/stihl-paspoort/');
 assert.strictEqual(publishedIntentRes.statusCode, 200, '/stihl-paspoort/ must return 200');
+
+// 301 Redirect validations
+const redirectSerialLoc = await fetchStatus('/waar-staat-serienummer-stihl/');
+assert.strictEqual(redirectSerialLoc.statusCode, 301, '/waar-staat-serienummer-stihl/ must return 301');
+assert.strictEqual(redirectSerialLoc.headers.location.endsWith('/gidsen/serienummer-locaties/'), true);
+
+const redirectDecoder = await fetchStatus('/stihl-serienummer-decoder/');
+assert.strictEqual(redirectDecoder.statusCode, 301, '/stihl-serienummer-decoder/ must return 301');
+assert.strictEqual(redirectDecoder.headers.location.endsWith('/#decoder'), true);
+
+const redirectAccuKettingzagen = await fetchStatus('/accu-kettingzagen/');
+assert.strictEqual(redirectAccuKettingzagen.statusCode, 301, '/accu-kettingzagen/ must return 301');
+assert.strictEqual(redirectAccuKettingzagen.headers.location.endsWith('/kettingzagen/'), true);
 
 for (const slug of holdGuideSlugs) {
   const res = await fetchStatus(`/gidsen/${slug}/`);
@@ -123,7 +136,7 @@ for (const slug of holdIntentSlugs) {
   assert.strictEqual(res.statusCode, 404, `/${slug}/ must return 404`);
   assert.strictEqual(res.body.includes('Pagina niet gevonden'), true, `Must render branded 404 page for /${slug}/`);
 }
-console.log('  ✅ Test 3 Passed: Server cleanly serves 200 for PUBLISHED and 404 for all HOLD pages.');
+console.log('  ✅ Test 3 Passed: Server cleanly serves 200 for PUBLISHED, 301 for REDIRECT, and 404 for HOLD pages.');
 
 // 4. FAQ Quality Gate in ModelPageTemplate & StructuredData
 console.log('\n▶ Test 4: FAQ Quality Gate for knownPeriod...');

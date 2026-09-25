@@ -1,14 +1,26 @@
 import { getModelVerificationSummary } from './canonicalData.js';
 
-export const KNOWN_PUBLIC_CATEGORIES = new Set([
-  'kettingzagen',
-  'bosmaaiers',
-  'bladblazers',
-  'heggenscharen',
-  'accu-kettingzagen',
-  'doorslijpers',
-  'nevelspuiten'
-]);
+export const CATEGORY_REGISTRY = {
+  'kettingzagen': { label: 'STIHL Kettingzagen', status: 'PUBLISHED' },
+  'bosmaaiers': { label: 'STIHL Bosmaaiers', status: 'PUBLISHED' },
+  'bladblazers': { label: 'STIHL Bladblazers', status: 'PUBLISHED' },
+  'heggenscharen': { label: 'STIHL Heggenscharen', status: 'PUBLISHED' },
+  'doorslijpers': { label: 'STIHL Doorslijpers', status: 'PUBLISHED' },
+  'nevelspuiten': { label: 'STIHL Nevelspuiten', status: 'PUBLISHED' },
+  'accu-kettingzagen': { label: 'STIHL Accu Kettingzagen', status: 'REDIRECT', destination: '/kettingzagen/' }
+};
+
+export function getPublishedCategories() {
+  return Object.entries(CATEGORY_REGISTRY)
+    .filter(([_, conf]) => conf.status === 'PUBLISHED')
+    .map(([slug]) => slug);
+}
+
+export function isCategoryPublished(slug) {
+  return CATEGORY_REGISTRY[slug]?.status === 'PUBLISHED';
+}
+
+export const KNOWN_PUBLIC_CATEGORIES = new Set(getPublishedCategories());
 
 export const INDEXABLE_COMPARISONS = [
   'ms-170-vs-ms-180',
@@ -72,16 +84,16 @@ export function getPublicCategoryLabel(model) {
 
 export function getSerialLocationAnswer(categorySlug) {
   if (categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen') {
-    return 'Het serienummer staat doorgaans ingeslagen in het metaal van het carter of op een typeplaatjessticker van de machine. Veelvoorkomende inspectiepunten zijn het carter nabij de uitlaatzijde, de kettingremhendel of de handgreep. Reinig eventueel zaagsel en kettingolie voorzichtig om de tekens goed af te lezen. Veel STIHL-machines gebruiken een 9-cijferig serienummer; let op dat een 11-cijferig nummer een gegoten onderdeelnummer (Teilenummer) aanduidt en géén machinenummer is. De exacte locatie verschilt per model en generatie; controleer bij twijfel de handleiding van uw specifieke uitvoering.';
+    return 'Het serienummer staat doorgaans ingeslagen in het metaal van het carter of op een typeplaatjessticker van de machine. Veelvoorkomende inspectiepunten zijn het carter nabij de uitlaatzijde, de kettingremhendel of de handgreep. Reinig eventueel zaagsel en kettingolie voorzichtig om de tekens goed af te lezen. Veel STIHL-machines gebruiken een 9-cijferig serienummer. Een 11-cijferig STIHL onderdeelnummer identificeert een onderdeel, component of samenstelling en is niet het unieke serienummer van de complete machine. De exacte locatie verschilt per model en generatie; controleer bij twijfel de handleiding van uw specifieke uitvoering.';
   }
   if (categorySlug === 'bosmaaiers') {
-    return 'Het serienummer kan zich bevinden op het motorhuis, ingeslagen op het carter of op de identificatiesticker van de machine of stuurboom. Verwijder vuil en vet voorzichtig om het nummer goed af te lezen. Veel STIHL-machines hebben een 9-cijferig serienummer; een 11-cijferig nummer betreft een los onderdeelnummer. De exacte positie verschilt per model en bouwjaarrevisie.';
+    return 'Het serienummer kan zich bevinden op het motorhuis, ingeslagen op het carter of op de identificatiesticker van de machine of stuurboom. Verwijder vuil en vet voorzichtig om het nummer goed af te lezen. Veel STIHL-machines hebben een 9-cijferig serienummer. Een 11-cijferig STIHL onderdeelnummer identificeert een onderdeel, component of samenstelling en is niet het unieke serienummer van de complete machine. De exacte positie verschilt per model en bouwjaarrevisie.';
   }
   if (categorySlug === 'bladblazers') {
-    return 'Het serienummer bevindt zich veelal op het motorblok of op de typeplaatsticker op de behuizing of het frame van de blazer. Zorg dat het oppervlak schoon is om het serienummer te onderscheiden van een 11-cijferig onderdeelnummer. De exacte locatie verschilt per model en generatie.';
+    return 'Het serienummer bevindt zich veelal op het motorblok of op de typeplaatsticker op de behuizing of het frame van de blazer. Zorg dat het oppervlak schoon is om het serienummer te onderscheiden van een 11-cijferig onderdeelnummer (dat een los onderdeel of samenstelling aanduidt). De exacte locatie verschilt per model en generatie.';
   }
   if (categorySlug === 'heggenscharen') {
-    return 'Het serienummer kan ingeslagen zijn op het aandrijfhuis of motorcarter, of vermeld staan op het typeplaatje nabij de bedieningsgreep. Controleer het complete nummer op de machine; een 11-cijferig nummer is een onderdeelnummer. De exacte locatie verschilt per uitvoering.';
+    return 'Het serienummer kan ingeslagen zijn op het aandrijfhuis of motorcarter, of vermeld staan op het typeplaatje nabij de bedieningsgreep. Controleer het complete nummer op de machine; een 11-cijferig nummer is een onderdeelnummer en géén uniek machinenummer. De exacte locatie verschilt per uitvoering.';
   }
   if (categorySlug === 'doorslijpers') {
     return 'Het serienummer staat doorgaans ingeslagen in het metalen motorhuis of carter van de doorslijper en op de fabriekstypeplaat. Bij intensief gebruikte machines kan reiniging van steenstof nodig zijn om de tekens zichtbaar te maken. De exacte inspectiepositie verschilt per model.';
@@ -89,7 +101,7 @@ export function getSerialLocationAnswer(categorySlug) {
   if (categorySlug === 'nevelspuiten') {
     return 'Het serienummer bevindt zich doorgaans op het motorblok of het typeplaatje van de nevelspuit. Reinig de behuizing voorzichtig om de tekens af te lezen. De exacte inspectiepositie verschilt per model.';
   }
-  return 'Het serienummer bevindt zich doorgaans ingeslagen op het carter of motorhuis, of op de typeplaatjessticker van de machine. Reinig eventueel vuil voorzichtig om het nummer af te lezen. Veel STIHL-machines gebruiken een 9-cijferig serienummer; let op dat een 11-cijferig nummer een onderdeelnummer betreft en géén uniek machinenummer. De exacte locatie verschilt per model en generatie.';
+  return 'Het serienummer bevindt zich doorgaans ingeslagen op het carter of motorhuis, of op de typeplaatjessticker van de machine. Reinig eventueel vuil voorzichtig om het nummer af te lezen. Veel STIHL-machines gebruiken een 9-cijferig serienummer. Een 11-cijferig STIHL onderdeelnummer identificeert een onderdeel, component of samenstelling en is niet het unieke serienummer van de complete machine. De exacte locatie verschilt per model en generatie.';
 }
 
 export function getFuelTypeCode(model) {
@@ -246,46 +258,73 @@ export function getValuationPublicationState(model) {
   };
 }
 
-export const GUIDE_PUBLICATION_STATUS = {
-  'serienummer-locaties': 'PUBLISHED',
-  'stihl-gietklok-aflezen': 'HOLD',
-  'namaak-stihl-herkennen': 'HOLD',
-  'stihl-kettingzaag-start-niet': 'HOLD',
-  'stihl-carburateur-afstellen': 'HOLD',
-  'stihl-m-tronic-resetten': 'HOLD'
+export const GUIDE_ROUTE_CONFIG = {
+  'serienummer-locaties': { status: 'PUBLISHED' },
+  'stihl-gietklok-aflezen': { status: 'HOLD' },
+  'namaak-stihl-herkennen': { status: 'HOLD' },
+  'stihl-kettingzaag-start-niet': { status: 'HOLD' },
+  'stihl-carburateur-afstellen': { status: 'HOLD' },
+  'stihl-m-tronic-resetten': { status: 'HOLD' }
 };
 
-export const INTENT_PUBLICATION_STATUS = {
-  'stihl-paspoort': 'PUBLISHED',
-  'stihl-serienummer-decoder': 'HOLD',
-  'stihl-serienummer': 'HOLD',
-  'stihl-bouwjaar': 'HOLD',
-  'stihl-diefstalcheck': 'HOLD',
-  'stihl-waarde': 'HOLD',
-  'stihl-modellen': 'HOLD',
-  'waar-staat-serienummer-stihl': 'HOLD',
-  'stihl-serienummer-bouwjaar': 'HOLD',
-  'stihl-productiedatum': 'HOLD',
-  'stihl-model-herkennen': 'HOLD',
-  'stihl-typeplaatje': 'HOLD',
-  'stihl-serienummer-ongeldig': 'HOLD',
-  'stihl-tweedehands-checklist': 'HOLD'
+export const INTENT_ROUTE_CONFIG = {
+  'stihl-paspoort': { status: 'PUBLISHED' },
+  'waar-staat-serienummer-stihl': { status: 'REDIRECT', destination: '/gidsen/serienummer-locaties/' },
+  'stihl-serienummer-decoder': { status: 'REDIRECT', destination: '/#decoder' },
+  'stihl-serienummer': { status: 'HOLD' },
+  'stihl-bouwjaar': { status: 'HOLD' },
+  'stihl-diefstalcheck': { status: 'HOLD' },
+  'stihl-waarde': { status: 'HOLD' },
+  'stihl-modellen': { status: 'HOLD' },
+  'stihl-serienummer-bouwjaar': { status: 'HOLD' },
+  'stihl-productiedatum': { status: 'HOLD' },
+  'stihl-model-herkennen': { status: 'HOLD' },
+  'stihl-typeplaatje': { status: 'HOLD' },
+  'stihl-serienummer-ongeldig': { status: 'HOLD' },
+  'stihl-tweedehands-checklist': { status: 'HOLD' }
 };
+
+export const GUIDE_PUBLICATION_STATUS = Object.fromEntries(
+  Object.entries(GUIDE_ROUTE_CONFIG).map(([slug, conf]) => [slug, conf.status])
+);
+
+export const INTENT_PUBLICATION_STATUS = Object.fromEntries(
+  Object.entries(INTENT_ROUTE_CONFIG).map(([slug, conf]) => [slug, conf.status])
+);
+
+export function getGuideRouteConfig(slug) {
+  return GUIDE_ROUTE_CONFIG[slug] || { status: 'HOLD' };
+}
+
+export function getIntentRouteConfig(slug) {
+  return INTENT_ROUTE_CONFIG[slug] || { status: 'HOLD' };
+}
 
 export function getGuidePublicationStatus(slug) {
-  return GUIDE_PUBLICATION_STATUS[slug] || 'HOLD';
+  return getGuideRouteConfig(slug).status;
 }
 
 export function isGuidePublished(slug) {
-  return getGuidePublicationStatus(slug) === 'PUBLISHED';
+  return getGuideRouteConfig(slug).status === 'PUBLISHED';
 }
 
 export function getIntentPublicationStatus(slug) {
-  return INTENT_PUBLICATION_STATUS[slug] || 'HOLD';
+  return getIntentRouteConfig(slug).status;
 }
 
 export function isIntentPublished(slug) {
-  return getIntentPublicationStatus(slug) === 'PUBLISHED';
+  return getIntentRouteConfig(slug).status === 'PUBLISHED';
+}
+
+export function getCanonicalPartSeriesCodes(database) {
+  const models = database?.models || [];
+  const seriesSet = new Set();
+  for (const m of models) {
+    if (m.series_code && typeof m.series_code === 'string') {
+      seriesSet.add(m.series_code.trim());
+    }
+  }
+  return Array.from(seriesSet).sort();
 }
 
 export function getRelevantPublicLinks(model, database) {

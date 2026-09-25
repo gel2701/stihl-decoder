@@ -10,7 +10,8 @@ import {
   getSafeModelPath,
   INDEXABLE_COMPARISONS,
   isGuidePublished,
-  isIntentPublished
+  isIntentPublished,
+  getPublishedCategories
 } from '../publicationRules.js';
 
 export function collectSitemapDiagnostics(database = {}) {
@@ -37,7 +38,7 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
   const intentPages = database.intent_pages || [];
   const guides = database.guides || [];
 
-  const categories = ['kettingzagen', 'bosmaaiers', 'bladblazers', 'heggenscharen', 'doorslijpers'];
+  const categories = getPublishedCategories();
   const urls = [];
 
   // 1. Homepage
