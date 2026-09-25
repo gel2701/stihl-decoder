@@ -1,7 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { parseOfficialProductHtml, compareCandidateToDatabase, discoverProductUrls } from '../src/officialProductHarvester.js';
+import {
+  parseOfficialProductHtml,
+  compareCandidateToDatabase,
+  discoverProductUrls,
+  productUrlFromVtexRecord
+} from '../src/officialProductHarvester.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,16 +27,53 @@ function argValue(name, fallback = null) {
 
 function hasFlag(name) { return process.argv.includes(name); }
 
+const BASE_HEADERS = {
+  'user-agent': 'STIHLDecoderOfficialProductHarvester/2.0 (+https://www.stihldecoder.nl)'
+};
+
 async function fetchText(url) {
   const response = await fetch(url, {
-    headers: {
-      'user-agent': 'STIHLDecoderOfficialProductHarvester/1.0 (+https://www.stihldecoder.nl)',
-      accept: 'text/html,application/xhtml+xml'
-    },
+    headers: { ...BASE_HEADERS, accept: 'text/html,application/xhtml+xml' },
     redirect: 'follow'
   });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText} for ${url}`);
   return response.text();
+}
+
+async function fetchJson(url) {
+  const response = await fetch(url, {
+    headers: { ...BASE_HEADERS, accept: 'application/json' },
+    redirect: 'follow'
+  });
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText} for ${url}`);
+  return response.json();
+}
+
+async function discoverVtexProductUrls(catalogUrl) {
+  const origin = new URL(catalogUrl).origin;
+  const urls = new Set();
+  const pageSize = 50;
+  let pages = 0;
+
+  for (let from = 0; from < 5000; from += pageSize) {
+    const endpoint = new URL('/api/catalog_system/pub/products/search', origin);
+    endpoint.searchParams.set('_from', String(from));
+    endpoint.searchParams.set('_to', String(from + pageSize - 1));
+    const batch = await fetchJson(endpoint.href);
+    pages += 1;
+    if (!Array.isArray(batch) || batch.length === 0) break;
+
+    const sizeBefore = urls.size;
+    for (const product of batch) {
+      const url = productUrlFromVtexRecord(product, origin);
+      if (url && new URL(url).hostname === new URL(origin).hostname) urls.add(url);
+    }
+
+    console.log(`[DISCOVERY] VTEX page ${pages}: ${batch.length} records, ${urls.size} unique product URLs total`);
+    if (batch.length < pageSize || urls.size === sizeBefore) break;
+  }
+
+  return { urls: [...urls].sort(), pages };
 }
 
 function ensureDir(dir) { fs.mkdirSync(dir, { recursive: true }); }
@@ -52,37 +94,61 @@ if (!explicitUrls.length && !catalogUrl) {
 const dbPath = path.join(ROOT, 'data', 'stihl_database.json');
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 let urls = [...explicitUrls];
+let discovery = { method: explicitUrls.length ? 'EXPLICIT_URLS' : null, static_urls: 0, vtex_api_urls: 0, vtex_pages: 0 };
 
 if (catalogUrl) {
   const catalogHtml = await fetchText(catalogUrl);
-  urls.push(...discoverProductUrls(catalogHtml, catalogUrl));
+  const staticUrls = discoverProductUrls(catalogHtml, catalogUrl);
+  discovery.static_urls = staticUrls.length;
+  urls.push(...staticUrls);
+
+  try {
+    const vtex = await discoverVtexProductUrls(catalogUrl);
+    discovery.vtex_api_urls = vtex.urls.length;
+    discovery.vtex_pages = vtex.pages;
+    if (vtex.urls.length > 0) {
+      urls.push(...vtex.urls);
+      discovery.method = 'VTEX_SEARCH_API_PLUS_STATIC_FALLBACK';
+    } else {
+      discovery.method = 'STATIC_HTML_ONLY';
+    }
+  } catch (error) {
+    discovery.method = 'STATIC_HTML_FALLBACK_AFTER_VTEX_ERROR';
+    discovery.vtex_error = error.message;
+    console.warn(`[DISCOVERY] VTEX API failed, using static catalog links: ${error.message}`);
+  }
 }
-urls = [...new Set(urls)];
+
+urls = [...new Set(urls.map((url) => url.split('?')[0]))].sort();
 if (maxProducts > 0) urls = urls.slice(0, maxProducts);
+console.log(`[DISCOVERY] Selected ${urls.length} unique product URLs (${discovery.method || 'EXPLICIT_URLS'})`);
 
 const runAt = new Date().toISOString();
 const results = [];
 const errors = [];
 
-for (const url of urls) {
+for (let index = 0; index < urls.length; index += 1) {
+  const url = urls[index];
   try {
     const html = await fetchText(url);
     const candidate = parseOfficialProductHtml(html, { url, market, retrievedAt: runAt });
     const comparison = compareCandidateToDatabase(candidate, database);
     results.push({ candidate, comparison });
-    console.log(`[OK] ${candidate.model_name} ${candidate.product_reference || ''} -> ${comparison.model_match ? 'matched' : 'new model'}`);
+    const label = candidate.model_name || candidate.product_name || 'unclassified product';
+    console.log(`[OK ${index + 1}/${urls.length}] ${label} ${candidate.product_reference || ''} -> ${candidate.record_type}${comparison.model_match ? ' / matched' : ''}`);
   } catch (error) {
     errors.push({ url, error: error.message });
-    console.error(`[ERROR] ${url}: ${error.message}`);
+    console.error(`[ERROR ${index + 1}/${urls.length}] ${url}: ${error.message}`);
   }
 }
 
 const report = {
-  schema_version: 1,
+  schema_version: 2,
   run_at: runAt,
   source_class: 'OFFICIAL_MANUFACTURER_PRODUCT_PAGE',
   market,
   automatic_promotion_allowed: false,
+  catalog_discovery: discovery,
   requested_urls: urls.length,
   harvested: results.length,
   failed: errors.length,
