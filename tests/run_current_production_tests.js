@@ -30,7 +30,8 @@ export const currentProductionSuites = [
   'tests/phase49a_user_trust.test.js',
   'tests/phase49a_drive_context.test.js',
   'tests/phase49a_content_quality.test.js',
-  'tests/phase49a_part_series_routes.test.js'
+  'tests/phase49a_part_series_routes.test.js',
+  'tests/homepage_browser_module_graph.test.js'
 ];
 
 console.log('===============================================================');

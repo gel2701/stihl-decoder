@@ -23,6 +23,7 @@ import {
   TECHNICAL_PUBLIC_FIELDS
 } from './publicEvidence.js';
 import { buildSafeTechnicalPreview } from './SafeTechnicalPreviewResolver.js';
+import { resolvePlantRecord } from './plantResolver.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
   const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
@@ -753,20 +754,4 @@ export function analyzePartNumber(partStr, database) {
   };
 }
 
-export function resolvePlantRecord(database, factoryDigit) {
-  if (!database || !factoryDigit) return null;
-
-  if (database.factories && database.factories[factoryDigit]) {
-    return database.factories[factoryDigit];
-  }
-
-  if (Array.isArray(database.plants)) {
-    return database.plants.find((plant) => plant.plant_code === factoryDigit) || null;
-  }
-
-  if (database.plants && database.plants[factoryDigit]) {
-    return database.plants[factoryDigit];
-  }
-
-  return null;
-}
+export { resolvePlantRecord };

@@ -95,7 +95,9 @@ const PUBLIC_EXACT_FILES = new Set([
   '/src/categoryWhitelist.js',
   '/src/driveClassification.js',
   '/src/globalModelSearch.js',
-  '/src/modelRecommendations.js'
+  '/src/modelRecommendations.js',
+  '/src/publicEvidence.js',
+  '/src/plantResolver.js'
 ]);
 
 const rateLimitMap = new Map();

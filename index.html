@@ -1189,6 +1189,11 @@
         if (obsSubmitBtn) obsSubmitBtn.disabled = false;
         if (obsFeedback) obsFeedback.innerText = '';
 
+        const emptyTitle = emptyState ? emptyState.querySelector('h3') : null;
+        const emptyDesc = emptyState ? emptyState.querySelector('p') : null;
+        if (emptyTitle) emptyTitle.innerText = 'Voer een nummer in voor instant analyse';
+        if (emptyDesc) emptyDesc.innerText = 'Voer het serienummer in van uw STIHL machine, een 11-cijferig onderdeelnummer of een modelnaam om bronstatus, familie-identiteit en bekende modeldata te bekijken.';
+
         if (!val) {
           emptyState.classList.remove('hidden');
           return;
@@ -1197,8 +1202,14 @@
         let res = null;
         try {
           const response = await fetch(`${decodeEndpoint}?code=${encodeURIComponent(val)}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}`);
+          }
           res = await response.json();
         } catch (err) {
+          showToast('De analyse kon niet worden uitgevoerd. Probeer het opnieuw.');
+          if (emptyTitle) emptyTitle.innerText = 'De analyse kon niet worden uitgevoerd. Probeer het opnieuw.';
+          if (emptyDesc) emptyDesc.innerText = 'Controleer uw verbinding of probeer het over enkele ogenblikken nogmaals.';
           emptyState.classList.remove('hidden');
           return;
         }

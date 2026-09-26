@@ -6,7 +6,7 @@
 import { normalizeCategorySlug, CATEGORY_TYPES } from '../categoryWhitelist.js';
 import { getClassificationContextLabel } from '../driveClassification.js';
 import { buildModelRecommendations, renderPassportRecommendationSlotsHtml } from '../modelRecommendations.js';
-import { resolvePlantRecord } from '../decoder.js';
+import { resolvePlantRecord } from '../plantResolver.js';
 import { isPublicDisplayEligibleFact, getPublicEvidenceFactsForModel, buildPublicEvidenceFields } from '../publicEvidence.js';
 
 function compactText(value, fallback = 'Niet vastgesteld') {

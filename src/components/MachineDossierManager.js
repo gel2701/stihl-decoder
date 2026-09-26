@@ -6,7 +6,7 @@
  * atomic JSON backup import/export, and privacy-isolated evidence hydration.
  */
 
-import { resolvePlantRecord } from '../decoder.js';
+import { resolvePlantRecord } from '../plantResolver.js';
 
 export const DOSSIER_STORAGE_KEY_V1 = 'stihl_machine_dossiers_v1';
 export const DOSSIER_STORAGE_KEY_V2 = 'stihl_machine_dossiers_v2';
