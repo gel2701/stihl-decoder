@@ -2,16 +2,70 @@ name: CI
 
 on:
   push:
+    branches: [ main, 'feat/**', 'fix/**', 'audit/**' ]
   pull_request:
+    branches: [ main ]
 
 jobs:
-  test:
+  node-contract-tests:
+    name: node-contract-tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm test
+
+      - name: Install dependencies (clean checkout)
+        run: npm ci
+
+      - name: Run production contract test suites
+        run: npm test
+
+  trust-audit:
+    name: trust-audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies (clean checkout)
+        run: npm ci
+
+      - name: Run public trust claims audit
+        run: node scripts/audit_public_trust_claims.mjs
+
+      - name: Check git diff formatting & whitespace
+        run: git diff --check
+
+  browser-e2e:
+    name: browser-e2e
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies (clean checkout)
+        run: npm ci
+
+      - name: Install Playwright Chromium with system dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright Critical Browser E2E Journeys
+        run: npm run test:e2e

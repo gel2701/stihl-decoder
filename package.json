@@ -9,6 +9,8 @@
     "build:css": "tailwindcss -i ./css/input.css -o ./css/tailwind.css --minify",
     "build": "npm run build:css",
     "test": "node tests/run_current_production_tests.js",
+    "test:e2e": "playwright test",
+    "test:live-smoke": "node scripts/live_browser_smoke_test.mjs",
     "test:legacy": "node tests/run_all_tests.js",
     "test:official-harvester": "node tests/official_product_harvester.test.js",
     "harvest:stihl:official": "node scripts/harvest_stihl_official_products.js",
@@ -43,6 +45,7 @@
     "sqlite3": "^6.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/cli": "^4.0.0",
     "fetch-stihl-products": "2.0.5",
     "sharp": "^0.35.4",
