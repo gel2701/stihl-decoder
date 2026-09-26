@@ -137,6 +137,30 @@ Tevens wordt een **individuele publicatiegate** ingevoerd met drie statussen:
 
 ## 3. Conclusie & Publicatiestrategie Fase 49B
 
-Conform de opdrachtvereisten (Sectie 2 & 23) publiceren we in Fase 49B **uitsluitend** de gids `stihl-kettingzaag-start-niet` nadat deze volledig is opgebouwd volgens alle eisen van substantie, veiligheid en bronvermelding.
+Conform de opdrachtvereisten publiceren we in Fase 49B **uitsluitend** de gids `stihl-kettingzaag-start-niet` nadat deze volledig is opgebouwd volgens alle eisen van substantie, veiligheid en bronvermelding.
 
 De overige vier gidsen (`stihl-carburateur-afstellen`, `stihl-m-tronic-resetten`, `stihl-gietklok-aflezen`, `namaak-stihl-herkennen`) krijgen een gestructureerd inhoudsmodel en worden op `READY_FOR_REVIEW` gezet. Zij blijven voor het publiek op HTTP 404 en buiten de sitemap totdat zij in een volgende fase hun individuele reviewgate doorlopen.
+
+---
+
+## 4. Phase 49B-R2: Source Resolver Authority & Claim Coverage Architecture
+
+In Fase 49B-R2 is de bronvalidatie structureel aangescherpt en ontkoppeld van willekeurige registratiestatus:
+1. **Document Registry is géén Authoriteit:** Aanwezigheid in `document_registry.json` verleent uitsluitend de status `DOCUMENT_REGISTERED`. Echte authoriteit wordt bepaald via:
+   - `src/canonicalData.js` (`OFFICIAL_PRIMARY_DOCUMENTS` -> `AUTHENTICATED_OFFICIAL`, `SERIES_REFERENCE_DOCUMENTS` -> `PROBABLE_OFFICIAL`).
+   - `data/phase36b_official_source_inventory.json` (officiële primaire handleidingen van `ssc.stihl.com` -> `AUTHENTICATED_OFFICIAL`).
+   - `data/phase35b_document_authority_report.json` (gerichte handmatige audit: documenten zoals `1068494421` en `1008738745` behouden expliciet de status `INSUFFICIENT_EXTRACTED_TEXT`).
+2. **Afschaffing van Self-Authenticating Bypasses:** De bypass waarbij vrije tekstlabels automatisch werden goedgekeurd is volledig verwijderd.
+   - Technische standaarden moeten exact matchen met een gecureerd register (`TRUSTED_TECHNICAL_STANDARDS`: `ISO 11469`, `DIN 16901`).
+   - Brand Protection claims moeten matchen met een gecureerd STIHL-beleidsrecord (`TRUSTED_BRAND_PROTECTION_REGISTRY`: `STIHL-BRAND-PROTECTION-GUIDELINE-V1`).
+3. **Strikte Model Scope & Geen Substring Matching:**
+   - Geen generieke scopeverbreding (`universeel`, `carburateurmodellen-algemeen`) wanneer een brondocument modelspecifiek is (zoals doc `1008738745` dat uitsluitend 028/038 dekt).
+   - Substring matching (`includes()`) is definitief verwijderd. Modellen worden exact vergeleken met gecontroleerde aliaslijsten (`CONTROLLED_MODEL_ALIASES`). `MS 261 != MS 26`, `MS 260 != 026`.
+4. **Locator Validatie & Paginabegrenzing:**
+   - Paginanummers worden gevalideerd tegen bekende paginatellingen (`page <= knownPageCount`). Paginanummers buiten bereik (bijv. pagina 9999) falen hard.
+   - Statussen: `LOCATOR_VERIFIED`, `LOCATOR_PAGE_ONLY`, `LOCATOR_UNVERIFIED`.
+   - Gepubliceerde operationele procedures vereisen verplicht `LOCATOR_VERIFIED`.
+5. **Veiligheidsneutralisatie Tophandle Zagen:**
+   - In `stihl-kettingzaag-start-niet.js` is de startpositie-instructie geneutraliseerd zodat "voet in de achterste handgreep" niet als enige universele startmethode wordt gepresenteerd, met expliciete uitsluiting en waarschuwing voor tophandlezagen.
+6. **Publicatiebewuste Validatie:**
+   - `validateAllGuides()` handhaaft harde gates voor `PUBLISHED` gidsen (`publishedErrors`) en verzamelt resterende auditkwesties van draftgidsen in `reviewBlockers`, zonder de productievalidatie te blokkeren.

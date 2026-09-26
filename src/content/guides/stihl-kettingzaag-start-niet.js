@@ -85,7 +85,7 @@ export const stihlKettingzaagStartNietGuide = {
     },
     {
       title: 'Stabiele startpositie verplicht',
-      text: 'Plaats de kettingzaag vlak en stabiel op de grond. Zorg dat het zaagblad en de ketting vrij liggen van takken, aarde en stenen. Plaats uw rechtervoet stevig in de achterste handgreep en houd de voorste handbeugel met de linkerhand vast (duim om de beugel). Start NOOIT \'uit de hand\' (vliegende start); dit leidt tot ernstig ongevalsgevaar.',
+      text: 'Plaats de kettingzaag vlak en stabiel op de grond. Zorg dat het zaagblad en de ketting vrij liggen van takken, aarde en stenen. Gebruik uitsluitend een door de handleiding van uw machinetype toegestane stabiele startmethode. Voor standaard achterhandgreepmodellen: plaats de rechtervoet stevig in de achterste handgreep en houd de voorste handbeugel met de linkerhand vast (duim om de beugel). Let op: bij speciale tophandle motorzagen (boomverzorgingszagen met handgreep bovenop) is starten met de voet in de handgreep fysiek niet van toepassing; raadpleeg hiervoor altijd de specifieke handleiding van uw machine. Start een kettingzaag NOOIT \'uit de hand\' (vliegende start); dit leidt tot ernstig ongevalsgevaar.',
       severity: 'danger',
       sourceRefs: ['src-0458-133-3021', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
     },

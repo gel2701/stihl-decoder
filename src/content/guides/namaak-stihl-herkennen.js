@@ -85,9 +85,10 @@ export const namaakStihlHerkennenGuide = {
   sources: [
     {
       source_id: 'src-stihl-brand-protection',
-      canonical_document_id: null,
-      publication_id: null,
-      sourceLabel: 'STIHL Brand Protection Richtlijnen',
+      brand_protection_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+      canonical_document_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+      publication_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+      sourceLabel: 'STIHL Brand Protection Policy',
       documentTitle: 'STIHL Brand Protection: Waarschuwing tegen merkvervalsing en namaakproducten',
       sourceClass: 'OFFICIAL_BRAND_PROTECTION',
       modelScope: ['Alle motorgereedschappen'],

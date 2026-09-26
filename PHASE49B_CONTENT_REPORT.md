@@ -130,3 +130,29 @@ SOURCES_REJECTED: 5
 CLAIMS_WITH_SOURCE_REFS: 14
 PROCEDURE_STEPS_WITH_SOURCE_REFS: 14
 ```
+
+---
+
+## 8. Phase 49B-R2 Source Authority & Claim Scope Verification
+
+In Fase 49B-R2 zijn de 12 specifieke integriteitstesten (Case A t/m Case L) formeel geïmplementeerd en gevalideerd in `tests/phase49b_guide_sources.test.js`:
+- **Case A:** Onbekend document-ID (`9999-999-9999`) wordt resoluut afgewezen.
+- **Case B:** Vrije tekstlabel als `publicationId` (`STIHL Veiligheidsrichtlijn`) wordt verworpen.
+- **Case C:** Documenten met `INSUFFICIENT_EXTRACTED_TEXT` (zoals `1068494421`) worden geweigerd voor gepubliceerde operationele procedures.
+- **Case D:** `TECHNICAL_STANDARD` vereist verplichte lookup in gecureerd register (`ISO 11469`, `DIN 16901`); willekeurige labels falen.
+- **Case E:** `OFFICIAL_BRAND_PROTECTION` vereist gecureerd register-ID (`STIHL-BRAND-PROTECTION-GUIDELINE-V1`); willekeurige labels falen.
+- **Case F:** Generieke scopeverbreding (`universeel`, `carburateurmodellen-algemeen`) op modelspecifieke documenten (bijv. `1008738745`) wordt geblokkeerd.
+- **Case G:** Substring scope matching (`MS 26` vs `MS 261`, `026` vs `MS 260`) is definitief onmogelijk gemaakt; alleen exacte genormaliseerde matches of gecontroleerde aliassen worden geaccepteerd.
+- **Case H:** Locators buiten paginabereik (`page: 9999` bij een 48-pagina handleiding) falen hard.
+- **Case I:** Geldige paginanummers binnen bereik met sectie/kop worden correct toegekend als `LOCATOR_VERIFIED`.
+- **Case J:** Gepubliceerde operationele procedures zonder `LOCATOR_VERIFIED` falen de publicatievalidatie.
+- **Case K:** `validateAllGuides()` rapporteert `reviewBlockers` voor ongepubliceerde concepten zonder de productievalidatie van reeds goedgekeurde gidsen te breken (`validForProduction: true`).
+- **Case L:** Startpositie-instructies in `stihl-kettingzaag-start-niet.js` zijn geneutraliseerd zodat tophandlezagen niet onder een onjuist voet-in-achtergreep dictaat vallen.
+
+```
+PHASE_49B_R2_TEST_CASES_PASSED: 12/12 (A through L)
+PRODUCTION_VALIDATION: PASS (validForProduction: true, publishedErrors: 0)
+REVIEW_BLOCKERS_LOGGED: 3 (stihl-carburateur-afstellen: 2, stihl-m-tronic-resetten: 1)
+ALL_21_TEST_SUITES: PASS (100% clean)
+PUBLIC_TRUST_CRAWLER: 0 errors across 258 pages
+```

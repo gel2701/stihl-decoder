@@ -69,11 +69,12 @@ export const stihlGietklokAflezenGuide = {
 
   sources: [
     {
-      source_id: 'src-iso-matrijs-norm',
-      canonical_document_id: null,
-      publication_id: null,
-      sourceLabel: 'DIN EN ISO Matrijsdatumconventies',
-      documentTitle: 'Matrijsdatumcoderingsnormen (DIN EN ISO normeringen voor persgiet- en spuitgietmatrijzen)',
+      source_id: 'src-iso-11469',
+      standard_id: 'ISO 11469',
+      canonical_document_id: 'ISO 11469',
+      publication_id: 'ISO 11469',
+      sourceLabel: 'ISO 11469:2016',
+      documentTitle: 'ISO 11469: Plastics — Generic identification and marking of plastics products',
       sourceClass: 'TECHNICAL_STANDARD',
       modelScope: ['Gegoten onderdelen en behuizingscomponenten'],
       locator: {
