@@ -5,7 +5,7 @@ export const OFFICIAL_PRIMARY_DOCUMENTS = {
     documentNumber: '0458-133-3021',
     title: 'STIHL 026 Instruction Manual',
     models: ['026'],
-    page_count: 48
+    page_count: 56
   },
   '0458-259-8621-D': {
     documentNumber: '0458-259-8621-D',

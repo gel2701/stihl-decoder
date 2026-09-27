@@ -52,6 +52,24 @@ export const stihlKettingzaagStartNietGuide = {
       notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026: herstelprocedure bij verzopen motor.'
     },
     {
+      id: 'src-0458-133-3021-carburetor',
+      source_id: 'src-0458-133-3021-carburetor',
+      canonical_document_id: '0458-133-3021',
+      publicationId: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      documentTitle: 'STIHL 026 Instruction Manual',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL 026',
+      model_scope: ['026'],
+      locator: {
+        page: 42,
+        section: 'Adjusting Carburetor',
+        heading: 'Motor management'
+      },
+      notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026: carburateurafstelling en motormanagement.'
+    },
+    {
       id: 'src-0458-573-8621-d',
       source_id: 'src-0458-573-8621-d',
       canonical_document_id: '0458-573-8621-D',
@@ -115,9 +133,9 @@ export const stihlKettingzaagStartNietGuide = {
     },
     {
       title: 'Gevaar voor motorschade bij ondeskundige carburateurafstelling',
-      text: 'Draai nooit zonder toerenteller en modelspecifieke fabrieksgegevens aan de H- of L-stelschroeven van een klassieke carburateur; een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
+      text: 'Draai nooit zonder toerenteller of willekeurig aan de stelschroeven van de carburateur; kleine verdraaiingen hebben al een merkbare invloed op het motorloopgedrag en een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken. Raadpleeg altijd de specifieke afstelinstructies in de handleiding van uw machine of een erkende vakhandelaar.',
       severity: 'warning',
-      sourceRefs: ['src-0458-133-3021-start']
+      sourceRefs: ['src-0458-133-3021-carburetor']
     }
   ],
 

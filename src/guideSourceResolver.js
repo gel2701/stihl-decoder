@@ -670,6 +670,90 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
 }
 
 /**
+ * Validates safety warnings provenance.
+ * For PUBLISHED guides:
+ * - Every warning must have non-empty sourceRefs array.
+ * - Every ref must exist in guide.sources.
+ * - Every referenced source must be AUTHENTICATED_OFFICIAL or AUTHENTICATED_STANDARD.
+ * - Every referenced source must be LOCATOR_VERIFIED.
+ * - Claim-level check: Carburetor safety warnings must be linked to a locator covering carburetor adjustment / motor management,
+ *   and must be rejected if linked solely to a starting procedure locator (e.g. "Starting the Engine").
+ */
+export function validateWarningProvenance(guide, resolvedSources = new Map()) {
+  const errors = [];
+  if (!guide || typeof guide !== 'object') return errors;
+  if (!guide.warnings || !Array.isArray(guide.warnings)) return errors;
+
+  const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
+  const isPublished = (guide.publicationStatus === 'PUBLISHED');
+
+  // Populate resolvedSources if omitted
+  if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
+    for (const src of guide.sources) {
+      const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: isPublished });
+      if (res.resolved && res.canonicalSource) {
+        resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      }
+    }
+  }
+
+  for (const warning of guide.warnings) {
+    const warningTitle = warning.title || 'Untitled Warning';
+    const warningLabel = `Warning "${warningTitle}"`;
+
+    if (!warning.sourceRefs || !Array.isArray(warning.sourceRefs) || warning.sourceRefs.length === 0) {
+      if (isPublished) {
+        errors.push(`${warningLabel} has no sourceRefs.`);
+      }
+      continue;
+    }
+
+    const warningFullText = `${warning.title || ''} ${warning.text || ''}`.toLowerCase();
+    const isCarburetorWarning = warningFullText.includes('carburateur') || warningFullText.includes('carburetor');
+
+    let hasCarbSpecificSource = false;
+    let onlyHasStartSource = true;
+
+    for (const ref of warning.sourceRefs) {
+      if (!sourceIds.has(ref)) {
+        errors.push(`${warningLabel} references unknown sourceRef "${ref}".`);
+      } else {
+        const resolved = resolvedSources.get(ref);
+        if (resolved) {
+          if (isPublished) {
+            if (resolved.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && resolved.authenticity_status !== 'AUTHENTICATED_STANDARD') {
+              errors.push(`${warningLabel} references source "${ref}" which lacks AUTHENTICATED_OFFICIAL status (${resolved.authenticity_status}).`);
+            }
+            if (resolved.locatorStatus !== 'LOCATOR_VERIFIED') {
+              errors.push(`${warningLabel} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
+            }
+          }
+
+          if (isCarburetorWarning && resolved.locator) {
+            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
+            const isCarbLocator = locText.includes('carburetor') || locText.includes('carburateur') || locText.includes('motor management') || locText.includes('afstellen');
+            const isStartOnly = locText.includes('starting the engine') && !isCarbLocator;
+
+            if (isCarbLocator) {
+              hasCarbSpecificSource = true;
+            }
+            if (!isStartOnly) {
+              onlyHasStartSource = false;
+            }
+          }
+        }
+      }
+    }
+
+    if (isCarburetorWarning && (!hasCarbSpecificSource || onlyHasStartSource)) {
+      errors.push(`${warningLabel} references source(s) pointing to start procedure instead of carburetor adjustment or motor management.`);
+    }
+  }
+
+  return errors;
+}
+
+/**
  * Validates all sources and procedure step sourceRefs in a structured guide.
  */
 export function validateGuideSources(guide) {
@@ -703,6 +787,9 @@ export function validateGuideSources(guide) {
 
   const stepErrors = validateProcedureStepsProvenance(guide, resolvedSources);
   errors.push(...stepErrors);
+
+  const warningErrors = validateWarningProvenance(guide, resolvedSources);
+  errors.push(...warningErrors);
 
   return {
     valid: errors.length === 0,

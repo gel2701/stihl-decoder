@@ -7,6 +7,7 @@ import { getStructuredGuide, getAllStructuredGuides } from '../src/content/guide
 import {
   resolveGuideSource,
   validateProcedureStepsProvenance,
+  validateWarningProvenance,
   validateGuideSources,
   validateAllGuides,
   TRUSTED_TECHNICAL_STANDARDS,
@@ -581,5 +582,233 @@ for (const shape of renderShapes) {
   );
 }
 console.log('  ✅ Case L Passed: All 5 rendered procedure-step array shapes are systematically validated.');
+
+// 10. Phase 49B-P-R3 Page Boundary Regression Tests for STIHL 026 (0458-133-3021, 56 pages)
+console.log('\n▶ Test 10: STIHL 026 (0458-133-3021) Page Boundary Tests...');
+
+// Test 10A: Page 38 (start procedure) -> PASS
+const b38 = resolveGuideSource({
+  id: 'src-026-p38',
+  publicationId: '0458-133-3021',
+  modelScope: ['026'],
+  locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+});
+assert.strictEqual(b38.resolved, true, 'Page 38 must resolve');
+assert.strictEqual(b38.locatorStatus, 'LOCATOR_VERIFIED');
+console.log('  ✅ Page 38 (start procedure): PASS (LOCATOR_VERIFIED).');
+
+// Test 10B: Page 42 (flooded recovery / carburetor adjustment) -> PASS
+const b42 = resolveGuideSource({
+  id: 'src-026-p42',
+  publicationId: '0458-133-3021',
+  modelScope: ['026'],
+  locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Motor management' }
+});
+assert.strictEqual(b42.resolved, true, 'Page 42 must resolve');
+assert.strictEqual(b42.locatorStatus, 'LOCATOR_VERIFIED');
+console.log('  ✅ Page 42 (carburetor adjustment / flooded recovery): PASS (LOCATOR_VERIFIED).');
+
+// Test 10C: Page 50 (technical specifications in public evidence facts) -> PASS
+const b50 = resolveGuideSource({
+  id: 'src-026-p50',
+  publicationId: '0458-133-3021',
+  modelScope: ['026'],
+  locator: { page: 50, section: 'Specifications', heading: 'Engine' }
+});
+assert.strictEqual(b50.resolved, true, 'Page 50 must resolve');
+assert.strictEqual(b50.locatorStatus, 'LOCATOR_VERIFIED');
+console.log('  ✅ Page 50 (technical specifications): PASS (LOCATOR_VERIFIED).');
+
+// Test 10D: Page 56 (last page of 56-page manual) -> PASS
+const b56 = resolveGuideSource({
+  id: 'src-026-p56',
+  publicationId: '0458-133-3021',
+  modelScope: ['026'],
+  locator: { page: 56, section: 'Quality Certification' }
+});
+assert.strictEqual(b56.resolved, true, 'Page 56 boundary page must resolve');
+assert.strictEqual(b56.locatorStatus, 'LOCATOR_VERIFIED');
+console.log('  ✅ Page 56 (upper document boundary): PASS (LOCATOR_VERIFIED).');
+
+// Test 10E: Page 57 (beyond 56-page boundary) -> FAIL
+assert.throws(() => {
+  resolveGuideSource({
+    id: 'src-026-p57',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 57, section: 'Beyond Document' }
+  });
+}, /exceeds known document page count \(56\)/i, 'Page 57 must be rejected as out of bounds');
+console.log('  ✅ Page 57 (out of bounds): FAIL (correctly rejected).');
+
+// 11. Phase 49B-P-R3 Safety Warning Provenance Tests (M through S)
+console.log('\n▶ Test 11: Safety Warning Provenance Validation Tests (M through S)...');
+
+// Case M: Warning in PUBLISHED guide without sourceRefs -> FAIL
+console.log('  Testing Case M: Published guide warning without sourceRefs -> FAIL...');
+const guideWarnNoRefs = {
+  slug: 'test-warn-no-refs',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting', heading: 'Starting the Engine' }
+    }
+  ],
+  warnings: [
+    {
+      title: 'Geen bronvermelding',
+      text: 'Deze waarschuwing ontbeert bronnen.'
+    }
+  ]
+};
+const valM = validateGuideSources(guideWarnNoRefs);
+assert.strictEqual(valM.valid, false, 'Case M: Must fail when warning has no sourceRefs');
+assert.ok(valM.errors.some(e => e.includes('Warning "Geen bronvermelding" has no sourceRefs')), 'Case M: Error must identify missing sourceRefs on warning');
+console.log('  ✅ Case M Passed: Warning without sourceRefs in published guide correctly rejected.');
+
+// Case N: Warning with unknown sourceRef -> FAIL
+console.log('  Testing Case N: Warning referencing unknown sourceRef -> FAIL...');
+const guideWarnUnknownRef = {
+  slug: 'test-warn-unknown-ref',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting', heading: 'Starting the Engine' }
+    }
+  ],
+  warnings: [
+    {
+      title: 'Onbekende bron',
+      text: 'Verwijst naar onbekende bron.',
+      sourceRefs: ['non-existent-warning-source']
+    }
+  ]
+};
+const valN = validateGuideSources(guideWarnUnknownRef);
+assert.strictEqual(valN.valid, false, 'Case N: Must fail when warning references unknown sourceRef');
+assert.ok(valN.errors.some(e => e.includes('references unknown sourceRef "non-existent-warning-source"')), 'Case N: Error must identify unknown sourceRef');
+console.log('  ✅ Case N Passed: Warning with unknown sourceRef correctly rejected.');
+
+// Case O: Carburetor warning bound only to start procedure locator -> FAIL
+console.log('  Testing Case O: Carburetor warning bound only to start procedure locator -> FAIL...');
+const guideCarbWarnStartLoc = {
+  slug: 'test-carb-warn-start-loc',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    }
+  ],
+  warnings: [
+    {
+      title: 'Gevaar voor motorschade bij ondeskundige carburateurafstelling',
+      text: 'Draai nooit willekeurig aan de stelschroeven van de carburateur.',
+      sourceRefs: ['src-valid-start']
+    }
+  ]
+};
+const valO = validateGuideSources(guideCarbWarnStartLoc);
+assert.strictEqual(valO.valid, false, 'Case O: Carburetor warning linked only to start procedure must fail');
+assert.ok(
+  valO.errors.some(e => e.includes('pointing to start procedure instead of carburetor adjustment')),
+  'Case O: Error must flag locator mismatch between start procedure and carburetor warning'
+);
+console.log('  ✅ Case O Passed: Carburetor warning linked only to start procedure locator correctly rejected.');
+
+// Case P: Carburetor warning bound to carburetor locator -> PASS
+console.log('  Testing Case P: Carburetor warning bound to carburetor locator -> PASS...');
+const guideCarbWarnValid = {
+  slug: 'test-carb-warn-valid',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-carb',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Motor management' }
+    }
+  ],
+  warnings: [
+    {
+      title: 'Gevaar voor motorschade bij ondeskundige carburateurafstelling',
+      text: 'Draai nooit willekeurig aan de stelschroeven van de carburateur; kleine verdraaiingen hebben al een merkbare invloed.',
+      sourceRefs: ['src-valid-carb']
+    }
+  ]
+};
+const valP = validateGuideSources(guideCarbWarnValid);
+assert.strictEqual(valP.valid, true, `Case P: Must pass when carburetor warning is grounded in carburetor locator: ${valP.errors.join('; ')}`);
+assert.strictEqual(valP.errors.length, 0);
+console.log('  ✅ Case P Passed: Carburetor warning linked to carburetor locator passes cleanly.');
+
+// Case Q: Chain brake warning bound to valid start procedure -> PASS
+console.log('  Testing Case Q: Chain brake warning bound to valid start procedure -> PASS...');
+const guideChainBrakeValid = {
+  slug: 'test-chainbrake-valid',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    }
+  ],
+  warnings: [
+    {
+      title: 'Kettingrem altijd inschakelen vóór het starten',
+      text: 'De ketting mag nooit meedraaien bij het starten.',
+      sourceRefs: ['src-valid-start']
+    }
+  ]
+};
+const valQ = validateGuideSources(guideChainBrakeValid);
+assert.strictEqual(valQ.valid, true, `Case Q: Chain brake warning linked to start procedure must pass: ${valQ.errors.join('; ')}`);
+assert.strictEqual(valQ.errors.length, 0);
+console.log('  ✅ Case Q Passed: Chain brake warning bound to start procedure passes cleanly.');
+
+// Case R: Warning in PUBLISHED guide referencing source with unverified locator -> FAIL
+console.log('  Testing Case R: Warning in published guide referencing unverified locator -> FAIL...');
+const guideWarnUnverified = {
+  slug: 'test-warn-unverified',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-unverified-loc',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: {} // missing page and heading -> LOCATOR_UNVERIFIED
+    }
+  ],
+  warnings: [
+    {
+      title: 'Algemene waarschuwing',
+      text: 'Tekst van de waarschuwing.',
+      sourceRefs: ['src-unverified-loc']
+    }
+  ]
+};
+const valR = validateGuideSources(guideWarnUnverified);
+assert.strictEqual(valR.valid, false, 'Case R: Must fail when warning references unverified locator');
+assert.ok(valR.errors.some(e => e.includes('is not LOCATOR_VERIFIED')), 'Case R: Error must flag non-LOCATOR_VERIFIED status');
+console.log('  ✅ Case R Passed: Warning referencing unverified locator correctly rejected.');
+
+// Case S: Current published guide warnings validate 100% cleanly
+console.log('  Testing Case S: Current published stihl-kettingzaag-start-niet warnings pass 100% cleanly...');
+const startGuideWarningsErrors = validateWarningProvenance(startGuide);
+assert.strictEqual(startGuideWarningsErrors.length, 0, `Case S: startGuide warnings must have 0 errors: ${startGuideWarningsErrors.join('; ')}`);
+const carbWarn = startGuide.warnings.find(w => w.title.includes('carburateurafstelling'));
+assert.ok(carbWarn, 'Case S: Carburetor warning must exist in startGuide');
+assert.deepStrictEqual(carbWarn.sourceRefs, ['src-0458-133-3021-carburetor'], 'Case S: Carburetor warning must point to src-0458-133-3021-carburetor');
+console.log('  ✅ Case S Passed: All safety warnings in stihl-kettingzaag-start-niet pass 100% cleanly with zero errors.');
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
