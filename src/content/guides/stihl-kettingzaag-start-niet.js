@@ -16,8 +16,8 @@ export const stihlKettingzaagStartNietGuide = {
 
   sources: [
     {
-      id: 'src-0458-133-3021',
-      source_id: 'src-0458-133-3021',
+      id: 'src-0458-133-3021-start',
+      source_id: 'src-0458-133-3021-start',
       canonical_document_id: '0458-133-3021',
       publicationId: '0458-133-3021',
       publication_id: '0458-133-3021',
@@ -31,7 +31,25 @@ export const stihlKettingzaagStartNietGuide = {
         section: 'Starting / Stopping the Engine',
         heading: 'Starting the Engine'
       },
-      notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026 met Master Control bediening.'
+      notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026 met Master Control bediening (startprocedure).'
+    },
+    {
+      id: 'src-0458-133-3021-flooded',
+      source_id: 'src-0458-133-3021-flooded',
+      canonical_document_id: '0458-133-3021',
+      publicationId: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      documentTitle: 'STIHL 026 Instruction Manual',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL 026',
+      model_scope: ['026'],
+      locator: {
+        page: 42,
+        section: 'Starting / Stopping the Engine',
+        heading: 'If the Engine Does Not Start'
+      },
+      notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026: herstelprocedure bij verzopen motor.'
     },
     {
       id: 'src-0458-573-8621-d',
@@ -81,25 +99,25 @@ export const stihlKettingzaagStartNietGuide = {
       title: 'Kettingrem altijd inschakelen vóór het starten',
       text: 'Duw de voorste handbeschermer naar voren tot deze hoorbaar vergrendelt. De zaagketting mag tijdens het starten nooit kunnen meedraaien. Start een motorzaag uitsluitend wanneer de kettingrem geblokkeerd is.',
       severity: 'danger',
-      sourceRefs: ['src-0458-133-3021', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
     },
     {
       title: 'Stabiele startpositie verplicht',
       text: 'Plaats de kettingzaag vlak en stabiel op de grond. Zorg dat het zaagblad en de ketting vrij liggen van takken, aarde en stenen. Gebruik uitsluitend een door de handleiding van uw machinetype toegestane stabiele startmethode. Voor standaard achterhandgreepmodellen: plaats de rechtervoet stevig in de achterste handgreep en houd de voorste handbeugel met de linkerhand vast (duim om de beugel). Let op: bij speciale tophandle motorzagen (boomverzorgingszagen met handgreep bovenop) is starten met de voet in de handgreep fysiek niet van toepassing; raadpleeg hiervoor altijd de specifieke handleiding van uw machine. Start een kettingzaag NOOIT \'uit de hand\' (vliegende start); dit leidt tot ernstig ongevalsgevaar.',
       severity: 'danger',
-      sourceRefs: ['src-0458-133-3021', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
     },
     {
       title: 'Brand- en ontploffingsgevaar',
       text: 'Controleer brandstof en bougies uitsluitend in de open lucht en op minimaal 3 meter afstand van de tankplek. Voer nooit een vonktest uit met een open bougiegat of in de buurt van gemorste benzine.',
       severity: 'warning',
-      sourceRefs: ['src-0458-133-3021', 'src-0458-207-8321-b']
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
     },
     {
       title: 'Gevaar voor motorschade bij ondeskundige carburateurafstelling',
       text: 'Draai nooit zonder toerenteller en modelspecifieke fabrieksgegevens aan de H- of L-stelschroeven van een klassieke carburateur; een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
       severity: 'warning',
-      sourceRefs: ['src-0458-133-3021']
+      sourceRefs: ['src-0458-133-3021-start']
     }
   ],
 
@@ -158,31 +176,31 @@ export const stihlKettingzaagStartNietGuide = {
             step: 1,
             title: 'Kettingrem blokkeren',
             text: 'Duw de voorste handbeschermer naar voren om de kettingrem te vergrendelen.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-start']
           },
           {
             step: 2,
             title: 'Chokestand inschakelen',
             text: 'Druk de gashendelvergrendeling en de gashendel gelijktijdig in en beweeg de Master Control combihendel helemaal naar beneden in de chokestand.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-start']
           },
           {
             step: 3,
             title: 'Trekken tot eerste ontsteking',
             text: 'Plaats de zaag stabiel op de grond met de voet in de achtergreep. Trek het startkoord rustig uit tot weerstand voelbaar is en trek krachtig recht omhoog tot de motor een eerste hoorbare ontsteking geeft.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-start']
           },
           {
             step: 4,
             title: 'Direct doorschakelen naar Startstand',
             text: 'Zet de combihendel direct één klik omhoog naar de startstand (halfgas). Blijf niet op volle choke trekken.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-start']
           },
           {
             step: 5,
             title: 'Starten en naar bedrijfstand overgaan',
             text: 'Trek het startkoord opnieuw krachtig door tot de motor aanslaat. Raak direct kort de gashendel aan: de hendel springt naar de normale bedrijfsstand (I) en het verhoogde toerental zakt naar stationair.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-start']
           }
         ]
       },
@@ -234,31 +252,31 @@ export const stihlKettingzaagStartNietGuide = {
             step: 1,
             title: 'Ontsteking uitschakelen',
             text: 'Zet de Master Control combihendel in de stopstand (0).',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-flooded']
           },
           {
             step: 2,
             title: 'Bougie demonteren',
             text: 'Trek de bougiedop los en draai de bougie linksom uit de cilinderkop met de combinatiesleutel.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-flooded']
           },
           {
             step: 3,
             title: 'Bougie droogmaken',
             text: 'Droog en reinig de natte bougie zorgvuldig.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-flooded']
           },
           {
             step: 4,
             title: 'Cilinder ventileren',
             text: 'Trek met uitgeschakelde ontsteking het startmechanisme meerdere malen rustig door om overtollige brandstofdampen uit de cilinder te verdrijven.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-flooded']
           },
           {
             step: 5,
             title: 'Bougie monteren & Herstarten zonder choke',
             text: 'Plaats de droge bougie handvast terug en zet vast met de sleutel. Druk de bougiedop vast. Zet de hendel in de startstand (halfgas) en herstart ZONDER chokestand.',
-            sourceRefs: ['src-0458-133-3021']
+            sourceRefs: ['src-0458-133-3021-flooded']
           }
         ]
       }

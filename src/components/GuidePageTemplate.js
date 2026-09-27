@@ -9,6 +9,29 @@ import { renderSeoMeta } from './SeoMeta.js';
 import { buildStructuredData } from './StructuredData.js';
 import { getStructuredGuide } from '../content/guides/index.js';
 
+/**
+ * Safely formats a locator object or string for human display.
+ * Avoids rendering "[object Object]".
+ */
+export function formatLocator(locator) {
+  if (!locator) return '';
+  if (typeof locator === 'string') return locator.trim();
+  if (typeof locator === 'object') {
+    const parts = [];
+    if (locator.page !== undefined && locator.page !== null && locator.page !== '') {
+      parts.push(`p. ${locator.page}`);
+    }
+    if (locator.section && typeof locator.section === 'string' && locator.section.trim()) {
+      parts.push(locator.section.trim());
+    }
+    if (locator.heading && typeof locator.heading === 'string' && locator.heading.trim()) {
+      parts.push(locator.heading.trim());
+    }
+    return parts.join(' · ');
+  }
+  return String(locator);
+}
+
 export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
   const canonicalUrl = `${baseUrl}/gidsen/${guide.slug}/`;
   const isSerialLocations = guide.slug === 'serienummer-locaties';
@@ -461,7 +484,7 @@ function renderStructuredGuideBody(guide) {
               <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-1">
                 <strong class="text-white block font-semibold">${s.documentTitle}</strong>
                 <p class="text-gray-400 text-2xs font-mono">${label}${label && scope ? ' | ' : ''}${scope ? `Scope: ${scope}` : ''}</p>
-                ${s.locator ? `<p class="text-gray-400 text-2xs font-mono">Vindplaats: ${s.locator}</p>` : ''}
+                ${formatLocator(s.locator) ? `<p class="text-gray-400 text-2xs font-mono">Vindplaats: ${formatLocator(s.locator)}</p>` : ''}
                 <p class="text-gray-300 mt-1">${s.notes}</p>
               </div>
             `;}).join('')}

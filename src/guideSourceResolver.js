@@ -261,7 +261,8 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
   const canonical_document_id = sourceDeclaration.canonical_document_id || sourceDeclaration.canonicalDocumentId;
   const standard_id = sourceDeclaration.standard_id || sourceDeclaration.standardId;
   const brand_protection_id = sourceDeclaration.brand_protection_id || sourceDeclaration.brandProtectionId;
-  const model_scope = sourceDeclaration.model_scope || sourceDeclaration.modelScope || [];
+  const rawScope = sourceDeclaration.model_scope !== undefined ? sourceDeclaration.model_scope : sourceDeclaration.modelScope;
+  const model_scope = Array.isArray(rawScope) ? rawScope : (rawScope !== undefined && rawScope !== null ? [rawScope] : []);
   const locator = sourceDeclaration.locator;
   const source_class = sourceDeclaration.source_class || sourceDeclaration.sourceClass;
   const source_label = sourceDeclaration.source_label || sourceDeclaration.sourceLabel;
@@ -444,12 +445,29 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
       'all'
     ]);
 
-    const declaredModels = Array.isArray(model_scope) ? model_scope : [model_scope];
     const sourceHasGenericScope =
       isStandardOrBrandProtection ||
       allowedModels.has('all') ||
       allowedModels.has('universeel') ||
       allowedModels.has('alle-motorgereedschappen');
+
+    if (!sourceHasGenericScope) {
+      if (rawScope === undefined || rawScope === null) {
+        errors.push('Model-specific source declaration requires an explicit non-empty model_scope.');
+      } else if (Array.isArray(rawScope)) {
+        if (rawScope.length === 0) {
+          errors.push('Model-specific source declaration requires an explicit non-empty model_scope.');
+        } else if (rawScope.some(m => !m || typeof m !== 'string' || !m.trim())) {
+          errors.push('Model-specific source declaration requires an explicit non-empty model_scope with non-empty string values.');
+        }
+      } else if (typeof rawScope !== 'string' || !rawScope.trim()) {
+        errors.push('Model-specific source declaration requires an explicit non-empty model_scope.');
+      }
+    }
+
+    const declaredModels = Array.isArray(rawScope)
+      ? rawScope
+      : (rawScope && typeof rawScope === 'string' && rawScope.trim() ? [rawScope] : []);
 
     for (const declared of declaredModels) {
       const norm = normalizeModelScopeIdentifier(declared);
@@ -575,7 +593,17 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
   const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
   const isPublished = (guide.publicationStatus === 'PUBLISHED');
 
-  function checkSteps(steps, context) {
+  // Populate resolvedSources if omitted
+  if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
+    for (const src of guide.sources) {
+      const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: isPublished });
+      if (res.resolved && res.canonicalSource) {
+        resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      }
+    }
+  }
+
+  function checkSteps(steps, context, opts = {}) {
     if (!steps || !Array.isArray(steps)) return;
     steps.forEach((step, idx) => {
       const stepLabel = `${context} step ${step.step || idx + 1}`;
@@ -585,14 +613,26 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
         for (const ref of step.sourceRefs) {
           if (!sourceIds.has(ref)) {
             errors.push(`${stepLabel} references unknown sourceRef "${ref}".`);
-          } else if (isPublished) {
+          } else {
             const resolved = resolvedSources.get(ref);
             if (resolved) {
-              if (resolved.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && resolved.authenticity_status !== 'AUTHENTICATED_STANDARD') {
-                errors.push(`${stepLabel} references source "${ref}" which lacks AUTHENTICATED_OFFICIAL status (${resolved.authenticity_status}).`);
+              if (isPublished) {
+                if (resolved.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && resolved.authenticity_status !== 'AUTHENTICATED_STANDARD') {
+                  errors.push(`${stepLabel} references source "${ref}" which lacks AUTHENTICATED_OFFICIAL status (${resolved.authenticity_status}).`);
+                }
+                if (resolved.locatorStatus !== 'LOCATOR_VERIFIED') {
+                  errors.push(`${stepLabel} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
+                }
               }
-              if (resolved.locatorStatus !== 'LOCATOR_VERIFIED') {
-                errors.push(`${stepLabel} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
+
+              // Claim-level provenance verification for flooded engine recovery
+              if (opts.claimType === 'FLOODED_RECOVERY' && resolved.locator) {
+                const heading = (resolved.locator.heading || '').toLowerCase();
+                const isFloodedHeading = heading.includes('not start') || heading.includes('flooded') || heading.includes('verzopen') || heading.includes('troubleshooting');
+                const isStartingHeadingOnly = heading.includes('starting the engine') && !isFloodedHeading;
+                if (isStartingHeadingOnly) {
+                  errors.push(`${stepLabel} references source "${ref}" which points to start procedure ("${resolved.locator.heading}", p. ${resolved.locator.page}) instead of flooded engine recovery.`);
+                }
               }
             }
           }
@@ -604,7 +644,7 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
   if (guide.startProcedures) {
     if (guide.startProcedures.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.startProcedures.documentedExamples)) {
-        checkSteps(ex.steps, `startProcedures.documentedExamples.${key}`);
+        checkSteps(ex.steps, `startProcedures.documentedExamples.${key}`, { claimType: 'START_PROCEDURE' });
       }
     }
   }
@@ -612,7 +652,7 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
   if (guide.floodedEngineRecovery) {
     if (guide.floodedEngineRecovery.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.floodedEngineRecovery.documentedExamples)) {
-        checkSteps(ex.steps, `floodedEngineRecovery.documentedExamples.${key}`);
+        checkSteps(ex.steps, `floodedEngineRecovery.documentedExamples.${key}`, { claimType: 'FLOODED_RECOVERY' });
       }
     }
   }

@@ -2,7 +2,7 @@ import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { renderGuidePageHtml } from '../src/components/GuidePageTemplate.js';
+import { renderGuidePageHtml, formatLocator } from '../src/components/GuidePageTemplate.js';
 import { getStructuredGuide, getAllStructuredGuides } from '../src/content/guides/index.js';
 import {
   resolveGuideSource,
@@ -313,5 +313,82 @@ assert.strictEqual(
   'Must clarify StopHeling is theft check only'
 );
 console.log('  ✅ Test 7 Passed: Counterfeit guide strictly adheres to evidence-based categories and StopHeling truthfulness.');
+
+// 8. Phase 49B-P-R1 Hardening & Regression Tests (A through F)
+console.log('\n▶ Test 8: Phase 49B-P-R1 Regression Tests (A through F)...');
+
+// Test A: resolveGuideSource with valid publication (0458-133-3021) WITHOUT model_scope -> FAIL
+console.log('  Testing Test A: Rejection of missing model_scope on model-specific publication...');
+assert.throws(() => {
+  resolveGuideSource({
+    id: 'src-test-a',
+    publicationId: '0458-133-3021',
+    locator: { page: 38, section: 'Starting the Engine' }
+  });
+}, /Model-specific source declaration requires an explicit non-empty model_scope/i, 'Test A: Must reject missing model_scope');
+console.log('  ✅ Test A Passed: Missing model_scope correctly rejected.');
+
+// Test B: resolveGuideSource with valid publication and empty array model_scope: [] -> FAIL
+console.log('  Testing Test B: Rejection of empty model_scope array...');
+assert.throws(() => {
+  resolveGuideSource({
+    id: 'src-test-b',
+    publicationId: '0458-133-3021',
+    modelScope: [],
+    locator: { page: 38, section: 'Starting the Engine' }
+  });
+}, /Model-specific source declaration requires an explicit non-empty model_scope/i, 'Test B: Must reject empty model_scope array');
+console.log('  ✅ Test B Passed: Empty model_scope array correctly rejected.');
+
+// Test C: resolveGuideSource with valid publication and model_scope: ['026'] -> PASS
+console.log('  Testing Test C: Acceptance of valid model_scope [\'026\']...');
+const testCRes = resolveGuideSource({
+  id: 'src-test-c',
+  publicationId: '0458-133-3021',
+  model_scope: ['026'],
+  locator: { page: 38, section: 'Starting the Engine' }
+});
+assert.strictEqual(testCRes.resolved, true, 'Test C: Must resolve cleanly');
+assert.deepStrictEqual(testCRes.canonicalScope, ['026']);
+console.log('  ✅ Test C Passed: Valid model_scope [\'026\'] cleanly resolved.');
+
+// Test D: start-niet guide: floodedEngineRecovery steps refer to source with page 42 and heading 'If the Engine Does Not Start' -> PASS
+console.log('  Testing Test D: Flooded engine recovery provenance links to page 42 / "If the Engine Does Not Start"...');
+const flooded026 = startGuide.floodedEngineRecovery.documentedExamples.stihl026;
+assert.ok(flooded026, '026 flooded recovery example must exist');
+const floodedSourceId = flooded026.steps[0].sourceRefs[0];
+assert.strictEqual(floodedSourceId, 'src-0458-133-3021-flooded', 'Flooded step must reference src-0458-133-3021-flooded');
+
+const floodedSource = startGuide.sources.find(s => (s.id || s.source_id) === floodedSourceId);
+assert.ok(floodedSource, 'flooded source declaration must exist');
+assert.strictEqual(floodedSource.locator.page, 42, 'Flooded source locator page must be 42');
+assert.strictEqual(floodedSource.locator.heading, 'If the Engine Does Not Start', 'Flooded source locator heading must be "If the Engine Does Not Start"');
+
+const floodedStepErrors = validateProcedureStepsProvenance(startGuide);
+assert.strictEqual(floodedStepErrors.length, 0, 'Procedure steps provenance must have 0 errors for startGuide');
+console.log('  ✅ Test D Passed: Flooded engine recovery steps correctly grounded on page 42.');
+
+// Test E: If floodedEngineRecovery hypothetically only linked to page 38 (startprocedure) -> FAILS
+console.log('  Testing Test E: Rejection of floodedEngineRecovery erroneously linked only to page 38 start procedure...');
+const badFloodedGuide = JSON.parse(JSON.stringify(startGuide));
+// Point flooded steps erroneously to start procedure (page 38)
+badFloodedGuide.floodedEngineRecovery.documentedExamples.stihl026.steps.forEach(st => {
+  st.sourceRefs = ['src-0458-133-3021-start'];
+});
+const badFloodedErrors = validateProcedureStepsProvenance(badFloodedGuide);
+assert.ok(badFloodedErrors.length > 0, 'Test E: Must produce error when flooded steps point only to start procedure');
+assert.ok(badFloodedErrors.some(e => e.includes('instead of flooded engine recovery')), 'Test E: Error must explicitly state locator mismatch for flooded recovery');
+console.log('  ✅ Test E Passed: Flooded recovery linked to start procedure locator correctly detected and rejected.');
+
+// Test F: GuidePageTemplate rendering never produces '[object Object]'
+console.log('  Testing Test F: Rendered HTML contains zero "[object Object]" instances...');
+assert.strictEqual(guideHtml.includes('[object Object]'), false, 'Test F: Rendered guide HTML must not contain [object Object]');
+// Also test formatLocator directly with various inputs
+assert.strictEqual(formatLocator({ page: 38, section: 'Starting', heading: 'Cold Start' }), 'p. 38 · Starting · Cold Start');
+assert.strictEqual(formatLocator('p. 12'), 'p. 12');
+assert.strictEqual(formatLocator(null), '');
+assert.strictEqual(formatLocator(undefined), '');
+assert.strictEqual(formatLocator({}), '');
+console.log('  ✅ Test F Passed: formatLocator and rendered HTML completely free of [object Object].');
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

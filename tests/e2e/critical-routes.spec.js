@@ -107,6 +107,14 @@ test.describe('Critical Route User Journeys', () => {
     const article = page.locator('article, main, .prose');
     await expect(article.first()).toBeVisible();
 
+    const bronnen = page.locator('#bronnen');
+    await expect(bronnen).toBeVisible();
+
+    const bodyText = await page.innerText('body');
+    expect(bodyText).toContain('p. 38');
+    expect(bodyText).toContain('p. 42');
+    expect(bodyText).not.toContain('[object Object]');
+
     await page.waitForTimeout(500);
     gates.assertClean('Start Not Starting Guide');
   });
