@@ -4,22 +4,26 @@ export const OFFICIAL_PRIMARY_DOCUMENTS = {
   '0458-133-3021': {
     documentNumber: '0458-133-3021',
     title: 'STIHL 026 Instruction Manual',
-    models: ['026']
+    models: ['026'],
+    page_count: 48
   },
   '0458-259-8621-D': {
     documentNumber: '0458-259-8621-D',
     title: 'STIHL FS 100 / FS 100 RX Instruction Manual',
-    models: ['FS 100', 'FS 100 RX', 'FS 100 R']
+    models: ['FS 100', 'FS 100 RX', 'FS 100 R'],
+    page_count: 44
   },
   '0458-452-8621-J': {
     documentNumber: '0458-452-8621-J',
     title: 'STIHL BR 500 / BR 600 Instruction Manual',
-    models: ['BR 500', 'BR 600']
+    models: ['BR 500', 'BR 600'],
+    page_count: 48
   },
   '0458-573-8621-D': {
     documentNumber: '0458-573-8621-D',
     title: 'STIHL MS 261 Instruction Manual',
-    models: ['MS 261', 'MS 261 C-M']
+    models: ['MS 261', 'MS 261 C-M'],
+    page_count: 60
   }
 };
 

@@ -260,11 +260,11 @@ export function getValuationPublicationState(model) {
 
 export const GUIDE_ROUTE_CONFIG = {
   'serienummer-locaties': { status: 'PUBLISHED' },
-  'stihl-gietklok-aflezen': { status: 'HOLD' },
-  'namaak-stihl-herkennen': { status: 'HOLD' },
-  'stihl-kettingzaag-start-niet': { status: 'HOLD' },
-  'stihl-carburateur-afstellen': { status: 'HOLD' },
-  'stihl-m-tronic-resetten': { status: 'HOLD' }
+  'stihl-kettingzaag-start-niet': { status: 'PUBLISHED' },
+  'stihl-carburateur-afstellen': { status: 'READY_FOR_REVIEW' },
+  'stihl-m-tronic-resetten': { status: 'READY_FOR_REVIEW' },
+  'stihl-gietklok-aflezen': { status: 'READY_FOR_REVIEW' },
+  'namaak-stihl-herkennen': { status: 'READY_FOR_REVIEW' }
 };
 
 export const INTENT_ROUTE_CONFIG = {
@@ -358,7 +358,7 @@ export function getRelevantPublicLinks(model, database) {
   }
 
   if (isPetrol && isChainsaw && isGuidePublished('stihl-kettingzaag-start-niet')) {
-    links.push({ href: '/gidsen/stihl-kettingzaag-start-niet/', label: 'Kettingzaag Start Niet Guide' });
+    links.push({ href: '/gidsen/stihl-kettingzaag-start-niet/', label: 'Kettingzaag Start Niet Gids' });
   }
   if (isPetrol && isGuidePublished('stihl-carburateur-afstellen')) {
     links.push({ href: '/gidsen/stihl-carburateur-afstellen/', label: 'Carburateur Afstellen' });

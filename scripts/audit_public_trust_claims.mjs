@@ -48,11 +48,14 @@ const FORBIDDEN_CLAIMS = [
   'officieel serienummer bestaat uit exact 9 cijfers',
   'Geverifieerde STIHL Machinegidsen',
   'geregistreerde fabriek van herkomst',
-  'Het ingeslagen nummer in het metalen carter is altijd leidend'
+  'Het ingeslagen nummer in het metalen carter is altijd leidend',
+  'H 1 slag open',
+  'L 1 slag open',
+  'dit lost uw probleem op'
 ];
 
-const HOLD_GUIDE_SLUGS = Object.entries(GUIDE_ROUTE_CONFIG)
-  .filter(([_, conf]) => conf.status === 'HOLD')
+const UNPUBLISHED_GUIDE_SLUGS = Object.entries(GUIDE_ROUTE_CONFIG)
+  .filter(([_, conf]) => conf.status !== 'PUBLISHED')
   .map(([slug]) => slug);
 
 const HOLD_INTENT_SLUGS = Object.entries(INTENT_ROUTE_CONFIG)
@@ -118,8 +121,8 @@ function auditPageContent(pageName, pagePath, html, context = {}) {
     violations.push({ page: pageName, type: 'BROKEN_FORM', detail: 'Contains decommissioned MVP form markup' });
   }
 
-  // 4. HOLD Link Leaks
-  for (const holdSlug of HOLD_GUIDE_SLUGS) {
+  // 4. HOLD / UNPUBLISHED Link Leaks
+  for (const holdSlug of UNPUBLISHED_GUIDE_SLUGS) {
     const pattern = new RegExp(`href=["']\\/gidsen\\/${holdSlug}\\/?["']`, 'i');
     if (pattern.test(html)) {
       holdLinkLeaksCount++;
@@ -284,6 +287,19 @@ const publishedGuides = (database.guides || []).filter(g => getGuidePublicationS
 for (const guide of publishedGuides) {
   const guideHtml = renderGuidePageHtml(guide, database, baseUrl);
   auditPageContent(`Guide: /gidsen/${guide.slug}/`, `/gidsen/${guide.slug}/`, guideHtml);
+
+  // Validate that published guide has direct answer and substantive structure
+  if (!guideHtml.includes('Kort antwoord') && !guideHtml.includes('Wat is een STIHL Serienummer')) {
+    unsupportedClaimsCount++;
+    violations.push({ page: `Guide: /gidsen/${guide.slug}/`, type: 'GUIDE_DIRECT_ANSWER_MISSING', detail: 'Missing direct answer card' });
+  }
+
+  if (guide.slug === 'stihl-kettingzaag-start-niet') {
+    if (!guideHtml.includes('Bronnen en Beperkingen')) {
+      unsupportedClaimsCount++;
+      violations.push({ page: `Guide: /gidsen/${guide.slug}/`, type: 'GUIDE_SOURCES_MISSING', detail: 'Missing sources section' });
+    }
+  }
 }
 
 // 6. Published Intent Pages

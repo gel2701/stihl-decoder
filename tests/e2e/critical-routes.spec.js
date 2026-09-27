@@ -95,4 +95,20 @@ test.describe('Critical Route User Journeys', () => {
     expect(response.status()).toBe(404);
   });
 
+  test('7. Gepubliceerde startgids (/gidsen/stihl-kettingzaag-start-niet/) laadt met inhoud en zero JS errors', async ({ page }) => {
+    const gates = attachIntegrityGates(page);
+    const response = await page.goto('/gidsen/stihl-kettingzaag-start-niet/');
+    expect(response?.status()).toBe(200);
+
+    const h1 = page.locator('h1');
+    await expect(h1).toBeVisible();
+    await expect(h1).toContainText(/start niet/i);
+
+    const article = page.locator('article, main, .prose');
+    await expect(article.first()).toBeVisible();
+
+    await page.waitForTimeout(500);
+    gates.assertClean('Start Not Starting Guide');
+  });
+
 });

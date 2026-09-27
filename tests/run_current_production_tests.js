@@ -32,7 +32,11 @@ export const currentProductionSuites = [
   'tests/phase49a_content_quality.test.js',
   'tests/phase49a_part_series_routes.test.js',
   'tests/homepage_browser_module_graph.test.js',
-  'tests/critical_api_contracts.test.js'
+  'tests/critical_api_contracts.test.js',
+  'tests/phase49b_guide_content.test.js',
+  'tests/phase49b_guide_safety.test.js',
+  'tests/phase49b_guide_sources.test.js',
+  'tests/phase49b_guide_links.test.js'
 ];
 
 console.log('===============================================================');
