@@ -8,6 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { OFFICIAL_PRIMARY_DOCUMENTS, SERIES_REFERENCE_DOCUMENTS } from './canonicalData.js';
 import { getAllStructuredGuides } from './content/guides/index.js';
+import { getGuidePublicationStatus, isGuidePublished } from './publicationRules.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -585,13 +586,43 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
 }
 
 /**
+ * Resolves the authoritative publication state of a guide.
+ *
+ * GUIDE_ROUTE_CONFIG (accessed via getGuidePublicationStatus) is the sole runtime publication authority.
+ * Embedded guide.publicationStatus is declarative metadata only and must match the route status.
+ *
+ * Returns:
+ * {
+ *   routeStatus,       // Authority status from GUIDE_ROUTE_CONFIG ('PUBLISHED', 'READY_FOR_REVIEW', 'HOLD')
+ *   declaredStatus,    // Embedded guide.publicationStatus
+ *   isPublished,       // Boolean: true strictly iff routeStatus === 'PUBLISHED'
+ *   statusMatches      // Boolean: true iff declaredStatus === routeStatus
+ * }
+ */
+export function resolveGuidePublicationState(guide, options = {}) {
+  const slug = guide?.slug || null;
+  const declaredStatus = guide?.publicationStatus || null;
+  const routeStatus = options.routeStatus || (slug ? getGuidePublicationStatus(slug) : 'HOLD');
+  const isPublished = (routeStatus === 'PUBLISHED');
+  const statusMatches = Boolean(declaredStatus && routeStatus && declaredStatus === routeStatus);
+
+  return {
+    routeStatus,
+    declaredStatus,
+    isPublished,
+    statusMatches
+  };
+}
+
+/**
  * Validates procedure steps provenance (each step must have at least 1 valid sourceRef,
  * and if the guide is published, each source must be LOCATOR_VERIFIED and AUTHENTICATED_OFFICIAL).
  */
-export function validateProcedureStepsProvenance(guide, resolvedSources = new Map()) {
+export function validateProcedureStepsProvenance(guide, resolvedSources = new Map(), options = {}) {
   const errors = [];
   const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
-  const isPublished = (guide.publicationStatus === 'PUBLISHED');
+  const pubState = resolveGuidePublicationState(guide, options);
+  const isPublished = pubState.isPublished;
 
   // Populate resolvedSources if omitted
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
@@ -679,13 +710,14 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
  * - Claim-level check: Carburetor safety warnings must be linked to a locator covering carburetor adjustment / motor management,
  *   and must be rejected if linked solely to a starting procedure locator (e.g. "Starting the Engine").
  */
-export function validateWarningProvenance(guide, resolvedSources = new Map()) {
+export function validateWarningProvenance(guide, resolvedSources = new Map(), options = {}) {
   const errors = [];
   if (!guide || typeof guide !== 'object') return errors;
   if (!guide.warnings || !Array.isArray(guide.warnings)) return errors;
 
   const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
-  const isPublished = (guide.publicationStatus === 'PUBLISHED');
+  const pubState = resolveGuidePublicationState(guide, options);
+  const isPublished = pubState.isPublished;
 
   // Populate resolvedSources if omitted
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
@@ -756,7 +788,7 @@ export function validateWarningProvenance(guide, resolvedSources = new Map()) {
 /**
  * Validates all sources and procedure step sourceRefs in a structured guide.
  */
-export function validateGuideSources(guide) {
+export function validateGuideSources(guide, options = {}) {
   const errors = [];
   const resolvedSources = new Map();
 
@@ -764,7 +796,12 @@ export function validateGuideSources(guide) {
     return { valid: false, errors: ['Guide must be an object'], resolvedSources };
   }
 
-  const isPublished = (guide.publicationStatus === 'PUBLISHED');
+  const pubState = resolveGuidePublicationState(guide, options);
+  if (!pubState.statusMatches) {
+    errors.push(`Guide "${guide.slug || 'unknown'}" publication status mismatch: route=${pubState.routeStatus}, declared=${pubState.declaredStatus}`);
+  }
+  const isPublished = pubState.isPublished;
+
   const sources = guide.sources || [];
   if (!Array.isArray(sources) || sources.length === 0) {
     errors.push(`Guide "${guide.slug}" declares zero sources.`);
@@ -785,16 +822,17 @@ export function validateGuideSources(guide) {
     }
   }
 
-  const stepErrors = validateProcedureStepsProvenance(guide, resolvedSources);
+  const stepErrors = validateProcedureStepsProvenance(guide, resolvedSources, options);
   errors.push(...stepErrors);
 
-  const warningErrors = validateWarningProvenance(guide, resolvedSources);
+  const warningErrors = validateWarningProvenance(guide, resolvedSources, options);
   errors.push(...warningErrors);
 
   return {
     valid: errors.length === 0,
     errors,
-    resolvedSources
+    resolvedSources,
+    publicationState: pubState
   };
 }
 
@@ -816,7 +854,8 @@ export function validateAllGuides() {
   let registeredOnly = 0;
 
   for (const guide of guides) {
-    const isPublished = (guide.publicationStatus === 'PUBLISHED');
+    const pubState = resolveGuidePublicationState(guide);
+    const isPublished = pubState.isPublished;
     const res = validateGuideSources(guide);
     totalSources += (guide.sources || []).length;
 

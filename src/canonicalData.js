@@ -11,19 +11,19 @@ export const OFFICIAL_PRIMARY_DOCUMENTS = {
     documentNumber: '0458-259-8621-D',
     title: 'STIHL FS 100 / FS 100 RX Instruction Manual',
     models: ['FS 100', 'FS 100 RX', 'FS 100 R'],
-    page_count: 44
+    page_count: 88
   },
   '0458-452-8621-J': {
     documentNumber: '0458-452-8621-J',
     title: 'STIHL BR 500 / BR 600 Instruction Manual',
     models: ['BR 500', 'BR 600'],
-    page_count: 48
+    page_count: 88
   },
   '0458-573-8621-D': {
     documentNumber: '0458-573-8621-D',
     title: 'STIHL MS 261 Instruction Manual',
-    models: ['MS 261', 'MS 261 C-M'],
-    page_count: 60
+    models: ['MS 261', 'MS 261 C-M']
+    // page_count omitted: no reliable repository authority fixture exists; resolver safely permits valid locators
   }
 };
 

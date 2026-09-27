@@ -6,6 +6,7 @@ import { renderGuidePageHtml, formatLocator } from '../src/components/GuidePageT
 import { getStructuredGuide, getAllStructuredGuides } from '../src/content/guides/index.js';
 import {
   resolveGuideSource,
+  resolveGuidePublicationState,
   validateProcedureStepsProvenance,
   validateWarningProvenance,
   validateGuideSources,
@@ -13,6 +14,8 @@ import {
   TRUSTED_TECHNICAL_STANDARDS,
   TRUSTED_BRAND_PROTECTION_REGISTRY
 } from '../src/guideSourceResolver.js';
+import { GUIDE_ROUTE_CONFIG, getGuidePublicationStatus, isGuidePublished } from '../src/publicationRules.js';
+import { OFFICIAL_PRIMARY_DOCUMENTS } from '../src/canonicalData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -258,7 +261,7 @@ assert.throws(() => {
       }
     }
   };
-  const val = validateGuideSources(guideWithUnverifiedLocator);
+  const val = validateGuideSources(guideWithUnverifiedLocator, { routeStatus: 'PUBLISHED' });
   if (!val.valid) throw new Error(val.errors.join('; '));
 }, /LOCATOR_VERIFIED/i, 'Case J: Must reject unverified locator in published operational step');
 console.log('  ✅ Case J Passed: Operational procedure requires LOCATOR_VERIFIED in published guides.');
@@ -418,7 +421,7 @@ const guideColdNoRefs = {
     }
   }
 };
-const valG = validateGuideSources(guideColdNoRefs);
+const valG = validateGuideSources(guideColdNoRefs, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valG.valid, false, 'Case G: Must fail when coldStart steps have no sourceRefs');
 assert.ok(valG.errors.some(e => e.includes('startProcedures.coldStart step 1 has no sourceRefs')), 'Case G: Must report missing sourceRefs');
 console.log('  ✅ Case G Passed: Published guide coldStart without sourceRefs correctly rejected.');
@@ -446,7 +449,7 @@ const guideWarmUnknownRef = {
     }
   }
 };
-const valH = validateGuideSources(guideWarmUnknownRef);
+const valH = validateGuideSources(guideWarmUnknownRef, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valH.valid, false, 'Case H: Must fail when warmStart references unknown sourceRef');
 assert.ok(valH.errors.some(e => e.includes('references unknown sourceRef "non-existent-source-ref-id"')), 'Case H: Must report unknown sourceRef');
 console.log('  ✅ Case H Passed: Published guide warmStart with unknown sourceRef correctly rejected.');
@@ -471,7 +474,7 @@ const guideFloodedNoRefs = {
     ]
   }
 };
-const valI = validateGuideSources(guideFloodedNoRefs);
+const valI = validateGuideSources(guideFloodedNoRefs, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valI.valid, false, 'Case I: Must fail when flooded steps have no sourceRefs');
 assert.ok(valI.errors.some(e => e.includes('floodedEngineRecovery step 1 has no sourceRefs')), 'Case I: Must report missing sourceRefs');
 console.log('  ✅ Case I Passed: Published guide flooded recovery without sourceRefs correctly rejected.');
@@ -516,7 +519,7 @@ const guideLegacyValid = {
     ]
   }
 };
-const valJ = validateGuideSources(guideLegacyValid);
+const valJ = validateGuideSources(guideLegacyValid, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valJ.valid, true, `Case J: Legacy procedure shapes with valid sources must pass: ${valJ.errors.join('; ')}`);
 assert.strictEqual(valJ.errors.length, 0);
 console.log('  ✅ Case J Passed: Valid legacy coldStart/warmStart/floodedEngineRecovery steps pass 100% cleanly.');
@@ -664,7 +667,7 @@ const guideWarnNoRefs = {
     }
   ]
 };
-const valM = validateGuideSources(guideWarnNoRefs);
+const valM = validateGuideSources(guideWarnNoRefs, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valM.valid, false, 'Case M: Must fail when warning has no sourceRefs');
 assert.ok(valM.errors.some(e => e.includes('Warning "Geen bronvermelding" has no sourceRefs')), 'Case M: Error must identify missing sourceRefs on warning');
 console.log('  ✅ Case M Passed: Warning without sourceRefs in published guide correctly rejected.');
@@ -690,7 +693,7 @@ const guideWarnUnknownRef = {
     }
   ]
 };
-const valN = validateGuideSources(guideWarnUnknownRef);
+const valN = validateGuideSources(guideWarnUnknownRef, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valN.valid, false, 'Case N: Must fail when warning references unknown sourceRef');
 assert.ok(valN.errors.some(e => e.includes('references unknown sourceRef "non-existent-warning-source"')), 'Case N: Error must identify unknown sourceRef');
 console.log('  ✅ Case N Passed: Warning with unknown sourceRef correctly rejected.');
@@ -716,7 +719,7 @@ const guideCarbWarnStartLoc = {
     }
   ]
 };
-const valO = validateGuideSources(guideCarbWarnStartLoc);
+const valO = validateGuideSources(guideCarbWarnStartLoc, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valO.valid, false, 'Case O: Carburetor warning linked only to start procedure must fail');
 assert.ok(
   valO.errors.some(e => e.includes('pointing to start procedure instead of carburetor adjustment')),
@@ -745,7 +748,7 @@ const guideCarbWarnValid = {
     }
   ]
 };
-const valP = validateGuideSources(guideCarbWarnValid);
+const valP = validateGuideSources(guideCarbWarnValid, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valP.valid, true, `Case P: Must pass when carburetor warning is grounded in carburetor locator: ${valP.errors.join('; ')}`);
 assert.strictEqual(valP.errors.length, 0);
 console.log('  ✅ Case P Passed: Carburetor warning linked to carburetor locator passes cleanly.');
@@ -771,7 +774,7 @@ const guideChainBrakeValid = {
     }
   ]
 };
-const valQ = validateGuideSources(guideChainBrakeValid);
+const valQ = validateGuideSources(guideChainBrakeValid, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valQ.valid, true, `Case Q: Chain brake warning linked to start procedure must pass: ${valQ.errors.join('; ')}`);
 assert.strictEqual(valQ.errors.length, 0);
 console.log('  ✅ Case Q Passed: Chain brake warning bound to start procedure passes cleanly.');
@@ -797,7 +800,7 @@ const guideWarnUnverified = {
     }
   ]
 };
-const valR = validateGuideSources(guideWarnUnverified);
+const valR = validateGuideSources(guideWarnUnverified, { routeStatus: 'PUBLISHED' });
 assert.strictEqual(valR.valid, false, 'Case R: Must fail when warning references unverified locator');
 assert.ok(valR.errors.some(e => e.includes('is not LOCATOR_VERIFIED')), 'Case R: Error must flag non-LOCATOR_VERIFIED status');
 console.log('  ✅ Case R Passed: Warning referencing unverified locator correctly rejected.');
@@ -810,5 +813,156 @@ const carbWarn = startGuide.warnings.find(w => w.title.includes('carburateurafst
 assert.ok(carbWarn, 'Case S: Carburetor warning must exist in startGuide');
 assert.deepStrictEqual(carbWarn.sourceRefs, ['src-0458-133-3021-carburetor'], 'Case S: Carburetor warning must point to src-0458-133-3021-carburetor');
 console.log('  ✅ Case S Passed: All safety warnings in stihl-kettingzaag-start-niet pass 100% cleanly with zero errors.');
+
+// 12. Phase 49B-P-R4 FS 100 (0458-259-8621-D) Page Boundary Tests
+console.log('\n▶ Test 12: STIHL FS 100 (0458-259-8621-D) Page Boundary Tests...');
+
+// FS100-A: locator met page: 44 op 0458-259-8621-D -> PASS
+const fs44 = resolveGuideSource({
+  id: 'src-fs100-p44',
+  publicationId: '0458-259-8621-D',
+  modelScope: ['fs-100'],
+  locator: { page: 44, section: 'Maintenance and Care' }
+});
+assert.strictEqual(fs44.resolved, true, 'FS100-A: Page 44 must resolve');
+assert.strictEqual(fs44.locatorStatus, 'LOCATOR_VERIFIED', 'FS100-A: Page 44 must be LOCATOR_VERIFIED');
+console.log('  ✅ FS100-A: Page 44 (within previous 44-page limit) -> PASS (LOCATOR_VERIFIED)');
+
+// FS100-B: locator met page: 45 op 0458-259-8621-D -> PASS (previously falsely rejected)
+const fs45 = resolveGuideSource({
+  id: 'src-fs100-p45',
+  publicationId: '0458-259-8621-D',
+  modelScope: ['fs-100'],
+  locator: { page: 45, section: 'Specifications' }
+});
+assert.strictEqual(fs45.resolved, true, 'FS100-B: Page 45 must resolve');
+assert.strictEqual(fs45.locatorStatus, 'LOCATOR_VERIFIED', 'FS100-B: Page 45 must be LOCATOR_VERIFIED');
+console.log('  ✅ FS100-B: Page 45 (previously rejected under old 44 limit) -> PASS (LOCATOR_VERIFIED)');
+
+// FS100-C: locator met page: 88 op 0458-259-8621-D -> PASS (final page)
+const fs88 = resolveGuideSource({
+  id: 'src-fs100-p88',
+  publicationId: '0458-259-8621-D',
+  modelScope: ['fs-100'],
+  locator: { page: 88, section: 'Quality Certification' }
+});
+assert.strictEqual(fs88.resolved, true, 'FS100-C: Page 88 must resolve');
+assert.strictEqual(fs88.locatorStatus, 'LOCATOR_VERIFIED', 'FS100-C: Page 88 must be LOCATOR_VERIFIED');
+console.log('  ✅ FS100-C: Page 88 (upper document boundary) -> PASS (LOCATOR_VERIFIED)');
+
+// FS100-D: locator met page: 89 op 0458-259-8621-D -> FAIL (out of bounds)
+assert.throws(() => {
+  resolveGuideSource({
+    id: 'src-fs100-p89',
+    publicationId: '0458-259-8621-D',
+    modelScope: ['fs-100'],
+    locator: { page: 89, section: 'Out of bounds' }
+  });
+}, /exceeds known document page count \(88\)/i, 'FS100-D: Page 89 must be rejected as out of bounds');
+console.log('  ✅ FS100-D: Page 89 (out of bounds beyond 88) -> FAIL (correctly rejected)');
+
+// 13. Central Document Page-Count Parity Test
+console.log('\n▶ Test 13: Central Document Page-Count Parity Test...');
+const archiveInv = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'phase35c42_archive_inventory.json'), 'utf8'));
+const entry026 = (archiveInv.archive_entries || []).find(e => (e.filename || '').includes('026 Instruction Manual'));
+if (entry026) {
+  assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-133-3021'].page_count, entry026.page_count, '0458-133-3021 page_count must match archive inventory (56)');
+} else {
+  assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-133-3021'].page_count, 56, '0458-133-3021 page_count must be 56');
+}
+assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-259-8621-D'].page_count, 88, '0458-259-8621-D page_count must match Phase 35 authority (88 pages)');
+assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-452-8621-J'].page_count, 88, '0458-452-8621-J page_count must match Phase 35 authority (88 pages)');
+assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-573-8621-D'].page_count, undefined, '0458-573-8621-D must omit page_count due to lack of repository authority fixture');
+console.log('  ✅ Test 13 Passed: Canonical page_count properties strictly match authority fixtures, ungrounded estimates safely omitted.');
+
+// 14. Phase 49B-P-R4 Publication Authority & Parity Tests (T through Y)
+console.log('\n▶ Test 14: Phase 49B-P-R4 Publication Authority Regression Tests (T through Y)...');
+
+// Test T: Guide with publicationStatus='PUBLISHED' but slug missing from GUIDE_ROUTE_CONFIG -> validateGuideSources fails on status mismatch
+console.log('  Testing Test T: Publication status mismatch when slug missing from GUIDE_ROUTE_CONFIG...');
+const guideMissingRoute = {
+  slug: 'unregistered-rogue-guide',
+  publicationStatus: 'PUBLISHED',
+  sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 38, heading: 'Starting the Engine' } }]
+};
+const valT = validateGuideSources(guideMissingRoute);
+assert.strictEqual(valT.valid, false, 'Test T: Must fail when slug not in GUIDE_ROUTE_CONFIG');
+assert.ok(valT.errors.some(e => e.includes('publication status mismatch: route=HOLD, declared=PUBLISHED')), 'Test T: Must report route=HOLD vs declared=PUBLISHED');
+console.log('  ✅ Test T Passed: Rogue guide not in GUIDE_ROUTE_CONFIG immediately fails on status mismatch.');
+
+// Test U: Guide with routeStatus='PUBLISHED' (via options) and declaredStatus='READY_FOR_REVIEW' -> hard failure on missing warning refs
+console.log('  Testing Test U: routeStatus=PUBLISHED enforces hard failure on missing warning refs...');
+const guideU = {
+  slug: 'test-u-guide',
+  publicationStatus: 'READY_FOR_REVIEW',
+  sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 38, heading: 'Starting the Engine' } }],
+  warnings: [{ title: 'Missing Refs Warning', text: 'Some text' }]
+};
+const valU = validateGuideSources(guideU, { routeStatus: 'PUBLISHED' });
+assert.strictEqual(valU.valid, false, 'Test U: Must fail when routeStatus is PUBLISHED even if declaredStatus is READY_FOR_REVIEW');
+assert.ok(valU.errors.some(e => e.includes('publication status mismatch')), 'Test U: Reports status mismatch');
+assert.ok(valU.errors.some(e => e.includes('Warning "Missing Refs Warning" has no sourceRefs')), 'Test U: Reports hard warning failure');
+console.log('  ✅ Test U Passed: Hard failure enforced by routeStatus=PUBLISHED despite declaredStatus=READY_FOR_REVIEW.');
+
+// Test V: Guide with routeStatus='PUBLISHED' and declaredStatus='READY_FOR_REVIEW' -> hard failure on unverified locator
+console.log('  Testing Test V: routeStatus=PUBLISHED enforces hard failure on unverified locator...');
+const guideV = {
+  slug: 'test-v-guide',
+  publicationStatus: 'READY_FOR_REVIEW',
+  sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: {} }],
+  startProcedures: {
+    documentedExamples: {
+      ex: { steps: [{ step: 1, title: 'Step', text: 'Text', sourceRefs: ['s1'] }] }
+    }
+  }
+};
+const valV = validateGuideSources(guideV, { routeStatus: 'PUBLISHED' });
+assert.strictEqual(valV.valid, false, 'Test V: Must fail on unverified locator when routeStatus is PUBLISHED');
+assert.ok(valV.errors.some(e => e.includes('is not LOCATOR_VERIFIED')), 'Test V: Must reject unverified locator');
+console.log('  ✅ Test V Passed: Unverified locator rejected as hard error when routeStatus=PUBLISHED.');
+
+// Test W: Guide with slug='stihl-carburateur-afstellen' (routeStatus='READY_FOR_REVIEW') declaring publicationStatus='PUBLISHED' fails on mismatch
+console.log('  Testing Test W: Review-status guide falsely declaring publicationStatus=PUBLISHED fails on status mismatch...');
+const carbGuide = getStructuredGuide('stihl-carburateur-afstellen');
+const guideW = {
+  ...carbGuide,
+  publicationStatus: 'PUBLISHED'
+};
+const valW = validateGuideSources(guideW);
+assert.strictEqual(valW.valid, false, 'Test W: Must fail when declared PUBLISHED but routeStatus is READY_FOR_REVIEW');
+assert.ok(valW.errors.some(e => e.includes('publication status mismatch: route=READY_FOR_REVIEW, declared=PUBLISHED')), 'Test W: Must report route=READY_FOR_REVIEW, declared=PUBLISHED');
+console.log('  ✅ Test W Passed: Guide declaring PUBLISHED against route READY_FOR_REVIEW fails hard on mismatch.');
+
+// Test X: Strict parity between guide.publicationStatus and GUIDE_ROUTE_CONFIG for all registered guides
+console.log('  Testing Test X: Strict parity across all registered guides and GUIDE_ROUTE_CONFIG...');
+const allRegistered = getAllStructuredGuides();
+for (const g of allRegistered) {
+  const routeConf = GUIDE_ROUTE_CONFIG[g.slug];
+  assert.ok(routeConf, `Test X: Guide "${g.slug}" must exist in GUIDE_ROUTE_CONFIG`);
+  assert.strictEqual(
+    g.publicationStatus,
+    routeConf.status,
+    `Test X: Guide "${g.slug}" publicationStatus ("${g.publicationStatus}") must match route status ("${routeConf.status}")`
+  );
+}
+console.log(`  ✅ Test X Passed: All ${allRegistered.length} registered guides have 100% parity with GUIDE_ROUTE_CONFIG.`);
+
+// Test Y: validateGuideSources and publicationRules reach 100% identical publication decisions for all guides
+console.log('  Testing Test Y: Decision parity between validateGuideSources and publicationRules...');
+for (const g of allRegistered) {
+  const pubState = resolveGuidePublicationState(g);
+  const routeIsPublished = isGuidePublished(g.slug);
+  assert.strictEqual(
+    pubState.isPublished,
+    routeIsPublished,
+    `Test Y: Decision parity mismatch for "${g.slug}": pubState.isPublished=${pubState.isPublished}, isGuidePublished=${routeIsPublished}`
+  );
+  assert.strictEqual(
+    pubState.statusMatches,
+    true,
+    `Test Y: Status must match for registered guide "${g.slug}"`
+  );
+}
+console.log('  ✅ Test Y Passed: 100% decision parity between validateGuideSources and publicationRules.');
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
