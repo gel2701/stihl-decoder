@@ -391,4 +391,195 @@ assert.strictEqual(formatLocator(undefined), '');
 assert.strictEqual(formatLocator({}), '');
 console.log('  ✅ Test F Passed: formatLocator and rendered HTML completely free of [object Object].');
 
+// 9. Phase 49B-P-R2 Procedure Shapes Provenance Tests (G through L)
+console.log('\n▶ Test 9: Phase 49B-P-R2 Comprehensive Procedure Shapes Provenance Tests (G through L)...');
+
+// Test G: published guide startProcedures.coldStart.steps without sourceRefs -> FAIL
+console.log('  Testing Case G: Published guide coldStart.steps without sourceRefs -> FAIL...');
+const guideColdNoRefs = {
+  slug: 'test-coldstart-no-refs',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-026-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting the Engine' }
+    }
+  ],
+  startProcedures: {
+    coldStart: {
+      title: 'Koude start',
+      intro: 'Instructie',
+      steps: [
+        { step: 1, title: 'Inschakelen', text: 'Zet de schakelaar om' } // missing sourceRefs
+      ]
+    }
+  }
+};
+const valG = validateGuideSources(guideColdNoRefs);
+assert.strictEqual(valG.valid, false, 'Case G: Must fail when coldStart steps have no sourceRefs');
+assert.ok(valG.errors.some(e => e.includes('startProcedures.coldStart step 1 has no sourceRefs')), 'Case G: Must report missing sourceRefs');
+console.log('  ✅ Case G Passed: Published guide coldStart without sourceRefs correctly rejected.');
+
+// Test H: published guide startProcedures.warmStart.steps with unknown sourceRef -> FAIL
+console.log('  Testing Case H: Published guide warmStart.steps with unknown sourceRef -> FAIL...');
+const guideWarmUnknownRef = {
+  slug: 'test-warmstart-unknown-ref',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-026-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting the Engine' }
+    }
+  ],
+  startProcedures: {
+    warmStart: {
+      title: 'Warme start',
+      intro: 'Instructie',
+      steps: [
+        { step: 1, title: 'Trekken', text: 'Trek aan startkoord', sourceRefs: ['non-existent-source-ref-id'] }
+      ]
+    }
+  }
+};
+const valH = validateGuideSources(guideWarmUnknownRef);
+assert.strictEqual(valH.valid, false, 'Case H: Must fail when warmStart references unknown sourceRef');
+assert.ok(valH.errors.some(e => e.includes('references unknown sourceRef "non-existent-source-ref-id"')), 'Case H: Must report unknown sourceRef');
+console.log('  ✅ Case H Passed: Published guide warmStart with unknown sourceRef correctly rejected.');
+
+// Test I: published guide floodedEngineRecovery.steps without sourceRefs -> FAIL
+console.log('  Testing Case I: Published guide floodedEngineRecovery.steps without sourceRefs -> FAIL...');
+const guideFloodedNoRefs = {
+  slug: 'test-flooded-no-refs',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-026-flooded',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Starting / Stopping the Engine', heading: 'If the Engine Does Not Start' }
+    }
+  ],
+  floodedEngineRecovery: {
+    title: 'Ontzopen',
+    steps: [
+      { step: 1, title: 'Bougie drogen', text: 'Droog de natte bougie' } // missing sourceRefs
+    ]
+  }
+};
+const valI = validateGuideSources(guideFloodedNoRefs);
+assert.strictEqual(valI.valid, false, 'Case I: Must fail when flooded steps have no sourceRefs');
+assert.ok(valI.errors.some(e => e.includes('floodedEngineRecovery step 1 has no sourceRefs')), 'Case I: Must report missing sourceRefs');
+console.log('  ✅ Case I Passed: Published guide flooded recovery without sourceRefs correctly rejected.');
+
+// Test J: legacy coldStart/warmStart/floodedEngineRecovery.steps with valid existing sourceRefs + correct locator -> PASS
+console.log('  Testing Case J: Legacy coldStart/warmStart/floodedEngineRecovery.steps with valid existing sourceRefs + correct locator -> PASS...');
+const guideLegacyValid = {
+  slug: 'test-legacy-valid',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-valid-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    },
+    {
+      id: 'src-valid-flooded',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Starting / Stopping the Engine', heading: 'If the Engine Does Not Start' }
+    }
+  ],
+  startProcedures: {
+    coldStart: {
+      title: 'Koud starten',
+      steps: [
+        { step: 1, title: 'Choke', text: 'Zet op choke', sourceRefs: ['src-valid-start'] }
+      ]
+    },
+    warmStart: {
+      title: 'Warm starten',
+      steps: [
+        { step: 1, title: 'Startstand', text: 'Zet op startstand', sourceRefs: ['src-valid-start'] }
+      ]
+    }
+  },
+  floodedEngineRecovery: {
+    title: 'Ontzopen',
+    steps: [
+      { step: 1, title: 'Bougie drogen', text: 'Droog de bougie', sourceRefs: ['src-valid-flooded'] }
+    ]
+  }
+};
+const valJ = validateGuideSources(guideLegacyValid);
+assert.strictEqual(valJ.valid, true, `Case J: Legacy procedure shapes with valid sources must pass: ${valJ.errors.join('; ')}`);
+assert.strictEqual(valJ.errors.length, 0);
+console.log('  ✅ Case J Passed: Valid legacy coldStart/warmStart/floodedEngineRecovery steps pass 100% cleanly.');
+
+// Test K: Confirm that existing documentedExamples still PASS across all registered guides
+console.log('  Testing Case K: Confirm documentedExamples across all registered guides still pass...');
+const allGuidesVal = validateAllGuides();
+assert.strictEqual(allGuidesVal.validForProduction, true, 'Case K: All current registered guides documentedExamples must continue to pass');
+assert.strictEqual(allGuidesVal.publishedErrors.length, 0, 'Case K: publishedErrors must be 0');
+console.log('  ✅ Case K Passed: Existing documentedExamples across all guides continue to pass cleanly.');
+
+// Test L: Explicitly test that every procedure array that GuidePageTemplate can render is validated by validateProcedureStepsProvenance
+console.log('  Testing Case L: Validate that all 5 procedure array shapes rendered by GuidePageTemplate are covered...');
+const renderShapes = [
+  {
+    name: 'startProcedures.documentedExamples[ex].steps',
+    guide: {
+      sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 38, heading: 'Starting the Engine' } }],
+      startProcedures: { documentedExamples: { ex: { steps: [{ step: 1, title: 'X', text: 'Y' }] } } }
+    },
+    expectedContext: 'startProcedures.documentedExamples.ex step 1'
+  },
+  {
+    name: 'startProcedures.coldStart.steps',
+    guide: {
+      sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 38, heading: 'Starting the Engine' } }],
+      startProcedures: { coldStart: { steps: [{ step: 1, title: 'X', text: 'Y' }] } }
+    },
+    expectedContext: 'startProcedures.coldStart step 1'
+  },
+  {
+    name: 'startProcedures.warmStart.steps',
+    guide: {
+      sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 38, heading: 'Starting the Engine' } }],
+      startProcedures: { warmStart: { steps: [{ step: 1, title: 'X', text: 'Y' }] } }
+    },
+    expectedContext: 'startProcedures.warmStart step 1'
+  },
+  {
+    name: 'floodedEngineRecovery.documentedExamples[ex].steps',
+    guide: {
+      sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 42, heading: 'If the Engine Does Not Start' } }],
+      floodedEngineRecovery: { documentedExamples: { ex: { steps: [{ step: 1, title: 'X', text: 'Y' }] } } }
+    },
+    expectedContext: 'floodedEngineRecovery.documentedExamples.ex step 1'
+  },
+  {
+    name: 'floodedEngineRecovery.steps',
+    guide: {
+      sources: [{ id: 's1', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 42, heading: 'If the Engine Does Not Start' } }],
+      floodedEngineRecovery: { steps: [{ step: 1, title: 'X', text: 'Y' }] }
+    },
+    expectedContext: 'floodedEngineRecovery step 1'
+  }
+];
+
+for (const shape of renderShapes) {
+  const errs = validateProcedureStepsProvenance(shape.guide);
+  assert.ok(errs.length > 0, `Shape "${shape.name}" must be validated by validateProcedureStepsProvenance`);
+  assert.ok(
+    errs.some(e => e.includes(shape.expectedContext)),
+    `Shape "${shape.name}" must report error for ${shape.expectedContext}, got: ${errs.join('; ')}`
+  );
+}
+console.log('  ✅ Case L Passed: All 5 rendered procedure-step array shapes are systematically validated.');
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

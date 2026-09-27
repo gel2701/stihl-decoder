@@ -647,6 +647,12 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
         checkSteps(ex.steps, `startProcedures.documentedExamples.${key}`, { claimType: 'START_PROCEDURE' });
       }
     }
+    if (guide.startProcedures.coldStart && guide.startProcedures.coldStart.steps) {
+      checkSteps(guide.startProcedures.coldStart.steps, 'startProcedures.coldStart', { claimType: 'START_PROCEDURE' });
+    }
+    if (guide.startProcedures.warmStart && guide.startProcedures.warmStart.steps) {
+      checkSteps(guide.startProcedures.warmStart.steps, 'startProcedures.warmStart', { claimType: 'START_PROCEDURE' });
+    }
   }
 
   if (guide.floodedEngineRecovery) {
@@ -654,6 +660,9 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
       for (const [key, ex] of Object.entries(guide.floodedEngineRecovery.documentedExamples)) {
         checkSteps(ex.steps, `floodedEngineRecovery.documentedExamples.${key}`, { claimType: 'FLOODED_RECOVERY' });
       }
+    }
+    if (guide.floodedEngineRecovery.steps) {
+      checkSteps(guide.floodedEngineRecovery.steps, 'floodedEngineRecovery', { claimType: 'FLOODED_RECOVERY' });
     }
   }
 
