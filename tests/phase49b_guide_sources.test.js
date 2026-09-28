@@ -963,6 +963,348 @@ for (const g of allRegistered) {
     `Test Y: Status must match for registered guide "${g.slug}"`
   );
 }
+
 console.log('  ✅ Test Y Passed: 100% decision parity between validateGuideSources and publicationRules.');
+
+// ============================================================
+// TEST 15: Phase 49B-P-R5 Fractional Locator Page Tests (Z1–Z8)
+// ============================================================
+console.log('\n▶ Test 15: Phase 49B-P-R5 Fractional Locator Page Validation (Z1–Z8)...');
+
+{
+  const baseSource = {
+    id: 'src-z-test', source_id: 'src-z-test',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026'
+  };
+
+  // Z1: integer 38 → PASS
+  {
+    const src = { ...baseSource, locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'Z1: Integer page 38 must resolve successfully');
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED', 'Z1: Integer page 38 must be LOCATOR_VERIFIED');
+    console.log('  ✅ Z1: locator.page = 38 (integer) → PASS (LOCATOR_VERIFIED)');
+  }
+
+  // Z2: float 38.5 → FAIL
+  {
+    const src = { ...baseSource, locator: { page: 38.5, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Z2: Float page 38.5 must be rejected');
+    const hasIntegerError = res.errors.some(e => e.includes('positive integer') || e.includes('fractions'));
+    assert.ok(hasIntegerError, `Z2: Error must mention integer requirement. Errors: ${JSON.stringify(res.errors)}`);
+    console.log('  ✅ Z2: locator.page = 38.5 (float) → FAIL (integer required)');
+  }
+
+  // Z3: string "38" → FAIL
+  {
+    const src = { ...baseSource, locator: { page: '38', section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Z3: String page must be rejected');
+    console.log('  ✅ Z3: locator.page = "38" (string) → FAIL');
+  }
+
+  // Z4: 0 → FAIL
+  {
+    const src = { ...baseSource, locator: { page: 0, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Z4: Zero page must be rejected');
+    console.log('  ✅ Z4: locator.page = 0 → FAIL');
+  }
+
+  // Z5: -1 → FAIL
+  {
+    const src = { ...baseSource, locator: { page: -1, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Z5: Negative page must be rejected');
+    console.log('  ✅ Z5: locator.page = -1 (negative) → FAIL');
+  }
+
+  // Z6: NaN → FAIL
+  {
+    const src = { ...baseSource, locator: { page: NaN, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Z6: NaN page must be rejected');
+    console.log('  ✅ Z6: locator.page = NaN → FAIL');
+  }
+
+  // Z7: Infinity → FAIL
+  {
+    const src = { ...baseSource, locator: { page: Infinity, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Z7: Infinity page must be rejected');
+    console.log('  ✅ Z7: locator.page = Infinity → FAIL');
+  }
+
+  // Z8: valid integer + section → LOCATOR_VERIFIED
+  {
+    const src = { ...baseSource, locator: { page: 1, section: 'Safety Instructions', heading: 'Personal Protective Equipment' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'Z8: Valid integer page with heading must resolve');
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED', 'Z8: Must be LOCATOR_VERIFIED');
+    console.log('  ✅ Z8: valid integer page + section → LOCATOR_VERIFIED');
+  }
+}
+console.log('  ✅ Test 15 Passed: All fractional locator page cases correctly validated.');
+
+// ============================================================
+// TEST 16: Phase 49B-P-R5 Operational Claim Provenance Tests (AA–AM)
+// ============================================================
+import { collectRenderedOperationalClaims, validateOperationalClaimsProvenance } from '../src/guideSourceResolver.js';
+import { stihlKettingzaagStartNietGuide } from '../src/content/guides/stihl-kettingzaag-start-niet.js';
+
+console.log('\n▶ Test 16: Phase 49B-P-R5 Operational Claim Provenance Tests (AA–AM)...');
+
+const mkPublishedGuide = (extra = {}) => ({
+  slug: 'test-slug',
+  publicationStatus: 'PUBLISHED',
+  sources: [
+    {
+      id: 'src-0458-133-3021-start',
+      source_id: 'src-0458-133-3021-start',
+      canonical_document_id: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      model_scope: ['026'],
+      modelScope: 'STIHL 026',
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    }
+  ],
+  ...extra
+});
+
+const buildResolvedSources = (guide) => {
+  const map = new Map();
+  for (const src of (guide.sources || [])) {
+    const res = resolveGuideSource(src, { throwOnError: false });
+    if (res.resolved && res.canonicalSource) map.set(res.canonicalSource.source_id, res.canonicalSource);
+  }
+  return map;
+};
+
+// AA: published troubleshootingLevels item (string, no sourceRefs) → FAIL
+{
+  console.log('  Testing Case AA: Published troubleshootingLevels item without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({
+    troubleshootingLevels: [{ level: 'L1', badge: 'B1', description: 'D1', items: ['Doe iets zonder bewijs.'] }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, `AA: Expected error for level item without sourceRefs. Got: ${JSON.stringify(errs)}`);
+  assert.ok(errs.some(e => e.includes('troubleshootingLevels') && e.includes('sourceRefs')), `AA: Error must mention troubleshootingLevels and sourceRefs. Got: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AA Passed: Published troubleshootingLevels item without sourceRefs → FAIL');
+}
+
+// AB: published troubleshootingLevels item with unknown ref → FAIL
+{
+  console.log('  Testing Case AB: Published troubleshootingLevels item with unknown sourceRef → FAIL...');
+  const guide = mkPublishedGuide({
+    troubleshootingLevels: [{ level: 'L1', badge: 'B1', description: 'D1', items: [{ text: 'Doe iets.', sourceRefs: ['nonexistent-ref-xyz'] }] }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, `AB: Expected error for unknown sourceRef`);
+  assert.ok(errs.some(e => e.includes('unknown sourceRef')), `AB: Error must mention unknown sourceRef. Got: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AB Passed: Unknown sourceRef in troubleshootingLevels → FAIL');
+}
+
+// AC: published troubleshootingLevels item with valid ref → PASS
+{
+  console.log('  Testing Case AC: Published troubleshootingLevels item with valid ref → PASS...');
+  const guide = mkPublishedGuide({
+    troubleshootingLevels: [{ level: 'L1', badge: 'B1', description: 'D1', items: [{ text: 'Controleer kettingrem.', sourceRefs: ['src-0458-133-3021-start'] }] }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.strictEqual(errs.length, 0, `AC: Expected PASS. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AC Passed: Valid troubleshootingLevels item with sourceRefs → PASS');
+}
+
+// AD: technicalInspections claim without sourceRefs → FAIL
+{
+  console.log('  Testing Case AD: Published technicalInspections claim without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({
+    technicalInspections: { fuel: { title: 'Brandstof', text: 'Gebruik correct brandstof.' } }
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, `AD: Expected error for technicalInspections without refs. Got: ${JSON.stringify(errs)}`);
+  assert.ok(errs.some(e => e.includes('technicalInspections')), `AD: Error must mention technicalInspections. Got: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AD Passed: Published technicalInspections without sourceRefs → FAIL');
+}
+
+// AE: technicalInspections with valid refs → PASS
+{
+  console.log('  Testing Case AE: Published technicalInspections with valid refs → PASS...');
+  const guide = mkPublishedGuide({
+    technicalInspections: {
+      fuel: {
+        title: 'Brandstof',
+        text: 'Gebruik correct brandstof.',
+        sourceRefs: ['src-0458-133-3021-start'],
+        agingNotice: 'Brandstof veroudert.',
+        agingSourceRefs: ['src-0458-133-3021-start']
+      }
+    }
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.strictEqual(errs.length, 0, `AE: Expected PASS. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AE Passed: Published technicalInspections with valid refs → PASS');
+}
+
+// AF: troubleshootingMatrix safeFirstCheck without refs → FAIL
+{
+  console.log('  Testing Case AF: troubleshootingMatrix safeFirstCheck without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({
+    troubleshootingMatrix: [{ symptom: 'Start niet', possibleCause: 'Choke.', safeFirstCheck: 'Controleer.', nextStep: 'Handleiding.' }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, 'AF: Expected error for matrix without sourceRefs');
+  assert.ok(errs.some(e => e.includes('troubleshootingMatrix') && e.includes('safeFirstCheck')), `AF: Must mention safeFirstCheck. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AF Passed: troubleshootingMatrix safeFirstCheck without sourceRefs → FAIL');
+}
+
+// AG: nextStep without refs → FAIL
+{
+  console.log('  Testing Case AG: troubleshootingMatrix nextStep without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({
+    troubleshootingMatrix: [{ symptom: 'Start niet', possibleCause: 'Choke.', safeFirstCheck: 'Controleer.', nextStep: 'Bougie controleren.' }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.some(e => e.includes('nextStep')), `AG: Error must mention nextStep. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AG Passed: troubleshootingMatrix nextStep without sourceRefs → FAIL');
+}
+
+// AH: matrix claim with unknown sourceRef → FAIL
+{
+  console.log('  Testing Case AH: troubleshootingMatrix with unknown sourceRef → FAIL...');
+  const guide = mkPublishedGuide({
+    troubleshootingMatrix: [{ symptom: 'S', possibleCause: 'C', safeFirstCheck: 'X', nextStep: 'Y', sourceRefs: ['non-existent-ref'] }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.some(e => e.includes('unknown sourceRef')), `AH: Must detect unknown sourceRef. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AH Passed: Unknown sourceRef in matrix → FAIL');
+}
+
+// AI: valid matrix claims → PASS
+{
+  console.log('  Testing Case AI: troubleshootingMatrix with valid sourceRefs → PASS...');
+  const guide = mkPublishedGuide({
+    troubleshootingMatrix: [{ symptom: 'S', possibleCause: 'C', safeFirstCheck: 'X', nextStep: 'Y', sourceRefs: ['src-0458-133-3021-start'] }]
+  });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.strictEqual(errs.length, 0, `AI: Expected PASS. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AI Passed: Valid matrix claims → PASS');
+}
+
+// AJ: published whenToStopAndCallDealer item without sourceRefs → FAIL
+{
+  console.log('  Testing Case AJ: Published whenToStopAndCallDealer item without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({ whenToStopAndCallDealer: ['Stop wanneer startkoord blokkeert.'] });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, `AJ: Expected error. Got: ${JSON.stringify(errs)}`);
+  assert.ok(errs.some(e => e.includes('whenToStopAndCallDealer')), `AJ: Must mention whenToStopAndCallDealer. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AJ Passed: Published whenToStopAndCallDealer without sourceRefs → FAIL');
+}
+
+// AK: operational FAQ answer without sourceRefs → FAIL
+{
+  console.log('  Testing Case AK: Published FAQ answer without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({ faq: [{ question: 'Waarom start niet?', answer: 'Controleer de bougie.' }] });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, `AK: Expected error. Got: ${JSON.stringify(errs)}`);
+  assert.ok(errs.some(e => e.includes('faq')), `AK: Must mention faq. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AK Passed: Published FAQ answer without sourceRefs → FAIL');
+}
+
+// AL: directAnswer without sourceRefs → FAIL
+{
+  console.log('  Testing Case AL: Published directAnswer without sourceRefs → FAIL...');
+  const guide = mkPublishedGuide({ directAnswer: { heading: 'Kort antwoord', content: 'Controleer de kettingrem.' } });
+  const resolvedSources = buildResolvedSources(guide);
+  const pubState = { isPublished: true };
+  const errs = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  assert.ok(errs.length > 0, `AL: Expected error. Got: ${JSON.stringify(errs)}`);
+  assert.ok(errs.some(e => e.includes('directAnswer')), `AL: Must mention directAnswer. Errors: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AL Passed: Published directAnswer without sourceRefs → FAIL');
+}
+
+// AM: all current rendered operational claims in stihl-kettingzaag-start-niet → PASS
+{
+  console.log('  Testing Case AM: All stihl-kettingzaag-start-niet operational claims → PASS...');
+  const guide = stihlKettingzaagStartNietGuide;
+  const res = validateGuideSources(guide);
+  assert.strictEqual(res.valid, true,
+    'AM: stihl-kettingzaag-start-niet must pass full validation cleanly. Errors:\n' + res.errors.join('\n'));
+  const claims = collectRenderedOperationalClaims(guide);
+  assert.ok(claims.length > 0, 'AM: Should collect at least 1 claim');
+  const noRefs = claims.filter(c => !c.sourceRefs || !Array.isArray(c.sourceRefs) || c.sourceRefs.length === 0);
+  assert.strictEqual(noRefs.length, 0,
+    'AM: All claims must have sourceRefs. Missing on: ' + noRefs.map(c => c.path).join(', '));
+  console.log('  ✅ Case AM Passed: ' + claims.length + ' operational claims collected, all have sourceRefs, validateGuideSources PASS.');
+}
+
+console.log('  ✅ Test 16 Passed: All operational claim provenance cases (AA–AM) validated.');
+
+// ============================================================
+// TEST 17: Renderer / Validator Parity Test
+// ============================================================
+console.log('\n▶ Test 17: Renderer / Validator Parity Test...');
+
+{
+  const EXPECTED_CLAIM_PATH_PREFIXES = [
+    'directAnswer.content',
+    'troubleshootingLevels[',
+    'startProcedures.genericPrinciple.text',
+    'floodedEngineRecovery.genericPrinciple.text',
+    'technicalInspections.fuel.text',
+    'technicalInspections.fuel.agingNotice',
+    'technicalInspections.sparkPlug.text',
+    'technicalInspections.sparkPlug.colors[',
+    'technicalInspections.sparkPlug.gapNotice',
+    'technicalInspections.carburetorVsMtronic.text',
+    'technicalInspections.carburetorVsMtronic.mtronicText',
+    'troubleshootingMatrix[',
+    'whenToStopAndCallDealer[',
+    'faq['
+  ];
+
+  const guide = stihlKettingzaagStartNietGuide;
+  const claims = collectRenderedOperationalClaims(guide);
+  const seenPrefixes = new Set();
+  for (const claim of claims) {
+    for (const prefix of EXPECTED_CLAIM_PATH_PREFIXES) {
+      if (claim.path.startsWith(prefix)) seenPrefixes.add(prefix);
+    }
+  }
+  const missingPrefixes = EXPECTED_CLAIM_PATH_PREFIXES.filter(p => !seenPrefixes.has(p));
+  assert.strictEqual(missingPrefixes.length, 0,
+    'Test 17: Renderer paths not covered by collector:\n' + missingPrefixes.join('\n') + '\nUpdate collectRenderedOperationalClaims.');
+  console.log('  ✅ Test 17 Passed: All ' + EXPECTED_CLAIM_PATH_PREFIXES.length + ' renderer paths covered by collectRenderedOperationalClaims.');
+}
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

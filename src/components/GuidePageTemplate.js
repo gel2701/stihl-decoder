@@ -212,7 +212,10 @@ function renderStructuredGuideBody(guide) {
                 </div>
                 <p class="text-xs text-gray-400">${lvl.description}</p>
                 <ul class="space-y-1.5 list-disc list-inside text-xs text-gray-300">
-                  ${lvl.items.map(it => `<li>${it}</li>`).join('')}
+                  ${lvl.items.map(it => {
+                    const text = (it && typeof it === 'object') ? (it.text || '') : String(it);
+                    return `<li>${text}</li>`;
+                  }).join('')}
                 </ul>
               </div>
             `).join('')}
@@ -463,7 +466,10 @@ function renderStructuredGuideBody(guide) {
             Stop onmiddellijk met startpogingen en raadpleeg een erkende STIHL servicedealer bij een van de volgende situaties:
           </p>
           <ul class="space-y-2 list-disc list-inside text-xs sm:text-sm text-gray-300">
-            ${guide.whenToStopAndCallDealer.map(w => `<li>${w}</li>`).join('')}
+            ${guide.whenToStopAndCallDealer.map(w => {
+              const text = (w && typeof w === 'object') ? (w.text || '') : String(w);
+              return `<li>${text}</li>`;
+            }).join('')}
           </ul>
         </section>
       ` : ''}

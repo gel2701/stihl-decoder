@@ -509,17 +509,18 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
   }
 
   // 5. Locator Validation & Page Bounds Check
+  // Page must be a true positive integer — no floats (38.5), no strings ("38"), no NaN, no Infinity.
   let locatorStatus = 'LOCATOR_UNVERIFIED';
   if (locator && typeof locator === 'object') {
     if (locator.page !== undefined && locator.page !== null) {
-      if (typeof locator.page !== 'number' || locator.page <= 0) {
-        errors.push(`Invalid locator page ${locator.page}. Page must be a positive integer.`);
+      if (!Number.isInteger(locator.page) || locator.page <= 0) {
+        errors.push(`Invalid locator page ${locator.page}. Page must be a positive integer (no fractions, no strings).`);
       } else if (knownPageCount && locator.page > knownPageCount) {
         errors.push(`Locator page ${locator.page} exceeds known document page count (${knownPageCount}) for source "${targetDocId}".`);
       }
     }
 
-    const hasValidPage = typeof locator.page === 'number' && locator.page > 0 && (!knownPageCount || locator.page <= knownPageCount);
+    const hasValidPage = Number.isInteger(locator.page) && locator.page > 0 && (!knownPageCount || locator.page <= knownPageCount);
     const hasHeadingOrSection = Boolean(locator.section || locator.heading);
 
     if (hasValidPage && hasHeadingOrSection) {
@@ -786,9 +787,190 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
 }
 
 /**
+ * Inventories every operational claim that GuidePageTemplate can render.
+ *
+ * Returns an array of:
+ *   { path: string, text: string, sourceRefs: string[]|undefined, claimClass: string }
+ *
+ * claimClass is derived from schema position (not self-declared by the author).
+ *
+ * Covered renderer paths (must mirror GuidePageTemplate.js exactly):
+ *   - directAnswer.content
+ *   - troubleshootingLevels[*].items[*]
+ *   - startProcedures.genericPrinciple.text
+ *   - floodedEngineRecovery.genericPrinciple.text
+ *   - technicalInspections.*  (fuel.text, fuel.agingNotice/agingWarning,
+ *                               sparkPlug.text, sparkPlug.colors[*].meaning, sparkPlug.gapNotice,
+ *                               carburetorVsMtronic.text, carburetorVsMtronic.mtronicText)
+ *   - troubleshootingMatrix[*]  (possibleCause, safeFirstCheck, nextStep)
+ *   - whenToStopAndCallDealer[*]
+ *   - faq[*].answer
+ *
+ * NOTE: procedure steps (startProcedures/floodedEngineRecovery) and warnings are validated
+ * separately by validateProcedureStepsProvenance / validateWarningProvenance.
+ */
+export function collectRenderedOperationalClaims(guide) {
+  const claims = [];
+
+  function push(path, text, sourceRefs, claimClass) {
+    claims.push({ path, text: String(text ?? ''), sourceRefs, claimClass });
+  }
+
+  // 1. directAnswer.content
+  if (guide.directAnswer?.content) {
+    push('directAnswer.content', guide.directAnswer.content,
+      guide.directAnswer.sourceRefs, 'DIRECT_ANSWER');
+  }
+
+  // 2. troubleshootingLevels[*].items[*]
+  if (Array.isArray(guide.troubleshootingLevels)) {
+    guide.troubleshootingLevels.forEach((lvl, li) => {
+      if (Array.isArray(lvl.items)) {
+        lvl.items.forEach((item, ii) => {
+          if (typeof item === 'string') {
+            push(`troubleshootingLevels[${li}].items[${ii}]`, item, undefined, 'TROUBLESHOOTING_LEVEL_ITEM');
+          } else if (item && typeof item === 'object') {
+            push(`troubleshootingLevels[${li}].items[${ii}]`, item.text ?? '', item.sourceRefs, 'TROUBLESHOOTING_LEVEL_ITEM');
+          }
+        });
+      }
+    });
+  }
+
+  // 3. startProcedures.genericPrinciple.text
+  if (guide.startProcedures?.genericPrinciple?.text) {
+    push('startProcedures.genericPrinciple.text', guide.startProcedures.genericPrinciple.text,
+      guide.startProcedures.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+  }
+
+  // 4. floodedEngineRecovery.genericPrinciple.text
+  if (guide.floodedEngineRecovery?.genericPrinciple?.text) {
+    push('floodedEngineRecovery.genericPrinciple.text', guide.floodedEngineRecovery.genericPrinciple.text,
+      guide.floodedEngineRecovery.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+  }
+
+  // 5. technicalInspections — all rendered technical/operational fields
+  if (guide.technicalInspections) {
+    const ti = guide.technicalInspections;
+    if (ti.fuel) {
+      if (ti.fuel.text) push('technicalInspections.fuel.text', ti.fuel.text, ti.fuel.sourceRefs, 'TECHNICAL_INSPECTION');
+      const ageText = ti.fuel.agingNotice || ti.fuel.agingWarning;
+      if (ageText) push('technicalInspections.fuel.agingNotice', ageText, ti.fuel.agingSourceRefs || ti.fuel.sourceRefs, 'TECHNICAL_INSPECTION');
+    }
+    if (ti.sparkPlug) {
+      if (ti.sparkPlug.text) push('technicalInspections.sparkPlug.text', ti.sparkPlug.text, ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
+      if (Array.isArray(ti.sparkPlug.colors)) {
+        ti.sparkPlug.colors.forEach((c, ci) => {
+          if (c.meaning) push(`technicalInspections.sparkPlug.colors[${ci}].meaning`, c.meaning, c.sourceRefs || ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
+        });
+      }
+      if (ti.sparkPlug.gapNotice) push('technicalInspections.sparkPlug.gapNotice', ti.sparkPlug.gapNotice, ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
+    }
+    if (ti.carburetorVsMtronic) {
+      if (ti.carburetorVsMtronic.text) push('technicalInspections.carburetorVsMtronic.text', ti.carburetorVsMtronic.text, ti.carburetorVsMtronic.sourceRefs, 'TECHNICAL_INSPECTION');
+      if (ti.carburetorVsMtronic.mtronicText) push('technicalInspections.carburetorVsMtronic.mtronicText', ti.carburetorVsMtronic.mtronicText, ti.carburetorVsMtronic.sourceRefs, 'TECHNICAL_INSPECTION');
+    }
+  }
+
+  // 6. troubleshootingMatrix[*] — possibleCause, safeFirstCheck, nextStep
+  if (Array.isArray(guide.troubleshootingMatrix)) {
+    guide.troubleshootingMatrix.forEach((row, ri) => {
+      if (row.possibleCause) push(`troubleshootingMatrix[${ri}].possibleCause`, row.possibleCause, row.sourceRefs || row.possibleCauseRefs, 'MATRIX_DIAGNOSIS');
+      if (row.safeFirstCheck) push(`troubleshootingMatrix[${ri}].safeFirstCheck`, row.safeFirstCheck, row.sourceRefs || row.safeFirstCheckRefs, 'MATRIX_ACTION');
+      if (row.nextStep) push(`troubleshootingMatrix[${ri}].nextStep`, row.nextStep, row.sourceRefs || row.nextStepRefs, 'MATRIX_ACTION');
+    });
+  }
+
+  // 7. whenToStopAndCallDealer[*]
+  if (Array.isArray(guide.whenToStopAndCallDealer)) {
+    guide.whenToStopAndCallDealer.forEach((item, wi) => {
+      if (typeof item === 'string') {
+        push(`whenToStopAndCallDealer[${wi}]`, item, undefined, 'DEALER_GUIDANCE');
+      } else if (item && typeof item === 'object') {
+        push(`whenToStopAndCallDealer[${wi}]`, item.text ?? '', item.sourceRefs, 'DEALER_GUIDANCE');
+      }
+    });
+  }
+
+  // 8. faq[*].answer
+  if (Array.isArray(guide.faq)) {
+    guide.faq.forEach((f, fi) => {
+      if (f.answer) push(`faq[${fi}].answer`, f.answer, f.sourceRefs, 'FAQ_ANSWER');
+    });
+  }
+
+  return claims;
+}
+
+/**
+ * Validates provenance of all rendered operational claims collected by collectRenderedOperationalClaims.
+ *
+ * For PUBLISHED guides: every claim that is operational MUST have:
+ *   - non-empty sourceRefs array
+ *   - every ref must exist in guide.sources
+ *   - every referenced source must resolve successfully
+ *
+ * Claim classes that are operational on a PUBLISHED guide:
+ *   TROUBLESHOOTING_LEVEL_ITEM, TECHNICAL_INSPECTION, MATRIX_DIAGNOSIS, MATRIX_ACTION,
+ *   DEALER_GUIDANCE, FAQ_ANSWER, DIRECT_ANSWER, GENERIC_PRINCIPLE
+ *
+ * Author CANNOT self-exempt a claim by setting any flag — the classification comes from schema position.
+ */
+export function validateOperationalClaimsProvenance(guide, resolvedSources = new Map(), pubState = {}) {
+  const errors = [];
+  const isPublished = pubState.isPublished ?? false;
+  const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
+
+  // All claimClasses from collectRenderedOperationalClaims are considered operational.
+  // No bypass path exists.
+  const OPERATIONAL_CLAIM_CLASSES = new Set([
+    'TROUBLESHOOTING_LEVEL_ITEM',
+    'TECHNICAL_INSPECTION',
+    'MATRIX_DIAGNOSIS',
+    'MATRIX_ACTION',
+    'DEALER_GUIDANCE',
+    'FAQ_ANSWER',
+    'DIRECT_ANSWER',
+    'GENERIC_PRINCIPLE'
+  ]);
+
+  if (!isPublished) return errors; // Only enforce on published guides
+
+  const claims = collectRenderedOperationalClaims(guide);
+
+  for (const claim of claims) {
+    if (!OPERATIONAL_CLAIM_CLASSES.has(claim.claimClass)) continue;
+
+    const label = `Operational claim at "${claim.path}" (${claim.claimClass})`;
+
+    if (!claim.sourceRefs || !Array.isArray(claim.sourceRefs) || claim.sourceRefs.length === 0) {
+      errors.push(`${label} has no sourceRefs.`);
+      continue;
+    }
+
+    for (const ref of claim.sourceRefs) {
+      if (!sourceIds.has(ref)) {
+        errors.push(`${label} references unknown sourceRef "${ref}".`);
+      } else {
+        const resolved = resolvedSources.get(ref);
+        if (!resolved) {
+          errors.push(`${label} references source "${ref}" which could not be resolved.`);
+        }
+        // Source authenticity and locator verification for operational claims:
+        // We trust the source-level validation in validateGuideSources for authenticity.
+        // No double-reporting here — just existence check.
+      }
+    }
+  }
+
+  return errors;
+}
+
+/**
  * Validates all sources and procedure step sourceRefs in a structured guide.
  */
 export function validateGuideSources(guide, options = {}) {
+
   const errors = [];
   const resolvedSources = new Map();
 
@@ -827,6 +1009,9 @@ export function validateGuideSources(guide, options = {}) {
 
   const warningErrors = validateWarningProvenance(guide, resolvedSources, options);
   errors.push(...warningErrors);
+
+  const operationalClaimErrors = validateOperationalClaimsProvenance(guide, resolvedSources, pubState);
+  errors.push(...operationalClaimErrors);
 
   return {
     valid: errors.length === 0,
