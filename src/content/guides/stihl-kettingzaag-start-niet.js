@@ -128,7 +128,7 @@ export const stihlKettingzaagStartNietGuide = {
   directAnswer: {
     heading: 'Kort antwoord: wat kunt u veilig direct controleren?',
     content: 'Controleer eerst de juiste startprocedure (koud starten met choke vs. warm starten zonder choke conform de handleiding van uw specifieke model), de stand van de stop-/combischakelaar, verse brandstof, de bougie en het luchtfilter. Schakel altijd de kettingrem in en start op een stabiele ondergrond. Blijft de zaag weigeren of vermoedt u een verzopen motor (sterke brandstofgeur, natte bougie), volg dan de ontzopingsprocedure uit de handleiding van uw machine. Draai niet blindelings aan de carburateurschroeven; vereiste instellingen verschillen per model en moderne M-Tronic kettingzagen hebben geen handmatige stelschroeven.',
-    sourceRefs: ['src-0458-133-3021-start', 'src-0458-133-3021-flooded', 'src-0458-133-3021-carburetor', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
+    sourceRefs: ['src-0458-133-3021-start', 'src-0458-133-3021-flooded', 'src-0458-133-3021-carburetor', 'src-0458-133-3021-fuel', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
   },
 
   warnings: [
@@ -178,7 +178,7 @@ export const stihlKettingzaagStartNietGuide = {
         },
         {
           text: 'Controleer de brandstof: gebruik verse brandstof volgens de handleiding; oude brandstof kan verouderen en ontmengen.',
-          sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
+          sourceRefs: ['src-0458-133-3021-fuel']
         },
         {
           text: 'Controleer het brandstofniveau en de ontluchting van de brandstoftank.',
@@ -420,7 +420,7 @@ export const stihlKettingzaagStartNietGuide = {
       possibleCause: 'Onjuiste combihendelstand, choke te lang aangehouden, verouderde brandstof of vervuilde bougie.',
       safeFirstCheck: 'Controleer of de stopschakelaar niet op 0 staat. Volg de koudstartprocedure uit de handleiding en stop met de chokestand zodra de motor een eerste keer ontsteekt.',
       nextStep: 'Bougie inspecteren op nattigheid/roet; brandstof controleren; handleidingprocedure raadplegen.',
-      sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-133-3021-fuel', 'src-0458-207-8321-b']
     },
     {
       symptom: 'Zaag start koud wel, maar slaat na enkele seconden af',
@@ -496,7 +496,7 @@ export const stihlKettingzaagStartNietGuide = {
     {
       question: 'Kan oude brandstof startproblemen veroorzaken?',
       answer: 'Ja. Brandstof kan tijdens langere opslag verouderen en ontmengen, wat kan leiden tot gomafzettingen in de carburateursproeiers. Gebruik brandstof volgens de voorschriften in de handleiding van uw model en ververs brandstof die te lang opgeslagen is geweest.',
-      sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
+      sourceRefs: ['src-0458-133-3021-fuel']
     },
     {
       question: 'Mag ik zelf de carburateurschroeven (H en L) bijstellen als de zaag niet start?',

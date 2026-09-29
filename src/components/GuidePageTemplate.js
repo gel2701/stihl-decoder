@@ -108,7 +108,9 @@ export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
 
     ${isSerialLocations
       ? renderSerialLocationGuideBody()
-      : (structuredGuide ? renderStructuredGuideBody(guideToUse) : `
+      : ((structuredGuide || guideToUse.generationModelData || guideToUse.directAnswer || guideToUse.startProcedures || guideToUse.distinctionFramework || guideToUse.resultCategories)
+        ? renderStructuredGuideBody(guideToUse)
+        : `
         <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
           <p class="text-sm text-gray-300 leading-relaxed">${guide.description}</p>
         </article>
@@ -506,7 +508,17 @@ function renderStructuredGuideBody(guide) {
                 ${gen.models && gen.models.length > 0 ? `<p class="text-gray-400 text-xs">Modellen: <span class="text-gray-300">${gen.models.join(', ')}</span></p>` : ''}
                 ${gen.characteristics ? `<p class="text-gray-300"><strong class="text-white">Kenmerken:</strong> ${gen.characteristics}</p>` : ''}
                 ${gen.procedureOverview ? `<p class="text-gray-300"><strong class="text-white">Procedure:</strong> ${gen.procedureOverview}</p>` : ''}
-                ${gen.sourceDocument ? `<p class="text-gray-400 text-xs font-mono">Bron: ${gen.sourceDocument}${gen.section ? ` — ${gen.section}` : ''}</p>` : ''}
+                ${gen.sourceRefs && gen.sourceRefs.length > 0 ? `
+                  <p class="text-gray-400 text-xs font-mono">
+                    Bron: ${gen.sourceRefs.map(ref => {
+                      const src = (guide.sources || []).find(s => (s.id || s.source_id) === ref);
+                      if (!src) return ref;
+                      const title = src.documentTitle || src.document_title || src.title || ref;
+                      const loc = formatLocator(src.locator);
+                      return loc ? `${title} (${loc})` : title;
+                    }).join('; ')}
+                  </p>
+                ` : ''}
               </div>
             `).join('')}
           </div>

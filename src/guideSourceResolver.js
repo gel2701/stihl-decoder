@@ -917,6 +917,11 @@ export function collectRenderedOperationalClaims(guide) {
   // 9. generationModelData[*] (M-Tronic reset guide)
   if (Array.isArray(guide.generationModelData)) {
     guide.generationModelData.forEach((gen, gi) => {
+      if (Array.isArray(gen.models)) {
+        gen.models.forEach((m, mi) => {
+          push(`generationModelData[${gi}].models[${mi}]`, m, gen.sourceRefs, 'GENERATION_SPECIFICATION');
+        });
+      }
       if (gen.characteristics) push(`generationModelData[${gi}].characteristics`, gen.characteristics, gen.sourceRefs, 'GENERATION_SPECIFICATION');
       if (gen.procedureOverview) push(`generationModelData[${gi}].procedureOverview`, gen.procedureOverview, gen.sourceRefs, 'GENERATION_PROCEDURE');
     });
@@ -1010,7 +1015,9 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       continue;
     }
 
-    const isFuelClaim = claim.path.includes('.fuel.');
+    const isFuelClaim = claim.path.includes('.fuel.') ||
+      /\b(brandstof.*verouder|oude brandstof|brandstof.*ontmeng|brandstof.*opslag|brandstofkwaliteit|verouderde brandstof)\b/i.test(claim.text) ||
+      /\b(brandstof.*verouder|oude brandstof)\b/i.test(claim.path);
     let hasFuelSpecificSource = false;
     let onlyHasStartSource = true;
 
@@ -1053,9 +1060,41 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     if (isFuelClaim && (!hasFuelSpecificSource || onlyHasStartSource)) {
       errors.push(`${label} references source(s) pointing to start procedure instead of fuel mixing, storage, or fuel specifications.`);
     }
+
+    if (claim.path.includes('generationModelData') && claim.path.includes('.models[')) {
+      let isCovered = false;
+      for (const ref of claim.sourceRefs) {
+        const resolved = resolvedSources.get(ref);
+        if (resolved && isModelCoveredBySource(claim.text, resolved)) {
+          isCovered = true;
+          break;
+        }
+      }
+      if (!isCovered) {
+        errors.push(
+          `${label} assigns model "${claim.text}" but none of the cited sources (${claim.sourceRefs.join(', ')}) cover this model in their canonical scope.`
+        );
+      }
+    }
   }
 
   return errors;
+}
+
+function isModelCoveredBySource(modelStr, resolvedSource) {
+  if (!resolvedSource || !modelStr || typeof modelStr !== 'string') return false;
+  const cleanModel = modelStr.replace(/\s*\([^)]*\)/g, '').trim();
+  const targetNorm = normalizeModelScopeIdentifier(cleanModel);
+  const scope = resolvedSource.canonical_scope || resolvedSource.canonicalScope || [];
+
+  for (const s of scope) {
+    const sNorm = normalizeModelScopeIdentifier(s);
+    if (sNorm === targetNorm) return true;
+    if (sNorm === 'all' || sNorm === 'universeel' || sNorm === 'alle-motorgereedschappen') return true;
+    if (CONTROLLED_MODEL_ALIASES[targetNorm] && CONTROLLED_MODEL_ALIASES[targetNorm].includes(sNorm)) return true;
+    if (CONTROLLED_MODEL_ALIASES[sNorm] && CONTROLLED_MODEL_ALIASES[sNorm].includes(targetNorm)) return true;
+  }
+  return false;
 }
 
 /**

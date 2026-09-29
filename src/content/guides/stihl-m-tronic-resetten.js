@@ -39,8 +39,7 @@ export const stihlMTronicResettenGuide = {
       models: ['MS 241 C-M (vroeg)', 'MS 261 C-M (vroeg)', 'MS 362 C-M (vroeg)', 'FS 460 C-EM (vroeg)'],
       characteristics: 'Combihendel heeft alleen standaard standen (0, I, Start/Halfgas). Geen driehoekig kalibratiesymbool.',
       procedureOverview: 'Vereist warmdraaien tot bedrijfstemperatuur (minimaal 1 minuut) gevolgd door minimaal 5 opeenvolgende zaagsneden in dik rondhout onder continue vollast zonder onderbreking om de vollastkarakteristiek opnieuw in te leren.',
-      sourceDocument: 'STIHL Technische Informatie TI 26.2015 / Instruction Manual MS 241 C-M',
-      section: 'Carburetor Adjustment / M-Tronic Control',
+      sourceRefs: ['src-ms241-292074624'],
       publicationEligibility: 'DOCUMENTED_REFERENCE'
     },
     {
@@ -48,8 +47,7 @@ export const stihlMTronicResettenGuide = {
       models: ['MS 261 C-M (vanaf serienummerwijziging)', 'MS 362 C-M (facelift)', 'MS 462 C-M', 'MS 661 C-M'],
       characteristics: 'Combihendel is voorzien van een specifiek kalibratiesymbool (driehoekje ▲).',
       procedureOverview: 'Kettingrem inschakelen. Combihendel in de start-/kalibratiestand (▲) zetten. Motor starten ZONDER gas te geven. Laat de motor exact 90 seconden (niet korter en niet overmatig langer) in deze stand stationair draaien. Schakel de motor daarna direct uit (combihendel naar 0). De basiskalibratiedata is opgeslagen in het geheugen.',
-      sourceDocument: 'STIHL Gebruiksaanwijzing MS 261 C-M (0458-573-8621-D)',
-      section: 'M-Tronic kalibratiecyclus',
+      sourceRefs: ['src-ms261-0458-573-8621-d'],
       publicationEligibility: 'DOCUMENTED_REFERENCE'
     },
     {
@@ -57,8 +55,7 @@ export const stihlMTronicResettenGuide = {
       models: ['MS 261 C-M (nieuwste revisie)', 'MS 400 C-M (Magnesium zuiger)'],
       characteristics: 'Volledig continu zelflerend adaptief regelsysteem. Snelle automatische fijnafstelling binnen enkele seconden vollast.',
       procedureOverview: 'Geen handmatige tijdscyclus meer vereist. Systeem past zich adaptief aan na filtervervanging of brandstofwissel tijdens de eerste vollastsneden.',
-      sourceDocument: 'STIHL Technische Documentatie M-Tronic 3.0',
-      section: 'Elektronisch motormanagement',
+      sourceRefs: ['src-ms261-0458-573-8621-d'],
       publicationEligibility: 'DOCUMENTED_REFERENCE'
     }
   ],

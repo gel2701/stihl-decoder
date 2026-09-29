@@ -1684,4 +1684,311 @@ console.log('\n▶ Test 23: Newly Rendered Guide Sections Provenance Enforcement
   console.log('  ✅ Test 23 Passed: Newly rendered guide sections are fully collected and enforced by provenance gate.');
 }
 
+// ============================================================
+// TEST 24: Model Assignment Provenance & Scope Coverage in generationModelData (Thread 18)
+// ============================================================
+console.log('\n▶ Test 24: Model Assignment Provenance & Scope Coverage (Thread 18)...');
+
+{
+  const ms261Source = {
+    id: 'src-ms261-canonical',
+    source_id: 'src-ms261-canonical',
+    canonical_document_id: '0458-573-8621-D',
+    publication_id: '0458-573-8621-D',
+    document_title: 'STIHL MS 261 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['MS 261', 'MS 261 C-M'],
+    modelScope: 'STIHL MS 261 / MS 261 C-M',
+    locator: { page: 34, section: 'Starting / Stopping the Engine', heading: 'M-Tronic calibration' }
+  };
+
+  const resolvedMS261 = resolveGuideSource(ms261Source, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resolvedMS261.resolved, true);
+  const resolvedMap = new Map();
+  resolvedMap.set('src-ms261-canonical', resolvedMS261.canonicalSource);
+
+  // Case AS1: Model covered by source passes cleanly
+  {
+    const guideWithCoveredModel = {
+      slug: 'test-gen-guide-covered',
+      publicationStatus: 'PUBLISHED',
+      sources: [ms261Source],
+      generationModelData: [
+        {
+          generation: 'Gen 2',
+          models: ['MS 261 C-M (vanaf serienummerwijziging)'],
+          characteristics: 'Combihendel met driehoekssymbool',
+          procedureOverview: 'Kalibratiecyclus van 90 seconden stationair',
+          sourceRefs: ['src-ms261-canonical']
+        }
+      ]
+    };
+
+    const claims = collectRenderedOperationalClaims(guideWithCoveredModel);
+    const modelClaim = claims.find(c => c.path === 'generationModelData[0].models[0]');
+    assert.ok(modelClaim, 'Must collect claim for generationModelData[0].models[0]');
+    assert.strictEqual(modelClaim.claimClass, 'GENERATION_SPECIFICATION');
+
+    const errors = validateOperationalClaimsProvenance(guideWithCoveredModel, resolvedMap, { isPublished: true });
+    assert.strictEqual(errors.length, 0, `Covered model assignment must pass without errors. Got: ${errors.join('; ')}`);
+    console.log('  ✅ Case AS1 Passed: Model assignment covered by canonical source passes cleanly.');
+  }
+
+  // Case AS2: Uncovered model assignment fails closed
+  {
+    const guideWithUncoveredModel = {
+      slug: 'test-gen-guide-uncovered',
+      publicationStatus: 'PUBLISHED',
+      sources: [ms261Source],
+      generationModelData: [
+        {
+          generation: 'Gen 2',
+          models: ['MS 462 C-M'], // MS 462 is NOT in MS 261 scope
+          characteristics: 'Combihendel met driehoekssymbool',
+          procedureOverview: 'Kalibratiecyclus van 90 seconden stationair',
+          sourceRefs: ['src-ms261-canonical']
+        }
+      ]
+    };
+
+    const errors = validateOperationalClaimsProvenance(guideWithUncoveredModel, resolvedMap, { isPublished: true });
+    assert.ok(errors.length > 0, 'Uncovered model assignment on published guide must fail validation');
+    assert.ok(
+      errors.some(e => e.includes('assigns model "MS 462 C-M"') && e.includes('cover this model')),
+      `Expected model coverage error but got: ${errors.join('; ')}`
+    );
+    console.log('  ✅ Case AS2 Passed: Arbitrary/uncovered model assignment fails closed.');
+  }
+
+  // Case AS3: Model assignment with no sourceRefs fails closed
+  {
+    const guideWithoutRefs = {
+      slug: 'test-gen-guide-no-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [ms261Source],
+      generationModelData: [
+        {
+          generation: 'Gen 2',
+          models: ['MS 261 C-M'],
+          characteristics: 'Combihendel met driehoekssymbool',
+          procedureOverview: 'Kalibratiecyclus van 90 seconden stationair'
+        }
+      ]
+    };
+
+    const errors = validateOperationalClaimsProvenance(guideWithoutRefs, resolvedMap, { isPublished: true });
+    assert.ok(errors.length > 0, 'Model assignment without sourceRefs must fail');
+    assert.ok(
+      errors.some(e => e.includes('generationModelData[0].models[0]') && e.includes('has no sourceRefs')),
+      `Expected missing sourceRefs error on model but got: ${errors.join('; ')}`
+    );
+    console.log('  ✅ Case AS3 Passed: Model assignment without sourceRefs fails closed.');
+  }
+}
+
+// ============================================================
+// TEST 25: Canonical Generation Source Display in GuidePageTemplate (Thread 19)
+// ============================================================
+console.log('\n▶ Test 25: Canonical Generation Source Display in GuidePageTemplate (Thread 19)...');
+
+{
+  const testGuide = {
+    title: 'Test M-Tronic Gids',
+    subtitle: 'Kalibratietest',
+    metaDescription: 'Test meta description for M-Tronic guide page template rendering.',
+    readingTime: '5 min',
+    publicationStatus: 'READY_FOR_REVIEW',
+    sources: [
+      {
+        id: 'src-gen-test',
+        source_id: 'src-gen-test',
+        documentTitle: 'STIHL MS 261 C-M Instruction Manual',
+        locator: { page: 34, section: 'Starting / Stopping the Engine', heading: 'M-Tronic calibration' }
+      }
+    ],
+    generationModelData: [
+      {
+        generation: 'M-Tronic 2.0',
+        models: ['MS 261 C-M'],
+        characteristics: 'Combihendel met driehoekje',
+        procedureOverview: '90 seconden stationair in startstand',
+        sourceRefs: ['src-gen-test'],
+        sourceDocument: 'Arbitrary Free Text Bypassing Registry' // Stale/unwanted field
+      }
+    ]
+  };
+
+  const html = renderGuidePageHtml(testGuide, database, baseUrl);
+
+  // Must render canonical document title and formatted locator from registry
+  assert.ok(html.includes('STIHL MS 261 C-M Instruction Manual'), 'Must render canonical document title');
+  assert.ok(html.includes('p. 34'), 'Must render canonical formatted page locator');
+  assert.ok(html.includes('Starting / Stopping the Engine'), 'Must render canonical formatted section');
+
+  // Must NOT render ungrounded free-text bypass string
+  assert.strictEqual(
+    html.includes('Arbitrary Free Text Bypassing Registry'),
+    false,
+    'Free text sourceDocument must NOT be rendered by GuidePageTemplate'
+  );
+
+  console.log('  ✅ Test 25 Passed: GuidePageTemplate strictly resolves generation sources via registry and rejects free text.');
+}
+
+// ============================================================
+// TEST 26: Expanded Operational Fuel Claim Domain Grounding (Thread 17)
+// ============================================================
+console.log('\n▶ Test 26: Expanded Operational Fuel Claim Domain Grounding (Thread 17)...');
+
+{
+  const startSource = {
+    id: 'src-026-start',
+    source_id: 'src-026-start',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+
+  const fuelSource = {
+    id: 'src-026-fuel',
+    source_id: 'src-026-fuel',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 35, section: 'Fuel', heading: 'Fuel Mixture & Storage' }
+  };
+
+  const resolvedStart = resolveGuideSource(startSource, { throwOnError: false, isPublishedGuide: true });
+  const resolvedFuel = resolveGuideSource(fuelSource, { throwOnError: false, isPublishedGuide: true });
+
+  const resolvedMap = new Map();
+  resolvedMap.set('src-026-start', resolvedStart.canonicalSource);
+  resolvedMap.set('src-026-fuel', resolvedFuel.canonicalSource);
+
+  // AT1: troubleshootingLevels fuel item bound only to start locator -> FAIL
+  {
+    const guideAT1 = {
+      slug: 'test-fuel-levels',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1',
+          items: [
+            {
+              text: 'Controleer de brandstof: gebruik verse brandstof; oude brandstof kan verouderen en ontmengen.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAT1, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Fuel claim in troubleshootingLevels bound only to start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('troubleshootingLevels[0].items[0]') && e.includes('pointing to start procedure')),
+      `Expected start locator rejection for fuel claim, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AT1 Passed: troubleshootingLevels fuel claim bound only to start locator is rejected.');
+  }
+
+  // AT2: FAQ fuel answer bound only to start locator -> FAIL
+  {
+    const guideAT2 = {
+      slug: 'test-fuel-faq',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      faq: [
+        {
+          question: 'Kan oude brandstof startproblemen veroorzaken?',
+          answer: 'Ja. Brandstof kan tijdens langere opslag verouderen en ontmengen.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAT2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'FAQ fuel answer bound only to start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('faq[0].answer') && e.includes('pointing to start procedure')),
+      `Expected start locator rejection for FAQ fuel answer, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AT2 Passed: FAQ fuel answer bound only to start locator is rejected.');
+  }
+
+  // AT3: troubleshootingMatrix fuel item bound only to start locator -> FAIL
+  {
+    const guideAT3 = {
+      slug: 'test-fuel-matrix',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      troubleshootingMatrix: [
+        {
+          symptom: 'Zaag start koud niet',
+          possibleCause: 'Onjuiste combihendelstand, verouderde brandstof of vervuilde bougie.',
+          safeFirstCheck: 'Controleer of de stopschakelaar niet op 0 staat.',
+          nextStep: 'Bougie inspecteren op nattigheid/roet.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAT3, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Matrix fuel item bound only to start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('troubleshootingMatrix[0].possibleCause') && e.includes('pointing to start procedure')),
+      `Expected start locator rejection for matrix fuel item, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AT3 Passed: Troubleshooting matrix fuel item bound only to start locator is rejected.');
+  }
+
+  // AT4: All fuel claims bound to fuel locator -> PASS
+  {
+    const guideAT4 = {
+      slug: 'test-fuel-clean',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource, fuelSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1',
+          items: [
+            {
+              text: 'Controleer de brandstof: gebruik verse brandstof; oude brandstof kan verouderen en ontmengen.',
+              sourceRefs: ['src-026-fuel']
+            }
+          ]
+        }
+      ],
+      faq: [
+        {
+          question: 'Kan oude brandstof startproblemen veroorzaken?',
+          answer: 'Ja. Brandstof kan tijdens langere opslag verouderen en ontmengen.',
+          sourceRefs: ['src-026-fuel']
+        }
+      ],
+      troubleshootingMatrix: [
+        {
+          symptom: 'Zaag start koud niet',
+          possibleCause: 'Onjuiste combihendelstand, verouderde brandstof of vervuilde bougie.',
+          safeFirstCheck: 'Controleer of de stopschakelaar niet op 0 staat.',
+          nextStep: 'Bougie inspecteren op nattigheid/roet.',
+          sourceRefs: ['src-026-start', 'src-026-fuel']
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAT4, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `All fuel claims bound to fuel locator must pass cleanly. Got: ${errs.join('; ')}`);
+    console.log('  ✅ Case AT4 Passed: All fuel claims properly bound to fuel locator pass cleanly.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
