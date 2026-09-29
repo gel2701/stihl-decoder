@@ -181,6 +181,7 @@ export const stihlKettingzaagStartNietGuide = {
       level: 'LEVEL 1 — USER SAFE CHECK',
       badge: 'Veilige basiscontrole',
       description: 'Handelingen die iedere gebruiker zonder speciaal gereedschap veilig kan uitvoeren:',
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d', 'src-0458-207-8321-b'],
       items: [
         {
           text: 'Controleer of de kettingrem is ingeschakeld (voorste handbeschermer naar voren geduwd).',
@@ -212,6 +213,7 @@ export const stihlKettingzaagStartNietGuide = {
       level: 'LEVEL 2 — EXPERIENCED USER / MANUAL REQUIRED',
       badge: 'Inspectie met gereedschap & handleiding',
       description: 'Handelingen waarvoor de bijgeleverde combinatiesleutel en de officiële handleiding vereist zijn:',
+      sourceRefs: ['src-0458-133-3021-flooded', 'src-0458-207-8321-b'],
       items: [
         {
           text: 'Bougie uitbouwen met combinatiesleutel en visueel controleren op elektrodekleur, roetaanslag of nattigheid.',
@@ -239,6 +241,7 @@ export const stihlKettingzaagStartNietGuide = {
       level: 'LEVEL 3 — SERVICE PROCEDURE',
       badge: 'Vakhandelaar / Officiële service',
       description: 'Complexe technische controles die uitsluitend door een erkende dealer of getrainde technicus moeten worden uitgevoerd:',
+      sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-133-3021-flooded', 'src-0458-573-8621-d-mtronic'],
       items: [
         {
           text: 'Interne carburateurcontrole en revisie: afstelling buiten het standaardbereik of vervanging van interne membranen conform fabrieksvoorschrift door de vakhandelaar.',
@@ -257,7 +260,7 @@ export const stihlKettingzaagStartNietGuide = {
           sourceRefs: ['src-0458-133-3021-flooded']
         },
         {
-          text: 'Cilinder- en zuigerinspectie bij vermoeden van mechanische slijtage of verlies van compressieweerstand conform fabrieksvoorschrift.',
+          text: 'Algehele inspectie door de STIHL vakhandelaar wanneer de motor na herhaaldelijk storingszoeken conform de handleiding niet start.',
           sourceRefs: ['src-0458-133-3021-flooded']
         }
       ]
@@ -472,8 +475,8 @@ export const stihlKettingzaagStartNietGuide = {
       symptom: 'Startkoord trekt door zonder noemenswaardige weerstand',
       possibleCause: 'Decompressieklep staat open (normaal bij indrukken) of mogelijk ernstig verlies van cilindercompressie.',
       safeFirstCheck: 'Controleer of de decompressieklep niet continu open blijft hangen.',
-      nextStep: 'Level 3 dealercontrole: cilinder- en compressie-inspectie conform fabrieksvoorschrift in de handleiding.',
-      sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-133-3021-flooded']
+      nextStep: 'Raadpleeg een erkende STIHL vakhandelaar voor dealerinspectie wanneer de zaag geen compressieweerstand meer biedt.',
+      sourceRefs: ['src-0458-133-3021-flooded']
     }
   ],
 

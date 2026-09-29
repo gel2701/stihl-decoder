@@ -642,9 +642,15 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
 
   // Populate resolvedSources if omitted
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
+    const seenIds = new Set();
     for (const src of guide.sources) {
+      const sId = src.source_id || src.id;
+      if (sId && seenIds.has(sId)) {
+        errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
+      }
+      if (sId) seenIds.add(sId);
       const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: isPublished });
-      if (res.resolved && res.canonicalSource) {
+      if (res.resolved && res.canonicalSource && !resolvedSources.has(res.canonicalSource.source_id)) {
         resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
       }
     }
@@ -737,9 +743,15 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
 
   // Populate resolvedSources if omitted
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
+    const seenIds = new Set();
     for (const src of guide.sources) {
+      const sId = src.source_id || src.id;
+      if (sId && seenIds.has(sId)) {
+        errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
+      }
+      if (sId) seenIds.add(sId);
       const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: isPublished });
-      if (res.resolved && res.canonicalSource) {
+      if (res.resolved && res.canonicalSource && !resolvedSources.has(res.canonicalSource.source_id)) {
         resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
       }
     }
@@ -837,9 +849,13 @@ export function collectRenderedOperationalClaims(guide) {
       guide.directAnswer.sourceRefs, 'DIRECT_ANSWER');
   }
 
-  // 2. troubleshootingLevels[*].items[*]
+  // 2. troubleshootingLevels[*] — description, items[*]
   if (Array.isArray(guide.troubleshootingLevels)) {
     guide.troubleshootingLevels.forEach((lvl, li) => {
+      if (lvl.description) {
+        push(`troubleshootingLevels[${li}].description`, lvl.description,
+          lvl.sourceRefs || lvl.descriptionSourceRefs, 'TROUBLESHOOTING_LEVEL_DESCRIPTION');
+      }
       if (Array.isArray(lvl.items)) {
         lvl.items.forEach((item, ii) => {
           if (typeof item === 'string') {
@@ -997,6 +1013,7 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
   // No bypass path exists.
   const OPERATIONAL_CLAIM_CLASSES = new Set([
     'TROUBLESHOOTING_LEVEL_ITEM',
+    'TROUBLESHOOTING_LEVEL_DESCRIPTION',
     'TECHNICAL_INSPECTION',
     'MATRIX_DIAGNOSIS',
     'MATRIX_ACTION',
@@ -1013,6 +1030,22 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
   ]);
 
   if (!isPublished) return errors; // Only enforce on published guides
+
+  // Populate resolvedSources if omitted
+  if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
+    const seenIds = new Set();
+    for (const src of guide.sources) {
+      const sId = src.source_id || src.id;
+      if (sId && seenIds.has(sId)) {
+        errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
+      }
+      if (sId) seenIds.add(sId);
+      const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: isPublished });
+      if (res.resolved && res.canonicalSource && !resolvedSources.has(res.canonicalSource.source_id)) {
+        resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      }
+    }
+  }
 
   const claims = collectRenderedOperationalClaims(guide);
 
@@ -1043,6 +1076,12 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       /\b(m-tronic.*diagnos|diagnosesysteem)\b/i.test(claim.path);
     let hasMTronicDiagnosticSource = false;
     let onlyHasStartSourceForMTronic = true;
+
+    const isMechanicalCompressionClaim =
+      /\b(cilinder- en zuigerinspectie.*fabrieksvoorschrift|cilinder.*zuiger.*slijtage|compressiemeting van cilinder)\b/i.test(claim.text) ||
+      /\b(cilinder.*zuiger.*inspectie)\b/i.test(claim.path);
+    let hasMechanicalServiceSource = false;
+    let onlyHasUnrelatedSourceForMechanical = true;
 
     for (const ref of claim.sourceRefs) {
       if (!sourceIds.has(ref)) {
@@ -1117,6 +1156,26 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
               onlyHasStartSourceForMTronic = false;
             }
           }
+
+          if (isMechanicalCompressionClaim && resolved.locator) {
+            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
+            const isMechanicalLocator =
+              locText.includes('cylinder') || locText.includes('cilinder') ||
+              locText.includes('piston') || locText.includes('zuiger') ||
+              locText.includes('compression') || locText.includes('compressie');
+
+            const isUnrelatedLocator =
+              (locText.includes('does not start') || locText.includes('carburetor') ||
+               locText.includes('starting') || locText.includes('fuel')) &&
+              !isMechanicalLocator;
+
+            if (isMechanicalLocator) {
+              hasMechanicalServiceSource = true;
+            }
+            if (!isUnrelatedLocator || isMechanicalLocator) {
+              onlyHasUnrelatedSourceForMechanical = false;
+            }
+          }
         }
       }
     }
@@ -1134,6 +1193,12 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     if (isMTronicDiagnosticClaim && (!hasMTronicDiagnosticSource || onlyHasStartSourceForMTronic)) {
       errors.push(
         `${label} makes M-Tronic electronic diagnosis or diagnostic system claims but references source(s) pointing to starting procedure instead of an M-Tronic diagnostic or service locator.`
+      );
+    }
+
+    if (isMechanicalCompressionClaim && (!hasMechanicalServiceSource || onlyHasUnrelatedSourceForMechanical)) {
+      errors.push(
+        `${label} makes cylinder/piston or compression inspection procedure claims but references source(s) without a mechanical service locator covering cylinder, piston, or compression testing.`
       );
     }
 
@@ -1196,7 +1261,13 @@ export function validateGuideSources(guide, options = {}) {
     errors.push(`Guide "${guide.slug}" declares zero sources.`);
   }
 
+  const seenIds = new Set();
   for (const src of sources) {
+    const sId = src.source_id || src.id;
+    if (sId && seenIds.has(sId)) {
+      errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
+    }
+    if (sId) seenIds.add(sId);
     const res = resolveGuideSource(src, {
       throwOnError: false,
       isPublishedGuide: isPublished
@@ -1204,7 +1275,9 @@ export function validateGuideSources(guide, options = {}) {
     if (!res.resolved) {
       errors.push(...res.errors);
     } else {
-      resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      if (!resolvedSources.has(res.canonicalSource.source_id)) {
+        resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      }
       if (!isPublished && res.canonicalSource.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && res.canonicalSource.authenticity_status !== 'AUTHENTICATED_STANDARD') {
         errors.push(`Source "${src.publication_id || src.canonical_document_id || src.id}" has non-promotable authenticity status "${res.canonicalSource.authenticity_status}". Requires official authentication before guide can be published.`);
       }

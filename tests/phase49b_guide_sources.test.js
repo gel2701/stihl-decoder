@@ -1131,7 +1131,7 @@ const buildResolvedSources = (guide) => {
 {
   console.log('  Testing Case AC: Published troubleshootingLevels item with valid ref → PASS...');
   const guide = mkPublishedGuide({
-    troubleshootingLevels: [{ level: 'L1', badge: 'B1', description: 'D1', items: [{ text: 'Controleer kettingrem.', sourceRefs: ['src-0458-133-3021-start'] }] }]
+    troubleshootingLevels: [{ level: 'L1', badge: 'B1', description: 'D1', sourceRefs: ['src-0458-133-3021-start'], items: [{ text: 'Controleer kettingrem.', sourceRefs: ['src-0458-133-3021-start'] }] }]
   });
   const resolvedSources = buildResolvedSources(guide);
   const pubState = { isPublished: true };
@@ -2412,6 +2412,349 @@ console.log('\n▶ Test 30: Unaudited Series References Retain PROBABLE_OFFICIAL
     const errs = validateOperationalClaimsProvenance(draftGuide, sMap, { isPublished: false });
     assert.strictEqual(errs.length, 0, 'Draft guide can cite series reference without published claim errors');
     console.log('  ✅ Case AX3 Passed: Draft guide permits series reference without published claim blocker.');
+  }
+}
+
+// ============================================================
+// TEST 31: Troubleshooting Level Description Provenance Enforcement (Thread 26)
+// ============================================================
+console.log('\n▶ Test 31: Troubleshooting Level Description Provenance Enforcement (Thread 26)...');
+
+{
+  const testSource = {
+    id: 'src-level-test',
+    source_id: 'src-level-test',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resolved = resolveGuideSource(testSource, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resolved.resolved, true);
+  const sMap = new Map();
+  sMap.set('src-level-test', resolved.canonicalSource);
+
+  // AY1: Level with description but without sourceRefs -> FAIL
+  {
+    const pubGuide = {
+      slug: 'test-desc-missing-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [testSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1',
+          badge: 'Basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren.',
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld.',
+              sourceRefs: ['src-level-test']
+            }
+          ]
+        }
+      ]
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Level description without sourceRefs must fail on published guide');
+    assert.ok(
+      errs.some(e => e.includes('troubleshootingLevels[0].description') && e.includes('has no sourceRefs')),
+      `Expected level description missing sourceRefs error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AY1 Passed: Level description without sourceRefs fails closed.');
+  }
+
+  // AY2: Level with description citing unknown sourceRef -> FAIL
+  {
+    const pubGuide = {
+      slug: 'test-desc-unknown-ref',
+      publicationStatus: 'PUBLISHED',
+      sources: [testSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1',
+          badge: 'Basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren.',
+          sourceRefs: ['src-unknown-level-ref'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld.',
+              sourceRefs: ['src-level-test']
+            }
+          ]
+        }
+      ]
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Level description referencing unknown sourceRef must fail');
+    assert.ok(
+      errs.some(e => e.includes('troubleshootingLevels[0].description') && e.includes('references unknown sourceRef')),
+      `Expected unknown sourceRef error for level description, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AY2 Passed: Level description with unknown sourceRef fails closed.');
+  }
+
+  // AY3: Level with description and valid sourceRefs -> PASS
+  {
+    const pubGuide = {
+      slug: 'test-desc-valid-ref',
+      publicationStatus: 'PUBLISHED',
+      sources: [testSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1',
+          badge: 'Basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren.',
+          sourceRefs: ['src-level-test'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld.',
+              sourceRefs: ['src-level-test']
+            }
+          ]
+        }
+      ]
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Valid level description provenance must pass cleanly. Got: ${JSON.stringify(errs)}`);
+    console.log('  ✅ Case AY3 Passed: Level description with valid sourceRefs passes cleanly.');
+  }
+}
+
+// ============================================================
+// TEST 32: Rejection of Duplicate Source Identifiers (Thread 27)
+// ============================================================
+console.log('\n▶ Test 32: Rejection of Duplicate Source Identifiers (Thread 27)...');
+
+{
+  const sourceA1 = {
+    id: 'src-duplicate-test',
+    source_id: 'src-duplicate-test',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const sourceA2 = {
+    id: 'src-duplicate-test',
+    source_id: 'src-duplicate-test',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 42, section: 'Carburetor', heading: 'Adjustment' }
+  };
+
+  // AZ1: validateGuideSources rejects guide with duplicate source IDs
+  {
+    const guideWithDuplicates = {
+      slug: 'stihl-kettingzaag-start-niet',
+      publicationStatus: 'PUBLISHED',
+      sources: [sourceA1, sourceA2],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1',
+          badge: 'Basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren.',
+          sourceRefs: ['src-duplicate-test'],
+          items: [{ text: 'Controleer combihendel.', sourceRefs: ['src-duplicate-test'] }]
+        }
+      ],
+      warnings: [
+        {
+          title: 'Test Warning',
+          text: 'Warning text',
+          sourceRefs: ['src-duplicate-test']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideWithDuplicates);
+    assert.strictEqual(res.valid, false, 'Guide declaring duplicate source IDs must not be valid');
+    assert.ok(
+      res.errors.some(e => e.includes('Duplicate source identifier "src-duplicate-test" declared in guide.sources')),
+      `Expected duplicate source ID error, got: ${JSON.stringify(res.errors)}`
+    );
+    console.log('  ✅ Case AZ1 Passed: validateGuideSources fails closed on duplicate source identifiers.');
+  }
+
+  // AZ2: Fallback in standalone validators rejects duplicate source IDs
+  {
+    const guideWithDuplicates = {
+      slug: 'test-dup-guide',
+      publicationStatus: 'PUBLISHED',
+      sources: [sourceA1, sourceA2],
+      warnings: [
+        {
+          title: 'Test Warning',
+          text: 'Warning text',
+          sourceRefs: ['src-duplicate-test']
+        }
+      ]
+    };
+    const warnErrs = validateWarningProvenance(guideWithDuplicates, new Map(), { isPublished: true });
+    assert.ok(
+      warnErrs.some(e => e.includes('Duplicate source identifier "src-duplicate-test" declared in guide.sources')),
+      `Expected duplicate source error in validateWarningProvenance fallback, got: ${JSON.stringify(warnErrs)}`
+    );
+    const procErrs = validateProcedureStepsProvenance(guideWithDuplicates, new Map(), { isPublished: true });
+    assert.ok(
+      procErrs.some(e => e.includes('Duplicate source identifier "src-duplicate-test" declared in guide.sources')),
+      `Expected duplicate source error in validateProcedureStepsProvenance fallback, got: ${JSON.stringify(procErrs)}`
+    );
+    const claimErrs = validateOperationalClaimsProvenance(guideWithDuplicates, new Map(), { isPublished: true });
+    assert.ok(
+      claimErrs.some(e => e.includes('Duplicate source identifier "src-duplicate-test" declared in guide.sources')),
+      `Expected duplicate source error in validateOperationalClaimsProvenance fallback, got: ${JSON.stringify(claimErrs)}`
+    );
+    console.log('  ✅ Case AZ2 Passed: Fallback resolvers detect duplicate source IDs across all sub-validators.');
+  }
+
+  // AZ3: Map does not overwrite initial canonical source
+  {
+    const resolvedSources = new Map();
+    const seenIds = new Set();
+    const sources = [sourceA1, sourceA2];
+    for (const src of sources) {
+      const sId = src.source_id || src.id;
+      if (sId && seenIds.has(sId)) {
+        // rejected
+      }
+      if (sId) seenIds.add(sId);
+      const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+      if (res.resolved && res.canonicalSource && !resolvedSources.has(res.canonicalSource.source_id)) {
+        resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      }
+    }
+    assert.strictEqual(resolvedSources.get('src-duplicate-test').locator.page, 38, 'Initial source locator must not be overwritten');
+    console.log('  ✅ Case AZ3 Passed: Duplicate source declarations do not overwrite initial locator.');
+  }
+}
+
+// ============================================================
+// TEST 33: Cylinder/Piston Mechanical Inspection Grounding (Thread 25)
+// ============================================================
+console.log('\n▶ Test 33: Cylinder/Piston Mechanical Inspection Grounding (Thread 25)...');
+
+{
+  const floodedSource = {
+    id: 'src-026-flooded',
+    source_id: 'src-026-flooded',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 42, section: 'If the Engine Does Not Start', heading: 'Engine Does Not Start' }
+  };
+  const mechanicalServiceSource = {
+    id: 'src-mechanical-service',
+    source_id: 'src-mechanical-service',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 50, section: 'Specifications & Mechanical Checks', heading: 'Cylinder and Piston Inspection' }
+  };
+
+  const resFlooded = resolveGuideSource(floodedSource, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resFlooded.resolved, true);
+  const resMechanical = resolveGuideSource(mechanicalServiceSource, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resMechanical.resolved, true);
+
+  const sMap = new Map();
+  sMap.set('src-026-flooded', resFlooded.canonicalSource);
+  sMap.set('src-mechanical-service', resMechanical.canonicalSource);
+
+  // BA1: Cylinder/piston mechanical inspection procedure claiming factory tolerances citing solely flooded engine locator -> FAIL
+  {
+    const pubGuide = {
+      slug: 'test-cylinder-flooded',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          badge: 'Service',
+          description: 'Complexe controles.',
+          sourceRefs: ['src-026-flooded'],
+          items: [
+            {
+              text: 'Cilinder- en zuigerinspectie bij vermoeden van mechanische slijtage of verlies van compressieweerstand conform fabrieksvoorschrift.',
+              sourceRefs: ['src-026-flooded']
+            }
+          ]
+        }
+      ]
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Mechanical compression claim citing start/flooded locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('makes cylinder/piston or compression inspection procedure claims but references source(s) without a mechanical service locator')),
+      `Expected mechanical service locator rejection, got: ${JSON.stringify(errs)}`
+    );
+    console.log('  ✅ Case BA1 Passed: Cylinder/piston procedure claim citing flooded engine locator fails closed.');
+  }
+
+  // BA2: General dealer referral for starting failure citing flooded engine locator -> PASS
+  {
+    const pubGuide = {
+      slug: 'test-dealer-referral',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          badge: 'Service',
+          description: 'Complexe controles.',
+          sourceRefs: ['src-026-flooded'],
+          items: [
+            {
+              text: 'Algehele inspectie door de STIHL vakhandelaar wanneer de motor na herhaaldelijk storingszoeken conform de handleiding niet start.',
+              sourceRefs: ['src-026-flooded']
+            }
+          ]
+        }
+      ]
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `General dealer start failure referral citing flooded engine locator must pass. Got: ${JSON.stringify(errs)}`);
+    console.log('  ✅ Case BA2 Passed: General dealer referral for start failure citing flooded locator passes cleanly.');
+  }
+
+  // BA3: Mechanical inspection claim citing genuine mechanical service locator -> PASS
+  {
+    const pubGuide = {
+      slug: 'test-cylinder-mechanical-service',
+      publicationStatus: 'PUBLISHED',
+      sources: [mechanicalServiceSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          badge: 'Service',
+          description: 'Complexe controles.',
+          sourceRefs: ['src-mechanical-service'],
+          items: [
+            {
+              text: 'Cilinder- en zuigerinspectie bij vermoeden van mechanische slijtage of verlies van compressieweerstand conform fabrieksvoorschrift.',
+              sourceRefs: ['src-mechanical-service']
+            }
+          ]
+        }
+      ]
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Mechanical compression claim citing mechanical service locator must pass. Got: ${JSON.stringify(errs)}`);
+    console.log('  ✅ Case BA3 Passed: Cylinder/piston procedure claim citing mechanical service locator passes cleanly.');
   }
 }
 
