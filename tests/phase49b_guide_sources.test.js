@@ -2947,7 +2947,7 @@ console.log('\n▶ Test 36: Procedure Introduction Provenance Enforcement (Threa
       startProcedures: {
         documentedExamples: {
           testSaw: {
-            modelLabel: 'Test Saw',
+            modelLabel: 'STIHL 026 (Klassieke Kettingzaag)',
             sourceRefs: ['src-intro-test'],
             coldStartIntro: 'Start de machine conform handleiding.',
             steps: [{ step: 1, title: 'Step 1', text: 'Step text', sourceRefs: ['src-intro-test'] }]
@@ -2981,6 +2981,153 @@ console.log('\n▶ Test 36: Procedure Introduction Provenance Enforcement (Threa
       `Expected warmStart.intro missing sourceRefs error, got: ${JSON.stringify(errs)}`
     );
     console.log('  ✅ Case BD3 Passed: warmStart.intro without sourceRefs fails closed in validateProcedureStepsProvenance.');
+  }
+}
+
+// ============================================================
+// TEST 37: Procedure Model Labels Scope Validation (Thread 31)
+// ============================================================
+console.log('\n▶ Test 37: Procedure Model Labels Scope Validation (Thread 31)...');
+
+{
+  const source026 = {
+    id: 'src-026-canonical',
+    source_id: 'src-026-canonical',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resolved026 = resolveGuideSource(source026, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resolved026.resolved, true);
+
+  const sourceMap = new Map();
+  sourceMap.set('src-026-canonical', resolved026.canonicalSource);
+
+  // Case BE1: Valid covered modelLabel passes cleanly
+  {
+    const guideWithCoveredModel = {
+      slug: 'test-doc-ex-covered',
+      publicationStatus: 'PUBLISHED',
+      sources: [source026],
+      startProcedures: {
+        documentedExamples: {
+          stihl026: {
+            modelLabel: 'STIHL 026 (Klassieke Kettingzaag)',
+            sourceRefs: ['src-026-canonical'],
+            steps: [{ step: 1, title: 'Step 1', text: 'Start de 026.', sourceRefs: ['src-026-canonical'] }]
+          }
+        }
+      }
+    };
+
+    const stepErrs = validateProcedureStepsProvenance(guideWithCoveredModel, sourceMap, { isPublished: true });
+    assert.strictEqual(stepErrs.length, 0, `Covered modelLabel must pass step provenance: ${stepErrs.join('; ')}`);
+
+    const opErrs = validateOperationalClaimsProvenance(guideWithCoveredModel, sourceMap, { isPublished: true });
+    assert.strictEqual(opErrs.length, 0, `Covered modelLabel must pass operational claims validation: ${opErrs.join('; ')}`);
+    console.log('  ✅ Case BE1 Passed: Covered modelLabel in documentedExample passes both validators cleanly.');
+  }
+
+  // Case BE2: Changing 026 example modelLabel to STIHL MS 500i fails closed
+  {
+    const guideWithMismatchedModel = {
+      slug: 'test-doc-ex-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [source026],
+      startProcedures: {
+        documentedExamples: {
+          stihl026: {
+            modelLabel: 'STIHL MS 500i', // MS 500i is NOT covered by 0458-133-3021 (026 only)
+            sourceRefs: ['src-026-canonical'],
+            steps: [{ step: 1, title: 'Step 1', text: 'Start de machine.', sourceRefs: ['src-026-canonical'] }]
+          }
+        }
+      }
+    };
+
+    const stepErrs = validateProcedureStepsProvenance(guideWithMismatchedModel, sourceMap, { isPublished: true });
+    assert.ok(stepErrs.length > 0, 'Mismatched modelLabel must fail closed in validateProcedureStepsProvenance');
+    assert.ok(
+      stepErrs.some(e => e.includes('startProcedures.documentedExamples.stihl026.modelLabel assigns model "MS 500i"') && e.includes('cover this model')),
+      `Expected model coverage error in validateProcedureStepsProvenance, got: ${stepErrs.join('; ')}`
+    );
+
+    const opErrs = validateOperationalClaimsProvenance(guideWithMismatchedModel, sourceMap, { isPublished: true });
+    assert.ok(opErrs.length > 0, 'Mismatched modelLabel must fail closed in validateOperationalClaimsProvenance');
+    assert.ok(
+      opErrs.some(e => e.includes('modelLabel') && e.includes('MS 500i') && e.includes('cover this model')),
+      `Expected model coverage error in validateOperationalClaimsProvenance, got: ${opErrs.join('; ')}`
+    );
+    console.log('  ✅ Case BE2 Passed: Changing 026 modelLabel to STIHL MS 500i fails closed in both validators.');
+  }
+
+  // Case BE3: Flooded engine recovery example with uncovered model fails closed
+  {
+    const guideWithFloodedMismatch = {
+      slug: 'test-flooded-ex-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [source026],
+      floodedEngineRecovery: {
+        documentedExamples: {
+          stihl026: {
+            modelLabel: 'STIHL MS 500i Ontzoping',
+            sourceRefs: ['src-026-canonical'],
+            steps: [{ step: 1, title: 'Step 1', text: 'Droogmaken.', sourceRefs: ['src-026-canonical'] }]
+          }
+        }
+      }
+    };
+
+    const stepErrs = validateProcedureStepsProvenance(guideWithFloodedMismatch, sourceMap, { isPublished: true });
+    assert.ok(stepErrs.length > 0, 'Flooded example with mismatched model must fail closed in step validator');
+    assert.ok(
+      stepErrs.some(e => e.includes('floodedEngineRecovery.documentedExamples.stihl026.modelLabel assigns model "MS 500i"')),
+      `Expected flooded model mismatch error, got: ${stepErrs.join('; ')}`
+    );
+
+    const opErrs = validateOperationalClaimsProvenance(guideWithFloodedMismatch, sourceMap, { isPublished: true });
+    assert.ok(opErrs.length > 0, 'Flooded example with mismatched model must fail closed in operational validator');
+    assert.ok(
+      opErrs.some(e => e.includes('floodedEngineRecovery.documentedExamples.stihl026.modelLabel') && e.includes('MS 500i')),
+      `Expected flooded operational model mismatch error, got: ${opErrs.join('; ')}`
+    );
+    console.log('  ✅ Case BE3 Passed: Flooded engine recovery example with uncovered model fails closed.');
+  }
+
+  // Case BE4: Documented procedure example without recognizable model fails closed
+  {
+    const guideWithUnrecognizableModel = {
+      slug: 'test-unrecognizable-model',
+      publicationStatus: 'PUBLISHED',
+      sources: [source026],
+      startProcedures: {
+        documentedExamples: {
+          genericSaw: {
+            modelLabel: 'Universele Zaag Handleiding',
+            sourceRefs: ['src-026-canonical'],
+            steps: [{ step: 1, title: 'Step 1', text: 'Starten.', sourceRefs: ['src-026-canonical'] }]
+          }
+        }
+      }
+    };
+
+    const stepErrs = validateProcedureStepsProvenance(guideWithUnrecognizableModel, sourceMap, { isPublished: true });
+    assert.ok(stepErrs.length > 0, 'Unrecognizable model label must fail closed in step validator');
+    assert.ok(
+      stepErrs.some(e => e.includes('must specify at least one recognizable STIHL model designation')),
+      `Expected unrecognizable model error, got: ${stepErrs.join('; ')}`
+    );
+
+    const opErrs = validateOperationalClaimsProvenance(guideWithUnrecognizableModel, sourceMap, { isPublished: true });
+    assert.ok(opErrs.length > 0, 'Unrecognizable model label must fail closed in operational validator');
+    assert.ok(
+      opErrs.some(e => e.includes('must specify at least one recognizable STIHL model designation')),
+      `Expected unrecognizable model operational error, got: ${opErrs.join('; ')}`
+    );
+    console.log('  ✅ Case BE4 Passed: Procedure example without recognizable STIHL model fails closed.');
   }
 }
 

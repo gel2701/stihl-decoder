@@ -701,14 +701,45 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
     if (guide.startProcedures.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.startProcedures.documentedExamples)) {
         const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
-        if (isPublished && (!exRefs || exRefs.length === 0)) {
-          errors.push(`startProcedures.documentedExamples.${key} has no sourceRefs.`);
-        }
-        if (isPublished && ex.coldStartIntro && !ex.sourceRefs && !ex.coldStartIntroSourceRefs) {
-          errors.push(`startProcedures.documentedExamples.${key}.coldStartIntro has no sourceRefs.`);
-        }
-        if (isPublished && ex.warmStartIntro && !ex.sourceRefs && !ex.warmStartIntroSourceRefs) {
-          errors.push(`startProcedures.documentedExamples.${key}.warmStartIntro has no sourceRefs.`);
+        if (isPublished) {
+          if (!exRefs || exRefs.length === 0) {
+            errors.push(`startProcedures.documentedExamples.${key} has no sourceRefs.`);
+          }
+          if (!ex.modelLabel) {
+            errors.push(`startProcedures.documentedExamples.${key} lacks a modelLabel.`);
+          } else {
+            const modelRefs = ex.modelLabelSourceRefs || ex.sourceRefs || exRefs;
+            if (!modelRefs || modelRefs.length === 0) {
+              errors.push(`startProcedures.documentedExamples.${key}.modelLabel has no sourceRefs.`);
+            } else {
+              const extractedModels = extractModelsFromLabel(ex.modelLabel);
+              if (extractedModels.length === 0) {
+                errors.push(`startProcedures.documentedExamples.${key}.modelLabel must specify at least one recognizable STIHL model designation.`);
+              } else {
+                for (const model of extractedModels) {
+                  let isCovered = false;
+                  for (const ref of modelRefs) {
+                    const resolved = resolvedSources.get(ref);
+                    if (resolved && isModelCoveredBySource(model, resolved)) {
+                      isCovered = true;
+                      break;
+                    }
+                  }
+                  if (!isCovered) {
+                    errors.push(
+                      `startProcedures.documentedExamples.${key}.modelLabel assigns model "${model}" but none of the cited sources (${modelRefs.join(', ')}) cover this model in their canonical scope.`
+                    );
+                  }
+                }
+              }
+            }
+          }
+          if (ex.coldStartIntro && !ex.sourceRefs && !ex.coldStartIntroSourceRefs) {
+            errors.push(`startProcedures.documentedExamples.${key}.coldStartIntro has no sourceRefs.`);
+          }
+          if (ex.warmStartIntro && !ex.sourceRefs && !ex.warmStartIntroSourceRefs) {
+            errors.push(`startProcedures.documentedExamples.${key}.warmStartIntro has no sourceRefs.`);
+          }
         }
         checkSteps(ex.steps, `startProcedures.documentedExamples.${key}`, { claimType: 'START_PROCEDURE' });
       }
@@ -741,11 +772,42 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
     if (guide.floodedEngineRecovery.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.floodedEngineRecovery.documentedExamples)) {
         const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
-        if (isPublished && (!exRefs || exRefs.length === 0)) {
-          errors.push(`floodedEngineRecovery.documentedExamples.${key} has no sourceRefs.`);
-        }
-        if (isPublished && ex.intro && !ex.sourceRefs && !ex.introSourceRefs) {
-          errors.push(`floodedEngineRecovery.documentedExamples.${key}.intro has no sourceRefs.`);
+        if (isPublished) {
+          if (!exRefs || exRefs.length === 0) {
+            errors.push(`floodedEngineRecovery.documentedExamples.${key} has no sourceRefs.`);
+          }
+          if (!ex.modelLabel) {
+            errors.push(`floodedEngineRecovery.documentedExamples.${key} lacks a modelLabel.`);
+          } else {
+            const modelRefs = ex.modelLabelSourceRefs || ex.sourceRefs || exRefs;
+            if (!modelRefs || modelRefs.length === 0) {
+              errors.push(`floodedEngineRecovery.documentedExamples.${key}.modelLabel has no sourceRefs.`);
+            } else {
+              const extractedModels = extractModelsFromLabel(ex.modelLabel);
+              if (extractedModels.length === 0) {
+                errors.push(`floodedEngineRecovery.documentedExamples.${key}.modelLabel must specify at least one recognizable STIHL model designation.`);
+              } else {
+                for (const model of extractedModels) {
+                  let isCovered = false;
+                  for (const ref of modelRefs) {
+                    const resolved = resolvedSources.get(ref);
+                    if (resolved && isModelCoveredBySource(model, resolved)) {
+                      isCovered = true;
+                      break;
+                    }
+                  }
+                  if (!isCovered) {
+                    errors.push(
+                      `floodedEngineRecovery.documentedExamples.${key}.modelLabel assigns model "${model}" but none of the cited sources (${modelRefs.join(', ')}) cover this model in their canonical scope.`
+                    );
+                  }
+                }
+              }
+            }
+          }
+          if (ex.intro && !ex.sourceRefs && !ex.introSourceRefs) {
+            errors.push(`floodedEngineRecovery.documentedExamples.${key}.intro has no sourceRefs.`);
+          }
         }
         checkSteps(ex.steps, `floodedEngineRecovery.documentedExamples.${key}`, { claimType: 'FLOODED_RECOVERY' });
       }
@@ -913,6 +975,10 @@ export function collectRenderedOperationalClaims(guide) {
     if (guide.startProcedures.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.startProcedures.documentedExamples)) {
         const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
+        if (ex.modelLabel) {
+          push(`startProcedures.documentedExamples.${key}.modelLabel`, ex.modelLabel,
+            ex.modelLabelSourceRefs || ex.sourceRefs || exRefs, 'PROCEDURE_MODEL_LABEL');
+        }
         if (ex.coldStartIntro) {
           push(`startProcedures.documentedExamples.${key}.coldStartIntro`, ex.coldStartIntro,
             ex.coldStartIntroSourceRefs || ex.sourceRefs, 'PROCEDURE_INTRO');
@@ -935,7 +1001,7 @@ export function collectRenderedOperationalClaims(guide) {
     }
   }
 
-  // 4. floodedEngineRecovery (explanation, safetyNotice, genericPrinciple.text, documentedExamples intro)
+  // 4. floodedEngineRecovery (explanation, safetyNotice, genericPrinciple.text, documentedExamples intro & modelLabel)
   if (guide.floodedEngineRecovery) {
     if (guide.floodedEngineRecovery.explanation) {
       push('floodedEngineRecovery.explanation', guide.floodedEngineRecovery.explanation,
@@ -951,6 +1017,11 @@ export function collectRenderedOperationalClaims(guide) {
     }
     if (guide.floodedEngineRecovery.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.floodedEngineRecovery.documentedExamples)) {
+        const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
+        if (ex.modelLabel) {
+          push(`floodedEngineRecovery.documentedExamples.${key}.modelLabel`, ex.modelLabel,
+            ex.modelLabelSourceRefs || ex.sourceRefs || exRefs, 'PROCEDURE_MODEL_LABEL');
+        }
         if (ex.intro) {
           push(`floodedEngineRecovery.documentedExamples.${key}.intro`, ex.intro,
             ex.introSourceRefs || ex.sourceRefs, 'PROCEDURE_INTRO');
@@ -1096,7 +1167,8 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     'CATEGORY_DIAGNOSIS',
     'INSPECTION_STEP',
     'SAFETY_WARNING',
-    'PROCEDURE_INTRO'
+    'PROCEDURE_INTRO',
+    'PROCEDURE_MODEL_LABEL'
   ]);
 
   if (!isPublished) return errors; // Only enforce on published guides
@@ -1287,12 +1359,43 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
         );
       }
     }
+
+    if (claim.claimClass === 'PROCEDURE_MODEL_LABEL') {
+      const extractedModels = extractModelsFromLabel(claim.text);
+      if (extractedModels.length === 0) {
+        errors.push(`${label} must specify at least one recognizable STIHL model designation.`);
+      } else {
+        for (const model of extractedModels) {
+          let isCovered = false;
+          for (const ref of claim.sourceRefs) {
+            const resolved = resolvedSources.get(ref);
+            if (resolved && isModelCoveredBySource(model, resolved)) {
+              isCovered = true;
+              break;
+            }
+          }
+          if (!isCovered) {
+            errors.push(
+              `${label} assigns model "${model}" but none of the cited sources (${claim.sourceRefs.join(', ')}) cover this model in their canonical scope.`
+            );
+          }
+        }
+      }
+    }
   }
 
   return errors;
 }
 
-function isModelCoveredBySource(modelStr, resolvedSource) {
+export function extractModelsFromLabel(label) {
+  if (!label || typeof label !== 'string') return [];
+  const withoutParens = label.replace(/\s*\([^)]*\)/g, ' ');
+  const modelRegex = /\b(?:(?:MS|FS|BR|BG|TS|HT|HS|BT|FR|KM|MM|SH|SR|FSA|MSA|BGA|HSA|HLA|TSA|KMA|MSE|FSE|HSE|BGE)\s*\d+[a-z0-9]*(?:\s+(?:C-M|C-BE|C-B|C-E|C-Q|TC-M|T|R|RX|C|i)\b)*(?:-[a-z0-9]+)*|\b0\d{2}(?:\s+[A-Z])?\b)\b/gi;
+  const matches = withoutParens.match(modelRegex) || [];
+  return Array.from(new Set(matches.map(m => m.trim())));
+}
+
+export function isModelCoveredBySource(modelStr, resolvedSource) {
   if (!resolvedSource || !modelStr || typeof modelStr !== 'string') return false;
   const cleanModel = modelStr.replace(/\s*\([^)]*\)/g, '').trim();
   const targetNorm = normalizeModelScopeIdentifier(cleanModel);
