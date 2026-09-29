@@ -56,7 +56,7 @@ export const SERIES_REFERENCE_DOCUMENTS = {
     seriesCode: '1121',
     title: 'STIHL Werkplaatshandboek 1121',
     sourceType: 'series_workshop_manual',
-    models: ['MS 260']
+    models: ['MS 260', '026']
   },
   '1133': {
     seriesCode: '1133',

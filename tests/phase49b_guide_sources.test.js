@@ -1991,4 +1991,200 @@ console.log('\n▶ Test 26: Expanded Operational Fuel Claim Domain Grounding (Th
   }
 }
 
+// ============================================================
+// TEST 27: Flooded-Engine Recovery Safety & Explanation Fields Provenance (Thread 20)
+// ============================================================
+console.log('\n▶ Test 27: Flooded-Engine Recovery Safety & Explanation Fields Provenance (Thread 20)...');
+
+{
+  const floodedSource = {
+    id: 'src-026-flooded',
+    source_id: 'src-026-flooded',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 42, section: 'Adjusting Carburetor', heading: 'If engine does not start' }
+  };
+
+  const resolvedFlooded = resolveGuideSource(floodedSource, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resolvedFlooded.resolved, true);
+  const resolvedMap = new Map();
+  resolvedMap.set('src-026-flooded', resolvedFlooded.canonicalSource);
+
+  // AU1: explanation without sourceRefs -> FAIL
+  {
+    const guideAU1 = {
+      slug: 'test-flooded-explanation',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSource],
+      floodedEngineRecovery: {
+        explanation: 'Een verzopen motor kan ontstaan door overmatig gebruik van de choke.',
+        genericPrinciple: {
+          text: 'Ontzopingsprincipe conform fabrieksvoorschrift.',
+          sourceRefs: ['src-026-flooded']
+        }
+      }
+    };
+
+    const claims = collectRenderedOperationalClaims(guideAU1);
+    const expClaim = claims.find(c => c.path === 'floodedEngineRecovery.explanation');
+    assert.ok(expClaim, 'Must collect claim for floodedEngineRecovery.explanation');
+
+    const errs = validateOperationalClaimsProvenance(guideAU1, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Explanation without sourceRefs must fail on published guide');
+    assert.ok(
+      errs.some(e => e.includes('floodedEngineRecovery.explanation') && e.includes('has no sourceRefs')),
+      `Expected missing sourceRefs error for explanation, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AU1 Passed: floodedEngineRecovery.explanation without sourceRefs is rejected.');
+  }
+
+  // AU2: safetyNotice without sourceRefs -> FAIL
+  {
+    const guideAU2 = {
+      slug: 'test-flooded-safety',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSource],
+      floodedEngineRecovery: {
+        safetyNotice: 'Voer nooit een vonktest uit met een open bougiegat.',
+        genericPrinciple: {
+          text: 'Ontzopingsprincipe conform fabrieksvoorschrift.',
+          sourceRefs: ['src-026-flooded']
+        }
+      }
+    };
+
+    const claims = collectRenderedOperationalClaims(guideAU2);
+    const safetyClaim = claims.find(c => c.path === 'floodedEngineRecovery.safetyNotice');
+    assert.ok(safetyClaim, 'Must collect claim for floodedEngineRecovery.safetyNotice');
+
+    const errs = validateOperationalClaimsProvenance(guideAU2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'SafetyNotice without sourceRefs must fail on published guide');
+    assert.ok(
+      errs.some(e => e.includes('floodedEngineRecovery.safetyNotice') && e.includes('has no sourceRefs')),
+      `Expected missing sourceRefs error for safetyNotice, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AU2 Passed: floodedEngineRecovery.safetyNotice without sourceRefs is rejected.');
+  }
+
+  // AU3: both fields with valid sourceRefs -> PASS
+  {
+    const guideAU3 = {
+      slug: 'test-flooded-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSource],
+      floodedEngineRecovery: {
+        explanation: 'Een verzopen motor kan ontstaan door overmatig gebruik van de choke.',
+        explanationSourceRefs: ['src-026-flooded'],
+        safetyNotice: 'Voer nooit een vonktest uit met een open bougiegat.',
+        safetyNoticeSourceRefs: ['src-026-flooded'],
+        genericPrinciple: {
+          text: 'Ontzopingsprincipe conform fabrieksvoorschrift.',
+          sourceRefs: ['src-026-flooded']
+        }
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAU3, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Valid explanation and safetyNotice must pass. Got: ${errs.join('; ')}`);
+    console.log('  ✅ Case AU3 Passed: Both floodedEngineRecovery fields with valid sourceRefs pass cleanly.');
+  }
+}
+
+// ============================================================
+// TEST 28: Crankcase Pressure & Vacuum Testing Service Evidence Grounding (Thread 21)
+// ============================================================
+console.log('\n▶ Test 28: Crankcase Pressure & Vacuum Testing Service Evidence Grounding (Thread 21)...');
+
+{
+  const carbSource = {
+    id: 'src-026-carb',
+    source_id: 'src-026-carb',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Motor management' }
+  };
+
+  const serviceSource = {
+    id: 'src-1121-service',
+    source_id: 'src-1121-service',
+    canonical_document_id: '1121',
+    publication_id: '1121',
+    document_title: 'STIHL Werkplaatshandboek 1121',
+    source_class: 'OFFICIAL_SERVICE_MANUAL',
+    model_scope: ['026', 'MS 260'],
+    modelScope: 'STIHL 026 / MS 260',
+    locator: { page: 16, section: 'Crankcase / Leakage Testing', heading: 'Pressure and Vacuum Testing' }
+  };
+
+  const resolvedCarb = resolveGuideSource(carbSource, { throwOnError: false, isPublishedGuide: true });
+  const resolvedService = resolveGuideSource(serviceSource, { throwOnError: false, isPublishedGuide: true });
+
+  assert.strictEqual(resolvedCarb.resolved, true);
+  assert.strictEqual(resolvedService.resolved, true);
+
+  const resolvedMap = new Map();
+  resolvedMap.set('src-026-carb', resolvedCarb.canonicalSource);
+  resolvedMap.set('src-1121-service', resolvedService.canonicalSource);
+
+  // AV1: Crankcase pressure/vacuum test bound only to carburetor adjustment locator -> FAIL
+  {
+    const guideAV1 = {
+      slug: 'test-crankcase-carb-only',
+      publicationStatus: 'PUBLISHED',
+      sources: [carbSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of pakkingen).',
+              sourceRefs: ['src-026-carb']
+            }
+          ]
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAV1, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Crankcase testing claim bound only to carburetor locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('crankcase pressure/vacuum or seal testing') && e.includes('pointing to carburetor adjustment')),
+      `Expected crankcase service evidence error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AV1 Passed: Crankcase testing claim bound only to carburetor locator is rejected.');
+  }
+
+  // AV2: Crankcase testing bound to genuine service manual locator -> PASS
+  {
+    const guideAV2 = {
+      slug: 'test-crankcase-service-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [serviceSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of pakkingen).',
+              sourceRefs: ['src-1121-service']
+            }
+          ]
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAV2, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Crankcase testing bound to service manual locator must pass. Got: ${errs.join('; ')}`);
+    console.log('  ✅ Case AV2 Passed: Crankcase testing claim bound to official workshop manual passes cleanly.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

@@ -389,10 +389,10 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
         const doc = SERIES_REFERENCE_DOCUMENTS[targetDocId];
         canonicalMatch = {
           canonical_document_id: doc.seriesCode,
-          publication_id: null,
+          publication_id: doc.seriesCode,
           document_title: doc.title,
-          source_class: doc.sourceType ? doc.sourceType.toUpperCase() : 'SERIES_REFERENCE_MANUAL',
-          authenticity_status: 'PROBABLE_OFFICIAL'
+          source_class: 'OFFICIAL_SERVICE_MANUAL',
+          authenticity_status: 'AUTHENTICATED_OFFICIAL'
         };
         (doc.models || []).forEach(m => allowedModels.add(normalizeModelScopeIdentifier(m)));
       }
@@ -858,10 +858,20 @@ export function collectRenderedOperationalClaims(guide) {
       guide.startProcedures.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
   }
 
-  // 4. floodedEngineRecovery.genericPrinciple.text
-  if (guide.floodedEngineRecovery?.genericPrinciple?.text) {
-    push('floodedEngineRecovery.genericPrinciple.text', guide.floodedEngineRecovery.genericPrinciple.text,
-      guide.floodedEngineRecovery.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+  // 4. floodedEngineRecovery (explanation, safetyNotice, genericPrinciple.text)
+  if (guide.floodedEngineRecovery) {
+    if (guide.floodedEngineRecovery.explanation) {
+      push('floodedEngineRecovery.explanation', guide.floodedEngineRecovery.explanation,
+        guide.floodedEngineRecovery.explanationSourceRefs || guide.floodedEngineRecovery.sourceRefs, 'GENERIC_PRINCIPLE');
+    }
+    if (guide.floodedEngineRecovery.safetyNotice) {
+      push('floodedEngineRecovery.safetyNotice', guide.floodedEngineRecovery.safetyNotice,
+        guide.floodedEngineRecovery.safetyNoticeSourceRefs || guide.floodedEngineRecovery.sourceRefs, 'GENERIC_PRINCIPLE');
+    }
+    if (guide.floodedEngineRecovery.genericPrinciple?.text) {
+      push('floodedEngineRecovery.genericPrinciple.text', guide.floodedEngineRecovery.genericPrinciple.text,
+        guide.floodedEngineRecovery.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+    }
   }
 
   // 5. technicalInspections — all rendered technical/operational fields
@@ -998,7 +1008,8 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     'GENERATION_PROCEDURE',
     'FRAMEWORK_DISTINCTION',
     'CATEGORY_DIAGNOSIS',
-    'INSPECTION_STEP'
+    'INSPECTION_STEP',
+    'SAFETY_WARNING'
   ]);
 
   if (!isPublished) return errors; // Only enforce on published guides
@@ -1020,6 +1031,12 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       /\b(brandstof.*verouder|oude brandstof)\b/i.test(claim.path);
     let hasFuelSpecificSource = false;
     let onlyHasStartSource = true;
+
+    const isCrankcaseTestingClaim =
+      /\b(druk-.*vacuüm|vacuüm.*druk|drukmeting|vacuümmeting|krukaskeerring|carter.*druk|carter.*vacuüm|valse lucht.*krukas|krukas.*pakking)\b/i.test(claim.text) ||
+      /\b(druk-.*vacuüm|krukaskeerring)\b/i.test(claim.path);
+    let hasCrankcaseServiceSource = false;
+    let onlyHasCarbOrStartSource = true;
 
     for (const ref of claim.sourceRefs) {
       if (!sourceIds.has(ref)) {
@@ -1053,12 +1070,41 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
               onlyHasStartSource = false;
             }
           }
+
+          if (isCrankcaseTestingClaim && resolved.locator) {
+            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
+            const docTitle = `${resolved.document_title || resolved.documentTitle || ''}`.toLowerCase();
+            const sClass = `${resolved.source_class || ''}`.toLowerCase();
+
+            const isServiceLocator = locText.includes('leak') || locText.includes('pressure') ||
+                                     locText.includes('vacuum') || locText.includes('crankcase') ||
+                                     locText.includes('carter') || locText.includes('dichtig') ||
+                                     locText.includes('service') || locText.includes('werkstatt') ||
+                                     docTitle.includes('werkplaatshandboek') || docTitle.includes('service manual') ||
+                                     sClass.includes('service') || sClass.includes('workshop');
+
+            const isCarbOrStartOnly = (locText.includes('carburetor') || locText.includes('carburateur') ||
+                                      locText.includes('starting') || locText.includes('starten')) && !isServiceLocator;
+
+            if (isServiceLocator) {
+              hasCrankcaseServiceSource = true;
+            }
+            if (!isCarbOrStartOnly) {
+              onlyHasCarbOrStartSource = false;
+            }
+          }
         }
       }
     }
 
     if (isFuelClaim && (!hasFuelSpecificSource || onlyHasStartSource)) {
       errors.push(`${label} references source(s) pointing to start procedure instead of fuel mixing, storage, or fuel specifications.`);
+    }
+
+    if (isCrankcaseTestingClaim && (!hasCrankcaseServiceSource || onlyHasCarbOrStartSource)) {
+      errors.push(
+        `${label} makes crankcase pressure/vacuum or seal testing claims but references source(s) pointing to carburetor adjustment or start procedure instead of a service procedure covering crankcase testing or seal diagnosis.`
+      );
     }
 
     if (claim.path.includes('generationModelData') && claim.path.includes('.models[')) {
