@@ -28,8 +28,14 @@ export const OFFICIAL_PRIMARY_DOCUMENTS = {
   '0458-573-8621-D': {
     documentNumber: '0458-573-8621-D',
     title: 'STIHL MS 261 Instruction Manual',
-    models: ['MS 261', 'MS 261 C-M']
-    // page_count omitted: no reliable repository authority fixture exists; resolver safely permits valid locators
+    models: ['MS 261', 'MS 261 C-M'],
+    page_count: 148
+  },
+  '0458-207-8321-B': {
+    documentNumber: '0458-207-8321-B',
+    title: 'STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual',
+    models: ['MS 170', 'MS 170 C', 'MS 180', 'MS 180 C'],
+    page_count: 52
   }
 };
 

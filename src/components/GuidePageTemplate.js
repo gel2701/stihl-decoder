@@ -287,13 +287,24 @@ function renderStructuredGuideBody(guide) {
                 Gedocumenteerde Fabrieksvoorbeelden per Model
               </h3>
               <div class="grid grid-cols-1 gap-4">
-                ${Object.values(guide.startProcedures.documentedExamples).map(ex => `
+                ${Object.values(guide.startProcedures.documentedExamples).map(ex => {
+                  const exampleSourceRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs) || [];
+                  const sourceLabels = exampleSourceRefs.map(ref => {
+                    const src = (guide.sources || []).find(s => (s.id || s.source_id) === ref);
+                    if (!src) return ref;
+                    const title = src.documentTitle || src.document_title || src.title || ref;
+                    const loc = formatLocator(src.locator);
+                    return loc ? `${title} (${loc})` : title;
+                  });
+                  const bronText = sourceLabels.length > 0 ? sourceLabels.join('; ') : (ex.sourceDoc || '');
+                  return `
                   <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
                     <div class="flex items-center justify-between flex-wrap gap-2 border-b border-gray-800 pb-2">
                       <h4 class="font-bold text-white text-sm sm:text-base text-orange-400">${ex.modelLabel}</h4>
+                      ${bronText ? `
                       <span class="px-2 py-0.5 rounded text-2xs font-mono font-semibold bg-gray-900 text-gray-300 border border-gray-700">
-                        Bron: ${ex.sourceDoc}
-                      </span>
+                        Bron: ${bronText}
+                      </span>` : ''}
                     </div>
                     ${ex.coldStartIntro ? `<p class="text-xs text-gray-400">${ex.coldStartIntro}</p>` : ''}
                     <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
@@ -305,7 +316,7 @@ function renderStructuredGuideBody(guide) {
                       `).join('')}
                     </ol>
                   </div>
-                `).join('')}
+                `;}).join('')}
               </div>
             </div>
           ` : ''}
@@ -382,14 +393,26 @@ function renderStructuredGuideBody(guide) {
                 Gedocumenteerde Ontzopingsprocedures per Model
               </h3>
               <div class="grid grid-cols-1 gap-4">
-                ${Object.values(guide.floodedEngineRecovery.documentedExamples).map(ex => `
+                ${Object.values(guide.floodedEngineRecovery.documentedExamples).map(ex => {
+                  const exampleSourceRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs) || [];
+                  const sourceLabels = exampleSourceRefs.map(ref => {
+                    const src = (guide.sources || []).find(s => (s.id || s.source_id) === ref);
+                    if (!src) return ref;
+                    const title = src.documentTitle || src.document_title || src.title || ref;
+                    const loc = formatLocator(src.locator);
+                    return loc ? `${title} (${loc})` : title;
+                  });
+                  const bronText = sourceLabels.length > 0 ? sourceLabels.join('; ') : (ex.sourceDoc || '');
+                  return `
                   <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-3">
                     <div class="flex items-center justify-between flex-wrap gap-2 border-b border-gray-800 pb-2">
                       <h4 class="font-bold text-white text-sm sm:text-base text-orange-400">${ex.modelLabel}</h4>
+                      ${bronText ? `
                       <span class="px-2 py-0.5 rounded text-2xs font-mono font-semibold bg-gray-900 text-gray-300 border border-gray-700">
-                        Bron: ${ex.sourceDoc}
-                      </span>
+                        Bron: ${bronText}
+                      </span>` : ''}
                     </div>
+                    ${ex.intro ? `<p class="text-xs text-gray-400">${ex.intro}</p>` : ''}
                     <ol class="space-y-3 list-decimal list-inside text-xs sm:text-sm text-gray-300">
                       ${ex.steps.map(s => `
                         <li class="pl-1 leading-relaxed">
@@ -399,7 +422,7 @@ function renderStructuredGuideBody(guide) {
                       `).join('')}
                     </ol>
                   </div>
-                `).join('')}
+                `;}).join('')}
               </div>
             </div>
           ` : ''}

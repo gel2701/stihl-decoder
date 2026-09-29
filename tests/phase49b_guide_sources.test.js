@@ -872,8 +872,9 @@ if (entry026) {
 }
 assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-259-8621-D'].page_count, 88, '0458-259-8621-D page_count must match Phase 35 authority (88 pages)');
 assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-452-8621-J'].page_count, 88, '0458-452-8621-J page_count must match Phase 35 authority (88 pages)');
-assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-573-8621-D'].page_count, undefined, '0458-573-8621-D must omit page_count due to lack of repository authority fixture');
-console.log('  ✅ Test 13 Passed: Canonical page_count properties strictly match authority fixtures, ungrounded estimates safely omitted.');
+assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-573-8621-D'].page_count, 148, '0458-573-8621-D page_count must match authoritative document fixture (148 pages)');
+assert.strictEqual(OFFICIAL_PRIMARY_DOCUMENTS['0458-207-8321-B'].page_count, 52, '0458-207-8321-B page_count must match authoritative document fixture (52 pages)');
+console.log('  ✅ Test 13 Passed: Canonical page_count properties strictly match authority fixtures.');
 
 // 14. Phase 49B-P-R4 Publication Authority & Parity Tests (T through Y)
 console.log('\n▶ Test 14: Phase 49B-P-R4 Publication Authority Regression Tests (T through Y)...');
@@ -2755,6 +2756,231 @@ console.log('\n▶ Test 33: Cylinder/Piston Mechanical Inspection Grounding (Thr
     const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
     assert.strictEqual(errs.length, 0, `Mechanical compression claim citing mechanical service locator must pass. Got: ${JSON.stringify(errs)}`);
     console.log('  ✅ Case BA3 Passed: Cylinder/piston procedure claim citing mechanical service locator passes cleanly.');
+  }
+}
+
+// ============================================================
+// TEST 34: MS 261 Page Bounds & Fail-Closed Unbounded Rejection (Thread 28)
+// ============================================================
+console.log('\n▶ Test 34: MS 261 Page Bounds & Fail-Closed Unbounded Rejection (Thread 28)...');
+
+{
+  const baseMs261 = {
+    id: 'src-ms261-bound-test',
+    source_id: 'src-ms261-bound-test',
+    canonical_document_id: '0458-573-8621-D',
+    publication_id: '0458-573-8621-D',
+    document_title: 'STIHL MS 261 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['MS 261'],
+    modelScope: 'STIHL MS 261'
+  };
+
+  // BB1: Page 34 (within 148 pages) -> PASS
+  {
+    const src = { ...baseMs261, locator: { page: 34, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    assert.strictEqual(res.resolved, true);
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    console.log('  ✅ Case BB1 Passed: Page 34 within 148-page limit resolves to LOCATOR_VERIFIED.');
+  }
+
+  // BB2: Page 148 (upper boundary) -> PASS
+  {
+    const src = { ...baseMs261, locator: { page: 148, section: 'Specifications', heading: 'Technical Data' } };
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    assert.strictEqual(res.resolved, true);
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    console.log('  ✅ Case BB2 Passed: Page 148 at upper boundary resolves cleanly.');
+  }
+
+  // BB3: Page 149 (exceeds 148 pages) -> FAIL
+  {
+    const src = { ...baseMs261, locator: { page: 149, section: 'Specifications', heading: 'Technical Data' } };
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    assert.strictEqual(res.resolved, false);
+    assert.ok(
+      res.errors.some(e => e.includes('exceeds known document page count (148)')),
+      `Expected 148 page count limit error, got: ${JSON.stringify(res.errors)}`
+    );
+    console.log('  ✅ Case BB3 Passed: Page 149 correctly rejected as exceeding 148 pages.');
+  }
+
+  // BB4: Impossible page 999999 -> FAIL
+  {
+    const src = { ...baseMs261, locator: { page: 999999, section: 'Specifications', heading: 'Technical Data' } };
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    assert.strictEqual(res.resolved, false);
+    assert.ok(
+      res.errors.some(e => e.includes('exceeds known document page count (148)')),
+      `Expected page 999999 rejection, got: ${JSON.stringify(res.errors)}`
+    );
+    console.log('  ✅ Case BB4 Passed: Page 999999 correctly rejected by 148-page upper ceiling.');
+  }
+
+  // BB5: Custom document without page_count fails closed on published guide with page locator
+  {
+    const unboundedDoc = {
+      id: 'src-unbounded-test',
+      source_id: 'src-unbounded-test',
+      canonical_document_id: '0458-999-9999',
+      publication_id: '0458-999-9999',
+      document_title: 'STIHL Imaginary Unbounded Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      model_scope: ['026'],
+      modelScope: 'STIHL 026',
+      locator: { page: 50, section: 'Test Section', heading: 'Test Heading' }
+    };
+    const res = resolveGuideSource(unboundedDoc, { throwOnError: false, isPublishedGuide: true });
+    assert.strictEqual(res.resolved, false);
+    assert.ok(
+      res.errors.some(e => e.includes('does not exist in document registry') || e.includes('lacks an authoritative document page count')),
+      `Expected rejection for unbounded manual, got: ${JSON.stringify(res.errors)}`
+    );
+    console.log('  ✅ Case BB5 Passed: Unbounded manual fails closed on published guide.');
+  }
+}
+
+// ============================================================
+// TEST 35: Dynamic Procedure Source Resolution & Free-Text Rejection (Thread 29)
+// ============================================================
+console.log('\n▶ Test 35: Dynamic Procedure Source Resolution & Free-Text Rejection (Thread 29)...');
+
+{
+  const { stihlKettingzaagStartNietGuide } = await import('../src/content/guides/stihl-kettingzaag-start-niet.js');
+
+  const html = renderGuidePageHtml(stihlKettingzaagStartNietGuide, database, baseUrl);
+  // Check that the rendered HTML contains the dynamically derived source titles and locators
+  assert.ok(html.includes('Bron: STIHL 026 Instruction Manual (p. 38 · Starting / Stopping the Engine · Starting the Engine)'), 'Must render dynamically derived source label for 026 start');
+  assert.ok(html.includes('Bron: STIHL MS 261 Instruction Manual (p. 34 · Starting / Stopping the Engine · Starting the Engine)'), 'Must render dynamically derived source label for MS 261 start');
+  assert.ok(html.includes('Bron: STIHL 026 Instruction Manual (p. 42 · Starting / Stopping the Engine · If the Engine Does Not Start)'), 'Must render dynamically derived source label for 026 flooded recovery');
+  console.log('  ✅ Case BC1 Passed: Procedure example Bron headers dynamically resolve from canonical source declarations.');
+
+  // BC2: Published guide documentedExample without sourceRefs fails closed
+  {
+    const pubGuide = {
+      slug: 'test-no-ref-example',
+      publicationStatus: 'PUBLISHED',
+      sources: [
+        {
+          id: 'src-test-ex',
+          source_id: 'src-test-ex',
+          canonical_document_id: '0458-133-3021',
+          publication_id: '0458-133-3021',
+          document_title: 'STIHL 026 Instruction Manual',
+          source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+          model_scope: ['026'],
+          locator: { page: 38, section: 'Starting', heading: 'Starting' }
+        }
+      ],
+      startProcedures: {
+        documentedExamples: {
+          testExample: {
+            modelLabel: 'Test Saw',
+            sourceDoc: 'Invented Manual p. 99',
+            coldStartIntro: 'Starten.',
+            steps: [{ step: 1, title: 'Step 1', text: 'Step text' }]
+          }
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(pubGuide, new Map(), { isPublished: true });
+    assert.ok(errs.length > 0, 'Documented example without sourceRefs must fail closed');
+    assert.ok(
+      errs.some(e => e.includes('startProcedures.documentedExamples.testExample has no sourceRefs')),
+      `Expected missing sourceRefs error, got: ${JSON.stringify(errs)}`
+    );
+    console.log('  ✅ Case BC2 Passed: Published documented example without sourceRefs fails closed.');
+  }
+}
+
+// ============================================================
+// TEST 36: Procedure Introduction Provenance Enforcement (Thread 30)
+// ============================================================
+console.log('\n▶ Test 36: Procedure Introduction Provenance Enforcement (Thread 30)...');
+
+{
+  const validSource = {
+    id: 'src-intro-test',
+    source_id: 'src-intro-test',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    locator: { page: 38, section: 'Starting', heading: 'Starting' }
+  };
+  const resolved = resolveGuideSource(validSource, { throwOnError: false, isPublishedGuide: true });
+  assert.strictEqual(resolved.resolved, true);
+  const sMap = new Map();
+  sMap.set('src-intro-test', resolved.canonicalSource);
+
+  // BD1: coldStart.intro without sourceRefs fails closed
+  {
+    const pubGuide = {
+      slug: 'test-coldstart-intro-fail',
+      publicationStatus: 'PUBLISHED',
+      sources: [validSource],
+      startProcedures: {
+        coldStart: {
+          title: 'Koud starten',
+          intro: 'Startinstructie zonder bron.',
+          steps: [{ title: 'Step 1', text: 'Step text', sourceRefs: ['src-intro-test'] }]
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'coldStart.intro without sourceRefs must fail closed');
+    assert.ok(
+      errs.some(e => e.includes('startProcedures.coldStart.intro has no sourceRefs')),
+      `Expected coldStart.intro missing sourceRefs error, got: ${JSON.stringify(errs)}`
+    );
+    console.log('  ✅ Case BD1 Passed: coldStart.intro without sourceRefs fails closed in validateProcedureStepsProvenance.');
+  }
+
+  // BD2: documentedExamples coldStartIntro collected and validated as operational claim
+  {
+    const pubGuide = {
+      slug: 'test-doc-intro-claims',
+      publicationStatus: 'PUBLISHED',
+      sources: [validSource],
+      startProcedures: {
+        documentedExamples: {
+          testSaw: {
+            modelLabel: 'Test Saw',
+            sourceRefs: ['src-intro-test'],
+            coldStartIntro: 'Start de machine conform handleiding.',
+            steps: [{ step: 1, title: 'Step 1', text: 'Step text', sourceRefs: ['src-intro-test'] }]
+          }
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Operational claim validation on intro with valid sourceRefs must pass: ${JSON.stringify(errs)}`);
+    console.log('  ✅ Case BD2 Passed: documentedExamples intro with sourceRefs passes operational claim validation.');
+  }
+
+  // BD3: warmStart.intro without sourceRefs fails closed
+  {
+    const pubGuide = {
+      slug: 'test-warmstart-intro-fail',
+      publicationStatus: 'PUBLISHED',
+      sources: [validSource],
+      startProcedures: {
+        warmStart: {
+          title: 'Warm starten',
+          intro: 'Warme startinstructie zonder bron.',
+          steps: [{ title: 'Step 1', text: 'Step text', sourceRefs: ['src-intro-test'] }]
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'warmStart.intro without sourceRefs must fail closed');
+    assert.ok(
+      errs.some(e => e.includes('startProcedures.warmStart.intro has no sourceRefs')),
+      `Expected warmStart.intro missing sourceRefs error, got: ${JSON.stringify(errs)}`
+    );
+    console.log('  ✅ Case BD3 Passed: warmStart.intro without sourceRefs fails closed in validateProcedureStepsProvenance.');
   }
 }
 

@@ -521,6 +521,8 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
         errors.push(`Invalid locator page ${locator.page}. Page must be a positive integer (no fractions, no strings).`);
       } else if (knownPageCount && locator.page > knownPageCount) {
         errors.push(`Locator page ${locator.page} exceeds known document page count (${knownPageCount}) for source "${targetDocId}".`);
+      } else if (!knownPageCount && (options.isPublishedGuide || options.enforceOfficialAuthority) && !isStandardOrBrandProtection) {
+        errors.push(`Source "${targetDocId}" lacks an authoritative document page count; unbounded page locators are forbidden on published guides.`);
       }
     }
 
@@ -535,7 +537,8 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
       errors.push(`Invalid locator heading label. Heading must be a non-empty trimmed string.`);
     }
 
-    const hasValidPage = Number.isInteger(locator.page) && locator.page > 0 && (!knownPageCount || locator.page <= knownPageCount);
+    const hasValidPage = Number.isInteger(locator.page) && locator.page > 0 &&
+      (!knownPageCount ? !(options.isPublishedGuide || options.enforceOfficialAuthority) : locator.page <= knownPageCount);
     const hasMeaningfulText = isNonEmptyString(locator.section) || isNonEmptyString(locator.heading);
 
     if (hasValidPage && hasMeaningfulText) {
@@ -618,7 +621,7 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
 export function resolveGuidePublicationState(guide, options = {}) {
   const slug = guide?.slug || null;
   const declaredStatus = guide?.publicationStatus || null;
-  const routeStatus = options.routeStatus || (slug ? getGuidePublicationStatus(slug) : 'HOLD');
+  const routeStatus = options.routeStatus || (options.isPublished !== undefined ? (options.isPublished ? 'PUBLISHED' : 'HOLD') : (slug ? getGuidePublicationStatus(slug) : 'HOLD'));
   const isPublished = (routeStatus === 'PUBLISHED');
   const statusMatches = Boolean(declaredStatus && routeStatus && declaredStatus === routeStatus);
 
@@ -638,7 +641,7 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
   const errors = [];
   const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
   const pubState = resolveGuidePublicationState(guide, options);
-  const isPublished = pubState.isPublished;
+  const isPublished = (options.isPublished !== undefined) ? options.isPublished : pubState.isPublished;
 
   // Populate resolvedSources if omitted
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
@@ -697,20 +700,53 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
   if (guide.startProcedures) {
     if (guide.startProcedures.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.startProcedures.documentedExamples)) {
+        const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
+        if (isPublished && (!exRefs || exRefs.length === 0)) {
+          errors.push(`startProcedures.documentedExamples.${key} has no sourceRefs.`);
+        }
+        if (isPublished && ex.coldStartIntro && !ex.sourceRefs && !ex.coldStartIntroSourceRefs) {
+          errors.push(`startProcedures.documentedExamples.${key}.coldStartIntro has no sourceRefs.`);
+        }
+        if (isPublished && ex.warmStartIntro && !ex.sourceRefs && !ex.warmStartIntroSourceRefs) {
+          errors.push(`startProcedures.documentedExamples.${key}.warmStartIntro has no sourceRefs.`);
+        }
         checkSteps(ex.steps, `startProcedures.documentedExamples.${key}`, { claimType: 'START_PROCEDURE' });
       }
     }
-    if (guide.startProcedures.coldStart && guide.startProcedures.coldStart.steps) {
-      checkSteps(guide.startProcedures.coldStart.steps, 'startProcedures.coldStart', { claimType: 'START_PROCEDURE' });
+    if (guide.startProcedures.coldStart) {
+      if (isPublished && guide.startProcedures.coldStart.intro) {
+        const introRefs = guide.startProcedures.coldStart.introSourceRefs || guide.startProcedures.coldStart.sourceRefs;
+        if (!introRefs || introRefs.length === 0) {
+          errors.push(`startProcedures.coldStart.intro has no sourceRefs.`);
+        }
+      }
+      if (guide.startProcedures.coldStart.steps) {
+        checkSteps(guide.startProcedures.coldStart.steps, 'startProcedures.coldStart', { claimType: 'START_PROCEDURE' });
+      }
     }
-    if (guide.startProcedures.warmStart && guide.startProcedures.warmStart.steps) {
-      checkSteps(guide.startProcedures.warmStart.steps, 'startProcedures.warmStart', { claimType: 'START_PROCEDURE' });
+    if (guide.startProcedures.warmStart) {
+      if (isPublished && guide.startProcedures.warmStart.intro) {
+        const introRefs = guide.startProcedures.warmStart.introSourceRefs || guide.startProcedures.warmStart.sourceRefs;
+        if (!introRefs || introRefs.length === 0) {
+          errors.push(`startProcedures.warmStart.intro has no sourceRefs.`);
+        }
+      }
+      if (guide.startProcedures.warmStart.steps) {
+        checkSteps(guide.startProcedures.warmStart.steps, 'startProcedures.warmStart', { claimType: 'START_PROCEDURE' });
+      }
     }
   }
 
   if (guide.floodedEngineRecovery) {
     if (guide.floodedEngineRecovery.documentedExamples) {
       for (const [key, ex] of Object.entries(guide.floodedEngineRecovery.documentedExamples)) {
+        const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
+        if (isPublished && (!exRefs || exRefs.length === 0)) {
+          errors.push(`floodedEngineRecovery.documentedExamples.${key} has no sourceRefs.`);
+        }
+        if (isPublished && ex.intro && !ex.sourceRefs && !ex.introSourceRefs) {
+          errors.push(`floodedEngineRecovery.documentedExamples.${key}.intro has no sourceRefs.`);
+        }
         checkSteps(ex.steps, `floodedEngineRecovery.documentedExamples.${key}`, { claimType: 'FLOODED_RECOVERY' });
       }
     }
@@ -868,13 +904,38 @@ export function collectRenderedOperationalClaims(guide) {
     });
   }
 
-  // 3. startProcedures.genericPrinciple.text
-  if (guide.startProcedures?.genericPrinciple?.text) {
-    push('startProcedures.genericPrinciple.text', guide.startProcedures.genericPrinciple.text,
-      guide.startProcedures.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+  // 3. startProcedures (genericPrinciple.text, documentedExamples intros, coldStart/warmStart intros)
+  if (guide.startProcedures) {
+    if (guide.startProcedures.genericPrinciple?.text) {
+      push('startProcedures.genericPrinciple.text', guide.startProcedures.genericPrinciple.text,
+        guide.startProcedures.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+    }
+    if (guide.startProcedures.documentedExamples) {
+      for (const [key, ex] of Object.entries(guide.startProcedures.documentedExamples)) {
+        const exRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs);
+        if (ex.coldStartIntro) {
+          push(`startProcedures.documentedExamples.${key}.coldStartIntro`, ex.coldStartIntro,
+            ex.coldStartIntroSourceRefs || ex.sourceRefs, 'PROCEDURE_INTRO');
+        }
+        if (ex.warmStartIntro) {
+          push(`startProcedures.documentedExamples.${key}.warmStartIntro`, ex.warmStartIntro,
+            ex.warmStartIntroSourceRefs || ex.sourceRefs, 'PROCEDURE_INTRO');
+        }
+      }
+    }
+    if (guide.startProcedures.coldStart?.intro) {
+      const introRefs = guide.startProcedures.coldStart.introSourceRefs || guide.startProcedures.coldStart.sourceRefs;
+      push('startProcedures.coldStart.intro', guide.startProcedures.coldStart.intro,
+        introRefs, 'PROCEDURE_INTRO');
+    }
+    if (guide.startProcedures.warmStart?.intro) {
+      const introRefs = guide.startProcedures.warmStart.introSourceRefs || guide.startProcedures.warmStart.sourceRefs;
+      push('startProcedures.warmStart.intro', guide.startProcedures.warmStart.intro,
+        introRefs, 'PROCEDURE_INTRO');
+    }
   }
 
-  // 4. floodedEngineRecovery (explanation, safetyNotice, genericPrinciple.text)
+  // 4. floodedEngineRecovery (explanation, safetyNotice, genericPrinciple.text, documentedExamples intro)
   if (guide.floodedEngineRecovery) {
     if (guide.floodedEngineRecovery.explanation) {
       push('floodedEngineRecovery.explanation', guide.floodedEngineRecovery.explanation,
@@ -887,6 +948,14 @@ export function collectRenderedOperationalClaims(guide) {
     if (guide.floodedEngineRecovery.genericPrinciple?.text) {
       push('floodedEngineRecovery.genericPrinciple.text', guide.floodedEngineRecovery.genericPrinciple.text,
         guide.floodedEngineRecovery.genericPrinciple.sourceRefs, 'GENERIC_PRINCIPLE');
+    }
+    if (guide.floodedEngineRecovery.documentedExamples) {
+      for (const [key, ex] of Object.entries(guide.floodedEngineRecovery.documentedExamples)) {
+        if (ex.intro) {
+          push(`floodedEngineRecovery.documentedExamples.${key}.intro`, ex.intro,
+            ex.introSourceRefs || ex.sourceRefs, 'PROCEDURE_INTRO');
+        }
+      }
     }
   }
 
@@ -1026,7 +1095,8 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     'FRAMEWORK_DISTINCTION',
     'CATEGORY_DIAGNOSIS',
     'INSPECTION_STEP',
-    'SAFETY_WARNING'
+    'SAFETY_WARNING',
+    'PROCEDURE_INTRO'
   ]);
 
   if (!isPublished) return errors; // Only enforce on published guides

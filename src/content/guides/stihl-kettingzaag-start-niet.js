@@ -276,6 +276,7 @@ export const stihlKettingzaagStartNietGuide = {
     documentedExamples: {
       stihl026: {
         modelLabel: 'STIHL 026 (Klassieke Kettingzaag met Master Control)',
+        sourceRefs: ['src-0458-133-3021-start'],
         sourceDoc: 'STIHL 026 Instruction Manual (0458-133-3021, p. 38)',
         coldStartIntro: 'Koud starten volgens officiële handleiding STIHL 026:',
         steps: [
@@ -313,6 +314,7 @@ export const stihlKettingzaagStartNietGuide = {
       },
       stihlMs261: {
         modelLabel: 'STIHL MS 261 / MS 261 C-M (Professionele Zaag)',
+        sourceRefs: ['src-0458-573-8621-d'],
         sourceDoc: 'STIHL MS 261 Instruction Manual (0458-573-8621-D, p. 34)',
         coldStartIntro: 'Starten volgens officiële handleiding STIHL MS 261 / MS 261 C-M:',
         steps: [
@@ -354,6 +356,7 @@ export const stihlKettingzaagStartNietGuide = {
     documentedExamples: {
       stihl026: {
         modelLabel: 'Gedocumenteerd voorbeeld: STIHL 026 ontzopingsprocedure',
+        sourceRefs: ['src-0458-133-3021-flooded'],
         sourceDoc: 'STIHL 026 Instruction Manual (0458-133-3021, p. 42)',
         steps: [
           {
