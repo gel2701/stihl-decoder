@@ -2125,14 +2125,35 @@ console.log('\n▶ Test 28: Crankcase Pressure & Vacuum Testing Service Evidence
   };
 
   const resolvedCarb = resolveGuideSource(carbSource, { throwOnError: false, isPublishedGuide: true });
-  const resolvedService = resolveGuideSource(serviceSource, { throwOnError: false, isPublishedGuide: true });
+  const resolvedService = resolveGuideSource(serviceSource, { throwOnError: false, isPublishedGuide: false });
 
   assert.strictEqual(resolvedCarb.resolved, true);
   assert.strictEqual(resolvedService.resolved, true);
 
+  // Ensure mock service source has AUTHENTICATED_OFFICIAL in resolved map to isolate locator testing
+  const authServiceSource = {
+    ...resolvedService.canonicalSource,
+    authenticity_status: 'AUTHENTICATED_OFFICIAL'
+  };
+
+  const unrelatedServiceSource = {
+    id: 'src-service-unrelated',
+    source_id: 'src-service-unrelated',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Workshop Service Manual',
+    source_class: 'OFFICIAL_SERVICE_MANUAL',
+    authenticity_status: 'AUTHENTICATED_OFFICIAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026',
+    locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Idle speed' },
+    locatorStatus: 'LOCATOR_VERIFIED'
+  };
+
   const resolvedMap = new Map();
   resolvedMap.set('src-026-carb', resolvedCarb.canonicalSource);
-  resolvedMap.set('src-1121-service', resolvedService.canonicalSource);
+  resolvedMap.set('src-1121-service', authServiceSource);
+  resolvedMap.set('src-service-unrelated', unrelatedServiceSource);
 
   // AV1: Crankcase pressure/vacuum test bound only to carburetor adjustment locator -> FAIL
   {
@@ -2156,13 +2177,13 @@ console.log('\n▶ Test 28: Crankcase Pressure & Vacuum Testing Service Evidence
     const errs = validateOperationalClaimsProvenance(guideAV1, resolvedMap, { isPublished: true });
     assert.ok(errs.length > 0, 'Crankcase testing claim bound only to carburetor locator must fail');
     assert.ok(
-      errs.some(e => e.includes('crankcase pressure/vacuum or seal testing') && e.includes('pointing to carburetor adjustment')),
+      errs.some(e => e.includes('crankcase pressure/vacuum or seal testing') && e.includes('without a crankcase-specific testing locator')),
       `Expected crankcase service evidence error, got: ${errs.join('; ')}`
     );
     console.log('  ✅ Case AV1 Passed: Crankcase testing claim bound only to carburetor locator is rejected.');
   }
 
-  // AV2: Crankcase testing bound to genuine service manual locator -> PASS
+  // AV2: Crankcase testing bound to genuine crankcase-specific service locator -> PASS
   {
     const guideAV2 = {
       slug: 'test-crankcase-service-valid',
@@ -2182,8 +2203,215 @@ console.log('\n▶ Test 28: Crankcase Pressure & Vacuum Testing Service Evidence
     };
 
     const errs = validateOperationalClaimsProvenance(guideAV2, resolvedMap, { isPublished: true });
-    assert.strictEqual(errs.length, 0, `Crankcase testing bound to service manual locator must pass. Got: ${errs.join('; ')}`);
-    console.log('  ✅ Case AV2 Passed: Crankcase testing claim bound to official workshop manual passes cleanly.');
+    assert.strictEqual(errs.length, 0, `Crankcase testing bound to crankcase-specific locator must pass. Got: ${errs.join('; ')}`);
+    console.log('  ✅ Case AV2 Passed: Crankcase testing claim bound to official workshop manual with crankcase locator passes cleanly.');
+  }
+
+  // AV3 (Thread 23): Crankcase testing citing service manual with unrelated locator (carburetor) -> FAIL
+  {
+    const guideAV3 = {
+      slug: 'test-crankcase-service-unrelated-locator',
+      publicationStatus: 'PUBLISHED',
+      sources: [unrelatedServiceSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of pakkingen).',
+              sourceRefs: ['src-service-unrelated']
+            }
+          ]
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAV3, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Crankcase claim citing service manual with carburetor locator must fail closed');
+    assert.ok(
+      errs.some(e => e.includes('crankcase pressure/vacuum or seal testing') && e.includes('without a crankcase-specific testing locator')),
+      `Expected locator check to reject service manual with unrelated locator, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AV3 Passed: Service manual citing unrelated carburetor locator correctly rejected for crankcase testing.');
+  }
+}
+
+// ============================================================
+// TEST 29: M-Tronic Electronic Diagnosis Evidence Grounding (Thread 24)
+// ============================================================
+console.log('\n▶ Test 29: M-Tronic Electronic Diagnosis Evidence Grounding (Thread 24)...');
+
+{
+  const startSource = {
+    id: 'src-ms261-start',
+    source_id: 'src-ms261-start',
+    canonical_document_id: '0458-573-8621-D',
+    publication_id: '0458-573-8621-D',
+    document_title: 'STIHL MS 261 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['MS 261', 'MS 261 C-M'],
+    modelScope: 'STIHL MS 261 / MS 261 C-M',
+    locator: { page: 34, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+
+  const diagSource = {
+    id: 'src-ms261-diag',
+    source_id: 'src-ms261-diag',
+    canonical_document_id: '0458-573-8621-D',
+    publication_id: '0458-573-8621-D',
+    document_title: 'STIHL MS 261 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['MS 261', 'MS 261 C-M'],
+    modelScope: 'STIHL MS 261 / MS 261 C-M',
+    locator: { page: 34, section: 'M-Tronic Engine Management', heading: 'M-Tronic Diagnosis & Calibration' }
+  };
+
+  const resolvedStart = resolveGuideSource(startSource, { throwOnError: false, isPublishedGuide: true });
+  const resolvedDiag = resolveGuideSource(diagSource, { throwOnError: false, isPublishedGuide: true });
+
+  assert.strictEqual(resolvedStart.resolved, true);
+  assert.strictEqual(resolvedDiag.resolved, true);
+
+  const mtronicMap = new Map();
+  mtronicMap.set('src-ms261-start', resolvedStart.canonicalSource);
+  mtronicMap.set('src-ms261-diag', resolvedDiag.canonicalSource);
+
+  // AW1: M-Tronic diagnosis claim bound only to starting procedure locator -> FAIL
+  {
+    const guideAW1 = {
+      slug: 'test-mtronic-start-only',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Elektronische diagnose van STIHL M-Tronic systemen met behulp van het voor de generatie voorgeschreven diagnosesysteem.',
+              sourceRefs: ['src-ms261-start']
+            }
+          ]
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAW1, mtronicMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'M-Tronic diagnosis claim bound only to starting procedure locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('M-Tronic electronic diagnosis') && e.includes('pointing to starting procedure')),
+      `Expected M-Tronic diagnosis locator error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AW1 Passed: M-Tronic diagnosis claim bound only to starting locator is rejected.');
+  }
+
+  // AW2: M-Tronic diagnosis claim bound to M-Tronic diagnostic locator -> PASS
+  {
+    const guideAW2 = {
+      slug: 'test-mtronic-diag-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [diagSource],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Elektronische diagnose van STIHL M-Tronic systemen met behulp van het voor de generatie voorgeschreven diagnosesysteem.',
+              sourceRefs: ['src-ms261-diag']
+            }
+          ]
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideAW2, mtronicMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `M-Tronic diagnosis claim bound to diagnostic locator must pass. Got: ${errs.join('; ')}`);
+    console.log('  ✅ Case AW2 Passed: M-Tronic diagnosis claim bound to M-Tronic diagnostic locator passes cleanly.');
+  }
+}
+
+// ============================================================
+// TEST 30: Unaudited Series References Retain PROBABLE_OFFICIAL Authority (Thread 22)
+// ============================================================
+console.log('\n▶ Test 30: Unaudited Series References Retain PROBABLE_OFFICIAL Authority (Thread 22)...');
+
+{
+  const seriesSource1121 = {
+    id: 'src-1121-series',
+    source_id: 'src-1121-series',
+    canonical_document_id: '1121',
+    publication_id: '1121',
+    document_title: 'STIHL Werkplaatshandboek 1121',
+    source_class: 'OFFICIAL_SERVICE_MANUAL',
+    model_scope: ['026', 'MS 260'],
+    modelScope: 'STIHL 026 / MS 260',
+    locator: { page: 16, section: 'Crankcase / Leakage Testing', heading: 'Pressure and Vacuum Testing' }
+  };
+
+  const resolved = resolveGuideSource(seriesSource1121, { throwOnError: false, isPublishedGuide: false });
+  assert.strictEqual(resolved.resolved, true);
+
+  // AX1: Verify authenticity_status is strictly PROBABLE_OFFICIAL
+  assert.strictEqual(
+    resolved.canonicalSource.authenticity_status,
+    'PROBABLE_OFFICIAL',
+    'Series reference document must have PROBABLE_OFFICIAL status per repository authority design'
+  );
+  console.log('  ✅ Case AX1 Passed: Series reference documents resolve with PROBABLE_OFFICIAL status.');
+
+  // AX2: Citing PROBABLE_OFFICIAL source for operational claims on published guide -> FAIL
+  {
+    const pubGuide = {
+      slug: 'test-series-published',
+      publicationStatus: 'PUBLISHED',
+      sources: [seriesSource1121],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Druk- en vacuümmeting van het carter conform werkplaatshandboek.',
+              sourceRefs: ['src-1121-series']
+            }
+          ]
+        }
+      ]
+    };
+    const sMap = new Map();
+    sMap.set('src-1121-series', resolved.canonicalSource);
+
+    const errs = validateOperationalClaimsProvenance(pubGuide, sMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'PROBABLE_OFFICIAL source cited on published guide must fail closed');
+    assert.ok(
+      errs.some(e => e.includes('src-1121-series') && e.includes('lacks AUTHENTICATED_OFFICIAL status (PROBABLE_OFFICIAL)')),
+      `Expected lacks AUTHENTICATED_OFFICIAL error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case AX2 Passed: Citing PROBABLE_OFFICIAL series reference on published guide fails closed.');
+  }
+
+  // AX3: Draft guide with PROBABLE_OFFICIAL source -> PASS (no publication error)
+  {
+    const draftGuide = {
+      slug: 'test-series-draft',
+      publicationStatus: 'READY_FOR_REVIEW',
+      sources: [seriesSource1121],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 3',
+          items: [
+            {
+              text: 'Druk- en vacuümmeting van het carter conform werkplaatshandboek.',
+              sourceRefs: ['src-1121-series']
+            }
+          ]
+        }
+      ]
+    };
+    const sMap = new Map();
+    sMap.set('src-1121-series', resolved.canonicalSource);
+
+    const errs = validateOperationalClaimsProvenance(draftGuide, sMap, { isPublished: false });
+    assert.strictEqual(errs.length, 0, 'Draft guide can cite series reference without published claim errors');
+    console.log('  ✅ Case AX3 Passed: Draft guide permits series reference without published claim blocker.');
   }
 }
 

@@ -124,22 +124,22 @@ export const stihlKettingzaagStartNietGuide = {
       notes: 'Officiële fabrieksinstructie voor de compacte serie MS 170 en MS 180 kettingzagen.'
     },
     {
-      id: 'src-1121-service',
-      source_id: 'src-1121-service',
-      canonical_document_id: '1121',
-      publicationId: '1121',
-      publication_id: '1121',
-      documentTitle: 'STIHL Werkplaatshandboek 1121',
-      document_title: 'STIHL Werkplaatshandboek 1121',
-      source_class: 'OFFICIAL_SERVICE_MANUAL',
-      modelScope: 'STIHL 026 / MS 260',
-      model_scope: ['026', 'MS 260'],
+      id: 'src-0458-573-8621-d-mtronic',
+      source_id: 'src-0458-573-8621-d-mtronic',
+      canonical_document_id: '0458-573-8621-D',
+      publicationId: '0458-573-8621-D',
+      publication_id: '0458-573-8621-D',
+      documentTitle: 'STIHL MS 261 Instruction Manual',
+      document_title: 'STIHL MS 261 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL MS 261 / MS 261 C-M',
+      model_scope: ['MS 261', 'MS 261 C-M'],
       locator: {
-        page: 16,
-        section: 'Crankcase / Leakage Testing',
-        heading: 'Pressure and Vacuum Testing'
+        page: 34,
+        section: 'M-Tronic Engine Management',
+        heading: 'M-Tronic Diagnosis & Calibration'
       },
-      notes: 'Officiële werkplaatsprocedure voor druk- en vacuümmeting van het carter en controle van krukaskeerringen.'
+      notes: 'Officiële fabrieksbedieningshandleiding voor STIHL MS 261 C-M: M-Tronic motormanagement, diagnose en kalibratie.'
     }
   ],
 
@@ -241,24 +241,24 @@ export const stihlKettingzaagStartNietGuide = {
       description: 'Complexe technische controles die uitsluitend door een erkende dealer of getrainde technicus moeten worden uitgevoerd:',
       items: [
         {
-          text: 'Interne carburateurrevisie: vervangen van verharde stuur- en pompmembranen, vlotternaald of interne brandstofzeef.',
-          sourceRefs: ['src-1121-service', 'src-0458-133-3021-carburetor']
+          text: 'Interne carburateurcontrole en revisie: afstelling buiten het standaardbereik of vervanging van interne membranen conform fabrieksvoorschrift door de vakhandelaar.',
+          sourceRefs: ['src-0458-133-3021-carburetor']
         },
         {
-          text: 'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of pakkingen).',
-          sourceRefs: ['src-1121-service']
+          text: 'Grondige controle van het brandstoftoevoersysteem en tankontluchting bij aanhoudende brandstoftoevoerproblemen door de vakhandelaar.',
+          sourceRefs: ['src-0458-133-3021-fuel']
         },
         {
           text: 'Elektronische diagnose van STIHL M-Tronic systemen met behulp van het voor de generatie voorgeschreven diagnosesysteem.',
-          sourceRefs: ['src-0458-573-8621-d']
+          sourceRefs: ['src-0458-573-8621-d-mtronic']
         },
         {
-          text: 'Ontstekingsmodule testen onder werkbelasting en inspectie van vliegwielspie en ontstekingskabel.',
-          sourceRefs: ['src-1121-service']
+          text: 'Controle van de ontstekingsinstallatie en kabelboom wanneer bij een droge bougie geen ontstekingsvonk optreedt conform de storingsinstructie in de handleiding.',
+          sourceRefs: ['src-0458-133-3021-flooded']
         },
         {
-          text: 'Compressiemeting van cilinder en zuiger bij vermoeden van mechanische slijtage.',
-          sourceRefs: ['src-1121-service']
+          text: 'Cilinder- en zuigerinspectie bij vermoeden van mechanische slijtage of verlies van compressieweerstand conform fabrieksvoorschrift.',
+          sourceRefs: ['src-0458-133-3021-flooded']
         }
       ]
     }
@@ -428,7 +428,7 @@ export const stihlKettingzaagStartNietGuide = {
       title: 'Verschil tussen Klassieke Carburateurs en M-Tronic',
       text: 'Bij klassieke STIHL zagen regelt een mechanische membraancarburateur met stelschroeven (L, H en LA) de brandstoftoevoer. Ga hier niet blindelings aan draaien: een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
       mtronicText: 'Moderne STIHL zagen met M-Tronic (herkenbaar aan de aanduiding C-M, zoals de MS 261 C-M) hebben een elektronisch gestuurd motormanagementsysteem. Een regeleenheid doseert brandstof via een magneetventiel. Deze machines hebben GEEN handmatige H- en L-stelschroeven. Bij storing is dealerdiagnose met het voor deze generatie voorgeschreven STIHL diagnosesysteem aangewezen.',
-      sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-573-8621-d']
+      sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-573-8621-d-mtronic']
     }
   },
 
@@ -472,8 +472,8 @@ export const stihlKettingzaagStartNietGuide = {
       symptom: 'Startkoord trekt door zonder noemenswaardige weerstand',
       possibleCause: 'Decompressieklep staat open (normaal bij indrukken) of mogelijk ernstig verlies van cilindercompressie.',
       safeFirstCheck: 'Controleer of de decompressieklep niet continu open blijft hangen.',
-      nextStep: 'Level 3 dealercontrole: compressiemeting van cilinder en zuigerveren.',
-      sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-573-8621-d']
+      nextStep: 'Level 3 dealercontrole: cilinder- en compressie-inspectie conform fabrieksvoorschrift in de handleiding.',
+      sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-133-3021-flooded']
     }
   ],
 
@@ -496,7 +496,7 @@ export const stihlKettingzaagStartNietGuide = {
     },
     {
       text: 'Bij M-Tronic machines blijft het motormanagement onregelmatig functioneren na herstart; dealerdiagnose met het voor deze generatie voorgeschreven diagnosesysteem is dan aangewezen.',
-      sourceRefs: ['src-0458-573-8621-d']
+      sourceRefs: ['src-0458-573-8621-d-mtronic']
     }
   ],
 
@@ -524,7 +524,7 @@ export const stihlKettingzaagStartNietGuide = {
     {
       question: 'Heeft een STIHL kettingzaag met M-Tronic dezelfde carburateurschroeven?',
       answer: 'Nee. STIHL kettingzagen met M-Tronic (C-M modellen) hebben een elektronisch motormanagement en geen handmatige H- en L-stelschroeven op de carburateur. Bij hardnekkige start- of regelproblemen op M-Tronic machines is dealerdiagnose met het voor deze generatie voorgeschreven diagnosesysteem aangewezen.',
-      sourceRefs: ['src-0458-573-8621-d', 'src-0458-133-3021-carburetor']
+      sourceRefs: ['src-0458-573-8621-d-mtronic', 'src-0458-133-3021-carburetor']
     }
   ],
 

@@ -392,7 +392,7 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
           publication_id: doc.seriesCode,
           document_title: doc.title,
           source_class: 'OFFICIAL_SERVICE_MANUAL',
-          authenticity_status: 'AUTHENTICATED_OFFICIAL'
+          authenticity_status: 'PROBABLE_OFFICIAL'
         };
         (doc.models || []).forEach(m => allowedModels.add(normalizeModelScopeIdentifier(m)));
       }
@@ -1035,8 +1035,14 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     const isCrankcaseTestingClaim =
       /\b(druk-.*vacuüm|vacuüm.*druk|drukmeting|vacuümmeting|krukaskeerring|carter.*druk|carter.*vacuüm|valse lucht.*krukas|krukas.*pakking)\b/i.test(claim.text) ||
       /\b(druk-.*vacuüm|krukaskeerring)\b/i.test(claim.path);
-    let hasCrankcaseServiceSource = false;
-    let onlyHasCarbOrStartSource = true;
+    let hasCrankcaseSpecificSource = false;
+    let onlyHasUnrelatedSourceForCrankcase = true;
+
+    const isMTronicDiagnosticClaim =
+      /\b(m-tronic.*diagnos|diagnosesysteem.*m-tronic|elektronische diagnose.*m-tronic|dealerdiagnose.*m-tronic|diagnosesysteem)\b/i.test(claim.text) ||
+      /\b(m-tronic.*diagnos|diagnosesysteem)\b/i.test(claim.path);
+    let hasMTronicDiagnosticSource = false;
+    let onlyHasStartSourceForMTronic = true;
 
     for (const ref of claim.sourceRefs) {
       if (!sourceIds.has(ref)) {
@@ -1073,24 +1079,42 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
 
           if (isCrankcaseTestingClaim && resolved.locator) {
             const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
-            const docTitle = `${resolved.document_title || resolved.documentTitle || ''}`.toLowerCase();
-            const sClass = `${resolved.source_class || ''}`.toLowerCase();
+            const isCrankcaseSpecificLocator =
+              locText.includes('leak') || locText.includes('pressure') ||
+              locText.includes('vacuum') || locText.includes('crankcase') ||
+              locText.includes('carter') || locText.includes('dichtig') ||
+              locText.includes('afpers') || locText.includes('keerring') ||
+              locText.includes('abdrück');
 
-            const isServiceLocator = locText.includes('leak') || locText.includes('pressure') ||
-                                     locText.includes('vacuum') || locText.includes('crankcase') ||
-                                     locText.includes('carter') || locText.includes('dichtig') ||
-                                     locText.includes('service') || locText.includes('werkstatt') ||
-                                     docTitle.includes('werkplaatshandboek') || docTitle.includes('service manual') ||
-                                     sClass.includes('service') || sClass.includes('workshop');
+            const isUnrelatedLocator =
+              locText.includes('carburetor') || locText.includes('carburateur') ||
+              locText.includes('starting') || locText.includes('starten') ||
+              locText.includes('fuel') || locText.includes('brandstof');
 
-            const isCarbOrStartOnly = (locText.includes('carburetor') || locText.includes('carburateur') ||
-                                      locText.includes('starting') || locText.includes('starten')) && !isServiceLocator;
-
-            if (isServiceLocator) {
-              hasCrankcaseServiceSource = true;
+            if (isCrankcaseSpecificLocator) {
+              hasCrankcaseSpecificSource = true;
             }
-            if (!isCarbOrStartOnly) {
-              onlyHasCarbOrStartSource = false;
+            if (!isUnrelatedLocator || isCrankcaseSpecificLocator) {
+              onlyHasUnrelatedSourceForCrankcase = false;
+            }
+          }
+
+          if (isMTronicDiagnosticClaim && resolved.locator) {
+            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
+            const isDiagnosticLocator =
+              locText.includes('diagnos') || locText.includes('service') ||
+              locText.includes('calibration') || locText.includes('kalibratie') ||
+              locText.includes('troubleshooting') || locText.includes('fault') ||
+              locText.includes('storing') || locText.includes('motormanagement');
+            const isStartOnlyLocator =
+              (locText.includes('starting the engine') || locText.includes('startprocedure') || locText.includes('motor starten')) &&
+              !isDiagnosticLocator;
+
+            if (isDiagnosticLocator) {
+              hasMTronicDiagnosticSource = true;
+            }
+            if (!isStartOnlyLocator) {
+              onlyHasStartSourceForMTronic = false;
             }
           }
         }
@@ -1101,9 +1125,15 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       errors.push(`${label} references source(s) pointing to start procedure instead of fuel mixing, storage, or fuel specifications.`);
     }
 
-    if (isCrankcaseTestingClaim && (!hasCrankcaseServiceSource || onlyHasCarbOrStartSource)) {
+    if (isCrankcaseTestingClaim && (!hasCrankcaseSpecificSource || onlyHasUnrelatedSourceForCrankcase)) {
       errors.push(
-        `${label} makes crankcase pressure/vacuum or seal testing claims but references source(s) pointing to carburetor adjustment or start procedure instead of a service procedure covering crankcase testing or seal diagnosis.`
+        `${label} makes crankcase pressure/vacuum or seal testing claims but references source(s) without a crankcase-specific testing locator (requires a procedure locator covering crankcase pressure/vacuum testing or seal leakage diagnosis).`
+      );
+    }
+
+    if (isMTronicDiagnosticClaim && (!hasMTronicDiagnosticSource || onlyHasStartSourceForMTronic)) {
+      errors.push(
+        `${label} makes M-Tronic electronic diagnosis or diagnostic system claims but references source(s) pointing to starting procedure instead of an M-Tronic diagnostic or service locator.`
       );
     }
 
