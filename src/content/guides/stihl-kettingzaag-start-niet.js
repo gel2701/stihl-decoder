@@ -70,6 +70,24 @@ export const stihlKettingzaagStartNietGuide = {
       notes: 'Officiële fabrieksbedieningshandleiding voor de klassieke STIHL 026: carburateurafstelling en motormanagement.'
     },
     {
+      id: 'src-0458-133-3021-fuel',
+      source_id: 'src-0458-133-3021-fuel',
+      canonical_document_id: '0458-133-3021',
+      publicationId: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      documentTitle: 'STIHL 026 Instruction Manual',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: 'STIHL 026',
+      model_scope: ['026'],
+      locator: {
+        page: 35,
+        section: 'Fuel',
+        heading: 'Fuel Mixture & Storage'
+      },
+      notes: 'Officiële STIHL 026 specificaties voor brandstofmengsel, opslag en veroudering.'
+    },
+    {
       id: 'src-0458-573-8621-d',
       source_id: 'src-0458-573-8621-d',
       canonical_document_id: '0458-573-8621-D',
@@ -356,9 +374,9 @@ export const stihlKettingzaagStartNietGuide = {
     fuel: {
       title: 'Brandstofkwaliteit & Opslagveroudering',
       text: 'Gebruik altijd de brandstof en de exacte mengverhouding die in de handleiding van uw specifieke model wordt voorgeschreven. Voor 2-takt kettingzagen schrijft STIHL doorgaans hoogwaardige 2-takt motorolie gemengd met loodvrije benzine voor, of kant-en-klare alkylaatbrandstof.',
-      sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b'],
+      sourceRefs: ['src-0458-133-3021-fuel'],
       agingNotice: 'Brandstof veroudert tijdens opslag. De snelheid hangt af van samenstelling, opslagcondities en verpakking. Gebruik brandstof volgens de bewaarinstructies in de handleiding en vervang brandstof bij twijfel door verse, correct voorgeschreven brandstof.',
-      agingSourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
+      agingSourceRefs: ['src-0458-133-3021-fuel']
     },
     sparkPlug: {
       title: 'Bougie-inspectie & Elektrodenbeeld',

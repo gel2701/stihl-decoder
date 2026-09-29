@@ -1074,6 +1074,17 @@ const mkPublishedGuide = (extra = {}) => ({
       model_scope: ['026'],
       modelScope: 'STIHL 026',
       locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    },
+    {
+      id: 'src-0458-133-3021-fuel',
+      source_id: 'src-0458-133-3021-fuel',
+      canonical_document_id: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      model_scope: ['026'],
+      modelScope: 'STIHL 026',
+      locator: { page: 35, section: 'Fuel', heading: 'Fuel Mixture & Storage' }
     }
   ],
   ...extra
@@ -1151,9 +1162,9 @@ const buildResolvedSources = (guide) => {
       fuel: {
         title: 'Brandstof',
         text: 'Gebruik correct brandstof.',
-        sourceRefs: ['src-0458-133-3021-start'],
+        sourceRefs: ['src-0458-133-3021-fuel'],
         agingNotice: 'Brandstof veroudert.',
-        agingSourceRefs: ['src-0458-133-3021-start']
+        agingSourceRefs: ['src-0458-133-3021-fuel']
       }
     }
   });
@@ -1481,6 +1492,196 @@ console.log('\n▶ Test 20: Substantive Section Rendering & Dynamic TOC Anchor P
   }
 
   console.log('  ✅ Test 20 Passed: All 5 registered guides render substantive sections and maintain 100% TOC anchor parity.');
+}
+
+// ============================================================
+// TEST 21: Fuel-Specific Domain Grounding for Operational Fuel Claims
+// ============================================================
+console.log('\n▶ Test 21: Fuel-Specific Domain Grounding for Operational Fuel Claims...');
+
+{
+  // Case AQ: published guide with fuel aging claim bound ONLY to start procedure locator -> FAIL
+  const guideWithStartOnlyFuel = {
+    slug: 'test-fuel-start-only',
+    publicationStatus: 'PUBLISHED',
+    sources: [
+      {
+        id: 'src-start-only',
+        source_id: 'src-start-only',
+        canonical_document_id: '0458-133-3021',
+        publication_id: '0458-133-3021',
+        document_title: 'STIHL 026 Instruction Manual',
+        source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+        model_scope: ['026'],
+        modelScope: 'STIHL 026',
+        locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+      }
+    ],
+    technicalInspections: {
+      fuel: {
+        title: 'Brandstofkwaliteit',
+        agingNotice: 'Brandstof veroudert tijdens opslag.',
+        sourceRefs: ['src-start-only']
+      }
+    }
+  };
+
+  const resolvedStartOnly = new Map();
+  for (const src of guideWithStartOnlyFuel.sources) {
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    if (res.resolved && res.canonicalSource) resolvedStartOnly.set(res.canonicalSource.source_id, res.canonicalSource);
+  }
+
+  const errsStartOnly = validateOperationalClaimsProvenance(guideWithStartOnlyFuel, resolvedStartOnly, { isPublished: true });
+  assert.ok(errsStartOnly.length > 0, 'Fuel claim bound only to start procedure must fail');
+  assert.ok(errsStartOnly.some(e => e.includes('start procedure instead of fuel')), `Error must flag start-only fuel locator. Got: ${JSON.stringify(errsStartOnly)}`);
+  console.log('  ✅ Case AQ Passed: Fuel claim bound only to start procedure locator correctly rejected.');
+
+  // Case AR: published guide with fuel claim bound to dedicated fuel locator -> PASS
+  const guideWithFuelSpecific = {
+    slug: 'test-fuel-specific',
+    publicationStatus: 'PUBLISHED',
+    sources: [
+      {
+        id: 'src-fuel-loc',
+        source_id: 'src-fuel-loc',
+        canonical_document_id: '0458-133-3021',
+        publication_id: '0458-133-3021',
+        document_title: 'STIHL 026 Instruction Manual',
+        source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+        model_scope: ['026'],
+        modelScope: 'STIHL 026',
+        locator: { page: 35, section: 'Fuel', heading: 'Fuel Mixture & Storage' }
+      }
+    ],
+    technicalInspections: {
+      fuel: {
+        title: 'Brandstofkwaliteit',
+        agingNotice: 'Brandstof veroudert tijdens opslag.',
+        sourceRefs: ['src-fuel-loc']
+      }
+    }
+  };
+
+  const resolvedFuel = new Map();
+  for (const src of guideWithFuelSpecific.sources) {
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    if (res.resolved && res.canonicalSource) resolvedFuel.set(res.canonicalSource.source_id, res.canonicalSource);
+  }
+
+  const errsFuel = validateOperationalClaimsProvenance(guideWithFuelSpecific, resolvedFuel, { isPublished: true });
+  assert.strictEqual(errsFuel.length, 0, `Fuel claim with dedicated fuel locator must pass. Errors: ${JSON.stringify(errsFuel)}`);
+  console.log('  ✅ Case AR Passed: Fuel claim bound to fuel-specific locator passes cleanly.');
+}
+
+// ============================================================
+// TEST 22: Strict String Requirement for Locator Labels
+// ============================================================
+console.log('\n▶ Test 22: Strict String Requirement for Locator Labels...');
+
+{
+  const baseSource = {
+    id: 'src-loc-label-test',
+    source_id: 'src-loc-label-test',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    modelScope: 'STIHL 026'
+  };
+
+  // 1. Whitespace-only section -> FAIL / not LOCATOR_VERIFIED
+  {
+    const res = resolveGuideSource({ ...baseSource, locator: { page: 38, section: '   ' } }, { throwOnError: false });
+    assert.notStrictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    assert.ok(res.errors.some(e => e.includes('non-empty trimmed string')), 'Must reject whitespace-only section label');
+    console.log('  ✅ Whitespace-only section label -> correctly rejected');
+  }
+
+  // 2. Boolean true for section -> FAIL / not LOCATOR_VERIFIED
+  {
+    const res = resolveGuideSource({ ...baseSource, locator: { page: 38, section: true } }, { throwOnError: false });
+    assert.notStrictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    assert.ok(res.errors.some(e => e.includes('non-empty trimmed string')), 'Must reject boolean section label');
+    console.log('  ✅ Boolean section label -> correctly rejected');
+  }
+
+  // 3. Object for heading -> FAIL / not LOCATOR_VERIFIED
+  {
+    const res = resolveGuideSource({ ...baseSource, locator: { page: 38, heading: {} } }, { throwOnError: false });
+    assert.notStrictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    assert.ok(res.errors.some(e => e.includes('non-empty trimmed string')), 'Must reject object heading label');
+    console.log('  ✅ Object heading label -> correctly rejected');
+  }
+
+  // 4. Non-empty trimmed string -> LOCATOR_VERIFIED
+  {
+    const res = resolveGuideSource({ ...baseSource, locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' } }, { throwOnError: false });
+    assert.strictEqual(res.resolved, true);
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    console.log('  ✅ Valid trimmed string locator labels -> LOCATOR_VERIFIED');
+  }
+}
+
+// ============================================================
+// TEST 23: Newly Rendered Guide Sections Provenance Enforcement
+// ============================================================
+console.log('\n▶ Test 23: Newly Rendered Guide Sections Provenance Enforcement...');
+
+{
+  // Synthetic published guide with generationModelData, distinctionFramework, resultCategories, inspectionChecklist
+  const syntheticGuideWithoutRefs = {
+    slug: 'synthetic-guide',
+    publicationStatus: 'PUBLISHED',
+    sources: [
+      {
+        id: 'src-test',
+        source_id: 'src-test',
+        canonical_document_id: '0458-133-3021',
+        publication_id: '0458-133-3021',
+        document_title: 'STIHL 026 Instruction Manual',
+        source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+        model_scope: ['026'],
+        modelScope: 'STIHL 026',
+        locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+      }
+    ],
+    generationModelData: [
+      {
+        generation: 'Gen 1',
+        characteristics: 'Standard control lever without calibration position',
+        procedureOverview: 'Warm up 1 min then cut full throttle'
+      }
+    ],
+    inspectionChecklist: [
+      {
+        topic: 'Serial number',
+        text: 'Clean 9-digit stamping'
+      }
+    ]
+  };
+
+  const claims = collectRenderedOperationalClaims(syntheticGuideWithoutRefs);
+  const genProcClaim = claims.find(c => c.path === 'generationModelData[0].procedureOverview');
+  assert.ok(genProcClaim, 'Must collect claim for generationModelData.procedureOverview');
+  assert.strictEqual(genProcClaim.claimClass, 'GENERATION_PROCEDURE');
+
+  const checkClaim = claims.find(c => c.path === 'inspectionChecklist[0].text');
+  assert.ok(checkClaim, 'Must collect claim for inspectionChecklist.text');
+  assert.strictEqual(checkClaim.claimClass, 'INSPECTION_STEP');
+
+  const resolvedMap = new Map();
+  for (const s of syntheticGuideWithoutRefs.sources) {
+    const r = resolveGuideSource(s, { throwOnError: false, isPublishedGuide: true });
+    if (r.resolved && r.canonicalSource) resolvedMap.set(r.canonicalSource.source_id, r.canonicalSource);
+  }
+
+  const errs = validateOperationalClaimsProvenance(syntheticGuideWithoutRefs, resolvedMap, { isPublished: true });
+  assert.ok(errs.length >= 3, 'Must reject synthetic published guide with unsupported newly-rendered sections');
+  assert.ok(errs.some(e => e.includes('generationModelData[0].procedureOverview')), 'Must flag missing refs on procedureOverview');
+  assert.ok(errs.some(e => e.includes('inspectionChecklist[0].text')), 'Must flag missing refs on inspectionChecklist text');
+  console.log('  ✅ Test 23 Passed: Newly rendered guide sections are fully collected and enforced by provenance gate.');
 }
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

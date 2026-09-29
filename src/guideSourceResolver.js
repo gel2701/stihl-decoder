@@ -524,16 +524,27 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
       }
     }
 
-    const hasValidPage = Number.isInteger(locator.page) && locator.page > 0 && (!knownPageCount || locator.page <= knownPageCount);
-    const hasHeadingOrSection = Boolean(locator.section || locator.heading);
+    // Require locator.section and locator.heading to be non-empty trimmed strings if provided.
+    // Whitespace-only, boolean (true/false), or non-string values are invalid and cannot grant LOCATOR_VERIFIED.
+    const isNonEmptyString = (v) => typeof v === 'string' && v.trim().length > 0;
 
-    if (hasValidPage && hasHeadingOrSection) {
+    if (locator.section !== undefined && locator.section !== null && !isNonEmptyString(locator.section)) {
+      errors.push(`Invalid locator section label. Section must be a non-empty trimmed string.`);
+    }
+    if (locator.heading !== undefined && locator.heading !== null && !isNonEmptyString(locator.heading)) {
+      errors.push(`Invalid locator heading label. Heading must be a non-empty trimmed string.`);
+    }
+
+    const hasValidPage = Number.isInteger(locator.page) && locator.page > 0 && (!knownPageCount || locator.page <= knownPageCount);
+    const hasMeaningfulText = isNonEmptyString(locator.section) || isNonEmptyString(locator.heading);
+
+    if (hasValidPage && hasMeaningfulText) {
       locatorStatus = 'LOCATOR_VERIFIED';
     } else if (hasValidPage) {
       locatorStatus = 'LOCATOR_PAGE_ONLY';
-    } else if (isStandardOrBrandProtection && hasHeadingOrSection) {
+    } else if (isStandardOrBrandProtection && hasMeaningfulText) {
       locatorStatus = 'LOCATOR_VERIFIED';
-    } else if (hasHeadingOrSection) {
+    } else if (hasMeaningfulText) {
       locatorStatus = 'LOCATOR_PAGE_ONLY';
     }
   } else {
@@ -903,6 +914,46 @@ export function collectRenderedOperationalClaims(guide) {
     });
   }
 
+  // 9. generationModelData[*] (M-Tronic reset guide)
+  if (Array.isArray(guide.generationModelData)) {
+    guide.generationModelData.forEach((gen, gi) => {
+      if (gen.characteristics) push(`generationModelData[${gi}].characteristics`, gen.characteristics, gen.sourceRefs, 'GENERATION_SPECIFICATION');
+      if (gen.procedureOverview) push(`generationModelData[${gi}].procedureOverview`, gen.procedureOverview, gen.sourceRefs, 'GENERATION_PROCEDURE');
+    });
+  }
+
+  // 10. distinctionFramework (gietklok guide)
+  if (guide.distinctionFramework) {
+    const df = guide.distinctionFramework;
+    if (df.partCastDateVsMachineAssembly && Array.isArray(df.partCastDateVsMachineAssembly.points)) {
+      df.partCastDateVsMachineAssembly.points.forEach((pt, pi) => {
+        if (pt.description) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].description`, pt.description, pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+      });
+    }
+    if (df.mouldDateFormats && Array.isArray(df.mouldDateFormats.elements)) {
+      df.mouldDateFormats.elements.forEach((el, ei) => {
+        push(`distinctionFramework.mouldDateFormats.elements[${ei}]`, el, df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+      });
+    }
+    if (df.replacedPartsNotice?.text) {
+      push('distinctionFramework.replacedPartsNotice.text', df.replacedPartsNotice.text, df.replacedPartsNotice.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+    }
+  }
+
+  // 11. resultCategories[*] (namaak herkennen guide)
+  if (Array.isArray(guide.resultCategories)) {
+    guide.resultCategories.forEach((cat, ci) => {
+      if (cat.description) push(`resultCategories[${ci}].description`, cat.description, cat.sourceRefs, 'CATEGORY_DIAGNOSIS');
+    });
+  }
+
+  // 12. inspectionChecklist[*] (namaak herkennen guide)
+  if (Array.isArray(guide.inspectionChecklist)) {
+    guide.inspectionChecklist.forEach((chk, ci) => {
+      if (chk.text) push(`inspectionChecklist[${ci}].text`, chk.text, chk.sourceRefs, 'INSPECTION_STEP');
+    });
+  }
+
   return claims;
 }
 
@@ -916,7 +967,9 @@ export function collectRenderedOperationalClaims(guide) {
  *
  * Claim classes that are operational on a PUBLISHED guide:
  *   TROUBLESHOOTING_LEVEL_ITEM, TECHNICAL_INSPECTION, MATRIX_DIAGNOSIS, MATRIX_ACTION,
- *   DEALER_GUIDANCE, FAQ_ANSWER, DIRECT_ANSWER, GENERIC_PRINCIPLE
+ *   DEALER_GUIDANCE, FAQ_ANSWER, DIRECT_ANSWER, GENERIC_PRINCIPLE,
+ *   GENERATION_SPECIFICATION, GENERATION_PROCEDURE, FRAMEWORK_DISTINCTION,
+ *   CATEGORY_DIAGNOSIS, INSPECTION_STEP
  *
  * Author CANNOT self-exempt a claim by setting any flag — the classification comes from schema position.
  */
@@ -935,7 +988,12 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     'DEALER_GUIDANCE',
     'FAQ_ANSWER',
     'DIRECT_ANSWER',
-    'GENERIC_PRINCIPLE'
+    'GENERIC_PRINCIPLE',
+    'GENERATION_SPECIFICATION',
+    'GENERATION_PROCEDURE',
+    'FRAMEWORK_DISTINCTION',
+    'CATEGORY_DIAGNOSIS',
+    'INSPECTION_STEP'
   ]);
 
   if (!isPublished) return errors; // Only enforce on published guides
@@ -951,6 +1009,10 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       errors.push(`${label} has no sourceRefs.`);
       continue;
     }
+
+    const isFuelClaim = claim.path.includes('.fuel.');
+    let hasFuelSpecificSource = false;
+    let onlyHasStartSource = true;
 
     for (const ref of claim.sourceRefs) {
       if (!sourceIds.has(ref)) {
@@ -969,8 +1031,27 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
           if (resolved.locatorStatus !== 'LOCATOR_VERIFIED') {
             errors.push(`${label} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
           }
+
+          if (isFuelClaim && resolved.locator) {
+            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
+            const isFuelLocator = locText.includes('fuel') || locText.includes('brandstof') ||
+                                  locText.includes('mixing') || locText.includes('mengsmering') ||
+                                  locText.includes('storage') || locText.includes('opslag');
+            const isStartOnly = locText.includes('starting the engine') && !isFuelLocator;
+
+            if (isFuelLocator) {
+              hasFuelSpecificSource = true;
+            }
+            if (!isStartOnly) {
+              onlyHasStartSource = false;
+            }
+          }
         }
       }
+    }
+
+    if (isFuelClaim && (!hasFuelSpecificSource || onlyHasStartSource)) {
+      errors.push(`${label} references source(s) pointing to start procedure instead of fuel mixing, storage, or fuel specifications.`);
     }
   }
 
