@@ -121,7 +121,11 @@ function getOfficialSourceInventoryIndex() {
           for (const tm of titleMatches) {
             models.add(normalizeModelScopeIdentifier(tm));
           }
-          const pageCount = (src.document_id === '0458-207-8321-B') ? 48 : (src.pdf_spec_page ? src.pdf_spec_page + 4 : null);
+          // page_count must come from an authoritative source (explicit field in the inventory entry).
+          // pdf_spec_page identifies where specifications were found, NOT the final page of the document.
+          // Using pdf_spec_page + 4 as a page-count ceiling is incorrect and would reject legitimate locators.
+          // If no authoritative page_count is present, use null (no upper bound enforced by this tier).
+          const pageCount = (src.page_count != null) ? Number(src.page_count) : null;
           cachedOfficialInventory.set(src.document_id, {
             document_id: src.document_id,
             document_title: src.title,
@@ -955,10 +959,17 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
         const resolved = resolvedSources.get(ref);
         if (!resolved) {
           errors.push(`${label} references source "${ref}" which could not be resolved.`);
+        } else {
+          // For published guides: operational claims must be backed by authenticated sources
+          // with verified locators — matching the enforcement level applied to warnings and steps.
+          if (resolved.authenticity_status !== 'AUTHENTICATED_OFFICIAL' &&
+              resolved.authenticity_status !== 'AUTHENTICATED_STANDARD') {
+            errors.push(`${label} references source "${ref}" which lacks AUTHENTICATED_OFFICIAL status (${resolved.authenticity_status}).`);
+          }
+          if (resolved.locatorStatus !== 'LOCATOR_VERIFIED') {
+            errors.push(`${label} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
+          }
         }
-        // Source authenticity and locator verification for operational claims:
-        // We trust the source-level validation in validateGuideSources for authenticity.
-        // No double-reporting here — just existence check.
       }
     }
   }

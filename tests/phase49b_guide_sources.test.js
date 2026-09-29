@@ -1307,4 +1307,180 @@ console.log('\n▶ Test 17: Renderer / Validator Parity Test...');
   console.log('  ✅ Test 17 Passed: All ' + EXPECTED_CLAIM_PATH_PREFIXES.length + ' renderer paths covered by collectRenderedOperationalClaims.');
 }
 
+// ============================================================
+// TEST 18: Operational Claims Require LOCATOR_VERIFIED for Published Guides
+// ============================================================
+console.log('\n▶ Test 18: Operational Claims Require LOCATOR_VERIFIED for Published Guides...');
+
+{
+  // AO: published guide with operational claim referencing source WITHOUT locator -> FAIL
+  const guideWithoutLocator = {
+    slug: 'test-slug',
+    publicationStatus: 'PUBLISHED',
+    sources: [
+      {
+        id: 'src-no-locator',
+        source_id: 'src-no-locator',
+        canonical_document_id: '0458-133-3021',
+        publication_id: '0458-133-3021',
+        document_title: 'STIHL 026 Instruction Manual',
+        source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+        model_scope: ['026'],
+        modelScope: 'STIHL 026'
+        // No locator provided -> locatorStatus will be NO_LOCATOR
+      }
+    ],
+    directAnswer: {
+      heading: 'Kort antwoord',
+      content: 'Controleer de kettingrem en brandstoftoevoer.',
+      sourceRefs: ['src-no-locator']
+    }
+  };
+
+  const resolvedSources = new Map();
+  for (const src of guideWithoutLocator.sources) {
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    if (res.resolved && res.canonicalSource) resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+  }
+
+  const errs = validateOperationalClaimsProvenance(guideWithoutLocator, resolvedSources, { isPublished: true });
+  assert.ok(errs.length > 0, 'Must reject operational claim citing source with unverified locator on published guide');
+  assert.ok(errs.some(e => e.includes('not LOCATOR_VERIFIED')), `Error must state not LOCATOR_VERIFIED. Got: ${JSON.stringify(errs)}`);
+  console.log('  ✅ Case AO Passed: Operational claim referencing unverified locator correctly rejected on published guide.');
+
+  // AP: published guide with operational claim referencing LOCATOR_VERIFIED source -> PASS
+  const guideWithVerifiedLocator = {
+    slug: 'test-slug',
+    publicationStatus: 'PUBLISHED',
+    sources: [
+      {
+        id: 'src-verified-loc',
+        source_id: 'src-verified-loc',
+        canonical_document_id: '0458-133-3021',
+        publication_id: '0458-133-3021',
+        document_title: 'STIHL 026 Instruction Manual',
+        source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+        model_scope: ['026'],
+        modelScope: 'STIHL 026',
+        locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+      }
+    ],
+    directAnswer: {
+      heading: 'Kort antwoord',
+      content: 'Controleer de kettingrem en brandstoftoevoer.',
+      sourceRefs: ['src-verified-loc']
+    }
+  };
+
+  const resolvedSourcesPass = new Map();
+  for (const src of guideWithVerifiedLocator.sources) {
+    const res = resolveGuideSource(src, { throwOnError: false, isPublishedGuide: true });
+    if (res.resolved && res.canonicalSource) resolvedSourcesPass.set(res.canonicalSource.source_id, res.canonicalSource);
+  }
+
+  const errsPass = validateOperationalClaimsProvenance(guideWithVerifiedLocator, resolvedSourcesPass, { isPublished: true });
+  assert.strictEqual(errsPass.length, 0, `Operational claim citing LOCATOR_VERIFIED source must pass cleanly. Errors: ${JSON.stringify(errsPass)}`);
+  console.log('  ✅ Case AP Passed: Operational claim referencing LOCATOR_VERIFIED source passes cleanly.');
+}
+
+// ============================================================
+// TEST 19: BR 600 Manual (0458-452-0121-J) Page Bounds & Ceiling Parity
+// ============================================================
+console.log('\n▶ Test 19: BR 600 Manual (0458-452-0121-J) Page Bounds & Ceiling Parity...');
+
+{
+  // 0458-452-0121-J is an 88-page document (NOT limited to pdf_spec_page + 4 = 18)
+  const baseBR600Source = {
+    id: 'src-br600-test',
+    source_id: 'src-br600-test',
+    canonical_document_id: '0458-452-0121-J',
+    publication_id: '0458-452-0121-J',
+    document_title: 'STIHL BR 500, BR 550, BR 600 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['BR 600'],
+    modelScope: 'STIHL BR 600'
+  };
+
+  // Page 14 (specifications page) -> PASS
+  {
+    const src = { ...baseBR600Source, locator: { page: 14, section: 'Specifications', heading: 'Engine' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'Page 14 must resolve');
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    console.log('  ✅ Page 14 (specifications page) -> PASS (LOCATOR_VERIFIED)');
+  }
+
+  // Page 19 (formerly rejected by pdf_spec_page + 4 = 18 ceiling) -> PASS
+  {
+    const src = { ...baseBR600Source, locator: { page: 19, section: 'Maintenance Chart', heading: 'Overview' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'Page 19 must NOT be rejected by specification-page ceiling');
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    console.log('  ✅ Page 19 (beyond spec page + 4) -> PASS (LOCATOR_VERIFIED)');
+  }
+
+  // Page 88 (full document boundary) -> PASS
+  {
+    const src = { ...baseBR600Source, locator: { page: 88, section: 'Approvals', heading: 'Declaration of Conformity' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'Page 88 must resolve cleanly');
+    assert.strictEqual(res.canonicalSource?.locatorStatus, 'LOCATOR_VERIFIED');
+    console.log('  ✅ Page 88 (document upper bound) -> PASS (LOCATOR_VERIFIED)');
+  }
+
+  // Page 89 (exceeds actual 88 pages) -> FAIL
+  {
+    const src = { ...baseBR600Source, locator: { page: 89, section: 'Approvals', heading: 'Declaration of Conformity' } };
+    const res = resolveGuideSource(src, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'Page 89 must exceed document page count');
+    assert.ok(res.errors.some(e => e.includes('exceeds known document page count (88)')), `Error must mention 88 pages: ${JSON.stringify(res.errors)}`);
+    console.log('  ✅ Page 89 (exceeds 88 pages) -> FAIL (correctly rejected)');
+  }
+}
+
+// ============================================================
+// TEST 20: Substantive Section Rendering & Dynamic TOC Anchor Parity
+// ============================================================
+console.log('\n▶ Test 20: Substantive Section Rendering & Dynamic TOC Anchor Parity...');
+
+{
+  const registeredGuides = getAllStructuredGuides();
+  assert.strictEqual(registeredGuides.length, 5, 'Must have exactly 5 structured guides');
+
+  for (const guide of registeredGuides) {
+    const html = renderGuidePageHtml(guide, database, baseUrl);
+
+    // 1. Zero [object Object] in rendered output
+    assert.strictEqual(html.includes('[object Object]'), false, `Guide ${guide.slug} contains [object Object]`);
+
+    // 2. All internal anchors in TOC must have matching id in HTML
+    const anchorMatches = [...html.matchAll(/href=["']#([^"']+)["']/g)].map(m => m[1]);
+    assert.ok(anchorMatches.length > 0, `Guide ${guide.slug} must render a TOC with anchor links`);
+    for (const anchor of anchorMatches) {
+      assert.strictEqual(html.includes(`id="${anchor}"`), true,
+        `Guide ${guide.slug}: anchor #${anchor} has no matching id="${anchor}" in rendered HTML`);
+    }
+
+    // 3. Substantive content verification per guide type
+    if (guide.generationModelData) {
+      assert.ok(html.includes('id="generation-model-data"'), `${guide.slug} must render generation-model-data section`);
+      assert.ok(html.includes(guide.generationModelData[0].generation), `${guide.slug} must render generation title`);
+    }
+    if (guide.distinctionFramework) {
+      assert.ok(html.includes('id="distinction-framework"'), `${guide.slug} must render distinction-framework section`);
+      assert.ok(html.includes(guide.distinctionFramework.partCastDateVsMachineAssembly.title), `${guide.slug} must render framework title`);
+    }
+    if (guide.resultCategories) {
+      assert.ok(html.includes('id="result-categories"'), `${guide.slug} must render result-categories section`);
+      assert.ok(html.includes(guide.resultCategories[0].label), `${guide.slug} must render result category label`);
+    }
+    if (guide.inspectionChecklist) {
+      assert.ok(html.includes('id="inspection-checklist"'), `${guide.slug} must render inspection-checklist section`);
+      assert.ok(html.includes(guide.inspectionChecklist[0].text), `${guide.slug} must render checklist text`);
+    }
+  }
+
+  console.log('  ✅ Test 20 Passed: All 5 registered guides render substantive sections and maintain 100% TOC anchor parity.');
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

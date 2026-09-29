@@ -139,6 +139,47 @@ export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
 }
 
 function renderStructuredGuideBody(guide) {
+  const tocItems = [];
+  if (guide.warnings && guide.warnings.length > 0) {
+    tocItems.push({ href: '#veiligheid', label: 'Veiligheid & Voorzorgsmaatregelen' });
+  }
+  if (guide.troubleshootingLevels) {
+    tocItems.push({ href: '#niveaus', label: 'Veilige Diagnoseniveaus' });
+  }
+  if (guide.startProcedures) {
+    tocItems.push({ href: '#startprocedure', label: 'Startprocedure: Koude vs Warme Motor' });
+  }
+  if (guide.floodedEngineRecovery) {
+    tocItems.push({ href: '#verzopen-motor', label: 'Verzopen Motor Herstellen' });
+  }
+  if (guide.technicalInspections) {
+    tocItems.push({ href: '#technische-inspecties', label: 'Brandstof, Bougie & Carburateur vs M-Tronic' });
+  }
+  if (guide.troubleshootingMatrix) {
+    tocItems.push({ href: '#probleem-matrix', label: 'Probleem- & Oorzaakmatrix' });
+  }
+  if (guide.generationModelData && guide.generationModelData.length > 0) {
+    tocItems.push({ href: '#generation-model-data', label: 'M-Tronic Generaties & Modellen' });
+  }
+  if (guide.distinctionFramework) {
+    tocItems.push({ href: '#distinction-framework', label: 'Referentiekader voor Interpretatie' });
+  }
+  if (guide.resultCategories && guide.resultCategories.length > 0) {
+    tocItems.push({ href: '#result-categories', label: 'Resultaatcategorieën' });
+  }
+  if (guide.inspectionChecklist && guide.inspectionChecklist.length > 0) {
+    tocItems.push({ href: '#inspection-checklist', label: 'Inspectiechecklist' });
+  }
+  if (guide.whenToStopAndCallDealer) {
+    tocItems.push({ href: '#wanneer-dealer', label: 'Wanneer Dealer Inschakelen?' });
+  }
+  if (guide.sources && guide.sources.length > 0) {
+    tocItems.push({ href: '#bronnen', label: 'Bronnen en Beperkingen' });
+  }
+  if (guide.faq && guide.faq.length > 0) {
+    tocItems.push({ href: '#faq', label: 'Veelgestelde Vragen (FAQ)' });
+  }
+
   return `
     <article class="space-y-8 text-sm text-gray-300 leading-relaxed">
       <!-- 1. Direct Answer Card -->
@@ -157,20 +198,16 @@ function renderStructuredGuideBody(guide) {
       ` : ''}
 
       <!-- 2. Table of Contents -->
-      <nav id="inhoud" class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-3">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-gray-400 font-bold">Inhoudsopgave</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          <a href="#veiligheid" class="text-orange-400 hover:underline">1. Veiligheid & Voorzorgsmaatregelen</a>
-          <a href="#niveaus" class="text-orange-400 hover:underline">2. Veilige Diagnoseniveaus (Level 1, 2, 3)</a>
-          <a href="#startprocedure" class="text-orange-400 hover:underline">3. Startprocedure: Koude vs Warme Motor</a>
-          <a href="#verzopen-motor" class="text-orange-400 hover:underline">4. Verzopen Motor Herstellen</a>
-          <a href="#technische-inspecties" class="text-orange-400 hover:underline">5. Brandstof, Bougie & Carburateur vs M-Tronic</a>
-          <a href="#probleem-matrix" class="text-orange-400 hover:underline">6. Probleem- & Oorzaakmatrix</a>
-          <a href="#wanneer-dealer" class="text-orange-400 hover:underline">7. Wanneer Dealer Inschakelen?</a>
-          <a href="#bronnen" class="text-orange-400 hover:underline">8. Bronnen & Beperkingen</a>
-          <a href="#faq" class="text-orange-400 hover:underline">9. Veelgestelde Vragen (FAQ)</a>
-        </div>
-      </nav>
+      ${tocItems.length > 0 ? `
+        <nav id="inhoud" class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-3">
+          <h2 class="text-xs font-mono uppercase tracking-widest text-gray-400 font-bold">Inhoudsopgave</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            ${tocItems.map((item, idx) => `
+              <a href="${item.href}" class="text-orange-400 hover:underline">${idx + 1}. ${item.label}</a>
+            `).join('')}
+          </div>
+        </nav>
+      ` : ''}
 
       <!-- 3. Safety Warnings -->
       ${guide.warnings && guide.warnings.length > 0 ? `
@@ -455,6 +492,106 @@ function renderStructuredGuideBody(guide) {
         </section>
       ` : ''}
 
+      <!-- 12. Generation Model Data (M-Tronic reset guide) -->
+      ${guide.generationModelData && guide.generationModelData.length > 0 ? `
+        <section id="generation-model-data" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">G</span>
+            M-Tronic Generaties &amp; Modellen
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm">
+            ${guide.generationModelData.map(gen => `
+              <div class="bg-gray-950 p-5 rounded-xl border border-gray-800 space-y-2">
+                <h3 class="font-bold text-orange-400 text-sm">${gen.generation}</h3>
+                ${gen.models && gen.models.length > 0 ? `<p class="text-gray-400 text-xs">Modellen: <span class="text-gray-300">${gen.models.join(', ')}</span></p>` : ''}
+                ${gen.characteristics ? `<p class="text-gray-300"><strong class="text-white">Kenmerken:</strong> ${gen.characteristics}</p>` : ''}
+                ${gen.procedureOverview ? `<p class="text-gray-300"><strong class="text-white">Procedure:</strong> ${gen.procedureOverview}</p>` : ''}
+                ${gen.sourceDocument ? `<p class="text-gray-400 text-xs font-mono">Bron: ${gen.sourceDocument}${gen.section ? ` — ${gen.section}` : ''}</p>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
+
+      <!-- 13. Distinction Framework (gietklok guide) -->
+      ${guide.distinctionFramework ? `
+        <section id="distinction-framework" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">D</span>
+            Referentiekader voor Interpretatie
+          </h2>
+          ${guide.distinctionFramework.partCastDateVsMachineAssembly ? `
+            <div class="space-y-3">
+              <h3 class="font-bold text-white text-sm">${guide.distinctionFramework.partCastDateVsMachineAssembly.title}</h3>
+              <div class="space-y-2">
+                ${(guide.distinctionFramework.partCastDateVsMachineAssembly.points || []).map(p => `
+                  <div class="bg-gray-950 p-4 rounded-xl border border-gray-800">
+                    <strong class="text-orange-400 block text-xs mb-1">${p.label}</strong>
+                    <p class="text-gray-300 text-xs sm:text-sm">${p.description}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          ${guide.distinctionFramework.mouldDateFormats ? `
+            <div class="space-y-2">
+              <h3 class="font-bold text-white text-sm">${guide.distinctionFramework.mouldDateFormats.title}</h3>
+              ${guide.distinctionFramework.mouldDateFormats.description ? `<p class="text-gray-300 text-xs sm:text-sm">${guide.distinctionFramework.mouldDateFormats.description}</p>` : ''}
+              ${guide.distinctionFramework.mouldDateFormats.elements && guide.distinctionFramework.mouldDateFormats.elements.length > 0 ? `
+                <ul class="list-disc list-inside space-y-1 text-gray-300 text-xs sm:text-sm pl-2">
+                  ${guide.distinctionFramework.mouldDateFormats.elements.map(e => `<li>${e}</li>`).join('')}
+                </ul>
+              ` : ''}
+            </div>
+          ` : ''}
+          ${guide.distinctionFramework.replacedPartsNotice ? `
+            <div class="bg-amber-950/30 border border-amber-700/40 p-4 rounded-xl space-y-1">
+              <h3 class="font-bold text-amber-400 text-xs">${guide.distinctionFramework.replacedPartsNotice.title}</h3>
+              <p class="text-gray-300 text-xs sm:text-sm">${guide.distinctionFramework.replacedPartsNotice.text}</p>
+            </div>
+          ` : ''}
+        </section>
+      ` : ''}
+
+      <!-- 14. Result Categories (namaak herkennen guide) -->
+      ${guide.resultCategories && guide.resultCategories.length > 0 ? `
+        <section id="result-categories" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">R</span>
+            Resultaatcategorieën
+          </h2>
+          <div class="space-y-3 text-xs sm:text-sm">
+            ${guide.resultCategories.map(cat => `
+              <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-1">
+                <strong class="text-orange-400 block">${cat.label}</strong>
+                <p class="text-gray-300">${cat.description}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
+
+      <!-- 15. Inspection Checklist (namaak herkennen guide) -->
+      ${guide.inspectionChecklist && guide.inspectionChecklist.length > 0 ? `
+        <section id="inspection-checklist" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">C</span>
+            Inspectiechecklist
+          </h2>
+          <div class="space-y-3 text-xs sm:text-sm">
+            ${guide.inspectionChecklist.map((item, i) => `
+              <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 flex gap-3">
+                <span class="text-orange-400 font-mono font-bold shrink-0 text-xs">${i + 1}.</span>
+                <div class="space-y-1">
+                  ${item.topic ? `<strong class="text-white block text-xs">${item.topic}</strong>` : ''}
+                  <p class="text-gray-300">${item.text}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
+
       <!-- 9. When to Stop & Call Dealer -->
       ${guide.whenToStopAndCallDealer ? `
         <section id="wanneer-dealer" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
@@ -519,7 +656,9 @@ function renderStructuredGuideBody(guide) {
         </section>
       ` : ''}
 
+
       <!-- 12. Relevant Links -->
+
       ${guide.relevantLinks && guide.relevantLinks.length > 0 ? `
         <nav id="links" class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-3">
           <h2 class="text-xs font-mono uppercase tracking-widest text-gray-400 font-bold">Gerelateerde Gidsen & Onderdelen</h2>

@@ -19,6 +19,12 @@ export const OFFICIAL_PRIMARY_DOCUMENTS = {
     models: ['BR 500', 'BR 600'],
     page_count: 88
   },
+  '0458-452-0121-J': {
+    documentNumber: '0458-452-0121-J',
+    title: 'STIHL BR 500, BR 550, BR 600 Instruction Manual',
+    models: ['BR 500', 'BR 550', 'BR 600'],
+    page_count: 88
+  },
   '0458-573-8621-D': {
     documentNumber: '0458-573-8621-D',
     title: 'STIHL MS 261 Instruction Manual',
