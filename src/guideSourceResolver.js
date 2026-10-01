@@ -685,9 +685,8 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
               if (opts.claimType === 'FLOODED_RECOVERY' && resolved.locator) {
                 const heading = (resolved.locator.heading || '').toLowerCase();
                 const isFloodedHeading = heading.includes('not start') || heading.includes('flooded') || heading.includes('verzopen') || heading.includes('troubleshooting');
-                const isStartingHeadingOnly = heading.includes('starting the engine') && !isFloodedHeading;
-                if (isStartingHeadingOnly) {
-                  errors.push(`${stepLabel} references source "${ref}" which points to start procedure ("${resolved.locator.heading}", p. ${resolved.locator.page}) instead of flooded engine recovery.`);
+                if (!isFloodedHeading) {
+                  errors.push(`${stepLabel} references source "${ref}" which points to "${resolved.locator.heading}" (p. ${resolved.locator.page}) instead of flooded engine recovery.`);
                 }
               }
             }
@@ -1350,18 +1349,25 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     }
 
     if (claim.path.includes('generationModelData') && claim.path.includes('.models[')) {
-      let isCovered = false;
-      for (const ref of claim.sourceRefs) {
-        const resolved = resolvedSources.get(ref);
-        if (resolved && isModelCoveredBySource(claim.text, resolved)) {
-          isCovered = true;
-          break;
+      const extractedModels = extractModelsFromLabel(claim.text);
+      if (extractedModels.length === 0) {
+        errors.push(`${label} assigns model "${claim.text}" but it contains no recognizable STIHL model designations.`);
+      } else {
+        for (const model of extractedModels) {
+          let isCovered = false;
+          for (const ref of claim.sourceRefs) {
+            const resolved = resolvedSources.get(ref);
+            if (resolved && isModelCoveredBySource(model, resolved)) {
+              isCovered = true;
+              break;
+            }
+          }
+          if (!isCovered) {
+            errors.push(
+              `${label} assigns model "${model}" (from "${claim.text}") but none of the cited sources (${claim.sourceRefs.join(', ')}) cover this model in their canonical scope.`
+            );
+          }
         }
-      }
-      if (!isCovered) {
-        errors.push(
-          `${label} assigns model "${claim.text}" but none of the cited sources (${claim.sourceRefs.join(', ')}) cover this model in their canonical scope.`
-        );
       }
     }
 
@@ -1454,6 +1460,11 @@ export function validateGuideSources(guide, options = {}) {
     } else {
       if (!resolvedSources.has(res.canonicalSource.source_id)) {
         resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
+      }
+      if (isPublished && src.documentTitle) {
+        if (src.documentTitle !== res.canonicalSource.document_title) {
+          errors.push(`Source "${sId}" documentTitle "${src.documentTitle}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
+        }
       }
       if (!isPublished && res.canonicalSource.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && res.canonicalSource.authenticity_status !== 'AUTHENTICATED_STANDARD') {
         errors.push(`Source "${src.publication_id || src.canonical_document_id || src.id}" has non-promotable authenticity status "${res.canonicalSource.authenticity_status}". Requires official authentication before guide can be published.`);
