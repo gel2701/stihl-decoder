@@ -268,12 +268,13 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
   const brand_protection_id = sourceDeclaration.brand_protection_id || sourceDeclaration.brandProtectionId;
   
   if (typeof sourceDeclaration.modelScope === 'string' && Array.isArray(sourceDeclaration.model_scope)) {
-    const strScope = sourceDeclaration.modelScope.toLowerCase();
-    for (const m of sourceDeclaration.model_scope) {
-      if (!strScope.includes(m.toLowerCase())) {
-        const srcId = sourceDeclaration.source_id || sourceDeclaration.id || 'UNKNOWN';
-        errors.push(`Source "${srcId}" modelScope string ("${sourceDeclaration.modelScope}") must contain the array value "${m}".`);
-      }
+    const displayedModels = sourceDeclaration.modelScope.replace(/STIHL/gi, '').split(/[\/\,\&]+/).map(s => s.trim()).filter(s => s.length > 0).map(m => normalizeModelScopeIdentifier(m));
+    const validModels = sourceDeclaration.model_scope.map(m => normalizeModelScopeIdentifier(m));
+    const set1 = new Set(displayedModels);
+    const set2 = new Set(validModels);
+    if (set1.size !== set2.size || [...set1].some(m => !set2.has(m)) || [...set2].some(m => !set1.has(m))) {
+      const srcId = sourceDeclaration.source_id || sourceDeclaration.id || 'UNKNOWN';
+      errors.push(`Source "${srcId}" modelScope string ("${sourceDeclaration.modelScope}") must exactly match the models in model_scope array.`);
     }
   } else if (sourceDeclaration.modelScope !== undefined && sourceDeclaration.model_scope !== undefined) {
     if (JSON.stringify(sourceDeclaration.modelScope) !== JSON.stringify(sourceDeclaration.model_scope)) {
