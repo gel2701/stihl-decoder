@@ -266,6 +266,22 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
   const canonical_document_id = sourceDeclaration.canonical_document_id || sourceDeclaration.canonicalDocumentId;
   const standard_id = sourceDeclaration.standard_id || sourceDeclaration.standardId;
   const brand_protection_id = sourceDeclaration.brand_protection_id || sourceDeclaration.brandProtectionId;
+  
+  if (typeof sourceDeclaration.modelScope === 'string' && Array.isArray(sourceDeclaration.model_scope)) {
+    const strScope = sourceDeclaration.modelScope.toLowerCase();
+    for (const m of sourceDeclaration.model_scope) {
+      if (!strScope.includes(m.toLowerCase())) {
+        const srcId = sourceDeclaration.source_id || sourceDeclaration.id || 'UNKNOWN';
+        errors.push(`Source "${srcId}" modelScope string ("${sourceDeclaration.modelScope}") must contain the array value "${m}".`);
+      }
+    }
+  } else if (sourceDeclaration.modelScope !== undefined && sourceDeclaration.model_scope !== undefined) {
+    if (JSON.stringify(sourceDeclaration.modelScope) !== JSON.stringify(sourceDeclaration.model_scope)) {
+      const srcId = sourceDeclaration.source_id || sourceDeclaration.id || 'UNKNOWN';
+      errors.push(`Source "${srcId}" declares conflicting model scopes: modelScope=${JSON.stringify(sourceDeclaration.modelScope)} and model_scope=${JSON.stringify(sourceDeclaration.model_scope)}.`);
+    }
+  }
+
   const rawScope = sourceDeclaration.model_scope !== undefined ? sourceDeclaration.model_scope : sourceDeclaration.modelScope;
   const model_scope = Array.isArray(rawScope) ? rawScope : (rawScope !== undefined && rawScope !== null ? [rawScope] : []);
   const locator = sourceDeclaration.locator;
@@ -1165,6 +1181,7 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
   // All claimClasses from collectRenderedOperationalClaims are considered operational.
   // No bypass path exists.
   const OPERATIONAL_CLAIM_CLASSES = new Set([
+    'SOURCE_NOTE',
     'TROUBLESHOOTING_LEVEL_ITEM',
     'TROUBLESHOOTING_LEVEL_DESCRIPTION',
     'TECHNICAL_INSPECTION',
@@ -1470,10 +1487,15 @@ export function validateGuideSources(guide, options = {}) {
       if (!resolvedSources.has(res.canonicalSource.source_id)) {
         resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
       }
-      const titleToCheck = src.title || src.documentTitle || src.document_title;
-      if (isPublished && titleToCheck) {
-        if (titleToCheck !== res.canonicalSource.document_title) {
-          errors.push(`Source "${sId}" title "${titleToCheck}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
+      if (isPublished) {
+        if (src.title && src.title !== res.canonicalSource.document_title) {
+          errors.push(`Source "${sId}" title "${src.title}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
+        }
+        if (src.documentTitle && src.documentTitle !== res.canonicalSource.document_title) {
+          errors.push(`Source "${sId}" documentTitle "${src.documentTitle}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
+        }
+        if (src.document_title && src.document_title !== res.canonicalSource.document_title) {
+          errors.push(`Source "${sId}" document_title "${src.document_title}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
         }
       }
       if (isPublished && src.publicationId && src.publication_id && src.publicationId !== src.publication_id) {
