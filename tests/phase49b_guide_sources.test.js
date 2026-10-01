@@ -1290,6 +1290,7 @@ console.log('\n▶ Test 17: Renderer / Validator Parity Test...');
 
 {
   const EXPECTED_CLAIM_PATH_PREFIXES = [
+    'directAnswer.heading',
     'directAnswer.content',
     'troubleshootingLevels[',
     'startProcedures.genericPrinciple.text',
@@ -3576,6 +3577,157 @@ console.log('\n▶ Test 42: FAQ Question Operational Provenance Validation (Code
       `Expected faq[0].question violation, got: ${errs.join('; ')}`
     );
     console.log('  ✅ Case BI5 Passed: Sneaky question cannot bypass validation via innocuous answer.');
+  }
+}
+
+// ============================================================================
+// Test 43: Direct Answer Heading Operational Provenance Validation (Codex Thread PRRT_kwDOUCUnhs6oLhX5, BJ1-BJ5)
+// ============================================================================
+console.log('\n▶ Test 43: Direct Answer Heading Operational Provenance Validation (Codex Thread PRRT_kwDOUCUnhs6oLhX5, BJ1-BJ5)...');
+{
+  const crankcaseSource = {
+    id: 'src-026-crankcase',
+    source_id: 'src-026-crankcase',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    locator: {
+      section: 'Crankcase Leakage',
+      page: 48,
+      heading: 'Crankcase Pressure and Vacuum Testing'
+    }
+  };
+
+  const startSource = {
+    id: 'src-026-start',
+    source_id: 'src-026-start',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    locator: {
+      section: 'Starting / Stopping the Engine',
+      page: 24,
+      heading: 'Starting the Engine'
+    }
+  };
+
+  const resolvedMap = new Map([
+    ['src-026-crankcase', resolveGuideSource(crankcaseSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource],
+    ['src-026-start', resolveGuideSource(startSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource]
+  ]);
+
+  // BJ1: collectRenderedOperationalClaims collects directAnswer.heading with claimClass: 'DIRECT_ANSWER'
+  {
+    const sampleGuide = {
+      slug: 'test-direct-heading-collect',
+      sources: [startSource],
+      directAnswer: {
+        heading: 'Kort antwoord: controleer startprocedure en schakelaar',
+        content: 'Controleer of de schakelaar op stand I staat.',
+        sourceRefs: ['src-026-start']
+      }
+    };
+
+    const claims = collectRenderedOperationalClaims(sampleGuide);
+    const hClaim = claims.find(c => c.path === 'directAnswer.heading');
+    const cClaim = claims.find(c => c.path === 'directAnswer.content');
+
+    assert.ok(hClaim, 'directAnswer.heading must be collected by collectRenderedOperationalClaims');
+    assert.strictEqual(hClaim.claimClass, 'DIRECT_ANSWER', 'directAnswer.heading must have claimClass DIRECT_ANSWER');
+    assert.strictEqual(hClaim.text, 'Kort antwoord: controleer startprocedure en schakelaar');
+    assert.deepStrictEqual(hClaim.sourceRefs, ['src-026-start']);
+
+    assert.ok(cClaim, 'directAnswer.content must be collected by collectRenderedOperationalClaims');
+    assert.strictEqual(cClaim.claimClass, 'DIRECT_ANSWER', 'directAnswer.content must have claimClass DIRECT_ANSWER');
+    console.log('  ✅ Case BJ1 Passed: directAnswer.heading collected with claimClass DIRECT_ANSWER.');
+  }
+
+  // BJ2: Direct answer heading with crankcase testing instruction citing only start locator fails closed
+  {
+    const guideBJ2 = {
+      slug: 'test-direct-heading-crankcase-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      directAnswer: {
+        heading: 'Kort antwoord: voer eerst een carter afpersing en vacuümmeting uit',
+        content: 'Volg altijd de instructies in de handleiding van uw machine.',
+        sourceRefs: ['src-026-start'] // Start locator does not cover crankcase testing
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBJ2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Direct answer heading with crankcase testing claim citing start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('directAnswer.heading') && e.includes('crankcase')),
+      `Expected crankcase locator rejection for directAnswer.heading, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BJ2 Passed: Direct answer heading citing unrelated locator fails closed.');
+  }
+
+  // BJ3: Direct answer heading citing valid matching locator passes cleanly
+  {
+    const guideBJ3 = {
+      slug: 'test-direct-heading-matching',
+      publicationStatus: 'PUBLISHED',
+      sources: [crankcaseSource],
+      directAnswer: {
+        heading: 'Kort antwoord: voer eerst een carter afpersing en vacuümmeting uit',
+        content: 'Sluit de afperspomp aan conform fabrieksvoorschrift en controleer de krukaskeerring op dichtheid.',
+        sourceRefs: ['src-026-crankcase']
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBJ3, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Valid direct answer heading and content must pass without errors, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BJ3 Passed: Direct answer heading citing valid matching locator passes cleanly.');
+  }
+
+  // BJ4: Direct answer heading without sourceRefs on published guide fails closed
+  {
+    const guideBJ4 = {
+      slug: 'test-direct-heading-missing-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      directAnswer: {
+        heading: 'Kort antwoord: wat kunt u direct controleren?',
+        content: 'Controleer de schakelaar en de startprocedure.'
+        // missing sourceRefs
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBJ4, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Direct answer without sourceRefs on published guide must fail');
+    assert.ok(
+      errs.some(e => e.includes('directAnswer.heading') && e.includes('has no sourceRefs')),
+      `Expected unattributed error for directAnswer.heading, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BJ4 Passed: Direct answer heading without sourceRefs on published guide fails closed.');
+  }
+
+  // BJ5: Unsupported operational claim in direct answer heading cannot bypass validation via innocuous content
+  {
+    const guideBJ5 = {
+      slug: 'test-direct-heading-sneaky',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      directAnswer: {
+        heading: 'Kort antwoord: controleer of de krukaskeerring druk- en vacuümmeting binnen fabriekstoleranties valt',
+        content: 'Koud starten vereist de chokehendel in stand koudestart.',
+        sourceRefs: ['src-026-start']
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBJ5, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Sneaky heading containing crankcase claim bound to start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('directAnswer.heading') && e.includes('crankcase')),
+      `Expected directAnswer.heading violation, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BJ5 Passed: Sneaky direct answer heading cannot bypass validation via innocuous content.');
   }
 }
 

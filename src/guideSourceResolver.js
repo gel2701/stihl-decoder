@@ -978,7 +978,7 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
  * claimClass is derived from schema position (not self-declared by the author).
  *
  * Covered renderer paths (must mirror GuidePageTemplate.js exactly):
- *   - directAnswer.content
+ *   - directAnswer.heading & directAnswer.content
  *   - troubleshootingLevels[*].items[*]
  *   - startProcedures.genericPrinciple.text
  *   - floodedEngineRecovery.genericPrinciple.text
@@ -999,7 +999,11 @@ export function collectRenderedOperationalClaims(guide) {
     claims.push({ path, text: String(text ?? ''), sourceRefs, claimClass });
   }
 
-  // 1. directAnswer.content
+  // 1. directAnswer.heading & directAnswer.content
+  if (guide.directAnswer?.heading) {
+    push('directAnswer.heading', guide.directAnswer.heading,
+      guide.directAnswer.sourceRefs, 'DIRECT_ANSWER');
+  }
   if (guide.directAnswer?.content) {
     push('directAnswer.content', guide.directAnswer.content,
       guide.directAnswer.sourceRefs, 'DIRECT_ANSWER');
