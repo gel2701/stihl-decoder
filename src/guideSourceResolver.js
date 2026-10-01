@@ -683,10 +683,10 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
 
               // Claim-level provenance verification for flooded engine recovery
               if (opts.claimType === 'FLOODED_RECOVERY' && resolved.locator) {
-                const heading = (resolved.locator.heading || '').toLowerCase();
+                const heading = ((resolved.locator.heading || '') + ' ' + (resolved.locator.section || '')).toLowerCase();
                 const isFloodedHeading = heading.includes('not start') || heading.includes('flooded') || heading.includes('verzopen') || heading.includes('troubleshooting');
                 if (!isFloodedHeading) {
-                  errors.push(`${stepLabel} references source "${ref}" which points to "${resolved.locator.heading}" (p. ${resolved.locator.page}) instead of flooded engine recovery.`);
+                  errors.push(`${stepLabel} references source "${ref}" which points to "${resolved.locator.heading || resolved.locator.section}" (p. ${resolved.locator.page}) instead of flooded engine recovery.`);
                 }
               }
             }
@@ -1080,6 +1080,14 @@ export function collectRenderedOperationalClaims(guide) {
     });
   }
 
+  // 8b. sources[*].notes / note
+  if (Array.isArray(guide.sources)) {
+    guide.sources.forEach((src, si) => {
+      if (src.notes) push(`sources[${si}].notes`, src.notes, [src.id || src.source_id], 'SOURCE_NOTE');
+      if (src.note) push(`sources[${si}].note`, src.note, [src.id || src.source_id], 'SOURCE_NOTE');
+    });
+  }
+
   // 9. generationModelData[*] (M-Tronic reset guide)
   if (Array.isArray(guide.generationModelData)) {
     guide.generationModelData.forEach((gen, gi) => {
@@ -1462,9 +1470,19 @@ export function validateGuideSources(guide, options = {}) {
       if (!resolvedSources.has(res.canonicalSource.source_id)) {
         resolvedSources.set(res.canonicalSource.source_id, res.canonicalSource);
       }
-      if (isPublished && src.documentTitle) {
-        if (src.documentTitle !== res.canonicalSource.document_title) {
-          errors.push(`Source "${sId}" documentTitle "${src.documentTitle}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
+      const titleToCheck = src.title || src.documentTitle || src.document_title;
+      if (isPublished && titleToCheck) {
+        if (titleToCheck !== res.canonicalSource.document_title) {
+          errors.push(`Source "${sId}" title "${titleToCheck}" does not exactly match canonical title "${res.canonicalSource.document_title}".`);
+        }
+      }
+      if (isPublished && src.publicationId && src.publication_id && src.publicationId !== src.publication_id) {
+        errors.push(`Source "${sId}" declares conflicting publication IDs: "${src.publicationId}" and "${src.publication_id}".`);
+      }
+      const pubIdToCheck = src.publicationId || src.publication_id;
+      if (isPublished && pubIdToCheck) {
+        if (pubIdToCheck !== res.canonicalSource.publication_id) {
+          errors.push(`Source "${sId}" publication ID "${pubIdToCheck}" does not exactly match canonical publication ID "${res.canonicalSource.publication_id}".`);
         }
       }
       if (!isPublished && res.canonicalSource.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && res.canonicalSource.authenticity_status !== 'AUTHENTICATED_STANDARD') {
