@@ -987,7 +987,7 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
  *                               carburetorVsMtronic.text, carburetorVsMtronic.mtronicText)
  *   - troubleshootingMatrix[*]  (possibleCause, safeFirstCheck, nextStep)
  *   - whenToStopAndCallDealer[*]
- *   - faq[*].answer
+ *   - faq[*].question & faq[*].answer
  *
  * NOTE: procedure steps (startProcedures/floodedEngineRecovery) and warnings are validated
  * separately by validateProcedureStepsProvenance / validateWarningProvenance.
@@ -1132,9 +1132,10 @@ export function collectRenderedOperationalClaims(guide) {
     });
   }
 
-  // 8. faq[*].answer
+  // 8. faq[*].question & faq[*].answer
   if (Array.isArray(guide.faq)) {
     guide.faq.forEach((f, fi) => {
+      if (f.question) push(`faq[${fi}].question`, f.question, f.sourceRefs, 'FAQ_QUESTION');
       if (f.answer) push(`faq[${fi}].answer`, f.answer, f.sourceRefs, 'FAQ_ANSWER');
     });
   }
@@ -1211,7 +1212,7 @@ export function collectRenderedOperationalClaims(guide) {
  *
  * Claim classes that are operational on a PUBLISHED guide:
  *   TROUBLESHOOTING_LEVEL_ITEM, TECHNICAL_INSPECTION, MATRIX_DIAGNOSIS, MATRIX_ACTION,
- *   DEALER_GUIDANCE, FAQ_ANSWER, DIRECT_ANSWER, GENERIC_PRINCIPLE,
+ *   DEALER_GUIDANCE, FAQ_QUESTION, FAQ_ANSWER, DIRECT_ANSWER, GENERIC_PRINCIPLE,
  *   GENERATION_SPECIFICATION, GENERATION_PROCEDURE, FRAMEWORK_DISTINCTION,
  *   CATEGORY_DIAGNOSIS, INSPECTION_STEP
  *
@@ -1232,6 +1233,7 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     'MATRIX_DIAGNOSIS',
     'MATRIX_ACTION',
     'DEALER_GUIDANCE',
+    'FAQ_QUESTION',
     'FAQ_ANSWER',
     'DIRECT_ANSWER',
     'GENERIC_PRINCIPLE',
@@ -1302,6 +1304,12 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       /\b(cilinder.*zuiger.*inspectie)\b/i.test(claim.path);
     let hasMechanicalServiceSource = false;
     let onlyHasUnrelatedSourceForMechanical = true;
+
+    const isCarburetorAdjustmentClaim =
+      /\b(carburateur.*afstel|stelschroef|l-schroef|h-schroef|la-schroef|l-stelschroef|h-stelschroef|la-stelschroef|hoofdsproeier|stationair.*mengsel|limiter cap|slag open|basisafstelling)\b/i.test(claim.text) ||
+      /\b(carburetor|carburateur)\b/i.test(claim.path);
+    let hasCarburetorSpecificSource = false;
+    let onlyHasStartSourceForCarburetor = true;
 
     for (const ref of claim.sourceRefs) {
       if (!sourceIds.has(ref)) {
@@ -1396,12 +1404,37 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
               onlyHasUnrelatedSourceForMechanical = false;
             }
           }
+
+          if (isCarburetorAdjustmentClaim && resolved.locator) {
+            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
+            const isCarburetorLocator =
+              locText.includes('carburetor') || locText.includes('carburateur') ||
+              locText.includes('sproeier') || locText.includes('jet') ||
+              locText.includes('afstelling') || locText.includes('adjustment');
+
+            const isStartOnly =
+              (locText.includes('starting the engine') || locText.includes('startprocedure') || locText.includes('motor starten') || locText.includes('starten')) &&
+              !isCarburetorLocator;
+
+            if (isCarburetorLocator) {
+              hasCarburetorSpecificSource = true;
+            }
+            if (!isStartOnly) {
+              onlyHasStartSourceForCarburetor = false;
+            }
+          }
         }
       }
     }
 
     if (isFuelClaim && (!hasFuelSpecificSource || onlyHasStartSource)) {
       errors.push(`${label} references source(s) pointing to start procedure instead of fuel mixing, storage, or fuel specifications.`);
+    }
+
+    if (isCarburetorAdjustmentClaim && (!hasCarburetorSpecificSource || onlyHasStartSourceForCarburetor)) {
+      errors.push(
+        `${label} makes carburetor adjustment or jet setting claims but references source(s) pointing to start procedure instead of a carburetor adjustment or technical specification locator.`
+      );
     }
 
     if (isCrankcaseTestingClaim && (!hasCrankcaseSpecificSource || onlyHasUnrelatedSourceForCrankcase)) {

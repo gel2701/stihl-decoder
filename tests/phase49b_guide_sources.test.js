@@ -3418,4 +3418,165 @@ console.log('\n▶ Test 41: Full Public Renderer / Canonical Resolver Attributio
   console.log('  ✅ Test 41 Passed: 100% attribute parity verified between public renderer and canonical resolver.');
 }
 
+// ============================================================================
+// Test 42: FAQ Question Operational Provenance Validation (Codex Thread PRRT_kwDOUCUnhs6oLTBg, BI1-BI5)
+// ============================================================================
+console.log('\n▶ Test 42: FAQ Question Operational Provenance Validation (Codex Thread PRRT_kwDOUCUnhs6oLTBg, BI1-BI5)...');
+{
+  const carbSource = {
+    id: 'src-026-carb',
+    source_id: 'src-026-carb',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    locator: {
+      section: 'Carburetor',
+      page: 36,
+      heading: 'Carburetor Adjustment'
+    }
+  };
+
+  const startSource = {
+    id: 'src-026-start',
+    source_id: 'src-026-start',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+    model_scope: ['026'],
+    locator: {
+      section: 'Starting / Stopping the Engine',
+      page: 24,
+      heading: 'Starting the Engine'
+    }
+  };
+
+  const resolvedMap = new Map([
+    ['src-026-carb', resolveGuideSource(carbSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource],
+    ['src-026-start', resolveGuideSource(startSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource]
+  ]);
+
+  // BI1: collectRenderedOperationalClaims collects faq[*].question with claimClass: 'FAQ_QUESTION'
+  {
+    const sampleGuide = {
+      slug: 'test-faq-collect',
+      sources: [carbSource],
+      faq: [
+        {
+          question: 'Hoe stel ik de L-stelschroef van de carburateur af?',
+          answer: 'Draai de L-schroef voorzichtig rechtsom tot aanslag en daarna 1 slag linksom.',
+          sourceRefs: ['src-026-carb']
+        }
+      ]
+    };
+
+    const claims = collectRenderedOperationalClaims(sampleGuide);
+    const qClaim = claims.find(c => c.path === 'faq[0].question');
+    const aClaim = claims.find(c => c.path === 'faq[0].answer');
+
+    assert.ok(qClaim, 'faq[0].question must be collected by collectRenderedOperationalClaims');
+    assert.strictEqual(qClaim.claimClass, 'FAQ_QUESTION', 'faq[0].question must have claimClass FAQ_QUESTION');
+    assert.strictEqual(qClaim.text, 'Hoe stel ik de L-stelschroef van de carburateur af?');
+    assert.deepStrictEqual(qClaim.sourceRefs, ['src-026-carb']);
+
+    assert.ok(aClaim, 'faq[0].answer must be collected by collectRenderedOperationalClaims');
+    assert.strictEqual(aClaim.claimClass, 'FAQ_ANSWER', 'faq[0].answer must have claimClass FAQ_ANSWER');
+    console.log('  ✅ Case BI1 Passed: faq[*].question collected with claimClass FAQ_QUESTION.');
+  }
+
+  // BI2: FAQ question with operational technical claim bound to unrelated locator fails closed
+  {
+    const guideBI2 = {
+      slug: 'test-faq-unrelated-locator',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      faq: [
+        {
+          question: 'Moet de L-stelschroef van de carburateur altijd op 1 slag open staan?',
+          answer: 'Volg altijd de instructies in de handleiding van uw machine.',
+          sourceRefs: ['src-026-start'] // Start locator does not cover carburetor adjustments
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBI2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'FAQ question with carburetor claim citing start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('faq[0].question') && e.includes('pointing to start procedure')),
+      `Expected start locator rejection for FAQ carburetor question, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BI2 Passed: FAQ question citing unrelated locator fails closed.');
+  }
+
+  // BI3: FAQ question citing valid matching locator passes cleanly
+  {
+    const guideBI3 = {
+      slug: 'test-faq-matching-locator',
+      publicationStatus: 'PUBLISHED',
+      sources: [carbSource],
+      faq: [
+        {
+          question: 'Hoe stel ik de L-stelschroef van de carburateur af?',
+          answer: 'Draai de L-schroef voorzichtig rechtsom tot aanslag en daarna 1 slag linksom conform fabrieksinstructie.',
+          sourceRefs: ['src-026-carb']
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBI3, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Valid FAQ question and answer must pass without errors, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BI3 Passed: FAQ question citing valid matching locator passes cleanly.');
+  }
+
+  // BI4: FAQ question without sourceRefs on published guide fails closed
+  {
+    const guideBI4 = {
+      slug: 'test-faq-missing-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [carbSource],
+      faq: [
+        {
+          question: 'Wat is het juiste toerental bij volgas?',
+          answer: 'Raadpleeg uw dealer of officiële handleiding.'
+          // missing sourceRefs
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBI4, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'FAQ question without sourceRefs on published guide must fail');
+    assert.ok(
+      errs.some(e => e.includes('faq[0].question') && e.includes('has no sourceRefs')),
+      `Expected unattributed error for faq[0].question, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BI4 Passed: FAQ question without sourceRefs on published guide fails closed.');
+  }
+
+  // BI5: Unsupported operational claim in question cannot bypass validation with innocuous sourced answer
+  {
+    const guideBI5 = {
+      slug: 'test-faq-sneaky-question',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      faq: [
+        {
+          question: 'Waarom mag ik de carburateur H-schroef niet verder dan 3/4 slag open draaien bij een koude start?',
+          answer: 'Tijdens een koude start gebruikt u uitsluitend de chokehendel.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBI5, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Sneaky question containing carburetor claim bound to start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('faq[0].question')),
+      `Expected faq[0].question violation, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BI5 Passed: Sneaky question cannot bypass validation via innocuous answer.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
