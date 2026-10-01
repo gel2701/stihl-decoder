@@ -1101,10 +1101,15 @@ export function collectRenderedOperationalClaims(guide) {
         if (pt.description) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].description`, pt.description, pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
       });
     }
-    if (df.mouldDateFormats && Array.isArray(df.mouldDateFormats.elements)) {
-      df.mouldDateFormats.elements.forEach((el, ei) => {
-        push(`distinctionFramework.mouldDateFormats.elements[${ei}]`, el, df.sourceRefs, 'FRAMEWORK_DISTINCTION');
-      });
+    if (df.mouldDateFormats) {
+      if (df.mouldDateFormats.description) {
+        push(`distinctionFramework.mouldDateFormats.description`, df.mouldDateFormats.description, df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+      }
+      if (Array.isArray(df.mouldDateFormats.elements)) {
+        df.mouldDateFormats.elements.forEach((el, ei) => {
+          push(`distinctionFramework.mouldDateFormats.elements[${ei}]`, el, df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+        });
+      }
     }
     if (df.replacedPartsNotice?.text) {
       push('distinctionFramework.replacedPartsNotice.text', df.replacedPartsNotice.text, df.replacedPartsNotice.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
@@ -1389,15 +1394,14 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
 
 export function extractModelsFromLabel(label) {
   if (!label || typeof label !== 'string') return [];
-  const withoutParens = label.replace(/\s*\([^)]*\)/g, ' ');
   const modelRegex = /\b(?:(?:MS|FS|BR|BG|TS|HT|HS|BT|FR|KM|MM|SH|SR|FSA|MSA|BGA|HSA|HLA|TSA|KMA|MSE|FSE|HSE|BGE)\s*\d+[a-z0-9]*(?:\s+(?:C-M|C-BE|C-B|C-E|C-Q|TC-M|T|R|RX|C|i)\b)*(?:-[a-z0-9]+)*|\b0\d{2}(?:\s+[A-Z])?\b)\b/gi;
-  const matches = withoutParens.match(modelRegex) || [];
+  const matches = label.match(modelRegex) || [];
   return Array.from(new Set(matches.map(m => m.trim())));
 }
 
 export function isModelCoveredBySource(modelStr, resolvedSource) {
   if (!resolvedSource || !modelStr || typeof modelStr !== 'string') return false;
-  const cleanModel = modelStr.replace(/\s*\([^)]*\)/g, '').trim();
+  const cleanModel = modelStr.trim();
   const targetNorm = normalizeModelScopeIdentifier(cleanModel);
   const scope = resolvedSource.canonical_scope || resolvedSource.canonicalScope || [];
 
