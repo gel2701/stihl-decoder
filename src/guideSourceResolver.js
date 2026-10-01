@@ -1055,6 +1055,7 @@ export function collectRenderedOperationalClaims(guide) {
   // 6. troubleshootingMatrix[*] — possibleCause, safeFirstCheck, nextStep
   if (Array.isArray(guide.troubleshootingMatrix)) {
     guide.troubleshootingMatrix.forEach((row, ri) => {
+      if (row.symptom) push(`troubleshootingMatrix[${ri}].symptom`, row.symptom, row.sourceRefs || row.symptomRefs, 'MATRIX_DIAGNOSIS');
       if (row.possibleCause) push(`troubleshootingMatrix[${ri}].possibleCause`, row.possibleCause, row.sourceRefs || row.possibleCauseRefs, 'MATRIX_DIAGNOSIS');
       if (row.safeFirstCheck) push(`troubleshootingMatrix[${ri}].safeFirstCheck`, row.safeFirstCheck, row.sourceRefs || row.safeFirstCheckRefs, 'MATRIX_ACTION');
       if (row.nextStep) push(`troubleshootingMatrix[${ri}].nextStep`, row.nextStep, row.sourceRefs || row.nextStepRefs, 'MATRIX_ACTION');
