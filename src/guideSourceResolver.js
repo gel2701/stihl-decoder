@@ -1401,7 +1401,7 @@ export function extractModelsFromLabel(label) {
 
 export function isModelCoveredBySource(modelStr, resolvedSource) {
   if (!resolvedSource || !modelStr || typeof modelStr !== 'string') return false;
-  const cleanModel = modelStr.trim();
+  const cleanModel = modelStr.replace(/\s*\([^)]*\)/g, '').trim();
   const targetNorm = normalizeModelScopeIdentifier(cleanModel);
   const scope = resolvedSource.canonical_scope || resolvedSource.canonicalScope || [];
 
