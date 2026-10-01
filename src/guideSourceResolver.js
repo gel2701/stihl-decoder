@@ -252,6 +252,28 @@ export function normalizeModelScopeIdentifier(modelId) {
 }
 
 /**
+ * Resolves a single unambiguous declared source identifier from a source declaration.
+ * Fail-closed if conflicting `id` and `source_id` aliases are provided.
+ */
+export function getDeclaredSourceId(source, options = {}) {
+  if (!source) return null;
+  if (typeof source === 'string') return source;
+  if (typeof source !== 'object') return null;
+
+  const id = source.id;
+  const source_id = source.source_id;
+
+  if (id !== undefined && source_id !== undefined && id !== null && source_id !== null && id !== source_id) {
+    if (options.throwOnError) {
+      throw new Error(`Source identifier alias mismatch: id="${id}", source_id="${source_id}". Each source declaration must have consistent identifiers.`);
+    }
+    return null;
+  }
+
+  return (source_id !== undefined && source_id !== null) ? source_id : ((id !== undefined && id !== null) ? id : null);
+}
+
+/**
  * Resolves a single guide source against canonical registries and audits.
  */
 export function resolveGuideSource(sourceDeclaration, options = { throwOnError: true }) {
@@ -261,24 +283,36 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
     return { resolved: false, errors: ['Source declaration must be an object'], locatorStatus: 'LOCATOR_UNVERIFIED' };
   }
 
-  const source_id = sourceDeclaration.source_id || sourceDeclaration.id;
+  if (sourceDeclaration.id !== undefined && sourceDeclaration.source_id !== undefined &&
+      sourceDeclaration.id !== null && sourceDeclaration.source_id !== null &&
+      sourceDeclaration.id !== sourceDeclaration.source_id) {
+    errors.push(`Source identifier alias mismatch: id="${sourceDeclaration.id}", source_id="${sourceDeclaration.source_id}". Each source declaration must have consistent identifiers.`);
+  }
+
+  const source_id = getDeclaredSourceId(sourceDeclaration);
   const publication_id = sourceDeclaration.publication_id || sourceDeclaration.publicationId;
   const canonical_document_id = sourceDeclaration.canonical_document_id || sourceDeclaration.canonicalDocumentId;
   const standard_id = sourceDeclaration.standard_id || sourceDeclaration.standardId;
   const brand_protection_id = sourceDeclaration.brand_protection_id || sourceDeclaration.brandProtectionId;
-  
-  if (typeof sourceDeclaration.modelScope === 'string' && Array.isArray(sourceDeclaration.model_scope)) {
+
+  const declaredModelScopeArray = Array.isArray(sourceDeclaration.model_scope)
+    ? sourceDeclaration.model_scope
+    : (typeof sourceDeclaration.model_scope === 'string' && sourceDeclaration.model_scope.trim()
+      ? sourceDeclaration.model_scope.replace(/STIHL/gi, '').split(/[\/\,\&]+/).map(s => s.trim()).filter(Boolean)
+      : null);
+
+  if (typeof sourceDeclaration.modelScope === 'string' && declaredModelScopeArray) {
     const displayedModels = sourceDeclaration.modelScope.replace(/STIHL/gi, '').split(/[\/\,\&]+/).map(s => s.trim()).filter(s => s.length > 0).map(m => normalizeModelScopeIdentifier(m));
-    const validModels = sourceDeclaration.model_scope.map(m => normalizeModelScopeIdentifier(m));
+    const validModels = declaredModelScopeArray.map(m => normalizeModelScopeIdentifier(m));
     const set1 = new Set(displayedModels);
     const set2 = new Set(validModels);
     if (set1.size !== set2.size || [...set1].some(m => !set2.has(m)) || [...set2].some(m => !set1.has(m))) {
-      const srcId = sourceDeclaration.source_id || sourceDeclaration.id || 'UNKNOWN';
-      errors.push(`Source "${srcId}" modelScope string ("${sourceDeclaration.modelScope}") must exactly match the models in model_scope array.`);
+      const srcId = source_id || 'UNKNOWN';
+      errors.push(`Source "${srcId}" modelScope string ("${sourceDeclaration.modelScope}") must exactly match the models in model_scope.`);
     }
   } else if (sourceDeclaration.modelScope !== undefined && sourceDeclaration.model_scope !== undefined) {
     if (JSON.stringify(sourceDeclaration.modelScope) !== JSON.stringify(sourceDeclaration.model_scope)) {
-      const srcId = sourceDeclaration.source_id || sourceDeclaration.id || 'UNKNOWN';
+      const srcId = source_id || 'UNKNOWN';
       errors.push(`Source "${srcId}" declares conflicting model scopes: modelScope=${JSON.stringify(sourceDeclaration.modelScope)} and model_scope=${JSON.stringify(sourceDeclaration.model_scope)}.`);
     }
   }
@@ -656,7 +690,7 @@ export function resolveGuidePublicationState(guide, options = {}) {
  */
 export function validateProcedureStepsProvenance(guide, resolvedSources = new Map(), options = {}) {
   const errors = [];
-  const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
+  const sourceIds = new Set((guide.sources || []).map(s => getDeclaredSourceId(s)).filter(Boolean));
   const pubState = resolveGuidePublicationState(guide, options);
   const isPublished = (options.isPublished !== undefined) ? options.isPublished : pubState.isPublished;
 
@@ -664,7 +698,11 @@ export function validateProcedureStepsProvenance(guide, resolvedSources = new Ma
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
     const seenIds = new Set();
     for (const src of guide.sources) {
-      const sId = src.source_id || src.id;
+      if (src && typeof src === 'object' && src.id !== undefined && src.source_id !== undefined &&
+          src.id !== null && src.source_id !== null && src.id !== src.source_id) {
+        errors.push(`Source declares conflicting identifiers: "id" ("${src.id}") and "source_id" ("${src.source_id}").`);
+      }
+      const sId = getDeclaredSourceId(src);
       if (sId && seenIds.has(sId)) {
         errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
       }
@@ -851,7 +889,7 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
   if (!guide || typeof guide !== 'object') return errors;
   if (!guide.warnings || !Array.isArray(guide.warnings)) return errors;
 
-  const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
+  const sourceIds = new Set((guide.sources || []).map(s => getDeclaredSourceId(s)).filter(Boolean));
   const pubState = resolveGuidePublicationState(guide, options);
   const isPublished = pubState.isPublished;
 
@@ -859,7 +897,11 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
     const seenIds = new Set();
     for (const src of guide.sources) {
-      const sId = src.source_id || src.id;
+      if (src && typeof src === 'object' && src.id !== undefined && src.source_id !== undefined &&
+          src.id !== null && src.source_id !== null && src.id !== src.source_id) {
+        errors.push(`Source declares conflicting identifiers: "id" ("${src.id}") and "source_id" ("${src.source_id}").`);
+      }
+      const sId = getDeclaredSourceId(src);
       if (sId && seenIds.has(sId)) {
         errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
       }
@@ -1100,8 +1142,9 @@ export function collectRenderedOperationalClaims(guide) {
   // 8b. sources[*].notes / note
   if (Array.isArray(guide.sources)) {
     guide.sources.forEach((src, si) => {
-      if (src.notes) push(`sources[${si}].notes`, src.notes, [src.id || src.source_id], 'SOURCE_NOTE');
-      if (src.note) push(`sources[${si}].note`, src.note, [src.id || src.source_id], 'SOURCE_NOTE');
+      const sId = getDeclaredSourceId(src);
+      if (src.notes) push(`sources[${si}].notes`, src.notes, [sId], 'SOURCE_NOTE');
+      if (src.note) push(`sources[${si}].note`, src.note, [sId], 'SOURCE_NOTE');
     });
   }
 
@@ -1177,7 +1220,7 @@ export function collectRenderedOperationalClaims(guide) {
 export function validateOperationalClaimsProvenance(guide, resolvedSources = new Map(), pubState = {}) {
   const errors = [];
   const isPublished = pubState.isPublished ?? false;
-  const sourceIds = new Set((guide.sources || []).map(s => s.id || s.source_id));
+  const sourceIds = new Set((guide.sources || []).map(s => getDeclaredSourceId(s)).filter(Boolean));
 
   // All claimClasses from collectRenderedOperationalClaims are considered operational.
   // No bypass path exists.
@@ -1208,7 +1251,11 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
   if (resolvedSources.size === 0 && Array.isArray(guide.sources)) {
     const seenIds = new Set();
     for (const src of guide.sources) {
-      const sId = src.source_id || src.id;
+      if (src && typeof src === 'object' && src.id !== undefined && src.source_id !== undefined &&
+          src.id !== null && src.source_id !== null && src.id !== src.source_id) {
+        errors.push(`Source declares conflicting identifiers: "id" ("${src.id}") and "source_id" ("${src.source_id}").`);
+      }
+      const sId = getDeclaredSourceId(src);
       if (sId && seenIds.has(sId)) {
         errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
       }
@@ -1473,7 +1520,11 @@ export function validateGuideSources(guide, options = {}) {
 
   const seenIds = new Set();
   for (const src of sources) {
-    const sId = src.source_id || src.id;
+    if (src && typeof src === 'object' && src.id !== undefined && src.source_id !== undefined &&
+        src.id !== null && src.source_id !== null && src.id !== src.source_id) {
+      errors.push(`Source declares conflicting identifiers: "id" ("${src.id}") and "source_id" ("${src.source_id}").`);
+    }
+    const sId = getDeclaredSourceId(src);
     if (sId && seenIds.has(sId)) {
       errors.push(`Duplicate source identifier "${sId}" declared in guide.sources. Each source declaration must have a unique identifier.`);
     }
@@ -1555,7 +1606,8 @@ export function validateAllGuides() {
     totalSources += (guide.sources || []).length;
 
     for (const src of (guide.sources || [])) {
-      const resolved = res.resolvedSources.get(src.id || src.source_id);
+      const sId = getDeclaredSourceId(src);
+      const resolved = res.resolvedSources.get(sId);
       if (resolved) {
         if (resolved.authenticity_status === 'AUTHENTICATED_OFFICIAL') {
           if (resolved.source_class === 'OFFICIAL_BRAND_PROTECTION') {

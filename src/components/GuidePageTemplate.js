@@ -8,6 +8,7 @@ import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { renderSeoMeta } from './SeoMeta.js';
 import { buildStructuredData } from './StructuredData.js';
 import { getStructuredGuide } from '../content/guides/index.js';
+import { resolveGuideSource, getDeclaredSourceId } from '../guideSourceResolver.js';
 
 /**
  * Safely formats a locator object or string for human display.
@@ -108,7 +109,7 @@ export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
 
     ${isSerialLocations
       ? renderSerialLocationGuideBody()
-      : ((structuredGuide || guideToUse.generationModelData || guideToUse.directAnswer || guideToUse.startProcedures || guideToUse.distinctionFramework || guideToUse.resultCategories)
+      : ((structuredGuide || guideToUse.generationModelData || guideToUse.directAnswer || guideToUse.startProcedures || guideToUse.distinctionFramework || guideToUse.resultCategories || guideToUse.sources)
         ? renderStructuredGuideBody(guideToUse)
         : `
         <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
@@ -290,9 +291,11 @@ function renderStructuredGuideBody(guide) {
                 ${Object.values(guide.startProcedures.documentedExamples).map(ex => {
                   const exampleSourceRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs) || [];
                   const sourceLabels = exampleSourceRefs.map(ref => {
-                    const src = (guide.sources || []).find(s => (s.id || s.source_id) === ref);
+                    const src = (guide.sources || []).find(s => getDeclaredSourceId(s) === ref);
                     if (!src) return ref;
-                    const title = src.documentTitle || src.document_title || src.title || ref;
+                    const res = resolveGuideSource(src, { throwOnError: false });
+                    const canonical = res.resolved ? res.canonicalSource : null;
+                    const title = src.documentTitle || src.document_title || src.title || (canonical ? canonical.document_title : null) || ref;
                     const loc = formatLocator(src.locator);
                     return loc ? `${title} (${loc})` : title;
                   });
@@ -396,9 +399,11 @@ function renderStructuredGuideBody(guide) {
                 ${Object.values(guide.floodedEngineRecovery.documentedExamples).map(ex => {
                   const exampleSourceRefs = ex.sourceRefs || (ex.steps && ex.steps[0] && ex.steps[0].sourceRefs) || [];
                   const sourceLabels = exampleSourceRefs.map(ref => {
-                    const src = (guide.sources || []).find(s => (s.id || s.source_id) === ref);
+                    const src = (guide.sources || []).find(s => getDeclaredSourceId(s) === ref);
                     if (!src) return ref;
-                    const title = src.documentTitle || src.document_title || src.title || ref;
+                    const res = resolveGuideSource(src, { throwOnError: false });
+                    const canonical = res.resolved ? res.canonicalSource : null;
+                    const title = src.documentTitle || src.document_title || src.title || (canonical ? canonical.document_title : null) || ref;
                     const loc = formatLocator(src.locator);
                     return loc ? `${title} (${loc})` : title;
                   });
@@ -534,9 +539,11 @@ function renderStructuredGuideBody(guide) {
                 ${gen.sourceRefs && gen.sourceRefs.length > 0 ? `
                   <p class="text-gray-400 text-xs font-mono">
                     Bron: ${gen.sourceRefs.map(ref => {
-                      const src = (guide.sources || []).find(s => (s.id || s.source_id) === ref);
+                      const src = (guide.sources || []).find(s => getDeclaredSourceId(s) === ref);
                       if (!src) return ref;
-                      const title = src.documentTitle || src.document_title || src.title || ref;
+                      const res = resolveGuideSource(src, { throwOnError: false });
+                      const canonical = res.resolved ? res.canonicalSource : null;
+                      const title = src.documentTitle || src.document_title || src.title || (canonical ? canonical.document_title : null) || ref;
                       const loc = formatLocator(src.locator);
                       return loc ? `${title} (${loc})` : title;
                     }).join('; ')}
@@ -655,16 +662,27 @@ function renderStructuredGuideBody(guide) {
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
             ${guide.sources.map(s => {
-              const pubId = s.publicationId || s.publication_id;
+              const res = resolveGuideSource(s, { throwOnError: false });
+              const canonical = res.resolved ? res.canonicalSource : null;
+              const pubId = s.publicationId || s.publication_id || (canonical ? canonical.publication_id : null);
               const label = pubId ? `Publicatie-ID: ${pubId}` : (s.sourceLabel ? `Bron-ID: ${s.sourceLabel}` : '');
-              const scopeDisplay = s.modelScope || (Array.isArray(s.model_scope) ? s.model_scope.join(' / ') : null);
-              const titleDisplay = s.documentTitle || s.document_title || s.title;
+              let scopeDisplay = null;
+              if (typeof s.modelScope === 'string' && s.modelScope.trim()) {
+                scopeDisplay = s.modelScope.trim();
+              } else if (Array.isArray(s.model_scope)) {
+                scopeDisplay = s.model_scope.join(' / ');
+              } else if (typeof s.model_scope === 'string' && s.model_scope.trim()) {
+                scopeDisplay = s.model_scope.trim();
+              } else if (canonical && Array.isArray(canonical.model_scope) && canonical.model_scope.length > 0) {
+                scopeDisplay = canonical.model_scope.join(' / ');
+              }
+              const titleDisplay = s.documentTitle || s.document_title || s.title || (canonical ? canonical.document_title : null) || 'Officiële Documentatie';
               return `
               <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-1">
                 <strong class="text-white block font-semibold">${titleDisplay}</strong>
                 <p class="text-gray-400 text-2xs font-mono">${label}${label && scopeDisplay ? ' | ' : ''}${scopeDisplay ? `Scope: ${scopeDisplay}` : ''}</p>
                 ${formatLocator(s.locator) ? `<p class="text-gray-400 text-2xs font-mono">Vindplaats: ${formatLocator(s.locator)}</p>` : ''}
-                <p class="text-gray-300 mt-1">${s.notes}</p>
+                <p class="text-gray-300 mt-1">${s.notes || s.note || ''}</p>
               </div>
             `;}).join('')}
           </div>

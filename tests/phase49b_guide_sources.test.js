@@ -11,6 +11,7 @@ import {
   validateWarningProvenance,
   validateGuideSources,
   validateAllGuides,
+  getDeclaredSourceId,
   TRUSTED_TECHNICAL_STANDARDS,
   TRUSTED_BRAND_PROTECTION_REGISTRY
 } from '../src/guideSourceResolver.js';
@@ -3129,6 +3130,292 @@ console.log('\n▶ Test 37: Procedure Model Labels Scope Validation (Thread 31).
     );
     console.log('  ✅ Case BE4 Passed: Procedure example without recognizable STIHL model fails closed.');
   }
+}
+
+// 38. Phase 49B-P-R22 Source Identifier Alias Parity & Conflict Rejection (BF1-BF4)
+console.log('\n▶ Test 38: Source Identifier Alias Parity & Conflict Rejection (Codex Thread A, BF1-BF4)...');
+{
+  // Case BF1: Conflicting id and source_id fail closed
+  const conflictingSource = {
+    id: 'source-a',
+    source_id: 'source-b',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resBF1 = resolveGuideSource(conflictingSource, { throwOnError: false });
+  assert.strictEqual(resBF1.resolved, false, 'Conflicting id and source_id must fail resolution');
+  assert.ok(
+    resBF1.errors.some(e => e.includes('Source identifier alias mismatch')),
+    `Expected mismatch error, got: ${resBF1.errors.join('; ')}`
+  );
+
+  const guideBF1 = {
+    slug: 'test-bf1',
+    publicationStatus: 'PUBLISHED',
+    sources: [conflictingSource],
+    warnings: [{ title: 'Warn', text: 'Tekst', sourceRefs: ['source-a'] }]
+  };
+  const valBF1 = validateGuideSources(guideBF1, { routeStatus: 'PUBLISHED' });
+  assert.strictEqual(valBF1.valid, false, 'Conflicting id and source_id in guide.sources must fail validation');
+  assert.ok(
+    valBF1.errors.some(e => e.includes('conflicting identifiers') || e.includes('Source identifier alias mismatch')),
+    `Expected conflicting identifiers error in guide validation, got: ${valBF1.errors.join('; ')}`
+  );
+  assert.strictEqual(getDeclaredSourceId(conflictingSource), null, 'getDeclaredSourceId must return null for conflicting IDs');
+  console.log('  ✅ Case BF1 Passed: Conflicting id and source_id aliases fail closed across resolver, validator, and helper.');
+
+  // Case BF2: Matching id and source_id pass cleanly
+  const matchingSource = {
+    id: 'source-a',
+    source_id: 'source-a',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resBF2 = resolveGuideSource(matchingSource, { throwOnError: false });
+  assert.strictEqual(resBF2.resolved, true, `Matching id and source_id must resolve: ${resBF2.errors.join('; ')}`);
+  assert.strictEqual(getDeclaredSourceId(matchingSource), 'source-a');
+  console.log('  ✅ Case BF2 Passed: Matching id and source_id aliases resolve cleanly to canonical identifier.');
+
+  // Case BF3: Only id provided
+  const idOnlySource = {
+    id: 'source-id-only',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resBF3 = resolveGuideSource(idOnlySource, { throwOnError: false });
+  assert.strictEqual(resBF3.resolved, true, 'id-only source must resolve');
+  assert.strictEqual(getDeclaredSourceId(idOnlySource), 'source-id-only');
+  console.log('  ✅ Case BF3 Passed: id-only source resolves consistently.');
+
+  // Case BF4: Only source_id provided
+  const sourceIdOnlySource = {
+    source_id: 'source-id-only-2',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resBF4 = resolveGuideSource(sourceIdOnlySource, { throwOnError: false });
+  assert.strictEqual(resBF4.resolved, true, 'source_id-only source must resolve');
+  assert.strictEqual(getDeclaredSourceId(sourceIdOnlySource), 'source-id-only-2');
+  console.log('  ✅ Case BF4 Passed: source_id-only source resolves consistently.');
+}
+
+// 39. Phase 49B-P-R22 Canonical Title Fallback & Title Parity (BG1-BG3)
+console.log('\n▶ Test 39: Canonical Title Fallback & Title Parity (Codex Thread B, BG1-BG3)...');
+{
+  // Case BG1: Valid source without declared title aliases falls back to canonical document title in renderer
+  const untitledSource = {
+    id: 'src-026-untitled',
+    publicationId: '0458-133-3021',
+    model_scope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const guideBG1 = {
+    slug: 'stihl-kettingzaag-start-niet',
+    title: 'Test Gids Zonder Bron Titel',
+    publicationStatus: 'PUBLISHED',
+    sources: [untitledSource],
+    warnings: [{ title: 'Brandstof', text: 'Brandstof veiligheid.', sourceRefs: ['src-026-untitled'] }],
+    startProcedures: {
+      documentedExamples: {
+        stihl026: {
+          modelLabel: 'STIHL 026',
+          sourceRefs: ['src-026-untitled'],
+          steps: [{ step: 1, title: 'Koude start', text: 'Choke inschakelen.', sourceRefs: ['src-026-untitled'] }]
+        }
+      }
+    }
+  };
+
+  const valBG1 = validateGuideSources(guideBG1, { routeStatus: 'PUBLISHED' });
+  assert.strictEqual(valBG1.valid, true, `Source without title aliases must pass validation when canonical source exists: ${valBG1.errors.join('; ')}`);
+
+  const htmlBG1 = renderGuidePageHtml(guideBG1, database, baseUrl);
+  assert.ok(
+    htmlBG1.includes('STIHL 026 Instruction Manual') || htmlBG1.includes('026'),
+    'Rendered HTML must contain resolved canonical title'
+  );
+  console.log('  ✅ Case BG1 Passed: Source without title aliases renders resolved canonical title.');
+
+  // Case BG2: HTML does NOT contain "undefined" heading or text
+  assert.strictEqual(htmlBG1.includes('<strong class="text-white block font-semibold">undefined</strong>'), false, 'HTML must never render "undefined" title');
+  assert.strictEqual(htmlBG1.includes('>undefined<'), false, 'HTML must never contain raw "undefined" token');
+  console.log('  ✅ Case BG2 Passed: HTML source card is completely free of "undefined" title literals.');
+
+  // Case BG3: Incorrect declared title fails closed
+  const wrongTitleSource = {
+    id: 'src-026-wrong-title',
+    title: 'Incorrect Handboek Titel',
+    publicationId: '0458-133-3021',
+    model_scope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const guideBG3 = {
+    slug: 'test-wrong-title',
+    publicationStatus: 'PUBLISHED',
+    sources: [wrongTitleSource],
+    warnings: [{ title: 'Warn', text: 'Text', sourceRefs: ['src-026-wrong-title'] }]
+  };
+  const valBG3 = validateGuideSources(guideBG3, { routeStatus: 'PUBLISHED' });
+  assert.strictEqual(valBG3.valid, false, 'Incorrect declared title must fail closed');
+  assert.ok(
+    valBG3.errors.some(e => e.includes('does not exactly match canonical title')),
+    `Expected canonical title mismatch error, got: ${valBG3.errors.join('; ')}`
+  );
+  console.log('  ✅ Case BG3 Passed: Incorrect declared title fails closed against canonical registry.');
+}
+
+// 40. Phase 49B-P-R22 Model Scope String & Array Rendering Parity (BH1-BH5)
+console.log('\n▶ Test 40: Model Scope String & Array Rendering Parity (Codex Thread C, BH1-BH5)...');
+{
+  // Case BH1: model_scope array ['026'] renders Scope: 026
+  const guideBH1 = {
+    slug: 'test-bh1',
+    title: 'Test BH1',
+    publicationStatus: 'PUBLISHED',
+    sources: [{
+      id: 'src-bh1',
+      publicationId: '0458-133-3021',
+      model_scope: ['026'],
+      locator: { page: 38, heading: 'Starting' }
+    }]
+  };
+  const htmlBH1 = renderGuidePageHtml(guideBH1, database, baseUrl);
+  assert.ok(htmlBH1.includes('Scope: 026'), 'Array model_scope must render Scope: 026');
+  console.log('  ✅ Case BH1 Passed: Array model_scope ["026"] renders "Scope: 026".');
+
+  // Case BH2: model_scope string '026' renders Scope: 026
+  const guideBH2 = {
+    slug: 'test-bh2',
+    title: 'Test BH2',
+    publicationStatus: 'PUBLISHED',
+    sources: [{
+      id: 'src-bh2',
+      publicationId: '0458-133-3021',
+      model_scope: '026',
+      locator: { page: 38, heading: 'Starting' }
+    }]
+  };
+  const htmlBH2 = renderGuidePageHtml(guideBH2, database, baseUrl);
+  assert.ok(htmlBH2.includes('Scope: 026'), 'String model_scope must render Scope: 026');
+  console.log('  ✅ Case BH2 Passed: String model_scope "026" renders "Scope: 026".');
+
+  // Case BH3: modelScope formatted string renders cleanly
+  const guideBH3 = {
+    slug: 'test-bh3',
+    title: 'Test BH3',
+    publicationStatus: 'PUBLISHED',
+    sources: [{
+      id: 'src-bh3',
+      publicationId: '0458-133-3021',
+      modelScope: 'STIHL 026',
+      model_scope: ['026'],
+      locator: { page: 38, heading: 'Starting' }
+    }]
+  };
+  const htmlBH3 = renderGuidePageHtml(guideBH3, database, baseUrl);
+  assert.ok(htmlBH3.includes('Scope: STIHL 026'), 'modelScope string renders cleanly');
+  console.log('  ✅ Case BH3 Passed: modelScope string renders cleanly in public source card.');
+
+  // Case BH4: Conflicting modelScope and model_scope fail closed
+  const conflictingScopeSource = {
+    id: 'src-bh4',
+    publicationId: '0458-133-3021',
+    modelScope: 'STIHL MS 500i',
+    model_scope: ['026'],
+    locator: { page: 38, heading: 'Starting' }
+  };
+  const resBH4 = resolveGuideSource(conflictingScopeSource, { throwOnError: false });
+  assert.strictEqual(resBH4.resolved, false, 'Conflicting modelScope and model_scope must fail resolution');
+  assert.ok(
+    resBH4.errors.some(e => e.includes('modelScope string ("STIHL MS 500i") must exactly match the models in model_scope')),
+    `Expected scope conflict error, got: ${resBH4.errors.join('; ')}`
+  );
+  console.log('  ✅ Case BH4 Passed: Conflicting modelScope and model_scope aliases fail closed.');
+
+  // Case BH5: Unvalidated legacy scope: 'MS 500i' does not override canonical 026
+  const legacyScopeSource = {
+    id: 'src-bh5',
+    publicationId: '0458-133-3021',
+    scope: 'MS 500i',
+    model_scope: ['026'],
+    locator: { page: 38, heading: 'Starting' }
+  };
+  const guideBH5 = {
+    slug: 'test-bh5',
+    title: 'Test BH5',
+    publicationStatus: 'PUBLISHED',
+    sources: [legacyScopeSource]
+  };
+  const htmlBH5 = renderGuidePageHtml(guideBH5, database, baseUrl);
+  assert.strictEqual(htmlBH5.includes('Scope: MS 500i'), false, 'Legacy unvalidated scope must never be rendered as model scope');
+  assert.ok(htmlBH5.includes('Scope: 026'), 'Canonical model_scope must be rendered');
+  console.log('  ✅ Case BH5 Passed: Legacy unvalidated scope property is ignored; validated model_scope renders.');
+}
+
+// 41. Phase 49B-P-R22 Public Renderer / Canonical Resolver Parity Test
+console.log('\n▶ Test 41: Full Public Renderer / Canonical Resolver Attribution Parity...');
+{
+  const allGuides = getAllStructuredGuides();
+  for (const guide of allGuides) {
+    const pubState = resolveGuidePublicationState(guide);
+    if (!pubState.isPublished) continue;
+
+    const html = renderGuidePageHtml(guide, database, baseUrl);
+
+    for (const src of (guide.sources || [])) {
+      const sId = getDeclaredSourceId(src);
+      const res = resolveGuideSource(src, { throwOnError: true, isPublishedGuide: true });
+      const canonical = res.canonicalSource;
+
+      // 1. Canonical Title Parity
+      assert.ok(
+        html.includes(canonical.document_title),
+        `Guide "${guide.slug}" rendered HTML must contain canonical title "${canonical.document_title}" for source "${sId}"`
+      );
+
+      // 2. Publication ID Parity
+      if (canonical.publication_id) {
+        assert.ok(
+          html.includes(canonical.publication_id),
+          `Guide "${guide.slug}" rendered HTML must contain publication ID "${canonical.publication_id}" for source "${sId}"`
+        );
+      }
+
+      // 3. Model Scope Parity
+      if (src.modelScope) {
+        assert.ok(
+          html.includes(`Scope: ${src.modelScope}`),
+          `Guide "${guide.slug}" rendered HTML must contain declared modelScope "${src.modelScope}"`
+        );
+      } else if (Array.isArray(src.model_scope)) {
+        assert.ok(
+          html.includes(`Scope: ${src.model_scope.join(' / ')}`),
+          `Guide "${guide.slug}" rendered HTML must contain model_scope "${src.model_scope.join(' / ')}"`
+        );
+      }
+
+      // 4. Locator Parity
+      if (src.locator && (src.locator.page || src.locator.heading)) {
+        const formattedLoc = formatLocator(src.locator);
+        if (formattedLoc) {
+          assert.ok(
+            html.includes(`Vindplaats: ${formattedLoc}`),
+            `Guide "${guide.slug}" rendered HTML must contain locator "${formattedLoc}"`
+          );
+        }
+      }
+    }
+
+    // Ensure no broken literals in rendered guide page
+    assert.strictEqual(html.includes('>undefined<'), false, `Guide "${guide.slug}" must not contain ">undefined<"`);
+    assert.strictEqual(html.includes('>null<'), false, `Guide "${guide.slug}" must not contain ">null<"`);
+    assert.strictEqual(html.includes('[object Object]'), false, `Guide "${guide.slug}" must not contain "[object Object]"`);
+  }
+  console.log('  ✅ Test 41 Passed: 100% attribute parity verified between public renderer and canonical resolver.');
 }
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
