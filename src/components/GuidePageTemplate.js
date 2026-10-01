@@ -657,11 +657,12 @@ function renderStructuredGuideBody(guide) {
             ${guide.sources.map(s => {
               const pubId = s.publicationId || s.publication_id;
               const label = pubId ? `Publicatie-ID: ${pubId}` : (s.sourceLabel ? `Bron-ID: ${s.sourceLabel}` : '');
-              const scope = s.modelScope || s.scope;
+              const scopeDisplay = s.modelScope || (Array.isArray(s.model_scope) ? s.model_scope.join(' / ') : null);
+              const titleDisplay = s.documentTitle || s.document_title || s.title;
               return `
               <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-1">
-                <strong class="text-white block font-semibold">${s.documentTitle}</strong>
-                <p class="text-gray-400 text-2xs font-mono">${label}${label && scope ? ' | ' : ''}${scope ? `Scope: ${scope}` : ''}</p>
+                <strong class="text-white block font-semibold">${titleDisplay}</strong>
+                <p class="text-gray-400 text-2xs font-mono">${label}${label && scopeDisplay ? ' | ' : ''}${scopeDisplay ? `Scope: ${scopeDisplay}` : ''}</p>
                 ${formatLocator(s.locator) ? `<p class="text-gray-400 text-2xs font-mono">Vindplaats: ${formatLocator(s.locator)}</p>` : ''}
                 <p class="text-gray-300 mt-1">${s.notes}</p>
               </div>
