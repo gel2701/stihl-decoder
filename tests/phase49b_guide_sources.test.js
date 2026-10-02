@@ -5127,4 +5127,131 @@ console.log('\n▶ Test 54: Inspection Checklist Topic Operational Provenance (C
   }
 }
 
+// ---------------------------------------------------------------------------
+// TEST 55: Generic Canonical-Topic Grounding for Non-Procedure Claims (Codex Thread PRRT_kwDOUCUnhs6oP05G, BV1-BV5)
+// ---------------------------------------------------------------------------
+console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure Claims (Codex Thread PRRT_kwDOUCUnhs6oP05G, BV1-BV5)...');
+{
+  const startSrc = {
+    id: 'src-026-start',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const brandProtectSrc = {
+    source_id: 'src-brand-protect',
+    publication_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+    brand_protection_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+    modelScope: ['Alle motorgereedschappen'],
+    locator: { section: 'Counterfeit identification' }
+  };
+
+  // BV1: Safety warning with air filter wash instruction citing start-only locator fails closed
+  {
+    const guideBV1 = {
+      slug: 'test-warning-air-filter-wash',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Luchtfilter onderhoudsinstructie',
+          text: 'Reinig en was het luchtfilter met warm water.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Air filter wash warning citing start-only locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "Luchtfilter onderhoudsinstructie"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start procedure error for air filter wash warning, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1 Passed: Air filter wash warning citing start-only locator fails closed.');
+  }
+
+  // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
+  {
+    const guideBV2 = {
+      slug: 'test-checklist-air-filter-wash',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      inspectionChecklist: [
+        {
+          topic: 'Reinig en was het luchtfilter met warm water.',
+          text: 'Controleer de machine zorgvuldig.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV2, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Air filter wash checklist topic citing start-only locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('inspectionChecklist[0].topic') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start procedure error for checklist topic, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV2 Passed: Air filter wash checklist topic citing start-only locator fails closed.');
+  }
+
+  // BV3: Safety warning with arbitrary ungrounded instruction citing start-only locator fails closed
+  {
+    const guideBV3 = {
+      slug: 'test-warning-boor-gat',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Gevaarlijke bewerking',
+          text: 'Boor een gat in de machine.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV3, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Arbitrary ungrounded warning citing start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "Gevaarlijke bewerking"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV3 Passed: Arbitrary ungrounded warning citing start locator fails closed.');
+  }
+
+  // BV4: Genuine safety warning citing start locator passes cleanly
+  {
+    const guideBV4 = {
+      slug: 'test-warning-valid-start',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Kettingrem altijd inschakelen vóór het starten',
+          text: 'Duw de voorste handbeschermer naar voren tot deze vergrendelt. Start uitsluitend met vergrendelde kettingrem.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV4, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine start safety warning must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV4 Passed: Genuine start safety warning citing start locator passes cleanly.');
+  }
+
+  // BV5: Genuine checklist topic citing brand protection locator passes cleanly
+  {
+    const guideBV5 = {
+      slug: 'test-checklist-valid-brand-protect',
+      publicationStatus: 'PUBLISHED',
+      sources: [brandProtectSrc],
+      inspectionChecklist: [
+        {
+          topic: 'Serienummer inspectie & fabriekstypeplaatje',
+          text: 'Controleer het unieke serienummer.',
+          sourceRefs: ['src-brand-protect']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV5, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine brand protection checklist topic must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV5 Passed: Genuine checklist topic citing brand protection locator passes cleanly.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

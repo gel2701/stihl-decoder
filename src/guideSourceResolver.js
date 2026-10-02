@@ -900,6 +900,9 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   let hasFloodedSpecificSource = false;
 
   const allLocTopics = [];
+  let allSourcesAreStartOnly = sourceRefs.length > 0;
+  let allSourcesAreFloodedOnly = sourceRefs.length > 0;
+  let validSourcesCount = 0;
 
   for (const ref of sourceRefs) {
     if (!sourceIds.has(ref)) {
@@ -909,6 +912,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
       if (!resolved) {
         errors.push(`${label} references source "${ref}" which could not be resolved.`);
       } else {
+        validSourcesCount++;
         if (resolved.authenticity_status !== 'AUTHENTICATED_OFFICIAL' &&
             resolved.authenticity_status !== 'AUTHENTICATED_STANDARD') {
           errors.push(`${label} references source "${ref}" which lacks AUTHENTICATED_OFFICIAL status (${resolved.authenticity_status}).`);
@@ -920,6 +924,24 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
         const locTopics = resolved.locator?.topics || [];
         allLocTopics.push(...locTopics);
         const locText = `${resolved.locator?.section || ''} ${resolved.locator?.heading || ''}`.toLowerCase();
+
+        const isStartLoc = (locTopics.includes('starting') || locTopics.includes('start') || locTopics.includes('starten') ||
+                            locText.includes('starting') || locText.includes('starten')) &&
+                           !locTopics.includes('carburetor') && !locTopics.includes('carburateur') &&
+                           !locTopics.includes('fuel') && !locTopics.includes('crankcase') &&
+                           !locTopics.includes('cylinder') && !locTopics.includes('mtronic') &&
+                           !locTopics.includes('chain') && !locTopics.includes('maintenance') &&
+                           !locTopics.includes('counterfeit') && !locTopics.includes('brand protection') &&
+                           !locTopics.includes('flooded') && !locTopics.includes('ontzopen') &&
+                           !locTopics.includes('troubleshooting') &&
+                           !locText.includes('carburetor') && !locText.includes('carburateur') &&
+                           !locText.includes('flooded') && !locText.includes('verzopen') && !locText.includes('does not start');
+
+        const isFloodedLoc = (locTopics.includes('flooded') || locTopics.includes('ontzopen') || locText.includes('flooded') || locText.includes('verzopen') || locText.includes('does not start')) &&
+                             !locTopics.includes('carburetor') && !locTopics.includes('fuel') && !locTopics.includes('crankcase');
+
+        if (!isStartLoc) allSourcesAreStartOnly = false;
+        if (!isFloodedLoc) allSourcesAreFloodedOnly = false;
 
         if (isFuelClaim && resolved.locator) {
           const isFuelLocator = locTopics.includes('fuel') || locText.includes('fuel') || locText.includes('brandstof') ||
@@ -1038,6 +1060,11 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
     }
   }
 
+  if (validSourcesCount === 0) {
+    allSourcesAreStartOnly = false;
+    allSourcesAreFloodedOnly = false;
+  }
+
   if (isFuelClaim && (!hasFuelSpecificSource || onlyHasStartSourceForFuel)) {
     errors.push(`${label} references source(s) pointing to start procedure instead of fuel mixing, storage, or fuel specifications.`);
   }
@@ -1078,17 +1105,27 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
     );
   }
 
-  if (options.claimType === 'START_PROCEDURE' && options.claimClass !== 'PROCEDURE_MODEL_LABEL') {
-    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|primer\w*|brandstofpomp\w*|balg|purger|stationair)\b/i;
+  const GROUNDED_CLAIM_CLASSES = new Set([
+    'SAFETY_WARNING',
+    'INSPECTION_STEP',
+    'PROCEDURE_HEADING',
+    'PROCEDURE_INTRO'
+  ]);
+
+  const isStartDomainCheck = (options.claimType === 'START_PROCEDURE' || (allSourcesAreStartOnly && GROUNDED_CLAIM_CLASSES.has(options.claimClass))) && options.claimClass !== 'PROCEDURE_MODEL_LABEL';
+  const isFloodedDomainCheck = (options.claimType === 'FLOODED_RECOVERY' || (allSourcesAreFloodedOnly && GROUNDED_CLAIM_CLASSES.has(options.claimClass))) && options.claimClass !== 'PROCEDURE_MODEL_LABEL' && !isStartDomainCheck;
+
+  if (isStartDomainCheck) {
+    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|primer\w*|brandstofpomp\w*|balg|purger|stationair|veiligheid\w*|bescherming\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|brandgevaar|ontploffingsgevaar)\b/i;
     const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText);
-    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.includes(t.toLowerCase()));
+    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
-      errors.push(`${label} contains off-domain or unrecognized procedure instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
+      errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
     }
-  } else if (options.claimType === 'FLOODED_RECOVERY' && options.claimClass !== 'PROCEDURE_MODEL_LABEL') {
+  } else if (isFloodedDomainCheck) {
     const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|natte bougie|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*)\b/i;
     const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText);
-    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.includes(t.toLowerCase()));
+    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
       errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
     }
