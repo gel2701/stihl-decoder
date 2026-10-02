@@ -158,7 +158,7 @@ export const stihlKettingzaagStartNietGuide = {
     },
     {
       title: 'Stabiele startpositie verplicht',
-      text: 'Plaats de kettingzaag vlak en stabiel op de grond. Zorg dat het zaagblad en de ketting vrij liggen van takken, aarde en stenen. Gebruik uitsluitend een door de handleiding van uw machinetype toegestane stabiele startmethode. Voor standaard achterhandgreepmodellen: plaats de rechtervoet stevig in de achterste handgreep en houd de voorste handbeugel met de linkerhand vast (duim om de beugel). Let op: bij speciale tophandle motorzagen (boomverzorgingszagen met handgreep bovenop) is starten met de voet in de handgreep fysiek niet van toepassing; raadpleeg hiervoor altijd de specifieke handleiding van uw machine. Start een kettingzaag NOOIT \'uit de hand\' (vliegende start); dit leidt tot ernstig ongevalsgevaar.',
+      text: 'Plaats de kettingzaag vlak en stabiel op de grond. Zorg dat het zaagblad en de ketting vrij liggen van takken, aarde en stenen. Gebruik uitsluitend een door de handleiding van uw machinetype toegestane stabiele startmethode. Voor standaard achterhandgreepmodellen: plaats de rechtervoet stevig in de achterste handgreep en houd de voorste handbeugel met de linkerhand vast (duim om de beugel). Let op: bij speciale tophandle motorzagen (boomverzorgingszagen met handgreep bovenop) is starten met de voet in de handgreep fysiek niet van toepassing; raadpleeg hiervoor altijd de specifieke handleiding van uw machine. Start een kettingzaag NOOIT \'uit de hand\' (vliegende start), omdat een startprocedure zonder stabiele steun tot ernstig letselgevaar leidt.',
       severity: 'danger',
       sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d', 'src-0458-207-8321-b']
     },
@@ -432,7 +432,7 @@ export const stihlKettingzaagStartNietGuide = {
     },
     carburetorVsMtronic: {
       title: 'Verschil tussen Klassieke Carburateurs en M-Tronic',
-      text: 'Bij klassieke STIHL zagen regelt een mechanische membraancarburateur met stelschroeven (L, H en LA) de brandstoftoevoer. Ga hier niet blindelings aan draaien: een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
+      text: 'Bij klassieke STIHL zagen regelt een mechanische membraancarburateur met stelschroeven (L, H en LA) de brandstoftoevoer. Ga niet blindelings aan deze stelschroeven draaien: een te arme afstelling kan oververhitting en ernstige motorschade veroorzaken.',
       mtronicText: 'Moderne STIHL zagen met M-Tronic (herkenbaar aan de aanduiding C-M, zoals de MS 261 C-M) hebben een elektronisch gestuurd motormanagementsysteem. Een regeleenheid doseert brandstof via een magneetventiel. Deze machines hebben GEEN handmatige H- en L-stelschroeven. Bij storing is dealerdiagnose met het voor deze generatie voorgeschreven STIHL diagnosesysteem aangewezen.',
       sourceRefs: ['src-0458-133-3021-carburetor', 'src-0458-573-8621-d-mtronic']
     }
@@ -508,7 +508,7 @@ export const stihlKettingzaagStartNietGuide = {
 
   faq: [
     {
-      question: 'Waarom start mijn STIHL kettingzaag koud wel, maar warm niet?',
+      question: 'Waarom start mijn STIHL kettingzaag koud wel, maar start deze warm niet?',
       answer: 'Dit kan optreden wanneer per ongeluk de chokestand wordt gebruikt bij een warme motor, waardoor deze direct verzuipt. Andere mogelijke oorzaken bij warme motoren zijn dampbelvorming in het brandstofsysteem na zware belasting of een ontstekingscomponent die bij verhoogde bedrijfstemperatuur faalt. Laat de zaag afkoelen en raadpleeg de warmstartprocedure uit uw handleiding.',
       sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d']
     },

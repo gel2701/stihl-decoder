@@ -6237,6 +6237,130 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     assert.strictEqual(res.valid, true, `Genuine troubleshooting levels and matrix rows must pass cleanly, got: ${res.errors.join('; ')}`);
     console.log('  ✅ Case BV10 Passed: Genuine troubleshooting levels and matrix rows pass cleanly.');
   }
+
+  // BV11: Split compound claims across conjunctions and transitions without verb allowlist (Thread PRRT_kwDOUCUnhs6oR_rg)
+  {
+    const guideBV11a = {
+      slug: 'test-compound-clause-split-vergiftig',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Startinstructie',
+          text: 'Controleer de startpositie en vergiftig de boom.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const resA = validateGuideSources(guideBV11a, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(resA.valid, false, 'Compound claim with "en vergiftig de boom" must fail closed');
+    assert.ok(
+      resA.errors.some(e => e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start error for compound claim, got: ${resA.errors.join('; ')}`
+    );
+
+    const guideBV11b = {
+      slug: 'test-compound-clause-split-conjunction-maar',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Startinstructie',
+          text: 'Controleer de startpositie maar boor eerst een gat.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const resB = validateGuideSources(guideBV11b, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(resB.valid, false, 'Compound claim with "maar boor eerst een gat" must fail closed');
+    assert.ok(
+      resB.errors.some(e => e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start error for conjunction split, got: ${resB.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV11 Passed: Compound claims split across conjunctions/actions fail closed when subclause is off-domain.');
+  }
+
+  // BV12: Generic safety words do not ground off-domain start claims (Thread PRRT_kwDOUCUnhs6oR_rl)
+  {
+    const guideBV12 = {
+      slug: 'test-generic-safety-word-start',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Veiligheid',
+          text: 'Draag veilig een baksteen naar boven.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV12, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Off-domain claim with generic safety word must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV12 Passed: Generic safety words do not ground off-domain start claims.');
+  }
+
+  // BV13: Carburetor claims require carburetor-specific vocabulary, not generic words (Thread PRRT_kwDOUCUnhs6oR_ru)
+  {
+    const carbSrc = {
+      id: 'src-026-carb',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Motor management' }
+    };
+    const guideBV13 = {
+      slug: 'test-carburetor-generic-schroef',
+      publicationStatus: 'PUBLISHED',
+      sources: [carbSrc],
+      warnings: [
+        {
+          title: 'Schroefinstructie',
+          text: 'Schroef een plank aan de muur.',
+          sourceRefs: ['src-026-carb']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV13, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Off-domain claim with generic "schroef" citing carburetor locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical cited source topics') || e.includes('not grounded in canonical carburetor adjustment topics')),
+      `Expected ungrounded carburetor error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV13 Passed: Generic word "schroef" does not ground carburetor claims.');
+  }
+
+  // BV14: Generic advice words do not ground standards/mould claims (Thread PRRT_kwDOUCUnhs6oR_ry)
+  {
+    const mouldSrc = {
+      source_id: 'src-mould-dat',
+      publication_id: 'STIHL-CASTING-DATE-GUIDELINE-V1',
+      brand_protection_id: 'STIHL-CASTING-DATE-GUIDELINE-V1',
+      modelScope: ['Alle motorgereedschappen'],
+      locator: { section: 'Gietklok en gietdatum ontcijferen' }
+    };
+    const guideBV14 = {
+      slug: 'test-standards-generic-advies',
+      publicationStatus: 'PUBLISHED',
+      sources: [mouldSrc],
+      warnings: [
+        {
+          title: 'Algemeen advies',
+          text: 'Advies: boor een gat in de muur.',
+          sourceRefs: ['src-mould-dat']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV14, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Off-domain claim with generic "Advies:" citing mould/standards locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical cited source topics') || e.includes('not grounded in canonical standards, manufacturing, distinction, or PPE topics')),
+      `Expected ungrounded standards error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV14 Passed: Generic advice words do not ground standards/mould claims.');
+  }
 }
 
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
