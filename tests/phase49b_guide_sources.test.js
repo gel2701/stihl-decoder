@@ -5610,6 +5610,83 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1r Passed: Genuine top-level metadata and generation heading pass cleanly.');
   }
 
+  // BV1s: Start-only guide with title containing generic word like "gids" but off-domain instruction fails closed (Thread PRRT_kwDOUCUnhs6oRFkZ)
+  {
+    const guideBV1s = {
+      slug: 'test-title-generic-gids',
+      publicationStatus: 'PUBLISHED',
+      title: 'Boor een gat in de muur — gids',
+      shortTitle: 'Boor Gids',
+      sources: [startSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Zet de combihendel op koudestart en start de motor.',
+        sourceRefs: ['src-026-start']
+      }
+    };
+    const res = validateGuideSources(guideBV1s, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Title with off-domain instruction must fail closed even if mentioning generic label like "gids"');
+    assert.ok(
+      res.errors.some(e => e.includes('Operational claim at "title"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded title error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1s Passed: Generic labels in title cannot bypass canonical domain grounding.');
+  }
+
+  // BV1t: Claim under carburetor locator with generic verb like "draai" but off-domain instruction fails closed (Thread PRRT_kwDOUCUnhs6oRFkg)
+  {
+    const carbSrc = {
+      id: 'src-026-carb',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Idle speed' }
+    };
+    const guideBV1t = {
+      slug: 'test-carb-generic-draai',
+      publicationStatus: 'PUBLISHED',
+      sources: [carbSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Draai een gat in de muur met een boormachine.',
+        sourceRefs: ['src-026-carb']
+      }
+    };
+    const res = validateGuideSources(guideBV1t, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Claim with generic verb under carburetor locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical cited source topics')),
+      `Expected ungrounded carburetor domain error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1t Passed: Standalone generic verbs under carburetor locator cannot bypass domain grounding.');
+  }
+
+  // BV1u: Claim under specifications locator cannot borrow unrelated fuel domain vocabulary and fails closed (Thread PRRT_kwDOUCUnhs6oRFkl)
+  {
+    const specEngineSrc = {
+      id: 'src-026-spec-engine',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 14, section: 'Specifications', heading: 'Engine' }
+    };
+    const guideBV1u = {
+      slug: 'test-spec-engine-no-fuel-borrowing',
+      publicationStatus: 'PUBLISHED',
+      sources: [specEngineSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Smeer de deur met olie.',
+        sourceRefs: ['src-026-spec-engine']
+      }
+    };
+    const res = validateGuideSources(guideBV1u, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Specifications/Engine claim with off-domain instruction must fail closed and not borrow fuel regex');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical cited source topics')),
+      `Expected ungrounded specifications domain error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1u Passed: Specifications locator fails closed on unrelated fuel claims without borrowing vocabulary.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {

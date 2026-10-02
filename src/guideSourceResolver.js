@@ -1110,39 +1110,51 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
     'SOURCE_NOTE'
   ]);
 
+function isWhollyStructuralHeading(text) {
+  const norm = String(text || '').trim();
+  const STRUCTURAL_HEADING_REGEX = /^(?:level\s*\d+(?:\s*[\—\-\:–]\s*(?:safe direct inspection|experienced user\s*(?:\/|\&)\s*manual required|service procedure|directe visuele inspectie|inspectie met gereedschap\s*(?:\&|en)\s*handleiding|[a-z\s&]+))?|directe visuele inspectie|inspectie met gereedschap\s*(?:\&|en)\s*handleiding|service procedure|kort antwoord(?::\s*wat kunt u veilig direct controleren\?)?|generatie\s*\d+(?:\s*\([^)]*\))?|gen\s*\d+(?:\s*\([^)]*\))?|test\s+gids\s+zonder\s+bron\s+titel)$/i;
+  return STRUCTURAL_HEADING_REGEX.test(norm);
+}
+
   const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|brandstoftank|tankontluchting|brandstofniveau|zuigkop)\b/i;
 
   const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|verbrandingsbeeld|verbranding|vonk\w*|elektrode\w*|elektrodekleur|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|brandstofmengsel\w*|tweetaktmengsel\w*|mengselverhouding|mengverhouding|oliebijmenging|overbelasting|oververhitting|thermische overbelasting|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|werkplaatsinspectie|cilinderinspectie|bougie-inspectie|bougieinspectie|compressieverlies|compressietest)\b/i;
 
   const SUBSTANTIVE_FUEL_REGEX = /\b(brandstof\w*|mengsmering\w*|mengsel\w*|tweetakt\w*|2-takt\w*|motomix\w*|euro\s*95|euro\s*98|e5|e10|loodvrij\w*|octaan\w*|ron|verouder\w*|opslag\w*|bewaar\w*|stabilisator\w*|mengverhouding\w*|1:50|olie\w*|synthetisch\w*|jerrycan\w*|tankdop\w*|aftappen|ontgassen|zuigkop\w*|tankfilter\w*|brandstoftank\w*|tankontluchting\w*)\b/i;
 
-  const SUBSTANTIVE_CARBURETOR_REGEX = /\b(carburateur\w*|stelschroef\w*|l-schroef|h-schroef|la-schroef|l-stelschroef\w*|h-stelschroef\w*|la-stelschroef\w*|l-sproeier|h-sproeier|la-sproeier|hoofdsproeier|stationair\w*|limiter\s*cap\w*|basisafstelling|mengselschroef|gasklep|membraan\w*|pompmebraan|regelmembraan|inlaatnaald|naaldventiel|toerental|draai\w*|slag|kloksgewijs|tegen de klok in)\b/i;
+  const SUBSTANTIVE_CARBURETOR_REGEX = /\b(carburateur\w*|carburatie\w*|stelschroef\w*|l-schroef|h-schroef|la-schroef|l-stelschroef\w*|h-stelschroef\w*|la-stelschroef\w*|l-sproeier|h-sproeier|la-sproeier|hoofdsproeier|stationairsproeier|stationairschroef|limiter\s*cap\w*|basisafstelling|standaardafstelling|mengselschroef|gasklep\w*|chokeklep\w*|membraan\w*|pompmembraan|regelmembraan|inlaatnaald\w*|naaldventiel\w*|stationair toerental|inregeling|carburateurafstelling|carburateurreiniging)\b/i;
 
   const SUBSTANTIVE_CRANKCASE_REGEX = /\b(carter\w*|krukas\w*|keerring\w*|dichting\w*|pakking\w*|afpers\w*|vacu[üu]m\w*|drukmeting|vacu[üu]mmeting|onderdruk|overdruk|lek\w*|dichtheid|lekkage|abdrück\w*)\b/i;
 
   const SUBSTANTIVE_MTRONIC_REGEX = /\b(m-tronic\w*|kalibrat\w*|kalibreren|diagnos\w*|diagnose\w*|motormanagement|regeleenheid|magneetventiel|stuurapparaat|mdg\s*1|software|foutcode\w*|uitlezen|gen\s*\d+|generatie\w*)\b/i;
 
-  const SUBSTANTIVE_CYLINDER_REGEX = /\b(cilinder\w*|zuiger\w*|zuigerveer\w*|zuigerpen\w*|compressie\w*|cilinderwand\w*|drijfstang|lager\w*|krukas|cilinderkop|verbrandingskamer|bougiedraad|decompressie\w*|slijtage|krassen|klemmen|vastloper)\b/i;
+  const SUBSTANTIVE_CYLINDER_REGEX = /\b(cilinder\w*|zuiger\w*|zuigerveer\w*|zuigerpen\w*|compressie\w*|cilinderwand\w*|drijfstang|lager\w*|krukas|cilinderkop|verbrandingskamer|bougiedraad|decompressie\w*|slijtage|krassen|klemmen|vastloper|mechanisch\w*|mechaniek\w*)\b/i;
 
   const SUBSTANTIVE_CHAIN_REGEX = /\b(zaagketting\w*|ketting\w*|zaagblad\w*|blad\w*|geleideblad\w*|slijp\w*|vijl\w*|vijlen|slijpen|vijlhouder|ronde vijl|vlakke vijl|snijtand\w*|dieptesteller\w*|hoek|kettingspanning\w*|kettingspanner\w*|kettingsmering\w*|kettingolie\w*|kettingrem\w*|tandwiel\w*|aandrijftandwiel|omdraaien)\b/i;
 
-  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|specificatie\w*|technische gegevens|gewicht|vermogen|cilinderinhoud|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|controle\w*|controleren|overzicht\w*|direct antwoord|kort antwoord|oorzaken|experienced user|directe visuele inspectie|generatie\w*|gen\s*\d+|model\w*|modellen\w*|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|bougie\w*|bougiekleur\w*|elektrode\w*|elektrodenafstand\w*|koffiebruin\w*|grijsbruin\w*|matzwart\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*|gids\w*|titel\w*|bron\w*|kennisbank\w*|document\w*|artikel\w*)\b/i;
+  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|specificatie\w*|technische gegevens|gewicht|vermogen|cilinderinhoud|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|oorzaken|generatie\w*|gen\s*\d+|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|bougie\w*|bougiekleur\w*|elektrode\w*|elektrodenafstand\w*|koffiebruin\w*|grijsbruin\w*|matzwart\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*)\b/i;
 
-  if (!UNGROUNDED_CLAIM_CLASSES.has(options.claimClass)) {
-    const isHeadingClass = options.claimClass === 'TROUBLESHOOTING_LEVEL_HEADING' ||
-                           options.claimClass === 'GUIDE_METADATA' ||
-                           options.claimClass === 'GENERATION_SPECIFICATION' ||
-                           options.claimClass === 'GENERATION_PROCEDURE' ||
-                           (options.claimClass === 'DIRECT_ANSWER' && pathOrLabel && pathOrLabel.includes('heading'));
+  const SUBSTANTIVE_SPECIFICATIONS_REGEX = /\b(technische gegevens|specificatie\w*|cilinderinhoud|boring|slag|vermogen|kw|pk|toerental|stationair toerental|maximaal toerental|onbelast toerental|ontsteking\w*|bougietype|bougiedraad|elektrodenafstand|warmtewaarde|gewicht|geluidsdrukniveau|geluidsvermogenniveau|trillingswaarde|zaagbladlengte|steek|dikte|kettingsnelheid)\b/i;
+
+  const isModelListItem = options.claimClass === 'GENERATION_SPECIFICATION' && pathOrLabel && pathOrLabel.includes('.models[');
+
+  if (!UNGROUNDED_CLAIM_CLASSES.has(options.claimClass) && !isModelListItem) {
+    const isWhollyStructural = (
+      options.claimClass === 'TROUBLESHOOTING_LEVEL_HEADING' ||
+      options.claimClass === 'GUIDE_METADATA' ||
+      options.claimClass === 'GENERATION_SPECIFICATION' ||
+      options.claimClass === 'GENERATION_PROCEDURE' ||
+      (options.claimClass === 'DIRECT_ANSWER' && pathOrLabel && pathOrLabel.includes('heading'))
+    ) && isWhollyStructuralHeading(text);
 
     if (options.claimType === 'START_PROCEDURE' || allSourcesAreStartOnly) {
-      const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText) || (isHeadingClass && SUBSTANTIVE_STANDARDS_REGEX.test(fullText));
+      const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText) || isWhollyStructural;
       const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
       if (!matchesVocab && !matchesLocatorTopic) {
         errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
       }
     } else if (options.claimType === 'FLOODED_RECOVERY' || allSourcesAreFloodedOnly) {
-      const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText) || (isHeadingClass && SUBSTANTIVE_STANDARDS_REGEX.test(fullText));
+      const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText) || isWhollyStructural;
       const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
       if (!matchesVocab && !matchesLocatorTopic) {
         errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
@@ -1150,11 +1162,6 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
     } else {
       // Mixed or general cited sources canonical-topic domain grounding
       const activeRegexes = [];
-
-      // Structural heading / metadata / generation classes can match standard procedural heading vocabulary
-      if (isHeadingClass) {
-        activeRegexes.push(SUBSTANTIVE_STANDARDS_REGEX);
-      }
 
       for (const ref of sourceRefs) {
         const resolved = resolvedSources.get(ref);
@@ -1186,20 +1193,15 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
         if (locTopics.some(t => ['chain', 'maintenance'].includes(t)) || locText.includes('chain') || locText.includes('ketting')) {
           activeRegexes.push(SUBSTANTIVE_CHAIN_REGEX);
         }
+        if (locTopics.some(t => ['specifications', 'technical data', 'specificaties', 'engine', 'tolerances'].includes(t)) || locText.includes('specifications') || locText.includes('technical data')) {
+          activeRegexes.push(SUBSTANTIVE_SPECIFICATIONS_REGEX);
+        }
         if (locTopics.some(t => ['safety', 'ppe', 'approvals', 'conformity', 'certification', 'quality', 'standards', 'tolerances', 'brand protection', 'counterfeit', 'mould dating', 'specificaties', 'technical data'].includes(t)) || resolved.brand_protection_id || resolved.standard_id) {
           activeRegexes.push(SUBSTANTIVE_STANDARDS_REGEX);
         }
       }
 
-      if (activeRegexes.length === 0) {
-        activeRegexes.push(
-          SUBSTANTIVE_START_REGEX, SUBSTANTIVE_FLOODED_REGEX, SUBSTANTIVE_FUEL_REGEX,
-          SUBSTANTIVE_CARBURETOR_REGEX, SUBSTANTIVE_CRANKCASE_REGEX, SUBSTANTIVE_MTRONIC_REGEX,
-          SUBSTANTIVE_CYLINDER_REGEX, SUBSTANTIVE_CHAIN_REGEX, SUBSTANTIVE_STANDARDS_REGEX
-        );
-      }
-
-      const matchesAnyActiveVocab = activeRegexes.some(rx => rx.test(fullText));
+      const matchesAnyActiveVocab = activeRegexes.some(rx => rx.test(fullText)) || isWhollyStructural;
       const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
       if (!matchesAnyActiveVocab && !matchesLocatorTopic) {
         errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical cited source topics.`);
