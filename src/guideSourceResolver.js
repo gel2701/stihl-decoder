@@ -334,17 +334,16 @@ export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
       const entrySecNorm = norm(entry.section);
       const entryHeadNorm = norm(entry.heading);
 
-      const secMatch = declaredSecNorm ? (entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm)) : false;
-      const headMatch = declaredHeadNorm ? (entryHeadNorm.includes(declaredHeadNorm) || declaredHeadNorm.includes(entryHeadNorm)) : false;
-      const headTopicMatch = declaredHeadNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredHeadNorm.includes(t) || t.includes(declaredHeadNorm)));
-      const secTopicMatch = declaredSecNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredSecNorm.includes(t) || t.includes(declaredSecNorm)));
+      const secMatch = declaredSecNorm ? (entrySecNorm === declaredSecNorm || entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm)) : false;
+      const headMatch = declaredHeadNorm ? (entryHeadNorm === declaredHeadNorm) : false;
 
       let isMatch = false;
       if (declaredSecNorm && declaredHeadNorm) {
-        isMatch = secMatch && (headMatch || headTopicMatch);
+        isMatch = secMatch && headMatch;
       } else if (declaredHeadNorm) {
-        isMatch = headMatch || headTopicMatch;
+        isMatch = headMatch;
       } else if (declaredSecNorm) {
+        const secTopicMatch = declaredSecNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredSecNorm.includes(t) || t.includes(declaredSecNorm)));
         isMatch = secMatch || (secTopicMatch && !declaredSecNorm.includes('removal') && !declaredSecNorm.includes('flywheel'));
       }
 
@@ -393,17 +392,16 @@ export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
     for (const entry of docLocData.sections) {
       const entrySecNorm = norm(entry.section);
       const entryHeadNorm = norm(entry.heading || entry.section);
-      const secMatch = declaredSecNorm ? (entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm)) : false;
-      const headMatch = declaredHeadNorm ? (entryHeadNorm.includes(declaredHeadNorm) || declaredHeadNorm.includes(entryHeadNorm)) : false;
-      const headTopicMatch = declaredHeadNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredHeadNorm.includes(t) || t.includes(declaredHeadNorm)));
-      const secTopicMatch = declaredSecNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredSecNorm.includes(t) || t.includes(declaredSecNorm)));
+      const secMatch = declaredSecNorm ? (entrySecNorm === declaredSecNorm || entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm)) : false;
+      const headMatch = declaredHeadNorm ? (entryHeadNorm === declaredHeadNorm) : false;
 
       let isMatch = false;
       if (declaredSecNorm && declaredHeadNorm) {
-        isMatch = secMatch && (headMatch || headTopicMatch);
+        isMatch = secMatch && headMatch;
       } else if (declaredHeadNorm) {
-        isMatch = headMatch || headTopicMatch;
+        isMatch = headMatch;
       } else if (declaredSecNorm) {
+        const secTopicMatch = declaredSecNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredSecNorm.includes(t) || t.includes(declaredSecNorm)));
         isMatch = secMatch || secTopicMatch;
       }
 
@@ -445,7 +443,7 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
   }
 
   const source_id = getDeclaredSourceId(sourceDeclaration);
-  const publication_id = sourceDeclaration.publication_id || sourceDeclaration.publicationId;
+  const publication_id = sourceDeclaration.publication_id || sourceDeclaration.publicationId || sourceDeclaration.primaryDocumentNumber || sourceDeclaration.documentNumber;
   const canonical_document_id = sourceDeclaration.canonical_document_id || sourceDeclaration.canonicalDocumentId;
   const standard_id = sourceDeclaration.standard_id || sourceDeclaration.standardId;
   const brand_protection_id = sourceDeclaration.brand_protection_id || sourceDeclaration.brandProtectionId;
@@ -760,6 +758,8 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
 
     if (verificationResult.valid && ((hasValidPage && hasMeaningfulText) || (isStandardOrBrandProtection && hasMeaningfulText) || hasMeaningfulText)) {
       locatorStatus = 'LOCATOR_VERIFIED';
+    } else if (verificationResult.status && verificationResult.status !== 'LOCATOR_UNVERIFIED') {
+      locatorStatus = verificationResult.status;
     } else if (hasValidPage) {
       locatorStatus = 'LOCATOR_PAGE_ONLY';
     } else if (hasMeaningfulText) {
@@ -891,9 +891,17 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   let hasCarburetorSpecificSource = false;
   let onlyHasStartSourceForCarburetor = true;
 
+  const isChainMaintenanceClaim =
+    /\b(zaagketting.*(?:slijp\w*|vijl\w*|onderhoud|spannen|vetten|smering|smeren)|snijtanden|snijtand|vijl\w*|slijp\w*|vijlen|slijpen|zaagblad.*omdraaien|kettingspanning|kettingspanner|dieptesteller|hoek van \d+ graden)\b/i.test(fullText) ||
+    /\b(zaagketting.*onderhoud|ketting.*slijpen)\b/i.test(pathOrLabel || '');
+  let hasChainSpecificSource = false;
+
   const isFloodedRecovery = options.claimType === 'FLOODED_RECOVERY' ||
+    (pathOrLabel && (pathOrLabel.includes('floodedEngineRecovery') || pathOrLabel.includes('flooded_recovery') || pathOrLabel.includes('ontzop'))) ||
     /\b(verzopen motor|ontzopen|ontzopingsprocedure|bougie droogmaken en starten zonder choke)\b/i.test(fullText);
   let hasFloodedSpecificSource = false;
+
+  const allLocTopics = [];
 
   for (const ref of sourceRefs) {
     if (!sourceIds.has(ref)) {
@@ -912,6 +920,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
         }
 
         const locTopics = resolved.locator?.topics || [];
+        allLocTopics.push(...locTopics);
         const locText = `${resolved.locator?.section || ''} ${resolved.locator?.heading || ''}`.toLowerCase();
 
         if (isFuelClaim && resolved.locator) {
@@ -1010,6 +1019,15 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
           }
         }
 
+        if (isChainMaintenanceClaim && resolved.locator) {
+          const isChainLocator =
+            locTopics.includes('chain') || locTopics.includes('maintenance') ||
+            locText.includes('chain') || locText.includes('ketting') || locText.includes('slijpen') || locText.includes('sharpen');
+          if (isChainLocator) {
+            hasChainSpecificSource = true;
+          }
+        }
+
         if (isFloodedRecovery && resolved.locator) {
           const isFloodedLocator =
             locTopics.includes('flooded') || locTopics.includes('ontzopen') || locTopics.includes('troubleshooting') ||
@@ -1050,10 +1068,32 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
     );
   }
 
-  if (isFloodedRecovery && !hasFloodedSpecificSource && options.claimType === 'FLOODED_RECOVERY') {
+  if (isChainMaintenanceClaim && !hasChainSpecificSource) {
+    errors.push(
+      `${label} contains chain maintenance or sharpening instructions but references source(s) without a chain maintenance locator.`
+    );
+  }
+
+  if (isFloodedRecovery && !hasFloodedSpecificSource) {
     errors.push(
       `${label} references source(s) pointing to start procedure instead of flooded engine recovery or troubleshooting.`
     );
+  }
+
+  if (options.claimType === 'START_PROCEDURE' && options.claimClass !== 'PROCEDURE_MODEL_LABEL') {
+    const START_VOCAB_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|aanslaan|lopen|draaien|trekken|trek\w*|koord|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|plop|horen|geluid|stop\w*|stopstand|uitgeschakeld|uitschakelen|afzetten|bedrijfstand|bedrijfsstand|stationair|choke\w*|chokestand|koude start|koudestart|warme start|warmestart|halfgas|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|schakelaar|combischakelaar|hendel\w*|decompressie\w*|decompressieklep|decompressieventiel|ventiel|handbeschermer|kettingrem|rem\w*|vergrendel\w*|ontgrendel\w*|knop|indrukken|loslaten|aantippen|aantikken|bedienen|inschakelen|doorschakelen|klik|stand|grond|vlak|bodem|voet|achtergreep|beugelhandgreep|voorste handgreep|greep|handgreep|stabiel|rustig|krachtig|doortrekken|uitrekken|weerstand|veilig|houding|machine|primer\w*|brandstofpomp\w*|balg|purger|stap\w*|procedure\w*|volg\w*|volgorde|controleren|herhalen|wachten|instructie\w*|handleiding\w*|voorschrift\w*|bediening\w*|principe\w*|algemeen\w*|basis\w*|methode\w*)\b/i;
+    const matchesVocab = START_VOCAB_REGEX.test(fullText);
+    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.includes(t.toLowerCase()));
+    if (!matchesVocab && !matchesLocatorTopic) {
+      errors.push(`${label} contains off-domain or unrecognized procedure instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
+    }
+  } else if (options.claimType === 'FLOODED_RECOVERY' && options.claimClass !== 'PROCEDURE_MODEL_LABEL') {
+    const FLOODED_VOCAB_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|reinigen|schoonmaken|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|natte bougie|droge bougie|schroefdraad|handvast|vastdraaien|monteren|demonteren|verwijderen|losdraaien|losschroeven|plaatsen|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|doortrekken|startkoord|trekken|stap\w*|procedure\w*|volg\w*|volgorde|controleren|herhalen|wachten|instructie\w*|handleiding\w*|voorschrift\w*|principe\w*|algemeen\w*|basis\w*|methode\w*)\b/i;
+    const matchesVocab = FLOODED_VOCAB_REGEX.test(fullText);
+    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.includes(t.toLowerCase()));
+    if (!matchesVocab && !matchesLocatorTopic) {
+      errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
+    }
   }
 }
 
@@ -1682,9 +1722,25 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
       continue;
     }
 
+    let claimType = undefined;
+    if (claim.path.startsWith('floodedEngineRecovery')) {
+      claimType = 'FLOODED_RECOVERY';
+    } else if (claim.path.startsWith('startProcedures')) {
+      claimType = 'START_PROCEDURE';
+    } else if (claim.path.startsWith('technicalInspections.fuel')) {
+      claimType = 'FUEL';
+    } else if (claim.path.startsWith('technicalInspections.sparkPlug')) {
+      claimType = 'SPARK_PLUG';
+    } else if (claim.path.includes('carburetor') || claim.path.includes('Carburetor')) {
+      claimType = 'CARBURETOR';
+    } else if (claim.path.includes('mtronic') || claim.path.includes('Mtronic')) {
+      claimType = 'MTRONIC';
+    }
+
     validateClaimDomainMatching(claim.text, claim.path, claim.sourceRefs, resolvedSources, sourceIds, errors, {
       label,
-      claimClass: claim.claimClass
+      claimClass: claim.claimClass,
+      claimType
     });
 
     if (claim.path.includes('generationModelData') && claim.path.includes('.models[')) {

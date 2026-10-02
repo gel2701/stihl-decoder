@@ -458,7 +458,7 @@ export const stihlKettingzaagStartNietGuide = {
       possibleCause: 'Choke per ongeluk gebruikt bij warme motor, dampbelvorming in brandstofleiding of verzopen toestand.',
       safeFirstCheck: 'Gebruik de warme startprocedure zonder choke conform de handleiding van uw model. Laat de zaag eventueel enkele minuten afkoelen.',
       nextStep: 'Indien verzopen: volg ontzopingsprocedure uit handleiding. Bij aanhoudend probleem dealerdiagnose.',
-      sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d']
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-133-3021-flooded', 'src-0458-573-8621-d']
     },
     {
       symptom: 'Motor verzopen (brandstofgeur, natte bougie)',

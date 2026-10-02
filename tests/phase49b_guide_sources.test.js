@@ -4483,4 +4483,344 @@ console.log('\n▶ Test 49: Procedure Headings & Titles Operational Provenance (
   }
 }
 
+// 50. Canonical Heading Equality & Rejection of Compound/Forged Headings (Codex Thread PRRT_kwDOUCUnhs6oMJeL, BQ1-BQ5)
+console.log('\n▶ Test 50: Canonical Heading Equality & Rejection of Compound/Forged Headings (Codex Thread PRRT_kwDOUCUnhs6oMJeL, BQ1-BQ5)...');
+{
+  const docLoc026 = {
+    documentNumber: '0458-133-3021',
+    pages: {
+      38: [
+        { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten', 'stopping'] }
+      ]
+    }
+  };
+
+  // BQ1: Page 38 with forged compound heading containing topic substring fails closed
+  {
+    const locatorBQ1 = { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine and sharpen the chain to 30 degrees' };
+    const res = verifyLocatorAgainstCanonicalData('0458-133-3021', locatorBQ1);
+    assert.strictEqual(res.verified, false, 'Forged compound heading must not be verified');
+    assert.strictEqual(res.status, 'LOCATOR_SECTION_MISMATCH', 'Status must be LOCATOR_SECTION_MISMATCH');
+    console.log('  ✅ Case BQ1 Passed: Page 38 with forged compound heading fails closed as LOCATOR_SECTION_MISMATCH.');
+  }
+
+  // BQ2: Page 38 with genuine canonical heading passes cleanly
+  {
+    const locatorBQ2 = { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' };
+    const res = verifyLocatorAgainstCanonicalData('0458-133-3021', locatorBQ2);
+    assert.strictEqual(res.verified, true, 'Genuine canonical heading must be verified');
+    assert.strictEqual(res.status, 'LOCATOR_VERIFIED', 'Status must be LOCATOR_VERIFIED');
+    console.log('  ✅ Case BQ2 Passed: Page 38 with genuine canonical heading resolves to LOCATOR_VERIFIED.');
+  }
+
+  // BQ3: Section-only registry document with forged compound heading fails closed
+  {
+    const locatorBQ3 = { section: 'Carburetor adjustment', heading: 'Limiter caps and basic settings plus chain sharpening' };
+    const res = verifyLocatorAgainstCanonicalData('1068494421', locatorBQ3);
+    assert.strictEqual(res.verified, false, 'Forged compound heading on section registry must fail closed');
+    assert.strictEqual(res.status, 'LOCATOR_SECTION_MISMATCH', 'Status must be LOCATOR_SECTION_MISMATCH');
+    console.log('  ✅ Case BQ3 Passed: Section-only document with forged compound heading fails closed.');
+  }
+
+  // BQ4: Section-only registry document with genuine canonical heading passes cleanly
+  {
+    const locatorBQ4 = { section: 'Carburetor adjustment', heading: 'Limiter caps and basic settings' };
+    const res = verifyLocatorAgainstCanonicalData('1068494421', locatorBQ4);
+    assert.strictEqual(res.verified, true, 'Genuine canonical heading on section registry must be verified');
+    assert.strictEqual(res.status, 'LOCATOR_VERIFIED', 'Status must be LOCATOR_VERIFIED');
+    console.log('  ✅ Case BQ4 Passed: Section-only document with genuine heading resolves to LOCATOR_VERIFIED.');
+  }
+
+  // BQ5: Published guide source with forged compound heading fails resolveGuideSource
+  {
+    const sourceBQ5 = {
+      id: 'src-forged-heading',
+      primaryDocumentNumber: '0458-133-3021',
+      modelScope: '026',
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine and sharpen the chain to 30 degrees' }
+    };
+    const res = resolveGuideSource(sourceBQ5, { throwOnError: false, isPublishedGuide: true });
+    assert.strictEqual(res.resolved, false, 'Source with forged compound heading must fail to resolve on published guide');
+    assert.strictEqual(res.locatorStatus, 'LOCATOR_SECTION_MISMATCH', 'Locator status must be LOCATOR_SECTION_MISMATCH');
+    console.log('  ✅ Case BQ5 Passed: Published guide source with forged compound heading fails resolution.');
+  }
+}
+
+// 51. Grounding Procedure Steps Outside Whitelist (Codex Thread PRRT_kwDOUCUnhs6oMJeS, BR1-BR5)
+console.log('\n▶ Test 51: Grounding Procedure Steps Outside Whitelist (Codex Thread PRRT_kwDOUCUnhs6oMJeS, BR1-BR5)...');
+{
+  const startSrc = {
+    id: 'src-026-start',
+    source_id: 'src-026-start',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'PRIMARY_OFFICIAL_MANUAL',
+    authenticity_status: 'AUTHENTICATED_OFFICIAL',
+    model_scope: ['026'],
+    canonicalScope: ['026'],
+    locatorStatus: 'LOCATOR_VERIFIED',
+    locator: {
+      page: 38,
+      section: 'Starting / Stopping the Engine',
+      heading: 'Starting the Engine',
+      topics: ['starting', 'start', 'starten', 'stopping']
+    }
+  };
+  const resolvedMap = new Map([['src-026-start', startSrc]]);
+
+  // BR1: Chain sharpening instruction in cold start step citing start locator fails closed
+  {
+    const guideBR1 = {
+      slug: 'test-chain-sharpen-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      startProcedures: {
+        coldStart: {
+          title: 'Koude start',
+          steps: [{ step: 1, action: 'Slijp de zaagketting grondig voor optimaal resultaat.', sourceRefs: ['src-026-start'] }]
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(guideBR1, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Chain sharpening instruction under start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('chain maintenance') || e.includes('off-domain')),
+      `Expected chain maintenance / off-domain error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BR1 Passed: Chain sharpening in cold-start step fails closed under start locator.');
+  }
+
+  // BR2: Filing cutter teeth at 30 degrees in start procedure step fails closed
+  {
+    const guideBR2 = {
+      slug: 'test-file-teeth-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      startProcedures: {
+        steps: [{ step: 1, text: 'Vijl alle snijtanden onder een hoek van 30 graden.', sourceRefs: ['src-026-start'] }]
+      }
+    };
+    const errs = validateProcedureStepsProvenance(guideBR2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Filing teeth instruction under start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('chain maintenance') || e.includes('off-domain')),
+      `Expected chain maintenance / off-domain error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BR2 Passed: Filing teeth instruction in start procedure fails closed under start locator.');
+  }
+
+  // BR3: Air filter washing in warm start step fails closed
+  {
+    const guideBR3 = {
+      slug: 'test-air-filter-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      startProcedures: {
+        warmStart: {
+          title: 'Warme start',
+          steps: [{ step: 1, action: 'Reinig en was het luchtfilter met warm water.', sourceRefs: ['src-026-start'] }]
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(guideBR3, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Air filter wash step without air filter locator must fail');
+    console.log('  ✅ Case BR3 Passed: Air filter washing step under start locator fails closed.');
+  }
+
+  // BR4: Arbitrary ungrounded instruction in start procedure fails closed
+  {
+    const guideBR4 = {
+      slug: 'test-arbitrary-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      startProcedures: {
+        genericPrinciple: {
+          steps: [{ step: 1, text: 'Monteer de dakpannen en schilder het kozijn in ral 7016.', sourceRefs: ['src-026-start'] }]
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(guideBR4, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Arbitrary ungrounded instruction under start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('not grounded in canonical start procedure topics') || e.includes('off-domain')),
+      `Expected ungrounded start procedure error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BR4 Passed: Arbitrary ungrounded instruction fails closed.');
+  }
+
+  // BR5: Genuine start procedure steps pass cleanly
+  {
+    const guideBR5 = {
+      slug: 'test-valid-start-steps',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      startProcedures: {
+        coldStart: {
+          title: 'Koude start',
+          steps: [
+            { step: 1, action: 'Zet de combihendel in de chokestand.', sourceRefs: ['src-026-start'] },
+            { step: 2, action: 'Trek het startkoord rustig uit tot weerstand voelbaar is en trek krachtig door.', sourceRefs: ['src-026-start'] }
+          ]
+        }
+      }
+    };
+    const errs = validateProcedureStepsProvenance(guideBR5, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Grounded start procedure steps must pass with 0 errors, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BR5 Passed: Genuine grounded start procedure steps pass cleanly.');
+  }
+}
+
+// 52. Flooded Engine Recovery Heading Locator Semantics (Codex Thread PRRT_kwDOUCUnhs6oMJeU, BS1-BS5)
+console.log('\n▶ Test 52: Flooded Engine Recovery Heading Locator Semantics (Codex Thread PRRT_kwDOUCUnhs6oMJeU, BS1-BS5)...');
+{
+  const startSrc = {
+    id: 'src-026-start',
+    source_id: 'src-026-start',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'PRIMARY_OFFICIAL_MANUAL',
+    authenticity_status: 'AUTHENTICATED_OFFICIAL',
+    model_scope: ['026'],
+    canonicalScope: ['026'],
+    locatorStatus: 'LOCATOR_VERIFIED',
+    locator: {
+      page: 38,
+      section: 'Starting / Stopping the Engine',
+      heading: 'Starting the Engine',
+      topics: ['starting', 'start', 'starten', 'stopping']
+    }
+  };
+
+  const floodedSrc = {
+    id: 'src-026-flooded',
+    source_id: 'src-026-flooded',
+    canonical_document_id: '0458-133-3021',
+    publication_id: '0458-133-3021',
+    document_title: 'STIHL 026 Instruction Manual',
+    source_class: 'PRIMARY_OFFICIAL_MANUAL',
+    authenticity_status: 'AUTHENTICATED_OFFICIAL',
+    model_scope: ['026'],
+    canonicalScope: ['026'],
+    locatorStatus: 'LOCATOR_VERIFIED',
+    locator: {
+      page: 42,
+      section: 'Starting / Stopping the Engine',
+      heading: 'If the Engine Does Not Start',
+      topics: ['starting', 'start', 'flooded', 'ontzopen', 'troubleshooting']
+    }
+  };
+
+  const resolvedMap = new Map([
+    ['src-026-start', startSrc],
+    ['src-026-flooded', floodedSrc]
+  ]);
+
+  // BS1: floodedEngineRecovery.title: 'Verzopen motor' citing start-only locator fails closed
+  {
+    const guideBS1 = {
+      slug: 'test-flooded-title-start-locator',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc, floodedSrc],
+      floodedEngineRecovery: {
+        title: 'Verzopen motor herstelprocedure',
+        titleSourceRefs: ['src-026-start'],
+        steps: [
+          { step: 1, action: 'Bougie demonteren en drogen.', sourceRefs: ['src-026-flooded'] }
+        ]
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBS1, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Flooded recovery title citing start-only locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('floodedEngineRecovery.title') && e.includes('pointing to start procedure instead of flooded engine recovery')),
+      `Expected flooded recovery title locator error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BS1 Passed: floodedEngineRecovery.title citing start-only locator fails closed.');
+  }
+
+  // BS2: floodedEngineRecovery.genericPrinciple.heading citing start-only locator fails closed
+  {
+    const guideBS2 = {
+      slug: 'test-flooded-heading-start-locator',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc, floodedSrc],
+      floodedEngineRecovery: {
+        genericPrinciple: {
+          heading: 'Wat te doen bij een verzopen motor?',
+          headingSourceRefs: ['src-026-start'],
+          text: 'Volg de handleiding.',
+          sourceRefs: ['src-026-flooded']
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBS2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Flooded generic principle heading citing start-only locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('floodedEngineRecovery.genericPrinciple.heading') && e.includes('pointing to start procedure instead of flooded engine recovery')),
+      `Expected flooded generic heading locator error, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BS2 Passed: floodedEngineRecovery.genericPrinciple.heading citing start-only locator fails closed.');
+  }
+
+  // BS3: floodedEngineRecovery.title citing flooded recovery locator passes cleanly
+  {
+    const guideBS3 = {
+      slug: 'test-flooded-title-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSrc],
+      floodedEngineRecovery: {
+        title: 'Verzopen motor herstelprocedure',
+        titleSourceRefs: ['src-026-flooded'],
+        steps: [
+          { step: 1, action: 'Bougie demonteren en drogen.', sourceRefs: ['src-026-flooded'] }
+        ]
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBS3, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Flooded recovery title citing recovery locator must pass, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BS3 Passed: floodedEngineRecovery.title citing flooded recovery locator passes cleanly.');
+  }
+
+  // BS4: floodedEngineRecovery.genericPrinciple.heading citing flooded recovery locator passes cleanly
+  {
+    const guideBS4 = {
+      slug: 'test-flooded-heading-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSrc],
+      floodedEngineRecovery: {
+        genericPrinciple: {
+          heading: 'Wat te doen bij een verzopen motor?',
+          headingSourceRefs: ['src-026-flooded'],
+          text: 'Volg de ontzopingsinstructies.',
+          sourceRefs: ['src-026-flooded']
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBS4, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Flooded generic heading citing recovery locator must pass, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BS4 Passed: floodedEngineRecovery.genericPrinciple.heading citing recovery locator passes cleanly.');
+  }
+
+  // BS5: Mixed guide where steps cite recovery source but recovery title cites start-only locator fails closed
+  {
+    const guideBS5 = {
+      slug: 'test-mixed-flooded',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc, floodedSrc],
+      floodedEngineRecovery: {
+        title: 'Verzopen motor',
+        sourceRefs: ['src-026-start'],
+        steps: [
+          { step: 1, action: 'Bougie demonteren en drogen.', sourceRefs: ['src-026-flooded'] }
+        ]
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBS5, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Mixed flooded recovery guide citing start-only locator for title must fail');
+    console.log('  ✅ Case BS5 Passed: Mixed flooded recovery guide citing start-only locator for title fails closed.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
