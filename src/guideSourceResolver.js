@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { OFFICIAL_PRIMARY_DOCUMENTS, SERIES_REFERENCE_DOCUMENTS } from './canonicalData.js';
+import { OFFICIAL_PRIMARY_DOCUMENTS, SERIES_REFERENCE_DOCUMENTS, CANONICAL_DOCUMENT_LOCATORS } from './canonicalData.js';
 import { getAllStructuredGuides } from './content/guides/index.js';
 import { getGuidePublicationStatus, isGuidePublished } from './publicationRules.js';
 
@@ -271,6 +271,120 @@ export function getDeclaredSourceId(source, options = {}) {
   }
 
   return (source_id !== undefined && source_id !== null) ? source_id : ((id !== undefined && id !== null) ? id : null);
+}
+
+/**
+ * Validates locator page, section, and heading against canonical document registry contents.
+ * Rejects mismatched or forged headings that attempt cross-domain attribution (e.g. carburetor on page 38).
+ */
+export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
+  if (!locator || typeof locator !== 'object' || Object.keys(locator).length === 0) {
+    return { valid: false, unverified: true, topics: [] };
+  }
+
+  let docLocData = null;
+  if (targetDocId) {
+    const key = Object.keys(CANONICAL_DOCUMENT_LOCATORS).find(
+      k => k.toLowerCase() === String(targetDocId).toLowerCase()
+    );
+    if (key) {
+      docLocData = CANONICAL_DOCUMENT_LOCATORS[key];
+    }
+  }
+
+  if (!docLocData) {
+    const isNonEmptyString = (v) => typeof v === 'string' && v.trim().length > 0;
+    const hasMeaningfulText = isNonEmptyString(locator.section) || isNonEmptyString(locator.heading);
+    return { valid: hasMeaningfulText, unmappedDoc: true, topics: [] };
+  }
+
+  const norm = s => (typeof s === 'string' ? s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() : '');
+  const declaredSecNorm = norm(locator.section);
+  const declaredHeadNorm = norm(locator.heading);
+  const declaredCombined = (declaredSecNorm + ' ' + declaredHeadNorm).trim();
+
+  if (docLocData.pages) {
+    if (locator.page === undefined || locator.page === null) {
+      return { valid: false, unverified: true, topics: [] };
+    }
+    const pageEntries = docLocData.pages[locator.page];
+    if (!pageEntries || pageEntries.length === 0) {
+      const isNonEmptyString = (v) => typeof v === 'string' && v.trim().length > 0;
+      const hasMeaningfulText = isNonEmptyString(locator.section) || isNonEmptyString(locator.heading);
+      return { valid: hasMeaningfulText, unmappedPage: true, topics: [] };
+    }
+
+    let matchingEntry = null;
+    for (const entry of pageEntries) {
+      const entrySecNorm = norm(entry.section);
+      const entryHeadNorm = norm(entry.heading);
+
+      const secMatch = !declaredSecNorm || entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm);
+      const headMatch = !declaredHeadNorm || entryHeadNorm.includes(declaredHeadNorm) || declaredHeadNorm.includes(entryHeadNorm);
+      const topicMatch = entry.topics && entry.topics.some(t => declaredCombined.includes(t) || t.includes(declaredHeadNorm));
+
+      if ((secMatch && headMatch) || (headMatch && (!locator.section || secMatch)) || topicMatch) {
+        const domainChecks = [
+          { terms: ['carburetor', 'carburateur', 'sproeier', 'afstel', 'limiter cap', 'stelschroef'], topic: 'carburetor' },
+          { terms: ['fuel', 'brandstof', 'mengsmering', 'storage', 'opslag'], topic: 'fuel' },
+          { terms: ['crankcase', 'carter', 'afpers', 'keerring', 'leakage', 'vacuum'], topic: 'crankcase' },
+          { terms: ['mtronic', 'm tronic', 'kalibratie', 'calibration', 'diagnos'], topic: 'mtronic' },
+          { terms: ['cylinder', 'cilinder', 'piston', 'zuiger', 'compressie', 'compression'], topic: 'cylinder' }
+        ];
+
+        let conflict = false;
+        for (const dc of domainChecks) {
+          const declaredHasDomain = dc.terms.some(t => declaredCombined.includes(t));
+          const entryHasTopic = entry.topics && entry.topics.includes(dc.topic);
+          if (declaredHasDomain && !entryHasTopic) {
+            conflict = true;
+            break;
+          }
+        }
+
+        if (!conflict) {
+          matchingEntry = entry;
+          break;
+        }
+      }
+    }
+
+    if (!matchingEntry) {
+      const allowed = pageEntries.map(e => `"${e.section} · ${e.heading}"`).join(', ');
+      return {
+        valid: false,
+        error: `Locator heading/section ("${locator.section || ''}" / "${locator.heading || ''}") on page ${locator.page} does not match canonical document contents for "${targetDocId}". Page ${locator.page} covers: ${allowed}.`,
+        topics: []
+      };
+    }
+
+    return { valid: true, entry: matchingEntry, topics: matchingEntry.topics || [] };
+  }
+
+  if (docLocData.sections) {
+    let matchingEntry = null;
+    for (const entry of docLocData.sections) {
+      const entrySecNorm = norm(entry.section);
+      const entryHeadNorm = norm(entry.heading || entry.section);
+      const secMatch = !declaredSecNorm || entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm);
+      const headMatch = !declaredHeadNorm || entryHeadNorm.includes(declaredHeadNorm) || declaredHeadNorm.includes(entryHeadNorm);
+      if (secMatch || headMatch) {
+        matchingEntry = entry;
+        break;
+      }
+    }
+    if (!matchingEntry) {
+      const allowed = docLocData.sections.map(e => `"${e.section}"`).join(', ');
+      return {
+        valid: false,
+        error: `Locator section ("${locator.section || locator.heading}") is not registered in canonical sections for "${targetDocId}". Allowed: ${allowed}.`,
+        topics: []
+      };
+    }
+    return { valid: true, entry: matchingEntry, topics: matchingEntry.topics || [] };
+  }
+
+  return { valid: true, topics: [] };
 }
 
 /**
@@ -566,6 +680,7 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
   // 5. Locator Validation & Page Bounds Check
   // Page must be a true positive integer — no floats (38.5), no strings ("38"), no NaN, no Infinity.
   let locatorStatus = 'LOCATOR_UNVERIFIED';
+  let verifiedTopics = [];
   if (locator && typeof locator === 'object') {
     if (locator.page !== undefined && locator.page !== null) {
       if (!Number.isInteger(locator.page) || locator.page <= 0) {
@@ -588,16 +703,21 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
       errors.push(`Invalid locator heading label. Heading must be a non-empty trimmed string.`);
     }
 
+    const verificationResult = verifyLocatorAgainstCanonicalData(targetDocId, locator);
+    if (!verificationResult.valid && verificationResult.error) {
+      errors.push(verificationResult.error);
+    } else {
+      verifiedTopics = verificationResult.topics || [];
+    }
+
     const hasValidPage = Number.isInteger(locator.page) && locator.page > 0 &&
       (!knownPageCount ? !(options.isPublishedGuide || options.enforceOfficialAuthority) : locator.page <= knownPageCount);
     const hasMeaningfulText = isNonEmptyString(locator.section) || isNonEmptyString(locator.heading);
 
-    if (hasValidPage && hasMeaningfulText) {
+    if (verificationResult.valid && ((hasValidPage && hasMeaningfulText) || (isStandardOrBrandProtection && hasMeaningfulText) || (verificationResult.unmappedDoc && hasValidPage && hasMeaningfulText))) {
       locatorStatus = 'LOCATOR_VERIFIED';
     } else if (hasValidPage) {
       locatorStatus = 'LOCATOR_PAGE_ONLY';
-    } else if (isStandardOrBrandProtection && hasMeaningfulText) {
-      locatorStatus = 'LOCATOR_VERIFIED';
     } else if (hasMeaningfulText) {
       locatorStatus = 'LOCATOR_PAGE_ONLY';
     }
@@ -649,7 +769,7 @@ export function resolveGuideSource(sourceDeclaration, options = { throwOnError: 
       canonicalScope,
       canonical_scope: canonicalScope,
       locatorStatus,
-      locator
+      locator: locator ? { ...locator, topics: verifiedTopics } : null
     },
     errors: []
   };
@@ -1096,20 +1216,24 @@ export function collectRenderedOperationalClaims(guide) {
   if (guide.technicalInspections) {
     const ti = guide.technicalInspections;
     if (ti.fuel) {
+      if (ti.fuel.title) push('technicalInspections.fuel.title', ti.fuel.title, ti.fuel.sourceRefs, 'TECHNICAL_INSPECTION');
       if (ti.fuel.text) push('technicalInspections.fuel.text', ti.fuel.text, ti.fuel.sourceRefs, 'TECHNICAL_INSPECTION');
       const ageText = ti.fuel.agingNotice || ti.fuel.agingWarning;
       if (ageText) push('technicalInspections.fuel.agingNotice', ageText, ti.fuel.agingSourceRefs || ti.fuel.sourceRefs, 'TECHNICAL_INSPECTION');
     }
     if (ti.sparkPlug) {
+      if (ti.sparkPlug.title) push('technicalInspections.sparkPlug.title', ti.sparkPlug.title, ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
       if (ti.sparkPlug.text) push('technicalInspections.sparkPlug.text', ti.sparkPlug.text, ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
       if (Array.isArray(ti.sparkPlug.colors)) {
         ti.sparkPlug.colors.forEach((c, ci) => {
+          if (c.color) push(`technicalInspections.sparkPlug.colors[${ci}].color`, c.color, c.sourceRefs || ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
           if (c.meaning) push(`technicalInspections.sparkPlug.colors[${ci}].meaning`, c.meaning, c.sourceRefs || ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
         });
       }
       if (ti.sparkPlug.gapNotice) push('technicalInspections.sparkPlug.gapNotice', ti.sparkPlug.gapNotice, ti.sparkPlug.sourceRefs, 'TECHNICAL_INSPECTION');
     }
     if (ti.carburetorVsMtronic) {
+      if (ti.carburetorVsMtronic.title) push('technicalInspections.carburetorVsMtronic.title', ti.carburetorVsMtronic.title, ti.carburetorVsMtronic.sourceRefs, 'TECHNICAL_INSPECTION');
       if (ti.carburetorVsMtronic.text) push('technicalInspections.carburetorVsMtronic.text', ti.carburetorVsMtronic.text, ti.carburetorVsMtronic.sourceRefs, 'TECHNICAL_INSPECTION');
       if (ti.carburetorVsMtronic.mtronicText) push('technicalInspections.carburetorVsMtronic.mtronicText', ti.carburetorVsMtronic.mtronicText, ti.carburetorVsMtronic.sourceRefs, 'TECHNICAL_INSPECTION');
     }
@@ -1310,7 +1434,7 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
     let onlyHasUnrelatedSourceForMechanical = true;
 
     const isCarburetorAdjustmentClaim =
-      /\b(carburateur.*afstel|stelschroef|l-schroef|h-schroef|la-schroef|l-stelschroef|h-stelschroef|la-stelschroef|hoofdsproeier|stationair.*mengsel|limiter cap|slag open|basisafstelling)\b/i.test(claim.text) ||
+      /\b(carburateur.*afstel|stelschroef|l-schroef|h-schroef|la-schroef|l-stelschroef|h-stelschroef|la-stelschroef|l-sproeier|h-sproeier|la-sproeier|hoofdsproeier|stationair.*mengsel|limiter cap|slag open|basisafstelling|(?:l|h|la)[\s\-]*(?:en|\/)?[\s\-]*(?:l|h|la)?[\s\-]*(?:sproeier|schroef|stelschroef))\b/i.test(claim.text) ||
       /\b(carburetor|carburateur)\b/i.test(claim.path);
     let hasCarburetorSpecificSource = false;
     let onlyHasStartSourceForCarburetor = true;
@@ -1333,12 +1457,14 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
             errors.push(`${label} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
           }
 
+          const locTopics = resolved.locator?.topics || [];
+          const locText = `${resolved.locator?.section || ''} ${resolved.locator?.heading || ''}`.toLowerCase();
+
           if (isFuelClaim && resolved.locator) {
-            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
-            const isFuelLocator = locText.includes('fuel') || locText.includes('brandstof') ||
+            const isFuelLocator = locTopics.includes('fuel') || locText.includes('fuel') || locText.includes('brandstof') ||
                                   locText.includes('mixing') || locText.includes('mengsmering') ||
                                   locText.includes('storage') || locText.includes('opslag');
-            const isStartOnly = locText.includes('starting the engine') && !isFuelLocator;
+            const isStartOnly = (locTopics.includes('starting') || locText.includes('starting the engine')) && !isFuelLocator;
 
             if (isFuelLocator) {
               hasFuelSpecificSource = true;
@@ -1349,8 +1475,8 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
           }
 
           if (isCrankcaseTestingClaim && resolved.locator) {
-            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
             const isCrankcaseSpecificLocator =
+              locTopics.includes('crankcase') || locTopics.includes('pressure') || locTopics.includes('vacuum') || locTopics.includes('leakage') ||
               locText.includes('leak') || locText.includes('pressure') ||
               locText.includes('vacuum') || locText.includes('crankcase') ||
               locText.includes('carter') || locText.includes('dichtig') ||
@@ -1358,9 +1484,11 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
               locText.includes('abdrück');
 
             const isUnrelatedLocator =
-              locText.includes('carburetor') || locText.includes('carburateur') ||
-              locText.includes('starting') || locText.includes('starten') ||
-              locText.includes('fuel') || locText.includes('brandstof');
+              (locTopics.includes('starting') || locTopics.includes('carburetor') ||
+               locText.includes('carburetor') || locText.includes('carburateur') ||
+               locText.includes('starting') || locText.includes('starten') ||
+               locText.includes('fuel') || locText.includes('brandstof')) &&
+              !isCrankcaseSpecificLocator;
 
             if (isCrankcaseSpecificLocator) {
               hasCrankcaseSpecificSource = true;
@@ -1371,14 +1499,14 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
           }
 
           if (isMTronicDiagnosticClaim && resolved.locator) {
-            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
             const isDiagnosticLocator =
+              locTopics.includes('mtronic') || locTopics.includes('diagnosis') || locTopics.includes('calibration') ||
               locText.includes('diagnos') || locText.includes('service') ||
               locText.includes('calibration') || locText.includes('kalibratie') ||
               locText.includes('troubleshooting') || locText.includes('fault') ||
               locText.includes('storing') || locText.includes('motormanagement');
             const isStartOnlyLocator =
-              (locText.includes('starting the engine') || locText.includes('startprocedure') || locText.includes('motor starten')) &&
+              (locTopics.includes('starting') || locText.includes('starting the engine') || locText.includes('startprocedure') || locText.includes('motor starten')) &&
               !isDiagnosticLocator;
 
             if (isDiagnosticLocator) {
@@ -1390,14 +1518,14 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
           }
 
           if (isMechanicalCompressionClaim && resolved.locator) {
-            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
             const isMechanicalLocator =
+              locTopics.includes('cylinder') || locTopics.includes('piston') || locTopics.includes('compression') || locTopics.includes('mechanical') ||
               locText.includes('cylinder') || locText.includes('cilinder') ||
               locText.includes('piston') || locText.includes('zuiger') ||
               locText.includes('compression') || locText.includes('compressie');
 
             const isUnrelatedLocator =
-              (locText.includes('does not start') || locText.includes('carburetor') ||
+              (locTopics.includes('starting') || locText.includes('does not start') || locText.includes('carburetor') ||
                locText.includes('starting') || locText.includes('fuel')) &&
               !isMechanicalLocator;
 
@@ -1410,14 +1538,14 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
           }
 
           if (isCarburetorAdjustmentClaim && resolved.locator) {
-            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
             const isCarburetorLocator =
+              locTopics.includes('carburetor') ||
               locText.includes('carburetor') || locText.includes('carburateur') ||
               locText.includes('sproeier') || locText.includes('jet') ||
               locText.includes('afstelling') || locText.includes('adjustment');
 
             const isStartOnly =
-              (locText.includes('starting the engine') || locText.includes('startprocedure') || locText.includes('motor starten') || locText.includes('starten')) &&
+              (locTopics.includes('starting') || locText.includes('starting the engine') || locText.includes('startprocedure') || locText.includes('motor starten') || locText.includes('starten')) &&
               !isCarburetorLocator;
 
             if (isCarburetorLocator) {

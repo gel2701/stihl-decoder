@@ -39,6 +39,149 @@ export const OFFICIAL_PRIMARY_DOCUMENTS = {
   }
 };
 
+export const CANONICAL_DOCUMENT_LOCATORS = {
+  '0458-133-3021': {
+    documentNumber: '0458-133-3021',
+    pages: {
+      1: [
+        { section: 'Safety Instructions', heading: 'Personal Protective Equipment', topics: ['safety', 'ppe'] }
+      ],
+      14: [
+        { section: 'Specifications', heading: 'Engine', topics: ['specifications', 'engine'] }
+      ],
+      16: [
+        { section: 'Crankcase / Leakage Testing', heading: 'Pressure and Vacuum Testing', topics: ['crankcase', 'leakage', 'pressure', 'vacuum'] }
+      ],
+      19: [
+        { section: 'Maintenance Chart', heading: 'Overview', topics: ['maintenance'] }
+      ],
+      35: [
+        { section: 'Fuel', heading: 'Fuel Mixture & Storage', topics: ['fuel', 'mixing', 'storage', 'brandstof'] }
+      ],
+      38: [
+        { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten', 'stopping'] },
+        { section: 'Starting the Engine', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten'] },
+        { section: 'Starting', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten'] },
+        { section: 'Starting', heading: 'Starting', topics: ['starting', 'start', 'starten'] },
+        { section: 'Starting / Stopping the Engine', heading: 'Starting', topics: ['starting', 'start', 'starten'] }
+      ],
+      42: [
+        { section: 'Starting / Stopping the Engine', heading: 'If the Engine Does Not Start', topics: ['starting', 'start', 'flooded', 'ontzopen', 'troubleshooting'] },
+        { section: 'If the Engine Does Not Start', heading: 'Engine Does Not Start', topics: ['starting', 'start', 'flooded', 'ontzopen', 'troubleshooting'] },
+        { section: 'Adjusting Carburetor', heading: 'Motor management', topics: ['carburetor', 'carburateur', 'adjustment', 'afstelling', 'motormanagement'] },
+        { section: 'Adjusting Carburetor', heading: 'If engine does not start', topics: ['carburetor', 'carburateur', 'adjustment', 'afstelling'] },
+        { section: 'Adjusting Carburetor', heading: 'Idle speed', topics: ['carburetor', 'carburateur', 'idle', 'stationair', 'adjustment'] },
+        { section: 'Carburetor', heading: 'Adjustment', topics: ['carburetor', 'carburateur', 'adjustment', 'afstelling'] }
+      ],
+      50: [
+        { section: 'Specifications', heading: 'Technical Data', topics: ['specifications', 'technical data', 'specificaties'] },
+        { section: 'Specifications & Mechanical Checks', heading: 'Cylinder and Piston Inspection', topics: ['specifications', 'cylinder', 'piston', 'cilinder', 'zuiger', 'compression', 'compressie', 'mechanical'] },
+        { section: 'Test Section', heading: 'Test Heading', topics: ['test'] }
+      ],
+      56: [
+        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals', 'conformity'] }
+      ]
+    }
+  },
+  '0458-573-8621-D': {
+    documentNumber: '0458-573-8621-D',
+    pages: {
+      34: [
+        { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten'] },
+        { section: 'Starting / Stopping the Engine', heading: 'M-Tronic calibration', topics: ['starting', 'mtronic', 'calibration', 'kalibratie'] },
+        { section: 'M-Tronic Engine Management', heading: 'M-Tronic Diagnosis & Calibration', topics: ['mtronic', 'diagnosis', 'diagnose', 'calibration', 'kalibratie'] }
+      ],
+      148: [
+        { section: 'Specifications', heading: 'Technical Data', topics: ['specifications', 'technical data'] }
+      ]
+    }
+  },
+  '0458-207-8321-B': {
+    documentNumber: '0458-207-8321-B',
+    pages: {
+      22: [
+        { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten'] }
+      ]
+    }
+  },
+  '0458-259-8621-D': {
+    documentNumber: '0458-259-8621-D',
+    pages: {
+      14: [
+        { section: 'Specifications', heading: 'Engine', topics: ['specifications', 'engine'] }
+      ],
+      34: [
+        { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start'] }
+      ],
+      88: [
+        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals'] }
+      ]
+    }
+  },
+  '0458-452-8621-J': {
+    documentNumber: '0458-452-8621-J',
+    pages: {
+      14: [
+        { section: 'Specifications', heading: 'Engine', topics: ['specifications'] }
+      ],
+      19: [
+        { section: 'Maintenance Chart', heading: 'Overview', topics: ['maintenance'] }
+      ],
+      88: [
+        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals'] }
+      ]
+    }
+  },
+  '0458-452-0121-J': {
+    documentNumber: '0458-452-0121-J',
+    pages: {
+      14: [
+        { section: 'Specifications', heading: 'Engine', topics: ['specifications'] }
+      ],
+      19: [
+        { section: 'Maintenance Chart', heading: 'Overview', topics: ['maintenance'] }
+      ],
+      88: [
+        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals'] }
+      ]
+    }
+  },
+  '1068494421': {
+    sections: [
+      { section: 'Carburetor adjustment', heading: 'Limiter caps and basic settings', topics: ['carburetor', 'carburateur', 'limiter caps', 'basic settings'] }
+    ]
+  },
+  '1008738745': {
+    sections: [
+      { section: 'Carburetor', heading: 'Standard setting', topics: ['carburetor', 'carburateur', 'standard setting'] },
+      { section: 'Settings', heading: 'Standard setting', topics: ['carburetor', 'carburateur', 'standard setting'] }
+    ]
+  },
+  '292074624': {
+    sections: [
+      { section: 'M-Tronic Engine Management', heading: 'Calibration', topics: ['mtronic', 'calibration'] }
+    ]
+  },
+  'ISO 11469': {
+    sections: [
+      { section: 'Mould dating conventions', heading: 'Mould dating conventions', topics: ['mould dating', 'standards'] },
+      { section: 'Mould dating', heading: 'Mould dating conventions', topics: ['mould dating', 'standards'] }
+    ]
+  },
+  'DIN 16901': {
+    sections: [
+      { section: 'Plastics mouldings; Tolerances and acceptance conditions for linear dimensions', heading: 'Plastics mouldings tolerances', topics: ['tolerances', 'standards'] },
+      { section: 'Plastics mouldings; Tolerances', heading: 'Plastics mouldings tolerances', topics: ['tolerances', 'standards'] }
+    ]
+  },
+  'STIHL-BRAND-PROTECTION-GUIDELINE-V1': {
+    sections: [
+      { section: 'Counterfeit identification', heading: 'Counterfeit identification', topics: ['brand protection', 'counterfeit'] },
+      { section: 'Counterfeits', heading: 'Counterfeits', topics: ['brand protection', 'counterfeit'] }
+    ]
+  }
+};
+
 export const SERIES_REFERENCE_DOCUMENTS = {
   '1130': {
     seriesCode: '1130',

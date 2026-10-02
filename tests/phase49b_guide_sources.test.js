@@ -3731,4 +3731,275 @@ console.log('\n▶ Test 43: Direct Answer Heading Operational Provenance Validat
   }
 }
 
+// 44. Locator Heading Parity with Canonical Document Registry (Codex Thread PRRT_kwDOUCUnhs6oLmKd, BK1-BK5)
+console.log('\n▶ Test 44: Locator Heading Parity with Canonical Document Registry (Codex Thread PRRT_kwDOUCUnhs6oLmKd, BK1-BK5)...');
+{
+  // BK1: 0458-133-3021 page 38 with forged heading 'Adjusting Carburetor' fails closed
+  {
+    const forgedCarbOnP38 = {
+      id: 'src-forged-p38',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, heading: 'Adjusting Carburetor' }
+    };
+    const res = resolveGuideSource(forgedCarbOnP38, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'BK1: Page 38 with forged carburetor heading must fail to resolve');
+    assert.ok(
+      res.errors.some(e => e.includes('does not match canonical document contents for "0458-133-3021"')),
+      `Expected canonical content mismatch error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BK1 Passed: Page 38 with forged carburetor heading fails closed against canonical document registry.');
+  }
+
+  // BK2: 0458-133-3021 page 38 with genuine heading 'Starting the Engine' resolves to LOCATOR_VERIFIED
+  {
+    const validStartOnP38 = {
+      id: 'src-valid-p38',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    };
+    const res = resolveGuideSource(validStartOnP38, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'BK2: Page 38 with valid starting heading must resolve cleanly');
+    assert.strictEqual(res.locatorStatus, 'LOCATOR_VERIFIED', 'BK2: Must be LOCATOR_VERIFIED');
+    console.log('  ✅ Case BK2 Passed: Page 38 with genuine starting heading passes cleanly as LOCATOR_VERIFIED.');
+  }
+
+  // BK3: 0458-133-3021 page 42 with genuine carburetor heading resolves to LOCATOR_VERIFIED
+  {
+    const validCarbOnP42 = {
+      id: 'src-valid-p42',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Motor management' }
+    };
+    const res = resolveGuideSource(validCarbOnP42, { throwOnError: false });
+    assert.strictEqual(res.resolved, true, 'BK3: Page 42 with valid carburetor heading must resolve cleanly');
+    assert.strictEqual(res.locatorStatus, 'LOCATOR_VERIFIED', 'BK3: Must be LOCATOR_VERIFIED');
+    console.log('  ✅ Case BK3 Passed: Page 42 with genuine carburetor heading passes cleanly as LOCATOR_VERIFIED.');
+  }
+
+  // BK4: Carburetor operational claim bound to source on page 38 fails closed in validateGuideSources
+  {
+    const guideBK4 = {
+      slug: 'test-carb-forged-p38',
+      publicationStatus: 'PUBLISHED',
+      sources: [
+        {
+          id: 'src-p38-carb',
+          publicationId: '0458-133-3021',
+          modelScope: ['026'],
+          locator: { page: 38, heading: 'Adjusting Carburetor' }
+        }
+      ],
+      troubleshootingMatrix: [
+        {
+          symptom: 'Zaag valt uit bij gasgeven',
+          possibleCause: 'L-sproeier staat te arm afgesteld',
+          safeFirstCheck: 'Controleer basisafstelling',
+          nextStep: 'Stel L-stelschroef bij',
+          sourceRefs: ['src-p38-carb']
+        }
+      ]
+    };
+    const val = validateGuideSources(guideBK4, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(val.valid, false, 'BK4: Carburetor claim bound to page 38 must fail validation');
+    console.log('  ✅ Case BK4 Passed: Carburetor claim citing forged page 38 heading fails closed in validateGuideSources.');
+  }
+
+  // BK5: Fuel claim bound to page 38 with forged fuel heading fails closed
+  {
+    const forgedFuelOnP38 = {
+      id: 'src-forged-fuel-p38',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, heading: 'Fuel Mixture & Storage' }
+    };
+    const res = resolveGuideSource(forgedFuelOnP38, { throwOnError: false });
+    assert.strictEqual(res.resolved, false, 'BK5: Page 38 with forged fuel heading must fail to resolve');
+    console.log('  ✅ Case BK5 Passed: Fuel operational claim citing forged page 38 heading fails closed.');
+  }
+}
+
+// 45. Spark Plug Color Label Operational Provenance Validation (Codex Thread PRRT_kwDOUCUnhs6oLmKh, BL1-BL5)
+console.log('\n▶ Test 45: Spark Plug Color Label Operational Provenance Validation (Codex Thread PRRT_kwDOUCUnhs6oLmKh, BL1-BL5)...');
+{
+  const testGuide = {
+    slug: 'test-spark-color-guide',
+    sources: [
+      { id: 'src-plug', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 50, section: 'Specifications', heading: 'Technical Data' } }
+    ],
+    technicalInspections: {
+      sparkPlug: {
+        title: 'Bougie inspectie',
+        text: 'Draai de bougie eruit.',
+        sourceRefs: ['src-plug'],
+        colors: [
+          {
+            color: 'Koffiebruin (normaal)',
+            meaning: 'Optimale verbranding en correct mengsel.',
+            sourceRefs: ['src-plug']
+          }
+        ],
+        gapNotice: 'Elektrodenafstand controleren.'
+      }
+    }
+  };
+
+  // BL1: sparkPlug.colors[*].color collected with claimClass TECHNICAL_INSPECTION
+  {
+    const claims = collectRenderedOperationalClaims(testGuide);
+    const colorClaim = claims.find(c => c.path === 'technicalInspections.sparkPlug.colors[0].color');
+    assert.ok(colorClaim, 'BL1: colorClaim must be collected');
+    assert.strictEqual(colorClaim.text, 'Koffiebruin (normaal)');
+    assert.strictEqual(colorClaim.claimClass, 'TECHNICAL_INSPECTION');
+    console.log('  ✅ Case BL1 Passed: technicalInspections.sparkPlug.colors[*].color collected with claimClass TECHNICAL_INSPECTION.');
+  }
+
+  // BL2: Unsupported diagnostic or repair assertion in color citing start locator fails closed
+  {
+    const startSource = {
+      id: 'src-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    };
+    const resolvedMap = new Map([
+      ['src-start', resolveGuideSource(startSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource]
+    ]);
+
+    const guideBL2 = {
+      slug: 'test-spark-color-start-ref',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      technicalInspections: {
+        sparkPlug: {
+          title: 'Bougie',
+          text: 'Bougie controle.',
+          sourceRefs: ['src-start'],
+          colors: [
+            {
+              color: 'Stel de L- en H-sproeier bij en vervang de bougie',
+              meaning: 'Normaal bougiebeeld.',
+              sourceRefs: ['src-start']
+            }
+          ]
+        }
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBL2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Carburetor adjustment assertion in spark plug color citing start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('technicalInspections.sparkPlug.colors[0].color') && e.includes('carburetor')),
+      `Expected carburetor violation in color label, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BL2 Passed: Unsupported diagnostic assertion in color citing unrelated locator fails closed.');
+  }
+
+  // BL3: Innocuous color with valid sourceRefs passes cleanly
+  {
+    const specSource = {
+      id: 'src-spec',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 50, section: 'Specifications', heading: 'Technical Data' }
+    };
+    const resolvedMap = new Map([
+      ['src-spec', resolveGuideSource(specSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource]
+    ]);
+
+    const guideBL3 = {
+      slug: 'test-spark-color-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [specSource],
+      technicalInspections: {
+        sparkPlug: {
+          title: 'Bougie inspectie',
+          text: 'Controleer bougie.',
+          sourceRefs: ['src-spec'],
+          colors: [
+            {
+              color: 'Koffiebruin / grijsbruin (normaal)',
+              meaning: 'Verbranding en mengsel zijn in orde.',
+              sourceRefs: ['src-spec']
+            }
+          ]
+        }
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBL3, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Valid color and meaning must pass with 0 errors, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BL3 Passed: Innocuous color label with valid sourceRefs passes cleanly.');
+  }
+
+  // BL4: sparkPlug.colors[*].color without sourceRefs on published guide fails closed
+  {
+    const guideBL4 = {
+      slug: 'test-spark-color-missing-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [
+        { id: 'src-spec', publicationId: '0458-133-3021', modelScope: ['026'], locator: { page: 50, section: 'Specifications', heading: 'Technical Data' } }
+      ],
+      technicalInspections: {
+        sparkPlug: {
+          colors: [
+            {
+              color: 'Zwart en roetig'
+              // missing sourceRefs
+            }
+          ]
+        }
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBL4, new Map(), { isPublished: true });
+    assert.ok(errs.length > 0, 'Color without sourceRefs on published guide must fail');
+    assert.ok(
+      errs.some(e => e.includes('technicalInspections.sparkPlug.colors[0].color') && e.includes('has no sourceRefs')),
+      `Expected missing sourceRefs error for color, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BL4 Passed: Spark plug color without sourceRefs on published guide fails closed.');
+  }
+
+  // BL5: Sneaky color assertion cannot bypass validation via innocent meaning
+  {
+    const startSource = {
+      id: 'src-start',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+    };
+    const resolvedMap = new Map([
+      ['src-start', resolveGuideSource(startSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource]
+    ]);
+
+    const guideBL5 = {
+      slug: 'test-spark-color-sneaky',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      technicalInspections: {
+        sparkPlug: {
+          colors: [
+            {
+              color: 'Bougie nat door krukaskeerring lekkage en ontbrekende carter compressie',
+              meaning: 'Controleer startpositie.',
+              sourceRefs: ['src-start']
+            }
+          ]
+        }
+      }
+    };
+
+    const errs = validateOperationalClaimsProvenance(guideBL5, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Crankcase testing claim in color label bound to start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('technicalInspections.sparkPlug.colors[0].color') && e.includes('crankcase')),
+      `Expected crankcase error in color, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BL5 Passed: Sneaky color assertion cannot bypass validation via innocent meaning.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');
