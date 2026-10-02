@@ -5169,6 +5169,52 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1 Passed: Air filter wash warning citing start-only locator fails closed.');
   }
 
+  // BV1b: Safety warning with generic title 'Veiligheidswaarschuwing' and off-domain text fails closed
+  {
+    const guideBV1b = {
+      slug: 'test-warning-generic-title-bypass',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Veiligheidswaarschuwing',
+          text: 'Reinig en was het luchtfilter met warm water.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1b, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning with generic title Veiligheidswaarschuwing and off-domain text must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "Veiligheidswaarschuwing"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1b Passed: Warning with generic title "Veiligheidswaarschuwing" and off-domain text fails closed.');
+  }
+
+  // BV1c: Safety warning with title 'Startwaarschuwing' but off-domain air filter wash text fails closed
+  {
+    const guideBV1c = {
+      slug: 'test-warning-start-title-off-domain-text',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Startwaarschuwing',
+          text: 'Reinig en was het luchtfilter met warm water.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1c, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning with Startwaarschuwing title but off-domain body text must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "Startwaarschuwing"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded error on warning body text, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1c Passed: Warning with title "Startwaarschuwing" but off-domain body text fails closed.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {

@@ -1116,7 +1116,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   const isFloodedDomainCheck = (options.claimType === 'FLOODED_RECOVERY' || (allSourcesAreFloodedOnly && GROUNDED_CLAIM_CLASSES.has(options.claimClass))) && options.claimClass !== 'PROCEDURE_MODEL_LABEL' && !isStartDomainCheck;
 
   if (isStartDomainCheck) {
-    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|primer\w*|brandstofpomp\w*|balg|purger|stationair|veiligheid\w*|bescherming\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|brandgevaar|ontploffingsgevaar)\b/i;
+    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair|brandstof\w*|benzine\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar)\b/i;
     const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
@@ -1369,11 +1369,21 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
     }
 
     if (isPublished) {
-      const warningFullText = `${warning.title || ''} ${warning.text || ''}`.trim();
+      const warningBody = (warning.text || '').trim();
+      const warningTitleText = (warning.title || '').trim();
+      const warningFullText = `${warningTitleText} ${warningBody}`.trim();
+
       validateClaimDomainMatching(warningFullText, warningLabel, warning.sourceRefs, resolvedSources, sourceIds, errors, {
         label: warningLabel,
         claimClass: 'SAFETY_WARNING'
       });
+
+      if (warningBody && warningBody !== warningFullText) {
+        validateClaimDomainMatching(warningBody, `${warningLabel} (text)`, warning.sourceRefs, resolvedSources, sourceIds, errors, {
+          label: `${warningLabel} (text)`,
+          claimClass: 'SAFETY_WARNING'
+        });
+      }
     } else {
       for (const ref of warning.sourceRefs) {
         if (!sourceIds.has(ref)) {
