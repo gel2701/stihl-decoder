@@ -4468,12 +4468,12 @@ console.log('\n▶ Test 49: Procedure Headings & Titles Operational Provenance (
       startProcedures: {
         genericPrinciple: {
           heading: 'Correcte startprocedure volgens fabriekshandleiding',
-          text: 'Volg de stappen.',
+          text: 'Volg de koudstartprocedure conform de officiële handleiding en bedien de choke.',
           sourceRefs: ['src-start']
         },
         coldStart: {
           title: 'Koude start procedure',
-          steps: [{ step: 1, action: 'Zet op choke.', sourceRefs: ['src-start'] }]
+          steps: [{ step: 1, action: 'Zet de combihendel in de chokestand.', sourceRefs: ['src-start'] }]
         }
       }
     };
@@ -4495,13 +4495,20 @@ console.log('\n▶ Test 50: Canonical Heading Equality & Rejection of Compound/F
     }
   };
 
-  // BQ1: Page 38 with forged compound heading containing topic substring fails closed
+  // BQ1: Page 38 with forged compound section or heading fails closed
   {
-    const locatorBQ1 = { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine and sharpen the chain to 30 degrees' };
-    const res = verifyLocatorAgainstCanonicalData('0458-133-3021', locatorBQ1);
-    assert.strictEqual(res.verified, false, 'Forged compound heading must not be verified');
-    assert.strictEqual(res.status, 'LOCATOR_SECTION_MISMATCH', 'Status must be LOCATOR_SECTION_MISMATCH');
-    console.log('  ✅ Case BQ1 Passed: Page 38 with forged compound heading fails closed as LOCATOR_SECTION_MISMATCH.');
+    // BQ1a: Forged compound heading with canonical section
+    const locatorBQ1a = { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine and sharpen the chain to 30 degrees' };
+    const resA = verifyLocatorAgainstCanonicalData('0458-133-3021', locatorBQ1a);
+    assert.strictEqual(resA.verified, false, 'Forged compound heading must not be verified');
+    assert.strictEqual(resA.status, 'LOCATOR_SECTION_MISMATCH', 'Status must be LOCATOR_SECTION_MISMATCH');
+
+    // BQ1b: Forged compound section with canonical heading (Codex Thread PRRT_kwDOUCUnhs6oMSY5)
+    const locatorBQ1b = { page: 38, section: 'Starting / Stopping the Engine and sharpen the chain to 30 degrees', heading: 'Starting the Engine' };
+    const resB = verifyLocatorAgainstCanonicalData('0458-133-3021', locatorBQ1b);
+    assert.strictEqual(resB.verified, false, 'Forged compound section must not be verified even if heading is canonical');
+    assert.strictEqual(resB.status, 'LOCATOR_SECTION_MISMATCH', 'Status must be LOCATOR_SECTION_MISMATCH');
+    console.log('  ✅ Case BQ1 Passed: Page 38 with forged compound section/heading fails closed as LOCATOR_SECTION_MISMATCH.');
   }
 
   // BQ2: Page 38 with genuine canonical heading passes cleanly
@@ -4513,13 +4520,13 @@ console.log('\n▶ Test 50: Canonical Heading Equality & Rejection of Compound/F
     console.log('  ✅ Case BQ2 Passed: Page 38 with genuine canonical heading resolves to LOCATOR_VERIFIED.');
   }
 
-  // BQ3: Section-only registry document with forged compound heading fails closed
+  // BQ3: Section-only registry document with forged compound section or heading fails closed
   {
-    const locatorBQ3 = { section: 'Carburetor adjustment', heading: 'Limiter caps and basic settings plus chain sharpening' };
+    const locatorBQ3 = { section: 'Carburetor adjustment and sharpen the chain to 30 degrees', heading: 'Limiter caps and basic settings' };
     const res = verifyLocatorAgainstCanonicalData('1068494421', locatorBQ3);
-    assert.strictEqual(res.verified, false, 'Forged compound heading on section registry must fail closed');
+    assert.strictEqual(res.verified, false, 'Forged compound section on section registry must fail closed');
     assert.strictEqual(res.status, 'LOCATOR_SECTION_MISMATCH', 'Status must be LOCATOR_SECTION_MISMATCH');
-    console.log('  ✅ Case BQ3 Passed: Section-only document with forged compound heading fails closed.');
+    console.log('  ✅ Case BQ3 Passed: Section-only document with forged compound section fails closed.');
   }
 
   // BQ4: Section-only registry document with genuine canonical heading passes cleanly
@@ -4531,23 +4538,23 @@ console.log('\n▶ Test 50: Canonical Heading Equality & Rejection of Compound/F
     console.log('  ✅ Case BQ4 Passed: Section-only document with genuine heading resolves to LOCATOR_VERIFIED.');
   }
 
-  // BQ5: Published guide source with forged compound heading fails resolveGuideSource
+  // BQ5: Published guide source with forged compound section fails resolveGuideSource
   {
     const sourceBQ5 = {
-      id: 'src-forged-heading',
+      id: 'src-forged-section',
       primaryDocumentNumber: '0458-133-3021',
       modelScope: '026',
-      locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine and sharpen the chain to 30 degrees' }
+      locator: { page: 38, section: 'Starting / Stopping the Engine and sharpen the chain to 30 degrees', heading: 'Starting the Engine' }
     };
     const res = resolveGuideSource(sourceBQ5, { throwOnError: false, isPublishedGuide: true });
-    assert.strictEqual(res.resolved, false, 'Source with forged compound heading must fail to resolve on published guide');
+    assert.strictEqual(res.resolved, false, 'Source with forged compound section must fail to resolve on published guide');
     assert.strictEqual(res.locatorStatus, 'LOCATOR_SECTION_MISMATCH', 'Locator status must be LOCATOR_SECTION_MISMATCH');
-    console.log('  ✅ Case BQ5 Passed: Published guide source with forged compound heading fails resolution.');
+    console.log('  ✅ Case BQ5 Passed: Published guide source with forged compound section fails resolution.');
   }
 }
 
-// 51. Grounding Procedure Steps Outside Whitelist (Codex Thread PRRT_kwDOUCUnhs6oMJeS, BR1-BR5)
-console.log('\n▶ Test 51: Grounding Procedure Steps Outside Whitelist (Codex Thread PRRT_kwDOUCUnhs6oMJeS, BR1-BR5)...');
+// 51. Grounding Procedure Steps Outside Whitelist (Codex Thread PRRT_kwDOUCUnhs6oMJeS / PRRT_kwDOUCUnhs6oMSY9, BR1-BR5)
+console.log('\n▶ Test 51: Grounding Procedure Steps Outside Whitelist (Codex Thread PRRT_kwDOUCUnhs6oMJeS / PRRT_kwDOUCUnhs6oMSY9, BR1-BR5)...');
 {
   const startSrc = {
     id: 'src-026-start',
@@ -4628,9 +4635,27 @@ console.log('\n▶ Test 51: Grounding Procedure Steps Outside Whitelist (Codex T
     console.log('  ✅ Case BR3 Passed: Air filter washing step under start locator fails closed.');
   }
 
-  // BR4: Arbitrary ungrounded instruction in start procedure fails closed
+  // BR4: Arbitrary ungrounded instruction with generic vocabulary in start procedure fails closed (Codex Thread PRRT_kwDOUCUnhs6oMSY9)
   {
-    const guideBR4 = {
+    const guideBR4a = {
+      slug: 'test-arbitrary-step-boor',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      startProcedures: {
+        coldStart: {
+          title: 'Koude start',
+          steps: [{ step: 1, action: 'Boor een gat in de machine.', sourceRefs: ['src-026-start'] }]
+        }
+      }
+    };
+    const errsA = validateProcedureStepsProvenance(guideBR4a, resolvedMap, { isPublished: true });
+    assert.ok(errsA.length > 0, 'Generic off-domain step "Boor een gat in de machine." must fail validation');
+    assert.ok(
+      errsA.some(e => e.includes('off-domain') || e.includes('not grounded')),
+      `Expected off-domain / ungrounded error for "Boor een gat in de machine.", got: ${errsA.join('; ')}`
+    );
+
+    const guideBR4b = {
       slug: 'test-arbitrary-step',
       publicationStatus: 'PUBLISHED',
       sources: [startSrc],
@@ -4640,13 +4665,13 @@ console.log('\n▶ Test 51: Grounding Procedure Steps Outside Whitelist (Codex T
         }
       }
     };
-    const errs = validateProcedureStepsProvenance(guideBR4, resolvedMap, { isPublished: true });
-    assert.ok(errs.length > 0, 'Arbitrary ungrounded instruction under start locator must fail');
+    const errsB = validateProcedureStepsProvenance(guideBR4b, resolvedMap, { isPublished: true });
+    assert.ok(errsB.length > 0, 'Arbitrary ungrounded instruction under start locator must fail');
     assert.ok(
-      errs.some(e => e.includes('not grounded in canonical start procedure topics') || e.includes('off-domain')),
-      `Expected ungrounded start procedure error, got: ${errs.join('; ')}`
+      errsB.some(e => e.includes('not grounded in canonical start procedure topics') || e.includes('off-domain')),
+      `Expected ungrounded start procedure error, got: ${errsB.join('; ')}`
     );
-    console.log('  ✅ Case BR4 Passed: Arbitrary ungrounded instruction fails closed.');
+    console.log('  ✅ Case BR4 Passed: Generic off-domain instructions (including "Boor een gat in de machine.") fail closed.');
   }
 
   // BR5: Genuine start procedure steps pass cleanly

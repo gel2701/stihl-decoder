@@ -334,7 +334,7 @@ export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
       const entrySecNorm = norm(entry.section);
       const entryHeadNorm = norm(entry.heading);
 
-      const secMatch = declaredSecNorm ? (entrySecNorm === declaredSecNorm || entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm)) : false;
+      const secMatch = declaredSecNorm ? (entrySecNorm === declaredSecNorm) : false;
       const headMatch = declaredHeadNorm ? (entryHeadNorm === declaredHeadNorm) : false;
 
       let isMatch = false;
@@ -343,8 +343,7 @@ export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
       } else if (declaredHeadNorm) {
         isMatch = headMatch;
       } else if (declaredSecNorm) {
-        const secTopicMatch = declaredSecNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredSecNorm.includes(t) || t.includes(declaredSecNorm)));
-        isMatch = secMatch || (secTopicMatch && !declaredSecNorm.includes('removal') && !declaredSecNorm.includes('flywheel'));
+        isMatch = secMatch;
       }
 
       if (isMatch) {
@@ -392,7 +391,7 @@ export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
     for (const entry of docLocData.sections) {
       const entrySecNorm = norm(entry.section);
       const entryHeadNorm = norm(entry.heading || entry.section);
-      const secMatch = declaredSecNorm ? (entrySecNorm === declaredSecNorm || entrySecNorm.includes(declaredSecNorm) || declaredSecNorm.includes(entrySecNorm)) : false;
+      const secMatch = declaredSecNorm ? (entrySecNorm === declaredSecNorm) : false;
       const headMatch = declaredHeadNorm ? (entryHeadNorm === declaredHeadNorm) : false;
 
       let isMatch = false;
@@ -401,8 +400,7 @@ export function verifyLocatorAgainstCanonicalData(targetDocId, locator) {
       } else if (declaredHeadNorm) {
         isMatch = headMatch;
       } else if (declaredSecNorm) {
-        const secTopicMatch = declaredSecNorm.length > 0 && entry.topics && entry.topics.some(t => t.length > 0 && (declaredSecNorm.includes(t) || t.includes(declaredSecNorm)));
-        isMatch = secMatch || secTopicMatch;
+        isMatch = secMatch;
       }
 
       if (isMatch) {
@@ -1081,15 +1079,15 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   }
 
   if (options.claimType === 'START_PROCEDURE' && options.claimClass !== 'PROCEDURE_MODEL_LABEL') {
-    const START_VOCAB_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|aanslaan|lopen|draaien|trekken|trek\w*|koord|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|plop|horen|geluid|stop\w*|stopstand|uitgeschakeld|uitschakelen|afzetten|bedrijfstand|bedrijfsstand|stationair|choke\w*|chokestand|koude start|koudestart|warme start|warmestart|halfgas|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|schakelaar|combischakelaar|hendel\w*|decompressie\w*|decompressieklep|decompressieventiel|ventiel|handbeschermer|kettingrem|rem\w*|vergrendel\w*|ontgrendel\w*|knop|indrukken|loslaten|aantippen|aantikken|bedienen|inschakelen|doorschakelen|klik|stand|grond|vlak|bodem|voet|achtergreep|beugelhandgreep|voorste handgreep|greep|handgreep|stabiel|rustig|krachtig|doortrekken|uitrekken|weerstand|veilig|houding|machine|primer\w*|brandstofpomp\w*|balg|purger|stap\w*|procedure\w*|volg\w*|volgorde|controleren|herhalen|wachten|instructie\w*|handleiding\w*|voorschrift\w*|bediening\w*|principe\w*|algemeen\w*|basis\w*|methode\w*)\b/i;
-    const matchesVocab = START_VOCAB_REGEX.test(fullText);
+    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|primer\w*|brandstofpomp\w*|balg|purger|stationair)\b/i;
+    const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
       errors.push(`${label} contains off-domain or unrecognized procedure instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
     }
   } else if (options.claimType === 'FLOODED_RECOVERY' && options.claimClass !== 'PROCEDURE_MODEL_LABEL') {
-    const FLOODED_VOCAB_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|reinigen|schoonmaken|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|natte bougie|droge bougie|schroefdraad|handvast|vastdraaien|monteren|demonteren|verwijderen|losdraaien|losschroeven|plaatsen|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|doortrekken|startkoord|trekken|stap\w*|procedure\w*|volg\w*|volgorde|controleren|herhalen|wachten|instructie\w*|handleiding\w*|voorschrift\w*|principe\w*|algemeen\w*|basis\w*|methode\w*)\b/i;
-    const matchesVocab = FLOODED_VOCAB_REGEX.test(fullText);
+    const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|natte bougie|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*)\b/i;
+    const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
       errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
