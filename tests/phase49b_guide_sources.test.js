@@ -4848,4 +4848,283 @@ console.log('\n▶ Test 52: Flooded Engine Recovery Heading Locator Semantics (C
   }
 }
 
+// ---------------------------------------------------------------------------
+// TEST 53: Safety Warning Domain Matching across All Domains (Codex Thread PRRT_kwDOUCUnhs6oPuAj, BT1-BT5)
+// ---------------------------------------------------------------------------
+console.log('\n▶ Test 53: Safety Warning Domain Matching across All Domains (Codex Thread PRRT_kwDOUCUnhs6oPuAj, BT1-BT5)...');
+{
+  const startSrc = {
+    id: 'src-026-start',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const maintSrc = {
+    id: 'src-026-maint',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 19, section: 'Maintenance Chart', heading: 'Overview' }
+  };
+  const crankcaseSrc = {
+    id: 'src-026-crankcase',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 48, section: 'Crankcase Leakage', heading: 'Crankcase Pressure and Vacuum Testing' }
+  };
+  const mtronicSrc = {
+    id: 'src-mtronic-diag',
+    publicationId: '0458-573-8621-D',
+    modelScope: ['MS 261 C-M'],
+    locator: { page: 34, section: 'M-Tronic Engine Management', heading: 'M-Tronic Diagnosis & Calibration' }
+  };
+  const fuelSrc = {
+    id: 'src-026-fuel',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 35, section: 'Fuel', heading: 'Fuel Mixture & Storage' }
+  };
+
+  // BT1: Warning with chain sharpening instruction citing start-only locator fails closed
+  {
+    const guideBT1 = {
+      slug: 'test-warning-chain-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Kettingonderhoud vereist',
+          text: 'Vijl alle snijtanden onder een hoek van 30 graden voor optimale zaagprestaties.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBT1, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Chain sharpening warning under start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('contains chain maintenance or sharpening instructions but references source(s) without a chain maintenance locator')),
+      `Expected chain maintenance error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BT1 Passed: Chain maintenance warning citing start locator fails closed.');
+  }
+
+  // BT2: Warning with chain maintenance instruction citing maintenance locator passes
+  {
+    const guideBT2 = {
+      slug: 'test-warning-chain-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [maintSrc],
+      warnings: [
+        {
+          title: 'Regelmatig zaagketting onderhoud',
+          text: 'Controleer regelmatig de kettingspanning en de slijtage van de zaagketting.',
+          sourceRefs: ['src-026-maint']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBT2, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Chain maintenance warning under maintenance locator must pass, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BT2 Passed: Chain maintenance warning citing maintenance locator passes cleanly.');
+  }
+
+  // BT3: Warning with crankcase testing instruction citing start locator fails closed
+  {
+    const guideBT3 = {
+      slug: 'test-warning-crankcase-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Carter afpersen verplicht',
+          text: 'Voer altijd een carter afpersen procedure uit bij valse lucht verdenking.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBT3, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Crankcase testing warning under start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('makes crankcase pressure/vacuum or seal testing claims')),
+      `Expected crankcase testing error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BT3 Passed: Crankcase testing warning citing start locator fails closed.');
+  }
+
+  // BT4: Warning with M-Tronic calibration instruction citing start locator fails closed
+  {
+    const guideBT4 = {
+      slug: 'test-warning-mtronic-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'M-Tronic kalibratie waarschuwing',
+          text: 'Onderbreek de M-Tronic elektronische kalibratie procedure niet.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBT4, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'M-Tronic calibration warning under start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('makes M-Tronic electronic diagnosis or diagnostic system claims')),
+      `Expected M-Tronic diagnosis error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BT4 Passed: M-Tronic calibration warning citing start locator fails closed.');
+  }
+
+  // BT5: Warning with fuel mixing instruction citing start locator fails closed
+  {
+    const guideBT5 = {
+      slug: 'test-warning-fuel-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Verkeerde mengsmering verwoest de motor',
+          text: 'Gebruik uitsluitend verse mengsmering in een mengverhouding van 1:50 en bewaar brandstof nooit langer dan 30 dagen.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBT5, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Fuel mixing warning under start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('pointing to start procedure instead of fuel mixing, storage, or fuel specifications')),
+      `Expected fuel mixing error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BT5 Passed: Fuel mixing warning citing start locator fails closed.');
+  }
+}
+
+// ---------------------------------------------------------------------------
+// TEST 54: Inspection Checklist Topic Operational Provenance (Codex Thread PRRT_kwDOUCUnhs6oPuAm, BU1-BU5)
+// ---------------------------------------------------------------------------
+console.log('\n▶ Test 54: Inspection Checklist Topic Operational Provenance (Codex Thread PRRT_kwDOUCUnhs6oPuAm, BU1-BU5)...');
+{
+  const brandProtectSrc = {
+    source_id: 'src-brand-protect',
+    publication_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+    brand_protection_id: 'STIHL-BRAND-PROTECTION-GUIDELINE-V1',
+    modelScope: ['Alle motorgereedschappen'],
+    locator: { section: 'Counterfeit identification' }
+  };
+  const startSrc = {
+    id: 'src-026-start',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+
+  // BU1: inspectionChecklist[*].topic collected with claimClass INSPECTION_STEP
+  {
+    const guideBU1 = {
+      slug: 'test-checklist-topic-collection',
+      publicationStatus: 'PUBLISHED',
+      sources: [brandProtectSrc],
+      inspectionChecklist: [
+        {
+          topic: '1. Serienummer & Inslaging',
+          text: 'Originele STIHL machines hebben een uniek serienummer.',
+          sourceRefs: ['src-brand-protect']
+        }
+      ]
+    };
+    const claims = collectRenderedOperationalClaims(guideBU1);
+    const topicClaim = claims.find(c => c.path === 'inspectionChecklist[0].topic');
+    assert.ok(topicClaim, 'inspectionChecklist[0].topic must be collected in claims');
+    assert.strictEqual(topicClaim.claimClass, 'INSPECTION_STEP');
+    assert.strictEqual(topicClaim.text, '1. Serienummer & Inslaging');
+    console.log('  ✅ Case BU1 Passed: inspectionChecklist[*].topic collected with claimClass INSPECTION_STEP.');
+  }
+
+  // BU2: inspectionChecklist topic containing off-domain carburetor adjustment claim citing start locator fails closed
+  {
+    const guideBU2 = {
+      slug: 'test-checklist-topic-carb-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      inspectionChecklist: [
+        {
+          topic: 'Carburateur afstelling en L-stelschroef basisafstelling',
+          text: 'Controleer de afstelling.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBU2, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Carburetor topic citing start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('inspectionChecklist[0].topic') && e.includes('pointing to start procedure instead of carburetor adjustment')),
+      `Expected carburetor mismatch error for topic, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BU2 Passed: inspectionChecklist topic containing off-domain carburetor claim fails closed.');
+  }
+
+  // BU3: inspectionChecklist topic without sourceRefs on published guide fails closed
+  {
+    const guideBU3 = {
+      slug: 'test-checklist-topic-no-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [brandProtectSrc],
+      inspectionChecklist: [
+        {
+          topic: 'Serienummer inspectie',
+          text: 'Controleer het nummer.',
+          sourceRefs: ['src-brand-protect'],
+          topicSourceRefs: [] // empty
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBU3, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Inspection checklist topic without sourceRefs on published guide must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('inspectionChecklist[0].topic') && e.includes('has no sourceRefs')),
+      `Expected no sourceRefs error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BU3 Passed: inspectionChecklist topic without sourceRefs on published guide fails closed.');
+  }
+
+  // BU4: inspectionChecklist topic with valid matching locator passes cleanly
+  {
+    const guideBU4 = {
+      slug: 'test-checklist-topic-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [brandProtectSrc],
+      inspectionChecklist: [
+        {
+          topic: '1. Serienummer & Inslaging',
+          text: 'Originele STIHL machines hebben een uniek serienummer ingeslagen in het carter.',
+          sourceRefs: ['src-brand-protect']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBU4, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Valid checklist topic must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BU4 Passed: inspectionChecklist topic with valid matching locator passes cleanly.');
+  }
+
+  // BU5: Sneaky checklist topic with off-domain crankcase testing claim cannot bypass validation
+  {
+    const guideBU5 = {
+      slug: 'test-checklist-topic-crankcase-sneaky',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      inspectionChecklist: [
+        {
+          topic: 'Carter druktest en vacuummeting bij valse lucht lekkage',
+          text: 'Controleer de algehele staat van het motorblok.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBU5, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Sneaky crankcase testing topic under start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('inspectionChecklist[0].topic') && e.includes('makes crankcase pressure/vacuum or seal testing claims')),
+      `Expected crankcase testing error on topic, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BU5 Passed: Sneaky checklist topic cannot bypass domain validation.');
+  }
+}
+
 console.log('\n🎉 ALL PHASE 49B GUIDE SOURCES & ATTRIBUTION TESTS PASSED 100% CLEANLY!');

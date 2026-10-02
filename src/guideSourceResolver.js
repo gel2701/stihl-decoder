@@ -866,8 +866,8 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   let onlyHasStartSourceForFuel = true;
 
   const isCrankcaseTestingClaim = options.claimType === 'CRANKCASE' ||
-    /\b(carter.*afpers\w*|afpersen|carter.*vacuüm|vacuüm.*carter|druk-.*vacuüm|vacuüm.*druk|drukmeting|vacuümmeting|krukaskeerring|carter.*druk|carterdruk|valse lucht.*krukas|krukas.*pakking|abdrück\w*)\b/i.test(fullText) ||
-    /\b(druk-.*vacuüm|krukaskeerring|carter.*afpers)\b/i.test(pathOrLabel || '');
+    /\b(carter.*afpers\w*|afpersen|carter.*vacu[üu]m\w*|vacu[üu]m\w*.*carter|druk-.*vacu[üu]m\w*|vacu[üu]m\w*.*druk\w*|drukmeting|vacu[üu]mmeting|krukaskeerring\w*|carter.*druk\w*|carterdruk\w*|valse lucht.*krukas|krukas.*pakking|abdrück\w*)\b/i.test(fullText) ||
+    /\b(druk-.*vacu[üu]m|krukaskeerring|carter.*afpers)\b/i.test(pathOrLabel || '');
   let hasCrankcaseSpecificSource = false;
   let onlyHasUnrelatedSourceForCrankcase = true;
 
@@ -1044,7 +1044,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
 
   if (isCarburetorAdjustmentClaim && (!hasCarburetorSpecificSource || onlyHasStartSourceForCarburetor)) {
     errors.push(
-      `${label} makes carburetor adjustment or jet setting claims but references source(s) pointing to start procedure instead of a carburetor adjustment or technical specification locator.`
+      `${label} makes carburetor adjustment or jet setting claims but references source(s) pointing to start procedure instead of carburetor adjustment or technical specification locator.`
     );
   }
 
@@ -1331,45 +1331,18 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
       continue;
     }
 
-    const warningFullText = `${warning.title || ''} ${warning.text || ''}`.toLowerCase();
-    const isCarburetorWarning = warningFullText.includes('carburateur') || warningFullText.includes('carburetor');
-
-    let hasCarbSpecificSource = false;
-    let onlyHasStartSource = true;
-
-    for (const ref of warning.sourceRefs) {
-      if (!sourceIds.has(ref)) {
-        errors.push(`${warningLabel} references unknown sourceRef "${ref}".`);
-      } else {
-        const resolved = resolvedSources.get(ref);
-        if (resolved) {
-          if (isPublished) {
-            if (resolved.authenticity_status !== 'AUTHENTICATED_OFFICIAL' && resolved.authenticity_status !== 'AUTHENTICATED_STANDARD') {
-              errors.push(`${warningLabel} references source "${ref}" which lacks AUTHENTICATED_OFFICIAL status (${resolved.authenticity_status}).`);
-            }
-            if (resolved.locatorStatus !== 'LOCATOR_VERIFIED') {
-              errors.push(`${warningLabel} references source "${ref}" which is not LOCATOR_VERIFIED (status: ${resolved.locatorStatus}).`);
-            }
-          }
-
-          if (isCarburetorWarning && resolved.locator) {
-            const locText = `${resolved.locator.section || ''} ${resolved.locator.heading || ''}`.toLowerCase();
-            const isCarbLocator = locText.includes('carburetor') || locText.includes('carburateur') || locText.includes('motor management') || locText.includes('afstellen');
-            const isStartOnly = locText.includes('starting the engine') && !isCarbLocator;
-
-            if (isCarbLocator) {
-              hasCarbSpecificSource = true;
-            }
-            if (!isStartOnly) {
-              onlyHasStartSource = false;
-            }
-          }
+    if (isPublished) {
+      const warningFullText = `${warning.title || ''} ${warning.text || ''}`.trim();
+      validateClaimDomainMatching(warningFullText, warningLabel, warning.sourceRefs, resolvedSources, sourceIds, errors, {
+        label: warningLabel,
+        claimClass: 'SAFETY_WARNING'
+      });
+    } else {
+      for (const ref of warning.sourceRefs) {
+        if (!sourceIds.has(ref)) {
+          errors.push(`${warningLabel} references unknown sourceRef "${ref}".`);
         }
       }
-    }
-
-    if (isCarburetorWarning && (!hasCarbSpecificSource || onlyHasStartSource)) {
-      errors.push(`${warningLabel} references source(s) pointing to start procedure instead of carburetor adjustment or motor management.`);
     }
   }
 
@@ -1633,6 +1606,7 @@ export function collectRenderedOperationalClaims(guide) {
   // 12. inspectionChecklist[*] (namaak herkennen guide)
   if (Array.isArray(guide.inspectionChecklist)) {
     guide.inspectionChecklist.forEach((chk, ci) => {
+      if (chk.topic) push(`inspectionChecklist[${ci}].topic`, chk.topic, chk.topicSourceRefs || chk.sourceRefs, 'INSPECTION_STEP');
       if (chk.text) push(`inspectionChecklist[${ci}].text`, chk.text, chk.sourceRefs, 'INSPECTION_STEP');
     });
   }
