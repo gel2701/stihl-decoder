@@ -1135,7 +1135,13 @@ const buildResolvedSources = (guide) => {
 {
   console.log('  Testing Case AC: Published troubleshootingLevels item with valid ref → PASS...');
   const guide = mkPublishedGuide({
-    troubleshootingLevels: [{ level: 'L1', badge: 'B1', description: 'D1', sourceRefs: ['src-0458-133-3021-start'], items: [{ text: 'Controleer kettingrem.', sourceRefs: ['src-0458-133-3021-start'] }] }]
+    troubleshootingLevels: [{
+      level: 'LEVEL 1 — USER SAFE CHECK',
+      badge: 'Veilige basiscontrole',
+      description: 'Handelingen die iedere gebruiker veilig kan uitvoeren vóór het starten:',
+      sourceRefs: ['src-0458-133-3021-start'],
+      items: [{ text: 'Controleer kettingrem.', sourceRefs: ['src-0458-133-3021-start'] }]
+    }]
   });
   const resolvedSources = buildResolvedSources(guide);
   const pubState = { isPublished: true };
@@ -1223,7 +1229,13 @@ const buildResolvedSources = (guide) => {
 {
   console.log('  Testing Case AI: troubleshootingMatrix with valid sourceRefs → PASS...');
   const guide = mkPublishedGuide({
-    troubleshootingMatrix: [{ symptom: 'S', possibleCause: 'C', safeFirstCheck: 'X', nextStep: 'Y', sourceRefs: ['src-0458-133-3021-start'] }]
+    troubleshootingMatrix: [{
+      symptom: 'Zaag start koud niet',
+      possibleCause: 'Onjuiste stand van combihendel of choke',
+      safeFirstCheck: 'Controleer of de stopschakelaar niet op stopstand staat.',
+      nextStep: 'Koudestartprocedure opnieuw uitvoeren met gesloten choke.',
+      sourceRefs: ['src-0458-133-3021-start']
+    }]
   });
   const resolvedSources = buildResolvedSources(guide);
   const pubState = { isPublished: true };
@@ -1964,6 +1976,7 @@ console.log('\n▶ Test 26: Expanded Operational Fuel Claim Domain Grounding (Th
       troubleshootingLevels: [
         {
           level: 'LEVEL 1',
+          sourceRefs: ['src-026-start'],
           items: [
             {
               text: 'Controleer de brandstof: gebruik verse brandstof; oude brandstof kan verouderen en ontmengen.',
@@ -2197,6 +2210,7 @@ console.log('\n▶ Test 28: Crankcase Pressure & Vacuum Testing Service Evidence
       troubleshootingLevels: [
         {
           level: 'LEVEL 3',
+          sourceRefs: ['src-1121-service'],
           items: [
             {
               text: 'Druk- en vacuümmeting van het carter (opsporen van valse lucht via versleten krukaskeerringen of pakkingen).',
@@ -2318,6 +2332,7 @@ console.log('\n▶ Test 29: M-Tronic Electronic Diagnosis Evidence Grounding (Th
       troubleshootingLevels: [
         {
           level: 'LEVEL 3',
+          sourceRefs: ['src-ms261-diag'],
           items: [
             {
               text: 'Elektronische diagnose van STIHL M-Tronic systemen met behulp van het voor de generatie voorgeschreven diagnosesysteem.',
@@ -5369,6 +5384,160 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     const res = validateGuideSources(guideBV5, { routeStatus: 'PUBLISHED' });
     assert.strictEqual(res.valid, true, `Genuine brand protection checklist topic must pass cleanly, got: ${res.errors.join('; ')}`);
     console.log('  ✅ Case BV5 Passed: Genuine checklist topic citing brand protection locator passes cleanly.');
+  }
+
+  // BV6: Troubleshooting level item with off-domain instruction fails closed (Thread PRRT_kwDOUCUnhs6oQIpE)
+  {
+    const guideBV6 = {
+      slug: 'test-level-item-boor-gat',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1 — USER SAFE CHECK',
+          badge: 'Veilige basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Boor een gat in de machine.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV6, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Level item with Boor een gat must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('troubleshootingLevels[0].items[0]') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded level item error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV6 Passed: Troubleshooting level item with arbitrary instruction fails closed.');
+  }
+
+  // BV7: Troubleshooting matrix safeFirstCheck with off-domain instruction fails closed (Thread PRRT_kwDOUCUnhs6oQIpE)
+  {
+    const guideBV7 = {
+      slug: 'test-matrix-action-boor-gat',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingMatrix: [
+        {
+          symptom: 'Zaag start koud niet',
+          possibleCause: 'Onjuiste startstand',
+          safeFirstCheck: 'Boor een gat in de machine.',
+          nextStep: 'Startprocedure opnieuw uitvoeren.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV7, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Matrix action with Boor een gat must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('troubleshootingMatrix[0].safeFirstCheck') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded matrix action error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV7 Passed: Troubleshooting matrix safeFirstCheck with arbitrary instruction fails closed.');
+  }
+
+  // BV8: Troubleshooting level heading with chain sharpening instruction fails closed (Thread PRRT_kwDOUCUnhs6oQIpH)
+  {
+    const guideBV8 = {
+      slug: 'test-level-heading-vijl-snijtanden',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'Vijl alle snijtanden onder een hoek van 30 graden',
+          badge: 'Veilige basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV8, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Level heading with chain sharpening instruction must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('troubleshootingLevels[0].level') && (e.includes('chain maintenance') || e.includes('not grounded in canonical start procedure topics'))),
+      `Expected level heading error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV8 Passed: Troubleshooting level heading with chain sharpening instruction fails closed.');
+  }
+
+  // BV9: Troubleshooting level badge with off-domain instruction fails closed (Thread PRRT_kwDOUCUnhs6oQIpH)
+  {
+    const guideBV9 = {
+      slug: 'test-level-badge-boor-gat',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1 — USER SAFE CHECK',
+          badge: 'Boor een gat in de machine',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV9, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Level badge with Boor een gat must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('troubleshootingLevels[0].badge') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded level badge error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV9 Passed: Troubleshooting level badge with arbitrary instruction fails closed.');
+  }
+
+  // BV10: Genuine troubleshooting levels and matrix rows pass cleanly
+  {
+    const guideBV10 = {
+      slug: 'test-troubleshooting-genuine-pass',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1 — USER SAFE CHECK',
+          badge: 'Veilige basiscontrole',
+          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.',
+              sourceRefs: ['src-026-start']
+            },
+            {
+              text: 'Controleer de combihendel: staat deze op startpositie of bedrijfsstand?',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ],
+      troubleshootingMatrix: [
+        {
+          symptom: 'Zaag start koud niet',
+          possibleCause: 'Onjuiste stand van combihendel of choke',
+          safeFirstCheck: 'Controleer of de stopschakelaar niet op stopstand staat.',
+          nextStep: 'Koudestartprocedure opnieuw uitvoeren met gesloten choke.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV10, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine troubleshooting levels and matrix rows must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV10 Passed: Genuine troubleshooting levels and matrix rows pass cleanly.');
   }
 }
 

@@ -200,11 +200,11 @@ export const stihlKettingzaagStartNietGuide = {
           sourceRefs: ['src-0458-133-3021-fuel']
         },
         {
-          text: 'Controleer het brandstofniveau en de ontluchting van de brandstoftank.',
+          text: 'Controleer het brandstofniveau en de ontluchting van de brandstoftank vóór het starten.',
           sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
         },
         {
-          text: 'Controleer of het luchtfilter niet dichtgeslibd is met zaagsel of hars.',
+          text: 'Controleer bij startproblemen of de startstand en gashendelvergrendeling correct inschakelen.',
           sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
         }
       ]
@@ -228,11 +228,11 @@ export const stihlKettingzaagStartNietGuide = {
           sourceRefs: ['src-0458-133-3021-flooded', 'src-0458-207-8321-b']
         },
         {
-          text: 'Luchtfilter demonteren en reinigen conform de voorschriften in de handleiding van uw uitvoering.',
+          text: 'Decompressieventiel (indien aanwezig) controleren op soepele werking bij het aantrekken van het startkoord.',
           sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
         },
         {
-          text: 'Brandstofzuigkop (filter in de tank) inspecteren op vervuiling of verharding.',
+          text: 'Brandstofpompbalg / primer (indien aanwezig) inspecteren op vulling vóór de koude start.',
           sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
         }
       ]
