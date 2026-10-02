@@ -5494,6 +5494,122 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1n Passed: Genuine result category label with valid sourceRefs passes cleanly.');
   }
 
+  // BV1o: Mixed-domain sources directAnswer/matrix action with off-domain instruction fails closed (Thread PRRT_kwDOUCUnhs6oQ3wC)
+  {
+    const fuelSrc = {
+      id: 'src-026-fuel',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 35, section: 'Fuel', heading: 'Fuel Mixture & Storage' }
+    };
+    const guideBV1o = {
+      slug: 'test-mixed-domain-ungrounded',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc, fuelSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Boor een gat in de muur met een klopboormachine.',
+        sourceRefs: ['src-026-start', 'src-026-fuel']
+      }
+    };
+    const res = validateGuideSources(guideBV1o, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Mixed-domain claim with off-domain instruction must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical cited source topics')),
+      `Expected off-domain instruction error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1o Passed: Mixed-domain sources with off-domain instruction fail closed.');
+  }
+
+  // BV1p: Guide title / metaDescription with unsupported operational instruction fails closed (Thread PRRT_kwDOUCUnhs6oQ3wF)
+  {
+    const guideBV1p = {
+      slug: 'test-guide-metadata-carburetor-leak',
+      publicationStatus: 'PUBLISHED',
+      title: 'STIHL Kettingzaag Start Niet — Draai de L-stelschroef 1 slag open',
+      shortTitle: 'Start Niet Gids',
+      metaDescription: 'Boor een gat in de muur met een klopboormachine voor betere ventilatie.',
+      sources: [startSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Controleer eerst of de combihendel in de koudestartstand staat en trek aan het startkoord.',
+        sourceRefs: ['src-026-start']
+      }
+    };
+    const res = validateGuideSources(guideBV1p, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Guide title with carburetor claim lacking carburetor source must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('Operational claim at "title"') && e.includes('makes carburetor adjustment')),
+      `Expected carburetor domain error on title, got: ${res.errors.join('; ')}`
+    );
+    assert.ok(
+      res.errors.some(e => e.includes('Operational claim at "metaDescription"') && e.includes('not grounded')),
+      `Expected off-domain grounding error on metaDescription, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1p Passed: Unsupported operational assertions in top-level metadata fail closed.');
+  }
+
+  // BV1q: Generation heading with unsupported operational instruction fails closed (Thread PRRT_kwDOUCUnhs6oQ3wJ)
+  {
+    const mtronicSrc = {
+      id: 'src-ms261-mtronic',
+      publicationId: '0458-573-8621-D',
+      modelScope: ['MS 261', 'MS 261 C-M'],
+      locator: { page: 34, section: 'Starting / Stopping the Engine', heading: 'M-Tronic calibration' }
+    };
+    const guideBV1q = {
+      slug: 'test-gen-heading-unsupported',
+      publicationStatus: 'PUBLISHED',
+      sources: [mtronicSrc],
+      generationModelData: [
+        {
+          generation: 'Draai de H-stelschroef drie slagen open',
+          models: ['MS 261 C-M'],
+          characteristics: 'Combihendel met driehoekssymbool',
+          procedureOverview: 'Kalibratiecyclus van 90 seconden stationair',
+          sourceRefs: ['src-ms261-mtronic']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1q, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Generation heading with carburetor instruction under M-Tronic source must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('generationModelData[0].generation') && e.includes('makes carburetor adjustment')),
+      `Expected carburetor domain error on generation heading, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1q Passed: Unsupported operational assertions in generation heading fail closed.');
+  }
+
+  // BV1r: Genuine top-level metadata and generation heading pass cleanly
+  {
+    const mtronicSrc = {
+      id: 'src-ms261-mtronic',
+      publicationId: '0458-573-8621-D',
+      modelScope: ['MS 261', 'MS 261 C-M'],
+      locator: { page: 34, section: 'Starting / Stopping the Engine', heading: 'M-Tronic calibration' }
+    };
+    const guideBV1r = {
+      slug: 'test-gen-heading-valid',
+      publicationStatus: 'PUBLISHED',
+      title: 'STIHL M-Tronic Resetten & Kalibreren: Stappenplan per Generatie',
+      shortTitle: 'M-Tronic Resetten',
+      metaDescription: 'Stappenplan voor kalibratie en diagnose van STIHL M-Tronic motormanagement.',
+      sources: [mtronicSrc],
+      generationModelData: [
+        {
+          generation: 'Generatie 2 (M-Tronic 3.0)',
+          models: ['MS 261 C-M'],
+          characteristics: 'Combihendel met driehoekssymbool',
+          procedureOverview: 'Kalibratiecyclus van 90 seconden stationair',
+          sourceRefs: ['src-ms261-mtronic']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1r, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine metadata and generation heading must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1r Passed: Genuine top-level metadata and generation heading pass cleanly.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {

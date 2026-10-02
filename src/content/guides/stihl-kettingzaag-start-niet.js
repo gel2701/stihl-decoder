@@ -498,7 +498,7 @@ export const stihlKettingzaagStartNietGuide = {
     },
     {
       text: 'De motor vertoont geen compressieweerstand meer bij het uittrekken van het startkoord.',
-      sourceRefs: ['src-0458-133-3021-carburetor']
+      sourceRefs: ['src-0458-133-3021-flooded', 'src-0458-133-3021-start']
     },
     {
       text: 'Bij M-Tronic machines blijft het motormanagement onregelmatig functioneren na herstart; dealerdiagnose met het voor deze generatie voorgeschreven diagnosesysteem is dan aangewezen.',

@@ -1110,22 +1110,100 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
     'SOURCE_NOTE'
   ]);
 
-  const isStartDomainCheck = !UNGROUNDED_CLAIM_CLASSES.has(options.claimClass) && (options.claimType === 'START_PROCEDURE' || allSourcesAreStartOnly);
-  const isFloodedDomainCheck = !UNGROUNDED_CLAIM_CLASSES.has(options.claimClass) && !isStartDomainCheck && (options.claimType === 'FLOODED_RECOVERY' || allSourcesAreFloodedOnly);
+  const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|brandstoftank|tankontluchting|brandstofniveau|zuigkop)\b/i;
 
-  if (isStartDomainCheck) {
-    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|brandstoftank|tankontluchting|brandstofniveau|zuigkop)\b/i;
-    const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText);
-    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
-    if (!matchesVocab && !matchesLocatorTopic) {
-      errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
-    }
-  } else if (isFloodedDomainCheck) {
-    const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|verbrandingsbeeld|verbranding|vonk\w*|elektrode\w*|elektrodekleur|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|brandstofmengsel\w*|tweetaktmengsel\w*|mengselverhouding|mengverhouding|oliebijmenging|overbelasting|oververhitting|thermische overbelasting|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|werkplaatsinspectie|cilinderinspectie|bougie-inspectie|bougieinspectie|compressieverlies|compressietest)\b/i;
-    const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText);
-    const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
-    if (!matchesVocab && !matchesLocatorTopic) {
-      errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
+  const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|verbrandingsbeeld|verbranding|vonk\w*|elektrode\w*|elektrodekleur|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|brandstofmengsel\w*|tweetaktmengsel\w*|mengselverhouding|mengverhouding|oliebijmenging|overbelasting|oververhitting|thermische overbelasting|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|werkplaatsinspectie|cilinderinspectie|bougie-inspectie|bougieinspectie|compressieverlies|compressietest)\b/i;
+
+  const SUBSTANTIVE_FUEL_REGEX = /\b(brandstof\w*|mengsmering\w*|mengsel\w*|tweetakt\w*|2-takt\w*|motomix\w*|euro\s*95|euro\s*98|e5|e10|loodvrij\w*|octaan\w*|ron|verouder\w*|opslag\w*|bewaar\w*|stabilisator\w*|mengverhouding\w*|1:50|olie\w*|synthetisch\w*|jerrycan\w*|tankdop\w*|aftappen|ontgassen|zuigkop\w*|tankfilter\w*|brandstoftank\w*|tankontluchting\w*)\b/i;
+
+  const SUBSTANTIVE_CARBURETOR_REGEX = /\b(carburateur\w*|stelschroef\w*|l-schroef|h-schroef|la-schroef|l-stelschroef\w*|h-stelschroef\w*|la-stelschroef\w*|l-sproeier|h-sproeier|la-sproeier|hoofdsproeier|stationair\w*|limiter\s*cap\w*|basisafstelling|mengselschroef|gasklep|membraan\w*|pompmebraan|regelmembraan|inlaatnaald|naaldventiel|toerental|draai\w*|slag|kloksgewijs|tegen de klok in)\b/i;
+
+  const SUBSTANTIVE_CRANKCASE_REGEX = /\b(carter\w*|krukas\w*|keerring\w*|dichting\w*|pakking\w*|afpers\w*|vacu[üu]m\w*|drukmeting|vacu[üu]mmeting|onderdruk|overdruk|lek\w*|dichtheid|lekkage|abdrück\w*)\b/i;
+
+  const SUBSTANTIVE_MTRONIC_REGEX = /\b(m-tronic\w*|kalibrat\w*|kalibreren|diagnos\w*|diagnose\w*|motormanagement|regeleenheid|magneetventiel|stuurapparaat|mdg\s*1|software|foutcode\w*|uitlezen|gen\s*\d+|generatie\w*)\b/i;
+
+  const SUBSTANTIVE_CYLINDER_REGEX = /\b(cilinder\w*|zuiger\w*|zuigerveer\w*|zuigerpen\w*|compressie\w*|cilinderwand\w*|drijfstang|lager\w*|krukas|cilinderkop|verbrandingskamer|bougiedraad|decompressie\w*|slijtage|krassen|klemmen|vastloper)\b/i;
+
+  const SUBSTANTIVE_CHAIN_REGEX = /\b(zaagketting\w*|ketting\w*|zaagblad\w*|blad\w*|geleideblad\w*|slijp\w*|vijl\w*|vijlen|slijpen|vijlhouder|ronde vijl|vlakke vijl|snijtand\w*|dieptesteller\w*|hoek|kettingspanning\w*|kettingspanner\w*|kettingsmering\w*|kettingolie\w*|kettingrem\w*|tandwiel\w*|aandrijftandwiel|omdraaien)\b/i;
+
+  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|specificatie\w*|technische gegevens|gewicht|vermogen|cilinderinhoud|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|controle\w*|controleren|overzicht\w*|direct antwoord|kort antwoord|oorzaken|experienced user|directe visuele inspectie|generatie\w*|gen\s*\d+|model\w*|modellen\w*|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|bougie\w*|bougiekleur\w*|elektrode\w*|elektrodenafstand\w*|koffiebruin\w*|grijsbruin\w*|matzwart\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*|gids\w*|titel\w*|bron\w*|kennisbank\w*|document\w*|artikel\w*)\b/i;
+
+  if (!UNGROUNDED_CLAIM_CLASSES.has(options.claimClass)) {
+    const isHeadingClass = options.claimClass === 'TROUBLESHOOTING_LEVEL_HEADING' ||
+                           options.claimClass === 'GUIDE_METADATA' ||
+                           options.claimClass === 'GENERATION_SPECIFICATION' ||
+                           options.claimClass === 'GENERATION_PROCEDURE' ||
+                           (options.claimClass === 'DIRECT_ANSWER' && pathOrLabel && pathOrLabel.includes('heading'));
+
+    if (options.claimType === 'START_PROCEDURE' || allSourcesAreStartOnly) {
+      const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText) || (isHeadingClass && SUBSTANTIVE_STANDARDS_REGEX.test(fullText));
+      const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
+      if (!matchesVocab && !matchesLocatorTopic) {
+        errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
+      }
+    } else if (options.claimType === 'FLOODED_RECOVERY' || allSourcesAreFloodedOnly) {
+      const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText) || (isHeadingClass && SUBSTANTIVE_STANDARDS_REGEX.test(fullText));
+      const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
+      if (!matchesVocab && !matchesLocatorTopic) {
+        errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
+      }
+    } else {
+      // Mixed or general cited sources canonical-topic domain grounding
+      const activeRegexes = [];
+
+      // Structural heading / metadata / generation classes can match standard procedural heading vocabulary
+      if (isHeadingClass) {
+        activeRegexes.push(SUBSTANTIVE_STANDARDS_REGEX);
+      }
+
+      for (const ref of sourceRefs) {
+        const resolved = resolvedSources.get(ref);
+        if (!resolved) continue;
+        const locTopics = resolved.locator?.topics || [];
+        const locText = `${resolved.locator?.section || ''} ${resolved.locator?.heading || ''}`.toLowerCase();
+
+        if (locTopics.some(t => ['starting', 'start', 'starten', 'stopping'].includes(t)) || locText.includes('starting') || locText.includes('starten')) {
+          activeRegexes.push(SUBSTANTIVE_START_REGEX);
+        }
+        if (locTopics.some(t => ['flooded', 'ontzopen', 'troubleshooting'].includes(t)) || locText.includes('flooded') || locText.includes('verzopen') || locText.includes('not start')) {
+          activeRegexes.push(SUBSTANTIVE_FLOODED_REGEX);
+        }
+        if (locTopics.some(t => ['fuel', 'brandstof', 'mixing', 'storage'].includes(t)) || locText.includes('fuel') || locText.includes('brandstof')) {
+          activeRegexes.push(SUBSTANTIVE_FUEL_REGEX);
+        }
+        if (locTopics.some(t => ['carburetor', 'carburateur', 'standard setting', 'limiter caps', 'basic settings', 'afstelling', 'idle', 'stationair', 'adjustment'].includes(t)) || locText.includes('carburetor') || locText.includes('carburateur')) {
+          activeRegexes.push(SUBSTANTIVE_CARBURETOR_REGEX);
+        }
+        if (locTopics.some(t => ['crankcase', 'leakage', 'pressure', 'vacuum'].includes(t)) || locText.includes('crankcase') || locText.includes('carter') || locText.includes('afpers') || locText.includes('keerring')) {
+          activeRegexes.push(SUBSTANTIVE_CRANKCASE_REGEX);
+        }
+        if (locTopics.some(t => ['mtronic', 'kalibratie', 'calibration', 'diagnosis', 'diagnose', 'motormanagement'].includes(t)) || locText.includes('mtronic') || locText.includes('diagnos')) {
+          activeRegexes.push(SUBSTANTIVE_MTRONIC_REGEX);
+        }
+        if (locTopics.some(t => ['cylinder', 'cilinder', 'piston', 'zuiger', 'compression', 'compressie', 'mechanical'].includes(t)) || locText.includes('cylinder') || locText.includes('cilinder') || locText.includes('piston') || locText.includes('compressie')) {
+          activeRegexes.push(SUBSTANTIVE_CYLINDER_REGEX);
+        }
+        if (locTopics.some(t => ['chain', 'maintenance'].includes(t)) || locText.includes('chain') || locText.includes('ketting')) {
+          activeRegexes.push(SUBSTANTIVE_CHAIN_REGEX);
+        }
+        if (locTopics.some(t => ['safety', 'ppe', 'approvals', 'conformity', 'certification', 'quality', 'standards', 'tolerances', 'brand protection', 'counterfeit', 'mould dating', 'specificaties', 'technical data'].includes(t)) || resolved.brand_protection_id || resolved.standard_id) {
+          activeRegexes.push(SUBSTANTIVE_STANDARDS_REGEX);
+        }
+      }
+
+      if (activeRegexes.length === 0) {
+        activeRegexes.push(
+          SUBSTANTIVE_START_REGEX, SUBSTANTIVE_FLOODED_REGEX, SUBSTANTIVE_FUEL_REGEX,
+          SUBSTANTIVE_CARBURETOR_REGEX, SUBSTANTIVE_CRANKCASE_REGEX, SUBSTANTIVE_MTRONIC_REGEX,
+          SUBSTANTIVE_CYLINDER_REGEX, SUBSTANTIVE_CHAIN_REGEX, SUBSTANTIVE_STANDARDS_REGEX
+        );
+      }
+
+      const matchesAnyActiveVocab = activeRegexes.some(rx => rx.test(fullText));
+      const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
+      if (!matchesAnyActiveVocab && !matchesLocatorTopic) {
+        errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical cited source topics.`);
+      }
     }
   }
 }
@@ -1429,6 +1507,22 @@ export function collectRenderedOperationalClaims(guide) {
     claims.push({ path, text: String(text ?? ''), sourceRefs, claimClass });
   }
 
+  const topLevelSourceRefs = guide.sourceRefs || (Array.isArray(guide.sources) ? guide.sources.map(s => getDeclaredSourceId(s)).filter(Boolean) : []);
+
+  // 0. Top-level guide title, shortTitle, metaDescription, description
+  if (guide.title) {
+    push('title', guide.title, guide.titleSourceRefs || topLevelSourceRefs, 'GUIDE_METADATA');
+  }
+  if (guide.shortTitle) {
+    push('shortTitle', guide.shortTitle, guide.shortTitleSourceRefs || topLevelSourceRefs, 'GUIDE_METADATA');
+  }
+  if (guide.metaDescription) {
+    push('metaDescription', guide.metaDescription, guide.metaDescriptionSourceRefs || topLevelSourceRefs, 'GUIDE_METADATA');
+  }
+  if (guide.description && guide.description !== guide.metaDescription) {
+    push('description', guide.description, guide.descriptionSourceRefs || topLevelSourceRefs, 'GUIDE_METADATA');
+  }
+
   // 1. directAnswer.heading & directAnswer.content
   if (guide.directAnswer?.heading) {
     push('directAnswer.heading', guide.directAnswer.heading,
@@ -1622,6 +1716,7 @@ export function collectRenderedOperationalClaims(guide) {
   // 9. generationModelData[*] (M-Tronic reset guide)
   if (Array.isArray(guide.generationModelData)) {
     guide.generationModelData.forEach((gen, gi) => {
+      if (gen.generation) push(`generationModelData[${gi}].generation`, gen.generation, gen.sourceRefs, 'GENERATION_SPECIFICATION');
       if (Array.isArray(gen.models)) {
         gen.models.forEach((m, mi) => {
           push(`generationModelData[${gi}].models[${mi}]`, m, gen.sourceRefs, 'GENERATION_SPECIFICATION');
@@ -1706,6 +1801,7 @@ export function validateOperationalClaimsProvenance(guide, resolvedSources = new
   // No bypass path exists.
   const OPERATIONAL_CLAIM_CLASSES = new Set([
     'SOURCE_NOTE',
+    'GUIDE_METADATA',
     'TROUBLESHOOTING_LEVEL_HEADING',
     'TROUBLESHOOTING_LEVEL_ITEM',
     'TROUBLESHOOTING_LEVEL_DESCRIPTION',
