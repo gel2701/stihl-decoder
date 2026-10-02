@@ -5160,6 +5160,12 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     modelScope: ['Alle motorgereedschappen'],
     locator: { section: 'Counterfeit identification' }
   };
+  const floodedSrc = {
+    id: 'src-026-flooded',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 42, section: 'Starting / Stopping the Engine', heading: 'If the Engine Does Not Start' }
+  };
 
   // BV1: Safety warning with air filter wash instruction citing start-only locator fails closed
   {
@@ -5352,6 +5358,29 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
       `Expected item missing sourceRefs error, got: ${res.errors.join('; ')}`
     );
     console.log('  ✅ Case BV1h Passed: Level item without item sourceRefs does not inherit sibling levelSourceRefs and fails closed.');
+  }
+
+  // BV1i: Safety warning with 'natuurlijk' ("Gebruik natuurlijk een boormachine.") citing flooded-only locator fails closed (Thread PRRT_kwDOUCUnhs6oQnc7)
+  {
+    const guideBV1i = {
+      slug: 'test-warning-natuurlijk-flooded',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSrc],
+      warnings: [
+        {
+          title: 'Veiligheidswaarschuwing',
+          text: 'Gebruik natuurlijk een boormachine.',
+          sourceRefs: ['src-026-flooded']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1i, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning with natuurlijk citing flooded locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical flooded recovery topics')),
+      `Expected ungrounded flooded recovery error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1i Passed: Warning with "natuurlijk" fails closed under flooded locator.');
   }
 
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
