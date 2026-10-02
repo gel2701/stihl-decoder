@@ -5687,6 +5687,136 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1u Passed: Specifications locator fails closed on unrelated fuel claims without borrowing vocabulary.');
   }
 
+  // BV1v: Level heading with unsupported English prose suffix fails closed (Thread PRRT_kwDOUCUnhs6oRQni)
+  {
+    const guideBV1v = {
+      slug: 'test-level-heading-unsupported-suffix',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'Level 1 - drill a hole in the wall',
+          badge: 'Veilige basiscontrole starten',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1v, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Level heading with arbitrary instruction must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('troubleshootingLevels[0].level') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded level heading error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1v Passed: Level heading with unsupported prose suffix fails closed.');
+  }
+
+  // BV1w: Level headings with canonical structural labels pass cleanly (Thread PRRT_kwDOUCUnhs6oRQni)
+  {
+    const guideBV1w = {
+      slug: 'test-level-heading-canonical-labels',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1 — USER SAFE CHECK',
+          badge: 'Veilige basiscontrole starten',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        },
+        {
+          level: 'LEVEL 2 — EXPERIENCED USER / MANUAL REQUIRED',
+          badge: 'Ervaren gebruiker startcontroles',
+          description: 'Startcontroles met handleiding:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Controleer de koude start choke hendel positie.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        },
+        {
+          level: 'LEVEL 3 — SERVICE PROCEDURE',
+          badge: 'Werkplaatsprocedure starter',
+          description: 'Dealer inspectie startmechanisme:',
+          sourceRefs: ['src-026-start'],
+          items: [
+            {
+              text: 'Laat de starter en het ontstekingsmechanisme controleren door de STIHL dealer.',
+              sourceRefs: ['src-026-start']
+            }
+          ]
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1w, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Canonical level headings must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1w Passed: Level headings with canonical structural labels pass cleanly.');
+  }
+
+  // BV1x: Standalone generic words (e.g. "slag") under specifications locator without technical context fail closed (Thread PRRT_kwDOUCUnhs6oRQnr)
+  {
+    const specEngineSrc = {
+      id: 'src-026-spec-engine',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 14, section: 'Specifications', heading: 'Engine' }
+    };
+    const guideBV1x = {
+      slug: 'test-spec-engine-harde-slag',
+      publicationStatus: 'PUBLISHED',
+      sources: [specEngineSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Geef de deur een harde slag.',
+        sourceRefs: ['src-026-spec-engine']
+      }
+    };
+    const res = validateGuideSources(guideBV1x, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Claim with generic non-technical word "slag" must fail closed under specifications locator');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical cited source topics')),
+      `Expected ungrounded specifications domain error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1x Passed: Standalone generic words without technical context under specifications locator fail closed.');
+  }
+
+  // BV1y: Genuine technical specifications claims in technical context pass cleanly (Thread PRRT_kwDOUCUnhs6oRQnr)
+  {
+    const specEngineSrc = {
+      id: 'src-026-spec-engine',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 14, section: 'Specifications', heading: 'Engine' }
+    };
+    const guideBV1y = {
+      slug: 'test-spec-engine-valid-specs',
+      publicationStatus: 'PUBLISHED',
+      sources: [specEngineSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Cilinderinhoud: 48.7 cm³, boring: 44 mm, slag: 32 mm, motorvermogen: 2.6 kW bij 9500 1/min.',
+        sourceRefs: ['src-026-spec-engine']
+      }
+    };
+    const res = validateGuideSources(guideBV1y, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine technical specifications claims must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1y Passed: Genuine technical specifications claims pass cleanly.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {

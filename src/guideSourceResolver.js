@@ -1112,7 +1112,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
 
 function isWhollyStructuralHeading(text) {
   const norm = String(text || '').trim();
-  const STRUCTURAL_HEADING_REGEX = /^(?:level\s*\d+(?:\s*[\—\-\:–]\s*(?:safe direct inspection|experienced user\s*(?:\/|\&)\s*manual required|service procedure|directe visuele inspectie|inspectie met gereedschap\s*(?:\&|en)\s*handleiding|[a-z\s&]+))?|directe visuele inspectie|inspectie met gereedschap\s*(?:\&|en)\s*handleiding|service procedure|kort antwoord(?::\s*wat kunt u veilig direct controleren\?)?|generatie\s*\d+(?:\s*\([^)]*\))?|gen\s*\d+(?:\s*\([^)]*\))?|test\s+gids\s+zonder\s+bron\s+titel)$/i;
+  const STRUCTURAL_HEADING_REGEX = /^(?:level\s*\d+(?:\s*[\—\-\:–]\s*(?:safe direct inspection|user safe check|user safe start check|experienced user\s*(?:\/|\&|and|en)\s*manual required|experienced user|service procedure|dealer service procedure|dealer procedure|directe visuele inspectie|directe inspectie|visuele inspectie|directe startcontroles|inspectie met gereedschap\s*(?:\&|en)\s*handleiding|werkplaatsprocedure|werkplaatsinspectie|dealerinspectie|carter druktest|m-tronic diagnose|stihl vakhandelaar|mechanische service))?|directe visuele inspectie|directe startcontroles|inspectie met gereedschap\s*(?:\&|en)\s*handleiding|service procedure|dealer service procedure|kort antwoord(?::\s*wat kunt u veilig direct controleren\?)?|generatie\s*\d+(?:\s*\([^)]*\))?|gen\s*\d+(?:\s*\([^)]*\))?|test\s+gids\s+zonder\s+bron\s+titel)$/i;
   return STRUCTURAL_HEADING_REGEX.test(norm);
 }
 
@@ -1132,9 +1132,9 @@ function isWhollyStructuralHeading(text) {
 
   const SUBSTANTIVE_CHAIN_REGEX = /\b(zaagketting\w*|ketting\w*|zaagblad\w*|blad\w*|geleideblad\w*|slijp\w*|vijl\w*|vijlen|slijpen|vijlhouder|ronde vijl|vlakke vijl|snijtand\w*|dieptesteller\w*|hoek|kettingspanning\w*|kettingspanner\w*|kettingsmering\w*|kettingolie\w*|kettingrem\w*|tandwiel\w*|aandrijftandwiel|omdraaien)\b/i;
 
-  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|specificatie\w*|technische gegevens|gewicht|vermogen|cilinderinhoud|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|oorzaken|generatie\w*|gen\s*\d+|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|bougie\w*|bougiekleur\w*|elektrode\w*|elektrodenafstand\w*|koffiebruin\w*|grijsbruin\w*|matzwart\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*)\b/i;
+  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|oorzaken|generatie\w*|gen\s*\d+|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*)\b/i;
 
-  const SUBSTANTIVE_SPECIFICATIONS_REGEX = /\b(technische gegevens|specificatie\w*|cilinderinhoud|boring|slag|vermogen|kw|pk|toerental|stationair toerental|maximaal toerental|onbelast toerental|ontsteking\w*|bougietype|bougiedraad|elektrodenafstand|warmtewaarde|gewicht|geluidsdrukniveau|geluidsvermogenniveau|trillingswaarde|zaagbladlengte|steek|dikte|kettingsnelheid)\b/i;
+  const SUBSTANTIVE_SPECIFICATIONS_REGEX = /(?:\b(?:technische\s+gegevens|technische\s+specificaties|specificatie\w*|cilinderinhoud|slagvolume|motorvermogen|stationair\s+toerental|maximaal\s+toerental|onbelast\s+toerental|ontsteking\w*|bougie\w*|bougietype|bougiedraad|bougiekleur\w*|elektrode\w*|elektrodenafstand|warmtewaarde|koffiebruin\w*|grijsbruin\w*|matzwart\w*|roet\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|geluidsdrukniveau|geluidsvermogenniveau|trillingswaarde\w*|zaagbladlengte|kettingsnelheid|kettingsteek|drijfsleufdikte|schakeldikte|zuigerslag|cilinderboring|motorgewicht|droog\s+gewicht|ontstekingssysteem|ontstekingstijdstip|elektronische\s+ontsteking)\b|\bboring\s*(?:x|\/|\&|en|\:)\s*slag\b|\bslag\s*(?:x|\/|\&|en|\:)\s*boring\b|\b(?:boring|slag|dikte|steek|gewicht|vermogen|toerental)\s*[:=]\s*\d+|\b(?:boring|slag|dikte|steek|gewicht|vermogen|toerental)\s+van\s+\d+|\b\d+(?:[.,]\d+)?\s*(?:mm|cm|cm³|cc|kw|pk|kg|g|bar|dba?)\b|\b\d{3,5}\s*(?:rpm|1\/min|omw\/min|t\/min)\b|\b\d+\/\d+["”]?\s*(?:steek|kettingsteek)\b|\b(?:\.325|\.404|3\/8)\s*(?:["”]|p|picco|hobby|mini|steek)\b)/i;
 
   const isModelListItem = options.claimClass === 'GENERATION_SPECIFICATION' && pathOrLabel && pathOrLabel.includes('.models[');
 
@@ -1193,10 +1193,10 @@ function isWhollyStructuralHeading(text) {
         if (locTopics.some(t => ['chain', 'maintenance'].includes(t)) || locText.includes('chain') || locText.includes('ketting')) {
           activeRegexes.push(SUBSTANTIVE_CHAIN_REGEX);
         }
-        if (locTopics.some(t => ['specifications', 'technical data', 'specificaties', 'engine', 'tolerances'].includes(t)) || locText.includes('specifications') || locText.includes('technical data')) {
+        if (locTopics.some(t => ['specifications', 'technical data', 'specificaties', 'engine', 'tolerances'].includes(t)) || locText.includes('specifications') || locText.includes('technical data') || locText.includes('specificaties')) {
           activeRegexes.push(SUBSTANTIVE_SPECIFICATIONS_REGEX);
         }
-        if (locTopics.some(t => ['safety', 'ppe', 'approvals', 'conformity', 'certification', 'quality', 'standards', 'tolerances', 'brand protection', 'counterfeit', 'mould dating', 'specificaties', 'technical data'].includes(t)) || resolved.brand_protection_id || resolved.standard_id) {
+        if (locTopics.some(t => ['safety', 'ppe', 'approvals', 'conformity', 'certification', 'quality', 'standards', 'brand protection', 'counterfeit', 'mould dating'].includes(t)) || resolved.brand_protection_id || resolved.standard_id) {
           activeRegexes.push(SUBSTANTIVE_STANDARDS_REGEX);
         }
       }
