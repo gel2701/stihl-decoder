@@ -5817,6 +5817,33 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1y Passed: Genuine technical specifications claims pass cleanly.');
   }
 
+  // BV1z: Standalone numeric unit without specification attribute fails closed under specifications locator (Thread PRRT_kwDOUCUnhs6oRdPD)
+  {
+    const specEngineSrc = {
+      id: 'src-026-spec-engine',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 14, section: 'Specifications', heading: 'Engine' }
+    };
+    const guideBV1z = {
+      slug: 'test-spec-engine-boor-gat-10mm',
+      publicationStatus: 'PUBLISHED',
+      sources: [specEngineSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Boor een gat van 10 mm in de muur.',
+        sourceRefs: ['src-026-spec-engine']
+      }
+    };
+    const res = validateGuideSources(guideBV1z, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Claim with standalone measurement "10 mm" without specification attribute must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical cited source topics')),
+      `Expected ungrounded specifications domain error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1z Passed: Standalone numeric measurement without specification attribute fails closed.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {
