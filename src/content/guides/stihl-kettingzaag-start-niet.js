@@ -451,7 +451,7 @@ export const stihlKettingzaagStartNietGuide = {
       possibleCause: 'Combihendel te lang op choke laten staan of te snel van de startstand afgehaald; vervuild luchtfilter.',
       safeFirstCheck: 'Schakel direct na de eerste ontsteking naar de startstand en trek opnieuw. Controleer of het luchtfilter schoon is.',
       nextStep: 'Controleer stationairloop conform handleiding; raadpleeg dealer bij brandstoftoevoerproblemen.',
-      sourceRefs: ['src-0458-133-3021-start', 'src-0458-207-8321-b']
+      sourceRefs: ['src-0458-133-3021-start', 'src-0458-133-3021-fuel', 'src-0458-133-3021-flooded', 'src-0458-207-8321-b']
     },
     {
       symptom: 'Zaag start warm niet',

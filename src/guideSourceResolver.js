@@ -1116,25 +1116,57 @@ function isWhollyStructuralHeading(text) {
   return STRUCTURAL_HEADING_REGEX.test(norm);
 }
 
-  const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|brandstoftank|tankontluchting|brandstofniveau|zuigkop)\b/i;
+  const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stop\w*|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|handgreep\w*|beugel\w*|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|brandstoftank|tankontluchting|brandstofniveau|zuigkop|zaag\w*|kettingzaag\w*|ketting\w*|zaagblad\w*|geleideblad\w*|grond\w*|takken\w*|losse pols|drop start|aantrek\w*|doortrek\w*|trek\w*|motor\w*|lopen|ongeval\w*|gevaar\w*|veilig\w*|handleiding\w*|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|dealerdiagnose\w*|bougie\w*|afstel\w*|dampbel\w*|koppeling\w*|afkoel\w*)\b/i;
 
-  const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|verbrandingsbeeld|verbranding|vonk\w*|elektrode\w*|elektrodekleur|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|brandstofmengsel\w*|tweetaktmengsel\w*|mengselverhouding|mengverhouding|oliebijmenging|overbelasting|oververhitting|thermische overbelasting|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|werkplaatsinspectie|cilinderinspectie|bougie-inspectie|bougieinspectie|compressieverlies|compressietest)\b/i;
+  const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|verbrandingsbeeld|verbranding|vonk\w*|elektrode\w*|elektrodekleur|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|brandstofmengsel\w*|tweetaktmengsel\w*|mengselverhouding|mengverhouding|oliebijmenging|overbelasting|oververhitting|thermische overbelasting|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|werkplaatsinspectie|cilinderinspectie|bougie-inspectie|bougieinspectie|compressieverlies|compressietest|zaag\w*|kettingzaag\w*|motor\w*|luchtfilter\w*|filter\w*|schoon\w*|vervuild\w*|dealerdiagnose\w*)\b/i;
 
   const SUBSTANTIVE_FUEL_REGEX = /\b(brandstof\w*|mengsmering\w*|mengsel\w*|tweetakt\w*|2-takt\w*|motomix\w*|euro\s*95|euro\s*98|e5|e10|loodvrij\w*|octaan\w*|ron|verouder\w*|opslag\w*|bewaar\w*|stabilisator\w*|mengverhouding\w*|1:50|olie\w*|synthetisch\w*|jerrycan\w*|tankdop\w*|aftappen|ontgassen|zuigkop\w*|tankfilter\w*|brandstoftank\w*|tankontluchting\w*)\b/i;
 
-  const SUBSTANTIVE_CARBURETOR_REGEX = /\b(carburateur\w*|carburatie\w*|stelschroef\w*|l-schroef|h-schroef|la-schroef|l-stelschroef\w*|h-stelschroef\w*|la-stelschroef\w*|l-sproeier|h-sproeier|la-sproeier|hoofdsproeier|stationairsproeier|stationairschroef|limiter\s*cap\w*|basisafstelling|standaardafstelling|mengselschroef|gasklep\w*|chokeklep\w*|membraan\w*|pompmembraan|regelmembraan|inlaatnaald\w*|naaldventiel\w*|stationair toerental|inregeling|carburateurafstelling|carburateurreiniging)\b/i;
+  const SUBSTANTIVE_CARBURETOR_REGEX = /\b(carburateur\w*|carburatie\w*|stelschroef\w*|stelschroev\w*|schroef\w*|schroev\w*|l-schroef\w*|h-schroef\w*|la-schroef\w*|l-stelschroef\w*|h-stelschroef\w*|la-stelschroef\w*|l-stelschroev\w*|h-stelschroev\w*|la-stelschroev\w*|l-sproeier\w*|h-sproeier\w*|la-sproeier\w*|hoofdsproeier\w*|stationairsproeier\w*|stationairschroef\w*|stationairschroev\w*|limiter\s*cap\w*|basisafstelling\w*|basisstand\w*|standaardafstelling\w*|mengselschroef\w*|mengselschroev\w*|gasklep\w*|chokeklep\w*|membraan\w*|membran\w*|pompmembraan\w*|regelmembraan\w*|inlaatnaald\w*|naaldventiel\w*|stationair\w*|toerental\w*|inregeling\w*|carburateurafstelling\w*|carburateurreiniging\w*|oververhitting\w*|motorschade\w*|afstel\w*|bijstel\w*|verstel\w*|verdraai\w*|linksom\w*|rechtsom\w*|aanslag\w*|slag\w*|omwenteling\w*|fabrieksinstructie\w*|mengsel\w*|brandstof\w*|bediening\w*|bougie\w*|ontzop\w*|verzopen\w*|start\w*|zaag\w*|motor\w*)\b/i;
 
   const SUBSTANTIVE_CRANKCASE_REGEX = /\b(carter\w*|krukas\w*|keerring\w*|dichting\w*|pakking\w*|afpers\w*|vacu[üu]m\w*|drukmeting|vacu[üu]mmeting|onderdruk|overdruk|lek\w*|dichtheid|lekkage|abdrück\w*)\b/i;
 
-  const SUBSTANTIVE_MTRONIC_REGEX = /\b(m-tronic\w*|kalibrat\w*|kalibreren|diagnos\w*|diagnose\w*|motormanagement|regeleenheid|magneetventiel|stuurapparaat|mdg\s*1|software|foutcode\w*|uitlezen|gen\s*\d+|generatie\w*)\b/i;
+  const SUBSTANTIVE_MTRONIC_REGEX = /\b(m-tronic\w*|kalibrat\w*|kalibreren|diagnos\w*|diagnose\w*|motormanagement|regeleenheid|magneetventiel\w*|stuurapparaat|mdg\s*1|software|foutcode\w*|uitlezen|gen\s*\d+|generatie\w*|c-m\w*|stelschroef\w*|stelschroev\w*|dealer\w*|vakhandelaar\w*|zaag\w*|motor\w*|machine\w*)\b/i;
 
   const SUBSTANTIVE_CYLINDER_REGEX = /\b(cilinder\w*|zuiger\w*|zuigerveer\w*|zuigerpen\w*|compressie\w*|cilinderwand\w*|drijfstang|lager\w*|krukas|cilinderkop|verbrandingskamer|bougiedraad|decompressie\w*|slijtage|krassen|klemmen|vastloper|mechanisch\w*|mechaniek\w*)\b/i;
 
   const SUBSTANTIVE_CHAIN_REGEX = /\b(zaagketting\w*|ketting\w*|zaagblad\w*|blad\w*|geleideblad\w*|slijp\w*|vijl\w*|vijlen|slijpen|vijlhouder|ronde vijl|vlakke vijl|snijtand\w*|dieptesteller\w*|hoek|kettingspanning\w*|kettingspanner\w*|kettingsmering\w*|kettingolie\w*|kettingrem\w*|tandwiel\w*|aandrijftandwiel|omdraaien)\b/i;
 
-  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|oorzaken|generatie\w*|gen\s*\d+|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*)\b/i;
+  const SUBSTANTIVE_STANDARDS_REGEX = /\b(veiligheid\w*|veilig\w*|bescherming\w*|pbm|helm|gehoorbescherming\w*|oogbescherming\w*|veiligheidsbril|werkhandschoen\w*|zaagbroek|veiligheidslaars\w*|namaak\w*|vervalsing\w*|echtheid\w*|merkbescherming|logo|typeplaatje|serienummer\w*|serienummerwijziging\w*|gietdatum\w*|bouwjaar\w*|ce-markering|conformiteit|certificering|inspectie\w*|diagnos\w*|diagnose\w*|handleiding\w*|voorschrift\w*|gebruiksaanwijzing\w*|manual\w*|service\w*|procedure\w*|gereedschap\w*|niveau\w*|level\w*|stappenplan\w*|oorzaken|generatie\w*|gen\s*\d+|variant\w*|versie\w*|ms\s*\d+|fs\s*\d+|br\s*\d+|c-m|\b0\d{2}\b|normaal\w*|in orde|afwijking\w*|vastgesteld\w*|beoordeling\w*|resultaat\w*|status\w*|categorie\w*|advies|raadpleeg\w*|onderhoud\w*|instructie\w*|waarschuwing\w*|let op|attentie)\b/i;
 
-  const SUBSTANTIVE_SPECIFICATIONS_REGEX = /(?:\b(?:technische\s+gegevens|technische\s+specificaties|specificatie\w*|cilinderinhoud|slagvolume|motorvermogen|stationair\s+toerental|maximaal\s+toerental|onbelast\s+toerental|ontsteking\w*|bougie\w*|bougietype|bougiedraad|bougiekleur\w*|elektrode\w*|elektrodenafstand|warmtewaarde|koffiebruin\w*|grijsbruin\w*|matzwart\w*|roet\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|geluidsdrukniveau|geluidsvermogenniveau|trillingswaarde\w*|zaagbladlengte|kettingsnelheid|kettingsteek|drijfsleufdikte|schakeldikte|zuigerslag|cilinderboring|motorgewicht|droog\s+gewicht|ontstekingssysteem|ontstekingstijdstip|elektronische\s+ontsteking)\b|\bboring\s*(?:x|\/|\&|en|\:)\s*slag\b|\bslag\s*(?:x|\/|\&|en|\:)\s*boring\b|\b(?:boring|slag|dikte|steek|gewicht|vermogen|toerental|compressie|inhoud|capaciteit|oliecarter|tankinhoud|elektrode|bougie)\s*(?:[:=]|\bis\b|\bvan\b|\bbedraagt\b|\s)\s*\d+(?:[.,]\d+)?\s*(?:mm|cm|cm³|cc|kw|pk|kg|g|bar|dba?|rpm|1\/min|omw\/min|t\/min|%|inch|"|”)?\b|\b\d+(?:[.,]\d+)?\s*(?:mm|cm|cm³|cc|kw|pk|kg|g|bar|dba?|rpm|1\/min|omw\/min|t\/min)\s+(?:boring|slag|dikte|steek|gewicht|vermogen|cilinderinhoud|toerental|elektrodenafstand|zaagbladlengte|kettingsnelheid|compressie)\b|\b(?:steek|kettingsteek)\s*[:=]?\s*(?:\d+\/\d+|\.325|\.404|3\/8)\b|\b(?:\d+\/\d+|\.325|\.404|3\/8)\s*(?:["”]|p|picco|hobby|mini)?\s*(?:steek|kettingsteek)\b|\b(?:toerental|stationair|maximaal|onbelast|volgas|bij volgas)\s*(?:[:=]|\bis\b|\bvan\b|\bbedraagt\b|\s)\s*\d{3,5}\s*(?:rpm|1\/min|omw\/min|t\/min)\b|\b\d{3,5}\s*(?:rpm|1\/min|omw\/min|t\/min)\s+(?:toerental|stationair|maximaal|onbelast)\b)/i;
+  const SUBSTANTIVE_SPECIFICATIONS_REGEX = /(?:\b(?:technische\s+gegevens|technische\s+specificaties|specificatie\w*|cilinderinhoud|slagvolume|motorvermogen|stationair\s+toerental|maximaal\s+toerental|onbelast\s+toerental|ontsteking\w*|bougie\w*|bougietype|bougiedraad|bougiekleur\w*|elektrode\w*|elektrodenafstand|warmtewaarde|koffiebruin\w*|grijsbruin\w*|matzwart\w*|roet\w*|asgrijs\w*|witachtig\w*|verbranding\w*|mengsel\w*|normaal\w*|in orde|geluidsdrukniveau|geluidsvermogenniveau|trillingswaarde\w*|zaagbladlengte|kettingsnelheid|kettingsteek|drijfsleufdikte|schakeldikte|zuigerslag|cilinderboring|motorgewicht|droog\s+gewicht|ontstekingssysteem|ontstekingstijdstip|elektronische\s+ontsteking)\b|\bboring\s*(?:x|\/|\&|en|\:)\s*slag\b|\bslag\s*(?:x|\/|\&|en|\:)\s*boring\b|\b(?:boring|slag|dikte|steek|gewicht|vermogen|toerental|compressie|inhoud|capaciteit|oliecarter|tankinhoud|elektrode|bougie)\s*(?:[:=]|\bis\b|\bvan\b|\bbedraagt\b|\s)\s*\d+(?:[.,]\d+)?\s*(?:mm|cm|cm³|cc|kw|pk|kg|g|bar|dba?|rpm|1\/min|omw\/min|t\/min|%|inch|"|”)\b|\b\d+(?:[.,]\d+)?\s*(?:mm|cm|cm³|cc|kw|pk|kg|g|bar|dba?|rpm|1\/min|omw\/min|t\/min)\s+(?:boring|slag|dikte|steek|gewicht|vermogen|cilinderinhoud|toerental|elektrodenafstand|zaagbladlengte|kettingsnelheid|compressie)\b|\b(?:steek|kettingsteek)\s*[:=]?\s*(?:\d+\/\d+|\.325|\.404|3\/8)\b|\b(?:\d+\/\d+|\.325|\.404|3\/8)\s*(?:["”]|p|picco|hobby|mini)?\s*(?:steek|kettingsteek)\b|\b(?:toerental|stationair|maximaal|onbelast|volgas|bij volgas)\s*(?:[:=]|\bis\b|\bvan\b|\bbedraagt\b|\s)\s*\d{3,5}\s*(?:rpm|1\/min|omw\/min|t\/min)\b|\b\d{3,5}\s*(?:rpm|1\/min|omw\/min|t\/min)\s+(?:toerental|stationair|maximaal|onbelast)\b)/i;
+
+function isConversationalOrStructuralParticle(clause) {
+  const norm = String(clause || '').trim().toLowerCase().replace(/[.,:;!?]+$/, '');
+  if (!norm) return true;
+  if (/^(?:ja|nee|zeker|inderdaad|klopt|correct|let op|waarschuwing|attentie|tip|stap\s*\d+|niveau\s*\d+|level\s*\d+|opmerking|advies|conclusie|belangrijk)$/i.test(norm)) {
+    return true;
+  }
+  return false;
+}
+
+function splitOperationalClauses(rawText) {
+  const text = String(rawText || '').trim();
+  if (!text) return [];
+
+  // Split on full sentence punctuation (. ! ? \n ;) without splitting on numbered list markers (e.g. "1.")
+  const sentences = text.split(/(?:(?<!\b\d+)[.!?;\n]+|\s*;\s*)/).map(s => s.trim()).filter(Boolean);
+  const clauses = [];
+
+  for (const s of sentences) {
+    // Within each sentence, split on sequential / coordinating action transitions
+    // e.g. "en daarna", "en vervolgens", "daarna", "vervolgens", "waarna", or "en + action verb"
+    const subClauses = s.split(/\s+(?:,\s*)?(?:en\s+daarna|en\s+vervolgens|en\s+tevens|en\s+daarbij|waarna|daarna|vervolgens|terwijl)\s+|\s+en\s+(?=(?:boor\w*|zaag\w*|sla\w*|draai\w*|metsel\w*|breek\w*|verf\w*|plak\w*|timmer\w*|schuur\w*|las\w*|rij\w*|vlieg\w*|koop\w*|kook\w*|wasmachine|muur|bandenspanning|auto\w*)\b)/i)
+      .map(c => c.trim())
+      .filter(c => c.length > 0);
+
+    for (const sub of subClauses) {
+      clauses.push(sub);
+    }
+  }
+
+  return clauses.length > 0 ? clauses : [text];
+}
 
   const isModelListItem = options.claimClass === 'GENERATION_SPECIFICATION' && pathOrLabel && pathOrLabel.includes('.models[');
 
@@ -1144,20 +1176,33 @@ function isWhollyStructuralHeading(text) {
       options.claimClass === 'GUIDE_METADATA' ||
       options.claimClass === 'GENERATION_SPECIFICATION' ||
       options.claimClass === 'GENERATION_PROCEDURE' ||
+      options.claimClass === 'FRAMEWORK_DISTINCTION' ||
       (options.claimClass === 'DIRECT_ANSWER' && pathOrLabel && pathOrLabel.includes('heading'))
     ) && isWhollyStructuralHeading(text);
 
+    if (isWhollyStructural) {
+      return;
+    }
+
+    const clauses = splitOperationalClauses(fullText);
+
     if (options.claimType === 'START_PROCEDURE' || allSourcesAreStartOnly) {
-      const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText) || isWhollyStructural;
-      const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
-      if (!matchesVocab && !matchesLocatorTopic) {
-        errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
+      for (const cl of clauses) {
+        if (isConversationalOrStructuralParticle(cl) || isWhollyStructuralHeading(cl)) continue;
+        const matchesVocab = SUBSTANTIVE_START_REGEX.test(cl);
+        const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && cl.toLowerCase().includes(t.toLowerCase()));
+        if (!matchesVocab && !matchesLocatorTopic) {
+          errors.push(`${label} contains off-domain or unrecognized instructions ("${cl.slice(0, 80)}") not grounded in canonical start procedure topics.`);
+        }
       }
     } else if (options.claimType === 'FLOODED_RECOVERY' || allSourcesAreFloodedOnly) {
-      const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText) || isWhollyStructural;
-      const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
-      if (!matchesVocab && !matchesLocatorTopic) {
-        errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${fullText.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
+      for (const cl of clauses) {
+        if (isConversationalOrStructuralParticle(cl) || isWhollyStructuralHeading(cl)) continue;
+        const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(cl);
+        const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && cl.toLowerCase().includes(t.toLowerCase()));
+        if (!matchesVocab && !matchesLocatorTopic) {
+          errors.push(`${label} contains off-domain or unrecognized recovery instructions ("${cl.slice(0, 80)}") not grounded in canonical flooded recovery topics.`);
+        }
       }
     } else {
       // Mixed or general cited sources canonical-topic domain grounding
@@ -1201,10 +1246,13 @@ function isWhollyStructuralHeading(text) {
         }
       }
 
-      const matchesAnyActiveVocab = activeRegexes.some(rx => rx.test(fullText)) || isWhollyStructural;
-      const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
-      if (!matchesAnyActiveVocab && !matchesLocatorTopic) {
-        errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical cited source topics.`);
+      for (const cl of clauses) {
+        if (isConversationalOrStructuralParticle(cl) || isWhollyStructuralHeading(cl)) continue;
+        const matchesAnyActiveVocab = activeRegexes.some(rx => rx.test(cl));
+        const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && cl.toLowerCase().includes(t.toLowerCase()));
+        if (!matchesAnyActiveVocab && !matchesLocatorTopic) {
+          errors.push(`${label} contains off-domain or unrecognized instructions ("${cl.slice(0, 80)}") not grounded in canonical cited source topics.`);
+        }
       }
     }
   }
@@ -1732,11 +1780,16 @@ export function collectRenderedOperationalClaims(guide) {
   // 10. distinctionFramework (gietklok guide)
   if (guide.distinctionFramework) {
     const df = guide.distinctionFramework;
-    if (df.partCastDateVsMachineAssembly && Array.isArray(df.partCastDateVsMachineAssembly.points)) {
-      df.partCastDateVsMachineAssembly.points.forEach((pt, pi) => {
-        if (pt.label) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].label`, pt.label, pt.labelSourceRefs || pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
-        if (pt.description) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].description`, pt.description, pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
-      });
+    if (df.partCastDateVsMachineAssembly) {
+      if (df.partCastDateVsMachineAssembly.title) {
+        push('distinctionFramework.partCastDateVsMachineAssembly.title', df.partCastDateVsMachineAssembly.title, df.partCastDateVsMachineAssembly.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+      }
+      if (Array.isArray(df.partCastDateVsMachineAssembly.points)) {
+        df.partCastDateVsMachineAssembly.points.forEach((pt, pi) => {
+          if (pt.label) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].label`, pt.label, pt.labelSourceRefs || pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+          if (pt.description) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].description`, pt.description, pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+        });
+      }
     }
     if (df.mouldDateFormats) {
       if (df.mouldDateFormats.title) {

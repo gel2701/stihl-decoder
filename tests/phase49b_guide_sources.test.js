@@ -5844,6 +5844,162 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1z Passed: Standalone numeric measurement without specification attribute fails closed.');
   }
 
+  // BV1aa: Compound operational claim with ungrounded secondary clause fails closed (Thread PRRT_kwDOUCUnhs6oRq7y)
+  {
+    const guideBV1aa = {
+      slug: 'test-compound-clause-start-boor-gat',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Controleer de startpositie en boor daarna een gat in de muur.',
+        sourceRefs: ['src-026-start']
+      }
+    };
+    const res = validateGuideSources(guideBV1aa, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Compound operational claim with ungrounded clause must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start procedure clause error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1aa Passed: Compound operational claim with ungrounded clause fails closed.');
+  }
+
+  // BV1ab: Compound operational claim with all grounded clauses passes cleanly (Thread PRRT_kwDOUCUnhs6oRq7y)
+  {
+    const guideBV1ab = {
+      slug: 'test-compound-clause-valid-start',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Controleer de startpositie van de combihendel en controleer daarna het brandstofniveau in de brandstoftank.',
+        sourceRefs: ['src-026-start']
+      }
+    };
+    const res = validateGuideSources(guideBV1ab, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Compound claim with all grounded clauses must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1ab Passed: Compound operational claim with all grounded clauses passes cleanly.');
+  }
+
+  // BV1ac: Specification claim with attribute and number but no technical unit fails closed (Thread PRRT_kwDOUCUnhs6oRq71)
+  {
+    const specEngineSrc = {
+      id: 'src-026-spec-engine',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 14, section: 'Specifications', heading: 'Engine' }
+    };
+    const guideBV1ac = {
+      slug: 'test-spec-engine-gewicht-zonder-unit',
+      publicationStatus: 'PUBLISHED',
+      sources: [specEngineSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Sla de deur met een gewicht van 10 keer dicht.',
+        sourceRefs: ['src-026-spec-engine']
+      }
+    };
+    const res = validateGuideSources(guideBV1ac, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Specification claim with number lacking technical unit must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('directAnswer.content') && e.includes('not grounded in canonical cited source topics')),
+      `Expected ungrounded specifications domain error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1ac Passed: Specification claim with number lacking technical unit fails closed.');
+  }
+
+  // BV1ad: Genuine specification claim with attribute, number, and technical unit passes cleanly (Thread PRRT_kwDOUCUnhs6oRq71)
+  {
+    const specEngineSrc = {
+      id: 'src-026-spec-engine',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 14, section: 'Specifications', heading: 'Engine' }
+    };
+    const guideBV1ad = {
+      slug: 'test-spec-engine-gewicht-valid-unit',
+      publicationStatus: 'PUBLISHED',
+      sources: [specEngineSrc],
+      directAnswer: {
+        heading: 'Kort antwoord',
+        content: 'Motorgewicht: gewicht van 4.8 kg (droog, zonder zaagblad en ketting).',
+        sourceRefs: ['src-026-spec-engine']
+      }
+    };
+    const res = validateGuideSources(guideBV1ad, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine specification claim with unit must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1ad Passed: Genuine specification claim with attribute and technical unit passes cleanly.');
+  }
+
+  // BV1ae: distinctionFramework.partCastDateVsMachineAssembly.title with off-domain text fails closed (Thread PRRT_kwDOUCUnhs6oRq76)
+  {
+    const isoStandardSrc = {
+      id: 'src-iso-11469',
+      standardId: 'ISO 11469',
+      canonical_document_id: 'ISO 11469',
+      modelScope: ['gegoten-onderdelen-en-behuizingscomponenten'],
+      locator: { section: 'Mould dating conventions' }
+    };
+    const guideBV1ae = {
+      slug: 'test-df-title-boor-gat',
+      publicationStatus: 'PUBLISHED',
+      sources: [isoStandardSrc],
+      distinctionFramework: {
+        partCastDateVsMachineAssembly: {
+          title: 'Boor een gat in de muur met een boormachine.',
+          sourceRefs: ['src-iso-11469'],
+          points: [
+            {
+              label: 'Gietdatum van het onderdeel',
+              description: 'Geeft de gietdatum aan.',
+              sourceRefs: ['src-iso-11469']
+            }
+          ]
+        }
+      }
+    };
+    const res = validateGuideSources(guideBV1ae, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'partCastDateVsMachineAssembly.title with arbitrary instruction must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('distinctionFramework.partCastDateVsMachineAssembly.title') && e.includes('not grounded in canonical cited source topics')),
+      `Expected ungrounded title error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1ae Passed: distinctionFramework.partCastDateVsMachineAssembly.title with off-domain text fails closed.');
+  }
+
+  // BV1af: Genuine distinctionFramework.partCastDateVsMachineAssembly.title passes cleanly (Thread PRRT_kwDOUCUnhs6oRq76)
+  {
+    const isoStandardSrc = {
+      id: 'src-iso-11469',
+      standardId: 'ISO 11469',
+      canonical_document_id: 'ISO 11469',
+      modelScope: ['gegoten-onderdelen-en-behuizingscomponenten'],
+      locator: { section: 'Mould dating conventions' }
+    };
+    const guideBV1af = {
+      slug: 'test-df-title-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [isoStandardSrc],
+      distinctionFramework: {
+        partCastDateVsMachineAssembly: {
+          title: 'Cruciaal onderscheid: Onderdeel-gietdatum vs. Machine-bouwjaar',
+          sourceRefs: ['src-iso-11469'],
+          points: [
+            {
+              label: 'Gietdatum van het onderdeel',
+              description: 'Geeft de gietdatum aan conform norm.',
+              sourceRefs: ['src-iso-11469']
+            }
+          ]
+        }
+      }
+    };
+    const res = validateGuideSources(guideBV1af, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine partCastDateVsMachineAssembly.title must pass cleanly, got: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1af Passed: Genuine distinctionFramework.partCastDateVsMachineAssembly.title passes cleanly.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {
