@@ -1121,7 +1121,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
       errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
     }
   } else if (isFloodedDomainCheck) {
-    const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|kleur\w*|verbranding|mengsel\w*|oliebijmenging|overbelasting|thermisch\w*|vakhandelaar|dealer\w*|inspectie\w*|compressie\w*)\b/i;
+    const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|verbrandingsbeeld|verbranding|vonk\w*|elektrode\w*|elektrodekleur|nat|natte|nattigheid|vochtig\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|brandstofmengsel\w*|tweetaktmengsel\w*|mengselverhouding|mengverhouding|oliebijmenging|overbelasting|oververhitting|thermische overbelasting|stihl dealer\w*|erkende dealer\w*|stihl vakhandelaar|vakhandelaar|dealerinspectie|werkplaatsinspectie|cilinderinspectie|bougie-inspectie|bougieinspectie|compressieverlies|compressietest)\b/i;
     const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
@@ -1637,10 +1637,14 @@ export function collectRenderedOperationalClaims(guide) {
     const df = guide.distinctionFramework;
     if (df.partCastDateVsMachineAssembly && Array.isArray(df.partCastDateVsMachineAssembly.points)) {
       df.partCastDateVsMachineAssembly.points.forEach((pt, pi) => {
+        if (pt.label) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].label`, pt.label, pt.labelSourceRefs || pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
         if (pt.description) push(`distinctionFramework.partCastDateVsMachineAssembly.points[${pi}].description`, pt.description, pt.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
       });
     }
     if (df.mouldDateFormats) {
+      if (df.mouldDateFormats.title) {
+        push(`distinctionFramework.mouldDateFormats.title`, df.mouldDateFormats.title, df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+      }
       if (df.mouldDateFormats.description) {
         push(`distinctionFramework.mouldDateFormats.description`, df.mouldDateFormats.description, df.sourceRefs, 'FRAMEWORK_DISTINCTION');
       }
@@ -1650,6 +1654,9 @@ export function collectRenderedOperationalClaims(guide) {
         });
       }
     }
+    if (df.replacedPartsNotice?.title) {
+      push('distinctionFramework.replacedPartsNotice.title', df.replacedPartsNotice.title, df.replacedPartsNotice.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
+    }
     if (df.replacedPartsNotice?.text) {
       push('distinctionFramework.replacedPartsNotice.text', df.replacedPartsNotice.text, df.replacedPartsNotice.sourceRefs || df.sourceRefs, 'FRAMEWORK_DISTINCTION');
     }
@@ -1658,6 +1665,7 @@ export function collectRenderedOperationalClaims(guide) {
   // 11. resultCategories[*] (namaak herkennen guide)
   if (Array.isArray(guide.resultCategories)) {
     guide.resultCategories.forEach((cat, ci) => {
+      if (cat.label) push(`resultCategories[${ci}].label`, cat.label, cat.labelSourceRefs || cat.sourceRefs, 'CATEGORY_DIAGNOSIS');
       if (cat.description) push(`resultCategories[${ci}].description`, cat.description, cat.sourceRefs, 'CATEGORY_DIAGNOSIS');
     });
   }

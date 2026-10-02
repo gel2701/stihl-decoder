@@ -5383,6 +5383,117 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1i Passed: Warning with "natuurlijk" fails closed under flooded locator.');
   }
 
+  // BV1j: Warning with 'kleurpotlood' ("Gebruik een kleurpotlood om een tekening te maken.") citing flooded-only locator fails closed (Thread PRRT_kwDOUCUnhs6oQuBo)
+  {
+    const guideBV1j = {
+      slug: 'test-warning-kleurpotlood-flooded',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSrc],
+      warnings: [
+        {
+          title: 'Veiligheidswaarschuwing',
+          text: 'Gebruik een kleurpotlood om een tekening te maken.',
+          sourceRefs: ['src-026-flooded']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1j, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning with kleurpotlood citing flooded locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical flooded recovery topics')),
+      `Expected ungrounded flooded recovery error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1j Passed: Warning with "kleurpotlood" fails closed under flooded locator.');
+  }
+
+  // BV1k: Warning with generic dealer ("Controleer de bandenspanning van uw auto bij de dealer.") citing flooded locator fails closed (Thread PRRT_kwDOUCUnhs6oQuBo)
+  {
+    const guideBV1k = {
+      slug: 'test-warning-dealer-bandenspanning-flooded',
+      publicationStatus: 'PUBLISHED',
+      sources: [floodedSrc],
+      warnings: [
+        {
+          title: 'Veiligheidswaarschuwing',
+          text: 'Controleer de bandenspanning van uw auto bij de dealer.',
+          sourceRefs: ['src-026-flooded']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1k, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning with generic dealer citing flooded locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical flooded recovery topics')),
+      `Expected ungrounded flooded recovery error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1k Passed: Generic dealer warning fails closed under flooded locator.');
+  }
+
+  // BV1l: Rendered resultCategories label with unsupported operational instruction fails closed (Thread PRRT_kwDOUCUnhs6oQuBv)
+  {
+    const guideBV1l = {
+      slug: 'test-result-category-label-unsupported',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      resultCategories: [
+        {
+          label: 'Draai de H-stelschroef drie slagen open',
+          description: 'Controleer de startprocedure.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1l, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Result category label with carburetor adjustment citing start locator must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('resultCategories[0].label') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected result category label ungrounded error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1l Passed: Result category label with off-domain instruction fails closed.');
+  }
+
+  // BV1m: Rendered resultCategories label without sourceRefs on published guide fails closed (Thread PRRT_kwDOUCUnhs6oQuBv)
+  {
+    const guideBV1m = {
+      slug: 'test-result-category-label-missing-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      resultCategories: [
+        {
+          label: 'Geen duidelijke afwijkingen vastgesteld',
+          description: 'Controleer de startprocedure.',
+          descriptionSourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1m, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Result category label without sourceRefs on published guide must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('resultCategories[0].label') && e.includes('has no sourceRefs')),
+      `Expected missing sourceRefs error on result category label, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1m Passed: Result category label without sourceRefs fails closed.');
+  }
+
+  // BV1n: Genuine result category label with valid sourceRefs passes cleanly (Thread PRRT_kwDOUCUnhs6oQuBv)
+  {
+    const guideBV1n = {
+      slug: 'test-result-category-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [brandProtectSrc],
+      resultCategories: [
+        {
+          label: 'Geen duidelijke afwijkingen vastgesteld',
+          description: 'Het serienummer en typeplaatje komen overeen met de fabriekskenmerken.',
+          sourceRefs: ['src-brand-protect']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1n, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, true, `Genuine result category label and description with valid sourceRefs must pass: ${res.errors.join('; ')}`);
+    console.log('  ✅ Case BV1n Passed: Genuine result category label with valid sourceRefs passes cleanly.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {
