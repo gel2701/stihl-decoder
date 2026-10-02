@@ -55,8 +55,14 @@ export const CANONICAL_DOCUMENT_LOCATORS = {
       19: [
         { section: 'Maintenance Chart', heading: 'Overview', topics: ['maintenance'] }
       ],
+      24: [
+        { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start'] }
+      ],
       35: [
         { section: 'Fuel', heading: 'Fuel Mixture & Storage', topics: ['fuel', 'mixing', 'storage', 'brandstof'] }
+      ],
+      36: [
+        { section: 'Carburetor', heading: 'Carburetor Adjustment', topics: ['carburetor', 'carburateur', 'adjustment'] }
       ],
       38: [
         { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start', 'starten', 'stopping'] },
@@ -73,13 +79,18 @@ export const CANONICAL_DOCUMENT_LOCATORS = {
         { section: 'Adjusting Carburetor', heading: 'Idle speed', topics: ['carburetor', 'carburateur', 'idle', 'stationair', 'adjustment'] },
         { section: 'Carburetor', heading: 'Adjustment', topics: ['carburetor', 'carburateur', 'adjustment', 'afstelling'] }
       ],
+      48: [
+        { section: 'Crankcase Leakage', heading: 'Crankcase Pressure and Vacuum Testing', topics: ['crankcase', 'leakage', 'pressure', 'vacuum'] }
+      ],
       50: [
         { section: 'Specifications', heading: 'Technical Data', topics: ['specifications', 'technical data', 'specificaties'] },
+        { section: 'Specifications', heading: 'Engine', topics: ['specifications', 'engine', 'technical data'] },
         { section: 'Specifications & Mechanical Checks', heading: 'Cylinder and Piston Inspection', topics: ['specifications', 'cylinder', 'piston', 'cilinder', 'zuiger', 'compression', 'compressie', 'mechanical'] },
         { section: 'Test Section', heading: 'Test Heading', topics: ['test'] }
       ],
       56: [
-        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals', 'conformity'] }
+        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals', 'conformity'] },
+        { section: 'Quality Certification', heading: 'Quality Certification', topics: ['approvals', 'certification', 'quality'] }
       ]
     }
   },
@@ -113,8 +124,15 @@ export const CANONICAL_DOCUMENT_LOCATORS = {
       34: [
         { section: 'Starting / Stopping the Engine', heading: 'Starting the Engine', topics: ['starting', 'start'] }
       ],
+      44: [
+        { section: 'Maintenance and Care', heading: 'Maintenance and Care', topics: ['maintenance'] }
+      ],
+      45: [
+        { section: 'Specifications', heading: 'Specifications', topics: ['specifications'] }
+      ],
       88: [
-        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals'] }
+        { section: 'Approvals', heading: 'Declaration of Conformity', topics: ['approvals'] },
+        { section: 'Quality Certification', heading: 'Quality Certification', topics: ['approvals', 'certification'] }
       ]
     }
   },
@@ -179,6 +197,17 @@ export const CANONICAL_DOCUMENT_LOCATORS = {
       { section: 'Counterfeit identification', heading: 'Counterfeit identification', topics: ['brand protection', 'counterfeit'] },
       { section: 'Counterfeits', heading: 'Counterfeits', topics: ['brand protection', 'counterfeit'] }
     ]
+  },
+  '1121': {
+    documentNumber: '1121',
+    pages: {
+      16: [
+        { section: 'Crankcase / Leakage Testing', heading: 'Pressure and Vacuum Testing', topics: ['crankcase', 'leakage', 'pressure', 'vacuum'] }
+      ],
+      50: [
+        { section: 'Specifications & Mechanical Checks', heading: 'Cylinder and Piston Inspection', topics: ['specifications', 'cylinder', 'piston', 'compression', 'mechanical'] }
+      ]
+    }
   }
 };
 

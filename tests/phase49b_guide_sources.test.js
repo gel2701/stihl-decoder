@@ -12,6 +12,9 @@ import {
   validateGuideSources,
   validateAllGuides,
   getDeclaredSourceId,
+  verifyLocatorAgainstCanonicalData,
+  collectRenderedOperationalClaims,
+  validateOperationalClaimsProvenance,
   TRUSTED_TECHNICAL_STANDARDS,
   TRUSTED_BRAND_PROTECTION_REGISTRY
 } from '../src/guideSourceResolver.js';
@@ -1057,7 +1060,6 @@ console.log('  ✅ Test 15 Passed: All fractional locator page cases correctly v
 // ============================================================
 // TEST 16: Phase 49B-P-R5 Operational Claim Provenance Tests (AA–AM)
 // ============================================================
-import { collectRenderedOperationalClaims, validateOperationalClaimsProvenance } from '../src/guideSourceResolver.js';
 import { stihlKettingzaagStartNietGuide } from '../src/content/guides/stihl-kettingzaag-start-niet.js';
 
 console.log('\n▶ Test 16: Phase 49B-P-R5 Operational Claim Provenance Tests (AA–AM)...');
@@ -3999,6 +4001,485 @@ console.log('\n▶ Test 45: Spark Plug Color Label Operational Provenance Valida
       `Expected crankcase error in color, got: ${errs.join('; ')}`
     );
     console.log('  ✅ Case BL5 Passed: Sneaky color assertion cannot bypass validation via innocent meaning.');
+  }
+}
+
+// ===============================================================
+// TEST 46: LOCATOR PAGE MAPPINGS AND UNMAPPED PAGE REJECTION (Codex Thread PRRT_kwDOUCUnhs6oL6NC, BM1-BM5)
+// ===============================================================
+console.log('\n▶ Test 46: Locator Page Mappings & Unmapped Page Rejection (Codex Thread PRRT_kwDOUCUnhs6oL6NC, BM1-BM5)...');
+{
+  // BM1: Page 17 (unmapped page in 0458-133-3021 with mapped pages table) fails closed
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 17,
+      section: 'Some Section',
+      heading: 'Some Heading'
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_PAGE_OUT_OF_BOUNDS', 'Unmapped page must return LOCATOR_PAGE_OUT_OF_BOUNDS');
+    assert.strictEqual(locResult.verified, false, 'Unmapped page must not be verified');
+    console.log('  ✅ Case BM1 Passed: Unmapped page 17 in document with mapped pages registry rejected.');
+  }
+
+  // BM2: Mapped page (page 38) with genuine section and heading passes as LOCATOR_VERIFIED
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 38,
+      section: 'Starting / Stopping the Engine',
+      heading: 'Starting the Engine'
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_VERIFIED', 'Mapped page 38 must return LOCATOR_VERIFIED');
+    assert.strictEqual(locResult.verified, true, 'Mapped page 38 must be verified');
+    console.log('  ✅ Case BM2 Passed: Mapped page 38 with valid section/heading verified cleanly.');
+  }
+
+  // BM3: Out-of-bounds page (page 999) fails closed
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 999,
+      section: 'Starting / Stopping the Engine',
+      heading: 'Starting the Engine'
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_PAGE_OUT_OF_BOUNDS', 'Page 999 must return LOCATOR_PAGE_OUT_OF_BOUNDS');
+    assert.strictEqual(locResult.verified, false, 'Page 999 must not be verified');
+    console.log('  ✅ Case BM3 Passed: Out-of-bounds page 999 rejected.');
+  }
+
+  // BM4: Published guide source with unmapped page fails closed in validateGuideSources
+  {
+    const guideBM4 = {
+      slug: 'test-unmapped-page-guide',
+      publicationStatus: 'PUBLISHED',
+      sources: [
+        {
+          id: 'src-unmapped',
+          publicationId: '0458-133-3021',
+          modelScope: ['026'],
+          locator: { page: 17, section: 'Some Section', heading: 'Some Heading' }
+        }
+      ]
+    };
+    const valBM4 = validateGuideSources(guideBM4, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(valBM4.valid, false, 'Guide with unmapped locator page must fail validation');
+    assert.ok(
+      valBM4.errors.some(e => e.includes('not registered in canonical document locators') || e.includes('Unmapped pages cannot be verified') || e.includes('LOCATOR_PAGE_OUT_OF_BOUNDS')),
+      `Expected unmapped locator page error, got: ${valBM4.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BM4 Passed: Published guide source with unmapped page fails closed.');
+  }
+
+  // BM5: Claim referencing source on unmapped page fails closed in validateOperationalClaimsProvenance
+  {
+    const unmappedSource = {
+      id: 'src-unmapped',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 17, section: 'Some Section', heading: 'Some Heading' }
+    };
+    const resolved = resolveGuideSource(unmappedSource, { throwOnError: false, isPublishedGuide: false });
+    const resolvedMap = new Map([['src-unmapped', resolved.canonicalSource || unmappedSource]]);
+
+    const guideBM5 = {
+      slug: 'test-unmapped-claim',
+      publicationStatus: 'PUBLISHED',
+      sources: [unmappedSource],
+      directAnswer: {
+        heading: 'Direct antwoord voor starten',
+        content: 'Volg de officiële voorschriften.',
+        sourceRefs: ['src-unmapped']
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBM5, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Claim citing unmapped source must fail provenance check');
+    console.log('  ✅ Case BM5 Passed: Operational claim referencing unmapped locator page rejected.');
+  }
+}
+
+// ===============================================================
+// TEST 47: SECTION/HEADING MATCHING AND NO EMPTY-HEADING WILDCARD (Codex Thread PRRT_kwDOUCUnhs6oL6NH, BN1-BN5)
+// ===============================================================
+console.log('\n▶ Test 47: Section/Heading Matching & No Wildcard on Omitted Heading (Codex Thread PRRT_kwDOUCUnhs6oL6NH, BN1-BN5)...');
+{
+  // BN1: Empty heading on page 38 does NOT match any entry when section/heading don't match
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 38,
+      section: 'Completely Wrong Section',
+      heading: ''
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_SECTION_MISMATCH', 'Wrong section with empty heading must return LOCATOR_SECTION_MISMATCH');
+    assert.strictEqual(locResult.verified, false, 'Must not be verified');
+    console.log('  ✅ Case BN1 Passed: Wrong section with empty heading rejected as LOCATOR_SECTION_MISMATCH.');
+  }
+
+  // BN2: Section mismatch on page 38 with valid heading name rejected
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 38,
+      section: 'Carburetor Adjustment Section',
+      heading: 'Starting the Engine'
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_SECTION_MISMATCH', 'Section mismatch must return LOCATOR_SECTION_MISMATCH');
+    assert.strictEqual(locResult.verified, false, 'Must not be verified');
+    console.log('  ✅ Case BN2 Passed: Section mismatch on mapped page rejected.');
+  }
+
+  // BN3: Exact match section and heading on page 38 passes cleanly
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 38,
+      section: 'Starting / Stopping the Engine',
+      heading: 'Starting the Engine'
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_VERIFIED', 'Exact match must return LOCATOR_VERIFIED');
+    assert.strictEqual(locResult.verified, true, 'Exact match must be verified');
+    console.log('  ✅ Case BN3 Passed: Exact section and heading verified cleanly.');
+  }
+
+  // BN4: Mismatched heading on page 38 fails closed
+  {
+    const locResult = verifyLocatorAgainstCanonicalData('0458-133-3021', {
+      page: 38,
+      section: 'Starting / Stopping the Engine',
+      heading: 'Nonexistent Engine Heading'
+    });
+    assert.strictEqual(locResult.status, 'LOCATOR_SECTION_MISMATCH', 'Heading mismatch must return LOCATOR_SECTION_MISMATCH');
+    assert.strictEqual(locResult.verified, false, 'Must not be verified');
+    console.log('  ✅ Case BN4 Passed: Heading mismatch on mapped page rejected.');
+  }
+
+  // BN5: Published guide with section mismatch in locator fails in validateGuideSources
+  {
+    const guideBN5 = {
+      slug: 'test-section-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [
+        {
+          id: 'src-mismatch',
+          publicationId: '0458-133-3021',
+          modelScope: ['026'],
+          locator: { page: 38, section: 'Wrong Section', heading: 'Wrong Heading' }
+        }
+      ]
+    };
+    const valBN5 = validateGuideSources(guideBN5, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(valBN5.valid, false, 'Guide with section mismatch locator must fail');
+    assert.ok(
+      valBN5.errors.some(e => e.includes('does not match canonical document contents') || e.includes('LOCATOR_SECTION_MISMATCH')),
+      `Expected section mismatch error, got: ${valBN5.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BN5 Passed: Published guide with section mismatch locator fails closed.');
+  }
+}
+
+// ===============================================================
+// TEST 48: GROUND ALL PROCEDURE STEPS IN MATCHING LOCATOR TOPICS (Codex Thread PRRT_kwDOUCUnhs6oL6NK, BO1-BO5)
+// ===============================================================
+console.log('\n▶ Test 48: Ground All Procedure Steps in Matching Locator Topics (Codex Thread PRRT_kwDOUCUnhs6oL6NK, BO1-BO5)...');
+{
+  const startSource = {
+    id: 'src-start',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resolvedStart = resolveGuideSource(startSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource;
+  const resolvedMap = new Map([['src-start', resolvedStart]]);
+  const sourceIds = new Set(['src-start']);
+
+  // BO1: Generic procedure step containing crankcase pressure testing instruction citing start-only locator -> fails closed
+  {
+    const guideBO1 = {
+      slug: 'test-proc-crankcase-in-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        genericPrinciple: {
+          title: 'Algemene startprocedure',
+          steps: [
+            {
+              step: 1,
+              title: 'Carter afpersen en vacuüm testen',
+              action: 'Sluit de vacuümpomp aan op het carter en voer een lektest uit volgens fabrieksopgave.',
+              sourceRefs: ['src-start']
+            }
+          ]
+        }
+      }
+    };
+    const errors = validateProcedureStepsProvenance(guideBO1, resolvedMap, { isPublished: true });
+    assert.ok(errors.length > 0, 'Crankcase testing instruction citing start-only locator must fail in procedure steps');
+    assert.ok(
+      errors.some(e => e.includes('crankcase pressure/vacuum or seal testing claims')),
+      `Expected crankcase error in procedure steps, got: ${errors.join('; ')}`
+    );
+    console.log('  ✅ Case BO1 Passed: Crankcase testing instruction in general procedure step fails closed under start locator.');
+  }
+
+  // BO2: Cold start step containing carburetor jet adjustment instruction citing start-only locator -> fails closed
+  {
+    const guideBO2 = {
+      slug: 'test-proc-carb-in-cold-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        coldStart: {
+          title: 'Koude start',
+          steps: [
+            {
+              step: 1,
+              title: 'Carburateur stelschroeven H en L afstellen',
+              action: 'Draai de H en L stelschroeven van de carburateur naar de basisafstelling.',
+              sourceRefs: ['src-start']
+            }
+          ]
+        }
+      }
+    };
+    const errors = validateProcedureStepsProvenance(guideBO2, resolvedMap, { isPublished: true });
+    assert.ok(errors.length > 0, 'Carburetor adjustment instruction citing start-only locator must fail in cold start steps');
+    assert.ok(
+      errors.some(e => e.includes('carburetor adjustment or jet setting claims')),
+      `Expected carburetor error in cold start steps, got: ${errors.join('; ')}`
+    );
+    console.log('  ✅ Case BO2 Passed: Carburetor adjustment instruction in cold start step fails closed under start locator.');
+  }
+
+  // BO3: Warm start step containing fuel mixing claims citing start-only locator -> fails closed
+  {
+    const guideBO3 = {
+      slug: 'test-proc-fuel-in-warm-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        warmStart: {
+          title: 'Warme start',
+          steps: [
+            {
+              step: 1,
+              title: 'Brandstof mengsmering verhouding 1:50',
+              action: 'Meng verse 2-takt olie met euro 95 benzine in een verhouding van 1 op 50 voor opslag.',
+              sourceRefs: ['src-start']
+            }
+          ]
+        }
+      }
+    };
+    const errors = validateProcedureStepsProvenance(guideBO3, resolvedMap, { isPublished: true });
+    assert.ok(errors.length > 0, 'Fuel mixing instruction citing start-only locator must fail in warm start steps');
+    assert.ok(
+      errors.some(e => e.includes('pointing to start procedure instead of fuel mixing')),
+      `Expected fuel error in warm start steps, got: ${errors.join('; ')}`
+    );
+    console.log('  ✅ Case BO3 Passed: Fuel mixing instruction in warm start step fails closed under start locator.');
+  }
+
+  // BO4: Flooded engine step containing M-Tronic electronic diagnosis claims citing start-only locator -> fails closed
+  {
+    const guideBO4 = {
+      slug: 'test-proc-mtronic-in-flooded-step',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      floodedEngineRecovery: {
+        title: 'Verzopen motor',
+        steps: [
+          {
+            step: 1,
+            title: 'M-Tronic diagnose en kalibratie via MDG 1',
+            action: 'Sluit de STIHL diagnosemodule MDG 1 aan om het M-Tronic motormanagement storingsgeheugen uit te lezen.',
+            sourceRefs: ['src-start']
+          }
+        ]
+      }
+    };
+    const errors = validateProcedureStepsProvenance(guideBO4, resolvedMap, { isPublished: true });
+    assert.ok(errors.length > 0, 'M-Tronic diagnosis instruction citing start-only locator must fail in flooded recovery steps');
+    assert.ok(
+      errors.some(e => e.includes('M-Tronic electronic diagnosis or diagnostic system claims')),
+      `Expected M-Tronic error in flooded recovery steps, got: ${errors.join('; ')}`
+    );
+    console.log('  ✅ Case BO4 Passed: M-Tronic diagnosis instruction in flooded recovery step fails closed under start locator.');
+  }
+
+  // BO5: Procedure steps with matching locator topics pass cleanly
+  {
+    const carbSource = {
+      id: 'src-carb',
+      publicationId: '0458-133-3021',
+      modelScope: ['026'],
+      locator: { page: 42, section: 'Adjusting Carburetor', heading: 'Motor management' }
+    };
+    const resolvedCarb = resolveGuideSource(carbSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource;
+    const multiMap = new Map([
+      ['src-start', resolvedStart],
+      ['src-carb', resolvedCarb]
+    ]);
+
+    const guideBO5 = {
+      slug: 'test-proc-valid-grounding',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource, carbSource],
+      startProcedures: {
+        coldStart: {
+          title: 'Koude start',
+          steps: [
+            {
+              step: 1,
+              title: 'Choke inschakelen',
+              action: 'Zet de combihendel in stand koude start (choke).',
+              sourceRefs: ['src-start']
+            }
+          ]
+        }
+      }
+    };
+    const errors = validateProcedureStepsProvenance(guideBO5, multiMap, { isPublished: true });
+    assert.strictEqual(errors.length, 0, `Grounded procedure step must pass with 0 errors, got: ${errors.join('; ')}`);
+    console.log('  ✅ Case BO5 Passed: Accurately grounded procedure steps pass cleanly.');
+  }
+}
+
+// ===============================================================
+// TEST 49: PROCEDURE HEADINGS & TITLES OPERATIONAL PROVENANCE (Codex Thread PRRT_kwDOUCUnhs6oL6NP, BP1-BP5)
+// ===============================================================
+console.log('\n▶ Test 49: Procedure Headings & Titles Operational Provenance (Codex Thread PRRT_kwDOUCUnhs6oL6NP, BP1-BP5)...');
+{
+  const startSource = {
+    id: 'src-start',
+    publicationId: '0458-133-3021',
+    modelScope: ['026'],
+    locator: { page: 38, section: 'Starting / Stopping the Engine', heading: 'Starting the Engine' }
+  };
+  const resolvedStart = resolveGuideSource(startSource, { throwOnError: true, isPublishedGuide: true }).canonicalSource;
+  const resolvedMap = new Map([['src-start', resolvedStart]]);
+
+  // BP1: collectRenderedOperationalClaims collects startProcedures headings/titles with claimClass PROCEDURE_HEADING
+  {
+    const guideBP1 = {
+      slug: 'test-proc-headings-collection',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        genericPrinciple: {
+          heading: 'Basisprincipes voor tweetakt motoren starten',
+          text: 'Algemene uitleg.'
+        },
+        coldStart: {
+          title: 'Koude start procedure',
+          steps: [{ step: 1, action: 'Trek aan koord.', sourceRefs: ['src-start'] }]
+        },
+        warmStart: {
+          title: 'Warme start procedure',
+          steps: [{ step: 1, action: 'Trek aan koord.', sourceRefs: ['src-start'] }]
+        }
+      },
+      floodedEngineRecovery: {
+        title: 'Verzopen motor herstelprocedure',
+        genericPrinciple: {
+          heading: 'Werkwijze bij verzopen motor',
+          text: 'Draai bougie eruit.'
+        },
+        steps: [{ step: 1, action: 'Trek aan koord.', sourceRefs: ['src-start'] }]
+      }
+    };
+    const claims = collectRenderedOperationalClaims(guideBP1);
+    const headingClaims = claims.filter(c => c.claimClass === 'PROCEDURE_HEADING');
+    assert.ok(headingClaims.length >= 4, `Expected at least 4 PROCEDURE_HEADING claims, found ${headingClaims.length}`);
+    assert.ok(headingClaims.some(c => c.path === 'startProcedures.genericPrinciple.heading'), 'Must collect genericPrinciple.heading');
+    assert.ok(headingClaims.some(c => c.path === 'startProcedures.coldStart.title'), 'Must collect coldStart.title');
+    assert.ok(headingClaims.some(c => c.path === 'startProcedures.warmStart.title'), 'Must collect warmStart.title');
+    assert.ok(headingClaims.some(c => c.path === 'floodedEngineRecovery.title'), 'Must collect floodedEngineRecovery.title');
+    console.log('  ✅ Case BP1 Passed: Procedure titles and headings collected with claimClass PROCEDURE_HEADING.');
+  }
+
+  // BP2: Procedure heading containing off-domain crankcase assertion citing start-only locator fails closed
+  {
+    const guideBP2 = {
+      slug: 'test-proc-heading-crankcase-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        genericPrinciple: {
+          heading: 'Carter afpersen en carterdruk meten bij startproblemen',
+          text: 'Controleer carter.',
+          sourceRefs: ['src-start']
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBP2, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Crankcase testing assertion in procedure heading citing start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('startProcedures.genericPrinciple.heading') && e.includes('crankcase')),
+      `Expected crankcase error in procedure heading, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BP2 Passed: Off-domain crankcase claim in procedure heading fails closed.');
+  }
+
+  // BP3: Procedure heading containing carburetor adjustment assertion citing start-only locator fails closed
+  {
+    const guideBP3 = {
+      slug: 'test-proc-heading-carb-mismatch',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        coldStart: {
+          title: 'Carburateur stelschroeven H en L afstelling bij koude start',
+          steps: [{ step: 1, action: 'Start motor.', sourceRefs: ['src-start'] }]
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBP3, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Carburetor adjustment assertion in cold start title citing start locator must fail');
+    assert.ok(
+      errs.some(e => e.includes('startProcedures.coldStart.title') && e.includes('carburetor')),
+      `Expected carburetor error in coldStart title, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BP3 Passed: Off-domain carburetor claim in cold start title fails closed.');
+  }
+
+  // BP4: Procedure heading without sourceRefs and without step sourceRefs to inherit fails closed
+  {
+    const guideBP4 = {
+      slug: 'test-proc-heading-no-refs',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        genericPrinciple: {
+          heading: 'Algemene startprocedure zonder bronnen'
+          // no sourceRefs and no steps
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBP4, resolvedMap, { isPublished: true });
+    assert.ok(errs.length > 0, 'Procedure heading without sourceRefs on published guide must fail');
+    assert.ok(
+      errs.some(e => e.includes('startProcedures.genericPrinciple.heading') && e.includes('has no sourceRefs')),
+      `Expected missing sourceRefs error for procedure heading, got: ${errs.join('; ')}`
+    );
+    console.log('  ✅ Case BP4 Passed: Procedure heading without sourceRefs on published guide fails closed.');
+  }
+
+  // BP5: Genuine procedure heading citing matching locator passes cleanly
+  {
+    const guideBP5 = {
+      slug: 'test-proc-heading-valid',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSource],
+      startProcedures: {
+        genericPrinciple: {
+          heading: 'Correcte startprocedure volgens fabriekshandleiding',
+          text: 'Volg de stappen.',
+          sourceRefs: ['src-start']
+        },
+        coldStart: {
+          title: 'Koude start procedure',
+          steps: [{ step: 1, action: 'Zet op choke.', sourceRefs: ['src-start'] }]
+        }
+      }
+    };
+    const errs = validateOperationalClaimsProvenance(guideBP5, resolvedMap, { isPublished: true });
+    assert.strictEqual(errs.length, 0, `Valid procedure headings must pass with 0 errors, got: ${errs.join('; ')}`);
+    console.log('  ✅ Case BP5 Passed: Genuine procedure headings citing matching locators pass cleanly.');
   }
 }
 
