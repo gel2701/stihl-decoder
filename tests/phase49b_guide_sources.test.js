@@ -3221,7 +3221,7 @@ console.log('\n▶ Test 39: Canonical Title Fallback & Title Parity (Codex Threa
     title: 'Test Gids Zonder Bron Titel',
     publicationStatus: 'PUBLISHED',
     sources: [untitledSource],
-    warnings: [{ title: 'Brandstof', text: 'Brandstof veiligheid.', sourceRefs: ['src-026-untitled'] }],
+    warnings: [{ title: 'Kettingrem', text: 'Activeer altijd de kettingrem voor het starten.', sourceRefs: ['src-026-untitled'] }],
     startProcedures: {
       documentedExamples: {
         stihl026: {
@@ -5213,6 +5213,78 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
       `Expected ungrounded error on warning body text, got: ${res.errors.join('; ')}`
     );
     console.log('  ✅ Case BV1c Passed: Warning with title "Startwaarschuwing" but off-domain body text fails closed.');
+  }
+
+  // BV1d: Warning mentioning generic 'benzine' without start concept fails closed (Thread PRRT_kwDOUCUnhs6oP-i3)
+  {
+    const guideBV1d = {
+      slug: 'test-warning-generic-benzine',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Onderhoudswaarschuwing',
+          text: 'Reinig en was het luchtfilter met benzine.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1d, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning mentioning benzine in off-domain instruction must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "Onderhoudswaarschuwing"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start error for generic benzine warning, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1d Passed: Off-domain instruction mentioning generic "benzine" fails closed under start locator.');
+  }
+
+  // BV1e: Warning mentioning generic 'brandstof' without start concept fails closed (Thread PRRT_kwDOUCUnhs6oP-i3)
+  {
+    const guideBV1e = {
+      slug: 'test-warning-generic-brandstof',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Onderhoudswaarschuwing',
+          text: 'Reinig en was het luchtfilter met brandstof.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1e, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning mentioning brandstof in off-domain instruction must fail closed');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "Onderhoudswaarschuwing"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start error for generic brandstof warning, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1e Passed: Off-domain instruction mentioning generic "brandstof" fails closed under start locator.');
+  }
+
+  // BV1f: Warning with non-string/numeric fields coerces safely without throwing TypeError (Thread PRRT_kwDOUCUnhs6oP-i7)
+  {
+    const guideBV1f = {
+      slug: 'test-warning-numeric-coercion',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 404,
+          text: 500,
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    let res;
+    assert.doesNotThrow(() => {
+      res = validateGuideSources(guideBV1f, { routeStatus: 'PUBLISHED' });
+    }, 'validateGuideSources must not throw on numeric/malformed warning fields');
+    assert.strictEqual(res.valid, false, 'Numeric warning must fail validation gracefully');
+    assert.ok(
+      res.errors.some(e => e.includes('Warning "404"') && e.includes('not grounded in canonical start procedure topics')),
+      `Expected coerced numeric warning error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1f Passed: Non-string / numeric warning fields coerced safely without TypeError.');
   }
 
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed

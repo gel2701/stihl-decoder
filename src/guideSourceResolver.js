@@ -1116,7 +1116,7 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   const isFloodedDomainCheck = (options.claimType === 'FLOODED_RECOVERY' || (allSourcesAreFloodedOnly && GROUNDED_CLAIM_CLASSES.has(options.claimClass))) && options.claimClass !== 'PROCEDURE_MODEL_LABEL' && !isStartDomainCheck;
 
   if (isStartDomainCheck) {
-    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair|brandstof\w*|benzine\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar)\b/i;
+    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar)\b/i;
     const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
@@ -1358,7 +1358,12 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
   }
 
   for (const warning of guide.warnings) {
-    const warningTitle = warning.title || 'Untitled Warning';
+    if (!warning || typeof warning !== 'object') {
+      errors.push('Malformed warning object.');
+      continue;
+    }
+
+    const warningTitle = warning.title != null ? String(warning.title) : 'Untitled Warning';
     const warningLabel = `Warning "${warningTitle}"`;
 
     if (!warning.sourceRefs || !Array.isArray(warning.sourceRefs) || warning.sourceRefs.length === 0) {
@@ -1369,8 +1374,8 @@ export function validateWarningProvenance(guide, resolvedSources = new Map(), op
     }
 
     if (isPublished) {
-      const warningBody = (warning.text || '').trim();
-      const warningTitleText = (warning.title || '').trim();
+      const warningBody = String(warning.text ?? '').trim();
+      const warningTitleText = String(warning.title ?? '').trim();
       const warningFullText = `${warningTitleText} ${warningBody}`.trim();
 
       validateClaimDomainMatching(warningFullText, warningLabel, warning.sourceRefs, resolvedSources, sourceIds, errors, {
