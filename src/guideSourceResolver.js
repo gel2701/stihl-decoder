@@ -1114,14 +1114,14 @@ export function validateClaimDomainMatching(text, pathOrLabel, sourceRefs, resol
   const isFloodedDomainCheck = !UNGROUNDED_CLAIM_CLASSES.has(options.claimClass) && !isStartDomainCheck && (options.claimType === 'FLOODED_RECOVERY' || allSourcesAreFloodedOnly);
 
   if (isStartDomainCheck) {
-    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|basiscontrole|controle\w*|storing\w*|storingszoek\w*|service\w*|onderhoud\w*|diagnos\w*|advies\w*|veiligheid\w*|stap\w*|expert\w*|reparatie\w*|complex\w*|level|niveau|gebruiker|handeling\w*|gereedschap|werkplaats|stappenplan|brandstoftank|tankontluchting|brandstofniveau|zuigkop|kort antwoord|antwoord|vraag|vragen)\b/i;
+    const SUBSTANTIVE_START_REGEX = /\b(start\w*|starten|startstand|startpositie|startmechanisme|startklaar|aanslaan|startkoord|trekkoord|starter|ontsteking|eerste ontsteking|stopstand|bedrijfstand|bedrijfsstand|koude start|koudestart|warme start|warmestart|halfgas|choke\w*|chokestand|gashendel\w*|gashendelvergrendeling|combihendel\w*|master control|combischakelaar|stopschakelaar|decompressie\w*|decompressieklep|decompressieventiel|handbeschermer|kettingrem|achtergreep|voorste handgreep|beugelhandgreep|voorste handbeugel|primer\w*|brandstofpomp\w*|balg|purger|stationair\w*|tankplek|buitenshuis|open lucht|uitlaatgassen|koolmonoxide|vonktest|bougiegat|brandgevaar|ontploffingsgevaar|brandstoftank|tankontluchting|brandstofniveau|zuigkop)\b/i;
     const matchesVocab = SUBSTANTIVE_START_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
       errors.push(`${label} contains off-domain or unrecognized instructions ("${fullText.slice(0, 80)}") not grounded in canonical start procedure topics.`);
     }
   } else if (isFloodedDomainCheck) {
-    const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstof\w*|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|nat\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|kleur\w*|verbranding|mengsel\w*|oliebijmenging|overbelasting|thermisch\w*|basiscontrole|controle\w*|storing\w*|storingszoek\w*|service\w*|onderhoud\w*|diagnos\w*|advies\w*|veiligheid\w*|stap\w*|expert\w*|reparatie\w*|complex\w*|level|niveau|gebruiker|handeling\w*|gereedschap|werkplaats|stappenplan|vakhandelaar|dealer\w*|inspectie\w*|compressie\w*)\b/i;
+    const SUBSTANTIVE_FLOODED_REGEX = /\b(verzopen|ontzopen|verzuipen|overgelopen|ontzop\w*|herstart\w*|droogmaken|drogen|ventileren|luchten|doorspoelen|verdrijven|brandstofdamp\w*|overtollig\w*|bougie\w*|bougiekleur|bougiedop|bougiesleutel|combinatiesleutel|cilinderkop|verbrandingskamer|vonk\w*|elektrode\w*|nat\w*|droge bougie|stopstand|combihendel|startstand|halfgas|zonder choke|geen choke|chokestand|choke open|ontsteking|startmechanisme|startkoord|trekkoord|decompressie\w*|koffiebruin|grijsbruin|matzwart|roet\w*|asgrijs|witachtig|kleur\w*|verbranding|mengsel\w*|oliebijmenging|overbelasting|thermisch\w*|vakhandelaar|dealer\w*|inspectie\w*|compressie\w*)\b/i;
     const matchesVocab = SUBSTANTIVE_FLOODED_REGEX.test(fullText);
     const matchesLocatorTopic = allLocTopics.some(t => t.length > 0 && fullText.toLowerCase().includes(t.toLowerCase()));
     if (!matchesVocab && !matchesLocatorTopic) {
@@ -1442,7 +1442,7 @@ export function collectRenderedOperationalClaims(guide) {
   // 2. troubleshootingLevels[*] — level, badge, description, items[*]
   if (Array.isArray(guide.troubleshootingLevels)) {
     guide.troubleshootingLevels.forEach((lvl, li) => {
-      const lvlRefs = lvl.sourceRefs || lvl.levelSourceRefs || lvl.badgeSourceRefs || lvl.descriptionSourceRefs;
+      const itemLvlRefs = lvl.sourceRefs;
       if (lvl.level) {
         push(`troubleshootingLevels[${li}].level`, lvl.level,
           lvl.levelSourceRefs || lvl.sourceRefs, 'TROUBLESHOOTING_LEVEL_HEADING');
@@ -1458,9 +1458,9 @@ export function collectRenderedOperationalClaims(guide) {
       if (Array.isArray(lvl.items)) {
         lvl.items.forEach((item, ii) => {
           if (typeof item === 'string') {
-            push(`troubleshootingLevels[${li}].items[${ii}]`, item, lvlRefs, 'TROUBLESHOOTING_LEVEL_ITEM');
+            push(`troubleshootingLevels[${li}].items[${ii}]`, item, itemLvlRefs, 'TROUBLESHOOTING_LEVEL_ITEM');
           } else if (item && typeof item === 'object') {
-            push(`troubleshootingLevels[${li}].items[${ii}]`, item.text ?? '', item.sourceRefs || lvlRefs, 'TROUBLESHOOTING_LEVEL_ITEM');
+            push(`troubleshootingLevels[${li}].items[${ii}]`, item.text ?? '', item.sourceRefs || itemLvlRefs, 'TROUBLESHOOTING_LEVEL_ITEM');
           }
         });
       }

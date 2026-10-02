@@ -178,9 +178,9 @@ export const stihlKettingzaagStartNietGuide = {
 
   troubleshootingLevels: [
     {
-      level: 'LEVEL 1 — USER SAFE CHECK',
-      badge: 'Veilige basiscontrole',
-      description: 'Handelingen die iedere gebruiker zonder speciaal gereedschap veilig kan uitvoeren:',
+      level: 'LEVEL 1 — DIRECTE STARTCONTROLES',
+      badge: 'Basiscontrole startprocedure',
+      description: 'Startcontroles die iedere gebruiker zonder speciaal gereedschap veilig kan uitvoeren vóór het starten:',
       sourceRefs: ['src-0458-133-3021-start', 'src-0458-573-8621-d', 'src-0458-207-8321-b'],
       items: [
         {

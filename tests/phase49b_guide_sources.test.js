@@ -1136,11 +1136,11 @@ const buildResolvedSources = (guide) => {
   console.log('  Testing Case AC: Published troubleshootingLevels item with valid ref → PASS...');
   const guide = mkPublishedGuide({
     troubleshootingLevels: [{
-      level: 'LEVEL 1 — USER SAFE CHECK',
-      badge: 'Veilige basiscontrole',
-      description: 'Handelingen die iedere gebruiker veilig kan uitvoeren vóór het starten:',
+      level: 'LEVEL 1 — USER SAFE START CHECK',
+      badge: 'Veilige basiscontrole starten',
+      description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren vóór het starten:',
       sourceRefs: ['src-0458-133-3021-start'],
-      items: [{ text: 'Controleer kettingrem.', sourceRefs: ['src-0458-133-3021-start'] }]
+      items: [{ text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.', sourceRefs: ['src-0458-133-3021-start'] }]
     }]
   });
   const resolvedSources = buildResolvedSources(guide);
@@ -1394,8 +1394,8 @@ console.log('\n▶ Test 18: Operational Claims Require LOCATOR_VERIFIED for Publ
       }
     ],
     directAnswer: {
-      heading: 'Kort antwoord',
-      content: 'Controleer de kettingrem en brandstoftoevoer.',
+      heading: 'Kort antwoord: startprocedure en kettingrem',
+      content: 'Controleer de kettingrem en startprocedure vóór het starten van de motor.',
       sourceRefs: ['src-verified-loc']
     }
   };
@@ -1975,7 +1975,7 @@ console.log('\n▶ Test 26: Expanded Operational Fuel Claim Domain Grounding (Th
       sources: [startSource, fuelSource],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 1',
+          level: 'LEVEL 1 — DIRECTE STARTCONTROLES',
           sourceRefs: ['src-026-start'],
           items: [
             {
@@ -1996,8 +1996,8 @@ console.log('\n▶ Test 26: Expanded Operational Fuel Claim Domain Grounding (Th
         {
           symptom: 'Zaag start koud niet',
           possibleCause: 'Onjuiste combihendelstand, verouderde brandstof of vervuilde bougie.',
-          safeFirstCheck: 'Controleer of de stopschakelaar niet op 0 staat.',
-          nextStep: 'Bougie inspecteren op nattigheid/roet.',
+          safeFirstCheck: 'Controleer of de combihendel in de startpositie staat.',
+          nextStep: 'Bougie inspecteren op brandstof en vonktest uitvoeren.',
           sourceRefs: ['src-026-start', 'src-026-fuel']
         }
       ]
@@ -2209,7 +2209,7 @@ console.log('\n▶ Test 28: Crankcase Pressure & Vacuum Testing Service Evidence
       sources: [serviceSource],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 3',
+          level: 'LEVEL 3 — CARTER DRUKTEST',
           sourceRefs: ['src-1121-service'],
           items: [
             {
@@ -2331,7 +2331,7 @@ console.log('\n▶ Test 29: M-Tronic Electronic Diagnosis Evidence Grounding (Th
       sources: [diagSource],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 3',
+          level: 'LEVEL 3 — M-TRONIC DIAGNOSE',
           sourceRefs: ['src-ms261-diag'],
           items: [
             {
@@ -2524,13 +2524,13 @@ console.log('\n▶ Test 31: Troubleshooting Level Description Provenance Enforce
       sources: [testSource],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 1',
-          badge: 'Basiscontrole',
-          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren.',
+          level: 'LEVEL 1 — USER SAFE START CHECK',
+          badge: 'Veilige basiscontrole starten',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren vóór het starten.',
           sourceRefs: ['src-level-test'],
           items: [
             {
-              text: 'Controleer of de kettingrem is ingeschakeld.',
+              text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.',
               sourceRefs: ['src-level-test']
             }
           ]
@@ -2733,9 +2733,9 @@ console.log('\n▶ Test 33: Cylinder/Piston Mechanical Inspection Grounding (Thr
       sources: [floodedSource],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 3',
-          badge: 'Service',
-          description: 'Complexe controles.',
+          level: 'LEVEL 3 — STIHL VAKHANDELAAR',
+          badge: 'Vakhandelaar inspectie',
+          description: 'Inspectie door de vakhandelaar bij verzopen motor of aanhoudend startprobleem.',
           sourceRefs: ['src-026-flooded'],
           items: [
             {
@@ -2759,9 +2759,9 @@ console.log('\n▶ Test 33: Cylinder/Piston Mechanical Inspection Grounding (Thr
       sources: [mechanicalServiceSource],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 3',
-          badge: 'Service',
-          description: 'Complexe controles.',
+          level: 'LEVEL 3 — MECHANISCHE SERVICE',
+          badge: 'Mechanische inspectie',
+          description: 'Complexe cilinder- en zuigercontroles conform fabrieksvoorschrift.',
           sourceRefs: ['src-mechanical-service'],
           items: [
             {
@@ -5302,6 +5302,58 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
     console.log('  ✅ Case BV1f Passed: Non-string / numeric warning fields coerced safely without TypeError.');
   }
 
+  // BV1g: Safety warning with generic workflow verb "Controleer de bandenspanning van uw auto." citing start-only locator fails closed (Thread PRRT_kwDOUCUnhs6oQYfC)
+  {
+    const guideBV1g = {
+      slug: 'test-warning-bandenspanning',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      warnings: [
+        {
+          title: 'Veiligheidswaarschuwing',
+          text: 'Controleer de bandenspanning van uw auto.',
+          sourceRefs: ['src-026-start']
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1g, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Warning with generic workflow word (controleer bandenspanning) citing start locator must fail');
+    assert.ok(
+      res.errors.some(e => e.includes('not grounded in canonical start procedure topics')),
+      `Expected ungrounded start procedure error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1g Passed: Off-domain warning "Controleer de bandenspanning van uw auto." fails closed under start locator.');
+  }
+
+  // BV1h: Level items do not inherit sibling-field sources (levelSourceRefs) (Thread PRRT_kwDOUCUnhs6oQYfM)
+  {
+    const guideBV1h = {
+      slug: 'test-level-items-no-sibling-fallback',
+      publicationStatus: 'PUBLISHED',
+      sources: [startSrc],
+      troubleshootingLevels: [
+        {
+          level: 'LEVEL 1 — USER SAFE START CHECK',
+          levelSourceRefs: ['src-026-start'],
+          badge: 'Veilige basiscontrole starten',
+          badgeSourceRefs: ['src-026-start'],
+          description: 'Startcontroles voor de gebruiker:',
+          descriptionSourceRefs: ['src-026-start'],
+          items: [
+            'Controleer of de kettingrem is ingeschakeld vóór het starten.'
+          ]
+        }
+      ]
+    };
+    const res = validateGuideSources(guideBV1h, { routeStatus: 'PUBLISHED' });
+    assert.strictEqual(res.valid, false, 'Level item must not inherit levelSourceRefs/badgeSourceRefs/descriptionSourceRefs and must fail closed without sourceRefs');
+    assert.ok(
+      res.errors.some(e => e.includes('troubleshootingLevels[0].items[0]') && e.includes('has no sourceRefs')),
+      `Expected item missing sourceRefs error, got: ${res.errors.join('; ')}`
+    );
+    console.log('  ✅ Case BV1h Passed: Level item without item sourceRefs does not inherit sibling levelSourceRefs and fails closed.');
+  }
+
   // BV2: Inspection checklist topic with air filter wash instruction citing start-only locator fails closed
   {
     const guideBV2 = {
@@ -5394,9 +5446,9 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
       sources: [startSrc],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 1 — USER SAFE CHECK',
-          badge: 'Veilige basiscontrole',
-          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          level: 'LEVEL 1 — USER SAFE START CHECK',
+          badge: 'Veilige basiscontrole starten',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren:',
           sourceRefs: ['src-026-start'],
           items: [
             {
@@ -5450,12 +5502,12 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
       troubleshootingLevels: [
         {
           level: 'Vijl alle snijtanden onder een hoek van 30 graden',
-          badge: 'Veilige basiscontrole',
-          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          badge: 'Veilige basiscontrole starten',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren:',
           sourceRefs: ['src-026-start'],
           items: [
             {
-              text: 'Controleer of de kettingrem is ingeschakeld.',
+              text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.',
               sourceRefs: ['src-026-start']
             }
           ]
@@ -5479,13 +5531,13 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
       sources: [startSrc],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 1 — USER SAFE CHECK',
+          level: 'LEVEL 1 — USER SAFE START CHECK',
           badge: 'Boor een gat in de machine',
-          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren:',
           sourceRefs: ['src-026-start'],
           items: [
             {
-              text: 'Controleer of de kettingrem is ingeschakeld.',
+              text: 'Controleer of de kettingrem is ingeschakeld vóór het starten.',
               sourceRefs: ['src-026-start']
             }
           ]
@@ -5509,9 +5561,9 @@ console.log('\n▶ Test 55: Generic Canonical-Topic Grounding for Non-Procedure 
       sources: [startSrc],
       troubleshootingLevels: [
         {
-          level: 'LEVEL 1 — USER SAFE CHECK',
-          badge: 'Veilige basiscontrole',
-          description: 'Handelingen die iedere gebruiker veilig kan uitvoeren:',
+          level: 'LEVEL 1 — USER SAFE START CHECK',
+          badge: 'Veilige basiscontrole starten',
+          description: 'Startcontroles die iedere gebruiker veilig kan uitvoeren:',
           sourceRefs: ['src-026-start'],
           items: [
             {

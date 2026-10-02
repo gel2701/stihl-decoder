@@ -22,7 +22,7 @@ const guideHtml = renderGuidePageHtml(startGuide, database, baseUrl);
 
 // 1. Safe Troubleshooting Levels
 console.log('▶ Test 1: Safe troubleshooting levels (Level 1, Level 2, Level 3)...');
-assert.strictEqual(guideHtml.includes('LEVEL 1 — USER SAFE CHECK'), true, 'Must define Level 1');
+assert.strictEqual(guideHtml.includes('LEVEL 1 — DIRECTE STARTCONTROLES'), true, 'Must define Level 1');
 assert.strictEqual(guideHtml.includes('LEVEL 2 — EXPERIENCED USER / MANUAL REQUIRED'), true, 'Must define Level 2');
 assert.strictEqual(guideHtml.includes('LEVEL 3 — SERVICE PROCEDURE'), true, 'Must define Level 3');
 
