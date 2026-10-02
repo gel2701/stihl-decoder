@@ -62,22 +62,24 @@ assert.strictEqual(guideHtml.includes('STIHLDecoder Kennisbank'), true, 'Must us
 console.log('  ✅ Test 1 Passed: Serial location guide is substantive, practical, and comprehensive.');
 
 // 2. Publication Gates & Sitemap Filtration
-console.log('\n▶ Test 2: Publication rules & Sitemap filtration for all HOLD resources...');
+console.log('\n▶ Test 2: Publication rules & Sitemap filtration for all unreviewed resources...');
 assert.strictEqual(isGuidePublished('serienummer-locaties'), true);
+assert.strictEqual(isGuidePublished('stihl-kettingzaag-start-niet'), true);
 assert.strictEqual(isIntentPublished('stihl-paspoort'), true);
 
 const sitemapXml = generateSitemapXml(baseUrl, database);
 assert.strictEqual(sitemapXml.includes('/gidsen/serienummer-locaties/'), true, 'Sitemap must contain published guide');
+assert.strictEqual(sitemapXml.includes('/gidsen/stihl-kettingzaag-start-niet/'), true, 'Sitemap must contain published start guide');
 assert.strictEqual(sitemapXml.includes('/stihl-paspoort/'), true, 'Sitemap must contain published intent');
 
-const holdGuideSlugs = Object.entries(GUIDE_PUBLICATION_STATUS)
-  .filter(([_, status]) => status === 'HOLD')
+const unreviewedGuideSlugs = Object.entries(GUIDE_PUBLICATION_STATUS)
+  .filter(([_, status]) => status !== 'PUBLISHED')
   .map(([slug]) => slug);
-assert.strictEqual(holdGuideSlugs.length, 5, 'Must have exactly 5 HOLD guides');
+assert.strictEqual(unreviewedGuideSlugs.length, 4, 'Must have exactly 4 unreviewed guides');
 
-for (const slug of holdGuideSlugs) {
-  assert.strictEqual(isGuidePublished(slug), false, `Guide ${slug} must be on HOLD`);
-  assert.strictEqual(sitemapXml.includes(`/gidsen/${slug}/`), false, `Sitemap must NOT contain HOLD guide /gidsen/${slug}/`);
+for (const slug of unreviewedGuideSlugs) {
+  assert.strictEqual(isGuidePublished(slug), false, `Guide ${slug} must not be published`);
+  assert.strictEqual(sitemapXml.includes(`/gidsen/${slug}/`), false, `Sitemap must NOT contain unreviewed guide /gidsen/${slug}/`);
 }
 
 const holdIntentSlugs = Object.entries(INTENT_PUBLICATION_STATUS)
@@ -89,9 +91,9 @@ for (const slug of holdIntentSlugs) {
   assert.strictEqual(isIntentPublished(slug), false, `Intent ${slug} must be on HOLD`);
   assert.strictEqual(sitemapXml.includes(`/${slug}/`), false, `Sitemap must NOT contain HOLD intent /${slug}/`);
 }
-console.log('  ✅ Test 2 Passed: Sitemap strictly excludes all 5 HOLD guides and all 11 HOLD intent pages.');
+console.log('  ✅ Test 2 Passed: Sitemap strictly excludes all 4 unreviewed guides and all 11 HOLD intent pages.');
 
-// 3. Server HTTP 404 on HOLD routes & 301 on Redirect routes
+// 3. Server HTTP 404 on HOLD/unreviewed routes & 301 on Redirect routes
 console.log('\n▶ Test 3: Server HTTP 404 behavior for HOLD pages & 301 for redirects...');
 const fetchStatus = (reqPath) => new Promise((resolve, reject) => {
   const req = http.get({
@@ -109,6 +111,9 @@ const fetchStatus = (reqPath) => new Promise((resolve, reject) => {
 const publishedGuideRes = await fetchStatus('/gidsen/serienummer-locaties/');
 assert.strictEqual(publishedGuideRes.statusCode, 200, '/gidsen/serienummer-locaties/ must return 200');
 
+const publishedStartGuideRes = await fetchStatus('/gidsen/stihl-kettingzaag-start-niet/');
+assert.strictEqual(publishedStartGuideRes.statusCode, 200, '/gidsen/stihl-kettingzaag-start-niet/ must return 200');
+
 const publishedIntentRes = await fetchStatus('/stihl-paspoort/');
 assert.strictEqual(publishedIntentRes.statusCode, 200, '/stihl-paspoort/ must return 200');
 
@@ -125,7 +130,7 @@ const redirectAccuKettingzagen = await fetchStatus('/accu-kettingzagen/');
 assert.strictEqual(redirectAccuKettingzagen.statusCode, 301, '/accu-kettingzagen/ must return 301');
 assert.strictEqual(redirectAccuKettingzagen.headers.location.endsWith('/kettingzagen/'), true);
 
-for (const slug of holdGuideSlugs) {
+for (const slug of unreviewedGuideSlugs) {
   const res = await fetchStatus(`/gidsen/${slug}/`);
   assert.strictEqual(res.statusCode, 404, `/gidsen/${slug}/ must return 404`);
   assert.strictEqual(res.body.includes('Pagina niet gevonden'), true, `Must render branded 404 page for /gidsen/${slug}/`);
