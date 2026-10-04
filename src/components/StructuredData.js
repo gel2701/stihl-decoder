@@ -169,10 +169,24 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
     graph.push({
       '@type': 'TechArticle',
       'headline': guide.title,
-      'description': guide.description,
+      'description': guide.metaDescription || guide.description,
       'url': canonicalUrl,
       'inLanguage': 'nl-NL'
     });
+
+    if (guide.faq && Array.isArray(guide.faq) && guide.faq.length > 0) {
+      graph.push({
+        '@type': 'FAQPage',
+        'mainEntity': guide.faq.map(item => ({
+          '@type': 'Question',
+          'name': item.question,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': item.answer
+          }
+        }))
+      });
+    }
   }
 
   // 5. Intent Page Schemas (PUBLISHED ONLY)
