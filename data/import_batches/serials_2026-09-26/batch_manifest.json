@@ -1,0 +1,101 @@
+{
+  "batch_id": "MY_STIHL_2026-09-26_BATCH_001",
+  "lookup_date": "2026-09-26",
+  "source_rows": 2100,
+  "unique_input_serials": 2096,
+  "exact_official_anchors": 727,
+  "technical_recheck": 1369,
+  "evidenced_input_aliases": 171,
+  "duplicate_input_serials": 4,
+  "unique_official_product_identities": 204,
+  "outcome_counts": {
+    "OFFICIAL_EXACT_FOUND": 727,
+    "TECHNICAL_TIMEOUT": 989,
+    "BROWSER_ERROR": 379,
+    "TECHNICAL_UNRESOLVED_MIXED": 1
+  },
+  "negative_evidence_records": 0,
+  "source_sha256": "3a298a2a7efc2b4c4fd981fb6c3bffdd9120abf16f6a9b463006dc6a1ccc790d",
+  "files": [
+    {
+      "path": "PROMPT_IMPORT_STIHL_SERIAL_BATCH.md",
+      "bytes": 2900,
+      "sha256": "11d57cacaa9d3360d3f1060ca885b267c2029058093547d9c02b406abd2d2016"
+    },
+    {
+      "path": "README_IMPORT.md",
+      "bytes": 2037,
+      "sha256": "877cd32a1673c473974af8debf648c0dbdd689abd4b7185bba5e1a4c6123a756"
+    },
+    {
+      "path": "data/duplicate_source_rows_2026-09-26.csv",
+      "bytes": 179,
+      "sha256": "6301f4d9f5a23c2d036cdad4cde54aeaf8a27f08408be38b7a9a9ec15756bb8c"
+    },
+    {
+      "path": "data/observed_exact_serial_runs_2026-09-26.csv",
+      "bytes": 88801,
+      "sha256": "3f5b0b37e16f734ecf48db7fd9f98cbbe720c2b8d1eb9e86d31c0eed8f0fcc1f"
+    },
+    {
+      "path": "data/observed_exact_serial_runs_2026-09-26.json",
+      "bytes": 226564,
+      "sha256": "f5c905904e9d42a6f807d696fdb84125b372d633afab5e4d7ff32c0cb97873d9"
+    },
+    {
+      "path": "data/official_serial_anchors_batch_2026-09-26.json",
+      "bytes": 373444,
+      "sha256": "a459528ab737168cd869f4da6bbafc334232546d2ca85f2275660434cab6deb3"
+    },
+    {
+      "path": "data/official_serial_input_aliases_2026-09-26.csv",
+      "bytes": 28184,
+      "sha256": "55a2f562b826c316a2ac237890e7bc462f2e312971840d39cdb1e563609ea8c0"
+    },
+    {
+      "path": "data/official_serial_input_aliases_2026-09-26.json",
+      "bytes": 69510,
+      "sha256": "0272d17fe20032b101d663d742179e3dd60a6205c1741d23eddad9d1d8ba77cc"
+    },
+    {
+      "path": "data/product_identity_mapping_review_2026-09-26.csv",
+      "bytes": 28282,
+      "sha256": "74acdef757dc80cfeeb4ee6f086864f11662769f7ce79dc36114149683d9aa41"
+    },
+    {
+      "path": "data/serial_lookup_observations_2026-09-26.csv",
+      "bytes": 548758,
+      "sha256": "080b87f21a82053fec59709baa6de6d8c8ee1034114dedc2e14f329ad4859718"
+    },
+    {
+      "path": "data/serial_lookup_observations_2026-09-26.json",
+      "bytes": 1978237,
+      "sha256": "9b5a6efb8dce2a3cb07f71de7ae14e46b4c2999d3d37f30809aa26ce6314dc05"
+    },
+    {
+      "path": "data/serial_recheck_queue_2026-09-26.csv",
+      "bytes": 287285,
+      "sha256": "cdd0ed00b8254ac77e277031e264765756af8d91775716464947486c96b153db"
+    },
+    {
+      "path": "scripts/import_serial_batch_2026_09_26.mjs",
+      "bytes": 8707,
+      "sha256": "3fd9bb549cb84be842cb61ccb2d67b1495e6cdf6d3a32eb761f99e86e0e05634"
+    },
+    {
+      "path": "source/stihl_resultaten.csv",
+      "bytes": 1329321,
+      "sha256": "3a298a2a7efc2b4c4fd981fb6c3bffdd9120abf16f6a9b463006dc6a1ccc790d"
+    },
+    {
+      "path": "stihl_decoder_importoverzicht_2026-09-26.xlsx",
+      "bytes": 79586,
+      "sha256": "438efedec6ecac97280ec3de8b191d274dd620fe5a4ca40c21b9af82184763f7"
+    },
+    {
+      "path": "tests/serial_batch_2026_09_26.test.mjs",
+      "bytes": 1807,
+      "sha256": "2f203a83d9fd1355983227a46d8adac00573b0ac02db1f01de02a418d8b28aff"
+    }
+  ]
+}

@@ -77,8 +77,8 @@ test('Recovery Contract 4: Decoder Resolution across All 8 Production Ranges', (
     { serial: '125000000', plant: '1', level: 'MODEL_FAMILY_RANGE' },
     { serial: '145500000', plant: '1', level: 'MODEL_FAMILY_RANGE' },
     { serial: '160500000', plant: '1', level: 'HISTORICAL_PRODUCTION_RANGE' },
-    { serial: '175000000', plant: '1', level: 'PROBABLE_MODEL_SERIES_RANGE' },
-    { serial: '185000000', plant: '1', level: 'PROBABLE_MODEL_SERIES_RANGE' },
+    { serial: '171000001', plant: '1', level: 'PROBABLE_MODEL_SERIES_RANGE' },
+    { serial: '180000001', plant: '1', level: 'PROBABLE_MODEL_SERIES_RANGE' },
     { serial: '250000000', plant: '2', level: 'MODEL_FAMILY_RANGE' },
     { serial: '275000000', plant: '2', level: 'PROBABLE_MODEL_SERIES_RANGE' },
     { serial: '340000000', plant: '3', level: 'MODEL_FAMILY_RANGE' }

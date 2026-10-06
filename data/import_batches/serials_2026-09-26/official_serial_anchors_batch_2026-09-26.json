@@ -1,5 +1,10 @@
 {
-  "schema_version": "official-serial-anchors-v1",
+  "schema_version": "official-serial-anchors-batch-v1",
+  "batch_id": "MY_STIHL_2026-09-26_BATCH_001",
+  "verification_date": "2026-09-26",
+  "source": "MY_STIHL",
+  "verification_method": "authenticated MY STIHL UI lookup",
+  "important_note": "serial_number is the official serial displayed by MY STIHL, not necessarily the originally typed input.",
   "anchors": [
     {
       "serial_number": "010000000",
@@ -2257,8 +2262,8 @@
       "category": "Kettingzaag",
       "drive_type": "Benzine",
       "source": "MY_STIHL",
-      "source_url": "https://app.stihl.com/nl-nl/mystihl/tools/add",
-      "verification_date": "2026-09-22",
+      "source_url": "https://app.stihl.com/nl-nl/mystihl/tools/add/serial-number",
+      "verification_date": "2026-09-26",
       "verification_method": "authenticated MY STIHL UI lookup",
       "evidence_type": "OFFICIAL_WEB_LOOKUP",
       "verification_status": "OFFICIAL_STIHL_LOOKUP"
