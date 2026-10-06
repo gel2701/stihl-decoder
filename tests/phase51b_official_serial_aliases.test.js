@@ -7,7 +7,7 @@ import { createRequire } from 'node:module';
 
 import { decodeStihlCode } from '../src/decoder.js';
 import { OfficialSerialAnchorResolver } from '../src/OfficialSerialAnchorResolver.js';
-import { OfficialSerialAliasResolver } from '../src/OfficialSerialAliasResolver.js';
+import { OfficialSerialAliasResolver, isValidOfficialAlias } from '../src/OfficialSerialAliasResolver.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -202,4 +202,157 @@ test('Phase 51B - Test 13: Representative Alias Samples Resolution', () => {
     assert.strictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED');
     assert.strictEqual(res.identitySource, 'OFFICIAL_STIHL_LOOKUP');
   }
+});
+
+test('Phase 51B - Test 14: Direct isValidOfficialAlias Contract Validation', () => {
+  const validRecord = {
+    input_serial: '10000000',
+    official_serial_number: '010000000',
+    alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+    source: 'MY_STIHL',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP',
+    generic_zero_prefix_rule_allowed: false
+  };
+
+  assert.strictEqual(isValidOfficialAlias(validRecord), true, 'Valid record must pass');
+  assert.strictEqual(isValidOfficialAlias(null), false, 'null must fail');
+  assert.strictEqual(isValidOfficialAlias({}), false, 'Empty object must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, input_serial: '1000000' }), false, '7-digit input must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, input_serial: '100000000' }), false, '9-digit input must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, official_serial_number: '10000000' }), false, '8-digit target must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, source: 'DEALER_INFERRED' }), false, 'Non-MY_STIHL source must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, verification_status: 'UNVERIFIED' }), false, 'Non-OFFICIAL_STIHL_LOOKUP status must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, alias_type: 'GENERIC_PAD_ZERO' }), false, 'Non-standard alias_type must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, generic_zero_prefix_rule_allowed: true }), false, 'generic_zero_prefix_rule_allowed=true must fail');
+  assert.strictEqual(isValidOfficialAlias({ ...validRecord, generic_zero_prefix_rule_allowed: undefined }), false, 'generic_zero_prefix_rule_allowed=undefined must fail');
+});
+
+test('Phase 51B - Test 15: Failure Injection A - Invalid Verification Status', () => {
+  const injectedAlias = {
+    input_serial: '12345678',
+    official_serial_number: '010000000',
+    alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+    source: 'MY_STIHL',
+    verification_status: 'UNVERIFIED',
+    generic_zero_prefix_rule_allowed: false
+  };
+
+  // Resolver level
+  const resolved = OfficialSerialAliasResolver.resolve('12345678', null, { officialAliases: [injectedAlias] });
+  assert.strictEqual(resolved, null, 'Unverified alias must be rejected by resolver');
+
+  // Decoder level
+  const res = decodeStihlCode('12345678', database, { officialAliases: [injectedAlias] });
+  assert.notStrictEqual(res.inputAliasMatched, true, 'inputAliasMatched must not be true for unverified alias');
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED', 'identityStatus must not be EXACT_MODEL_IDENTIFIED');
+});
+
+test('Phase 51B - Test 16: Failure Injection B - Generic Rule Allowed True', () => {
+  const injectedAlias = {
+    input_serial: '12345678',
+    official_serial_number: '010000000',
+    alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+    source: 'MY_STIHL',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP',
+    generic_zero_prefix_rule_allowed: true
+  };
+
+  const resolved = OfficialSerialAliasResolver.resolve('12345678', null, { officialAliases: [injectedAlias] });
+  assert.strictEqual(resolved, null, 'generic_zero_prefix_rule_allowed: true must be rejected by resolver');
+
+  const res = decodeStihlCode('12345678', database, { officialAliases: [injectedAlias] });
+  assert.notStrictEqual(res.inputAliasMatched, true);
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED');
+});
+
+test('Phase 51B - Test 17: Failure Injection C - Invalid Source', () => {
+  const injectedAlias = {
+    input_serial: '12345678',
+    official_serial_number: '010000000',
+    alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+    source: 'DEALER_INFERRED',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP',
+    generic_zero_prefix_rule_allowed: false
+  };
+
+  const resolved = OfficialSerialAliasResolver.resolve('12345678', null, { officialAliases: [injectedAlias] });
+  assert.strictEqual(resolved, null, 'Non-MY_STIHL source must be rejected by resolver');
+
+  const res = decodeStihlCode('12345678', database, { officialAliases: [injectedAlias] });
+  assert.notStrictEqual(res.inputAliasMatched, true);
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED');
+});
+
+test('Phase 51B - Test 18: Failure Injection D - Invalid Alias Type', () => {
+  const injectedAlias = {
+    input_serial: '12345678',
+    official_serial_number: '010000000',
+    alias_type: 'GENERIC_PAD_ZERO_NORMALIZATION',
+    source: 'MY_STIHL',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP',
+    generic_zero_prefix_rule_allowed: false
+  };
+
+  const resolved = OfficialSerialAliasResolver.resolve('12345678', null, { officialAliases: [injectedAlias] });
+  assert.strictEqual(resolved, null, 'Non-standard alias_type must be rejected by resolver');
+
+  const res = decodeStihlCode('12345678', database, { officialAliases: [injectedAlias] });
+  assert.notStrictEqual(res.inputAliasMatched, true);
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED');
+});
+
+test('Phase 51B - Test 19: Failure Injection E - Invalid Target Format', () => {
+  const injectedAlias = {
+    input_serial: '12345678',
+    official_serial_number: '01000000', // 8 digits instead of 9
+    alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+    source: 'MY_STIHL',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP',
+    generic_zero_prefix_rule_allowed: false
+  };
+
+  const resolved = OfficialSerialAliasResolver.resolve('12345678', null, { officialAliases: [injectedAlias] });
+  assert.strictEqual(resolved, null, 'Malformed target serial must be rejected by resolver');
+
+  const res = decodeStihlCode('12345678', database, { officialAliases: [injectedAlias] });
+  assert.notStrictEqual(res.inputAliasMatched, true);
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED');
+});
+
+test('Phase 51B - Test 20: Failure Injection F - Conflicting / Malformed Options Alias Bypass Prevention', () => {
+  const malformedOptions = {
+    officialAliases: [
+      {
+        input_serial: '10000000',
+        official_serial_number: '010000000',
+        alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+        source: 'MY_STIHL',
+        verification_status: 'FORGED_STATUS',
+        generic_zero_prefix_rule_allowed: false
+      }
+    ]
+  };
+
+  const resolved = OfficialSerialAliasResolver.resolve('10000000', database, malformedOptions);
+  assert.strictEqual(resolved, null, 'Malformed options alias must fail closed without fallback bypass');
+
+  const res = decodeStihlCode('10000000', database, malformedOptions);
+  assert.notStrictEqual(res.inputAliasMatched, true);
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED');
+});
+
+test('Phase 51B - Test 21: Target Safety - Missing Target Anchor does not promote alias data to exact model identity', () => {
+  // Candidate alias with valid format, but pointing to non-existent target anchor
+  const aliasWithMissingTarget = {
+    input_serial: '19999999',
+    official_serial_number: '019999999', // Not in anchors registry
+    alias_type: 'MY_STIHL_LEADING_ZERO_NORMALIZATION',
+    source: 'MY_STIHL',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP',
+    generic_zero_prefix_rule_allowed: false
+  };
+
+  const res = decodeStihlCode('19999999', database, { officialAliases: [aliasWithMissingTarget] });
+  assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED', 'Missing target anchor must NOT result in EXACT_MODEL_IDENTIFIED');
+  assert.strictEqual(res.success, false, 'Missing target anchor must fail closed');
 });

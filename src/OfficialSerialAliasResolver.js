@@ -23,36 +23,69 @@ function loadDefaultOfficialAliases() {
   return cachedAliases;
 }
 
+/**
+ * Validates that an alias record strictly satisfies the full official evidence contract:
+ * - input_serial: exact 8 digits
+ * - official_serial_number: exact 9 digits
+ * - source: MY_STIHL
+ * - verification_status: OFFICIAL_STIHL_LOOKUP
+ * - alias_type: MY_STIHL_LEADING_ZERO_NORMALIZATION
+ * - generic_zero_prefix_rule_allowed: false
+ *
+ * Zero mutations, zero normalization heuristics, zero arithmetic conversions.
+ */
+export function isValidOfficialAlias(alias) {
+  if (!alias || typeof alias !== 'object') return false;
+  if (typeof alias.input_serial !== 'string' || !/^\d{8}$/.test(alias.input_serial)) return false;
+  if (typeof alias.official_serial_number !== 'string' || !/^\d{9}$/.test(alias.official_serial_number)) return false;
+  if (alias.source !== 'MY_STIHL') return false;
+  if (alias.verification_status !== 'OFFICIAL_STIHL_LOOKUP') return false;
+  if (alias.alias_type !== 'MY_STIHL_LEADING_ZERO_NORMALIZATION') return false;
+  if (alias.generic_zero_prefix_rule_allowed !== false) return false;
+  return true;
+}
+
 export class OfficialSerialAliasResolver {
   /**
    * Resolves an official serial input alias for a given raw serial string if one exists.
    * Priority:
-   * 1. database.official_serial_input_aliases
-   * 2. options.officialAliases
-   * 3. data/official_serial_input_aliases.json
+   * 1. options.officialAliases (if explicitly provided)
+   * 2. database.official_serial_input_aliases
+   * 3. data/official_serial_input_aliases.json (canonical fallback)
    * 
    * Strict exact match only. No arithmetic transformations, no generic zero prefixing.
+   * All candidate records are strictly validated against the official evidence contract.
    */
   static resolve(serialInput, database, options = {}) {
     if (!serialInput) return null;
     const serialStr = String(serialInput).trim();
     if (!/^\d{8}$/.test(serialStr)) return null;
 
-    // 1. Check in database.official_serial_input_aliases
-    if (database && Array.isArray(database.official_serial_input_aliases)) {
-      const match = database.official_serial_input_aliases.find(a => a.input_serial === serialStr);
-      if (match) return match;
-    }
+    let candidate = null;
 
-    // 2. Check in options.officialAliases
+    // 1. Check in options.officialAliases (explicit injection/override)
     if (options && Array.isArray(options.officialAliases)) {
-      const match = options.officialAliases.find(a => a.input_serial === serialStr);
-      if (match) return match;
+      candidate = options.officialAliases.find(a => a && a.input_serial === serialStr) || null;
+      if (candidate) {
+        return isValidOfficialAlias(candidate) ? candidate : null;
+      }
     }
 
-    // 3. Check cached file data/official_serial_input_aliases.json
+    // 2. Check in database.official_serial_input_aliases
+    if (database && Array.isArray(database.official_serial_input_aliases)) {
+      candidate = database.official_serial_input_aliases.find(a => a && a.input_serial === serialStr) || null;
+      if (candidate) {
+        return isValidOfficialAlias(candidate) ? candidate : null;
+      }
+    }
+
+    // 3. Check fallback canonical JSON
     const defaultAliases = loadDefaultOfficialAliases();
-    const match = defaultAliases.find(a => a.input_serial === serialStr);
-    return match || null;
+    candidate = defaultAliases.find(a => a && a.input_serial === serialStr) || null;
+    if (candidate) {
+      return isValidOfficialAlias(candidate) ? candidate : null;
+    }
+
+    return null;
   }
 }
