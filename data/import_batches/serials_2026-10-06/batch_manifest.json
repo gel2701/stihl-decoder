@@ -1,0 +1,68 @@
+{
+  "batch_id": "MY_STIHL_2026-10-06_DELTA_001",
+  "batch_import_date": "2026-10-06",
+  "date_basis": "current upload/import session; source CSV has no per-row timestamp",
+  "cumulative_source_rows": 5109,
+  "previous_source_rows": 2100,
+  "delta_source_rows": 3009,
+  "delta_unique_input_serials": 3005,
+  "exact_official_observations": 2138,
+  "new_official_anchors_vs_2026_09_26": 2118,
+  "reconfirmed_existing_anchors": 20,
+  "expected_total_official_anchors_after_merge": 2845,
+  "new_evidenced_input_aliases": 0,
+  "technical_timeout_unique_inputs": 866,
+  "technical_unresolved_missing_identity_unique_inputs": 1,
+  "recheck_queue_unique_inputs": 867,
+  "duplicate_delta_input_serials": 4,
+  "identity_conflicts": 0,
+  "source_file_sha256": "c1c412098de508732effc4bd1dd7b7496510d0799d735b85b1c5bbc2432adafc",
+  "previous_package_sha256": "c1a411e0fd97661cb355bf39fd15af4f2483e93d0b611fd542dcefebac9950bd",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1393,
+      "sha256": "33a8645a58bc1bb81132131468f7809870497a1cb8a8a93b04e6f66c64d7d368"
+    },
+    {
+      "path": "data/duplicate_source_rows_2026-10-06.csv",
+      "bytes": 189,
+      "sha256": "4050f27c1e9197e52ad6eb3eeb0db8d1da6d51a577ec1f7ecb1d9a1a83b8cec8"
+    },
+    {
+      "path": "data/new_official_serial_anchors_only_2026-10-06.csv",
+      "bytes": 461144,
+      "sha256": "c8c16754ec166b0147827e862b6985fccb199762668e29bb18d79d89bf4d3fcc"
+    },
+    {
+      "path": "data/new_official_serial_anchors_only_2026-10-06.json",
+      "bytes": 1093389,
+      "sha256": "856a1f759b049a99ee65c18f161c9ee9c7ed1ca637bb41d569300f7358142241"
+    },
+    {
+      "path": "data/official_serial_anchors_batch_2026-10-06.json",
+      "bytes": 1103943,
+      "sha256": "c569591b59d82f8183365171c28160860d19f35f2a774150188367221e4e9fa9"
+    },
+    {
+      "path": "data/reconfirmed_existing_anchors_2026-10-06.csv",
+      "bytes": 2038,
+      "sha256": "9579470b4bbff454653e3601b81f595eb4c6cd23b1db0c592088117099c98fee"
+    },
+    {
+      "path": "data/serial_lookup_observations_2026-10-06.json",
+      "bytes": 3201880,
+      "sha256": "787e81fcaf8db2c6a09cf8de5eb6050b7ff9cd60bcbd482e4a6db48a0794eb75"
+    },
+    {
+      "path": "data/serial_recheck_queue_2026-10-06.csv",
+      "bytes": 47338,
+      "sha256": "eb8aa5f21ff1fdb6728d778e99d0808f8bb446c9645ccba6e6cd5bad890a4b1f"
+    },
+    {
+      "path": "source/stihl_resultaten_delta_2026-10-06.csv",
+      "bytes": 3134473,
+      "sha256": "4543b535cdd2284665ba1bc3ae704d6d4f0ade9891c76735bac3ce1fda257750"
+    }
+  ]
+}
