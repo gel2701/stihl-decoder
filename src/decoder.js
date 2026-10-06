@@ -9,6 +9,7 @@ import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { SerialChronologyResolver } from './SerialChronologyResolver.js';
 import { OfficialSerialAnchorResolver } from './OfficialSerialAnchorResolver.js';
+import { OfficialSerialAliasResolver } from './OfficialSerialAliasResolver.js';
 import { getModelVerificationSummary } from './canonicalData.js';
 import { resolveMachineClassification } from './driveClassification.js';
 import {
@@ -195,10 +196,16 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
   const officialAnchor = isNumericSerialCandidate
     ? OfficialSerialAnchorResolver.resolve(cleaned, database, options)
     : null;
+  const officialAlias = (!officialAnchor && isNumericSerialCandidate)
+    ? OfficialSerialAliasResolver.resolve(cleaned, database, options)
+    : null;
+  const targetAnchor = officialAlias
+    ? OfficialSerialAnchorResolver.resolve(officialAlias.official_serial_number, database, options)
+    : null;
 
   // 1. Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers that are not official anchors)
   let counterfeitEvaluation = null;
-  if (!officialAnchor && cleaned.length === 9 && database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
+  if (!officialAnchor && !officialAlias && cleaned.length === 9 && database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
     for (const rule of database.counterfeit_rules) {
       const regex = new RegExp(rule.pattern_regex, 'i');
       if (regex.test(cleaned)) {
@@ -224,6 +231,14 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
   }
 
   if (/^\d+$/.test(cleaned)) {
+    if (officialAlias && targetAnchor) {
+      return analyzeSerialNumber(officialAlias.official_serial_number, database, null, {
+        ...options,
+        inputSerial: cleaned,
+        officialAlias,
+        targetAnchor
+      });
+    }
     if (cleaned.length === 9 || ((cleaned.length === 8 || cleaned.length === 10) && (options.confirmedModel || options.userConfirmedModel || options.allowVariableLength))) {
       return analyzeSerialNumber(cleaned, database, counterfeitEvaluation, options);
     }
@@ -401,9 +416,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   const isAlphanumeric = Boolean(options.isAlphanumeric || !/^\d+$/.test(serialStr));
   const numericSerial = parseInt(serialStr, 10);
   const rangeMatch = (!isAlphanumeric && /^\d{8,10}$/.test(serialStr)) ? StihlRangeResolver.resolve(numericSerial, factoryDigit, database) : null;
-  const officialAnchor = (!isAlphanumeric && /^\d{8,10}$/.test(serialStr))
+  const officialAnchor = options.targetAnchor || ((!isAlphanumeric && /^\d{8,10}$/.test(serialStr))
     ? OfficialSerialAnchorResolver.resolve(serialStr, database, options)
-    : null;
+    : null);
 
   let anchorCanonicalModel = null;
   if (officialAnchor) {
@@ -600,12 +615,23 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     database
   );
 
+  const inputSerial = options.inputSerial || serialStr;
+  const officialSerialNumber = officialAnchor ? (officialAnchor.serial_number || serialStr) : (serialStr.length === 9 ? serialStr : null);
+  const inputAliasMatched = Boolean(options.officialAlias);
+  const inputAliasType = options.officialAlias ? options.officialAlias.alias_type : null;
+  const aliasSource = options.officialAlias ? options.officialAlias.source : null;
+
   return {
     success: true,
     status: 'FORMAT_VALIDATED',
     type: 'SERIAL_NUMBER',
-    input: serialStr,
-    cleaned: serialStr,
+    input: inputSerial,
+    cleaned: inputSerial,
+    inputSerial,
+    officialSerialNumber,
+    inputAliasMatched,
+    inputAliasType,
+    aliasSource,
     factory: factoryData,
     model: modelName,
     resolvedModel: resolvedModelName,
