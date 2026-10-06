@@ -36,7 +36,8 @@ export const currentProductionSuites = [
   'tests/phase49b_guide_content.test.js',
   'tests/phase49b_guide_safety.test.js',
   'tests/phase49b_guide_sources.test.js',
-  'tests/phase49b_guide_links.test.js'
+  'tests/phase49b_guide_links.test.js',
+  'tests/phase51_official_serial_evidence.test.js'
 ];
 
 console.log('===============================================================');

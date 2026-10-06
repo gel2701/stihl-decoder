@@ -191,9 +191,14 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
 
   const cleaned = stripped.replace(/[^A-Za-z0-9]/g, '');
 
-  // 1. Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers)
+  const isNumericSerialCandidate = /^\d{8,10}$/.test(cleaned);
+  const officialAnchor = isNumericSerialCandidate
+    ? OfficialSerialAnchorResolver.resolve(cleaned, database, options)
+    : null;
+
+  // 1. Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers that are not official anchors)
   let counterfeitEvaluation = null;
-  if (cleaned.length === 9 && database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
+  if (!officialAnchor && cleaned.length === 9 && database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
     for (const rule of database.counterfeit_rules) {
       const regex = new RegExp(rule.pattern_regex, 'i');
       if (regex.test(cleaned)) {

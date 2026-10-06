@@ -51,6 +51,7 @@ function recreateSqliteDatabase(database) {
   const db = new sqlite3.Database(dbPath);
 
   db.serialize(() => {
+    db.run(`BEGIN TRANSACTION`);
     db.run(`CREATE TABLE plants (
       plant_code CHAR(1) PRIMARY KEY,
       country_code VARCHAR(2) NOT NULL,
@@ -234,6 +235,7 @@ function recreateSqliteDatabase(database) {
     )`);
     db.run(`CREATE INDEX idx_analytics_event_type ON analytics_events(event_type)`);
     db.run(`CREATE INDEX idx_analytics_created ON analytics_events(created_at)`);
+    db.run(`COMMIT`);
   });
 
   db.close();
