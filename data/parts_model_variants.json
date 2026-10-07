@@ -1,6 +1,6 @@
 {
   "schema_version": "parts-model-variants-v1",
-  "variants_count": 6,
+  "variants_count": 7,
   "variants": [
     {
       "canonical_model_id": "026",
@@ -36,6 +36,13 @@
       "variant_key": "base",
       "variant_name": "MS 261",
       "source_model_name": "MS 261"
+    },
+    {
+      "canonical_model_id": "ms_261",
+      "base_model_name": "MS 261",
+      "variant_key": "c_m",
+      "variant_name": "MS 261 C-M",
+      "source_model_name": "STIHL MS 261 C-M"
     },
     {
       "canonical_model_id": "ts_420",

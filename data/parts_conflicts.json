@@ -1,5 +1,36 @@
 {
   "schema_version": "parts-conflicts-v1",
-  "conflicts_count": 0,
-  "conflicts": []
+  "conflicts_count": 3,
+  "conflicts": [
+    {
+      "conflict_id": "conf_00004007000_name_sparepartsworld_official_stihl",
+      "part_number": "00004007000",
+      "conflict_type": "PART_NAME_MISMATCH",
+      "source_a": "sparepartsworld",
+      "value_a": "Stihl 00004007000 Spark Plug Ngk Bpmr7A",
+      "source_b": "official_stihl",
+      "value_b": "Spark plug NGK CMR6H",
+      "status": "REVIEW_REQUIRED"
+    },
+    {
+      "conflict_id": "conf_11104007005_name_sparepartsworld_official_stihl",
+      "part_number": "11104007005",
+      "conflict_type": "PART_NAME_MISMATCH",
+      "source_a": "sparepartsworld",
+      "value_a": "[NO LONGER AVAILABLE] Stihl Spark Plug Bosch Wsr 6 F",
+      "source_b": "official_stihl",
+      "value_b": "Spark plug Bosch WSR6F",
+      "status": "REVIEW_REQUIRED"
+    },
+    {
+      "conflict_id": "conf_11301240800_name_official_stihl_sparepartsworld",
+      "part_number": "11301240800",
+      "conflict_type": "PART_NAME_MISMATCH",
+      "source_a": "official_stihl",
+      "value_a": "Air filter fleece",
+      "source_b": "sparepartsworld",
+      "value_b": "Stihl Filter Plate",
+      "status": "REVIEW_REQUIRED"
+    }
+  ]
 }

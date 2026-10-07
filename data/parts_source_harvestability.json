@@ -1,0 +1,56 @@
+{
+  "last_audited_at": "2026-10-07T21:14:00.000Z",
+  "audit_version": "Phase52A-R3",
+  "sources": [
+    {
+      "source_id": "diyspareparts",
+      "source_name": "DIY Spare Parts",
+      "source_type": "STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE",
+      "model_http_status": 403,
+      "harvestable": false,
+      "reason": "WAF_BLOCKED",
+      "role": "REFERENCE_SOURCE",
+      "notes": "Automated requests return HTTP 403 Cloudflare bot challenge. Kept as reference only."
+    },
+    {
+      "source_id": "partstree",
+      "source_name": "PartsTree",
+      "source_type": "STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE",
+      "model_http_status": 403,
+      "harvestable": false,
+      "reason": "AUTOMATION_BLOCKED",
+      "role": "REFERENCE_SOURCE",
+      "notes": "Automated requests return HTTP 403 Akamai bot challenge. Kept as reference only."
+    },
+    {
+      "source_id": "lsengineers",
+      "source_name": "L&S Engineers",
+      "source_type": "STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE",
+      "model_http_status": 403,
+      "harvestable": false,
+      "reason": "WAF_BLOCKED",
+      "role": "REFERENCE_SOURCE",
+      "notes": "Automated requests return HTTP 403 Cloudflare bot challenge."
+    },
+    {
+      "source_id": "sparepartsworld",
+      "source_name": "Spare Parts World UK",
+      "source_type": "STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE",
+      "model_http_status": 200,
+      "harvestable": true,
+      "reason": "ACCESSIBLE_EXPLODED_DIAGRAMS",
+      "role": "PRIMARY_STRUCTURED_SOURCE",
+      "notes": "Direct HTTP GET returns full server-rendered HTML with exploded diagram references and part codes."
+    },
+    {
+      "source_id": "official_stihl",
+      "source_name": "Official STIHL Documentation",
+      "source_type": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+      "model_http_status": 200,
+      "harvestable": true,
+      "reason": "AUTHENTIC_MANUFACTURER_DOCUMENTATION",
+      "role": "OFFICIAL_AUTHORITY_SOURCE",
+      "notes": "Authoritative service documentation and technical specifications verified against official STIHL records."
+    }
+  ]
+}

@@ -394,3 +394,99 @@ test('Phase 52A - Test 20: Complete Regression Safety for Decoder, Anchors (2845
   assert.strictEqual(partAnalysis.type, 'PART_NUMBER');
   assert.strictEqual(partAnalysis.familyCode, '1121');
 });
+
+// -------------------------------------------------------------
+// Test 21: Official Entry Without Response SHA-256 Rejected
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 21: Official Entry Without Response SHA-256 Rejected', () => {
+  const source = new OfficialStihlSource();
+  const invalidNoSha = {
+    part_number: '11400074101',
+    part_name: 'Test Kit',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  assert.strictEqual(source.isValidOfficialRecord(invalidNoSha), false);
+});
+
+// -------------------------------------------------------------
+// Test 22: Official Source URL Mismatch Rejected
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 22: Official Source URL Non-STIHL Mismatch Rejected', () => {
+  const source = new OfficialStihlSource();
+  const invalidUrl = {
+    part_number: '11400074101',
+    part_name: 'Test Kit',
+    models: ['MS 261'],
+    source_url: 'https://www.thirdparty.com/test',
+    response_sha256: '35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  assert.strictEqual(source.isValidOfficialRecord(invalidUrl), false);
+});
+
+// -------------------------------------------------------------
+// Test 23: Erroneous MS 261 Service Kit 14 Completely Removed
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 23: Erroneous MS 261 Service Kit 14 (1141 007 1800) Removed', async () => {
+  const source = new OfficialStihlSource();
+  const parts = await source.getOfficialPartsForModel('MS 261');
+  const hasBadKit = parts.some(p => p.part_number === '11410071800');
+  assert.strictEqual(hasBadKit, false, 'Erroneous 1141 007 1800 must be removed from MS 261');
+
+  const hasCorrectKit = parts.some(p => p.part_number === '11400074101');
+  assert.strictEqual(hasCorrectKit, true, 'Correct Service Kit 11 (1140 007 4101) must be present');
+});
+
+// -------------------------------------------------------------
+// Test 24: Application-Specific Conditions Preserved for MS 170/180
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 24: Application-Specific Fitment Conditions Preserved', async () => {
+  const source = new OfficialStihlSource();
+  const parts = await source.getOfficialPartsForModel('MS 170');
+  const sk6 = parts.find(p => p.part_number === '11300074100');
+  assert.ok(sk6);
+  assert.strictEqual(sk6.fitment_scope, FITMENT_SCOPES.APPLICATION_SPECIFIC);
+  assert.ok(sk6.variant_condition.includes('Pre-2-MIX'));
+
+  const sk45 = parts.find(p => p.part_number === '11300074103');
+  assert.ok(sk45);
+  assert.strictEqual(sk45.fitment_scope, FITMENT_SCOPES.APPLICATION_SPECIFIC);
+  assert.ok(sk45.variant_condition.includes('2-MIX'));
+});
+
+// -------------------------------------------------------------
+// Test 25: Source Harvestability Matrix Status Integrity
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 25: Parts Source Harvestability Matrix Status Integrity', () => {
+  const harvestabilityPath = path.join(rootDir, 'data', 'parts_source_harvestability.json');
+  assert.ok(fs.existsSync(harvestabilityPath), 'parts_source_harvestability.json must exist');
+  const matrix = JSON.parse(fs.readFileSync(harvestabilityPath, 'utf8'));
+
+  const spw = matrix.sources.find(s => s.source_id === 'sparepartsworld');
+  assert.ok(spw);
+  assert.strictEqual(spw.harvestable, true);
+  assert.strictEqual(spw.model_http_status, 200);
+
+  const diy = matrix.sources.find(s => s.source_id === 'diyspareparts');
+  assert.ok(diy);
+  assert.strictEqual(diy.harvestable, false);
+  assert.strictEqual(diy.reason, 'WAF_BLOCKED');
+
+  const pt = matrix.sources.find(s => s.source_id === 'partstree');
+  assert.ok(pt);
+  assert.strictEqual(pt.harvestable, false);
+  assert.strictEqual(pt.reason, 'AUTOMATION_BLOCKED');
+});
+
+// -------------------------------------------------------------
+// Test 26: Scalability Gate - Models Live Discovered vs Official Only
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 26: Models Live Discovered vs Official Only Tracking', () => {
+  assert.strictEqual(manifestDoc.models_requested, 6);
+  assert.strictEqual(manifestDoc.models_live_discovered, 6);
+  assert.strictEqual(manifestDoc.models_official_evidence_only, 0);
+  assert.strictEqual(manifestDoc.sections_failed, 0);
+  assert.ok(manifestDoc.sections_parsed >= 40);
+});

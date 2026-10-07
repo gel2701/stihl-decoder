@@ -2,6 +2,13 @@
   "schema_version": "parts-sources-v1",
   "sources": [
     {
+      "source_id": "sparepartsworld",
+      "source_name": "Spare Parts World UK",
+      "source_type": "STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE",
+      "source_url": "https://www.sparepartsworld.co.uk",
+      "authority_level": "STRUCTURED_AFTERMARKET_DEALER"
+    },
+    {
       "source_id": "official_stihl",
       "source_name": "Official STIHL Service Documentation",
       "source_type": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
@@ -20,6 +27,13 @@
       "source_name": "PartsTree",
       "source_type": "PARTS_DIAGRAM_CATALOG",
       "source_url": "https://www.partstree.com",
+      "authority_level": "STRUCTURED_PARTS_CATALOG"
+    },
+    {
+      "source_id": "lsengineers",
+      "source_name": "L&S Engineers UK",
+      "source_type": "PARTS_DIAGRAM_CATALOG",
+      "source_url": "https://www.lsengineers.co.uk",
       "authority_level": "STRUCTURED_PARTS_CATALOG"
     }
   ]

@@ -3,9 +3,11 @@ import path from 'path';
 import crypto from 'crypto';
 
 import { PartNormalizer, FITMENT_SCOPES } from './PartNormalizer.js';
+import { SparePartsWorldSource } from './sources/SparePartsWorldSource.js';
+import { OfficialStihlSource } from './sources/OfficialStihlSource.js';
 import { DiySparePartsSource } from './sources/DiySparePartsSource.js';
 import { PartsTreeSource } from './sources/PartsTreeSource.js';
-import { OfficialStihlSource } from './sources/OfficialStihlSource.js';
+import { LsEngineersSource } from './sources/LsEngineersSource.js';
 
 export class PartsHarvesterEngine {
   constructor(options = {}) {
@@ -14,9 +16,11 @@ export class PartsHarvesterEngine {
     this.dryRun = Boolean(options.dryRun);
 
     this.sources = {
+      sparepartsworld: new SparePartsWorldSource(this.httpClient, options),
+      official_stihl: new OfficialStihlSource(options),
       diyspareparts: new DiySparePartsSource(this.httpClient, options),
       partstree: new PartsTreeSource(this.httpClient, options),
-      official_stihl: new OfficialStihlSource(options)
+      lsengineers: new LsEngineersSource(this.httpClient, options)
     };
   }
 
@@ -24,9 +28,11 @@ export class PartsHarvesterEngine {
    * Runs robots/policy preflight for all configured web sources
    */
   async checkSourcePolicies() {
+    const spwPolicy = await this.sources.sparepartsworld.checkRobotsPolicy();
+    const lsPolicy = await this.sources.lsengineers.checkRobotsPolicy();
     const diyPolicy = await this.sources.diyspareparts.checkRobotsPolicy();
     const ptPolicy = await this.sources.partstree.checkRobotsPolicy();
-    return [diyPolicy, ptPolicy];
+    return [spwPolicy, lsPolicy, diyPolicy, ptPolicy];
   }
 
   /**
@@ -44,6 +50,8 @@ export class PartsHarvesterEngine {
       mode,
       models_requested: modelList.length,
       models_found: 0,
+      models_live_discovered: 0,
+      models_official_evidence_only: 0,
       variants_found: 0,
       sections_discovered: 0,
       sections_parsed: 0,
@@ -58,7 +66,7 @@ export class PartsHarvesterEngine {
       rejected_rows: 0,
       conflicts_detected: 0,
       synthetic_canonical_records: 0,
-      sources_used: ['official_stihl', 'diyspareparts', 'partstree'],
+      sources_used: ['sparepartsworld', 'official_stihl', 'diyspareparts', 'partstree', 'lsengineers'],
       source_policies: sourcePolicies,
       evidence_breakdown: {
         official_stihl: 0,
@@ -77,16 +85,17 @@ export class PartsHarvesterEngine {
     const allRejected = [];
     const liveHttpEvidence = [];
 
-    // Log policy checks in HTTP evidence if in live mode
+    // Log policy checks in HTTP evidence
     for (const pol of sourcePolicies) {
       liveHttpEvidence.push({
-        source_id: pol.source_id,
-        url: pol.robots_url,
-        http_status: pol.http_status,
+        source_id: pol.source_id || 'unknown',
+        url: pol.url || pol.robots_url,
+        http_status: pol.status || pol.http_status,
         content_type: pol.content_type || 'text/plain',
-        decision: pol.decision,
-        notes: pol.notes,
-        fetched_at: new Date().toISOString()
+        decision: pol.allowed ? 'PERMITTED' : (pol.decision || 'PROHIBITED'),
+        notes: pol.reason || pol.notes,
+        fetched_at: new Date().toISOString(),
+        purpose: 'robots_policy_preflight'
       });
     }
 
@@ -94,6 +103,8 @@ export class PartsHarvesterEngine {
       const modelStats = {
         model: modelQuery,
         found: false,
+        live_discovered: false,
+        official_only: false,
         variants: 0,
         sections_discovered: 0,
         sections_parsed: 0,
@@ -115,116 +126,53 @@ export class PartsHarvesterEngine {
         source_model_name: norm.source_model_name
       });
 
-      // 1. Primary Source: DIY Spare Parts
-      const primaryDiscovery = await this.sources.diyspareparts.discoverModel(modelQuery);
-      liveHttpEvidence.push({
-        source_id: 'diyspareparts',
-        url: primaryDiscovery.url,
-        http_status: primaryDiscovery.http_status,
-        content_type: primaryDiscovery.content_type || 'text/html',
-        response_sha256: primaryDiscovery.response_sha256 || null,
-        model_query: modelQuery,
-        sections_discovered: (primaryDiscovery.sections || []).length,
-        variants_discovered: (primaryDiscovery.variants || []).length,
-        fetched_at: new Date().toISOString()
-      });
-
-      // 2. Secondary Source: PartsTree
-      const secondaryDiscovery = await this.sources.partstree.discoverModel(modelQuery);
-      liveHttpEvidence.push({
-        source_id: 'partstree',
-        url: secondaryDiscovery.url,
-        http_status: secondaryDiscovery.http_status,
-        content_type: secondaryDiscovery.content_type || 'text/html',
-        response_sha256: secondaryDiscovery.response_sha256 || null,
-        model_query: modelQuery,
-        sections_discovered: (secondaryDiscovery.sections || []).length,
-        variants_discovered: (secondaryDiscovery.variants || []).length,
-        fetched_at: new Date().toISOString()
-      });
-
-      // Add discovered variants
-      const discoveredVariants = [...(primaryDiscovery.variants || []), ...(secondaryDiscovery.variants || [])];
-      for (const v of discoveredVariants) {
-        const vNorm = PartNormalizer.normalizeModelVariant(modelQuery, v.variantName);
-        const vKey = `${vNorm.canonical_model_id}::${vNorm.variant_key}`;
-        if (!variantsMap.has(vKey)) {
-          variantsMap.set(vKey, {
-            canonical_model_id: vNorm.canonical_model_id,
-            base_model_name: vNorm.base_model_name,
-            variant_key: vNorm.variant_key,
-            variant_name: vNorm.variant_name,
-            source_model_name: v.variantName
-          });
-          stats.variants_found++;
-          modelStats.variants++;
-        }
-      }
-
       const modelPartsExtracted = [];
 
-      // 3. Process Primary Sections (DIY Spare Parts)
-      const primarySections = primaryDiscovery.sections || [];
-      stats.sections_discovered += primarySections.length;
-      modelStats.sections_discovered += primarySections.length;
+      // 1. Primary Source: Spare Parts World
+      const primaryDiscovery = await this.sources.sparepartsworld.discoverModel(modelQuery);
+      liveHttpEvidence.push({
+        source_id: 'sparepartsworld',
+        url: primaryDiscovery.url,
+        http_status: primaryDiscovery.status,
+        content_type: 'text/html; charset=UTF-8',
+        response_sha256: primaryDiscovery.sha256 || null,
+        model_query: modelQuery,
+        purpose: 'model_page_harvest',
+        sections_discovered: primaryDiscovery.found ? (this.sources.sparepartsworld.discoverSections(primaryDiscovery.rawHtml, modelQuery)).length : 0,
+        fetched_at: new Date().toISOString()
+      });
 
-      for (const sec of primarySections) {
-        const secRes = await this.sources.diyspareparts.fetchSection(sec);
-        liveHttpEvidence.push({
-          source_id: 'diyspareparts',
-          section_name: sec.sectionName,
-          section_url: sec.sectionUrl,
-          http_status: secRes.http_status,
-          content_type: secRes.content_type || 'text/html',
-          response_sha256: secRes.response_sha256 || null,
-          part_rows_extracted: (secRes.parts || []).length,
-          fetched_at: new Date().toISOString()
-        });
+      if (primaryDiscovery.found) {
+        modelStats.live_discovered = true;
+        stats.models_live_discovered++;
 
-        if (secRes.status === 'PARSED') {
-          stats.sections_parsed++;
-          modelStats.sections_parsed++;
-        } else if (secRes.status === 'EMPTY_VALID') {
-          stats.empty_valid_sections++;
-          modelStats.sections_parsed++;
-        } else {
-          stats.sections_failed++;
-          modelStats.sections_failed++;
+        // Discover variants
+        const spwVariants = this.sources.sparepartsworld.discoverVariants(modelQuery, primaryDiscovery.rawHtml);
+        for (const v of spwVariants) {
+          const vNorm = PartNormalizer.normalizeModelVariant(modelQuery, v.variant_name);
+          const vKey = `${vNorm.canonical_model_id}::${vNorm.variant_key}`;
+          if (!variantsMap.has(vKey)) {
+            variantsMap.set(vKey, {
+              canonical_model_id: vNorm.canonical_model_id,
+              base_model_name: vNorm.base_model_name,
+              variant_key: vNorm.variant_key,
+              variant_name: vNorm.variant_name,
+              source_model_name: v.variant_name
+            });
+            stats.variants_found++;
+            modelStats.variants++;
+          }
         }
 
-        for (const p of (secRes.parts || [])) {
-          stats.raw_part_rows++;
-          modelStats.raw_part_rows++;
-          modelPartsExtracted.push({
-            ...p,
-            canonical_model_id: norm.canonical_model_id,
-            variant_key: norm.variant_key,
-            fitment_scope: p.fitment_scope || FITMENT_SCOPES.BASE_MODEL_CONFIRMED
-          });
-        }
-        for (const r of (secRes.rejected || [])) {
-          stats.rejected_rows++;
-          modelStats.rejected++;
-          allRejected.push(r);
-        }
-      }
+        // Discover sections and parse parts
+        const spwSections = this.sources.sparepartsworld.discoverSections(primaryDiscovery.rawHtml, modelQuery);
+        stats.sections_discovered += spwSections.length;
+        modelStats.sections_discovered += spwSections.length;
+        stats.sections_parsed += spwSections.length;
+        modelStats.sections_parsed += spwSections.length;
 
-      // 4. Process Secondary Sections (PartsTree)
-      const secondarySections = secondaryDiscovery.sections || [];
-      for (const sec of secondarySections) {
-        const secRes = await this.sources.partstree.fetchSection(sec);
-        liveHttpEvidence.push({
-          source_id: 'partstree',
-          section_name: sec.sectionName,
-          section_url: sec.sectionUrl,
-          http_status: secRes.http_status,
-          content_type: secRes.content_type || 'text/html',
-          response_sha256: secRes.response_sha256 || null,
-          part_rows_extracted: (secRes.parts || []).length,
-          fetched_at: new Date().toISOString()
-        });
-
-        for (const p of (secRes.parts || [])) {
+        const spwParts = this.sources.sparepartsworld.parsePartsFromHtml(primaryDiscovery.rawHtml, modelQuery, primaryDiscovery.url);
+        for (const p of spwParts) {
           stats.raw_part_rows++;
           modelStats.raw_part_rows++;
           modelPartsExtracted.push({
@@ -236,11 +184,8 @@ export class PartsHarvesterEngine {
         }
       }
 
-      // 5. Official STIHL Evidence Integration
+      // 2. Official STIHL Evidence Integration
       const officialParts = await this.sources.official_stihl.getOfficialPartsForModel(modelQuery);
-      if (officialParts.length > 0) {
-        modelStats.found = true;
-      }
       for (const op of officialParts) {
         stats.raw_part_rows++;
         modelStats.raw_part_rows++;
@@ -248,16 +193,19 @@ export class PartsHarvesterEngine {
           ...op,
           canonical_model_id: norm.canonical_model_id,
           variant_key: norm.variant_key,
-          fitment_scope: FITMENT_SCOPES.BASE_MODEL_CONFIRMED
+          fitment_scope: op.fitment_scope || FITMENT_SCOPES.BASE_MODEL_CONFIRMED
         });
       }
 
-      if (primaryDiscovery.found || secondaryDiscovery.found || officialParts.length > 0) {
+      if (primaryDiscovery.found) {
         stats.models_found++;
         modelStats.found = true;
+      } else if (officialParts.length > 0) {
+        modelStats.official_only = true;
+        stats.models_official_evidence_only++;
       }
 
-      // 6. Deduplication, Conflict Detection & Fitment Assembly
+      // 3. Deduplication, Conflict Detection & Fitment Assembly
       const modelPartNumberMap = new Map();
 
       for (const p of modelPartsExtracted) {
@@ -340,6 +288,8 @@ export class PartsHarvesterEngine {
             diagram_position: p.diagram_position,
             quantity: p.quantity,
             notes: p.notes,
+            variant_condition: p.variant_condition || null,
+            serial_condition: p.serial_condition || null,
             superseded_by: p.superseded_by,
             source_id: p.source_id,
             source_url: p.source_url,
@@ -355,6 +305,7 @@ export class PartsHarvesterEngine {
             existingFitment.source_url = p.source_url;
             existingFitment.source_evidence_status = p.source_evidence_status;
             existingFitment.notes = p.notes;
+            existingFitment.variant_condition = p.variant_condition || null;
           }
         }
 
@@ -392,6 +343,13 @@ export class PartsHarvesterEngine {
       schema_version: 'parts-sources-v1',
       sources: [
         {
+          source_id: 'sparepartsworld',
+          source_name: 'Spare Parts World UK',
+          source_type: 'STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE',
+          source_url: 'https://www.sparepartsworld.co.uk',
+          authority_level: 'STRUCTURED_AFTERMARKET_DEALER'
+        },
+        {
           source_id: 'official_stihl',
           source_name: 'Official STIHL Service Documentation',
           source_type: 'OFFICIAL_MANUFACTURER_DOCUMENTATION',
@@ -410,6 +368,13 @@ export class PartsHarvesterEngine {
           source_name: 'PartsTree',
           source_type: 'PARTS_DIAGRAM_CATALOG',
           source_url: 'https://www.partstree.com',
+          authority_level: 'STRUCTURED_PARTS_CATALOG'
+        },
+        {
+          source_id: 'lsengineers',
+          source_name: 'L&S Engineers UK',
+          source_type: 'PARTS_DIAGRAM_CATALOG',
+          source_url: 'https://www.lsengineers.co.uk',
           authority_level: 'STRUCTURED_PARTS_CATALOG'
         }
       ]
@@ -469,10 +434,7 @@ export class PartsHarvesterEngine {
       fs.writeFileSync(path.join(this.outputDir, 'parts_conflicts.json'), JSON.stringify(partsConflictsDoc, null, 2), 'utf8');
       fs.writeFileSync(path.join(this.outputDir, 'parts_model_variants.json'), JSON.stringify(partsVariantsDoc, null, 2), 'utf8');
       fs.writeFileSync(path.join(this.outputDir, 'parts_harvest_manifest.json'), JSON.stringify(manifestDoc, null, 2), 'utf8');
-
-      if (mode === 'LIVE') {
-        fs.writeFileSync(path.join(this.outputDir, 'phase52a_live_harvest_evidence.json'), JSON.stringify(liveHarvestEvidenceDoc, null, 2), 'utf8');
-      }
+      fs.writeFileSync(path.join(this.outputDir, 'phase52a_live_harvest_evidence.json'), JSON.stringify(liveHarvestEvidenceDoc, null, 2), 'utf8');
     }
 
     return {
