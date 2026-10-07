@@ -1,4 +1,4 @@
-import { PartNormalizer } from '../PartNormalizer.js';
+import { PartNormalizer, FITMENT_SCOPES } from '../PartNormalizer.js';
 
 export class PartsTreeSource {
   constructor(httpClient, options = {}) {
@@ -8,6 +8,20 @@ export class PartsTreeSource {
     this.sourceName = 'PartsTree';
     this.sourceType = 'PARTS_DIAGRAM_CATALOG';
     this.authorityLevel = 'STRUCTURED_PARTS_CATALOG';
+  }
+
+  async checkRobotsPolicy() {
+    const robotsUrl = `${this.baseUrl}/robots.txt`;
+    const res = await this.http.get(robotsUrl);
+    return {
+      source_id: this.sourceId,
+      robots_url: robotsUrl,
+      http_status: res.status,
+      content_type: res.contentType,
+      target_path: '/models/*',
+      decision: res.status === 200 ? 'ALLOWED_CONDITIONAL' : (res.status === 403 ? 'AUTOMATION_PROHIBITED' : 'AUTOMATION_RESTRICTED'),
+      notes: res.status === 403 ? 'PartsTree returns HTTP 403 Forbidden for automated crawlers (WAF blocked).' : `HTTP ${res.status}`
+    };
   }
 
   getModelSlug(modelName) {
@@ -24,6 +38,9 @@ export class PartsTreeSource {
         found: false,
         modelQuery,
         url: modelUrl,
+        http_status: res.status,
+        content_type: res.contentType,
+        response_sha256: res.bodySha256,
         variants: [],
         sections: [],
         error: res.error || `HTTP ${res.status}`
@@ -39,6 +56,9 @@ export class PartsTreeSource {
       sourceModelName: modelQuery,
       sourceModelSlug: slug,
       url: modelUrl,
+      http_status: res.status,
+      content_type: res.contentType,
+      response_sha256: res.bodySha256,
       variants,
       sections
     };
@@ -55,7 +75,7 @@ export class PartsTreeSource {
 
     while ((sMatch = sectionRegex.exec(html)) !== null) {
       const sPath = sMatch[1];
-      const sKey = sMatch[2].toLowerCase();
+      const sKey = PartNormalizer.normalizeSectionKey(sMatch[2]);
       const sName = sMatch[3].trim();
       const fullUrl = sPath.startsWith('http') ? sPath : `${this.baseUrl}${sPath}`;
 
@@ -107,11 +127,13 @@ export class PartsTreeSource {
             diagram_position: position,
             quantity: parseInt(quantityStr, 10) || 1,
             notes: notes || null,
-            section_key: sectionMeta.sectionKey,
+            superseded_by: null,
+            section_key: PartNormalizer.normalizeSectionKey(sectionMeta.sectionKey),
             section_name: sectionMeta.sectionName,
             source_id: this.sourceId,
             source_url: sectionMeta.sectionUrl,
-            source_evidence_status: 'SINGLE_STRUCTURED_PARTS_SOURCE'
+            source_evidence_status: 'SINGLE_STRUCTURED_PARTS_SOURCE',
+            fitment_scope: FITMENT_SCOPES.BASE_MODEL_CONFIRMED
           });
         } else if (rawPartNo.length > 0) {
           rejected.push({
@@ -138,10 +160,20 @@ export class PartsTreeSource {
       return {
         status: res.status === 404 ? 'FAILED_404' : 'FAILED_NETWORK',
         error: res.error || `HTTP ${res.status}`,
+        http_status: res.status,
+        content_type: res.contentType,
+        response_sha256: res.bodySha256,
         parts: [],
         rejected: []
       };
     }
-    return this.parseSectionPage(res.body, sectionMeta);
+
+    const parsed = this.parseSectionPage(res.body, sectionMeta);
+    return {
+      ...parsed,
+      http_status: res.status,
+      content_type: res.contentType,
+      response_sha256: res.bodySha256
+    };
   }
 }

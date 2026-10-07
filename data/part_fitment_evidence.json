@@ -1,9 +1,9 @@
 {
-  "schema_version": "model-part-fitments-v1",
-  "fitments_count": 20,
-  "fitments": [
+  "schema_version": "part-fitment-evidence-v1",
+  "observations_count": 20,
+  "observations": [
     {
-      "fitment_id": "00003503504::ms_261::base::fuel_system::OFFICIAL_REF",
+      "evidence_id": "obs_00003503504_ms_261_official_stihl_fuel_system_OFFICIAL_REF",
       "part_number": "00003503504",
       "canonical_model_id": "ms_261",
       "variant_key": "base",
@@ -11,14 +11,13 @@
       "section_key": "fuel_system",
       "section_name": "Fuel System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL Service Bulletin 12.2019",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/brandstoffilter-96472",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Fuel pickup body",
+      "quantity": 1
     },
     {
-      "fitment_id": "00004007000::fs_55::base::ignition_system::OFFICIAL_REF",
+      "evidence_id": "obs_00004007000_fs_55_official_stihl_ignition_system_OFFICIAL_REF",
       "part_number": "00004007000",
       "canonical_model_id": "fs_55",
       "variant_key": "base",
@@ -26,14 +25,13 @@
       "section_key": "ignition_system",
       "section_name": "Ignition System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL FS 55 Technical Specifications",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/bougie-96464",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Spark plug NGK CMR6H",
+      "quantity": 1
     },
     {
-      "fitment_id": "00004007000::ms_261::base::ignition_system::OFFICIAL_REF",
+      "evidence_id": "obs_00004007000_ms_261_official_stihl_ignition_system_OFFICIAL_REF",
       "part_number": "00004007000",
       "canonical_model_id": "ms_261",
       "variant_key": "base",
@@ -41,14 +39,13 @@
       "section_key": "ignition_system",
       "section_name": "Ignition System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL MS 261 Technical Specifications",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/bougie-96464",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Spark plug NGK CMR6H",
+      "quantity": 1
     },
     {
-      "fitment_id": "11104007005::026::base::ignition_system::OFFICIAL_REF",
+      "evidence_id": "obs_11104007005_026_official_stihl_ignition_system_OFFICIAL_REF",
       "part_number": "11104007005",
       "canonical_model_id": "026",
       "variant_key": "base",
@@ -56,14 +53,13 @@
       "section_key": "ignition_system",
       "section_name": "Ignition System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL 026 Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/bougie-bosch-wsr6f-96460",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Spark plug Bosch WSR6F",
+      "quantity": 1
     },
     {
-      "fitment_id": "11104007005::ms_170::base::ignition_system::OFFICIAL_REF",
+      "evidence_id": "obs_11104007005_ms_170_official_stihl_ignition_system_OFFICIAL_REF",
       "part_number": "11104007005",
       "canonical_model_id": "ms_170",
       "variant_key": "base",
@@ -71,14 +67,13 @@
       "section_key": "ignition_system",
       "section_name": "Ignition System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL MS 170 Technical Specifications",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/bougie-bosch-wsr6f-96460",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Spark plug Bosch WSR6F",
+      "quantity": 1
     },
     {
-      "fitment_id": "11104007005::ms_180::base::ignition_system::OFFICIAL_REF",
+      "evidence_id": "obs_11104007005_ms_180_official_stihl_ignition_system_OFFICIAL_REF",
       "part_number": "11104007005",
       "canonical_model_id": "ms_180",
       "variant_key": "base",
@@ -86,14 +81,13 @@
       "section_key": "ignition_system",
       "section_name": "Ignition System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL MS 180 Technical Specifications",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/bougie-bosch-wsr6f-96460",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Spark plug Bosch WSR6F",
+      "quantity": 1
     },
     {
-      "fitment_id": "11104007005::ts_420::base::ignition_system::OFFICIAL_REF",
+      "evidence_id": "obs_11104007005_ts_420_official_stihl_ignition_system_OFFICIAL_REF",
       "part_number": "11104007005",
       "canonical_model_id": "ts_420",
       "variant_key": "base",
@@ -101,14 +95,13 @@
       "section_key": "ignition_system",
       "section_name": "Ignition System",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL TS 420 Technical Specifications",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/bougie-bosch-wsr6f-96460",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Spark plug Bosch WSR6F",
+      "quantity": 1
     },
     {
-      "fitment_id": "11210201200::026::base::cylinder::OFFICIAL_REF",
+      "evidence_id": "obs_11210201200_026_official_stihl_cylinder_OFFICIAL_REF",
       "part_number": "11210201200",
       "canonical_model_id": "026",
       "variant_key": "base",
@@ -116,14 +109,13 @@
       "section_key": "cylinder",
       "section_name": "Cylinder",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL 026 Technical Information Bulletin",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.de/de/ap/zylinder-026-96410",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Cylinder with piston 44mm",
+      "quantity": 1
     },
     {
-      "fitment_id": "11211201612::026::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_11211201612_026_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "11211201612",
       "canonical_model_id": "026",
       "variant_key": "base",
@@ -131,14 +123,13 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL 026 Workshop Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.de/de/ap/luftfilter-026-ms260-96442",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Air filter fleece",
+      "quantity": 1
     },
     {
-      "fitment_id": "11300071800::ms_170::base::service_kits::OFFICIAL_REF",
+      "evidence_id": "obs_11300071800_ms_170_official_stihl_service_kits_OFFICIAL_REF",
       "part_number": "11300071800",
       "canonical_model_id": "ms_170",
       "variant_key": "base",
@@ -146,14 +137,13 @@
       "section_key": "service_kits",
       "section_name": "Service Kits",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL Service Kit Manual 0458-007-0007",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/service-kit-7-voor-ms-170-en-ms-180-97203",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Service Kit 7 (Air Filter, Spark Plug, Fuel Filter)",
+      "quantity": 1
     },
     {
-      "fitment_id": "11300071800::ms_180::base::service_kits::OFFICIAL_REF",
+      "evidence_id": "obs_11300071800_ms_180_official_stihl_service_kits_OFFICIAL_REF",
       "part_number": "11300071800",
       "canonical_model_id": "ms_180",
       "variant_key": "base",
@@ -161,14 +151,13 @@
       "section_key": "service_kits",
       "section_name": "Service Kits",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL Service Kit Manual 0458-007-0007",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/service-kit-7-voor-ms-170-en-ms-180-97203",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Service Kit 7 (Air Filter, Spark Plug, Fuel Filter)",
+      "quantity": 1
     },
     {
-      "fitment_id": "11301240800::ms_170::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_11301240800_ms_170_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "11301240800",
       "canonical_model_id": "ms_170",
       "variant_key": "base",
@@ -176,14 +165,13 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL MS 170 Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/luchtfilter-ms-170-180-96448",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Air filter fleece",
+      "quantity": 1
     },
     {
-      "fitment_id": "11301240800::ms_180::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_11301240800_ms_180_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "11301240800",
       "canonical_model_id": "ms_180",
       "variant_key": "base",
@@ -191,14 +179,13 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL MS 180 Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/luchtfilter-ms-170-180-96448",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Air filter fleece",
+      "quantity": 1
     },
     {
-      "fitment_id": "11410071800::ms_261::base::service_kits::OFFICIAL_REF",
+      "evidence_id": "obs_11410071800_ms_261_official_stihl_service_kits_OFFICIAL_REF",
       "part_number": "11410071800",
       "canonical_model_id": "ms_261",
       "variant_key": "base",
@@ -206,14 +193,13 @@
       "section_key": "service_kits",
       "section_name": "Service Kits",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL Service Kit Manual 0458-007-0014",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/service-kit-14-voor-ms-261-en-ms-362-97210",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Service Kit 14 (Air Filter, Spark Plug, Fuel Filter)",
+      "quantity": 1
     },
     {
-      "fitment_id": "11411201600::ms_261::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_11411201600_ms_261_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "11411201600",
       "canonical_model_id": "ms_261",
       "variant_key": "base",
@@ -221,14 +207,13 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL MS 261 C-M Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/luchtfilter-hd2-96452",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "HD2 Air filter",
+      "quantity": 1
     },
     {
-      "fitment_id": "41400071800::fs_55::base::service_kits::OFFICIAL_REF",
+      "evidence_id": "obs_41400071800_fs_55_official_stihl_service_kits_OFFICIAL_REF",
       "part_number": "41400071800",
       "canonical_model_id": "fs_55",
       "variant_key": "base",
@@ -236,14 +221,13 @@
       "section_key": "service_kits",
       "section_name": "Service Kits",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL Service Kit Manual 0458-007-0041",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/service-kit-41-voor-fs-38-fs-55-97241",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Service Kit 41 (Air Filter, Spark Plug, Fuel Filter)",
+      "quantity": 1
     },
     {
-      "fitment_id": "41401242800::fs_55::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_41401242800_fs_55_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "41401242800",
       "canonical_model_id": "fs_55",
       "variant_key": "base",
@@ -251,14 +235,13 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL FS 55 Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/luchtfilter-fs-55-96455",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Air filter felt",
+      "quantity": 1
     },
     {
-      "fitment_id": "42380071800::ts_420::base::service_kits::OFFICIAL_REF",
+      "evidence_id": "obs_42380071800_ts_420_official_stihl_service_kits_OFFICIAL_REF",
       "part_number": "42380071800",
       "canonical_model_id": "ts_420",
       "variant_key": "base",
@@ -266,14 +249,13 @@
       "section_key": "service_kits",
       "section_name": "Service Kits",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL Service Kit Manual 0458-007-0031",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/service-kit-31-voor-ts-410-ts-420-97231",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Service Kit 31 (Air Filter, Spark Plug, Fuel Filter)",
+      "quantity": 1
     },
     {
-      "fitment_id": "42381401800::ts_420::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_42381401800_ts_420_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "42381401800",
       "canonical_model_id": "ts_420",
       "variant_key": "base",
@@ -281,14 +263,13 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL TS 420 Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/hoofdluchtfilter-ts-420-96470",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Main air filter",
+      "quantity": 1
     },
     {
-      "fitment_id": "42381404401::ts_420::base::air_filter::OFFICIAL_REF",
+      "evidence_id": "obs_42381404401_ts_420_official_stihl_air_filter_OFFICIAL_REF",
       "part_number": "42381404401",
       "canonical_model_id": "ts_420",
       "variant_key": "base",
@@ -296,11 +277,10 @@
       "section_key": "air_filter",
       "section_name": "Air Filter",
       "diagram_position": "OFFICIAL_REF",
-      "quantity": 1,
-      "notes": "STIHL TS 420 Instruction Manual",
       "source_id": "official_stihl",
       "source_url": "https://www.stihl.nl/nl/ap/hulpluchtfilter-ts-420-96471",
-      "source_evidence_status": "OFFICIAL_STIHL"
+      "part_name_raw": "Auxiliary air filter",
+      "quantity": 1
     }
   ]
 }

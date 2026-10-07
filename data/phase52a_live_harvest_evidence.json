@@ -1,0 +1,158 @@
+{
+  "schema_version": "phase52a-live-harvest-evidence-v1",
+  "harvest_mode": "LIVE",
+  "generated_at": "2026-10-07T17:20:33.570Z",
+  "requests_count": 14,
+  "requests": [
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/robots.txt",
+      "http_status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "decision": "NO_ROBOTS_TXT",
+      "notes": "robots.txt returned 404; standard web crawling conventions apply.",
+      "fetched_at": "2026-10-07T17:20:30.535Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/robots.txt",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "decision": "AUTOMATION_PROHIBITED",
+      "notes": "PartsTree returns HTTP 403 Forbidden for automated crawlers (WAF blocked).",
+      "fetched_at": "2026-10-07T17:20:30.535Z"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "ac552226b1312a390a19cb2ac185473143b2d5bd3b7c98df3c7f20f4b35363b3",
+      "model_query": "MS 261",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:30.557Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/models/ms-261-stihl/",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "response_sha256": "c029d1c560ecb35bbb632f9f7102907b41a289e258055d477f92e21884f9ab79",
+      "model_query": "MS 261",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:31.177Z"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/parts/stihl/diagrams/ms170/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "0ead4b99af00b9e38860a64faac72b752604671b3e68b052a3d4909fb239806f",
+      "model_query": "MS 170",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:31.207Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/models/ms-170-stihl/",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "response_sha256": "c029d1c560ecb35bbb632f9f7102907b41a289e258055d477f92e21884f9ab79",
+      "model_query": "MS 170",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:31.689Z"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/parts/stihl/diagrams/ms180/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "e70ddda44ab9d068c21a196814a5a2676fa286a9d3af4a0dbe2cacf73a96f9e4",
+      "model_query": "MS 180",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:31.737Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/models/ms-180-stihl/",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "response_sha256": "c029d1c560ecb35bbb632f9f7102907b41a289e258055d477f92e21884f9ab79",
+      "model_query": "MS 180",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:32.183Z"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/parts/stihl/diagrams/026/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "db6e6c8ce6056a229bf246a5ab9376a7e02fc674afe19b7638c51605bfebaa0f",
+      "model_query": "026",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:32.220Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/models/026-stihl/",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "response_sha256": "c029d1c560ecb35bbb632f9f7102907b41a289e258055d477f92e21884f9ab79",
+      "model_query": "026",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:32.699Z"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/parts/stihl/diagrams/fs55/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "171f36eb40016db8886618b280f636f553de8c6536a0793851f843a64d782f3a",
+      "model_query": "FS 55",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:32.720Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/models/fs-55-stihl/",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "response_sha256": "c029d1c560ecb35bbb632f9f7102907b41a289e258055d477f92e21884f9ab79",
+      "model_query": "FS 55",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:33.206Z"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/parts/stihl/diagrams/ts420/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "e728ff3748299a651d2d941bdb2bf5c18c0992145d5980fc9794f82b6f804598",
+      "model_query": "TS 420",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:33.226Z"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/models/ts-420-stihl/",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "response_sha256": "c029d1c560ecb35bbb632f9f7102907b41a289e258055d477f92e21884f9ab79",
+      "model_query": "TS 420",
+      "sections_discovered": 0,
+      "variants_discovered": 0,
+      "fetched_at": "2026-10-07T17:20:33.553Z"
+    }
+  ]
+}

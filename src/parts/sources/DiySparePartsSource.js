@@ -1,4 +1,4 @@
-import { PartNormalizer } from '../PartNormalizer.js';
+import { PartNormalizer, FITMENT_SCOPES } from '../PartNormalizer.js';
 
 export class DiySparePartsSource {
   constructor(httpClient, options = {}) {
@@ -8,6 +8,23 @@ export class DiySparePartsSource {
     this.sourceName = 'DIY Spare Parts';
     this.sourceType = 'PARTS_DIAGRAM_CATALOG';
     this.authorityLevel = 'STRUCTURED_PARTS_CATALOG';
+  }
+
+  /**
+   * Checks robots.txt and documents policy decisions
+   */
+  async checkRobotsPolicy() {
+    const robotsUrl = `${this.baseUrl}/robots.txt`;
+    const res = await this.http.get(robotsUrl);
+    return {
+      source_id: this.sourceId,
+      robots_url: robotsUrl,
+      http_status: res.status,
+      content_type: res.contentType,
+      target_path: '/parts/stihl/diagrams/*',
+      decision: res.status === 200 ? 'ALLOWED_CONDITIONAL' : (res.status === 404 ? 'NO_ROBOTS_TXT' : 'AUTOMATION_PROHIBITED'),
+      notes: res.status === 404 ? 'robots.txt returned 404; standard web crawling conventions apply.' : (res.status === 403 ? 'Cloudflare WAF bot challenge active on automated requests.' : `HTTP ${res.status}`)
+    };
   }
 
   /**
@@ -30,6 +47,9 @@ export class DiySparePartsSource {
         found: false,
         modelQuery,
         url: modelUrl,
+        http_status: res.status,
+        content_type: res.contentType,
+        response_sha256: res.bodySha256,
         variants: [],
         sections: [],
         error: res.error || `HTTP ${res.status}`
@@ -45,6 +65,9 @@ export class DiySparePartsSource {
       sourceModelName: modelQuery,
       sourceModelSlug: slug,
       url: modelUrl,
+      http_status: res.status,
+      content_type: res.contentType,
+      response_sha256: res.bodySha256,
       variants,
       sections
     };
@@ -63,7 +86,6 @@ export class DiySparePartsSource {
     const seenVariants = new Set();
     while ((vMatch = variantRegex.exec(html)) !== null) {
       const vPath = vMatch[1];
-      const vSlug = vMatch[2].toLowerCase();
       const vUrl = vPath.startsWith('http') ? vPath : `${this.baseUrl}${vPath}`;
       const vName = vMatch[3].trim();
       if (!seenVariants.has(vUrl) && vName && !vName.toLowerCase().includes('back') && !vName.toLowerCase().includes('home') && !vName.toLowerCase().includes('diagrams')) {
@@ -82,7 +104,7 @@ export class DiySparePartsSource {
     const seenSections = new Set();
     while ((sMatch = sectionRegex.exec(html)) !== null) {
       const sPath = sMatch[1];
-      const sKey = sMatch[2].toLowerCase();
+      const sKey = PartNormalizer.normalizeSectionKey(sMatch[2]);
       const sName = sMatch[3].trim();
       const fullUrl = sPath.startsWith('http') ? sPath : `${this.baseUrl}${sPath}`;
 
@@ -107,7 +129,6 @@ export class DiySparePartsSource {
     const rejected = [];
 
     // Match rows in parts table: position, part number, description, quantity, notes
-    // Common HTML pattern: table rows <tr> with <td>...</td>
     const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
     let rowMatch;
 
@@ -148,11 +169,12 @@ export class DiySparePartsSource {
             quantity: parseInt(quantityStr, 10) || 1,
             notes: notes || null,
             superseded_by: supersededBy,
-            section_key: sectionMeta.sectionKey,
+            section_key: PartNormalizer.normalizeSectionKey(sectionMeta.sectionKey),
             section_name: sectionMeta.sectionName,
             source_id: this.sourceId,
             source_url: sectionMeta.sectionUrl,
-            source_evidence_status: 'SINGLE_STRUCTURED_PARTS_SOURCE'
+            source_evidence_status: 'SINGLE_STRUCTURED_PARTS_SOURCE',
+            fitment_scope: FITMENT_SCOPES.BASE_MODEL_CONFIRMED
           });
         } else if (rawPartNo.length > 0) {
           rejected.push({
@@ -182,11 +204,20 @@ export class DiySparePartsSource {
       return {
         status: res.status === 404 ? 'FAILED_404' : 'FAILED_NETWORK',
         error: res.error || `HTTP ${res.status}`,
+        http_status: res.status,
+        content_type: res.contentType,
+        response_sha256: res.bodySha256,
         parts: [],
         rejected: []
       };
     }
 
-    return this.parseSectionPage(res.body, sectionMeta);
+    const parsed = this.parseSectionPage(res.body, sectionMeta);
+    return {
+      ...parsed,
+      http_status: res.status,
+      content_type: res.contentType,
+      response_sha256: res.bodySha256
+    };
   }
 }

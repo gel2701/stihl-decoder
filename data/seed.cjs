@@ -300,6 +300,7 @@ function recreateSqliteDatabase(database) {
         part_number VARCHAR(20) NOT NULL,
         canonical_model_id VARCHAR(50) NOT NULL,
         variant_key VARCHAR(50) NOT NULL,
+        fitment_scope VARCHAR(50) NOT NULL DEFAULT 'BASE_MODEL_CONFIRMED',
         section_key VARCHAR(100) NOT NULL,
         section_name VARCHAR(150) NOT NULL,
         diagram_position VARCHAR(50),
@@ -313,13 +314,14 @@ function recreateSqliteDatabase(database) {
       db.run(`CREATE INDEX IF NOT EXISTS idx_fitments_part ON model_part_fitments(part_number)`);
       db.run(`CREATE INDEX IF NOT EXISTS idx_fitments_model ON model_part_fitments(canonical_model_id)`);
 
-      const fitStmt = db.prepare(`INSERT INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      const fitStmt = db.prepare(`INSERT INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       for (const f of fitmentsList) {
         fitStmt.run(
           f.fitment_id,
           f.part_number,
           f.canonical_model_id,
           f.variant_key,
+          f.fitment_scope || 'BASE_MODEL_CONFIRMED',
           f.section_key,
           f.section_name,
           f.diagram_position || null,
@@ -332,6 +334,48 @@ function recreateSqliteDatabase(database) {
         );
       }
       fitStmt.finalize();
+    }
+
+    const evidencePath = path.join(__dirname, 'part_fitment_evidence.json');
+    if (fs.existsSync(evidencePath)) {
+      const evidenceData = JSON.parse(fs.readFileSync(evidencePath, 'utf8'));
+      const obsList = Array.isArray(evidenceData.observations) ? evidenceData.observations : [];
+
+      db.run(`CREATE TABLE IF NOT EXISTS part_fitment_evidence (
+        evidence_id VARCHAR(150) PRIMARY KEY,
+        part_number VARCHAR(20) NOT NULL,
+        canonical_model_id VARCHAR(50) NOT NULL,
+        variant_key VARCHAR(50) NOT NULL,
+        fitment_scope VARCHAR(50) NOT NULL,
+        section_key VARCHAR(100) NOT NULL,
+        section_name VARCHAR(150) NOT NULL,
+        diagram_position VARCHAR(50),
+        source_id VARCHAR(50) NOT NULL,
+        source_url TEXT,
+        part_name_raw TEXT,
+        quantity INTEGER DEFAULT 1
+      )`);
+      db.run(`CREATE INDEX IF NOT EXISTS idx_evidence_part ON part_fitment_evidence(part_number)`);
+      db.run(`CREATE INDEX IF NOT EXISTS idx_evidence_model ON part_fitment_evidence(canonical_model_id)`);
+
+      const obsStmt = db.prepare(`INSERT INTO part_fitment_evidence VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      for (const o of obsList) {
+        obsStmt.run(
+          o.evidence_id,
+          o.part_number,
+          o.canonical_model_id,
+          o.variant_key,
+          o.fitment_scope,
+          o.section_key,
+          o.section_name,
+          o.diagram_position || null,
+          o.source_id,
+          o.source_url || null,
+          o.part_name_raw || null,
+          o.quantity ?? 1
+        );
+      }
+      obsStmt.finalize();
     }
 
     const sourcesPath = path.join(__dirname, 'parts_sources.json');
