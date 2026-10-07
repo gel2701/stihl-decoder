@@ -223,6 +223,42 @@ function recreateSqliteDatabase(database) {
     }
     anchorStmt.finalize();
 
+    const officialAliasesPath = path.join(__dirname, 'official_serial_input_aliases.json');
+    let officialAliases = [];
+    if (fs.existsSync(officialAliasesPath)) {
+      const parsedAliases = JSON.parse(fs.readFileSync(officialAliasesPath, 'utf8'));
+      officialAliases = Array.isArray(parsedAliases.aliases) ? parsedAliases.aliases : [];
+    } else if (Array.isArray(database.official_serial_input_aliases)) {
+      officialAliases = database.official_serial_input_aliases;
+    }
+
+    db.run(`CREATE TABLE IF NOT EXISTS official_serial_input_aliases (
+      input_serial VARCHAR(20) PRIMARY KEY,
+      official_serial_number VARCHAR(20) NOT NULL,
+      alias_type VARCHAR(50) NOT NULL,
+      source VARCHAR(50) NOT NULL,
+      source_url TEXT,
+      verification_date VARCHAR(30),
+      verification_status VARCHAR(50) NOT NULL,
+      generic_zero_prefix_rule_allowed BOOLEAN DEFAULT FALSE,
+      FOREIGN KEY (official_serial_number) REFERENCES official_serial_anchors(serial_number)
+    )`);
+
+    const aliasStmt = db.prepare(`INSERT INTO official_serial_input_aliases VALUES (?, ?, ?, ?, ?, ?, ?, ?)`);
+    for (const alias of officialAliases) {
+      aliasStmt.run(
+        alias.input_serial,
+        alias.official_serial_number,
+        alias.alias_type,
+        alias.source,
+        alias.source_url || null,
+        alias.verification_date || null,
+        alias.verification_status,
+        alias.generic_zero_prefix_rule_allowed ? 1 : 0
+      );
+    }
+    aliasStmt.finalize();
+
     db.run(`CREATE TABLE IF NOT EXISTS analytics_events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       event_id VARCHAR(64),
