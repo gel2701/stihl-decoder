@@ -259,6 +259,167 @@ function recreateSqliteDatabase(database) {
     }
     aliasStmt.finalize();
 
+    // ==========================================
+    // PHASE 52A: STIHL PARTS HARVESTER PILOT TABLES
+    // ==========================================
+    const partsCatalogPath = path.join(__dirname, 'parts_catalog.json');
+    if (fs.existsSync(partsCatalogPath)) {
+      const partsData = JSON.parse(fs.readFileSync(partsCatalogPath, 'utf8'));
+      const partsList = Array.isArray(partsData.parts) ? partsData.parts : [];
+
+      db.run(`CREATE TABLE IF NOT EXISTS parts (
+        part_number VARCHAR(20) PRIMARY KEY,
+        part_number_display VARCHAR(30),
+        part_name TEXT,
+        part_name_normalized TEXT,
+        source_count INTEGER,
+        sources TEXT
+      )`);
+
+      const partStmt = db.prepare(`INSERT INTO parts VALUES (?, ?, ?, ?, ?, ?)`);
+      for (const p of partsList) {
+        partStmt.run(
+          p.part_number,
+          p.part_number_display || null,
+          p.part_name || null,
+          p.part_name_normalized || null,
+          p.source_count || 1,
+          Array.isArray(p.sources) ? JSON.stringify(p.sources) : null
+        );
+      }
+      partStmt.finalize();
+    }
+
+    const fitmentsPath = path.join(__dirname, 'model_part_fitments.json');
+    if (fs.existsSync(fitmentsPath)) {
+      const fitmentsData = JSON.parse(fs.readFileSync(fitmentsPath, 'utf8'));
+      const fitmentsList = Array.isArray(fitmentsData.fitments) ? fitmentsData.fitments : [];
+
+      db.run(`CREATE TABLE IF NOT EXISTS model_part_fitments (
+        fitment_id VARCHAR(150) PRIMARY KEY,
+        part_number VARCHAR(20) NOT NULL,
+        canonical_model_id VARCHAR(50) NOT NULL,
+        variant_key VARCHAR(50) NOT NULL,
+        section_key VARCHAR(100) NOT NULL,
+        section_name VARCHAR(150) NOT NULL,
+        diagram_position VARCHAR(50),
+        quantity INTEGER DEFAULT 1,
+        notes TEXT,
+        superseded_by VARCHAR(20),
+        source_id VARCHAR(50) NOT NULL,
+        source_url TEXT,
+        source_evidence_status VARCHAR(50)
+      )`);
+      db.run(`CREATE INDEX IF NOT EXISTS idx_fitments_part ON model_part_fitments(part_number)`);
+      db.run(`CREATE INDEX IF NOT EXISTS idx_fitments_model ON model_part_fitments(canonical_model_id)`);
+
+      const fitStmt = db.prepare(`INSERT INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      for (const f of fitmentsList) {
+        fitStmt.run(
+          f.fitment_id,
+          f.part_number,
+          f.canonical_model_id,
+          f.variant_key,
+          f.section_key,
+          f.section_name,
+          f.diagram_position || null,
+          f.quantity ?? 1,
+          f.notes || null,
+          f.superseded_by || null,
+          f.source_id,
+          f.source_url || null,
+          f.source_evidence_status || 'SINGLE_STRUCTURED_PARTS_SOURCE'
+        );
+      }
+      fitStmt.finalize();
+    }
+
+    const sourcesPath = path.join(__dirname, 'parts_sources.json');
+    if (fs.existsSync(sourcesPath)) {
+      const sourcesData = JSON.parse(fs.readFileSync(sourcesPath, 'utf8'));
+      const sourcesList = Array.isArray(sourcesData.sources) ? sourcesData.sources : [];
+
+      db.run(`CREATE TABLE IF NOT EXISTS parts_sources (
+        source_id VARCHAR(50) PRIMARY KEY,
+        source_name VARCHAR(150) NOT NULL,
+        source_type VARCHAR(50) NOT NULL,
+        source_url TEXT,
+        authority_level VARCHAR(50) NOT NULL
+      )`);
+
+      const srcStmt = db.prepare(`INSERT INTO parts_sources VALUES (?, ?, ?, ?, ?)`);
+      for (const s of sourcesList) {
+        srcStmt.run(
+          s.source_id,
+          s.source_name,
+          s.source_type,
+          s.source_url || null,
+          s.authority_level
+        );
+      }
+      srcStmt.finalize();
+    }
+
+    const conflictsPath = path.join(__dirname, 'parts_conflicts.json');
+    if (fs.existsSync(conflictsPath)) {
+      const conflictsData = JSON.parse(fs.readFileSync(conflictsPath, 'utf8'));
+      const conflictsList = Array.isArray(conflictsData.conflicts) ? conflictsData.conflicts : [];
+
+      db.run(`CREATE TABLE IF NOT EXISTS parts_conflicts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        conflict_id VARCHAR(100),
+        part_number VARCHAR(20) NOT NULL,
+        conflict_type VARCHAR(50) NOT NULL,
+        source_a VARCHAR(50),
+        value_a TEXT,
+        source_b VARCHAR(50),
+        value_b TEXT,
+        status VARCHAR(50)
+      )`);
+
+      const confStmt = db.prepare(`INSERT INTO parts_conflicts (conflict_id, part_number, conflict_type, source_a, value_a, source_b, value_b, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`);
+      for (const c of conflictsList) {
+        confStmt.run(
+          c.conflict_id || null,
+          c.part_number,
+          c.conflict_type,
+          c.source_a || null,
+          c.value_a || null,
+          c.source_b || null,
+          c.value_b || null,
+          c.status || 'REVIEW_REQUIRED'
+        );
+      }
+      confStmt.finalize();
+    }
+
+    const variantsPath = path.join(__dirname, 'parts_model_variants.json');
+    if (fs.existsSync(variantsPath)) {
+      const variantsData = JSON.parse(fs.readFileSync(variantsPath, 'utf8'));
+      const variantsList = Array.isArray(variantsData.variants) ? variantsData.variants : [];
+
+      db.run(`CREATE TABLE IF NOT EXISTS parts_model_variants (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        canonical_model_id VARCHAR(50) NOT NULL,
+        base_model_name VARCHAR(100) NOT NULL,
+        variant_key VARCHAR(50) NOT NULL,
+        variant_name VARCHAR(100) NOT NULL,
+        source_model_name VARCHAR(100)
+      )`);
+
+      const varStmt = db.prepare(`INSERT INTO parts_model_variants (canonical_model_id, base_model_name, variant_key, variant_name, source_model_name) VALUES (?, ?, ?, ?, ?)`);
+      for (const v of variantsList) {
+        varStmt.run(
+          v.canonical_model_id,
+          v.base_model_name,
+          v.variant_key,
+          v.variant_name,
+          v.source_model_name || null
+        );
+      }
+      varStmt.finalize();
+    }
+
     db.run(`CREATE TABLE IF NOT EXISTS analytics_events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       event_id VARCHAR(64),

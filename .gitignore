@@ -10,3 +10,6 @@ data/backups/
 data/test_stihl_database.db*
 test-results/
 playwright-report/
+.cache/
+*.db-shm
+*.db-wal

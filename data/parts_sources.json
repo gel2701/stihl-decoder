@@ -1,0 +1,26 @@
+{
+  "schema_version": "parts-sources-v1",
+  "sources": [
+    {
+      "source_id": "official_stihl",
+      "source_name": "Official STIHL Service Documentation",
+      "source_type": "OFFICIAL_MANUFACTURER_DOCUMENTATION",
+      "source_url": "https://www.stihl.com",
+      "authority_level": "OFFICIAL_STIHL"
+    },
+    {
+      "source_id": "diyspareparts",
+      "source_name": "DIY Spare Parts",
+      "source_type": "PARTS_DIAGRAM_CATALOG",
+      "source_url": "https://www.diyspareparts.com",
+      "authority_level": "STRUCTURED_PARTS_CATALOG"
+    },
+    {
+      "source_id": "partstree",
+      "source_name": "PartsTree",
+      "source_type": "PARTS_DIAGRAM_CATALOG",
+      "source_url": "https://www.partstree.com",
+      "authority_level": "STRUCTURED_PARTS_CATALOG"
+    }
+  ]
+}
