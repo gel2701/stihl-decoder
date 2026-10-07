@@ -6,10 +6,12 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DEFAULT_CACHE_DIR = path.resolve(__dirname, '..', '..', '.cache', 'parts-harvester');
+const DEFAULT_FIXTURE_CACHE_DIR = path.resolve(__dirname, '..', '..', 'tests', 'fixtures', 'parts', 'cache');
 
 export class HttpClient {
   constructor(options = {}) {
     this.cacheDir = options.cacheDir || DEFAULT_CACHE_DIR;
+    this.fixtureCacheDir = options.fixtureCacheDir || DEFAULT_FIXTURE_CACHE_DIR;
     this.useCache = options.useCache !== false;
     this.refresh = Boolean(options.refresh);
     this.timeoutMs = options.timeoutMs || 15000;
@@ -36,15 +38,22 @@ export class HttpClient {
 
   readFromCache(url) {
     if (!this.useCache || this.refresh) return null;
-    const cachePath = this.getCachePath(url);
-    if (fs.existsSync(cachePath)) {
-      try {
-        const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
-        if (cached && cached.url === url && cached.status === 200 && typeof cached.body === 'string') {
-          return cached;
+    const key = this.getCacheKey(url);
+    const pathsToTry = [
+      path.join(this.cacheDir, `${key}.json`),
+      path.join(this.fixtureCacheDir, `${key}.json`)
+    ];
+
+    for (const cachePath of pathsToTry) {
+      if (fs.existsSync(cachePath)) {
+        try {
+          const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+          if (cached && cached.url === url && cached.status === 200 && typeof cached.body === 'string') {
+            return cached;
+          }
+        } catch (err) {
+          // Corrupted cache file - ignore and try next
         }
-      } catch (err) {
-        // Corrupted cache file - ignore and refetch
       }
     }
     return null;

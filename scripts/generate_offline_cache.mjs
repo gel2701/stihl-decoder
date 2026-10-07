@@ -9,8 +9,11 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const CACHE_DIR = path.resolve(ROOT_DIR, '.cache', 'parts-harvester');
 const FIXTURES_DIR = path.resolve(ROOT_DIR, 'tests', 'fixtures', 'parts');
 
+const FIXTURE_CACHE_DIR = path.resolve(FIXTURES_DIR, 'cache');
+
 if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
 if (!fs.existsSync(FIXTURES_DIR)) fs.mkdirSync(FIXTURES_DIR, { recursive: true });
+if (!fs.existsSync(FIXTURE_CACHE_DIR)) fs.mkdirSync(FIXTURE_CACHE_DIR, { recursive: true });
 
 function writeCache(url, html) {
   const hash = crypto.createHash('sha256').update(url.trim()).digest('hex');
@@ -22,6 +25,7 @@ function writeCache(url, html) {
     body: html
   };
   fs.writeFileSync(path.join(CACHE_DIR, `${hash}.json`), JSON.stringify(cacheObj, null, 2), 'utf8');
+  fs.writeFileSync(path.join(FIXTURE_CACHE_DIR, `${hash}.json`), JSON.stringify(cacheObj, null, 2), 'utf8');
 }
 
 console.log('Generating offline cache & fixtures for STIHL Parts Harvester Pilot...');
