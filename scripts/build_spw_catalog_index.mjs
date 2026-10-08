@@ -178,23 +178,9 @@ export async function buildCatalogIndex(options = {}) {
   console.log(`    Total models discovered through web link graph traversal: ${modelUrls.size}`);
 
   // -------------------------------------------------------------
-  // STEP 3: Category Navigation & Holdouts (CATEGORY_NAVIGATION)
+  // STEP 3: Parse candidate model pages into catalog records
   // -------------------------------------------------------------
-  console.log('  [3/4] Registering regression gates and holdouts...');
-  const holdoutCandidates = [
-    { url: 'https://www.sparepartsworld.co.uk/Stihl-HSA-140-0-R-Cordless-Hedgetrimmers-Spare-Parts/P782299', method: 'CATEGORY_NAVIGATION' },
-    { url: 'https://www.sparepartsworld.co.uk/Stihl-RM-248-1-T-Lawn-Mowers-Spare-Parts/P806734', method: 'CATEGORY_NAVIGATION' }
-  ];
-  for (const h of holdoutCandidates) {
-    if (!modelUrls.has(h.url)) {
-      modelUrls.set(h.url, { discovery_method: h.method, discovery_source_url: h.url });
-    }
-  }
-
-  // -------------------------------------------------------------
-  // STEP 4: Parse candidate model pages into catalog records
-  // -------------------------------------------------------------
-  console.log('  [4/4] Extracting model metadata and building canonical catalog...');
+  console.log('  [3/3] Extracting model metadata and building canonical catalog...');
   const processedUrls = new Set();
 
   for (const [url, meta] of modelUrls) {
@@ -202,41 +188,37 @@ export async function buildCatalogIndex(options = {}) {
     processedUrls.add(url);
 
     const res = await client.get(url, { purpose: 'catalog_record_extraction' });
-    if (res.status === 200 || (res.status === 410 && url.includes('HSA-140'))) {
+    if (res.status === 200 && res.body) {
       const h1Match = (res.body || '').match(/<h1[^>]*>([^<]*)<\/h1>/i);
       const titleMatch = (res.body || '').match(/<title>([^<]*)<\/title>/i);
-      let rawTitle = h1Match ? h1Match[1].trim() : (titleMatch ? titleMatch[1].trim() : '');
+      const rawTitle = h1Match ? h1Match[1].trim() : (titleMatch ? titleMatch[1].trim() : '');
 
-      // Handle holdout slugs if title not in body
-      if (!rawTitle && url.includes('HSA-140')) {
-        rawTitle = 'Stihl HSA 140.0 R Cordless Hedgetrimmers Spare Parts';
-      }
-      if (rawTitle.toLowerCase().includes('spindle kit') && url.includes('RM-248-1-T')) {
-        rawTitle = 'Stihl RM 248.1 T Lawn Mowers Spare Parts';
-      }
-
-      if (rawTitle.toLowerCase().startsWith('stihl') || rawTitle.toUpperCase().startsWith('STIHL')) {
+      if (rawTitle && (rawTitle.toLowerCase().startsWith('stihl') || rawTitle.toUpperCase().startsWith('STIHL'))) {
         const finalUrl = res.final_url || url;
-        const pid = extractPidFromUrl(finalUrl) || extractPidFromUrl(url) || 'P_UNKNOWN';
-        const category = inferCategoryFromTitle(rawTitle);
-        const cleanTitle = cleanStihlTitle(rawTitle);
-        const norm = PartNormalizer.normalizeModelVariant(cleanTitle);
+        const pid = extractPidFromUrl(finalUrl) || extractPidFromUrl(url);
+        if (pid) {
+          const category = inferCategoryFromTitle(rawTitle);
+          const cleanTitle = cleanStihlTitle(rawTitle);
+          const norm = PartNormalizer.normalizeModelVariant(cleanTitle);
 
-        catalog.push({
-          model_name: rawTitle,
-          model_title_clean: cleanTitle,
-          normalized_model: norm.base_model_name,
-          canonical_model_id: norm.canonical_model_id,
-          variant_name: norm.variant_name,
-          variant_key: norm.variant_key,
-          source_url: finalUrl,
-          source_product_id: pid,
-          category,
-          discovery_method: meta.discovery_method || 'LINK_TRAVERSAL',
-          discovery_source_url: meta.discovery_source_url || url,
-          response_sha256: res.bodySha256 || '0'.repeat(64),
-          retrieved_at: res.fetchedAt || new Date().toISOString()
-        });
+          if (norm.canonical_model_id && norm.base_model_name) {
+            catalog.push({
+              model_name: rawTitle,
+              model_title_clean: cleanTitle,
+              normalized_model: norm.base_model_name,
+              canonical_model_id: norm.canonical_model_id,
+              variant_name: norm.variant_name,
+              variant_key: norm.variant_key,
+              source_url: finalUrl,
+              source_product_id: pid,
+              category,
+              discovery_method: meta.discovery_method || 'LINK_TRAVERSAL',
+              discovery_source_url: meta.discovery_source_url || url,
+              response_sha256: res.bodySha256 || '0'.repeat(64),
+              retrieved_at: res.fetchedAt || new Date().toISOString()
+            });
+          }
+        }
       }
     }
   }

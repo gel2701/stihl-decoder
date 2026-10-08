@@ -267,6 +267,8 @@ export class PartsHarvesterEngine {
         stats.models_found++;
         modelStats.found = true;
       } else if (officialParts.length > 0) {
+        stats.models_found++;
+        modelStats.found = true;
         modelStats.official_only = true;
         stats.models_official_evidence_only++;
       }

@@ -106,6 +106,27 @@ export function validateOfficialRecord(item, responseBody = null) {
           }
         }
       }
+
+      // 8d. Verify claimed source_locator presence in response body
+      if (item.source_locator) {
+        if (!responseBody.toLowerCase().includes(item.source_locator.toLowerCase())) {
+          errors.push(`Claimed source_locator "${item.source_locator}" not found in official response body content`);
+        }
+      }
+
+      // 8e. Verify claimed variant_condition presence in response body
+      if (item.variant_condition) {
+        const conditionTokens = item.variant_condition.match(/\b[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\b/g) || [];
+        const criticalTokens = conditionTokens.filter(w => {
+          const lower = w.toLowerCase();
+          return w.length > 2 && !['models', 'engine', 'generation', 'standard', 'carburetors', 'early', 'serial', 'numbers', 'comfort', 'variants', 'later', 'and', 'the', 'for'].includes(lower);
+        });
+        for (const token of criticalTokens) {
+          if (!responseBody.toLowerCase().includes(token.toLowerCase())) {
+            errors.push(`Claimed variant_condition term "${token}" (from "${item.variant_condition}") not found in official response body content`);
+          }
+        }
+      }
     }
   }
 
@@ -121,7 +142,7 @@ export function runNegativeValidationTests() {
       <body>
         <h1>Service Kit 45 voor MS 170 en MS 180</h1>
         <p>Bestelnummer: 1130 007 4103</p>
-        <p>Compatibel met MS 170 en MS 180.</p>
+        <p>Compatibel met MS 170 en MS 180 (geschikt voor 2-MIX motoren).</p>
       </body>
     </html>
   `;
@@ -138,6 +159,7 @@ export function runNegativeValidationTests() {
     claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
     source_locator: 'Service Kit 45',
     compatibility_text: 'MS 170, MS 180',
+    variant_condition: '2-MIX engine models',
     verification_status: 'OFFICIAL_SOURCE_VERIFIED'
   };
 
@@ -182,7 +204,21 @@ export function runNegativeValidationTests() {
     throw new Error('Negative test failed: Non-STIHL URL did not trigger validation error');
   }
 
-  console.log('  ✓ Negative tests passed: Fake 11-digit part 99999999999, wrong model, SHA mismatch, and non-STIHL URL rejected.\n');
+  // Negative Test 6: Mismatched / fake source locator not present in body
+  const badLocatorRecord = { ...baseRecord, source_locator: 'Service Kit 999' };
+  const badLocatorErrors = validateOfficialRecord(badLocatorRecord, mockValidHtml);
+  if (badLocatorErrors.length === 0) {
+    throw new Error('Negative test failed: Mismatched source locator did not trigger validation error');
+  }
+
+  // Negative Test 7: Mismatched / fake variant condition not present in body
+  const badConditionRecord = { ...baseRecord, variant_condition: '4-MIX 4-stroke engine generation' };
+  const badConditionErrors = validateOfficialRecord(badConditionRecord, mockValidHtml);
+  if (badConditionErrors.length === 0) {
+    throw new Error('Negative test failed: Mismatched variant condition did not trigger validation error');
+  }
+
+  console.log('  ✓ Negative tests passed: Fake 11-digit part 99999999999, wrong model, SHA mismatch, non-STIHL URL, wrong locator, and wrong condition rejected.\n');
 }
 
 export async function validateOfficialEvidenceFile(evidencePath, options = {}) {

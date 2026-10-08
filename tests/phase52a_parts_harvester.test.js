@@ -642,11 +642,18 @@ test('Phase 52A-R5 - Test 37: Section Metrics Truthfulness and Consistency', () 
 });
 
 // -------------------------------------------------------------
-// Test 38: Blocker A Verification - Zero Numeric Product ID Range Enumeration
+// Test 38: Blocker A Verification - Zero Manual Holdout Injection & Zero Numeric Product ID Enumeration
 // -------------------------------------------------------------
-test('Phase 52A-R6 - Test 38: Zero Numeric Product-ID Range Enumeration in Discovery Code', () => {
+test('Phase 52A-R7 - Test 38: Zero Manual Holdout Injection and Zero Numeric Enumeration in Discovery Code', () => {
   const discoveryScript = fs.readFileSync(path.join(rootDir, 'scripts', 'build_spw_catalog_index.mjs'), 'utf8');
   const sourceCode = fs.readFileSync(path.join(rootDir, 'src', 'parts', 'sources', 'SparePartsWorldSource.js'), 'utf8');
+
+  // Verify zero manual holdout injection
+  assert.strictEqual(discoveryScript.includes('holdoutCandidates'), false, 'build_spw_catalog_index.mjs must NOT contain holdoutCandidates');
+  assert.strictEqual(discoveryScript.includes('P782299'), false, 'build_spw_catalog_index.mjs must NOT hardcode P782299');
+  assert.strictEqual(discoveryScript.includes('P806734'), false, 'build_spw_catalog_index.mjs must NOT hardcode P806734');
+  assert.strictEqual(discoveryScript.includes('HSA-140'), false, 'build_spw_catalog_index.mjs must NOT contain HSA-140 synthetic fallback');
+  assert.strictEqual(discoveryScript.includes('RM-248-1-T'), false, 'build_spw_catalog_index.mjs must NOT contain RM-248 synthetic fallback');
 
   // Verify no numeric range loops like for (let p = 782550; p <= 782860; p++)
   const numericRangeLoopRegex = /for\s*\(\s*let\s+\w+\s*=\s*\d{5,}\s*;\s*\w+\s*<=?\s*\d{5,}/;
@@ -659,37 +666,40 @@ test('Phase 52A-R6 - Test 38: Zero Numeric Product-ID Range Enumeration in Disco
 });
 
 // -------------------------------------------------------------
-// Test 39: Out-of-Range Regression Holdouts Auto-Discovered
+// Test 39: Dynamic Holdouts Discovered Naturally from Graph
 // -------------------------------------------------------------
-test('Phase 52A-R6 - Test 39: Out-of-Range Regression Holdouts Auto-Discovered', () => {
+test('Phase 52A-R7 - Test 39: Dynamic Holdouts Auto-Discovered Naturally from Catalog Graph', () => {
   const indexDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'sparepartsworld_stihl_model_index.json'), 'utf8'));
   const catalog = indexDoc.catalog;
 
-  // 1. HSA 140.0 R discovered
-  const hsa140 = catalog.filter(c => c.normalized_model.includes('HSA 140') || c.model_name.includes('HSA 140'));
-  assert.ok(hsa140.length > 0, 'HSA 140.0 R must be discovered in catalog index');
+  // 1. Total catalog models >= 1000
+  assert.ok(catalog.length >= 1000, `Catalog must contain >= 1000 entries (got ${catalog.length})`);
 
-  // 2. RM 248.1 T discovered
-  const rm248 = catalog.filter(c => c.normalized_model.includes('RM 248.1 T') || c.model_name.includes('RM 248.1 T') || c.model_name.includes('RM 2481 T'));
-  assert.ok(rm248.length > 0, 'RM 248.1 T must be discovered in catalog index');
-
-  // 3. Dynamic model with source_product_id > P784000 discovered
+  // 2. Models with source_product_id > P784000 discovered naturally
   const overP784k = catalog.filter(c => {
     const pidNum = parseInt(c.source_product_id.replace(/^P/, ''));
     return !isNaN(pidNum) && pidNum > 784000;
   });
-  assert.ok(overP784k.length > 0, 'Dynamic models with source_product_id > P784000 must be discovered');
+  assert.ok(overP784k.length >= 100, `Must discover >= 100 dynamic models with P-ID > 784000 (got ${overP784k.length})`);
+
+  // 3. Dynamic holdout models from different categories
+  const categories = new Set(catalog.map(c => c.category));
+  assert.ok(categories.size >= 4, 'Discovered catalog must span >= 4 distinct categories');
+  assert.ok(categories.has('Chainsaw'));
+  assert.ok(categories.has('Brushcutter'));
+  assert.ok(categories.has('Blower'));
+  assert.ok(categories.has('Lawn Mower') || categories.has('Hedge Trimmer'));
 });
 
 // -------------------------------------------------------------
-// Test 40: Content-Level Official Validator Rejection of Fake Parts & Wrong Models
+// Test 40: Content-Level Official Validator Rejection (Negative Tests)
 // -------------------------------------------------------------
-test('Phase 52A-R6 - Test 40: Content-Level Official Validator Rejects Fake Claims', async () => {
+test('Phase 52A-R7 - Test 40: Content-Level Official Validator Rejects Fake Claims, Wrong Locators & Conditions', async () => {
   const { validateOfficialRecord } = await import('../scripts/validate_official_parts_evidence.mjs');
 
-  const mockHtml = '<html><body><h1>STIHL MS 261 Service Kit</h1><p>Part number: 1140 007 4101</p></body></html>';
+  const mockHtml = '<html><body><h1>STIHL MS 261 Service Kit</h1><p>Part number: 1140 007 4101</p><p>Section: Service Kit 11</p><p>Engine: 2-MIX</p></body></html>';
 
-  // Fake part number not in body
+  // 1. Fake part number not in body
   const fakePart = {
     part_number: '99999999999',
     models: ['MS 261'],
@@ -697,14 +707,14 @@ test('Phase 52A-R6 - Test 40: Content-Level Official Validator Rejects Fake Clai
     response_sha256: 'a'.repeat(64),
     doc_ref: 'Doc',
     claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
-    source_locator: 'Kit',
+    source_locator: 'Service Kit 11',
     compatibility_text: 'MS 261',
     verification_status: 'OFFICIAL_SOURCE_VERIFIED'
   };
   const errors1 = validateOfficialRecord(fakePart, mockHtml);
   assert.ok(errors1.some(e => e.includes('not found in official response body content')));
 
-  // Wrong model not in body
+  // 2. Wrong model not in body
   const wrongModel = {
     part_number: '11400074101',
     models: ['FS 999'],
@@ -712,10 +722,71 @@ test('Phase 52A-R6 - Test 40: Content-Level Official Validator Rejects Fake Clai
     response_sha256: 'a'.repeat(64),
     doc_ref: 'Doc',
     claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
-    source_locator: 'Kit',
+    source_locator: 'Service Kit 11',
     compatibility_text: 'FS 999',
     verification_status: 'OFFICIAL_SOURCE_VERIFIED'
   };
   const errors2 = validateOfficialRecord(wrongModel, mockHtml);
   assert.ok(errors2.some(e => e.includes('Claimed model "FS 999" not found in official response body content')));
+
+  // 3. Wrong source locator not in body
+  const wrongLocator = {
+    part_number: '11400074101',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    response_sha256: 'a'.repeat(64),
+    doc_ref: 'Doc',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 999',
+    compatibility_text: 'MS 261',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  const errors3 = validateOfficialRecord(wrongLocator, mockHtml);
+  assert.ok(errors3.some(e => e.includes('Claimed source_locator "Service Kit 999" not found in official response body content')));
+
+  // 4. Wrong condition not in body
+  const wrongCondition = {
+    part_number: '11400074101',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    response_sha256: 'a'.repeat(64),
+    doc_ref: 'Doc',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 11',
+    compatibility_text: 'MS 261',
+    variant_condition: '4-MIX 4-stroke engine generation',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  const errors4 = validateOfficialRecord(wrongCondition, mockHtml);
+  assert.ok(errors4.some(e => e.includes('Claimed variant_condition term "4-MIX"')));
+});
+
+// -------------------------------------------------------------
+// Test 41: Data Minimization - Zero Full External HTML Fixture Files Committed
+// -------------------------------------------------------------
+test('Phase 52A-R7 - Test 41: Data Minimization - Zero Full External HTML Fixtures Committed', () => {
+  const fixturesDir = path.join(rootDir, 'tests', 'fixtures', 'parts');
+
+  // Verify tests/fixtures/parts/cache is not tracked in git
+  const gitLs = spawnSync('git', ['ls-files', 'tests/fixtures/parts/cache'], {
+    cwd: rootDir,
+    encoding: 'utf8'
+  });
+  const trackedFiles = gitLs.stdout.trim().split('\n').filter(Boolean);
+  assert.strictEqual(trackedFiles.length, 0, `tests/fixtures/parts/cache must have 0 tracked files in git (found ${trackedFiles.length})`);
+
+  // Verify any committed fixture files in tests/fixtures/parts are < 50 KB
+  const allFixtureFiles = fs.readdirSync(fixturesDir, { recursive: true, withFileTypes: true })
+    .filter(f => f.isFile())
+    .map(f => path.join(f.path || fixturesDir, f.name));
+
+  for (const file of allFixtureFiles) {
+    const stat = fs.statSync(file);
+    assert.ok(stat.size < 50000, `Fixture file ${path.basename(file)} must be < 50 KB (got ${stat.size} bytes)`);
+    if (file.endsWith('.json') || file.endsWith('.html')) {
+      const content = fs.readFileSync(file, 'utf8');
+      assert.strictEqual(content.includes('gtm.js'), false, `Fixture ${path.basename(file)} must NOT contain Google Tag Manager dumps`);
+      assert.strictEqual(content.includes('cookieconsent'), false, `Fixture ${path.basename(file)} must NOT contain cookieconsent dumps`);
+    }
+  }
 });
