@@ -1,0 +1,134 @@
+{
+  "schema_version": "phase52a-live-harvest-evidence-v1",
+  "harvest_mode": "LIVE",
+  "generated_at": "2026-10-08T19:33:09.695Z",
+  "requests_count": 12,
+  "requests": [
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/robots.txt",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "decision": "PERMITTED",
+      "notes": "Robots policy permits product and spare parts crawling",
+      "fetched_at": "2026-10-08T19:33:09.437Z",
+      "purpose": "robots_policy_preflight"
+    },
+    {
+      "source_id": "lsengineers",
+      "url": "https://www.lsengineers.co.uk/robots.txt",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "decision": "PERMITTED",
+      "notes": "Robots policy accessible",
+      "fetched_at": "2026-10-08T19:33:09.463Z",
+      "purpose": "robots_policy_preflight"
+    },
+    {
+      "source_id": "diyspareparts",
+      "url": "https://www.diyspareparts.com/robots.txt",
+      "http_status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "decision": "NO_ROBOTS_TXT",
+      "notes": "robots.txt returned 404; standard web crawling conventions apply.",
+      "fetched_at": "2026-10-08T19:33:09.463Z",
+      "purpose": "robots_policy_preflight"
+    },
+    {
+      "source_id": "partstree",
+      "url": "https://www.partstree.com/robots.txt",
+      "http_status": 403,
+      "content_type": "text/plain; charset=utf-8",
+      "decision": "AUTOMATION_PROHIBITED",
+      "notes": "PartsTree returns HTTP 403 Forbidden for automated crawlers (WAF blocked).",
+      "fetched_at": "2026-10-08T19:33:09.463Z",
+      "purpose": "robots_policy_preflight"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-Gasoline-Chainsaw-Spare-Parts/P782612",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "0a2f2181969a0f8bb35f01c772fdcc64b16b3f8154cfe1f2b038798236a991c7",
+      "model_query": "MS 261",
+      "purpose": "model_page_harvest",
+      "sections_discovered": 7,
+      "fetched_at": "2026-10-08T19:33:09.513Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-C-M-325-R-Chainsaw-Gasoline-Chainsaw-Spare-Parts/P782615",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "fd76d43ec7628cff2bacfcea1bd1665955f40f2340d5f40aeff5a8f11f8fad5e",
+      "model_query": "MS 261 c_m",
+      "purpose": "variant_page_harvest",
+      "fetched_at": "2026-10-08T19:33:09.530Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-170-Gasoline-Chainsaw-Spare-Parts/P782553",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "388dca70059689390a370c46b13176012afd5debdef5be55fad8597010ba6c0e",
+      "model_query": "MS 170",
+      "purpose": "model_page_harvest",
+      "sections_discovered": 5,
+      "fetched_at": "2026-10-08T19:33:09.548Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "9a18d2469d43acb448dbc433e08a5d4710aac7406c77a096592274ceaaaa4d2c",
+      "model_query": "MS 180",
+      "purpose": "model_page_harvest",
+      "sections_discovered": 6,
+      "fetched_at": "2026-10-08T19:33:09.569Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-026-Gasoline-Chainsaw-Spare-Parts/P782712",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "7efc817153db31136b270e3c60e9d192a1354316a1e395511536209be718075b",
+      "model_query": "026",
+      "purpose": "model_page_harvest",
+      "sections_discovered": 8,
+      "fetched_at": "2026-10-08T19:33:09.587Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-FS-55-Brushcutters-Spare-Parts/P782974",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "68f2becb2f888c1506c52c3f9f295572ab78ed7423427dbb519b8199246085b2",
+      "model_query": "FS 55",
+      "purpose": "model_page_harvest",
+      "sections_discovered": 10,
+      "fetched_at": "2026-10-08T19:33:09.618Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-FS-55-C-E-ErgoStart-Easy2Start-Brushcutters-Spare-Parts/P782976",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "cd62d7fd67125a927ff12ef84efec8a96810de98448a780b0a9ef850725e7f83",
+      "model_query": "FS 55 c_e",
+      "purpose": "variant_page_harvest",
+      "fetched_at": "2026-10-08T19:33:09.632Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/Stihl-TS-420-Cut-Off-Machines-TS-Spare-Parts/P783930",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "295d42501255590fabd303ebad544657613b3a6565ecf54b3d63228edf3aadc5",
+      "model_query": "TS 420",
+      "purpose": "model_page_harvest",
+      "sections_discovered": 9,
+      "fetched_at": "2026-10-08T19:33:09.652Z"
+    }
+  ]
+}

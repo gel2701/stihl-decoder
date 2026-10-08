@@ -1,0 +1,792 @@
+import test from 'node:test';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+import { spawnSync } from 'node:child_process';
+
+import { PartNormalizer, FITMENT_SCOPES } from '../src/parts/PartNormalizer.js';
+import { PartCatalogResolver } from '../src/parts/PartCatalogResolver.js';
+import { PartsHarvesterEngine } from '../src/parts/PartsHarvesterEngine.js';
+import { HttpClient } from '../src/parts/HttpClient.js';
+import { SparePartsWorldSource } from '../src/parts/sources/SparePartsWorldSource.js';
+import { DiySparePartsSource } from '../src/parts/sources/DiySparePartsSource.js';
+import { PartsTreeSource } from '../src/parts/sources/PartsTreeSource.js';
+import { OfficialStihlSource } from '../src/parts/sources/OfficialStihlSource.js';
+import { decodeStihlCode } from '../src/decoder.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+const require = createRequire(import.meta.url);
+const sqlite3 = require('sqlite3');
+
+const partsCatalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
+const fitmentsPath = path.join(rootDir, 'data', 'model_part_fitments.json');
+const evidencePath = path.join(rootDir, 'data', 'part_fitment_evidence.json');
+const sourcesPath = path.join(rootDir, 'data', 'parts_sources.json');
+const conflictsPath = path.join(rootDir, 'data', 'parts_conflicts.json');
+const variantsPath = path.join(rootDir, 'data', 'parts_model_variants.json');
+const manifestPath = path.join(rootDir, 'data', 'parts_harvest_manifest.json');
+const anchorsPath = path.join(rootDir, 'data', 'official_serial_anchors.json');
+const aliasesPath = path.join(rootDir, 'data', 'official_serial_input_aliases.json');
+const sqliteDbPath = path.join(rootDir, 'data', 'stihl_database.db');
+
+const partsCatalogDoc = JSON.parse(fs.readFileSync(partsCatalogPath, 'utf8'));
+const fitmentsDoc = JSON.parse(fs.readFileSync(fitmentsPath, 'utf8'));
+const evidenceDoc = JSON.parse(fs.readFileSync(evidencePath, 'utf8'));
+const sourcesDoc = JSON.parse(fs.readFileSync(sourcesPath, 'utf8'));
+const conflictsDoc = JSON.parse(fs.readFileSync(conflictsPath, 'utf8'));
+const variantsDoc = JSON.parse(fs.readFileSync(variantsPath, 'utf8'));
+const manifestDoc = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+const anchorsDoc = JSON.parse(fs.readFileSync(anchorsPath, 'utf8'));
+const aliasesDoc = JSON.parse(fs.readFileSync(aliasesPath, 'utf8'));
+
+// -------------------------------------------------------------
+// Test 1: 11-digit STIHL Part Number Normalization
+// -------------------------------------------------------------
+test('Phase 52A - Test 1: Part Normalizer 11-digit Formats Normalization', () => {
+  assert.strictEqual(PartNormalizer.normalizePartNumber('1141 160 5400'), '11411605400');
+  assert.strictEqual(PartNormalizer.normalizePartNumber('1141-160-5400'), '11411605400');
+  assert.strictEqual(PartNormalizer.normalizePartNumber('11411605400'), '11411605400');
+  assert.strictEqual(PartNormalizer.normalizePartNumber('1141.160.5400'), '11411605400');
+  assert.strictEqual(PartNormalizer.normalizePartNumber(' 0000 400 7000 '), '00004007000');
+  assert.strictEqual(PartNormalizer.formatPartNumber('11411605400'), '1141 160 5400');
+});
+
+// -------------------------------------------------------------
+// Test 2: Strict Rejection of Malformed Part Numbers
+// -------------------------------------------------------------
+test('Phase 52A - Test 2: Rejection of Malformed Part Numbers', () => {
+  assert.strictEqual(PartNormalizer.normalizePartNumber('123456789'), null); // 9 digits
+  assert.strictEqual(PartNormalizer.normalizePartNumber('1234567890'), null); // 10 digits
+  assert.strictEqual(PartNormalizer.normalizePartNumber('123456789012'), null); // 12 digits
+  assert.strictEqual(PartNormalizer.normalizePartNumber('1141-ABC-5400'), null); // Alpha chars
+  assert.strictEqual(PartNormalizer.normalizePartNumber(''), null); // Empty
+  assert.strictEqual(PartNormalizer.normalizePartNumber(null), null); // Null
+  assert.strictEqual(PartNormalizer.isValidPartNumber('9999 999 99'), false);
+  assert.strictEqual(PartNormalizer.isValidPartNumber('1141 160 5400'), true);
+});
+
+// -------------------------------------------------------------
+// Test 3: Deduplication and Canonical Part Aggregation
+// -------------------------------------------------------------
+test('Phase 52A - Test 3: Deduplication across Diagram Sections and Sources', () => {
+  assert.ok(partsCatalogDoc.parts.length > 0, 'Parts catalog must contain parts');
+  const partNoSet = new Set();
+  for (const part of partsCatalogDoc.parts) {
+    assert.match(part.part_number, /^\d{11}$/, `Part number ${part.part_number} must be 11 digits`);
+    assert.ok(!partNoSet.has(part.part_number), `Duplicate part number in catalog: ${part.part_number}`);
+    partNoSet.add(part.part_number);
+    assert.strictEqual(part.part_number_display, PartNormalizer.formatPartNumber(part.part_number));
+  }
+  assert.strictEqual(partsCatalogDoc.parts_count, partsCatalogDoc.parts.length);
+});
+
+// -------------------------------------------------------------
+// Test 4: Section Key Normalization
+// -------------------------------------------------------------
+test('Phase 52A - Test 4: Section Key Normalization and Slash Stripping', () => {
+  assert.strictEqual(PartNormalizer.normalizeSectionKey('cylinder/'), 'cylinder');
+  assert.strictEqual(PartNormalizer.normalizeSectionKey('/crankcase/'), 'crankcase');
+  assert.strictEqual(PartNormalizer.normalizeSectionKey('Air filter, Carburetor'), 'air_filter_carburetor');
+  assert.strictEqual(PartNormalizer.normalizeSectionKey('Clutch & Chain Brake'), 'clutch_chain_brake');
+  assert.strictEqual(PartNormalizer.normalizeSectionKey(''), 'general');
+});
+
+// -------------------------------------------------------------
+// Test 5: Model Variant Preservation (No Flattening)
+// -------------------------------------------------------------
+test('Phase 52A - Test 5: Model Variant Preservation without Flattening', () => {
+  const v1 = PartNormalizer.normalizeModelVariant('MS 261', 'MS 261 C-M');
+  assert.strictEqual(v1.canonical_model_id, 'ms_261');
+  assert.strictEqual(v1.variant_key, 'c_m');
+  assert.strictEqual(v1.variant_name, 'MS 261 C-M');
+
+  const v2 = PartNormalizer.normalizeModelVariant('MS 180', 'MS 180 C-BE');
+  assert.strictEqual(v2.canonical_model_id, 'ms_180');
+  assert.strictEqual(v2.variant_key, 'c_be');
+  assert.strictEqual(v2.variant_name, 'MS 180 C-BE');
+
+  const v3 = PartNormalizer.normalizeModelVariant('FS 55', 'FS 55 RC-E');
+  assert.strictEqual(v3.canonical_model_id, 'fs_55');
+  assert.strictEqual(v3.variant_key, 'rc_e');
+  assert.strictEqual(v3.variant_name, 'FS 55 RC-E');
+});
+
+// -------------------------------------------------------------
+// Test 6: Part Name Conflict Comparison Classifications
+// -------------------------------------------------------------
+test('Phase 52A - Test 6: Deterministic Part Name Comparison', () => {
+  // NORMALIZED_EQUIVALENT
+  const eq = PartNormalizer.comparePartNames('HD2 Air filter', 'Air Filter HD2');
+  assert.strictEqual(eq.isConflict, false);
+  assert.strictEqual(eq.classification, 'NORMALIZED_EQUIVALENT');
+
+  // DESCRIPTION_ENRICHMENT
+  const enr = PartNormalizer.comparePartNames('Service Kit 7', 'Service Kit 7 (Air Filter, Spark Plug, Fuel Filter)');
+  assert.strictEqual(enr.isConflict, false);
+  assert.strictEqual(enr.classification, 'DESCRIPTION_ENRICHMENT');
+
+  // TRUE_CONFLICT
+  const conf = PartNormalizer.comparePartNames('Spark plug NGK CMR6H', 'Cylinder with piston Ø 44 mm');
+  assert.strictEqual(conf.isConflict, true);
+  assert.strictEqual(conf.classification, 'TRUE_CONFLICT');
+});
+
+// -------------------------------------------------------------
+// Test 7: HTTP Client LIVE Mode Refuses Fixture Fallback
+// -------------------------------------------------------------
+test('Phase 52A - Test 7: LIVE Mode Refuses Fixture Fallback', () => {
+  const liveClient = new HttpClient({ mode: 'LIVE', useCache: false });
+  assert.strictEqual(liveClient.mode, 'LIVE');
+  const cached = liveClient.readFromCache('https://www.example.com/not-in-live-cache');
+  assert.strictEqual(cached, null, 'LIVE mode must never return fixture cache');
+});
+
+// -------------------------------------------------------------
+// Test 8: HTTP Client FIXTURE Mode Does Not Make Network Requests
+// -------------------------------------------------------------
+test('Phase 52A - Test 8: FIXTURE Mode Operates Fully Offline', async () => {
+  const fixtureClient = new HttpClient({ mode: 'FIXTURE', useCache: true });
+  assert.strictEqual(fixtureClient.mode, 'FIXTURE');
+  const res = await fixtureClient.get('https://www.example.com/unmocked-url-test');
+  assert.strictEqual(res.fromCache, false);
+  assert.strictEqual(res.status, 404);
+  assert.strictEqual(res.mode, 'FIXTURE');
+});
+
+// -------------------------------------------------------------
+// Test 9: Granular Part Fitment Evidence Observations
+// -------------------------------------------------------------
+test('Phase 52A - Test 9: Granular Part Fitment Evidence Structure with URLs and Status', () => {
+  assert.ok(evidenceDoc.observations.length > 0, 'Must have fitment evidence observations');
+  assert.strictEqual(evidenceDoc.observations_count, evidenceDoc.observations.length);
+  for (const obs of evidenceDoc.observations) {
+    assert.ok(obs.evidence_id, 'Must have evidence_id');
+    assert.match(obs.part_number, /^\d{11}$/, 'Part number must be 11 digits');
+    assert.ok(obs.canonical_model_id, 'Must have canonical_model_id');
+    assert.ok(obs.source_id, 'Must have source_id');
+    assert.ok(obs.source_url, 'Must have source_url');
+    assert.ok(obs.requested_url, 'Must have requested_url');
+    assert.ok(obs.final_url, 'Must have final_url');
+    assert.ok(obs.http_status, 'Must have http_status');
+    assert.ok(obs.fitment_scope, 'Must have fitment_scope');
+  }
+});
+
+// -------------------------------------------------------------
+// Test 10: Conflict Deduplication & Unique Conflict IDs
+// -------------------------------------------------------------
+test('Phase 52A - Test 10: Conflict Deduplication and Unique IDs', () => {
+  const idSet = new Set();
+  for (const c of conflictsDoc.conflicts) {
+    assert.ok(!idSet.has(c.conflict_id), `Duplicate conflict ID found: ${c.conflict_id}`);
+    idSet.add(c.conflict_id);
+    assert.ok(c.part_number, 'Conflict must have part number');
+    assert.ok(c.conflict_type, 'Conflict must have conflict type');
+  }
+  assert.strictEqual(conflictsDoc.conflicts_count, conflictsDoc.conflicts.length);
+});
+
+// -------------------------------------------------------------
+// Test 11: Official STIHL Service Doc Precedence & Valid URLs
+// -------------------------------------------------------------
+test('Phase 52A - Test 11: Official STIHL Precedence and Valid Provenance', () => {
+  const officialSource = sourcesDoc.sources.find(s => s.source_id === 'official_stihl');
+  assert.ok(officialSource);
+  assert.strictEqual(officialSource.authority_level, 'OFFICIAL_STIHL');
+  assert.strictEqual(officialSource.source_type, 'OFFICIAL_MANUFACTURER_DOCUMENTATION');
+
+  for (const f of fitmentsDoc.fitments.filter(x => x.source_id === 'official_stihl')) {
+    assert.ok(!f.source_url.includes('service-kits-official'), 'No invented placeholder URLs');
+    assert.ok(f.source_url.startsWith('https://www.stihl.'), 'Valid STIHL source URL');
+  }
+});
+
+// -------------------------------------------------------------
+// Test 12: CLI Flag --pilot Manifest Integrity
+// -------------------------------------------------------------
+test('Phase 52A - Test 12: CLI Flag --pilot Manifest Integrity', () => {
+  assert.strictEqual(manifestDoc.models_requested, 6);
+  assert.strictEqual(manifestDoc.models_found, 6);
+  assert.strictEqual(manifestDoc.synthetic_canonical_records, 0, 'SYNTHETIC_CANONICAL_RECORDS must be 0');
+  assert.ok(manifestDoc.per_model_summary['MS 261']);
+  assert.ok(manifestDoc.per_model_summary['MS 170']);
+  assert.ok(manifestDoc.per_model_summary['MS 180']);
+  assert.ok(manifestDoc.per_model_summary['026']);
+  assert.ok(manifestDoc.per_model_summary['FS 55']);
+  assert.ok(manifestDoc.per_model_summary['TS 420']);
+});
+
+// -------------------------------------------------------------
+// Test 13: CLI Flag --model <name> (Offline Engine Test)
+// -------------------------------------------------------------
+test('Phase 52A - Test 13: CLI Single Model Harvest (Offline Engine)', async () => {
+  const engine = new PartsHarvesterEngine({
+    httpClient: new HttpClient({ mode: 'FIXTURE', useCache: true }),
+    dryRun: true
+  });
+  const res = await engine.harvestModels(['MS 261']);
+  assert.strictEqual(res.stats.models_requested, 1);
+  assert.strictEqual(res.stats.models_found, 1);
+  assert.ok(res.partsCatalogDoc.parts.length > 0);
+});
+
+// -------------------------------------------------------------
+// Test 14: CLI Flag --dry-run
+// -------------------------------------------------------------
+test('Phase 52A - Test 14: Dry Run Does Not Overwrite Files', async () => {
+  const tempDir = path.join(rootDir, '.cache', 'temp_dry_run_test');
+  const engine = new PartsHarvesterEngine({
+    httpClient: new HttpClient({ mode: 'FIXTURE', useCache: true }),
+    outputDir: tempDir,
+    dryRun: true
+  });
+  await engine.harvestModels(['026']);
+  assert.strictEqual(fs.existsSync(tempDir), false, 'Temp dir must not be created during dry run');
+});
+
+// -------------------------------------------------------------
+// Test 15: Fail-Closed on --all-models Flag
+// -------------------------------------------------------------
+test('Phase 52A - Test 15: Fail-Closed on --all-models Flag', () => {
+  const res = spawnSync('node', ['scripts/harvest_stihl_parts.mjs', '--all-models'], {
+    cwd: rootDir,
+    encoding: 'utf8'
+  });
+  assert.strictEqual(res.status, 1, 'Command must exit with non-zero code');
+  assert.ok(res.stderr.includes('FULL_CATALOG_CRAWL_PROHIBITED') || res.stdout.includes('FULL_CATALOG_CRAWL_PROHIBITED'));
+});
+
+// -------------------------------------------------------------
+// Test 16: Deterministic Canonical Output
+// -------------------------------------------------------------
+test('Phase 52A - Test 16: Deterministic Output Across Successive Runs', async () => {
+  const engine1 = new PartsHarvesterEngine({
+    httpClient: new HttpClient({ mode: 'LIVE', useCache: true, refresh: false }),
+    dryRun: true
+  });
+  const res1 = await engine1.harvestModels(['MS 261', 'MS 170']);
+
+  const engine2 = new PartsHarvesterEngine({
+    httpClient: new HttpClient({ mode: 'LIVE', useCache: true, refresh: false }),
+    dryRun: true
+  });
+  const res2 = await engine2.harvestModels(['MS 261', 'MS 170']);
+
+  assert.strictEqual(
+    JSON.stringify(res1.partsCatalogDoc),
+    JSON.stringify(res2.partsCatalogDoc),
+    'partsCatalogDoc must be 100% deterministic'
+  );
+  assert.strictEqual(
+    JSON.stringify(res1.modelPartFitmentsDoc),
+    JSON.stringify(res2.modelPartFitmentsDoc),
+    'modelPartFitmentsDoc must be 100% deterministic'
+  );
+});
+
+// -------------------------------------------------------------
+// Test 17: JSON vs SQLite Parity (100% Match Across All Tables)
+// -------------------------------------------------------------
+test('Phase 52A - Test 17: JSON vs SQLite Parity Across All 6 Parts Tables', async () => {
+  const db = new sqlite3.Database(sqliteDbPath);
+  const getCount = (query) => new Promise((resolve, reject) => {
+    db.get(query, (err, row) => (err ? reject(err) : resolve(row.c)));
+  });
+
+  try {
+    const partsCount = await getCount('SELECT COUNT(*) as c FROM parts');
+    const fitmentsCount = await getCount('SELECT COUNT(*) as c FROM model_part_fitments');
+    const evidenceCount = await getCount('SELECT COUNT(*) as c FROM part_fitment_evidence');
+    const sourcesCount = await getCount('SELECT COUNT(*) as c FROM parts_sources');
+    const conflictsCount = await getCount('SELECT COUNT(*) as c FROM parts_conflicts');
+    const variantsCount = await getCount('SELECT COUNT(*) as c FROM parts_model_variants');
+
+    assert.strictEqual(partsCount, partsCatalogDoc.parts.length, 'parts table count matches JSON');
+    assert.strictEqual(fitmentsCount, fitmentsDoc.fitments.length, 'model_part_fitments count matches JSON');
+    assert.strictEqual(evidenceCount, evidenceDoc.observations.length, 'part_fitment_evidence count matches JSON');
+    assert.strictEqual(sourcesCount, sourcesDoc.sources.length, 'parts_sources count matches JSON');
+    assert.strictEqual(conflictsCount, conflictsDoc.conflicts.length, 'parts_conflicts count matches JSON');
+    assert.strictEqual(variantsCount, variantsDoc.variants.length, 'parts_model_variants count matches JSON');
+  } finally {
+    db.close();
+  }
+});
+
+// -------------------------------------------------------------
+// Test 18: Failure Injections A-E (HTML Malformed, Missing Columns, 404)
+// -------------------------------------------------------------
+test('Phase 52A - Test 18: Failure Injections A-E (Source Parsing Resilience)', () => {
+  const source = new DiySparePartsSource(new HttpClient({ mode: 'FIXTURE' }));
+
+  // Injection A: Malformed HTML with missing columns
+  const badHtml = '<table><tr><td>1</td></tr></table>';
+  const resA = source.parseSectionPage(badHtml, { sectionKey: 'test', sectionName: 'Test' });
+  assert.strictEqual(resA.parts.length, 0);
+
+  // Injection B: Empty table
+  const emptyHtml = '<table><tr><th>Pos</th></tr></table>';
+  const resB = source.parseSectionPage(emptyHtml, { sectionKey: 'test', sectionName: 'Test' });
+  assert.strictEqual(resB.parts.length, 0);
+  assert.strictEqual(resB.status, 'EMPTY_VALID');
+
+  // Injection C: Invalid part number rows
+  const badPartHtml = '<table><tr><td>1</td><td>12345</td><td>Some Part</td><td>1</td></tr></table>';
+  const resC = source.parseSectionPage(badPartHtml, { sectionKey: 'test', sectionName: 'Test' });
+  assert.strictEqual(resC.parts.length, 0);
+  assert.strictEqual(resC.rejected.length, 1);
+  assert.strictEqual(resC.rejected[0].reason, 'INVALID_PART_NUMBER_FORMAT');
+
+  // Injection D: Model page with no diagram links
+  const emptyModelHtml = '<html><body><h1>No diagrams</h1></body></html>';
+  const resD = source.parseModelPage(emptyModelHtml, 'http://test', 'MS 999');
+  assert.strictEqual(resD.sections.length, 0);
+
+  // Injection E: Resolver for non-existent part
+  const resolver = new PartCatalogResolver(partsCatalogDoc, fitmentsDoc);
+  const notFound = resolver.resolvePartNumber('99999999999');
+  assert.strictEqual(notFound.found, false);
+});
+
+// -------------------------------------------------------------
+// Test 19: Spark Plug Part Identity Investigation (0000 400 7000 vs 1110 400 7005)
+// -------------------------------------------------------------
+test('Phase 52A - Test 19: Spark Plug Identity Verification (0000 400 7000 is NGK, not Bosch WSR6F)', () => {
+  const resolver = new PartCatalogResolver(partsCatalogDoc, fitmentsDoc);
+
+  const cmr6h = resolver.resolvePartNumber('0000 400 7000');
+  assert.strictEqual(cmr6h.found, true);
+  assert.strictEqual(cmr6h.part_number, '00004007000');
+  assert.ok(cmr6h.part_name.toUpperCase().includes('NGK'));
+
+  const wsr6f = resolver.resolvePartNumber('1110 400 7005');
+  assert.strictEqual(wsr6f.found, true);
+  assert.strictEqual(wsr6f.part_number, '11104007005');
+  assert.ok(wsr6f.part_name.toUpperCase().includes('BOSCH') || wsr6f.part_name.toUpperCase().includes('WSR6F'));
+});
+
+// -------------------------------------------------------------
+// Test 20: Regression Safety - Production Decoder & Serial Anchors (2845) & Aliases (171)
+// -------------------------------------------------------------
+test('Phase 52A - Test 20: Complete Regression Safety for Decoder, Anchors (2845), and Aliases (171)', () => {
+  assert.strictEqual(anchorsDoc.anchors.length, 2845, 'Official anchors must remain 2845');
+  assert.strictEqual(aliasesDoc.aliases.length, 171, 'Official aliases must remain 171');
+
+  const dec1 = decodeStihlCode('191422784');
+  assert.strictEqual(dec1.success, true, 'Serial 191422784 must decode');
+
+  const dec2 = decodeStihlCode('10000000');
+  assert.strictEqual(dec2.success, true);
+  assert.strictEqual(dec2.inputAliasMatched, true);
+  assert.strictEqual(dec2.model, 'FS 55 RC-E Z Motorsense');
+
+  const dec3 = decodeStihlCode('88888888');
+  assert.strictEqual(dec3.success, false);
+
+  const partAnalysis = decodeStihlCode('1121 160 2051', JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8')));
+  assert.strictEqual(partAnalysis.success, true);
+  assert.strictEqual(partAnalysis.type, 'PART_NUMBER');
+  assert.strictEqual(partAnalysis.familyCode, '1121');
+});
+
+// -------------------------------------------------------------
+// Test 21: Official Entry Without Response SHA-256 Rejected
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 21: Official Entry Without Response SHA-256 Rejected', () => {
+  const source = new OfficialStihlSource();
+  const invalidNoSha = {
+    part_number: '11400074101',
+    part_name: 'Test Kit',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  assert.strictEqual(source.isValidOfficialRecord(invalidNoSha), false);
+});
+
+// -------------------------------------------------------------
+// Test 22: Official Source URL Mismatch Rejected
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 22: Official Source URL Non-STIHL Mismatch Rejected', () => {
+  const source = new OfficialStihlSource();
+  const invalidUrl = {
+    part_number: '11400074101',
+    part_name: 'Test Kit',
+    models: ['MS 261'],
+    source_url: 'https://www.thirdparty.com/test',
+    response_sha256: '35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  assert.strictEqual(source.isValidOfficialRecord(invalidUrl), false);
+});
+
+// -------------------------------------------------------------
+// Test 23: Erroneous MS 261 Service Kit 14 Completely Removed
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 23: Erroneous MS 261 Service Kit 14 (1141 007 1800) Removed', async () => {
+  const source = new OfficialStihlSource();
+  const parts = await source.getOfficialPartsForModel('MS 261');
+  const hasBadKit = parts.some(p => p.part_number === '11410071800');
+  assert.strictEqual(hasBadKit, false, 'Erroneous 1141 007 1800 must be removed from MS 261');
+
+  const hasCorrectKit = parts.some(p => p.part_number === '11400074101');
+  assert.strictEqual(hasCorrectKit, true, 'Correct Service Kit 11 (1140 007 4101) must be present');
+});
+
+// -------------------------------------------------------------
+// Test 24: Application-Specific Conditions Preserved for MS 170/180
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 24: Application-Specific Fitment Conditions Preserved', async () => {
+  const source = new OfficialStihlSource();
+  const parts = await source.getOfficialPartsForModel('MS 170');
+  const sk6 = parts.find(p => p.part_number === '11300074100');
+  assert.ok(sk6);
+  assert.strictEqual(sk6.fitment_scope, FITMENT_SCOPES.APPLICATION_SPECIFIC);
+  assert.ok(sk6.variant_condition.includes('Pre-2-MIX'));
+
+  const sk45 = parts.find(p => p.part_number === '11300074103');
+  assert.ok(sk45);
+  assert.strictEqual(sk45.fitment_scope, FITMENT_SCOPES.APPLICATION_SPECIFIC);
+  assert.ok(sk45.variant_condition.includes('2-MIX'));
+});
+
+// -------------------------------------------------------------
+// Test 25: Source Harvestability Matrix Status Integrity
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 25: Parts Source Harvestability Matrix Status Integrity', () => {
+  const harvestabilityPath = path.join(rootDir, 'data', 'parts_source_harvestability.json');
+  assert.ok(fs.existsSync(harvestabilityPath), 'parts_source_harvestability.json must exist');
+  const matrix = JSON.parse(fs.readFileSync(harvestabilityPath, 'utf8'));
+
+  const spw = matrix.sources.find(s => s.source_id === 'sparepartsworld');
+  assert.ok(spw);
+  assert.strictEqual(spw.harvestable, true);
+  assert.strictEqual(spw.model_http_status, 200);
+
+  const diy = matrix.sources.find(s => s.source_id === 'diyspareparts');
+  assert.ok(diy);
+  assert.strictEqual(diy.harvestable, false);
+  assert.strictEqual(diy.reason, 'WAF_BLOCKED');
+
+  const pt = matrix.sources.find(s => s.source_id === 'partstree');
+  assert.ok(pt);
+  assert.strictEqual(pt.harvestable, false);
+  assert.strictEqual(pt.reason, 'AUTOMATION_BLOCKED');
+});
+
+// -------------------------------------------------------------
+// Test 26: Scalability Gate - Models Live Discovered vs Official Only
+// -------------------------------------------------------------
+test('Phase 52A-R3 - Test 26: Models Live Discovered vs Official Only Tracking', () => {
+  assert.strictEqual(manifestDoc.models_requested, 6);
+  assert.strictEqual(manifestDoc.models_live_discovered, 6);
+  assert.strictEqual(manifestDoc.models_official_evidence_only, 0);
+  assert.strictEqual(manifestDoc.sections_failed, 0);
+  assert.ok(manifestDoc.sections_discovered >= 40);
+  assert.strictEqual(manifestDoc.sections_parsed, manifestDoc.sections_with_mapped_parts);
+});
+
+// -------------------------------------------------------------
+// Test 27: Automatic Model Discovery on Spare Parts World (No hardcoded modelUrls map)
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 27: Automatic Model Discovery in SparePartsWorldSource', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  assert.strictEqual(source.modelUrls, undefined, 'modelUrls hardcoded map must be removed');
+
+  const res261 = await source.discoverModel('MS 261');
+  assert.strictEqual(res261.found, true);
+  assert.strictEqual(res261.match_type, 'BASE_MODEL');
+  assert.ok(res261.url.includes('P782612') || res261.url.includes('MS-261'));
+});
+
+// -------------------------------------------------------------
+// Test 28: Automatic Discovery of Holdout Models MS 250 and MS 362
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 28: Automatic Discovery of Holdout Models MS 250 and MS 362', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+
+  const res250 = await source.discoverModel('MS 250');
+  assert.strictEqual(res250.found, true);
+  assert.strictEqual(res250.match_type, 'BASE_MODEL');
+
+  const res362 = await source.discoverModel('MS 362');
+  assert.strictEqual(res362.found, true);
+});
+
+// -------------------------------------------------------------
+// Test 29: Section Attribution Semantics (No First-Diagram Leaks)
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 29: Section Attribution Semantics (Unmapped Parts get UNRESOLVED)', () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'FIXTURE' }));
+  const sampleHtml = `
+    <div class='diagpill' onclick="roll(1, 'images_spares/MS261-Crankcase.jpg')">Diagram 1</div>
+    <div class='spareref'>1</div>
+    <div class='sparetitle'><a class='sparetitle'>Stihl Crankcase Fan Side</a></div>
+    <span class='sparesncode'>1141 020 2616</span>
+    <div class='spareref'>2</div>
+    <div class='sparetitle'><a class='sparetitle'>Stihl Generic Washer</a></div>
+    <span class='sparesncode'>0000 958 0408</span>
+  `;
+
+  const parsed = source.parsePartsFromHtml(sampleHtml, 'MS 261', 'http://test');
+  assert.strictEqual(parsed.length, 2);
+
+  const crankcasePart = parsed.find(p => p.part_number === '11410202616');
+  assert.strictEqual(crankcasePart.section_attribution_status, 'MAPPED');
+  assert.strictEqual(crankcasePart.section_key, 'crankcase');
+
+  const unmappedPart = parsed.find(p => p.part_number === '00009580408');
+  assert.strictEqual(unmappedPart.section_attribution_status, 'UNRESOLVED');
+  assert.strictEqual(unmappedPart.section_key, 'general_unresolved');
+});
+
+// -------------------------------------------------------------
+// Test 30: Reverse Compatibility Helper
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 30: Reverse Compatibility Lookup Helper', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  const testPartUrl = 'https://www.sparepartsworld.co.uk/Stihl-11410802104-Fan-Housing-With-Rewind-Starter-for-the-MS261-range/P737999';
+  const lookup = await source.discoverCompatibleModelsForPart(testPartUrl);
+
+  assert.strictEqual(lookup.status, 200);
+  assert.ok(Array.isArray(lookup.compatible_models));
+  assert.ok(lookup.compatible_models.length > 0);
+  assert.ok(lookup.compatible_models.some(m => m.includes('261')));
+});
+
+// -------------------------------------------------------------
+// Test 31: Dynamic STIHL Catalog Index Loaded & Discovered (600+ models)
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 31: Dynamic STIHL Catalog Index Loaded (600+ models)', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  const catalog = await source.loadCatalogIndex();
+  assert.ok(Array.isArray(catalog));
+  assert.ok(catalog.length >= 600, `Catalog must contain >= 600 entries (got ${catalog.length})`);
+  assert.ok(catalog.some(c => c.normalized_model === 'MS 261'));
+  assert.ok(catalog.some(c => c.normalized_model === 'MS 250'));
+  assert.ok(catalog.some(c => c.normalized_model === 'MS 362'));
+  assert.ok(catalog.some(c => c.normalized_model === 'BG 56'));
+});
+
+// -------------------------------------------------------------
+// Test 32: Zero Hardcoded Product Hints in Harvester Code
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 32: Zero Hardcoded Product Hints in Harvester Code', () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  assert.strictEqual(source.productHints, undefined);
+  assert.strictEqual(source.modelUrls, undefined);
+});
+
+// -------------------------------------------------------------
+// Test 33: Holdout Discovery for 3 Distinct Models
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 33: Holdout Discovery for MS 250, MS 362, BG 56', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  const m1 = await source.discoverModel('MS 250');
+  const m2 = await source.discoverModel('MS 362');
+  const m3 = await source.discoverModel('BG 56');
+
+  assert.strictEqual(m1.found, true);
+  assert.strictEqual(m2.found, true);
+  assert.strictEqual(m3.found, true);
+});
+
+// -------------------------------------------------------------
+// Test 34: Exact Variant Fitment Identification
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 34: Exact Variant Fitment Identification', () => {
+  const exactVariantFits = fitmentsDoc.fitments.filter(f => f.variant_key !== 'base');
+  assert.ok(exactVariantFits.length > 0, 'Must have exact variant fitments');
+  for (const f of exactVariantFits) {
+    assert.strictEqual(f.fitment_scope, FITMENT_SCOPES.EXACT_VARIANT);
+    assert.notStrictEqual(f.variant_key, 'base');
+  }
+});
+
+// -------------------------------------------------------------
+// Test 35: Official Claim Content Validator with Negative Test Verification
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 35: Official Claim Validator & Negative Tests', async () => {
+  const validatorModule = await import('../scripts/validate_official_parts_evidence.mjs');
+  assert.doesNotThrow(() => validatorModule.runNegativeValidationTests());
+
+  const result = await validatorModule.validateOfficialEvidenceFile(path.join(rootDir, 'data', 'verified_official_parts_evidence.json'));
+  assert.strictEqual(result.verifiedCount, 6);
+  assert.strictEqual(result.demotedCount, 15);
+});
+
+// -------------------------------------------------------------
+// Test 36: Requested vs Final URL Tracking in Part Evidence
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 36: Requested vs Final URL Tracking in Part Evidence', () => {
+  for (const obs of evidenceDoc.observations) {
+    assert.ok(obs.requested_url, 'Observation must have requested_url');
+    assert.ok(obs.final_url, 'Observation must have final_url');
+    assert.ok(typeof obs.http_status === 'number', 'Observation must have numeric http_status');
+  }
+});
+
+// -------------------------------------------------------------
+// Test 37: Section Metrics Truthfulness
+// -------------------------------------------------------------
+test('Phase 52A-R5 - Test 37: Section Metrics Truthfulness and Consistency', () => {
+  assert.strictEqual(manifestDoc.sections_parsed, manifestDoc.sections_with_mapped_parts);
+  assert.strictEqual(manifestDoc.sections_without_mapped_parts, manifestDoc.sections_discovered - manifestDoc.sections_with_mapped_parts);
+  assert.ok(manifestDoc.parts_with_section > 0);
+  assert.ok(manifestDoc.parts_without_section > 0);
+  assert.ok(manifestDoc.section_mapping_rate > 0 && manifestDoc.section_mapping_rate <= 1);
+});
+
+// -------------------------------------------------------------
+// Test 38: Blocker A Verification - Zero Manual Holdout Injection & Zero Numeric Product ID Enumeration
+// -------------------------------------------------------------
+test('Phase 52A-R7 - Test 38: Zero Manual Holdout Injection and Zero Numeric Enumeration in Discovery Code', () => {
+  const discoveryScript = fs.readFileSync(path.join(rootDir, 'scripts', 'build_spw_catalog_index.mjs'), 'utf8');
+  const sourceCode = fs.readFileSync(path.join(rootDir, 'src', 'parts', 'sources', 'SparePartsWorldSource.js'), 'utf8');
+
+  // Verify zero manual holdout injection
+  assert.strictEqual(discoveryScript.includes('holdoutCandidates'), false, 'build_spw_catalog_index.mjs must NOT contain holdoutCandidates');
+  assert.strictEqual(discoveryScript.includes('P782299'), false, 'build_spw_catalog_index.mjs must NOT hardcode P782299');
+  assert.strictEqual(discoveryScript.includes('P806734'), false, 'build_spw_catalog_index.mjs must NOT hardcode P806734');
+  assert.strictEqual(discoveryScript.includes('HSA-140'), false, 'build_spw_catalog_index.mjs must NOT contain HSA-140 synthetic fallback');
+  assert.strictEqual(discoveryScript.includes('RM-248-1-T'), false, 'build_spw_catalog_index.mjs must NOT contain RM-248 synthetic fallback');
+
+  // Verify no numeric range loops like for (let p = 782550; p <= 782860; p++)
+  const numericRangeLoopRegex = /for\s*\(\s*let\s+\w+\s*=\s*\d{5,}\s*;\s*\w+\s*<=?\s*\d{5,}/;
+  assert.strictEqual(numericRangeLoopRegex.test(discoveryScript), false, 'build_spw_catalog_index.mjs must contain 0 numeric range loops');
+  assert.strictEqual(numericRangeLoopRegex.test(sourceCode), false, 'SparePartsWorldSource.js must contain 0 numeric range loops');
+
+  // Verify NUMERIC_PRODUCT_ID_ENUMERATION = 0
+  const enumerationCount = (discoveryScript.match(/\[\s*\d{6}\s*,\s*\d{6}\s*\]/g) || []).length;
+  assert.strictEqual(enumerationCount, 0, 'NUMERIC_PRODUCT_ID_ENUMERATION must be 0');
+});
+
+// -------------------------------------------------------------
+// Test 39: Dynamic Holdouts Discovered Naturally from Graph
+// -------------------------------------------------------------
+test('Phase 52A-R7 - Test 39: Dynamic Holdouts Auto-Discovered Naturally from Catalog Graph', () => {
+  const indexDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'sparepartsworld_stihl_model_index.json'), 'utf8'));
+  const catalog = indexDoc.catalog;
+
+  // 1. Total catalog models >= 1000
+  assert.ok(catalog.length >= 1000, `Catalog must contain >= 1000 entries (got ${catalog.length})`);
+
+  // 2. Models with source_product_id > P784000 discovered naturally
+  const overP784k = catalog.filter(c => {
+    const pidNum = parseInt(c.source_product_id.replace(/^P/, ''));
+    return !isNaN(pidNum) && pidNum > 784000;
+  });
+  assert.ok(overP784k.length >= 100, `Must discover >= 100 dynamic models with P-ID > 784000 (got ${overP784k.length})`);
+
+  // 3. Dynamic holdout models from different categories
+  const categories = new Set(catalog.map(c => c.category));
+  assert.ok(categories.size >= 4, 'Discovered catalog must span >= 4 distinct categories');
+  assert.ok(categories.has('Chainsaw'));
+  assert.ok(categories.has('Brushcutter'));
+  assert.ok(categories.has('Blower'));
+  assert.ok(categories.has('Lawn Mower') || categories.has('Hedge Trimmer'));
+});
+
+// -------------------------------------------------------------
+// Test 40: Content-Level Official Validator Rejection (Negative Tests)
+// -------------------------------------------------------------
+test('Phase 52A-R7 - Test 40: Content-Level Official Validator Rejects Fake Claims, Wrong Locators & Conditions', async () => {
+  const { validateOfficialRecord } = await import('../scripts/validate_official_parts_evidence.mjs');
+
+  const mockHtml = '<html><body><h1>STIHL MS 261 Service Kit</h1><p>Part number: 1140 007 4101</p><p>Section: Service Kit 11</p><p>Engine: 2-MIX</p></body></html>';
+
+  // 1. Fake part number not in body
+  const fakePart = {
+    part_number: '99999999999',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    response_sha256: 'a'.repeat(64),
+    doc_ref: 'Doc',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 11',
+    compatibility_text: 'MS 261',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  const errors1 = validateOfficialRecord(fakePart, mockHtml);
+  assert.ok(errors1.some(e => e.includes('not found in official response body content')));
+
+  // 2. Wrong model not in body
+  const wrongModel = {
+    part_number: '11400074101',
+    models: ['FS 999'],
+    source_url: 'https://www.stihl.nl/test',
+    response_sha256: 'a'.repeat(64),
+    doc_ref: 'Doc',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 11',
+    compatibility_text: 'FS 999',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  const errors2 = validateOfficialRecord(wrongModel, mockHtml);
+  assert.ok(errors2.some(e => e.includes('Claimed model "FS 999" not found in official response body content')));
+
+  // 3. Wrong source locator not in body
+  const wrongLocator = {
+    part_number: '11400074101',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    response_sha256: 'a'.repeat(64),
+    doc_ref: 'Doc',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 999',
+    compatibility_text: 'MS 261',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  const errors3 = validateOfficialRecord(wrongLocator, mockHtml);
+  assert.ok(errors3.some(e => e.includes('Claimed source_locator "Service Kit 999" not found in official response body content')));
+
+  // 4. Wrong condition not in body
+  const wrongCondition = {
+    part_number: '11400074101',
+    models: ['MS 261'],
+    source_url: 'https://www.stihl.nl/test',
+    response_sha256: 'a'.repeat(64),
+    doc_ref: 'Doc',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 11',
+    compatibility_text: 'MS 261',
+    variant_condition: '4-MIX 4-stroke engine generation',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+  const errors4 = validateOfficialRecord(wrongCondition, mockHtml);
+  assert.ok(errors4.some(e => e.includes('Claimed variant_condition term "4-MIX"')));
+});
+
+// -------------------------------------------------------------
+// Test 41: Data Minimization - Zero Full External HTML Fixture Files Committed
+// -------------------------------------------------------------
+test('Phase 52A-R7 - Test 41: Data Minimization - Zero Full External HTML Fixtures Committed', () => {
+  const fixturesDir = path.join(rootDir, 'tests', 'fixtures', 'parts');
+
+  // Verify tests/fixtures/parts/cache is not tracked in git
+  const gitLs = spawnSync('git', ['ls-files', 'tests/fixtures/parts/cache'], {
+    cwd: rootDir,
+    encoding: 'utf8'
+  });
+  const trackedFiles = gitLs.stdout.trim().split('\n').filter(Boolean);
+  assert.strictEqual(trackedFiles.length, 0, `tests/fixtures/parts/cache must have 0 tracked files in git (found ${trackedFiles.length})`);
+
+  // Verify any committed fixture files in tests/fixtures/parts are < 50 KB
+  const allFixtureFiles = fs.readdirSync(fixturesDir, { recursive: true, withFileTypes: true })
+    .filter(f => f.isFile())
+    .map(f => path.join(f.path || fixturesDir, f.name));
+
+  for (const file of allFixtureFiles) {
+    const stat = fs.statSync(file);
+    assert.ok(stat.size < 50000, `Fixture file ${path.basename(file)} must be < 50 KB (got ${stat.size} bytes)`);
+    if (file.endsWith('.json') || file.endsWith('.html')) {
+      const content = fs.readFileSync(file, 'utf8');
+      assert.strictEqual(content.includes('gtm.js'), false, `Fixture ${path.basename(file)} must NOT contain Google Tag Manager dumps`);
+      assert.strictEqual(content.includes('cookieconsent'), false, `Fixture ${path.basename(file)} must NOT contain cookieconsent dumps`);
+    }
+  }
+});
