@@ -349,16 +349,21 @@ function recreateSqliteDatabase(database) {
         fitment_scope VARCHAR(50) NOT NULL,
         section_key VARCHAR(100) NOT NULL,
         section_name VARCHAR(150) NOT NULL,
+        section_attribution_status VARCHAR(50),
         diagram_position VARCHAR(50),
         source_id VARCHAR(50) NOT NULL,
         source_url TEXT,
+        requested_url TEXT,
+        final_url TEXT,
+        http_status INTEGER,
+        source_response_sha256 VARCHAR(64),
         part_name_raw TEXT,
         quantity INTEGER DEFAULT 1
       )`);
       db.run(`CREATE INDEX IF NOT EXISTS idx_evidence_part ON part_fitment_evidence(part_number)`);
       db.run(`CREATE INDEX IF NOT EXISTS idx_evidence_model ON part_fitment_evidence(canonical_model_id)`);
 
-      const obsStmt = db.prepare(`INSERT INTO part_fitment_evidence VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      const obsStmt = db.prepare(`INSERT INTO part_fitment_evidence VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       for (const o of obsList) {
         obsStmt.run(
           o.evidence_id,
@@ -368,9 +373,14 @@ function recreateSqliteDatabase(database) {
           o.fitment_scope,
           o.section_key,
           o.section_name,
+          o.section_attribution_status || null,
           o.diagram_position || null,
           o.source_id,
           o.source_url || null,
+          o.requested_url || null,
+          o.final_url || null,
+          o.http_status || 200,
+          o.source_response_sha256 || null,
           o.part_name_raw || null,
           o.quantity ?? 1
         );

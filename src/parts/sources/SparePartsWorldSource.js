@@ -9,16 +9,6 @@ export class SparePartsWorldSource {
     this.authorityLevel = 'STRUCTURED_AFTERMARKET_DEALER';
     this.httpClient = httpClient;
     this.baseUrl = 'https://www.sparepartsworld.co.uk';
-
-    // Model URL registry for known validated STIHL catalog pages
-    this.modelUrls = {
-      'MS 261': 'https://www.sparepartsworld.co.uk/Stihl-MS-261-Gasoline-Chainsaw-Spare-Parts/P782612',
-      'MS 170': 'https://www.sparepartsworld.co.uk/Stihl-MS-170-Chainsaw-Spare-Parts/P782607',
-      'MS 180': 'https://www.sparepartsworld.co.uk/Stihl-MS-180-Chainsaw-Spare-Parts/P782608',
-      '026': 'https://www.sparepartsworld.co.uk/Stihl-026-Chainsaw-Spare-Parts/P782600',
-      'FS 55': 'https://www.sparepartsworld.co.uk/Stihl-FS-55-Brushcutter-Spare-Parts/P782700',
-      'TS 420': 'https://www.sparepartsworld.co.uk/Stihl-TS-420-Cut-Off-Saw-Spare-Parts/P782800'
-    };
   }
 
   async checkRobotsPolicy() {
@@ -39,44 +29,177 @@ export class SparePartsWorldSource {
     };
   }
 
+  /**
+   * Classify candidate model page against queried model string.
+   * Returns { match_type: 'BASE_MODEL' | 'EXACT_VARIANT' | 'RELATED_VARIANT' | 'MISMATCH', reason?, variant? }
+   */
+  classifyCandidateModel(queryModel, pageTitle, pageH1) {
+    const cleanQuery = queryModel.toUpperCase().replace(/^STIHL\s+/i, '').trim();
+    const fullText = `${pageH1 || ''} ${pageTitle || ''}`.toUpperCase();
+
+    if (!fullText.includes('STIHL')) {
+      return { match_type: 'MISMATCH', reason: 'NO_STIHL_BRAND' };
+    }
+
+    const escapedQuery = cleanQuery.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+    const baseRegex = new RegExp(`\\bSTIHL\\s+${escapedQuery}\\b`, 'i');
+
+    if (!baseRegex.test(fullText)) {
+      return { match_type: 'MISMATCH', reason: 'MODEL_NOT_MATCHED' };
+    }
+
+    const categoryKeywords = new Set([
+      'GASOLINE', 'PETROL', 'ELECTRIC', 'CORDLESS', 'BATTERY',
+      'CHAINSAW', 'BRUSHCUTTERS', 'BRUSHCUTTER', 'CUT-OFF', 'CUT', 'OFF',
+      'MACHINES', 'TS', 'FS', 'SAW', 'BLOWER', 'HEDGETRIMMER',
+      'SPARE', 'PARTS', 'FROM', 'RANGE'
+    ]);
+
+    const afterRegex = new RegExp(`\\bSTIHL\\s+${escapedQuery}\\s+([^<]+)`, 'i');
+    const afterMatch = (pageH1 || pageTitle || '').match(afterRegex);
+
+    if (afterMatch) {
+      const trailingTokens = afterMatch[1].trim().split(/\s+/).map(t => t.toUpperCase());
+      const variantTokens = trailingTokens.filter(t => !categoryKeywords.has(t) && !categoryKeywords.has(t.replace(/[^A-Z0-9]/g, '')));
+
+      if (variantTokens.length > 0) {
+        const variantStr = variantTokens.join(' ');
+        if (cleanQuery.includes(' ') && cleanQuery.split(' ').length > 2) {
+          return { match_type: 'EXACT_VARIANT', variant: variantStr };
+        }
+        return { match_type: 'RELATED_VARIANT', variant: variantStr };
+      }
+    }
+
+    return { match_type: 'BASE_MODEL' };
+  }
+
+  /**
+   * Dynamically discovers candidate model URLs on Spare Parts World.
+   * Probes candidate category slugs and known STIHL product range mappings.
+   */
+  async discoverModelCandidates(modelQuery) {
+    const cleanQuery = modelQuery.toUpperCase().replace(/^STIHL\s+/i, '').trim();
+    const slug = cleanQuery.replace(/\s+/g, '-');
+
+    const candidateUrls = [
+      `${this.baseUrl}/Stihl-${slug}-Gasoline-Chainsaw-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Chainsaw-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Brushcutters-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Brushcutter-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Cut-Off-Machines-TS-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Cut-Off-Saw-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Hedgetrimmer-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Blower-Spare-Parts/`,
+      `${this.baseUrl}/Stihl-${slug}-Spare-Parts/`
+    ];
+
+    // Known STIHL product range registry on Spare Parts World
+    const productHints = {
+      '026': [`${this.baseUrl}/p/P782712`, `${this.baseUrl}/Stihl-026-Chainsaw-Spare-Parts/P782600`],
+      'MS 170': [`${this.baseUrl}/p/P782553`, `${this.baseUrl}/Stihl-MS-170-Chainsaw-Spare-Parts/P782607`],
+      'MS 180': [`${this.baseUrl}/p/P782559`, `${this.baseUrl}/Stihl-MS-180-Chainsaw-Spare-Parts/P782608`],
+      'MS 250': [`${this.baseUrl}/p/P782604`],
+      'MS 261': [`${this.baseUrl}/p/P782612`, `${this.baseUrl}/Stihl-MS-261-Gasoline-Chainsaw-Spare-Parts/P782612`],
+      'MS 362': [`${this.baseUrl}/p/P782645`],
+      'FS 55': [`${this.baseUrl}/p/P782974`, `${this.baseUrl}/Stihl-FS-55-Brushcutter-Spare-Parts/P782700`],
+      'TS 420': [`${this.baseUrl}/p/P783930`, `${this.baseUrl}/Stihl-TS-420-Cut-Off-Saw-Spare-Parts/P782800`]
+    };
+
+    if (productHints[cleanQuery]) {
+      for (const hintUrl of productHints[cleanQuery]) {
+        if (!candidateUrls.includes(hintUrl)) {
+          candidateUrls.unshift(hintUrl);
+        }
+      }
+    }
+
+    const discoveredCandidates = [];
+    const seenUrls = new Set();
+
+    for (const url of candidateUrls) {
+      if (seenUrls.has(url)) continue;
+      seenUrls.add(url);
+
+      const res = await this.httpClient.get(url, { purpose: `candidate_discovery_${cleanQuery}` });
+      if (res.status === 200 && res.body && res.body.length > 500) {
+        const titleMatch = res.body.match(/<title>([^<]*)<\/title>/i);
+        const h1Match = res.body.match(/<h1[^>]*>([^<]*)<\/h1>/i);
+        const title = titleMatch ? titleMatch[1].trim() : '';
+        const h1 = h1Match ? h1Match[1].trim() : '';
+
+        const classification = this.classifyCandidateModel(cleanQuery, title, h1);
+        if (classification.match_type !== 'MISMATCH') {
+          discoveredCandidates.push({
+            url,
+            model: cleanQuery,
+            title,
+            h1,
+            status: res.status,
+            match_type: classification.match_type,
+            variant: classification.variant || null,
+            sha256: res.bodySha256 || res.sha256,
+            rawHtml: res.body
+          });
+
+          // If we found an exact base model match, we can proceed
+          if (classification.match_type === 'BASE_MODEL') {
+            break;
+          }
+        }
+      }
+    }
+
+    return discoveredCandidates;
+  }
+
+  /**
+   * Discovers and retrieves the canonical model page.
+   */
   async discoverModel(modelQuery) {
     const cleanQuery = modelQuery.toUpperCase().replace(/^STIHL\s+/i, '').trim();
-    const targetUrl = this.modelUrls[cleanQuery];
+    const candidates = await this.discoverModelCandidates(cleanQuery);
 
-    if (!targetUrl) {
+    const baseCandidate = candidates.find(c => c.match_type === 'BASE_MODEL');
+    if (baseCandidate) {
       return {
-        found: false,
-        model: modelQuery,
-        url: null,
-        status: 404,
-        error: `Model ${modelQuery} not found in validated Spare Parts World registry`
+        found: true,
+        model: cleanQuery,
+        url: baseCandidate.url,
+        status: baseCandidate.status,
+        sha256: baseCandidate.sha256,
+        rawHtml: baseCandidate.rawHtml,
+        match_type: baseCandidate.match_type
       };
     }
 
-    const res = await this.httpClient.get(targetUrl, { purpose: `model_discovery_${cleanQuery}` });
-    if (res.status !== 200 || !res.body || res.body.length < 500) {
+    const variantCandidate = candidates.find(c => c.match_type === 'EXACT_VARIANT' || c.match_type === 'RELATED_VARIANT');
+    if (variantCandidate) {
       return {
-        found: false,
+        found: true,
         model: cleanQuery,
-        url: targetUrl,
-        status: res.status,
-        error: `HTTP ${res.status} returned for model ${cleanQuery}`
+        url: variantCandidate.url,
+        status: variantCandidate.status,
+        sha256: variantCandidate.sha256,
+        rawHtml: variantCandidate.rawHtml,
+        match_type: variantCandidate.match_type
       };
     }
 
     return {
-      found: true,
+      found: false,
       model: cleanQuery,
-      url: targetUrl,
-      status: res.status,
-      sha256: res.bodySha256 || res.sha256,
-      rawHtml: res.body
+      url: null,
+      status: 404,
+      error: `Model ${modelQuery} not discovered on Spare Parts World`
     };
   }
 
+  /**
+   * Discovers variants of the given model from HTML content or related catalogue entries.
+   */
   discoverVariants(modelQuery, rawHtml) {
     const cleanQuery = modelQuery.toUpperCase().replace(/^STIHL\s+/i, '').trim();
-    // Parse variants from model page title / description if present
     const variants = [{
       variant_code: cleanQuery.toLowerCase().replace(/[\s-]+/g, '_'),
       variant_name: `STIHL ${cleanQuery}`,
@@ -84,13 +207,18 @@ export class SparePartsWorldSource {
     }];
 
     if (rawHtml) {
-      if (rawHtml.includes('C-M') || rawHtml.includes('C-BE')) {
-        if (cleanQuery === 'MS 261') {
-          variants.push({
-            variant_code: 'ms_261_c_m',
-            variant_name: 'STIHL MS 261 C-M',
-            base_model: 'MS 261'
-          });
+      const variantKeywords = ['C-M', 'C-BE', 'C-B', 'C-E', '2-MIX', 'RC-E', 'C-MQ', 'C-BM', 'VW', 'PRO', 'WVH', 'W', 'R'];
+      for (const kw of variantKeywords) {
+        if (rawHtml.includes(kw)) {
+          const varCode = `${cleanQuery.toLowerCase().replace(/[\s-]+/g, '_')}_${kw.toLowerCase().replace(/[\s-]+/g, '_')}`;
+          const varName = `STIHL ${cleanQuery} ${kw}`;
+          if (!variants.some(v => v.variant_code === varCode)) {
+            variants.push({
+              variant_code: varCode,
+              variant_name: varName,
+              base_model: cleanQuery
+            });
+          }
         }
       }
     }
@@ -98,11 +226,13 @@ export class SparePartsWorldSource {
     return variants;
   }
 
+  /**
+   * Discovers exploded diagram sections from diagram pills in HTML.
+   */
   discoverSections(rawHtml, modelQuery) {
     const sections = [];
     if (!rawHtml) return sections;
 
-    // Extract diagram pills: <div class='diagpill' onclick="...roll('...-DiagramName.jpg')">Diagram N</div>
     const pillRegex = /<div\s+class=['"]diagpill['"][^>]*onclick=["'][^"']*roll\([^,]+,\s*'images_spares\/[^'-]+-([^'.]+)[^']*'\)[^>]*>\s*(Diagram\s+\d+)\s*<\/div>/gi;
     const seenSections = new Set();
 
@@ -122,7 +252,6 @@ export class SparePartsWorldSource {
       }
     }
 
-    // If no pills found, fallback to generic assembly section
     if (sections.length === 0) {
       sections.push({
         section_key: 'general_assembly',
@@ -135,15 +264,16 @@ export class SparePartsWorldSource {
     return sections;
   }
 
+  /**
+   * Parses exploded parts from HTML with strict section attribution.
+   * Parts that do not have proven diagram section attribution receive UNRESOLVED status.
+   */
   parsePartsFromHtml(rawHtml, modelQuery, sourceUrl) {
     const parts = [];
     if (!rawHtml) return parts;
 
-    // Pattern: <div class='spareref'>REF</div> ... <a ... class='sparetitle'>TITLE</a> ... <span class='sparesncode'>CODE</span>
     const itemRegex = /<div\s+class=['"]spareref['"]>([^<]*)<\/div>[\s\S]*?<div\s+class=['"]sparetitle['"]>[\s\S]*?<a[^>]*class=['"]sparetitle['"][^>]*>([^<]*)<\/a>[\s\S]*?<span\s+class=['"]sparesncode['"]>([^<]*)<\/span>/gi;
-
     const sections = this.discoverSections(rawHtml, modelQuery);
-    const defaultSection = sections[0] || { section_key: 'general_assembly', section_name: 'General Assembly' };
 
     for (const match of rawHtml.matchAll(itemRegex)) {
       const rawPos = match[1].trim();
@@ -152,14 +282,19 @@ export class SparePartsWorldSource {
 
       const normalizedPartNo = PartNormalizer.normalizePartNumber(rawCode);
       if (normalizedPartNo) {
-        // Determine section context if title mentions specific section
-        let section = defaultSection;
+        // Explicit section matching based on part description / diagram context
+        let matchedSection = null;
         for (const s of sections) {
           if (s.section_name && s.section_name !== 'General Assembly' && rawTitle.toLowerCase().includes(s.section_name.toLowerCase())) {
-            section = s;
+            matchedSection = s;
             break;
           }
         }
+
+        const hasExplicitSection = Boolean(matchedSection);
+        const sectionKey = hasExplicitSection ? matchedSection.section_key : 'general_unresolved';
+        const sectionName = hasExplicitSection ? matchedSection.section_name : 'Unresolved Diagram Section';
+        const attributionStatus = hasExplicitSection ? 'MAPPED' : 'UNRESOLVED';
 
         parts.push({
           part_number: normalizedPartNo,
@@ -168,8 +303,9 @@ export class SparePartsWorldSource {
           part_name_normalized: PartNormalizer.normalizePartName(rawTitle.replace(/^Stihl\s+/i, '').replace(/\b\d{11}\b/g, '').trim()),
           diagram_position: rawPos || 'POS_UNSPECIFIED',
           quantity: 1,
-          section_key: section.section_key,
-          section_name: section.section_name,
+          section_key: sectionKey,
+          section_name: sectionName,
+          section_attribution_status: attributionStatus,
           source_id: this.sourceId,
           source_url: sourceUrl,
           source_evidence_status: 'SINGLE_STRUCTURED_SOURCE',
@@ -180,5 +316,37 @@ export class SparePartsWorldSource {
     }
 
     return parts;
+  }
+
+  /**
+   * Reverse compatibility pilot helper: Given a part URL, discovers compatible STIHL models listed on the page.
+   */
+  async discoverCompatibleModelsForPart(partUrl) {
+    const res = await this.httpClient.get(partUrl, { purpose: 'reverse_compatibility_lookup' });
+    if (res.status !== 200 || !res.body) {
+      return {
+        part_url: partUrl,
+        status: res.status,
+        compatible_models: []
+      };
+    }
+
+    const modelSet = new Set();
+    const modelRegex = /Stihl\s+([A-Z0-9\.\-\/]+(?:\s+[A-Z0-9\.\-\/]+)?)\s+(?:Gasoline|Chainsaw|Brushcutter|Cut-Off|Saw|Blower|Hedgetrimmer|Spare)/gi;
+
+    let m;
+    while ((m = modelRegex.exec(res.body)) !== null) {
+      const candidateModel = m[1].trim();
+      if (candidateModel.length >= 2 && !candidateModel.startsWith('HP') && !/^\d{11}$/.test(candidateModel)) {
+        modelSet.add(candidateModel);
+      }
+    }
+
+    return {
+      part_url: partUrl,
+      status: res.status,
+      sha256: res.bodySha256 || res.sha256,
+      compatible_models: Array.from(modelSet).sort()
+    };
   }
 }

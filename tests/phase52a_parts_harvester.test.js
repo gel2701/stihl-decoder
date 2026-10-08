@@ -10,6 +10,7 @@ import { PartNormalizer, FITMENT_SCOPES } from '../src/parts/PartNormalizer.js';
 import { PartCatalogResolver } from '../src/parts/PartCatalogResolver.js';
 import { PartsHarvesterEngine } from '../src/parts/PartsHarvesterEngine.js';
 import { HttpClient } from '../src/parts/HttpClient.js';
+import { SparePartsWorldSource } from '../src/parts/sources/SparePartsWorldSource.js';
 import { DiySparePartsSource } from '../src/parts/sources/DiySparePartsSource.js';
 import { PartsTreeSource } from '../src/parts/sources/PartsTreeSource.js';
 import { OfficialStihlSource } from '../src/parts/sources/OfficialStihlSource.js';
@@ -160,7 +161,7 @@ test('Phase 52A - Test 8: FIXTURE Mode Operates Fully Offline', async () => {
 // -------------------------------------------------------------
 // Test 9: Granular Part Fitment Evidence Observations
 // -------------------------------------------------------------
-test('Phase 52A - Test 9: Granular Part Fitment Evidence Structure', () => {
+test('Phase 52A - Test 9: Granular Part Fitment Evidence Structure with URLs and Status', () => {
   assert.ok(evidenceDoc.observations.length > 0, 'Must have fitment evidence observations');
   assert.strictEqual(evidenceDoc.observations_count, evidenceDoc.observations.length);
   for (const obs of evidenceDoc.observations) {
@@ -169,6 +170,9 @@ test('Phase 52A - Test 9: Granular Part Fitment Evidence Structure', () => {
     assert.ok(obs.canonical_model_id, 'Must have canonical_model_id');
     assert.ok(obs.source_id, 'Must have source_id');
     assert.ok(obs.source_url, 'Must have source_url');
+    assert.ok(obs.requested_url, 'Must have requested_url');
+    assert.ok(obs.final_url, 'Must have final_url');
+    assert.ok(obs.http_status, 'Must have http_status');
     assert.ok(obs.fitment_scope, 'Must have fitment_scope');
   }
 });
@@ -203,7 +207,7 @@ test('Phase 52A - Test 11: Official STIHL Precedence and Valid Provenance', () =
 });
 
 // -------------------------------------------------------------
-// Test 12: CLI Flag --pilot
+// Test 12: CLI Flag --pilot Manifest Integrity
 // -------------------------------------------------------------
 test('Phase 52A - Test 12: CLI Flag --pilot Manifest Integrity', () => {
   assert.strictEqual(manifestDoc.models_requested, 6);
@@ -354,13 +358,11 @@ test('Phase 52A - Test 18: Failure Injections A-E (Source Parsing Resilience)', 
 test('Phase 52A - Test 19: Spark Plug Identity Verification (0000 400 7000 is NGK CMR6H, not Bosch WSR6F)', () => {
   const resolver = new PartCatalogResolver(partsCatalogDoc, fitmentsDoc);
 
-  // 0000 400 7000 is verified NGK CMR6H
   const cmr6h = resolver.resolvePartNumber('0000 400 7000');
   assert.strictEqual(cmr6h.found, true);
   assert.strictEqual(cmr6h.part_number, '00004007000');
   assert.ok(cmr6h.part_name.includes('NGK CMR6H'));
 
-  // 1110 400 7005 is verified Bosch WSR6F
   const wsr6f = resolver.resolvePartNumber('1110 400 7005');
   assert.strictEqual(wsr6f.found, true);
   assert.strictEqual(wsr6f.part_number, '11104007005');
@@ -374,21 +376,17 @@ test('Phase 52A - Test 20: Complete Regression Safety for Decoder, Anchors (2845
   assert.strictEqual(anchorsDoc.anchors.length, 2845, 'Official anchors must remain 2845');
   assert.strictEqual(aliasesDoc.aliases.length, 171, 'Official aliases must remain 171');
 
-  // Decode standard 9-digit serial
   const dec1 = decodeStihlCode('191422784');
   assert.strictEqual(dec1.success, true, 'Serial 191422784 must decode');
 
-  // Decode official evidenced 8-digit alias
   const dec2 = decodeStihlCode('10000000');
   assert.strictEqual(dec2.success, true);
   assert.strictEqual(dec2.inputAliasMatched, true);
   assert.strictEqual(dec2.model, 'FS 55 RC-E Z Motorsense');
 
-  // Generic 8-digit serial without evidence must be rejected
   const dec3 = decodeStihlCode('88888888');
   assert.strictEqual(dec3.success, false);
 
-  // 11-digit Part number decoder unchanged
   const partAnalysis = decodeStihlCode('1121 160 2051', JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8')));
   assert.strictEqual(partAnalysis.success, true);
   assert.strictEqual(partAnalysis.type, 'PART_NUMBER');
@@ -489,4 +487,72 @@ test('Phase 52A-R3 - Test 26: Models Live Discovered vs Official Only Tracking',
   assert.strictEqual(manifestDoc.models_official_evidence_only, 0);
   assert.strictEqual(manifestDoc.sections_failed, 0);
   assert.ok(manifestDoc.sections_parsed >= 40);
+});
+
+// -------------------------------------------------------------
+// Test 27: Automatic Model Discovery on Spare Parts World (No hardcoded modelUrls map)
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 27: Automatic Model Discovery in SparePartsWorldSource', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  assert.strictEqual(source.modelUrls, undefined, 'modelUrls hardcoded map must be removed');
+
+  const res261 = await source.discoverModel('MS 261');
+  assert.strictEqual(res261.found, true);
+  assert.strictEqual(res261.match_type, 'BASE_MODEL');
+  assert.ok(res261.url.includes('P782612') || res261.url.includes('MS-261'));
+});
+
+// -------------------------------------------------------------
+// Test 28: Automatic Discovery of Holdout Models MS 250 and MS 362
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 28: Automatic Discovery of Holdout Models MS 250 and MS 362', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+
+  const res250 = await source.discoverModel('MS 250');
+  assert.strictEqual(res250.found, true);
+  assert.strictEqual(res250.match_type, 'BASE_MODEL');
+
+  const res362 = await source.discoverModel('MS 362');
+  assert.strictEqual(res362.found, true);
+});
+
+// -------------------------------------------------------------
+// Test 29: Section Attribution Semantics (No First-Diagram Leaks)
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 29: Section Attribution Semantics (Unmapped Parts get UNRESOLVED)', () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'FIXTURE' }));
+  const sampleHtml = `
+    <div class='diagpill' onclick="roll(1, 'images_spares/MS261-Crankcase.jpg')">Diagram 1</div>
+    <div class='spareref'>1</div>
+    <div class='sparetitle'><a class='sparetitle'>Stihl Crankcase Fan Side</a></div>
+    <span class='sparesncode'>1141 020 2616</span>
+    <div class='spareref'>2</div>
+    <div class='sparetitle'><a class='sparetitle'>Stihl Generic Washer</a></div>
+    <span class='sparesncode'>0000 958 0408</span>
+  `;
+
+  const parsed = source.parsePartsFromHtml(sampleHtml, 'MS 261', 'http://test');
+  assert.strictEqual(parsed.length, 2);
+
+  const crankcasePart = parsed.find(p => p.part_number === '11410202616');
+  assert.strictEqual(crankcasePart.section_attribution_status, 'MAPPED');
+  assert.strictEqual(crankcasePart.section_key, 'crankcase');
+
+  const unmappedPart = parsed.find(p => p.part_number === '00009580408');
+  assert.strictEqual(unmappedPart.section_attribution_status, 'UNRESOLVED');
+  assert.strictEqual(unmappedPart.section_key, 'general_unresolved');
+});
+
+// -------------------------------------------------------------
+// Test 30: Reverse Compatibility Helper
+// -------------------------------------------------------------
+test('Phase 52A-R4 - Test 30: Reverse Compatibility Lookup Helper', async () => {
+  const source = new SparePartsWorldSource(new HttpClient({ mode: 'LIVE', useCache: true }));
+  const testPartUrl = 'https://www.sparepartsworld.co.uk/Stihl-11410802104-Fan-Housing-With-Rewind-Starter-for-the-MS261-range/P737999';
+  const lookup = await source.discoverCompatibleModelsForPart(testPartUrl);
+
+  assert.strictEqual(lookup.status, 200);
+  assert.ok(Array.isArray(lookup.compatible_models));
+  assert.ok(lookup.compatible_models.length > 0);
+  assert.ok(lookup.compatible_models.some(m => m.includes('261')));
 });

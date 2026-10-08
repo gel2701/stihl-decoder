@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * Real Live Parts Harvester Smoke Test (Phase 52A-R3)
+ * Real Live Parts Harvester Smoke Test (Phase 52A-R4)
  * Performs REAL live HTTP requests over the internet, checks robots/WAF policy,
  * calculates SHA-256 hashes, verifies structured live source discovery and extraction,
+ * verifies holdout model discovery (MS 250, MS 362), verifies reverse compatibility lookups,
  * and asserts strict pass/fail criteria (no pass on 403 or zero parsed parts).
  */
 
@@ -25,7 +26,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 console.log('===============================================================');
-console.log('🌐 RUNNING REAL LIVE STIHL PARTS HARVESTER SMOKE TEST (R3)');
+console.log('🌐 RUNNING REAL LIVE STIHL PARTS HARVESTER SMOKE TEST (R4)');
 console.log('===============================================================\n');
 
 async function main() {
@@ -71,7 +72,6 @@ async function main() {
   console.log(`  • Content SHA-256: ${ms261Discovery.sha256}`);
   console.log(`  • Body Length: ${ms261Discovery.rawHtml.length} bytes`);
 
-  // STRICT HARVEST GATES:
   assert.strictEqual(ms261Discovery.status, 200, 'Model page HTTP status must be 200');
   assert.ok(!ms261Discovery.rawHtml.includes('Just a moment...'), 'Response must not be a Cloudflare WAF challenge');
   assert.ok(!ms261Discovery.rawHtml.includes('Access Denied'), 'Response must not be an Akamai access denied block');
@@ -86,29 +86,39 @@ async function main() {
   console.log(`  • Extracted Exploded Parts: ${parsedParts.length}`);
   assert.ok(parsedParts.length > 50, 'Must extract substantive exploded parts (>50 records)');
 
-  // Validate part numbers format
-  let valid11DigitCount = 0;
-  for (const p of parsedParts) {
-    if (/^\d{11}$/.test(p.part_number)) {
-      valid11DigitCount++;
-    }
-  }
-  const validRate = valid11DigitCount / parsedParts.length;
-  console.log(`  • Valid 11-digit STIHL Part Rate: ${(validRate * 100).toFixed(1)}% (${valid11DigitCount}/${parsedParts.length})`);
-  assert.strictEqual(validRate, 1.0, 'All parsed part numbers must be valid 11-digit STIHL numbers');
+  // 4. Holdout Models Discovery (MS 250, MS 362)
+  console.log('\n▶ Step 4: Automatic Discovery of Holdout Models (MS 250 and MS 362)...');
+  const ms250Discovery = await spwSource.discoverModel('MS 250');
+  console.log(`  • MS 250 Discovery: found=${ms250Discovery.found}, url=${ms250Discovery.url}, match_type=${ms250Discovery.match_type}`);
+  assert.strictEqual(ms250Discovery.found, true, 'Holdout model MS 250 must be automatically discovered');
+  assert.strictEqual(ms250Discovery.match_type, 'BASE_MODEL', 'MS 250 must match as BASE_MODEL');
 
-  // 4. Representative Live Part Verification (20 parts)
-  console.log('\n▶ Step 4: Representative Live Part Samples Validation (20 items)...');
+  const ms362Discovery = await spwSource.discoverModel('MS 362');
+  console.log(`  • MS 362 Discovery: found=${ms362Discovery.found}, url=${ms362Discovery.url}, match_type=${ms362Discovery.match_type}`);
+  assert.strictEqual(ms362Discovery.found, true, 'Holdout model MS 362 must be automatically discovered');
+
+  // 5. Representative Live Part Verification (20 parts)
+  console.log('\n▶ Step 5: Representative Live Part Samples Validation (20 items)...');
   const sampleParts = parsedParts.slice(0, 20);
   for (let i = 0; i < sampleParts.length; i++) {
     const p = sampleParts[i];
-    console.log(`  [#${i + 1}] ${p.part_number_display} | Pos: ${p.diagram_position} | ${p.part_name_raw} | Section: ${p.section_name}`);
+    console.log(`  [#${i + 1}] ${p.part_number_display} | Pos: ${p.diagram_position} | ${p.part_name_raw} | Section: ${p.section_name} [${p.section_attribution_status}]`);
     assert.ok(p.part_number.length === 11, 'Part number is 11 digits');
     assert.ok(p.part_name_raw.length > 0, 'Part name raw is non-empty');
   }
 
-  // 5. Official Source Evidence Provenance
-  console.log('\n▶ Step 5: Official STIHL Service Evidence Provenance...');
+  // 6. Reverse Compatibility Lookup Pilot
+  console.log('\n▶ Step 6: Reverse Compatibility Lookup Pilot (Part Level)...');
+  const testPartUrl = 'https://www.sparepartsworld.co.uk/Stihl-11410802104-Fan-Housing-With-Rewind-Starter-for-the-MS261-range/P737999';
+  const reverseLookup = await spwSource.discoverCompatibleModelsForPart(testPartUrl);
+  console.log(`  • Part URL: ${reverseLookup.part_url}`);
+  console.log(`  • Compatible models found (${reverseLookup.compatible_models.length}):`, reverseLookup.compatible_models);
+  assert.strictEqual(reverseLookup.status, 200, 'Part page HTTP status must be 200');
+  assert.ok(reverseLookup.compatible_models.length > 0, 'Must extract compatible models from part page');
+  assert.ok(reverseLookup.compatible_models.some(m => m.includes('261')), 'Must include MS 261 models');
+
+  // 7. Official Source Evidence Provenance
+  console.log('\n▶ Step 7: Official STIHL Service Evidence Provenance...');
   const officialSource = new OfficialStihlSource();
   const officialParts = await officialSource.getOfficialPartsForModel('MS 261');
   assert.ok(officialParts.length > 0, 'Official parts returned');

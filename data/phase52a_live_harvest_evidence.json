@@ -1,7 +1,7 @@
 {
   "schema_version": "phase52a-live-harvest-evidence-v1",
   "harvest_mode": "LIVE",
-  "generated_at": "2026-10-07T21:15:36.468Z",
+  "generated_at": "2026-10-08T10:02:52.398Z",
   "requests_count": 10,
   "requests": [
     {
@@ -11,7 +11,7 @@
       "content_type": "text/plain",
       "decision": "PERMITTED",
       "notes": "Robots policy permits product and spare parts crawling",
-      "fetched_at": "2026-10-07T21:15:29.249Z",
+      "fetched_at": "2026-10-08T10:02:40.426Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -21,7 +21,7 @@
       "content_type": "text/plain",
       "decision": "PERMITTED",
       "notes": "Robots policy accessible",
-      "fetched_at": "2026-10-07T21:15:29.249Z",
+      "fetched_at": "2026-10-08T10:02:40.426Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -31,7 +31,7 @@
       "content_type": "text/html; charset=utf-8",
       "decision": "NO_ROBOTS_TXT",
       "notes": "robots.txt returned 404; standard web crawling conventions apply.",
-      "fetched_at": "2026-10-07T21:15:29.249Z",
+      "fetched_at": "2026-10-08T10:02:40.426Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -41,7 +41,7 @@
       "content_type": "text/plain; charset=utf-8",
       "decision": "AUTOMATION_PROHIBITED",
       "notes": "PartsTree returns HTTP 403 Forbidden for automated crawlers (WAF blocked).",
-      "fetched_at": "2026-10-07T21:15:29.249Z",
+      "fetched_at": "2026-10-08T10:02:40.426Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -53,62 +53,62 @@
       "model_query": "MS 261",
       "purpose": "model_page_harvest",
       "sections_discovered": 7,
-      "fetched_at": "2026-10-07T21:15:30.212Z"
+      "fetched_at": "2026-10-08T10:02:41.351Z"
     },
     {
       "source_id": "sparepartsworld",
-      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-170-Chainsaw-Spare-Parts/P782607",
+      "url": "https://www.sparepartsworld.co.uk/p/P782553",
       "http_status": 200,
       "content_type": "text/html; charset=UTF-8",
-      "response_sha256": "ae747c79498e3dc98403a72a90ce8d69ac0905f129754cc7710516b3230c8caa",
+      "response_sha256": "388dca70059689390a370c46b13176012afd5debdef5be55fad8597010ba6c0e",
       "model_query": "MS 170",
       "purpose": "model_page_harvest",
-      "sections_discovered": 6,
-      "fetched_at": "2026-10-07T21:15:31.775Z"
+      "sections_discovered": 5,
+      "fetched_at": "2026-10-08T10:02:43.700Z"
     },
     {
       "source_id": "sparepartsworld",
-      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Chainsaw-Spare-Parts/P782608",
+      "url": "https://www.sparepartsworld.co.uk/p/P782559",
       "http_status": 200,
       "content_type": "text/html; charset=UTF-8",
-      "response_sha256": "a7e1d5e3256d04a49472a1fd66e039b8a4f05c6b724e74e7a83567534ecc5ef3",
+      "response_sha256": "9a18d2469d43acb448dbc433e08a5d4710aac7406c77a096592274ceaaaa4d2c",
       "model_query": "MS 180",
       "purpose": "model_page_harvest",
-      "sections_discovered": 10,
-      "fetched_at": "2026-10-07T21:15:32.869Z"
+      "sections_discovered": 6,
+      "fetched_at": "2026-10-08T10:02:45.942Z"
     },
     {
       "source_id": "sparepartsworld",
-      "url": "https://www.sparepartsworld.co.uk/Stihl-026-Chainsaw-Spare-Parts/P782600",
+      "url": "https://www.sparepartsworld.co.uk/p/P782712",
       "http_status": 200,
       "content_type": "text/html; charset=UTF-8",
-      "response_sha256": "620504b325f47110cb9aca8035263bac082f5c0e34bb5360fb2d8b2fcd072f36",
+      "response_sha256": "7efc817153db31136b270e3c60e9d192a1354316a1e395511536209be718075b",
       "model_query": "026",
       "purpose": "model_page_harvest",
-      "sections_discovered": 13,
-      "fetched_at": "2026-10-07T21:15:34.244Z"
+      "sections_discovered": 8,
+      "fetched_at": "2026-10-08T10:02:48.281Z"
     },
     {
       "source_id": "sparepartsworld",
-      "url": "https://www.sparepartsworld.co.uk/Stihl-FS-55-Brushcutter-Spare-Parts/P782700",
+      "url": "https://www.sparepartsworld.co.uk/p/P782974",
       "http_status": 200,
       "content_type": "text/html; charset=UTF-8",
-      "response_sha256": "0b7bb17bcbf90d9cd3a6d90896513aa5673e45e4654f36f780267c5e732431a0",
+      "response_sha256": "68f2becb2f888c1506c52c3f9f295572ab78ed7423427dbb519b8199246085b2",
       "model_query": "FS 55",
       "purpose": "model_page_harvest",
-      "sections_discovered": 5,
-      "fetched_at": "2026-10-07T21:15:35.174Z"
+      "sections_discovered": 10,
+      "fetched_at": "2026-10-08T10:02:50.292Z"
     },
     {
       "source_id": "sparepartsworld",
-      "url": "https://www.sparepartsworld.co.uk/Stihl-TS-420-Cut-Off-Saw-Spare-Parts/P782800",
+      "url": "https://www.sparepartsworld.co.uk/p/P783930",
       "http_status": 200,
       "content_type": "text/html; charset=UTF-8",
-      "response_sha256": "c9d9f4141795725ae19939756789447c9d32a9ade90668e8ff4bb0163a83bc2e",
+      "response_sha256": "295d42501255590fabd303ebad544657613b3a6565ecf54b3d63228edf3aadc5",
       "model_query": "TS 420",
       "purpose": "model_page_harvest",
-      "sections_discovered": 7,
-      "fetched_at": "2026-10-07T21:15:36.439Z"
+      "sections_discovered": 9,
+      "fetched_at": "2026-10-08T10:02:52.369Z"
     }
   ]
 }
