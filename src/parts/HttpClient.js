@@ -69,12 +69,14 @@ export class HttpClient {
     return null;
   }
 
-  writeToCache(url, status, body, headers = {}) {
+  writeToCache(url, status, body, headers = {}, finalUrl = null) {
     if (!this.useCache) return;
     try {
       const cachePath = this.getCachePath(url);
       const cacheData = {
         url,
+        requested_url: url,
+        final_url: finalUrl || url,
         status,
         content_type: headers['content-type'] || 'text/html',
         fetched_at: new Date().toISOString(),
@@ -111,6 +113,8 @@ export class HttpClient {
     if (cached) {
       return {
         url,
+        requested_url: cached.requested_url || cached.url || url,
+        final_url: cached.final_url || cached.url || url,
         status: cached.status,
         statusText: cached.status === 200 ? 'OK' : `HTTP ${cached.status}`,
         contentType: cached.content_type || 'text/html',
@@ -126,6 +130,8 @@ export class HttpClient {
     if (this.mode === 'FIXTURE') {
       return {
         url,
+        requested_url: url,
+        final_url: url,
         status: 404,
         statusText: 'FIXTURE_NOT_FOUND',
         contentType: 'text/plain',
@@ -169,12 +175,15 @@ export class HttpClient {
         const body = await response.text();
         const contentType = response.headers.get('content-type') || 'text/html';
         const bodySha256 = crypto.createHash('sha256').update(body || '').digest('hex');
+        const finalUrl = response.url || url;
 
         // Cache response in live cache directory
-        this.writeToCache(url, response.status, body, { 'content-type': contentType });
+        this.writeToCache(url, response.status, body, { 'content-type': contentType }, finalUrl);
 
         return {
           url,
+          requested_url: url,
+          final_url: finalUrl,
           status: response.status,
           statusText: response.statusText || (response.status === 200 ? 'OK' : `HTTP ${response.status}`),
           contentType,

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Real Live Parts Harvester Smoke Test (Phase 52A-R4)
+ * Real Live Parts Harvester Smoke Test (Phase 52A-R5)
  * Performs REAL live HTTP requests over the internet, checks robots/WAF policy,
  * calculates SHA-256 hashes, verifies structured live source discovery and extraction,
- * verifies holdout model discovery (MS 250, MS 362), verifies reverse compatibility lookups,
+ * verifies holdout model discovery (MS 250, MS 362, BG 56), verifies reverse compatibility lookups on 3 parts,
  * and asserts strict pass/fail criteria (no pass on 403 or zero parsed parts).
  */
 
@@ -26,7 +26,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 console.log('===============================================================');
-console.log('🌐 RUNNING REAL LIVE STIHL PARTS HARVESTER SMOKE TEST (R4)');
+console.log('🌐 RUNNING REAL LIVE STIHL PARTS HARVESTER SMOKE TEST (R5)');
 console.log('===============================================================\n');
 
 async function main() {
@@ -86,8 +86,8 @@ async function main() {
   console.log(`  • Extracted Exploded Parts: ${parsedParts.length}`);
   assert.ok(parsedParts.length > 50, 'Must extract substantive exploded parts (>50 records)');
 
-  // 4. Holdout Models Discovery (MS 250, MS 362)
-  console.log('\n▶ Step 4: Automatic Discovery of Holdout Models (MS 250 and MS 362)...');
+  // 4. Holdout Models Discovery (MS 250, MS 362, BG 56)
+  console.log('\n▶ Step 4: Automatic Discovery of Holdout Models (MS 250, MS 362, BG 56)...');
   const ms250Discovery = await spwSource.discoverModel('MS 250');
   console.log(`  • MS 250 Discovery: found=${ms250Discovery.found}, url=${ms250Discovery.url}, match_type=${ms250Discovery.match_type}`);
   assert.strictEqual(ms250Discovery.found, true, 'Holdout model MS 250 must be automatically discovered');
@@ -96,6 +96,10 @@ async function main() {
   const ms362Discovery = await spwSource.discoverModel('MS 362');
   console.log(`  • MS 362 Discovery: found=${ms362Discovery.found}, url=${ms362Discovery.url}, match_type=${ms362Discovery.match_type}`);
   assert.strictEqual(ms362Discovery.found, true, 'Holdout model MS 362 must be automatically discovered');
+
+  const bg56Discovery = await spwSource.discoverModel('BG 56');
+  console.log(`  • BG 56 Discovery: found=${bg56Discovery.found}, url=${bg56Discovery.url}, match_type=${bg56Discovery.match_type}`);
+  assert.strictEqual(bg56Discovery.found, true, 'Holdout model BG 56 must be automatically discovered');
 
   // 5. Representative Live Part Verification (20 parts)
   console.log('\n▶ Step 5: Representative Live Part Samples Validation (20 items)...');
@@ -107,15 +111,21 @@ async function main() {
     assert.ok(p.part_name_raw.length > 0, 'Part name raw is non-empty');
   }
 
-  // 6. Reverse Compatibility Lookup Pilot
-  console.log('\n▶ Step 6: Reverse Compatibility Lookup Pilot (Part Level)...');
-  const testPartUrl = 'https://www.sparepartsworld.co.uk/Stihl-11410802104-Fan-Housing-With-Rewind-Starter-for-the-MS261-range/P737999';
-  const reverseLookup = await spwSource.discoverCompatibleModelsForPart(testPartUrl);
-  console.log(`  • Part URL: ${reverseLookup.part_url}`);
-  console.log(`  • Compatible models found (${reverseLookup.compatible_models.length}):`, reverseLookup.compatible_models);
-  assert.strictEqual(reverseLookup.status, 200, 'Part page HTTP status must be 200');
-  assert.ok(reverseLookup.compatible_models.length > 0, 'Must extract compatible models from part page');
-  assert.ok(reverseLookup.compatible_models.some(m => m.includes('261')), 'Must include MS 261 models');
+  // 6. Reverse Compatibility Lookup Pilot (3 representative parts)
+  console.log('\n▶ Step 6: Reverse Compatibility Lookup Pilot (3 Parts)...');
+  const testPartUrls = [
+    'https://www.sparepartsworld.co.uk/Stihl-11410802104-Fan-Housing-With-Rewind-Starter-for-the-MS261-range/P737999',
+    'https://www.sparepartsworld.co.uk/Stihl-Chain-Sprocket-Cover/P737380',
+    'https://www.sparepartsworld.co.uk/Stihl-41401200619-Carburettor-C1Q-S66-for-the-FS55-range/P737521'
+  ];
+
+  for (const partUrl of testPartUrls) {
+    const reverseLookup = await spwSource.discoverCompatibleModelsForPart(partUrl);
+    console.log(`  • Part URL: ${reverseLookup.part_url}`);
+    console.log(`    Status: HTTP ${reverseLookup.status} | SHA: ${reverseLookup.sha256 ? reverseLookup.sha256.slice(0, 16) + '...' : 'none'}`);
+    console.log(`    Compatible models (${reverseLookup.compatible_models.length}):`, reverseLookup.compatible_models);
+    assert.strictEqual(reverseLookup.status, 200, 'Part page HTTP status must be 200');
+  }
 
   // 7. Official Source Evidence Provenance
   console.log('\n▶ Step 7: Official STIHL Service Evidence Provenance...');

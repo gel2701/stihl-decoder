@@ -1,8 +1,8 @@
 {
   "schema_version": "phase52a-live-harvest-evidence-v1",
   "harvest_mode": "LIVE",
-  "generated_at": "2026-10-08T10:02:52.398Z",
-  "requests_count": 10,
+  "generated_at": "2026-10-08T14:11:11.463Z",
+  "requests_count": 12,
   "requests": [
     {
       "source_id": "sparepartsworld",
@@ -11,7 +11,7 @@
       "content_type": "text/plain",
       "decision": "PERMITTED",
       "notes": "Robots policy permits product and spare parts crawling",
-      "fetched_at": "2026-10-08T10:02:40.426Z",
+      "fetched_at": "2026-10-08T14:11:11.281Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -21,7 +21,7 @@
       "content_type": "text/plain",
       "decision": "PERMITTED",
       "notes": "Robots policy accessible",
-      "fetched_at": "2026-10-08T10:02:40.426Z",
+      "fetched_at": "2026-10-08T14:11:11.282Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -31,7 +31,7 @@
       "content_type": "text/html; charset=utf-8",
       "decision": "NO_ROBOTS_TXT",
       "notes": "robots.txt returned 404; standard web crawling conventions apply.",
-      "fetched_at": "2026-10-08T10:02:40.426Z",
+      "fetched_at": "2026-10-08T14:11:11.282Z",
       "purpose": "robots_policy_preflight"
     },
     {
@@ -41,19 +41,29 @@
       "content_type": "text/plain; charset=utf-8",
       "decision": "AUTOMATION_PROHIBITED",
       "notes": "PartsTree returns HTTP 403 Forbidden for automated crawlers (WAF blocked).",
-      "fetched_at": "2026-10-08T10:02:40.426Z",
+      "fetched_at": "2026-10-08T14:11:11.282Z",
       "purpose": "robots_policy_preflight"
     },
     {
       "source_id": "sparepartsworld",
-      "url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-Gasoline-Chainsaw-Spare-Parts/P782612",
+      "url": "https://www.sparepartsworld.co.uk/p/P782612",
       "http_status": 200,
       "content_type": "text/html; charset=UTF-8",
       "response_sha256": "0a2f2181969a0f8bb35f01c772fdcc64b16b3f8154cfe1f2b038798236a991c7",
       "model_query": "MS 261",
       "purpose": "model_page_harvest",
       "sections_discovered": 7,
-      "fetched_at": "2026-10-08T10:02:41.351Z"
+      "fetched_at": "2026-10-08T14:11:11.313Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/p/P782615",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "fd76d43ec7628cff2bacfcea1bd1665955f40f2340d5f40aeff5a8f11f8fad5e",
+      "model_query": "MS 261 c_m",
+      "purpose": "variant_page_harvest",
+      "fetched_at": "2026-10-08T14:11:11.328Z"
     },
     {
       "source_id": "sparepartsworld",
@@ -64,7 +74,7 @@
       "model_query": "MS 170",
       "purpose": "model_page_harvest",
       "sections_discovered": 5,
-      "fetched_at": "2026-10-08T10:02:43.700Z"
+      "fetched_at": "2026-10-08T14:11:11.343Z"
     },
     {
       "source_id": "sparepartsworld",
@@ -75,7 +85,7 @@
       "model_query": "MS 180",
       "purpose": "model_page_harvest",
       "sections_discovered": 6,
-      "fetched_at": "2026-10-08T10:02:45.942Z"
+      "fetched_at": "2026-10-08T14:11:11.352Z"
     },
     {
       "source_id": "sparepartsworld",
@@ -86,7 +96,7 @@
       "model_query": "026",
       "purpose": "model_page_harvest",
       "sections_discovered": 8,
-      "fetched_at": "2026-10-08T10:02:48.281Z"
+      "fetched_at": "2026-10-08T14:11:11.366Z"
     },
     {
       "source_id": "sparepartsworld",
@@ -97,7 +107,17 @@
       "model_query": "FS 55",
       "purpose": "model_page_harvest",
       "sections_discovered": 10,
-      "fetched_at": "2026-10-08T10:02:50.292Z"
+      "fetched_at": "2026-10-08T14:11:11.392Z"
+    },
+    {
+      "source_id": "sparepartsworld",
+      "url": "https://www.sparepartsworld.co.uk/p/P782976",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_sha256": "cd62d7fd67125a927ff12ef84efec8a96810de98448a780b0a9ef850725e7f83",
+      "model_query": "FS 55 c_e",
+      "purpose": "variant_page_harvest",
+      "fetched_at": "2026-10-08T14:11:11.402Z"
     },
     {
       "source_id": "sparepartsworld",
@@ -108,7 +128,7 @@
       "model_query": "TS 420",
       "purpose": "model_page_harvest",
       "sections_discovered": 9,
-      "fetched_at": "2026-10-08T10:02:52.369Z"
+      "fetched_at": "2026-10-08T14:11:11.417Z"
     }
   ]
 }

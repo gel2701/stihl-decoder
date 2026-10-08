@@ -306,6 +306,8 @@ function recreateSqliteDatabase(database) {
         diagram_position VARCHAR(50),
         quantity INTEGER DEFAULT 1,
         notes TEXT,
+        variant_condition TEXT,
+        serial_condition TEXT,
         superseded_by VARCHAR(20),
         source_id VARCHAR(50) NOT NULL,
         source_url TEXT,
@@ -314,7 +316,7 @@ function recreateSqliteDatabase(database) {
       db.run(`CREATE INDEX IF NOT EXISTS idx_fitments_part ON model_part_fitments(part_number)`);
       db.run(`CREATE INDEX IF NOT EXISTS idx_fitments_model ON model_part_fitments(canonical_model_id)`);
 
-      const fitStmt = db.prepare(`INSERT INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      const fitStmt = db.prepare(`INSERT INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       for (const f of fitmentsList) {
         fitStmt.run(
           f.fitment_id,
@@ -327,6 +329,8 @@ function recreateSqliteDatabase(database) {
           f.diagram_position || null,
           f.quantity ?? 1,
           f.notes || null,
+          f.variant_condition || null,
+          f.serial_condition || null,
           f.superseded_by || null,
           f.source_id,
           f.source_url || null,

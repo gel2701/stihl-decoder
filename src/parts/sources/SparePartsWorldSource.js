@@ -1,14 +1,22 @@
-import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { PartNormalizer, FITMENT_SCOPES } from '../PartNormalizer.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const defaultIndexFile = path.resolve(__dirname, '../../../data/sparepartsworld_stihl_model_index.json');
+
 export class SparePartsWorldSource {
-  constructor(httpClient) {
+  constructor(httpClient, options = {}) {
     this.sourceId = 'sparepartsworld';
     this.sourceName = 'Spare Parts World UK';
     this.sourceType = 'STRUCTURED_EXPLODED_DIAGRAM_CATALOGUE';
     this.authorityLevel = 'STRUCTURED_AFTERMARKET_DEALER';
     this.httpClient = httpClient;
     this.baseUrl = 'https://www.sparepartsworld.co.uk';
+    this.catalogIndexFile = options.catalogIndexFile || defaultIndexFile;
+    this._cachedCatalog = null;
   }
 
   async checkRobotsPolicy() {
@@ -27,6 +35,31 @@ export class SparePartsWorldSource {
       notes: isAllowed ? 'Robots policy permits product and spare parts crawling' : 'Disallowed',
       reason: isAllowed ? 'Robots policy permits product and spare parts crawling' : 'Disallowed'
     };
+  }
+
+  /**
+   * Loads the dynamic STIHL model index discovered from the catalog.
+   */
+  async loadCatalogIndex() {
+    if (this._cachedCatalog) {
+      return this._cachedCatalog;
+    }
+
+    if (fs.existsSync(this.catalogIndexFile)) {
+      try {
+        const raw = fs.readFileSync(this.catalogIndexFile, 'utf8');
+        const doc = JSON.parse(raw);
+        if (doc && Array.isArray(doc.catalog)) {
+          this._cachedCatalog = doc.catalog;
+          return this._cachedCatalog;
+        }
+      } catch (err) {
+        // Fallback to empty if read error
+      }
+    }
+
+    this._cachedCatalog = [];
+    return this._cachedCatalog;
   }
 
   /**
@@ -75,14 +108,53 @@ export class SparePartsWorldSource {
   }
 
   /**
-   * Dynamically discovers candidate model URLs on Spare Parts World.
-   * Probes candidate category slugs and known STIHL product range mappings.
+   * Discovers candidate URLs systematically via catalog index and URL slug patterns.
+   * Zero hardcoded product ID hints.
    */
   async discoverModelCandidates(modelQuery) {
     const cleanQuery = modelQuery.toUpperCase().replace(/^STIHL\s+/i, '').trim();
-    const slug = cleanQuery.replace(/\s+/g, '-');
+    const catalog = await this.loadCatalogIndex();
 
-    const candidateUrls = [
+    const discoveredCandidates = [];
+    const seenUrls = new Set();
+
+    // 1. Match from dynamic catalog index
+    const normTarget = PartNormalizer.normalizeModelVariant(cleanQuery);
+    const indexMatches = catalog.filter(c => {
+      const cNorm = PartNormalizer.normalizeModelVariant(c.model_title_clean || c.model_name);
+      return cNorm.base_model_name.toUpperCase() === normTarget.base_model_name.toUpperCase();
+    });
+
+    for (const item of indexMatches) {
+      const targetUrl = item.source_url;
+      if (!seenUrls.has(targetUrl)) {
+        seenUrls.add(targetUrl);
+        const res = await this.httpClient.get(targetUrl, { purpose: `catalog_index_discovery_${cleanQuery}` });
+        if (res.status === 200 && res.body) {
+          const isBase = item.variant_key === 'base' || item.variant_key === 'standard';
+          discoveredCandidates.push({
+            url: res.final_url || targetUrl,
+            model: cleanQuery,
+            title: item.model_name,
+            h1: item.model_name,
+            status: res.status,
+            match_type: isBase ? 'BASE_MODEL' : 'EXACT_VARIANT',
+            variant: isBase ? null : item.variant_name,
+            variant_key: item.variant_key,
+            sha256: res.bodySha256 || res.sha256,
+            rawHtml: res.body
+          });
+        }
+      }
+    }
+
+    if (discoveredCandidates.length > 0) {
+      return discoveredCandidates;
+    }
+
+    // 2. Systematic slug fallback if catalog index doesn't have the entry
+    const slug = cleanQuery.replace(/\s+/g, '-');
+    const slugUrls = [
       `${this.baseUrl}/Stihl-${slug}-Gasoline-Chainsaw-Spare-Parts/`,
       `${this.baseUrl}/Stihl-${slug}-Chainsaw-Spare-Parts/`,
       `${this.baseUrl}/Stihl-${slug}-Brushcutters-Spare-Parts/`,
@@ -94,34 +166,11 @@ export class SparePartsWorldSource {
       `${this.baseUrl}/Stihl-${slug}-Spare-Parts/`
     ];
 
-    // Known STIHL product range registry on Spare Parts World
-    const productHints = {
-      '026': [`${this.baseUrl}/p/P782712`, `${this.baseUrl}/Stihl-026-Chainsaw-Spare-Parts/P782600`],
-      'MS 170': [`${this.baseUrl}/p/P782553`, `${this.baseUrl}/Stihl-MS-170-Chainsaw-Spare-Parts/P782607`],
-      'MS 180': [`${this.baseUrl}/p/P782559`, `${this.baseUrl}/Stihl-MS-180-Chainsaw-Spare-Parts/P782608`],
-      'MS 250': [`${this.baseUrl}/p/P782604`],
-      'MS 261': [`${this.baseUrl}/p/P782612`, `${this.baseUrl}/Stihl-MS-261-Gasoline-Chainsaw-Spare-Parts/P782612`],
-      'MS 362': [`${this.baseUrl}/p/P782645`],
-      'FS 55': [`${this.baseUrl}/p/P782974`, `${this.baseUrl}/Stihl-FS-55-Brushcutter-Spare-Parts/P782700`],
-      'TS 420': [`${this.baseUrl}/p/P783930`, `${this.baseUrl}/Stihl-TS-420-Cut-Off-Saw-Spare-Parts/P782800`]
-    };
-
-    if (productHints[cleanQuery]) {
-      for (const hintUrl of productHints[cleanQuery]) {
-        if (!candidateUrls.includes(hintUrl)) {
-          candidateUrls.unshift(hintUrl);
-        }
-      }
-    }
-
-    const discoveredCandidates = [];
-    const seenUrls = new Set();
-
-    for (const url of candidateUrls) {
+    for (const url of slugUrls) {
       if (seenUrls.has(url)) continue;
       seenUrls.add(url);
 
-      const res = await this.httpClient.get(url, { purpose: `candidate_discovery_${cleanQuery}` });
+      const res = await this.httpClient.get(url, { purpose: `slug_discovery_${cleanQuery}` });
       if (res.status === 200 && res.body && res.body.length > 500) {
         const titleMatch = res.body.match(/<title>([^<]*)<\/title>/i);
         const h1Match = res.body.match(/<h1[^>]*>([^<]*)<\/h1>/i);
@@ -131,7 +180,7 @@ export class SparePartsWorldSource {
         const classification = this.classifyCandidateModel(cleanQuery, title, h1);
         if (classification.match_type !== 'MISMATCH') {
           discoveredCandidates.push({
-            url,
+            url: res.final_url || url,
             model: cleanQuery,
             title,
             h1,
@@ -142,7 +191,6 @@ export class SparePartsWorldSource {
             rawHtml: res.body
           });
 
-          // If we found an exact base model match, we can proceed
           if (classification.match_type === 'BASE_MODEL') {
             break;
           }
@@ -196,30 +244,36 @@ export class SparePartsWorldSource {
   }
 
   /**
-   * Discovers variants of the given model from HTML content or related catalogue entries.
+   * Discovers variants of the given model from catalog index and page links.
    */
-  discoverVariants(modelQuery, rawHtml) {
+  async discoverVariants(modelQuery, rawHtml) {
     const cleanQuery = modelQuery.toUpperCase().replace(/^STIHL\s+/i, '').trim();
+    const normTarget = PartNormalizer.normalizeModelVariant(cleanQuery);
+    const catalog = await this.loadCatalogIndex();
+
     const variants = [{
-      variant_code: cleanQuery.toLowerCase().replace(/[\s-]+/g, '_'),
-      variant_name: `STIHL ${cleanQuery}`,
-      base_model: cleanQuery
+      variant_code: normTarget.base_model_name.toLowerCase().replace(/[\s-]+/g, '_'),
+      variant_name: `STIHL ${normTarget.base_model_name}`,
+      variant_key: 'base',
+      base_model: normTarget.base_model_name
     }];
 
-    if (rawHtml) {
-      const variantKeywords = ['C-M', 'C-BE', 'C-B', 'C-E', '2-MIX', 'RC-E', 'C-MQ', 'C-BM', 'VW', 'PRO', 'WVH', 'W', 'R'];
-      for (const kw of variantKeywords) {
-        if (rawHtml.includes(kw)) {
-          const varCode = `${cleanQuery.toLowerCase().replace(/[\s-]+/g, '_')}_${kw.toLowerCase().replace(/[\s-]+/g, '_')}`;
-          const varName = `STIHL ${cleanQuery} ${kw}`;
-          if (!variants.some(v => v.variant_code === varCode)) {
-            variants.push({
-              variant_code: varCode,
-              variant_name: varName,
-              base_model: cleanQuery
-            });
-          }
-        }
+    // Find real catalog variants
+    const catalogVariants = catalog.filter(c => {
+      const cNorm = PartNormalizer.normalizeModelVariant(c.model_title_clean || c.model_name);
+      return cNorm.base_model_name.toUpperCase() === normTarget.base_model_name.toUpperCase() && cNorm.variant_key !== 'base';
+    });
+
+    for (const cv of catalogVariants) {
+      const vCode = `${normTarget.base_model_name.toLowerCase().replace(/[\s-]+/g, '_')}_${cv.variant_key}`;
+      if (!variants.some(v => v.variant_code === vCode)) {
+        variants.push({
+          variant_code: vCode,
+          variant_name: cv.variant_name || cv.model_name,
+          variant_key: cv.variant_key,
+          base_model: normTarget.base_model_name,
+          source_url: cv.source_url
+        });
       }
     }
 
@@ -268,12 +322,15 @@ export class SparePartsWorldSource {
    * Parses exploded parts from HTML with strict section attribution.
    * Parts that do not have proven diagram section attribution receive UNRESOLVED status.
    */
-  parsePartsFromHtml(rawHtml, modelQuery, sourceUrl) {
+  parsePartsFromHtml(rawHtml, modelQuery, sourceUrl, variantKey = 'base') {
     const parts = [];
     if (!rawHtml) return parts;
 
     const itemRegex = /<div\s+class=['"]spareref['"]>([^<]*)<\/div>[\s\S]*?<div\s+class=['"]sparetitle['"]>[\s\S]*?<a[^>]*class=['"]sparetitle['"][^>]*>([^<]*)<\/a>[\s\S]*?<span\s+class=['"]sparesncode['"]>([^<]*)<\/span>/gi;
     const sections = this.discoverSections(rawHtml, modelQuery);
+
+    const isExactVariant = variantKey && variantKey !== 'base' && variantKey !== 'standard';
+    const fitmentScope = isExactVariant ? FITMENT_SCOPES.EXACT_VARIANT : FITMENT_SCOPES.BASE_MODEL_CONFIRMED;
 
     for (const match of rawHtml.matchAll(itemRegex)) {
       const rawPos = match[1].trim();
@@ -309,8 +366,9 @@ export class SparePartsWorldSource {
           source_id: this.sourceId,
           source_url: sourceUrl,
           source_evidence_status: 'SINGLE_STRUCTURED_SOURCE',
-          fitment_scope: FITMENT_SCOPES.BASE_MODEL_CONFIRMED,
-          model: modelQuery
+          fitment_scope: fitmentScope,
+          model: modelQuery,
+          variant_key: variantKey || 'base'
         });
       }
     }
@@ -332,18 +390,32 @@ export class SparePartsWorldSource {
     }
 
     const modelSet = new Set();
-    const modelRegex = /Stihl\s+([A-Z0-9\.\-\/]+(?:\s+[A-Z0-9\.\-\/]+)?)\s+(?:Gasoline|Chainsaw|Brushcutter|Cut-Off|Saw|Blower|Hedgetrimmer|Spare)/gi;
 
+    // 1. Explicit compatmodel_link anchors
+    const linkRegex = /class=['"]compatmodel_link['"][^>]*>([^<]+)<\/a>/gi;
+    for (const match of res.body.matchAll(linkRegex)) {
+      const rawText = match[1].replace(/^Stihl\s+/i, '').replace(/\s+Spare\s+Parts.*$/i, '').trim();
+      const norm = PartNormalizer.normalizeModelVariant(rawText);
+      if (norm.base_model_name && !norm.base_model_name.startsWith('HP') && !/^\d{11}$/.test(norm.base_model_name)) {
+        modelSet.add(norm.base_model_name);
+      }
+    }
+
+    // 2. Text pattern fallback
+    const modelRegex = /Stihl\s+([A-Z0-9\.\-\/]+(?:\s+[A-Z0-9\.\-\/]+)?)\s+(?:Gasoline|Chainsaw|Brushcutter|Cut-Off|Saw|Blower|Hedgetrimmer|Spare|range)/gi;
     let m;
     while ((m = modelRegex.exec(res.body)) !== null) {
       const candidateModel = m[1].trim();
-      if (candidateModel.length >= 2 && !candidateModel.startsWith('HP') && !/^\d{11}$/.test(candidateModel)) {
-        modelSet.add(candidateModel);
+      if (candidateModel.length >= 2 && !candidateModel.startsWith('HP') && !/^\d{11}$/.test(candidateModel) && !['SPARE', 'PARTS', 'CHAINSAW', 'TOOLS'].includes(candidateModel.toUpperCase())) {
+        const norm = PartNormalizer.normalizeModelVariant(candidateModel);
+        if (norm.base_model_name) {
+          modelSet.add(norm.base_model_name);
+        }
       }
     }
 
     return {
-      part_url: partUrl,
+      part_url: res.final_url || partUrl,
       status: res.status,
       sha256: res.bodySha256 || res.sha256,
       compatible_models: Array.from(modelSet).sort()

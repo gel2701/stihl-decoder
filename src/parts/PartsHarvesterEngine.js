@@ -57,8 +57,10 @@ export class PartsHarvesterEngine {
       sections_parsed: 0,
       sections_failed: 0,
       sections_with_mapped_parts: 0,
+      sections_without_mapped_parts: 0,
       parts_with_section: 0,
       parts_without_section: 0,
+      section_mapping_rate: 0,
       raw_part_rows: 0,
       valid_part_rows: 0,
       unique_part_numbers: 0,
@@ -85,7 +87,8 @@ export class PartsHarvesterEngine {
     const variantsMap = new Map();
     const conflictsMap = new Map();
     const liveHttpEvidence = [];
-    const sectionsWithPartsSet = new Set();
+    const discoveredSectionKeys = new Set();
+    const mappedSectionKeys = new Set();
 
     // Log policy checks in HTTP evidence
     for (const pol of sourcePolicies) {
@@ -120,13 +123,16 @@ export class PartsHarvesterEngine {
       };
 
       const norm = PartNormalizer.normalizeModelVariant(modelQuery);
-      variantsMap.set(`${norm.canonical_model_id}::${norm.variant_key}`, {
-        canonical_model_id: norm.canonical_model_id,
-        base_model_name: norm.base_model_name,
-        variant_key: norm.variant_key,
-        variant_name: norm.variant_name,
-        source_model_name: norm.source_model_name
-      });
+      const baseKey = `${norm.canonical_model_id}::${norm.variant_key}`;
+      if (!variantsMap.has(baseKey)) {
+        variantsMap.set(baseKey, {
+          canonical_model_id: norm.canonical_model_id,
+          base_model_name: norm.base_model_name,
+          variant_key: norm.variant_key,
+          variant_name: norm.variant_name,
+          source_model_name: norm.source_model_name
+        });
+      }
 
       const modelPartsExtracted = [];
 
@@ -148,8 +154,8 @@ export class PartsHarvesterEngine {
         modelStats.live_discovered = true;
         stats.models_live_discovered++;
 
-        // Discover variants
-        const spwVariants = this.sources.sparepartsworld.discoverVariants(modelQuery, primaryDiscovery.rawHtml);
+        // Discover variants from index / links
+        const spwVariants = await this.sources.sparepartsworld.discoverVariants(modelQuery, primaryDiscovery.rawHtml);
         for (const v of spwVariants) {
           const vNorm = PartNormalizer.normalizeModelVariant(modelQuery, v.variant_name);
           const vKey = `${vNorm.canonical_model_id}::${vNorm.variant_key}`;
@@ -159,34 +165,83 @@ export class PartsHarvesterEngine {
               base_model_name: vNorm.base_model_name,
               variant_key: vNorm.variant_key,
               variant_name: vNorm.variant_name,
-              source_model_name: v.variant_name
+              source_model_name: v.variant_name,
+              source_url: v.source_url || null
             });
             stats.variants_found++;
             modelStats.variants++;
           }
         }
 
-        // Discover sections and parse parts
+        // Discover sections and parse parts for base model
         const spwSections = this.sources.sparepartsworld.discoverSections(primaryDiscovery.rawHtml, modelQuery);
+        for (const s of spwSections) {
+          discoveredSectionKeys.add(`${norm.canonical_model_id}::${s.section_key}`);
+        }
         stats.sections_discovered += spwSections.length;
         modelStats.sections_discovered += spwSections.length;
-        stats.sections_parsed += spwSections.length;
-        modelStats.sections_parsed += spwSections.length;
 
-        const spwParts = this.sources.sparepartsworld.parsePartsFromHtml(primaryDiscovery.rawHtml, modelQuery, primaryDiscovery.url);
+        const spwParts = this.sources.sparepartsworld.parsePartsFromHtml(
+          primaryDiscovery.rawHtml,
+          modelQuery,
+          primaryDiscovery.url,
+          'base'
+        );
+
         for (const p of spwParts) {
           stats.raw_part_rows++;
           modelStats.raw_part_rows++;
           modelPartsExtracted.push({
             ...p,
             canonical_model_id: norm.canonical_model_id,
-            variant_key: norm.variant_key,
+            variant_key: 'base',
             fitment_scope: p.fitment_scope || FITMENT_SCOPES.BASE_MODEL_CONFIRMED,
             source_response_sha256: primaryDiscovery.sha256 || null,
             requested_url: primaryDiscovery.url,
             final_url: primaryDiscovery.url,
             http_status: primaryDiscovery.status
           });
+        }
+
+        // Harvest real variant page if distinct variant source_url exists (e.g., MS 261 C-M)
+        for (const v of spwVariants) {
+          if (v.variant_key && v.variant_key !== 'base' && v.source_url && v.source_url !== primaryDiscovery.url) {
+            const vRes = await this.httpClient.get(v.source_url, { purpose: `variant_harvest_${v.variant_key}` });
+            if (vRes.status === 200 && vRes.body) {
+              liveHttpEvidence.push({
+                source_id: 'sparepartsworld',
+                url: vRes.final_url || v.source_url,
+                http_status: vRes.status,
+                content_type: 'text/html; charset=UTF-8',
+                response_sha256: vRes.bodySha256 || vRes.sha256 || null,
+                model_query: `${modelQuery} ${v.variant_key}`,
+                purpose: 'variant_page_harvest',
+                fetched_at: new Date().toISOString()
+              });
+
+              const vParts = this.sources.sparepartsworld.parsePartsFromHtml(
+                vRes.body,
+                modelQuery,
+                vRes.final_url || v.source_url,
+                v.variant_key
+              );
+
+              for (const vp of vParts) {
+                stats.raw_part_rows++;
+                modelStats.raw_part_rows++;
+                modelPartsExtracted.push({
+                  ...vp,
+                  canonical_model_id: norm.canonical_model_id,
+                  variant_key: v.variant_key,
+                  fitment_scope: FITMENT_SCOPES.EXACT_VARIANT,
+                  source_response_sha256: vRes.bodySha256 || vRes.sha256 || null,
+                  requested_url: v.source_url,
+                  final_url: vRes.final_url || v.source_url,
+                  http_status: vRes.status
+                });
+              }
+            }
+          }
         }
       }
 
@@ -198,7 +253,7 @@ export class PartsHarvesterEngine {
         modelPartsExtracted.push({
           ...op,
           canonical_model_id: norm.canonical_model_id,
-          variant_key: norm.variant_key,
+          variant_key: 'base',
           fitment_scope: op.fitment_scope || FITMENT_SCOPES.BASE_MODEL_CONFIRMED,
           section_attribution_status: 'MAPPED',
           source_response_sha256: op.source_response_sha256 || '35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b',
@@ -226,13 +281,13 @@ export class PartsHarvesterEngine {
 
         if (attributionStatus === 'MAPPED') {
           stats.parts_with_section++;
-          sectionsWithPartsSet.add(`${norm.canonical_model_id}::${normSectionKey}`);
+          mappedSectionKeys.add(`${norm.canonical_model_id}::${normSectionKey}`);
         } else {
           stats.parts_without_section++;
         }
 
         // Record granular evidence observation (includes URL, response sha256, http status)
-        const obsId = `obs_${pNum}_${norm.canonical_model_id}_${p.source_id}_${normSectionKey}_${p.diagram_position}`;
+        const obsId = `obs_${pNum}_${norm.canonical_model_id}_${p.variant_key || 'base'}_${p.source_id}_${normSectionKey}_${p.diagram_position}`;
         evidenceObservations.push({
           evidence_id: obsId,
           part_number: pNum,
@@ -296,7 +351,6 @@ export class PartsHarvesterEngine {
         }
 
         // Canonical Fitment Identity (part_number + model + variant + fitment_scope)
-        // Independent of section/position: multiple section occurrences collapse into ONE canonical fitment relation
         const fitmentKey = `${pNum}::${norm.canonical_model_id}::${p.variant_key || 'base'}::${p.fitment_scope || FITMENT_SCOPES.BASE_MODEL_CONFIRMED}`;
 
         if (!fitmentsMap.has(fitmentKey)) {
@@ -336,14 +390,20 @@ export class PartsHarvesterEngine {
       }
 
       modelStats.unique_parts = modelPartNumberMap.size;
+      modelStats.sections_parsed = modelStats.sections_discovered;
       stats.per_model_summary[modelQuery] = modelStats;
     }
 
-    stats.sections_with_mapped_parts = sectionsWithPartsSet.size;
+    stats.sections_with_mapped_parts = mappedSectionKeys.size;
+    stats.sections_without_mapped_parts = Math.max(0, stats.sections_discovered - stats.sections_with_mapped_parts);
+    stats.sections_parsed = stats.sections_with_mapped_parts;
     stats.valid_part_rows = partsCatalogMap.size;
     stats.unique_part_numbers = partsCatalogMap.size;
     stats.evidence_observations_count = evidenceObservations.length;
     stats.conflicts_detected = conflictsMap.size;
+
+    const totalPartsAttr = stats.parts_with_section + stats.parts_without_section;
+    stats.section_mapping_rate = totalPartsAttr > 0 ? Number((stats.parts_with_section / totalPartsAttr).toFixed(4)) : 0;
 
     // Calculate evidence breakdown
     for (const f of fitmentsMap.values()) {

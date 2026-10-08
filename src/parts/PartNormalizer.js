@@ -110,7 +110,7 @@ export class PartNormalizer {
     const fullRaw = (variantStr || modelStr).trim();
 
     const parsedBase = normalizeModelQuery(modelStr);
-    const baseModel = parsedBase.canonicalQuery || modelStr.toUpperCase();
+    const baseModel = parsedBase.baseModel || parsedBase.canonicalQuery || modelStr.toUpperCase();
     const canonicalModelId = baseModel.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
 
     let variantKey = 'base';
