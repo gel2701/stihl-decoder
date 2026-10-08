@@ -27,11 +27,13 @@ export class OfficialStihlSource {
    */
   isValidOfficialRecord(item) {
     if (!item || typeof item !== 'object') return false;
-    if (item.verification_status !== 'OFFICIAL_SOURCE_VERIFIED') return false;
+    if (item.verification_status !== 'OFFICIAL_SOURCE_VERIFIED' && item.verification_status !== 'UNVERIFIED_CURATED') return false;
     if (!item.part_number || !PartNormalizer.normalizePartNumber(item.part_number)) return false;
     if (!item.source_url || typeof item.source_url !== 'string') return false;
     if (!item.source_url.startsWith('https://www.stihl.')) return false;
-    if (!item.response_sha256 || typeof item.response_sha256 !== 'string' || item.response_sha256.length !== 64) return false;
+    if (item.verification_status === 'OFFICIAL_SOURCE_VERIFIED') {
+      if (!item.response_sha256 || typeof item.response_sha256 !== 'string' || item.response_sha256.length !== 64) return false;
+    }
     if (!item.models || !Array.isArray(item.models) || item.models.length === 0) return false;
     return true;
   }
@@ -68,7 +70,7 @@ export class OfficialStihlSource {
         section_name: item.section_name || 'Service Kits',
         source_id: this.sourceId,
         source_url: item.source_url,
-        source_evidence_status: 'OFFICIAL_STIHL',
+        source_evidence_status: item.verification_status === 'OFFICIAL_SOURCE_VERIFIED' ? 'OFFICIAL_STIHL' : 'CURATED_OFFICIAL',
         fitment_scope: scope,
         model: cleanModel
       });
