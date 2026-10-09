@@ -1,0 +1,74 @@
+{
+  "batch_id": "MY_STIHL_2026-10-09_BATCH_003",
+  "batch_import_date": "2026-10-09",
+  "date_basis": "current upload/import session; source CSV has no per-row timestamp",
+  "source_file": "source/stihl_resultaten_backup_1.csv",
+  "source_file_sha256": "0987022cf96f48d392c348dcef5c5682a0177db69055ba3e4b7552d07bf3579b",
+  "source_file_bytes": 8377145,
+  "total_source_rows_including_header": 11525,
+  "populated_data_rows": 6822,
+  "unique_input_serials": 6820,
+  "exact_official_observations": 6031,
+  "new_official_anchors": 6029,
+  "reconfirmed_existing_anchors": 2,
+  "previous_production_anchors": 2845,
+  "final_production_anchors": 8874,
+  "recheck_queue_count": 789,
+  "technical_timeout_count": 736,
+  "technical_error_count": 34,
+  "found_without_usable_identity_count": 19,
+  "duplicate_source_rows_count": 4,
+  "identity_conflicts": 0,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1987,
+      "sha256": "967247eebc3993e06ec9a810a9e13e07a954ac9896790d34bf1c18727457ef99"
+    },
+    {
+      "path": "source/stihl_resultaten_backup_1.csv",
+      "bytes": 8377145,
+      "sha256": "0987022cf96f48d392c348dcef5c5682a0177db69055ba3e4b7552d07bf3579b"
+    },
+    {
+      "path": "data/serial_lookup_observations_2026-10-09.json",
+      "bytes": 7396531,
+      "sha256": "bf821086a0d4259b54968eea2f06f9aa1dde2f79b00390a4a6235f4c86f8c20a"
+    },
+    {
+      "path": "data/serial_lookup_observations_2026-10-09.csv",
+      "bytes": 1885391,
+      "sha256": "5ade31eb321cdee6514f8fdfc7bb83473a059140c7e6ea6c07e2212a5d8afe85"
+    },
+    {
+      "path": "data/official_serial_anchors_batch_2026-10-09.json",
+      "bytes": 3081438,
+      "sha256": "461569a669b2aefaded6968b25ee88b53c7bf387d33458a519f9350eb9482ccc"
+    },
+    {
+      "path": "data/new_official_serial_anchors_only_2026-10-09.json",
+      "bytes": 3080387,
+      "sha256": "d3d3418d2f89f7723f8e4541bd0375ec9d45ed4e2310b3334df18baa9ce6ae1d"
+    },
+    {
+      "path": "data/new_official_serial_anchors_only_2026-10-09.csv",
+      "bytes": 1278418,
+      "sha256": "616e8c6b494c6b1eb462c4e8285316241cf668dcf54ba2b887c1708bd2ec17e0"
+    },
+    {
+      "path": "data/reconfirmed_existing_anchors_2026-10-09.csv",
+      "bytes": 393,
+      "sha256": "8e3ec961b83caea973d22017c1d4677ded0233fec4d5dec3c86ff5dc9a243e60"
+    },
+    {
+      "path": "data/serial_recheck_queue_2026-10-09.csv",
+      "bytes": 33186,
+      "sha256": "4e3641b6dabe1fd866dc59e6db25e80569edde155ed85eba9ef7f1caaabeaa75"
+    },
+    {
+      "path": "data/duplicate_source_rows_2026-10-09.csv",
+      "bytes": 544,
+      "sha256": "3d37d7f7ac7ba2584b1c79db612434677e06a57678baecabe0fcb630d07b44cb"
+    }
+  ]
+}
