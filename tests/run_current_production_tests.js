@@ -48,7 +48,8 @@ export const currentProductionSuites = [
   'tests/phase51_official_serial_evidence.test.js',
   'tests/phase51b_official_serial_aliases.test.js',
   'tests/phase52a_parts_harvester.test.js',
-  'tests/phase52b_full_parts_catalog.test.js'
+  'tests/phase52b_full_parts_catalog.test.js',
+  'tests/phase52c_parts_production_integration.test.js'
 ];
 
 console.log('===============================================================');

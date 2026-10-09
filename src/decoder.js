@@ -25,6 +25,7 @@ import {
 } from './publicEvidence.js';
 import { buildSafeTechnicalPreview } from './SafeTechnicalPreviewResolver.js';
 import { resolvePlantRecord } from './plantResolver.js';
+import { PartCatalogResolver } from './parts/PartCatalogResolver.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
   const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
@@ -750,16 +751,21 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
 export function analyzePartNumber(partStr, database) {
   const familyCode = partStr.substring(0, 4);
   const familyIdentity = buildPartFamilyIdentity(familyCode, database);
+  const catalogPart = PartCatalogResolver.resolvePartNumber(partStr, database);
 
-  if (!familyIdentity.relatedModels.length && !database.part_family_prefixes?.[familyCode]) {
+  if (!catalogPart && !familyIdentity.relatedModels.length && !database.part_family_prefixes?.[familyCode]) {
     return {
       success: false,
       status: 'NOT_FOUND',
       type: 'PART_NUMBER',
       input: partStr,
-      error: `Onbekende STIHL onderdeelreeks (${familyCode}). Voeg een bekend model of onderdeelnummer toe.`
+      error: `Onbekende STIHL onderdeelreeks of nummer (${partStr}). Voeg een bekend model of onderdeelnummer toe.`
     };
   }
+
+  const partName = catalogPart?.part_name || null;
+  const compatibleModels = catalogPart?.compatible_models || [];
+  const fitmentCount = catalogPart?.fitment_count || 0;
 
   return {
     success: true,
@@ -773,6 +779,19 @@ export function analyzePartNumber(partStr, database) {
     modelGroup: familyIdentity.modelGroup,
     matchedModel: null,
     category: familyIdentity.category,
+    catalogPart: catalogPart ? {
+      part_number: catalogPart.part_number,
+      part_number_display: catalogPart.part_number_display,
+      part_name: catalogPart.part_name,
+      part_name_normalized: catalogPart.part_name_normalized,
+      source_count: catalogPart.source_count,
+      fitment_count: catalogPart.fitment_count,
+      compatible_models: catalogPart.compatible_models,
+      fitments: catalogPart.fitments
+    } : null,
+    part_name: partName,
+    compatible_models: compatibleModels,
+    fitment_count: fitmentCount,
     technicalSpecs: {},
     safeTechnicalPreview: { available: false, mode: 'PROBABLE_SERIES_PREVIEW', fields: [] },
     machineType: null,

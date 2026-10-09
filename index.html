@@ -229,6 +229,7 @@
             <div>
               <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">Onderdeelreeks / Familiecode Gedetecteerd</span>
               <h3 id="warn-part-no" class="text-xl sm:text-2xl font-mono font-extrabold text-white">1121 021 0800</h3>
+              <p id="warn-part-name" class="text-sm font-semibold text-orange-400 hidden"></p>
             </div>
           </div>
           <span class="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 self-start sm:self-center">Geen uniek serienummer</span>
@@ -237,10 +238,17 @@
         <div class="space-y-3">
           <p id="warn-message" class="text-sm font-semibold text-amber-200 leading-relaxed"></p>
           <div class="bg-gray-950/60 rounded-xl p-4 border border-amber-500/20 space-y-2">
-            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Bekende familie-identiteit:</div>
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Bekende familie-identiteit / geschikte modellen:</div>
             <div id="warn-model-group" class="text-lg font-bold text-orange-400">024 / 026 / MS 260 familie</div>
+            <div id="warn-models-list" class="flex flex-wrap gap-1.5 pt-1 hidden"></div>
             <p id="warn-specs" class="text-xs text-gray-300">Familiecode en categorie zijn indicatief; technische specificaties horen niet automatisch bij dit onderdeelnummer.</p>
           </div>
+        </div>
+
+        <div id="warn-part-detail-cta" class="hidden pt-1">
+          <a id="warn-part-detail-link" href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition">
+            Bekijk volledige onderdeelcompatibiliteit →
+          </a>
         </div>
 
         <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
@@ -1255,6 +1263,35 @@
           document.getElementById('warn-model-group').innerText = res.modelGroup || 'STIHL Modelgroep ' + res.familyCode;
           document.getElementById('warn-specs').innerText = `${res.familyDetails?.familyLabel || 'STIHL onderdeelreeks / familiecode'}${res.category ? ` · Categorie: ${res.category}` : ''}`;
           document.getElementById('warn-advice').innerText = res.advice || 'Een uniek serienummer staat ingeslagen op het carter of typeplaatje en moet apart worden gecontroleerd.';
+
+          const partNameEl = document.getElementById('warn-part-name');
+          const modelsListEl = document.getElementById('warn-models-list');
+          const detailCtaEl = document.getElementById('warn-part-detail-cta');
+          const detailLinkEl = document.getElementById('warn-part-detail-link');
+
+          if (res.catalogPart && res.catalogPart.part_name) {
+            partNameEl.innerText = res.catalogPart.part_name;
+            partNameEl.classList.remove('hidden');
+          } else {
+            partNameEl.classList.add('hidden');
+          }
+
+          if (res.catalogPart && Array.isArray(res.catalogPart.compatible_models) && res.catalogPart.compatible_models.length > 0) {
+            modelsListEl.innerHTML = res.catalogPart.compatible_models.map(function(m) {
+              return '<span class="px-2 py-0.5 rounded bg-gray-900 text-gray-200 border border-gray-800 text-2xs font-semibold">' + m.model_name + '</span>';
+            }).join('');
+            modelsListEl.classList.remove('hidden');
+          } else {
+            modelsListEl.classList.add('hidden');
+          }
+
+          if (res.catalogPart && res.catalogPart.part_number) {
+            detailLinkEl.href = '/onderdeelnummer/' + res.catalogPart.part_number + '/';
+            detailCtaEl.classList.remove('hidden');
+          } else {
+            detailCtaEl.classList.add('hidden');
+          }
+
           warningCard.classList.remove('hidden');
           return;
         }

@@ -13,6 +13,8 @@ import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
 import { renderCategoryPageHtml } from './src/components/CategoryPageTemplate.js';
 import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplate.js';
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
+import { renderPartDetailPageHtml } from './src/components/PartDetailPageTemplate.js';
+import { PartCatalogResolver } from './src/parts/PartCatalogResolver.js';
 import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
@@ -490,7 +492,8 @@ const server = http.createServer(async (req, res) => {
           res.end();
           return;
         }
-        const partsHtml = renderModelPartsPageHtml(targetModel, database, PRIMARY_ORIGIN);
+        const selectedConfig = urlObj.searchParams.get('config') || null;
+        const partsHtml = renderModelPartsPageHtml(targetModel, database, PRIMARY_ORIGIN, { configurationKey: selectedConfig });
         logStihlEvent(EVENT_TYPES.PART_SEARCH, { model: targetModel.model_name }, req.headers['user-agent']);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
         res.end(partsHtml);
@@ -606,7 +609,7 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
-  // 13. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/)
+  // 13. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/ & /onderdeelnummer/:partNo/)
   if (cleanPath === 'onderdeelnummer') {
     const html = renderPartNumberHubHtml(database, PRIMARY_ORIGIN);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
@@ -615,12 +618,38 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (pathname.startsWith('/onderdeelnummer/')) {
-    const seriesCode = cleanPath.replace('onderdeelnummer/', '').replace(/^stihl-/, '');
+    const rawTarget = cleanPath.replace('onderdeelnummer/', '');
+    const cleanDigits = rawTarget.replace(/[^0-9]/g, '');
+
+    // Check if it's an 11-digit part number or formatted part lookup
+    if (cleanDigits.length === 11) {
+      const partHtml = renderPartDetailPageHtml(cleanDigits, database, PRIMARY_ORIGIN);
+      logStihlEvent(EVENT_TYPES.PART_SEARCH, { part_number: cleanDigits }, req.headers['user-agent']);
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=UTF-8',
+        'X-Robots-Tag': 'noindex, follow'
+      });
+      res.end(partHtml);
+      return;
+    }
+
+    const seriesCode = rawTarget.replace(/^stihl-/, '');
     const hasSeries = Boolean(
       (database.part_family_prefixes && database.part_family_prefixes[seriesCode]) ||
       (database.models || []).some((model) => model.series_code === seriesCode)
     );
     if (!hasSeries) {
+      // Check if it resolves to a canonical part number directly
+      const partResolved = PartCatalogResolver.resolvePartNumber(rawTarget, database);
+      if (partResolved && partResolved.part_number) {
+        const partHtml = renderPartDetailPageHtml(partResolved.part_number, database, PRIMARY_ORIGIN);
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=UTF-8',
+          'X-Robots-Tag': 'noindex, follow'
+        });
+        res.end(partHtml);
+        return;
+      }
       renderNotFound(res);
       return;
     }
