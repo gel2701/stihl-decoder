@@ -11,7 +11,8 @@ import {
   INDEXABLE_COMPARISONS,
   isGuidePublished,
   isIntentPublished,
-  getPublishedCategories
+  getPublishedCategories,
+  getCanonicalPartSeriesCodes
 } from '../publicationRules.js';
 
 export function collectSitemapDiagnostics(database = {}) {
@@ -84,6 +85,12 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
 
   // 7. Parts Hub
   urls.push({ loc: `${baseUrl}/onderdeelnummer/`, priority: '0.7', changefreq: 'monthly' });
+
+  // 8. Canonical Part Series Hubs
+  const seriesCodes = getCanonicalPartSeriesCodes(database);
+  seriesCodes.forEach(code => {
+    urls.push({ loc: `${baseUrl}/onderdeelnummer/stihl-${code}/`, priority: '0.6', changefreq: 'monthly' });
+  });
 
   // Build XML string with lastmod support only when authentic timestamp exists
   const urlXml = urls.map(u => `  <url>

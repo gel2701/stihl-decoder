@@ -310,6 +310,35 @@ export class PartCatalogResolver {
       const part = database.parts.find(p => p.part_number === canonicalPartNo);
       if (!part) return null;
       const fitments = database.model_part_fitments.filter(f => f.part_number === canonicalPartNo);
+      const modelMap = new Map();
+      for (const f of fitments) {
+        const mId = f.canonical_model_id;
+        if (!modelMap.has(mId)) {
+          modelMap.set(mId, {
+            model_id: mId,
+            model_name: mId.replace(/_/g, ' ').toUpperCase(),
+            variants: new Set(),
+            configurations: new Set(),
+            sections: new Set(),
+            fitment_count: 0
+          });
+        }
+        const mEntry = modelMap.get(mId);
+        mEntry.fitment_count++;
+        if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
+        if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
+        if (f.section_name) mEntry.sections.add(f.section_name);
+      }
+
+      const compatibleModels = Array.from(modelMap.values()).map(m => ({
+        model_id: m.model_id,
+        model_name: m.model_name,
+        variants: Array.from(m.variants),
+        configurations: Array.from(m.configurations),
+        sections: Array.from(m.sections),
+        fitment_count: m.fitment_count
+      }));
+
       return {
         part_number: part.part_number,
         part_number_display: part.part_number_display || PartNormalizer.formatPartNumber(part.part_number),
@@ -317,6 +346,7 @@ export class PartCatalogResolver {
         part_name_normalized: part.part_name_normalized,
         source_count: part.source_count,
         fitment_count: fitments.length,
+        compatible_models: compatibleModels,
         fitments: fitments.map(f => ({
           canonical_model_id: f.canonical_model_id,
           variant_key: f.variant_key,
@@ -339,6 +369,35 @@ export class PartCatalogResolver {
 
     const fitments = cachedFitmentsByPartMap?.get(canonicalPartNo) || [];
 
+    const modelMap = new Map();
+    for (const f of fitments) {
+      const mId = f.canonical_model_id;
+      if (!modelMap.has(mId)) {
+        modelMap.set(mId, {
+          model_id: mId,
+          model_name: mId.replace(/_/g, ' ').toUpperCase(),
+          variants: new Set(),
+          configurations: new Set(),
+          sections: new Set(),
+          fitment_count: 0
+        });
+      }
+      const mEntry = modelMap.get(mId);
+      mEntry.fitment_count++;
+      if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
+      if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
+      if (f.section_name) mEntry.sections.add(f.section_name);
+    }
+
+    const compatibleModels = Array.from(modelMap.values()).map(m => ({
+      model_id: m.model_id,
+      model_name: m.model_name,
+      variants: Array.from(m.variants),
+      configurations: Array.from(m.configurations),
+      sections: Array.from(m.sections),
+      fitment_count: m.fitment_count
+    }));
+
     return {
       part_number: part.part_number,
       part_number_display: part.part_number_display || PartNormalizer.formatPartNumber(part.part_number),
@@ -346,6 +405,7 @@ export class PartCatalogResolver {
       part_name_normalized: part.part_name_normalized,
       source_count: part.source_count,
       fitment_count: fitments.length,
+      compatible_models: compatibleModels,
       fitments: fitments.map(f => ({
         canonical_model_id: f.canonical_model_id,
         variant_key: f.variant_key,
@@ -423,6 +483,86 @@ export class PartCatalogResolver {
   }
 
   /**
+   * Retrieves all available physical configurations for a model with Dutch display labels and part counts.
+   */
+  static getConfigurationsForModel(modelId, database = null) {
+    if (!modelId) return [];
+    const normId = modelId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+
+    let modelConfigs = [];
+    if (database && Array.isArray(database.parts_model_configurations)) {
+      modelConfigs = database.parts_model_configurations.filter(c => (c.canonical_model_id || '').toLowerCase().replace(/[^a-z0-9]+/g, '_') === normId);
+    } else {
+      loadDefaultConfigurationsData();
+      if (cachedConfigurations) {
+        modelConfigs = cachedConfigurations.filter(c => (c.canonical_model_id || '').toLowerCase().replace(/[^a-z0-9]+/g, '_') === normId);
+      }
+    }
+
+    loadDefaultPartsData();
+    const fitments = (database && Array.isArray(database.model_part_fitments))
+      ? database.model_part_fitments.filter(f => f.canonical_model_id === normId)
+      : (cachedFitmentsByModelMap?.get(normId) || []);
+
+    const configMap = new Map();
+    for (const f of fitments) {
+      if (f.configuration_key && f.configuration_key !== 'base') {
+        const key = f.configuration_key.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        if (!configMap.has(key)) {
+          const registered = modelConfigs.find(c => (c.configuration_key || '').toLowerCase().replace(/[^a-z0-9]+/g, '_') === key);
+          const rawName = registered?.configuration_name || f.configuration_name || key.replace(/_/g, ' ');
+          configMap.set(key, {
+            configuration_key: key,
+            configuration_name: rawName,
+            display_label: PartCatalogResolver.formatConfigurationLabel(rawName, key),
+            variant_key: f.variant_key || 'base',
+            part_count: 0
+          });
+        }
+        configMap.get(key).part_count++;
+      }
+    }
+
+    return Array.from(configMap.values());
+  }
+
+  /**
+   * Converts a configuration identifier/name into a user-friendly Dutch label.
+   */
+  static formatConfigurationLabel(rawName, key) {
+    if (!rawName) return key || 'Standaard uitvoering';
+    const clean = rawName.replace(/_/g, ' ').trim();
+    if (clean.toLowerCase() === 'cordless') return 'Accu uitvoering (Basis)';
+    if (clean.toLowerCase() === 'cordless hedge cutters') return 'Accu Stokheggenschaar';
+    if (clean.toLowerCase() === 'pc') return 'iMOW PC uitvoering (Standaard)';
+    if (clean.toLowerCase() === 'pc l') return 'iMOW PC-L uitvoering (Groot)';
+    return clean.charAt(0).toUpperCase() + clean.slice(1);
+  }
+
+  /**
+   * Groups parts for a model by diagram section.
+   */
+  static getSectionsForModel(modelId, variantKey = null, configurationKey = null, database = null) {
+    const parts = PartCatalogResolver.getPartsForModel(modelId, variantKey, configurationKey, database);
+    const sectionMap = new Map();
+
+    for (const part of parts) {
+      const sKey = part.section_key || 'algemeen';
+      const sName = part.section_name || 'Algemene Onderdelen';
+      if (!sectionMap.has(sKey)) {
+        sectionMap.set(sKey, {
+          section_key: sKey,
+          section_name: sName,
+          parts: []
+        });
+      }
+      sectionMap.get(sKey).parts.push(part);
+    }
+
+    return Array.from(sectionMap.values());
+  }
+
+  /**
    * Resolves a user input or descriptive string into a single exact canonical configuration key.
    */
   static resolveConfigurationKey(canonicalModelId, variantKey, rawInput, database = null) {
@@ -471,5 +611,13 @@ export class PartCatalogResolver {
 
   resolveConfigurationKey(canonicalModelId, variantKey, rawInput, database = null) {
     return PartCatalogResolver.resolveConfigurationKey(canonicalModelId, variantKey, rawInput, database);
+  }
+
+  getConfigurationsForModel(modelId, database = null) {
+    return PartCatalogResolver.getConfigurationsForModel(modelId, database);
+  }
+
+  getSectionsForModel(modelId, variantKey = null, configurationKey = null, database = null) {
+    return PartCatalogResolver.getSectionsForModel(modelId, variantKey, configurationKey, database);
   }
 }

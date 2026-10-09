@@ -1,6 +1,6 @@
 /**
  * Model Parts Compatibility Page SSR Template Renderer for STIHLDecoder.nl
- * Phase 49A — User Trust & Drive Context Safety
+ * Phase 49A / Phase 52C — User Trust, Drive Context Safety & Canonical Parts Foundation
  */
 
 import { buildStructuredData } from './StructuredData.js';
@@ -17,6 +17,7 @@ import {
 } from '../publicationRules.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
+import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 
 function renderSafeTechnicalValue(model, field, database, formatter) {
   const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
@@ -29,11 +30,16 @@ function renderSafeTechnicalValue(model, field, database, formatter) {
   return 'Niet betrouwbaar gedocumenteerd';
 }
 
-export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
+export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIGIN, options = {}) {
   const categorySlug = getSafeCategorySlug(model);
   const slug = model.slug || model.id.replace(/_/g, '-');
   const canonicalUrl = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/onderdelen/` : `${baseUrl}/onderdelen-onbekend/${slug}/`;
   const modelPath = getSafeModelPath(model);
+
+  const selectedConfig = options.configurationKey || null;
+  const configurations = PartCatalogResolver.getConfigurationsForModel(model.model_name || model.id, database);
+  const sections = PartCatalogResolver.getSectionsForModel(model.model_name || model.id, null, selectedConfig, database);
+  const totalPartsCount = sections.reduce((acc, s) => acc + s.parts.length, 0);
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -78,6 +84,90 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   // Relevant public links for this specific machine context
   const relevantLinks = getRelevantPublicLinks(model, database);
 
+  const configTabsHtml = configurations.length > 0 ? `
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <span>⚙️ Beschikbare Uitvoeringen & Configuraties</span>
+          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${configurations.length} uitvoeringen</span>
+        </h3>
+        ${selectedConfig ? `<a href="?" class="text-2xs text-orange-400 hover:underline">Toon basisuitvoering</a>` : ''}
+      </div>
+      <p class="text-xs text-gray-400">
+        Voor de STIHL ${model.model_name} bestaan verschillende productieversies of configuraties. Selecteer uw specifieke uitvoering om uitsluitend passende onderdelen te zien.
+      </p>
+      <div class="flex flex-wrap gap-2 pt-1">
+        <a href="?" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${!selectedConfig ? 'bg-orange-600 text-white border-orange-500 shadow-md shadow-orange-600/30' : 'bg-gray-950 text-gray-300 border-gray-800 hover:border-gray-700'}">
+          Standaard / Basisuitvoering
+        </a>
+        ${configurations.map(c => {
+          const isCurrent = selectedConfig === c.configuration_key;
+          return `
+            <a href="?config=${encodeURIComponent(c.configuration_key)}" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition border flex items-center gap-1.5 ${isCurrent ? 'bg-orange-600 text-white border-orange-500 shadow-md shadow-orange-600/30' : 'bg-gray-950 text-gray-300 border-gray-800 hover:border-gray-700'}">
+              <span>${c.display_label}</span>
+              <span class="px-1.5 py-0.2 rounded-full text-2xs ${isCurrent ? 'bg-orange-700 text-white' : 'bg-gray-800 text-gray-400'}">${c.part_count}</span>
+            </a>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  const catalogSectionsHtml = sections.length > 0 ? `
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span>Canonieke Onderdelencatalogus</span>
+            <span class="text-xs font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">${totalPartsCount} onderdelen</span>
+          </h2>
+          <p class="text-xs text-gray-400">Onderdelen ingedeeld volgens officiële diagramsecties en documentatiereeksen.</p>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        ${sections.map(sec => `
+          <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-5 space-y-3">
+            <div class="flex justify-between items-center border-b border-gray-800/80 pb-2.5">
+              <h3 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                <span>${sec.section_name}</span>
+              </h3>
+              <span class="text-2xs font-mono text-gray-400 bg-gray-950 px-2.5 py-1 rounded-lg border border-gray-800">${sec.parts.length} onderdelen</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="text-gray-400 border-b border-gray-800 text-2xs font-mono uppercase tracking-wider">
+                    <th class="py-2 pr-3 w-16">Pos.</th>
+                    <th class="py-2 px-3 w-36">Onderdeelnummer</th>
+                    <th class="py-2 px-3">Omschrijving</th>
+                    <th class="py-2 pl-3 text-right w-16">Aantal</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-800/50">
+                  ${sec.parts.map(p => `
+                    <tr class="hover:bg-gray-800/40 transition">
+                      <td class="py-2 pr-3 font-mono text-gray-400">${p.diagram_position || '—'}</td>
+                      <td class="py-2 px-3 font-mono font-bold text-orange-400 whitespace-nowrap">
+                        <a href="/onderdeelnummer/${p.part_number}/" class="hover:underline">${p.part_number_display || p.part_number}</a>
+                      </td>
+                      <td class="py-2 px-3 text-gray-200">
+                        <span>${p.part_name}</span>
+                        ${p.configuration_name ? `<span class="ml-2 text-2xs font-mono text-gray-400 bg-gray-950 px-1.5 py-0.5 rounded border border-gray-800">${p.configuration_name}</span>` : ''}
+                      </td>
+                      <td class="py-2 pl-3 text-right font-mono text-gray-400">${p.quantity || 1}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+  ` : '';
+
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
@@ -120,14 +210,18 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
         STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Bekijk vervangingsonderdelen voor de STIHL ${model.model_name} op basis van de beschikbare repositorydata. Controleer altijd typeplaatje, uitvoering en bronstatus voordat u bestelt.
+        Bekijk vervangingsonderdelen voor de STIHL ${model.model_name} op basis van de gecertificeerde repositorydata. Controleer altijd typeplaatje, uitvoering en bronstatus voordat u bestelt.
       </p>
     </header>
+
+    ${configTabsHtml}
+
+    ${catalogSectionsHtml}
 
     <!-- Essential Parts Grid -->
     <section class="space-y-4">
       <h2 class="text-xl font-bold text-white flex items-center gap-2">
-        <span>Onderdelenoverzicht STIHL ${model.model_name}</span>
+        <span>Onderhoud & Slijtageonderdelen STIHL ${model.model_name}</span>
         <span class="text-2xs text-gray-400 font-normal">${verification.badgeLabel}</span>
       </h2>
 
