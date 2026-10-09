@@ -35,7 +35,7 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
     command: 'node server.js',
     url: `${BASE_URL}/api/version`,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 30000,
     env: {
       PORT: String(PORT),

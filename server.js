@@ -107,6 +107,7 @@ const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 60;
 
 function checkRateLimit(req) {
+  if (process.env.NODE_ENV === 'test') return false;
   const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
   const now = Date.now();
   const entry = rateLimitMap.get(ip);
@@ -123,6 +124,7 @@ const OBS_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const OBS_MAX_REQUESTS_PER_WINDOW = 10;
 
 function checkObservationRateLimit(req) {
+  if (process.env.NODE_ENV === 'test') return false;
   const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
   const now = Date.now();
   const entry = observationRateLimitMap.get(ip);

@@ -337,18 +337,29 @@ for (const s of canonicalSeriesCodes) {
 // STEP 2: TEST ALL INTERNAL DESTINATIONS VIA REAL HTTP REQUESTS
 // ==============================================================
 
-function fetchHttp(urlPath) {
+const httpAgent = new http.Agent({ keepAlive: true, maxSockets: 10 });
+
+function fetchHttp(urlPath, retries = 2) {
   return new Promise((resolve) => {
     const req = http.get({
       hostname: 'localhost',
       port: activePort,
-      path: urlPath
+      path: urlPath,
+      agent: httpAgent
     }, (res) => {
       let body = '';
       res.on('data', (chunk) => { body += chunk; });
       res.on('end', () => resolve({ statusCode: res.statusCode, headers: res.headers, body }));
     });
-    req.on('error', (err) => resolve({ statusCode: 500, error: err.message, headers: {}, body: '' }));
+    req.on('error', async (err) => {
+      if (retries > 0) {
+        await new Promise((r) => setTimeout(r, 50));
+        const retryRes = await fetchHttp(urlPath, retries - 1);
+        resolve(retryRes);
+      } else {
+        resolve({ statusCode: 500, error: err.message, headers: {}, body: '' });
+      }
+    });
   });
 }
 
