@@ -324,6 +324,12 @@ export class SparePartsWorldSource {
    */
   parsePartsFromHtml(rawHtml, modelQuery, sourceUrl, variantKey = 'base') {
     const parts = [];
+    const invalidRows = [];
+    const noncanonicalRows = [];
+    parts.invalidRows = invalidRows;
+    parts.noncanonicalRows = noncanonicalRows;
+    parts.rawCount = 0;
+
     if (!rawHtml) return parts;
 
     const itemRegex = /<div\s+class=['"]spareref['"]>([^<]*)<\/div>[\s\S]*?<div\s+class=['"]sparetitle['"]>[\s\S]*?<a[^>]*class=['"]sparetitle['"][^>]*>([^<]*)<\/a>[\s\S]*?<span\s+class=['"]sparesncode['"]>([^<]*)<\/span>/gi;
@@ -332,10 +338,12 @@ export class SparePartsWorldSource {
     const isExactVariant = variantKey && variantKey !== 'base' && variantKey !== 'standard';
     const fitmentScope = isExactVariant ? FITMENT_SCOPES.EXACT_VARIANT : FITMENT_SCOPES.BASE_MODEL_CONFIRMED;
 
+    let rawCount = 0;
     for (const match of rawHtml.matchAll(itemRegex)) {
-      const rawPos = match[1].trim();
-      const rawTitle = match[2].trim();
-      const rawCode = match[3].trim();
+      rawCount++;
+      const rawPos = (' ' + match[1]).slice(1).trim();
+      const rawTitle = (' ' + match[2]).slice(1).trim();
+      const rawCode = (' ' + match[3]).slice(1).trim();
 
       const normalizedPartNo = PartNormalizer.normalizePartNumber(rawCode);
       if (normalizedPartNo) {
@@ -353,26 +361,49 @@ export class SparePartsWorldSource {
         const sectionName = hasExplicitSection ? matchedSection.section_name : 'Unresolved Diagram Section';
         const attributionStatus = hasExplicitSection ? 'MAPPED' : 'UNRESOLVED';
 
+        const cleanPartName = PartNormalizer.normalizePartName(rawTitle.replace(/^Stihl\s+/i, '').replace(/\b\d{11}\b/g, '').trim());
+
         parts.push({
-          part_number: normalizedPartNo,
-          part_number_display: PartNormalizer.formatPartNumber(normalizedPartNo),
-          part_name_raw: rawTitle,
-          part_name_normalized: PartNormalizer.normalizePartName(rawTitle.replace(/^Stihl\s+/i, '').replace(/\b\d{11}\b/g, '').trim()),
-          diagram_position: rawPos || 'POS_UNSPECIFIED',
+          part_number: (' ' + normalizedPartNo).slice(1),
+          part_number_display: (' ' + PartNormalizer.formatPartNumber(normalizedPartNo)).slice(1),
+          part_name_raw: (' ' + rawTitle).slice(1),
+          part_name_normalized: (' ' + cleanPartName).slice(1),
+          diagram_position: (' ' + (rawPos || 'POS_UNSPECIFIED')).slice(1),
           quantity: 1,
-          section_key: sectionKey,
-          section_name: sectionName,
+          section_key: (' ' + sectionKey).slice(1),
+          section_name: (' ' + sectionName).slice(1),
           section_attribution_status: attributionStatus,
           source_id: this.sourceId,
-          source_url: sourceUrl,
+          source_url: (' ' + sourceUrl).slice(1),
           source_evidence_status: 'SINGLE_STRUCTURED_SOURCE',
           fitment_scope: fitmentScope,
-          model: modelQuery,
-          variant_key: variantKey || 'base'
+          model: (' ' + modelQuery).slice(1),
+          variant_key: (' ' + (variantKey || 'base')).slice(1),
+          raw_code: rawCode
         });
+      } else {
+        const digitsOnly = rawCode.replace(/\D/g, '');
+        if (digitsOnly.length > 0 && digitsOnly.length !== 11) {
+          noncanonicalRows.push({
+            raw_pos: rawPos,
+            raw_title: rawTitle,
+            raw_code: rawCode,
+            reason: `NON_CANONICAL_LENGTH_${digitsOnly.length}`
+          });
+        } else {
+          invalidRows.push({
+            raw_pos: rawPos,
+            raw_title: rawTitle,
+            raw_code: rawCode,
+            reason: 'INVALID_PART_NUMBER'
+          });
+        }
       }
     }
 
+    parts.rawCount = rawCount;
+    parts.invalidRows = invalidRows;
+    parts.noncanonicalRows = noncanonicalRows;
     return parts;
   }
 

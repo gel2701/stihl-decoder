@@ -52,9 +52,13 @@ export class OfficialStihlSource {
       if (!modelMatches) continue;
 
       const canonicalPartNo = PartNormalizer.normalizePartNumber(item.part_number);
-      const scope = item.fitment_scope && Object.values(FITMENT_SCOPES).includes(item.fitment_scope)
-        ? item.fitment_scope
-        : (item.variant_condition ? FITMENT_SCOPES.APPLICATION_SPECIFIC : FITMENT_SCOPES.BASE_MODEL_CONFIRMED);
+      const normModel = PartNormalizer.normalizeModelVariant(cleanModel);
+      const isVariant = normModel.variant_key && normModel.variant_key !== 'base';
+      const scope = isVariant
+        ? FITMENT_SCOPES.EXACT_VARIANT
+        : (item.fitment_scope && Object.values(FITMENT_SCOPES).includes(item.fitment_scope)
+          ? item.fitment_scope
+          : (item.variant_condition ? FITMENT_SCOPES.APPLICATION_SPECIFIC : FITMENT_SCOPES.BASE_MODEL_CONFIRMED));
 
       parts.push({
         part_number: canonicalPartNo,

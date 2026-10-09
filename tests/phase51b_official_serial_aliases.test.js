@@ -22,7 +22,12 @@ const batch2ManifestPath = path.join(rootDir, 'data', 'import_batches', 'serials
 const batch2RecheckPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-06', 'data', 'serial_recheck_queue_2026-10-06.csv');
 
 const require = createRequire(import.meta.url);
-const sqlite3 = require('sqlite3');
+let Database;
+try {
+  Database = require('better-sqlite3');
+} catch (e) {
+  Database = null;
+}
 
 const database = JSON.parse(fs.readFileSync(jsonDbPath, 'utf8'));
 const anchorsDoc = JSON.parse(fs.readFileSync(anchorsPath, 'utf8'));
@@ -150,13 +155,21 @@ test('Phase 51B - Test 10: Official Anchor Count Remains Exactly 2845', () => {
 });
 
 test('Phase 51B - Test 11: JSON vs SQLite Alias Parity for all 171 Records', async () => {
-  const db = new sqlite3.Database(sqliteDbPath, sqlite3.OPEN_READONLY);
-  const rows = await new Promise((resolve, reject) => {
-    db.all('SELECT * FROM official_serial_input_aliases ORDER BY input_serial ASC', (err, r) => {
-      if (err) reject(err); else resolve(r);
+  let rows;
+  if (Database) {
+    const db = new Database(sqliteDbPath, { readonly: true });
+    rows = db.prepare('SELECT * FROM official_serial_input_aliases ORDER BY input_serial ASC').all();
+    db.close();
+  } else {
+    const sqlite3 = require('sqlite3');
+    const db = new sqlite3.Database(sqliteDbPath, sqlite3.OPEN_READONLY);
+    rows = await new Promise((resolve, reject) => {
+      db.all('SELECT * FROM official_serial_input_aliases ORDER BY input_serial ASC', (err, r) => {
+        if (err) reject(err); else resolve(r);
+      });
     });
-  });
-  db.close();
+    db.close();
+  }
 
   assert.strictEqual(rows.length, 171, 'SQLite official_serial_input_aliases table must have 171 rows');
   assert.strictEqual(canonicalAliasesDoc.aliases.length, 171, 'JSON aliases must have 171 rows');

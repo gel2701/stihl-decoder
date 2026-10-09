@@ -1,0 +1,7939 @@
+{
+  "schema_version": "phase52b-configuration-fitment-audit-v1",
+  "audited_at": "2026-10-08T22:43:52.721Z",
+  "summary": {
+    "total_configuration_groups_audited": 142,
+    "total_exclusive_parts_found": 5931,
+    "total_shared_parts_found": 15258
+  },
+  "differential_groups": [
+    {
+      "identity_key": "023::base",
+      "canonical_model_id": "023",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "L Quiet",
+        "Base Machine"
+      ],
+      "total_unique_parts": 212,
+      "shared_parts_count": 188,
+      "shared_parts_sample": [
+        "11061227400",
+        "11100849102",
+        "11101227400",
+        "11104007005",
+        "11131210800",
+        "11131214705",
+        "11131215000",
+        "11131219200",
+        "11131223205",
+        "11141217800"
+      ],
+      "per_configuration_stats": {
+        "L Quiet": {
+          "parts_count": 196,
+          "exclusive_count": 8
+        },
+        "Base Machine": {
+          "parts_count": 204,
+          "exclusive_count": 16
+        }
+      },
+      "exclusive_parts_sample": {
+        "L Quiet": [
+          "11211226600",
+          "11231201601",
+          "11237909901",
+          "11237925505",
+          "11241409500",
+          "90754784165",
+          "92102600700",
+          "94438257130"
+        ],
+        "Base Machine": [
+          "11231201612",
+          "11231201613",
+          "11231201650",
+          "11231201651",
+          "11231237500",
+          "11231240800",
+          "11231401900",
+          "11231412300",
+          "11231413200",
+          "11231418300"
+        ]
+      }
+    },
+    {
+      "identity_key": "024::base",
+      "canonical_model_id": "024",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "SW Version with Larger Piston Diam.",
+        "SWVH Version with Larger Piston Diam. Carbuertor Heating",
+        "Base Machine"
+      ],
+      "total_unique_parts": 253,
+      "shared_parts_count": 199,
+      "shared_parts_sample": [
+        "11061223000",
+        "11061227400",
+        "11064051000",
+        "11100849102",
+        "11101227400",
+        "11101229005",
+        "11103531600",
+        "11104007005",
+        "11106640501",
+        "11108934000"
+      ],
+      "per_configuration_stats": {
+        "SW Version with Larger Piston Diam.": {
+          "parts_count": 232,
+          "exclusive_count": 0
+        },
+        "SWVH Version with Larger Piston Diam. Carbuertor Heating": {
+          "parts_count": 222,
+          "exclusive_count": 11
+        },
+        "Base Machine": {
+          "parts_count": 230,
+          "exclusive_count": 10
+        }
+      },
+      "exclusive_parts_sample": {
+        "SW Version with Larger Piston Diam.": [],
+        "SWVH Version with Larger Piston Diam. Carbuertor Heating": [
+          "11101215100",
+          "11101223030",
+          "11180071066",
+          "11181226700",
+          "11181237500",
+          "11200071064",
+          "11201215405",
+          "11201226805",
+          "11210071021",
+          "11216401905"
+        ],
+        "Base Machine": [
+          "11210201200",
+          "11210300400",
+          "11210361600",
+          "11211400604",
+          "11211450802",
+          "11214403002",
+          "11216403201",
+          "11217901701",
+          "90744784475",
+          "90744784675"
+        ]
+      }
+    },
+    {
+      "identity_key": "028::base",
+      "canonical_model_id": "028",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "WB WoodBoss",
+        "Base Machine"
+      ],
+      "total_unique_parts": 166,
+      "shared_parts_count": 149,
+      "shared_parts_sample": [
+        "11061223000",
+        "11061227400",
+        "11064051000",
+        "11066403801",
+        "11066479404",
+        "11100341500",
+        "11100849102",
+        "11101215100",
+        "11101223030",
+        "11101226201"
+      ],
+      "per_configuration_stats": {
+        "WB WoodBoss": {
+          "parts_count": 158,
+          "exclusive_count": 9
+        },
+        "Base Machine": {
+          "parts_count": 157,
+          "exclusive_count": 8
+        }
+      },
+      "exclusive_parts_sample": {
+        "WB WoodBoss": [
+          "11166471806",
+          "11181459001",
+          "11206641500",
+          "11216401905",
+          "11216641600",
+          "11216642800",
+          "12066404700",
+          "90432161101",
+          "95170035060"
+        ],
+        "Base Machine": [
+          "11104329200",
+          "11131409200",
+          "11217919000",
+          "11250071021",
+          "11256401900",
+          "90483190650",
+          "90990212770",
+          "96469450490"
+        ]
+      }
+    },
+    {
+      "identity_key": "032::base",
+      "canonical_model_id": "032",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+        "AVEW Anti-Vibration Electronic Ignition"
+      ],
+      "total_unique_parts": 95,
+      "shared_parts_count": 95,
+      "shared_parts_sample": [
+        "11061223000",
+        "11061227400",
+        "11066403801",
+        "11066479404",
+        "11100219000",
+        "11100341500",
+        "11100849102",
+        "11101215100",
+        "11101223030",
+        "11101227400"
+      ],
+      "per_configuration_stats": {
+        "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus": {
+          "parts_count": 95,
+          "exclusive_count": 0
+        },
+        "AVEW Anti-Vibration Electronic Ignition": {
+          "parts_count": 95,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus": [],
+        "AVEW Anti-Vibration Electronic Ignition": []
+      }
+    },
+    {
+      "identity_key": "034::base",
+      "canonical_model_id": "034",
+      "variant_key": "base",
+      "configurations_count": 6,
+      "configurations": [
+        "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+        "AVEQWZ",
+        "AVEQZ-FD",
+        "AVSEQW",
+        "Z FB",
+        "Base Machine"
+      ],
+      "total_unique_parts": 240,
+      "shared_parts_count": 229,
+      "shared_parts_sample": [
+        "11064051000",
+        "11100849102",
+        "11103531600",
+        "11104007005",
+        "11104329200",
+        "11106640501",
+        "11131958200",
+        "11171820805",
+        "11171824500",
+        "11174420905"
+      ],
+      "per_configuration_stats": {
+        "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus": {
+          "parts_count": 229,
+          "exclusive_count": 0
+        },
+        "AVEQWZ": {
+          "parts_count": 229,
+          "exclusive_count": 0
+        },
+        "AVEQZ-FD": {
+          "parts_count": 229,
+          "exclusive_count": 0
+        },
+        "AVSEQW": {
+          "parts_count": 229,
+          "exclusive_count": 0
+        },
+        "Z FB": {
+          "parts_count": 233,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 240,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus": [],
+        "AVEQWZ": [],
+        "AVEQZ-FD": [],
+        "AVSEQW": [],
+        "Z FB": [],
+        "Base Machine": [
+          "11100341500",
+          "11250302002",
+          "11250343003",
+          "11256402004",
+          "11256402006",
+          "11257901750",
+          "90744784675"
+        ]
+      }
+    },
+    {
+      "identity_key": "036::base",
+      "canonical_model_id": "036",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "Arctic",
+        "BR",
+        "QS QuickStop Quickstop Plus Version with Larger Piston diam",
+        "Base Machine"
+      ],
+      "total_unique_parts": 249,
+      "shared_parts_count": 157,
+      "shared_parts_sample": [
+        "11100849102",
+        "11103531600",
+        "11104007005",
+        "11174420905",
+        "11176403800",
+        "11190292301",
+        "11191218600",
+        "11191411800",
+        "11193587701",
+        "11200368500"
+      ],
+      "per_configuration_stats": {
+        "Arctic": {
+          "parts_count": 196,
+          "exclusive_count": 1
+        },
+        "BR": {
+          "parts_count": 205,
+          "exclusive_count": 3
+        },
+        "QS QuickStop Quickstop Plus Version with Larger Piston diam": {
+          "parts_count": 200,
+          "exclusive_count": 28
+        },
+        "Base Machine": {
+          "parts_count": 216,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "Arctic": [
+          "95120032260"
+        ],
+        "BR": [
+          "11131958200",
+          "11211953400",
+          "11286640500"
+        ],
+        "QS QuickStop Quickstop Plus Version with Larger Piston diam": [
+          "11086495000",
+          "11196567705",
+          "11251201617",
+          "11251201622",
+          "11251201626",
+          "11251605005",
+          "11251605450",
+          "11251605451",
+          "11251605501",
+          "11251622000"
+        ],
+        "Base Machine": [
+          "11251201600",
+          "11251201605",
+          "11251201610"
+        ]
+      }
+    },
+    {
+      "identity_key": "038::base",
+      "canonical_model_id": "038",
+      "variant_key": "base",
+      "configurations_count": 6,
+      "configurations": [
+        "FB Farm Boss",
+        "M Magnum",
+        "MRII Wrap Handle Magnum",
+        "MW Magnum",
+        "SW Version with Larger Piston diam",
+        "Base Machine"
+      ],
+      "total_unique_parts": 205,
+      "shared_parts_count": 179,
+      "shared_parts_sample": [
+        "11066403801",
+        "11066479404",
+        "11071958200",
+        "11080341501",
+        "11100849102",
+        "11101215100",
+        "11104007005",
+        "11131409200",
+        "11131409510",
+        "11170071014"
+      ],
+      "per_configuration_stats": {
+        "FB Farm Boss": {
+          "parts_count": 189,
+          "exclusive_count": 0
+        },
+        "M Magnum": {
+          "parts_count": 189,
+          "exclusive_count": 0
+        },
+        "MRII Wrap Handle Magnum": {
+          "parts_count": 194,
+          "exclusive_count": 12
+        },
+        "MW Magnum": {
+          "parts_count": 188,
+          "exclusive_count": 0
+        },
+        "SW Version with Larger Piston diam": {
+          "parts_count": 188,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 189,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "FB Farm Boss": [],
+        "M Magnum": [],
+        "MRII Wrap Handle Magnum": [
+          "11108934000",
+          "11176640500",
+          "11218901400",
+          "11226401711",
+          "11226480403",
+          "11226561510",
+          "11226640506",
+          "11226640509",
+          "11298903401",
+          "90083450960"
+        ],
+        "MW Magnum": [],
+        "SW Version with Larger Piston diam": [],
+        "Base Machine": [
+          "11100343003",
+          "90473190650"
+        ]
+      }
+    },
+    {
+      "identity_key": "041::base",
+      "canonical_model_id": "041",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+        "G Gearbox"
+      ],
+      "total_unique_parts": 147,
+      "shared_parts_count": 88,
+      "shared_parts_sample": [
+        "00009302803",
+        "00009512600",
+        "00009580602",
+        "00009581010",
+        "00009581705",
+        "00009615116",
+        "00009630501",
+        "00009673506",
+        "00009890804",
+        "00009891010"
+      ],
+      "per_configuration_stats": {
+        "AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus": {
+          "parts_count": 135,
+          "exclusive_count": 47
+        },
+        "G Gearbox": {
+          "parts_count": 100,
+          "exclusive_count": 12
+        }
+      },
+      "exclusive_parts_sample": {
+        "AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus": [
+          "00004007000",
+          "00009512904",
+          "00009515800",
+          "00009550801",
+          "00009580702",
+          "00009615115",
+          "00009741000",
+          "00009885202",
+          "00009975811",
+          "11061959015"
+        ],
+        "G Gearbox": [
+          "00009302213",
+          "00009581208",
+          "11086479401",
+          "11111207200",
+          "91213191030",
+          "92112601340",
+          "92910210120",
+          "93714702610",
+          "94556211130",
+          "94606240320"
+        ]
+      }
+    },
+    {
+      "identity_key": "046::base",
+      "canonical_model_id": "046",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Magnum BR Magnum",
+        "Base Machine"
+      ],
+      "total_unique_parts": 296,
+      "shared_parts_count": 269,
+      "shared_parts_sample": [
+        "00001404407",
+        "00001410601",
+        "00003500520",
+        "00003500533",
+        "00003500900",
+        "00003503518",
+        "00003505800",
+        "00003591220",
+        "00004007000",
+        "00004481250"
+      ],
+      "per_configuration_stats": {
+        "Magnum BR Magnum": {
+          "parts_count": 276,
+          "exclusive_count": 7
+        },
+        "Base Machine": {
+          "parts_count": 289,
+          "exclusive_count": 20
+        }
+      },
+      "exclusive_parts_sample": {
+        "Magnum BR Magnum": [
+          "00001410300",
+          "00009302203",
+          "00009302212",
+          "00009671593",
+          "11211953400",
+          "11220252200",
+          "11220847100"
+        ],
+        "Base Machine": [
+          "00001201653",
+          "00009581511",
+          "00009890812",
+          "11104329200",
+          "11181419006",
+          "11214420402",
+          "11217919000",
+          "11257909906",
+          "11281291100",
+          "11281400603"
+        ]
+      }
+    },
+    {
+      "identity_key": "056::base",
+      "canonical_model_id": "056",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "M Magnum",
+        "Base Machine"
+      ],
+      "total_unique_parts": 158,
+      "shared_parts_count": 155,
+      "shared_parts_sample": [
+        "00003503500",
+        "00004007000",
+        "00006421206",
+        "00006421215",
+        "00009302213",
+        "00009302251",
+        "00009512600",
+        "00009512904",
+        "00009515800",
+        "00009580402"
+      ],
+      "per_configuration_stats": {
+        "M Magnum": {
+          "parts_count": 158,
+          "exclusive_count": 3
+        },
+        "Base Machine": {
+          "parts_count": 155,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "M Magnum": [
+          "11103531600",
+          "11150343013",
+          "11173500905"
+        ],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "066::base",
+      "canonical_model_id": "066",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "BR",
+        "M Magnum",
+        "MR Magnum Wrap Handle",
+        "Base Machine"
+      ],
+      "total_unique_parts": 328,
+      "shared_parts_count": 269,
+      "shared_parts_sample": [
+        "00001201653",
+        "00001240800",
+        "00001404407",
+        "00001410300",
+        "00001410601",
+        "00001486000",
+        "00001623001",
+        "00003500509",
+        "00003500520",
+        "00003500900"
+      ],
+      "per_configuration_stats": {
+        "BR": {
+          "parts_count": 283,
+          "exclusive_count": 0
+        },
+        "M Magnum": {
+          "parts_count": 294,
+          "exclusive_count": 6
+        },
+        "MR Magnum Wrap Handle": {
+          "parts_count": 290,
+          "exclusive_count": 15
+        },
+        "Base Machine": {
+          "parts_count": 304,
+          "exclusive_count": 17
+        }
+      },
+      "exclusive_parts_sample": {
+        "BR": [],
+        "M Magnum": [
+          "11181419005",
+          "11221400603",
+          "11221400800",
+          "11226640503",
+          "11226640508",
+          "90990210810"
+        ],
+        "MR Magnum Wrap Handle": [
+          "11220201211",
+          "11221200618",
+          "11221226703",
+          "11221226803",
+          "11221450807",
+          "11221490500",
+          "11221820700",
+          "11226401711",
+          "11226480403",
+          "11226507702"
+        ],
+        "Base Machine": [
+          "00009611406",
+          "00009890808",
+          "00009890813",
+          "07510101110",
+          "11104300202",
+          "11104329200",
+          "11214401103",
+          "11217919000",
+          "11221400602",
+          "11221450801"
+        ]
+      }
+    },
+    {
+      "identity_key": "090::base",
+      "canonical_model_id": "090",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "G Gearbox",
+        "Base Machine"
+      ],
+      "total_unique_parts": 282,
+      "shared_parts_count": 249,
+      "shared_parts_sample": [
+        "00003503500",
+        "00004007000",
+        "00007912005",
+        "00007912009",
+        "00009302213",
+        "00009302251",
+        "00009373000",
+        "00009510601",
+        "00009512911",
+        "00009515815"
+      ],
+      "per_configuration_stats": {
+        "G Gearbox": {
+          "parts_count": 261,
+          "exclusive_count": 12
+        },
+        "Base Machine": {
+          "parts_count": 270,
+          "exclusive_count": 21
+        }
+      },
+      "exclusive_parts_sample": {
+        "G Gearbox": [
+          "00009536602",
+          "11060292300",
+          "11060343003",
+          "11076641100",
+          "90083191010",
+          "91517941760",
+          "93216300120",
+          "93714703120",
+          "94566214330",
+          "94704350900"
+        ],
+        "Base Machine": [
+          "00009514110",
+          "00009536601",
+          "00009885200",
+          "11060292311",
+          "11060343010",
+          "11061400502",
+          "11061452900",
+          "11061468000",
+          "11061483900",
+          "11063504002"
+        ]
+      }
+    },
+    {
+      "identity_key": "ar_2000::base",
+      "canonical_model_id": "ar_2000",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Battery",
+        "L Battery"
+      ],
+      "total_unique_parts": 41,
+      "shared_parts_count": 7,
+      "shared_parts_sample": [
+        "41347106401",
+        "48500071001",
+        "48504303501",
+        "48504400505",
+        "48504910101",
+        "90223411090",
+        "90744774132"
+      ],
+      "per_configuration_stats": {
+        "Battery": {
+          "parts_count": 19,
+          "exclusive_count": 12
+        },
+        "L Battery": {
+          "parts_count": 29,
+          "exclusive_count": 22
+        }
+      },
+      "exclusive_parts_sample": {
+        "Battery": [
+          "41477402502",
+          "48504402011",
+          "48654001601",
+          "48654003403",
+          "48654333801",
+          "48654900301",
+          "48657173700",
+          "48659671809",
+          "48659674002",
+          "48659674004"
+        ],
+        "L Battery": [
+          "42417915900",
+          "48710071001",
+          "48710071002",
+          "48714006510",
+          "48714306800",
+          "48714402000",
+          "48714900300",
+          "48714900400",
+          "48714901200",
+          "48714901300"
+        ]
+      }
+    },
+    {
+      "identity_key": "ar_3000::base",
+      "canonical_model_id": "ar_3000",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Battery",
+        "L Battery"
+      ],
+      "total_unique_parts": 40,
+      "shared_parts_count": 7,
+      "shared_parts_sample": [
+        "41347106401",
+        "48500071001",
+        "48504303501",
+        "48504400505",
+        "48504910101",
+        "90223411090",
+        "90744774132"
+      ],
+      "per_configuration_stats": {
+        "Battery": {
+          "parts_count": 18,
+          "exclusive_count": 11
+        },
+        "L Battery": {
+          "parts_count": 29,
+          "exclusive_count": 22
+        }
+      },
+      "exclusive_parts_sample": {
+        "Battery": [
+          "41477402502",
+          "48504402011",
+          "48654001601",
+          "48654003403",
+          "48654333801",
+          "48654900301",
+          "48657173700",
+          "48659671806",
+          "48659674002",
+          "90744784135"
+        ],
+        "L Battery": [
+          "42417915900",
+          "48710071001",
+          "48710071002",
+          "48714006520",
+          "48714306800",
+          "48714402000",
+          "48714900300",
+          "48714900400",
+          "48714901200",
+          "48714901300"
+        ]
+      }
+    },
+    {
+      "identity_key": "be_600::base",
+      "canonical_model_id": "be_600",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "PLUS",
+        "Base Machine"
+      ],
+      "total_unique_parts": 12,
+      "shared_parts_count": 8,
+      "shared_parts_sample": [
+        "42277015000",
+        "48074300500",
+        "48074403007",
+        "48076000200",
+        "48077911100",
+        "48077911105",
+        "48117003401",
+        "90744784425"
+      ],
+      "per_configuration_stats": {
+        "PLUS": {
+          "parts_count": 12,
+          "exclusive_count": 4
+        },
+        "Base Machine": {
+          "parts_count": 8,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "PLUS": [
+          "42277109003",
+          "42297089701",
+          "48077086900",
+          "48077603501"
+        ],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "bg_56::c_e",
+      "canonical_model_id": "bg_56",
+      "variant_key": "c_e",
+      "configurations_count": 2,
+      "configurations": [
+        "D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 124,
+      "shared_parts_count": 107,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231217800",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205"
+      ],
+      "per_configuration_stats": {
+        "D": {
+          "parts_count": 109,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 122,
+          "exclusive_count": 15
+        }
+      },
+      "exclusive_parts_sample": {
+        "D": [
+          "42411400605",
+          "42411410802"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "42370343001",
+          "42410074100",
+          "42410201204",
+          "42410302008",
+          "42410802106",
+          "42410802110",
+          "42411200632",
+          "42411206802"
+        ]
+      }
+    },
+    {
+      "identity_key": "bg_56::base",
+      "canonical_model_id": "bg_56",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 124,
+      "shared_parts_count": 106,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231217800",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 108,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 122,
+          "exclusive_count": 16
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "42411400605",
+          "42411410802"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "42370343001",
+          "42410074100",
+          "42410201204",
+          "42410302008",
+          "42410802107",
+          "42411200632",
+          "42411206802",
+          "42411400601"
+        ]
+      }
+    },
+    {
+      "identity_key": "bg_85::base",
+      "canonical_model_id": "bg_85",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-DZ Muffler with Spark Arrestor",
+        "Base Machine"
+      ],
+      "total_unique_parts": 154,
+      "shared_parts_count": 126,
+      "shared_parts_sample": [
+        "11104007005",
+        "11181953500",
+        "11201217801",
+        "11201219200",
+        "11201226600",
+        "11201227800",
+        "11201958200",
+        "11231210800",
+        "11231217800",
+        "11231223001"
+      ],
+      "per_configuration_stats": {
+        "-DZ Muffler with Spark Arrestor": {
+          "parts_count": 130,
+          "exclusive_count": 4
+        },
+        "Base Machine": {
+          "parts_count": 150,
+          "exclusive_count": 24
+        }
+      },
+      "exclusive_parts_sample": {
+        "-DZ Muffler with Spark Arrestor": [
+          "41401451200",
+          "42291221800",
+          "90073191137",
+          "90990210805"
+        ],
+        "Base Machine": [
+          "11201229000",
+          "11231223000",
+          "11251229001",
+          "11281227100",
+          "41191210700",
+          "41191218900",
+          "41281210800",
+          "41291210700",
+          "41371218600",
+          "41371218900"
+        ]
+      }
+    },
+    {
+      "identity_key": "bg_86::c_e",
+      "canonical_model_id": "bg_86",
+      "variant_key": "c_e",
+      "configurations_count": 2,
+      "configurations": [
+        "D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 168,
+      "shared_parts_count": 122,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231217800",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205"
+      ],
+      "per_configuration_stats": {
+        "D": {
+          "parts_count": 153,
+          "exclusive_count": 31
+        },
+        "Base Machine": {
+          "parts_count": 137,
+          "exclusive_count": 15
+        }
+      },
+      "exclusive_parts_sample": {
+        "D": [
+          "00001227101",
+          "00003500527",
+          "00003500900",
+          "00003503502",
+          "00003505800",
+          "00004007011",
+          "00007918400",
+          "00008902300",
+          "00009302208",
+          "00009302211"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "42370343001",
+          "42410074100",
+          "42410201203",
+          "42410302007",
+          "42410802110",
+          "42411200623",
+          "42411202204",
+          "42411400601"
+        ]
+      }
+    },
+    {
+      "identity_key": "bg_86::base",
+      "canonical_model_id": "bg_86",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 143,
+      "shared_parts_count": 119,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231217800",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 125,
+          "exclusive_count": 6
+        },
+        "Base Machine": {
+          "parts_count": 137,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "41440343000",
+          "42410201200",
+          "42410302001",
+          "42411400605",
+          "42411402802",
+          "42411410802"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "41401953400",
+          "42370343001",
+          "42410074100",
+          "42410201203",
+          "42410302007",
+          "42410802107",
+          "42411200623",
+          "42411202204"
+        ]
+      }
+    },
+    {
+      "identity_key": "br_200::base",
+      "canonical_model_id": "br_200",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 142,
+      "shared_parts_count": 123,
+      "shared_parts_sample": [
+        "11201217800",
+        "11201219200",
+        "11201227800",
+        "11201229000",
+        "11201958200",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 132,
+          "exclusive_count": 9
+        },
+        "Base Machine": {
+          "parts_count": 133,
+          "exclusive_count": 10
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "11231217800",
+          "41401206800",
+          "41401226800",
+          "41440343000",
+          "42410201200",
+          "42410302001",
+          "42411226600",
+          "42411400607",
+          "42411410802"
+        ],
+        "Base Machine": [
+          "42370343001",
+          "42410201203",
+          "42410300401",
+          "42410302007",
+          "42411400615",
+          "42411402800",
+          "42411801105",
+          "42414001320",
+          "42417904901",
+          "42824421603"
+        ]
+      }
+    },
+    {
+      "identity_key": "br_320::base",
+      "canonical_model_id": "br_320",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "L Quiet",
+        "L-Z Muffler with Spark Arrestor"
+      ],
+      "total_unique_parts": 141,
+      "shared_parts_count": 111,
+      "shared_parts_sample": [
+        "11061227400",
+        "11100849102",
+        "11101215100",
+        "11101227400",
+        "11113532500",
+        "11131210800",
+        "11131214705",
+        "11131215000",
+        "11131219200",
+        "11131223205"
+      ],
+      "per_configuration_stats": {
+        "L Quiet": {
+          "parts_count": 114,
+          "exclusive_count": 3
+        },
+        "L-Z Muffler with Spark Arrestor": {
+          "parts_count": 138,
+          "exclusive_count": 27
+        }
+      },
+      "exclusive_parts_sample": {
+        "L Quiet": [
+          "41171223007",
+          "42031200605",
+          "42031400601"
+        ],
+        "L-Z Muffler with Spark Arrestor": [
+          "11064051000",
+          "11104007005",
+          "11200368500",
+          "11201226705",
+          "41190341500",
+          "41241223600",
+          "41301218601",
+          "41301223600",
+          "42030071050",
+          "42030290500"
+        ]
+      }
+    },
+    {
+      "identity_key": "fcb_km::base",
+      "canonical_model_id": "fcb_km",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "- 4137",
+        "- 4180"
+      ],
+      "total_unique_parts": 52,
+      "shared_parts_count": 20,
+      "shared_parts_sample": [
+        "00009580512",
+        "00009677242",
+        "07811201110",
+        "07811201117",
+        "41336427601",
+        "41337134101",
+        "41337134102",
+        "41337172000",
+        "41337172701",
+        "41377103203"
+      ],
+      "per_configuration_stats": {
+        "- 4137": {
+          "parts_count": 34,
+          "exclusive_count": 14
+        },
+        "- 4180": {
+          "parts_count": 38,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "- 4137": [
+          "41197136500",
+          "41336420600",
+          "41338937800",
+          "41377107127",
+          "41377134503",
+          "41377163200",
+          "41377166500",
+          "42017088402",
+          "90223411300",
+          "90223411350"
+        ],
+        "- 4180": [
+          "41336400107",
+          "41336410306",
+          "41806400105",
+          "41807083201",
+          "41807107149",
+          "41807108112",
+          "41807134502",
+          "41807163201",
+          "90223130652",
+          "90223411010"
+        ]
+      }
+    },
+    {
+      "identity_key": "fcs_km::base",
+      "canonical_model_id": "fcs_km",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "- 4137",
+        "- 4180",
+        "Base Machine"
+      ],
+      "total_unique_parts": 51,
+      "shared_parts_count": 14,
+      "shared_parts_sample": [
+        "00009677242",
+        "07811201110",
+        "41337134101",
+        "41337134102",
+        "41337172000",
+        "41377112101",
+        "41377161501",
+        "41407112500",
+        "41407917207",
+        "41807103204"
+      ],
+      "per_configuration_stats": {
+        "- 4137": {
+          "parts_count": 31,
+          "exclusive_count": 16
+        },
+        "- 4180": {
+          "parts_count": 23,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 35,
+          "exclusive_count": 11
+        }
+      },
+      "exclusive_parts_sample": {
+        "- 4137": [
+          "00009673730",
+          "41197136500",
+          "41338937800",
+          "41377107116",
+          "41377121001",
+          "41377402800",
+          "90083191800",
+          "90223411380",
+          "90754784268",
+          "92910210120"
+        ],
+        "- 4180": [],
+        "Base Machine": [
+          "00009510901",
+          "00009531001",
+          "41407103225",
+          "41806402400",
+          "41807103800",
+          "41807131603",
+          "90223411358",
+          "92940210140",
+          "94556210750",
+          "95030030060"
+        ]
+      }
+    },
+    {
+      "identity_key": "fh_km::base",
+      "canonical_model_id": "fh_km",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "0� - 90�",
+        "135�",
+        "145�"
+      ],
+      "total_unique_parts": 149,
+      "shared_parts_count": 11,
+      "shared_parts_sample": [
+        "00009677294",
+        "07811201109",
+        "07811201110",
+        "41337172000",
+        "41377112101",
+        "41407103225",
+        "41407112500",
+        "41407917207",
+        "42307912001",
+        "90223711020"
+      ],
+      "per_configuration_stats": {
+        "0� - 90�": {
+          "parts_count": 59,
+          "exclusive_count": 24
+        },
+        "135�": {
+          "parts_count": 72,
+          "exclusive_count": 39
+        },
+        "145�": {
+          "parts_count": 64,
+          "exclusive_count": 51
+        }
+      },
+      "exclusive_parts_sample": {
+        "0� - 90�": [
+          "00009581700",
+          "00009582000",
+          "42306400501",
+          "42306400558",
+          "42306404511",
+          "42306407501",
+          "42306415511",
+          "42306419410",
+          "42306420405",
+          "42306424800"
+        ],
+        "135�": [
+          "00009511100",
+          "00009531001",
+          "00009580520",
+          "07811201117",
+          "41197136500",
+          "42306400503",
+          "42306400506",
+          "42306404513",
+          "42306405804",
+          "42306406800"
+        ],
+        "145�": [
+          "00007909200",
+          "00007909201",
+          "00009677299",
+          "00009888600",
+          "00009972020",
+          "42377160400",
+          "42377929006",
+          "42379580500",
+          "42426414900",
+          "42430071003"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_240::base",
+      "canonical_model_id": "fs_240",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-Z Muffler with Spark Arrestor",
+        "Base Machine"
+      ],
+      "total_unique_parts": 272,
+      "shared_parts_count": 226,
+      "shared_parts_sample": [
+        "11100849102",
+        "11131219200",
+        "11141217800",
+        "11141227100",
+        "11171229000",
+        "11181953500",
+        "11201217800",
+        "11201219200",
+        "11201227800",
+        "11211214801"
+      ],
+      "per_configuration_stats": {
+        "-Z Muffler with Spark Arrestor": {
+          "parts_count": 228,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 270,
+          "exclusive_count": 44
+        }
+      },
+      "exclusive_parts_sample": {
+        "-Z Muffler with Spark Arrestor": [
+          "41471400606",
+          "41471406900"
+        ],
+        "Base Machine": [
+          "00007109000",
+          "00007109001",
+          "00007907700",
+          "11281953500",
+          "40027102169",
+          "40028202302",
+          "41470071001",
+          "41470071601",
+          "41470071801",
+          "41470074102"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_38::base",
+      "canonical_model_id": "fs_38",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-Z",
+        "Base Machine"
+      ],
+      "total_unique_parts": 223,
+      "shared_parts_count": 35,
+      "shared_parts_sample": [
+        "00003500900",
+        "00003503502",
+        "00003513201",
+        "00003530800",
+        "00008902300",
+        "07838302000",
+        "11250848900",
+        "41283500505",
+        "41307109000",
+        "41308937800"
+      ],
+      "per_configuration_stats": {
+        "-Z": {
+          "parts_count": 35,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 223,
+          "exclusive_count": 188
+        }
+      },
+      "exclusive_parts_sample": {
+        "-Z": [],
+        "Base Machine": [
+          "00001227101",
+          "00001903404",
+          "00001957000",
+          "00001958200",
+          "00004007000",
+          "00004007011",
+          "00004007016",
+          "00004007025",
+          "00004007026",
+          "00007112500"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_400::base",
+      "canonical_model_id": "fs_400",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "-K Short Shaft",
+        "-L Long Shaft",
+        "Base Machine"
+      ],
+      "total_unique_parts": 267,
+      "shared_parts_count": 255,
+      "shared_parts_sample": [
+        "11100849102",
+        "11104007005",
+        "11181953500",
+        "11201219200",
+        "11201223004",
+        "11201223005",
+        "11201226600",
+        "11201226601",
+        "11201227400",
+        "11201227800"
+      ],
+      "per_configuration_stats": {
+        "-K Short Shaft": {
+          "parts_count": 262,
+          "exclusive_count": 7
+        },
+        "-L Long Shaft": {
+          "parts_count": 258,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 258,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "-K Short Shaft": [
+          "41167910600",
+          "41167910615",
+          "41287113210",
+          "41287117310",
+          "41287901715",
+          "41287912710",
+          "90223710710"
+        ],
+        "-L Long Shaft": [
+          "41287107106",
+          "41287113202"
+        ],
+        "Base Machine": [
+          "41287107108",
+          "41287113200"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_410::base",
+      "canonical_model_id": "fs_410",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "(4110)",
+        "(4147)"
+      ],
+      "total_unique_parts": 296,
+      "shared_parts_count": 10,
+      "shared_parts_sample": [
+        "11100849102",
+        "11211953400",
+        "41167903901",
+        "41167924300",
+        "92143200600",
+        "92162610700",
+        "92910210100",
+        "92910210140",
+        "94566213860",
+        "95030030310"
+      ],
+      "per_configuration_stats": {
+        "(4110)": {
+          "parts_count": 94,
+          "exclusive_count": 84
+        },
+        "(4147)": {
+          "parts_count": 212,
+          "exclusive_count": 202
+        }
+      },
+      "exclusive_parts_sample": {
+        "(4110)": [
+          "11061223000",
+          "11061227400",
+          "11061951700",
+          "11061953000",
+          "11061959001",
+          "11061959015",
+          "11061959800",
+          "11064051000",
+          "11071958200",
+          "11100071060"
+        ],
+        "(4147)": [
+          "11181953500",
+          "11201217800",
+          "11201219200",
+          "11201227800",
+          "11231290905",
+          "11251224200",
+          "11281223000",
+          "11291214800",
+          "11321215640",
+          "11391210800"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_45::base",
+      "canonical_model_id": "fs_45",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "-DZ",
+        "-Z Muffler with Spark ArrestorBrushcutters",
+        "Base Machine"
+      ],
+      "total_unique_parts": 202,
+      "shared_parts_count": 35,
+      "shared_parts_sample": [
+        "00003500900",
+        "00003503502",
+        "00003513201",
+        "00003530800",
+        "00008902300",
+        "07838302000",
+        "11250848900",
+        "41283500505",
+        "41307109000",
+        "41308937800"
+      ],
+      "per_configuration_stats": {
+        "-DZ": {
+          "parts_count": 187,
+          "exclusive_count": 9
+        },
+        "-Z Muffler with Spark ArrestorBrushcutters": {
+          "parts_count": 35,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 193,
+          "exclusive_count": 15
+        }
+      },
+      "exclusive_parts_sample": {
+        "-DZ": [
+          "41387161200",
+          "41401419002",
+          "41401451200",
+          "41401469000",
+          "41401490603",
+          "41401490604",
+          "41401823300",
+          "41404001305",
+          "90990210805"
+        ],
+        "-Z Muffler with Spark ArrestorBrushcutters": [],
+        "Base Machine": [
+          "00001903404",
+          "00001957000",
+          "00009677275",
+          "11201958200",
+          "41171628900",
+          "41281950400",
+          "41400846801",
+          "41401400617",
+          "41401904013",
+          "41404001308"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_450::base",
+      "canonical_model_id": "fs_450",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-K Short Shaft",
+        "Base Machine"
+      ],
+      "total_unique_parts": 307,
+      "shared_parts_count": 284,
+      "shared_parts_sample": [
+        "00000071300",
+        "00001214700",
+        "00001903400",
+        "00001903405",
+        "00001957000",
+        "00001957200",
+        "00001958200",
+        "00001958203",
+        "00003500900",
+        "00003503502"
+      ],
+      "per_configuration_stats": {
+        "-K Short Shaft": {
+          "parts_count": 291,
+          "exclusive_count": 7
+        },
+        "Base Machine": {
+          "parts_count": 300,
+          "exclusive_count": 16
+        }
+      },
+      "exclusive_parts_sample": {
+        "-K Short Shaft": [
+          "41167910600",
+          "41167910615",
+          "41287113210",
+          "41287117310",
+          "41287901715",
+          "41287912710",
+          "90223710710"
+        ],
+        "Base Machine": [
+          "11290071062",
+          "11291290900",
+          "41280071060",
+          "41281223000",
+          "41281226801",
+          "41287107108",
+          "41287113200",
+          "41287901701",
+          "41341210802",
+          "41341210803"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_460::c_em",
+      "canonical_model_id": "fs_460",
+      "variant_key": "c_em",
+      "configurations_count": 2,
+      "configurations": [
+        "L Long ShaftClearing Saws",
+        "Base Machine"
+      ],
+      "total_unique_parts": 341,
+      "shared_parts_count": 277,
+      "shared_parts_sample": [
+        "00000071044",
+        "00000071902",
+        "00001205111",
+        "00001212300",
+        "00001227102",
+        "00001957200",
+        "00003500527",
+        "00003500533",
+        "00003500900",
+        "00003503521"
+      ],
+      "per_configuration_stats": {
+        "L Long ShaftClearing Saws": {
+          "parts_count": 279,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 339,
+          "exclusive_count": 62
+        }
+      },
+      "exclusive_parts_sample": {
+        "L Long ShaftClearing Saws": [
+          "41477107107",
+          "41477113206"
+        ],
+        "Base Machine": [
+          "00000071300",
+          "00001227101",
+          "00007163100",
+          "00007163101",
+          "11201217800",
+          "11201219200",
+          "11201227800",
+          "11231290905",
+          "11251224200",
+          "11291214800"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_461::c_em",
+      "canonical_model_id": "fs_461",
+      "variant_key": "c_em",
+      "configurations_count": 2,
+      "configurations": [
+        "L Long Shaft",
+        "Base Machine"
+      ],
+      "total_unique_parts": 273,
+      "shared_parts_count": 269,
+      "shared_parts_sample": [
+        "00000071044",
+        "00000071902",
+        "00001205104",
+        "00001205111",
+        "00001212300",
+        "00001212301",
+        "00001227101",
+        "00001227102",
+        "00001227103",
+        "00003500527"
+      ],
+      "per_configuration_stats": {
+        "L Long Shaft": {
+          "parts_count": 271,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 271,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "L Long Shaft": [
+          "41477107107",
+          "41477113206"
+        ],
+        "Base Machine": [
+          "41477107105",
+          "41477113205"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_480::base",
+      "canonical_model_id": "fs_480",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-K Short Shaft",
+        "Base Machine"
+      ],
+      "total_unique_parts": 305,
+      "shared_parts_count": 295,
+      "shared_parts_sample": [
+        "00000071300",
+        "00001214700",
+        "00001903400",
+        "00001903405",
+        "00001957000",
+        "00001957200",
+        "00001958200",
+        "00001958203",
+        "00003500900",
+        "00003503502"
+      ],
+      "per_configuration_stats": {
+        "-K Short Shaft": {
+          "parts_count": 302,
+          "exclusive_count": 7
+        },
+        "Base Machine": {
+          "parts_count": 298,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "-K Short Shaft": [
+          "41167910600",
+          "41167910615",
+          "41287113210",
+          "41287117310",
+          "41287901715",
+          "41287912710",
+          "90223710710"
+        ],
+        "Base Machine": [
+          "41287107108",
+          "41287113200",
+          "41287901701"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_490::c_em",
+      "canonical_model_id": "fs_490",
+      "variant_key": "c_em",
+      "configurations_count": 2,
+      "configurations": [
+        "W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 251,
+      "shared_parts_count": 223,
+      "shared_parts_sample": [
+        "00001205111",
+        "00001212300",
+        "00001227102",
+        "00001903501",
+        "00001957003",
+        "00003500527",
+        "00003500900",
+        "00003503521",
+        "00003505812",
+        "00004007000"
+      ],
+      "per_configuration_stats": {
+        "W": {
+          "parts_count": 226,
+          "exclusive_count": 3
+        },
+        "Base Machine": {
+          "parts_count": 248,
+          "exclusive_count": 25
+        }
+      },
+      "exclusive_parts_sample": {
+        "W": [
+          "11214420402",
+          "11281953500",
+          "90223130658"
+        ],
+        "Base Machine": [
+          "00000071043",
+          "00000071044",
+          "00000071902",
+          "00004007029",
+          "00004007030",
+          "00009511112",
+          "41337134110",
+          "41471950600",
+          "41477108107",
+          "41477108108"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_50::base",
+      "canonical_model_id": "fs_50",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "(4118)",
+        "(4144)"
+      ],
+      "total_unique_parts": 225,
+      "shared_parts_count": 4,
+      "shared_parts_sample": [
+        "00003500900",
+        "41141491205",
+        "92162610700",
+        "92910210100"
+      ],
+      "per_configuration_stats": {
+        "(4118)": {
+          "parts_count": 78,
+          "exclusive_count": 74
+        },
+        "(4144)": {
+          "parts_count": 151,
+          "exclusive_count": 147
+        }
+      },
+      "exclusive_parts_sample": {
+        "(4118)": [
+          "00003530600",
+          "00009302203",
+          "00009302212",
+          "00009302251",
+          "00009891010",
+          "08122601007",
+          "11064051000",
+          "11101215100",
+          "11101227400",
+          "11131210800"
+        ],
+        "(4144)": [
+          "00001227101",
+          "00001903403",
+          "00001957000",
+          "00003500527",
+          "00003500532",
+          "00003503502",
+          "00003503513",
+          "00003505807",
+          "00004007011",
+          "00004007025"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_550::base",
+      "canonical_model_id": "fs_550",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-L Quiet",
+        "Base Machine"
+      ],
+      "total_unique_parts": 277,
+      "shared_parts_count": 272,
+      "shared_parts_sample": [
+        "00001903401",
+        "00001957001",
+        "00001957200",
+        "00003500900",
+        "00003503502",
+        "00003530600",
+        "00004007000",
+        "00009302203",
+        "00009302212",
+        "00009302241"
+      ],
+      "per_configuration_stats": {
+        "-L Quiet": {
+          "parts_count": 272,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 277,
+          "exclusive_count": 5
+        }
+      },
+      "exclusive_parts_sample": {
+        "-L Quiet": [],
+        "Base Machine": [
+          "11104007005",
+          "41167107159",
+          "41167113212",
+          "41167117300",
+          "41169671506"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_56::base",
+      "canonical_model_id": "fs_56",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "(4125)",
+        "(4144)"
+      ],
+      "total_unique_parts": 275,
+      "shared_parts_count": 11,
+      "shared_parts_sample": [
+        "00003500900",
+        "00003503502",
+        "00008902300",
+        "07838302000",
+        "41141491205",
+        "42037117201",
+        "90223410980",
+        "92162610700",
+        "94566213600",
+        "94636500805"
+      ],
+      "per_configuration_stats": {
+        "(4125)": {
+          "parts_count": 87,
+          "exclusive_count": 76
+        },
+        "(4144)": {
+          "parts_count": 199,
+          "exclusive_count": 188
+        }
+      },
+      "exclusive_parts_sample": {
+        "(4125)": [
+          "00001958200",
+          "00003530800",
+          "00004007000",
+          "00009302208",
+          "00009302211",
+          "00009302251",
+          "07510101110",
+          "11064051000",
+          "11101215100",
+          "11101227400"
+        ],
+        "(4144)": [
+          "00001227101",
+          "00001822100",
+          "00001903403",
+          "00001957000",
+          "00003500527",
+          "00003500532",
+          "00003503513",
+          "00003505807",
+          "00004007011",
+          "00004007025"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_56::c_e",
+      "canonical_model_id": "fs_56",
+      "variant_key": "c_e",
+      "configurations_count": 2,
+      "configurations": [
+        "Z Muffler with Spark Arrestor",
+        "Base Machine"
+      ],
+      "total_unique_parts": 201,
+      "shared_parts_count": 103,
+      "shared_parts_sample": [
+        "00001227101",
+        "00007903901",
+        "00008902300",
+        "00009302241",
+        "00009302242",
+        "00009677253",
+        "00009980618",
+        "07811201110",
+        "07811201117",
+        "08123701000"
+      ],
+      "per_configuration_stats": {
+        "Z Muffler with Spark Arrestor": {
+          "parts_count": 103,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 201,
+          "exclusive_count": 98
+        }
+      },
+      "exclusive_parts_sample": {
+        "Z Muffler with Spark Arrestor": [],
+        "Base Machine": [
+          "00001822100",
+          "00003500527",
+          "00003500532",
+          "00003500900",
+          "00003503502",
+          "00003503513",
+          "00003505807",
+          "00004007011",
+          "00004007025",
+          "00004007026"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_56::rc_e",
+      "canonical_model_id": "fs_56",
+      "variant_key": "rc_e",
+      "configurations_count": 2,
+      "configurations": [
+        "Loop Handle",
+        "Z Muffler with Spark Arrestor Loop Handle"
+      ],
+      "total_unique_parts": 198,
+      "shared_parts_count": 103,
+      "shared_parts_sample": [
+        "00001227101",
+        "00007903901",
+        "00008902300",
+        "00009302241",
+        "00009302242",
+        "00009677253",
+        "00009980618",
+        "07811201110",
+        "07811201117",
+        "08123701000"
+      ],
+      "per_configuration_stats": {
+        "Loop Handle": {
+          "parts_count": 198,
+          "exclusive_count": 95
+        },
+        "Z Muffler with Spark Arrestor Loop Handle": {
+          "parts_count": 103,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "Loop Handle": [
+          "00001903403",
+          "00001957000",
+          "00003500527",
+          "00003500532",
+          "00003500900",
+          "00003503502",
+          "00003503513",
+          "00003505807",
+          "00004007011",
+          "00004007025"
+        ],
+        "Z Muffler with Spark Arrestor Loop Handle": []
+      }
+    },
+    {
+      "identity_key": "fs_61::base",
+      "canonical_model_id": "fs_61",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "RE Electronic Ignition Wrap Handle",
+        "Base Machine"
+      ],
+      "total_unique_parts": 88,
+      "shared_parts_count": 88,
+      "shared_parts_sample": [
+        "00003500900",
+        "00003530600",
+        "00009302203",
+        "00009302212",
+        "00009302251",
+        "00009891010",
+        "08110121152",
+        "11064051000",
+        "11101215100",
+        "11101227400"
+      ],
+      "per_configuration_stats": {
+        "RE Electronic Ignition Wrap Handle": {
+          "parts_count": 88,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 88,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "RE Electronic Ignition Wrap Handle": [],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "fs_65::base",
+      "canonical_model_id": "fs_65",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "AVRE",
+        "-4",
+        "Base Machine"
+      ],
+      "total_unique_parts": 231,
+      "shared_parts_count": 10,
+      "shared_parts_sample": [
+        "11131214705",
+        "11131215000",
+        "11131219200",
+        "11141217800",
+        "11201223600",
+        "92910210120",
+        "92910210140",
+        "94556211520",
+        "94566212660",
+        "94566213860"
+      ],
+      "per_configuration_stats": {
+        "AVRE": {
+          "parts_count": 88,
+          "exclusive_count": 0
+        },
+        "-4": {
+          "parts_count": 153,
+          "exclusive_count": 143
+        },
+        "Base Machine": {
+          "parts_count": 88,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "AVRE": [],
+        "-4": [
+          "00000071300",
+          "00001822100",
+          "00007112500",
+          "00007163100",
+          "00007163101",
+          "00008902300",
+          "00009302208",
+          "00009302211",
+          "00009302241",
+          "00009302242"
+        ],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "fs_80::base",
+      "canonical_model_id": "fs_80",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "- 4137",
+        "AVE - 4112 Anti-Vibration Electronic Ignition",
+        "AVRE - 4112 Anti-Vibration Electronic Ignition Wrap Handle",
+        "RE - 4112 Wrap Handle Electronic Ignition"
+      ],
+      "total_unique_parts": 389,
+      "shared_parts_count": 8,
+      "shared_parts_sample": [
+        "00003500900",
+        "00003530800",
+        "11064051000",
+        "92102600700",
+        "92910210120",
+        "92910210140",
+        "94566213100",
+        "96400031195"
+      ],
+      "per_configuration_stats": {
+        "- 4137": {
+          "parts_count": 340,
+          "exclusive_count": 332
+        },
+        "AVE - 4112 Anti-Vibration Electronic Ignition": {
+          "parts_count": 57,
+          "exclusive_count": 0
+        },
+        "AVRE - 4112 Anti-Vibration Electronic Ignition Wrap Handle": {
+          "parts_count": 57,
+          "exclusive_count": 0
+        },
+        "RE - 4112 Wrap Handle Electronic Ignition": {
+          "parts_count": 57,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "- 4137": [
+          "00000071300",
+          "00001214700",
+          "00001227101",
+          "00001822100",
+          "00001903400",
+          "00001903403",
+          "00001957000",
+          "00001958200",
+          "00003503502",
+          "00004007000"
+        ],
+        "AVE - 4112 Anti-Vibration Electronic Ignition": [],
+        "AVRE - 4112 Anti-Vibration Electronic Ignition Wrap Handle": [],
+        "RE - 4112 Wrap Handle Electronic Ignition": []
+      }
+    },
+    {
+      "identity_key": "fs_90::base",
+      "canonical_model_id": "fs_90",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "- 4117",
+        "- 4180"
+      ],
+      "total_unique_parts": 333,
+      "shared_parts_count": 5,
+      "shared_parts_sample": [
+        "00003500900",
+        "00003503502",
+        "41141491205",
+        "92910210100",
+        "94566213100"
+      ],
+      "per_configuration_stats": {
+        "- 4117": {
+          "parts_count": 94,
+          "exclusive_count": 89
+        },
+        "- 4180": {
+          "parts_count": 244,
+          "exclusive_count": 239
+        }
+      },
+      "exclusive_parts_sample": {
+        "- 4117": [
+          "00003530800",
+          "00009302203",
+          "00009302212",
+          "00009302251",
+          "00009891010",
+          "00009980200",
+          "08110121152",
+          "11064051000",
+          "11101215100",
+          "11101227400"
+        ],
+        "- 4180": [
+          "00000071300",
+          "00001822100",
+          "00001958203",
+          "00003500527",
+          "00003500533",
+          "00003505807",
+          "00004007009",
+          "00007163100",
+          "00007163101",
+          "00007903901"
+        ]
+      }
+    },
+    {
+      "identity_key": "fs_km::base",
+      "canonical_model_id": "fs_km",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "- 4140",
+        "- 4180"
+      ],
+      "total_unique_parts": 68,
+      "shared_parts_count": 29,
+      "shared_parts_sample": [
+        "00007903901",
+        "00009677253",
+        "07811201110",
+        "07811201117",
+        "41167903901",
+        "41167924300",
+        "41197136500",
+        "41197903901",
+        "41197903906",
+        "41197924300"
+      ],
+      "per_configuration_stats": {
+        "- 4140": {
+          "parts_count": 50,
+          "exclusive_count": 21
+        },
+        "- 4180": {
+          "parts_count": 47,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "- 4140": [
+          "00007163100",
+          "00007163101",
+          "00009673730",
+          "40017133805",
+          "41177108200",
+          "41187134105",
+          "41190071027",
+          "41197106000",
+          "41197108103",
+          "41197163203"
+        ],
+        "- 4180": [
+          "00000071300",
+          "40027102169",
+          "40028202302",
+          "41800071028",
+          "41800071030",
+          "41806400114",
+          "41806407301",
+          "41806410800",
+          "41806420602",
+          "41807108106"
+        ]
+      }
+    },
+    {
+      "identity_key": "fsa_30_0::base",
+      "canonical_model_id": "fsa_30_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "Cordless",
+        "SET Cordless",
+        "Base Machine"
+      ],
+      "total_unique_parts": 9,
+      "shared_parts_count": 9,
+      "shared_parts_sample": [
+        "00009677341",
+        "40080071000",
+        "40096003200",
+        "40097102104",
+        "41387161200",
+        "45127133400",
+        "48169972000",
+        "90073191450",
+        "90744773025"
+      ],
+      "per_configuration_stats": {
+        "Cordless": {
+          "parts_count": 9,
+          "exclusive_count": 0
+        },
+        "SET Cordless": {
+          "parts_count": 9,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 9,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless": [],
+        "SET Cordless": [],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "hla_135::base",
+      "canonical_model_id": "hla_135",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless Hedge Cutters",
+        "Cordless"
+      ],
+      "total_unique_parts": 77,
+      "shared_parts_count": 25,
+      "shared_parts_sample": [
+        "00007908803",
+        "00009511100",
+        "12504300500",
+        "41237917400",
+        "41307109000",
+        "41307908450",
+        "41377112101",
+        "41377113200",
+        "41377117300",
+        "41807903408"
+      ],
+      "per_configuration_stats": {
+        "Cordless Hedge Cutters": {
+          "parts_count": 76,
+          "exclusive_count": 51
+        },
+        "Cordless": {
+          "parts_count": 26,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless Hedge Cutters": [
+          "00007904400",
+          "00007909200",
+          "00007909201",
+          "00009677299",
+          "00009888600",
+          "00009972020",
+          "07811201109",
+          "42266416500",
+          "42377160400",
+          "42377929006"
+        ],
+        "Cordless": [
+          "42437113201"
+        ]
+      }
+    },
+    {
+      "identity_key": "hla_135::k",
+      "canonical_model_id": "hla_135",
+      "variant_key": "k",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless",
+        "Short Shaft Cordless Hedge Cutters"
+      ],
+      "total_unique_parts": 83,
+      "shared_parts_count": 19,
+      "shared_parts_sample": [
+        "00007908803",
+        "00009511100",
+        "12504300500",
+        "41307109000",
+        "41377112101",
+        "41808903400",
+        "42437113201",
+        "48514309800",
+        "48674300501",
+        "90223191028"
+      ],
+      "per_configuration_stats": {
+        "Cordless": {
+          "parts_count": 26,
+          "exclusive_count": 7
+        },
+        "Short Shaft Cordless Hedge Cutters": {
+          "parts_count": 76,
+          "exclusive_count": 57
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless": [
+          "41237917400",
+          "41307908450",
+          "41377113200",
+          "41377117300",
+          "41807903408",
+          "90223411370",
+          "92220680900"
+        ],
+        "Short Shaft Cordless Hedge Cutters": [
+          "00007909200",
+          "00007909201",
+          "00009677299",
+          "00009888600",
+          "00009972020",
+          "07811201109",
+          "42266416500",
+          "42307117300",
+          "42377160400",
+          "42377929006"
+        ]
+      }
+    },
+    {
+      "identity_key": "hta_66::base",
+      "canonical_model_id": "hta_66",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless",
+        "-K Cordless"
+      ],
+      "total_unique_parts": 42,
+      "shared_parts_count": 40,
+      "shared_parts_sample": [
+        "00003500538",
+        "00007908801",
+        "00009302241",
+        "00009302803",
+        "00009890816",
+        "07129238004",
+        "08123701000",
+        "11230071004",
+        "11236403800",
+        "11236641400"
+      ],
+      "per_configuration_stats": {
+        "Cordless": {
+          "parts_count": 42,
+          "exclusive_count": 2
+        },
+        "-K Cordless": {
+          "parts_count": 40,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless": [
+          "00007904400",
+          "48506020900"
+        ],
+        "-K Cordless": []
+      }
+    },
+    {
+      "identity_key": "imow_5_0::base",
+      "canonical_model_id": "imow_5_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "EVO",
+        "Base Machine"
+      ],
+      "total_unique_parts": 14,
+      "shared_parts_count": 14,
+      "shared_parts_sample": [
+        "00009511116",
+        "41281418000",
+        "63027049500",
+        "63094050710",
+        "63094058710",
+        "63094481200",
+        "63099674415",
+        "90223461260",
+        "90744784140",
+        "91040074270"
+      ],
+      "per_configuration_stats": {
+        "EVO": {
+          "parts_count": 14,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 14,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "EVO": [],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "imow_6_0::base",
+      "canonical_model_id": "imow_6_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "EVO",
+        "Base Machine"
+      ],
+      "total_unique_parts": 14,
+      "shared_parts_count": 14,
+      "shared_parts_sample": [
+        "00009511116",
+        "41281418000",
+        "63027049500",
+        "63094050710",
+        "63094058710",
+        "63094481200",
+        "63099674415",
+        "90223461260",
+        "90744784140",
+        "91040074270"
+      ],
+      "per_configuration_stats": {
+        "EVO": {
+          "parts_count": 14,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 14,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "EVO": [],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "imow_7_0::base",
+      "canonical_model_id": "imow_7_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "EVO",
+        "Base Machine"
+      ],
+      "total_unique_parts": 17,
+      "shared_parts_count": 13,
+      "shared_parts_sample": [
+        "00009511116",
+        "41281418000",
+        "63027049500",
+        "63094050710",
+        "63094058710",
+        "63094481200",
+        "63099674415",
+        "90223461260",
+        "90744784140",
+        "91040074270"
+      ],
+      "per_configuration_stats": {
+        "EVO": {
+          "parts_count": 16,
+          "exclusive_count": 3
+        },
+        "Base Machine": {
+          "parts_count": 14,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "EVO": [
+          "59108400503",
+          "63097020102",
+          "92980213871"
+        ],
+        "Base Machine": [
+          "92980211528"
+        ]
+      }
+    },
+    {
+      "identity_key": "k_46::base",
+      "canonical_model_id": "k_46",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "BM Gear Box Tuff Torq",
+        "F Gear Box Tuff Torq"
+      ],
+      "total_unique_parts": 21,
+      "shared_parts_count": 17,
+      "shared_parts_sample": [
+        "00100075600",
+        "00106417400",
+        "00106431501",
+        "00106433600",
+        "00106434100",
+        "00106434400",
+        "00106434600",
+        "00109851500",
+        "00109925502",
+        "92910200220"
+      ],
+      "per_configuration_stats": {
+        "BM Gear Box Tuff Torq": {
+          "parts_count": 21,
+          "exclusive_count": 4
+        },
+        "F Gear Box Tuff Torq": {
+          "parts_count": 17,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "BM Gear Box Tuff Torq": [
+          "00100071003",
+          "00100071004",
+          "00106433601",
+          "61706400100"
+        ],
+        "F Gear Box Tuff Torq": []
+      }
+    },
+    {
+      "identity_key": "mb_4_0::base",
+      "canonical_model_id": "mb_4_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "RT Mulching Mower 1 Speed Gearing",
+        "RTP Mulching Mower 1 Speed Gearing Performance",
+        "RV"
+      ],
+      "total_unique_parts": 136,
+      "shared_parts_count": 36,
+      "shared_parts_sample": [
+        "61007033100",
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63750071007",
+        "63757640700",
+        "63837002400",
+        "63837014300",
+        "63837020100",
+        "63837035100"
+      ],
+      "per_configuration_stats": {
+        "RT Mulching Mower 1 Speed Gearing": {
+          "parts_count": 87,
+          "exclusive_count": 17
+        },
+        "RTP Mulching Mower 1 Speed Gearing Performance": {
+          "parts_count": 81,
+          "exclusive_count": 41
+        },
+        "RV": {
+          "parts_count": 74,
+          "exclusive_count": 8
+        }
+      },
+      "exclusive_parts_sample": {
+        "RT Mulching Mower 1 Speed Gearing": [
+          "63607041000",
+          "63831821310",
+          "63831821320",
+          "63836400100",
+          "63837007510",
+          "63837042100",
+          "63837640200",
+          "63837640211",
+          "63837640600",
+          "63837640601"
+        ],
+        "RTP Mulching Mower 1 Speed Gearing Performance": [
+          "60029673400",
+          "63369674400",
+          "63757000421",
+          "63757002501",
+          "63757014101",
+          "63757026800",
+          "63757033800",
+          "63757043600",
+          "63757049520",
+          "63757632810"
+        ],
+        "RV": [
+          "63367021800",
+          "63407014000",
+          "63607002501",
+          "63607002513",
+          "63607025001",
+          "63607642801",
+          "90270681930",
+          "96459457692"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_448_1::base",
+      "canonical_model_id": "mb_448_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "TC 1 Speed Gearing Comfort Equipment",
+        "TX 1 speed gearing Basic model",
+        "VC Vario Drive Comfort Equipment"
+      ],
+      "total_unique_parts": 108,
+      "shared_parts_count": 42,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63387002415",
+        "63387002420",
+        "63387002700",
+        "63387035100",
+        "63387035110",
+        "63387036700",
+        "63387039601"
+      ],
+      "per_configuration_stats": {
+        "TC 1 Speed Gearing Comfort Equipment": {
+          "parts_count": 68,
+          "exclusive_count": 3
+        },
+        "TX 1 speed gearing Basic model": {
+          "parts_count": 75,
+          "exclusive_count": 25
+        },
+        "VC Vario Drive Comfort Equipment": {
+          "parts_count": 72,
+          "exclusive_count": 15
+        }
+      },
+      "exclusive_parts_sample": {
+        "TC 1 Speed Gearing Comfort Equipment": [
+          "63587007531",
+          "63587060735",
+          "63589673820"
+        ],
+        "TX 1 speed gearing Basic model": [
+          "61007033100",
+          "63207066610",
+          "63387634800",
+          "63387800100",
+          "63387915705",
+          "63587007511",
+          "63587803005",
+          "63587803006",
+          "63831821310",
+          "63831821311"
+        ],
+        "VC Vario Drive Comfort Equipment": [
+          "63580111833",
+          "63586400100",
+          "63587002500",
+          "63587002900",
+          "63587007526",
+          "63587007528",
+          "63587007540",
+          "63587021700",
+          "63587042100",
+          "63587060736"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_455::base",
+      "canonical_model_id": "mb_455",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "BC",
+        "Base Machine",
+        "MM"
+      ],
+      "total_unique_parts": 103,
+      "shared_parts_count": 56,
+      "shared_parts_sample": [
+        "61007000401",
+        "61007033100",
+        "61007040303",
+        "61017032800",
+        "61017044700",
+        "61037035100",
+        "61037036601",
+        "61037036701",
+        "61037039000",
+        "61037039500"
+      ],
+      "per_configuration_stats": {
+        "BC": {
+          "parts_count": 85,
+          "exclusive_count": 27
+        },
+        "Base Machine": {
+          "parts_count": 76,
+          "exclusive_count": 4
+        },
+        "MM": {
+          "parts_count": 70,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "BC": [
+          "61051627800",
+          "61070071035",
+          "61071602601",
+          "61071602900",
+          "61071605000",
+          "61071605400",
+          "61071623510",
+          "61071627700",
+          "61071627900",
+          "61071628200"
+        ],
+        "Base Machine": [
+          "61164303900",
+          "63604302400",
+          "93070200200",
+          "96459457588"
+        ],
+        "MM": []
+      }
+    },
+    {
+      "identity_key": "mb_505::base",
+      "canonical_model_id": "mb_505",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "KAT",
+        "Base Machine",
+        "MM",
+        "MQ"
+      ],
+      "total_unique_parts": 102,
+      "shared_parts_count": 51,
+      "shared_parts_sample": [
+        "61007033100",
+        "61007040303",
+        "61017044700",
+        "61037035100",
+        "61037036601",
+        "61037039500",
+        "61037041015",
+        "61037047910",
+        "61037048300",
+        "61037084501"
+      ],
+      "per_configuration_stats": {
+        "KAT": {
+          "parts_count": 65,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 100,
+          "exclusive_count": 30
+        },
+        "MM": {
+          "parts_count": 64,
+          "exclusive_count": 0
+        },
+        "MQ": {
+          "parts_count": 59,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "KAT": [],
+        "Base Machine": [
+          "00009673679",
+          "00009898100",
+          "60007092000",
+          "61051605700",
+          "61051620300",
+          "61051620510",
+          "61056420400",
+          "61056422220",
+          "61056432530",
+          "61056433600"
+        ],
+        "MM": [],
+        "MQ": [
+          "92910200140",
+          "93070200200"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_545_0::base",
+      "canonical_model_id": "mb_545_0",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "Base Machine",
+        "VE Vario Drive Electric Start",
+        "VM Vario Drive Mulching",
+        "VR Vario Drive Mulching"
+      ],
+      "total_unique_parts": 187,
+      "shared_parts_count": 94,
+      "shared_parts_sample": [
+        "00000820413",
+        "00007013600",
+        "00007026600",
+        "00007033705",
+        "00007601800",
+        "00007603801",
+        "00009671000",
+        "00009673679",
+        "63400071025",
+        "63407002401"
+      ],
+      "per_configuration_stats": {
+        "Base Machine": {
+          "parts_count": 108,
+          "exclusive_count": 4
+        },
+        "VE Vario Drive Electric Start": {
+          "parts_count": 149,
+          "exclusive_count": 9
+        },
+        "VM Vario Drive Mulching": {
+          "parts_count": 147,
+          "exclusive_count": 4
+        },
+        "VR Vario Drive Mulching": {
+          "parts_count": 156,
+          "exclusive_count": 26
+        }
+      },
+      "exclusive_parts_sample": {
+        "Base Machine": [
+          "61187025001",
+          "63407002416",
+          "63601821300",
+          "63647000400"
+        ],
+        "VE Vario Drive Electric Start": [
+          "00004308101",
+          "61164303900",
+          "63401821331",
+          "63404001100",
+          "63404030400",
+          "63407640600",
+          "63604302400",
+          "92980211528",
+          "96459457588"
+        ],
+        "VM Vario Drive Mulching": [
+          "63407668300",
+          "63409673830",
+          "69097036300",
+          "91040074275"
+        ],
+        "VR Vario Drive Mulching": [
+          "63406400122",
+          "63407002412",
+          "63407008507",
+          "63407008508",
+          "63407040500",
+          "63407041100",
+          "63407601300",
+          "63407601310",
+          "63407642820",
+          "63407642821"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_545_1::base",
+      "canonical_model_id": "mb_545_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "VE Vario Drive Electric Start",
+        "VM Vario Drive Mulching",
+        "VR"
+      ],
+      "total_unique_parts": 128,
+      "shared_parts_count": 113,
+      "shared_parts_sample": [
+        "00007000425",
+        "00007013600",
+        "00007026600",
+        "00007033705",
+        "00007048300",
+        "00007601800",
+        "00009671000",
+        "00009673453",
+        "00009673679",
+        "00009898101"
+      ],
+      "per_configuration_stats": {
+        "VE Vario Drive Electric Start": {
+          "parts_count": 120,
+          "exclusive_count": 7
+        },
+        "VM Vario Drive Mulching": {
+          "parts_count": 121,
+          "exclusive_count": 0
+        },
+        "VR": {
+          "parts_count": 121,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "VE Vario Drive Electric Start": [
+          "63367021800",
+          "63401821331",
+          "63407014000",
+          "63407020100",
+          "63600071080",
+          "63607002501",
+          "63607025001"
+        ],
+        "VM Vario Drive Mulching": [],
+        "VR": []
+      }
+    },
+    {
+      "identity_key": "mb_555::base",
+      "canonical_model_id": "mb_555",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "BS",
+        "Base Machine",
+        "MQ"
+      ],
+      "total_unique_parts": 134,
+      "shared_parts_count": 62,
+      "shared_parts_sample": [
+        "00007026600",
+        "00007601800",
+        "00009898100",
+        "61007033100",
+        "61007040303",
+        "61017044700",
+        "61037035100",
+        "61037036601",
+        "61037039111",
+        "61037047910"
+      ],
+      "per_configuration_stats": {
+        "BS": {
+          "parts_count": 91,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 131,
+          "exclusive_count": 34
+        },
+        "MQ": {
+          "parts_count": 71,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "BS": [],
+        "Base Machine": [
+          "00004308101",
+          "60007092000",
+          "61017032800",
+          "61037007525",
+          "61057021820",
+          "61057080800",
+          "61057601501",
+          "61070071000",
+          "61077023800",
+          "61164303900"
+        ],
+        "MQ": [
+          "93070200200",
+          "93070210180",
+          "93090210180"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_6_1::base",
+      "canonical_model_id": "mb_6_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "RH Mulching mower High grass mower",
+        "RV Mulching Mower Vario Drive"
+      ],
+      "total_unique_parts": 64,
+      "shared_parts_count": 38,
+      "shared_parts_sample": [
+        "60029673400",
+        "61007033100",
+        "62277401900",
+        "63757036620",
+        "63957063410",
+        "90083180960",
+        "90083181320",
+        "90083181780",
+        "90083181800",
+        "90083181830"
+      ],
+      "per_configuration_stats": {
+        "RH Mulching mower High grass mower": {
+          "parts_count": 46,
+          "exclusive_count": 8
+        },
+        "RV Mulching Mower Vario Drive": {
+          "parts_count": 56,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "RH Mulching mower High grass mower": [
+          "61098931300",
+          "63757040311",
+          "90073192010",
+          "90073192060",
+          "90270681770",
+          "91040030820",
+          "92162611100",
+          "95030035290"
+        ],
+        "RV Mulching Mower Vario Drive": [
+          "61067045110",
+          "63607002501",
+          "63757000422",
+          "63757049520",
+          "63757068100",
+          "63953500500",
+          "63957043610",
+          "90083181270",
+          "90083182360",
+          "90394880974"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_650_0::base",
+      "canonical_model_id": "mb_650_0",
+      "variant_key": "base",
+      "configurations_count": 5,
+      "configurations": [
+        "OS",
+        "VE",
+        "VM Vario Drive Mulching",
+        "VR Vario Drive Mulching",
+        "VS Vario Drive Blade Break Clutch"
+      ],
+      "total_unique_parts": 253,
+      "shared_parts_count": 105,
+      "shared_parts_sample": [
+        "00007026600",
+        "00007048300",
+        "00007601800",
+        "00007603801",
+        "00009674484",
+        "00009898101",
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63606433800"
+      ],
+      "per_configuration_stats": {
+        "OS": {
+          "parts_count": 161,
+          "exclusive_count": 4
+        },
+        "VE": {
+          "parts_count": 169,
+          "exclusive_count": 9
+        },
+        "VM Vario Drive Mulching": {
+          "parts_count": 169,
+          "exclusive_count": 5
+        },
+        "VR Vario Drive Mulching": {
+          "parts_count": 177,
+          "exclusive_count": 30
+        },
+        "VS Vario Drive Blade Break Clutch": {
+          "parts_count": 186,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "OS": [
+          "00000820415",
+          "00000820416",
+          "00009674406",
+          "63751801130"
+        ],
+        "VE": [
+          "00004308101",
+          "61164303900",
+          "63401821331",
+          "63404001100",
+          "63404030400",
+          "63407640600",
+          "63604302400",
+          "92980211528",
+          "96459457588"
+        ],
+        "VM Vario Drive Mulching": [
+          "61057609900",
+          "63607668300",
+          "69097036310",
+          "90394880964",
+          "91040074275"
+        ],
+        "VR Vario Drive Mulching": [
+          "00008813895",
+          "63407040301",
+          "63407041100",
+          "63407642820",
+          "63407642821",
+          "63407800300",
+          "63607000400",
+          "63607008530",
+          "63750071096",
+          "63756400103"
+        ],
+        "VS Vario Drive Blade Break Clutch": [
+          "63751801110",
+          "63757060751",
+          "90083412360"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_655_0::base",
+      "canonical_model_id": "mb_655_0",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "G",
+        "GM",
+        "KS Blade Brakew Clutch",
+        "VM"
+      ],
+      "total_unique_parts": 216,
+      "shared_parts_count": 107,
+      "shared_parts_sample": [
+        "00006402500",
+        "00006402505",
+        "00007026600",
+        "00007601800",
+        "00007603801",
+        "00009674484",
+        "00009898101",
+        "61037047910",
+        "61057047400",
+        "61057047410"
+      ],
+      "per_configuration_stats": {
+        "G": {
+          "parts_count": 154,
+          "exclusive_count": 0
+        },
+        "GM": {
+          "parts_count": 158,
+          "exclusive_count": 0
+        },
+        "KS Blade Brakew Clutch": {
+          "parts_count": 178,
+          "exclusive_count": 41
+        },
+        "VM": {
+          "parts_count": 143,
+          "exclusive_count": 16
+        }
+      },
+      "exclusive_parts_sample": {
+        "G": [],
+        "GM": [],
+        "KS Blade Brakew Clutch": [
+          "00007033705",
+          "00009674405",
+          "61070071035",
+          "61071602601",
+          "61071602900",
+          "61071605000",
+          "61071605400",
+          "61071623510",
+          "61071627700",
+          "61071627900"
+        ],
+        "VM": [
+          "00007048300",
+          "63600071080",
+          "63601821306",
+          "63606400112",
+          "63606433800",
+          "63607002501",
+          "63607002513",
+          "63607007500",
+          "63607007510",
+          "63607025001"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_655_1::base",
+      "canonical_model_id": "mb_655_1",
+      "variant_key": "base",
+      "configurations_count": 5,
+      "configurations": [
+        "G 3 Speed Gearing",
+        "GS 3 speed gearing Blade brake clutch",
+        "RS Vario Drive Mulching Mower Blade Brake Clutch",
+        "VM Vario Drive Mulching Mower Blade Brake Clutch",
+        "VR Vario Drive Mulching Mower"
+      ],
+      "total_unique_parts": 268,
+      "shared_parts_count": 83,
+      "shared_parts_sample": [
+        "00000820415",
+        "00000820416",
+        "00007026600",
+        "00007033705",
+        "00007601800",
+        "00007603801",
+        "00009674406",
+        "00009674484",
+        "00009898101",
+        "61037047910"
+      ],
+      "per_configuration_stats": {
+        "G 3 Speed Gearing": {
+          "parts_count": 169,
+          "exclusive_count": 3
+        },
+        "GS 3 speed gearing Blade brake clutch": {
+          "parts_count": 194,
+          "exclusive_count": 9
+        },
+        "RS Vario Drive Mulching Mower Blade Brake Clutch": {
+          "parts_count": 157,
+          "exclusive_count": 6
+        },
+        "VM Vario Drive Mulching Mower Blade Brake Clutch": {
+          "parts_count": 160,
+          "exclusive_count": 8
+        },
+        "VR Vario Drive Mulching Mower": {
+          "parts_count": 172,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "G 3 Speed Gearing": [
+          "61187025001",
+          "63751821316",
+          "63759673801"
+        ],
+        "GS 3 speed gearing Blade brake clutch": [
+          "61071602900",
+          "63750071030",
+          "63757039010",
+          "63757039606",
+          "63757060750",
+          "63757068200",
+          "63757088000",
+          "63757602100",
+          "63757602191"
+        ],
+        "RS Vario Drive Mulching Mower Blade Brake Clutch": [
+          "07510107054",
+          "63601602901",
+          "63601821316",
+          "63750071040",
+          "63759673885",
+          "90643451260"
+        ],
+        "VM Vario Drive Mulching Mower Blade Brake Clutch": [
+          "61037039111",
+          "61077609900",
+          "63606400112",
+          "63757668300",
+          "63759673871",
+          "69097036320",
+          "90394880964",
+          "91040074275"
+        ],
+        "VR Vario Drive Mulching Mower": [
+          "63407642820",
+          "63750071096",
+          "63757002412",
+          "63759673880",
+          "90394880982",
+          "94606240900"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_655_3::base",
+      "canonical_model_id": "mb_655_3",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "RS Mulching Mower Blade Brake Clutch",
+        "VS",
+        "YS"
+      ],
+      "total_unique_parts": 197,
+      "shared_parts_count": 102,
+      "shared_parts_sample": [
+        "00007026600",
+        "00007603820",
+        "00009671000",
+        "00009673453",
+        "00009674405",
+        "61037047910",
+        "61701802800",
+        "63387033700",
+        "63387033800",
+        "63387034900"
+      ],
+      "per_configuration_stats": {
+        "RS Mulching Mower Blade Brake Clutch": {
+          "parts_count": 161,
+          "exclusive_count": 44
+        },
+        "VS": {
+          "parts_count": 139,
+          "exclusive_count": 6
+        },
+        "YS": {
+          "parts_count": 133,
+          "exclusive_count": 13
+        }
+      },
+      "exclusive_parts_sample": {
+        "RS Mulching Mower Blade Brake Clutch": [
+          "00008813895",
+          "07712622005",
+          "63607042111",
+          "63647034010",
+          "63746400110",
+          "63747002400",
+          "63747020110",
+          "63747032205",
+          "63747033800",
+          "63747040500"
+        ],
+        "VS": [
+          "63647032215",
+          "63647042100",
+          "63647042700",
+          "63746400120",
+          "63747002500",
+          "63747007500"
+        ],
+        "YS": [
+          "00000071800",
+          "00136490204",
+          "00139509600",
+          "61017044700",
+          "63640111801",
+          "63786406401",
+          "63786413102",
+          "63786431500",
+          "63786435100",
+          "63787042100"
+        ]
+      }
+    },
+    {
+      "identity_key": "mb_756_0::base",
+      "canonical_model_id": "mb_756_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "GS 3 Speed Gearing Blade Brake Clutch",
+        "YC Hydrostatic gearbox Comfort equipment"
+      ],
+      "total_unique_parts": 201,
+      "shared_parts_count": 119,
+      "shared_parts_sample": [
+        "00000071800",
+        "00003501000",
+        "00003581808",
+        "00007026600",
+        "00009673453",
+        "00009674470",
+        "00009674484",
+        "00009889100",
+        "00009889209",
+        "61037047910"
+      ],
+      "per_configuration_stats": {
+        "GS 3 Speed Gearing Blade Brake Clutch": {
+          "parts_count": 140,
+          "exclusive_count": 21
+        },
+        "YC Hydrostatic gearbox Comfort equipment": {
+          "parts_count": 180,
+          "exclusive_count": 61
+        }
+      },
+      "exclusive_parts_sample": {
+        "GS 3 Speed Gearing Blade Brake Clutch": [
+          "00007047400",
+          "63780071000",
+          "63786400110",
+          "63787007500",
+          "63787007510",
+          "63787036920",
+          "63787042110",
+          "63787042710",
+          "63787630700",
+          "63787631610"
+        ],
+        "YC Hydrostatic gearbox Comfort equipment": [
+          "00007048300",
+          "00136409400",
+          "00136490204",
+          "00139509600",
+          "07811201109",
+          "08121901005",
+          "61057047400",
+          "61057047410",
+          "63780071091",
+          "63780071092"
+        ]
+      }
+    },
+    {
+      "identity_key": "mi_422_0::base",
+      "canonical_model_id": "mi_422_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "P",
+        "Base Machine"
+      ],
+      "total_unique_parts": 101,
+      "shared_parts_count": 85,
+      "shared_parts_sample": [
+        "00009671000",
+        "00009673453",
+        "63010071002",
+        "63010071003",
+        "63010071022",
+        "63010071038",
+        "63010071041",
+        "63010071091",
+        "63010071800",
+        "63014001500"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 94,
+          "exclusive_count": 9
+        },
+        "Base Machine": {
+          "parts_count": 92,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63010071007",
+          "63014006535",
+          "63014006541",
+          "63014301478",
+          "63017067300",
+          "63017067310",
+          "63017802030",
+          "63019673810",
+          "91040074257"
+        ],
+        "Base Machine": [
+          "63010071006",
+          "63014006502",
+          "63014006512",
+          "63014006529",
+          "63014301475",
+          "63017802020",
+          "63019673800"
+        ]
+      }
+    },
+    {
+      "identity_key": "mi_422_1::base",
+      "canonical_model_id": "mi_422_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 90,
+      "shared_parts_count": 69,
+      "shared_parts_sample": [
+        "00009671000",
+        "00009673453",
+        "63010071002",
+        "63010071003",
+        "63010071022",
+        "63010071038",
+        "63010071800",
+        "63014001500",
+        "63014005800",
+        "63014008503"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 82,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 77,
+          "exclusive_count": 1
+        },
+        "Base Machine": {
+          "parts_count": 80,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63014301478",
+          "63019673810"
+        ],
+        "PC": [
+          "63014301430"
+        ],
+        "Base Machine": [
+          "63010071006",
+          "63014006502",
+          "63014006512",
+          "63014006529",
+          "63014301475",
+          "63017802020",
+          "63019673800"
+        ]
+      }
+    },
+    {
+      "identity_key": "mi_632_0::base",
+      "canonical_model_id": "mi_632_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 121,
+      "shared_parts_count": 93,
+      "shared_parts_sample": [
+        "00009671000",
+        "00009673453",
+        "07811101011",
+        "63017000411",
+        "63017068800",
+        "63017085900",
+        "63017085902",
+        "63017605200",
+        "63090071001",
+        "63090071002"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 105,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 107,
+          "exclusive_count": 3
+        },
+        "Base Machine": {
+          "parts_count": 111,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63094301422",
+          "63099673820"
+        ],
+        "PC": [
+          "63094301430",
+          "63094301433",
+          "63099673830"
+        ],
+        "Base Machine": [
+          "63090071051",
+          "63090071071",
+          "63094008504",
+          "63094008521",
+          "63094301403",
+          "63094301413",
+          "63099673800"
+        ]
+      }
+    },
+    {
+      "identity_key": "mi_632_1::base",
+      "canonical_model_id": "mi_632_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 115,
+      "shared_parts_count": 88,
+      "shared_parts_sample": [
+        "00009671000",
+        "00009673453",
+        "07811101011",
+        "07811201117",
+        "63017000411",
+        "63017068800",
+        "63017085900",
+        "63017085902",
+        "63017605200",
+        "63090071001"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 95,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 100,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 107,
+          "exclusive_count": 12
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63094301422",
+          "63099673820"
+        ],
+        "PC": [
+          "63094301433",
+          "63099673830"
+        ],
+        "Base Machine": [
+          "63090071051",
+          "63090071071",
+          "63094008504",
+          "63094008540",
+          "63094008541",
+          "63094301403",
+          "63094301413",
+          "63094301437",
+          "63094301465",
+          "63094316200"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_151::c_e",
+      "canonical_model_id": "ms_151",
+      "variant_key": "c_e",
+      "configurations_count": 2,
+      "configurations": [
+        "Z Muffler with Spark Arrestor",
+        "Base Machine"
+      ],
+      "total_unique_parts": 196,
+      "shared_parts_count": 161,
+      "shared_parts_sample": [
+        "00001212708",
+        "00001227101",
+        "00001903502",
+        "00001957002",
+        "00001958204",
+        "00003500536",
+        "00003503513",
+        "00003505802",
+        "00004007011",
+        "00004007025"
+      ],
+      "per_configuration_stats": {
+        "Z Muffler with Spark Arrestor": {
+          "parts_count": 163,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 194,
+          "exclusive_count": 33
+        }
+      },
+      "exclusive_parts_sample": {
+        "Z Muffler with Spark Arrestor": [
+          "00003500564",
+          "96459517735"
+        ],
+        "Base Machine": [
+          "00003500534",
+          "00009677257",
+          "07510308530",
+          "07811201109",
+          "11211605000",
+          "11291820400",
+          "11291820800",
+          "11294421600",
+          "11460201100",
+          "11460203006"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_170::base",
+      "canonical_model_id": "ms_170",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 228,
+      "shared_parts_count": 163,
+      "shared_parts_sample": [
+        "00001903402",
+        "00001957001",
+        "00001958200",
+        "00003500905",
+        "00003503500",
+        "00003530605",
+        "00003591240",
+        "00003591241",
+        "00004007000",
+        "00004007016"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 177,
+          "exclusive_count": 14
+        },
+        "Base Machine": {
+          "parts_count": 214,
+          "exclusive_count": 51
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "00001481200",
+          "00001482000",
+          "00009673748",
+          "11300848303",
+          "11301400613",
+          "11301402804",
+          "11301404707",
+          "11301413201",
+          "11301450600",
+          "11301453400"
+        ],
+        "Base Machine": [
+          "00001227101",
+          "00004007011",
+          "00004007025",
+          "00004007026",
+          "00008903400",
+          "11201223004",
+          "11231290905",
+          "11231481201",
+          "11291214800",
+          "11300071700"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_180::c_b",
+      "canonical_model_id": "ms_180",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "D Catalytic Conerter",
+        "Base Machine"
+      ],
+      "total_unique_parts": 258,
+      "shared_parts_count": 160,
+      "shared_parts_sample": [
+        "00001903402",
+        "00001957001",
+        "00001958200",
+        "00003500905",
+        "00003503500",
+        "00003530605",
+        "00003591240",
+        "00003591241",
+        "00004007000",
+        "00004007016"
+      ],
+      "per_configuration_stats": {
+        "D Catalytic Conerter": {
+          "parts_count": 170,
+          "exclusive_count": 10
+        },
+        "Base Machine": {
+          "parts_count": 248,
+          "exclusive_count": 88
+        }
+      },
+      "exclusive_parts_sample": {
+        "D Catalytic Conerter": [
+          "00001481200",
+          "00001482000",
+          "11300848303",
+          "11301400613",
+          "11301402804",
+          "11301413201",
+          "11301450600",
+          "11301453400",
+          "11301469000",
+          "11301490601"
+        ],
+        "Base Machine": [
+          "00001227101",
+          "00004007011",
+          "00004007025",
+          "00004007026",
+          "00008903400",
+          "00009302281",
+          "00009550801",
+          "00009580806",
+          "11201223004",
+          "11206641500"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_260::base",
+      "canonical_model_id": "ms_260",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "-D",
+        "-DWGasoline",
+        "-W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 275,
+      "shared_parts_count": 239,
+      "shared_parts_sample": [
+        "00001903401",
+        "00001957001",
+        "00003500533",
+        "00003500537",
+        "00003503518",
+        "00003505800",
+        "00004001300",
+        "00004007000",
+        "00004481250",
+        "00006421234"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 243,
+          "exclusive_count": 0
+        },
+        "-DWGasoline": {
+          "parts_count": 247,
+          "exclusive_count": 0
+        },
+        "-W": {
+          "parts_count": 249,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 267,
+          "exclusive_count": 22
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [],
+        "-DWGasoline": [],
+        "-W": [],
+        "Base Machine": [
+          "00004309900",
+          "00004910100",
+          "00006421236",
+          "00006642405",
+          "00009677307",
+          "11210361600",
+          "11216401700",
+          "11216402000",
+          "11216402001",
+          "11216403202"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_261::c_m",
+      "canonical_model_id": "ms_261",
+      "variant_key": "c_m",
+      "configurations_count": 2,
+      "configurations": [
+        "VWGasoline",
+        "Base Machine"
+      ],
+      "total_unique_parts": 335,
+      "shared_parts_count": 241,
+      "shared_parts_sample": [
+        "00001205104",
+        "00001212301",
+        "00001227101",
+        "00001227103",
+        "00001903401",
+        "00001957001",
+        "00003500532",
+        "00003500537",
+        "00003503518",
+        "00003505800"
+      ],
+      "per_configuration_stats": {
+        "VWGasoline": {
+          "parts_count": 245,
+          "exclusive_count": 4
+        },
+        "Base Machine": {
+          "parts_count": 331,
+          "exclusive_count": 90
+        }
+      },
+      "exclusive_parts_sample": {
+        "VWGasoline": [
+          "00009890808",
+          "11410801634",
+          "11411200634",
+          "11414402200"
+        ],
+        "Base Machine": [
+          "00001212704",
+          "00003503504",
+          "00003506201",
+          "00003532600",
+          "00004309900",
+          "00004910100",
+          "00006642405",
+          "00008902300",
+          "00009375006",
+          "00009580810"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_261::base",
+      "canonical_model_id": "ms_261",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-VW",
+        "Base Machine"
+      ],
+      "total_unique_parts": 339,
+      "shared_parts_count": 224,
+      "shared_parts_sample": [
+        "00001212704",
+        "00001227101",
+        "00001903401",
+        "00001957001",
+        "00003500532",
+        "00003500537",
+        "00003503518",
+        "00003505800",
+        "00004007000",
+        "00006421231"
+      ],
+      "per_configuration_stats": {
+        "-VW": {
+          "parts_count": 232,
+          "exclusive_count": 8
+        },
+        "Base Machine": {
+          "parts_count": 331,
+          "exclusive_count": 107
+        }
+      },
+      "exclusive_parts_sample": {
+        "-VW": [
+          "00009890808",
+          "11410801614",
+          "11411200612",
+          "11411201602",
+          "11411410902",
+          "11414001204",
+          "11414300600",
+          "11414402200"
+        ],
+        "Base Machine": [
+          "00001205104",
+          "00001212301",
+          "00001227103",
+          "00003503504",
+          "00003506201",
+          "00003532600",
+          "00004007029",
+          "00004007030",
+          "00004309900",
+          "00004311803"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_361::base",
+      "canonical_model_id": "ms_361",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 275,
+      "shared_parts_count": 230,
+      "shared_parts_sample": [
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007000",
+        "00006421216",
+        "00006421223",
+        "00006421239",
+        "00006600800",
+        "00006640700",
+        "00007912009"
+      ],
+      "per_configuration_stats": {
+        "-W": {
+          "parts_count": 238,
+          "exclusive_count": 8
+        },
+        "Base Machine": {
+          "parts_count": 267,
+          "exclusive_count": 37
+        }
+      },
+      "exclusive_parts_sample": {
+        "-W": [
+          "11104300202",
+          "11104329200",
+          "11214420402",
+          "11244420400",
+          "11354001204",
+          "11354043500",
+          "11357901702",
+          "90223130658"
+        ],
+        "Base Machine": [
+          "00006642405",
+          "00009581022",
+          "11211628000",
+          "11216482200",
+          "11216601000",
+          "11216641000",
+          "11216647301",
+          "11251627905",
+          "11251801405",
+          "11251801503"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_362::base",
+      "canonical_model_id": "ms_362",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-VW",
+        "Base Machine"
+      ],
+      "total_unique_parts": 381,
+      "shared_parts_count": 222,
+      "shared_parts_sample": [
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007000",
+        "00006421216",
+        "00006421223",
+        "00006421239",
+        "00006567700",
+        "00007917900",
+        "00008902300"
+      ],
+      "per_configuration_stats": {
+        "-VW": {
+          "parts_count": 229,
+          "exclusive_count": 7
+        },
+        "Base Machine": {
+          "parts_count": 374,
+          "exclusive_count": 152
+        }
+      },
+      "exclusive_parts_sample": {
+        "-VW": [
+          "11400202922",
+          "11400801626",
+          "11401243502",
+          "11401404402",
+          "11404001201",
+          "11404345100",
+          "11404403001"
+        ],
+        "Base Machine": [
+          "00001205104",
+          "00001212301",
+          "00001227101",
+          "00001227103",
+          "00004007011",
+          "00004007025",
+          "00004007026",
+          "00004051007",
+          "00004304801",
+          "00006600800"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_440::base",
+      "canonical_model_id": "ms_440",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 270,
+      "shared_parts_count": 239,
+      "shared_parts_sample": [
+        "00001410601",
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004001300",
+        "00004007000",
+        "00004481250",
+        "00006421216",
+        "00006421223",
+        "00006421239"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 264,
+          "exclusive_count": 25
+        },
+        "Base Machine": {
+          "parts_count": 245,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "00001486000",
+          "11226480403",
+          "11226561510",
+          "11281201604",
+          "11281400610",
+          "11281453701",
+          "11286640501",
+          "11286642200",
+          "11287915500",
+          "11288918600"
+        ],
+        "Base Machine": [
+          "11240848300",
+          "11281400600",
+          "11281450803",
+          "11281490500",
+          "11287909150",
+          "96400031972"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_441::c_m",
+      "canonical_model_id": "ms_441",
+      "variant_key": "c_m",
+      "configurations_count": 2,
+      "configurations": [
+        "W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 299,
+      "shared_parts_count": 236,
+      "shared_parts_sample": [
+        "00001201653",
+        "00001205111",
+        "00001212300",
+        "00001227102",
+        "00001404407",
+        "00001410300",
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007000"
+      ],
+      "per_configuration_stats": {
+        "W": {
+          "parts_count": 250,
+          "exclusive_count": 14
+        },
+        "Base Machine": {
+          "parts_count": 285,
+          "exclusive_count": 49
+        }
+      },
+      "exclusive_parts_sample": {
+        "W": [
+          "00009581511",
+          "00009890808",
+          "11214420402",
+          "11284322200",
+          "11381203529",
+          "11384001205",
+          "11384043501",
+          "11384300502",
+          "11384306002",
+          "11384312700"
+        ],
+        "Base Machine": [
+          "00006421216",
+          "00006421239",
+          "00007912009",
+          "00009677256",
+          "11171229000",
+          "11211226201",
+          "11211628000",
+          "11221215604",
+          "11251627905",
+          "11251801405"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_441::base",
+      "canonical_model_id": "ms_441",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 301,
+      "shared_parts_count": 242,
+      "shared_parts_sample": [
+        "00001201653",
+        "00001404407",
+        "00001410300",
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007000",
+        "00006421216",
+        "00006421223",
+        "00006421239"
+      ],
+      "per_configuration_stats": {
+        "-W": {
+          "parts_count": 258,
+          "exclusive_count": 16
+        },
+        "Base Machine": {
+          "parts_count": 285,
+          "exclusive_count": 43
+        }
+      },
+      "exclusive_parts_sample": {
+        "-W": [
+          "00009581511",
+          "00009890808",
+          "11214420402",
+          "11284322200",
+          "11381203504",
+          "11381203527",
+          "11381237501",
+          "11384001203",
+          "11384043501",
+          "11384300502"
+        ],
+        "Base Machine": [
+          "00001205111",
+          "00001212300",
+          "00001227102",
+          "00004304800",
+          "00004424000",
+          "00007912009",
+          "00009677256",
+          "11211628000",
+          "11251627905",
+          "11251801405"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_460::base",
+      "canonical_model_id": "ms_460",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "-D",
+        "-R Wrap Handle",
+        "-W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 263,
+      "shared_parts_count": 225,
+      "shared_parts_sample": [
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007000",
+        "00004481250",
+        "00006421216",
+        "00006421223",
+        "00006421239",
+        "00009302251",
+        "00009302267"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 239,
+          "exclusive_count": 4
+        },
+        "-R Wrap Handle": {
+          "parts_count": 244,
+          "exclusive_count": 11
+        },
+        "-W": {
+          "parts_count": 244,
+          "exclusive_count": 8
+        },
+        "Base Machine": {
+          "parts_count": 240,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "00001486000",
+          "11280848304",
+          "11281400610",
+          "90223411070"
+        ],
+        "-R Wrap Handle": [
+          "00001404407",
+          "00001410300",
+          "00001410601",
+          "11226480403",
+          "11226561510",
+          "11226640506",
+          "11286640501",
+          "11287915500",
+          "11287915501",
+          "90083450960"
+        ],
+        "-W": [
+          "00009581511",
+          "11104329200",
+          "11214420402",
+          "11217919000",
+          "11284300200",
+          "11284322200",
+          "11284345000",
+          "11287901754"
+        ],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "ms_461::base",
+      "canonical_model_id": "ms_461",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-R Wrap Handle",
+        "Base Machine"
+      ],
+      "total_unique_parts": 260,
+      "shared_parts_count": 221,
+      "shared_parts_sample": [
+        "00001404407",
+        "00001410601",
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007000",
+        "00004481250",
+        "00006421223",
+        "00006421239",
+        "00007912009"
+      ],
+      "per_configuration_stats": {
+        "-R Wrap Handle": {
+          "parts_count": 245,
+          "exclusive_count": 24
+        },
+        "Base Machine": {
+          "parts_count": 236,
+          "exclusive_count": 15
+        }
+      },
+      "exclusive_parts_sample": {
+        "-R Wrap Handle": [
+          "00009302203",
+          "00009302212",
+          "11131958200",
+          "11226480403",
+          "11226561510",
+          "11280802116",
+          "11281453701",
+          "11281481200",
+          "11281953401",
+          "11286640502"
+        ],
+        "Base Machine": [
+          "00006421216",
+          "00009302267",
+          "11221215604",
+          "11256561501",
+          "11280802115",
+          "11281223003",
+          "11281226809",
+          "11281902900",
+          "11281903400",
+          "11286401706"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_462::c_m",
+      "canonical_model_id": "ms_462",
+      "variant_key": "c_m",
+      "configurations_count": 2,
+      "configurations": [
+        "R",
+        "Base Machine"
+      ],
+      "total_unique_parts": 278,
+      "shared_parts_count": 217,
+      "shared_parts_sample": [
+        "00001205104",
+        "00001205111",
+        "00001212301",
+        "00001227101",
+        "00001227103",
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007011",
+        "00004051007"
+      ],
+      "per_configuration_stats": {
+        "R": {
+          "parts_count": 237,
+          "exclusive_count": 20
+        },
+        "Base Machine": {
+          "parts_count": 258,
+          "exclusive_count": 41
+        }
+      },
+      "exclusive_parts_sample": {
+        "R": [
+          "00006506600",
+          "11131958200",
+          "11226640501",
+          "11281953401",
+          "11420802103",
+          "11421453700",
+          "11421481200",
+          "11426401702",
+          "11426561501",
+          "11426642200"
+        ],
+        "Base Machine": [
+          "00006600801",
+          "00009302267",
+          "00009374047",
+          "00009374048",
+          "00009581511",
+          "11104300202",
+          "11214420402",
+          "11251622901",
+          "11281902900",
+          "11281903400"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_500i::base",
+      "canonical_model_id": "ms_500i",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 199,
+      "shared_parts_count": 186,
+      "shared_parts_sample": [
+        "00001212702",
+        "00001303307",
+        "00001320200",
+        "00003500533",
+        "00003503518",
+        "00003505800",
+        "00004007011",
+        "00004007025",
+        "00004007026",
+        "00006421223"
+      ],
+      "per_configuration_stats": {
+        "-W": {
+          "parts_count": 195,
+          "exclusive_count": 9
+        },
+        "Base Machine": {
+          "parts_count": 190,
+          "exclusive_count": 4
+        }
+      },
+      "exclusive_parts_sample": {
+        "-W": [
+          "00009581511",
+          "11104300202",
+          "11214420402",
+          "11284322200",
+          "11404306003",
+          "11474004712",
+          "11474300513",
+          "11474352701",
+          "11477901701"
+        ],
+        "Base Machine": [
+          "11474004702",
+          "11474300512",
+          "11474352700",
+          "11477901700"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_660::base",
+      "canonical_model_id": "ms_660",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 274,
+      "shared_parts_count": 257,
+      "shared_parts_sample": [
+        "00001201653",
+        "00001404407",
+        "00001410300",
+        "00001410601",
+        "00001486000",
+        "00001623001",
+        "00003500509",
+        "00003500520",
+        "00003500900",
+        "00003503518"
+      ],
+      "per_configuration_stats": {
+        "-W": {
+          "parts_count": 269,
+          "exclusive_count": 12
+        },
+        "Base Machine": {
+          "parts_count": 262,
+          "exclusive_count": 5
+        }
+      },
+      "exclusive_parts_sample": {
+        "-W": [
+          "00009611406",
+          "00009890808",
+          "00009890813",
+          "11104300202",
+          "11104329200",
+          "11214420402",
+          "11217919000",
+          "11221400602",
+          "11224001218",
+          "11227901752"
+        ],
+        "Base Machine": [
+          "11214401103",
+          "11224001217",
+          "11224402201",
+          "11224420400",
+          "11227901750"
+        ]
+      }
+    },
+    {
+      "identity_key": "ms_661::c_m",
+      "canonical_model_id": "ms_661",
+      "variant_key": "c_m",
+      "configurations_count": 2,
+      "configurations": [
+        "W",
+        "Base Machine"
+      ],
+      "total_unique_parts": 265,
+      "shared_parts_count": 232,
+      "shared_parts_sample": [
+        "00000846900",
+        "00000847000",
+        "00001205104",
+        "00001205111",
+        "00001212300",
+        "00001227102",
+        "00001410602",
+        "00001623001",
+        "00003500533",
+        "00003503518"
+      ],
+      "per_configuration_stats": {
+        "W": {
+          "parts_count": 250,
+          "exclusive_count": 18
+        },
+        "Base Machine": {
+          "parts_count": 247,
+          "exclusive_count": 15
+        }
+      },
+      "exclusive_parts_sample": {
+        "W": [
+          "00009374048",
+          "00009581511",
+          "00009890808",
+          "11214420402",
+          "11284322200",
+          "11384300502",
+          "11384420404",
+          "11384481202",
+          "11404306003",
+          "11441237524"
+        ],
+        "Base Machine": [
+          "00004007029",
+          "00004007030",
+          "00007912009",
+          "00009885211",
+          "00009888600",
+          "11440202604",
+          "11441237514",
+          "11443500801",
+          "11444001200",
+          "11444004705"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_120::c_b",
+      "canonical_model_id": "msa_120",
+      "variant_key": "c_b",
+      "configurations_count": 3,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "1/4\"P SET Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 39,
+      "shared_parts_count": 36,
+      "shared_parts_sample": [
+        "11216601000",
+        "11223539200",
+        "11236403200",
+        "11236403800",
+        "11236482202",
+        "11236603001",
+        "11236642400",
+        "11236642402",
+        "11303500500",
+        "12504300500"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 36,
+          "exclusive_count": 0
+        },
+        "1/4\"P SET Cordless chain saw": {
+          "parts_count": 36,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 39,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "1/4\"P SET Cordless chain saw": [],
+        "Base Machine": [
+          "12526421201",
+          "12544301400",
+          "12546000200"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_140::c_b",
+      "canonical_model_id": "msa_140",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 40,
+      "shared_parts_count": 38,
+      "shared_parts_sample": [
+        "11216601000",
+        "11223539200",
+        "11236403200",
+        "11236403800",
+        "11236482202",
+        "11236603001",
+        "11236642400",
+        "11236642402",
+        "11303500500",
+        "12504300500"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 38,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 40,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "Base Machine": [
+          "12544301441",
+          "12546000270"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_160::c_b",
+      "canonical_model_id": "msa_160",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 59,
+      "shared_parts_count": 52,
+      "shared_parts_sample": [
+        "11211605000",
+        "11216601000",
+        "11231625800",
+        "11231627800",
+        "11236403200",
+        "11236403800",
+        "11236482202",
+        "11236483800",
+        "11236603001",
+        "11236640500"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 52,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 59,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "Base Machine": [
+          "59108501651",
+          "59108502100",
+          "59108901901",
+          "59108903101",
+          "90083192930",
+          "90453192390",
+          "94556210850"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_160_0::c_b",
+      "canonical_model_id": "msa_160_0",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 31,
+      "shared_parts_count": 31,
+      "shared_parts_sample": [
+        "11211605000",
+        "11216601000",
+        "11231625800",
+        "11231627800",
+        "11236403200",
+        "11236403800",
+        "11236482202",
+        "11236483800",
+        "11236603001",
+        "11236642400"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 31,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 31,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "msa_161::t",
+      "canonical_model_id": "msa_161",
+      "variant_key": "t",
+      "configurations_count": 2,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "Tophandle"
+      ],
+      "total_unique_parts": 49,
+      "shared_parts_count": 49,
+      "shared_parts_sample": [
+        "11230071004",
+        "11236401900",
+        "11236403800",
+        "11236486600",
+        "11236641400",
+        "11236642200",
+        "11281625001",
+        "11296640500",
+        "11298903401",
+        "11416567700"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 49,
+          "exclusive_count": 0
+        },
+        "Tophandle": {
+          "parts_count": 49,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "Tophandle": []
+      }
+    },
+    {
+      "identity_key": "msa_200::c_b",
+      "canonical_model_id": "msa_200",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 52,
+      "shared_parts_count": 52,
+      "shared_parts_sample": [
+        "11211605000",
+        "11216601000",
+        "11231625800",
+        "11231627800",
+        "11236403200",
+        "11236403800",
+        "11236482202",
+        "11236483800",
+        "11236603001",
+        "11236640500"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 52,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 52,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "msa_200_0::c_b",
+      "canonical_model_id": "msa_200_0",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "1/4\"P Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 33,
+      "shared_parts_count": 11,
+      "shared_parts_sample": [
+        "11236403200",
+        "11236482202",
+        "11236483800",
+        "11236642400",
+        "11236642402",
+        "11236642405",
+        "11286409100",
+        "48506020900",
+        "90413190600",
+        "90744784435"
+      ],
+      "per_configuration_stats": {
+        "1/4\"P Cordless chain saw": {
+          "parts_count": 11,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 33,
+          "exclusive_count": 22
+        }
+      },
+      "exclusive_parts_sample": {
+        "1/4\"P Cordless chain saw": [],
+        "Base Machine": [
+          "11211605000",
+          "11216601000",
+          "11231625800",
+          "11231627800",
+          "11236403800",
+          "11236603001",
+          "11236640500",
+          "11396474000",
+          "12501627900",
+          "12504300500"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_220_0::c_b",
+      "canonical_model_id": "msa_220_0",
+      "variant_key": "c_b",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless chain saw",
+        "Base Machine"
+      ],
+      "total_unique_parts": 48,
+      "shared_parts_count": 16,
+      "shared_parts_sample": [
+        "11211605000",
+        "11236403200",
+        "11236482202",
+        "11236483800",
+        "11236642400",
+        "11236642402",
+        "11236642405",
+        "11286409100",
+        "48506020900",
+        "90223130660"
+      ],
+      "per_configuration_stats": {
+        "Cordless chain saw": {
+          "parts_count": 30,
+          "exclusive_count": 14
+        },
+        "Base Machine": {
+          "parts_count": 34,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless chain saw": [
+          "11201625200",
+          "11211625200",
+          "11236486600",
+          "11298903401",
+          "11391223900",
+          "11436642402",
+          "11476567700",
+          "90223130682",
+          "90223410975",
+          "90744784130"
+        ],
+        "Base Machine": [
+          "11216601000",
+          "11231625800",
+          "11231627800",
+          "11236403800",
+          "11236603001",
+          "11236640500",
+          "11396474000",
+          "12501627900",
+          "12504300500",
+          "12504300501"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_220_0::t",
+      "canonical_model_id": "msa_220_0",
+      "variant_key": "t",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless chain saw",
+        "Tophandle"
+      ],
+      "total_unique_parts": 30,
+      "shared_parts_count": 21,
+      "shared_parts_sample": [
+        "11201625200",
+        "11211605000",
+        "11211625200",
+        "11236486600",
+        "11286409100",
+        "11298903401",
+        "11391223900",
+        "11436642402",
+        "11476567700",
+        "48506020900"
+      ],
+      "per_configuration_stats": {
+        "Cordless chain saw": {
+          "parts_count": 30,
+          "exclusive_count": 9
+        },
+        "Tophandle": {
+          "parts_count": 21,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless chain saw": [
+          "11236403200",
+          "11236482202",
+          "11236483800",
+          "11236642400",
+          "11236642402",
+          "11236642405",
+          "90413190600",
+          "90744783005",
+          "91040038600"
+        ],
+        "Tophandle": []
+      }
+    },
+    {
+      "identity_key": "msa_220_0::base",
+      "canonical_model_id": "msa_220_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "TC-O Cordless chain saw",
+        "TC-O Tophandle"
+      ],
+      "total_unique_parts": 20,
+      "shared_parts_count": 20,
+      "shared_parts_sample": [
+        "11201625200",
+        "11211605000",
+        "11211625200",
+        "11236486600",
+        "11286409100",
+        "11298903401",
+        "11436642402",
+        "11476567700",
+        "48506020900",
+        "90223130660"
+      ],
+      "per_configuration_stats": {
+        "TC-O Cordless chain saw": {
+          "parts_count": 20,
+          "exclusive_count": 0
+        },
+        "TC-O Tophandle": {
+          "parts_count": 20,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "TC-O Cordless chain saw": [],
+        "TC-O Tophandle": []
+      }
+    },
+    {
+      "identity_key": "msa_220_1::base",
+      "canonical_model_id": "msa_220_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "TC-O Cordless",
+        "Base Machine"
+      ],
+      "total_unique_parts": 24,
+      "shared_parts_count": 23,
+      "shared_parts_sample": [
+        "00003500538",
+        "00007906106",
+        "00009302803",
+        "00009741200",
+        "11201625200",
+        "11211605000",
+        "11211625200",
+        "11236486600",
+        "11286409100",
+        "11436642402"
+      ],
+      "per_configuration_stats": {
+        "TC-O Cordless": {
+          "parts_count": 23,
+          "exclusive_count": 0
+        },
+        "Base Machine": {
+          "parts_count": 24,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "TC-O Cordless": [],
+        "Base Machine": [
+          "11391223900"
+        ]
+      }
+    },
+    {
+      "identity_key": "msa_300::base",
+      "canonical_model_id": "msa_300",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless chain saw",
+        ".0Cordless chain saw"
+      ],
+      "total_unique_parts": 38,
+      "shared_parts_count": 38,
+      "shared_parts_sample": [
+        "11197917306",
+        "11201625200",
+        "11211625200",
+        "11216486610",
+        "11226642200",
+        "11226644500",
+        "11247909905",
+        "11250071021",
+        "11256401900",
+        "11256641400"
+      ],
+      "per_configuration_stats": {
+        "Cordless chain saw": {
+          "parts_count": 38,
+          "exclusive_count": 0
+        },
+        ".0Cordless chain saw": {
+          "parts_count": 38,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless chain saw": [],
+        ".0Cordless chain saw": []
+      }
+    },
+    {
+      "identity_key": "mt_585::base",
+      "canonical_model_id": "mt_585",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "L",
+        "Base Machine"
+      ],
+      "total_unique_parts": 76,
+      "shared_parts_count": 48,
+      "shared_parts_sample": [
+        "61704001115",
+        "90073181930",
+        "90073181950",
+        "90073191880",
+        "90073191961",
+        "90073191970",
+        "90073192010",
+        "90073193080",
+        "90083181320",
+        "90083181780"
+      ],
+      "per_configuration_stats": {
+        "L": {
+          "parts_count": 58,
+          "exclusive_count": 10
+        },
+        "Base Machine": {
+          "parts_count": 66,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "L": [
+          "90073182470",
+          "90083180960",
+          "90083181280",
+          "90083190660",
+          "90083191880",
+          "92143201105",
+          "92910200120",
+          "92910200140",
+          "96660030220",
+          "96660039020"
+        ],
+        "Base Machine": [
+          "61257042110",
+          "90073191370",
+          "90073191900",
+          "90083181270",
+          "90083181350",
+          "90083191270",
+          "90083191320",
+          "90083191370",
+          "90083191780",
+          "90083191800"
+        ]
+      }
+    },
+    {
+      "identity_key": "mt_6127_0::base",
+      "canonical_model_id": "mt_6127_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "KL",
+        "ZL"
+      ],
+      "total_unique_parts": 409,
+      "shared_parts_count": 371,
+      "shared_parts_sample": [
+        "60014300210",
+        "61400071000",
+        "61400071800",
+        "61407034000",
+        "61407634201",
+        "61606428500",
+        "61607060730",
+        "61607060740",
+        "61607630410",
+        "61607648400"
+      ],
+      "per_configuration_stats": {
+        "KL": {
+          "parts_count": 378,
+          "exclusive_count": 7
+        },
+        "ZL": {
+          "parts_count": 402,
+          "exclusive_count": 31
+        }
+      },
+      "exclusive_parts_sample": {
+        "KL": [
+          "61407007015",
+          "61700071060",
+          "61701801140",
+          "61704001115",
+          "61707003101",
+          "90073191961",
+          "90183181951"
+        ],
+        "ZL": [
+          "00003501000",
+          "00003501800",
+          "00003581808",
+          "00004053100",
+          "00004308101",
+          "00007026600",
+          "00007046700",
+          "00007046703",
+          "00007317700",
+          "00009673453"
+        ]
+      }
+    },
+    {
+      "identity_key": "mt_640::base",
+      "canonical_model_id": "mt_640",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "(1996)",
+        "(1997)"
+      ],
+      "total_unique_parts": 67,
+      "shared_parts_count": 54,
+      "shared_parts_sample": [
+        "61247640900",
+        "90073192010",
+        "90083190980",
+        "90083191260",
+        "90083191280",
+        "90083191320",
+        "90083191780",
+        "90083191800",
+        "90083191860",
+        "90083191970"
+      ],
+      "per_configuration_stats": {
+        "(1996)": {
+          "parts_count": 60,
+          "exclusive_count": 6
+        },
+        "(1997)": {
+          "parts_count": 61,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "(1996)": [
+          "90073191970",
+          "90083192390",
+          "90643411860",
+          "92102600600",
+          "93090210180",
+          "93306300100"
+        ],
+        "(1997)": [
+          "90083191830",
+          "90270681380",
+          "90643191350",
+          "90643191860",
+          "92102601400",
+          "92202608490",
+          "94556212790"
+        ]
+      }
+    },
+    {
+      "identity_key": "mt_780::base",
+      "canonical_model_id": "mt_780",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "(1999)",
+        "(200 2001)"
+      ],
+      "total_unique_parts": 88,
+      "shared_parts_count": 39,
+      "shared_parts_sample": [
+        "61247640900",
+        "61517042100",
+        "90073191880",
+        "90073191961",
+        "90083190980",
+        "90083191320",
+        "90083191370",
+        "90083191800",
+        "90083191970",
+        "90270681830"
+      ],
+      "per_configuration_stats": {
+        "(1999)": {
+          "parts_count": 63,
+          "exclusive_count": 24
+        },
+        "(200 2001)": {
+          "parts_count": 64,
+          "exclusive_count": 25
+        }
+      },
+      "exclusive_parts_sample": {
+        "(1999)": [
+          "61017032800",
+          "90073191370",
+          "90073191900",
+          "90083181830",
+          "90083191260",
+          "90083191280",
+          "90083191780",
+          "90083191830",
+          "90083191880",
+          "90083191900"
+        ],
+        "(200 2001)": [
+          "61704001115",
+          "90073181930",
+          "90073181950",
+          "90073191420",
+          "90073191970",
+          "90073192000",
+          "90073192010",
+          "90083181280",
+          "90083181780",
+          "90083181800"
+        ]
+      }
+    },
+    {
+      "identity_key": "mvp_600_1::base",
+      "canonical_model_id": "mvp_600_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless Powerheads MVP",
+        "VS Cordless Powerheads MVP"
+      ],
+      "total_unique_parts": 17,
+      "shared_parts_count": 9,
+      "shared_parts_sample": [
+        "12507913100",
+        "63384301401",
+        "63384401900",
+        "63384401910",
+        "63386000220",
+        "63584401900",
+        "63584401905",
+        "91040074289",
+        "92162610901"
+      ],
+      "per_configuration_stats": {
+        "Cordless Powerheads MVP": {
+          "parts_count": 16,
+          "exclusive_count": 7
+        },
+        "VS Cordless Powerheads MVP": {
+          "parts_count": 10,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless Powerheads MVP": [
+          "63380115002",
+          "63380115011",
+          "63384301412",
+          "63384301415",
+          "63384401915",
+          "63384401935",
+          "63724401920"
+        ],
+        "VS Cordless Powerheads MVP": [
+          "63584301410"
+        ]
+      }
+    },
+    {
+      "identity_key": "re_102::k",
+      "canonical_model_id": "re_102",
+      "variant_key": "k",
+      "configurations_count": 2,
+      "configurations": [
+        "Cold Water Electric",
+        "USA Cold Water Electric"
+      ],
+      "total_unique_parts": 54,
+      "shared_parts_count": 52,
+      "shared_parts_sample": [
+        "47066781150",
+        "47190071050",
+        "47195022101",
+        "47195120500",
+        "47195180200",
+        "47197007300",
+        "49005000100",
+        "49005001619",
+        "49005001716",
+        "49005002400"
+      ],
+      "per_configuration_stats": {
+        "Cold Water Electric": {
+          "parts_count": 54,
+          "exclusive_count": 2
+        },
+        "USA Cold Water Electric": {
+          "parts_count": 52,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cold Water Electric": [
+          "47134300500",
+          "96459457641"
+        ],
+        "USA Cold Water Electric": []
+      }
+    },
+    {
+      "identity_key": "re_110::base",
+      "canonical_model_id": "re_110",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Electric",
+        "PLUS Electric"
+      ],
+      "total_unique_parts": 217,
+      "shared_parts_count": 90,
+      "shared_parts_sample": [
+        "49105000500",
+        "49105000802",
+        "49105001800",
+        "49105001900",
+        "49105003902",
+        "49105004800",
+        "49105005400",
+        "49105005900",
+        "49105006000",
+        "49105006101"
+      ],
+      "per_configuration_stats": {
+        "Electric": {
+          "parts_count": 200,
+          "exclusive_count": 110
+        },
+        "PLUS Electric": {
+          "parts_count": 107,
+          "exclusive_count": 17
+        }
+      },
+      "exclusive_parts_sample": {
+        "Electric": [
+          "47066781150",
+          "49000071051",
+          "49005000100",
+          "49005000704",
+          "49005001902",
+          "49005002400",
+          "49005002800",
+          "49005004901",
+          "49005005201",
+          "49005006305"
+        ],
+        "PLUS Electric": [
+          "49505000814",
+          "49505008100",
+          "49506470404",
+          "49506700800",
+          "49506782000",
+          "49507002105",
+          "49507014604",
+          "49507060702",
+          "49507700501",
+          "49507905104"
+        ]
+      }
+    },
+    {
+      "identity_key": "re_120::base",
+      "canonical_model_id": "re_120",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Electric",
+        "PLUS Electric"
+      ],
+      "total_unique_parts": 216,
+      "shared_parts_count": 105,
+      "shared_parts_sample": [
+        "49105000500",
+        "49105000802",
+        "49105001800",
+        "49105001900",
+        "49105003902",
+        "49105004800",
+        "49105005400",
+        "49105005900",
+        "49105006000",
+        "49105006101"
+      ],
+      "per_configuration_stats": {
+        "Electric": {
+          "parts_count": 199,
+          "exclusive_count": 94
+        },
+        "PLUS Electric": {
+          "parts_count": 122,
+          "exclusive_count": 17
+        }
+      },
+      "exclusive_parts_sample": {
+        "Electric": [
+          "47066781150",
+          "49000071051",
+          "49005000100",
+          "49005000704",
+          "49005001902",
+          "49005002400",
+          "49005002800",
+          "49005004901",
+          "49005005201",
+          "49005006305"
+        ],
+        "PLUS Electric": [
+          "49505000813",
+          "49505008100",
+          "49505100305",
+          "49506470404",
+          "49506700800",
+          "49507002105",
+          "49507014604",
+          "49507060702",
+          "49507700501",
+          "49507905104"
+        ]
+      }
+    },
+    {
+      "identity_key": "re_141::k",
+      "canonical_model_id": "re_141",
+      "variant_key": "k",
+      "configurations_count": 2,
+      "configurations": [
+        "Cold Water Electric",
+        "PLUS Cold Water Electric Pressure Washer With Hose Reel"
+      ],
+      "total_unique_parts": 120,
+      "shared_parts_count": 119,
+      "shared_parts_sample": [
+        "47037016005",
+        "47065120405",
+        "47066781150",
+        "47195022101",
+        "47195180200",
+        "47197007300",
+        "47264350300",
+        "47264390500",
+        "47265101300",
+        "47265101700"
+      ],
+      "per_configuration_stats": {
+        "Cold Water Electric": {
+          "parts_count": 119,
+          "exclusive_count": 0
+        },
+        "PLUS Cold Water Electric Pressure Washer With Hose Reel": {
+          "parts_count": 120,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cold Water Electric": [],
+        "PLUS Cold Water Electric Pressure Washer With Hose Reel": [
+          "49155000818"
+        ]
+      }
+    },
+    {
+      "identity_key": "re_142::base",
+      "canonical_model_id": "re_142",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Electric",
+        "PLUS Electric"
+      ],
+      "total_unique_parts": 170,
+      "shared_parts_count": 140,
+      "shared_parts_sample": [
+        "47037016005",
+        "47066781150",
+        "47197007300",
+        "47267919201",
+        "47380071000",
+        "47386024300",
+        "47386073000",
+        "47387006200",
+        "47387607052",
+        "47424302900"
+      ],
+      "per_configuration_stats": {
+        "Electric": {
+          "parts_count": 142,
+          "exclusive_count": 2
+        },
+        "PLUS Electric": {
+          "parts_count": 168,
+          "exclusive_count": 28
+        }
+      },
+      "exclusive_parts_sample": {
+        "Electric": [
+          "47435110100",
+          "49155000818"
+        ],
+        "PLUS Electric": [
+          "47310071055",
+          "47435011700",
+          "47436700800",
+          "47437917001",
+          "47437938000",
+          "47445110100",
+          "47447920200",
+          "47677014600",
+          "49005001619",
+          "49005001660"
+        ]
+      }
+    },
+    {
+      "identity_key": "re_143::base",
+      "canonical_model_id": "re_143",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Electric",
+        "PLUS Electric"
+      ],
+      "total_unique_parts": 196,
+      "shared_parts_count": 177,
+      "shared_parts_sample": [
+        "47037016005",
+        "47066781150",
+        "47197007300",
+        "47386024300",
+        "47387006200",
+        "47387607052",
+        "47424302900",
+        "47437007301",
+        "47437011201",
+        "47437016000"
+      ],
+      "per_configuration_stats": {
+        "Electric": {
+          "parts_count": 178,
+          "exclusive_count": 1
+        },
+        "PLUS Electric": {
+          "parts_count": 195,
+          "exclusive_count": 18
+        }
+      },
+      "exclusive_parts_sample": {
+        "Electric": [
+          "49155000818"
+        ],
+        "PLUS Electric": [
+          "47435011700",
+          "47675031402",
+          "47677014600",
+          "47685004800",
+          "47686700800",
+          "47687016501",
+          "47687062101",
+          "47687904600",
+          "47687907402",
+          "47687922502"
+        ]
+      }
+    },
+    {
+      "identity_key": "re_360::k",
+      "canonical_model_id": "re_360",
+      "variant_key": "k",
+      "configurations_count": 2,
+      "configurations": [
+        "Cold Water Electric",
+        "PLUS Cold Water Electric Pressure Washer With Hose Reel"
+      ],
+      "total_unique_parts": 79,
+      "shared_parts_count": 78,
+      "shared_parts_sample": [
+        "47065120405",
+        "47065121451",
+        "47127007300",
+        "47165180200",
+        "47167016600",
+        "47167085800",
+        "47167090420",
+        "47197007300",
+        "47264350300",
+        "47264390500"
+      ],
+      "per_configuration_stats": {
+        "Cold Water Electric": {
+          "parts_count": 78,
+          "exclusive_count": 0
+        },
+        "PLUS Cold Water Electric Pressure Washer With Hose Reel": {
+          "parts_count": 79,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cold Water Electric": [],
+        "PLUS Cold Water Electric Pressure Washer With Hose Reel": [
+          "49255006302"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_2_2::r",
+      "canonical_model_id": "rm_2_2",
+      "variant_key": "r",
+      "configurations_count": 2,
+      "configurations": [
+        "(BR) Cordless",
+        "Base Machine"
+      ],
+      "total_unique_parts": 31,
+      "shared_parts_count": 23,
+      "shared_parts_sample": [
+        "61017032800",
+        "61057000491",
+        "61067045110",
+        "63207066610",
+        "63387800100",
+        "63577008562",
+        "63577020102",
+        "63577030901",
+        "63577080810",
+        "63577080815"
+      ],
+      "per_configuration_stats": {
+        "(BR) Cordless": {
+          "parts_count": 29,
+          "exclusive_count": 6
+        },
+        "Base Machine": {
+          "parts_count": 25,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "(BR) Cordless": [
+          "00007025000",
+          "00007026600",
+          "00007603811",
+          "00009673454",
+          "00009676729",
+          "08121901005"
+        ],
+        "Base Machine": [
+          "63500074101",
+          "63500111814"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_4_0::base",
+      "canonical_model_id": "rm_4_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "RT",
+        "RTP",
+        "RV"
+      ],
+      "total_unique_parts": 132,
+      "shared_parts_count": 36,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63750071007",
+        "63757640700",
+        "63837002400",
+        "63837008502",
+        "63837014300",
+        "63837020100",
+        "63837035100"
+      ],
+      "per_configuration_stats": {
+        "RT": {
+          "parts_count": 76,
+          "exclusive_count": 7
+        },
+        "RTP": {
+          "parts_count": 86,
+          "exclusive_count": 48
+        },
+        "RV": {
+          "parts_count": 75,
+          "exclusive_count": 8
+        }
+      },
+      "exclusive_parts_sample": {
+        "RT": [
+          "63607041000",
+          "63836400100",
+          "63837042100",
+          "63837640602",
+          "63837640612",
+          "63839671505",
+          "93806202730"
+        ],
+        "RTP": [
+          "60029673400",
+          "63369674400",
+          "63640111832",
+          "63647634000",
+          "63649674420",
+          "63757002501",
+          "63757014101",
+          "63757026800",
+          "63757033800",
+          "63757043600"
+        ],
+        "RV": [
+          "63367021800",
+          "63407014000",
+          "63607002501",
+          "63607002513",
+          "63607025001",
+          "63607642801",
+          "93806202620",
+          "96459457692"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_448_0::base",
+      "canonical_model_id": "rm_448_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "TC",
+        "TX",
+        "VC"
+      ],
+      "total_unique_parts": 92,
+      "shared_parts_count": 24,
+      "shared_parts_sample": [
+        "63387002420",
+        "63387002701",
+        "63387035111",
+        "63387039601",
+        "63387060730",
+        "63387602110",
+        "63407040301",
+        "63587020100",
+        "63587036300",
+        "63587036305"
+      ],
+      "per_configuration_stats": {
+        "TC": {
+          "parts_count": 64,
+          "exclusive_count": 3
+        },
+        "TX": {
+          "parts_count": 62,
+          "exclusive_count": 16
+        },
+        "VC": {
+          "parts_count": 51,
+          "exclusive_count": 12
+        }
+      },
+      "exclusive_parts_sample": {
+        "TC": [
+          "63587007531",
+          "63587060737",
+          "63589671505"
+        ],
+        "TX": [
+          "63207066610",
+          "63387634800",
+          "63387800100",
+          "63387915705",
+          "63500111821",
+          "63581821305",
+          "63581821310",
+          "63587007511",
+          "63587803006",
+          "63837033800"
+        ],
+        "VC": [
+          "63580111833",
+          "63587002900",
+          "63587007526",
+          "63587007528",
+          "63587007540",
+          "63587008511",
+          "63587021700",
+          "63587060708",
+          "63587060738",
+          "63587641300"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_448_1::base",
+      "canonical_model_id": "rm_448_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "TC",
+        "TX",
+        "VC"
+      ],
+      "total_unique_parts": 103,
+      "shared_parts_count": 40,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63387002415",
+        "63387002420",
+        "63387035100",
+        "63387035111",
+        "63387036700",
+        "63387039601",
+        "63387041205"
+      ],
+      "per_configuration_stats": {
+        "TC": {
+          "parts_count": 66,
+          "exclusive_count": 5
+        },
+        "TX": {
+          "parts_count": 65,
+          "exclusive_count": 17
+        },
+        "VC": {
+          "parts_count": 73,
+          "exclusive_count": 20
+        }
+      },
+      "exclusive_parts_sample": {
+        "TC": [
+          "63587007515",
+          "63587007531",
+          "63587060737",
+          "63587640215",
+          "63589671504"
+        ],
+        "TX": [
+          "63207066610",
+          "63387634800",
+          "63387800100",
+          "63387915705",
+          "63581821305",
+          "63581821310",
+          "63587007505",
+          "63587007511",
+          "63587640225",
+          "63587803006"
+        ],
+        "VC": [
+          "63400071026",
+          "63400111850",
+          "63400111851",
+          "63586400100",
+          "63587002500",
+          "63587002900",
+          "63587007526",
+          "63587007528",
+          "63587007540",
+          "63587007545"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_545_0::base",
+      "canonical_model_id": "rm_545_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "VE",
+        "VM",
+        "VR"
+      ],
+      "total_unique_parts": 137,
+      "shared_parts_count": 94,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63400071026",
+        "63407002401",
+        "63407002701",
+        "63407007000",
+        "63407007505",
+        "63407007520",
+        "63407013600"
+      ],
+      "per_configuration_stats": {
+        "VE": {
+          "parts_count": 104,
+          "exclusive_count": 0
+        },
+        "VM": {
+          "parts_count": 111,
+          "exclusive_count": 5
+        },
+        "VR": {
+          "parts_count": 123,
+          "exclusive_count": 25
+        }
+      },
+      "exclusive_parts_sample": {
+        "VE": [],
+        "VM": [
+          "63407020120",
+          "63407668300",
+          "63409671520",
+          "69097036300",
+          "91040074275"
+        ],
+        "VR": [
+          "63406400122",
+          "63407002412",
+          "63407008515",
+          "63407040500",
+          "63407041100",
+          "63407601300",
+          "63407601310",
+          "63407642821",
+          "63407800300",
+          "63407800601"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_545_1::base",
+      "canonical_model_id": "rm_545_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "VE",
+        "VM",
+        "VR"
+      ],
+      "total_unique_parts": 138,
+      "shared_parts_count": 96,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63400071026",
+        "63407002401",
+        "63407002717",
+        "63407007000",
+        "63407007503",
+        "63407007504",
+        "63407007525"
+      ],
+      "per_configuration_stats": {
+        "VE": {
+          "parts_count": 104,
+          "exclusive_count": 0
+        },
+        "VM": {
+          "parts_count": 113,
+          "exclusive_count": 5
+        },
+        "VR": {
+          "parts_count": 126,
+          "exclusive_count": 24
+        }
+      },
+      "exclusive_parts_sample": {
+        "VE": [],
+        "VM": [
+          "63407020120",
+          "63407668300",
+          "63409671565",
+          "69097036300",
+          "91040074275"
+        ],
+        "VR": [
+          "63406400122",
+          "63407002412",
+          "63407008515",
+          "63407040500",
+          "63407041100",
+          "63407601300",
+          "63407601310",
+          "63407642821",
+          "63407800300",
+          "63407800601"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_655_0::base",
+      "canonical_model_id": "rm_655_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "RS",
+        "VS",
+        "YS"
+      ],
+      "total_unique_parts": 186,
+      "shared_parts_count": 97,
+      "shared_parts_sample": [
+        "60138930900",
+        "61037047910",
+        "61701802800",
+        "63387033700",
+        "63387033800",
+        "63387034900",
+        "63407065901",
+        "63641625000",
+        "63641627900",
+        "63641629200"
+      ],
+      "per_configuration_stats": {
+        "RS": {
+          "parts_count": 151,
+          "exclusive_count": 42
+        },
+        "VS": {
+          "parts_count": 131,
+          "exclusive_count": 6
+        },
+        "YS": {
+          "parts_count": 127,
+          "exclusive_count": 12
+        }
+      },
+      "exclusive_parts_sample": {
+        "RS": [
+          "63607042111",
+          "63647034010",
+          "63746400110",
+          "63747002400",
+          "63747008511",
+          "63747020110",
+          "63747033800",
+          "63747040500",
+          "63747041000",
+          "63747045500"
+        ],
+        "VS": [
+          "63647042100",
+          "63647601740",
+          "63746400120",
+          "63747002500",
+          "63747007500",
+          "63749671510"
+        ],
+        "YS": [
+          "61017044700",
+          "63640111801",
+          "63647002702",
+          "63747000400",
+          "63786406401",
+          "63786413102",
+          "63786431500",
+          "63786435100",
+          "63787042100",
+          "90223411270"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_655_1::base",
+      "canonical_model_id": "rm_655_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "RS",
+        "VS"
+      ],
+      "total_unique_parts": 172,
+      "shared_parts_count": 105,
+      "shared_parts_sample": [
+        "61037047910",
+        "61701802800",
+        "63387033700",
+        "63387033800",
+        "63387034900",
+        "63407065901",
+        "63607642801",
+        "63640111812",
+        "63641602905",
+        "63641625000"
+      ],
+      "per_configuration_stats": {
+        "RS": {
+          "parts_count": 149,
+          "exclusive_count": 44
+        },
+        "VS": {
+          "parts_count": 128,
+          "exclusive_count": 23
+        }
+      },
+      "exclusive_parts_sample": {
+        "RS": [
+          "60138930900",
+          "63607042111",
+          "63647034010",
+          "63746400110",
+          "63747002400",
+          "63747008511",
+          "63747014300",
+          "63747020110",
+          "63747033800",
+          "63747040500"
+        ],
+        "VS": [
+          "61057047400",
+          "61057047410",
+          "63647002410",
+          "63647034000",
+          "63647042100",
+          "63647601740",
+          "63647636000",
+          "63746400120",
+          "63747002500",
+          "63747007500"
+        ]
+      }
+    },
+    {
+      "identity_key": "rm_756_0::base",
+      "canonical_model_id": "rm_756_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "GC",
+        "GS",
+        "YC"
+      ],
+      "total_unique_parts": 158,
+      "shared_parts_count": 103,
+      "shared_parts_sample": [
+        "61037047910",
+        "63647634000",
+        "63649674420",
+        "63750071007",
+        "63751625000",
+        "63751626700",
+        "63751629202",
+        "63757049500",
+        "63757049520",
+        "63757086220"
+      ],
+      "per_configuration_stats": {
+        "GC": {
+          "parts_count": 131,
+          "exclusive_count": 3
+        },
+        "GS": {
+          "parts_count": 127,
+          "exclusive_count": 6
+        },
+        "YC": {
+          "parts_count": 131,
+          "exclusive_count": 21
+        }
+      },
+      "exclusive_parts_sample": {
+        "GC": [
+          "63787007501",
+          "63787007511",
+          "63789671520"
+        ],
+        "GS": [
+          "63787007500",
+          "63787007510",
+          "63787032207",
+          "63787802805",
+          "63787803096",
+          "90270681900"
+        ],
+        "YC": [
+          "61057047400",
+          "61057047410",
+          "63786400102",
+          "63786406401",
+          "63786413102",
+          "63786431500",
+          "63786435100",
+          "63787002902",
+          "63787007533",
+          "63787036900"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_2_0::base",
+      "canonical_model_id": "rma_2_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "RP Cordless",
+        "RT Cordless"
+      ],
+      "total_unique_parts": 68,
+      "shared_parts_count": 63,
+      "shared_parts_sample": [
+        "61017032800",
+        "61037047910",
+        "61057000491",
+        "61057047400",
+        "61057047410",
+        "61067045110",
+        "63114303800",
+        "63207066610",
+        "63367021800",
+        "63367036700"
+      ],
+      "per_configuration_stats": {
+        "RP Cordless": {
+          "parts_count": 65,
+          "exclusive_count": 2
+        },
+        "RT Cordless": {
+          "parts_count": 66,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "RP Cordless": [
+          "63580115007",
+          "91040074289"
+        ],
+        "RT Cordless": [
+          "12524401500",
+          "63579670125",
+          "63580115002"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_2_1::base",
+      "canonical_model_id": "rma_2_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "RP Cordless",
+        "RT Cordless"
+      ],
+      "total_unique_parts": 68,
+      "shared_parts_count": 63,
+      "shared_parts_sample": [
+        "61017032800",
+        "61037047910",
+        "61057000491",
+        "61057047400",
+        "61057047410",
+        "61067045110",
+        "63114303800",
+        "63207066610",
+        "63367021800",
+        "63367036700"
+      ],
+      "per_configuration_stats": {
+        "RP Cordless": {
+          "parts_count": 65,
+          "exclusive_count": 2
+        },
+        "RT Cordless": {
+          "parts_count": 66,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "RP Cordless": [
+          "63580115007",
+          "91040074289"
+        ],
+        "RT Cordless": [
+          "63579670125",
+          "63579671801",
+          "63580115002"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_443_0::base",
+      "canonical_model_id": "rma_443_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless",
+        "TC Cordless"
+      ],
+      "total_unique_parts": 91,
+      "shared_parts_count": 49,
+      "shared_parts_sample": [
+        "12524401500",
+        "61007000401",
+        "63114303800",
+        "63384300426",
+        "63386073000",
+        "63387002420",
+        "63387002721",
+        "63387008590",
+        "63387020130",
+        "63387033105"
+      ],
+      "per_configuration_stats": {
+        "Cordless": {
+          "parts_count": 69,
+          "exclusive_count": 20
+        },
+        "TC Cordless": {
+          "parts_count": 71,
+          "exclusive_count": 22
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless": [
+          "00007026600",
+          "60138930900",
+          "63207060715",
+          "63207066610",
+          "63207605200",
+          "63380115002",
+          "63384300435",
+          "63387002405",
+          "63387038800",
+          "63387634800"
+        ],
+        "TC Cordless": [
+          "61037047910",
+          "61057047400",
+          "61057047410",
+          "63367042100",
+          "63386400100",
+          "63387002415",
+          "63387038810",
+          "63387043200",
+          "63387043600",
+          "63389670185"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_443_1::base",
+      "canonical_model_id": "rma_443_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Cordless",
+        "TC Cordless"
+      ],
+      "total_unique_parts": 88,
+      "shared_parts_count": 46,
+      "shared_parts_sample": [
+        "61007000401",
+        "63114303800",
+        "63384300426",
+        "63386073000",
+        "63387002420",
+        "63387008590",
+        "63387020130",
+        "63387033105",
+        "63387033700",
+        "63387033800"
+      ],
+      "per_configuration_stats": {
+        "Cordless": {
+          "parts_count": 65,
+          "exclusive_count": 19
+        },
+        "TC Cordless": {
+          "parts_count": 69,
+          "exclusive_count": 23
+        }
+      },
+      "exclusive_parts_sample": {
+        "Cordless": [
+          "63207060715",
+          "63207066610",
+          "63207605200",
+          "63380115002",
+          "63384300435",
+          "63387002405",
+          "63387002722",
+          "63387038800",
+          "63387634800",
+          "63387635005"
+        ],
+        "TC Cordless": [
+          "61037047910",
+          "61057047400",
+          "61057047410",
+          "63367042100",
+          "63386400100",
+          "63387002415",
+          "63387002721",
+          "63387038810",
+          "63387043200",
+          "63387043600"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_448_0::base",
+      "canonical_model_id": "rma_448_0",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "PC Cordless",
+        "TC Cordless"
+      ],
+      "total_unique_parts": 72,
+      "shared_parts_count": 68,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63114303800",
+        "63367042100",
+        "63384300426",
+        "63386073000",
+        "63386400100",
+        "63387002415",
+        "63387002420"
+      ],
+      "per_configuration_stats": {
+        "PC Cordless": {
+          "parts_count": 69,
+          "exclusive_count": 1
+        },
+        "TC Cordless": {
+          "parts_count": 71,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "PC Cordless": [
+          "63580115007"
+        ],
+        "TC Cordless": [
+          "12524401500",
+          "63580115002",
+          "63589670105"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_448_1::base",
+      "canonical_model_id": "rma_448_1",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "PC Cordless",
+        "TC Cordless"
+      ],
+      "total_unique_parts": 72,
+      "shared_parts_count": 67,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63114303800",
+        "63367042100",
+        "63384300426",
+        "63386073000",
+        "63386400100",
+        "63387002415",
+        "63387002420"
+      ],
+      "per_configuration_stats": {
+        "PC Cordless": {
+          "parts_count": 69,
+          "exclusive_count": 2
+        },
+        "TC Cordless": {
+          "parts_count": 70,
+          "exclusive_count": 3
+        }
+      },
+      "exclusive_parts_sample": {
+        "PC Cordless": [
+          "63387002721",
+          "63580115007"
+        ],
+        "TC Cordless": [
+          "63387002722",
+          "63580115002",
+          "63589670105"
+        ]
+      }
+    },
+    {
+      "identity_key": "rma_448_2::base",
+      "canonical_model_id": "rma_448_2",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "PV Cordless",
+        "VC Cordless"
+      ],
+      "total_unique_parts": 79,
+      "shared_parts_count": 77,
+      "shared_parts_sample": [
+        "61037047910",
+        "61057047400",
+        "61057047410",
+        "63114303800",
+        "63380071005",
+        "63380071890",
+        "63384301100",
+        "63384301106",
+        "63384301109",
+        "63384350200"
+      ],
+      "per_configuration_stats": {
+        "PV Cordless": {
+          "parts_count": 77,
+          "exclusive_count": 0
+        },
+        "VC Cordless": {
+          "parts_count": 79,
+          "exclusive_count": 2
+        }
+      },
+      "exclusive_parts_sample": {
+        "PV Cordless": [],
+        "VC Cordless": [
+          "63380115011",
+          "63589671535"
+        ]
+      }
+    },
+    {
+      "identity_key": "rmi_422_0::base",
+      "canonical_model_id": "rmi_422_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 88,
+      "shared_parts_count": 74,
+      "shared_parts_sample": [
+        "63010071022",
+        "63010071032",
+        "63010071800",
+        "63014001500",
+        "63014005800",
+        "63014008503",
+        "63014050700",
+        "63014305215",
+        "63014306800",
+        "63014400300"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 79,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 80,
+          "exclusive_count": 3
+        },
+        "Base Machine": {
+          "parts_count": 80,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63014301479",
+          "63019671500"
+        ],
+        "PC": [
+          "63014301430",
+          "63014301482",
+          "63019671510"
+        ],
+        "Base Machine": [
+          "63010071006",
+          "63014006502",
+          "63014006512",
+          "63014006529",
+          "63014301476",
+          "63019671505"
+        ]
+      }
+    },
+    {
+      "identity_key": "rmi_422_1::base",
+      "canonical_model_id": "rmi_422_1",
+      "variant_key": "base",
+      "configurations_count": 4,
+      "configurations": [
+        "P",
+        "PC-L",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 88,
+      "shared_parts_count": 72,
+      "shared_parts_sample": [
+        "63010071022",
+        "63010071800",
+        "63014001500",
+        "63014005800",
+        "63014050700",
+        "63014305203",
+        "63014306850",
+        "63014400300",
+        "63014403010",
+        "63016000202"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 79,
+          "exclusive_count": 2
+        },
+        "PC-L": {
+          "parts_count": 73,
+          "exclusive_count": 0
+        },
+        "PC": {
+          "parts_count": 80,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 80,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63014301480",
+          "63019671500"
+        ],
+        "PC-L": [],
+        "PC": [
+          "63014301430",
+          "63019671510"
+        ],
+        "Base Machine": [
+          "63010071006",
+          "63014006502",
+          "63014006512",
+          "63014006529",
+          "63014301477",
+          "63019671505"
+        ]
+      }
+    },
+    {
+      "identity_key": "rmi_422_2::base",
+      "canonical_model_id": "rmi_422_2",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 92,
+      "shared_parts_count": 76,
+      "shared_parts_sample": [
+        "63010071022",
+        "63010071800",
+        "63014001500",
+        "63014005800",
+        "63014008563",
+        "63014050700",
+        "63014305203",
+        "63014306850",
+        "63014400300",
+        "63014403010"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 81,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 84,
+          "exclusive_count": 5
+        },
+        "Base Machine": {
+          "parts_count": 82,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63014301473",
+          "63019671500"
+        ],
+        "PC": [
+          "63014305260",
+          "63019671510",
+          "63054301405",
+          "63054400301",
+          "90746774095"
+        ],
+        "Base Machine": [
+          "63010071006",
+          "63014006502",
+          "63014006512",
+          "63014006529",
+          "63014301474",
+          "63019671505"
+        ]
+      }
+    },
+    {
+      "identity_key": "rmi_632_0::base",
+      "canonical_model_id": "rmi_632_0",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 110,
+      "shared_parts_count": 84,
+      "shared_parts_sample": [
+        "63017000411",
+        "63017068800",
+        "63017085902",
+        "63017605200",
+        "63019677200",
+        "63029674400",
+        "63090071022",
+        "63090071027",
+        "63090071091",
+        "63094002105"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 93,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 98,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 100,
+          "exclusive_count": 9
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63094301426",
+          "63099671500"
+        ],
+        "PC": [
+          "63094301467",
+          "63099671515"
+        ],
+        "Base Machine": [
+          "63090071051",
+          "63090071071",
+          "63094006529",
+          "63094008504",
+          "63094008541",
+          "63094301402",
+          "63094301417",
+          "63099671505",
+          "63099671510"
+        ]
+      }
+    },
+    {
+      "identity_key": "rmi_632_1::base",
+      "canonical_model_id": "rmi_632_1",
+      "variant_key": "base",
+      "configurations_count": 3,
+      "configurations": [
+        "P",
+        "PC",
+        "Base Machine"
+      ],
+      "total_unique_parts": 105,
+      "shared_parts_count": 83,
+      "shared_parts_sample": [
+        "63017000451",
+        "63017085902",
+        "63017090500",
+        "63017605200",
+        "63019677200",
+        "63027049500",
+        "63029674400",
+        "63090071022",
+        "63094002104",
+        "63094032300"
+      ],
+      "per_configuration_stats": {
+        "P": {
+          "parts_count": 90,
+          "exclusive_count": 2
+        },
+        "PC": {
+          "parts_count": 95,
+          "exclusive_count": 2
+        },
+        "Base Machine": {
+          "parts_count": 97,
+          "exclusive_count": 7
+        }
+      },
+      "exclusive_parts_sample": {
+        "P": [
+          "63094301427",
+          "63099671500"
+        ],
+        "PC": [
+          "63094301434",
+          "63099671515"
+        ],
+        "Base Machine": [
+          "63090071071",
+          "63094006529",
+          "63094008504",
+          "63094301405",
+          "63094301414",
+          "63099671505",
+          "63099671510"
+        ]
+      }
+    },
+    {
+      "identity_key": "sg_17::base",
+      "canonical_model_id": "sg_17",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "L Quiet",
+        "Base Machine"
+      ],
+      "total_unique_parts": 65,
+      "shared_parts_count": 64,
+      "shared_parts_sample": [
+        "11064051000",
+        "11080292300",
+        "11080302020",
+        "11080341501",
+        "11080343001",
+        "11081490600",
+        "11101459001",
+        "11104007005",
+        "11154043400",
+        "11154048800"
+      ],
+      "per_configuration_stats": {
+        "L Quiet": {
+          "parts_count": 65,
+          "exclusive_count": 1
+        },
+        "Base Machine": {
+          "parts_count": 64,
+          "exclusive_count": 0
+        }
+      },
+      "exclusive_parts_sample": {
+        "L Quiet": [
+          "92143200900"
+        ],
+        "Base Machine": []
+      }
+    },
+    {
+      "identity_key": "sh_56::c_e",
+      "canonical_model_id": "sh_56",
+      "variant_key": "c_e",
+      "configurations_count": 2,
+      "configurations": [
+        "D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 122,
+      "shared_parts_count": 105,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205",
+        "41281223000"
+      ],
+      "per_configuration_stats": {
+        "D": {
+          "parts_count": 114,
+          "exclusive_count": 9
+        },
+        "Base Machine": {
+          "parts_count": 113,
+          "exclusive_count": 8
+        }
+      },
+      "exclusive_parts_sample": {
+        "D": [
+          "11231217800",
+          "41440343000",
+          "42410201202",
+          "42410302001",
+          "42411200608",
+          "42411206800",
+          "42411226600",
+          "42411400605",
+          "42411410802"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "42410074100",
+          "42410802106",
+          "42411206802",
+          "42411400614",
+          "42411950400",
+          "42419671520"
+        ]
+      }
+    },
+    {
+      "identity_key": "sh_56::base",
+      "canonical_model_id": "sh_56",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 122,
+      "shared_parts_count": 103,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205",
+        "41281223000"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 112,
+          "exclusive_count": 9
+        },
+        "Base Machine": {
+          "parts_count": 113,
+          "exclusive_count": 10
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "11231217800",
+          "41440343000",
+          "42410201202",
+          "42410302001",
+          "42411200608",
+          "42411206800",
+          "42411226600",
+          "42411400605",
+          "42411410802"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "42410074100",
+          "42410802107",
+          "42411206802",
+          "42411400614",
+          "42411950403",
+          "42411952001",
+          "42411953501",
+          "42419671521"
+        ]
+      }
+    },
+    {
+      "identity_key": "sh_85::base",
+      "canonical_model_id": "sh_85",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-DZ Muffler with Spark Arrestor",
+        "Base Machine"
+      ],
+      "total_unique_parts": 151,
+      "shared_parts_count": 141,
+      "shared_parts_sample": [
+        "11104007005",
+        "11181953500",
+        "11201217801",
+        "11201219200",
+        "11201226600",
+        "11201227800",
+        "11201229000",
+        "11201958200",
+        "11231210800",
+        "11231217800"
+      ],
+      "per_configuration_stats": {
+        "-DZ Muffler with Spark Arrestor": {
+          "parts_count": 145,
+          "exclusive_count": 4
+        },
+        "Base Machine": {
+          "parts_count": 147,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "-DZ Muffler with Spark Arrestor": [
+          "41401451200",
+          "42291221800",
+          "90073191137",
+          "90990210805"
+        ],
+        "Base Machine": [
+          "42291400608",
+          "42291801101",
+          "42291821001",
+          "42297900602",
+          "90073191135",
+          "96459487734"
+        ]
+      }
+    },
+    {
+      "identity_key": "sh_86::base",
+      "canonical_model_id": "sh_86",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-D",
+        "Base Machine"
+      ],
+      "total_unique_parts": 136,
+      "shared_parts_count": 112,
+      "shared_parts_sample": [
+        "11201219200",
+        "11201227800",
+        "11201958200",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500",
+        "41141491205",
+        "41281290900"
+      ],
+      "per_configuration_stats": {
+        "-D": {
+          "parts_count": 130,
+          "exclusive_count": 18
+        },
+        "Base Machine": {
+          "parts_count": 118,
+          "exclusive_count": 6
+        }
+      },
+      "exclusive_parts_sample": {
+        "-D": [
+          "11231217800",
+          "41281223000",
+          "41401226800",
+          "41440343000",
+          "42410201200",
+          "42410302001",
+          "42411200607",
+          "42411201800",
+          "42411202202",
+          "42411216900"
+        ],
+        "Base Machine": [
+          "11201217800",
+          "11291223001",
+          "42410074100",
+          "42411200623",
+          "42411202204",
+          "42411400614"
+        ]
+      }
+    },
+    {
+      "identity_key": "sr_200::base",
+      "canonical_model_id": "sr_200",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "Base Machine",
+        "-D"
+      ],
+      "total_unique_parts": 143,
+      "shared_parts_count": 133,
+      "shared_parts_sample": [
+        "11201217800",
+        "11201219200",
+        "11201227800",
+        "11201229000",
+        "11201958200",
+        "11231290905",
+        "11231957200",
+        "11251215000",
+        "11251224200",
+        "11281953500"
+      ],
+      "per_configuration_stats": {
+        "Base Machine": {
+          "parts_count": 138,
+          "exclusive_count": 5
+        },
+        "-D": {
+          "parts_count": 138,
+          "exclusive_count": 5
+        }
+      },
+      "exclusive_parts_sample": {
+        "Base Machine": [
+          "42370343001",
+          "42378903400",
+          "42410201203",
+          "42410302007",
+          "42411402800"
+        ],
+        "-D": [
+          "41440343000",
+          "42410201200",
+          "42410302001",
+          "42411400607",
+          "42411410802"
+        ]
+      }
+    },
+    {
+      "identity_key": "t_3::base",
+      "canonical_model_id": "t_3",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-AHBF-2X3C-1TX4 Gear Box Hydro-Gear T3",
+        "-CHBF-2X3C-1TX4 Gear Box Hydro-Gear T3"
+      ],
+      "total_unique_parts": 4,
+      "shared_parts_count": 2,
+      "shared_parts_sample": [
+        "61700071800",
+        "92960211608"
+      ],
+      "per_configuration_stats": {
+        "-AHBF-2X3C-1TX4 Gear Box Hydro-Gear T3": {
+          "parts_count": 3,
+          "exclusive_count": 1
+        },
+        "-CHBF-2X3C-1TX4 Gear Box Hydro-Gear T3": {
+          "parts_count": 3,
+          "exclusive_count": 1
+        }
+      },
+      "exclusive_parts_sample": {
+        "-AHBF-2X3C-1TX4 Gear Box Hydro-Gear T3": [
+          "61706400120"
+        ],
+        "-CHBF-2X3C-1TX4 Gear Box Hydro-Gear T3": [
+          "61706400130"
+        ]
+      }
+    },
+    {
+      "identity_key": "ts_350::base",
+      "canonical_model_id": "ts_350",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "AVE Anti-Vibration Electronic Ignition",
+        "Base Machine"
+      ],
+      "total_unique_parts": 347,
+      "shared_parts_count": 241,
+      "shared_parts_sample": [
+        "11060298900",
+        "11061208801",
+        "11061214803",
+        "11061215000",
+        "11061215400",
+        "11061218701",
+        "11061223000",
+        "11061223005",
+        "11061227201",
+        "11061227400"
+      ],
+      "per_configuration_stats": {
+        "AVE Anti-Vibration Electronic Ignition": {
+          "parts_count": 303,
+          "exclusive_count": 62
+        },
+        "Base Machine": {
+          "parts_count": 285,
+          "exclusive_count": 44
+        }
+      },
+      "exclusive_parts_sample": {
+        "AVE Anti-Vibration Electronic Ignition": [
+          "11061820805",
+          "11061825820",
+          "11081223001",
+          "11104329200",
+          "11114300210",
+          "11187916105",
+          "11201223003",
+          "11201226600",
+          "11217911200",
+          "11251227402"
+        ],
+        "Base Machine": [
+          "00006706000",
+          "11061491200",
+          "11064051000",
+          "11074007000",
+          "11080844100",
+          "11080844200",
+          "11080860500",
+          "11081223201",
+          "11081820800",
+          "11081821500"
+        ]
+      }
+    },
+    {
+      "identity_key": "ts_410::base",
+      "canonical_model_id": "ts_410",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-A Electronic Water Control",
+        "Base Machine"
+      ],
+      "total_unique_parts": 244,
+      "shared_parts_count": 205,
+      "shared_parts_sample": [
+        "11100849102",
+        "11104007005",
+        "11181953500",
+        "11201219200",
+        "11201226600",
+        "11201226601",
+        "11201227800",
+        "11201229000",
+        "11211953400",
+        "11231217800"
+      ],
+      "per_configuration_stats": {
+        "-A Electronic Water Control": {
+          "parts_count": 222,
+          "exclusive_count": 17
+        },
+        "Base Machine": {
+          "parts_count": 227,
+          "exclusive_count": 22
+        }
+      },
+      "exclusive_parts_sample": {
+        "-A Electronic Water Control": [
+          "42380071600",
+          "42380202614",
+          "42380801602",
+          "42380801604",
+          "42380802201",
+          "42380878301",
+          "42381416301",
+          "42384001201",
+          "42384004000",
+          "42384032200"
+        ],
+        "Base Machine": [
+          "00006706000",
+          "42017004500",
+          "42017007300",
+          "42231901001",
+          "42380071003",
+          "42380074102",
+          "42380200200",
+          "42380202613",
+          "42380801608",
+          "42380801609"
+        ]
+      }
+    },
+    {
+      "identity_key": "ts_420::base",
+      "canonical_model_id": "ts_420",
+      "variant_key": "base",
+      "configurations_count": 2,
+      "configurations": [
+        "-A Electric Water Control",
+        "Base Machine"
+      ],
+      "total_unique_parts": 247,
+      "shared_parts_count": 205,
+      "shared_parts_sample": [
+        "11100849102",
+        "11104007005",
+        "11181953500",
+        "11201219200",
+        "11201226600",
+        "11201226601",
+        "11201227800",
+        "11201229000",
+        "11211953400",
+        "11231217800"
+      ],
+      "per_configuration_stats": {
+        "-A Electric Water Control": {
+          "parts_count": 222,
+          "exclusive_count": 17
+        },
+        "Base Machine": {
+          "parts_count": 230,
+          "exclusive_count": 25
+        }
+      },
+      "exclusive_parts_sample": {
+        "-A Electric Water Control": [
+          "42380071600",
+          "42380202614",
+          "42380801602",
+          "42380801604",
+          "42380802201",
+          "42380878301",
+          "42381416301",
+          "42384001201",
+          "42384004000",
+          "42384032200"
+        ],
+        "Base Machine": [
+          "00006706000",
+          "42017004500",
+          "42017007300",
+          "42231901001",
+          "42247008102",
+          "42380071003",
+          "42380074100",
+          "42380074102",
+          "42380200200",
+          "42380202613"
+        ]
+      }
+    }
+  ]
+}

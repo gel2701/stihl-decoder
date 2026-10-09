@@ -1,0 +1,767 @@
+{
+  "schema_version": "parts-catalog-index-audit-v1",
+  "audited_at": "2026-10-08T22:44:51.087Z",
+  "stats": {
+    "total_index_entries": 1533,
+    "accepted_entities_count": 1429,
+    "accepted_machines_count": 1402,
+    "accepted_attachments_count": 27,
+    "rejected_non_machines_count": 104,
+    "entity_types": {
+      "BASE_MODEL": 430,
+      "MODEL_VARIANT": 215,
+      "MACHINE_CONFIGURATION": 757,
+      "ATTACHMENT": 27
+    },
+    "rejections_by_reason": {
+      "PART_NUMBER_IN_SOURCE_URL": 46,
+      "ACCESSORY_KEYWORD": 48,
+      "DIAGNOSTIC_UNIT": 1,
+      "ACCESSORIES_KEYWORD": 5,
+      "GUIDE_BAR": 1,
+      "SMART_CONNECTOR_ACCESSORY": 3
+    },
+    "categories_breakdown": {
+      "Chainsaw": 616,
+      "Lawn Mower": 331,
+      "Brushcutter": 251,
+      "Kombi": 46,
+      "Blower": 82,
+      "Cut-Off Saw": 39,
+      "Auger/Drill": 10,
+      "Pole Pruner": 23,
+      "Hedge Trimmer": 31
+    }
+  },
+  "rejected_items_count": 104,
+  "rejected_items": [
+    {
+      "source_product_id": "P781760",
+      "model_name": "Stihl 00006706000 Pressurised Water Container for Petrol TS and Cordless TSA Cut Off Machines",
+      "model_title_clean": "00006706000 Pressurised Water Container for Petrol TS and Cordless TSA Cut Off Machines",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-00006706000-Pressurised-Water-Container-for-Petrol-TS-and-Cordless-TSA-Cut-Off-Machines/P781760",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P752461",
+      "model_name": "Stihl 00007907700 Chest Strap for Backpack Blowers and ADVANCE Universal Harness",
+      "model_title_clean": "00007907700 Chest Strap for Backpack",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-00007907700-Chest-Strap-for-Backpack-Blowers-and-ADVANCE-Universal-Harness/P752461",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P733174",
+      "model_name": "Stihl 00007929164 Chain Scabbard for GTA 26 30-35cm (12\"-14\") Cordless Garden Pruners Spare Parts GTA26",
+      "model_title_clean": "00007929164 Chain Scabbard for GTA 26 30-35cm (12\"-14\") Cordless Garden Pruners",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-00007929164-Chain-Scabbard-for-GTA-26-30-35cm-12-14-Cordless-Garden-Pruners-Spare-Parts-GTA26/P733174",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P781795",
+      "model_name": "Stihl 00007929170 Chainsaw Guide Bar Cover Scabbard - 10\" / 25cm Length, 1.1 mm Groove Width",
+      "model_title_clean": "00007929170",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-00007929170-Chainsaw-Guide-Bar-Cover-Scabbard-10-25cm-Length-11-mm-Groove-Width/P781795",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P733275",
+      "model_name": "Stihl 00009511114 Screw M5X12 HT105 Pole Pruner Parts HT135",
+      "model_title_clean": "00009511114 Screw M5X12 HT105",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-00009511114-Screw-M5X12-HT105-Pole-Pruner-Parts-HT135/P733275",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P733307",
+      "model_name": "Stihl 00009536601 Stud MS720 Chainsaw Parts 070 090 / 090G",
+      "model_title_clean": "00009536601 Stud MS720",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-00009536601-Stud-MS720-Chainsaw-Parts-070-090-090G/P733307",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P784939",
+      "model_name": "Stihl 07811201117 Heavy Duty 80g Gear Grease Lubricant For Brushcutters",
+      "model_title_clean": "07811201117 Heavy Duty 80g Gear Grease Lubricant For",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-07811201117-Heavy-Duty-80g-Gear-Grease-Lubricant-For-Brushcutters/P784939",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P784877",
+      "model_name": "Stihl 08114907860 Replacement File Handle for 4.0 to 5.5mm Chainsaw Files",
+      "model_title_clean": "08114907860 Replacement File Handle for 4.0 to 5.5mm",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-08114907860-Replacement-File-Handle-for-40-to-55mm-Chainsaw-Files/P784877",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P734828",
+      "model_name": "Stihl 08123701000 Allen Key for MS 170, MS 211, MS 261, MS 440 Chainsaw",
+      "model_title_clean": "08123701000 Allen Key for MS 170, MS 211, MS 261, MS 440",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-08123701000-Allen-Key-for-MS-170-MS-211-MS-261-MS-440-Chainsaw/P734828",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P734938",
+      "model_name": "Stihl 11066480412 Chain Sprocket Cover for Stihl 090 090G MS720 Chainsaws",
+      "model_title_clean": "11066480412 Chain Sprocket Cover for Stihl 090 090G MS720",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-11066480412-Chain-Sprocket-Cover-for-Stihl-090-090G-MS720-Chainsaws/P734938",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P734950",
+      "model_name": "Stihl 11067914200 Cable Guide For 090 090G Chainsaw",
+      "model_title_clean": "11067914200 Cable Guide For 090 090G",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-11067914200-Cable-Guide-For-090-090G-Chainsaw/P734950",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P734956",
+      "model_name": "Stihl 11067917601 Support For 070, 090, 090G, MS720 Chainsaws",
+      "model_title_clean": "11067917601 Support For 070, 090, 090G, MS720",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-11067917601-Support-For-070-090-090G-MS720-Chainsaws/P734956",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P735861",
+      "model_name": "Stihl 11230071004 Spur Gear / Chain Adjusting Screw Kit MS180 / MS180C Chainsaw Parts  MS210 MS210C Chainsaw Parts     M",
+      "model_title_clean": "11230071004 Spur Gear / Chain Adjusting Screw Kit MS180 / MS180C",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-11230071004-Spur-Gear-Chain-Adjusting-Screw-Kit-MS180-MS180C-Chainsaw-Parts-MS210-MS210C-Chainsaw-Parts--M/P735861",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P736379",
+      "model_name": "Stihl 11251957200 Pawl MS170 MS180 MS210 MS230 MS250 Chainsaw Parts",
+      "model_title_clean": "11251957200 Pawl MS170 MS180 MS210 MS230 MS250",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-11251957200-Pawl-MS170-MS180-MS210-MS230-MS250-Chainsaw-Parts/P736379",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P782051",
+      "model_name": "Stihl 30050003905 Chainsaw Guide Bar - Light 01 - 12\" / 30cm, 1.1mm, 3/8\" for Picco Micro Mini 3 &amp; Picco Super 3 Pro Cha",
+      "model_title_clean": "30050003905",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-30050003905-Chainsaw-Guide-Bar-Light-01-12-30cm-11mm-3-8-for-Picco-Micro-Mini-3-and-Picco-Super-3-Pro-Cha/P782051",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P782072",
+      "model_name": "Stihl 30050004805 Chainsaw Guide Bar - Light 04 - 12\" / 30cm, 1.3mm, 3/8\" for MS 181 Chainsaws",
+      "model_title_clean": "30050004805",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-30050004805-Chainsaw-Guide-Bar-Light-04-12-30cm-13mm-3-8-for-MS-181-Chainsaws/P782072",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P782082",
+      "model_name": "Stihl 30050007405 Chainsaw Guide Bar - Light 04 - 12\" / 30cm, 1.3 mm, 3/8\"  for Picco Duro, Picco Super, Picco Super 3 a",
+      "model_title_clean": "30050007405",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-30050007405-Chainsaw-Guide-Bar-Light-04-12-30cm-13-mm-3-8-for-Picco-Duro-Picco-Super-Picco-Super-3-a/P782082",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P782118",
+      "model_name": "Stihl 30050083403 Chainsaw Guide Bar - Light 01 - 10\"/25cm,1.1mm,1/4\" for Picco Micro 3 Saw Chain",
+      "model_title_clean": "30050083403",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-30050083403-Chainsaw-Guide-Bar-Light-01-10-25cm11mm1-4-for-Picco-Micro-3-Saw-Chain/P782118",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P739721",
+      "model_name": "Stihl 41266427600 M10x1 LH Collar Blade Nut for FS FR FSA Brushcutters",
+      "model_title_clean": "41266427600 M10x1 LH Collar Blade Nut for FS FR FSA",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41266427600-M10x1-LH-Collar-Blade-Nut-for-FS-FR-FSA-Brushcutters/P739721",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P739932",
+      "model_name": "Stihl 41307131600 Thrust Washer for FS FR FSA Brushcutters Trimmers FixCut",
+      "model_title_clean": "41307131600 Thrust Washer for FS FR FSA",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41307131600-Thrust-Washer-for-FS-FR-FSA-Brushcutters-Trimmers-FixCut/P739932",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P740191",
+      "model_name": "Stihl 41377107108 Drive Tube Assembly 25.4Mm X 1,5 M For Stihl Brushcutters",
+      "model_title_clean": "41377107108 Drive Tube Assembly 25.4Mm X 1,5 M For Stihl",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41377107108-Drive-Tube-Assembly-254Mm-X-15-M-For-Stihl-Brushcutters/P740191",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P740285",
+      "model_name": "Stihl 41400302000 Piston 34mm for BG45 BG46 BG55 BG65 BG85 Leaf Blower",
+      "model_title_clean": "41400302000 Piston 34mm for BG45 BG46 BG55 BG65 BG85 Leaf",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41400302000-Piston-34mm-for-BG45-BG46-BG55-BG65-BG85-Leaf-Blower/P740285",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P740423",
+      "model_name": "Stihl 41407907501 Tommy Screw for FS55, FS75 Brushcutters - OEM No. 4140 790 7501",
+      "model_title_clean": "41407907501 Tommy Screw for FS55, FS75",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41407907501-Tommy-Screw-for-FS55-FS75-Brushcutters-OEM-No-4140-790-7501/P740423",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P752482",
+      "model_name": "Stihl 41470071001 Cover Plate Kit for FS360C FS410C Brushcutters",
+      "model_title_clean": "41470071001 Cover Plate Kit for FS360C FS410C",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41470071001-Cover-Plate-Kit-for-FS360C-FS410C-Brushcutters/P752482",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P740570",
+      "model_name": "Stihl 41470071801 Service Kit  for FS240, FS260 Brushcutter",
+      "model_title_clean": "41470071801 Service Kit  for FS240, FS260",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41470071801-Service-Kit-for-FS240-FS260-Brushcutter/P740570",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741054",
+      "model_name": "Stihl 41494001312 Ignition Module for FS 94 ErgoStart Brushcutters",
+      "model_title_clean": "41494001312 Ignition Module for FS 94",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41494001312-Ignition-Module-for-FS-94-ErgoStart-Brushcutters/P741054",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741156",
+      "model_name": "Stihl 41800800401 Cover FS91, FS91R Brushcutter Parts  FS111, FS111R, FS111RX FS131, FS131R FS311 Clearing Saw Parts  FR",
+      "model_title_clean": "41800800401 Cover FS91, FS91R",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41800800401-Cover-FS91-FS91R-Brushcutter-Parts-FS111-FS111R-FS111RX-FS131-FS131R-FS311-Clearing-Saw-Parts-FR/P741156",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741261",
+      "model_name": "Stihl 41801402807 Filter Housing FS91, FS91R Brushcutter Parts FS111, FS111R, FS111RX, FS131, FS131RFS311 Clearing Saw P",
+      "model_title_clean": "41801402807 Filter Housing FS91, FS91R",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41801402807-Filter-Housing-FS91-FS91R-Brushcutter-Parts-FS111-FS111R-FS111RX-FS131-FS131RFS311-Clearing-Saw-P/P741261",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741435",
+      "model_name": "Stihl 41826400553 Gear Housing for HT 103, HT 133, HT 75  Pole Pruner spare parts HT103 HT133 HT75",
+      "model_title_clean": "41826400553 Gear Housing for HT 103, HT 133, HT 75",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41826400553-Gear-Housing-for-HT-103-HT-133-HT-75-Pole-Pruner-spare-parts-HT103-HT133-HT75/P741435",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741436",
+      "model_name": "Stihl 41826400555 Gear Housing for HT105 HT135 HTA135 HTA160 Pole Pruners",
+      "model_title_clean": "41826400555 Gear Housing for HT105 HT135 HTA135 HTA160",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41826400555-Gear-Housing-for-HT105-HT135-HTA135-HTA160-Pole-Pruners/P741436",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P785723",
+      "model_name": "Stihl 41827107167 Drive tube assembly For HTA 160.0 Cordless Pole Pruner",
+      "model_title_clean": "41827107167 Drive tube assembly For HTA 160.0 Cordless",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41827107167-Drive-tube-assembly-For-HTA-1600-Cordless-Pole-Pruner/P785723",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741508",
+      "model_name": "Stihl 41827403503 Driver For HTA 105 HTA 135 HTA 150 HTA 160 Pole Pruners",
+      "model_title_clean": "41827403503 Driver For HTA 105 HTA 135 HTA 150 HTA 160",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-41827403503-Driver-For-HTA-105-HTA-135-HTA-150-HTA-160-Pole-Pruners/P741508",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741938",
+      "model_name": "Stihl 42231410300 Air Filter TS400 Disc Cutter Parts Filters BR350 Blower Parts  SR 430, SR 450 Mistblower Parts SR 430-",
+      "model_title_clean": "42231410300 Air Filter TS400 Disc Cutter Parts Filters BR350",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-42231410300-Air-Filter-TS400-Disc-Cutter-Parts-Filters-BR350-Blower-Parts-SR-430-SR-450-Mistblower-Parts-SR-430-/P741938",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P741943",
+      "model_name": "Stihl 42231418600 Impulse Hose For TS400 TS700 TS800 Cut-Off Saw",
+      "model_title_clean": "42231418600 Impulse Hose For TS400 TS700 TS800",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-42231418600-Impulse-Hose-For-TS400-TS700-TS800-Cut-Off-Saw/P741943",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P784992",
+      "model_name": "Stihl 42240071014 Wheel Kit for TS410 TS480i TS500i TS700 TS800 Cut Off Saws",
+      "model_title_clean": "42240071014 Wheel Kit for TS410 TS480i TS500i TS700 TS800 Cut Off Saws",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-42240071014-Wheel-Kit-for-TS410-TS480i-TS500i-TS700-TS800-Cut-Off-Saws/P784992",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P742423",
+      "model_name": "Stihl 42291290900 Gasket for SH55, SH85 Blower",
+      "model_title_clean": "42291290900 Gasket for SH55, SH85",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-42291290900-Gasket-for-SH55-SH85-Blower/P742423",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P750319",
+      "model_name": "Stihl 90223710710 Spline Screw Is-M4X20  MS200 / MS200T TS460 Disc Cutter Parts Brushcutter (FS) Parts Clearing Saw (FS)",
+      "model_title_clean": "90223710710 Spline Screw Is-M4X20  MS200 / MS200T TS460 Disc Cutter Parts",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-90223710710-Spline-Screw-Is-M4X20-MS200-MS200T-TS460-Disc-Cutter-Parts-Brushcutter-FS-Parts-Clearing-Saw-FS/P750319",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P750836",
+      "model_name": "Stihl 92162610700 Hexagon Nut Chainsaw Parts M5 MS170 / MS170C  MS180 / MS180C MS210 / MS210CMS230 / MS230C MS250 / MS25",
+      "model_title_clean": "92162610700 Hexagon Nut",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-92162610700-Hexagon-Nut-Chainsaw-Parts-M5-MS170-MS170C-MS180-MS180C-MS210-MS210CMS230-MS230C-MS250-MS25/P750836",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P750851",
+      "model_name": "Stihl 92202601300 Hexagon Metal Bar Nut M10 TS350/TS360 Disc Cutter Parts 08S Chainsaw Parts TS08S/TS08 Disc Cutter Part",
+      "model_title_clean": "92202601300 Hexagon Metal Bar Nut M10 TS350/TS360 Disc Cutter Parts 08S",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-92202601300-Hexagon-Metal-Bar-Nut-M10-TS350-TS360-Disc-Cutter-Parts-08S-Chainsaw-Parts-TS08S-TS08-Disc-Cutter-Part/P750851",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P751136",
+      "model_name": "Stihl 94606240400 Chainsaw Parts  E-Clip Din6799-4  MS170 / MS170C MS180 / MS180CMS210 / MS210C  MS230 / MS230C MS250 /",
+      "model_title_clean": "94606240400",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-94606240400-Chainsaw-Parts-E-Clip-Din6799-4-MS170-MS170C-MS180-MS180CMS210-MS210C-MS230-MS230C-MS250-/P751136",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P751275",
+      "model_name": "Stihl 95030035295 Grooved Ball Bearing 6002-2Trs Cn 90% for MB780 MB655 MB750 MB756 RM655 RM756 Lawn Mowers",
+      "model_title_clean": "95030035295 Grooved Ball Bearing 6002-2Trs Cn 90% for MB780 MB655 MB750 MB756 RM655 RM756",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-95030035295-Grooved-Ball-Bearing-6002-2Trs-Cn-90-for-MB780-MB655-MB750-MB756-RM655-RM756-Lawn-Mowers/P751275",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P751276",
+      "model_name": "Stihl 95030035297 Grooved Ball Bearing 6001-2TRS For RM RMA MB Mowers",
+      "model_title_clean": "95030035297 Grooved Ball Bearing 6001-2TRS For RM RMA MB Mowers",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-95030035297-Grooved-Ball-Bearing-6001-2TRS-For-RM-RMA-MB-Mowers/P751276",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P751296",
+      "model_name": "Stihl 95030036462 Grooved Ball Bearing Din 625-6201-2Z FS83, FS83T Brushcutter Parts FS87, FS87R / FS90, FS90R  FS100, F",
+      "model_title_clean": "95030036462 Grooved Ball Bearing Din 625-6201-2Z FS83, FS83T",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-95030036462-Grooved-Ball-Bearing-Din-625-6201-2Z-FS83-FS83T-Brushcutter-Parts-FS87-FS87R-FS90-FS90R-FS100-F/P751296",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P786195",
+      "model_name": "Stihl 96459453373 O-ring N26x2,5 for iMOW 5.0, 6.0, 7.0 Robotic Mowers",
+      "model_title_clean": "96459453373 O-ring N26x2,5 for iMOW 5.0, 6.0, 7.0",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-96459453373-O-ring-N26x25-for-iMOW-50-60-70-Robotic-Mowers/P786195",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P751635",
+      "model_name": "Stihl 96459487734 O-Ring 25X3.5 MS210 / MS210C Chainsaw Parts MS230 / MS230C MS250 / MS250C  MS200 / MS200T  |  Stihl MS",
+      "model_title_clean": "96459487734 O-Ring 25X3.5 MS210 / MS210C",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-96459487734-O-Ring-25X35-MS210-MS210C-Chainsaw-Parts-MS230-MS230C-MS250-MS250C-MS200-MS200T--Stihl-MS/P751635",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P751748",
+      "model_name": "Stihl 99910035087 Sleeve 7.5x6.8 for FS Brushcutters BR Blowers KM KombiEngines TS Cut-Off Saws",
+      "model_title_clean": "99910035087 Sleeve 7.5x6.8 for FS",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-99910035087-Sleeve-75x68-for-FS-Brushcutters-BR-Blowers-KM-KombiEngines-TS-Cut-Off-Saws/P751748",
+      "rejection_reason": "PART_NUMBER_IN_SOURCE_URL"
+    },
+    {
+      "source_product_id": "P784714",
+      "model_name": "Stihl ACP 600 Tiller Accessory Spare Parts",
+      "model_title_clean": "ACP 600 Tiller Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ACP-600-Tiller-Accessory-Spare-Parts/P784714",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783412",
+      "model_name": "Stihl ADA 700.0 Accessory Spare Parts",
+      "model_title_clean": "ADA 700.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADA-7000-Accessory-Spare-Parts/P783412",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784165",
+      "model_name": "Stihl ADG 2 Diagnostic Unit Spare Parts",
+      "model_title_clean": "ADG 2 Diagnostic Unit",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADG-2-Diagnostic-Unit-Spare-Parts/P784165",
+      "rejection_reason": "DIAGNOSTIC_UNIT"
+    },
+    {
+      "source_product_id": "P784541",
+      "model_name": "Stihl ADO 400 Robotic Mower Accessory Spare Parts",
+      "model_title_clean": "ADO 400 Robotic Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-400-Robotic-Mower-Accessory-Spare-Parts/P784541",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784542",
+      "model_name": "Stihl ADO 401 Robotic Mower Accessory Spare Parts",
+      "model_title_clean": "ADO 401 Robotic Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-401-Robotic-Mower-Accessory-Spare-Parts/P784542",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783447",
+      "model_name": "Stihl ADO 401.0 Accessory Spare Parts",
+      "model_title_clean": "ADO 401.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-4010-Accessory-Spare-Parts/P783447",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783448",
+      "model_name": "Stihl ADO 401.1 Accessory Spare Parts",
+      "model_title_clean": "ADO 401.1 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-4011-Accessory-Spare-Parts/P783448",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784543",
+      "model_name": "Stihl ADO 600 Robotic Mower Accessory Spare Parts",
+      "model_title_clean": "ADO 600 Robotic Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-600-Robotic-Mower-Accessory-Spare-Parts/P784543",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784544",
+      "model_name": "Stihl ADO 601 Robotic Mower Accessory Spare Parts",
+      "model_title_clean": "ADO 601 Robotic Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-601-Robotic-Mower-Accessory-Spare-Parts/P784544",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783449",
+      "model_name": "Stihl ADO 601.0 Accessory Spare Parts",
+      "model_title_clean": "ADO 601.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-6010-Accessory-Spare-Parts/P783449",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783450",
+      "model_name": "Stihl ADO 601.1 Accessory Spare Parts",
+      "model_title_clean": "ADO 601.1 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-6011-Accessory-Spare-Parts/P783450",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783476",
+      "model_name": "Stihl ADO Docking station CA Accessory Spare Parts",
+      "model_title_clean": "ADO Docking station CA Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-Docking-station-CA-Accessory-Spare-Parts/P783476",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783475",
+      "model_name": "Stihl ADO Docking station GB Accessories Spare Parts",
+      "model_title_clean": "ADO Docking station GB Accessories",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-Docking-station-GB-Accessories-Spare-Parts/P783475",
+      "rejection_reason": "ACCESSORIES_KEYWORD"
+    },
+    {
+      "source_product_id": "P783480",
+      "model_name": "Stihl ADO EVO 4\" Docking Station US Accessories Spare Parts",
+      "model_title_clean": "ADO EVO 4\" Docking Station US Accessories",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-EVO-4-Docking-Station-US-Accessories-Spare-Parts/P783480",
+      "rejection_reason": "ACCESSORIES_KEYWORD"
+    },
+    {
+      "source_product_id": "P783479",
+      "model_name": "Stihl ADO EVO Docking station CA Accessory Spare Parts",
+      "model_title_clean": "ADO EVO Docking station CA Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-EVO-Docking-station-CA-Accessory-Spare-Parts/P783479",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783477",
+      "model_name": "Stihl ADO EVO Docking station GB Accessories Spare Parts",
+      "model_title_clean": "ADO EVO Docking station GB Accessories",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-EVO-Docking-station-GB-Accessories-Spare-Parts/P783477",
+      "rejection_reason": "ACCESSORIES_KEYWORD"
+    },
+    {
+      "source_product_id": "P783478",
+      "model_name": "Stihl ADO EVO Docking station US Accessory Spare Parts",
+      "model_title_clean": "ADO EVO Docking station US Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADO-EVO-Docking-station-US-Accessory-Spare-Parts/P783478",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784715",
+      "model_name": "Stihl ADP 600 Tiller Accessory Spare Parts",
+      "model_title_clean": "ADP 600 Tiller Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ADP-600-Tiller-Accessory-Spare-Parts/P784715",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784503",
+      "model_name": "Stihl AFK 080 Lawn Mower Accessory Spare Parts",
+      "model_title_clean": "AFK 080 Lawn Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AFK-080-Lawn-Mower-Accessory-Spare-Parts/P784503",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784616",
+      "model_name": "Stihl AGW 098 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AGW 098 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AGW-098-Ride-On-Mower-Accessory-Spare-Parts/P784616",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783517",
+      "model_name": "Stihl AGW 098.0 Accessory Spare Parts",
+      "model_title_clean": "AGW 098.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AGW-0980-Accessory-Spare-Parts/P783517",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784657",
+      "model_name": "Stihl AHL 150 Lawn Trimmer Accessory Spare Parts",
+      "model_title_clean": "AHL 150 Lawn Trimmer Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AHL-150-Lawn-Trimmer-Accessory-Spare-Parts/P784657",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784617",
+      "model_name": "Stihl AKD 500 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AKD 500 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AKD-500-Ride-On-Mower-Accessory-Spare-Parts/P784617",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784618",
+      "model_name": "Stihl AKD 500.1 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AKD 500.1 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AKD-5001-Ride-On-Mower-Accessory-Spare-Parts/P784618",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784619",
+      "model_name": "Stihl AKD 500.2 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AKD 500.2 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AKD-5002-Ride-On-Mower-Accessory-Spare-Parts/P784619",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784620",
+      "model_name": "Stihl AKF 112 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AKF 112 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AKF-112-Ride-On-Mower-Accessory-Spare-Parts/P784620",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784621",
+      "model_name": "Stihl AKF 127 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AKF 127 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AKF-127-Ride-On-Mower-Accessory-Spare-Parts/P784621",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784505",
+      "model_name": "Stihl AKS 600 Lawn Mower Accessory Spare Parts",
+      "model_title_clean": "AKS 600 Lawn Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AKS-600-Lawn-Mower-Accessory-Spare-Parts/P784505",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784629",
+      "model_name": "Stihl AMS 127 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "AMS 127 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AMS-127-Ride-On-Mower-Accessory-Spare-Parts/P784629",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784557",
+      "model_name": "Stihl ARS 028 Robotic Mower Accessory Spare Parts",
+      "model_title_clean": "ARS 028 Robotic Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ARS-028-Robotic-Mower-Accessory-Spare-Parts/P784557",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783525",
+      "model_name": "Stihl ASP 125.1 Accessory Spare Parts",
+      "model_title_clean": "ASP 125.1 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ASP-1251-Accessory-Spare-Parts/P783525",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784763",
+      "model_name": "Stihl ATO 400 Garden Shredder Accessory Spare Parts",
+      "model_title_clean": "ATO 400 Garden Shredder Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ATO-400-Garden-Shredder-Accessory-Spare-Parts/P784763",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783543",
+      "model_name": "Stihl ATO 400.0 Accessory Spare Parts",
+      "model_title_clean": "ATO 400.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ATO-4000-Accessory-Spare-Parts/P783543",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783544",
+      "model_name": "Stihl ATZ 150.0 Accessory Spare Parts",
+      "model_title_clean": "ATZ 150.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ATZ-1500-Accessory-Spare-Parts/P783544",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783545",
+      "model_name": "Stihl ATZ 300.0 Accessory Spare Parts",
+      "model_title_clean": "ATZ 300.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-ATZ-3000-Accessory-Spare-Parts/P783545",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784559",
+      "model_name": "Stihl AVS 100 Robotic Mower Accessory Spare Parts",
+      "model_title_clean": "AVS 100 Robotic Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AVS-100-Robotic-Mower-Accessory-Spare-Parts/P784559",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783462",
+      "model_name": "Stihl AVS 100.0 Accessory Spare Parts",
+      "model_title_clean": "AVS 100.0 Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AVS-1000-Accessory-Spare-Parts/P783462",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784718",
+      "model_name": "Stihl AWP 600 Tiller Accessory Spare Parts",
+      "model_title_clean": "AWP 600 Tiller Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-AWP-600-Tiller-Accessory-Spare-Parts/P784718",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784643",
+      "model_name": "Stihl DPC 500 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "DPC 500 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-DPC-500-Ride-On-Mower-Accessory-Spare-Parts/P784643",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784644",
+      "model_name": "Stihl DPC780 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "DPC780 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-DPC780-Ride-On-Mower-Accessory-Spare-Parts/P784644",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784679",
+      "model_name": "Stihl HG 100 Extended Hedge Trimmer Accessory Spare Parts",
+      "model_title_clean": "HG 100 Extended Hedge Trimmer Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-HG-100-Extended-Hedge-Trimmer-Accessory-Spare-Parts/P784679",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784680",
+      "model_name": "Stihl HG 300 Extended Hedge Trimmer Accessory Spare Parts",
+      "model_title_clean": "HG 300 Extended Hedge Trimmer Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-HG-300-Extended-Hedge-Trimmer-Accessory-Spare-Parts/P784680",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784681",
+      "model_name": "Stihl HG 900 Extended Hedge Trimmer Accessory Spare Parts",
+      "model_title_clean": "HG 900 Extended Hedge Trimmer Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-HG-900-Extended-Hedge-Trimmer-Accessory-Spare-Parts/P784681",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784682",
+      "model_name": "Stihl HG 945 Extended Hedge Trimmer Accessory Spare Parts",
+      "model_title_clean": "HG 945 Extended Hedge Trimmer Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-HG-945-Extended-Hedge-Trimmer-Accessory-Spare-Parts/P784682",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P752538",
+      "model_name": "Stihl LA028205000 Shaft Extension 50 cm / 25\" Guide Bar For HTA 50 Pole Pruner.",
+      "model_title_clean": "LA028205000 Shaft Extension 50 cm / 25\" Guide Bar For HTA 50",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-LA028205000-Shaft-Extension-50-cm-25-Guide-Bar-For-HTA-50-Pole-Pruner/P752538",
+      "rejection_reason": "GUIDE_BAR"
+    },
+    {
+      "source_product_id": "P784272",
+      "model_name": "Stihl Measuring tape holder ADVANCE X-Flex Hip Belt Accessory Spare Parts",
+      "model_title_clean": "Measuring tape holder ADVANCE X-Flex Hip Belt Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-Measuring-tape-holder-ADVANCE-X-Flex-Hip-Belt-Accessory-Spare-Parts/P784272",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784646",
+      "model_name": "Stihl RC 500 Ride-On Mower Accessory Spare Parts",
+      "model_title_clean": "RC 500 Ride-On Mower Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-RC-500-Ride-On-Mower-Accessory-Spare-Parts/P784646",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784766",
+      "model_name": "Stihl SET 100 Garden Shredder Accessory Spare Parts",
+      "model_title_clean": "SET 100 Garden Shredder Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SET-100-Garden-Shredder-Accessory-Spare-Parts/P784766",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784767",
+      "model_name": "Stihl SET 150 Garden Shredder Accessory Spare Parts",
+      "model_title_clean": "SET 150 Garden Shredder Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SET-150-Garden-Shredder-Accessory-Spare-Parts/P784767",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784768",
+      "model_name": "Stihl SET 200 Garden Shredder Accessory Spare Parts",
+      "model_title_clean": "SET 200 Garden Shredder Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SET-200-Garden-Shredder-Accessory-Spare-Parts/P784768",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P784769",
+      "model_name": "Stihl SET 300 Garden Shredder Accessory Spare Parts",
+      "model_title_clean": "SET 300 Garden Shredder Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SET-300-Garden-Shredder-Accessory-Spare-Parts/P784769",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783492",
+      "model_name": "Stihl Set of blades BASIC iMOW Pack of 18 Accessories Spare Parts",
+      "model_title_clean": "Set of blades BASIC iMOW Pack of 18 Accessories",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-Set-of-blades-BASIC-iMOW-Pack-of-18-Accessories-Spare-Parts/P783492",
+      "rejection_reason": "ACCESSORIES_KEYWORD"
+    },
+    {
+      "source_product_id": "P783491",
+      "model_name": "Stihl Set of blades BASIC iMOW Pack of 9 Accessories Spare Parts",
+      "model_title_clean": "Set of blades BASIC iMOW Pack of 9 Accessories",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-Set-of-blades-BASIC-iMOW-Pack-of-9-Accessories-Spare-Parts/P783491",
+      "rejection_reason": "ACCESSORIES_KEYWORD"
+    },
+    {
+      "source_product_id": "P784169",
+      "model_name": "Stihl SMART CONNECTOR 10 PIECES Smart Connector Spare Parts",
+      "model_title_clean": "SMART CONNECTOR 10 PIECES Smart Connector",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SMART-CONNECTOR-10-PIECES-Smart-Connector-Spare-Parts/P784169",
+      "rejection_reason": "SMART_CONNECTOR_ACCESSORY"
+    },
+    {
+      "source_product_id": "P784170",
+      "model_name": "Stihl SMART CONNECTOR 2 A Smart Connector Spare Parts",
+      "model_title_clean": "SMART CONNECTOR 2 A Smart Connector",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SMART-CONNECTOR-2-A-Smart-Connector-Spare-Parts/P784170",
+      "rejection_reason": "SMART_CONNECTOR_ACCESSORY"
+    },
+    {
+      "source_product_id": "P784168",
+      "model_name": "Stihl SMART CONNECTOR Smart Connector Spare Parts",
+      "model_title_clean": "SMART CONNECTOR Smart Connector",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-SMART-CONNECTOR-Smart-Connector-Spare-Parts/P784168",
+      "rejection_reason": "SMART_CONNECTOR_ACCESSORY"
+    },
+    {
+      "source_product_id": "P784659",
+      "model_name": "Stihl TRAGEGURT Lawn Trimmer Accessory Spare Parts",
+      "model_title_clean": "TRAGEGURT Lawn Trimmer Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-TRAGEGURT-Lawn-Trimmer-Accessory-Spare-Parts/P784659",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    },
+    {
+      "source_product_id": "P783493",
+      "model_name": "Stihl Upgrade Kit 10, iMOW Traction wheels Accessory Spare Parts",
+      "model_title_clean": "Upgrade Kit 10, iMOW Traction wheels Accessory",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-Upgrade-Kit-10-iMOW-Traction-wheels-Accessory-Spare-Parts/P783493",
+      "rejection_reason": "ACCESSORY_KEYWORD"
+    }
+  ]
+}
