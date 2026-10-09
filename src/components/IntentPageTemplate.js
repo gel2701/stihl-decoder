@@ -884,7 +884,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         if (d.machine && d.machine.serial_number) {
           serialP.textContent = 'Serienummer: ' + d.machine.serial_number + ' (opgegeven)';
         } else {
-          serialP.textContent = 'Serienummer: Niet opgegeven';
+          serialP.textContent = 'Serienummer: Nog niet toegevoegd';
         }
 
         const effectiveDate = calculateEffectiveLastServiceDate(d);
@@ -920,7 +920,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           const enrichBtn = document.createElement('button');
           enrichBtn.type = 'button';
           enrichBtn.className = 'bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 text-2xs font-bold py-2 px-2.5 rounded-xl transition cursor-pointer text-center whitespace-nowrap';
-          enrichBtn.textContent = '➕ Serienummer';
+          enrichBtn.textContent = '➕ Serienummer toevoegen';
           enrichBtn.onclick = () => openEnrichSerialModal(d.dossier_id);
           actionsDiv.appendChild(enrichBtn);
         }
@@ -1234,12 +1234,13 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       }
 
       setSafeText(document.getElementById('detail-identity-text'), d.identity.model_name + ' (' + d.identity.category + ')');
-      setSafeText(document.getElementById('detail-serial-text'), d.machine.serial_number || 'Niet opgegeven');
+      setSafeText(document.getElementById('detail-serial-text'), d.machine.serial_number || 'Nog niet toegevoegd');
 
       const detailAddSerialBtn = document.getElementById('btn-detail-add-serial');
       if (detailAddSerialBtn) {
         if (!d.machine.serial_number) {
           detailAddSerialBtn.classList.remove('hidden');
+          detailAddSerialBtn.textContent = '➕ Serienummer toevoegen';
           detailAddSerialBtn.onclick = () => openEnrichSerialModal(d.dossier_id);
         } else {
           detailAddSerialBtn.classList.add('hidden');
@@ -1390,19 +1391,28 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       }
     }
 
-    // Event listeners initialization
-    document.addEventListener('DOMContentLoaded', () => {
-      renderDossierList();
-
-      // Check URL hash for pre-selected model (e.g. #add=ms-310)
+    function handleHashRouting() {
       if (location.hash.startsWith('#add=')) {
         const slug = decodeURIComponent(location.hash.substring(5)).toLowerCase();
         const select = document.getElementById('select-model');
         if (select) {
           select.value = slug;
-          document.getElementById('modal-add').classList.remove('hidden');
+          document.getElementById('modal-add')?.classList.remove('hidden');
         }
+      } else if (location.hash.startsWith('#passport=')) {
+        const targetId = decodeURIComponent(location.hash.substring(10));
+        openPassportModal(targetId);
+      } else if (location.hash.startsWith('#dossier=')) {
+        const targetId = decodeURIComponent(location.hash.substring(9));
+        openDossierDetail(targetId);
       }
+    }
+
+    // Event listeners initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDossierList();
+      handleHashRouting();
+      window.addEventListener('hashchange', handleHashRouting);
 
       // Filter button clicks
       const setFilter = (filter) => {

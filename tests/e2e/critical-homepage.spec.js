@@ -100,4 +100,41 @@ test.describe('Critical Homepage User Journeys', () => {
     gates.assertClean('Part Number Journey');
   });
 
+  test('F. Model-only paspoort flow is direct zichtbaar en opslaan zonder serienummer werkt', async ({ page }) => {
+    const gates = attachIntegrityGates(page);
+    await page.goto('/');
+
+    const input = page.locator('#code-input');
+    const btn = page.locator('#search-btn');
+    const modelCard = page.locator('#model-card');
+    const passportBtn = page.locator('#model-card-passport-btn');
+    const saveModal = page.locator('#save-dossier-modal');
+    const confirmCheck = page.locator('#modal-dossier-confirm-check');
+    const modalSaveBtn = page.locator('#modal-dossier-save-btn');
+    const toast = page.locator('#toast-notification');
+
+    await input.fill('MS 210');
+    await btn.click();
+
+    await expect(modelCard).toBeVisible({ timeout: 5000 });
+    await expect(passportBtn).toBeVisible();
+    await expect(passportBtn).toContainText('Maak machinepaspoort');
+    await expect(modelCard).toContainText('Machinepaspoort');
+
+    await passportBtn.click();
+    await expect(saveModal).toBeVisible();
+    await expect(page.locator('#save-dossier-modal')).toContainText('Serienummer (optioneel)');
+    await expect(page.locator('#save-dossier-modal')).toContainText('Je kunt het serienummer later toevoegen.');
+
+    await confirmCheck.check();
+    await modalSaveBtn.click();
+
+    await expect(saveModal).toBeHidden();
+    await expect(toast).toBeVisible();
+    await expect(toast).toContainText('Machinepaspoort aangemaakt');
+    await expect(toast).toContainText('Bekijk machinepaspoort');
+
+    gates.assertClean('Model-Only Passport Creation Journey');
+  });
+
 });

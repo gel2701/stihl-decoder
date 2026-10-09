@@ -19,7 +19,12 @@ const batch2NewPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026
 const batch2Path = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-06', 'data', 'official_serial_anchors_batch_2026-10-06.json');
 
 const require = createRequire(import.meta.url);
-const sqlite3 = require('sqlite3');
+let Database;
+try {
+  Database = require('better-sqlite3');
+} catch (e) {
+  Database = null;
+}
 
 const database = JSON.parse(fs.readFileSync(jsonDbPath, 'utf8'));
 const anchorsDoc = JSON.parse(fs.readFileSync(anchorsPath, 'utf8'));
@@ -158,13 +163,21 @@ test('Phase 51A-R2 - Test 9: Representative Samples Across Product Categories (B
 });
 
 test('Phase 51A-R2 - Test 10: JSON vs SQLite Parity for all 2845 Anchors', async (t) => {
-  const db = new sqlite3.Database(sqliteDbPath, sqlite3.OPEN_READONLY);
-  const rows = await new Promise((resolve, reject) => {
-    db.all('SELECT * FROM official_serial_anchors ORDER BY serial_number ASC', (err, r) => {
-      if (err) reject(err); else resolve(r);
+  let rows;
+  if (Database) {
+    const db = new Database(sqliteDbPath, { readonly: true });
+    rows = db.prepare('SELECT * FROM official_serial_anchors ORDER BY serial_number ASC').all();
+    db.close();
+  } else {
+    const sqlite3 = require('sqlite3');
+    const db = new sqlite3.Database(sqliteDbPath, sqlite3.OPEN_READONLY);
+    rows = await new Promise((resolve, reject) => {
+      db.all('SELECT * FROM official_serial_anchors ORDER BY serial_number ASC', (err, r) => {
+        if (err) reject(err); else resolve(r);
+      });
     });
-  });
-  db.close();
+    db.close();
+  }
 
   assert.strictEqual(rows.length, 2845, 'SQLite official_serial_anchors table must have 2845 rows');
   assert.strictEqual(anchorsDoc.anchors.length, 2845, 'JSON anchors must have 2845 entries');

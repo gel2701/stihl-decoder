@@ -1,6 +1,8 @@
 import { normalizeModelQuery } from '../modelNormalizer.js';
+import { StihlModelIdentityParser } from './StihlModelIdentityParser.js';
 
 export const FITMENT_SCOPES = {
+  EXACT_CONFIGURATION: 'EXACT_CONFIGURATION',
   EXACT_VARIANT: 'EXACT_VARIANT',
   BASE_MODEL_CONFIRMED: 'BASE_MODEL_CONFIRMED',
   MULTI_VARIANT_EXPLICIT: 'MULTI_VARIANT_EXPLICIT',
@@ -101,65 +103,25 @@ export class PartNormalizer {
   }
 
   /**
-   * Maps a model string into canonical model ID, base model name, variant key and variant name.
-   * Ensures variants like "MS 261 C-M" or "MS 261 C-BE" are NOT flattened into "MS 261".
+   * Maps a model string into canonical model ID, base model name, variant key, variant name,
+   * configuration, and entity classification using StihlModelIdentityParser.
    */
   static normalizeModelVariant(sourceModelName, sourceVariantName = null) {
     const modelStr = (sourceModelName || '').trim();
     const variantStr = (sourceVariantName || '').trim();
     const fullRaw = (variantStr || modelStr).trim();
 
-    const parsedBase = normalizeModelQuery(modelStr);
-    const baseModel = parsedBase.baseModel || parsedBase.canonicalQuery || modelStr.toUpperCase();
-    const canonicalModelId = baseModel.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
-
-    let variantKey = 'base';
-    let variantName = baseModel;
-
-    const upperRaw = fullRaw.toUpperCase();
-    if (upperRaw.includes('C-M VW') || upperRaw.includes('CMVW')) {
-      variantKey = 'c_m_vw';
-      variantName = `${baseModel} C-M VW`;
-    } else if (upperRaw.includes('RC-E') || upperRaw.includes('RCE')) {
-      variantKey = 'rc_e';
-      variantName = `${baseModel} RC-E`;
-    } else if (upperRaw.includes('C-BE') || upperRaw.includes('CBE')) {
-      variantKey = 'c_be';
-      variantName = `${baseModel} C-BE`;
-    } else if (upperRaw.includes('C-M') || upperRaw.includes('CM')) {
-      variantKey = 'c_m';
-      variantName = `${baseModel} C-M`;
-    } else if (upperRaw.includes('C-E') || upperRaw.includes('CE')) {
-      variantKey = 'c_e';
-      variantName = `${baseModel} C-E`;
-    } else if (upperRaw.includes('C-B') || upperRaw.includes('CB')) {
-      variantKey = 'c_b';
-      variantName = `${baseModel} C-B`;
-    } else if (upperRaw.includes('PRO')) {
-      variantKey = 'pro';
-      variantName = `${baseModel} PRO`;
-    } else if (upperRaw.endsWith(' W') || upperRaw.includes(' W ')) {
-      variantKey = 'w';
-      variantName = `${baseModel} W`;
-    } else if (upperRaw.endsWith(' R') || upperRaw.includes(' R ')) {
-      variantKey = 'r';
-      variantName = `${baseModel} R`;
-    } else if (upperRaw.endsWith('-A') || upperRaw.endsWith(' A')) {
-      variantKey = 'a';
-      variantName = `${baseModel}-A`;
-    } else if (upperRaw.endsWith('-D') || upperRaw.endsWith(' D')) {
-      variantKey = 'd';
-      variantName = `${baseModel}-D`;
-    } else if (upperRaw.includes('2-MIX') || upperRaw.includes('2MIX')) {
-      variantKey = '2_mix';
-      variantName = `${baseModel} 2-MIX`;
-    }
+    const parsed = StihlModelIdentityParser.parseModelIdentity(fullRaw);
 
     return {
-      canonical_model_id: canonicalModelId,
-      base_model_name: baseModel,
-      variant_key: variantKey,
-      variant_name: variantName,
+      canonical_model: parsed.canonical_model,
+      canonical_model_id: parsed.canonical_model_id,
+      base_model_name: parsed.base_model_name,
+      variant_key: parsed.variant_key,
+      variant_name: parsed.variant_name,
+      configuration_key: parsed.configuration_key,
+      configuration_name: parsed.configuration_name,
+      entity_type: parsed.entity_type,
       source_model_name: modelStr
     };
   }

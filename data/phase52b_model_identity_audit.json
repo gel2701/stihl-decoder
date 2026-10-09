@@ -1,0 +1,4005 @@
+{
+  "schema_version": "phase52b-model-identity-audit-v1",
+  "audited_at": "2026-10-08T22:44:51.089Z",
+  "summary": {
+    "total_accepted_entities": 1429,
+    "accepted_machines_count": 1402,
+    "accepted_attachments_count": 27,
+    "true_base_models_count": 912,
+    "unique_variants_count": 1225,
+    "duplicate_identity_groups": 143,
+    "entity_types": {
+      "BASE_MODEL": 430,
+      "MODEL_VARIANT": 215,
+      "MACHINE_CONFIGURATION": 757,
+      "ATTACHMENT": 27
+    }
+  },
+  "duplicate_identity_reconciliations": [
+    {
+      "identity_key": "023::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782706",
+          "raw_title": "023 L Quiet",
+          "configuration_name": "L Quiet",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-023-L-Quiet-Gasoline-Chainsaw-Spare-Parts/P782706"
+        },
+        {
+          "pid": "P782705",
+          "raw_title": "023",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-023-Gasoline-Chainsaw-Spare-Parts/P782705"
+        }
+      ]
+    },
+    {
+      "identity_key": "024::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782710",
+          "raw_title": "024 SW Version with Larger Piston Diam.",
+          "configuration_name": "SW Version with Larger Piston Diam.",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-024-SW-Version-with-Larger-Piston-Diam-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782710"
+        },
+        {
+          "pid": "P782711",
+          "raw_title": "024 SWVH Version with Larger Piston Diam. Carbuertor Heating",
+          "configuration_name": "SWVH Version with Larger Piston Diam. Carbuertor Heating",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-024-SWVH-Version-with-Larger-Piston-Diam-Carbuertor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782711"
+        },
+        {
+          "pid": "P782708",
+          "raw_title": "024",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-024-Gasoline-Chainsaw-Spare-Parts/P782708"
+        }
+      ]
+    },
+    {
+      "identity_key": "028::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782719",
+          "raw_title": "028 WB WoodBoss",
+          "configuration_name": "WB WoodBoss",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-028-WB-WoodBoss-Gasoline-Chainsaw-Spare-Parts/P782719"
+        },
+        {
+          "pid": "P782717",
+          "raw_title": "028",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-028-Gasoline-Chainsaw-Spare-Parts/P782717"
+        }
+      ]
+    },
+    {
+      "identity_key": "032::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782727",
+          "raw_title": "032 AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+          "configuration_name": "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-032-AVEQW-Anti-Vibration-Electronic-Ignition-QuickStop-Quickstop-Plus-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782727"
+        },
+        {
+          "pid": "P782726",
+          "raw_title": "032 AVEW Anti-Vibration Electronic Ignition",
+          "configuration_name": "AVEW Anti-Vibration Electronic Ignition",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-032-AVEW-Anti-Vibration-Electronic-Ignition-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782726"
+        }
+      ]
+    },
+    {
+      "identity_key": "034::base",
+      "count": 6,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782729",
+          "raw_title": "034 AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+          "configuration_name": "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-034-AVEQW-Anti-Vibration-Electronic-Ignition-QuickStop-Quickstop-Plus-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782729"
+        },
+        {
+          "pid": "P782731",
+          "raw_title": "034 AVEQWZ",
+          "configuration_name": "AVEQWZ",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-034-AVEQWZ-Gasoline-Chainsaw-Spare-Parts/P782731"
+        },
+        {
+          "pid": "P782732",
+          "raw_title": "034 AVEQZ-FD",
+          "configuration_name": "AVEQZ-FD",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-034-AVEQZ-FD-Gasoline-Chainsaw-Spare-Parts/P782732"
+        },
+        {
+          "pid": "P782733",
+          "raw_title": "034 AVSEQW",
+          "configuration_name": "AVSEQW",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-034-AVSEQW-Gasoline-Chainsaw-Spare-Parts/P782733"
+        },
+        {
+          "pid": "P782741",
+          "raw_title": "034 Z FB",
+          "configuration_name": "Z FB",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-034-Z-FB-Gasoline-Chainsaw-Spare-Parts/P782741"
+        },
+        {
+          "pid": "P782737",
+          "raw_title": "034",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-034-Gasoline-Chainsaw-Spare-Parts/P782737"
+        }
+      ]
+    },
+    {
+      "identity_key": "036::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782745",
+          "raw_title": "036 Arctic",
+          "configuration_name": "Arctic",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-036-Arctic-Gasoline-Chainsaw-Spare-Parts/P782745"
+        },
+        {
+          "pid": "P782742",
+          "raw_title": "036 BR",
+          "configuration_name": "BR",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-036-BR-Gasoline-Chainsaw-Spare-Parts/P782742"
+        },
+        {
+          "pid": "P782747",
+          "raw_title": "036 QS QuickStop Quickstop Plus Version with Larger Piston diam",
+          "configuration_name": "QS QuickStop Quickstop Plus Version with Larger Piston diam",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-036-QS-QuickStop-Quickstop-Plus-Version-with-Larger-Piston-diam-Gasoline-Chainsaw-Spare-Parts/P782747"
+        },
+        {
+          "pid": "P782743",
+          "raw_title": "036",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-036-Gasoline-Chainsaw-Spare-Parts/P782743"
+        }
+      ]
+    },
+    {
+      "identity_key": "038::base",
+      "count": 6,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782748",
+          "raw_title": "038 FB Farm Boss",
+          "configuration_name": "FB Farm Boss",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-038-FB-Farm-Boss-Gasoline-Chainsaw-Spare-Parts/P782748"
+        },
+        {
+          "pid": "P782754",
+          "raw_title": "038 M Magnum",
+          "configuration_name": "M Magnum",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-038-M-Magnum-Gasoline-Chainsaw-Spare-Parts/P782754"
+        },
+        {
+          "pid": "P782755",
+          "raw_title": "038 MRII Wrap Handle Magnum",
+          "configuration_name": "MRII Wrap Handle Magnum",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-038-MRII-Wrap-Handle-Magnum-Gasoline-Chainsaw-Spare-Parts/P782755"
+        },
+        {
+          "pid": "P782753",
+          "raw_title": "038 MW Magnum",
+          "configuration_name": "MW Magnum",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-038-MW-Magnum-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782753"
+        },
+        {
+          "pid": "P782752",
+          "raw_title": "038 SW Version with Larger Piston diam",
+          "configuration_name": "SW Version with Larger Piston diam",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-038-SW-Version-with-Larger-Piston-diam-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782752"
+        },
+        {
+          "pid": "P782749",
+          "raw_title": "038",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-038-Gasoline-Chainsaw-Spare-Parts/P782749"
+        }
+      ]
+    },
+    {
+      "identity_key": "041::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782758",
+          "raw_title": "041 AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+          "configuration_name": "AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-041-AVFBQ-Anti-Vibration-Electronic-Ignition-QuickStop-Quickstop-Plus-Gasoline-Chainsaw-Spare-Parts/P782758"
+        },
+        {
+          "pid": "P782760",
+          "raw_title": "041 G Gearbox",
+          "configuration_name": "G Gearbox",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-041-G-Gearbox-Gasoline-Chainsaw-Spare-Parts/P782760"
+        }
+      ]
+    },
+    {
+      "identity_key": "046::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782775",
+          "raw_title": "046 Magnum BR Magnum",
+          "configuration_name": "Magnum BR Magnum",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-046-Magnum-BR-Magnum-Gasoline-Chainsaw-Spare-Parts/P782775"
+        },
+        {
+          "pid": "P782773",
+          "raw_title": "046",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-046-Gasoline-Chainsaw-Spare-Parts/P782773"
+        }
+      ]
+    },
+    {
+      "identity_key": "056::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782785",
+          "raw_title": "056 M Magnum",
+          "configuration_name": "M Magnum",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-056-M-Magnum-Gasoline-Chainsaw-Spare-Parts/P782785"
+        },
+        {
+          "pid": "P782783",
+          "raw_title": "056",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-056-Gasoline-Chainsaw-Spare-Parts/P782783"
+        }
+      ]
+    },
+    {
+      "identity_key": "066::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782793",
+          "raw_title": "066 BR",
+          "configuration_name": "BR",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-066-BR-Gasoline-Chainsaw-Spare-Parts/P782793"
+        },
+        {
+          "pid": "P782791",
+          "raw_title": "066 M Magnum",
+          "configuration_name": "M Magnum",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-066-M-Magnum-Gasoline-Chainsaw-Spare-Parts/P782791"
+        },
+        {
+          "pid": "P782792",
+          "raw_title": "066 MR Magnum Wrap Handle",
+          "configuration_name": "MR Magnum Wrap Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-066-MR-Magnum-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782792"
+        },
+        {
+          "pid": "P782789",
+          "raw_title": "066",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-066-Gasoline-Chainsaw-Spare-Parts/P782789"
+        }
+      ]
+    },
+    {
+      "identity_key": "090::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782805",
+          "raw_title": "090 G Gearbox",
+          "configuration_name": "G Gearbox",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-090-G-Gearbox-Gasoline-Chainsaw-Spare-Parts/P782805"
+        },
+        {
+          "pid": "P782804",
+          "raw_title": "090",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-090-Gasoline-Chainsaw-Spare-Parts/P782804"
+        }
+      ]
+    },
+    {
+      "identity_key": "ar_2000::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784144",
+          "raw_title": "AR 2000 Battery",
+          "configuration_name": "Battery",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-AR-2000-Battery-Spare-Parts/P784144"
+        },
+        {
+          "pid": "P784145",
+          "raw_title": "AR 2000 L Battery",
+          "configuration_name": "L Battery",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-AR-2000-L-Battery-Spare-Parts/P784145"
+        }
+      ]
+    },
+    {
+      "identity_key": "ar_3000::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784146",
+          "raw_title": "AR 3000 Battery",
+          "configuration_name": "Battery",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-AR-3000-Battery-Spare-Parts/P784146"
+        },
+        {
+          "pid": "P784147",
+          "raw_title": "AR 3000 L Battery",
+          "configuration_name": "L Battery",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-AR-3000-L-Battery-Spare-Parts/P784147"
+        }
+      ]
+    },
+    {
+      "identity_key": "be_600::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784661",
+          "raw_title": "BE 600 PLUS",
+          "configuration_name": "PLUS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BE-600-PLUS-Blower-Spare-Parts/P784661"
+        },
+        {
+          "pid": "P784660",
+          "raw_title": "BE 600",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BE-600-Blower-Spare-Parts/P784660"
+        }
+      ]
+    },
+    {
+      "identity_key": "bg_56::c_e",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783959",
+          "raw_title": "BG 56 C-E D",
+          "configuration_name": "D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-56-C-E-D-ErgoStart-Easy2Start-Catalytic-Converter-Blowers-Spare-Parts/P783959"
+        },
+        {
+          "pid": "P783960",
+          "raw_title": "BG 56 C-E",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-56-C-E-ErgoStart-Easy2Start-Blowers-Spare-Parts/P783960"
+        }
+      ]
+    },
+    {
+      "identity_key": "bg_56::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783958",
+          "raw_title": "BG 56-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-56-D-Catalytic-Converter-Blowers-Spare-Parts/P783958"
+        },
+        {
+          "pid": "P783961",
+          "raw_title": "BG 56",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-56-Blowers-Spare-Parts/P783961"
+        }
+      ]
+    },
+    {
+      "identity_key": "bg_85::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783969",
+          "raw_title": "BG 85-DZ Muffler with Spark Arrestor",
+          "configuration_name": "-DZ Muffler with Spark Arrestor",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-85-DZ-Catalytic-Converter-Muffler-with-Spark-Arrestor-Blowers-Spare-Parts/P783969"
+        },
+        {
+          "pid": "P783968",
+          "raw_title": "BG 85",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-85-Blowers-Spare-Parts/P783968"
+        }
+      ]
+    },
+    {
+      "identity_key": "bg_86::c_e",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783971",
+          "raw_title": "BG 86 C-E D",
+          "configuration_name": "D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-86-C-E-D-ErgoStart-Easy2Start-Catalytic-Converter-Blowers-Spare-Parts/P783971"
+        },
+        {
+          "pid": "P783972",
+          "raw_title": "BG 86 C-E",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-86-C-E-ErgoStart-Easy2Start-Blowers-Spare-Parts/P783972"
+        }
+      ]
+    },
+    {
+      "identity_key": "bg_86::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783970",
+          "raw_title": "BG 86-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-86-D-Catalytic-Converter-Blowers-Spare-Parts/P783970"
+        },
+        {
+          "pid": "P783973",
+          "raw_title": "BG 86",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BG-86-Blowers-Spare-Parts/P783973"
+        }
+      ]
+    },
+    {
+      "identity_key": "br_200::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783975",
+          "raw_title": "BR 200-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BR-200-D-Catalytic-Converter-Blowers-Spare-Parts/P783975"
+        },
+        {
+          "pid": "P783976",
+          "raw_title": "BR 200",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BR-200-Blower-Spare-Parts/P783976"
+        }
+      ]
+    },
+    {
+      "identity_key": "br_320::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783978",
+          "raw_title": "BR 320 L Quiet",
+          "configuration_name": "L Quiet",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BR-320-L-Quiet-Blower-Spare-Parts/P783978"
+        },
+        {
+          "pid": "P783979",
+          "raw_title": "BR 320 L-Z Muffler with Spark Arrestor",
+          "configuration_name": "L-Z Muffler with Spark Arrestor",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-BR-320-L-Z-Muffler-with-Spark-Arrestor-Blower-Spare-Parts/P783979"
+        }
+      ]
+    },
+    {
+      "identity_key": "fcb_km::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783268",
+          "raw_title": "FCB-KM - 4137 Kombitools",
+          "configuration_name": "- 4137",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FCB-KM-4137-Kombitools-Spare-Parts/P783268"
+        },
+        {
+          "pid": "P783269",
+          "raw_title": "FCB-KM - 4180 Kombitools",
+          "configuration_name": "- 4180",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FCB-KM-4180-Kombitools-Spare-Parts/P783269"
+        }
+      ]
+    },
+    {
+      "identity_key": "fcs_km::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783270",
+          "raw_title": "FCS-KM - 4137 Kombitools",
+          "configuration_name": "- 4137",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FCS-KM-4137-Kombitools-Spare-Parts/P783270"
+        },
+        {
+          "pid": "P783271",
+          "raw_title": "FCS-KM - 4180 Kombitools",
+          "configuration_name": "- 4180",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FCS-KM-4180-Kombitools-Spare-Parts/P783271"
+        },
+        {
+          "pid": "P783272",
+          "raw_title": "FCS-KM Kombitools",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FCS-KM-Kombitools-Spare-Parts/P783272"
+        }
+      ]
+    },
+    {
+      "identity_key": "fh_km::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783273",
+          "raw_title": "FH-KM 0� - 90� Kombitools",
+          "configuration_name": "0� - 90�",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FH-KM-0-90-Kombitools-Spare-Parts/P783273"
+        },
+        {
+          "pid": "P783274",
+          "raw_title": "FH-KM 135� Kombitools",
+          "configuration_name": "135�",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FH-KM-135-Kombitools-Spare-Parts/P783274"
+        },
+        {
+          "pid": "P783275",
+          "raw_title": "FH-KM 145� Kombitools",
+          "configuration_name": "145�",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FH-KM-145-Kombitools-Spare-Parts/P783275"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_240::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783047",
+          "raw_title": "FS 240-Z Muffler with Spark Arrestor",
+          "configuration_name": "-Z Muffler with Spark Arrestor",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-240-Z-Muffler-with-Spark-Arrestor-Brushcutters-Spare-Parts/P783047"
+        },
+        {
+          "pid": "P783051",
+          "raw_title": "FS 240",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-240-Brushcutters-Spare-Parts/P783051"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_38::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782963",
+          "raw_title": "FS 38-Z",
+          "configuration_name": "-Z",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-38-Z-BrushcuttersMuffler-with-Spark-Arrestor-Spare-Parts/P782963"
+        },
+        {
+          "pid": "P782959",
+          "raw_title": "FS 38",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-38-Brushcutters-Spare-Parts/P782959"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_400::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783089",
+          "raw_title": "FS 400-K Short Shaft",
+          "configuration_name": "-K Short Shaft",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-400-K-Short-Shaft-Clearing-Saws-Spare-Parts/P783089"
+        },
+        {
+          "pid": "P783090",
+          "raw_title": "FS 400-L Long Shaft",
+          "configuration_name": "-L Long Shaft",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-400-L-Long-Shaft-Clearing-Saws-Spare-Parts/P783090"
+        },
+        {
+          "pid": "P783091",
+          "raw_title": "FS 400",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-400-Clearing-Saws-Spare-Parts/P783091"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_410::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783096",
+          "raw_title": "FS 410 (4110)",
+          "configuration_name": "(4110)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-410-4110-Clearing-Saws-Spare-Parts/P783096"
+        },
+        {
+          "pid": "P783087",
+          "raw_title": "FS 410 (4147)",
+          "configuration_name": "(4147)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-410-4147-Clearing-Saws-Spare-Parts/P783087"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_45::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782961",
+          "raw_title": "FS 45-DZ",
+          "configuration_name": "-DZ",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-45-DZ-Catalytic-Converter-Brushcutters-Spare-Parts/P782961"
+        },
+        {
+          "pid": "P782964",
+          "raw_title": "FS 45-Z Muffler with Spark ArrestorBrushcutters",
+          "configuration_name": "-Z Muffler with Spark ArrestorBrushcutters",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-45-Z-Muffler-with-Spark-ArrestorBrushcutters-Spare-Parts/P782964"
+        },
+        {
+          "pid": "P782958",
+          "raw_title": "FS 45",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-45-Brushcutters-Spare-Parts/P782958"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_450::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783092",
+          "raw_title": "FS 450-K Short Shaft",
+          "configuration_name": "-K Short Shaft",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-450-K-Short-Shaft-Clearing-Saws-Spare-Parts/P783092"
+        },
+        {
+          "pid": "P783093",
+          "raw_title": "FS 450",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-450-Clearing-Saws-Spare-Parts/P783093"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_460::c_em",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783100",
+          "raw_title": "FS 460 C-EM L Long ShaftClearing Saws",
+          "configuration_name": "L Long ShaftClearing Saws",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-460-C-EM-L-ErgoStart-Easy2Start-M-Tronic-Long-ShaftClearing-Saws-Spare-Parts/P783100"
+        },
+        {
+          "pid": "P783098",
+          "raw_title": "FS 460 C-EM",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-460-C-EM-ErgoStart-Easy2Start-M-Tronic-Clearing-Saws-Spare-Parts/P783098"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_461::c_em",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783103",
+          "raw_title": "FS 461 C-EM L Long Shaft",
+          "configuration_name": "L Long Shaft",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-461-C-EM-L-ErgoStart-Easy2Start-M-Tronic-Long-Shaft-Clearing-Saws-Spare-Parts/P783103"
+        },
+        {
+          "pid": "P783102",
+          "raw_title": "FS 461 C-EM",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-461-C-EM-ErgoStart-Easy2Start-M-Tronic-Clearing-Saws-Spare-Parts/P783102"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_480::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783095",
+          "raw_title": "FS 480-K Short Shaft",
+          "configuration_name": "-K Short Shaft",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-480-K-Short-Shaft-Clearing-Saws-Spare-Parts/P783095"
+        },
+        {
+          "pid": "P783094",
+          "raw_title": "FS 480",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-480-Clearing-Saws-Spare-Parts/P783094"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_490::c_em",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783105",
+          "raw_title": "FS 490 C-EM W",
+          "configuration_name": "W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-490-C-EM-W-ErgoStart-Easy2Start-M-Tronic-Handle-Heating-Clearing-Saws-Spare-Parts/P783105"
+        },
+        {
+          "pid": "P783104",
+          "raw_title": "FS 490 C-EM",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-490-C-EM-ErgoStart-Easy2Start-M-Tronic-Clearing-Saws-Spare-Parts/P783104"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_50::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782971",
+          "raw_title": "FS 50 (4118)",
+          "configuration_name": "(4118)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-50-4118-Brushcutters-Spare-Parts/P782971"
+        },
+        {
+          "pid": "P782969",
+          "raw_title": "FS 50 (4144)",
+          "configuration_name": "(4144)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-50-4144-Brushcutters-Spare-Parts/P782969"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_550::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783112",
+          "raw_title": "FS 550-L Quiet",
+          "configuration_name": "-L Quiet",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-550-L-Quiet-Clearing-Saws-Spare-Parts/P783112"
+        },
+        {
+          "pid": "P783111",
+          "raw_title": "FS 550",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-550-Clearing-Saws-Spare-Parts/P783111"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_56::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782967",
+          "raw_title": "FS 56 (4125)",
+          "configuration_name": "(4125)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-56-4125-Brushcutters-Spare-Parts/P782967"
+        },
+        {
+          "pid": "P782985",
+          "raw_title": "FS 56 (4144)",
+          "configuration_name": "(4144)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-56-4144-Brushcutters-Spare-Parts/P782985"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_56::c_e",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782983",
+          "raw_title": "FS 56 C-E Z Muffler with Spark Arrestor",
+          "configuration_name": "Z Muffler with Spark Arrestor",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-56-C-E-Z-ErgoStart-Easy2Start-Muffler-with-Spark-Arrestor-Brushcutters-Spare-Parts/P782983"
+        },
+        {
+          "pid": "P782984",
+          "raw_title": "FS 56 C-E",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-56-C-E-ErgoStart-Easy2Start-Brushcutters-Spare-Parts/P782984"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_56::rc_e",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782981",
+          "raw_title": "FS 56 RC-E Loop Handle",
+          "configuration_name": "Loop Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-56-RC-E-ErgoStart-Easy2Start-Loop-Handle-Brushcutters-Spare-Parts/P782981"
+        },
+        {
+          "pid": "P782980",
+          "raw_title": "FS 56 RC-E Z Muffler with Spark Arrestor Loop Handle",
+          "configuration_name": "Z Muffler with Spark Arrestor Loop Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-56-RC-E-Z-ErgoStart-Easy2Start-Muffler-with-Spark-Arrestor-Loop-Handle-Brushcutters-Spare-Parts/P782980"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_61::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782988",
+          "raw_title": "FS 61 RE Electronic Ignition Wrap Handle",
+          "configuration_name": "RE Electronic Ignition Wrap Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-61-RE-Electronic-Ignition-Wrap-Handle-Brushcutters-Spare-Parts/P782988"
+        },
+        {
+          "pid": "P782987",
+          "raw_title": "FS 61",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-61-Brushcutters-Spare-Parts/P782987"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_65::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782994",
+          "raw_title": "FS 65 AVRE",
+          "configuration_name": "AVRE",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-65-AVRE-BrushcuttersAnti-Vibration-Electronic-Ignition-Wrap-Handle-Spare-Parts/P782994"
+        },
+        {
+          "pid": "P782953",
+          "raw_title": "FS 65-4",
+          "configuration_name": "-4",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-65-4-Brushcutters-Spare-Parts/P782953"
+        },
+        {
+          "pid": "P782993",
+          "raw_title": "FS 65",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-65-Brushcutters-Spare-Parts/P782993"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_80::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783003",
+          "raw_title": "FS 80 - 4137",
+          "configuration_name": "- 4137",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-80-4137-Brushcutters-Spare-Parts/P783003"
+        },
+        {
+          "pid": "P783007",
+          "raw_title": "FS 80 AVE - 4112 Anti-Vibration Electronic Ignition",
+          "configuration_name": "AVE - 4112 Anti-Vibration Electronic Ignition",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-80-AVE-4112-Anti-Vibration-Electronic-Ignition-Brushcutters-Spare-Parts/P783007"
+        },
+        {
+          "pid": "P783008",
+          "raw_title": "FS 80 AVRE - 4112 Anti-Vibration Electronic Ignition Wrap Handle",
+          "configuration_name": "AVRE - 4112 Anti-Vibration Electronic Ignition Wrap Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-80-AVRE-4112-Anti-Vibration-Electronic-Ignition-Wrap-Handle-Brushcutters-Spare-Parts/P783008"
+        },
+        {
+          "pid": "P783010",
+          "raw_title": "FS 80 RE - 4112 Wrap Handle Electronic Ignition",
+          "configuration_name": "RE - 4112 Wrap Handle Electronic Ignition",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-80-RE-4112-Wrap-Handle-Electronic-Ignition-Brushcutters-Spare-Parts/P783010"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_90::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783018",
+          "raw_title": "FS 90 - 4117",
+          "configuration_name": "- 4117",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-90-4117-Brushcutters-Spare-Parts/P783018"
+        },
+        {
+          "pid": "P783016",
+          "raw_title": "FS 90 - 4180",
+          "configuration_name": "- 4180",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-90-4180-Brushcutters-Spare-Parts/P783016"
+        }
+      ]
+    },
+    {
+      "identity_key": "fs_km::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783276",
+          "raw_title": "FS-KM - 4140 Kombitools",
+          "configuration_name": "- 4140",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-KM-4140-Kombitools-Spare-Parts/P783276"
+        },
+        {
+          "pid": "P783277",
+          "raw_title": "FS-KM - 4180 Kombitools",
+          "configuration_name": "- 4180",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FS-KM-4180-Kombitools-Spare-Parts/P783277"
+        }
+      ]
+    },
+    {
+      "identity_key": "fsa_30_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783054",
+          "raw_title": "FSA 30.0 Cordless trimmer",
+          "configuration_name": "Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FSA-300-Cordless-trimmer-Cordless-Trimmers-Spare-Parts/P783054"
+        },
+        {
+          "pid": "P783055",
+          "raw_title": "FSA 30.0 SET Cordless trimmer",
+          "configuration_name": "SET Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FSA-300-SET-Cordless-trimmer-Cordless-Trimmers-Spare-Parts/P783055"
+        },
+        {
+          "pid": "P783053",
+          "raw_title": "FSA 30.0",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-FSA-300-Cordless-Trimmers-Spare-Parts/P783053"
+        }
+      ]
+    },
+    {
+      "identity_key": "hla_135::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783213",
+          "raw_title": "HLA 135 Cordless Hedge Cutters",
+          "configuration_name": "Cordless Hedge Cutters",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HLA-135-Cordless-Hedge-Cutters-Spare-Parts/P783213"
+        },
+        {
+          "pid": "P783214",
+          "raw_title": "HLA 135 Cordless",
+          "configuration_name": "Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HLA-135-Cordless-Hedgetrimmer-Cordless-Hedge-Cutters-Spare-Parts/P783214"
+        }
+      ]
+    },
+    {
+      "identity_key": "hla_135::k",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783215",
+          "raw_title": "HLA 135 K Cordless",
+          "configuration_name": "Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HLA-135-K-Cordless-Hedgetrimmer-Cordless-Hedge-Cutters-Spare-Parts/P783215"
+        },
+        {
+          "pid": "P783216",
+          "raw_title": "HLA 135 K Short Shaft Cordless Hedge Cutters",
+          "configuration_name": "Short Shaft Cordless Hedge Cutters",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HLA-135-K-Short-Shaft-Cordless-Hedge-Cutters-Spare-Parts/P783216"
+        }
+      ]
+    },
+    {
+      "identity_key": "ht_km::base",
+      "count": 2,
+      "classification": "DUPLICATE_SOURCE_PAGE",
+      "entries": [
+        {
+          "pid": "P783284",
+          "raw_title": "HT-KM Kombitools",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HT-KM-Kombitools-Spare-Parts/P783284"
+        },
+        {
+          "pid": "P783285",
+          "raw_title": "HT-KM",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HT-KM-Pole-pruner-Kombitools-Spare-Parts/P783285"
+        }
+      ]
+    },
+    {
+      "identity_key": "hta_66::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782924",
+          "raw_title": "HTA 66 Cordless",
+          "configuration_name": "Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HTA-66-Cordless-Pole-Pruner-Spare-Parts/P782924"
+        },
+        {
+          "pid": "P782925",
+          "raw_title": "HTA 66-K Cordless",
+          "configuration_name": "-K Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-HTA-66-K-Cordless-Pole-Pruner-Spare-Parts/P782925"
+        }
+      ]
+    },
+    {
+      "identity_key": "imow_5_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783469",
+          "raw_title": "iMOW 5.0 EVO",
+          "configuration_name": "EVO",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-50-EVO-Robotic-Mowers-IMOW-Spare-Parts/P783469"
+        },
+        {
+          "pid": "P783468",
+          "raw_title": "iMOW 5.0",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-50-Robotic-Mowers-IMOW-Spare-Parts/P783468"
+        }
+      ]
+    },
+    {
+      "identity_key": "imow_6_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783471",
+          "raw_title": "iMOW 6.0 EVO",
+          "configuration_name": "EVO",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-60-EVO-Robotic-Mowers-IMOW-Spare-Parts/P783471"
+        },
+        {
+          "pid": "P783470",
+          "raw_title": "iMOW 6.0",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-60-Robotic-Mowers-IMOW-Spare-Parts/P783470"
+        }
+      ]
+    },
+    {
+      "identity_key": "imow_7_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783473",
+          "raw_title": "iMOW 7.0 EVO",
+          "configuration_name": "EVO",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-70-EVO-Robotic-Mowers-IMOW-Spare-Parts/P783473"
+        },
+        {
+          "pid": "P783472",
+          "raw_title": "iMOW 7.0",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-70-Robotic-Mowers-IMOW-Spare-Parts/P783472"
+        }
+      ]
+    },
+    {
+      "identity_key": "k_46::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783917",
+          "raw_title": "K46 BM Gear Box Tuff Torq",
+          "configuration_name": "BM Gear Box Tuff Torq",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-K46-BM-Gear-Box-Tuff-Torq-Spare-Parts/P783917"
+        },
+        {
+          "pid": "P783918",
+          "raw_title": "K46 F Gear Box Tuff Torq",
+          "configuration_name": "F Gear Box Tuff Torq",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-K46-F-Gear-Box-Tuff-Torq-Spare-Parts/P783918"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_4_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784377",
+          "raw_title": "MB 4.0 RT Mulching Mower 1 Speed Gearing Lawn Mower",
+          "configuration_name": "RT Mulching Mower 1 Speed Gearing",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-40-RT-Mulching-Mower-1-Speed-Gearing-Lawn-Mower-Spare-Parts/P784377"
+        },
+        {
+          "pid": "P784378",
+          "raw_title": "MB 4.0 RTP Mulching Mower 1 Speed Gearing Performance Lawn Mower",
+          "configuration_name": "RTP Mulching Mower 1 Speed Gearing Performance",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-40-RTP-Mulching-Mower-1-Speed-Gearing-Performance-Lawn-Mower-Spare-Parts/P784378"
+        },
+        {
+          "pid": "P784460",
+          "raw_title": "MB 4.0 RV Lawn Mower",
+          "configuration_name": "RV",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-40-RV-Lawn-Mower-Spare-Parts/P784460"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_448_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784391",
+          "raw_title": "MB 448.1 TC 1 Speed Gearing Comfort Equipment Lawn Mower",
+          "configuration_name": "TC 1 Speed Gearing Comfort Equipment",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-4481-TC-1-Speed-Gearing-Comfort-Equipment-Lawn-Mower-Spare-Parts/P784391"
+        },
+        {
+          "pid": "P784464",
+          "raw_title": "MB 448.1 TX 1 speed gearing Basic model Lawn Mower",
+          "configuration_name": "TX 1 speed gearing Basic model",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-4481-TX-1-speed-gearing-Basic-model-Lawn-Mower-Spare-Parts/P784464"
+        },
+        {
+          "pid": "P784392",
+          "raw_title": "MB 448.1 VC Vario Drive Comfort Equipment Lawn Mower",
+          "configuration_name": "VC Vario Drive Comfort Equipment",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-4481-VC-Vario-Drive-Comfort-Equipment-Lawn-Mower-Spare-Parts/P784392"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_455::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784396",
+          "raw_title": "MB 455 BC Lawn Mower",
+          "configuration_name": "BC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-455-BC-Lawn-Mower-Spare-Parts/P784396"
+        },
+        {
+          "pid": "P784397",
+          "raw_title": "MB 455 Lawn Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-455-Lawn-Mower-Spare-Parts/P784397"
+        },
+        {
+          "pid": "P784400",
+          "raw_title": "MB 455 MM Lawn Mower",
+          "configuration_name": "MM",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-455-MM-Lawn-Mower-Spare-Parts/P784400"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_505::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784408",
+          "raw_title": "MB 505 KAT Lawn Mower",
+          "configuration_name": "KAT",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-505-KAT-Lawn-Mower-Spare-Parts/P784408"
+        },
+        {
+          "pid": "P784406",
+          "raw_title": "MB 505 Lawn Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-505-Lawn-Mower-Spare-Parts/P784406"
+        },
+        {
+          "pid": "P784410",
+          "raw_title": "MB 505 MM Lawn Mower",
+          "configuration_name": "MM",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-505-MM-Lawn-Mower-Spare-Parts/P784410"
+        },
+        {
+          "pid": "P784403",
+          "raw_title": "MB 505 MQ Lawn Mower",
+          "configuration_name": "MQ",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-505-MQ-Lawn-Mower-Spare-Parts/P784403"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_545_0::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784411",
+          "raw_title": "MB 545.0 Lawn Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5450-Lawn-Mower-Spare-Parts/P784411"
+        },
+        {
+          "pid": "P784415",
+          "raw_title": "MB 545.0 VE Vario Drive Electric Start Lawn Mower",
+          "configuration_name": "VE Vario Drive Electric Start",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5450-VE-Vario-Drive-Electric-Start-Lawn-Mower-Spare-Parts/P784415"
+        },
+        {
+          "pid": "P784414",
+          "raw_title": "MB 545.0 VM Vario Drive Mulching Lawn Mower",
+          "configuration_name": "VM Vario Drive Mulching",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5450-VM-Vario-Drive-Mulching-Lawn-Mower-Spare-Parts/P784414"
+        },
+        {
+          "pid": "P784416",
+          "raw_title": "MB 545.0 VR Vario Drive Mulching Lawn Mower",
+          "configuration_name": "VR Vario Drive Mulching",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5450-VR-Vario-Drive-Mulching-Lawn-Mower-Spare-Parts/P784416"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_545_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784465",
+          "raw_title": "MB 545.1 VE Vario Drive Electric Start Lawn Mower",
+          "configuration_name": "VE Vario Drive Electric Start",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5451-VE-Vario-Drive-Electric-Start-Lawn-Mower-Spare-Parts/P784465"
+        },
+        {
+          "pid": "P784418",
+          "raw_title": "MB 545.1 VM Vario Drive Mulching Lawn Mower",
+          "configuration_name": "VM Vario Drive Mulching",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5451-VM-Vario-Drive-Mulching-Lawn-Mower-Spare-Parts/P784418"
+        },
+        {
+          "pid": "P784419",
+          "raw_title": "MB 545.1 VR Lawn Mower",
+          "configuration_name": "VR",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-5451-VR-Lawn-Mower-Spare-Parts/P784419"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_555::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784466",
+          "raw_title": "MB 555 BS Lawn Mower",
+          "configuration_name": "BS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-555-BS-Lawn-Mower-Spare-Parts/P784466"
+        },
+        {
+          "pid": "P784424",
+          "raw_title": "MB 555 Lawn Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-555-Lawn-Mower-Spare-Parts/P784424"
+        },
+        {
+          "pid": "P784420",
+          "raw_title": "MB 555 MQ Lawn Mower",
+          "configuration_name": "MQ",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-555-MQ-Lawn-Mower-Spare-Parts/P784420"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_6_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784468",
+          "raw_title": "MB 6.1 RH Mulching mower High grass mower Lawn Mower",
+          "configuration_name": "RH Mulching mower High grass mower",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-61-RH-Mulching-mower-High-grass-mower-Lawn-Mower-Spare-Parts/P784468"
+        },
+        {
+          "pid": "P784469",
+          "raw_title": "MB 6.1 RV Mulching Mower Vario Drive Lawn Mower",
+          "configuration_name": "RV Mulching Mower Vario Drive",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-61-RV-Mulching-Mower-Vario-Drive-Lawn-Mower-Spare-Parts/P784469"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_650_0::base",
+      "count": 5,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784471",
+          "raw_title": "MB 650.0 OS Lawn Mower",
+          "configuration_name": "OS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6500-OS-Lawn-Mower-Spare-Parts/P784471"
+        },
+        {
+          "pid": "P784430",
+          "raw_title": "MB 650.0 VE Lawn Mower",
+          "configuration_name": "VE",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6500-VE-Lawn-Mower-Spare-Parts/P784430"
+        },
+        {
+          "pid": "P784429",
+          "raw_title": "MB 650.0 VM Vario Drive Mulching Lawn Mower",
+          "configuration_name": "VM Vario Drive Mulching",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6500-VM-Vario-Drive-Mulching-Lawn-Mower-Spare-Parts/P784429"
+        },
+        {
+          "pid": "P784431",
+          "raw_title": "MB 650.0 VR Vario Drive Mulching Lawn Mower",
+          "configuration_name": "VR Vario Drive Mulching",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6500-VR-Vario-Drive-Mulching-Lawn-Mower-Spare-Parts/P784431"
+        },
+        {
+          "pid": "P784427",
+          "raw_title": "MB 650.0 VS Vario Drive Blade Break Clutch Lawn Mower",
+          "configuration_name": "VS Vario Drive Blade Break Clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6500-VS-Vario-Drive-Blade-Break-Clutch-Lawn-Mower-Spare-Parts/P784427"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_655_0::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784435",
+          "raw_title": "MB 655.0 G Lawn Mower",
+          "configuration_name": "G",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6550-G-Lawn-Mower-Spare-Parts/P784435"
+        },
+        {
+          "pid": "P784436",
+          "raw_title": "MB 655.0 GM Lawn Mower",
+          "configuration_name": "GM",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6550-GM-Lawn-Mower-Spare-Parts/P784436"
+        },
+        {
+          "pid": "P784472",
+          "raw_title": "MB 655.0 KS Blade Brakew Clutch Lawn Mower",
+          "configuration_name": "KS Blade Brakew Clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6550-KS-Blade-Brakew-Clutch-Lawn-Mower-Spare-Parts/P784472"
+        },
+        {
+          "pid": "P784437",
+          "raw_title": "MB 655.0 VM Lawn Mower",
+          "configuration_name": "VM",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6550-VM-Lawn-Mower-Spare-Parts/P784437"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_655_1::base",
+      "count": 5,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784438",
+          "raw_title": "MB 655.1 G 3 Speed Gearing Lawn Mower",
+          "configuration_name": "G 3 Speed Gearing",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6551-G-3-Speed-Gearing-Lawn-Mower-Spare-Parts/P784438"
+        },
+        {
+          "pid": "P784473",
+          "raw_title": "MB 655.1 GS 3 speed gearing Blade brake clutch Lawn Mower",
+          "configuration_name": "GS 3 speed gearing Blade brake clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6551-GS-3-speed-gearing-Blade-brake-clutch-Lawn-Mower-Spare-Parts/P784473"
+        },
+        {
+          "pid": "P784439",
+          "raw_title": "MB 655.1 RS Vario Drive Mulching Mower Blade Brake Clutch Lawn Mower",
+          "configuration_name": "RS Vario Drive Mulching Mower Blade Brake Clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6551-RS-Vario-Drive-Mulching-Mower-Blade-Brake-Clutch-Lawn-Mower-Spare-Parts/P784439"
+        },
+        {
+          "pid": "P784440",
+          "raw_title": "MB 655.1 VM Vario Drive Mulching Mower Blade Brake Clutch Lawn Mower",
+          "configuration_name": "VM Vario Drive Mulching Mower Blade Brake Clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6551-VM-Vario-Drive-Mulching-Mower-Blade-Brake-Clutch-Lawn-Mower-Spare-Parts/P784440"
+        },
+        {
+          "pid": "P784441",
+          "raw_title": "MB 655.1 VR Vario Drive Mulching Mower Lawn Mower",
+          "configuration_name": "VR Vario Drive Mulching Mower",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6551-VR-Vario-Drive-Mulching-Mower-Lawn-Mower-Spare-Parts/P784441"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_655_3::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784443",
+          "raw_title": "MB 655.3 RS Mulching Mower Blade Brake Clutch Lawn Mower",
+          "configuration_name": "RS Mulching Mower Blade Brake Clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6553-RS-Mulching-Mower-Blade-Brake-Clutch-Lawn-Mower-Spare-Parts/P784443"
+        },
+        {
+          "pid": "P784445",
+          "raw_title": "MB 655.3 VS Lawn Mower",
+          "configuration_name": "VS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6553-VS-Lawn-Mower-Spare-Parts/P784445"
+        },
+        {
+          "pid": "P784474",
+          "raw_title": "MB 655.3 YS Lawn Mower",
+          "configuration_name": "YS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-6553-YS-Lawn-Mower-Spare-Parts/P784474"
+        }
+      ]
+    },
+    {
+      "identity_key": "mb_756_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784452",
+          "raw_title": "MB 756.0 GS 3 Speed Gearing Blade Brake Clutch Lawn Mower",
+          "configuration_name": "GS 3 Speed Gearing Blade Brake Clutch",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-7560-GS-3-Speed-Gearing-Blade-Brake-Clutch-Lawn-Mower-Spare-Parts/P784452"
+        },
+        {
+          "pid": "P784453",
+          "raw_title": "MB 756.0 YC Hydrostatic gearbox Comfort equipment Lawn Mower",
+          "configuration_name": "YC Hydrostatic gearbox Comfort equipment",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MB-7560-YC-Hydrostatic-gearbox-Comfort-equipment-Lawn-Mower-Spare-Parts/P784453"
+        }
+      ]
+    },
+    {
+      "identity_key": "mi_422_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784526",
+          "raw_title": "MI 422.0 P Robotic Mower",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-4220-P-Robotic-Mower-Spare-Parts/P784526"
+        },
+        {
+          "pid": "P784525",
+          "raw_title": "MI 422.0 Robotic Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-4220-Robotic-Mower-Spare-Parts/P784525"
+        }
+      ]
+    },
+    {
+      "identity_key": "mi_422_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784528",
+          "raw_title": "MI 422.1 P Robotic Mower",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-4221-P-Robotic-Mower-Spare-Parts/P784528"
+        },
+        {
+          "pid": "P784529",
+          "raw_title": "MI 422.1 PC Robotic Mower",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-4221-PC-Robotic-Mower-Spare-Parts/P784529"
+        },
+        {
+          "pid": "P784527",
+          "raw_title": "MI 422.1 Robotic Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-4221-Robotic-Mower-Spare-Parts/P784527"
+        }
+      ]
+    },
+    {
+      "identity_key": "mi_632_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784533",
+          "raw_title": "MI 632.0 P Robotic Mower",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6320-P-Robotic-Mower-Spare-Parts/P784533"
+        },
+        {
+          "pid": "P784534",
+          "raw_title": "MI 632.0 PC Robotic Mower",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6320-PC-Robotic-Mower-Spare-Parts/P784534"
+        },
+        {
+          "pid": "P784531",
+          "raw_title": "MI 632.0 Robotic Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6320-Robotic-Mower-Spare-Parts/P784531"
+        }
+      ]
+    },
+    {
+      "identity_key": "mi_632_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784538",
+          "raw_title": "MI 632.1 P Robotic Mower",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6321-P-Robotic-Mower-Spare-Parts/P784538"
+        },
+        {
+          "pid": "P784539",
+          "raw_title": "MI 632.1 PC Robotic Mower",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6321-PC-Robotic-Mower-Spare-Parts/P784539"
+        },
+        {
+          "pid": "P784535",
+          "raw_title": "MI 632.1 Robotic Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6321-Robotic-Mower-Spare-Parts/P784535"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_151::c_e",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782550",
+          "raw_title": "MS 151 C-E Z Muffler with Spark Arrestor",
+          "configuration_name": "Z Muffler with Spark Arrestor",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-151-C-E-Z-ErgoStart-Easy2Start-Muffler-with-Spark-Arrestor-Gasoline-Chainsaw-Spare-Parts/P782550"
+        },
+        {
+          "pid": "P780952",
+          "raw_title": "MS 151 C-E",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-151-C-E-ErgoStart-Easy2Start-Gasoline-Chainsaw-Spare-Parts/P780952"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_170::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782554",
+          "raw_title": "MS 170-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-170-D-Catalytic-Converter-Gasoline-Chainsaw-Spare-Parts/P782554"
+        },
+        {
+          "pid": "P782553",
+          "raw_title": "MS 170",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-170-Gasoline-Chainsaw-Spare-Parts/P782553"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_180::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782561",
+          "raw_title": "MS 180 C-B D Catalytic Conerter",
+          "configuration_name": "D Catalytic Conerter",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-C-B-D-Quick-Chain-Tensioner-Catalytic-Conerter-Gasoline-Chainsaw-Spare-Parts/P782561"
+        },
+        {
+          "pid": "P782560",
+          "raw_title": "MS 180 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-C-B-Quick-Chain-Tensioner-Gasoline-Chainsaw-Spare-Parts/P782560"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_260::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782610",
+          "raw_title": "MS 260-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-260-D-Catalytic-Converter-Gasoline-Chainsaw-Spare-Parts/P782610"
+        },
+        {
+          "pid": "P782611",
+          "raw_title": "MS 260-DWGasoline",
+          "configuration_name": "-DWGasoline",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-260-DW-Catalytic-Converter-Handle-HeatingGasoline-Chainsaw-Spare-Parts/P782611"
+        },
+        {
+          "pid": "P782608",
+          "raw_title": "MS 260-W",
+          "configuration_name": "-W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-260-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782608"
+        },
+        {
+          "pid": "P782607",
+          "raw_title": "MS 260",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-260-Gasoline-Chainsaw-Spare-Parts/P782607"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_261::c_m",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782618",
+          "raw_title": "MS 261 C-M VWGasoline",
+          "configuration_name": "VWGasoline",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-C-M-VW-M-Tronic-Carburetor-Heating-Handle-HeatingGasoline-Chainsaw-Spare-Parts/P782618"
+        },
+        {
+          "pid": "P782615",
+          "raw_title": "MS 261 C-M",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-C-M-325-R-Chainsaw-Gasoline-Chainsaw-Spare-Parts/P782615"
+        },
+        {
+          "pid": "P782617",
+          "raw_title": "MS 261 C-M",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782617"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_261::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782613",
+          "raw_title": "MS 261-VW",
+          "configuration_name": "-VW",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-VW-Catalytic-Converter-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782613"
+        },
+        {
+          "pid": "P782612",
+          "raw_title": "MS 261",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-Gasoline-Chainsaw-Spare-Parts/P782612"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_361::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782642",
+          "raw_title": "MS 361-W",
+          "configuration_name": "-W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-361-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782642"
+        },
+        {
+          "pid": "P782640",
+          "raw_title": "MS 361",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-361-Gasoline-Chainsaw-Spare-Parts/P782640"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_362::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782646",
+          "raw_title": "MS 362-VW",
+          "configuration_name": "-VW",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-362-VW-Carburetor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782646"
+        },
+        {
+          "pid": "P782645",
+          "raw_title": "MS 362",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-362-Gasoline-Chainsaw-Spare-Parts/P782645"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_440::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782655",
+          "raw_title": "MS 440-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-440-D-Catalytic-Converter-Gasoline-Chainsaw-Spare-Parts/P782655"
+        },
+        {
+          "pid": "P782656",
+          "raw_title": "MS 440",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-440-Gasoline-Chainsaw-Spare-Parts/P782656"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_441::c_m",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782661",
+          "raw_title": "MS 441 C-M W",
+          "configuration_name": "W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-C-M-W-M-Tronic-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782661"
+        },
+        {
+          "pid": "P782660",
+          "raw_title": "MS 441 C-M",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782660"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_441::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782658",
+          "raw_title": "MS 441-W",
+          "configuration_name": "-W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782658"
+        },
+        {
+          "pid": "P782657",
+          "raw_title": "MS 441",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-Gasoline-Chainsaw-Spare-Parts/P782657"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_460::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782664",
+          "raw_title": "MS 460-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-460-D-Catalytic-Converter-Gasoline-Chainsaw-Spare-Parts/P782664"
+        },
+        {
+          "pid": "P782665",
+          "raw_title": "MS 460-R Wrap Handle",
+          "configuration_name": "-R Wrap Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-460-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782665"
+        },
+        {
+          "pid": "P782663",
+          "raw_title": "MS 460-W",
+          "configuration_name": "-W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-460-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782663"
+        },
+        {
+          "pid": "P782662",
+          "raw_title": "MS 460",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-460-Gasoline-Chainsaw-Spare-Parts/P782662"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_461::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782667",
+          "raw_title": "MS 461-R Wrap Handle",
+          "configuration_name": "-R Wrap Handle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+        },
+        {
+          "pid": "P782666",
+          "raw_title": "MS 461",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-Gasoline-Chainsaw-Spare-Parts/P782666"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_462::c_m",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782670",
+          "raw_title": "MS 462 C-M R",
+          "configuration_name": "R",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-R-Gasoline-Chainsaw-Spare-Parts/P782670"
+        },
+        {
+          "pid": "P782668",
+          "raw_title": "MS 462 C-M",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782668"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_500i::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782672",
+          "raw_title": "MS 500i-W",
+          "configuration_name": "-W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-500i-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782672"
+        },
+        {
+          "pid": "P782671",
+          "raw_title": "MS 500i",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-500i-Gasoline-Chainsaw-Spare-Parts/P782671"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_660::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782676",
+          "raw_title": "MS 660-W",
+          "configuration_name": "-W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+        },
+        {
+          "pid": "P782675",
+          "raw_title": "MS 660",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-Gasoline-Chainsaw-Spare-Parts/P782675"
+        }
+      ]
+    },
+    {
+      "identity_key": "ms_661::c_m",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782678",
+          "raw_title": "MS 661 C-M W",
+          "configuration_name": "W",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-661-C-M-W-M-Tronic-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782678"
+        },
+        {
+          "pid": "P782677",
+          "raw_title": "MS 661 C-M",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-661-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782677"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_120::c_b",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782813",
+          "raw_title": "MSA 120 C-B 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-120-C-B-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782813"
+        },
+        {
+          "pid": "P782814",
+          "raw_title": "MSA 120 C-B 1/4\"P SET Cordless chain saw",
+          "configuration_name": "1/4\"P SET Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-120-C-B-1-4P-SET-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782814"
+        },
+        {
+          "pid": "P782812",
+          "raw_title": "MSA 120 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-120-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782812"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_140::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782816",
+          "raw_title": "MSA 140 C-B 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-140-C-B-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782816"
+        },
+        {
+          "pid": "P782815",
+          "raw_title": "MSA 140 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-140-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782815"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_160::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782820",
+          "raw_title": "MSA 160 C-B 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-160-C-B-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782820"
+        },
+        {
+          "pid": "P782819",
+          "raw_title": "MSA 160 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-160-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782819"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_160_0::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782818",
+          "raw_title": "MSA 160.0 C-B 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-1600-C-B-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782818"
+        },
+        {
+          "pid": "P782817",
+          "raw_title": "MSA 160.0 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-1600-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782817"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_161::t",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782823",
+          "raw_title": "MSA 161 T 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-161-T-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782823"
+        },
+        {
+          "pid": "P782822",
+          "raw_title": "MSA 161 T Tophandle",
+          "configuration_name": "Tophandle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-161-T-Tophandle-Battery-Chainsaw-Spare-Parts/P782822"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_200::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782827",
+          "raw_title": "MSA 200 C-B 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-200-C-B-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782827"
+        },
+        {
+          "pid": "P782826",
+          "raw_title": "MSA 200 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-200-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782826"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_200_0::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782825",
+          "raw_title": "MSA 200.0 C-B 1/4\"P Cordless chain saw",
+          "configuration_name": "1/4\"P Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2000-C-B-1-4P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782825"
+        },
+        {
+          "pid": "P782824",
+          "raw_title": "MSA 200.0 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2000-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782824"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_220_0::c_b",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782829",
+          "raw_title": "MSA 220.0 C-B Cordless chain saw",
+          "configuration_name": "Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2200-C-B-3-8P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782829"
+        },
+        {
+          "pid": "P782828",
+          "raw_title": "MSA 220.0 C-B",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2200-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782828"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_220_0::t",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782832",
+          "raw_title": "MSA 220.0 T Cordless chain saw",
+          "configuration_name": "Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2200-T-3-8P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782832"
+        },
+        {
+          "pid": "P782831",
+          "raw_title": "MSA 220.0 T Tophandle",
+          "configuration_name": "Tophandle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2200-T-Tophandle-Battery-Chainsaw-Spare-Parts/P782831"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_220_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782834",
+          "raw_title": "MSA 220.0 TC-O Cordless chain saw",
+          "configuration_name": "TC-O Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2200-TC-O-3-8P-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782834"
+        },
+        {
+          "pid": "P782833",
+          "raw_title": "MSA 220.0 TC-O Tophandle",
+          "configuration_name": "TC-O Tophandle",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2200-TC-O-Tophandle-Battery-Chainsaw-Spare-Parts/P782833"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_220_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P787631",
+          "raw_title": "MSA 220.1 TC-O Cordless",
+          "configuration_name": "TC-O Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2201-TC-O-Cordless-Chainsaw-Spare-Parts/P787631"
+        },
+        {
+          "pid": "P787630",
+          "raw_title": "MSA 220.1",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2201-Battery-Chainsaw-Spare-Parts/P787630"
+        }
+      ]
+    },
+    {
+      "identity_key": "msa_300::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P782836",
+          "raw_title": "MSA 300 Cordless chain saw",
+          "configuration_name": "Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-300-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782836"
+        },
+        {
+          "pid": "P782837",
+          "raw_title": "MSA 300.0Cordless chain saw",
+          "configuration_name": ".0Cordless chain saw",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-3000-325-Cordless-chain-saw-Battery-Chainsaw-Spare-Parts/P782837"
+        }
+      ]
+    },
+    {
+      "identity_key": "mt_585::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784583",
+          "raw_title": "MT 585 L Ride-On Mower",
+          "configuration_name": "L",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-585-L-Ride-On-Mower-Spare-Parts/P784583"
+        },
+        {
+          "pid": "P784603",
+          "raw_title": "MT 585 Ride-On Mower",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-585-Ride-On-Mower-Spare-Parts/P784603"
+        }
+      ]
+    },
+    {
+      "identity_key": "mt_6127_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784604",
+          "raw_title": "MT 6127.0 KL Ride-On Mower",
+          "configuration_name": "KL",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-61270-KL-Ride-On-Mower-Spare-Parts/P784604"
+        },
+        {
+          "pid": "P784589",
+          "raw_title": "MT 6127.0 ZL Ride-On Mower",
+          "configuration_name": "ZL",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-61270-ZL-Ride-On-Mower-Spare-Parts/P784589"
+        }
+      ]
+    },
+    {
+      "identity_key": "mt_640::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784590",
+          "raw_title": "MT 640 (1996) Ride-On Mower",
+          "configuration_name": "(1996)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-640-1996-Ride-On-Mower-Spare-Parts/P784590"
+        },
+        {
+          "pid": "P781725",
+          "raw_title": "MT 640 (1997) Ride-On Mower",
+          "configuration_name": "(1997)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-640-1997-Ride-On-Mower-Spare-Parts/P781725"
+        }
+      ]
+    },
+    {
+      "identity_key": "mt_780::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784594",
+          "raw_title": "MT 780 (1999) Ride-On Mower",
+          "configuration_name": "(1999)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-780-1999-Ride-On-Mower-Spare-Parts/P784594"
+        },
+        {
+          "pid": "P784595",
+          "raw_title": "MT 780 (200 2001) Ride-On Mower",
+          "configuration_name": "(200 2001)",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MT-780-200-2001-Ride-On-Mower-Spare-Parts/P784595"
+        }
+      ]
+    },
+    {
+      "identity_key": "mvp_600_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783889",
+          "raw_title": "MVP 600.1 Cordless Powerheads MVP",
+          "configuration_name": "Cordless Powerheads MVP",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MVP-6001-Cordless-Powerheads-MVP-Spare-Parts/P783889"
+        },
+        {
+          "pid": "P783891",
+          "raw_title": "MVP 600.1 VS Cordless Powerheads MVP",
+          "configuration_name": "VS Cordless Powerheads MVP",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-MVP-6001-VS-Cordless-Powerheads-MVP-Spare-Parts/P783891"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_102::k",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784035",
+          "raw_title": "RE 102 K Cold Water Electric Pressure Washer",
+          "configuration_name": "Cold Water Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-102-K-Cold-Water-Electric-Pressure-Washer-Spare-Parts/P784035"
+        },
+        {
+          "pid": "P784036",
+          "raw_title": "RE 102 K USA Cold Water Electric Pressure Washer",
+          "configuration_name": "USA Cold Water Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-102-K-USA-Cold-Water-Electric-Pressure-Washer-Spare-Parts/P784036"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_110::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784048",
+          "raw_title": "RE 110 Electric Pressure Washer",
+          "configuration_name": "Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-110-Electric-Pressure-Washer-Spare-Parts/P784048"
+        },
+        {
+          "pid": "P784049",
+          "raw_title": "RE 110 PLUS Electric Pressure Washer",
+          "configuration_name": "PLUS Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-110-PLUS-Electric-Pressure-Washer-Spare-Parts/P784049"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_120::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784058",
+          "raw_title": "RE 120 Electric Pressure Washer",
+          "configuration_name": "Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-120-Electric-Pressure-Washer-Spare-Parts/P784058"
+        },
+        {
+          "pid": "P784059",
+          "raw_title": "RE 120 PLUS Electric Pressure Washer",
+          "configuration_name": "PLUS Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-120-PLUS-Electric-Pressure-Washer-Spare-Parts/P784059"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_141::k",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784065",
+          "raw_title": "RE 141 K Cold Water Electric Pressure Washer",
+          "configuration_name": "Cold Water Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-141-K-Cold-Water-Electric-Pressure-Washer-Spare-Parts/P784065"
+        },
+        {
+          "pid": "P784064",
+          "raw_title": "RE 141 K PLUS Cold Water Electric Pressure Washer With Hose Reel",
+          "configuration_name": "PLUS Cold Water Electric Pressure Washer With Hose Reel",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-141-K-PLUS-Cold-Water-Electric-Pressure-Washer-With-Hose-Reel-Spare-Parts/P784064"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_142::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784067",
+          "raw_title": "RE 142 Electric Pressure Washer",
+          "configuration_name": "Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-142-Electric-Pressure-Washer-Spare-Parts/P784067"
+        },
+        {
+          "pid": "P784069",
+          "raw_title": "RE 142 PLUS Electric Pressure Washer",
+          "configuration_name": "PLUS Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-142-PLUS-Electric-Pressure-Washer-Spare-Parts/P784069"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_143::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784071",
+          "raw_title": "RE 143 Electric Pressure Washer",
+          "configuration_name": "Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-143-Electric-Pressure-Washer-Spare-Parts/P784071"
+        },
+        {
+          "pid": "P784070",
+          "raw_title": "RE 143 PLUS Electric Pressure Washer",
+          "configuration_name": "PLUS Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-143-PLUS-Electric-Pressure-Washer-Spare-Parts/P784070"
+        }
+      ]
+    },
+    {
+      "identity_key": "re_360::k",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784086",
+          "raw_title": "RE 360 K Cold Water Electric Pressure Washer",
+          "configuration_name": "Cold Water Electric",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-360-K-Cold-Water-Electric-Pressure-Washer-Spare-Parts/P784086"
+        },
+        {
+          "pid": "P784088",
+          "raw_title": "RE 360 K PLUS Cold Water Electric Pressure Washer With Hose Reel",
+          "configuration_name": "PLUS Cold Water Electric Pressure Washer With Hose Reel",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RE-360-K-PLUS-Cold-Water-Electric-Pressure-Washer-With-Hose-Reel-Spare-Parts/P784088"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_2_2::r",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P787647",
+          "raw_title": "RM 2.2 R (BR) Cordless Lawn Mower",
+          "configuration_name": "(BR) Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-22-R-BR-Cordless-Lawn-Mower-Spare-Parts/P787647"
+        },
+        {
+          "pid": "P783353",
+          "raw_title": "RM 2.2 R",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-22-R-Lawn-Mowers-Spare-Parts/P783353"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_4_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783325",
+          "raw_title": "RM 4.0 RT",
+          "configuration_name": "RT",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-40-RT-Lawn-Mowers-Spare-Parts/P783325"
+        },
+        {
+          "pid": "P783326",
+          "raw_title": "RM 4.0 RTP",
+          "configuration_name": "RTP",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-40-RTP-Lawn-Mowers-Spare-Parts/P783326"
+        },
+        {
+          "pid": "P783356",
+          "raw_title": "RM 4.0 RV",
+          "configuration_name": "RV",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-40-RV-Lawn-Mowers-Spare-Parts/P783356"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_448_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783330",
+          "raw_title": "RM 448.0 TC",
+          "configuration_name": "TC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-4480-TC-Lawn-Mowers-Spare-Parts/P783330"
+        },
+        {
+          "pid": "P783360",
+          "raw_title": "RM 448.0 TX",
+          "configuration_name": "TX",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-4480-TX-Lawn-Mowers-Spare-Parts/P783360"
+        },
+        {
+          "pid": "P783331",
+          "raw_title": "RM 448.0 VC",
+          "configuration_name": "VC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-4480-VC-Lawn-Mowers-Spare-Parts/P783331"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_448_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783332",
+          "raw_title": "RM 448.1 TC",
+          "configuration_name": "TC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-4481-TC-Lawn-Mowers-Spare-Parts/P783332"
+        },
+        {
+          "pid": "P783333",
+          "raw_title": "RM 448.1 TX",
+          "configuration_name": "TX",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-4481-TX-Lawn-Mowers-Spare-Parts/P783333"
+        },
+        {
+          "pid": "P783334",
+          "raw_title": "RM 448.1 VC",
+          "configuration_name": "VC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-4481-VC-Lawn-Mowers-Spare-Parts/P783334"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_545_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783361",
+          "raw_title": "RM 545.0 VE",
+          "configuration_name": "VE",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-5450-VE-Lawn-Mowers-Spare-Parts/P783361"
+        },
+        {
+          "pid": "P783336",
+          "raw_title": "RM 545.0 VM",
+          "configuration_name": "VM",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-5450-VM-Lawn-Mowers-Spare-Parts/P783336"
+        },
+        {
+          "pid": "P783337",
+          "raw_title": "RM 545.0 VR",
+          "configuration_name": "VR",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-5450-VR-Lawn-Mowers-Spare-Parts/P783337"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_545_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783362",
+          "raw_title": "RM 545.1 VE",
+          "configuration_name": "VE",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-5451-VE-Lawn-Mowers-Spare-Parts/P783362"
+        },
+        {
+          "pid": "P783339",
+          "raw_title": "RM 545.1 VM",
+          "configuration_name": "VM",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-5451-VM-Lawn-Mowers-Spare-Parts/P783339"
+        },
+        {
+          "pid": "P783340",
+          "raw_title": "RM 545.1 VR",
+          "configuration_name": "VR",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-5451-VR-Lawn-Mowers-Spare-Parts/P783340"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_655_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783344",
+          "raw_title": "RM 655.0 RS",
+          "configuration_name": "RS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-6550-RS-Lawn-Mowers-Spare-Parts/P783344"
+        },
+        {
+          "pid": "P783345",
+          "raw_title": "RM 655.0 VS",
+          "configuration_name": "VS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-6550-VS-Lawn-Mowers-Spare-Parts/P783345"
+        },
+        {
+          "pid": "P783365",
+          "raw_title": "RM 655.0 YS",
+          "configuration_name": "YS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-6550-YS-Lawn-Mowers-Spare-Parts/P783365"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_655_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783346",
+          "raw_title": "RM 655.1 RS",
+          "configuration_name": "RS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-6551-RS-Lawn-Mowers-Spare-Parts/P783346"
+        },
+        {
+          "pid": "P783347",
+          "raw_title": "RM 655.1 VS",
+          "configuration_name": "VS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-6551-VS-Lawn-Mowers-Spare-Parts/P783347"
+        }
+      ]
+    },
+    {
+      "identity_key": "rm_756_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783348",
+          "raw_title": "RM 756.0 GC",
+          "configuration_name": "GC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-7560-GC-Lawn-Mowers-Spare-Parts/P783348"
+        },
+        {
+          "pid": "P783349",
+          "raw_title": "RM 756.0 GS",
+          "configuration_name": "GS",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-7560-GS-Lawn-Mowers-Spare-Parts/P783349"
+        },
+        {
+          "pid": "P783350",
+          "raw_title": "RM 756.0 YC",
+          "configuration_name": "YC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RM-7560-YC-Lawn-Mowers-Spare-Parts/P783350"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_2_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783396",
+          "raw_title": "RMA 2.0 RP Cordless",
+          "configuration_name": "RP Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-20-RP-Cordless-Lawn-Mowers-Spare-Parts/P783396"
+        },
+        {
+          "pid": "P783366",
+          "raw_title": "RMA 2.0 RT Cordless",
+          "configuration_name": "RT Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-20-RT-Cordless-Lawn-Mowers-Spare-Parts/P783366"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_2_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783397",
+          "raw_title": "RMA 2.1 RP Cordless",
+          "configuration_name": "RP Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-21-RP-Cordless-Lawn-Mowers-Spare-Parts/P783397"
+        },
+        {
+          "pid": "P783367",
+          "raw_title": "RMA 2.1 RT Cordless",
+          "configuration_name": "RT Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-21-RT-Cordless-Lawn-Mowers-Spare-Parts/P783367"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_443_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783400",
+          "raw_title": "RMA 443.0 Cordless",
+          "configuration_name": "Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4430-Cordless-Lawn-Mowers-Spare-Parts/P783400"
+        },
+        {
+          "pid": "P783382",
+          "raw_title": "RMA 443.0 TC Cordless",
+          "configuration_name": "TC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4430-TC-Cordless-Lawn-Mowers-Spare-Parts/P783382"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_443_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783383",
+          "raw_title": "RMA 443.1 Cordless",
+          "configuration_name": "Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4431-Cordless-Lawn-Mowers-Spare-Parts/P783383"
+        },
+        {
+          "pid": "P783385",
+          "raw_title": "RMA 443.1 TC Cordless",
+          "configuration_name": "TC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4431-TC-Cordless-Lawn-Mowers-Spare-Parts/P783385"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_448_0::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783401",
+          "raw_title": "RMA 448.0 PC Cordless",
+          "configuration_name": "PC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4480-PC-Cordless-Lawn-Mowers-Spare-Parts/P783401"
+        },
+        {
+          "pid": "P783390",
+          "raw_title": "RMA 448.0 TC Cordless",
+          "configuration_name": "TC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4480-TC-Cordless-Lawn-Mowers-Spare-Parts/P783390"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_448_1::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783402",
+          "raw_title": "RMA 448.1 PC Cordless",
+          "configuration_name": "PC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4481-PC-Cordless-Lawn-Mowers-Spare-Parts/P783402"
+        },
+        {
+          "pid": "P783391",
+          "raw_title": "RMA 448.1 TC Cordless",
+          "configuration_name": "TC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4481-TC-Cordless-Lawn-Mowers-Spare-Parts/P783391"
+        }
+      ]
+    },
+    {
+      "identity_key": "rma_448_2::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783403",
+          "raw_title": "RMA 448.2 PV Cordless",
+          "configuration_name": "PV Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4482-PV-Cordless-Lawn-Mowers-Spare-Parts/P783403"
+        },
+        {
+          "pid": "P783392",
+          "raw_title": "RMA 448.2 VC Cordless",
+          "configuration_name": "VC Cordless",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4482-VC-Cordless-Lawn-Mowers-Spare-Parts/P783392"
+        }
+      ]
+    },
+    {
+      "identity_key": "rmi_422_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783426",
+          "raw_title": "RMI 422.0 P",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4220-P-Robotic-Mowers-Performance-Spare-Parts/P783426"
+        },
+        {
+          "pid": "P783427",
+          "raw_title": "RMI 422.0 PC",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4220-PC-Robotic-Mowers-Performance-Comunication-Spare-Parts/P783427"
+        },
+        {
+          "pid": "P783425",
+          "raw_title": "RMI 422.0",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4220-Robotic-Mowers-Spare-Parts/P783425"
+        }
+      ]
+    },
+    {
+      "identity_key": "rmi_422_1::base",
+      "count": 4,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783429",
+          "raw_title": "RMI 422.1 P",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4221-P-Robotic-Mowers-Performance-Spare-Parts/P783429"
+        },
+        {
+          "pid": "P783431",
+          "raw_title": "RMI 422.1 PC-L",
+          "configuration_name": "PC-L",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4221-PC-L-Robotic-Mowers-Performance-Comunication-Spare-Parts/P783431"
+        },
+        {
+          "pid": "P783430",
+          "raw_title": "RMI 422.1 PC",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4221-PC-Robotic-Mowers-Performance-Comunication-Spare-Parts/P783430"
+        },
+        {
+          "pid": "P783428",
+          "raw_title": "RMI 422.1",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4221-Robotic-Mowers-Spare-Parts/P783428"
+        }
+      ]
+    },
+    {
+      "identity_key": "rmi_422_2::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783433",
+          "raw_title": "RMI 422.2 P",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4222-P-Robotic-Mowers-Performance-Spare-Parts/P783433"
+        },
+        {
+          "pid": "P783434",
+          "raw_title": "RMI 422.2 PC",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4222-PC-Robotic-Mowers-Performance-Comunication-Spare-Parts/P783434"
+        },
+        {
+          "pid": "P783432",
+          "raw_title": "RMI 422.2",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-4222-Robotic-Mowers-Spare-Parts/P783432"
+        }
+      ]
+    },
+    {
+      "identity_key": "rmi_632_0::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783438",
+          "raw_title": "RMI 632.0 P",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-6320-P-Robotic-Mowers-RMI-Spare-Parts/P783438"
+        },
+        {
+          "pid": "P783439",
+          "raw_title": "RMI 632.0 PC",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-6320-PC-Robotic-Mowers-RMI-Spare-Parts/P783439"
+        },
+        {
+          "pid": "P783436",
+          "raw_title": "RMI 632.0",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-6320-Robotic-Mowers-RMI-Spare-Parts/P783436"
+        }
+      ]
+    },
+    {
+      "identity_key": "rmi_632_1::base",
+      "count": 3,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783442",
+          "raw_title": "RMI 632.1 P",
+          "configuration_name": "P",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-6321-P-Robotic-Mowers-RMI-Spare-Parts/P783442"
+        },
+        {
+          "pid": "P783443",
+          "raw_title": "RMI 632.1 PC",
+          "configuration_name": "PC",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-6321-PC-Robotic-Mowers-RMI-Spare-Parts/P783443"
+        },
+        {
+          "pid": "P783440",
+          "raw_title": "RMI 632.1",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-RMI-6321-Robotic-Mowers-RMI-Spare-Parts/P783440"
+        }
+      ]
+    },
+    {
+      "identity_key": "sg_17::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783234",
+          "raw_title": "SG 17 L Quiet Mistblowers",
+          "configuration_name": "L Quiet",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SG-17-L-Quiet-Mistblowers-Spare-Parts/P783234"
+        },
+        {
+          "pid": "P783232",
+          "raw_title": "SG 17 Mistblowers",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SG-17-Mistblowers-Spare-Parts/P783232"
+        }
+      ]
+    },
+    {
+      "identity_key": "sh_56::c_e",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784008",
+          "raw_title": "SH 56 C-E D",
+          "configuration_name": "D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-56-C-E-D-ErgoStart-Easy2Start-Catalytic-Converter-Vacuum-Shredder-Spare-Parts/P784008"
+        },
+        {
+          "pid": "P784011",
+          "raw_title": "SH 56 C-E",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-56-C-E-ErgoStart-Easy2Start-Vacuum-Shredder-Spare-Parts/P784011"
+        }
+      ]
+    },
+    {
+      "identity_key": "sh_56::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784007",
+          "raw_title": "SH 56-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-56-D-Catalytic-Converter-Vacuum-Shredder-Spare-Parts/P784007"
+        },
+        {
+          "pid": "P784013",
+          "raw_title": "SH 56",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-56-Vacuum-Shredder-Spare-Parts/P784013"
+        }
+      ]
+    },
+    {
+      "identity_key": "sh_85::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784006",
+          "raw_title": "SH 85-DZ Muffler with Spark Arrestor",
+          "configuration_name": "-DZ Muffler with Spark Arrestor",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-85-DZ-Catalytic-Converter-Muffler-with-Spark-Arrestor-Vacuum-Shredder-Spare-Parts/P784006"
+        },
+        {
+          "pid": "P784004",
+          "raw_title": "SH 85",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-85-Vacuum-Shredder-Spare-Parts/P784004"
+        }
+      ]
+    },
+    {
+      "identity_key": "sh_86::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P784009",
+          "raw_title": "SH 86-D",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-86-D-Catalytic-Converter-Vacuum-Shredder-Spare-Parts/P784009"
+        },
+        {
+          "pid": "P784014",
+          "raw_title": "SH 86",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SH-86-Vacuum-Shredder-Spare-Parts/P784014"
+        }
+      ]
+    },
+    {
+      "identity_key": "sr_200::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783236",
+          "raw_title": "SR 200 Mistblowers",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-Mistblowers-Spare-Parts/P783236"
+        },
+        {
+          "pid": "P783235",
+          "raw_title": "SR 200-D Mistblowers",
+          "configuration_name": "-D",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-D-Catalytic-Converter-Mistblowers-Spare-Parts/P783235"
+        }
+      ]
+    },
+    {
+      "identity_key": "t_3::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783902",
+          "raw_title": "T3-AHBF-2X3C-1TX4 Gear Box Hydro-Gear T3",
+          "configuration_name": "-AHBF-2X3C-1TX4 Gear Box Hydro-Gear T3",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-T3-AHBF-2X3C-1TX4-Gear-Box-Hydro-Gear-T3-Spare-Parts/P783902"
+        },
+        {
+          "pid": "P783903",
+          "raw_title": "T3-CHBF-2X3C-1TX4 Gear Box Hydro-Gear T3",
+          "configuration_name": "-CHBF-2X3C-1TX4 Gear Box Hydro-Gear T3",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-T3-CHBF-2X3C-1TX4-Gear-Box-Hydro-Gear-T3-Spare-Parts/P783903"
+        }
+      ]
+    },
+    {
+      "identity_key": "ts_350::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783926",
+          "raw_title": "TS 350 AVE Anti-Vibration Electronic Ignition",
+          "configuration_name": "AVE Anti-Vibration Electronic Ignition",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-AVE-Anti-Vibration-Electronic-Ignition-Cut-Off-Machines-TS-Spare-Parts/P783926"
+        },
+        {
+          "pid": "P783924",
+          "raw_title": "TS 350",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-Cut-Off-Machines-TS-Spare-Parts/P783924"
+        }
+      ]
+    },
+    {
+      "identity_key": "ts_410::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783929",
+          "raw_title": "TS 410-A Electronic Water Control",
+          "configuration_name": "-A Electronic Water Control",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-TS-410-A-Electronic-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783929"
+        },
+        {
+          "pid": "P783928",
+          "raw_title": "TS 410",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-TS-410-Cut-Off-Machines-TS-Spare-Parts/P783928"
+        }
+      ]
+    },
+    {
+      "identity_key": "ts_420::base",
+      "count": 2,
+      "classification": "SAME_VARIANT_DIFFERENT_CONFIGURATION",
+      "entries": [
+        {
+          "pid": "P783931",
+          "raw_title": "TS 420-A Electric Water Control",
+          "configuration_name": "-A Electric Water Control",
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-TS-420-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783931"
+        },
+        {
+          "pid": "P783930",
+          "raw_title": "TS 420",
+          "configuration_name": null,
+          "source_url": "https://www.sparepartsworld.co.uk/Stihl-TS-420-Cut-Off-Machines-TS-Spare-Parts/P783930"
+        }
+      ]
+    }
+  ],
+  "top_100_normalized_transformations": [
+    {
+      "raw_title": "009 EQ Quiet QuickStop Quickstop Plus",
+      "canonical_model": "009",
+      "canonical_model_id": "009",
+      "variant_key": "eq",
+      "variant_name": "009 EQ",
+      "configuration_name": "Quiet QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "009 LQ Quiet QuickStop Quickstop Plus",
+      "canonical_model": "009",
+      "canonical_model_id": "009",
+      "variant_key": "lq",
+      "variant_name": "009 LQ",
+      "configuration_name": "Quiet QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "009 Q QuickStop Quickstop Plus",
+      "canonical_model": "009",
+      "canonical_model_id": "009",
+      "variant_key": "q",
+      "variant_name": "009 Q",
+      "configuration_name": "QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "010 AV Anti-Vibration",
+      "canonical_model": "010",
+      "canonical_model_id": "010",
+      "variant_key": "av",
+      "variant_name": "010 AV",
+      "configuration_name": "Anti-Vibration",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "010 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "010",
+      "canonical_model_id": "010",
+      "variant_key": "aveq",
+      "variant_name": "010 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "011 AVE Anti-Vibration Ignition",
+      "canonical_model": "011",
+      "canonical_model_id": "011",
+      "variant_key": "ave",
+      "variant_name": "011 AVE",
+      "configuration_name": "Anti-Vibration Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "011 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "011",
+      "canonical_model_id": "011",
+      "variant_key": "aveq",
+      "variant_name": "011 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "012 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "012",
+      "canonical_model_id": "012",
+      "variant_key": "aveq",
+      "variant_name": "012 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "012 AVTEQ Electronic Ignition Anti-Vibration QuickStop Quickstop Plus Tophandle",
+      "canonical_model": "012",
+      "canonical_model_id": "012",
+      "variant_key": "avteq",
+      "variant_name": "012 AVTEQ",
+      "configuration_name": "Electronic Ignition Anti-Vibration QuickStop Quickstop Plus Tophandle",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "015 AV Anti-Vibration",
+      "canonical_model": "015",
+      "canonical_model_id": "015",
+      "variant_key": "av",
+      "variant_name": "015 AV",
+      "configuration_name": "Anti-Vibration",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "015 AVE Anti-Vibration Electronic Ignition",
+      "canonical_model": "015",
+      "canonical_model_id": "015",
+      "variant_key": "ave",
+      "variant_name": "015 AVE",
+      "configuration_name": "Anti-Vibration Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "015 AVQ Anti-Vibration QuickStop Quickstop Plus",
+      "canonical_model": "015",
+      "canonical_model_id": "015",
+      "variant_key": "avq",
+      "variant_name": "015 AVQ",
+      "configuration_name": "Anti-Vibration QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "015 L Quiet",
+      "canonical_model": "015",
+      "canonical_model_id": "015",
+      "variant_key": "base",
+      "variant_name": "015",
+      "configuration_name": "L Quiet",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "015 LQ Quiet QuickStop Quickstop Plus",
+      "canonical_model": "015",
+      "canonical_model_id": "015",
+      "variant_key": "lq",
+      "variant_name": "015 LQ",
+      "configuration_name": "Quiet QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "017 C Comfort",
+      "canonical_model": "017",
+      "canonical_model_id": "017",
+      "variant_key": "c",
+      "variant_name": "017 C",
+      "configuration_name": "Comfort",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "018 C Comfort",
+      "canonical_model": "018",
+      "canonical_model_id": "018",
+      "variant_key": "c",
+      "variant_name": "018 C",
+      "configuration_name": "Comfort",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "019 T Tophandle",
+      "canonical_model": "019",
+      "canonical_model_id": "019",
+      "variant_key": "t",
+      "variant_name": "019 T",
+      "configuration_name": "Tophandle",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "020 (1114)",
+      "canonical_model": "020",
+      "canonical_model_id": "020",
+      "variant_key": "base",
+      "variant_name": "020",
+      "configuration_name": "(1114)",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "020 T Tophandle",
+      "canonical_model": "020",
+      "canonical_model_id": "020",
+      "variant_key": "t",
+      "variant_name": "020 T",
+      "configuration_name": "Tophandle",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "023 L Quiet",
+      "canonical_model": "023",
+      "canonical_model_id": "023",
+      "variant_key": "base",
+      "variant_name": "023",
+      "configuration_name": "L Quiet",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "024 S Version with Larger Piston Diam",
+      "canonical_model": "024",
+      "canonical_model_id": "024",
+      "variant_key": "s",
+      "variant_name": "024 S",
+      "configuration_name": "Version with Larger Piston Diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "024 SW Version with Larger Piston Diam.",
+      "canonical_model": "024",
+      "canonical_model_id": "024",
+      "variant_key": "base",
+      "variant_name": "024",
+      "configuration_name": "SW Version with Larger Piston Diam.",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "024 SWVH Version with Larger Piston Diam. Carbuertor Heating",
+      "canonical_model": "024",
+      "canonical_model_id": "024",
+      "variant_key": "base",
+      "variant_name": "024",
+      "configuration_name": "SWVH Version with Larger Piston Diam. Carbuertor Heating",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "026 C Comfort",
+      "canonical_model": "026",
+      "canonical_model_id": "026",
+      "variant_key": "c",
+      "variant_name": "026 C",
+      "configuration_name": "Comfort",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "028 Q QuickStop Quickstop Plus",
+      "canonical_model": "028",
+      "canonical_model_id": "028",
+      "variant_key": "q",
+      "variant_name": "028 Q",
+      "configuration_name": "QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "028 WB WoodBoss",
+      "canonical_model": "028",
+      "canonical_model_id": "028",
+      "variant_key": "base",
+      "variant_name": "028",
+      "configuration_name": "WB WoodBoss",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "032 AV Anti-Vibration",
+      "canonical_model": "032",
+      "canonical_model_id": "032",
+      "variant_key": "av",
+      "variant_name": "032 AV",
+      "configuration_name": "Anti-Vibration",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "032 AVE Anti-Vibration Electronic Ignition",
+      "canonical_model": "032",
+      "canonical_model_id": "032",
+      "variant_key": "ave",
+      "variant_name": "032 AVE",
+      "configuration_name": "Anti-Vibration Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "032 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "032",
+      "canonical_model_id": "032",
+      "variant_key": "aveq",
+      "variant_name": "032 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "032 AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "032",
+      "canonical_model_id": "032",
+      "variant_key": "base",
+      "variant_name": "032",
+      "configuration_name": "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "032 AVEW Anti-Vibration Electronic Ignition",
+      "canonical_model": "032",
+      "canonical_model_id": "032",
+      "variant_key": "base",
+      "variant_name": "032",
+      "configuration_name": "AVEW Anti-Vibration Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "032 AVQ Anti-Vibratio QuickStop Quickstop Plus",
+      "canonical_model": "032",
+      "canonical_model_id": "032",
+      "variant_key": "avq",
+      "variant_name": "032 AVQ",
+      "configuration_name": "Anti-Vibratio QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "aveq",
+      "variant_name": "034 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "base",
+      "variant_name": "034",
+      "configuration_name": "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 AVEQWZ",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "base",
+      "variant_name": "034",
+      "configuration_name": "AVEQWZ",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 AVEQZ-FD",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "base",
+      "variant_name": "034",
+      "configuration_name": "AVEQZ-FD",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 AVSEQW",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "base",
+      "variant_name": "034",
+      "configuration_name": "AVSEQW",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 S Version with Larger Piston Diam",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "s",
+      "variant_name": "034 S",
+      "configuration_name": "Version with Larger Piston Diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "034 Z FB",
+      "canonical_model": "034",
+      "canonical_model_id": "034",
+      "variant_key": "base",
+      "variant_name": "034",
+      "configuration_name": "Z FB",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "036 Arctic",
+      "canonical_model": "036",
+      "canonical_model_id": "036",
+      "variant_key": "base",
+      "variant_name": "036",
+      "configuration_name": "Arctic",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "036 BR",
+      "canonical_model": "036",
+      "canonical_model_id": "036",
+      "variant_key": "base",
+      "variant_name": "036",
+      "configuration_name": "BR",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "036 QS QuickStop Quickstop Plus Version with Larger Piston diam",
+      "canonical_model": "036",
+      "canonical_model_id": "036",
+      "variant_key": "base",
+      "variant_name": "036",
+      "configuration_name": "QS QuickStop Quickstop Plus Version with Larger Piston diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "038 FB Farm Boss",
+      "canonical_model": "038",
+      "canonical_model_id": "038",
+      "variant_key": "base",
+      "variant_name": "038",
+      "configuration_name": "FB Farm Boss",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "038 M Magnum",
+      "canonical_model": "038",
+      "canonical_model_id": "038",
+      "variant_key": "base",
+      "variant_name": "038",
+      "configuration_name": "M Magnum",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "038 MRII Wrap Handle Magnum",
+      "canonical_model": "038",
+      "canonical_model_id": "038",
+      "variant_key": "base",
+      "variant_name": "038",
+      "configuration_name": "MRII Wrap Handle Magnum",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "038 MW Magnum",
+      "canonical_model": "038",
+      "canonical_model_id": "038",
+      "variant_key": "base",
+      "variant_name": "038",
+      "configuration_name": "MW Magnum",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "038 S Version with Larger Piston diam",
+      "canonical_model": "038",
+      "canonical_model_id": "038",
+      "variant_key": "s",
+      "variant_name": "038 S",
+      "configuration_name": "Version with Larger Piston diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "038 SW Version with Larger Piston diam",
+      "canonical_model": "038",
+      "canonical_model_id": "038",
+      "variant_key": "base",
+      "variant_name": "038",
+      "configuration_name": "SW Version with Larger Piston diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "041 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "041",
+      "canonical_model_id": "041",
+      "variant_key": "aveq",
+      "variant_name": "041 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "041 AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "041",
+      "canonical_model_id": "041",
+      "variant_key": "base",
+      "variant_name": "041",
+      "configuration_name": "AVFBQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "041 AVQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "041",
+      "canonical_model_id": "041",
+      "variant_key": "avq",
+      "variant_name": "041 AVQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "041 G Gearbox",
+      "canonical_model": "041",
+      "canonical_model_id": "041",
+      "variant_key": "base",
+      "variant_name": "041",
+      "configuration_name": "G Gearbox",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "042 Q QuickStop Quickstop Plus",
+      "canonical_model": "042",
+      "canonical_model_id": "042",
+      "variant_key": "q",
+      "variant_name": "042 Q",
+      "configuration_name": "QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "044 C Comfort",
+      "canonical_model": "044",
+      "canonical_model_id": "044",
+      "variant_key": "c",
+      "variant_name": "044 C",
+      "configuration_name": "Comfort",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "045 AV Anti-Vibration",
+      "canonical_model": "045",
+      "canonical_model_id": "045",
+      "variant_key": "av",
+      "variant_name": "045 AV",
+      "configuration_name": "Anti-Vibration",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "045 AVE Anti-Vibration Electronic Ignition",
+      "canonical_model": "045",
+      "canonical_model_id": "045",
+      "variant_key": "ave",
+      "variant_name": "045 AVE",
+      "configuration_name": "Anti-Vibration Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "045 AVEK-1",
+      "canonical_model": "045",
+      "canonical_model_id": "045",
+      "variant_key": "base",
+      "variant_name": "045",
+      "configuration_name": "AVEK-1",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "045 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "045",
+      "canonical_model_id": "045",
+      "variant_key": "aveq",
+      "variant_name": "045 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "045 AVSE Anti-Vibration Electronic Ignition Electronic Ignition",
+      "canonical_model": "045",
+      "canonical_model_id": "045",
+      "variant_key": "avse",
+      "variant_name": "045 AVSE",
+      "configuration_name": "Anti-Vibration Electronic Ignition Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "046 C Comfort",
+      "canonical_model": "046",
+      "canonical_model_id": "046",
+      "variant_key": "c",
+      "variant_name": "046 C",
+      "configuration_name": "Comfort",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "046 Magnum BR Magnum",
+      "canonical_model": "046",
+      "canonical_model_id": "046",
+      "variant_key": "base",
+      "variant_name": "046",
+      "configuration_name": "Magnum BR Magnum",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "048 AV Anti-Vibration",
+      "canonical_model": "048",
+      "canonical_model_id": "048",
+      "variant_key": "av",
+      "variant_name": "048 AV",
+      "configuration_name": "Anti-Vibration",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "048 AVE Anti-Vibration Electronic Ignition",
+      "canonical_model": "048",
+      "canonical_model_id": "048",
+      "variant_key": "ave",
+      "variant_name": "048 AVE",
+      "configuration_name": "Anti-Vibration Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "056 M Magnum",
+      "canonical_model": "056",
+      "canonical_model_id": "056",
+      "variant_key": "base",
+      "variant_name": "056",
+      "configuration_name": "M Magnum",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "056 S Version with Larger Piston diam",
+      "canonical_model": "056",
+      "canonical_model_id": "056",
+      "variant_key": "s",
+      "variant_name": "056 S",
+      "configuration_name": "Version with Larger Piston diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "064 R Wrap Handle",
+      "canonical_model": "064",
+      "canonical_model_id": "064",
+      "variant_key": "r",
+      "variant_name": "064 R",
+      "configuration_name": "Wrap Handle",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "066 BR",
+      "canonical_model": "066",
+      "canonical_model_id": "066",
+      "variant_key": "base",
+      "variant_name": "066",
+      "configuration_name": "BR",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "066 M Magnum",
+      "canonical_model": "066",
+      "canonical_model_id": "066",
+      "variant_key": "base",
+      "variant_name": "066",
+      "configuration_name": "M Magnum",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "066 MR Magnum Wrap Handle",
+      "canonical_model": "066",
+      "canonical_model_id": "066",
+      "variant_key": "base",
+      "variant_name": "066",
+      "configuration_name": "MR Magnum Wrap Handle",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "075 AVE Anti-Vibration Electronic Ignition",
+      "canonical_model": "075",
+      "canonical_model_id": "075",
+      "variant_key": "ave",
+      "variant_name": "075 AVE",
+      "configuration_name": "Anti-Vibration Electronic Ignition",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "075 AVEQ Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "canonical_model": "075",
+      "canonical_model_id": "075",
+      "variant_key": "aveq",
+      "variant_name": "075 AVEQ",
+      "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "076 S Version with Larger Piston Diam",
+      "canonical_model": "076",
+      "canonical_model_id": "076",
+      "variant_key": "s",
+      "variant_name": "076 S",
+      "configuration_name": "Version with Larger Piston Diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "08 SE Version with Larger Piston Diam",
+      "canonical_model": "08",
+      "canonical_model_id": "08",
+      "variant_key": "base",
+      "variant_name": "08",
+      "configuration_name": "SE Version with Larger Piston Diam",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "084 R Wrap Handle",
+      "canonical_model": "084",
+      "canonical_model_id": "084",
+      "variant_key": "r",
+      "variant_name": "084 R",
+      "configuration_name": "Wrap Handle",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "090 G Gearbox",
+      "canonical_model": "090",
+      "canonical_model_id": "090",
+      "variant_key": "base",
+      "variant_name": "090",
+      "configuration_name": "G Gearbox",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AB 4080 S Garden Shredder",
+      "canonical_model": "AB 4080",
+      "canonical_model_id": "ab_4080",
+      "variant_key": "s",
+      "variant_name": "AB 4080 S",
+      "configuration_name": "Garden",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AB 4099 SE Garden Shredder",
+      "canonical_model": "AB 4099",
+      "canonical_model_id": "ab_4099",
+      "variant_key": "base",
+      "variant_name": "AB 4099",
+      "configuration_name": "SE Garden",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AD 4064 S Garden Shredder",
+      "canonical_model": "AD 4064",
+      "canonical_model_id": "ad_4064",
+      "variant_key": "s",
+      "variant_name": "AD 4064 S",
+      "configuration_name": "Garden",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AHK 110 Lawn Trimmer",
+      "canonical_model": "AHK 110",
+      "canonical_model_id": "ahk_110",
+      "variant_key": "base",
+      "variant_name": "AHK 110",
+      "configuration_name": "Lawn",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AL 301-4 Charger",
+      "canonical_model": "AL 301",
+      "canonical_model_id": "al_301",
+      "variant_key": "base",
+      "variant_name": "AL 301",
+      "configuration_name": "-4 Charger",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 100 Battery",
+      "canonical_model": "AP 100",
+      "canonical_model_id": "ap_100",
+      "variant_key": "base",
+      "variant_name": "AP 100",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 115 Battery",
+      "canonical_model": "AP 115",
+      "canonical_model_id": "ap_115",
+      "variant_key": "base",
+      "variant_name": "AP 115",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 120 Battery",
+      "canonical_model": "AP 120",
+      "canonical_model_id": "ap_120",
+      "variant_key": "base",
+      "variant_name": "AP 120",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 160 Battery",
+      "canonical_model": "AP 160",
+      "canonical_model_id": "ap_160",
+      "variant_key": "base",
+      "variant_name": "AP 160",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 180 Battery",
+      "canonical_model": "AP 180",
+      "canonical_model_id": "ap_180",
+      "variant_key": "base",
+      "variant_name": "AP 180",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 200 Battery",
+      "canonical_model": "AP 200",
+      "canonical_model_id": "ap_200",
+      "variant_key": "base",
+      "variant_name": "AP 200",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 300 Battery",
+      "canonical_model": "AP 300",
+      "canonical_model_id": "ap_300",
+      "variant_key": "base",
+      "variant_name": "AP 300",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 300 S Battery",
+      "canonical_model": "AP 300",
+      "canonical_model_id": "ap_300",
+      "variant_key": "s",
+      "variant_name": "AP 300 S",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 500 S Battery",
+      "canonical_model": "AP 500",
+      "canonical_model_id": "ap_500",
+      "variant_key": "s",
+      "variant_name": "AP 500 S",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AP 80 Battery",
+      "canonical_model": "AP 80",
+      "canonical_model_id": "ap_80",
+      "variant_key": "base",
+      "variant_name": "AP 80",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AR 1000 Battery",
+      "canonical_model": "AR 1000",
+      "canonical_model_id": "ar_1000",
+      "variant_key": "base",
+      "variant_name": "AR 1000",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AR 2000 Battery",
+      "canonical_model": "AR 2000",
+      "canonical_model_id": "ar_2000",
+      "variant_key": "base",
+      "variant_name": "AR 2000",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AR 2000 L Battery",
+      "canonical_model": "AR 2000",
+      "canonical_model_id": "ar_2000",
+      "variant_key": "base",
+      "variant_name": "AR 2000",
+      "configuration_name": "L Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AR 3000 Battery",
+      "canonical_model": "AR 3000",
+      "canonical_model_id": "ar_3000",
+      "variant_key": "base",
+      "variant_name": "AR 3000",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AR 3000 L Battery",
+      "canonical_model": "AR 3000",
+      "canonical_model_id": "ar_3000",
+      "variant_key": "base",
+      "variant_name": "AR 3000",
+      "configuration_name": "L Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AR 900 Battery",
+      "canonical_model": "AR 900",
+      "canonical_model_id": "ar_900",
+      "variant_key": "base",
+      "variant_name": "AR 900",
+      "configuration_name": "Battery",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "ASA 65 Cordless Prunung Shears",
+      "canonical_model": "ASA 65",
+      "canonical_model_id": "asa_65",
+      "variant_key": "base",
+      "variant_name": "ASA 65",
+      "configuration_name": "Cordless Prunung Shears",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "ASA 85 Cordless Prunung Shears",
+      "canonical_model": "ASA 85",
+      "canonical_model_id": "asa_85",
+      "variant_key": "base",
+      "variant_name": "ASA 85",
+      "configuration_name": "Cordless Prunung Shears",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "AZ 4000 S Garden Shredder",
+      "canonical_model": "AZ 4000",
+      "canonical_model_id": "az_4000",
+      "variant_key": "s",
+      "variant_name": "AZ 4000 S",
+      "configuration_name": "Garden",
+      "entity_type": "MACHINE_CONFIGURATION"
+    },
+    {
+      "raw_title": "BC 20 Cultivators",
+      "canonical_model": "BC 20",
+      "canonical_model_id": "bc_20",
+      "variant_key": "base",
+      "variant_name": "BC 20",
+      "configuration_name": "Cultivators",
+      "entity_type": "MACHINE_CONFIGURATION"
+    }
+  ]
+}

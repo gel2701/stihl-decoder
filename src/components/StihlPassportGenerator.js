@@ -351,7 +351,7 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
   if (passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
     badgeText = '✓ Officieel STIHL';
   } else if (passportMode === 'MODEL_ONLY') {
-    badgeText = 'STIHL Machinepaspoort';
+    badgeText = 'Modelpaspoort';
   } else if (isSelfReported) {
     badgeText = 'Zelf gerapporteerd';
   }
@@ -365,8 +365,8 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
       <!-- Header -->
       <div class="flex justify-between items-start border-b border-neutral-800/80 pb-4">
         <div>
-          <span class="text-2xs font-mono uppercase tracking-widest text-orange-500 font-bold block">STIHL Machinepaspoort</span>
-          <h2 class="text-2xl font-black tracking-tight text-white mt-0.5">${model}</h2>
+          <span class="text-2xs font-mono uppercase tracking-widest text-orange-500 font-bold block">${passportMode === 'MODEL_ONLY' ? 'STIHL Modelpaspoort' : 'STIHL Machinepaspoort'}</span>
+          <h2 class="text-2xl font-black tracking-tight text-white mt-0.5">${model.startsWith('STIHL') ? model : `STIHL ${model}`}</h2>
           ${canonicalModelName && canonicalModelName !== model.toUpperCase() ? `
             <span class="text-2xs text-orange-400 font-mono block">Canonieke basis: STIHL ${canonicalModelName}</span>
           ` : ''}
@@ -396,9 +396,18 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
 
       <!-- Grid with Category Specifications -->
       <div class="grid grid-cols-2 gap-3 text-xs">
+        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
+          <span class="text-2xs text-neutral-400 block font-medium">Model</span>
+          <span class="text-sm font-bold text-white">${model}</span>
+        </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800" data-serial="${serial || ''}">
-          <span class="text-2xs text-neutral-400 block font-medium">Serienummer</span>
-          <span class="font-mono text-base font-bold text-white tracking-wider">${formattedSerial}</span>
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="text-2xs text-neutral-400 block font-medium">Serienummer</span>
+            ${!hasSerial ? `
+              <a href="/stihl-paspoort/" class="text-3xs text-orange-400 hover:text-orange-300 font-bold underline">Serienummer toevoegen</a>
+            ` : ''}
+          </div>
+          <span class="font-mono text-base font-bold ${hasSerial ? 'text-white' : 'text-neutral-300'} tracking-wider">${formattedSerial}</span>
         </div>
         <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
           <span class="text-2xs text-neutral-400 block font-medium">Herkomst / Fabriek</span>
@@ -408,7 +417,7 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
           <span class="text-2xs text-neutral-400 block font-medium">Bouwjaar</span>
           <span class="text-sm font-bold text-orange-400">${years}</span>
         </div>
-        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800">
+        <div class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 col-span-2">
           <span class="text-2xs text-neutral-400 block font-medium">${identityTitle}</span>
           <span class="text-sm font-bold text-white">${identityLabel}</span>
         </div>
@@ -494,11 +503,11 @@ export function downloadStihlPassportImage(data) {
     // Header Text
     ctx.fillStyle = '#f97316';
     ctx.font = 'bold 22px monospace';
-    ctx.fillText('STIHL MACHINEPASPOORT', 60, 75);
+    ctx.fillText(passportMode === 'MODEL_ONLY' ? 'STIHL MODELPASPOORT' : 'STIHL MACHINEPASPOORT', 60, 75);
 
     ctx.fillStyle = '#ffffff';
     ctx.font = '900 44px sans-serif';
-    ctx.fillText(model, 60, 130);
+    ctx.fillText(model.startsWith('STIHL') ? model : `STIHL ${model}`, 60, 130);
 
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';

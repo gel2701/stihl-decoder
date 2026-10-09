@@ -23,6 +23,9 @@ jobs:
       - name: Install dependencies (clean checkout)
         run: npm ci
 
+      - name: Seed SQLite database from canonical JSON
+        run: node data/seed.cjs
+
       - name: Run production contract test suites
         run: npm test
 
@@ -41,6 +44,9 @@ jobs:
 
       - name: Install dependencies (clean checkout)
         run: npm ci
+
+      - name: Seed SQLite database from canonical JSON
+        run: node data/seed.cjs
 
       - name: Run public trust claims audit
         run: node scripts/audit_public_trust_claims.mjs
@@ -63,6 +69,9 @@ jobs:
 
       - name: Install dependencies (clean checkout)
         run: npm ci
+
+      - name: Seed SQLite database from canonical JSON
+        run: node data/seed.cjs
 
       - name: Install Playwright Chromium with system dependencies
         run: npx playwright install --with-deps chromium

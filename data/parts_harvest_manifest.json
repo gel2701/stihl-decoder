@@ -1,29 +1,55 @@
 {
   "schema_version": "parts-harvest-manifest-v1",
-  "run_id": "harvest_1791487989428",
+  "parts_bearing_entities": 1429,
+  "accepted_machines_count": 1402,
+  "accepted_attachments_count": 27,
+  "true_base_models_count": 912,
+  "variants_count": 1227,
+  "configurations_count": 766,
+  "run_id": "catalog_harvest_1791499301286",
   "mode": "LIVE",
-  "models_requested": 6,
-  "models_found": 6,
-  "models_live_discovered": 6,
+  "total_queue_items": 1429,
+  "success_items": 1418,
+  "empty_valid_items": 11,
+  "http_failed_items": 0,
+  "parse_failed_items": 0,
+  "identity_rejected_items": 0,
+  "models_found": 1418,
+  "models_live_discovered": 1418,
   "models_official_evidence_only": 0,
-  "variants_found": 2,
-  "sections_discovered": 45,
-  "sections_parsed": 31,
+  "variants_found": 1227,
+  "sections_discovered": 7308,
+  "sections_parsed": 962,
   "sections_failed": 0,
-  "sections_with_mapped_parts": 31,
-  "sections_without_mapped_parts": 14,
-  "parts_with_section": 49,
-  "parts_without_section": 1931,
-  "section_mapping_rate": 0.0247,
-  "raw_part_rows": 1980,
-  "valid_part_rows": 1014,
-  "unique_part_numbers": 1014,
-  "fitment_relations": 1723,
-  "evidence_observations_count": 1980,
-  "duplicate_rows_collapsed": 0,
+  "sections_with_mapped_parts": 962,
+  "sections_without_mapped_parts": 6346,
+  "parts_with_section": 2893,
+  "parts_without_section": 204024,
+  "section_mapping_rate": 0.014,
+  "raw_part_rows": 212004,
+  "canonical_evidence_rows": 206607,
+  "invalid_part_number_rows": 0,
+  "noncanonical_part_rows": 5087,
+  "duplicate_observations_collapsed": 310,
+  "explicitly_rejected_rows": 0,
+  "unaccounted_rows": 0,
+  "valid_part_rows": 17082,
+  "unique_part_numbers": 17082,
+  "fitment_relations": 175106,
+  "evidence_observations_count": 206607,
+  "duplicate_rows_collapsed": 310,
   "rejected_rows": 0,
-  "conflicts_detected": 4,
+  "conflicts_detected": 0,
   "synthetic_canonical_records": 0,
+  "contributing_sources": [
+    "sparepartsworld",
+    "official_stihl"
+  ],
+  "reference_sources": [
+    "diyspareparts",
+    "partstree",
+    "lsengineers"
+  ],
   "sources_used": [
     "sparepartsworld",
     "official_stihl",
@@ -76,107 +102,75 @@
     }
   ],
   "evidence_breakdown": {
-    "official_stihl": 4,
+    "official_stihl": 52,
     "corroborated_multi_source": 0,
-    "single_structured_parts_source": 1719,
+    "single_structured_parts_source": 175054,
     "conflicted": 0
   },
-  "per_model_summary": {
-    "MS 261": {
-      "model": "MS 261",
-      "found": true,
-      "live_discovered": true,
-      "official_only": false,
-      "variants": 1,
-      "sections_discovered": 7,
-      "sections_parsed": 7,
-      "sections_failed": 0,
-      "raw_part_rows": 464,
-      "valid_part_rows": 0,
-      "unique_parts": 249,
-      "fitments": 434,
-      "conflicts": 1,
-      "rejected": 0
+  "per_category_summary": {
+    "Chainsaw": {
+      "items": 616,
+      "success": 615,
+      "empty": 1,
+      "raw_parts": 82064
     },
-    "MS 170": {
-      "model": "MS 170",
-      "found": true,
-      "live_discovered": true,
-      "official_only": false,
-      "variants": 0,
-      "sections_discovered": 5,
-      "sections_parsed": 5,
-      "sections_failed": 0,
-      "raw_part_rows": 179,
-      "valid_part_rows": 0,
-      "unique_parts": 171,
-      "fitments": 171,
-      "conflicts": 2,
-      "rejected": 0
+    "Lawn Mower": {
+      "items": 331,
+      "success": 331,
+      "empty": 0,
+      "raw_parts": 44596
     },
-    "MS 180": {
-      "model": "MS 180",
-      "found": true,
-      "live_discovered": true,
-      "official_only": false,
-      "variants": 0,
-      "sections_discovered": 6,
-      "sections_parsed": 6,
-      "sections_failed": 0,
-      "raw_part_rows": 201,
-      "valid_part_rows": 0,
-      "unique_parts": 165,
-      "fitments": 165,
-      "conflicts": 0,
-      "rejected": 0
+    "Brushcutter": {
+      "items": 251,
+      "success": 247,
+      "empty": 4,
+      "raw_parts": 49252
     },
-    "026": {
-      "model": "026",
-      "found": true,
-      "live_discovered": true,
-      "official_only": false,
-      "variants": 0,
-      "sections_discovered": 8,
-      "sections_parsed": 8,
-      "sections_failed": 0,
-      "raw_part_rows": 238,
-      "valid_part_rows": 0,
-      "unique_parts": 226,
-      "fitments": 226,
-      "conflicts": 0,
-      "rejected": 0
+    "Kombi": {
+      "items": 46,
+      "success": 46,
+      "empty": 0,
+      "raw_parts": 6005
     },
-    "FS 55": {
-      "model": "FS 55",
-      "found": true,
-      "live_discovered": true,
-      "official_only": false,
-      "variants": 1,
-      "sections_discovered": 10,
-      "sections_parsed": 10,
-      "sections_failed": 0,
-      "raw_part_rows": 620,
-      "valid_part_rows": 0,
-      "unique_parts": 263,
-      "fitments": 497,
-      "conflicts": 1,
-      "rejected": 0
+    "Blower": {
+      "items": 82,
+      "success": 82,
+      "empty": 0,
+      "raw_parts": 10794
     },
-    "TS 420": {
-      "model": "TS 420",
-      "found": true,
-      "live_discovered": true,
-      "official_only": false,
-      "variants": 0,
-      "sections_discovered": 9,
-      "sections_parsed": 9,
-      "sections_failed": 0,
-      "raw_part_rows": 278,
-      "valid_part_rows": 0,
-      "unique_parts": 230,
-      "fitments": 230,
-      "conflicts": 0,
-      "rejected": 0
+    "Cut-Off Saw": {
+      "items": 39,
+      "success": 36,
+      "empty": 3,
+      "raw_parts": 6639
+    },
+    "Auger/Drill": {
+      "items": 10,
+      "success": 10,
+      "empty": 0,
+      "raw_parts": 1496
+    },
+    "Pole Pruner": {
+      "items": 23,
+      "success": 22,
+      "empty": 1,
+      "raw_parts": 4477
+    },
+    "Hedge Trimmer": {
+      "items": 31,
+      "success": 29,
+      "empty": 2,
+      "raw_parts": 1542
     }
+  },
+  "row_conservation": {
+    "raw_part_rows": 212004,
+    "canonical_evidence_rows": 206607,
+    "invalid_part_number_rows": 0,
+    "noncanonical_part_rows": 5087,
+    "duplicate_observations_collapsed": 310,
+    "explicitly_rejected_rows": 0,
+    "unaccounted_rows": 0,
+    "conservation_invariant_satisfied": true
   }
 }

@@ -6,12 +6,20 @@
  */
 
 import { spawnSync } from 'child_process';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
+
+// Ensure SQLite database is initialized
+const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
+if (!fs.existsSync(dbPath)) {
+  console.log('📦 Seeding SQLite database from canonical JSON before running tests...');
+  spawnSync(process.execPath, ['data/seed.cjs'], { cwd: rootDir, stdio: 'inherit' });
+}
 
 export const currentProductionSuites = [
   'tests/official_serial_anchor_and_range_semantics.test.js',
@@ -39,7 +47,8 @@ export const currentProductionSuites = [
   'tests/phase49b_guide_links.test.js',
   'tests/phase51_official_serial_evidence.test.js',
   'tests/phase51b_official_serial_aliases.test.js',
-  'tests/phase52a_parts_harvester.test.js'
+  'tests/phase52a_parts_harvester.test.js',
+  'tests/phase52b_full_parts_catalog.test.js'
 ];
 
 console.log('===============================================================');

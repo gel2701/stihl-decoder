@@ -166,12 +166,14 @@ const { server } = await import('../server.js');
 
 // Wait for server to bind
 await new Promise(r => setTimeout(r, 400));
+const activePort = server.address()?.port || TEST_PORT;
 
 const fetchHttp = (reqPath) => new Promise((resolve, reject) => {
   const req = http.get({
     hostname: 'localhost',
-    port: TEST_PORT,
-    path: reqPath
+    port: activePort,
+    path: reqPath,
+    headers: { Connection: 'close' }
   }, (res) => {
     let body = '';
     res.on('data', chunk => body += chunk);
