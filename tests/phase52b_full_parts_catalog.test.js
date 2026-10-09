@@ -460,3 +460,123 @@ test('Phase 52B - Test 13: Shard Hash & Manifest Record Count Validation', () =>
   }
   assert.strictEqual(evidenceSum, evidenceDoc.observations_count, 'Sum of evidence shard records must match root manifest count');
 });
+
+// -------------------------------------------------------------
+// Test 14: Exact Configuration Fitment Matching & Prefix Matching Prohibition (HLA 135 & RMI 422.1)
+// -------------------------------------------------------------
+test('Phase 52B - Test 14: Exact Configuration Fitment Matching & Prefix Matching Prohibition (HLA 135 & RMI 422.1)', () => {
+  // Case A: HLA 135 cordless vs cordless_hedge_cutters
+  const hlaCordless = PartCatalogResolver.getPartsForModel('hla_135', 'base', 'cordless');
+  const hlaCutters = PartCatalogResolver.getPartsForModel('hla_135', 'base', 'cordless_hedge_cutters');
+
+  assert.ok(hlaCordless.length > 0, 'HLA 135 cordless must return parts');
+  assert.ok(hlaCutters.length > 0, 'HLA 135 cordless_hedge_cutters must return parts');
+
+  for (const p of hlaCordless) {
+    assert.strictEqual(p.configuration_key?.toLowerCase(), 'cordless', 'HLA 135 cordless fitments must have configuration_key cordless');
+    assert.notStrictEqual(p.configuration_key?.toLowerCase(), 'cordless_hedge_cutters', 'Cordless hedge cutters fitment must NOT leak into cordless');
+  }
+
+  for (const p of hlaCutters) {
+    assert.strictEqual(p.configuration_key?.toLowerCase(), 'cordless_hedge_cutters', 'HLA 135 cordless_hedge_cutters fitments must have configuration_key cordless_hedge_cutters');
+    assert.notStrictEqual(p.configuration_key?.toLowerCase(), 'cordless', 'Cordless fitment must NOT leak into cordless_hedge_cutters');
+  }
+
+  // Case B: RMI 422.1 pc vs pc_l
+  const rmiPC = PartCatalogResolver.getPartsForModel('rmi_422_1', 'base', 'pc');
+  const rmiPCL = PartCatalogResolver.getPartsForModel('rmi_422_1', 'base', 'pc_l');
+
+  assert.ok(rmiPC.length > 0, 'RMI 422.1 PC must return parts');
+  assert.ok(rmiPCL.length > 0, 'RMI 422.1 PC-L must return parts');
+
+  for (const p of rmiPC) {
+    assert.strictEqual(p.configuration_key?.toLowerCase(), 'pc', 'RMI 422.1 PC fitments must have configuration_key pc');
+    assert.notStrictEqual(p.configuration_key?.toLowerCase(), 'pc_l', 'PC-L fitment must NOT leak into PC query');
+  }
+
+  for (const p of rmiPCL) {
+    assert.strictEqual(p.configuration_key?.toLowerCase(), 'pc_l', 'RMI 422.1 PC-L fitments must have configuration_key pc_l');
+    assert.notStrictEqual(p.configuration_key?.toLowerCase(), 'pc', 'PC fitment must NOT leak into PC-L query');
+  }
+});
+
+// -------------------------------------------------------------
+// Test 15: Dynamic Scan of Configuration Prefix Collisions & Zero Cross-Configuration Leakage
+// -------------------------------------------------------------
+test('Phase 52B - Test 15: Dynamic Scan of Configuration Prefix Collisions & Zero Cross-Configuration Leakage', () => {
+  const groups = new Map();
+  for (const c of configsDoc.configurations) {
+    const key = `${c.canonical_model_id}::${c.variant_key || 'base'}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(c);
+  }
+
+  let totalCollisions = 0;
+  let crossLeakageCount = 0;
+
+  for (const [key, list] of groups.entries()) {
+    const [modelId, varKey] = key.split('::');
+    for (let i = 0; i < list.length; i++) {
+      for (let j = i + 1; j < list.length; j++) {
+        const cfgA = list[i].configuration_key.toLowerCase();
+        const cfgB = list[j].configuration_key.toLowerCase();
+        if (cfgA === cfgB) continue;
+
+        if (cfgA.startsWith(cfgB + '_') || cfgB.startsWith(cfgA + '_') || cfgA.startsWith(cfgB) || cfgB.startsWith(cfgA)) {
+          totalCollisions++;
+          const partsA = PartCatalogResolver.getPartsForModel(modelId, varKey, cfgA);
+          const partsB = PartCatalogResolver.getPartsForModel(modelId, varKey, cfgB);
+
+          for (const p of partsA) {
+            if (p.configuration_key && p.configuration_key.toLowerCase() !== cfgA) {
+              crossLeakageCount++;
+            }
+          }
+          for (const p of partsB) {
+            if (p.configuration_key && p.configuration_key.toLowerCase() !== cfgB) {
+              crossLeakageCount++;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  assert.ok(totalCollisions >= 10, `Expected at least 10 prefix collision pairs to be tested, got ${totalCollisions}`);
+  assert.strictEqual(crossLeakageCount, 0, `CROSS_CONFIGURATION_LEAKAGE must be exactly 0, got ${crossLeakageCount}`);
+});
+
+// -------------------------------------------------------------
+// Test 16: Base Query, Exact Variant Query, and Configuration Query Safety Invariants
+// -------------------------------------------------------------
+test('Phase 52B - Test 16: Base Query, Exact Variant Query, and Configuration Query Safety Invariants', () => {
+  // 1. Base query safety: only BASE_MODEL_CONFIRMED with no variant and no configuration
+  const baseParts = PartCatalogResolver.getPartsForModel('ms_261');
+  assert.ok(baseParts.length > 0, 'MS 261 base must return parts');
+  for (const p of baseParts) {
+    assert.strictEqual(p.fitment_scope, FITMENT_SCOPES.BASE_MODEL_CONFIRMED);
+    assert.ok(!p.configuration_key || p.configuration_key === 'base');
+    assert.ok(!p.variant_key || p.variant_key === 'base');
+  }
+
+  // 2. Variant query safety: only EXACT_VARIANT / MULTI_VARIANT_EXPLICIT with no configuration
+  const varParts = PartCatalogResolver.getPartsForModel('ms_261', 'c_m');
+  assert.ok(varParts.length > 0, 'MS 261 C-M variant must return parts');
+  for (const p of varParts) {
+    assert.ok(p.fitment_scope === FITMENT_SCOPES.EXACT_VARIANT || p.fitment_scope === FITMENT_SCOPES.MULTI_VARIANT_EXPLICIT);
+    assert.strictEqual(p.variant_key, 'c_m');
+    assert.ok(!p.configuration_key || p.configuration_key === 'base');
+  }
+
+  // 3. Configuration helper resolution
+  const resolvedCfg = PartCatalogResolver.resolveConfigurationKey('hla_135', 'base', 'Cordless Hedge Cutters');
+  assert.strictEqual(resolvedCfg, 'cordless_hedge_cutters');
+});
+
+// -------------------------------------------------------------
+// Test 17: Configuration Registry Dynamic Count Verification
+// -------------------------------------------------------------
+test('Phase 52B - Test 17: Configuration Registry Dynamic Count Verification', () => {
+  assert.strictEqual(configsDoc.configurations.length, configsDoc.configurations_count, 'Configurations array length matches configurations_count');
+  assert.ok(configsDoc.configurations.length >= 750, `Configurations count must be >= 750, got ${configsDoc.configurations.length}`);
+});

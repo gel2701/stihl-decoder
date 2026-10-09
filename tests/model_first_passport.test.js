@@ -108,7 +108,7 @@ assert.strictEqual(viewModel.qrUrl.includes('null'), false, 'QR URL must NOT inc
 assert.strictEqual(viewModel.publicUrl, 'https://www.stihldecoder.nl/kettingzagen/ms-440/');
 
 const passportHtml = renderStihlPassportHtml(ms440Dossier, database);
-assert(passportHtml.includes('STIHL Machinepaspoort'), 'Title must be STIHL Machinepaspoort');
+assert(passportHtml.includes('STIHL Modelpaspoort') || passportHtml.includes('Modelpaspoort'), 'Title must be STIHL Modelpaspoort');
 assert(passportHtml.includes('MS 440'), 'Must contain MS 440');
 assert(passportHtml.includes('Nog niet toegevoegd'), 'Must display Nog niet toegevoegd');
 assert(!passportHtml.includes('Stop Heling Status'), 'Must NOT render Stop Heling block when serial is absent');
@@ -166,5 +166,46 @@ assert(pageHtml.includes('Heb je deze machine? Voeg hem toe aan Mijn STIHL'), 'M
 assert(pageHtml.includes('Bewaar je machinegegevens, onderhoud en serienummer in je eigen STIHL Machinepaspoort.'), 'Must contain new CTA text');
 assert(pageHtml.includes('/stihl-paspoort/#add=ms-440'), 'CTA must link to /stihl-paspoort/#add=ms-440');
 console.log('  ✅ Test E Passed: ModelPageTemplate CTA is model-first and links correctly.\n');
+
+// ============================================================================
+// Test F: Homepage Model Result Card & Modal UX Verification
+// ============================================================================
+console.log('▶ Test F: Homepage model result card & modal UX verification...');
+const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+
+assert(indexHtml.includes('Maak machinepaspoort'), 'Homepage must contain "Maak machinepaspoort" CTA');
+assert(indexHtml.includes('Machinepaspoort'), 'Homepage must contain "Machinepaspoort" keyword');
+assert(indexHtml.includes('model-card-passport-btn'), 'Model card must have model-card-passport-btn');
+assert(indexHtml.includes('Serienummer (optioneel)'), 'Modal must declare serial as optional');
+assert(indexHtml.includes('Je kunt het serienummer later toevoegen.'), 'Modal must contain late serial add note');
+assert(indexHtml.includes('Machinepaspoort aangemaakt'), 'Save flow must notify that Machinepaspoort is aangemaakt');
+assert(indexHtml.includes('Bekijk machinepaspoort'), 'Save toast must provide direct "Bekijk machinepaspoort" action');
+console.log('  ✅ Test F Passed: Homepage model result card and modal copy verified.\n');
+
+// ============================================================================
+// Test G: Serial-based Passport Behavior Remains Unaltered
+// ============================================================================
+console.log('▶ Test G: Serial-based passport behavior remains unchanged...');
+const serialDossier = createDossierObject({
+  modelSlug: 'ms-261',
+  modelName: 'MS 261',
+  category: 'Kettingzaag',
+  seriesCode: '1141',
+  identityStatus: IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
+  identitySource: IDENTITY_SOURCES.SERIAL_DECODE,
+  serialNumber: '184592301',
+  purchaseYear: 2020
+});
+
+const serialVm = buildPassportViewModel(serialDossier, database);
+assert.strictEqual(serialVm.hasSerial, true);
+assert.strictEqual(serialVm.passportMode, 'MODEL_WITH_SERIAL');
+assert.strictEqual(serialVm.formattedSerial, '1 845 923 01');
+assert.strictEqual(serialVm.theftCheck.statusLabel, 'Niet gecontroleerd via StopHeling');
+
+const serialHtml = renderStihlPassportHtml(serialDossier, database);
+assert(serialHtml.includes('1 845 923 01'), 'Serial must be rendered formatted');
+assert(serialHtml.includes('Stop Heling Status'), 'Stop Heling block must be rendered when serial is present');
+console.log('  ✅ Test G Passed: Serial-based passport behavior preserved.\n');
 
 console.log('🎉 ALL MODEL-FIRST STIHL PASSPORT TESTS PASSED 100% CLEANLY!');

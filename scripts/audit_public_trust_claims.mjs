@@ -385,8 +385,8 @@ for (const destPath of internalDestinationsSet) {
 // ==============================================================
 
 for (const fragCheck of fragmentLinksToCheck) {
-  // If targetFrag is client-side router hash parameter (e.g. add=ms-170 on /stihl-paspoort/)
-  if (fragCheck.targetFrag.startsWith('add=')) {
+  // If targetFrag is client-side router hash parameter (e.g. add=ms-170, passport=123, dossier=123 on /stihl-paspoort/)
+  if (fragCheck.targetFrag.startsWith('add=') || fragCheck.targetFrag.startsWith('passport=') || fragCheck.targetFrag.startsWith('dossier=')) {
     if (fragCheck.targetPath.includes('paspoort')) {
       continue;
     }

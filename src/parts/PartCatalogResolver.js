@@ -9,12 +9,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const defaultPartsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_catalog.json');
 const defaultFitmentsPath = path.resolve(__dirname, '..', '..', 'data', 'model_part_fitments.json');
+const defaultConfigurationsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_model_configurations.json');
 
 let cachedPartsCatalog = null;
 let cachedPartsMap = null;
 let cachedFitments = null;
 let cachedFitmentsByPartMap = null;
 let cachedFitmentsByModelMap = null;
+let cachedConfigurations = null;
 
 function readShardFile(filePath) {
   if (!fs.existsSync(filePath)) return [];
@@ -123,6 +125,21 @@ function loadDefaultPartsData() {
   }
 }
 
+function loadDefaultConfigurationsData() {
+  if (cachedConfigurations === null) {
+    try {
+      if (fs.existsSync(defaultConfigurationsPath)) {
+        const doc = JSON.parse(fs.readFileSync(defaultConfigurationsPath, 'utf8'));
+        cachedConfigurations = Array.isArray(doc.configurations) ? doc.configurations : [];
+      } else {
+        cachedConfigurations = [];
+      }
+    } catch (e) {
+      cachedConfigurations = [];
+    }
+  }
+}
+
 function filterFitmentsForModel(allModelFitments, variantKey, configurationKey) {
   const cleanVar = variantKey && variantKey !== 'base' ? variantKey.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') : null;
   const cleanCfg = configurationKey && configurationKey !== 'base' ? configurationKey.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') : null;
@@ -132,11 +149,10 @@ function filterFitmentsForModel(allModelFitments, variantKey, configurationKey) 
     const fCfg = f.configuration_key ? f.configuration_key.toLowerCase().replace(/[^a-z0-9]+/g, '_') : null;
 
     if (cleanCfg) {
-      // Configuration query: must match EXACT_CONFIGURATION and matching configuration_key
+      // Configuration query: must match EXACT_CONFIGURATION and exact normalized configuration_key
       if (f.fitment_scope !== FITMENT_SCOPES.EXACT_CONFIGURATION) return false;
       if (!fCfg) return false;
-      const matchCfg = fCfg === cleanCfg || fCfg.startsWith(cleanCfg + '_') || cleanCfg.startsWith(fCfg);
-      if (!matchCfg) return false;
+      if (fCfg !== cleanCfg) return false;
       if (cleanVar && fVar !== cleanVar && fVar !== 'base') return false;
       return true;
     }
@@ -404,5 +420,56 @@ export class PartCatalogResolver {
         source_evidence_status: f.source_evidence_status
       };
     });
+  }
+
+  /**
+   * Resolves a user input or descriptive string into a single exact canonical configuration key.
+   */
+  static resolveConfigurationKey(canonicalModelId, variantKey, rawInput, database = null) {
+    if (!rawInput) return null;
+    const cleanInput = rawInput.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    if (!cleanInput || cleanInput === 'base') return null;
+
+    const normModelId = (canonicalModelId || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    const normVarKey = variantKey && variantKey !== 'base' ? variantKey.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') : 'base';
+
+    if (database && Array.isArray(database.parts_model_configurations)) {
+      const match = database.parts_model_configurations.find(c => {
+        const cModel = (c.canonical_model_id || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        const cVar = (c.variant_key || 'base').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        if (normModelId && cModel !== normModelId) return false;
+        if (normVarKey && normVarKey !== 'base' && cVar !== normVarKey && cVar !== 'base') return false;
+
+        const cCfgKey = (c.configuration_key || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        const cCfgName = (c.configuration_name || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        return cCfgKey === cleanInput || cCfgName === cleanInput;
+      });
+      if (match) {
+        return match.configuration_key.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+      }
+    }
+
+    loadDefaultConfigurationsData();
+    if (cachedConfigurations) {
+      const match = cachedConfigurations.find(c => {
+        const cModel = (c.canonical_model_id || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        const cVar = (c.variant_key || 'base').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        if (normModelId && cModel !== normModelId) return false;
+        if (normVarKey && normVarKey !== 'base' && cVar !== normVarKey && cVar !== 'base') return false;
+
+        const cCfgKey = (c.configuration_key || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        const cCfgName = (c.configuration_name || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        return cCfgKey === cleanInput || cCfgName === cleanInput;
+      });
+      if (match) {
+        return match.configuration_key.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+      }
+    }
+
+    return cleanInput;
+  }
+
+  resolveConfigurationKey(canonicalModelId, variantKey, rawInput, database = null) {
+    return PartCatalogResolver.resolveConfigurationKey(canonicalModelId, variantKey, rawInput, database);
   }
 }
