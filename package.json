@@ -13,6 +13,7 @@
     "test:e2e": "playwright test",
     "test:live-smoke": "node scripts/live_browser_smoke_test.mjs",
     "test:parts-live": "node scripts/smoke_test_parts_live.mjs",
+    "test:official-evidence-live": "node scripts/validate_official_parts_evidence.mjs",
     "test:legacy": "node tests/run_all_tests.js",
     "test:official-harvester": "node tests/official_product_harvester.test.js",
     "harvest:stihl:official": "node scripts/harvest_stihl_official_products.js",

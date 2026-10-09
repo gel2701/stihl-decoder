@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -644,9 +645,70 @@ test('Phase 52A-R5 - Test 34: Exact Variant Fitment Identification', () => {
 // -------------------------------------------------------------
 test('Phase 52A-R5 - Test 35: Official Claim Validator & Negative Tests', async () => {
   const validatorModule = await import('../scripts/validate_official_parts_evidence.mjs');
+  const { validateOfficialRecord, HASH_POLICIES, HASH_STATUS } = validatorModule;
+
+  // 1. Run full negative validation suite
   assert.doesNotThrow(() => validatorModule.runNegativeValidationTests());
 
-  const result = await validatorModule.validateOfficialEvidenceFile(path.join(rootDir, 'data', 'verified_official_parts_evidence.json'));
+  // 2. Explicit Regression Test A: Harmless HTML change (Hash drift with identical valid claims)
+  const mockValidHtmlA = `
+    <html>
+      <head><title>STIHL Service Kit 45</title></head>
+      <body>
+        <h1>Service Kit 45 voor MS 170 en MS 180</h1>
+        <p>Bestelnummer: 1130 007 4103</p>
+        <p>Compatibel met MS 170 en MS 180 (geschikt voor 2-MIX motoren).</p>
+      </body>
+    </html>
+  `;
+  const mockShaA = crypto.createHash('sha256').update(mockValidHtmlA).digest('hex');
+  const baseRecord = {
+    part_number: '11300074103',
+    part_number_display: '1130 007 4103',
+    part_name: 'Service Kit 45',
+    models: ['MS 170', 'MS 180'],
+    source_url: 'https://www.stihl.nl/nl/ap/service-kit-45-140895',
+    response_sha256: mockShaA,
+    doc_ref: 'STIHL Service Kit Manual',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'Service Kit 45',
+    compatibility_text: 'MS 170, MS 180',
+    variant_condition: '2-MIX engine models',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+
+  // Harmless modification: new timestamp / footer comment
+  const mockValidHtmlB = mockValidHtmlA + '\n<!-- updated timestamp 2026-10-09 with analytics and css classes -->';
+  const driftResult = validateOfficialRecord(baseRecord, mockValidHtmlB, { hashPolicy: HASH_POLICIES.CLAIM_REVALIDATION });
+  assert.strictEqual(driftResult.length, 0, 'Harmless HTML drift with valid claims must pass CLAIM_REVALIDATION');
+  assert.strictEqual(driftResult.hashStatus, HASH_STATUS.SOURCE_BODY_CHANGED_CLAIM_STILL_VALID);
+  assert.strictEqual(driftResult.claimContentValid, true);
+  assert.strictEqual(driftResult.hashMatch, false);
+
+  // 3. Explicit Regression Test B: Strict snapshot mode rejects hash mismatch
+  const strictMismatch = validateOfficialRecord(baseRecord, mockValidHtmlB, { hashPolicy: HASH_POLICIES.STRICT_SNAPSHOT });
+  assert.ok(strictMismatch.length > 0, 'STRICT_SNAPSHOT must reject body hash mismatch');
+  assert.ok(strictMismatch.some(e => e.includes('Response SHA-256 mismatch')));
+
+  // 4. Explicit Regression Test C: Material change fails regardless of hash
+  const materialChangeHtml = `
+    <html>
+      <head><title>STIHL Service Kit 45</title></head>
+      <body>
+        <h1>Service Kit 45 Generic</h1>
+        <p>No part number or model info here.</p>
+      </body>
+    </html>
+  `;
+  const materialLossResult = validateOfficialRecord(baseRecord, materialChangeHtml, { hashPolicy: HASH_POLICIES.CLAIM_REVALIDATION });
+  assert.ok(materialLossResult.length > 0, 'CLAIM_REVALIDATION must fail closed when claims are missing from body');
+  assert.strictEqual(materialLossResult.claimContentValid, false);
+
+  // 5. Validate verified official evidence file
+  const result = await validatorModule.validateOfficialEvidenceFile(
+    path.join(rootDir, 'data', 'verified_official_parts_evidence.json'),
+    { hashPolicy: HASH_POLICIES.CLAIM_REVALIDATION }
+  );
   assert.strictEqual(result.verifiedCount, 6);
   assert.strictEqual(result.demotedCount, 15);
 });
