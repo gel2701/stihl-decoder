@@ -10,8 +10,8 @@ const __dirname = path.dirname(__filename);
 const dbPath = path.join(__dirname, '..', 'data', 'stihl_database.json');
 const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 
-// Start server on port 3105 for clean test isolation
-process.env.PORT = '3105';
+// Start server on port 3099 for clean test isolation
+process.env.PORT = '3099';
 await import('../server.js');
 
 // Wait 500ms for server startup
@@ -19,7 +19,7 @@ await new Promise(r => setTimeout(r, 500));
 
 console.log('🧪 Starting Phase 28 Topical Authority & SEO Expansion Validation Scan...\n');
 
-const sitemapRes = await fetchUrl('http://localhost:3105/sitemap.xml');
+const sitemapRes = await fetchUrl('http://localhost:3099/sitemap.xml');
 const sitemapXml = sitemapRes.body;
 
 // Extract all <loc> URLs from sitemap
@@ -45,7 +45,7 @@ internalLinksFound.add('/');
 
 for (const fullUrl of sitemapUrls) {
   const relPath = fullUrl.replace(PRIMARY_ORIGIN, '');
-  const localUrl = `http://localhost:3105${relPath}`;
+  const localUrl = `http://localhost:3099${relPath}`;
   const res = await fetchUrl(localUrl);
 
   let status = res.status;
@@ -154,9 +154,9 @@ console.log(`\n🚦 DECISION: ${isGo ? '✅ GO' : '❌ NO-GO'}\n`);
 
 process.exit(isGo ? 0 : 1);
 
-function fetchUrl(url, retries = 2) {
+function fetchUrl(url) {
   return new Promise((resolve) => {
-    const req = http.get(url, (res) => {
+    http.get(url, (res) => {
       let body = '';
       res.on('data', chunk => { body += chunk; });
       res.on('end', () => {
@@ -166,15 +166,8 @@ function fetchUrl(url, retries = 2) {
           body
         });
       });
-    });
-    req.on('error', async (err) => {
-      if (retries > 0) {
-        await new Promise(r => setTimeout(r, 100));
-        const retryRes = await fetchUrl(url, retries - 1);
-        resolve(retryRes);
-      } else {
-        resolve({ status: 500, headers: {}, body: err.message });
-      }
+    }).on('error', (err) => {
+      resolve({ status: 500, headers: {}, body: err.message });
     });
   });
 }

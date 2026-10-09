@@ -82,7 +82,7 @@ test.describe('Critical Homepage User Journeys', () => {
 
   test('E. Onderdeelnummer analyse toont waarschuwingskaart en modelgroep', async ({ page }) => {
     const gates = attachIntegrityGates(page);
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.goto('/');
 
     const input = page.locator('#code-input');
     const btn = page.locator('#search-btn');
@@ -90,11 +90,10 @@ test.describe('Critical Homepage User Journeys', () => {
     const partNoDisplay = page.locator('#warn-part-no');
     const modelGroupDisplay = page.locator('#warn-model-group');
 
-    await expect(input).toBeVisible();
-    await input.fill('1121 021 0800');
+    await input.fill('11210210800');
     await btn.click();
 
-    await expect(warningCard).toBeVisible({ timeout: 10000 });
+    await expect(warningCard).toBeVisible({ timeout: 5000 });
     await expect(partNoDisplay).toContainText('1121 021 0800');
     await expect(modelGroupDisplay).toContainText('MS 260 / 026 familie');
 
