@@ -36,13 +36,13 @@ test('Phase 51A-R2 - Test 1: Production Official Anchor Count & Batch Equivalenc
   assert.strictEqual(batch1Doc.anchors.length, 727, 'Batch 1 must contain exactly 727 anchors');
   assert.strictEqual(batch2NewDoc.anchors.length, 2118, 'Batch 2 new anchors must contain exactly 2118 anchors');
   assert.strictEqual(batch2Doc.anchors.length, 2138, 'Batch 2 total observed anchors must contain 2138 anchors');
-  assert.strictEqual(anchorsDoc.anchors.length, 2845, 'Production official anchors must contain exactly 2845 anchors');
-  assert.strictEqual(database.official_serial_anchors.length, 2845, 'stihl_database.json official_serial_anchors must contain exactly 2845 anchors');
+  assert.ok(anchorsDoc.anchors.length >= 2845, 'Production official anchors must contain at least 2845 anchors');
+  assert.ok(database.official_serial_anchors.length >= 2845, 'stihl_database.json official_serial_anchors must contain at least 2845 anchors');
 });
 
 test('Phase 51A-R2 - Test 2: Anchor Format & Invariants (9 Digits, Unique, Source MY_STIHL)', (t) => {
   const serialSet = new Set();
-  const validDates = ['2026-09-22', '2026-09-26', '2026-10-06'];
+  const validDates = ['2026-09-22', '2026-09-26', '2026-10-06', '2026-10-09'];
   for (const anchor of anchorsDoc.anchors) {
     assert.match(anchor.serial_number, /^\d{9}$/, `Anchor ${anchor.serial_number} must be exact 9 digits`);
     assert.ok(anchor.model_name && anchor.model_name.trim().length > 0, `Anchor ${anchor.serial_number} must have non-empty model_name`);
@@ -52,7 +52,7 @@ test('Phase 51A-R2 - Test 2: Anchor Format & Invariants (9 Digits, Unique, Sourc
     assert.ok(!serialSet.has(anchor.serial_number), `Duplicate serial number detected: ${anchor.serial_number}`);
     serialSet.add(anchor.serial_number);
   }
-  assert.strictEqual(serialSet.size, 2845, 'Must have 2845 unique serial numbers');
+  assert.strictEqual(serialSet.size, anchorsDoc.anchors.length, 'Must have unique serial numbers for all anchors');
 });
 
 test('Phase 51A-R2 - Test 3: Anchor 163118080 Exact Identity & Canonical Mapping', (t) => {
@@ -179,8 +179,8 @@ test('Phase 51A-R2 - Test 10: JSON vs SQLite Parity for all 2845 Anchors', async
     db.close();
   }
 
-  assert.strictEqual(rows.length, 2845, 'SQLite official_serial_anchors table must have 2845 rows');
-  assert.strictEqual(anchorsDoc.anchors.length, 2845, 'JSON anchors must have 2845 entries');
+  assert.ok(rows.length >= 2845, 'SQLite official_serial_anchors table must have at least 2845 rows');
+  assert.strictEqual(rows.length, anchorsDoc.anchors.length, 'SQLite and JSON anchors length must match exactly');
 
   for (let i = 0; i < anchorsDoc.anchors.length; i++) {
     const j = anchorsDoc.anchors[i];

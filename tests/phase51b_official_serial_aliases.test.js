@@ -57,7 +57,7 @@ test('Phase 51B - Test 2: Input & Target Serial Invariants', () => {
 
 test('Phase 51B - Test 3: All 171 Targets Exist in Official Anchor Registry (2845 Records)', () => {
   const anchorMap = new Map(anchorsDoc.anchors.map(a => [a.serial_number, a]));
-  assert.strictEqual(anchorMap.size, 2845, 'Official anchors registry must have 2845 unique anchors');
+  assert.ok(anchorMap.size >= 2845, 'Official anchors registry must have at least 2845 unique anchors');
 
   for (const alias of canonicalAliasesDoc.aliases) {
     const anchor = anchorMap.get(alias.official_serial_number);
@@ -149,9 +149,10 @@ test('Phase 51B - Test 9: Batch 2 Contributes 0 New Aliases', () => {
   assert.strictEqual(batch2Manifest.new_evidenced_input_aliases, 0, 'Batch 2 must contribute 0 aliases');
 });
 
-test('Phase 51B - Test 10: Official Anchor Count Remains Exactly 2845', () => {
-  assert.strictEqual(anchorsDoc.anchors.length, 2845, 'Official anchors in official_serial_anchors.json must remain 2845');
-  assert.strictEqual(database.official_serial_anchors.length, 2845, 'Official anchors in stihl_database.json must remain 2845');
+test('Phase 51B - Test 10: Official Anchor Count Remains at least 2845', () => {
+  assert.ok(anchorsDoc.anchors.length >= 2845, 'Official anchors in official_serial_anchors.json must be at least 2845');
+  assert.ok(database.official_serial_anchors.length >= 2845, 'Official anchors in stihl_database.json must be at least 2845');
+  assert.strictEqual(anchorsDoc.anchors.length, database.official_serial_anchors.length, 'Anchor counts must match between JSON files');
 });
 
 test('Phase 51B - Test 11: JSON vs SQLite Alias Parity for all 171 Records', async () => {

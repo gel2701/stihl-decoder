@@ -187,7 +187,7 @@ test('Phase 52B - Test 4: 100% JSON vs SQLite Database Parity', async () => {
     assert.strictEqual(conflictsCount, conflictsDoc.conflicts.length, 'parts_conflicts matches JSON');
     assert.strictEqual(variantsCount, variantsDoc.variants.length, 'parts_model_variants matches JSON');
     assert.strictEqual(configsCount, configsDoc.configurations.length, 'parts_model_configurations matches JSON');
-    assert.strictEqual(anchorsCount, 2845, 'Anchors must be exactly 2845');
+    assert.strictEqual(anchorsCount, anchorsDoc.anchors.length, 'Anchors must match JSON anchors length');
     assert.strictEqual(aliasesCount, 171, 'Aliases must be exactly 171');
   } finally {
     db.close();
