@@ -429,20 +429,114 @@ export function runBatchProcessing(options = {}) {
   };
 }
 
-export function verifyReproducibility() {
+export const OBS_CSV_HEADERS = [
+  'input_serial', 'official_serial_number', 'lookup_date', 'lookup_date_basis',
+  'lookup_outcome', 'official_identity', 'category_raw', 'drive_type_raw',
+  'official_product_name', 'source', 'verification_status', 'eligible_for_official_anchor',
+  'negative_identity_evidence', 'recheck_required', 'duplicate_input_rows', 'source_file'
+];
+
+export const NEW_ANCHORS_CSV_HEADERS = [
+  'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
+  'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
+];
+
+export const RECONFIRMED_CSV_HEADERS = [
+  'serial_number', 'batch_model_name', 'existing_model_name', 'batch_category',
+  'existing_category', 'batch_drive_type', 'existing_drive_type', 'source_row_numbers'
+];
+
+export const RECHECK_CSV_HEADERS = [
+  'input_serial', 'reason', 'raw_statuses', 'source_row_numbers'
+];
+
+export const DUPLICATE_CSV_HEADERS = [
+  'serial', 'sourceRowNumber', 'status', 'meldingPreview'
+];
+
+export const REBUILD_CANONICAL_WRITES = 0;
+export const SQLITE_RESEED_FROM_PHASE53A_REBUILD = 'NO';
+
+function valuesEqual(a, b) {
+  if (a === b) return true;
+  if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
+  return false;
+}
+
+export function validateBatchManifest(batchDir = BATCH_DIR) {
+  const manifestPath = path.join(batchDir, 'batch_manifest.json');
+  if (!fs.existsSync(manifestPath)) {
+    return {
+      success: false,
+      mismatches: [`Manifest missing: ${manifestPath}`],
+      fileCount: 0
+    };
+  }
+
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const mismatches = [];
+
+  for (const f of manifest.files || []) {
+    const fullPath = path.join(batchDir, f.path);
+    if (!fs.existsSync(fullPath)) {
+      mismatches.push(`Manifest file missing: ${f.path}`);
+      continue;
+    }
+    const buf = fs.readFileSync(fullPath);
+    if (buf.length !== f.bytes) {
+      mismatches.push(`Manifest byte size mismatch for ${f.path}: disk has ${buf.length} vs manifest ${f.bytes}`);
+    }
+    const sha = crypto.createHash('sha256').update(buf).digest('hex');
+    if (sha !== f.sha256) {
+      mismatches.push(`Manifest SHA256 mismatch for ${f.path}: disk has ${sha} vs manifest ${f.sha256}`);
+    }
+  }
+
+  return {
+    success: mismatches.length === 0,
+    mismatches,
+    fileCount: manifest.files ? manifest.files.length : 0
+  };
+}
+
+export function verifyReproducibility(options = {}) {
+  const sourcePath = options.sourcePath || DEFAULT_SOURCE_CSV;
+  const baselinePath = options.baselinePath || DEFAULT_BASELINE_JSON;
+  const batchDir = options.batchDir || BATCH_DIR;
+  const batchDataDir = options.batchDataDir || BATCH_DATA_DIR;
+  const throwOnError = Boolean(options.throwOnError);
+  const isCli = process.argv[1] && process.argv[1].endsWith('generate_phase53a_batch.mjs');
+
   console.log('===============================================================');
   console.log('🔍 PHASE 53A REPRODUCIBILITY VERIFICATION (IDEMPOTENT / VERIFY MODE)');
   console.log('===============================================================\n');
 
-  console.log(`Loading immutable source: ${DEFAULT_SOURCE_CSV}`);
-  console.log(`Loading immutable baseline: ${DEFAULT_BASELINE_JSON}`);
+  console.log(`Loading immutable source: ${sourcePath}`);
+  console.log(`Loading immutable baseline: ${baselinePath}`);
 
+  const errors = [];
+
+  // 1. Validate batch_manifest.json hashes and byte sizes
+  console.log('\n--- 1. Validating batch_manifest.json File Integrity ---');
+  const manifestResult = validateBatchManifest(batchDir);
+  if (!manifestResult.success) {
+    for (const m of manifestResult.mismatches) {
+      console.error(`❌ ${m}`);
+      errors.push(m);
+    }
+  } else {
+    console.log(`  ✓ All ${manifestResult.fileCount} manifest files verified with exact byte sizes and SHA256 hashes.`);
+  }
+
+  // 2. In-memory batch reconstruction from immutable source and pre-import baseline
+  console.log('\n--- 2. In-Memory Batch Reconstruction ---');
   const computed = runBatchProcessing({
-    sourcePath: DEFAULT_SOURCE_CSV,
-    baselinePath: DEFAULT_BASELINE_JSON
+    sourcePath,
+    baselinePath
   });
 
-  console.log('\n--- Computed Metrics ---');
   console.log('  Source Data Rows:              ', computed.populatedDataRows);
   console.log('  Unique Input Serials:          ', computed.uniqueInputSerialsCount);
   console.log('  Safe Official Exact (Batch):   ', computed.allPositiveAnchorsBatch.length);
@@ -469,152 +563,267 @@ export function verifyReproducibility() {
     { label: 'Final cumulative anchors === 8874', pass: computed.finalAnchorsList.length === 8874 }
   ];
 
-  let failedChecks = 0;
   for (const c of checks) {
     if (!c.pass) {
-      console.error(`❌ Check failed: ${c.label}`);
-      failedChecks++;
+      const err = `Check failed: ${c.label}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
     } else {
       console.log(`  ✓ ${c.label}`);
     }
   }
 
-  // 4. Compare with Committed Artifacts
-  console.log('\n--- Comparing against Committed Artifacts in data/import_batches/serials_2026-10-09/data ---');
+  // 3. Exact Full Content Comparison for All Phase 53A Artifacts
+  console.log('\n--- 3. Full Content & Exact Serialization Verification for Committed Artifacts ---');
 
-  const filesToVerify = [
-    {
-      name: 'official_serial_anchors_batch_2026-10-09.json',
-      path: path.join(BATCH_DATA_DIR, 'official_serial_anchors_batch_2026-10-09.json'),
-      expectedLen: computed.allPositiveAnchorsBatch.length,
-      getActual: (d) => d.anchors.length
-    },
-    {
-      name: 'new_official_serial_anchors_only_2026-10-09.json',
-      path: path.join(BATCH_DATA_DIR, 'new_official_serial_anchors_only_2026-10-09.json'),
-      expectedLen: computed.newAnchorsOnly.length,
-      getActual: (d) => d.anchors.length
-    },
-    {
-      name: 'serial_lookup_observations_2026-10-09.json',
-      path: path.join(BATCH_DATA_DIR, 'serial_lookup_observations_2026-10-09.json'),
-      expectedLen: computed.observations.length,
-      getActual: (d) => d.observations.length
+  function verifyJsonArtifact(name, fileName, expectedDoc, arrayKey) {
+    const filePath = path.join(batchDataDir, fileName);
+    if (!fs.existsSync(filePath)) {
+      const err = `Committed JSON artifact missing: ${fileName}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+      return;
     }
-  ];
+    const committedRaw = fs.readFileSync(filePath, 'utf8');
+    let committedDoc;
+    try {
+      committedDoc = JSON.parse(committedRaw);
+    } catch (e) {
+      const err = `Artifact ${fileName} is invalid JSON: ${e.message}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+      return;
+    }
 
-  for (const f of filesToVerify) {
-    if (!fs.existsSync(f.path)) {
-      console.error(`❌ Committed artifact missing: ${f.name}`);
-      failedChecks++;
-      continue;
+    if (committedDoc.schema_version !== expectedDoc.schema_version) {
+      const err = `Artifact ${fileName} schema_version mismatch: expected "${expectedDoc.schema_version}" vs committed "${committedDoc.schema_version}"`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
     }
-    const doc = JSON.parse(fs.readFileSync(f.path, 'utf8'));
-    const actualLen = f.getActual(doc);
-    if (actualLen !== f.expectedLen) {
-      console.error(`❌ Length mismatch for ${f.name}: committed ${actualLen} vs computed ${f.expectedLen}`);
-      failedChecks++;
+
+    const expArr = expectedDoc[arrayKey];
+    const comArr = committedDoc[arrayKey];
+    if (!Array.isArray(comArr)) {
+      const err = `Artifact ${fileName} missing array property "${arrayKey}"`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+      return;
+    }
+
+    if (expArr.length !== comArr.length) {
+      const err = `Artifact ${fileName} array length mismatch: expected ${expArr.length} vs committed ${comArr.length}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+      return;
+    }
+
+    let itemMismatches = 0;
+    for (let i = 0; i < expArr.length; i++) {
+      const e = expArr[i];
+      const c = comArr[i];
+      for (const k of Object.keys(e)) {
+        if (!valuesEqual(e[k], c[k])) {
+          itemMismatches++;
+          const err = `Artifact ${fileName} record ${i} property "${k}" mismatch: expected "${JSON.stringify(e[k])}" vs committed "${JSON.stringify(c[k])}"`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+          if (itemMismatches >= 5) break;
+        }
+      }
+      if (itemMismatches >= 5) break;
+    }
+
+    const expStr = JSON.stringify(expectedDoc, null, 2);
+    if (expStr.replace(/\r\n/g, '\n') !== committedRaw.replace(/\r\n/g, '\n')) {
+      const err = `Artifact ${fileName} serialization output mismatch`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
     } else {
-      console.log(`  ✓ Artifact ${f.name} count matches (${actualLen})`);
+      console.log(`  ✓ Artifact ${fileName} full content & serialization match (${expArr.length} records).`);
     }
   }
 
-  // Compare CSV parsed record counts
-  const csvFilesToVerify = [
-    { name: 'new_official_serial_anchors_only_2026-10-09.csv', path: path.join(BATCH_DATA_DIR, 'new_official_serial_anchors_only_2026-10-09.csv'), expectedRows: computed.newAnchorsOnly.length + 1 },
-    { name: 'serial_recheck_queue_2026-10-09.csv', path: path.join(BATCH_DATA_DIR, 'serial_recheck_queue_2026-10-09.csv'), expectedRows: computed.recheckQueue.length + 1 },
-    { name: 'reconfirmed_existing_anchors_2026-10-09.csv', path: path.join(BATCH_DATA_DIR, 'reconfirmed_existing_anchors_2026-10-09.csv'), expectedRows: computed.reconfirmedAnchors.length + 1 },
-    { name: 'duplicate_source_rows_2026-10-09.csv', path: path.join(BATCH_DATA_DIR, 'duplicate_source_rows_2026-10-09.csv'), expectedRows: computed.duplicateRowsList.length + 1 }
-  ];
-
-  for (const c of csvFilesToVerify) {
-    if (!fs.existsSync(c.path)) {
-      console.error(`❌ Committed CSV missing: ${c.name}`);
-      failedChecks++;
-      continue;
+  function verifyCsvArtifact(name, fileName, records, headers) {
+    const filePath = path.join(batchDataDir, fileName);
+    if (!fs.existsSync(filePath)) {
+      const err = `Committed CSV artifact missing: ${fileName}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+      return;
     }
-    const parsedRows = parseCSV(fs.readFileSync(c.path, 'utf8'));
-    if (parsedRows.length !== c.expectedRows) {
-      console.error(`❌ Record count mismatch for ${c.name}: committed ${parsedRows.length} vs expected ${c.expectedRows}`);
-      failedChecks++;
+    const committedRaw = fs.readFileSync(filePath, 'utf8');
+    const committedRows = parseCSV(committedRaw);
+    const expStr = toCsv(records, headers);
+    const expRows = parseCSV(expStr);
+
+    if (committedRows.length !== expRows.length) {
+      const err = `Artifact ${fileName} CSV row count mismatch: expected ${expRows.length} vs committed ${committedRows.length}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+      return;
+    }
+
+    let cellMismatches = 0;
+    for (let r = 0; r < expRows.length; r++) {
+      const er = expRows[r];
+      const cr = committedRows[r];
+      if (er.length !== cr.length) {
+        const err = `Artifact ${fileName} CSV row ${r} column count mismatch: expected ${er.length} vs committed ${cr.length}`;
+        console.error(`❌ ${err}`);
+        errors.push(err);
+        break;
+      }
+      for (let c = 0; c < er.length; c++) {
+        if (er[c] !== cr[c]) {
+          cellMismatches++;
+          const colName = headers[c] || `col_${c}`;
+          const err = `Artifact ${fileName} row ${r} (${colName}) mismatch: expected "${er[c]}" vs committed "${cr[c]}"`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+          if (cellMismatches >= 5) break;
+        }
+      }
+      if (cellMismatches >= 5) break;
+    }
+
+    if (expStr.replace(/\r\n/g, '\n') !== committedRaw.replace(/\r\n/g, '\n')) {
+      const err = `Artifact ${fileName} CSV serialization output mismatch`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
     } else {
-      console.log(`  ✓ Artifact ${c.name} record count matches (${parsedRows.length})`);
+      console.log(`  ✓ Artifact ${fileName} full CSV content & serialization match (${expRows.length} rows).`);
     }
   }
 
-  if (failedChecks > 0) {
-    console.error(`\n❌ VERIFICATION FAILED with ${failedChecks} mismatch(es).`);
-    process.exit(1);
+  // 1. official_serial_anchors_batch_2026-10-09.json
+  verifyJsonArtifact(
+    'Batch positive anchors JSON',
+    'official_serial_anchors_batch_2026-10-09.json',
+    { schema_version: 'official-serial-anchors-v1', anchors: computed.allPositiveAnchorsBatch },
+    'anchors'
+  );
+
+  // 2. new_official_serial_anchors_only_2026-10-09.json
+  verifyJsonArtifact(
+    'New official anchors only JSON',
+    'new_official_serial_anchors_only_2026-10-09.json',
+    { schema_version: 'official-serial-anchors-v1', anchors: computed.newAnchorsOnly },
+    'anchors'
+  );
+
+  // 3. serial_lookup_observations_2026-10-09.json
+  verifyJsonArtifact(
+    'Serial lookup observations JSON',
+    'serial_lookup_observations_2026-10-09.json',
+    { schema_version: 'serial-lookup-observations-v1', observations: computed.observations },
+    'observations'
+  );
+
+  // 4. new_official_serial_anchors_only_2026-10-09.csv
+  verifyCsvArtifact(
+    'New official anchors only CSV',
+    'new_official_serial_anchors_only_2026-10-09.csv',
+    computed.newAnchorsOnly,
+    NEW_ANCHORS_CSV_HEADERS
+  );
+
+  // 5. serial_lookup_observations_2026-10-09.csv
+  verifyCsvArtifact(
+    'Serial lookup observations CSV',
+    'serial_lookup_observations_2026-10-09.csv',
+    computed.observations,
+    OBS_CSV_HEADERS
+  );
+
+  // 6. reconfirmed_existing_anchors_2026-10-09.csv
+  verifyCsvArtifact(
+    'Reconfirmed existing anchors CSV',
+    'reconfirmed_existing_anchors_2026-10-09.csv',
+    computed.reconfirmedAnchors,
+    RECONFIRMED_CSV_HEADERS
+  );
+
+  // 7. serial_recheck_queue_2026-10-09.csv
+  verifyCsvArtifact(
+    'Serial recheck queue CSV',
+    'serial_recheck_queue_2026-10-09.csv',
+    computed.recheckQueue,
+    RECHECK_CSV_HEADERS
+  );
+
+  // 8. duplicate_source_rows_2026-10-09.csv
+  verifyCsvArtifact(
+    'Duplicate source rows CSV',
+    'duplicate_source_rows_2026-10-09.csv',
+    computed.duplicateRowsList,
+    DUPLICATE_CSV_HEADERS
+  );
+
+  if (errors.length > 0) {
+    console.error(`\n❌ VERIFICATION FAILED with ${errors.length} mismatch(es).`);
+    if (throwOnError) {
+      throw new Error(`Verification failed with ${errors.length} mismatch(es):\n${errors.slice(0, 5).join('\n')}`);
+    }
+    if (isCli) {
+      process.exit(1);
+    }
+    return { success: false, errors, computed, failedChecks: errors.length };
   }
 
   console.log('\n🎉 ALL REPRODUCIBILITY CHECKS PASSED PERFECTLY!');
   console.log('Zero repository files modified (Verify mode).');
-  return computed;
+  return { success: true, errors: [], computed, failedChecks: 0 };
 }
 
-export function rebuildBatchArtifacts() {
+export function rebuildBatchArtifacts(options = {}) {
+  const batchDataDir = options.batchDataDir || BATCH_DATA_DIR;
+  const sourcePath = options.sourcePath || DEFAULT_SOURCE_CSV;
+  const baselinePath = options.baselinePath || DEFAULT_BASELINE_JSON;
+
   console.log('===============================================================');
-  console.log('🛠️ REBUILDING PHASE 53A BATCH ARTIFACTS & CANONICAL REGISTRIES');
+  console.log('🛠️ REBUILDING PHASE 53A BATCH ARTIFACTS ONLY (ZERO CANONICAL WRITES)');
   console.log('===============================================================\n');
 
-  const { seedDatabase } = require('../data/seed.cjs');
+  // NOTE: Rebuild reconstructs historical Phase 53A batch artifacts ONLY.
+  // It MUST NOT write to production canonical serial registries (data/official_serial_anchors.json,
+  // data/stihl_database.json) or touch SQLite database (data/stihl_database.db).
+  // Future post-Phase 53A anchors remain 100% untouched.
 
   const computed = runBatchProcessing({
-    sourcePath: DEFAULT_SOURCE_CSV,
-    baselinePath: DEFAULT_BASELINE_JSON
+    sourcePath,
+    baselinePath
   });
 
-  const obsJsonPath = path.join(BATCH_DATA_DIR, 'serial_lookup_observations_2026-10-09.json');
+  const obsJsonPath = path.join(batchDataDir, 'serial_lookup_observations_2026-10-09.json');
   fs.writeFileSync(obsJsonPath, JSON.stringify({ schema_version: 'serial-lookup-observations-v1', observations: computed.observations }, null, 2));
 
-  const obsCsvPath = path.join(BATCH_DATA_DIR, 'serial_lookup_observations_2026-10-09.csv');
-  const obsCsvHeaders = [
-    'input_serial', 'official_serial_number', 'lookup_date', 'lookup_date_basis',
-    'lookup_outcome', 'official_identity', 'category_raw', 'drive_type_raw',
-    'official_product_name', 'source', 'verification_status', 'eligible_for_official_anchor',
-    'negative_identity_evidence', 'recheck_required', 'duplicate_input_rows', 'source_file'
-  ];
-  fs.writeFileSync(obsCsvPath, toCsv(computed.observations, obsCsvHeaders));
+  const obsCsvPath = path.join(batchDataDir, 'serial_lookup_observations_2026-10-09.csv');
+  fs.writeFileSync(obsCsvPath, toCsv(computed.observations, OBS_CSV_HEADERS));
 
-  const batchAnchorsJsonPath = path.join(BATCH_DATA_DIR, 'official_serial_anchors_batch_2026-10-09.json');
+  const batchAnchorsJsonPath = path.join(batchDataDir, 'official_serial_anchors_batch_2026-10-09.json');
   fs.writeFileSync(batchAnchorsJsonPath, JSON.stringify({ schema_version: 'official-serial-anchors-v1', anchors: computed.allPositiveAnchorsBatch }, null, 2));
 
-  const newAnchorsJsonPath = path.join(BATCH_DATA_DIR, 'new_official_serial_anchors_only_2026-10-09.json');
+  const newAnchorsJsonPath = path.join(batchDataDir, 'new_official_serial_anchors_only_2026-10-09.json');
   fs.writeFileSync(newAnchorsJsonPath, JSON.stringify({ schema_version: 'official-serial-anchors-v1', anchors: computed.newAnchorsOnly }, null, 2));
 
-  const newAnchorsCsvPath = path.join(BATCH_DATA_DIR, 'new_official_serial_anchors_only_2026-10-09.csv');
-  const anchorCsvHeaders = [
-    'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
-    'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
-  ];
-  fs.writeFileSync(newAnchorsCsvPath, toCsv(computed.newAnchorsOnly, anchorCsvHeaders));
+  const newAnchorsCsvPath = path.join(batchDataDir, 'new_official_serial_anchors_only_2026-10-09.csv');
+  fs.writeFileSync(newAnchorsCsvPath, toCsv(computed.newAnchorsOnly, NEW_ANCHORS_CSV_HEADERS));
 
-  const reconfirmedCsvPath = path.join(BATCH_DATA_DIR, 'reconfirmed_existing_anchors_2026-10-09.csv');
-  fs.writeFileSync(reconfirmedCsvPath, toCsv(computed.reconfirmedAnchors, [
-    'serial_number', 'batch_model_name', 'existing_model_name', 'batch_category',
-    'existing_category', 'batch_drive_type', 'existing_drive_type', 'source_row_numbers'
-  ]));
+  const reconfirmedCsvPath = path.join(batchDataDir, 'reconfirmed_existing_anchors_2026-10-09.csv');
+  fs.writeFileSync(reconfirmedCsvPath, toCsv(computed.reconfirmedAnchors, RECONFIRMED_CSV_HEADERS));
 
-  const recheckCsvPath = path.join(BATCH_DATA_DIR, 'serial_recheck_queue_2026-10-09.csv');
-  fs.writeFileSync(recheckCsvPath, toCsv(computed.recheckQueue, ['input_serial', 'reason', 'raw_statuses', 'source_row_numbers']));
+  const recheckCsvPath = path.join(batchDataDir, 'serial_recheck_queue_2026-10-09.csv');
+  fs.writeFileSync(recheckCsvPath, toCsv(computed.recheckQueue, RECHECK_CSV_HEADERS));
 
-  const duplicateCsvPath = path.join(BATCH_DATA_DIR, 'duplicate_source_rows_2026-10-09.csv');
-  fs.writeFileSync(duplicateCsvPath, toCsv(computed.duplicateRowsList, ['serial', 'sourceRowNumber', 'status', 'meldingPreview']));
+  const duplicateCsvPath = path.join(batchDataDir, 'duplicate_source_rows_2026-10-09.csv');
+  fs.writeFileSync(duplicateCsvPath, toCsv(computed.duplicateRowsList, DUPLICATE_CSV_HEADERS));
 
-  const officialAnchorsPath = path.join(rootDir, 'data', 'official_serial_anchors.json');
-  fs.writeFileSync(officialAnchorsPath, JSON.stringify({
-    schema_version: 'official-serial-anchors-v1',
-    anchors: computed.finalAnchorsList
-  }, null, 2));
+  console.log('✅ Batch Artifacts Rebuild Complete.');
+  console.log(`   Target Directory: ${batchDataDir}`);
+  console.log(`   Canonical Registry Writes: ${REBUILD_CANONICAL_WRITES}`);
+  console.log(`   SQLite Reseed: ${SQLITE_RESEED_FROM_PHASE53A_REBUILD}`);
 
-  const stihlDbPath = path.join(rootDir, 'data', 'stihl_database.json');
-  const stihlDb = JSON.parse(fs.readFileSync(stihlDbPath, 'utf8'));
-  stihlDb.official_serial_anchors = computed.finalAnchorsList;
-  fs.writeFileSync(stihlDbPath, JSON.stringify(stihlDb, null, 2));
-
-  seedDatabase();
-
-  console.log('✅ Rebuild Complete.');
+  return computed;
 }
 
 if (process.argv[1] && process.argv[1].endsWith('generate_phase53a_batch.mjs')) {
