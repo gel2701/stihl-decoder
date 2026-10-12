@@ -454,8 +454,27 @@ export const DUPLICATE_CSV_HEADERS = [
   'serial', 'sourceRowNumber', 'status', 'meldingPreview'
 ];
 
+export const CANONICAL_ANCHORS_JSON = path.join(rootDir, 'data', 'official_serial_anchors.json');
+export const STIHL_DATABASE_JSON = path.join(rootDir, 'data', 'stihl_database.json');
+export const STIHL_DATABASE_DB = path.join(rootDir, 'data', 'stihl_database.db');
+
+export const CANONICAL_ANCHOR_FIELDS = [
+  'serial_number',
+  'model_name',
+  'canonical_model_id',
+  'category',
+  'drive_type',
+  'source',
+  'source_url',
+  'verification_date',
+  'verification_method',
+  'evidence_type',
+  'verification_status'
+];
+
 export const REBUILD_CANONICAL_WRITES = 0;
 export const SQLITE_RESEED_FROM_PHASE53A_REBUILD = 'NO';
+export const VERIFY_SQLITE_WRITES = 0;
 
 function valuesEqual(a, b) {
   if (a === b) return true;
@@ -506,6 +525,9 @@ export function verifyReproducibility(options = {}) {
   const baselinePath = options.baselinePath || DEFAULT_BASELINE_JSON;
   const batchDir = options.batchDir || BATCH_DIR;
   const batchDataDir = options.batchDataDir || BATCH_DATA_DIR;
+  const canonicalAnchorsPath = options.canonicalAnchorsPath || CANONICAL_ANCHORS_JSON;
+  const stihlDatabaseJsonPath = options.stihlDatabaseJsonPath || STIHL_DATABASE_JSON;
+  const sqliteDatabasePath = options.sqliteDatabasePath || STIHL_DATABASE_DB;
   const throwOnError = Boolean(options.throwOnError);
   const isCli = process.argv[1] && process.argv[1].endsWith('generate_phase53a_batch.mjs');
 
@@ -758,6 +780,193 @@ export function verifyReproducibility(options = {}) {
     computed.duplicateRowsList,
     DUPLICATE_CSV_HEADERS
   );
+
+  // 4. Exact Production Registry Verification (A == B == C == D)
+  console.log('\n--- 4. Production Registry Exact Verification (A == B == C == D) ---');
+
+  // 4A. Exact Comparison with canonical official_serial_anchors.json
+  if (!fs.existsSync(canonicalAnchorsPath)) {
+    const err = `Canonical anchors file missing: ${canonicalAnchorsPath}`;
+    console.error(`❌ ${err}`);
+    errors.push(err);
+  } else {
+    try {
+      const officialDoc = JSON.parse(fs.readFileSync(canonicalAnchorsPath, 'utf8'));
+      if (!Array.isArray(officialDoc.anchors)) {
+        errors.push(`Canonical anchors doc missing "anchors" array in ${canonicalAnchorsPath}`);
+      } else if (officialDoc.anchors.length !== computed.finalAnchorsList.length) {
+        errors.push(`Canonical anchors count mismatch: computed ${computed.finalAnchorsList.length} vs committed ${officialDoc.anchors.length}`);
+      } else {
+        let fieldMismatches = 0;
+        for (let i = 0; i < computed.finalAnchorsList.length; i++) {
+          const c = computed.finalAnchorsList[i];
+          const o = officialDoc.anchors[i];
+          for (const f of CANONICAL_ANCHOR_FIELDS) {
+            if ((c[f] ?? null) !== (o[f] ?? null)) {
+              fieldMismatches++;
+              const err = `official_serial_anchors.json record ${i} (${c.serial_number}) field "${f}" mismatch: computed "${c[f]}" vs file "${o[f]}"`;
+              console.error(`❌ ${err}`);
+              errors.push(err);
+              if (fieldMismatches >= 5) break;
+            }
+          }
+          if (fieldMismatches >= 5) break;
+        }
+        if (fieldMismatches === 0) {
+          console.log(`  ✓ Canonical official_serial_anchors.json exact match (${computed.finalAnchorsList.length} records, 11 fields).`);
+        }
+      }
+    } catch (e) {
+      errors.push(`Failed to parse canonical anchors JSON: ${e.message}`);
+    }
+  }
+
+  // 4B. Exact Comparison with stihl_database.json official_serial_anchors & Cross-Parity
+  if (!fs.existsSync(stihlDatabaseJsonPath)) {
+    const err = `stihl_database.json file missing: ${stihlDatabaseJsonPath}`;
+    console.error(`❌ ${err}`);
+    errors.push(err);
+  } else {
+    try {
+      const stihlDb = JSON.parse(fs.readFileSync(stihlDatabaseJsonPath, 'utf8'));
+      if (!Array.isArray(stihlDb.official_serial_anchors)) {
+        errors.push(`stihl_database.json missing "official_serial_anchors" array in ${stihlDatabaseJsonPath}`);
+      } else if (stihlDb.official_serial_anchors.length !== computed.finalAnchorsList.length) {
+        errors.push(`stihl_database.json anchors count mismatch: computed ${computed.finalAnchorsList.length} vs committed ${stihlDb.official_serial_anchors.length}`);
+      } else {
+        let fieldMismatches = 0;
+        for (let i = 0; i < computed.finalAnchorsList.length; i++) {
+          const c = computed.finalAnchorsList[i];
+          const s = stihlDb.official_serial_anchors[i];
+          for (const f of CANONICAL_ANCHOR_FIELDS) {
+            if ((c[f] ?? null) !== (s[f] ?? null)) {
+              fieldMismatches++;
+              const err = `stihl_database.json record ${i} (${c.serial_number}) field "${f}" mismatch: computed "${c[f]}" vs file "${s[f]}"`;
+              console.error(`❌ ${err}`);
+              errors.push(err);
+              if (fieldMismatches >= 5) break;
+            }
+          }
+          if (fieldMismatches >= 5) break;
+        }
+        if (fieldMismatches === 0) {
+          console.log(`  ✓ Production stihl_database.json exact match (${computed.finalAnchorsList.length} records, 11 fields).`);
+        }
+      }
+
+      // Cross-parity between official_serial_anchors.json and stihl_database.json
+      if (fs.existsSync(canonicalAnchorsPath) && Array.isArray(stihlDb.official_serial_anchors)) {
+        const officialDoc = JSON.parse(fs.readFileSync(canonicalAnchorsPath, 'utf8'));
+        if (Array.isArray(officialDoc.anchors) && officialDoc.anchors.length === stihlDb.official_serial_anchors.length) {
+          let crossMismatches = 0;
+          for (let i = 0; i < officialDoc.anchors.length; i++) {
+            const o = officialDoc.anchors[i];
+            const s = stihlDb.official_serial_anchors[i];
+            for (const f of CANONICAL_ANCHOR_FIELDS) {
+              if ((o[f] ?? null) !== (s[f] ?? null)) {
+                crossMismatches++;
+                const err = `Cross-parity mismatch between official_serial_anchors.json and stihl_database.json at record ${i} (${o.serial_number}) field "${f}"`;
+                console.error(`❌ ${err}`);
+                errors.push(err);
+                if (crossMismatches >= 5) break;
+              }
+            }
+            if (crossMismatches >= 5) break;
+          }
+          if (crossMismatches === 0) {
+            console.log(`  ✓ Canonical JSON cross-parity 100% verified (CANONICAL_JSON_CROSS_PARITY = PASS).`);
+          }
+        }
+      }
+    } catch (e) {
+      errors.push(`Failed to parse stihl_database.json: ${e.message}`);
+    }
+  }
+
+  // 4C. Exact SQLite Comparison (Read-Only) & 4D. Alias Parity (171 aliases)
+  if (!fs.existsSync(sqliteDatabasePath)) {
+    const err = `SQLite database missing: ${sqliteDatabasePath}`;
+    console.error(`❌ ${err}`);
+    errors.push(err);
+  } else {
+    try {
+      let DatabaseModule;
+      try {
+        DatabaseModule = require('better-sqlite3');
+      } catch (e) {
+        DatabaseModule = null;
+      }
+      if (!DatabaseModule) {
+        throw new Error('better-sqlite3 module required for read-only SQLite validation');
+      }
+
+      const db = new DatabaseModule(sqliteDatabasePath, { readonly: true });
+      try {
+        const sqliteAnchors = db.prepare('SELECT * FROM official_serial_anchors ORDER BY serial_number ASC').all();
+        if (sqliteAnchors.length !== computed.finalAnchorsList.length) {
+          errors.push(`SQLite official_serial_anchors count mismatch: computed ${computed.finalAnchorsList.length} vs sqlite ${sqliteAnchors.length}`);
+        } else {
+          let sqliteMismatches = 0;
+          for (let i = 0; i < computed.finalAnchorsList.length; i++) {
+            const c = computed.finalAnchorsList[i];
+            const q = sqliteAnchors[i];
+            for (const f of CANONICAL_ANCHOR_FIELDS) {
+              if ((c[f] ?? null) !== (q[f] ?? null)) {
+                sqliteMismatches++;
+                const err = `SQLite official_serial_anchors row ${i} (${c.serial_number}) field "${f}" mismatch: computed "${c[f]}" vs sqlite "${q[f]}"`;
+                console.error(`❌ ${err}`);
+                errors.push(err);
+                if (sqliteMismatches >= 5) break;
+              }
+            }
+            if (sqliteMismatches >= 5) break;
+          }
+          if (sqliteMismatches === 0) {
+            console.log(`  ✓ SQLite official_serial_anchors exact match (${computed.finalAnchorsList.length} records, read-only mode).`);
+          }
+        }
+
+        // 4D. Alias Parity (171 aliases)
+        const sqliteAliases = db.prepare('SELECT * FROM official_serial_input_aliases ORDER BY input_serial ASC').all();
+        if (fs.existsSync(stihlDatabaseJsonPath)) {
+          const stihlDb = JSON.parse(fs.readFileSync(stihlDatabaseJsonPath, 'utf8'));
+          const jsonAliases = stihlDb.official_serial_input_aliases || [];
+          if (jsonAliases.length !== 171) {
+            errors.push(`JSON aliases count is ${jsonAliases.length}, expected 171`);
+          }
+          if (sqliteAliases.length !== 171) {
+            errors.push(`SQLite aliases count is ${sqliteAliases.length}, expected 171`);
+          }
+          if (jsonAliases.length === 171 && sqliteAliases.length === 171) {
+            const sortedJsonAliases = [...jsonAliases].sort((a, b) => a.input_serial.localeCompare(b.input_serial));
+            let aliasMismatches = 0;
+            for (let i = 0; i < sortedJsonAliases.length; i++) {
+              const j = sortedJsonAliases[i];
+              const s = sqliteAliases[i];
+              for (const k of Object.keys(j)) {
+                if (k === 'generic_zero_prefix_rule_allowed') {
+                  if (Boolean(j[k]) !== Boolean(s[k])) {
+                    aliasMismatches++;
+                    errors.push(`Alias ${j.input_serial} boolean field ${k} mismatch: json ${j[k]} vs sqlite ${s[k]}`);
+                  }
+                } else if ((j[k] ?? null) !== (s[k] ?? null)) {
+                  aliasMismatches++;
+                  errors.push(`Alias ${j.input_serial} field ${k} mismatch: json ${j[k]} vs sqlite ${s[k]}`);
+                }
+              }
+            }
+            if (aliasMismatches === 0) {
+              console.log(`  ✓ Alias parity 100% verified across JSON and SQLite (171 aliases).`);
+            }
+          }
+        }
+      } finally {
+        db.close();
+      }
+    } catch (e) {
+      errors.push(`SQLite validation failed: ${e.message}`);
+    }
+  }
 
   if (errors.length > 0) {
     console.error(`\n❌ VERIFICATION FAILED with ${errors.length} mismatch(es).`);

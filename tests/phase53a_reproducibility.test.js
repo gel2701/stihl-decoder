@@ -5,8 +5,12 @@ import path from 'path';
 import crypto from 'crypto';
 import os from 'os';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import { spawnSync } from 'child_process';
 import { decodeStihlCode } from '../src/decoder.js';
+
+const require = createRequire(import.meta.url);
+const Database = require('better-sqlite3');
 import {
   runBatchProcessing,
   verifyReproducibility,
@@ -21,12 +25,40 @@ import {
   BATCH_DIR,
   BATCH_DATA_DIR,
   REBUILD_CANONICAL_WRITES,
-  SQLITE_RESEED_FROM_PHASE53A_REBUILD
+  SQLITE_RESEED_FROM_PHASE53A_REBUILD,
+  VERIFY_SQLITE_WRITES,
+  CANONICAL_ANCHORS_JSON,
+  STIHL_DATABASE_JSON,
+  STIHL_DATABASE_DB,
+  CANONICAL_ANCHOR_FIELDS
 } from '../scripts/generate_phase53a_batch.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
+
+function createTempProductionEnvironment() {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'p53a-prod-test-'));
+  const tempOfficialAnchors = path.join(tempDir, 'official_serial_anchors.json');
+  const tempStihlDatabaseJson = path.join(tempDir, 'stihl_database.json');
+  const tempStihlDatabaseDb = path.join(tempDir, 'stihl_database.db');
+
+  fs.copyFileSync(CANONICAL_ANCHORS_JSON, tempOfficialAnchors);
+  fs.copyFileSync(STIHL_DATABASE_JSON, tempStihlDatabaseJson);
+  fs.copyFileSync(STIHL_DATABASE_DB, tempStihlDatabaseDb);
+
+  return {
+    tempDir,
+    tempOfficialAnchors,
+    tempStihlDatabaseJson,
+    tempStihlDatabaseDb,
+    cleanup: () => {
+      try {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+      } catch (e) {}
+    }
+  };
+}
 
 function createTempBatchEnvironment() {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'p53a-test-'));
@@ -349,4 +381,170 @@ test('Phase 53A-M1 - Test 16: Current Production Registry Preserved (8874 Anchor
   assert.strictEqual(anchorsDoc.anchors.length, 8874, 'official_serial_anchors.json must have exactly 8874 anchors');
   assert.strictEqual(databaseDoc.official_serial_anchors.length, 8874, 'stihl_database.json must have exactly 8874 anchors');
   assert.strictEqual(databaseDoc.official_serial_input_aliases.length, 171, 'stihl_database.json must have exactly 171 aliases');
+});
+
+test('Phase 53A-M1 - Test 17: Production Registry Exact Equivalence (A == B == C == D, 8874 Anchors, 11 Fields)', () => {
+  assert.strictEqual(VERIFY_SQLITE_WRITES, 0, 'VERIFY_SQLITE_WRITES must be exactly 0');
+  const res = verifyReproducibility({
+    canonicalAnchorsPath: CANONICAL_ANCHORS_JSON,
+    stihlDatabaseJsonPath: STIHL_DATABASE_JSON,
+    sqliteDatabasePath: STIHL_DATABASE_DB,
+    throwOnError: false
+  });
+  assert.strictEqual(res.success, true, 'verifyReproducibility must succeed with true production paths');
+  assert.strictEqual(res.errors.length, 0, 'errors must be empty');
+  assert.strictEqual(res.computed.finalAnchorsList.length, 8874, 'computed final anchors must be 8874');
+});
+
+test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors.json Mid-Registry Model Mutation (Same Count 8874)', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    const doc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    assert.strictEqual(doc.anchors.length, 8874);
+    // Mutate record 4500 (non-sampled index) without changing count
+    const originalModel = doc.anchors[4500].model_name;
+    doc.anchors[4500].model_name = 'CORRUPTED_MODEL_NAME_PHASE53A';
+    fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(doc, null, 2));
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when official_serial_anchors.json model is mutated');
+    assert.ok(
+      res.errors.some(e => e.includes('official_serial_anchors.json record 4500') && e.includes('model_name')),
+      'Error message must pinpoint record 4500 model_name mismatch'
+    );
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 19: Corruption Injection F — official_serial_anchors.json Category Mutation (Same Count 8874)', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    const doc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    assert.strictEqual(doc.anchors.length, 8874);
+    // Mutate record 1200 category without changing count
+    doc.anchors[1200].category = 'CORRUPTED_CATEGORY_PHASE53A';
+    fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(doc, null, 2));
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when category is mutated');
+    assert.ok(
+      res.errors.some(e => e.includes('official_serial_anchors.json record 1200') && e.includes('category')),
+      'Error message must pinpoint record 1200 category mismatch'
+    );
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 20: Corruption Injection G — stihl_database.json Drive Type Mutation & Cross-Parity Failure', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    const doc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
+    assert.strictEqual(doc.official_serial_anchors.length, 8874);
+    // Mutate record 6000 drive_type in stihl_database.json only
+    doc.official_serial_anchors[6000].drive_type = 'CORRUPTED_DRIVE_TYPE';
+    fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(doc, null, 2));
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when stihl_database.json is mutated');
+    assert.ok(
+      res.errors.some(e => e.includes('stihl_database.json record 6000') && e.includes('drive_type')),
+      'Error message must detect stihl_database.json record 6000 drive_type mismatch'
+    );
+    assert.ok(
+      res.errors.some(e => e.includes('Cross-parity mismatch between official_serial_anchors.json and stihl_database.json at record 6000')),
+      'Error message must detect cross-parity mismatch between canonical json and stihl_database.json'
+    );
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 21: Corruption Injection H — SQLite official_serial_anchors Mutation Detection', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    // Open sqlite in read-write mode only to inject test corruption
+    const db = new Database(env.tempStihlDatabaseDb);
+    db.prepare("UPDATE official_serial_anchors SET model_name = 'CORRUPTED_SQLITE_MODEL' WHERE serial_number = '163133000'").run();
+    db.close();
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when SQLite table is corrupted');
+    assert.ok(
+      res.errors.some(e => e.includes('SQLite official_serial_anchors') && e.includes('163133000') && e.includes('model_name')),
+      'Error message must pinpoint SQLite model_name mismatch for serial 163133000'
+    );
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 22: Corruption Injection I — Alias Parity Boolean / Count Corruption Detection', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    const doc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
+    assert.strictEqual(doc.official_serial_input_aliases.length, 171);
+    // Mutate alias 0 generic_zero_prefix_rule_allowed from false to true
+    doc.official_serial_input_aliases[0].generic_zero_prefix_rule_allowed = true;
+    fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(doc, null, 2));
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when alias boolean is corrupted');
+    assert.ok(
+      res.errors.some(e => e.includes('Alias') && e.includes('generic_zero_prefix_rule_allowed')),
+      'Error message must pinpoint alias generic_zero_prefix_rule_allowed mismatch'
+    );
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 23: Verify Mode Leaves Zero Files and SQLite Intact (VERIFY_SQLITE_WRITES === 0)', () => {
+  assert.strictEqual(VERIFY_SQLITE_WRITES, 0, 'VERIFY_SQLITE_WRITES must be 0');
+
+  const initialOfficialSha = crypto.createHash('sha256').update(fs.readFileSync(CANONICAL_ANCHORS_JSON)).digest('hex');
+  const initialStihlDbSha = crypto.createHash('sha256').update(fs.readFileSync(STIHL_DATABASE_JSON)).digest('hex');
+  const initialSqliteSha = crypto.createHash('sha256').update(fs.readFileSync(STIHL_DATABASE_DB)).digest('hex');
+
+  const res = verifyReproducibility({ throwOnError: false });
+  assert.strictEqual(res.success, true);
+
+  const postOfficialSha = crypto.createHash('sha256').update(fs.readFileSync(CANONICAL_ANCHORS_JSON)).digest('hex');
+  const postStihlDbSha = crypto.createHash('sha256').update(fs.readFileSync(STIHL_DATABASE_JSON)).digest('hex');
+  const postSqliteSha = crypto.createHash('sha256').update(fs.readFileSync(STIHL_DATABASE_DB)).digest('hex');
+
+  assert.strictEqual(postOfficialSha, initialOfficialSha, 'CANONICAL_ANCHORS_JSON SHA256 must be identical');
+  assert.strictEqual(postStihlDbSha, initialStihlDbSha, 'STIHL_DATABASE_JSON SHA256 must be identical');
+  assert.strictEqual(postSqliteSha, initialSqliteSha, 'STIHL_DATABASE_DB SHA256 must be identical');
 });
