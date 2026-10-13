@@ -636,6 +636,51 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
     assert.strictEqual(res.productionStats.currentSqliteCount, 8875);
     assert.strictEqual(res.productionStats.futurePostPhase53aAnchors, 1);
     assert.strictEqual(res.productionStats.fullParityPass, true);
+
+    // Also verify 8-digit and 10-digit future anchors supported by OfficialSerialAnchorResolver (/^\d{8,10}$/)
+    const future8Digit = { ...futureAnchor, serial_number: '89999999' };
+    const future10Digit = { ...futureAnchor, serial_number: '1299999999' };
+    officialDoc.anchors.push(future8Digit, future10Digit);
+    officialDoc.anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
+    fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
+
+    stihlDbDoc.official_serial_anchors.push(future8Digit, future10Digit);
+    stihlDbDoc.official_serial_anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
+    fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(stihlDbDoc, null, 2));
+
+    const db2 = new Database(env.tempStihlDatabaseDb);
+    const ins = db2.prepare(`
+      INSERT INTO official_serial_anchors (
+        serial_number, model_name, canonical_model_id, category, drive_type,
+        source, source_url, verification_date, verification_method, evidence_type, verification_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    for (const fa of [future8Digit, future10Digit]) {
+      ins.run(
+        fa.serial_number,
+        fa.model_name,
+        fa.canonical_model_id,
+        fa.category,
+        fa.drive_type,
+        fa.source,
+        fa.source_url,
+        fa.verification_date,
+        fa.verification_method,
+        fa.evidence_type,
+        fa.verification_status
+      );
+    }
+    db2.close();
+
+    const res8And10 = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+    assert.strictEqual(res8And10.success, true, `8- and 10-digit future anchors in B/C/D must PASS: ${res8And10.errors.join('; ')}`);
+    assert.strictEqual(res8And10.productionStats.currentProductionJsonCount, 8877);
+    assert.strictEqual(res8And10.productionStats.futurePostPhase53aAnchors, 3);
   } finally {
     env.cleanup();
   }

@@ -1320,7 +1320,7 @@ export function verifyReproducibility(options = {}) {
       // Validate structure of any future post-Phase 53A anchor
       if (!historicalMap.has(serial)) {
         const rec = entryB.record;
-        if (!rec.serial_number || !/^\d{9}$/.test(rec.serial_number) || !rec.model_name || !rec.source || !rec.verification_status) {
+        if (!rec.serial_number || !/^\d{8,10}$/.test(rec.serial_number) || !rec.model_name || !rec.source || !rec.verification_status) {
           bcdParityMismatches++;
           const err = `Future post-Phase 53A anchor ${serial} has invalid canonical anchor structure`;
           console.error(`❌ ${err}`);
