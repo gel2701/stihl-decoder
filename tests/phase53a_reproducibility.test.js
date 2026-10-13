@@ -30,7 +30,10 @@ import {
   CANONICAL_ANCHORS_JSON,
   STIHL_DATABASE_JSON,
   STIHL_DATABASE_DB,
-  CANONICAL_ANCHOR_FIELDS
+  CANONICAL_ANCHOR_FIELDS,
+  REQUIRED_MANIFEST_FIELDS,
+  EXPECTED_MANIFEST_SCALARS,
+  REQUIRED_MANIFEST_FILE_PATHS
 } from '../scripts/generate_phase53a_batch.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -325,7 +328,7 @@ test('Phase 53A-M1 - Test 13: Rebuild Canonical-Write Prohibition & Future Ancho
         }
       ]
     };
-    assert.strictEqual(futureCanonicalDoc.anchors.length, 8875, 'Simulated registry has 8875 anchors');
+    assert.strictEqual(futureCanonicalDoc.anchors.length, initialCanonicalDoc.anchors.length + 1, 'Simulated registry has +1 future anchor');
 
     const tempBatchDataDir = path.join(tempDir, 'data');
     fs.mkdirSync(tempBatchDataDir, { recursive: true });
@@ -340,8 +343,8 @@ test('Phase 53A-M1 - Test 13: Rebuild Canonical-Write Prohibition & Future Ancho
     assert.strictEqual(postRebuildSha, initialCanonicalSha, 'Canonical registry SHA256 must NOT change after rebuild');
 
     // Verify simulated future anchor remains intact
-    assert.strictEqual(futureCanonicalDoc.anchors.length, 8875);
-    assert.strictEqual(futureCanonicalDoc.anchors[8874].serial_number, '199999999');
+    assert.strictEqual(futureCanonicalDoc.anchors.length, initialCanonicalDoc.anchors.length + 1);
+    assert.strictEqual(futureCanonicalDoc.anchors[futureCanonicalDoc.anchors.length - 1].serial_number, '199999999');
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
@@ -374,16 +377,22 @@ test('Phase 53A-M1 - Test 15: Actual Recheck Queue Negative Controls Fail-Closed
   }
 });
 
-test('Phase 53A-M1 - Test 16: Current Production Registry Preserved (8874 Anchors & 171 Aliases)', () => {
+test('Phase 53A-M1 - Test 16: Future-Safe Production Registry Preserves >= 8874 Anchors, Full B/C/D Parity & 171 Aliases', () => {
   const anchorsDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'official_serial_anchors.json'), 'utf8'));
   const databaseDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
+  const db = new Database(STIHL_DATABASE_DB, { readonly: true });
+  const sqliteCount = db.prepare('SELECT COUNT(*) as cnt FROM official_serial_anchors').get().cnt;
+  db.close();
 
-  assert.strictEqual(anchorsDoc.anchors.length, 8874, 'official_serial_anchors.json must have exactly 8874 anchors');
-  assert.strictEqual(databaseDoc.official_serial_anchors.length, 8874, 'stihl_database.json must have exactly 8874 anchors');
-  assert.strictEqual(databaseDoc.official_serial_input_aliases.length, 171, 'stihl_database.json must have exactly 171 aliases');
+  assert.ok(anchorsDoc.anchors.length >= 8874, 'official_serial_anchors.json must have >= 8874 anchors');
+  assert.ok(databaseDoc.official_serial_anchors.length >= 8874, 'stihl_database.json must have >= 8874 anchors');
+  assert.ok(sqliteCount >= 8874, 'SQLite official_serial_anchors must have >= 8874 rows');
+  assert.strictEqual(anchorsDoc.anchors.length, databaseDoc.official_serial_anchors.length, 'B and C counts must match');
+  assert.strictEqual(anchorsDoc.anchors.length, sqliteCount, 'B and D counts must match');
+  assert.strictEqual(databaseDoc.official_serial_input_aliases.length, 171, 'stihl_database.json must have 171 aliases');
 });
 
-test('Phase 53A-M1 - Test 17: Production Registry Exact Equivalence (A == B == C == D, 8874 Anchors, 11 Fields)', () => {
+test('Phase 53A-M1 - Test 17: Historical Subset (All 8874 Present & Unchanged) & Full Production Parity (B == C == D)', () => {
   assert.strictEqual(VERIFY_SQLITE_WRITES, 0, 'VERIFY_SQLITE_WRITES must be exactly 0');
   const res = verifyReproducibility({
     canonicalAnchorsPath: CANONICAL_ANCHORS_JSON,
@@ -393,16 +402,23 @@ test('Phase 53A-M1 - Test 17: Production Registry Exact Equivalence (A == B == C
   });
   assert.strictEqual(res.success, true, 'verifyReproducibility must succeed with true production paths');
   assert.strictEqual(res.errors.length, 0, 'errors must be empty');
-  assert.strictEqual(res.computed.finalAnchorsList.length, 8874, 'computed final anchors must be 8874');
+  assert.strictEqual(res.computed.finalAnchorsList.length, 8874, 'computed historical Phase 53A anchors must be exactly 8874');
+  assert.strictEqual(res.productionStats.historicalAnchorsExpected, 8874);
+  assert.strictEqual(res.productionStats.historicalAnchorsPresent, 8874);
+  assert.strictEqual(res.productionStats.historicalAnchorsMissing, 0);
+  assert.strictEqual(res.productionStats.historicalAnchorsMutated, 0);
+  assert.strictEqual(res.productionStats.fullParityPass, true);
+  assert.ok(res.productionStats.currentProductionJsonCount >= 8874);
+  assert.strictEqual(res.productionStats.currentProductionJsonCount, res.productionStats.currentStihlDbJsonCount);
+  assert.strictEqual(res.productionStats.currentProductionJsonCount, res.productionStats.currentSqliteCount);
 });
 
-test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors.json Mid-Registry Model Mutation (Same Count 8874)', () => {
+test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors.json Mid-Registry Model Mutation', () => {
   const env = createTempProductionEnvironment();
   try {
     const doc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
-    assert.strictEqual(doc.anchors.length, 8874);
+    assert.ok(doc.anchors.length >= 8874);
     // Mutate record 4500 (non-sampled index) without changing count
-    const originalModel = doc.anchors[4500].model_name;
     doc.anchors[4500].model_name = 'CORRUPTED_MODEL_NAME_PHASE53A';
     fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(doc, null, 2));
 
@@ -414,6 +430,7 @@ test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors
     });
 
     assert.strictEqual(res.success, false, 'Verify must FAIL when official_serial_anchors.json model is mutated');
+    assert.strictEqual(res.productionStats.historicalAnchorsMutated, 1);
     assert.ok(
       res.errors.some(e => e.includes('official_serial_anchors.json record 4500') && e.includes('model_name')),
       'Error message must pinpoint record 4500 model_name mismatch'
@@ -423,11 +440,11 @@ test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors
   }
 });
 
-test('Phase 53A-M1 - Test 19: Corruption Injection F — official_serial_anchors.json Category Mutation (Same Count 8874)', () => {
+test('Phase 53A-M1 - Test 19: Corruption Injection F — official_serial_anchors.json Category Mutation', () => {
   const env = createTempProductionEnvironment();
   try {
     const doc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
-    assert.strictEqual(doc.anchors.length, 8874);
+    assert.ok(doc.anchors.length >= 8874);
     // Mutate record 1200 category without changing count
     doc.anchors[1200].category = 'CORRUPTED_CATEGORY_PHASE53A';
     fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(doc, null, 2));
@@ -440,6 +457,7 @@ test('Phase 53A-M1 - Test 19: Corruption Injection F — official_serial_anchors
     });
 
     assert.strictEqual(res.success, false, 'Verify must FAIL when category is mutated');
+    assert.strictEqual(res.productionStats.historicalAnchorsMutated, 1);
     assert.ok(
       res.errors.some(e => e.includes('official_serial_anchors.json record 1200') && e.includes('category')),
       'Error message must pinpoint record 1200 category mismatch'
@@ -453,7 +471,7 @@ test('Phase 53A-M1 - Test 20: Corruption Injection G — stihl_database.json Dri
   const env = createTempProductionEnvironment();
   try {
     const doc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
-    assert.strictEqual(doc.official_serial_anchors.length, 8874);
+    assert.ok(doc.official_serial_anchors.length >= 8874);
     // Mutate record 6000 drive_type in stihl_database.json only
     doc.official_serial_anchors[6000].drive_type = 'CORRUPTED_DRIVE_TYPE';
     fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(doc, null, 2));
@@ -547,4 +565,406 @@ test('Phase 53A-M1 - Test 23: Verify Mode Leaves Zero Files and SQLite Intact (V
   assert.strictEqual(postOfficialSha, initialOfficialSha, 'CANONICAL_ANCHORS_JSON SHA256 must be identical');
   assert.strictEqual(postStihlDbSha, initialStihlDbSha, 'STIHL_DATABASE_JSON SHA256 must be identical');
   assert.strictEqual(postSqliteSha, initialSqliteSha, 'STIHL_DATABASE_DB SHA256 must be identical');
+});
+
+test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added Across B, C, and D (8875 Total)', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    const futureAnchor = {
+      serial_number: '299999999',
+      model_name: 'MS 500i-W 3/8" RS Motorsäge',
+      canonical_model_id: 'stihl_ms_500i',
+      category: 'Kettingzaag',
+      drive_type: 'Benzine',
+      source: 'MY_STIHL',
+      source_url: 'https://app.stihl.com/nl-nl/mystihl/tools/add/serial-number',
+      verification_date: '2026-10-15',
+      verification_method: 'authenticated MY STIHL UI lookup',
+      evidence_type: 'OFFICIAL_WEB_LOOKUP',
+      verification_status: 'OFFICIAL_STIHL_LOOKUP'
+    };
+
+    // 1. Add to B (official_serial_anchors.json)
+    const officialDoc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    officialDoc.anchors.push(futureAnchor);
+    officialDoc.anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
+    fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
+
+    // 2. Add to C (stihl_database.json)
+    const stihlDbDoc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
+    stihlDbDoc.official_serial_anchors.push(futureAnchor);
+    stihlDbDoc.official_serial_anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
+    fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(stihlDbDoc, null, 2));
+
+    // 3. Add to D (SQLite official_serial_anchors)
+    const db = new Database(env.tempStihlDatabaseDb);
+    db.prepare(`
+      INSERT INTO official_serial_anchors (
+        serial_number, model_name, canonical_model_id, category, drive_type,
+        source, source_url, verification_date, verification_method, evidence_type, verification_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      futureAnchor.serial_number,
+      futureAnchor.model_name,
+      futureAnchor.canonical_model_id,
+      futureAnchor.category,
+      futureAnchor.drive_type,
+      futureAnchor.source,
+      futureAnchor.source_url,
+      futureAnchor.verification_date,
+      futureAnchor.verification_method,
+      futureAnchor.evidence_type,
+      futureAnchor.verification_status
+    );
+    db.close();
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, true, `Future anchor in B/C/D must PASS: ${res.errors.join('; ')}`);
+    assert.strictEqual(res.errors.length, 0);
+    assert.strictEqual(res.productionStats.historicalAnchorsExpected, 8874);
+    assert.strictEqual(res.productionStats.historicalAnchorsPresent, 8874);
+    assert.strictEqual(res.productionStats.historicalAnchorsMissing, 0);
+    assert.strictEqual(res.productionStats.historicalAnchorsMutated, 0);
+    assert.strictEqual(res.productionStats.currentProductionJsonCount, 8875);
+    assert.strictEqual(res.productionStats.currentStihlDbJsonCount, 8875);
+    assert.strictEqual(res.productionStats.currentSqliteCount, 8875);
+    assert.strictEqual(res.productionStats.futurePostPhase53aAnchors, 1);
+    assert.strictEqual(res.productionStats.fullParityPass, true);
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 25: Future Anchor Parity Failure When Added Only to JSON or Only to SQLite', () => {
+  const futureAnchor = {
+    serial_number: '299999999',
+    model_name: 'MS 500i-W 3/8" RS Motorsäge',
+    canonical_model_id: 'stihl_ms_500i',
+    category: 'Kettingzaag',
+    drive_type: 'Benzine',
+    source: 'MY_STIHL',
+    source_url: 'https://app.stihl.com/nl-nl/mystihl/tools/add/serial-number',
+    verification_date: '2026-10-15',
+    verification_method: 'authenticated MY STIHL UI lookup',
+    evidence_type: 'OFFICIAL_WEB_LOOKUP',
+    verification_status: 'OFFICIAL_STIHL_LOOKUP'
+  };
+
+  // Case A: Added ONLY to official_serial_anchors.json (B=8875, C=8874, D=8874)
+  const envA = createTempProductionEnvironment();
+  try {
+    const officialDoc = JSON.parse(fs.readFileSync(envA.tempOfficialAnchors, 'utf8'));
+    officialDoc.anchors.push(futureAnchor);
+    fs.writeFileSync(envA.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
+
+    const resA = verifyReproducibility({
+      canonicalAnchorsPath: envA.tempOfficialAnchors,
+      stihlDatabaseJsonPath: envA.tempStihlDatabaseJson,
+      sqliteDatabasePath: envA.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+    assert.strictEqual(resA.success, false, 'Verify must FAIL when future anchor is in official_serial_anchors.json only');
+    assert.strictEqual(resA.productionStats.fullParityPass, false);
+    assert.ok(resA.errors.some(e => e.includes('299999999') || e.includes('count mismatch')));
+  } finally {
+    envA.cleanup();
+  }
+
+  // Case B: Added ONLY to SQLite (B=8874, C=8874, D=8875)
+  const envB = createTempProductionEnvironment();
+  try {
+    const db = new Database(envB.tempStihlDatabaseDb);
+    db.prepare(`
+      INSERT INTO official_serial_anchors (
+        serial_number, model_name, canonical_model_id, category, drive_type,
+        source, source_url, verification_date, verification_method, evidence_type, verification_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      futureAnchor.serial_number,
+      futureAnchor.model_name,
+      futureAnchor.canonical_model_id,
+      futureAnchor.category,
+      futureAnchor.drive_type,
+      futureAnchor.source,
+      futureAnchor.source_url,
+      futureAnchor.verification_date,
+      futureAnchor.verification_method,
+      futureAnchor.evidence_type,
+      futureAnchor.verification_status
+    );
+    db.close();
+
+    const resB = verifyReproducibility({
+      canonicalAnchorsPath: envB.tempOfficialAnchors,
+      stihlDatabaseJsonPath: envB.tempStihlDatabaseJson,
+      sqliteDatabasePath: envB.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+    assert.strictEqual(resB.success, false, 'Verify must FAIL when future anchor is in SQLite only');
+    assert.strictEqual(resB.productionStats.fullParityPass, false);
+    assert.ok(resB.errors.some(e => e.includes('299999999') || e.includes('SQLite')));
+  } finally {
+    envB.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 26: Historical Mutation Fails Even When Identical Across All Three (B == C == D)', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    // Mutate historical anchor 163133000 identically in B, C, and D
+    const officialDoc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    const targetB = officialDoc.anchors.find(a => a.serial_number === '163133000');
+    targetB.model_name = 'MUTATED_HISTORICAL_MODEL_IN_ALL_THREE';
+    fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
+
+    const stihlDbDoc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
+    const targetC = stihlDbDoc.official_serial_anchors.find(a => a.serial_number === '163133000');
+    targetC.model_name = 'MUTATED_HISTORICAL_MODEL_IN_ALL_THREE';
+    fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(stihlDbDoc, null, 2));
+
+    const db = new Database(env.tempStihlDatabaseDb);
+    db.prepare("UPDATE official_serial_anchors SET model_name = 'MUTATED_HISTORICAL_MODEL_IN_ALL_THREE' WHERE serial_number = '163133000'").run();
+    db.close();
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when historical anchor is mutated even if B == C == D');
+    assert.strictEqual(res.productionStats.historicalAnchorsMutated, 1);
+    assert.ok(res.errors.some(e => e.includes('163133000') && e.includes('model_name')));
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 27: Historical Anchor Removal Rejected Even When Replaced By Future Anchor With Same Count 8874', () => {
+  const env = createTempProductionEnvironment();
+  try {
+    const replacementAnchor = {
+      serial_number: '299999999',
+      model_name: 'MS 500i-W 3/8" RS Motorsäge',
+      canonical_model_id: 'stihl_ms_500i',
+      category: 'Kettingzaag',
+      drive_type: 'Benzine',
+      source: 'MY_STIHL',
+      source_url: 'https://app.stihl.com/nl-nl/mystihl/tools/add/serial-number',
+      verification_date: '2026-10-15',
+      verification_method: 'authenticated MY STIHL UI lookup',
+      evidence_type: 'OFFICIAL_WEB_LOOKUP',
+      verification_status: 'OFFICIAL_STIHL_LOOKUP'
+    };
+
+    // Replace historical anchor 163133000 with 299999999 across B, C, and D so count remains 8874
+    const officialDoc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    officialDoc.anchors = officialDoc.anchors.filter(a => a.serial_number !== '163133000');
+    officialDoc.anchors.push(replacementAnchor);
+    officialDoc.anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
+    fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
+
+    const stihlDbDoc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
+    stihlDbDoc.official_serial_anchors = stihlDbDoc.official_serial_anchors.filter(a => a.serial_number !== '163133000');
+    stihlDbDoc.official_serial_anchors.push(replacementAnchor);
+    stihlDbDoc.official_serial_anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
+    fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(stihlDbDoc, null, 2));
+
+    const db = new Database(env.tempStihlDatabaseDb);
+    db.prepare("DELETE FROM official_serial_anchors WHERE serial_number = '163133000'").run();
+    db.prepare(`
+      INSERT INTO official_serial_anchors (
+        serial_number, model_name, canonical_model_id, category, drive_type,
+        source, source_url, verification_date, verification_method, evidence_type, verification_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      replacementAnchor.serial_number,
+      replacementAnchor.model_name,
+      replacementAnchor.canonical_model_id,
+      replacementAnchor.category,
+      replacementAnchor.drive_type,
+      replacementAnchor.source,
+      replacementAnchor.source_url,
+      replacementAnchor.verification_date,
+      replacementAnchor.verification_method,
+      replacementAnchor.evidence_type,
+      replacementAnchor.verification_status
+    );
+    db.close();
+
+    const res = verifyReproducibility({
+      canonicalAnchorsPath: env.tempOfficialAnchors,
+      stihlDatabaseJsonPath: env.tempStihlDatabaseJson,
+      sqliteDatabasePath: env.tempStihlDatabaseDb,
+      throwOnError: false
+    });
+
+    assert.strictEqual(res.success, false, 'Verify must FAIL when a historical anchor is removed even if total count is 8874');
+    assert.strictEqual(res.productionStats.historicalAnchorsMissing, 1);
+    assert.strictEqual(res.productionStats.historicalAnchorsPresent, 8873);
+    assert.ok(res.errors.some(e => e.includes('Historical Phase 53A anchor 163133000 missing')));
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 28: Manifest Contract Failure Injection — Empty files=[] Array Rejected', () => {
+  const env = createTempBatchEnvironment();
+  try {
+    const manifestPath = path.join(env.tempBatchDir, 'batch_manifest.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    manifest.files = [];
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+
+    const manifestRes = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(manifestRes.success, false, 'validateBatchManifest must FAIL when files is empty');
+    assert.strictEqual(manifestRes.missingPathsCount, 10);
+    assert.ok(manifestRes.mismatches.some(m => m.includes('cannot be empty')));
+
+    const verifyRes = verifyReproducibility({
+      sourcePath: env.tempSourceCsv,
+      batchDir: env.tempBatchDir,
+      batchDataDir: env.tempBatchDataDir,
+      throwOnError: false
+    });
+    assert.strictEqual(verifyRes.success, false, 'verifyReproducibility must FAIL when manifest.files is empty');
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 29: Manifest Contract Failure Injection — Missing Required File & Missing Top-Level Field Rejected', () => {
+  const env = createTempBatchEnvironment();
+  try {
+    const manifestPath = path.join(env.tempBatchDir, 'batch_manifest.json');
+    const originalManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+    // 1. Remove one required file entry
+    const manifestMissingFile = {
+      ...originalManifest,
+      files: originalManifest.files.filter(f => f.path !== 'data/duplicate_source_rows_2026-10-09.csv')
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify(manifestMissingFile, null, 2));
+
+    const res1 = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(res1.success, false, 'Must fail when a required file entry is missing');
+    assert.strictEqual(res1.missingPathsCount, 1);
+    assert.ok(res1.mismatches.some(m => m.includes('Manifest missing required file path: data/duplicate_source_rows_2026-10-09.csv')));
+
+    // 2. Remove a required top-level field
+    const manifestMissingField = { ...originalManifest };
+    delete manifestMissingField.recheck_queue_count;
+    fs.writeFileSync(manifestPath, JSON.stringify(manifestMissingField, null, 2));
+
+    const res2 = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(res2.success, false, 'Must fail when a required top-level field is missing');
+    assert.ok(res2.mismatches.some(m => m.includes('Manifest missing required field: recheck_queue_count')));
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 30: Manifest Contract Failure Injection — Source SHA256 & Source Byte Size Corruption Rejected', () => {
+  const env = createTempBatchEnvironment();
+  try {
+    const manifestPath = path.join(env.tempBatchDir, 'batch_manifest.json');
+    const originalManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+    // 1. Corrupt source_file_sha256
+    const manifestBadSha = {
+      ...originalManifest,
+      source_file_sha256: 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify(manifestBadSha, null, 2));
+
+    const resSha = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(resSha.success, false, 'Must fail when source_file_sha256 is corrupted');
+    assert.ok(resSha.mismatches.some(m => m.includes('source_file_sha256')));
+
+    // 2. Corrupt source_file_bytes
+    const manifestBadBytes = {
+      ...originalManifest,
+      source_file_bytes: 9999999
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify(manifestBadBytes, null, 2));
+
+    const resBytes = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(resBytes.success, false, 'Must fail when source_file_bytes is corrupted');
+    assert.ok(resBytes.mismatches.some(m => m.includes('source_file_bytes')));
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 31: Manifest Contract Failure Injection — Scalar Metrics Corruption Rejected', () => {
+  const env = createTempBatchEnvironment();
+  try {
+    const manifestPath = path.join(env.tempBatchDir, 'batch_manifest.json');
+    const originalManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+    // 1. Corrupt new_official_anchors = 6030
+    fs.writeFileSync(manifestPath, JSON.stringify({ ...originalManifest, new_official_anchors: 6030 }, null, 2));
+    const res1 = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(res1.success, false, 'Must fail when new_official_anchors is corrupted');
+    assert.ok(res1.mismatches.some(m => m.includes('new_official_anchors')));
+
+    // 2. Corrupt recheck_queue_count = 788
+    fs.writeFileSync(manifestPath, JSON.stringify({ ...originalManifest, recheck_queue_count: 788 }, null, 2));
+    const res2 = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(res2.success, false, 'Must fail when recheck_queue_count is corrupted');
+    assert.ok(res2.mismatches.some(m => m.includes('recheck_queue_count')));
+
+    // 3. Corrupt historical final_production_anchors = 9000
+    fs.writeFileSync(manifestPath, JSON.stringify({ ...originalManifest, final_production_anchors: 9000 }, null, 2));
+    const res3 = verifyReproducibility({
+      sourcePath: env.tempSourceCsv,
+      batchDir: env.tempBatchDir,
+      batchDataDir: env.tempBatchDataDir,
+      throwOnError: false
+    });
+    assert.strictEqual(res3.success, false, 'Must fail when historical final_production_anchors is corrupted');
+    assert.ok(res3.errors.some(e => e.includes('final_production_anchors')));
+  } finally {
+    env.cleanup();
+  }
+});
+
+test('Phase 53A-M1 - Test 32: Manifest Contract Failure Injection — Duplicate Path & Traversal Path Rejected', () => {
+  const env = createTempBatchEnvironment();
+  try {
+    const manifestPath = path.join(env.tempBatchDir, 'batch_manifest.json');
+    const originalManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+    // 1. Duplicate path (replace last entry with duplicate of first entry)
+    const dupFiles = [...originalManifest.files];
+    dupFiles[dupFiles.length - 1] = { ...dupFiles[0] };
+    fs.writeFileSync(manifestPath, JSON.stringify({ ...originalManifest, files: dupFiles }, null, 2));
+
+    const resDup = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(resDup.success, false, 'Must fail on duplicate file path in manifest');
+    assert.strictEqual(resDup.duplicatePathsCount, 1);
+    assert.ok(resDup.mismatches.some(m => m.includes('Manifest duplicate file path: README.md')));
+
+    // 2. Path traversal entry
+    const traversalFiles = [...originalManifest.files];
+    traversalFiles[traversalFiles.length - 1] = {
+      path: '../outside.txt',
+      bytes: 100,
+      sha256: '0000000000000000000000000000000000000000000000000000000000000000'
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify({ ...originalManifest, files: traversalFiles }, null, 2));
+
+    const resTrav = validateBatchManifest(env.tempBatchDir);
+    assert.strictEqual(resTrav.success, false, 'Must fail on path traversal in manifest');
+    assert.ok(resTrav.mismatches.some(m => m.includes('forbidden absolute or traversal path')));
+  } finally {
+    env.cleanup();
+  }
 });

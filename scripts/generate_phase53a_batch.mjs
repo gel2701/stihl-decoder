@@ -476,6 +476,66 @@ export const REBUILD_CANONICAL_WRITES = 0;
 export const SQLITE_RESEED_FROM_PHASE53A_REBUILD = 'NO';
 export const VERIFY_SQLITE_WRITES = 0;
 
+export const REQUIRED_MANIFEST_FIELDS = [
+  'batch_id',
+  'batch_import_date',
+  'date_basis',
+  'source_file',
+  'source_file_sha256',
+  'source_file_bytes',
+  'total_source_rows_including_header',
+  'populated_data_rows',
+  'unique_input_serials',
+  'exact_official_observations',
+  'new_official_anchors',
+  'reconfirmed_existing_anchors',
+  'previous_production_anchors',
+  'final_production_anchors',
+  'recheck_queue_count',
+  'technical_timeout_count',
+  'technical_error_count',
+  'found_without_usable_identity_count',
+  'duplicate_source_rows_count',
+  'identity_conflicts',
+  'files'
+];
+
+export const EXPECTED_MANIFEST_SCALARS = {
+  batch_id: 'MY_STIHL_2026-10-09_BATCH_003',
+  batch_import_date: '2026-10-09',
+  date_basis: 'current upload/import session; source CSV has no per-row timestamp',
+  source_file: 'source/stihl_resultaten_backup_1.csv',
+  source_file_sha256: KNOWN_SOURCE_SHA256,
+  source_file_bytes: KNOWN_SOURCE_BYTES,
+  total_source_rows_including_header: 11525,
+  populated_data_rows: 6822,
+  unique_input_serials: 6820,
+  exact_official_observations: 6031,
+  new_official_anchors: 6029,
+  reconfirmed_existing_anchors: 2,
+  previous_production_anchors: KNOWN_PRE_IMPORT_BASELINE_ANCHORS,
+  final_production_anchors: 8874,
+  recheck_queue_count: 789,
+  technical_timeout_count: 736,
+  technical_error_count: 34,
+  found_without_usable_identity_count: 19,
+  duplicate_source_rows_count: 4,
+  identity_conflicts: 0
+};
+
+export const REQUIRED_MANIFEST_FILE_PATHS = [
+  'README.md',
+  'source/stihl_resultaten_backup_1.csv',
+  'data/serial_lookup_observations_2026-10-09.json',
+  'data/serial_lookup_observations_2026-10-09.csv',
+  'data/official_serial_anchors_batch_2026-10-09.json',
+  'data/new_official_serial_anchors_only_2026-10-09.json',
+  'data/new_official_serial_anchors_only_2026-10-09.csv',
+  'data/reconfirmed_existing_anchors_2026-10-09.csv',
+  'data/serial_recheck_queue_2026-10-09.csv',
+  'data/duplicate_source_rows_2026-10-09.csv'
+];
+
 function valuesEqual(a, b) {
   if (a === b) return true;
   if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
@@ -484,39 +544,209 @@ function valuesEqual(a, b) {
   return false;
 }
 
-export function validateBatchManifest(batchDir = BATCH_DIR) {
+export function validateBatchManifest(batchDir = BATCH_DIR, computed = null) {
   const manifestPath = path.join(batchDir, 'batch_manifest.json');
   if (!fs.existsSync(manifestPath)) {
     return {
       success: false,
       mismatches: [`Manifest missing: ${manifestPath}`],
-      fileCount: 0
+      fileCount: 0,
+      requiredFilesCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+      duplicatePathsCount: 0,
+      missingPathsCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+      unexpectedPathsCount: 0
     };
   }
 
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  } catch (e) {
+    return {
+      success: false,
+      mismatches: [`Manifest invalid JSON: ${e.message}`],
+      fileCount: 0,
+      requiredFilesCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+      duplicatePathsCount: 0,
+      missingPathsCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+      unexpectedPathsCount: 0
+    };
+  }
+
+  if (!manifest || typeof manifest !== 'object' || Array.isArray(manifest)) {
+    return {
+      success: false,
+      mismatches: ['Manifest root must be a JSON object'],
+      fileCount: 0,
+      requiredFilesCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+      duplicatePathsCount: 0,
+      missingPathsCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+      unexpectedPathsCount: 0
+    };
+  }
+
   const mismatches = [];
 
-  for (const f of manifest.files || []) {
-    const fullPath = path.join(batchDir, f.path);
-    if (!fs.existsSync(fullPath)) {
-      mismatches.push(`Manifest file missing: ${f.path}`);
-      continue;
+  // 1. Validate required top-level fields
+  for (const field of REQUIRED_MANIFEST_FIELDS) {
+    if (!(field in manifest) || manifest[field] === undefined || manifest[field] === null) {
+      mismatches.push(`Manifest missing required field: ${field}`);
     }
-    const buf = fs.readFileSync(fullPath);
-    if (buf.length !== f.bytes) {
-      mismatches.push(`Manifest byte size mismatch for ${f.path}: disk has ${buf.length} vs manifest ${f.bytes}`);
+  }
+
+  // 2. Compare scalar metrics against known immutable constants
+  for (const [key, expectedVal] of Object.entries(EXPECTED_MANIFEST_SCALARS)) {
+    if (manifest[key] !== expectedVal) {
+      mismatches.push(
+        `Manifest scalar "${key}" mismatch: expected ${JSON.stringify(expectedVal)} vs manifest ${JSON.stringify(manifest[key])}`
+      );
     }
-    const sha = crypto.createHash('sha256').update(buf).digest('hex');
-    if (sha !== f.sha256) {
-      mismatches.push(`Manifest SHA256 mismatch for ${f.path}: disk has ${sha} vs manifest ${f.sha256}`);
+  }
+
+  // 3. Compare scalar metrics and source identity against reconstructed batch computation
+  let batchComputation = computed;
+  if (!batchComputation) {
+    try {
+      const candidateSource = path.join(batchDir, 'source', 'stihl_resultaten_backup_1.csv');
+      batchComputation = runBatchProcessing({
+        sourcePath: fs.existsSync(candidateSource) ? candidateSource : DEFAULT_SOURCE_CSV,
+        baselinePath: DEFAULT_BASELINE_JSON
+      });
+    } catch (e) {
+      mismatches.push(`Manifest batch reconstruction failed: ${e.message}`);
+    }
+  }
+
+  if (batchComputation) {
+    const timeoutCount = batchComputation.recheckQueue.filter(q => q.reason === 'TECHNICAL_TIMEOUT').length;
+    const errorCount = batchComputation.recheckQueue.filter(q => q.reason === 'TECHNICAL_ERROR').length;
+    const emptyIdCount = batchComputation.recheckQueue.filter(q => q.reason === 'FOUND_WITHOUT_USABLE_IDENTITY').length;
+
+    const reconstructedMetrics = {
+      source_file_sha256: batchComputation.sourceSha256,
+      source_file_bytes: batchComputation.sourceBytes,
+      total_source_rows_including_header: batchComputation.totalSourceRows,
+      populated_data_rows: batchComputation.populatedDataRows,
+      unique_input_serials: batchComputation.uniqueInputSerialsCount,
+      exact_official_observations: batchComputation.allPositiveAnchorsBatch.length,
+      new_official_anchors: batchComputation.newAnchorsOnly.length,
+      reconfirmed_existing_anchors: batchComputation.reconfirmedAnchors.length,
+      previous_production_anchors: batchComputation.baselineAnchorsCount,
+      final_production_anchors: batchComputation.finalAnchorsList.length,
+      recheck_queue_count: batchComputation.recheckQueue.length,
+      technical_timeout_count: timeoutCount,
+      technical_error_count: errorCount,
+      found_without_usable_identity_count: emptyIdCount,
+      duplicate_source_rows_count: batchComputation.duplicateRowsList.length,
+      identity_conflicts: 0
+    };
+
+    for (const [key, recVal] of Object.entries(reconstructedMetrics)) {
+      if (manifest[key] !== recVal) {
+        mismatches.push(
+          `Manifest metric "${key}" does not match reconstructed batch value: reconstructed ${recVal} vs manifest ${JSON.stringify(manifest[key])}`
+        );
+      }
+    }
+  }
+
+  // 4. Validate files[] structure, required 10-file set, path safety, byte sizes & SHA256 hashes
+  let duplicatePathsCount = 0;
+  let missingPathsCount = 0;
+  let unexpectedPathsCount = 0;
+
+  if (!Array.isArray(manifest.files)) {
+    mismatches.push('Manifest "files" field must be an array');
+    missingPathsCount = REQUIRED_MANIFEST_FILE_PATHS.length;
+  } else {
+    if (manifest.files.length === 0) {
+      mismatches.push('Manifest "files" array cannot be empty');
+    }
+    if (manifest.files.length !== REQUIRED_MANIFEST_FILE_PATHS.length) {
+      mismatches.push(
+        `Manifest "files" count mismatch: expected ${REQUIRED_MANIFEST_FILE_PATHS.length} vs manifest ${manifest.files.length}`
+      );
+    }
+
+    const requiredSet = new Set(REQUIRED_MANIFEST_FILE_PATHS);
+    const seenPaths = new Set();
+
+    for (let i = 0; i < manifest.files.length; i++) {
+      const f = manifest.files[i];
+      if (!f || typeof f !== 'object' || Array.isArray(f)) {
+        mismatches.push(`Manifest files[${i}] must be an object`);
+        continue;
+      }
+
+      const relPath = f.path;
+      const isNonEmptyString = typeof relPath === 'string' && relPath.trim().length > 0 && relPath === relPath.trim();
+      const isAbsoluteOrTraversal =
+        !isNonEmptyString ||
+        path.isAbsolute(relPath) ||
+        /^[a-zA-Z]:/.test(relPath) ||
+        relPath.startsWith('/') ||
+        relPath.startsWith('\\') ||
+        relPath.includes('..') ||
+        relPath.includes('\\');
+
+      if (!isNonEmptyString) {
+        mismatches.push(`Manifest files[${i}] has invalid empty path`);
+        continue;
+      }
+      if (isAbsoluteOrTraversal) {
+        mismatches.push(`Manifest files[${i}] has forbidden absolute or traversal path: ${relPath}`);
+        continue;
+      }
+
+      if (seenPaths.has(relPath)) {
+        duplicatePathsCount++;
+        mismatches.push(`Manifest duplicate file path: ${relPath}`);
+      }
+      seenPaths.add(relPath);
+
+      if (!requiredSet.has(relPath)) {
+        unexpectedPathsCount++;
+        mismatches.push(`Manifest unexpected file path: ${relPath}`);
+      }
+
+      if (typeof f.bytes !== 'number' || !Number.isInteger(f.bytes) || f.bytes <= 0) {
+        mismatches.push(`Manifest invalid bytes for ${relPath}: ${JSON.stringify(f.bytes)}`);
+      }
+      if (typeof f.sha256 !== 'string' || !/^[0-9a-f]{64}$/.test(f.sha256)) {
+        mismatches.push(`Manifest invalid sha256 format for ${relPath}: ${JSON.stringify(f.sha256)}`);
+      }
+
+      const fullPath = path.join(batchDir, relPath);
+      if (!fs.existsSync(fullPath)) {
+        mismatches.push(`Manifest file missing: ${relPath}`);
+        continue;
+      }
+      const buf = fs.readFileSync(fullPath);
+      if (buf.length !== f.bytes) {
+        mismatches.push(`Manifest byte size mismatch for ${relPath}: disk has ${buf.length} vs manifest ${f.bytes}`);
+      }
+      const sha = crypto.createHash('sha256').update(buf).digest('hex');
+      if (sha !== f.sha256) {
+        mismatches.push(`Manifest SHA256 mismatch for ${relPath}: disk has ${sha} vs manifest ${f.sha256}`);
+      }
+    }
+
+    for (const reqPath of REQUIRED_MANIFEST_FILE_PATHS) {
+      if (!seenPaths.has(reqPath)) {
+        missingPathsCount++;
+        mismatches.push(`Manifest missing required file path: ${reqPath}`);
+      }
     }
   }
 
   return {
     success: mismatches.length === 0,
     mismatches,
-    fileCount: manifest.files ? manifest.files.length : 0
+    fileCount: Array.isArray(manifest.files) ? manifest.files.length : 0,
+    requiredFilesCount: REQUIRED_MANIFEST_FILE_PATHS.length,
+    duplicatePathsCount,
+    missingPathsCount,
+    unexpectedPathsCount
   };
 }
 
@@ -540,24 +770,26 @@ export function verifyReproducibility(options = {}) {
 
   const errors = [];
 
-  // 1. Validate batch_manifest.json hashes and byte sizes
-  console.log('\n--- 1. Validating batch_manifest.json File Integrity ---');
-  const manifestResult = validateBatchManifest(batchDir);
+  // Reconstruct batch first so manifest and artifact checks both validate against reconstructed values
+  const computed = runBatchProcessing({
+    sourcePath,
+    baselinePath
+  });
+
+  // 1. Validate batch_manifest.json structure, declared metrics, file set, hashes and byte sizes
+  console.log('\n--- 1. Validating batch_manifest.json Contract & File Integrity ---');
+  const manifestResult = validateBatchManifest(batchDir, computed);
   if (!manifestResult.success) {
     for (const m of manifestResult.mismatches) {
       console.error(`❌ ${m}`);
       errors.push(m);
     }
   } else {
-    console.log(`  ✓ All ${manifestResult.fileCount} manifest files verified with exact byte sizes and SHA256 hashes.`);
+    console.log(`  ✓ Manifest structure, ${Object.keys(EXPECTED_MANIFEST_SCALARS).length} scalar metrics, and all ${manifestResult.fileCount} files verified.`);
   }
 
-  // 2. In-memory batch reconstruction from immutable source and pre-import baseline
+  // 2. In-memory batch reconstruction summary from immutable source and pre-import baseline
   console.log('\n--- 2. In-Memory Batch Reconstruction ---');
-  const computed = runBatchProcessing({
-    sourcePath,
-    baselinePath
-  });
 
   console.log('  Source Data Rows:              ', computed.populatedDataRows);
   console.log('  Unique Input Serials:          ', computed.uniqueInputSerialsCount);
@@ -781,10 +1013,25 @@ export function verifyReproducibility(options = {}) {
     DUPLICATE_CSV_HEADERS
   );
 
-  // 4. Exact Production Registry Verification (A == B == C == D)
-  console.log('\n--- 4. Production Registry Exact Verification (A == B == C == D) ---');
+  // 4. Future-Safe Historical Subset & Production Registry Parity Verification (A ⊆ B/C/D and B == C == D)
+  console.log('\n--- 4. Future-Safe Production Registry Verification (A ⊆ B/C/D & B == C == D) ---');
 
-  // 4A. Exact Comparison with canonical official_serial_anchors.json
+  const historicalAnchorsExpected = computed.finalAnchorsList.length;
+  const historicalMap = new Map();
+  for (const a of computed.finalAnchorsList) {
+    historicalMap.set(a.serial_number, a);
+  }
+
+  let bAnchors = null;
+  let cAnchors = null;
+  let dAnchors = null;
+  let stihlDbParsed = null;
+
+  const mapB = new Map();
+  const mapC = new Map();
+  const mapD = new Map();
+
+  // 4A. Load & index canonical official_serial_anchors.json (B)
   if (!fs.existsSync(canonicalAnchorsPath)) {
     const err = `Canonical anchors file missing: ${canonicalAnchorsPath}`;
     console.error(`❌ ${err}`);
@@ -794,26 +1041,19 @@ export function verifyReproducibility(options = {}) {
       const officialDoc = JSON.parse(fs.readFileSync(canonicalAnchorsPath, 'utf8'));
       if (!Array.isArray(officialDoc.anchors)) {
         errors.push(`Canonical anchors doc missing "anchors" array in ${canonicalAnchorsPath}`);
-      } else if (officialDoc.anchors.length !== computed.finalAnchorsList.length) {
-        errors.push(`Canonical anchors count mismatch: computed ${computed.finalAnchorsList.length} vs committed ${officialDoc.anchors.length}`);
       } else {
-        let fieldMismatches = 0;
-        for (let i = 0; i < computed.finalAnchorsList.length; i++) {
-          const c = computed.finalAnchorsList[i];
-          const o = officialDoc.anchors[i];
-          for (const f of CANONICAL_ANCHOR_FIELDS) {
-            if ((c[f] ?? null) !== (o[f] ?? null)) {
-              fieldMismatches++;
-              const err = `official_serial_anchors.json record ${i} (${c.serial_number}) field "${f}" mismatch: computed "${c[f]}" vs file "${o[f]}"`;
-              console.error(`❌ ${err}`);
-              errors.push(err);
-              if (fieldMismatches >= 5) break;
-            }
-          }
-          if (fieldMismatches >= 5) break;
+        bAnchors = officialDoc.anchors;
+        if (bAnchors.length < historicalAnchorsExpected) {
+          const err = `Canonical anchors count (${bAnchors.length}) is less than historical Phase 53A count (${historicalAnchorsExpected})`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
         }
-        if (fieldMismatches === 0) {
-          console.log(`  ✓ Canonical official_serial_anchors.json exact match (${computed.finalAnchorsList.length} records, 11 fields).`);
+        for (let i = 0; i < bAnchors.length; i++) {
+          const rec = bAnchors[i];
+          if (mapB.has(rec.serial_number)) {
+            errors.push(`Duplicate serial_number in official_serial_anchors.json: ${rec.serial_number}`);
+          }
+          mapB.set(rec.serial_number, { record: rec, index: i });
         }
       }
     } catch (e) {
@@ -821,61 +1061,29 @@ export function verifyReproducibility(options = {}) {
     }
   }
 
-  // 4B. Exact Comparison with stihl_database.json official_serial_anchors & Cross-Parity
+  // 4B. Load & index stihl_database.json official_serial_anchors (C)
   if (!fs.existsSync(stihlDatabaseJsonPath)) {
     const err = `stihl_database.json file missing: ${stihlDatabaseJsonPath}`;
     console.error(`❌ ${err}`);
     errors.push(err);
   } else {
     try {
-      const stihlDb = JSON.parse(fs.readFileSync(stihlDatabaseJsonPath, 'utf8'));
-      if (!Array.isArray(stihlDb.official_serial_anchors)) {
+      stihlDbParsed = JSON.parse(fs.readFileSync(stihlDatabaseJsonPath, 'utf8'));
+      if (!Array.isArray(stihlDbParsed.official_serial_anchors)) {
         errors.push(`stihl_database.json missing "official_serial_anchors" array in ${stihlDatabaseJsonPath}`);
-      } else if (stihlDb.official_serial_anchors.length !== computed.finalAnchorsList.length) {
-        errors.push(`stihl_database.json anchors count mismatch: computed ${computed.finalAnchorsList.length} vs committed ${stihlDb.official_serial_anchors.length}`);
       } else {
-        let fieldMismatches = 0;
-        for (let i = 0; i < computed.finalAnchorsList.length; i++) {
-          const c = computed.finalAnchorsList[i];
-          const s = stihlDb.official_serial_anchors[i];
-          for (const f of CANONICAL_ANCHOR_FIELDS) {
-            if ((c[f] ?? null) !== (s[f] ?? null)) {
-              fieldMismatches++;
-              const err = `stihl_database.json record ${i} (${c.serial_number}) field "${f}" mismatch: computed "${c[f]}" vs file "${s[f]}"`;
-              console.error(`❌ ${err}`);
-              errors.push(err);
-              if (fieldMismatches >= 5) break;
-            }
-          }
-          if (fieldMismatches >= 5) break;
+        cAnchors = stihlDbParsed.official_serial_anchors;
+        if (cAnchors.length < historicalAnchorsExpected) {
+          const err = `stihl_database.json anchors count (${cAnchors.length}) is less than historical Phase 53A count (${historicalAnchorsExpected})`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
         }
-        if (fieldMismatches === 0) {
-          console.log(`  ✓ Production stihl_database.json exact match (${computed.finalAnchorsList.length} records, 11 fields).`);
-        }
-      }
-
-      // Cross-parity between official_serial_anchors.json and stihl_database.json
-      if (fs.existsSync(canonicalAnchorsPath) && Array.isArray(stihlDb.official_serial_anchors)) {
-        const officialDoc = JSON.parse(fs.readFileSync(canonicalAnchorsPath, 'utf8'));
-        if (Array.isArray(officialDoc.anchors) && officialDoc.anchors.length === stihlDb.official_serial_anchors.length) {
-          let crossMismatches = 0;
-          for (let i = 0; i < officialDoc.anchors.length; i++) {
-            const o = officialDoc.anchors[i];
-            const s = stihlDb.official_serial_anchors[i];
-            for (const f of CANONICAL_ANCHOR_FIELDS) {
-              if ((o[f] ?? null) !== (s[f] ?? null)) {
-                crossMismatches++;
-                const err = `Cross-parity mismatch between official_serial_anchors.json and stihl_database.json at record ${i} (${o.serial_number}) field "${f}"`;
-                console.error(`❌ ${err}`);
-                errors.push(err);
-                if (crossMismatches >= 5) break;
-              }
-            }
-            if (crossMismatches >= 5) break;
+        for (let i = 0; i < cAnchors.length; i++) {
+          const rec = cAnchors[i];
+          if (mapC.has(rec.serial_number)) {
+            errors.push(`Duplicate serial_number in stihl_database.json: ${rec.serial_number}`);
           }
-          if (crossMismatches === 0) {
-            console.log(`  ✓ Canonical JSON cross-parity 100% verified (CANONICAL_JSON_CROSS_PARITY = PASS).`);
-          }
+          mapC.set(rec.serial_number, { record: rec, index: i });
         }
       }
     } catch (e) {
@@ -883,7 +1091,7 @@ export function verifyReproducibility(options = {}) {
     }
   }
 
-  // 4C. Exact SQLite Comparison (Read-Only) & 4D. Alias Parity (171 aliases)
+  // 4C. Load & index SQLite official_serial_anchors (D, Read-Only) & Alias Parity
   if (!fs.existsSync(sqliteDatabasePath)) {
     const err = `SQLite database missing: ${sqliteDatabasePath}`;
     console.error(`❌ ${err}`);
@@ -902,35 +1110,24 @@ export function verifyReproducibility(options = {}) {
 
       const db = new DatabaseModule(sqliteDatabasePath, { readonly: true });
       try {
-        const sqliteAnchors = db.prepare('SELECT * FROM official_serial_anchors ORDER BY serial_number ASC').all();
-        if (sqliteAnchors.length !== computed.finalAnchorsList.length) {
-          errors.push(`SQLite official_serial_anchors count mismatch: computed ${computed.finalAnchorsList.length} vs sqlite ${sqliteAnchors.length}`);
-        } else {
-          let sqliteMismatches = 0;
-          for (let i = 0; i < computed.finalAnchorsList.length; i++) {
-            const c = computed.finalAnchorsList[i];
-            const q = sqliteAnchors[i];
-            for (const f of CANONICAL_ANCHOR_FIELDS) {
-              if ((c[f] ?? null) !== (q[f] ?? null)) {
-                sqliteMismatches++;
-                const err = `SQLite official_serial_anchors row ${i} (${c.serial_number}) field "${f}" mismatch: computed "${c[f]}" vs sqlite "${q[f]}"`;
-                console.error(`❌ ${err}`);
-                errors.push(err);
-                if (sqliteMismatches >= 5) break;
-              }
-            }
-            if (sqliteMismatches >= 5) break;
+        dAnchors = db.prepare('SELECT * FROM official_serial_anchors ORDER BY serial_number ASC').all();
+        if (dAnchors.length < historicalAnchorsExpected) {
+          const err = `SQLite official_serial_anchors count (${dAnchors.length}) is less than historical Phase 53A count (${historicalAnchorsExpected})`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+        }
+        for (let i = 0; i < dAnchors.length; i++) {
+          const rec = dAnchors[i];
+          if (mapD.has(rec.serial_number)) {
+            errors.push(`Duplicate serial_number in SQLite official_serial_anchors: ${rec.serial_number}`);
           }
-          if (sqliteMismatches === 0) {
-            console.log(`  ✓ SQLite official_serial_anchors exact match (${computed.finalAnchorsList.length} records, read-only mode).`);
-          }
+          mapD.set(rec.serial_number, { record: rec, index: i });
         }
 
-        // 4D. Alias Parity (171 aliases)
+        // Alias Parity (171 aliases)
         const sqliteAliases = db.prepare('SELECT * FROM official_serial_input_aliases ORDER BY input_serial ASC').all();
-        if (fs.existsSync(stihlDatabaseJsonPath)) {
-          const stihlDb = JSON.parse(fs.readFileSync(stihlDatabaseJsonPath, 'utf8'));
-          const jsonAliases = stihlDb.official_serial_input_aliases || [];
+        if (stihlDbParsed) {
+          const jsonAliases = stihlDbParsed.official_serial_input_aliases || [];
           if (jsonAliases.length !== 171) {
             errors.push(`JSON aliases count is ${jsonAliases.length}, expected 171`);
           }
@@ -968,6 +1165,202 @@ export function verifyReproducibility(options = {}) {
     }
   }
 
+  // 4D. Historical Subset Verification (All 8,874 Phase 53A anchors must remain present and unchanged in B, C, and D)
+  const historicalMissingSet = new Set();
+  const historicalMutatedSet = new Set();
+
+  if (bAnchors && cAnchors && dAnchors) {
+    let bLoggedErrors = 0;
+    let cLoggedErrors = 0;
+    let dLoggedErrors = 0;
+
+    for (const [serial, expected] of historicalMap.entries()) {
+      const entryB = mapB.get(serial);
+      const entryC = mapC.get(serial);
+      const entryD = mapD.get(serial);
+
+      if (!entryB) {
+        historicalMissingSet.add(serial);
+        if (bLoggedErrors < 5) {
+          bLoggedErrors++;
+          const err = `Historical Phase 53A anchor ${serial} missing from official_serial_anchors.json`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+        }
+      } else {
+        for (const f of CANONICAL_ANCHOR_FIELDS) {
+          if ((expected[f] ?? null) !== (entryB.record[f] ?? null)) {
+            historicalMutatedSet.add(serial);
+            if (bLoggedErrors < 5) {
+              bLoggedErrors++;
+              const err = `official_serial_anchors.json record ${entryB.index} (${serial}) field "${f}" mismatch: computed "${expected[f]}" vs file "${entryB.record[f]}"`;
+              console.error(`❌ ${err}`);
+              errors.push(err);
+            }
+          }
+        }
+      }
+
+      if (!entryC) {
+        historicalMissingSet.add(serial);
+        if (cLoggedErrors < 5) {
+          cLoggedErrors++;
+          const err = `Historical Phase 53A anchor ${serial} missing from stihl_database.json`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+        }
+      } else {
+        for (const f of CANONICAL_ANCHOR_FIELDS) {
+          if ((expected[f] ?? null) !== (entryC.record[f] ?? null)) {
+            historicalMutatedSet.add(serial);
+            if (cLoggedErrors < 5) {
+              cLoggedErrors++;
+              const err = `stihl_database.json record ${entryC.index} (${serial}) field "${f}" mismatch: computed "${expected[f]}" vs file "${entryC.record[f]}"`;
+              console.error(`❌ ${err}`);
+              errors.push(err);
+            }
+          }
+        }
+      }
+
+      if (!entryD) {
+        historicalMissingSet.add(serial);
+        if (dLoggedErrors < 5) {
+          dLoggedErrors++;
+          const err = `Historical Phase 53A anchor ${serial} missing from SQLite official_serial_anchors`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+        }
+      } else {
+        for (const f of CANONICAL_ANCHOR_FIELDS) {
+          if ((expected[f] ?? null) !== (entryD.record[f] ?? null)) {
+            historicalMutatedSet.add(serial);
+            if (dLoggedErrors < 5) {
+              dLoggedErrors++;
+              const err = `SQLite official_serial_anchors row ${entryD.index} (${serial}) field "${f}" mismatch: computed "${expected[f]}" vs sqlite "${entryD.record[f]}"`;
+              console.error(`❌ ${err}`);
+              errors.push(err);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const historicalAnchorsMissing = historicalMissingSet.size;
+  const historicalAnchorsPresent = historicalAnchorsExpected - historicalAnchorsMissing;
+  const historicalAnchorsMutated = historicalMutatedSet.size;
+
+  if (historicalAnchorsMissing === 0 && historicalAnchorsMutated === 0 && bAnchors && cAnchors && dAnchors) {
+    console.log(`  ✓ All ${historicalAnchorsExpected} historical Phase 53A anchors present and unchanged across B, C, and D (11 fields).`);
+  }
+
+  // 4E. Full Current Production Registry Cross-Parity (B == C == D across complete current production set, including any future anchors)
+  let bcdParityMismatches = 0;
+  if (bAnchors && cAnchors && dAnchors) {
+    if (bAnchors.length !== cAnchors.length) {
+      bcdParityMismatches++;
+      const err = `Production cross-parity count mismatch: official_serial_anchors.json has ${bAnchors.length} vs stihl_database.json has ${cAnchors.length}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+    }
+    if (bAnchors.length !== dAnchors.length) {
+      bcdParityMismatches++;
+      const err = `Production cross-parity count mismatch: official_serial_anchors.json has ${bAnchors.length} vs SQLite official_serial_anchors has ${dAnchors.length}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+    }
+    if (cAnchors.length !== dAnchors.length) {
+      bcdParityMismatches++;
+      const err = `Production cross-parity count mismatch: stihl_database.json has ${cAnchors.length} vs SQLite official_serial_anchors has ${dAnchors.length}`;
+      console.error(`❌ ${err}`);
+      errors.push(err);
+    }
+
+    const allCurrentSerials = new Set([...mapB.keys(), ...mapC.keys(), ...mapD.keys()]);
+    let loggedParityDetails = 0;
+
+    for (const serial of allCurrentSerials) {
+      const entryB = mapB.get(serial);
+      const entryC = mapC.get(serial);
+      const entryD = mapD.get(serial);
+
+      if (!entryB || !entryC || !entryD) {
+        bcdParityMismatches++;
+        if (loggedParityDetails < 5) {
+          loggedParityDetails++;
+          const err = `Cross-parity presence mismatch for serial ${serial}: official_serial_anchors.json=${Boolean(entryB)}, stihl_database.json=${Boolean(entryC)}, SQLite=${Boolean(entryD)}`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+        }
+        continue;
+      }
+
+      for (const f of CANONICAL_ANCHOR_FIELDS) {
+        if ((entryB.record[f] ?? null) !== (entryC.record[f] ?? null)) {
+          bcdParityMismatches++;
+          if (loggedParityDetails < 5) {
+            loggedParityDetails++;
+            const err = `Cross-parity mismatch between official_serial_anchors.json and stihl_database.json at record ${entryB.index} (${serial}) field "${f}"`;
+            console.error(`❌ ${err}`);
+            errors.push(err);
+          }
+        }
+        if ((entryB.record[f] ?? null) !== (entryD.record[f] ?? null)) {
+          bcdParityMismatches++;
+          if (loggedParityDetails < 5) {
+            loggedParityDetails++;
+            const err = `Cross-parity mismatch between official_serial_anchors.json and SQLite at record ${entryB.index} (${serial}) field "${f}"`;
+            console.error(`❌ ${err}`);
+            errors.push(err);
+          }
+        }
+      }
+
+      // Validate structure of any future post-Phase 53A anchor
+      if (!historicalMap.has(serial)) {
+        const rec = entryB.record;
+        if (!rec.serial_number || !/^\d{9}$/.test(rec.serial_number) || !rec.model_name || !rec.source || !rec.verification_status) {
+          bcdParityMismatches++;
+          const err = `Future post-Phase 53A anchor ${serial} has invalid canonical anchor structure`;
+          console.error(`❌ ${err}`);
+          errors.push(err);
+        }
+      }
+    }
+
+    if (bcdParityMismatches === 0) {
+      console.log(`  ✓ Full production registry B == C == D cross-parity 100% verified (${bAnchors.length} records).`);
+    }
+  }
+
+  const bCount = bAnchors ? bAnchors.length : 0;
+  const cCount = cAnchors ? cAnchors.length : 0;
+  const dCount = dAnchors ? dAnchors.length : 0;
+  const futurePostPhase53aAnchors = bCount >= historicalAnchorsExpected ? bCount - historicalAnchorsExpected : 0;
+
+  console.log(`  PHASE53A_HISTORICAL_COUNT = ${historicalAnchorsExpected}`);
+  console.log(`  CURRENT_PRODUCTION_JSON_COUNT = ${bCount}`);
+  console.log(`  CURRENT_STIHL_DATABASE_JSON_COUNT = ${cCount}`);
+  console.log(`  CURRENT_SQLITE_COUNT = ${dCount}`);
+  console.log(`  FUTURE_POST_PHASE53A_ANCHORS = ${futurePostPhase53aAnchors}`);
+  console.log(`  PHASE53A_HISTORICAL_ANCHORS_PRESENT = ${historicalAnchorsPresent}`);
+  console.log(`  PHASE53A_HISTORICAL_ANCHORS_MISSING = ${historicalAnchorsMissing}`);
+  console.log(`  PHASE53A_HISTORICAL_ANCHORS_MUTATED = ${historicalAnchorsMutated}`);
+
+  const productionStats = {
+    historicalCount: historicalAnchorsExpected,
+    currentProductionJsonCount: bCount,
+    currentStihlDbJsonCount: cCount,
+    currentSqliteCount: dCount,
+    futurePostPhase53aAnchors,
+    historicalAnchorsExpected,
+    historicalAnchorsPresent,
+    historicalAnchorsMissing,
+    historicalAnchorsMutated,
+    fullParityPass: bcdParityMismatches === 0 && Boolean(bAnchors && cAnchors && dAnchors)
+  };
+
   if (errors.length > 0) {
     console.error(`\n❌ VERIFICATION FAILED with ${errors.length} mismatch(es).`);
     if (throwOnError) {
@@ -976,12 +1369,12 @@ export function verifyReproducibility(options = {}) {
     if (isCli) {
       process.exit(1);
     }
-    return { success: false, errors, computed, failedChecks: errors.length };
+    return { success: false, errors, computed, failedChecks: errors.length, productionStats };
   }
 
   console.log('\n🎉 ALL REPRODUCIBILITY CHECKS PASSED PERFECTLY!');
   console.log('Zero repository files modified (Verify mode).');
-  return { success: true, errors: [], computed, failedChecks: 0 };
+  return { success: true, errors: [], computed, failedChecks: 0, productionStats };
 }
 
 export function rebuildBatchArtifacts(options = {}) {
