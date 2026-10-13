@@ -40,19 +40,29 @@ test('Phase 51A-R2 - Test 1: Production Official Anchor Count & Batch Equivalenc
   assert.ok(database.official_serial_anchors.length >= 2845, 'stihl_database.json official_serial_anchors must contain at least 2845 anchors');
 });
 
-test('Phase 51A-R2 - Test 2: Anchor Format & Invariants (9 Digits, Unique, Source MY_STIHL)', (t) => {
+test('Phase 51A-R2 - Test 2: Anchor Format & Invariants (Historical 9 Digits, Supported 8-10 Digits, Unique, Source MY_STIHL)', (t) => {
   const serialSet = new Set();
-  const validDates = ['2026-09-22', '2026-09-26', '2026-10-06', '2026-10-09'];
+  const prodMap = new Map();
   for (const anchor of anchorsDoc.anchors) {
-    assert.match(anchor.serial_number, /^\d{9}$/, `Anchor ${anchor.serial_number} must be exact 9 digits`);
+    assert.match(anchor.serial_number, /^\d{8,10}$/, `Anchor ${anchor.serial_number} must be 8 to 10 digits`);
     assert.ok(anchor.model_name && anchor.model_name.trim().length > 0, `Anchor ${anchor.serial_number} must have non-empty model_name`);
     assert.strictEqual(anchor.source, 'MY_STIHL', `Anchor ${anchor.serial_number} source must be MY_STIHL`);
     assert.strictEqual(anchor.verification_status, 'OFFICIAL_STIHL_LOOKUP', `Anchor ${anchor.serial_number} verification_status must be OFFICIAL_STIHL_LOOKUP`);
-    assert.ok(validDates.includes(anchor.verification_date), `Anchor ${anchor.serial_number} verification_date must be valid`);
+    assert.match(anchor.verification_date, /^\d{4}-\d{2}-\d{2}$/, `Anchor ${anchor.serial_number} verification_date must be YYYY-MM-DD`);
     assert.ok(!serialSet.has(anchor.serial_number), `Duplicate serial number detected: ${anchor.serial_number}`);
     serialSet.add(anchor.serial_number);
+    prodMap.set(anchor.serial_number, anchor);
   }
   assert.strictEqual(serialSet.size, anchorsDoc.anchors.length, 'Must have unique serial numbers for all anchors');
+
+  const historicalDates = ['2026-09-22', '2026-09-26', '2026-10-06'];
+  const historicalAnchors = [...batch1Doc.anchors, ...batch2NewDoc.anchors];
+  assert.strictEqual(historicalAnchors.length, 2845, 'Historical Phase 51 cumulative set must be exactly 2845 anchors');
+  for (const hist of historicalAnchors) {
+    assert.match(hist.serial_number, /^\d{9}$/, `Historical anchor ${hist.serial_number} must be exact 9 digits`);
+    assert.ok(historicalDates.includes(hist.verification_date), `Historical anchor ${hist.serial_number} verification_date must be in Phase 51 historical set`);
+    assert.ok(prodMap.has(hist.serial_number), `Historical anchor ${hist.serial_number} must remain present in production`);
+  }
 });
 
 test('Phase 51A-R2 - Test 3: Anchor 163118080 Exact Identity & Canonical Mapping', (t) => {
@@ -182,9 +192,11 @@ test('Phase 51A-R2 - Test 10: JSON vs SQLite Parity for all 2845 Anchors', async
   assert.ok(rows.length >= 2845, 'SQLite official_serial_anchors table must have at least 2845 rows');
   assert.strictEqual(rows.length, anchorsDoc.anchors.length, 'SQLite and JSON anchors length must match exactly');
 
+  const sqliteMap = new Map(rows.map(r => [r.serial_number, r]));
   for (let i = 0; i < anchorsDoc.anchors.length; i++) {
     const j = anchorsDoc.anchors[i];
-    const s = rows[i];
+    const s = sqliteMap.get(j.serial_number);
+    assert.ok(s, `SQLite missing serial_number ${j.serial_number} at index ${i}`);
     assert.strictEqual(j.serial_number, s.serial_number, `Serial mismatch at index ${i}`);
     assert.strictEqual(j.model_name, s.model_name, `Model name mismatch at ${j.serial_number}`);
     assert.strictEqual(j.canonical_model_id || null, s.canonical_model_id || null);
