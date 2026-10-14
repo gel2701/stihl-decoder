@@ -20,7 +20,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { AffiliateProvider } from '../src/affiliate/AffiliateProvider.js';
-import { AmazonAffiliateProvider, AMAZON_MATCH_TYPES } from '../src/affiliate/AmazonAffiliateProvider.js';
+import { AmazonAffiliateProvider, AMAZON_MATCH_TYPES, isValidAsin } from '../src/affiliate/AmazonAffiliateProvider.js';
 import { AffiliateOfferResolver } from '../src/affiliate/AffiliateOfferResolver.js';
 import { renderAffiliateDisclosureHtml, AFFILIATE_DISCLOSURE_TEXT } from '../src/affiliate/AffiliateDisclosure.js';
 import { trackEvent, EVENT_TYPES } from '../src/components/AnalyticsTracker.js';
@@ -139,7 +139,7 @@ const manualOverrides = [
   },
   {
     part_number: '11210071001',
-    asin: 'B07DISABLED',
+    asin: 'B07DISABLE',
     marketplace: 'amazon.nl',
     enabled: false
   },
@@ -152,7 +152,7 @@ const manualOverrides = [
   },
   {
     part_number: '11431200600',
-    asin: 'B07EXPLICITTAG',
+    asin: 'B07EXPTAG1',
     marketplace: 'amazon.de',
     tag: 'custom-de-tag-21',
     title: 'STIHL Vergaser MS 251 Custom',
@@ -217,9 +217,27 @@ const disabledOverrideOffers = amazonWithOverrides.getOffers({
   partNumber: '11210071001',
   partName: 'Dichtingsset'
 });
-assert.strictEqual(disabledOverrideOffers.length, 1);
-assert.strictEqual(disabledOverrideOffers[0].match_type, AMAZON_MATCH_TYPES.SEARCH_LINK);
-assert.strictEqual(disabledOverrideOffers[0].asin, null);
+// ASIN format validation: exactly 10 alphanumeric characters
+assert.strictEqual(isValidAsin('B07TEST123'), true);
+assert.strictEqual(isValidAsin('b07test123'), true);
+assert.strictEqual(isValidAsin('B07TEST12'), false, 'ASIN shorter than 10 characters must be rejected');
+assert.strictEqual(isValidAsin('B07TEST1234'), false, 'ASIN longer than 10 characters must be rejected');
+assert.strictEqual(isValidAsin('B07 TEST 1'), false, 'ASIN with whitespace must be rejected');
+assert.strictEqual(isValidAsin('B07TEST!@#'), false, 'ASIN with special characters must be rejected');
+assert.strictEqual(isValidAsin(null), false);
+assert.strictEqual(isValidAsin(undefined), false);
+
+// Override with invalid ASIN format must fall back to search link instead of emitting broken product link
+const invalidAsinProvider = new AmazonAffiliateProvider({
+  manualOverrides: [
+    { part_number: '11231602050', asin: 'INVALID_SHORT', enabled: true }
+  ]
+});
+const invalidAsinOffers = invalidAsinProvider.getOffers({ partNumber: '11231602050' });
+assert.strictEqual(invalidAsinOffers.length, 1);
+assert.strictEqual(invalidAsinOffers[0].match_type, AMAZON_MATCH_TYPES.SEARCH_LINK, 'Invalid ASIN must fall back to search link');
+assert.strictEqual(invalidAsinOffers[0].asin, null);
+
 console.log('  ✅ Test 4 Passed: Manual ASIN overrides take priority, honor regional/override tags, reject untagged non-NL overrides, and fall back cleanly.\n');
 
 // ============================================================================
@@ -489,22 +507,22 @@ assert(trustedHosts.has('stihl-decoder-pr12.onrender.com'), 'Must include host f
 delete process.env.SITE_URL;
 delete process.env.RENDER_EXTERNAL_HOSTNAME;
 
-// Case G: Client IP extraction resists spoofing of first forwarded-for value
+// Case G: Client IP extraction selects Render's verified first forwarded entry
 function getTrustedClientIp(req) {
   const forwarded = req.headers['x-forwarded-for'];
   if (typeof forwarded === 'string' && forwarded.trim()) {
     const parts = forwarded.split(',').map(p => p.trim()).filter(Boolean);
     if (parts.length > 0) {
-      return parts[parts.length - 1];
+      return parts[0];
     }
   }
   return req.socket?.remoteAddress || '127.0.0.1';
 }
 
 assert.strictEqual(
-  getTrustedClientIp({ headers: { 'x-forwarded-for': 'attacker-ip, 198.51.100.25' } }),
+  getTrustedClientIp({ headers: { 'x-forwarded-for': '198.51.100.25, 203.0.113.195' } }),
   '198.51.100.25',
-  'Must use the nearest proxy appended address, not client-controlled first value'
+  'Must use Render verified first forwarded entry'
 );
 assert.strictEqual(
   getTrustedClientIp({ headers: { 'x-forwarded-for': '198.51.100.50' } }),

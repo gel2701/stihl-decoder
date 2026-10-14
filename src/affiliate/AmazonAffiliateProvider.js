@@ -19,6 +19,13 @@ export const ALLOWED_AMAZON_MARKETPLACES = new Set([
   'amazon.com'
 ]);
 
+export const ASIN_REGEX = /^[A-Z0-9]{10}$/;
+
+export function isValidAsin(rawAsin) {
+  if (typeof rawAsin !== 'string') return false;
+  return ASIN_REGEX.test(rawAsin.trim().toUpperCase());
+}
+
 export class AmazonAffiliateProvider extends AffiliateProvider {
   /**
    * @param {Object} [options]
@@ -165,7 +172,8 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
     // 1. Check for verified manual ASIN override
     const manualOverride = this.manualOverrides.get(canonicalPartNumber);
-    if (manualOverride && manualOverride.enabled !== false && manualOverride.asin) {
+    if (manualOverride && manualOverride.enabled !== false && isValidAsin(manualOverride.asin)) {
+      const cleanAsin = manualOverride.asin.trim().toUpperCase();
       const rawMarketplace = (typeof manualOverride.marketplace === 'string' && manualOverride.marketplace.trim())
         ? manualOverride.marketplace.trim().toLowerCase()
         : this.marketplace;
@@ -180,13 +188,13 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       // Only produce override offer if a valid tag exists for the target marketplace;
       // non-NL overrides without matching regional tag are rejected and fall through to default search.
       if (overrideTag) {
-        const asinUrl = this.buildAsinUrl(manualOverride.asin, overrideTag, targetMarketplace);
+        const asinUrl = this.buildAsinUrl(cleanAsin, overrideTag, targetMarketplace);
         const displayMarketplace = targetMarketplace.charAt(0).toUpperCase() + targetMarketplace.slice(1);
         return [{
           provider: 'amazon',
           marketplace: targetMarketplace,
           part_number: canonicalPartNumber,
-          asin: manualOverride.asin,
+          asin: cleanAsin,
           tag: overrideTag,
           url: asinUrl,
           affiliate_url: asinUrl,
@@ -198,6 +206,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
           confidence: 'HIGH',
           label: `Bekijk op ${displayMarketplace}`,
           rel: 'sponsored nofollow noopener',
+          target: '_blank'
         }];
       }
     }

@@ -125,12 +125,12 @@ const OBS_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const OBS_MAX_REQUESTS_PER_WINDOW = 10;
 
 function getTrustedClientIp(req) {
+  // On Render deployments, Render sets the first X-Forwarded-For entry to the verified client IP.
   const forwarded = req.headers['x-forwarded-for'];
   if (typeof forwarded === 'string' && forwarded.trim()) {
     const parts = forwarded.split(',').map(p => p.trim()).filter(Boolean);
     if (parts.length > 0) {
-      // Use the last appended IP (from the nearest upstream reverse proxy)
-      return parts[parts.length - 1];
+      return parts[0];
     }
   }
   return req.socket?.remoteAddress || '127.0.0.1';
