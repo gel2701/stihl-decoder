@@ -39,11 +39,12 @@ test('Phase 54B: Search placeholder and helper text', () => {
   );
 });
 
-test('Phase 54B: Search intent quick-action tabs control', () => {
-  assert.ok(indexHtml.includes('id="tab-intent-parts"'), 'Onderdelen zoeken tab must exist');
-  assert.ok(indexHtml.includes('id="tab-intent-serial"'), 'Serienummer controleren tab must exist');
-  assert.ok(indexHtml.includes('id="tab-intent-partno"'), 'Onderdeelnummer opzoeken tab must exist');
-  assert.ok(indexHtml.includes('role="tablist"'), 'Tablist role must exist for accessibility');
+test('Phase 54B: Search intent quick-action buttons control', () => {
+  assert.ok(indexHtml.includes('id="tab-intent-parts"'), 'Onderdelen zoeken button must exist');
+  assert.ok(indexHtml.includes('id="tab-intent-serial"'), 'Serienummer controleren button must exist');
+  assert.ok(indexHtml.includes('id="tab-intent-partno"'), 'Onderdeelnummer opzoeken button must exist');
+  assert.ok(indexHtml.includes('role="group"'), 'Group role must exist for accessibility');
+  assert.ok(indexHtml.includes('aria-label="Snelle zoekintenties"'), 'Accessible label must exist');
 });
 
 test('Phase 54B: Dynamic button text container and example buttons', () => {

@@ -163,15 +163,15 @@
 
       <!-- Input Form -->
       <div class="max-w-xl mx-auto">
-        <!-- Search Intent Tabs (Non-mandatory quick actions) -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-3" role="tablist" aria-label="Zoekintenties">
-          <button type="button" id="tab-intent-parts" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="parts">
+        <!-- Search Intent Buttons (Non-mandatory quick actions) -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-3" role="group" aria-label="Snelle zoekintenties">
+          <button type="button" id="tab-intent-parts" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="parts" aria-pressed="false">
             <span>⚙️ Onderdelen zoeken</span>
           </button>
-          <button type="button" id="tab-intent-serial" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="serial">
+          <button type="button" id="tab-intent-serial" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="serial" aria-pressed="false">
             <span>🔍 Serienummer controleren</span>
           </button>
-          <button type="button" id="tab-intent-partno" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="partno">
+          <button type="button" id="tab-intent-partno" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="partno" aria-pressed="false">
             <span>📦 Onderdeelnummer opzoeken</span>
           </button>
         </div>
@@ -1177,6 +1177,10 @@
       const searchBtn = document.getElementById('search-btn');
       const inputEl = document.getElementById('code-input');
       const clearBtn = document.getElementById('clear-btn');
+      const tabParts = document.getElementById('tab-intent-parts');
+      const tabSerial = document.getElementById('tab-intent-serial');
+      const tabPartNo = document.getElementById('tab-intent-partno');
+      const searchHelperText = document.getElementById('search-helper-text');
       const resultCard = document.getElementById('result-card');
       const warningCard = document.getElementById('warning-card');
       const counterfeitCard = document.getElementById('counterfeit-card');
@@ -1195,6 +1199,20 @@
       let allSearchIdentities = [];
       fetch('/api/models').then(r => r.json()).then(data => { allSearchIdentities = data; }).catch(() => {});
       const decodeEndpoint = window.STIHL_CLIENT_CONFIG?.decodeEndpoint || '/api/decode';
+
+      function setActiveIntentTab(activeTab) {
+        [tabParts, tabSerial, tabPartNo].forEach(tab => {
+          if (!tab) return;
+          const isActive = (tab === activeTab);
+          if (isActive) {
+            tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-orange-500/40 bg-orange-600/20 text-orange-400 flex items-center gap-1.5 shadow-sm';
+            tab.setAttribute('aria-pressed', 'true');
+          } else {
+            tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5';
+            tab.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
 
       function detectSearchIntent(raw) {
         if (!raw || !raw.trim()) return 'empty';
@@ -1244,20 +1262,35 @@
         const val = inputEl ? inputEl.value : '';
         const intent = detectSearchIntent(val);
         const searchBtnText = document.getElementById('search-btn-text');
-        if (!searchBtnText) return;
 
         if (intent === 'model') {
-          searchBtnText.innerText = 'Zoek onderdelen';
+          if (searchBtnText) searchBtnText.innerText = 'Zoek onderdelen';
           if (searchBtn) searchBtn.setAttribute('aria-label', 'Onderdelen voor model zoeken');
+          setActiveIntentTab(tabParts);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer een STIHL model in (bijv. MS 200 of FS 55) om passende onderdelen en onderhoudsartikelen te vinden.';
+          }
         } else if (intent === 'part') {
-          searchBtnText.innerText = 'Zoek onderdeel';
+          if (searchBtnText) searchBtnText.innerText = 'Zoek onderdeel';
           if (searchBtn) searchBtn.setAttribute('aria-label', 'Onderdeelnummer opzoeken');
+          setActiveIntentTab(tabPartNo);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer een 11-cijferig onderdeelnummer in om pasvorm en compatibele modellen te controleren.';
+          }
         } else if (intent === 'serial') {
-          searchBtnText.innerText = 'Controleer serienummer';
+          if (searchBtnText) searchBtnText.innerText = 'Controleer serienummer';
           if (searchBtn) searchBtn.setAttribute('aria-label', 'Serienummer controleren');
+          setActiveIntentTab(tabSerial);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer het 9-cijferige serienummer in om bouwjaar, fabriek en bronstatus te controleren.';
+          }
         } else {
-          searchBtnText.innerText = 'Zoeken';
+          if (searchBtnText) searchBtnText.innerText = 'Zoeken';
           if (searchBtn) searchBtn.setAttribute('aria-label', 'Zoeken');
+          setActiveIntentTab(null);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Typ een model voor onderdelen, een onderdeelnummer voor pasvorm, of een serienummer voor machine-identificatie.';
+          }
         }
       }
 
@@ -1943,25 +1976,7 @@
         inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') handleDecode(); });
       }
 
-      // Search Intent Tabs
-      const tabParts = document.getElementById('tab-intent-parts');
-      const tabSerial = document.getElementById('tab-intent-serial');
-      const tabPartNo = document.getElementById('tab-intent-partno');
-      const searchHelperText = document.getElementById('search-helper-text');
-
-      function setActiveIntentTab(activeTab) {
-        [tabParts, tabSerial, tabPartNo].forEach(tab => {
-          if (!tab) return;
-          if (tab === activeTab) {
-            tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-orange-500/40 bg-orange-600/20 text-orange-400 flex items-center gap-1.5 shadow-sm';
-            tab.setAttribute('aria-selected', 'true');
-          } else {
-            tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5';
-            tab.setAttribute('aria-selected', 'false');
-          }
-        });
-      }
-
+      // Search Intent Buttons Listeners
       if (tabParts) {
         tabParts.addEventListener('click', () => {
           setActiveIntentTab(tabParts);
@@ -1972,7 +1987,12 @@
           if (searchHelperText) {
             searchHelperText.innerText = 'Voer een STIHL model in (bijv. MS 200 of FS 55) om passende onderdelen en onderhoudsartikelen te vinden.';
           }
-          updateDynamicSearchButton();
+          if (inputEl && inputEl.value.trim()) {
+            updateDynamicSearchButton();
+          } else {
+            const searchBtnText = document.getElementById('search-btn-text');
+            if (searchBtnText) searchBtnText.innerText = 'Zoek onderdelen';
+          }
         });
       }
 
@@ -1986,7 +2006,12 @@
           if (searchHelperText) {
             searchHelperText.innerText = 'Voer het 9-cijferige serienummer in om bouwjaar, fabriek en bronstatus te controleren.';
           }
-          updateDynamicSearchButton();
+          if (inputEl && inputEl.value.trim()) {
+            updateDynamicSearchButton();
+          } else {
+            const searchBtnText = document.getElementById('search-btn-text');
+            if (searchBtnText) searchBtnText.innerText = 'Controleer serienummer';
+          }
         });
       }
 
@@ -2000,7 +2025,12 @@
           if (searchHelperText) {
             searchHelperText.innerText = 'Voer een 11-cijferig onderdeelnummer in om pasvorm en compatibele modellen te controleren.';
           }
-          updateDynamicSearchButton();
+          if (inputEl && inputEl.value.trim()) {
+            updateDynamicSearchButton();
+          } else {
+            const searchBtnText = document.getElementById('search-btn-text');
+            if (searchBtnText) searchBtnText.innerText = 'Zoek onderdeel';
+          }
         });
       }
 
@@ -2033,12 +2063,7 @@
             inputEl.placeholder = 'Bijv. MS 200, FS 55, 1123 020 1200 of 163130555';
             inputEl.focus();
           }
-          [tabParts, tabSerial, tabPartNo].forEach(tab => {
-            if (tab) {
-              tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5';
-              tab.setAttribute('aria-selected', 'false');
-            }
-          });
+          setActiveIntentTab(null);
           updateDynamicSearchButton();
         });
       }
