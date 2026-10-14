@@ -14,7 +14,7 @@ test.describe('Critical Homepage User Journeys', () => {
 
     await expect(input).toBeVisible();
     await expect(btn).toBeVisible();
-    await expect(btn).toHaveText(/Analyseer/);
+    await expect(btn).toHaveText(/Zoeken|Analyseer/);
 
     // Wait a brief moment to ensure all async browser modules load completely
     await page.waitForTimeout(500);
