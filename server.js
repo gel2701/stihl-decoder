@@ -509,23 +509,30 @@ const server = http.createServer(async (req, res) => {
 
     const partNo = urlObj.searchParams.get('part_number') || null;
 
-    // Verify a valid associate tag exists for the destination marketplace or verified override
+    // Verify the destination tag matches the configured regional tag or a verified manual override tag
+    const destinationUrlTag = parsedTarget.searchParams.get('tag')?.trim() || null;
     const destSuffix = targetHostname.split('.').pop()?.toUpperCase();
     const envTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
       (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null);
 
-    let validTag = envTag;
-    if (!validTag && partNo) {
-      // Check if target URL matches a verified manual override with an inline configured tag
+    let isAuthorizedTag = false;
+
+    // 1. Destination tag must match the configured regional/primary environment tag
+    if (envTag && destinationUrlTag === envTag) {
+      isAuthorizedTag = true;
+    }
+
+    // 2. Or match a verified manual override that explicitly configured an inline tag
+    if (!isAuthorizedTag && partNo && destinationUrlTag) {
       const offers = AffiliateOfferResolver.resolveOffers({ partNumber: partNo });
       const targetHref = parsedTarget.href;
       const matched = offers.find(o => o.url === targetHref || o.affiliate_url === targetHref);
-      if (matched && parsedTarget.searchParams.get('tag')) {
-        validTag = parsedTarget.searchParams.get('tag');
+      if (matched && matched.tag === destinationUrlTag) {
+        isAuthorizedTag = true;
       }
     }
 
-    if (!validTag) {
+    if (!isAuthorizedTag) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
       return;

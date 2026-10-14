@@ -319,27 +319,36 @@ assert.strictEqual(isAllowedDestination('http://www.amazon.nl/unencrypted'), fal
 assert.strictEqual(isAllowedDestination('javascript:alert(1)'), false);
 assert.strictEqual(isAllowedDestination('//evil.com/protocol-relative'), false);
 
-// Feature gate validation for redirect endpoint
-function isAffiliateRedirectActive(env = process.env, targetHost = 'amazon.nl', inlineTag = null) {
+// Feature gate validation for redirect endpoint: checks destination tag against configured regional tag or verified override tag
+function isAffiliateRedirectActive(env = process.env, targetHost = 'amazon.nl', destinationTag = 'tag-21', verifiedOverrideTag = null) {
   const isEnabled = (env.AMAZON_AFFILIATE_ENABLED === 'true' || env.AMAZON_AFFILIATE_ENABLED === '1') &&
     env.AFFILIATE_ENABLED !== 'false' && env.AFFILIATE_ENABLED !== '0';
   if (!isEnabled) return false;
 
   const destSuffix = targetHost.split('.').pop()?.toUpperCase();
-  const destTag = (destSuffix && env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
-    (destSuffix === 'NL' ? env.AMAZON_ASSOCIATE_TAG?.trim() : null) ||
-    env.AMAZON_ASSOCIATE_TAG?.trim() ||
-    inlineTag;
-  return Boolean(destTag);
+  const envTag = (destSuffix && env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
+    (destSuffix === 'NL' ? env.AMAZON_ASSOCIATE_TAG?.trim() : null);
+
+  if (envTag && destinationTag === envTag) {
+    return true;
+  }
+
+  if (verifiedOverrideTag && destinationTag === verifiedOverrideTag) {
+    return true;
+  }
+
+  return false;
 }
 
-assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: 'tag-21' }), true);
-assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_NL: 'tag-nl-21' }), true);
-assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_DE: 'tag-de-21' }, 'amazon.de'), true);
-assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_NL: 'tag-nl-21' }, 'amazon.de', 'custom-de-tag-21'), true, 'Must accept verified inline override tag even without env tag for DE');
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: 'tag-21' }, 'amazon.nl', 'tag-21'), true);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_NL: 'tag-nl-21' }, 'amazon.nl', 'tag-nl-21'), true);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_DE: 'tag-de-21' }, 'amazon.de', 'tag-de-21'), true);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_NL: 'tag-nl-21' }, 'amazon.de', 'custom-de-tag-21', 'custom-de-tag-21'), true, 'Must accept verified inline override tag even without env tag for DE');
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: 'our-tag-21' }, 'amazon.nl', 'attacker-tag-21'), false, 'Must reject destination tag that does not match configured tag');
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: 'our-tag-21' }, 'amazon.nl', null), false, 'Must reject tagless destination');
 assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_NL: 'tag-nl-21' }, 'amazon.de', null), false, 'Must reject untagged DE target when only NL tag is in env');
-assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'false', AMAZON_ASSOCIATE_TAG: 'tag-21' }), false);
-assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: '' }), false);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'false', AMAZON_ASSOCIATE_TAG: 'tag-21' }, 'amazon.nl', 'tag-21'), false);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: '' }, 'amazon.nl', ''), false);
 assert.strictEqual(isAffiliateRedirectActive({}), false);
 
 // Same-origin referrer validation for affiliate click attribution (TRUSTED SITE HOSTS only, never client headers)
