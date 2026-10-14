@@ -203,6 +203,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
     // 2. Safe deterministic Amazon search link fallback
     const searchUrl = this.buildSearchUrl(canonicalPartNumber, defaultTag);
+    const displayMarketplace = this.marketplace.charAt(0).toUpperCase() + this.marketplace.slice(1);
     return [{
       provider: 'amazon',
       marketplace: this.marketplace,
@@ -211,14 +212,14 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       url: searchUrl,
       affiliate_url: searchUrl,
       title: params.partName
-        ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op Amazon.nl`
-        : `Zoek STIHL ${formattedPartNumber} op Amazon.nl`,
+        ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op ${displayMarketplace}`
+        : `Zoek STIHL ${formattedPartNumber} op ${displayMarketplace}`,
       price: null,
       currency: 'EUR',
       image_url: null,
       match_type: AMAZON_MATCH_TYPES.SEARCH_LINK,
       confidence: 'SEARCH_FALLBACK',
-      label: 'Bekijk op Amazon.nl',
+      label: `Bekijk op ${displayMarketplace}`,
       rel: 'sponsored nofollow noopener',
       target: '_blank'
     }];

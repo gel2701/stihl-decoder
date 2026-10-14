@@ -34,6 +34,7 @@ export class AffiliateProvider {
   /**
    * Resolves commercial offers for a given part number and contextual information.
    * Decoupled from canonical part data: does not modify or corrupt part identity.
+   * Synchronous contract: providers must return a synchronous array of offers.
    *
    * @param {Object} params
    * @param {string} params.partNumber - Raw or canonical part number
@@ -41,7 +42,7 @@ export class AffiliateProvider {
    * @param {string} [params.partName] - Human-readable part description
    * @param {string} [params.model] - Associated machine model identifier
    * @param {string} [params.configuration] - Specific machine configuration
-   * @returns {Promise<Array<Object>>|Array<Object>} List of standardized commercial offers
+   * @returns {Array<Object>} Synchronous list of standardized commercial offers
    */
   getOffers(params = {}) {
     return [];

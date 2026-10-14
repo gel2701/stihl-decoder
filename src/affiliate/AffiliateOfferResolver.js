@@ -135,6 +135,8 @@ export class AffiliateOfferResolver {
           const offers = provider.getOffers(resolvedParams);
           if (Array.isArray(offers)) {
             allOffers.push(...offers);
+          } else if (offers && typeof offers.then === 'function') {
+            console.warn(`[AffiliateOfferResolver] Provider "${provider.getName()}" returned a Promise to synchronous resolveOffers; use resolveOffersAsync for asynchronous providers.`);
           }
         }
       } catch (err) {
@@ -142,8 +144,67 @@ export class AffiliateOfferResolver {
       }
     }
 
-    // Sort priority: MANUAL_ASIN / exact verified first, then search link fallback
-    allOffers.sort((a, b) => {
+    this.sortOffers(allOffers);
+    return allOffers;
+  }
+
+  /**
+   * Asynchronously resolves commercial offers across all enabled providers,
+   * awaiting any provider that returns a Promise as well as synchronous providers.
+   *
+   * @param {Object} params
+   * @param {string} params.partNumber
+   * @param {string} [params.partName]
+   * @param {string} [params.model]
+   * @param {string} [params.configuration]
+   * @returns {Promise<Array<Object>>} Prioritized commercial offers
+   */
+  async resolveOffersAsync(params = {}) {
+    if (!this.isGlobalAffiliateEnabled()) {
+      return [];
+    }
+
+    const rawPartNumber = params.partNumber;
+    const canonicalPartNumber = PartNormalizer.normalizePartNumber(rawPartNumber);
+    if (!canonicalPartNumber) {
+      return [];
+    }
+
+    this.ensureLoaded();
+
+    const resolvedParams = {
+      ...params,
+      canonicalPartNumber
+    };
+
+    const allOffers = [];
+
+    for (const provider of this.providers.values()) {
+      try {
+        if (provider.isEnabled()) {
+          const rawOffers = provider.getOffers(resolvedParams);
+          const offers = (rawOffers && typeof rawOffers.then === 'function')
+            ? await rawOffers
+            : rawOffers;
+          if (Array.isArray(offers)) {
+            allOffers.push(...offers);
+          }
+        }
+      } catch (err) {
+        console.warn(`[AffiliateOfferResolver] Error resolving async offers from ${provider.getName()}: ${err.message}`);
+      }
+    }
+
+    this.sortOffers(allOffers);
+    return allOffers;
+  }
+
+  /**
+   * Sorts offers with highest confidence / verified exact matches first.
+   * @param {Array<Object>} offers
+   */
+  sortOffers(offers) {
+    offers.sort((a, b) => {
       const priority = (offer) => {
         if (offer.match_type === AMAZON_MATCH_TYPES.MANUAL_ASIN || offer.confidence === 'HIGH') return 1;
         if (offer.match_type === AMAZON_MATCH_TYPES.SEARCH_LINK) return 2;
@@ -151,8 +212,6 @@ export class AffiliateOfferResolver {
       };
       return priority(a) - priority(b);
     });
-
-    return allOffers;
   }
 
   /**
@@ -160,6 +219,13 @@ export class AffiliateOfferResolver {
    */
   static resolveOffers(params = {}) {
     return defaultResolverInstance.resolveOffers(params);
+  }
+
+  /**
+   * Static helper for single-call async resolution.
+   */
+  static async resolveOffersAsync(params = {}) {
+    return defaultResolverInstance.resolveOffersAsync(params);
   }
 }
 
