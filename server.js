@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl } from './src/config.js';
+import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl, getTrustedDeploymentHosts } from './src/config.js';
 import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive, getDatabaseConnection } from './src/databaseConfig.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { buildSearchableIdentities, normalizeSearchQuery } from './src/globalModelSearch.js';
@@ -15,10 +15,12 @@ import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplat
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
 import { renderPartDetailPageHtml } from './src/components/PartDetailPageTemplate.js';
 import { PartCatalogResolver } from './src/parts/PartCatalogResolver.js';
+import { PartNormalizer } from './src/parts/PartNormalizer.js';
 import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
+import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
 import {
   getSafeCategorySlug,
   getSafeModelPath,
@@ -122,8 +124,20 @@ const observationRateLimitMap = new Map();
 const OBS_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const OBS_MAX_REQUESTS_PER_WINDOW = 10;
 
+function getTrustedClientIp(req) {
+  // On Render deployments, Render sets the first X-Forwarded-For entry to the verified client IP.
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.trim()) {
+    const parts = forwarded.split(',').map(p => p.trim()).filter(Boolean);
+    if (parts.length > 0) {
+      return parts[0];
+    }
+  }
+  return req.socket?.remoteAddress || '127.0.0.1';
+}
+
 function checkObservationRateLimit(req) {
-  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const ip = getTrustedClientIp(req);
   const now = Date.now();
   const entry = observationRateLimitMap.get(ip);
   if (!entry || (now - entry.startTime > OBS_RATE_LIMIT_WINDOW_MS)) {
@@ -134,7 +148,44 @@ function checkObservationRateLimit(req) {
   return entry.count > OBS_MAX_REQUESTS_PER_WINDOW;
 }
 
-function isSameOriginRequest(req, forwardedHost) {
+const affiliateRateLimitMap = new Map();
+const AFFILIATE_RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const AFFILIATE_MAX_REQUESTS_PER_WINDOW = 30;
+const AFFILIATE_RATE_LIMIT_MAX_KEYS = 5000;
+
+function cleanupAffiliateRateLimitMap(now) {
+  for (const [ip, entry] of affiliateRateLimitMap.entries()) {
+    if (now - entry.startTime > AFFILIATE_RATE_LIMIT_WINDOW_MS) {
+      affiliateRateLimitMap.delete(ip);
+    }
+  }
+  if (affiliateRateLimitMap.size > AFFILIATE_RATE_LIMIT_MAX_KEYS) {
+    const toDelete = affiliateRateLimitMap.size - AFFILIATE_RATE_LIMIT_MAX_KEYS;
+    let count = 0;
+    for (const key of affiliateRateLimitMap.keys()) {
+      affiliateRateLimitMap.delete(key);
+      count++;
+      if (count >= toDelete) break;
+    }
+  }
+}
+
+function checkAffiliateRateLimit(req) {
+  const ip = getTrustedClientIp(req);
+  const now = Date.now();
+  if (affiliateRateLimitMap.size >= 100) {
+    cleanupAffiliateRateLimitMap(now);
+  }
+  const entry = affiliateRateLimitMap.get(ip);
+  if (!entry || (now - entry.startTime > AFFILIATE_RATE_LIMIT_WINDOW_MS)) {
+    affiliateRateLimitMap.set(ip, { count: 1, startTime: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > AFFILIATE_MAX_REQUESTS_PER_WINDOW;
+}
+
+function isSameOriginRequest(req) {
   const origin = req.headers['origin'];
   const referer = req.headers['referer'];
   const secFetchSite = req.headers['sec-fetch-site'];
@@ -143,21 +194,14 @@ function isSameOriginRequest(req, forwardedHost) {
     return false;
   }
 
-  const allowedHosts = new Set([
-    PRIMARY_HOST.toLowerCase(),
-    (forwardedHost || '').toLowerCase(),
-    'stihldecoder.nl',
-    'www.stihldecoder.nl',
-    'localhost',
-    '127.0.0.1'
-  ]);
+  const allowedHosts = getTrustedDeploymentHosts();
 
   function hostMatches(val) {
     if (!val) return false;
     try {
       const u = new URL(val);
       const h = u.hostname.toLowerCase();
-      return allowedHosts.has(h) || allowedHosts.has(u.host.toLowerCase());
+      return allowedHosts.has(h);
     } catch {
       return false;
     }
@@ -306,7 +350,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    if (!isSameOriginRequest(req, forwardedHost)) {
+    if (!isSameOriginRequest(req)) {
       res.writeHead(403, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'FORBIDDEN' }));
       return;
@@ -431,6 +475,175 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'SERVICE_UNAVAILABLE' }));
     }
+    return;
+  }
+
+  // 5c. REST API: GET /api/affiliate/out (Phase 54A Safe Allowlist-Only Redirect Endpoint)
+  if (pathname === '/api/affiliate/out') {
+    if (req.method !== 'GET') {
+      res.writeHead(405, { 'Content-Type': 'application/json', 'Allow': 'GET' });
+      res.end(JSON.stringify({ success: false, error: 'METHOD_NOT_ALLOWED' }));
+      return;
+    }
+
+    // 1. Feature flag check (fail-closed if affiliate is disabled)
+    const isAffiliateEnabled = (process.env.AMAZON_AFFILIATE_ENABLED === 'true' || process.env.AMAZON_AFFILIATE_ENABLED === '1') &&
+      process.env.AFFILIATE_ENABLED !== 'false' && process.env.AFFILIATE_ENABLED !== '0';
+
+    if (!isAffiliateEnabled) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
+      return;
+    }
+
+    // 2. Rate limiting check
+    if (checkAffiliateRateLimit(req)) {
+      res.writeHead(429, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'RATE_LIMITED' }));
+      return;
+    }
+
+    const rawTarget = urlObj.searchParams.get('url');
+    if (!rawTarget || typeof rawTarget !== 'string') {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'MISSING_URL' }));
+      return;
+    }
+
+    let parsedTarget;
+    try {
+      parsedTarget = new URL(rawTarget);
+    } catch {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'INVALID_URL' }));
+      return;
+    }
+
+    if (parsedTarget.protocol !== 'https:') {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'UNSAFE_PROTOCOL' }));
+      return;
+    }
+
+    const ALLOWED_AFFILIATE_HOSTS = new Set([
+      'www.amazon.nl',
+      'amazon.nl',
+      'www.amazon.de',
+      'amazon.de',
+      'www.amazon.com',
+      'amazon.com'
+    ]);
+
+    const targetHostname = parsedTarget.hostname.toLowerCase();
+    if (!ALLOWED_AFFILIATE_HOSTS.has(targetHostname)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'FORBIDDEN_DOMAIN' }));
+      return;
+    }
+
+    const partNo = urlObj.searchParams.get('part_number') || null;
+
+    // Verify the destination tag matches the configured regional tag or a verified manual override tag
+    const destinationUrlTag = parsedTarget.searchParams.get('tag')?.trim() || null;
+    const destSuffix = targetHostname.split('.').pop()?.toUpperCase();
+    const envTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
+      (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null);
+
+    // Resolve verified offer if part_number was provided
+    let matchedOffer = null;
+    let validatedPartNumber = null;
+    if (partNo) {
+      const normPart = PartNormalizer.normalizePartNumber(partNo);
+      if (normPart) {
+        validatedPartNumber = normPart;
+        const offers = AffiliateOfferResolver.resolveOffers({ partNumber: normPart });
+        const targetHref = parsedTarget.href;
+        matchedOffer = offers.find(o => o.url === targetHref || o.affiliate_url === targetHref) || null;
+      }
+    }
+
+    let isAuthorizedTag = false;
+
+    // 1. Destination tag must match the configured regional/primary environment tag
+    if (envTag && destinationUrlTag === envTag) {
+      isAuthorizedTag = true;
+    }
+
+    // 2. Or match a verified manual override that explicitly configured an inline tag
+    if (!isAuthorizedTag && matchedOffer && matchedOffer.tag === destinationUrlTag) {
+      isAuthorizedTag = true;
+    }
+
+    if (!isAuthorizedTag) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
+      return;
+    }
+
+    // Derive analytics dimensions strictly from targetHostname, destination path, and verified offer
+    const provider = matchedOffer?.provider || 'amazon';
+    const marketplace = matchedOffer?.marketplace || targetHostname;
+    let offerType = 'SEARCH_LINK';
+    let asinIfKnown = null;
+
+    if (matchedOffer) {
+      offerType = matchedOffer.match_type || (matchedOffer.asin ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+      asinIfKnown = matchedOffer.asin || null;
+    } else {
+      const dpMatch = parsedTarget.pathname.match(/\/dp\/([A-Za-z0-9]{10})/i);
+      if (dpMatch) {
+        offerType = 'MANUAL_ASIN';
+        asinIfKnown = dpMatch[1].toUpperCase();
+      } else if (parsedTarget.pathname.startsWith('/s')) {
+        offerType = 'SEARCH_LINK';
+      } else {
+        offerType = 'DIRECT_LINK';
+      }
+    }
+
+    // Derive part attribution strictly: matched offer for direct/product links,
+    // or canonical 'k' query parameter for search links.
+    let resolvedPartNumber = null;
+    if (matchedOffer && matchedOffer.part_number) {
+      resolvedPartNumber = matchedOffer.part_number;
+    } else if (parsedTarget.searchParams.has('k')) {
+      const kVal = parsedTarget.searchParams.get('k') || '';
+      const stripped = kVal.replace(/^STIHL\s+/i, '').trim();
+      const searchPart = PartNormalizer.normalizePartNumber(stripped);
+      if (searchPart) {
+        resolvedPartNumber = searchPart;
+      }
+    }
+
+    const TRUSTED_SITE_HOSTS = getTrustedDeploymentHosts();
+
+    let pagePath = '/';
+    if (req.headers.referer && isSameOriginRequest(req)) {
+      try {
+        const refUrl = new URL(req.headers.referer);
+        const refHostname = refUrl.hostname.toLowerCase();
+        if (TRUSTED_SITE_HOSTS.has(refHostname)) {
+          pagePath = refUrl.pathname || '/';
+        }
+      } catch {}
+    }
+
+    logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
+      provider,
+      marketplace,
+      offer_type: offerType,
+      asin_if_known: asinIfKnown,
+      destination_url: parsedTarget.href,
+      part_number: resolvedPartNumber,
+      page_path: pagePath,
+      source_page: pagePath
+    }, req.headers['user-agent']);
+
+    res.writeHead(302, {
+      'Location': parsedTarget.href,
+      'X-Robots-Tag': 'noindex, nofollow'
+    });
+    res.end();
     return;
   }
 

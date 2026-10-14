@@ -53,7 +53,14 @@ const WHITELISTED_METADATA_KEYS = [
   'model',
   'recommendation_type',
   'compatibility_status',
-  'conflict_type'
+  'conflict_type',
+  'provider',
+  'part_number',
+  'offer_type',
+  'asin_if_known',
+  'page_path',
+  'destination_url',
+  'marketplace'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;
@@ -86,7 +93,7 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
 
   const eventId = metadata.event_id || `evt_${Date.now()}_${Math.random().toString(36).substr(2, 7)}`;
   const modelSlug = cleanMetadata.model_slug || cleanMetadata.model || null;
-  const pagePath = cleanMetadata.source_page || '/';
+  const pagePath = cleanMetadata.source_page || cleanMetadata.page_path || '/';
   const metadataJson = JSON.stringify(cleanMetadata);
   const createdAt = new Date().toISOString();
   const dbHealth = getDatabaseHealthSnapshot();
