@@ -134,6 +134,22 @@ function checkObservationRateLimit(req) {
   return entry.count > OBS_MAX_REQUESTS_PER_WINDOW;
 }
 
+const affiliateRateLimitMap = new Map();
+const AFFILIATE_RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const AFFILIATE_MAX_REQUESTS_PER_WINDOW = 30;
+
+function checkAffiliateRateLimit(req) {
+  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const now = Date.now();
+  const entry = affiliateRateLimitMap.get(ip);
+  if (!entry || (now - entry.startTime > AFFILIATE_RATE_LIMIT_WINDOW_MS)) {
+    affiliateRateLimitMap.set(ip, { count: 1, startTime: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > AFFILIATE_MAX_REQUESTS_PER_WINDOW;
+}
+
 function isSameOriginRequest(req, forwardedHost) {
   const origin = req.headers['origin'];
   const referer = req.headers['referer'];
@@ -436,6 +452,24 @@ const server = http.createServer(async (req, res) => {
 
   // 5c. REST API: GET /api/affiliate/out (Phase 54A Safe Allowlist-Only Redirect Endpoint)
   if (pathname === '/api/affiliate/out') {
+    // 1. Feature flag & tag check (fail-closed if affiliate is disabled or tag is absent)
+    const isAffiliateEnabled = (process.env.AMAZON_AFFILIATE_ENABLED === 'true' || process.env.AMAZON_AFFILIATE_ENABLED === '1') &&
+      Boolean(process.env.AMAZON_ASSOCIATE_TAG && process.env.AMAZON_ASSOCIATE_TAG.trim()) &&
+      process.env.AFFILIATE_ENABLED !== 'false' && process.env.AFFILIATE_ENABLED !== '0';
+
+    if (!isAffiliateEnabled) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
+      return;
+    }
+
+    // 2. Rate limiting check
+    if (checkAffiliateRateLimit(req)) {
+      res.writeHead(429, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'RATE_LIMITED' }));
+      return;
+    }
+
     const rawTarget = urlObj.searchParams.get('url');
     if (!rawTarget || typeof rawTarget !== 'string') {
       res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -486,7 +520,8 @@ const server = http.createServer(async (req, res) => {
       provider: 'amazon',
       destination_url: parsedTarget.href,
       part_number: partNo,
-      page_path: pagePath
+      page_path: pagePath,
+      source_page: pagePath
     }, req.headers['user-agent']);
 
     res.writeHead(302, {

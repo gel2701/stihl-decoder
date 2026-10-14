@@ -254,7 +254,20 @@ assert.strictEqual(isAllowedDestination('https://evil.com/phishing'), false);
 assert.strictEqual(isAllowedDestination('http://www.amazon.nl/unencrypted'), false);
 assert.strictEqual(isAllowedDestination('javascript:alert(1)'), false);
 assert.strictEqual(isAllowedDestination('//evil.com/protocol-relative'), false);
-console.log('  ✅ Test 8 Passed: Open redirect prevention strictly enforces HTTPS and allowlisted hosts.\n');
+
+// Feature gate validation for redirect endpoint
+function isAffiliateRedirectActive(env = process.env) {
+  const isEnabled = (env.AMAZON_AFFILIATE_ENABLED === 'true' || env.AMAZON_AFFILIATE_ENABLED === '1') &&
+    Boolean(env.AMAZON_ASSOCIATE_TAG && env.AMAZON_ASSOCIATE_TAG.trim()) &&
+    env.AFFILIATE_ENABLED !== 'false' && env.AFFILIATE_ENABLED !== '0';
+  return isEnabled;
+}
+
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: 'tag-21' }), true);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'false', AMAZON_ASSOCIATE_TAG: 'tag-21' }), false);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: '' }), false);
+assert.strictEqual(isAffiliateRedirectActive({}), false);
+console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist & feature-gate enforcement verified.\n');
 
 // ============================================================================
 // Test 9: SSR Part Detail Page Template with and without affiliate

@@ -93,7 +93,7 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
 
   const eventId = metadata.event_id || `evt_${Date.now()}_${Math.random().toString(36).substr(2, 7)}`;
   const modelSlug = cleanMetadata.model_slug || cleanMetadata.model || null;
-  const pagePath = cleanMetadata.source_page || '/';
+  const pagePath = cleanMetadata.source_page || cleanMetadata.page_path || '/';
   const metadataJson = JSON.stringify(cleanMetadata);
   const createdAt = new Date().toISOString();
   const dbHealth = getDatabaseHealthSnapshot();
