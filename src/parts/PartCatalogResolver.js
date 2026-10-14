@@ -503,17 +503,14 @@ export class PartCatalogResolver {
   }
 
   /**
-   * Checks whether the catalog contains verified parts/fitments for a model.
+   * Checks whether the catalog contains verified parts/fitments for a model that can be rendered on its parts page.
    */
   static hasPartsForModel(modelInput, database = null) {
     if (!modelInput) return false;
-    const normId = PartCatalogResolver.resolveCanonicalModelId(modelInput, database);
-    if (!normId) return false;
-    loadDefaultPartsData();
-    if (database && Array.isArray(database.model_part_fitments)) {
-      return database.model_part_fitments.some(f => f.canonical_model_id === normId);
-    }
-    return cachedFitmentsByModelMap ? (cachedFitmentsByModelMap.get(normId)?.length || 0) > 0 : false;
+    const sections = PartCatalogResolver.getSectionsForModel(modelInput, null, null, database);
+    if (sections && sections.length > 0) return true;
+    const configs = PartCatalogResolver.getConfigurationsForModel(modelInput, database);
+    return Boolean(configs && configs.length > 0);
   }
 
   /**
