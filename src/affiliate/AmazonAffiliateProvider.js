@@ -49,7 +49,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
   /**
    * Reads associate tag for the given marketplace from environment variables.
    * Supports regional tags (e.g. AMAZON_ASSOCIATE_TAG_DE, AMAZON_ASSOCIATE_TAG_COM)
-   * with fallback to AMAZON_ASSOCIATE_TAG for amazon.nl or default marketplace.
+   * with fallback to AMAZON_ASSOCIATE_TAG strictly for amazon.nl.
    * Never hardcoded, never logged.
    * @param {string} [marketplace]
    * @returns {string|null}
@@ -69,8 +69,8 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       }
     }
 
-    // 2. Primary tag applies to amazon.nl or when target matches this.marketplace
-    if (targetMarketplace === 'amazon.nl' || targetMarketplace === this.marketplace) {
+    // 2. Primary generic tag strictly applies to amazon.nl only
+    if (targetMarketplace === 'amazon.nl') {
       const rawTag = process.env.AMAZON_ASSOCIATE_TAG;
       if (typeof rawTag === 'string' && rawTag.trim()) {
         return rawTag.trim();

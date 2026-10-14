@@ -71,6 +71,19 @@ delete process.env.AMAZON_AFFILIATE_ENABLED;
 process.env.AMAZON_ASSOCIATE_TAG = 'testtag-21';
 assert.strictEqual(defaultAmazon.isEnabled(), false, 'Must be disabled if AMAZON_AFFILIATE_ENABLED != true');
 assert.deepStrictEqual(defaultAmazon.getOffers({ partNumber: '11231602050' }), []);
+
+// Provider constructed for amazon.de with only generic AMAZON_ASSOCIATE_TAG -> must remain disabled
+process.env.AMAZON_AFFILIATE_ENABLED = 'true';
+process.env.AMAZON_ASSOCIATE_TAG = 'testtag-21';
+delete process.env.AMAZON_ASSOCIATE_TAG_DE;
+const deAmazon = new AmazonAffiliateProvider({ marketplace: 'amazon.de' });
+assert.strictEqual(deAmazon.isEnabled(), false, 'Amazon.de provider must not use generic NL tag');
+assert.deepStrictEqual(deAmazon.getOffers({ partNumber: '11231602050' }), [], 'Must return empty offers without regional DE tag');
+
+// When AMAZON_ASSOCIATE_TAG_DE is set, amazon.de provider becomes enabled
+process.env.AMAZON_ASSOCIATE_TAG_DE = 'testtag-de-21';
+assert.strictEqual(deAmazon.isEnabled(), true, 'Amazon.de provider enabled with matching regional tag');
+delete process.env.AMAZON_ASSOCIATE_TAG_DE;
 console.log('  ✅ Test 2 Passed: AmazonAffiliateProvider fails closed cleanly.\n');
 
 // ============================================================================
@@ -378,6 +391,73 @@ assert.strictEqual(extractAttributedPagePath('https://stihldecoder.nl/onderdeeln
 assert.strictEqual(extractAttributedPagePath('https://attacker.example/onderdeelnummer/11231602050/'), '/', 'External referrer must default to root path');
 assert.strictEqual(extractAttributedPagePath('not-a-valid-url'), '/');
 assert.strictEqual(extractAttributedPagePath(undefined), '/');
+
+// Analytics dimension derivation verification: destination & offer strictly determine metadata, query params cannot spoof
+function deriveAffiliateAnalytics(parsedTarget, partNo, matchedOffer = null) {
+  const targetHostname = parsedTarget.hostname.toLowerCase();
+  const provider = matchedOffer?.provider || 'amazon';
+  const marketplace = matchedOffer?.marketplace || targetHostname;
+  let offerType = 'SEARCH_LINK';
+  let asinIfKnown = null;
+
+  if (matchedOffer) {
+    offerType = matchedOffer.match_type || (matchedOffer.asin ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+    asinIfKnown = matchedOffer.asin || null;
+  } else {
+    const dpMatch = parsedTarget.pathname.match(/\/dp\/([A-Za-z0-9]{10})/i);
+    if (dpMatch) {
+      offerType = 'MANUAL_ASIN';
+      asinIfKnown = dpMatch[1].toUpperCase();
+    } else if (parsedTarget.pathname.startsWith('/s')) {
+      offerType = 'SEARCH_LINK';
+    } else {
+      offerType = 'DIRECT_LINK';
+    }
+  }
+
+  const resolvedPartNumber = matchedOffer?.part_number || (
+    partNo ? PartNormalizer.normalizePartNumber(partNo) : (
+      parsedTarget.searchParams.has('k')
+        ? PartNormalizer.normalizePartNumber(parsedTarget.searchParams.get('k')?.replace(/^STIHL\s+/i, ''))
+        : null
+    )
+  );
+
+  return { provider, marketplace, offerType, asinIfKnown, resolvedPartNumber };
+}
+
+// Case A: Query params attempt spoofing, but destination is search URL
+const spoofedSearchTarget = new URL('https://www.amazon.nl/s?k=STIHL+11231602050&tag=tag-21');
+const derivedSearch = deriveAffiliateAnalytics(spoofedSearchTarget, '1123 160 2050');
+assert.strictEqual(derivedSearch.provider, 'amazon');
+assert.strictEqual(derivedSearch.marketplace, 'www.amazon.nl');
+assert.strictEqual(derivedSearch.offerType, 'SEARCH_LINK');
+assert.strictEqual(derivedSearch.asinIfKnown, null);
+assert.strictEqual(derivedSearch.resolvedPartNumber, '11231602050');
+
+// Case B: Direct product DP URL with ASIN in path
+const dpTarget = new URL('https://amazon.de/dp/B07XYZ1234?tag=tag-de-21');
+const derivedDp = deriveAffiliateAnalytics(dpTarget, null);
+assert.strictEqual(derivedDp.provider, 'amazon');
+assert.strictEqual(derivedDp.marketplace, 'amazon.de');
+assert.strictEqual(derivedDp.offerType, 'MANUAL_ASIN');
+assert.strictEqual(derivedDp.asinIfKnown, 'B07XYZ1234');
+
+// Case C: Verified matched offer with manual ASIN
+const mockOffer = {
+  provider: 'amazon',
+  marketplace: 'amazon.nl',
+  part_number: '11231602050',
+  asin: 'B07TEST123',
+  match_type: 'MANUAL_ASIN'
+};
+const derivedOffer = deriveAffiliateAnalytics(new URL('https://amazon.nl/dp/B07TEST123?tag=tag-21'), '11231602050', mockOffer);
+assert.strictEqual(derivedOffer.provider, 'amazon');
+assert.strictEqual(derivedOffer.marketplace, 'amazon.nl');
+assert.strictEqual(derivedOffer.offerType, 'MANUAL_ASIN');
+assert.strictEqual(derivedOffer.asinIfKnown, 'B07TEST123');
+assert.strictEqual(derivedOffer.resolvedPartNumber, '11231602050');
+
 console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist, regional feature-gates, and trusted-host referrer validation verified.\n');
 
 // ============================================================================

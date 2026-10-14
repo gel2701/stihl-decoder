@@ -15,6 +15,7 @@ import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplat
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
 import { renderPartDetailPageHtml } from './src/components/PartDetailPageTemplate.js';
 import { PartCatalogResolver } from './src/parts/PartCatalogResolver.js';
+import { PartNormalizer } from './src/parts/PartNormalizer.js';
 import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
@@ -515,6 +516,19 @@ const server = http.createServer(async (req, res) => {
     const envTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
       (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null);
 
+    // Resolve verified offer if part_number was provided
+    let matchedOffer = null;
+    let validatedPartNumber = null;
+    if (partNo) {
+      const normPart = PartNormalizer.normalizePartNumber(partNo);
+      if (normPart) {
+        validatedPartNumber = normPart;
+        const offers = AffiliateOfferResolver.resolveOffers({ partNumber: normPart });
+        const targetHref = parsedTarget.href;
+        matchedOffer = offers.find(o => o.url === targetHref || o.affiliate_url === targetHref) || null;
+      }
+    }
+
     let isAuthorizedTag = false;
 
     // 1. Destination tag must match the configured regional/primary environment tag
@@ -523,13 +537,8 @@ const server = http.createServer(async (req, res) => {
     }
 
     // 2. Or match a verified manual override that explicitly configured an inline tag
-    if (!isAuthorizedTag && partNo && destinationUrlTag) {
-      const offers = AffiliateOfferResolver.resolveOffers({ partNumber: partNo });
-      const targetHref = parsedTarget.href;
-      const matched = offers.find(o => o.url === targetHref || o.affiliate_url === targetHref);
-      if (matched && matched.tag === destinationUrlTag) {
-        isAuthorizedTag = true;
-      }
+    if (!isAuthorizedTag && matchedOffer && matchedOffer.tag === destinationUrlTag) {
+      isAuthorizedTag = true;
     }
 
     if (!isAuthorizedTag) {
@@ -537,10 +546,33 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
       return;
     }
-    const provider = urlObj.searchParams.get('provider') || 'amazon';
-    const marketplace = urlObj.searchParams.get('marketplace') || targetHostname;
-    const offerType = urlObj.searchParams.get('offer_type') || (parsedTarget.pathname.includes('/dp/') ? 'MANUAL_ASIN' : 'SEARCH_LINK');
-    const asinIfKnown = urlObj.searchParams.get('asin_if_known') || null;
+
+    // Derive analytics dimensions strictly from targetHostname, destination path, and verified offer
+    const provider = matchedOffer?.provider || 'amazon';
+    const marketplace = matchedOffer?.marketplace || targetHostname;
+    let offerType = 'SEARCH_LINK';
+    let asinIfKnown = null;
+
+    if (matchedOffer) {
+      offerType = matchedOffer.match_type || (matchedOffer.asin ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+      asinIfKnown = matchedOffer.asin || null;
+    } else {
+      const dpMatch = parsedTarget.pathname.match(/\/dp\/([A-Za-z0-9]{10})/i);
+      if (dpMatch) {
+        offerType = 'MANUAL_ASIN';
+        asinIfKnown = dpMatch[1].toUpperCase();
+      } else if (parsedTarget.pathname.startsWith('/s')) {
+        offerType = 'SEARCH_LINK';
+      } else {
+        offerType = 'DIRECT_LINK';
+      }
+    }
+
+    const resolvedPartNumber = validatedPartNumber || matchedOffer?.part_number || (
+      parsedTarget.searchParams.has('k')
+        ? PartNormalizer.normalizePartNumber(parsedTarget.searchParams.get('k')?.replace(/^STIHL\s+/i, ''))
+        : null
+    );
 
     const TRUSTED_SITE_HOSTS = new Set([
       PRIMARY_HOST.toLowerCase(),
@@ -567,7 +599,7 @@ const server = http.createServer(async (req, res) => {
       offer_type: offerType,
       asin_if_known: asinIfKnown,
       destination_url: parsedTarget.href,
-      part_number: partNo,
+      part_number: resolvedPartNumber,
       page_path: pagePath,
       source_page: pagePath
     }, req.headers['user-agent']);
