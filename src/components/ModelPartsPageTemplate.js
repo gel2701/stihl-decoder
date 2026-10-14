@@ -37,8 +37,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const modelPath = getSafeModelPath(model);
 
   const selectedConfig = options.configurationKey || null;
-  const configurations = PartCatalogResolver.getConfigurationsForModel(model.model_name || model.id, database);
-  const sections = PartCatalogResolver.getSectionsForModel(model.model_name || model.id, null, selectedConfig, database);
+  const configurations = PartCatalogResolver.getConfigurationsForModel(model, database);
+  const sections = PartCatalogResolver.getSectionsForModel(model, null, selectedConfig, database);
   const totalPartsCount = sections.reduce((acc, s) => acc + s.parts.length, 0);
 
   const breadcrumbs = [

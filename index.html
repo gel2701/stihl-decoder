@@ -1555,7 +1555,7 @@
               badgeEl.innerText = '✓ Officiële STIHL-bron';
             }
           }
-          const partsPath = res.canonicalPartsPath || (res.canonicalModelPath ? `${res.canonicalModelPath}onderdelen/` : null);
+          const partsPath = res.canonicalPartsPath;
           const partsBtn = document.getElementById('model-card-parts-btn');
           const bottomPartsBtn = document.getElementById('model-card-bottom-parts-btn');
           const partsBanner = document.getElementById('model-card-parts-banner');
@@ -1598,6 +1598,9 @@
         currentSerial = serial;
         const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
 
+        const resPartsCta = document.getElementById('res-model-parts-cta');
+        if (resPartsCta) resPartsCta.classList.add('hidden');
+
         const isBattery = res.driveClassification?.power_source === 'BATTERY';
         const fuelTypeLabel = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
         const driveEvidenceLabel = res.driveClassification?.evidence === 'SERIES_DERIVED'
@@ -1630,6 +1633,7 @@
             serialSpecSummary.classList.remove('hidden');
           }
           if (obsCard) obsCard.classList.remove('hidden');
+          if (resPartsCta) resPartsCta.classList.add('hidden');
 
           resultCard.classList.remove('hidden');
           return;
@@ -2056,6 +2060,8 @@
           if (safePreviewCard) safePreviewCard.classList.add('hidden');
           const assistContainer = document.getElementById('model-assist-container');
           if (assistContainer) assistContainer.classList.add('hidden');
+          const resPartsCta = document.getElementById('res-model-parts-cta');
+          if (resPartsCta) resPartsCta.classList.add('hidden');
           if (searchHelperText) {
             searchHelperText.innerText = 'Typ een model voor onderdelen, een onderdeelnummer voor pasvorm, of een serienummer voor machine-identificatie.';
           }

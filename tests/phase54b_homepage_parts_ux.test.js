@@ -147,3 +147,33 @@ test('Phase 54B: Serial result card includes parts link when model is identified
   assert.equal(serialRes.success, true);
   assert.equal(serialRes.canonicalPartsPath, '/kettingzagen/ms-261-c-m/onderdelen/');
 });
+
+test('Phase 54B: Catalog alias resolution for composite model names (MS 200, MS 290, MS 360, MS 460, FS 460)', async () => {
+  const { PartCatalogResolver } = await import('../src/parts/PartCatalogResolver.js');
+  const { renderModelPartsPageHtml } = await import('../src/components/ModelPartsPageTemplate.js');
+
+  // MS 200 / 020 T composite resolution
+  const m200 = database.models.find(m => m.slug === 'ms-200');
+  assert.ok(m200, 'ms-200 must exist in database');
+  assert.equal(m200.model_name, 'MS 200 / 020 T');
+
+  assert.equal(PartCatalogResolver.hasPartsForModel(m200, database), true);
+  assert.equal(PartCatalogResolver.hasPartsForModel('MS 200 / 020 T', database), true);
+  assert.equal(PartCatalogResolver.hasPartsForModel('MS 200', database), true);
+
+  const sectionsComposite = PartCatalogResolver.getSectionsForModel('MS 200 / 020 T', null, null, database);
+  assert.equal(sectionsComposite.length, 2);
+  const totalParts = sectionsComposite.reduce((acc, s) => acc + s.parts.length, 0);
+  assert.equal(totalParts, 201);
+
+  // Rendered HTML contains catalog table
+  const html200 = renderModelPartsPageHtml(m200, database);
+  assert.ok(html200.includes('Canonieke Onderdelencatalogus'), 'Must render catalog section for MS 200');
+  assert.ok(html200.includes('201 onderdelen'), 'Must show 201 onderdelen count');
+
+  // Stale parts links for manual model overrides in index.html
+  assert.ok(
+    indexHtml.includes("if (resPartsCta) resPartsCta.classList.add('hidden');"),
+    'res-model-parts-cta must be explicitly hidden on manual model override and reset'
+  );
+});

@@ -347,7 +347,8 @@ export function analyzeModelQuery(modelStr, database) {
 
   const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, database.models || []) : null);
   const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
-  const canonicalPartsPath = canonicalModelObj ? getSafeModelPartsPath(canonicalModelObj) : null;
+  const hasCatalogParts = canonicalModelObj ? PartCatalogResolver.hasPartsForModel(canonicalModelObj, database) : false;
+  const canonicalPartsPath = (canonicalModelObj && hasCatalogParts) ? getSafeModelPartsPath(canonicalModelObj) : null;
 
   return {
     success: true,
@@ -630,9 +631,11 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   const inputAliasMatched = Boolean(options.officialAlias);
   const inputAliasType = options.officialAlias ? options.officialAlias.alias_type : null;
   const aliasSource = options.officialAlias ? options.officialAlias.source : null;
-  const anchorCanonicalPartsPath = anchorCanonicalModel
-    ? getSafeModelPartsPath(anchorCanonicalModel)
-    : (confirmedModel ? getSafeModelPartsPath(confirmedModel) : null);
+  const targetPartsModel = anchorCanonicalModel || confirmedModel;
+  const targetHasParts = targetPartsModel ? PartCatalogResolver.hasPartsForModel(targetPartsModel, database) : false;
+  const anchorCanonicalPartsPath = (targetPartsModel && targetHasParts)
+    ? getSafeModelPartsPath(targetPartsModel)
+    : null;
   const anchorCanonicalModelPath = anchorCanonicalModel
     ? getSafeModelPath(anchorCanonicalModel)
     : (confirmedModel ? getSafeModelPath(confirmedModel) : null);
