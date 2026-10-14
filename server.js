@@ -510,9 +510,21 @@ const server = http.createServer(async (req, res) => {
 
     const partNo = urlObj.searchParams.get('part_number') || null;
     let pagePath = '/';
-    if (req.headers.referer) {
+    if (req.headers.referer && isSameOriginRequest(req, forwardedHost)) {
       try {
-        pagePath = new URL(req.headers.referer).pathname;
+        const refUrl = new URL(req.headers.referer);
+        const refHostname = refUrl.hostname.toLowerCase();
+        const allowedHosts = new Set([
+          PRIMARY_HOST.toLowerCase(),
+          (forwardedHost || '').toLowerCase().split(':')[0],
+          'stihldecoder.nl',
+          'www.stihldecoder.nl',
+          'localhost',
+          '127.0.0.1'
+        ]);
+        if (allowedHosts.has(refHostname)) {
+          pagePath = refUrl.pathname || '/';
+        }
       } catch {}
     }
 

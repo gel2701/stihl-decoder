@@ -20,10 +20,12 @@ In het Render Dashboard onder **Environment Variables**:
 | Variabele | Waarde (Voorbeeld) | Beschrijving |
 | :--- | :--- | :--- |
 | `AMAZON_AFFILIATE_ENABLED` | `true` | Feature flag om de affiliate-sectie te activeren op onderdeelpagina's. |
-| `AMAZON_ASSOCIATE_TAG` | `stihldecoder-21` | Uw unieke Amazon PartnerNet tracking-ID (Associate Tag). |
+| `AMAZON_ASSOCIATE_TAG` | `stihldecoder-21` | Uw unieke Amazon PartnerNet tracking-ID (Associate Tag) voor de primaire markt (Amazon.nl). |
+| `AMAZON_ASSOCIATE_TAG_DE` | `stihldecoder-de-21` | *(Optioneel)* Regionale Associate Tag voor Amazon.de. |
+| `AMAZON_ASSOCIATE_TAG_COM`| `stihldecoder-com-20`| *(Optioneel)* Regionale Associate Tag voor Amazon.com. |
 
 > [!NOTE]
-> Als `AMAZON_AFFILIATE_ENABLED` ontbreekt of op `false` staat, of als `AMAZON_ASSOCIATE_TAG` leeg is, blijft de site 100% operationeel zonder enige layout-shift, console-fouten of gebroken knoppen.
+> Als `AMAZON_AFFILIATE_ENABLED` ontbreekt of op `false` staat, of als `AMAZON_ASSOCIATE_TAG` leeg is, blijft de site 100% operationeel zonder enige layout-shift, console-fouten of gebroken knoppen. Handmatige overrides voor niet-NL marktplaatsen (zoals Amazon.de) vereisen een bijbehorende regionale tag (via env var of direct in de override JSON via het veld `"tag"`). Zonder geldige regionale tag worden niet-NL overrides afgewezen en valt het systeem veilig terug op de primaire Amazon.nl zoeklink.
 
 ---
 
@@ -69,6 +71,7 @@ Voorbeeld structuur:
       "part_number": "11231602050",
       "asin": "B0XXXXXXXX",
       "marketplace": "amazon.nl",
+      "tag": "optionele-specifieke-tag-21",
       "source": "manual_verification",
       "verified_at": "2026-10-14T00:00:00Z",
       "enabled": true
@@ -77,7 +80,7 @@ Voorbeeld structuur:
 }
 ```
 
-Als een onderdeel niet in deze lijst staat (of `enabled: false`), valt het systeem automatisch terug op de veilige zoeklink: `https://www.amazon.nl/s?k=STIHL+<part_number>&tag=<tag>`.
+Als een onderdeel niet in deze lijst staat (of `enabled: false`), valt het systeem automatisch terug op de veilige zoeklink: `https://www.amazon.nl/s?k=STIHL+<part_number>&tag=<tag>`. Niet-NL overrides zonder geldige tag vallen eveneens veilig terug op de standaard Amazon.nl zoeklink.
 
 ---
 

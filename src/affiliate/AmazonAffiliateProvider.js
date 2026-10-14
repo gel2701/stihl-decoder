@@ -36,26 +36,47 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
   /**
    * Returns whether Amazon affiliate integration is active.
-   * Fails closed if feature flag is false or tag is missing.
+   * Fails closed if feature flag is false or tag for default marketplace is missing.
    * @returns {boolean}
    */
   isEnabled() {
     const enabledFlag = process.env.AMAZON_AFFILIATE_ENABLED;
     const isFlagTrue = enabledFlag === 'true' || enabledFlag === '1';
-    const tag = this.getAssociateTag();
+    const tag = this.getAssociateTag(this.marketplace);
     return isFlagTrue && Boolean(tag);
   }
 
   /**
-   * Reads associate tag strictly from environment variable.
+   * Reads associate tag for the given marketplace from environment variables.
+   * Supports regional tags (e.g. AMAZON_ASSOCIATE_TAG_DE, AMAZON_ASSOCIATE_TAG_COM)
+   * with fallback to AMAZON_ASSOCIATE_TAG for amazon.nl or default marketplace.
    * Never hardcoded, never logged.
+   * @param {string} [marketplace]
    * @returns {string|null}
    */
-  getAssociateTag() {
-    const rawTag = process.env.AMAZON_ASSOCIATE_TAG;
-    if (typeof rawTag === 'string' && rawTag.trim()) {
-      return rawTag.trim();
+  getAssociateTag(marketplace = this.marketplace) {
+    const targetMarketplace = (typeof marketplace === 'string' && marketplace.trim())
+      ? marketplace.trim().toLowerCase()
+      : this.marketplace;
+
+    // 1. Check explicit regional env var (e.g., AMAZON_ASSOCIATE_TAG_DE, AMAZON_ASSOCIATE_TAG_COM, AMAZON_ASSOCIATE_TAG_NL)
+    const suffix = targetMarketplace.split('.').pop()?.toUpperCase();
+    if (suffix) {
+      const regionalVar = `AMAZON_ASSOCIATE_TAG_${suffix}`;
+      const regionalTag = process.env[regionalVar];
+      if (typeof regionalTag === 'string' && regionalTag.trim()) {
+        return regionalTag.trim();
+      }
     }
+
+    // 2. Primary tag applies to amazon.nl or when target matches this.marketplace
+    if (targetMarketplace === 'amazon.nl' || targetMarketplace === this.marketplace) {
+      const rawTag = process.env.AMAZON_ASSOCIATE_TAG;
+      if (typeof rawTag === 'string' && rawTag.trim()) {
+        return rawTag.trim();
+      }
+    }
+
     return null;
   }
 
@@ -130,8 +151,8 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       return [];
     }
 
-    const tag = this.getAssociateTag();
-    if (!tag) {
+    const defaultTag = this.getAssociateTag(this.marketplace);
+    if (!defaultTag) {
       return [];
     }
 
@@ -151,28 +172,37 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       const targetMarketplace = ALLOWED_AMAZON_MARKETPLACES.has(rawMarketplace)
         ? rawMarketplace
         : this.marketplace;
-      const asinUrl = this.buildAsinUrl(manualOverride.asin, tag, targetMarketplace);
-      const displayMarketplace = targetMarketplace.charAt(0).toUpperCase() + targetMarketplace.slice(1);
-      return [{
-        provider: 'amazon',
-        marketplace: targetMarketplace,
-        part_number: canonicalPartNumber,
-        asin: manualOverride.asin,
-        url: asinUrl,
-        affiliate_url: asinUrl,
-        title: manualOverride.title || (params.partName ? `STIHL ${params.partName} (${formattedPartNumber})` : `STIHL ${formattedPartNumber}`),
-        price: null,
-        currency: 'EUR',
-        image_url: manualOverride.image_url || null,
-        match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
-        confidence: 'HIGH',
-        label: `Bekijk op ${displayMarketplace}`,
-        rel: 'sponsored nofollow noopener',
-      }];
+
+      const overrideTag = (typeof manualOverride.tag === 'string' && manualOverride.tag.trim())
+        ? manualOverride.tag.trim()
+        : this.getAssociateTag(targetMarketplace);
+
+      // Only produce override offer if a valid tag exists for the target marketplace;
+      // non-NL overrides without matching regional tag are rejected and fall through to default search.
+      if (overrideTag) {
+        const asinUrl = this.buildAsinUrl(manualOverride.asin, overrideTag, targetMarketplace);
+        const displayMarketplace = targetMarketplace.charAt(0).toUpperCase() + targetMarketplace.slice(1);
+        return [{
+          provider: 'amazon',
+          marketplace: targetMarketplace,
+          part_number: canonicalPartNumber,
+          asin: manualOverride.asin,
+          url: asinUrl,
+          affiliate_url: asinUrl,
+          title: manualOverride.title || (params.partName ? `STIHL ${params.partName} (${formattedPartNumber})` : `STIHL ${formattedPartNumber}`),
+          price: null,
+          currency: 'EUR',
+          image_url: manualOverride.image_url || null,
+          match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
+          confidence: 'HIGH',
+          label: `Bekijk op ${displayMarketplace}`,
+          rel: 'sponsored nofollow noopener',
+        }];
+      }
     }
 
     // 2. Safe deterministic Amazon search link fallback
-    const searchUrl = this.buildSearchUrl(canonicalPartNumber, tag);
+    const searchUrl = this.buildSearchUrl(canonicalPartNumber, defaultTag);
     return [{
       provider: 'amazon',
       marketplace: this.marketplace,

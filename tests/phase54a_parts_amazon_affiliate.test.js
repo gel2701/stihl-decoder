@@ -109,7 +109,7 @@ console.log('  ✅ Test 3 Passed: Safe Amazon search link constructed properly.\
 // ============================================================================
 // Test 4: Manual ASIN override support and priority
 // ============================================================================
-console.log('▶ Test 4: Manual ASIN overrides and priority over search link...');
+console.log('▶ Test 4: Manual ASIN overrides, regional tag resolution, and priority over search link...');
 const manualOverrides = [
   {
     part_number: '11231602050',
@@ -130,6 +130,14 @@ const manualOverrides = [
     marketplace: 'amazon.de',
     title: 'STIHL Vergaser MS 290',
     enabled: true
+  },
+  {
+    part_number: '11431200600',
+    asin: 'B07EXPLICITTAG',
+    marketplace: 'amazon.de',
+    tag: 'custom-de-tag-21',
+    title: 'STIHL Vergaser MS 251 Custom',
+    enabled: true
   }
 ];
 
@@ -149,15 +157,41 @@ assert.strictEqual(asinParsed.pathname, '/dp/B07TEST123');
 assert.strictEqual(asinParsed.hostname, 'amazon.nl');
 assert.strictEqual(asinParsed.searchParams.get('tag'), 'stihltest-21');
 
-// Verify override with marketplace amazon.de honors selected marketplace
+// When no DE tag is configured in env or override, non-NL override must be rejected and fall back to NL search link
+delete process.env.AMAZON_ASSOCIATE_TAG_DE;
+const deFallbackOffers = amazonWithOverrides.getOffers({
+  partNumber: '11271200650',
+  partName: 'Carburateur'
+});
+assert.strictEqual(deFallbackOffers.length, 1);
+assert.strictEqual(deFallbackOffers[0].match_type, AMAZON_MATCH_TYPES.SEARCH_LINK, 'Untagged non-NL override must fall back to search link');
+assert.strictEqual(deFallbackOffers[0].marketplace, 'amazon.nl');
+assert.strictEqual(new URL(deFallbackOffers[0].url).hostname, 'amazon.nl');
+assert.strictEqual(new URL(deFallbackOffers[0].url).searchParams.get('tag'), 'stihltest-21');
+
+// When regional tag is provided via env (AMAZON_ASSOCIATE_TAG_DE), non-NL override is activated with that regional tag
+process.env.AMAZON_ASSOCIATE_TAG_DE = 'stihltest-de-21';
 const deOffers = amazonWithOverrides.getOffers({
   partNumber: '11271200650',
   partName: 'Carburateur'
 });
 assert.strictEqual(deOffers.length, 1);
+assert.strictEqual(deOffers[0].match_type, AMAZON_MATCH_TYPES.MANUAL_ASIN);
 assert.strictEqual(deOffers[0].marketplace, 'amazon.de');
 assert.strictEqual(new URL(deOffers[0].url).hostname, 'amazon.de');
+assert.strictEqual(new URL(deOffers[0].url).searchParams.get('tag'), 'stihltest-de-21');
 assert.strictEqual(deOffers[0].label, 'Bekijk op Amazon.de');
+delete process.env.AMAZON_ASSOCIATE_TAG_DE;
+
+// When override explicitly provides its own tag, that tag must be honored
+const customTagOffers = amazonWithOverrides.getOffers({
+  partNumber: '11431200600',
+  partName: 'Carburateur MS 251'
+});
+assert.strictEqual(customTagOffers.length, 1);
+assert.strictEqual(customTagOffers[0].match_type, AMAZON_MATCH_TYPES.MANUAL_ASIN);
+assert.strictEqual(customTagOffers[0].marketplace, 'amazon.de');
+assert.strictEqual(new URL(customTagOffers[0].url).searchParams.get('tag'), 'custom-de-tag-21');
 
 // Disabled override should fall back to search link
 const disabledOverrideOffers = amazonWithOverrides.getOffers({
@@ -167,7 +201,7 @@ const disabledOverrideOffers = amazonWithOverrides.getOffers({
 assert.strictEqual(disabledOverrideOffers.length, 1);
 assert.strictEqual(disabledOverrideOffers[0].match_type, AMAZON_MATCH_TYPES.SEARCH_LINK);
 assert.strictEqual(disabledOverrideOffers[0].asin, null);
-console.log('  ✅ Test 4 Passed: Manual ASIN overrides take priority and honor override marketplace; disabled fall back to search.\n');
+console.log('  ✅ Test 4 Passed: Manual ASIN overrides take priority, honor regional/override tags, reject untagged non-NL overrides, and fall back cleanly.\n');
 
 // ============================================================================
 // Test 5: AffiliateOfferResolver orchestration & global flag
@@ -267,7 +301,35 @@ assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true',
 assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'false', AMAZON_ASSOCIATE_TAG: 'tag-21' }), false);
 assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: '' }), false);
 assert.strictEqual(isAffiliateRedirectActive({}), false);
-console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist & feature-gate enforcement verified.\n');
+
+// Same-origin referrer validation for affiliate click attribution
+function extractAttributedPagePath(refererHeader, forwardedHost = 'www.stihldecoder.nl') {
+  let pagePath = '/';
+  if (refererHeader) {
+    try {
+      const refUrl = new URL(refererHeader);
+      const refHostname = refUrl.hostname.toLowerCase();
+      const allowedHosts = new Set([
+        'www.stihldecoder.nl',
+        (forwardedHost || '').toLowerCase().split(':')[0],
+        'stihldecoder.nl',
+        'localhost',
+        '127.0.0.1'
+      ]);
+      if (allowedHosts.has(refHostname)) {
+        pagePath = refUrl.pathname || '/';
+      }
+    } catch {}
+  }
+  return pagePath;
+}
+
+assert.strictEqual(extractAttributedPagePath('https://www.stihldecoder.nl/onderdeelnummer/11231602050/'), '/onderdeelnummer/11231602050/');
+assert.strictEqual(extractAttributedPagePath('https://stihldecoder.nl/onderdeelnummer/11231602050/'), '/onderdeelnummer/11231602050/');
+assert.strictEqual(extractAttributedPagePath('https://attacker.example/onderdeelnummer/11231602050/'), '/', 'External referrer must default to root path');
+assert.strictEqual(extractAttributedPagePath('not-a-valid-url'), '/');
+assert.strictEqual(extractAttributedPagePath(undefined), '/');
+console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist, feature-gate, and same-origin referrer validation verified.\n');
 
 // ============================================================================
 // Test 9: SSR Part Detail Page Template with and without affiliate
