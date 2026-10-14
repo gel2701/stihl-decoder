@@ -27,6 +27,7 @@ import { trackEvent, EVENT_TYPES } from '../src/components/AnalyticsTracker.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { PartCatalogResolver } from '../src/parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
+import { getTrustedDeploymentHosts } from '../src/config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -415,13 +416,23 @@ function deriveAffiliateAnalytics(parsedTarget, partNo, matchedOffer = null) {
     }
   }
 
-  const resolvedPartNumber = matchedOffer?.part_number || (
-    partNo ? PartNormalizer.normalizePartNumber(partNo) : (
-      parsedTarget.searchParams.has('k')
-        ? PartNormalizer.normalizePartNumber(parsedTarget.searchParams.get('k')?.replace(/^STIHL\s+/i, ''))
-        : null
-    )
-  );
+  let resolvedPartNumber = null;
+  if (matchedOffer && matchedOffer.part_number) {
+    resolvedPartNumber = matchedOffer.part_number;
+  } else if (parsedTarget.searchParams.has('k')) {
+    const kVal = parsedTarget.searchParams.get('k') || '';
+    const stripped = kVal.replace(/^STIHL\s+/i, '').trim();
+    const searchPart = PartNormalizer.normalizePartNumber(stripped);
+    if (searchPart) {
+      resolvedPartNumber = searchPart;
+    }
+  } else if (partNo) {
+    const norm = PartNormalizer.normalizePartNumber(partNo);
+    const formatted = PartNormalizer.formatPartNumber(norm);
+    if (norm && (parsedTarget.href.includes(norm) || (formatted && parsedTarget.href.includes(encodeURIComponent(formatted))))) {
+      resolvedPartNumber = norm;
+    }
+  }
 
   return { provider, marketplace, offerType, asinIfKnown, resolvedPartNumber };
 }
@@ -457,6 +468,26 @@ assert.strictEqual(derivedOffer.marketplace, 'amazon.nl');
 assert.strictEqual(derivedOffer.offerType, 'MANUAL_ASIN');
 assert.strictEqual(derivedOffer.asinIfKnown, 'B07TEST123');
 assert.strictEqual(derivedOffer.resolvedPartNumber, '11231602050');
+
+// Case D: Spoofed arbitrary part_number with search URL for different part -> must attribute destination search part, not spoofed part
+const searchTarget1123 = new URL('https://www.amazon.nl/s?k=STIHL+1123+120+0605&tag=tag-21');
+const derivedSpoofed = deriveAffiliateAnalytics(searchTarget1123, '99999999999');
+assert.strictEqual(derivedSpoofed.resolvedPartNumber, '11231200605', 'Must derive part from destination search query, rejecting spoofed part_number');
+
+// Case E: Spoofed arbitrary part_number with unverified direct URL -> must reject attribution (null)
+const unverifiedTarget = new URL('https://www.amazon.nl/dp/B07TEST123?tag=tag-21');
+const derivedUnverified = deriveAffiliateAnalytics(unverifiedTarget, '99999999999', null);
+assert.strictEqual(derivedUnverified.resolvedPartNumber, null, 'Must not attribute arbitrary unverified part_number');
+
+// Case F: Verify getTrustedDeploymentHosts honors SITE_URL and Render deployment hosts
+process.env.SITE_URL = 'https://preview-deploy.stihldecoder.nl';
+process.env.RENDER_EXTERNAL_HOSTNAME = 'stihl-decoder-pr12.onrender.com';
+const trustedHosts = getTrustedDeploymentHosts();
+assert(trustedHosts.has('www.stihldecoder.nl'));
+assert(trustedHosts.has('preview-deploy.stihldecoder.nl'), 'Must include host from SITE_URL');
+assert(trustedHosts.has('stihl-decoder-pr12.onrender.com'), 'Must include host from RENDER_EXTERNAL_HOSTNAME');
+delete process.env.SITE_URL;
+delete process.env.RENDER_EXTERNAL_HOSTNAME;
 
 console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist, regional feature-gates, and trusted-host referrer validation verified.\n');
 

@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl } from './src/config.js';
+import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl, getTrustedDeploymentHosts } from './src/config.js';
 import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive, getDatabaseConnection } from './src/databaseConfig.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { buildSearchableIdentities, normalizeSearchQuery } from './src/globalModelSearch.js';
@@ -161,13 +161,7 @@ function isSameOriginRequest(req) {
     return false;
   }
 
-  const allowedHosts = new Set([
-    PRIMARY_HOST.toLowerCase(),
-    'stihldecoder.nl',
-    'www.stihldecoder.nl',
-    'localhost',
-    '127.0.0.1'
-  ]);
+  const allowedHosts = getTrustedDeploymentHosts();
 
   function hostMatches(val) {
     if (!val) return false;
@@ -568,19 +562,27 @@ const server = http.createServer(async (req, res) => {
       }
     }
 
-    const resolvedPartNumber = validatedPartNumber || matchedOffer?.part_number || (
-      parsedTarget.searchParams.has('k')
-        ? PartNormalizer.normalizePartNumber(parsedTarget.searchParams.get('k')?.replace(/^STIHL\s+/i, ''))
-        : null
-    );
+    // Derive part attribution strictly from matched offer or destination search query,
+    // only accepting supplied part_number if verified against them.
+    let resolvedPartNumber = null;
+    if (matchedOffer && matchedOffer.part_number) {
+      resolvedPartNumber = matchedOffer.part_number;
+    } else if (parsedTarget.searchParams.has('k')) {
+      const kVal = parsedTarget.searchParams.get('k') || '';
+      const stripped = kVal.replace(/^STIHL\s+/i, '').trim();
+      const searchPart = PartNormalizer.normalizePartNumber(stripped);
+      if (searchPart) {
+        resolvedPartNumber = searchPart;
+      }
+    } else if (validatedPartNumber) {
+      // For any other destination URL, only attribute if the destination explicitly contains the part number
+      const formatted = PartNormalizer.formatPartNumber(validatedPartNumber);
+      if (parsedTarget.href.includes(validatedPartNumber) || (formatted && parsedTarget.href.includes(encodeURIComponent(formatted)))) {
+        resolvedPartNumber = validatedPartNumber;
+      }
+    }
 
-    const TRUSTED_SITE_HOSTS = new Set([
-      PRIMARY_HOST.toLowerCase(),
-      'stihldecoder.nl',
-      'www.stihldecoder.nl',
-      'localhost',
-      '127.0.0.1'
-    ]);
+    const TRUSTED_SITE_HOSTS = getTrustedDeploymentHosts();
 
     let pagePath = '/';
     if (req.headers.referer && isSameOriginRequest(req)) {
