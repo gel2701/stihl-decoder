@@ -444,12 +444,6 @@ function deriveAffiliateAnalytics(parsedTarget, partNo, matchedOffer = null) {
     if (searchPart) {
       resolvedPartNumber = searchPart;
     }
-  } else if (partNo) {
-    const norm = PartNormalizer.normalizePartNumber(partNo);
-    const formatted = PartNormalizer.formatPartNumber(norm);
-    if (norm && (parsedTarget.href.includes(norm) || (formatted && parsedTarget.href.includes(encodeURIComponent(formatted))))) {
-      resolvedPartNumber = norm;
-    }
   }
 
   return { provider, marketplace, offerType, asinIfKnown, resolvedPartNumber };
@@ -492,10 +486,10 @@ const searchTarget1123 = new URL('https://www.amazon.nl/s?k=STIHL+1123+120+0605&
 const derivedSpoofed = deriveAffiliateAnalytics(searchTarget1123, '99999999999');
 assert.strictEqual(derivedSpoofed.resolvedPartNumber, '11231200605', 'Must derive part from destination search query, rejecting spoofed part_number');
 
-// Case E: Spoofed arbitrary part_number with unverified direct URL -> must reject attribution (null)
-const unverifiedTarget = new URL('https://www.amazon.nl/dp/B07TEST123?tag=tag-21');
-const derivedUnverified = deriveAffiliateAnalytics(unverifiedTarget, '99999999999', null);
-assert.strictEqual(derivedUnverified.resolvedPartNumber, null, 'Must not attribute arbitrary unverified part_number');
+// Case E: Direct product link without matched offer -> must reject attribution even if part_number supplied or appended in unrelated query param
+const directTarget = new URL('https://www.amazon.nl/dp/B07TEST123?tag=tag-21&note=99999999999');
+const derivedDirect = deriveAffiliateAnalytics(directTarget, '99999999999', null);
+assert.strictEqual(derivedDirect.resolvedPartNumber, null, 'Direct product links must require a matched offer for part attribution');
 
 // Case F: Verify getTrustedDeploymentHosts honors SITE_URL and Render deployment hosts
 process.env.SITE_URL = 'https://preview-deploy.stihldecoder.nl';

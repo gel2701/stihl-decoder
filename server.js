@@ -601,8 +601,8 @@ const server = http.createServer(async (req, res) => {
       }
     }
 
-    // Derive part attribution strictly from matched offer or destination search query,
-    // only accepting supplied part_number if verified against them.
+    // Derive part attribution strictly: matched offer for direct/product links,
+    // or canonical 'k' query parameter for search links.
     let resolvedPartNumber = null;
     if (matchedOffer && matchedOffer.part_number) {
       resolvedPartNumber = matchedOffer.part_number;
@@ -612,12 +612,6 @@ const server = http.createServer(async (req, res) => {
       const searchPart = PartNormalizer.normalizePartNumber(stripped);
       if (searchPart) {
         resolvedPartNumber = searchPart;
-      }
-    } else if (validatedPartNumber) {
-      // For any other destination URL, only attribute if the destination explicitly contains the part number
-      const formatted = PartNormalizer.formatPartNumber(validatedPartNumber);
-      if (parsedTarget.href.includes(validatedPartNumber) || (formatted && parsedTarget.href.includes(encodeURIComponent(formatted)))) {
-        resolvedPartNumber = validatedPartNumber;
       }
     }
 
