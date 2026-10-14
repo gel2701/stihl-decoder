@@ -150,7 +150,7 @@ function checkAffiliateRateLimit(req) {
   return entry.count > AFFILIATE_MAX_REQUESTS_PER_WINDOW;
 }
 
-function isSameOriginRequest(req, forwardedHost) {
+function isSameOriginRequest(req) {
   const origin = req.headers['origin'];
   const referer = req.headers['referer'];
   const secFetchSite = req.headers['sec-fetch-site'];
@@ -161,7 +161,6 @@ function isSameOriginRequest(req, forwardedHost) {
 
   const allowedHosts = new Set([
     PRIMARY_HOST.toLowerCase(),
-    (forwardedHost || '').toLowerCase(),
     'stihldecoder.nl',
     'www.stihldecoder.nl',
     'localhost',
@@ -173,7 +172,7 @@ function isSameOriginRequest(req, forwardedHost) {
     try {
       const u = new URL(val);
       const h = u.hostname.toLowerCase();
-      return allowedHosts.has(h) || allowedHosts.has(u.host.toLowerCase());
+      return allowedHosts.has(h);
     } catch {
       return false;
     }
@@ -322,7 +321,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    if (!isSameOriginRequest(req, forwardedHost)) {
+    if (!isSameOriginRequest(req)) {
       res.writeHead(403, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'FORBIDDEN' }));
       return;
@@ -452,9 +451,8 @@ const server = http.createServer(async (req, res) => {
 
   // 5c. REST API: GET /api/affiliate/out (Phase 54A Safe Allowlist-Only Redirect Endpoint)
   if (pathname === '/api/affiliate/out') {
-    // 1. Feature flag & tag check (fail-closed if affiliate is disabled or tag is absent)
+    // 1. Feature flag check (fail-closed if affiliate is disabled)
     const isAffiliateEnabled = (process.env.AMAZON_AFFILIATE_ENABLED === 'true' || process.env.AMAZON_AFFILIATE_ENABLED === '1') &&
-      Boolean(process.env.AMAZON_ASSOCIATE_TAG && process.env.AMAZON_ASSOCIATE_TAG.trim()) &&
       process.env.AFFILIATE_ENABLED !== 'false' && process.env.AFFILIATE_ENABLED !== '0';
 
     if (!isAffiliateEnabled) {
@@ -508,28 +506,48 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // Verify a valid associate tag exists for the destination marketplace
+    const destSuffix = targetHostname.split('.').pop()?.toUpperCase();
+    const destTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
+      (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null) ||
+      process.env.AMAZON_ASSOCIATE_TAG?.trim();
+
+    if (!destTag) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
+      return;
+    }
+
     const partNo = urlObj.searchParams.get('part_number') || null;
+    const provider = urlObj.searchParams.get('provider') || 'amazon';
+    const marketplace = urlObj.searchParams.get('marketplace') || targetHostname;
+    const offerType = urlObj.searchParams.get('offer_type') || (parsedTarget.pathname.includes('/dp/') ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+    const asinIfKnown = urlObj.searchParams.get('asin_if_known') || null;
+
+    const TRUSTED_SITE_HOSTS = new Set([
+      PRIMARY_HOST.toLowerCase(),
+      'stihldecoder.nl',
+      'www.stihldecoder.nl',
+      'localhost',
+      '127.0.0.1'
+    ]);
+
     let pagePath = '/';
-    if (req.headers.referer && isSameOriginRequest(req, forwardedHost)) {
+    if (req.headers.referer && isSameOriginRequest(req)) {
       try {
         const refUrl = new URL(req.headers.referer);
         const refHostname = refUrl.hostname.toLowerCase();
-        const allowedHosts = new Set([
-          PRIMARY_HOST.toLowerCase(),
-          (forwardedHost || '').toLowerCase().split(':')[0],
-          'stihldecoder.nl',
-          'www.stihldecoder.nl',
-          'localhost',
-          '127.0.0.1'
-        ]);
-        if (allowedHosts.has(refHostname)) {
+        if (TRUSTED_SITE_HOSTS.has(refHostname)) {
           pagePath = refUrl.pathname || '/';
         }
       } catch {}
     }
 
     logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
-      provider: 'amazon',
+      provider,
+      marketplace,
+      offer_type: offerType,
+      asin_if_known: asinIfKnown,
       destination_url: parsedTarget.href,
       part_number: partNo,
       page_path: pagePath,

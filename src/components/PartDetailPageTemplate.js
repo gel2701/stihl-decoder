@@ -215,7 +215,15 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
       </p>
       <div class="space-y-3">
         ${offers.map(offer => {
-          const redirectUrl = `/api/affiliate/out?url=${encodeURIComponent(offer.url)}&part_number=${encodeURIComponent(resolved.part_number)}`;
+          const redirectParams = new URLSearchParams({
+            url: offer.url,
+            part_number: resolved.part_number,
+            provider: offer.provider || 'amazon',
+            marketplace: offer.marketplace || '',
+            offer_type: offer.match_type || 'SEARCH_LINK',
+            asin_if_known: offer.asin || ''
+          });
+          const redirectUrl = `/api/affiliate/out?${redirectParams.toString()}`;
           return `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
             <div class="space-y-1">

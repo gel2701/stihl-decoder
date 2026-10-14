@@ -320,33 +320,40 @@ assert.strictEqual(isAllowedDestination('javascript:alert(1)'), false);
 assert.strictEqual(isAllowedDestination('//evil.com/protocol-relative'), false);
 
 // Feature gate validation for redirect endpoint
-function isAffiliateRedirectActive(env = process.env) {
+function isAffiliateRedirectActive(env = process.env, targetHost = 'amazon.nl') {
   const isEnabled = (env.AMAZON_AFFILIATE_ENABLED === 'true' || env.AMAZON_AFFILIATE_ENABLED === '1') &&
-    Boolean(env.AMAZON_ASSOCIATE_TAG && env.AMAZON_ASSOCIATE_TAG.trim()) &&
     env.AFFILIATE_ENABLED !== 'false' && env.AFFILIATE_ENABLED !== '0';
-  return isEnabled;
+  if (!isEnabled) return false;
+
+  const destSuffix = targetHost.split('.').pop()?.toUpperCase();
+  const destTag = (destSuffix && env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
+    (destSuffix === 'NL' ? env.AMAZON_ASSOCIATE_TAG?.trim() : null) ||
+    env.AMAZON_ASSOCIATE_TAG?.trim();
+  return Boolean(destTag);
 }
 
 assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: 'tag-21' }), true);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_NL: 'tag-nl-21' }), true);
+assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG_DE: 'tag-de-21' }, 'amazon.de'), true);
 assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'false', AMAZON_ASSOCIATE_TAG: 'tag-21' }), false);
 assert.strictEqual(isAffiliateRedirectActive({ AMAZON_AFFILIATE_ENABLED: 'true', AMAZON_ASSOCIATE_TAG: '' }), false);
 assert.strictEqual(isAffiliateRedirectActive({}), false);
 
-// Same-origin referrer validation for affiliate click attribution
-function extractAttributedPagePath(refererHeader, forwardedHost = 'www.stihldecoder.nl') {
+// Same-origin referrer validation for affiliate click attribution (TRUSTED SITE HOSTS only, never client headers)
+const TRUSTED_SITE_HOSTS = new Set([
+  'www.stihldecoder.nl',
+  'stihldecoder.nl',
+  'localhost',
+  '127.0.0.1'
+]);
+
+function extractAttributedPagePath(refererHeader) {
   let pagePath = '/';
   if (refererHeader) {
     try {
       const refUrl = new URL(refererHeader);
       const refHostname = refUrl.hostname.toLowerCase();
-      const allowedHosts = new Set([
-        'www.stihldecoder.nl',
-        (forwardedHost || '').toLowerCase().split(':')[0],
-        'stihldecoder.nl',
-        'localhost',
-        '127.0.0.1'
-      ]);
-      if (allowedHosts.has(refHostname)) {
+      if (TRUSTED_SITE_HOSTS.has(refHostname)) {
         pagePath = refUrl.pathname || '/';
       }
     } catch {}
@@ -359,7 +366,7 @@ assert.strictEqual(extractAttributedPagePath('https://stihldecoder.nl/onderdeeln
 assert.strictEqual(extractAttributedPagePath('https://attacker.example/onderdeelnummer/11231602050/'), '/', 'External referrer must default to root path');
 assert.strictEqual(extractAttributedPagePath('not-a-valid-url'), '/');
 assert.strictEqual(extractAttributedPagePath(undefined), '/');
-console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist, feature-gate, and same-origin referrer validation verified.\n');
+console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist, regional feature-gates, and trusted-host referrer validation verified.\n');
 
 // ============================================================================
 // Test 9: SSR Part Detail Page Template with and without affiliate
@@ -378,6 +385,8 @@ assert(htmlWithAffiliate.includes('meta name="robots" content="noindex, follow"'
 assert(htmlWithAffiliate.includes(AFFILIATE_DISCLOSURE_TEXT), 'Must render disclosure');
 assert(htmlWithAffiliate.includes('/api/affiliate/out?url='), 'Must route through /api/affiliate/out for server-side click tracking');
 assert(htmlWithAffiliate.includes('part_number=11231602050'), 'Redirect URL must include part_number parameter');
+assert(htmlWithAffiliate.includes('marketplace=amazon.nl'), 'Redirect URL must include marketplace parameter');
+assert(htmlWithAffiliate.includes('offer_type=SEARCH_LINK'), 'Redirect URL must include offer_type parameter');
 
 // Verify placement: "Waar te koop" must come AFTER "Montagelocatie & Diagramsecties"
 const diagramIdx = htmlWithAffiliate.indexOf('Montagelocatie & Diagramsecties');
