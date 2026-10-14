@@ -123,6 +123,13 @@ const manualOverrides = [
     asin: 'B07DISABLED',
     marketplace: 'amazon.nl',
     enabled: false
+  },
+  {
+    part_number: '11271200650',
+    asin: 'B07GERMANY',
+    marketplace: 'amazon.de',
+    title: 'STIHL Vergaser MS 290',
+    enabled: true
   }
 ];
 
@@ -139,7 +146,18 @@ assert.strictEqual(asinOffer.asin, 'B07TEST123');
 assert.strictEqual(asinOffer.confidence, 'HIGH');
 const asinParsed = new URL(asinOffer.url);
 assert.strictEqual(asinParsed.pathname, '/dp/B07TEST123');
+assert.strictEqual(asinParsed.hostname, 'amazon.nl');
 assert.strictEqual(asinParsed.searchParams.get('tag'), 'stihltest-21');
+
+// Verify override with marketplace amazon.de honors selected marketplace
+const deOffers = amazonWithOverrides.getOffers({
+  partNumber: '11271200650',
+  partName: 'Carburateur'
+});
+assert.strictEqual(deOffers.length, 1);
+assert.strictEqual(deOffers[0].marketplace, 'amazon.de');
+assert.strictEqual(new URL(deOffers[0].url).hostname, 'amazon.de');
+assert.strictEqual(deOffers[0].label, 'Bekijk op Amazon.de');
 
 // Disabled override should fall back to search link
 const disabledOverrideOffers = amazonWithOverrides.getOffers({
@@ -149,7 +167,7 @@ const disabledOverrideOffers = amazonWithOverrides.getOffers({
 assert.strictEqual(disabledOverrideOffers.length, 1);
 assert.strictEqual(disabledOverrideOffers[0].match_type, AMAZON_MATCH_TYPES.SEARCH_LINK);
 assert.strictEqual(disabledOverrideOffers[0].asin, null);
-console.log('  ✅ Test 4 Passed: Manual ASIN overrides take priority; disabled fall back to search.\n');
+console.log('  ✅ Test 4 Passed: Manual ASIN overrides take priority and honor override marketplace; disabled fall back to search.\n');
 
 // ============================================================================
 // Test 5: AffiliateOfferResolver orchestration & global flag
@@ -212,7 +230,9 @@ const ALLOWED_AFFILIATE_HOSTS = new Set([
   'www.amazon.nl',
   'amazon.nl',
   'www.amazon.de',
-  'amazon.de'
+  'amazon.de',
+  'www.amazon.com',
+  'amazon.com'
 ]);
 
 function isAllowedDestination(targetUrlStr) {
@@ -227,6 +247,9 @@ function isAllowedDestination(targetUrlStr) {
 
 assert.strictEqual(isAllowedDestination('https://www.amazon.nl/s?k=STIHL'), true);
 assert.strictEqual(isAllowedDestination('https://amazon.nl/dp/B07XXXXX'), true);
+assert.strictEqual(isAllowedDestination('https://www.amazon.de/dp/B07XXXXX'), true);
+assert.strictEqual(isAllowedDestination('https://amazon.de/dp/B07XXXXX'), true);
+assert.strictEqual(isAllowedDestination('https://www.amazon.com/dp/B07XXXXX'), true);
 assert.strictEqual(isAllowedDestination('https://evil.com/phishing'), false);
 assert.strictEqual(isAllowedDestination('http://www.amazon.nl/unencrypted'), false);
 assert.strictEqual(isAllowedDestination('javascript:alert(1)'), false);
@@ -248,6 +271,8 @@ assert(htmlWithAffiliate.includes('Bekijk op Amazon.nl'), 'Must render Amazon CT
 assert(htmlWithAffiliate.includes('rel="sponsored nofollow noopener"'), 'Must have rel="sponsored nofollow noopener"');
 assert(htmlWithAffiliate.includes('meta name="robots" content="noindex, follow"'), 'Must retain noindex SEO policy');
 assert(htmlWithAffiliate.includes(AFFILIATE_DISCLOSURE_TEXT), 'Must render disclosure');
+assert(htmlWithAffiliate.includes('/api/affiliate/out?url='), 'Must route through /api/affiliate/out for server-side click tracking');
+assert(htmlWithAffiliate.includes('part_number=11231602050'), 'Redirect URL must include part_number parameter');
 
 // Verify placement: "Waar te koop" must come AFTER "Montagelocatie & Diagramsecties"
 const diagramIdx = htmlWithAffiliate.indexOf('Montagelocatie & Diagramsecties');

@@ -462,7 +462,9 @@ const server = http.createServer(async (req, res) => {
       'www.amazon.nl',
       'amazon.nl',
       'www.amazon.de',
-      'amazon.de'
+      'amazon.de',
+      'www.amazon.com',
+      'amazon.com'
     ]);
 
     const targetHostname = parsedTarget.hostname.toLowerCase();

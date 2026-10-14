@@ -214,7 +214,9 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
         Zoek direct naar geschikte vervangende onderdelen bij aangesloten webwinkels en marktplaatsen.
       </p>
       <div class="space-y-3">
-        ${offers.map(offer => `
+        ${offers.map(offer => {
+          const redirectUrl = `/api/affiliate/out?url=${encodeURIComponent(offer.url)}&part_number=${encodeURIComponent(resolved.part_number)}`;
+          return `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
             <div class="space-y-1">
               <div class="flex items-center gap-2">
@@ -226,7 +228,7 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
               </div>
             </div>
             <a
-              href="${offer.url}"
+              href="${redirectUrl}"
               target="_blank"
               rel="sponsored nofollow noopener"
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
@@ -237,7 +239,7 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-        `).join('')}
+        `;}).join('')}
       </div>
       ${renderAffiliateDisclosureHtml()}
     </section>

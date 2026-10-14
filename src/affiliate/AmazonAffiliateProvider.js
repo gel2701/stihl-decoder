@@ -13,6 +13,12 @@ export const AMAZON_MATCH_TYPES = {
   API_HIGH_CONFIDENCE: 'API_HIGH_CONFIDENCE'
 };
 
+export const ALLOWED_AMAZON_MARKETPLACES = new Set([
+  'amazon.nl',
+  'amazon.de',
+  'amazon.com'
+]);
+
 export class AmazonAffiliateProvider extends AffiliateProvider {
   /**
    * @param {Object} [options]
@@ -92,13 +98,20 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
    * Builds safe Amazon product URL for verified ASIN.
    * @param {string} asin
    * @param {string} tag
+   * @param {string} [marketplace]
    * @returns {string}
    */
-  buildAsinUrl(asin, tag) {
+  buildAsinUrl(asin, tag, marketplace = this.marketplace) {
+    const rawMarketplace = (typeof marketplace === 'string' && marketplace.trim())
+      ? marketplace.trim().toLowerCase()
+      : this.marketplace;
+    const targetMarketplace = ALLOWED_AMAZON_MARKETPLACES.has(rawMarketplace)
+      ? rawMarketplace
+      : this.marketplace;
     const safeAsin = encodeURIComponent(asin.trim());
     const params = new URLSearchParams();
     params.set('tag', tag);
-    return `https://${this.marketplace}/dp/${safeAsin}?${params.toString()}`;
+    return `https://${targetMarketplace}/dp/${safeAsin}?${params.toString()}`;
   }
 
   /**
@@ -132,10 +145,17 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
     // 1. Check for verified manual ASIN override
     const manualOverride = this.manualOverrides.get(canonicalPartNumber);
     if (manualOverride && manualOverride.enabled !== false && manualOverride.asin) {
-      const asinUrl = this.buildAsinUrl(manualOverride.asin, tag);
+      const rawMarketplace = (typeof manualOverride.marketplace === 'string' && manualOverride.marketplace.trim())
+        ? manualOverride.marketplace.trim().toLowerCase()
+        : this.marketplace;
+      const targetMarketplace = ALLOWED_AMAZON_MARKETPLACES.has(rawMarketplace)
+        ? rawMarketplace
+        : this.marketplace;
+      const asinUrl = this.buildAsinUrl(manualOverride.asin, tag, targetMarketplace);
+      const displayMarketplace = targetMarketplace.charAt(0).toUpperCase() + targetMarketplace.slice(1);
       return [{
         provider: 'amazon',
-        marketplace: manualOverride.marketplace || this.marketplace,
+        marketplace: targetMarketplace,
         part_number: canonicalPartNumber,
         asin: manualOverride.asin,
         url: asinUrl,
@@ -146,9 +166,8 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
         image_url: manualOverride.image_url || null,
         match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
         confidence: 'HIGH',
-        label: 'Bekijk op Amazon.nl',
+        label: `Bekijk op ${displayMarketplace}`,
         rel: 'sponsored nofollow noopener',
-        target: '_blank'
       }];
     }
 
