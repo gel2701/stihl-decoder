@@ -124,8 +124,20 @@ const observationRateLimitMap = new Map();
 const OBS_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const OBS_MAX_REQUESTS_PER_WINDOW = 10;
 
+function getTrustedClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.trim()) {
+    const parts = forwarded.split(',').map(p => p.trim()).filter(Boolean);
+    if (parts.length > 0) {
+      // Use the last appended IP (from the nearest upstream reverse proxy)
+      return parts[parts.length - 1];
+    }
+  }
+  return req.socket?.remoteAddress || '127.0.0.1';
+}
+
 function checkObservationRateLimit(req) {
-  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const ip = getTrustedClientIp(req);
   const now = Date.now();
   const entry = observationRateLimitMap.get(ip);
   if (!entry || (now - entry.startTime > OBS_RATE_LIMIT_WINDOW_MS)) {
@@ -139,10 +151,31 @@ function checkObservationRateLimit(req) {
 const affiliateRateLimitMap = new Map();
 const AFFILIATE_RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const AFFILIATE_MAX_REQUESTS_PER_WINDOW = 30;
+const AFFILIATE_RATE_LIMIT_MAX_KEYS = 5000;
+
+function cleanupAffiliateRateLimitMap(now) {
+  for (const [ip, entry] of affiliateRateLimitMap.entries()) {
+    if (now - entry.startTime > AFFILIATE_RATE_LIMIT_WINDOW_MS) {
+      affiliateRateLimitMap.delete(ip);
+    }
+  }
+  if (affiliateRateLimitMap.size > AFFILIATE_RATE_LIMIT_MAX_KEYS) {
+    const toDelete = affiliateRateLimitMap.size - AFFILIATE_RATE_LIMIT_MAX_KEYS;
+    let count = 0;
+    for (const key of affiliateRateLimitMap.keys()) {
+      affiliateRateLimitMap.delete(key);
+      count++;
+      if (count >= toDelete) break;
+    }
+  }
+}
 
 function checkAffiliateRateLimit(req) {
-  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  const ip = getTrustedClientIp(req);
   const now = Date.now();
+  if (affiliateRateLimitMap.size >= 100) {
+    cleanupAffiliateRateLimitMap(now);
+  }
   const entry = affiliateRateLimitMap.get(ip);
   if (!entry || (now - entry.startTime > AFFILIATE_RATE_LIMIT_WINDOW_MS)) {
     affiliateRateLimitMap.set(ip, { count: 1, startTime: now });
@@ -447,6 +480,12 @@ const server = http.createServer(async (req, res) => {
 
   // 5c. REST API: GET /api/affiliate/out (Phase 54A Safe Allowlist-Only Redirect Endpoint)
   if (pathname === '/api/affiliate/out') {
+    if (req.method !== 'GET') {
+      res.writeHead(405, { 'Content-Type': 'application/json', 'Allow': 'GET' });
+      res.end(JSON.stringify({ success: false, error: 'METHOD_NOT_ALLOWED' }));
+      return;
+    }
+
     // 1. Feature flag check (fail-closed if affiliate is disabled)
     const isAffiliateEnabled = (process.env.AMAZON_AFFILIATE_ENABLED === 'true' || process.env.AMAZON_AFFILIATE_ENABLED === '1') &&
       process.env.AFFILIATE_ENABLED !== 'false' && process.env.AFFILIATE_ENABLED !== '0';

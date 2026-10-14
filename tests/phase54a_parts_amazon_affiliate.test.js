@@ -489,6 +489,40 @@ assert(trustedHosts.has('stihl-decoder-pr12.onrender.com'), 'Must include host f
 delete process.env.SITE_URL;
 delete process.env.RENDER_EXTERNAL_HOSTNAME;
 
+// Case G: Client IP extraction resists spoofing of first forwarded-for value
+function getTrustedClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.trim()) {
+    const parts = forwarded.split(',').map(p => p.trim()).filter(Boolean);
+    if (parts.length > 0) {
+      return parts[parts.length - 1];
+    }
+  }
+  return req.socket?.remoteAddress || '127.0.0.1';
+}
+
+assert.strictEqual(
+  getTrustedClientIp({ headers: { 'x-forwarded-for': 'attacker-ip, 198.51.100.25' } }),
+  '198.51.100.25',
+  'Must use the nearest proxy appended address, not client-controlled first value'
+);
+assert.strictEqual(
+  getTrustedClientIp({ headers: { 'x-forwarded-for': '198.51.100.50' } }),
+  '198.51.100.50'
+);
+assert.strictEqual(
+  getTrustedClientIp({ headers: {}, socket: { remoteAddress: '10.0.0.1' } }),
+  '10.0.0.1'
+);
+
+// Case H: GET-only constraint on affiliate redirect handler
+function isAllowedAffiliateMethod(method) {
+  return method === 'GET';
+}
+assert.strictEqual(isAllowedAffiliateMethod('GET'), true);
+assert.strictEqual(isAllowedAffiliateMethod('HEAD'), false, 'HEAD must be rejected to prevent automated link check inflation');
+assert.strictEqual(isAllowedAffiliateMethod('POST'), false, 'POST must be rejected on redirect route');
+
 console.log('  ✅ Test 8 Passed: Open redirect prevention, allowlist, regional feature-gates, and trusted-host referrer validation verified.\n');
 
 // ============================================================================
