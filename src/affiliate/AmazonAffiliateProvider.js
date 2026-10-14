@@ -187,6 +187,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
           marketplace: targetMarketplace,
           part_number: canonicalPartNumber,
           asin: manualOverride.asin,
+          tag: overrideTag,
           url: asinUrl,
           affiliate_url: asinUrl,
           title: manualOverride.title || (params.partName ? `STIHL ${params.partName} (${formattedPartNumber})` : `STIHL ${formattedPartNumber}`),
@@ -209,6 +210,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       marketplace: this.marketplace,
       part_number: canonicalPartNumber,
       asin: null,
+      tag: defaultTag,
       url: searchUrl,
       affiliate_url: searchUrl,
       title: params.partName

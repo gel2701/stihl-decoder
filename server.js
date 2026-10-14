@@ -19,6 +19,7 @@ import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
+import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
 import {
   getSafeCategorySlug,
   getSafeModelPath,
@@ -506,19 +507,30 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // Verify a valid associate tag exists for the destination marketplace
+    const partNo = urlObj.searchParams.get('part_number') || null;
+
+    // Verify a valid associate tag exists for the destination marketplace or verified override
     const destSuffix = targetHostname.split('.').pop()?.toUpperCase();
-    const destTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
+    const envTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
       (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null) ||
       process.env.AMAZON_ASSOCIATE_TAG?.trim();
 
-    if (!destTag) {
+    let validTag = envTag;
+    if (!validTag && partNo) {
+      // Check if target URL matches a verified manual override with an inline configured tag
+      const offers = AffiliateOfferResolver.resolveOffers({ partNumber: partNo });
+      const targetHref = parsedTarget.href;
+      const matched = offers.find(o => o.url === targetHref || o.affiliate_url === targetHref);
+      if (matched && parsedTarget.searchParams.get('tag')) {
+        validTag = parsedTarget.searchParams.get('tag');
+      }
+    }
+
+    if (!validTag) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
       return;
     }
-
-    const partNo = urlObj.searchParams.get('part_number') || null;
     const provider = urlObj.searchParams.get('provider') || 'amazon';
     const marketplace = urlObj.searchParams.get('marketplace') || targetHostname;
     const offerType = urlObj.searchParams.get('offer_type') || (parsedTarget.pathname.includes('/dp/') ? 'MANUAL_ASIN' : 'SEARCH_LINK');
