@@ -512,8 +512,7 @@ const server = http.createServer(async (req, res) => {
     // Verify a valid associate tag exists for the destination marketplace or verified override
     const destSuffix = targetHostname.split('.').pop()?.toUpperCase();
     const envTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
-      (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null) ||
-      process.env.AMAZON_ASSOCIATE_TAG?.trim();
+      (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null);
 
     let validTag = envTag;
     if (!validTag && partNo) {
