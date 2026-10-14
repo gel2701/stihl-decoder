@@ -53,7 +53,14 @@ const WHITELISTED_METADATA_KEYS = [
   'model',
   'recommendation_type',
   'compatibility_status',
-  'conflict_type'
+  'conflict_type',
+  'provider',
+  'part_number',
+  'offer_type',
+  'asin_if_known',
+  'page_path',
+  'destination_url',
+  'marketplace'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

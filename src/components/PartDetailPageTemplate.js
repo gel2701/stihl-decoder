@@ -9,6 +9,8 @@ import { PRIMARY_ORIGIN } from '../config.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { getSafeModelPath } from '../publicationRules.js';
+import { AffiliateOfferResolver } from '../affiliate/AffiliateOfferResolver.js';
+import { renderAffiliateDisclosureHtml } from '../affiliate/AffiliateDisclosure.js';
 
 export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl = PRIMARY_ORIGIN) {
   const resolved = PartCatalogResolver.resolvePartNumber(rawPartNumber, database);
@@ -66,6 +68,12 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
   const partName = resolved.part_name || 'STIHL Vervangingsonderdeel';
   const compatibleModels = resolved.compatible_models || [];
   const fitments = resolved.fitments || [];
+
+  const offers = AffiliateOfferResolver.resolveOffers({
+    partNumber: resolved.part_number,
+    partName,
+    model: compatibleModels[0]?.model_id || null
+  });
 
   // Group fitments by section
   const sectionMap = new Map();
@@ -192,6 +200,48 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
         `).join('')}
       </div>
     </section>
+
+    ${offers.length > 0 ? `
+    <!-- Commercial Offers Section ("Waar te koop") -->
+    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs" aria-labelledby="waar-te-koop-heading">
+      <div class="flex items-center justify-between">
+        <h2 id="waar-te-koop-heading" class="text-base font-bold text-white flex items-center gap-2">
+          <span>Waar te koop</span>
+          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">Externe aanbieders</span>
+        </h2>
+      </div>
+      <p class="text-xs text-gray-400 leading-relaxed">
+        Zoek direct naar geschikte vervangende onderdelen bij aangesloten webwinkels en marktplaatsen.
+      </p>
+      <div class="space-y-3">
+        ${offers.map(offer => `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-white text-sm capitalize">${offer.marketplace || offer.provider}</span>
+                <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-900 text-gray-400 border border-gray-800">${offer.match_type === 'MANUAL_ASIN' ? 'Geverifieerd product' : 'Zoekopdracht'}</span>
+              </div>
+              <div class="text-2xs text-gray-400">
+                ${offer.title || `Zoek STIHL ${formattedPartNo} op ${offer.marketplace}`}
+              </div>
+            </div>
+            <a
+              href="${offer.url}"
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+              aria-label="${offer.label} voor STIHL onderdeel ${formattedPartNo}"
+              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', asin_if_known: '${offer.asin || ''}', page_path: window.location.pathname});}"
+            >
+              <span>${offer.label}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        `).join('')}
+      </div>
+      ${renderAffiliateDisclosureHtml()}
+    </section>
+    ` : ''}
 
     <!-- Verification Disclaimer -->
     <section class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5 text-xs text-amber-200 space-y-2">

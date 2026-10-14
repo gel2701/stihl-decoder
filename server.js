@@ -434,6 +434,67 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // 5c. REST API: GET /api/affiliate/out (Phase 54A Safe Allowlist-Only Redirect Endpoint)
+  if (pathname === '/api/affiliate/out') {
+    const rawTarget = urlObj.searchParams.get('url');
+    if (!rawTarget || typeof rawTarget !== 'string') {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'MISSING_URL' }));
+      return;
+    }
+
+    let parsedTarget;
+    try {
+      parsedTarget = new URL(rawTarget);
+    } catch {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'INVALID_URL' }));
+      return;
+    }
+
+    if (parsedTarget.protocol !== 'https:') {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'UNSAFE_PROTOCOL' }));
+      return;
+    }
+
+    const ALLOWED_AFFILIATE_HOSTS = new Set([
+      'www.amazon.nl',
+      'amazon.nl',
+      'www.amazon.de',
+      'amazon.de'
+    ]);
+
+    const targetHostname = parsedTarget.hostname.toLowerCase();
+    if (!ALLOWED_AFFILIATE_HOSTS.has(targetHostname)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'FORBIDDEN_DOMAIN' }));
+      return;
+    }
+
+    const partNo = urlObj.searchParams.get('part_number') || null;
+    let pagePath = '/';
+    if (req.headers.referer) {
+      try {
+        pagePath = new URL(req.headers.referer).pathname;
+      } catch {}
+    }
+
+    logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
+      provider: 'amazon',
+      destination_url: parsedTarget.href,
+      part_number: partNo,
+      page_path: pagePath
+    }, req.headers['user-agent']);
+
+    res.writeHead(302, {
+      'Location': parsedTarget.href,
+      'X-Robots-Tag': 'noindex, nofollow'
+    });
+    res.end();
+    return;
+  }
+
   // 6. Category Landing Pages
   const cleanCategory = pathname.replace(/^\//, '').replace(/\/$/, '').toLowerCase();
   const categoryConfig = CATEGORY_REGISTRY[cleanCategory];
