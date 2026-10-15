@@ -83,6 +83,14 @@ test('Phase 54C: Part Series Prefix Pages (/onderdeelnummer/stihl-XXXX/) Data-Dr
   const html1141 = renderPartNumberSeriesHtml('1141', database, PRIMARY_ORIGIN);
   assert.notStrictEqual(html1123, html1141, 'Series pages must have distinct data-driven content');
   assert.ok(html1141.includes('MS 261') || html1141.includes('1141'));
+
+  // Publication gate check: Series 4238 contains published TS 420 and unpublished TS 410
+  const html4238 = renderPartNumberSeriesHtml('4238', database, PRIMARY_ORIGIN);
+  assert.match(html4238, /href="\/doorslijpers\/ts-420\/"/, 'Published model TS 420 must be linked');
+  assert.match(html4238, /href="\/doorslijpers\/ts-420\/onderdelen\/"/, 'Published model TS 420 parts must be linked');
+  assert.ok(!html4238.includes('href="/doorslijpers/ts-410/"'), 'Unpublished model TS 410 must not be linked');
+  assert.ok(!html4238.includes('/ts-410/onderdelen/'), 'Unpublished model TS 410 parts must not be linked');
+  assert.match(html4238, /STIHL TS 410/, 'Unpublished model TS 410 is mentioned text-only');
 });
 
 test('Phase 54C: Model Parts Pages (/kettingzagen/ms-200/onderdelen/) Full Metadata & Robots Gating', () => {
@@ -113,7 +121,7 @@ test('Phase 54C: Model Parts Pages (/kettingzagen/ms-200/onderdelen/) Full Metad
 
   // Cross links: back to model guide & digital passport
   assert.match(html200, /Bekijk complete STIHL MS 200 \/ 020 T machinegids & specificaties/);
-  assert.match(html200, /stihl-paspoort/);
+  assert.match(html200, /href="\/stihl-paspoort\/#add=ms-200"/);
 
   // Structured data: BreadcrumbList and WebPage
   assert.match(html200, /"BreadcrumbList"/);
@@ -228,13 +236,18 @@ test('Phase 54C: Part Index Readiness Classifier Runs and Exports Top 100 Candid
 
   assert.strictEqual(auditResult.top_100_candidates.length, 100);
 
-  const exportedFile = PartIndexReadinessClassifier.exportTopCandidates(auditResult);
-  assert.ok(fs.existsSync(exportedFile), 'Top 100 candidates JSON file must exist');
+  const tempExportPath = path.join(rootDir, 'data', 'seo', 'temp_test_candidates.json');
+  const exportedFile = PartIndexReadinessClassifier.exportTopCandidates(auditResult, tempExportPath);
+  assert.ok(fs.existsSync(exportedFile), 'Temporary top 100 candidates JSON file must exist');
 
   const jsonContent = JSON.parse(fs.readFileSync(exportedFile, 'utf8'));
   assert.strictEqual(jsonContent.candidates.length, 100);
   assert.ok(jsonContent.candidates[0].future_preview.title.includes('STIHL'));
   assert.ok(jsonContent.candidates[0].future_preview.description.includes('Bekijk'));
+  fs.unlinkSync(exportedFile);
+
+  const trackedFile = path.join(rootDir, 'data', 'seo', 'part_indexation_candidates.json');
+  assert.ok(fs.existsSync(trackedFile), 'Tracked candidate artifact must exist');
 });
 
 after(() => {

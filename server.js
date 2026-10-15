@@ -1007,9 +1007,9 @@ function renderPartNumberHubHtml(database, baseUrl) {
   }).join('');
 
   // Curated popular models with parts catalog support for direct internal linking
-  const popularSlugs = ['ms-170', 'ms-180', 'ms-200', 'ms-261', 'ms-361', 'fs-55', 'br-600', 'ts-410'];
+  const popularSlugs = ['ms-170', 'ms-180', 'ms-200', 'ms-261', 'ms-361', 'fs-55', 'br-600', 'ts-420'];
   const popularModelLinks = popularSlugs.map((slug) => {
-    const model = (database.models || []).find((m) => (m.slug || m.id).toLowerCase() === slug || m.slug === slug);
+    const model = (database.models || []).find((m) => m.data_status !== 'EVIDENCE_STORE_LINKED' && ((m.slug || m.id).toLowerCase() === slug || m.slug === slug));
     if (!model) return '';
     const partsPath = getSafeModelPartsPath(model);
     if (!partsPath || !PartCatalogResolver.hasPartsForModel(model, database)) return '';
@@ -1123,9 +1123,10 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
   const modelsContent = models.length > 0
     ? `<ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
         ${models.map((m) => {
-          const safePath = getSafeModelPath(m);
-          const partsPath = getSafeModelPartsPath(m);
-          const hasParts = PartCatalogResolver.hasPartsForModel(m, database);
+          const isPublished = m.data_status !== 'EVIDENCE_STORE_LINKED';
+          const safePath = isPublished ? getSafeModelPath(m) : null;
+          const partsPath = isPublished ? getSafeModelPartsPath(m) : null;
+          const hasParts = isPublished && PartCatalogResolver.hasPartsForModel(m, database);
           return `<li class="bg-gray-900/60 p-3 rounded-xl border border-gray-800/80 space-y-1.5">
             <div class="flex justify-between items-start">
               ${safePath ? `<a href="${safePath}" class="font-bold text-orange-400 hover:underline">STIHL ${m.model_name}</a>` : `<span class="font-bold text-white">STIHL ${m.model_name}</span>`}

@@ -198,11 +198,27 @@ export class PartIndexReadinessClassifier {
       fs.mkdirSync(dir, { recursive: true });
     }
 
+    let existingTimestamp = null;
+    if (fs.existsSync(targetPath)) {
+      try {
+        const existing = JSON.parse(fs.readFileSync(targetPath, 'utf8'));
+        if (
+          existing.schema_version === '1.0.0' &&
+          JSON.stringify(existing.counts) === JSON.stringify(auditResult.counts) &&
+          JSON.stringify(existing.candidates) === JSON.stringify(auditResult.top_100_candidates)
+        ) {
+          existingTimestamp = existing.generated_at;
+        }
+      } catch (e) {
+        // regenerate fresh on parse error
+      }
+    }
+
     const payload = {
       schema_version: '1.0.0',
       phase: 'Phase 54C',
       description: 'Top 100 candidate parts identified for potential future controlled indexation. ALL PARTS CURRENTLY REMAIN NOINDEX FOLLOW.',
-      generated_at: new Date().toISOString(),
+      generated_at: existingTimestamp || new Date().toISOString(),
       counts: auditResult.counts,
       reason_distribution: auditResult.reason_distribution,
       candidates: auditResult.top_100_candidates

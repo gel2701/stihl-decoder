@@ -236,7 +236,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       <div class="pt-2 flex flex-wrap gap-3 text-xs">
         ${modelPath ? `<a href="${modelPath}" class="text-orange-400 hover:underline">← Bekijk complete STIHL ${model.model_name} machinegids & specificaties</a>` : ''}
         <span class="text-gray-600 hidden sm:inline">•</span>
-        <a href="/stihl-paspoort/?model=${encodeURIComponent(model.model_name)}" class="text-gray-300 hover:text-white hover:underline">📋 Digitaal Machinepaspoort STIHL ${model.model_name} →</a>
+        <a href="/stihl-paspoort/#add=${encodeURIComponent(slug)}" class="text-gray-300 hover:text-white hover:underline">📋 Digitaal Machinepaspoort STIHL ${model.model_name} →</a>
       </div>
     </header>
 
