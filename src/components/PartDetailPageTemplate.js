@@ -11,6 +11,7 @@ import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { getSafeModelPath } from '../publicationRules.js';
 import { AffiliateOfferResolver } from '../affiliate/AffiliateOfferResolver.js';
 import { renderAffiliateDisclosureHtml } from '../affiliate/AffiliateDisclosure.js';
+import { isPartIndexationPilotEnabled, getPartIndexationPilotEntry } from '../seo/PartIndexationPilot.js';
 
 export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl = PRIMARY_ORIGIN) {
   const resolved = PartCatalogResolver.resolvePartNumber(rawPartNumber, database);
@@ -25,7 +26,7 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
 
   const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
 
-  if (!resolved || !resolved.found && resolved.fitment_count === 0) {
+  if (!resolved || (!resolved.part_name && resolved.fitment_count === 0)) {
     return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
@@ -92,13 +93,23 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
 </html>`;
   }
 
-  const partName = resolved.part_name || 'STIHL Vervangingsonderdeel';
+  const isPilot = Boolean(resolved?.part_number && isPartIndexationPilotEnabled(resolved.part_number));
+  const pilotEntry = isPilot ? getPartIndexationPilotEntry(resolved.part_number) : null;
+  const displayPartName = pilotEntry?.clean_name || resolved.part_name || 'STIHL Vervangingsonderdeel';
+  const robotsContent = isPilot ? 'index, follow' : 'noindex, follow';
+  const pageTitle = isPilot
+    ? `STIHL ${formattedPartNo} ${displayPartName} — Geschikte Modellen | STIHLDecoder`
+    : `STIHL ${formattedPartNo} — ${displayPartName} | Compatibiliteit & Onderdeelgids`;
+  const metaDescription = isPilot
+    ? `Bekijk op welke STIHL machines onderdeel ${formattedPartNo} (${displayPartName.toLowerCase()}) voorkomt, met bekende uitvoeringen, montageposities en compatibiliteitsinformatie.`
+    : `STIHL onderdeelnummer ${formattedPartNo} (${displayPartName}). Bekijk geschikte modellen, montagelocatie en diagramposities.`;
+
   const compatibleModels = resolved.compatible_models || [];
   const fitments = resolved.fitments || [];
 
   const offers = AffiliateOfferResolver.resolveOffers({
     partNumber: resolved.part_number,
-    partName,
+    partName: displayPartName,
     model: compatibleModels[0]?.model_id || null
   });
 
@@ -117,10 +128,10 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>STIHL ${formattedPartNo} — ${partName} | Compatibiliteit & Onderdeelgids</title>
-  <meta name="description" content="STIHL onderdeelnummer ${formattedPartNo} (${partName}). Bekijk geschikte modellen, montagelocatie en diagramposities.">
+  <title>${pageTitle}</title>
+  <meta name="description" content="${metaDescription}">
   <link rel="canonical" href="${canonicalUrl}">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="${robotsContent}">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -184,10 +195,10 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
         </span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        STIHL ${formattedPartNo}
+        STIHL ${formattedPartNo}${isPilot ? ` — ${displayPartName}` : ''}
       </h1>
       <p class="text-lg text-orange-400 font-semibold">
-        ${partName}
+        ${isPilot ? `${displayPartName} & Compatibiliteit` : displayPartName}
       </p>
       <p class="text-xs text-gray-400 leading-relaxed max-w-3xl">
         Canonieke referentie voor STIHL onderdeelnummer <strong>${formattedPartNo}</strong>. Controleer altijd het typeplaatje en de specifieke machine-uitvoering vóór montage.

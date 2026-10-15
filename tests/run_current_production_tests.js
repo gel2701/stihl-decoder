@@ -55,7 +55,8 @@ export const currentProductionSuites = [
   'tests/phase54a_parts_amazon_affiliate.test.js',
   'tests/phase54a_h_amazon_link_integrity.test.js',
   'tests/phase54b_homepage_parts_ux.test.js',
-  'tests/phase54c_parts_seo.test.js'
+  'tests/phase54c_parts_seo.test.js',
+  'tests/phase54d_part_indexation_pilot.test.js'
 ];
 
 console.log('===============================================================');

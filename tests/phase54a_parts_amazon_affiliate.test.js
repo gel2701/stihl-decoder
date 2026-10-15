@@ -555,7 +555,7 @@ console.log('▶ Test 9: SSR Part Detail Page Template rendering...');
 process.env.AMAZON_AFFILIATE_ENABLED = 'true';
 process.env.AMAZON_ASSOCIATE_TAG = 'stihltest-21';
 
-const samplePartNo = '11231602050';
+const samplePartNo = '11270201216';
 const htmlWithAffiliate = renderPartDetailPageHtml(samplePartNo);
 assert(htmlWithAffiliate.includes('Zoek dit onderdeel online'), 'Page must contain "Zoek dit onderdeel online" section when only search links exist');
 assert(!htmlWithAffiliate.includes('Waar te koop'), 'Page must NOT contain "Waar te koop" section when only search links exist');
@@ -566,7 +566,7 @@ assert(htmlWithAffiliate.includes('rel="sponsored nofollow noopener"'), 'Must ha
 assert(htmlWithAffiliate.includes('meta name="robots" content="noindex, follow"'), 'Must retain noindex SEO policy');
 assert(htmlWithAffiliate.includes(AFFILIATE_DISCLOSURE_TEXT), 'Must render disclosure');
 assert(htmlWithAffiliate.includes('/api/affiliate/out?url='), 'Must route through /api/affiliate/out for server-side click tracking');
-assert(htmlWithAffiliate.includes('part_number=11231602050'), 'Redirect URL must include part_number parameter');
+assert(htmlWithAffiliate.includes('part_number=11270201216'), 'Redirect URL must include part_number parameter');
 assert(htmlWithAffiliate.includes('marketplace=amazon.nl'), 'Redirect URL must include marketplace parameter');
 assert(htmlWithAffiliate.includes('offer_type=SEARCH_LINK'), 'Redirect URL must include offer_type parameter');
 
