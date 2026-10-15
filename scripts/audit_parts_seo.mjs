@@ -38,12 +38,20 @@ const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 const models = database.models || [];
 const seriesCodes = getCanonicalPartSeriesCodes(database);
 
-const inboundHrefs = new Set();
-function collectHrefs(html) {
+const inboundEdges = new Map();
+function recordLink(sourceUrl, targetUrl) {
+  if (!targetUrl || targetUrl === sourceUrl) return; // exclude self-links
+  if (!inboundEdges.has(targetUrl)) {
+    inboundEdges.set(targetUrl, new Set());
+  }
+  inboundEdges.get(targetUrl).add(sourceUrl);
+}
+
+function collectHrefs(html, sourceUrl) {
   if (!html) return;
   const matches = html.matchAll(/href="([^"#?]+)"/g);
   for (const m of matches) {
-    inboundHrefs.add(m[1]);
+    recordLink(sourceUrl, m[1]);
   }
 }
 
@@ -110,9 +118,10 @@ if (hubRobots === 'index, follow') {
   audit.indexable_count++;
 } else {
   audit.noindex_count++;
+  audit.robots_mismatches++;
 }
 trackMetadata(hubTitle, hubDesc, '/onderdeelnummer/');
-collectHrefs(hubHtml);
+collectHrefs(hubHtml, '/onderdeelnummer/');
 
 console.log(`  Title: ${hubTitle}`);
 console.log(`  Robots: ${hubRobots}`);
@@ -141,9 +150,10 @@ for (const code of seriesCodes) {
     audit.indexable_count++;
   } else {
     audit.noindex_count++;
+    audit.robots_mismatches++;
   }
   trackMetadata(title, desc, seriesUrl);
-  collectHrefs(seriesHtml);
+  collectHrefs(seriesHtml, seriesUrl);
 }
 console.log('  ✅ All Part Series Pages Audited Cleanly.\n');
 
@@ -190,9 +200,10 @@ for (const model of publishedModels) {
   }
 
   // Collect inbound links from model guide and model parts page
+  const guidePath = getSafeModelPath(model);
   const guideHtml = renderModelPageHtml(model, database, PRIMARY_ORIGIN);
-  collectHrefs(guideHtml);
-  collectHrefs(partsHtml);
+  collectHrefs(guideHtml, guidePath);
+  collectHrefs(partsHtml, partsPath);
 
   // Only track duplicate metadata for indexable pages to avoid false positives on unindexed shells
   if (robots === 'index, follow') {
@@ -268,7 +279,9 @@ const indexablePartsUrls = [
 
 const orphanUrls = [];
 for (const url of indexablePartsUrls) {
-  if (!inboundHrefs.has(url)) {
+  if (url === '/onderdeelnummer/') continue;
+  const sources = inboundEdges.get(url);
+  if (!sources || sources.size === 0) {
     orphanUrls.push(url);
   }
 }
