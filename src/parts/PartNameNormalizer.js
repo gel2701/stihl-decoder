@@ -1,21 +1,26 @@
 /**
  * Part Name Normalizer for STIHL Parts Catalog
- * Phase 54E — Technical Data Integrity & Enrichment Foundation
+ * Phase 54E / Phase 54E-R1 — Technical Data Integrity & Enrichment Hardening
  *
  * Provides safe, deterministic normalization of part names into clean technical display names.
  * Priority:
  *   1. Approved explicit override (data/parts_name_overrides.json)
- *   2. HTML & character encoding normalization (clean broken entities, replacement characters)
- *   3. Safe technical core extraction (stripping vendor prefixes, part number duplication, and trailing retailer lists)
- *   4. Deterministic Dutch technical dictionary translation
- *   5. Clean canonical fallback
+ *   2. Fail-closed on unresolved encoding (U+FFFD -> safe neutral fallback)
+ *   3. HTML & deterministic character encoding normalization
+ *   4. Safe technical core extraction (stripping vendor prefixes, part number duplication, and trailing retailer lists)
+ *   5. Deterministic Dutch technical dictionary translation
+ *   6. Clean canonical fallback
  *
- * Strict constraint: Preserves part_name_raw for full provenance and traceability.
+ * Strict invariants:
+ *   - RAW_PART_NAMES_CHANGED = 0 (raw remains intact in part_name_raw for full provenance)
+ *   - GENERIC_UFFFD_TO_CHARACTER_REPLACEMENTS = 0 (never guess U+FFFD to Ø or any other arbitrary character)
+ *   - NAME_NORMALIZATION_NON_IDEMPOTENT = 0 (normalize(normalize(raw)) === normalize(raw))
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PartNormalizer } from './PartNormalizer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,20 +29,24 @@ const rootDir = path.resolve(__dirname, '..', '..');
 const overridesPath = path.join(rootDir, 'data', 'parts_name_overrides.json');
 
 let overridesMap = new Map();
-try {
-  if (fs.existsSync(overridesPath)) {
-    const doc = JSON.parse(fs.readFileSync(overridesPath, 'utf8'));
-    if (Array.isArray(doc.overrides)) {
-      for (const o of doc.overrides) {
-        if (o.part_number && o.display_name_nl) {
-          overridesMap.set(o.part_number, o.display_name_nl);
+function loadOverrides() {
+  overridesMap = new Map();
+  try {
+    if (fs.existsSync(overridesPath)) {
+      const doc = JSON.parse(fs.readFileSync(overridesPath, 'utf8'));
+      if (Array.isArray(doc.overrides)) {
+        for (const o of doc.overrides) {
+          if (o.part_number && o.display_name_nl) {
+            overridesMap.set(o.part_number, o.display_name_nl);
+          }
         }
       }
     }
+  } catch (e) {
+    overridesMap = new Map();
   }
-} catch (e) {
-  overridesMap = new Map();
 }
+loadOverrides();
 
 /**
  * Deterministic Dutch technical dictionary for exact technical components.
@@ -79,6 +88,13 @@ const DUTCH_DICTIONARY = [
 
 export class PartNameNormalizer {
   /**
+   * Reload overrides map from disk.
+   */
+  static reloadOverrides() {
+    loadOverrides();
+  }
+
+  /**
    * Normalizes a raw part name into a safe, clean technical display name.
    *
    * @param {string} rawName - original harvested part name
@@ -90,7 +106,44 @@ export class PartNameNormalizer {
   }
 
   /**
+   * Evaluates deterministic quality status of a part name.
+   *
+   * @param {string} rawName - original harvested part name
+   * @param {string} [partNumber] - canonical 11-digit part number
+   * @returns {string} CLEAN | NORMALIZED_SAFE | EXPLICIT_OVERRIDE | ENCODING_UNRESOLVED | RETAILER_STYLE_UNRESOLVED | MISSING
+   */
+  static assessQuality(rawName, partNumber = '') {
+    if (!rawName || typeof rawName !== 'string' || !rawName.trim()) {
+      return 'MISSING';
+    }
+
+    if (partNumber && overridesMap.has(partNumber)) {
+      return 'EXPLICIT_OVERRIDE';
+    }
+
+    if (rawName.includes('\uFFFD')) {
+      return 'ENCODING_UNRESOLVED';
+    }
+
+    if (/&#\d+;|&[a-z]+;|Ã¸|Âø|Ã¤|Âä|Ã¼|Âü|Ã¶|Âö/.test(rawName)) {
+      return 'NORMALIZED_SAFE';
+    }
+
+    if (/\b(?:genuine|for stihl)\b/i.test(rawName) || /\b-\s*OEM\s*No/i.test(rawName)) {
+      return 'NORMALIZED_SAFE';
+    }
+
+    const normalized = PartNameNormalizer.normalizePartName(rawName, partNumber);
+    if (normalized !== rawName) {
+      return 'NORMALIZED_SAFE';
+    }
+
+    return 'CLEAN';
+  }
+
+  /**
    * Normalizes a raw part name into a safe, clean technical display name.
+   * Fails closed on unknown characters (U+FFFD).
    *
    * @param {string} rawName - original harvested part name
    * @param {string} [partNumber] - canonical 11-digit part number for prefix stripping
@@ -104,30 +157,37 @@ export class PartNameNormalizer {
       return overridesMap.get(partNumber);
     }
 
-    // 2. Normalize HTML entities and common character encoding artifacts
+    // 2. Fail closed on unresolved Unicode replacement character U+FFFD
+    // Never guess U+FFFD as Ø or any other arbitrary character
+    if (rawName.includes('\uFFFD')) {
+      const formatted = PartNormalizer.formatPartNumber(partNumber);
+      return formatted ? `Onderdeel ${formatted}` : 'STIHL onderdeel';
+    }
+
+    // 3. Normalize deterministic HTML entities and unambiguous mojibake sequences
     let clean = rawName
       .replace(/&#8203;/g, '')
       .replace(/&#8209;/g, '-')
       .replace(/&amp;/g, '&')
       .replace(/&quot;/g, '"')
       .replace(/&nbsp;/g, ' ')
-      .replace(/\uFFFD\s*F\b|\uFFFD\s*uF\b/g, 'µF')
-      .replace(/\uFFFD/g, 'Ø')
       .replace(/Ã¸|Âø/g, 'ø')
       .replace(/Ã¤|Âä/g, 'ä')
       .replace(/Ã¼|Âü/g, 'ü')
       .replace(/Ã¶|Âö/g, 'ö');
 
-    // 3. Strip vendor / retailer prefix and duplicate part numbers iteratively
+    // 4. Strip vendor / retailer prefix and duplicate part numbers iteratively
     let changed = true;
     while (changed) {
       const prev = clean;
       clean = clean.replace(/^(?:genuine\s+)?stihl\s+/i, '');
       clean = clean.replace(/^genuine\s+/i, '');
       if (partNumber) {
-        const formattedPart = partNumber.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
+        const formattedPart = PartNormalizer.formatPartNumber(partNumber);
         clean = clean.replace(new RegExp(`^${partNumber}\\s*`, 'i'), '');
-        clean = clean.replace(new RegExp(`^${formattedPart}\\s*`, 'i'), '');
+        if (formattedPart) {
+          clean = clean.replace(new RegExp(`^${formattedPart}\\s*`, 'i'), '');
+        }
       }
       clean = clean.replace(/^\d{4}[\s\-]?\d{3}[\s\-]?\d{4}\s*/i, '');
       clean = clean.replace(/^\d{11}\s*/i, '');

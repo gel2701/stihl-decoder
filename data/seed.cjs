@@ -414,14 +414,23 @@ function recreateSqliteDatabase(database) {
     const fitmentsList = loadFitmentsList(__dirname);
     if (fitmentsList.length > 0) {
       const supersessionsPath = path.join(__dirname, 'parts_supersessions.json');
-      let supersessionsMap = new Map();
+      const safeFitmentSupersessions = new Map(); // key: `${part_number}::${canonical_model_id}`, val: to_part
       if (fs.existsSync(supersessionsPath)) {
         try {
           const superDoc = JSON.parse(fs.readFileSync(supersessionsPath, 'utf8'));
           if (Array.isArray(superDoc.relations)) {
             for (const rel of superDoc.relations) {
-              if (rel.from_part && rel.to_part && rel.active_in_catalog) {
-                supersessionsMap.set(rel.from_part, rel.to_part);
+              // Only consider public-active, provenance-reconfirmed relations
+              if (!rel.from_part || !rel.to_part || !rel.public_active) continue;
+              // Never propagate if serial condition is present (SERIAL_SCOPED_RELATION_PROPAGATED_TO_UNCONDITIONAL_FITMENTS = 0)
+              if (rel.scope?.serial_condition) continue;
+              // If model-scoped without serial condition, map only to explicitly included models
+              if (Array.isArray(rel.scope?.model_ids) && rel.scope.model_ids.length > 0) {
+                for (const mId of rel.scope.model_ids) {
+                  safeFitmentSupersessions.set(`${rel.from_part}::${mId}`, rel.to_part);
+                }
+              } else if (rel.applicability === 'GLOBAL_EXPLICIT') {
+                safeFitmentSupersessions.set(rel.from_part, rel.to_part);
               }
             }
           }
@@ -431,7 +440,8 @@ function recreateSqliteDatabase(database) {
       const fitStmt = db.prepare(`INSERT OR REPLACE INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       const insertFitments = db.transaction(() => {
         for (const f of fitmentsList) {
-          const supersededBy = f.superseded_by || supersessionsMap.get(f.part_number) || null;
+          const scopedKey = `${f.part_number}::${f.canonical_model_id}`;
+          const supersededBy = f.superseded_by || safeFitmentSupersessions.get(scopedKey) || (safeFitmentSupersessions.has(f.part_number) ? safeFitmentSupersessions.get(f.part_number) : null);
           fitStmt.run(
             f.fitment_id, f.part_number, f.canonical_model_id, f.variant_key, f.configuration_key || null, f.configuration_name || null,
             f.fitment_scope || 'BASE_MODEL_CONFIRMED', f.section_key, f.section_name, f.diagram_position || null, f.quantity ?? 1,

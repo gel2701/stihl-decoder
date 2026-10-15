@@ -65,6 +65,8 @@ function buildTechnicalProfile(part, fitments, compatibleModels) {
   const partNameRaw = part.part_name || '';
   const displayName = PartNameNormalizer.normalizeDisplayName(partNameRaw, canonicalPartNo);
 
+  const qualityStatus = PartNameNormalizer.assessQuality(partNameRaw, canonicalPartNo);
+
   const meaningfulSections = new Set();
   const diagramContexts = [];
   const configs = new Set();
@@ -95,6 +97,8 @@ function buildTechnicalProfile(part, fitments, compatibleModels) {
     canonical_part_number: canonicalPartNo,
     display_name: displayName,
     part_name_raw: partNameRaw,
+    name_quality_status: qualityStatus,
+    quality_status: qualityStatus,
     model_count: compatibleModels.length,
     fitment_count: fitments.length,
     configuration_count: configs.size,
@@ -108,6 +112,15 @@ function buildTechnicalProfile(part, fitments, compatibleModels) {
       evidence_status: supersessionRel.evidence_status,
       source_id: supersessionRel.source_id,
       source_document: supersessionRel.source_document,
+      provenance_status: supersessionRel.provenance_status || 'PROVENANCE_NOT_RECONFIRMED',
+      applicability: supersessionRel.applicability || 'EVIDENCE_ONLY_SCOPE_UNRESOLVED',
+      public_active: Boolean(supersessionRel.public_active),
+      scope: supersessionRel.scope || {
+        model_ids: [],
+        variant_keys: [],
+        configuration_keys: [],
+        serial_condition: null
+      },
       target_in_catalog: supersessionRel.target_in_catalog,
       active_in_catalog: supersessionRel.active_in_catalog
     } : null,

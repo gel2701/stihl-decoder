@@ -175,15 +175,16 @@ test('Phase 54E: Explicit Supersessions DAG Invariants (0 Self-loops, 0 Cycles, 
     }
   }
 
-  // Verify SQLite database populated for active in-catalog relations
+  // Verify SQLite database populated for active in-catalog relations under strict scoping
   const dbSupersededCount = db.prepare('SELECT count(*) as count FROM model_part_fitments WHERE superseded_by IS NOT NULL').get().count;
-  assert.strictEqual(dbSupersededCount, 103, 'Must have 103 fitment records with populated superseded_by');
+  assert.strictEqual(dbSupersededCount, 6, 'Must have 6 fitment records with populated superseded_by (ms_440 and ms_460 only)');
 });
 
 test('Phase 54E: Safe Part Name Normalization & Quality Targets', () => {
   // Explicit overrides
   assert.strictEqual(PartNameNormalizer.normalizePartName('Rewind starter', '11230802104'), 'Handstarter');
   assert.strictEqual(PartNameNormalizer.normalizePartName('PolyCut blades pack', '40080071000'), 'Maaimesjes PolyCut 2-2 / 3-2');
+  assert.strictEqual(PartNameNormalizer.normalizePartName('Stihl 00006051020 Capacitor 30\uFFFDF', '00006051020'), 'Condensator 30 µF');
 
   // Dutch technical dictionary
   assert.strictEqual(PartNameNormalizer.normalizePartName('Clutch', '11231602050'), 'Koppeling');
@@ -194,9 +195,10 @@ test('Phase 54E: Safe Part Name Normalization & Quality Targets', () => {
   assert.strictEqual(PartNameNormalizer.normalizePartName('Stihl 1123 160 2050 Clutch', '11231602050'), 'Koppeling');
   assert.strictEqual(PartNameNormalizer.normalizePartName('Genuine STIHL Air Filter for MS 170', '11301240800'), 'Luchtfilter');
 
-  // Character encoding fixes
+  // Character encoding fixes & fail-closed neutral fallback
   assert.strictEqual(PartNameNormalizer.normalizePartName('Gasket &#8209; Special', '11230290500'), 'Gasket - Special');
-  assert.strictEqual(PartNameNormalizer.normalizePartName('Capacitor 0.22 \uFFFD F', '11234000100'), 'Capacitor 0.22 µF');
+  assert.strictEqual(PartNameNormalizer.normalizePartName('Capacitor 0.22 \uFFFD F', '11234000100'), 'Onderdeel 1123 400 0100');
+  assert.strictEqual(PartNameNormalizer.normalizePartName('Stihl Support \uFFFD 25.4Mm', '00001822100'), 'Onderdeel 0000 182 2100');
 
   // Full catalog quality scan (0 broken encodings, 0 retailer spam)
   const allParts = db.prepare('SELECT part_number, part_name FROM parts').all();
@@ -264,11 +266,91 @@ test('Phase 54E: Public Template Rendering & Leak Prevention', () => {
   assert.ok(!modelPartsHtml.includes('POS_UNSPECIFIED'), 'ModelParts HTML must never contain POS_UNSPECIFIED');
   assert.ok(!modelPartsHtml.includes('OFFICIAL_REF'), 'ModelParts HTML must never contain OFFICIAL_REF');
 
-  // Superseded part notice banner in UI
+  // Superseded part notice banner in UI with serial qualification
   const supersededPart = PartCatalogResolver.resolvePartNumber('42034001301');
   const supersededHtml = renderPartDetailPageHtml(supersededPart);
-  assert.ok(supersededHtml.includes('vervangen door'), 'Superseded part UI must display replacement notice');
+  assert.ok(supersededHtml.includes('249904357'), 'Superseded part UI must display serial qualification 249904357');
   assert.ok(supersededHtml.includes('4203 400 1302'), 'Superseded part UI must link to replacement part number');
+  assert.ok(!supersededHtml.includes('is dit onderdeelnummer vervangen door'), 'Superseded part UI must not claim unconditional replacement');
+});
+
+test('Phase 54E-R1: Supersession Scope Safety & Scoped Applicability', () => {
+  // 1. Serial-scoped supersession does not populate all fitments
+  const serialFitmentsCount = db.prepare('SELECT count(*) as count FROM model_part_fitments WHERE part_number IN (?, ?, ?) AND superseded_by IS NOT NULL').get('42034001301', '11320300401', '00003503500').count;
+  assert.strictEqual(serialFitmentsCount, 0, 'Serial-scoped relations must have 0 unconditional fitments');
+
+  // 2. 42034001301 scope = serial >= 249904357
+  const part4203 = PartCatalogResolver.resolvePartNumber('42034001301');
+  assert.ok(part4203.technical_profile.supersession !== null);
+  assert.strictEqual(part4203.technical_profile.supersession.scope?.serial_condition?.serial, '249904357');
+  assert.strictEqual(part4203.technical_profile.supersession.scope?.serial_condition?.operator, 'GTE');
+  assert.strictEqual(part4203.technical_profile.supersession.applicability, 'SCOPED_EXPLICIT');
+
+  // 3. 11320300401 scope = serial >= 246534711
+  const part1132 = PartCatalogResolver.resolvePartNumber('11320300401');
+  assert.ok(part1132.technical_profile.supersession !== null);
+  assert.strictEqual(part1132.technical_profile.supersession.scope?.serial_condition?.serial, '246534711');
+  assert.strictEqual(part1132.technical_profile.supersession.scope?.serial_condition?.operator, 'GTE');
+
+  // 4. Public serial-scoped wording is conditional
+  const html4203 = renderPartDetailPageHtml(part4203);
+  assert.ok(html4203.includes('249904357'), 'Public serial-scoped copy must mention serial threshold');
+  assert.ok(!html4203.includes('is dit onderdeelnummer vervangen door'), 'Public copy must not state unconditional replacement');
+
+  // 5. Scope-unresolved / unconfirmed relation is not definitive public replacement
+  const part1122 = PartCatalogResolver.resolvePartNumber('11220300407');
+  assert.strictEqual(part1122.technical_profile.supersession?.public_active, false);
+  assert.strictEqual(part1122.technical_profile.supersession?.applicability, 'EVIDENCE_ONLY_SCOPE_UNRESOLVED');
+  const html1122 = renderPartDetailPageHtml(part1122);
+  assert.ok(!html1122.includes('Vervangen onderdeelnummer'), 'Unresolved relation must not render banner');
+  assert.ok(!html1122.includes('Opvolgend Onderdeelnummer'), 'Unresolved relation must not render notice');
+
+  // 6. Target-not-in-catalog generates no broken internal link
+  const syntheticPart = {
+    part_number: '99990001111',
+    part_name: 'Test Part',
+    fitment_count: 1,
+    fitments: [],
+    compatible_models: [],
+    technical_profile: {
+      display_name: 'Test Part',
+      supersession: {
+        replaced_by: '88880002222',
+        public_active: true,
+        applicability: 'SCOPED_EXPLICIT',
+        target_in_catalog: false,
+        scope: { serial_condition: null, model_ids: ['ms_170'] }
+      }
+    }
+  };
+  const syntheticHtml = renderPartDetailPageHtml(syntheticPart);
+  assert.ok(!syntheticHtml.includes('href="/onderdeelnummer/88880002222/"'), 'Target not in catalog must NOT generate <a> link');
+  assert.ok(syntheticHtml.includes('8888 000 2222') || syntheticHtml.includes('88880002222'), 'Target number rendered as text');
+});
+
+test('Phase 54E-R1: Encoding Fail-Closed Hardening & Normalization Idempotence', () => {
+  // 1. U+FFFD is never globally mapped to Ø
+  const testRaw = 'Stihl Support \uFFFD 25.4Mm';
+  const norm = PartNameNormalizer.normalizePartName(testRaw, '00001822100');
+  assert.ok(!norm.includes('Ø'), 'U+FFFD must NEVER be mapped to Ø');
+  assert.strictEqual(norm, 'Onderdeel 0000 182 2100', 'Unknown encoding must fail-closed to neutral fallback');
+
+  // 2. Unknown encoding without part number returns 'STIHL onderdeel'
+  assert.strictEqual(PartNameNormalizer.normalizePartName(testRaw), 'STIHL onderdeel');
+
+  // 3. Raw corrupt source string remains intact in DB
+  const rawDbPart = db.prepare('SELECT part_name FROM parts WHERE part_number = ?').get('00001822100');
+  assert.strictEqual(rawDbPart.part_name, 'Stihl Support \uFFFD 25.4Mm', 'Raw corrupt name preserved in database');
+
+  // 4. Name normalization idempotent across full catalog (all 17,082 parts)
+  const allParts = db.prepare('SELECT part_number, part_name FROM parts').all();
+  let nonIdempotent = 0;
+  for (const p of allParts) {
+    const n1 = PartNameNormalizer.normalizePartName(p.part_name, p.part_number);
+    const n2 = PartNameNormalizer.normalizePartName(n1, p.part_number);
+    if (n1 !== n2) nonIdempotent++;
+  }
+  assert.strictEqual(nonIdempotent, 0, 'normalize(normalize(raw)) === normalize(raw) for all 17,082 parts');
 });
 
 test('Phase 54E: Strict Freezes (Phase 54D SEO Pilot, Amazon Links, Invariants)', () => {

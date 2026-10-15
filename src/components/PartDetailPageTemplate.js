@@ -131,22 +131,36 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
 
   const supersession = resolved.technical_profile?.supersession;
   let supersessionHtml = '';
-  if (supersession && supersession.replaced_by) {
-    const formattedReplacedBy = PartNormalizer.formatPartNumber(supersession.replaced_by);
-    supersessionHtml = `
+  if (supersession && supersession.replaced_by && supersession.public_active && supersession.applicability !== 'EVIDENCE_ONLY_SCOPE_UNRESOLVED') {
+    const formattedReplacedBy = PartNormalizer.formatPartNumber(supersession.replaced_by) || supersession.replaced_by;
+    const targetLinkHtml = supersession.target_in_catalog
+      ? `<a href="/onderdeelnummer/${supersession.replaced_by}/" class="text-amber-400 hover:text-amber-300 font-mono font-bold underline ml-1">STIHL ${formattedReplacedBy} →</a>`
+      : `<span class="font-mono font-bold text-amber-300 ml-1">STIHL ${formattedReplacedBy}</span>`;
+
+    let noticeText = '';
+    const serialCond = supersession.scope?.serial_condition;
+    if (serialCond && serialCond.serial) {
+      noticeText = `STIHL technische documentatie (${supersession.source_document || 'TI'}) vermeldt voor deze toepassing een wijziging vanaf serienummer <strong>${serialCond.serial}</strong> naar onderdeel: ${targetLinkHtml}.`;
+    } else if (supersession.scope?.model_ids && supersession.scope.model_ids.length > 0) {
+      const modelsDisplay = supersession.scope.model_ids.map(m => m.toUpperCase().replace(/_/g, ' ')).join(', ');
+      noticeText = `Volgens officiële STIHL technische documentatie (${supersession.source_document || 'TI'}) geldt voor <strong>${modelsDisplay}</strong> een vervanging naar onderdeel: ${targetLinkHtml}.`;
+    } else if (supersession.applicability === 'GLOBAL_EXPLICIT') {
+      noticeText = `Volgens officiële STIHL technische documentatie (${supersession.source_document || 'TI'}) is dit onderdeelnummer <strong>vervangen door</strong>: ${targetLinkHtml}.`;
+    }
+
+    if (noticeText) {
+      supersessionHtml = `
     <!-- Superseded Part Notice Banner -->
     <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-3 text-left">
       <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center shrink-0">ℹ</div>
       <div class="space-y-1">
         <div class="text-sm font-bold text-amber-300">Vervangen onderdeelnummer</div>
         <p class="text-xs text-gray-300 leading-relaxed">
-          Volgens officiële STIHL technische documentatie (${supersession.source_document || 'TI'}) is dit onderdeelnummer <strong>vervangen door</strong>:
-          <a href="/onderdeelnummer/${supersession.replaced_by}/" class="text-amber-400 hover:text-amber-300 font-mono font-bold underline ml-1">
-            STIHL ${formattedReplacedBy} →
-          </a>
+          ${noticeText}
         </p>
       </div>
     </div>`;
+    }
   }
 
   return `<!DOCTYPE html>
@@ -273,7 +287,7 @@ ${supersessionHtml}
       </div>
     </section>
 
-    ${resolved.technical_profile?.supersession?.active_in_catalog ? `
+    ${(resolved.technical_profile?.supersession?.public_active && resolved.technical_profile.supersession.applicability !== 'EVIDENCE_ONLY_SCOPE_UNRESOLVED') ? `
     <!-- Technical Supersession Notice -->
     <section class="bg-blue-950/40 border border-blue-800/60 rounded-2xl p-5 space-y-2 text-xs">
       <div class="flex items-center gap-2">
@@ -282,10 +296,9 @@ ${supersessionHtml}
         <span class="text-3xs font-mono px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-700/60">Officieel STIHL Bulletin</span>
       </div>
       <p class="text-gray-300 leading-relaxed">
-        Volgens officiële STIHL documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) is onderdeel <strong>${formattedPartNo}</strong> vervangen door:
-        <a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">
-          ${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →
-        </a>
+        ${resolved.technical_profile.supersession.scope?.serial_condition?.serial
+          ? `STIHL technische documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) vermeldt voor deze toepassing een wijziging vanaf serienummer <strong>${resolved.technical_profile.supersession.scope.serial_condition.serial}</strong> naar onderdeel: ${resolved.technical_profile.supersession.target_in_catalog ? `<a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →</a>` : `<span class="font-mono font-bold text-orange-300">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by}</span>`}.`
+          : `Volgens officiële STIHL documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) is onderdeel <strong>${formattedPartNo}</strong> vervangen door: ${resolved.technical_profile.supersession.target_in_catalog ? `<a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →</a>` : `<span class="font-mono font-bold text-orange-300">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by}</span>`}.`}
       </p>
       <p class="text-2xs text-gray-400">
         Controleer altijd machinenummer en specifieke configuratie voorafgaand aan montage.
