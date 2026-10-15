@@ -248,6 +248,33 @@ test('Phase 54C: Part Index Readiness Classifier Runs and Exports Top 100 Candid
 
   const trackedFile = path.join(rootDir, 'data', 'seo', 'part_indexation_candidates.json');
   assert.ok(fs.existsSync(trackedFile), 'Tracked candidate artifact must exist');
+
+  // Regression test: Fasteners with compatibility prose (e.g. Chainsaw Parts) must not match functional keywords
+  const evalEClip = PartIndexReadinessClassifier.evaluatePart({
+    part_number: '94606240400',
+    part_name: 'Stihl 94606240400 Chainsaw Parts E-Clip Din6799-4 MS170 / MS170C',
+    model_count: 50,
+    fitment_count: 100,
+    section_count: 10,
+    has_pos: 1,
+    has_config: 1
+  });
+  assert.strictEqual(evalEClip.is_functional, false, 'E-Clip must not be marked functional due to "Chainsaw Parts"');
+  assert.ok(evalEClip.reasons.includes('generic_hardware'), 'E-Clip must be tagged generic_hardware');
+  assert.notStrictEqual(evalEClip.tier, 'STRONG_CANDIDATE', 'Generic hardware must never be STRONG_CANDIDATE');
+
+  const evalHexNut = PartIndexReadinessClassifier.evaluatePart({
+    part_number: '92162610700',
+    part_name: 'Stihl 92162610700 Hexagon Nut Chainsaw Parts M5 MS170',
+    model_count: 50,
+    fitment_count: 100,
+    section_count: 10,
+    has_pos: 1,
+    has_config: 1
+  });
+  assert.strictEqual(evalHexNut.is_functional, false, 'Hexagon Nut must not be marked functional');
+  assert.ok(evalHexNut.reasons.includes('generic_hardware'), 'Hexagon Nut must be tagged generic_hardware');
+  assert.notStrictEqual(evalHexNut.tier, 'STRONG_CANDIDATE', 'Hexagon Nut must never be STRONG_CANDIDATE');
 });
 
 after(() => {

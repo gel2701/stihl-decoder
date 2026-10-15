@@ -20,14 +20,40 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..', '..');
 
 const FUNCTIONAL_KEYWORDS = [
-  'carburetor', 'carburateur', 'piston', 'cylinder', 'cilinder', 'plug', 'bougie',
+  'carburetor', 'carburateur', 'piston', 'zuiger', 'cylinder', 'cilinder', 'spark plug', 'bougie',
   'filter', 'clutch', 'koppeling', 'starter', 'sprocket', 'kettingwiel', 'coil',
   'bobine', 'gasket', 'pakking', 'oil pump', 'oliepomp', 'muffler', 'uitlaat',
   'blade', 'chain', 'zaagketting', 'guide bar', 'zaagblad', 'pawl', 'spring',
   'crankcase', 'carter', 'crankshaft', 'krukas', 'flywheel', 'vliegwiel'
 ];
 
+const GENERIC_HARDWARE_REGEX = /\b(washer|screw|nut|bolt|pan head|spline screw|hexagon nut|hex nut|lock nut|e-clip|circlip|snap ring|o-ring|dowel pin|hose clamp|retaining ring|cotter pin|spacer|collar|grommet|sealing plug|din\d+|allen key|torx wrench)\b/i;
+
 export class PartIndexReadinessClassifier {
+  /**
+   * Isolates the true component name from harvested descriptions by stripping catalog & model prose.
+   *
+   * @param {string} rawName
+   * @returns {string} cleaned component name
+   */
+  static extractCleanComponentName(rawName) {
+    if (!rawName) return '';
+    return rawName
+      .replace(/^stihl\s+/i, '')
+      .replace(/^\d{4}\s*\d{3}\s*\d{4}\s*/i, '')
+      .replace(/^\d{11}\s*/i, '')
+      .replace(/\bchainsaw\s+parts?\b/gi, ' ')
+      .replace(/\bdisc\s+cutter\s+parts?\b/gi, ' ')
+      .replace(/\bhedge\s+trimmer\s+parts?\b/gi, ' ')
+      .replace(/\bbrushcutter\s+parts?\b/gi, ' ')
+      .replace(/\bblower\s+parts?\b/gi, ' ')
+      .replace(/\bparts?\b/gi, ' ')
+      .replace(/\|.*$/g, ' ')
+      .replace(/\b(ms|fs|br|ts|bg|hs|sh|bt|hl|ht)\s*\d+[a-z0-9\s\/\-]*$/i, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   /**
    * Evaluates and classifies a single part record.
    *
@@ -36,31 +62,34 @@ export class PartIndexReadinessClassifier {
    */
   static evaluatePart(part) {
     let score = 0;
-    const name = (part.part_name || '').toLowerCase();
+    const rawName = (part.part_name || '').toLowerCase();
+    const cleanName = PartIndexReadinessClassifier.extractCleanComponentName(part.part_name).toLowerCase();
     const reasons = [];
 
-    // 1. Name & description quality
-    if (name.length > 20) {
+    // 1. Name & description quality based on isolated component name
+    const evaluatedName = cleanName || rawName;
+    if (evaluatedName.length > 20) {
       score += 15;
-    } else if (name.length > 10) {
+    } else if (evaluatedName.length > 10) {
       score += 10;
     } else {
       score += 5;
     }
 
-    if (name.length < 15) {
+    if (evaluatedName.length < 15) {
       reasons.push('short_or_generic_name');
     }
 
-    // 2. Functional component vs generic fastener
-    const isFunctional = FUNCTIONAL_KEYWORDS.some((kw) => name.includes(kw));
+    // 2. Functional component vs generic fastener (word-boundary matched, compatibility prose isolated)
+    const isGenericHardware = GENERIC_HARDWARE_REGEX.test(evaluatedName) || GENERIC_HARDWARE_REGEX.test(rawName);
+    const isFunctional = !isGenericHardware && FUNCTIONAL_KEYWORDS.some((kw) => new RegExp(`\\b${kw}\\b`, 'i').test(evaluatedName));
+
     if (isFunctional) {
       score += 20;
     }
 
-    const isGenericHardware = /^(stihl\s+)?(washer|screw|nut|bolt|pan head|spline screw|hexagon nut|lock nut|e-clip)/i.test(name);
-    if (isGenericHardware && !isFunctional) {
-      score -= 15;
+    if (isGenericHardware) {
+      score -= 25;
       reasons.push('generic_hardware');
     }
 
@@ -86,9 +115,9 @@ export class PartIndexReadinessClassifier {
       reasons.push('insufficient_fitment_depth');
     }
 
-    // 4. Determine Readiness Tier
+    // 4. Determine Readiness Tier (generic hardware excluded from STRONG_CANDIDATE)
     let tier = 'NOT_READY';
-    if (score >= 60 && modelCount >= 2 && sectionCount >= 1 && part.has_pos) {
+    if (!isGenericHardware && score >= 60 && modelCount >= 2 && sectionCount >= 1 && part.has_pos) {
       tier = 'STRONG_CANDIDATE';
     } else if (score >= 35 && fitmentCount >= 2) {
       tier = 'CANDIDATE';
