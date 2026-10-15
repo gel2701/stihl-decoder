@@ -4,6 +4,25 @@ import zlib from 'zlib';
 import { fileURLToPath } from 'url';
 
 import { PartNormalizer, FITMENT_SCOPES } from './PartNormalizer.js';
+import { normalizeModelQuery } from '../modelNormalizer.js';
+
+/**
+ * Lightweight precomputed index of canonical model IDs with verified renderable catalog parts or configurations.
+ * Prevents synchronous decompression of 110MB+ fitment shards during cold homepage and serial decodes.
+ */
+export const RENDERABLE_CATALOG_MODELS = new Set([
+  "009", "017", "018", "026", "036", "044", "046", "088",
+  "bg_56", "bg_66", "bg_86", "bge_71",
+  "br_420", "br_500", "br_550", "br_600", "br_700",
+  "fr_410",
+  "fs_100", "fs_120", "fs_131", "fs_200", "fs_350", "fs_38", "fs_410", "fs_460", "fs_490", "fs_55", "fs_80", "fs_85",
+  "fsa_135", "fsa_45", "fse_60",
+  "hla_56", "hla_66", "hs_45", "hse_52",
+  "ms_162", "ms_170", "ms_172", "ms_180", "ms_182", "ms_200", "ms_201", "ms_210", "ms_212", "ms_230", "ms_250", "ms_251", "ms_260", "ms_261", "ms_270", "ms_280", "ms_290", "ms_310", "ms_311", "ms_340", "ms_341", "ms_360", "ms_361", "ms_362", "ms_390", "ms_440", "ms_441", "ms_460", "ms_461", "ms_462", "ms_661", "msa_190",
+  "sh_56", "sh_86", "sha_56",
+  "sr_430", "sr_450",
+  "ts_410", "ts_420", "tsa_230"
+]);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -274,7 +293,7 @@ export class PartCatalogResolver {
     }
     if (this.partsCatalog && this.fitments) {
       if (!modelName) return [];
-      const normId = modelName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      const normId = PartCatalogResolver.resolveCanonicalModelId(modelName);
       this._ensureIndexed();
       const allModelFitments = this._indexedFitmentsByModel?.get(normId) || [];
       const matchingFitments = filterFitmentsForModel(allModelFitments, variantKey, configurationKey);
@@ -423,6 +442,115 @@ export class PartCatalogResolver {
   }
 
   /**
+   * Resolves a model name, slug, ID or model object to its canonical catalog fitment model ID (e.g. 'ms_200').
+   */
+  static resolveCanonicalModelId(modelInput, database = null) {
+    if (!modelInput) return '';
+
+    const hasFitments = (key) => {
+      if (!key) return false;
+      if (database && Array.isArray(database.model_part_fitments)) {
+        return database.model_part_fitments.some(f => f.canonical_model_id === key);
+      }
+      if (cachedFitmentsByModelMap) {
+        return cachedFitmentsByModelMap.has(key);
+      }
+      return RENDERABLE_CATALOG_MODELS.has(key);
+    };
+
+    if (typeof modelInput === 'object') {
+      const candidates = [
+        modelInput.slug,
+        modelInput.canonical_model_id,
+        modelInput.model_name,
+        modelInput.model_name && modelInput.model_name.includes('/') ? modelInput.model_name.split('/')[0].trim() : null,
+        modelInput.model_name ? normalizeModelQuery(modelInput.model_name).baseModel : null,
+        modelInput.id
+      ].filter(Boolean);
+
+      for (const cand of candidates) {
+        const norm = String(cand).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+        if (hasFitments(norm)) return norm;
+      }
+      return String(modelInput.slug || modelInput.model_name || modelInput.id || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    }
+
+    const directNorm = String(modelInput).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    if (hasFitments(directNorm)) return directNorm;
+
+    // Check composite names with slash, e.g. "MS 200 / 020 T" -> "MS 200"
+    if (String(modelInput).includes('/')) {
+      const parts = String(modelInput).split('/');
+      for (const p of parts) {
+        const pNorm = p.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+        if (hasFitments(pNorm)) return pNorm;
+      }
+    }
+
+    // Check base model via normalizeModelQuery (e.g. "MS 261 C-M" -> "MS 261")
+    const baseModel = normalizeModelQuery(String(modelInput)).baseModel;
+    if (baseModel && baseModel !== modelInput) {
+      const baseNorm = baseModel.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      if (hasFitments(baseNorm)) return baseNorm;
+    }
+
+    // Check models registry if available
+    const modelsRegistry = (database && Array.isArray(database.models)) ? database.models : null;
+    if (modelsRegistry) {
+      const inputStr = String(modelInput).toLowerCase();
+      const match = modelsRegistry.find(m =>
+        (m.model_name && m.model_name.toLowerCase() === inputStr) ||
+        (m.slug && m.slug.toLowerCase() === inputStr) ||
+        (m.id && m.id.toLowerCase() === inputStr) ||
+        (m.model_name && m.model_name.toLowerCase().includes(inputStr))
+      );
+      if (match) {
+        const cand = [
+          match.slug,
+          match.canonical_model_id,
+          match.model_name && match.model_name.includes('/') ? match.model_name.split('/')[0].trim() : null,
+          match.model_name ? normalizeModelQuery(match.model_name).baseModel : null,
+          match.id
+        ].filter(Boolean);
+        for (const c of cand) {
+          const norm = String(c).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+          if (hasFitments(norm)) return norm;
+        }
+      }
+    }
+
+    return directNorm;
+  }
+
+  /**
+   * Checks whether the catalog contains verified parts/fitments for a model that can be rendered on its parts page.
+   * Avoids loading or decompressing the full fitment corpus during cold decodes.
+   */
+  static hasPartsForModel(modelInput, database = null) {
+    if (!modelInput) return false;
+
+    // If an in-memory database with fitments or configurations is provided, verify against it directly
+    if (database && (Array.isArray(database.model_part_fitments) || Array.isArray(database.parts_model_configurations))) {
+      const sections = PartCatalogResolver.getSectionsForModel(modelInput, null, null, database);
+      if (sections && sections.length > 0) return true;
+      const configs = PartCatalogResolver.getConfigurationsForModel(modelInput, database);
+      return Boolean(configs && configs.length > 0);
+    }
+
+    // If full catalog is already cached in memory, use it
+    if (cachedFitmentsByModelMap) {
+      const sections = PartCatalogResolver.getSectionsForModel(modelInput, null, null, database);
+      if (sections && sections.length > 0) return true;
+      const configs = PartCatalogResolver.getConfigurationsForModel(modelInput, database);
+      return Boolean(configs && configs.length > 0);
+    }
+
+    // Otherwise use lightweight precomputed availability index without blocking event loop
+    const normId = PartCatalogResolver.resolveCanonicalModelId(modelInput, database);
+    return RENDERABLE_CATALOG_MODELS.has(normId);
+  }
+
+  /**
    * Retrieves all verified parts and diagram sections for a specific model ID and optional variant/configuration.
    */
   static getPartsForModel(modelId, variantKey = null, configurationKey = null, database = null) {
@@ -433,7 +561,7 @@ export class PartCatalogResolver {
       configurationKey = null;
     }
 
-    const normId = modelId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    const normId = PartCatalogResolver.resolveCanonicalModelId(modelId, database);
 
     if (database && Array.isArray(database.parts) && Array.isArray(database.model_part_fitments)) {
       const partsMap = new Map(database.parts.map(p => [p.part_number, p]));
@@ -487,7 +615,7 @@ export class PartCatalogResolver {
    */
   static getConfigurationsForModel(modelId, database = null) {
     if (!modelId) return [];
-    const normId = modelId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    const normId = PartCatalogResolver.resolveCanonicalModelId(modelId, database);
 
     let modelConfigs = [];
     if (database && Array.isArray(database.parts_model_configurations)) {
@@ -619,5 +747,13 @@ export class PartCatalogResolver {
 
   getSectionsForModel(modelId, variantKey = null, configurationKey = null, database = null) {
     return PartCatalogResolver.getSectionsForModel(modelId, variantKey, configurationKey, database);
+  }
+
+  hasPartsForModel(modelInput, database = null) {
+    return PartCatalogResolver.hasPartsForModel(modelInput, database);
+  }
+
+  resolveCanonicalModelId(modelInput, database = null) {
+    return PartCatalogResolver.resolveCanonicalModelId(modelInput, database);
   }
 }

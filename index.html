@@ -154,39 +154,57 @@
     <section id="decoder" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 stihl-orange-glow relative overflow-hidden">
       <div class="max-w-2xl mx-auto text-center space-y-4 mb-6">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          Voer een Stihl Serienummer, Onderdeelnummer of Model in
+          Zoek op serienummer, onderdeelnummer of model
         </h2>
         <p class="text-sm text-gray-400">
-          Krijg direct inzicht in beschikbare herkomstinformatie met zichtbare bronstatus, bekende modeldata, een hulpmiddel voor controle via StopHeling en een downloadbaar machine-identificatierapport. Bevestig model, uitvoering en bouwjaar altijd met typeplaatje of primaire documentatie.
+          Controleer een STIHL machine op serienummer, zoek een onderdeelnummer op of voer een model zoals MS 200 of FS 55 in om passende onderdelen te vinden. Bevestig gegevens altijd met het typeplaatje.
         </p>
       </div>
 
       <!-- Input Form -->
       <div class="max-w-xl mx-auto">
+        <!-- Search Intent Buttons (Non-mandatory quick actions) -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-3" role="group" aria-label="Snelle zoekintenties">
+          <button type="button" id="tab-intent-parts" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="parts" aria-pressed="false">
+            <span>⚙️ Onderdelen zoeken</span>
+          </button>
+          <button type="button" id="tab-intent-serial" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="serial" aria-pressed="false">
+            <span>🔍 Serienummer controleren</span>
+          </button>
+          <button type="button" id="tab-intent-partno" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="partno" aria-pressed="false">
+            <span>📦 Onderdeelnummer opzoeken</span>
+          </button>
+        </div>
+
         <label for="code-input" class="sr-only">STIHL Serienummer, Model of Onderdeelnummer</label>
         <div class="relative flex items-center bg-gray-950 border border-gray-700 rounded-xl p-2 transition">
           <input
             type="text"
             id="code-input"
-            placeholder="Bijv. 184592301, MS 261 C-M of 1121 021 0800..."
+            placeholder="Bijv. MS 200, FS 55, 1123 020 1200 of 163130555"
             class="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg font-mono font-semibold text-white placeholder-gray-500 focus:outline-none"
             autocomplete="off"
           />
           <button id="clear-btn" class="p-2 text-gray-400 hover:text-white transition" title="Wis invoer" aria-label="Wis invoer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
-          <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30 cursor-pointer" aria-label="Serienummer of model analyseren">
-            <span>Analyseer</span>
+          <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30 cursor-pointer" aria-label="Zoeken">
+            <span id="search-btn-text">Zoeken</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </button>
         </div>
 
+        <!-- Helper text under search field -->
+        <p id="search-helper-text" class="mt-2 text-center text-xs text-gray-400">
+          Typ een model voor onderdelen, een onderdeelnummer voor pasvorm, of een serienummer voor machine-identificatie.
+        </p>
+
         <!-- Probeer Voorbeelden (Klikbaar) -->
         <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="184592301">184592301 (voorbeeld serienummer)</button>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 261 C-M">MS 261 C-M (Specs)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 200">MS 200 (Model / Onderdelen)</button>
           <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
+          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="163130555">163130555 (Serienummer)</button>
         </div>
       </div>
     </section>
@@ -267,16 +285,25 @@
             </div>
             <h3 id="model-title-display" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">MS 261 C-M</h3>
             <span id="model-card-name" class="hidden"></span>
+            <p id="model-card-intent-notice" class="text-xs text-gray-300 mt-1.5">
+              Model gevonden: Bekijk passende onderdelen, technische gegevens en machine-informatie.
+            </p>
           </div>
-          <div class="flex flex-wrap items-center gap-4">
+          <div class="flex flex-wrap items-center gap-3">
             <div>
               <span class="text-xs text-gray-400">Aandrijving:</span>
               <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">Benzine (2-Takt)</div>
             </div>
-            <button id="model-card-passport-btn" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Maak machinepaspoort voor dit model">
+            <!-- Primary CTA: Bekijk onderdelen -->
+            <a id="model-card-parts-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Bekijk onderdelen voor dit model">
+              <span>⚙️ Bekijk onderdelen <span id="model-card-parts-btn-context" class="font-normal opacity-90">voor model</span></span>
+            </a>
+            <!-- Secondary CTA: Maak machinepaspoort -->
+            <button type="button" id="model-card-passport-btn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Maak machinepaspoort voor dit model">
               <span>📋 Maak machinepaspoort</span>
             </button>
-            <button id="model-card-save-btn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Bewaar in Mijn machines">
+            <!-- Tertiary CTA: Bewaar in Mijn machines -->
+            <button type="button" id="model-card-save-btn" class="px-3.5 py-2.5 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-medium text-xs rounded-xl flex items-center gap-1.5 transition cursor-pointer self-start sm:self-center" aria-label="Bewaar in Mijn machines">
               <span>💾 Bewaar in Mijn machines</span>
             </button>
           </div>
@@ -384,6 +411,24 @@
           </div>
         </div>
 
+        <!-- Bottom Parts Banner -->
+        <div id="model-card-parts-banner" class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-orange-400 flex items-center gap-1.5">
+                <span>⚙️ Passende STIHL Onderdelen</span>
+              </span>
+              <span class="text-3xs px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium">Onderdelencatalogus</span>
+            </div>
+            <p id="model-card-parts-banner-desc" class="text-gray-300 text-2xs leading-relaxed">
+              Zoekt u vervangende onderdelen, zaagkettingen, filters of onderhoudssets voor dit model? Bekijk het complete overzicht van passende onderdelen.
+            </p>
+          </div>
+          <a id="model-card-bottom-parts-btn" href="#" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition whitespace-nowrap self-start sm:self-center">
+            Bekijk onderdelen →
+          </a>
+        </div>
+
         <div class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div class="space-y-1">
             <div class="flex items-center gap-2">
@@ -444,6 +489,11 @@
             <div>
               <span id="res-model-label" class="text-xs text-gray-400">Geïdentificeerd model:</span>
               <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
+              <div id="res-model-parts-cta" class="mt-2 hidden">
+                <a id="res-model-parts-link" href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-600/20 hover:bg-orange-600/30 text-orange-400 border border-orange-500/30 text-xs font-semibold transition">
+                  <span>⚙️ Bekijk onderdelen voor dit model →</span>
+                </a>
+              </div>
             </div>
 
             <!-- MODEL ASSIST BLOCK -->
@@ -1127,6 +1177,10 @@
       const searchBtn = document.getElementById('search-btn');
       const inputEl = document.getElementById('code-input');
       const clearBtn = document.getElementById('clear-btn');
+      const tabParts = document.getElementById('tab-intent-parts');
+      const tabSerial = document.getElementById('tab-intent-serial');
+      const tabPartNo = document.getElementById('tab-intent-partno');
+      const searchHelperText = document.getElementById('search-helper-text');
       const resultCard = document.getElementById('result-card');
       const warningCard = document.getElementById('warning-card');
       const counterfeitCard = document.getElementById('counterfeit-card');
@@ -1145,6 +1199,100 @@
       let allSearchIdentities = [];
       fetch('/api/models').then(r => r.json()).then(data => { allSearchIdentities = data; }).catch(() => {});
       const decodeEndpoint = window.STIHL_CLIENT_CONFIG?.decodeEndpoint || '/api/decode';
+
+      function setActiveIntentTab(activeTab) {
+        [tabParts, tabSerial, tabPartNo].forEach(tab => {
+          if (!tab) return;
+          const isActive = (tab === activeTab);
+          if (isActive) {
+            tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-orange-500/40 bg-orange-600/20 text-orange-400 flex items-center gap-1.5 shadow-sm';
+            tab.setAttribute('aria-pressed', 'true');
+          } else {
+            tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5';
+            tab.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
+
+      function detectSearchIntent(raw) {
+        if (!raw || !raw.trim()) return 'empty';
+        const val = raw.trim().replace(/^STIHL[\s_\-]+/i, '').trim();
+        const digitsOnly = val.replace(/[^0-9]/g, '');
+
+        // 11 digits (or spaced like 1121 021 0800) -> Part number
+        if (digitsOnly.length === 11) {
+          return 'part';
+        }
+        // 9 digits without letters -> Serial number
+        if (digitsOnly.length === 9 && !/[a-zA-Z]/.test(val)) {
+          return 'serial';
+        }
+        // Classic 3-digit models like 020, 024, 026, 044, 066, etc.
+        if (/^0[0-9]{2}(\s*[a-zA-Z]+)?$/i.test(val)) {
+          return 'model';
+        }
+        // Common STIHL model prefixes or letters followed by numbers (e.g. MS 200, MS200, FS 55, BR 600)
+        if (/^(ms|fs|bg|br|ts|bt|ht|hs|hl|fc|km|mm|rt|se|sh|sg|re|fse|mse|bga|fsa|msa|hla|hsa|kma|tsa|rma|gta)\s*[-]?\s*\d+/i.test(val)) {
+          return 'model';
+        }
+        // Any string with letters + digits where letters lead (e.g. MS200, FS55)
+        if (/^[a-zA-Z]{1,4}\s*[-]?\s*\d+/i.test(val)) {
+          return 'model';
+        }
+        // 8-10 alphanumeric serial candidate
+        if (/^[A-Za-z0-9]{8,10}$/.test(val) && /[a-zA-Z]/.test(val) && /\d/.test(val) && digitsOnly.length >= 7) {
+          return 'serial';
+        }
+        // Part number pattern like 1121 021 or 1121-021-0800
+        if (/^\d{4}[\s.-]?\d{3}[\s.-]?\d{4}$/.test(val)) {
+          return 'part';
+        }
+        // If has letters and not a serial candidate, likely a model query
+        if (/[a-zA-Z]/.test(val)) {
+          return 'model';
+        }
+        // Other numeric length: 8-10 digits -> serial
+        if (digitsOnly.length >= 8 && digitsOnly.length <= 10) {
+          return 'serial';
+        }
+        return 'unknown';
+      }
+
+      function updateDynamicSearchButton() {
+        const val = inputEl ? inputEl.value : '';
+        const intent = detectSearchIntent(val);
+        const searchBtnText = document.getElementById('search-btn-text');
+
+        if (intent === 'model') {
+          if (searchBtnText) searchBtnText.innerText = 'Zoek onderdelen';
+          if (searchBtn) searchBtn.setAttribute('aria-label', 'Onderdelen voor model zoeken');
+          setActiveIntentTab(tabParts);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer een STIHL model in (bijv. MS 200 of FS 55) om passende onderdelen en onderhoudsartikelen te vinden.';
+          }
+        } else if (intent === 'part') {
+          if (searchBtnText) searchBtnText.innerText = 'Zoek onderdeel';
+          if (searchBtn) searchBtn.setAttribute('aria-label', 'Onderdeelnummer opzoeken');
+          setActiveIntentTab(tabPartNo);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer een 11-cijferig onderdeelnummer in om pasvorm en compatibele modellen te controleren.';
+          }
+        } else if (intent === 'serial') {
+          if (searchBtnText) searchBtnText.innerText = 'Controleer serienummer';
+          if (searchBtn) searchBtn.setAttribute('aria-label', 'Serienummer controleren');
+          setActiveIntentTab(tabSerial);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer het 9-cijferige serienummer in om bouwjaar, fabriek en bronstatus te controleren.';
+          }
+        } else {
+          if (searchBtnText) searchBtnText.innerText = 'Zoeken';
+          if (searchBtn) searchBtn.setAttribute('aria-label', 'Zoeken');
+          setActiveIntentTab(null);
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Typ een model voor onderdelen, een onderdeelnummer voor pasvorm, of een serienummer voor machine-identificatie.';
+          }
+        }
+      }
 
       function setVisibility(element, visible) {
         if (!element) return;
@@ -1407,6 +1555,29 @@
               badgeEl.innerText = '✓ Officiële STIHL-bron';
             }
           }
+          const partsPath = res.canonicalPartsPath;
+          const partsBtn = document.getElementById('model-card-parts-btn');
+          const bottomPartsBtn = document.getElementById('model-card-bottom-parts-btn');
+          const partsBanner = document.getElementById('model-card-parts-banner');
+          const partsBtnContext = document.getElementById('model-card-parts-btn-context');
+          if (partsBtnContext) {
+            partsBtnContext.innerText = `voor ${modelName}`;
+          }
+          if (partsPath) {
+            if (partsBtn) {
+              partsBtn.href = partsPath;
+              partsBtn.classList.remove('hidden');
+            }
+            if (bottomPartsBtn) {
+              bottomPartsBtn.href = partsPath;
+            }
+            if (partsBanner) {
+              partsBanner.classList.remove('hidden');
+            }
+          } else {
+            if (partsBtn) partsBtn.classList.add('hidden');
+            if (partsBanner) partsBanner.classList.add('hidden');
+          }
 
           modelCard.classList.remove('hidden');
           return;
@@ -1426,6 +1597,9 @@
         const serial = res.cleaned;
         currentSerial = serial;
         const formatted = `${serial[0]} ${serial.slice(1,4)} ${serial.slice(4,7)} ${serial.slice(7)}`;
+
+        const resPartsCta = document.getElementById('res-model-parts-cta');
+        if (resPartsCta) resPartsCta.classList.add('hidden');
 
         const isBattery = res.driveClassification?.power_source === 'BATTERY';
         const fuelTypeLabel = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
@@ -1459,6 +1633,7 @@
             serialSpecSummary.classList.remove('hidden');
           }
           if (obsCard) obsCard.classList.remove('hidden');
+          if (resPartsCta) resPartsCta.classList.add('hidden');
 
           resultCard.classList.remove('hidden');
           return;
@@ -1479,6 +1654,17 @@
                 : (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL'
                   ? 'Model bevestigd door gebruiker:'
                   : (res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED' ? 'Geïdentificeerd model:' : 'Modelidentificatie:'))));
+        }
+
+        const serialPartsPath = res.canonicalPartsPath;
+        const resPartsLink = document.getElementById('res-model-parts-link');
+        if (resPartsCta && resPartsLink) {
+          if (serialPartsPath) {
+            resPartsLink.href = serialPartsPath;
+            resPartsCta.classList.remove('hidden');
+          } else {
+            resPartsCta.classList.add('hidden');
+          }
         }
 
         // Model Assist handling
@@ -1788,7 +1974,68 @@
       }
 
       if (searchBtn) searchBtn.addEventListener('click', handleDecode);
-      if (inputEl) inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') handleDecode(); });
+      if (inputEl) {
+        inputEl.addEventListener('input', updateDynamicSearchButton);
+        inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') handleDecode(); });
+      }
+
+      // Search Intent Buttons Listeners
+      if (tabParts) {
+        tabParts.addEventListener('click', () => {
+          setActiveIntentTab(tabParts);
+          if (inputEl) {
+            inputEl.placeholder = 'Bijv. MS 200, FS 55, MS 261...';
+            inputEl.focus();
+          }
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer een STIHL model in (bijv. MS 200 of FS 55) om passende onderdelen en onderhoudsartikelen te vinden.';
+          }
+          if (inputEl && inputEl.value.trim()) {
+            updateDynamicSearchButton();
+          } else {
+            const searchBtnText = document.getElementById('search-btn-text');
+            if (searchBtnText) searchBtnText.innerText = 'Zoek onderdelen';
+          }
+        });
+      }
+
+      if (tabSerial) {
+        tabSerial.addEventListener('click', () => {
+          setActiveIntentTab(tabSerial);
+          if (inputEl) {
+            inputEl.placeholder = 'Bijv. 163130555 of 184592301 (9 cijfers)...';
+            inputEl.focus();
+          }
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer het 9-cijferige serienummer in om bouwjaar, fabriek en bronstatus te controleren.';
+          }
+          if (inputEl && inputEl.value.trim()) {
+            updateDynamicSearchButton();
+          } else {
+            const searchBtnText = document.getElementById('search-btn-text');
+            if (searchBtnText) searchBtnText.innerText = 'Controleer serienummer';
+          }
+        });
+      }
+
+      if (tabPartNo) {
+        tabPartNo.addEventListener('click', () => {
+          setActiveIntentTab(tabPartNo);
+          if (inputEl) {
+            inputEl.placeholder = 'Bijv. 1121 021 0800 of 1123 020 1200...';
+            inputEl.focus();
+          }
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Voer een 11-cijferig onderdeelnummer in om pasvorm en compatibele modellen te controleren.';
+          }
+          if (inputEl && inputEl.value.trim()) {
+            updateDynamicSearchButton();
+          } else {
+            const searchBtnText = document.getElementById('search-btn-text');
+            if (searchBtnText) searchBtnText.innerText = 'Zoek onderdeel';
+          }
+        });
+      }
 
       // Parameter Ingestion (Phase 49A)
       try {
@@ -1796,6 +2043,7 @@
         const initialCode = (urlParams.get('q') || urlParams.get('s') || urlParams.get('code') || '').trim();
         if (initialCode && inputEl) {
           inputEl.value = initialCode;
+          updateDynamicSearchButton();
           handleDecode();
         }
       } catch (e) {}
@@ -1811,7 +2059,17 @@
           if (safePreviewCard) safePreviewCard.classList.add('hidden');
           const assistContainer = document.getElementById('model-assist-container');
           if (assistContainer) assistContainer.classList.add('hidden');
-          inputEl.focus();
+          const resPartsCta = document.getElementById('res-model-parts-cta');
+          if (resPartsCta) resPartsCta.classList.add('hidden');
+          if (searchHelperText) {
+            searchHelperText.innerText = 'Typ een model voor onderdelen, een onderdeelnummer voor pasvorm, of een serienummer voor machine-identificatie.';
+          }
+          if (inputEl) {
+            inputEl.placeholder = 'Bijv. MS 200, FS 55, 1123 020 1200 of 163130555';
+            inputEl.focus();
+          }
+          setActiveIntentTab(null);
+          updateDynamicSearchButton();
         });
       }
 
@@ -1820,6 +2078,7 @@
         assistResetBtn.addEventListener('click', () => {
           if (currentSerial) {
             inputEl.value = currentSerial;
+            updateDynamicSearchButton();
             handleDecode();
           }
         });
@@ -1831,6 +2090,7 @@
           const code = btn.getAttribute('data-code');
           if (code && inputEl) {
             inputEl.value = code;
+            updateDynamicSearchButton();
             handleDecode();
             inputEl.focus();
           }

@@ -26,6 +26,7 @@ import {
 import { buildSafeTechnicalPreview } from './SafeTechnicalPreviewResolver.js';
 import { resolvePlantRecord } from './plantResolver.js';
 import { PartCatalogResolver } from './parts/PartCatalogResolver.js';
+import { getSafeModelPath, getSafeModelPartsPath } from './publicationRules.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
   const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
@@ -344,6 +345,11 @@ export function analyzeModelQuery(modelStr, database) {
         ? 'RELATED_MODEL_NO_SPEC_ATTACH'
         : 'UNKNOWN';
 
+  const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, database.models || []) : null);
+  const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
+  const hasCatalogParts = canonicalModelObj ? PartCatalogResolver.hasPartsForModel(canonicalModelObj, database) : false;
+  const canonicalPartsPath = (canonicalModelObj && hasCatalogParts) ? getSafeModelPartsPath(canonicalModelObj) : null;
+
   return {
     success: true,
     type: 'MODEL_DECODE',
@@ -353,6 +359,10 @@ export function analyzeModelQuery(modelStr, database) {
     category,
     model: resolvedModelName,
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
+    canonicalModelPath,
+    canonicalPartsPath,
+    modelSlug: canonicalModelObj?.slug || null,
+    categorySlug: canonicalModelObj?.category_slug || null,
     sourceStatus,
     sourceStatusLabel,
     driveClassification,
@@ -621,6 +631,14 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   const inputAliasMatched = Boolean(options.officialAlias);
   const inputAliasType = options.officialAlias ? options.officialAlias.alias_type : null;
   const aliasSource = options.officialAlias ? options.officialAlias.source : null;
+  const targetPartsModel = anchorCanonicalModel || confirmedModel;
+  const targetHasParts = targetPartsModel ? PartCatalogResolver.hasPartsForModel(targetPartsModel, database) : false;
+  const anchorCanonicalPartsPath = (targetPartsModel && targetHasParts)
+    ? getSafeModelPartsPath(targetPartsModel)
+    : null;
+  const anchorCanonicalModelPath = anchorCanonicalModel
+    ? getSafeModelPath(anchorCanonicalModel)
+    : (confirmedModel ? getSafeModelPath(confirmedModel) : null);
 
   return {
     success: true,
@@ -638,6 +656,8 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     resolvedModel: resolvedModelName,
     confirmedModel: confirmedModel ? confirmedModel.model_name : null,
     exactModel,
+    canonicalModelPath: anchorCanonicalModelPath,
+    canonicalPartsPath: anchorCanonicalPartsPath,
     identityStatus,
     identitySource,
     modelIdentityStatus: identityStatus,
