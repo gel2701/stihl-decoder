@@ -15,6 +15,7 @@ import {
   getCanonicalPartSeriesCodes
 } from '../publicationRules.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
+import { getPartIndexationPilotList } from '../seo/PartIndexationPilot.js';
 
 export function collectSitemapDiagnostics(database = {}) {
   const models = database.models || [];
@@ -93,6 +94,12 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
   const seriesCodes = getCanonicalPartSeriesCodes(database);
   seriesCodes.forEach(code => {
     urls.push({ loc: `${baseUrl}/onderdeelnummer/stihl-${code}/`, priority: '0.6', changefreq: 'monthly' });
+  });
+
+  // 9. Individual Part Indexation Pilot (Explicit Allowlist Only, <= 50)
+  const pilotParts = getPartIndexationPilotList();
+  pilotParts.forEach(p => {
+    urls.push({ loc: `${baseUrl}/onderdeelnummer/${p.part_number}/`, priority: '0.6', changefreq: 'monthly' });
   });
 
   // Build XML string with lastmod support only when authentic timestamp exists

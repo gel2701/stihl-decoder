@@ -142,10 +142,10 @@ test('Phase 54C: Empty Model Parts Pages Strictly Gated to "noindex, follow"', (
   }
 });
 
-test('Phase 54C: Individual Part Detail Pages Retain Strict "noindex, follow" & Breadcrumbs Schema', () => {
-  const testParts = ['00000071043', '11231602050', '11236403200', '99999999999'];
+test('Phase 54C: Non-Pilot Part Detail Pages Retain Strict "noindex, follow" & Breadcrumbs Schema', () => {
+  const nonPilotParts = ['00000071043', '90223410980', '92143200700', '99999999999'];
 
-  for (const partNo of testParts) {
+  for (const partNo of nonPilotParts) {
     const html = renderPartDetailPageHtml(partNo, database, PRIMARY_ORIGIN);
 
     assert.match(html, /<meta\s+name="robots"\s+content="noindex, follow"/, `Part ${partNo} must be 'noindex, follow'`);
@@ -162,7 +162,7 @@ test('Phase 54C: Internal Linking from Model Guide (/kettingzagen/ms-200/) to Pa
   assert.match(guideHtml, /Bekijk onderdelen voor de STIHL MS 200 \/ 020 T/);
 });
 
-test('Phase 54C: Sitemap Generator Gating (Zero Empty Model Parts, Zero Individual Parts)', () => {
+test('Phase 54C: Sitemap Generator Gating (Zero Empty Model Parts, Exactly 50 Pilot Parts)', () => {
   const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
 
   // Hub present
@@ -180,9 +180,9 @@ test('Phase 54C: Sitemap Generator Gating (Zero Empty Model Parts, Zero Individu
   assert.strictEqual(sitemapModelParts.length, expectedIndexableModelParts, 'Sitemap model parts count must match indexable parts models');
   assert.strictEqual(sitemapModelParts.length, 58, 'Exactly 58 model parts pages in sitemap');
 
-  // Zero individual part detail pages in sitemap
-  const sitemapPartsLeak = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g);
-  assert.strictEqual(sitemapPartsLeak, null, 'Sitemap must contain zero individual part detail pages');
+  // Exactly 50 pilot part detail pages in sitemap (zero unapproved parts)
+  const sitemapParts = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
+  assert.strictEqual(sitemapParts.length, 50, 'Sitemap must contain exactly 50 pilot part detail pages');
 });
 
 test('Phase 54C: Canonical Parts Foundation Invariants Unchanged', () => {

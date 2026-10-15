@@ -23,6 +23,11 @@ import {
   getSafeModelPartsPath
 } from '../src/publicationRules.js';
 import { PartIndexReadinessClassifier } from '../src/seo/PartIndexReadinessClassifier.js';
+import {
+  isPartIndexationPilotEnabled,
+  getPartIndexationPilotList,
+  getPartIndexationPilotSet
+} from '../src/seo/PartIndexationPilot.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -228,19 +233,28 @@ for (const rawPart of sampleParts) {
   const partHtml = renderPartDetailPageHtml(rawPart, database, PRIMARY_ORIGIN);
   const robots = partHtml.match(/<meta\s+name="robots"\s+content="([^"]+)"/)?.[1];
   const canonical = partHtml.match(/<link\s+rel="canonical"\s+href="([^"]+)"/)?.[1];
+  const isPilot = isPartIndexationPilotEnabled(rawPart);
 
-  if (robots !== 'noindex, follow') {
-    throw new Error(`🚨 CRITICAL FAIL-CLOSED REGRESSION: Part ${rawPart} is NOT 'noindex, follow' (got ${robots})!`);
+  if (isPilot) {
+    if (robots !== 'index, follow') {
+      throw new Error(`🚨 Pilot part ${rawPart} expected 'index, follow' but got ${robots}`);
+    }
+    audit.indexable_count++;
+  } else {
+    if (robots !== 'noindex, follow') {
+      throw new Error(`🚨 CRITICAL FAIL-CLOSED REGRESSION: Non-pilot part ${rawPart} is NOT 'noindex, follow' (got ${robots})!`);
+    }
+    audit.noindex_count++;
   }
+
   if (!canonical || !canonical.startsWith('https://www.stihldecoder.nl/onderdeelnummer/')) {
     throw new Error(`🚨 Canonical host mismatch for part ${rawPart}: ${canonical}`);
   }
   if (!partHtml.includes('BreadcrumbList')) {
     audit.missing_breadcrumb++;
   }
-  audit.noindex_count++;
 }
-console.log(`  Sampled ${sampleParts.length} Part Detail pages. All strictly confirmed 'noindex, follow'.`);
+console.log(`  Sampled ${sampleParts.length} Part Detail pages. Pilot parts confirmed 'index, follow', non-pilot strictly 'noindex, follow'.`);
 console.log('  ✅ Part Detail Protection Policy Confirmed.\n');
 
 // 6. Audit Sitemap Generator Coverage
@@ -253,11 +267,14 @@ const sitemapSeriesUrls = sitemapUrls.filter((u) => u.includes('/onderdeelnummer
 const sitemapHubPresent = sitemapUrls.includes(`${PRIMARY_ORIGIN}/onderdeelnummer/`);
 const sitemapIndividualPartUrls = sitemapUrls.filter((u) => u.match(/\/onderdeelnummer\/\d{11}\//));
 
+const pilotList = getPartIndexationPilotList();
+const pilotSet = getPartIndexationPilotSet();
+
 console.log(`  Total URLs in sitemap: ${sitemapUrls.length}`);
 console.log(`  Parts Hub in sitemap: ${sitemapHubPresent ? 'YES' : 'NO'}`);
 console.log(`  Series pages in sitemap: ${sitemapSeriesUrls.length}`);
 console.log(`  Model parts pages in sitemap: ${sitemapModelPartsUrls.length}`);
-console.log(`  Individual part details in sitemap: ${sitemapIndividualPartUrls.length} (MUST BE 0)`);
+console.log(`  Individual part details in sitemap: ${sitemapIndividualPartUrls.length} (MUST BE EXACT PILOT COUNT: ${pilotList.length} <= 50)`);
 
 if (!sitemapHubPresent) throw new Error('Parts hub missing from sitemap.xml');
 if (sitemapSeriesUrls.length !== seriesCodes.length) throw new Error(`Series pages count in sitemap mismatch: got ${sitemapSeriesUrls.length}, expected ${seriesCodes.length}`);
@@ -283,7 +300,29 @@ for (const actualUrl of actualModelPartsSet) {
   }
 }
 
-if (sitemapIndividualPartUrls.length > 0) throw new Error('🚨 CRITICAL LEAK: Individual part detail pages found in sitemap.xml!');
+// Phase 54D: Individual part detail pages in sitemap must match pilot allowlist exactly
+if (sitemapIndividualPartUrls.length !== pilotList.length) {
+  throw new Error(`🚨 Pilot parts sitemap count mismatch: expected ${pilotList.length}, got ${sitemapIndividualPartUrls.length}`);
+}
+if (sitemapIndividualPartUrls.length > 50) {
+  throw new Error(`🚨 CRITICAL MASS INDEXATION TRIPWIRE: Sitemap parts count (${sitemapIndividualPartUrls.length}) exceeds 50!`);
+}
+
+const sitemapPartNumbers = new Set(sitemapIndividualPartUrls.map((u) => {
+  const m = u.match(/\/onderdeelnummer\/(\d{11})\//);
+  return m ? m[1] : null;
+}).filter(Boolean));
+
+for (const p of pilotList) {
+  if (!sitemapPartNumbers.has(p.part_number)) {
+    throw new Error(`🚨 Pilot part ${p.part_number} missing from sitemap.xml!`);
+  }
+}
+for (const pNum of sitemapPartNumbers) {
+  if (!pilotSet.has(pNum)) {
+    throw new Error(`🚨 CRITICAL LEAK: Non-pilot part ${pNum} found in sitemap.xml!`);
+  }
+}
 
 console.log('  ✅ Sitemap Generator Verification 100% Clean.\n');
 
