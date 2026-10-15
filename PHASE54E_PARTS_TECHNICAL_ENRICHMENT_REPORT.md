@@ -1,4 +1,4 @@
-# Phase 54E / Phase 54E-R1 — Parts Technical Data Integrity & Enrichment Report
+# Phase 54E / Phase 54E-R1 / Phase 54E-R2 — Parts Technical Data Integrity & Enrichment Report
 
 **Repository**: `gel2701/stihl-decoder`  
 **Production**: `https://www.stihldecoder.nl`  
@@ -11,19 +11,19 @@
 
 ## 1. Executive Summary
 
-Phase 54E and Phase 54E-R1 establish an authoritative, fail-closed technical data integrity layer for the STIHL parts catalog. Rather than expanding SEO indexing, affiliate links, or performing web harvesting, this phase systematically resolves technical data quality issues across diagram positions, section taxonomies, replacement supersessions, and part name encodings, while strictly preserving core invariants and historical provenance.
+Phase 54E, Phase 54E-R1, and Phase 54E-R2 establish an authoritative, fail-closed technical data integrity layer for the STIHL parts catalog. Rather than expanding SEO indexing, affiliate links, or performing web harvesting, this phase systematically resolves technical data quality issues across diagram positions, section taxonomies, replacement supersessions, and part name encodings, while strictly preserving core invariants and historical provenance.
 
 ### Core Achievements:
-1. **Semantic Diagram Position Correction**:
-   Eliminated placeholder values (`-1`, `0`, `POS_UNSPECIFIED`, `OFFICIAL_REF`, and misplaced section strings) from being counted as valid diagram positions. Centralized validation in `PartNormalizer.isMeaningfulDiagramPosition(val)`.
-   - Measured real coverage: 16,600 parts (97.18%) and 169,990 fitments (97.08%) possess genuine diagram positions.
+1. **Semantic Diagram Position Correction & Independent Accounting (R2 Hardening)**:
+   Eliminated placeholder values (`-1`, `0`, `POS_UNSPECIFIED`, `OFFICIAL_REF`, and misplaced section strings) from being counted as valid diagram positions. Centralized validation in `PartNormalizer.isMeaningfulDiagramPosition(val)` and `PartNormalizer.isRawDiagramPosition(val)`.
+   - Measured real coverage independently from the raw field: 16,600 parts (97.18%) and 169,990 fitments (97.08%) possess genuine diagram positions.
    - Identified and excluded 5,116 placeholder fitments (2.92%) and 482 parts without real positions (2.82%).
-   - Reclassified metrics to clearly distinguish raw string presence from meaningful values.
+   - Independently verified field population: `FITMENTS_WITH_RAW_POSITION_VALUE = 175,106`, `FITMENTS_WITHOUT_RAW_POSITION_VALUE = 0`, `RAW_PLACEHOLDER_POSITIONS = 5,116`, `MISSING_POSITION_VALUES = 0`.
 2. **Deterministic Section Normalization**:
    Mapped 41 raw casing and whitespace variations to 91 canonical Title Case sections via `src/parts/SectionNormalizer.js` and `data/parts_section_aliases.json`. Resolved 13 apparent conflicts to 0 semantic conflicts. Safely isolated unmapped sections as `"Unresolved Diagram Section"`.
-3. **Explicit Supersessions DAG & Independent Provenance Scoping (Phase 54E-R1 Hardening)**:
+3. **Explicit Supersessions DAG & Exact-Pair Provenance Verification (R1 & R2 Hardening)**:
    Grounding 22 explicit replacement relations in repository evidence independently verified against `data/phase35c31_authenticity_audit.json`:
-   - 11 relations reconfirmed against authenticated official STIHL Technical Information (TI) service bulletins.
+   - 11 relations reconfirmed against authenticated official STIHL Technical Information (TI) service bulletins, with verified exact `from_part` match, exact `to_part` match, explicit replacement semantics, and directional safety.
    - 11 relations with unconfirmed provenance safely downgraded to `EVIDENCE_ONLY_SCOPE_UNRESOLVED` with `public_active = false`.
    - Serial-scoped relations (`42034001301`, `11320300401`, `00003503500`, `11280300404`) carry explicit serial thresholds (`operator: GTE`, `serial: 249904357`, `246534711`, etc.) and are **never** propagated unconditionally to fitments (`SERIAL_SCOPED_GLOBALIZATION = 0`).
    - Model-scoped relation `11281621000 -> 11281621001` is strictly confined to its documented machine scope (`ms_440` and `ms_460`, exactly 6 fitments).
@@ -56,16 +56,27 @@ Phase 54E and Phase 54E-R1 establish an authoritative, fail-closed technical dat
 | **FITMENTS_WITH_MEANINGFUL_SECTION** | 2,798 | Fitments with canonical, meaningful diagram section |
 | **PARTS_WITH_RAW_POSITION_VALUE** | 17,082 | Parts with non-empty position field in raw fitments |
 | **PARTS_WITH_MEANINGFUL_POSITION** | 16,600 (97.18%) | Parts with genuine alphanumeric diagram positions |
+| **PARTS_WITHOUT_RAW_POSITION_VALUE** | 0 | Parts lacking raw position field |
 | **PARTS_WITHOUT_MEANINGFUL_POSITION** | 482 (2.82%) | Parts lacking meaningful diagram positions |
 | **FITMENTS_WITH_RAW_POSITION_VALUE** | 175,106 | Fitments with non-empty position string |
 | **FITMENTS_WITH_MEANINGFUL_POSITION** | 169,990 (97.08%) | Fitments with genuine alphanumeric diagram positions |
-| **PLACEHOLDER_POSITIONS_EXCLUDED** | 5,116 (2.92%) | Placeholders excluded (`-1`, `0`, `POS_UNSPECIFIED`, etc.) |
+| **FITMENTS_WITHOUT_RAW_POSITION_VALUE** | 0 | Fitments lacking raw position string |
+| **FITMENTS_WITHOUT_MEANINGFUL_POSITION** | 5,116 (2.92%) | Fitments lacking meaningful diagram positions |
+| **RAW_PLACEHOLDER_POSITIONS** | 5,116 | Raw positions that are placeholders (`-1`, `0`, `POS_UNSPECIFIED`, etc.) |
+| **MISSING_POSITION_VALUES** | 0 | Null or empty position fields in fitment table |
+| **PLACEHOLDER_POSITIONS_EXCLUDED** | 5,116 | Placeholders excluded from meaningful diagram positions |
 | **RAW_SECTION_NAMES** | 124 | Distinct raw section strings observed across fitments |
 | **CANONICAL_SECTION_NAMES** | 91 (+ 1 fallback) | Distinct standardized Title Case sections |
 | **SECTION_CONFLICTS** | 0 | Active semantic section conflicts |
 | **POSITION_CONFLICTS** | 0 | Active diagram position conflicts |
 | **TOTAL_SUPERSESSION_EVIDENCE_RELATIONS** | 22 | Total documented replacement relations |
-| **PROVENANCE_RECONFIRMED** | 11 | Independently authenticated against official TI corpus |
+| **SOURCE_DOCUMENT_FOUND** | 22 | Relations whose source document exists in evidence corpus |
+| **AUTHENTICATED_OFFICIAL** | 11 | Relations whose document is verified AUTHENTICATED_OFFICIAL |
+| **EXACT_FROM_PART_MATCH** | 11 | Authenticated relations with exact from_part in evidence snippet |
+| **EXACT_TO_PART_MATCH** | 11 | Authenticated relations with exact to_part in evidence snippet |
+| **EXPLICIT_REPLACEMENT_SEMANTICS** | 11 | Authenticated relations with explicit replacement semantics |
+| **DIRECTION_CONFIRMED** | 11 | Authenticated relations with verified replacement direction |
+| **PROVENANCE_RECONFIRMED** | 11 | Fully authenticated exact-pair relations |
 | **PROVENANCE_NOT_RECONFIRMED** | 11 | Unconfirmed provenance (downgraded to inactive evidence) |
 | **SCOPED_EXPLICIT_RELATIONS** | 11 | Relations with explicit model or serial qualification |
 | **SCOPE_UNRESOLVED_RELATIONS** | 11 | Downgraded relations with unresolved scope |
@@ -134,25 +145,76 @@ Phase 54E-R1 specifically corrected two critical data integrity blockers identif
 
 ---
 
-## 5. Verification Suite Results
+## 5. Phase 54E-R2 Exact Provenance Pair & Raw Metric Integrity
 
-### 5.1 Unit & Contract Tests (`npm test`)
+Phase 54E-R2 addresses two substantive integrity requirements: exact evidence pair matching with directional safety, and independent measurement of diagram position field metrics.
+
+### Blocker 1: Exact Supersession Pair Provenance & Directional Verification
+- **Root Cause**: The audit previously checked only that the source document was authenticated and contained general replacement semantics, without proving that both `from_part` and `to_part` appeared in the specific evidence snippet or verifying replacement direction.
+- **Remediation**:
+  1. Implemented `PartNormalizer.normalizeEvidencePartNumber()` to canonicalize part numbers in evidence text (11 digits) without altering stored raw evidence.
+  2. Implemented `PartNormalizer.verifyExactPairInEvidence(snippet, fromPart, toPart)`:
+     - Confirms exact presence of `from_part` and `to_part` in the authenticated snippet.
+     - Confirms explicit replacement semantics (`replaced by`, `will be replaced by`, `has been replaced by`, `superseded by`, `replaces`, `deleted and replaced by`).
+     - Confirms replacement direction (Pattern A: `from_part ... replaced/superseded by ... to_part`; Pattern B: `to_part ... replaces ... from_part`). Rejects reversed relations (`to_part -> from_part`).
+  3. Revalidated all 22 relations against the independent `data/phase35c31_authenticity_audit.json` corpus:
+     - `SOURCE_DOCUMENT_FOUND = 22`
+     - `AUTHENTICATED_OFFICIAL = 11`
+     - `EXACT_FROM_PART_MATCH = 11`
+     - `EXACT_TO_PART_MATCH = 11`
+     - `EXPLICIT_REPLACEMENT_SEMANTICS = 11`
+     - `DIRECTION_CONFIRMED = 11`
+     - `PROVENANCE_RECONFIRMED = 11`
+     - `PROVENANCE_NOT_RECONFIRMED = 11`
+  4. Added synthetic negative fixtures proving rejection of:
+     - Wrong `from_part`
+     - Wrong `to_part`
+     - Numbers present without replacement semantics
+     - Reversed relation direction
+  5. Added real positive tests for `42034001301 -> 42034001302`, `11320300401 -> 11320300402`, and `11281621000 -> 11281621001`.
+
+### Blocker 2: Raw Diagram Position Metrics & Accounting Integrity
+- **Root Cause**: The audit previously used section counts for raw position and assumed raw position equaled total fitment count without directly inspecting the `diagram_position` column.
+- **Remediation**:
+  1. Defined `PartNormalizer.isRawDiagramPosition(value)` strictly as `diagram_position IS NOT NULL AND String(diagram_position).trim() !== ''`.
+  2. Measured raw field population independently from semantic validity:
+     - `FITMENTS_WITH_RAW_POSITION_VALUE = 175,106`
+     - `FITMENTS_WITH_MEANINGFUL_POSITION = 169,990`
+     - `FITMENTS_WITHOUT_RAW_POSITION_VALUE = 0`
+     - `FITMENTS_WITHOUT_MEANINGFUL_POSITION = 5,116`
+     - `PARTS_WITH_RAW_POSITION_VALUE = 17,082`
+     - `PARTS_WITH_MEANINGFUL_POSITION = 16,600`
+     - `PARTS_WITHOUT_RAW_POSITION_VALUE = 0`
+     - `PARTS_WITHOUT_MEANINGFUL_POSITION = 482`
+     - `RAW_PLACEHOLDER_POSITIONS = 5,116`
+     - `MISSING_POSITION_VALUES = 0`
+     - `PLACEHOLDER_POSITIONS_EXCLUDED = 5,116`
+  3. Enforced mathematical consistency invariants:
+     - `FITMENTS_WITH_RAW_POSITION_VALUE >= FITMENTS_WITH_MEANINGFUL_POSITION`
+     - `PARTS_WITH_RAW_POSITION_VALUE >= PARTS_WITH_MEANINGFUL_POSITION`
+     - `FITMENTS_WITH_RAW_POSITION_VALUE + FITMENTS_WITHOUT_RAW_POSITION_VALUE = FITMENTS`
+
+---
+
+## 6. Verification Suite Results
+
+### 6.1 Unit & Contract Tests (`npm test`)
 - Total Suites: 36
 - Passed: 36 (100%)
 - Failed: 0
-- Suite `tests/phase54e_parts_technical_enrichment.test.js`: 11/11 tests passed cleanly including dedicated R1 regression tests.
+- Suite `tests/phase54e_parts_technical_enrichment.test.js`: 13/13 tests passed cleanly including dedicated R1 and R2 regression tests.
 
-### 5.2 Browser End-to-End Tests (`npm run test:e2e`)
+### 6.2 Browser End-to-End Tests (`npm run test:e2e`)
 - Framework: Playwright (Chromium)
 - Tests: 19 user journeys across homepage, routes, and parts integration
 - Passed: 19 (100%)
 - Failed: 0
 
-### 5.3 Production Audits
+### 6.3 Production Audits
 - `npm run audit:parts-catalog`: 1,429 valid entities, 104 non-machines rejected cleanly
 - `node scripts/audit_public_trust_claims.mjs`: 258 pages rendered, 18,393 links, 0 broken links, 0 unsupported claims
 - `node scripts/audit_parts_seo.mjs`: 88 indexable URLs audited, 37 noindexed URLs audited, 0 orphan pages
 - `node scripts/audit_amazon_affiliate_links.mjs`: 0 ASINs, 17,082 search fallbacks, 0 unverified claims
 - `node scripts/audit_part_indexation_pilot.mjs`: 50 pilot parts confirmed, negative controls strictly noindex, 0 metadata duplicates
-- `node scripts/audit_parts_technical_enrichment.mjs`: All Phase 54E-R1 invariants verified cleanly (0 errors)
+- `node scripts/audit_parts_technical_enrichment.mjs`: All Phase 54E-R2 invariants verified cleanly (0 errors)
 - `git diff --check`: 0 syntax or whitespace errors

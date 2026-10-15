@@ -370,3 +370,157 @@ test('Phase 54E: Strict Freezes (Phase 54D SEO Pilot, Amazon Links, Invariants)'
   const directAsins = (offersData.offers || []).filter(o => o.asin);
   assert.strictEqual(directAsins.length, 0, 'VERIFIED_DIRECT_ASIN_LINKS must remain 0');
 });
+
+test('Phase 54E-R2: Diagram Position Accounting & Field Population Integrity', () => {
+  // Helper test for isRawDiagramPosition
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition(null), false);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition(undefined), false);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition(''), false);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('   '), false);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('1'), true);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('2A'), true);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('-1'), true);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('0'), true);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('POS_UNSPECIFIED'), true);
+  assert.strictEqual(PartNormalizer.isRawDiagramPosition('OFFICIAL_REF'), true);
+
+  const fitmentRows = db.prepare('SELECT part_number, diagram_position FROM model_part_fitments').all();
+  const totalParts = db.prepare('SELECT COUNT(*) as count FROM parts').get().count;
+  const totalFitments = fitmentRows.length;
+
+  let fitmentsWithRawPosition = 0;
+  let fitmentsWithoutRawPosition = 0;
+  let fitmentsWithMeaningfulPosition = 0;
+  let fitmentsWithoutMeaningfulPosition = 0;
+  let rawPlaceholderPositions = 0;
+  let missingPositionValues = 0;
+
+  const partsWithRawPosition = new Set();
+  const partsWithMeaningfulPosition = new Set();
+
+  for (const f of fitmentRows) {
+    const hasRaw = PartNormalizer.isRawDiagramPosition(f.diagram_position);
+    const hasMeaningful = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+
+    if (hasRaw) {
+      fitmentsWithRawPosition++;
+      partsWithRawPosition.add(f.part_number);
+    } else {
+      fitmentsWithoutRawPosition++;
+      missingPositionValues++;
+    }
+
+    if (hasMeaningful) {
+      fitmentsWithMeaningfulPosition++;
+      partsWithMeaningfulPosition.add(f.part_number);
+    } else {
+      fitmentsWithoutMeaningfulPosition++;
+    }
+
+    if (hasRaw && !hasMeaningful) {
+      rawPlaceholderPositions++;
+    }
+  }
+
+  const partsWithoutRawPosition = totalParts - partsWithRawPosition.size;
+  const partsWithoutMeaningfulPosition = totalParts - partsWithMeaningfulPosition.size;
+  const placeholderPositionsExcluded = rawPlaceholderPositions;
+
+  // Assertions
+  assert.strictEqual(fitmentsWithRawPosition, 175106, 'FITMENTS_WITH_RAW_POSITION_VALUE must be 175106');
+  assert.strictEqual(fitmentsWithMeaningfulPosition, 169990, 'FITMENTS_WITH_MEANINGFUL_POSITION must be 169990');
+  assert.strictEqual(fitmentsWithoutRawPosition, 0, 'FITMENTS_WITHOUT_RAW_POSITION_VALUE must be 0');
+  assert.strictEqual(fitmentsWithoutMeaningfulPosition, 5116, 'FITMENTS_WITHOUT_MEANINGFUL_POSITION must be 5116');
+
+  assert.strictEqual(partsWithRawPosition.size, 17082, 'PARTS_WITH_RAW_POSITION_VALUE must be 17082');
+  assert.strictEqual(partsWithMeaningfulPosition.size, 16600, 'PARTS_WITH_MEANINGFUL_POSITION must be 16600');
+  assert.strictEqual(partsWithoutRawPosition, 0, 'PARTS_WITHOUT_RAW_POSITION_VALUE must be 0');
+  assert.strictEqual(partsWithoutMeaningfulPosition, 482, 'PARTS_WITHOUT_MEANINGFUL_POSITION must be 482');
+
+  assert.strictEqual(rawPlaceholderPositions, 5116, 'RAW_PLACEHOLDER_POSITIONS must be 5116');
+  assert.strictEqual(missingPositionValues, 0, 'MISSING_POSITION_VALUES must be 0');
+  assert.strictEqual(placeholderPositionsExcluded, 5116, 'PLACEHOLDER_POSITIONS_EXCLUDED must be 5116');
+
+  // Accounting consistency
+  assert.ok(fitmentsWithRawPosition >= fitmentsWithMeaningfulPosition, 'FITMENTS_WITH_RAW_POSITION_VALUE >= FITMENTS_WITH_MEANINGFUL_POSITION');
+  assert.ok(partsWithRawPosition.size >= partsWithMeaningfulPosition.size, 'PARTS_WITH_RAW_POSITION_VALUE >= PARTS_WITH_MEANINGFUL_POSITION');
+  assert.strictEqual(fitmentsWithRawPosition + fitmentsWithoutRawPosition, totalFitments, 'Raw + without raw must equal total fitments');
+});
+
+test('Phase 54E-R2: Exact Supersession Pair Provenance & Directional Verification (Synthetic & Real Positive)', () => {
+  // 1. Helper test: normalizeEvidencePartNumber
+  assert.strictEqual(PartNormalizer.normalizeEvidencePartNumber('4203 400 1301'), '42034001301');
+  assert.strictEqual(PartNormalizer.normalizeEvidencePartNumber('4203-400-1301'), '42034001301');
+  assert.strictEqual(PartNormalizer.normalizeEvidencePartNumber('42034001301'), '42034001301');
+  assert.strictEqual(PartNormalizer.normalizeEvidencePartNumber('4203 400'), null);
+  assert.strictEqual(PartNormalizer.normalizeEvidencePartNumber(null), null);
+
+  // 2. Synthetic negative fixtures
+  const officialSnippet = 'The previous ignition module 4203 400 1301 will be replaced from serial number 2 49 904 357 by a new ignition module 4203 400 1302.';
+
+  // Synthetic Negative A: wrong from_part
+  const negA = PartNormalizer.verifyExactPairInEvidence(officialSnippet, '99999999999', '42034001302');
+  assert.strictEqual(negA.hasFrom, false);
+  assert.strictEqual(negA.hasTo, true);
+  assert.strictEqual(negA.directionConfirmed, false);
+  assert.strictEqual(negA.valid, false);
+
+  // Synthetic Negative B: wrong to_part
+  const negB = PartNormalizer.verifyExactPairInEvidence(officialSnippet, '42034001301', '99999999999');
+  assert.strictEqual(negB.hasFrom, true);
+  assert.strictEqual(negB.hasTo, false);
+  assert.strictEqual(negB.directionConfirmed, false);
+  assert.strictEqual(negB.valid, false);
+
+  // Synthetic Negative C: both numbers present but no replacement semantics
+  const snippetNoSemantics = 'Inventory report lists part 4203 400 1301 and accessory 4203 400 1302 on the shelf.';
+  const negC = PartNormalizer.verifyExactPairInEvidence(snippetNoSemantics, '42034001301', '42034001302');
+  assert.strictEqual(negC.hasFrom, true);
+  assert.strictEqual(negC.hasTo, true);
+  assert.strictEqual(negC.hasSemantics, false);
+  assert.strictEqual(negC.directionConfirmed, false);
+  assert.strictEqual(negC.valid, false);
+
+  // Synthetic Negative D: reversed direction (target -> from)
+  const negD = PartNormalizer.verifyExactPairInEvidence(officialSnippet, '42034001302', '42034001301');
+  assert.strictEqual(negD.hasFrom, true);
+  assert.strictEqual(negD.hasTo, true);
+  assert.strictEqual(negD.directionConfirmed, false, 'Reversed direction must NOT be confirmed');
+  assert.strictEqual(negD.valid, false);
+
+  // 3. Real positive test cases from authoritative phase35c31 evidence corpus
+  const phase35c31Path = path.join(rootDir, 'data', 'phase35c31_authenticity_audit.json');
+  const phase35c31Data = JSON.parse(fs.readFileSync(phase35c31Path, 'utf8'));
+  const docCorpus = new Map();
+  phase35c31Data.documents.forEach(d => docCorpus.set(d.publication_id, d));
+
+  // Case 1: 42034001301 -> 42034001302 in TI_19_2001_02_01_01
+  const doc1 = docCorpus.get('TI_19_2001_02_01_01');
+  assert.ok(doc1 && doc1.auth_after === 'AUTHENTICATED_OFFICIAL');
+  const res1 = PartNormalizer.verifyExactPairInEvidence(doc1.evidence_snippet, '42034001301', '42034001302');
+  assert.strictEqual(res1.hasFrom, true, 'Case 1 EXACT_FROM_PART_MATCH = YES');
+  assert.strictEqual(res1.hasTo, true, 'Case 1 EXACT_TO_PART_MATCH = YES');
+  assert.strictEqual(res1.hasSemantics, true, 'Case 1 EXPLICIT_REPLACEMENT_SEMANTICS = YES');
+  assert.strictEqual(res1.directionConfirmed, true, 'Case 1 DIRECTION_CONFIRMED = YES');
+  assert.strictEqual(res1.valid, true);
+
+  // Case 2: 11320300401 -> 11320300402 in TI_06_2000_30
+  const doc2 = docCorpus.get('TI_06_2000_30');
+  assert.ok(doc2 && doc2.auth_after === 'AUTHENTICATED_OFFICIAL');
+  const res2 = PartNormalizer.verifyExactPairInEvidence(doc2.evidence_snippet, '11320300401', '11320300402');
+  assert.strictEqual(res2.hasFrom, true, 'Case 2 EXACT_FROM_PART_MATCH = YES');
+  assert.strictEqual(res2.hasTo, true, 'Case 2 EXACT_TO_PART_MATCH = YES');
+  assert.strictEqual(res2.hasSemantics, true, 'Case 2 EXPLICIT_REPLACEMENT_SEMANTICS = YES');
+  assert.strictEqual(res2.directionConfirmed, true, 'Case 2 DIRECTION_CONFIRMED = YES');
+  assert.strictEqual(res2.valid, true);
+
+  // Case 3: 11281621000 -> 11281621001 in TI_37_2001_02_01_01
+  const doc3 = docCorpus.get('TI_37_2001_02_01_01');
+  assert.ok(doc3 && doc3.auth_after === 'AUTHENTICATED_OFFICIAL');
+  const res3 = PartNormalizer.verifyExactPairInEvidence(doc3.evidence_snippet, '11281621000', '11281621001');
+  assert.strictEqual(res3.hasFrom, true, 'Case 3 EXACT_FROM_PART_MATCH = YES');
+  assert.strictEqual(res3.hasTo, true, 'Case 3 EXACT_TO_PART_MATCH = YES');
+  assert.strictEqual(res3.hasSemantics, true, 'Case 3 EXPLICIT_REPLACEMENT_SEMANTICS = YES');
+  assert.strictEqual(res3.directionConfirmed, true, 'Case 3 DIRECTION_CONFIRMED = YES');
+  assert.strictEqual(res3.valid, true);
+});

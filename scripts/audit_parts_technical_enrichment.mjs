@@ -43,7 +43,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 console.log('================================================================');
-console.log('🔍 RUNNING PHASE 54E-R1 — PARTS TECHNICAL INTEGRITY AUDIT');
+console.log('🔍 RUNNING PHASE 54E-R2 — PARTS TECHNICAL INTEGRITY AUDIT');
 console.log('================================================================\n');
 
 let failedChecks = 0;
@@ -138,12 +138,21 @@ assertInvariant(positionConflicts === 0, 'POSITION_CONFLICTS === 0');
 // -----------------------------------------------------------------------------
 // 4. Diagram Position Placeholders & Reclassified Section Metrics
 // -----------------------------------------------------------------------------
-console.log('\n▶ 4. Auditing Diagram Position & Section Accounting (Corrected Terminology)...');
+// -----------------------------------------------------------------------------
+// 4. Diagram Position & Section Accounting (Independent Calculation)
+// -----------------------------------------------------------------------------
+console.log('\n▶ 4. Auditing Diagram Position & Section Accounting (Independent Calculation)...');
 const fitmentRows = db.prepare('SELECT part_number, section_name, diagram_position FROM model_part_fitments').all();
 
-let fitmentsWithRealPos = 0;
-let fitmentsWithPlaceholderPos = 0;
-const partsWithRealPos = new Set();
+let fitmentsWithRawPosition = 0;
+let fitmentsWithoutRawPosition = 0;
+let fitmentsWithMeaningfulPosition = 0;
+let fitmentsWithoutMeaningfulPosition = 0;
+let rawPlaceholderPositions = 0;
+let missingPositionValues = 0;
+
+const partsWithRawPosition = new Set();
+const partsWithMeaningfulPosition = new Set();
 const allPartsSet = new Set();
 
 let fitmentsWithRawSection = 0;
@@ -154,6 +163,7 @@ const partsWithMeaningfulSection = new Set();
 for (const f of fitmentRows) {
   allPartsSet.add(f.part_number);
 
+  // Section accounting
   if (f.section_name && f.section_name.trim().length > 0) {
     fitmentsWithRawSection++;
     partsWithRawSection.add(f.part_number);
@@ -163,41 +173,81 @@ for (const f of fitmentRows) {
     partsWithMeaningfulSection.add(f.part_number);
   }
 
-  if (PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position)) {
-    fitmentsWithRealPos++;
-    partsWithRealPos.add(f.part_number);
+  // Diagram position accounting (calculated independently directly from diagram_position)
+  const hasRawPos = PartNormalizer.isRawDiagramPosition(f.diagram_position);
+  const hasMeaningfulPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+
+  if (hasRawPos) {
+    fitmentsWithRawPosition++;
+    partsWithRawPosition.add(f.part_number);
   } else {
-    fitmentsWithPlaceholderPos++;
+    fitmentsWithoutRawPosition++;
+    missingPositionValues++;
+  }
+
+  if (hasMeaningfulPos) {
+    fitmentsWithMeaningfulPosition++;
+    partsWithMeaningfulPosition.add(f.part_number);
+  } else {
+    fitmentsWithoutMeaningfulPosition++;
+  }
+
+  if (hasRawPos && !hasMeaningfulPos) {
+    rawPlaceholderPositions++;
   }
 }
 
-const partsWithoutRealPos = allPartsSet.size - partsWithRealPos.size;
+const partsWithoutRawPosition = partsCount - partsWithRawPosition.size;
+const partsWithoutMeaningfulPosition = partsCount - partsWithMeaningfulPosition.size;
+const placeholderPositionsExcluded = rawPlaceholderPositions;
 
 console.log(`  PARTS_WITH_RAW_SECTION_STRING:        ${partsWithRawSection.size}`);
 console.log(`  PARTS_WITH_MEANINGFUL_SECTION:        ${partsWithMeaningfulSection.size}`);
 console.log(`  FITMENTS_WITH_RAW_SECTION_STRING:     ${fitmentsWithRawSection}`);
 console.log(`  FITMENTS_WITH_MEANINGFUL_SECTION:     ${fitmentsWithMeaningfulSection}`);
-console.log(`  PARTS_WITH_RAW_POSITION_VALUE:        ${partsWithRawSection.size}`);
-console.log(`  PARTS_WITH_MEANINGFUL_POSITION:       ${partsWithRealPos.size} (${(partsWithRealPos.size / partsCount * 100).toFixed(2)}%)`);
-console.log(`  PARTS_WITHOUT_MEANINGFUL_POSITION:    ${partsWithoutRealPos} (${(partsWithoutRealPos / partsCount * 100).toFixed(2)}%)`);
-console.log(`  FITMENTS_WITH_RAW_POSITION_VALUE:     ${fitmentsCount}`);
-console.log(`  FITMENTS_WITH_MEANINGFUL_POSITION:    ${fitmentsWithRealPos} (${(fitmentsWithRealPos / fitmentsCount * 100).toFixed(2)}%)`);
-console.log(`  FITMENTS_WITHOUT_MEANINGFUL_POSITION: ${fitmentsWithPlaceholderPos} (${(fitmentsWithPlaceholderPos / fitmentsCount * 100).toFixed(2)}%)`);
-console.log(`  PLACEHOLDER_POSITIONS_EXCLUDED:       ${fitmentsWithPlaceholderPos}`);
 
+console.log(`  PARTS_WITH_RAW_POSITION_VALUE:        ${partsWithRawPosition.size}`);
+console.log(`  PARTS_WITH_MEANINGFUL_POSITION:       ${partsWithMeaningfulPosition.size} (${(partsWithMeaningfulPosition.size / partsCount * 100).toFixed(2)}%)`);
+console.log(`  PARTS_WITHOUT_RAW_POSITION_VALUE:     ${partsWithoutRawPosition}`);
+console.log(`  PARTS_WITHOUT_MEANINGFUL_POSITION:    ${partsWithoutMeaningfulPosition} (${(partsWithoutMeaningfulPosition / partsCount * 100).toFixed(2)}%)`);
+
+console.log(`  FITMENTS_WITH_RAW_POSITION_VALUE:     ${fitmentsWithRawPosition}`);
+console.log(`  FITMENTS_WITH_MEANINGFUL_POSITION:    ${fitmentsWithMeaningfulPosition} (${(fitmentsWithMeaningfulPosition / fitmentsCount * 100).toFixed(2)}%)`);
+console.log(`  FITMENTS_WITHOUT_RAW_POSITION_VALUE: ${fitmentsWithoutRawPosition}`);
+console.log(`  FITMENTS_WITHOUT_MEANINGFUL_POSITION: ${fitmentsWithoutMeaningfulPosition} (${(fitmentsWithoutMeaningfulPosition / fitmentsCount * 100).toFixed(2)}%)`);
+
+console.log(`  RAW_PLACEHOLDER_POSITIONS:            ${rawPlaceholderPositions}`);
+console.log(`  MISSING_POSITION_VALUES:              ${missingPositionValues}`);
+console.log(`  PLACEHOLDER_POSITIONS_EXCLUDED:       ${placeholderPositionsExcluded}`);
+
+// Assertions & Consistency checks
 assertInvariant(partsWithRawSection.size === 17082, 'PARTS_WITH_RAW_SECTION_STRING === 17082');
 assertInvariant(partsWithMeaningfulSection.size === 857, 'PARTS_WITH_MEANINGFUL_SECTION === 857');
 assertInvariant(fitmentsWithRawSection === 175106, 'FITMENTS_WITH_RAW_SECTION_STRING === 175106');
 assertInvariant(fitmentsWithMeaningfulSection === 2798, 'FITMENTS_WITH_MEANINGFUL_SECTION === 2798');
-assertInvariant(partsWithRealPos.size === 16600, 'PARTS_WITH_MEANINGFUL_POSITION === 16600');
-assertInvariant(partsWithoutRealPos === 482, 'PARTS_WITHOUT_MEANINGFUL_POSITION === 482');
-assertInvariant(fitmentsWithRealPos === 169990, 'FITMENTS_WITH_MEANINGFUL_POSITION === 169990');
-assertInvariant(fitmentsWithPlaceholderPos === 5116, 'PLACEHOLDER_POSITIONS_EXCLUDED === 5116');
+
+assertInvariant(partsWithRawPosition.size === 17082, 'PARTS_WITH_RAW_POSITION_VALUE === 17082');
+assertInvariant(partsWithMeaningfulPosition.size === 16600, 'PARTS_WITH_MEANINGFUL_POSITION === 16600');
+assertInvariant(partsWithoutRawPosition === 0, 'PARTS_WITHOUT_RAW_POSITION_VALUE === 0');
+assertInvariant(partsWithoutMeaningfulPosition === 482, 'PARTS_WITHOUT_MEANINGFUL_POSITION === 482');
+
+assertInvariant(fitmentsWithRawPosition === 175106, 'FITMENTS_WITH_RAW_POSITION_VALUE === 175106');
+assertInvariant(fitmentsWithMeaningfulPosition === 169990, 'FITMENTS_WITH_MEANINGFUL_POSITION === 169990');
+assertInvariant(fitmentsWithoutRawPosition === 0, 'FITMENTS_WITHOUT_RAW_POSITION_VALUE === 0');
+assertInvariant(fitmentsWithoutMeaningfulPosition === 5116, 'FITMENTS_WITHOUT_MEANINGFUL_POSITION === 5116');
+
+assertInvariant(rawPlaceholderPositions === 5116, 'RAW_PLACEHOLDER_POSITIONS === 5116');
+assertInvariant(missingPositionValues === 0, 'MISSING_POSITION_VALUES === 0');
+assertInvariant(placeholderPositionsExcluded === 5116, 'PLACEHOLDER_POSITIONS_EXCLUDED === 5116');
+
+assertInvariant(fitmentsWithRawPosition >= fitmentsWithMeaningfulPosition, 'FITMENTS_WITH_RAW_POSITION_VALUE >= FITMENTS_WITH_MEANINGFUL_POSITION');
+assertInvariant(partsWithRawPosition.size >= partsWithMeaningfulPosition.size, 'PARTS_WITH_RAW_POSITION_VALUE >= PARTS_WITH_MEANINGFUL_POSITION');
+assertInvariant(fitmentsWithRawPosition + fitmentsWithoutRawPosition === fitmentsCount, 'FITMENTS_WITH_RAW_POSITION_VALUE + FITMENTS_WITHOUT_RAW_POSITION_VALUE === FITMENTS');
 
 // -----------------------------------------------------------------------------
-// 5. Explicit Supersessions DAG & Independent Authenticity Provenance
+// 5. Explicit Supersessions DAG & Independent Exact-Pair Authenticity Provenance
 // -----------------------------------------------------------------------------
-console.log('\n▶ 5. Auditing Explicit Supersessions DAG & Provenance Scoping...');
+console.log('\n▶ 5. Auditing Explicit Supersessions DAG & Exact-Pair Provenance...');
 const supersessionsPath = path.join(rootDir, 'data', 'parts_supersessions.json');
 assertInvariant(fs.existsSync(supersessionsPath), 'data/parts_supersessions.json exists');
 const supersessionsDoc = JSON.parse(fs.readFileSync(supersessionsPath, 'utf8'));
@@ -212,6 +262,13 @@ assertInvariant(fs.existsSync(phase35c31Path), 'data/phase35c31_authenticity_aud
 const phase35c31Data = JSON.parse(fs.readFileSync(phase35c31Path, 'utf8'));
 const docCorpus = new Map();
 (phase35c31Data.documents || []).forEach(d => docCorpus.set(d.publication_id, d));
+
+let sourceDocFound = 0;
+let authenticatedOfficial = 0;
+let exactFromPartMatch = 0;
+let exactToPartMatch = 0;
+let explicitReplacementSemantics = 0;
+let directionConfirmed = 0;
 
 let provenanceReconfirmed = 0;
 let provenanceNotReconfirmed = 0;
@@ -235,13 +292,28 @@ for (const r of relations) {
   // Independent corpus lookup
   const doc = docCorpus.get(r.source_document);
   assertInvariant(doc !== undefined, `Source document ${r.source_document} independently exists in official evidence corpus`);
+  if (doc) sourceDocFound++;
 
-  if (doc && doc.auth_after === 'AUTHENTICATED_OFFICIAL') {
+  const isAuth = doc && doc.auth_after === 'AUTHENTICATED_OFFICIAL';
+  if (isAuth) authenticatedOfficial++;
+
+  // Exact pair, replacement semantics, and directional verification in snippet
+  const pairVerification = doc ? PartNormalizer.verifyExactPairInEvidence(doc.evidence_snippet, r.from_part, r.to_part) : null;
+
+  if (isAuth && pairVerification?.hasFrom) exactFromPartMatch++;
+  if (isAuth && pairVerification?.hasTo) exactToPartMatch++;
+  if (isAuth && pairVerification?.hasSemantics) explicitReplacementSemantics++;
+  if (isAuth && pairVerification?.directionConfirmed) directionConfirmed++;
+
+  const isExactPairConfirmed = isAuth && pairVerification?.valid === true;
+
+  if (isExactPairConfirmed) {
     provenanceReconfirmed++;
     assertInvariant(r.provenance_status === 'PROVENANCE_RECONFIRMED', `Relation ${r.from_part} -> ${r.to_part} marked PROVENANCE_RECONFIRMED`);
-    const snippet = (doc.evidence_snippet || '').toLowerCase();
-    const hasReplacementSemantics = /replaced|superseded|replaces/i.test(snippet);
-    assertInvariant(hasReplacementSemantics, `Document ${r.source_document} snippet contains explicit replacement semantics`);
+    assertInvariant(pairVerification.hasFrom, `Authenticated relation ${r.from_part} -> ${r.to_part} has exact from_part match`);
+    assertInvariant(pairVerification.hasTo, `Authenticated relation ${r.from_part} -> ${r.to_part} has exact to_part match`);
+    assertInvariant(pairVerification.hasSemantics, `Authenticated relation ${r.from_part} -> ${r.to_part} has explicit replacement semantics`);
+    assertInvariant(pairVerification.directionConfirmed, `Authenticated relation ${r.from_part} -> ${r.to_part} has confirmed direction`);
   } else {
     provenanceNotReconfirmed++;
     assertInvariant(r.provenance_status === 'PROVENANCE_NOT_RECONFIRMED', `Relation ${r.from_part} -> ${r.to_part} safely marked PROVENANCE_NOT_RECONFIRMED`);
@@ -254,6 +326,12 @@ for (const r of relations) {
   if (r.applicability === 'GLOBAL_EXPLICIT') globalExplicitCount++;
 }
 
+console.log(`  SOURCE_DOCUMENT_FOUND:                ${sourceDocFound}`);
+console.log(`  AUTHENTICATED_OFFICIAL:               ${authenticatedOfficial}`);
+console.log(`  EXACT_FROM_PART_MATCH:                ${exactFromPartMatch}`);
+console.log(`  EXACT_TO_PART_MATCH:                  ${exactToPartMatch}`);
+console.log(`  EXPLICIT_REPLACEMENT_SEMANTICS:       ${explicitReplacementSemantics}`);
+console.log(`  DIRECTION_CONFIRMED:                  ${directionConfirmed}`);
 console.log(`  PROVENANCE_RECONFIRMED:               ${provenanceReconfirmed}`);
 console.log(`  PROVENANCE_NOT_RECONFIRMED:           ${provenanceNotReconfirmed}`);
 console.log(`  SCOPED_EXPLICIT_RELATIONS:            ${scopedExplicitCount}`);
@@ -262,6 +340,12 @@ console.log(`  GLOBAL_EXPLICIT_RELATIONS:            ${globalExplicitCount}`);
 console.log(`  SUPERSESSION_SELF_LOOPS:              ${selfLoops}`);
 console.log(`  SUPERSESSION_CONFLICTS:               ${conflicts}`);
 
+assertInvariant(sourceDocFound === 22, 'SOURCE_DOCUMENT_FOUND === 22');
+assertInvariant(authenticatedOfficial === 11, 'AUTHENTICATED_OFFICIAL === 11');
+assertInvariant(exactFromPartMatch === 11, 'EXACT_FROM_PART_MATCH === 11');
+assertInvariant(exactToPartMatch === 11, 'EXACT_TO_PART_MATCH === 11');
+assertInvariant(explicitReplacementSemantics === 11, 'EXPLICIT_REPLACEMENT_SEMANTICS === 11');
+assertInvariant(directionConfirmed === 11, 'DIRECTION_CONFIRMED === 11');
 assertInvariant(provenanceReconfirmed === 11, 'PROVENANCE_RECONFIRMED === 11');
 assertInvariant(provenanceNotReconfirmed === 11, 'PROVENANCE_NOT_RECONFIRMED === 11');
 assertInvariant(scopedExplicitCount === 11, 'SCOPED_EXPLICIT_RELATIONS === 11');
@@ -435,11 +519,11 @@ console.log('  RUNTIME_TECHNICAL_SCRAPING:           0');
 // -----------------------------------------------------------------------------
 console.log('\n================================================================');
 if (failedChecks === 0) {
-  console.log('🎉 PHASE 54E-R1 TECHNICAL INTEGRITY AUDIT PASSED CLEANLY (0 ERRORS)');
+  console.log('🎉 PHASE 54E-R2 TECHNICAL INTEGRITY AUDIT PASSED CLEANLY (0 ERRORS)');
   console.log('================================================================\n');
   process.exit(0);
 } else {
-  console.error(`💥 PHASE 54E-R1 AUDIT FAILED WITH ${failedChecks} INVARIANT VIOLATIONS`);
+  console.error(`💥 PHASE 54E-R2 AUDIT FAILED WITH ${failedChecks} INVARIANT VIOLATIONS`);
   console.log('================================================================\n');
   process.exit(1);
 }

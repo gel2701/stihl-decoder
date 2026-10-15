@@ -163,7 +163,102 @@ export class PartNormalizer {
       source_model_name: modelStr
     };
   }
+
+  /**
+   * Evaluates whether a diagram position value is populated as a raw string
+   * (non-null, non-empty after trimming). Intentionally includes placeholders
+   * such as -1, 0, POS_UNSPECIFIED, OFFICIAL_REF.
+   */
+  static isRawDiagramPosition(value) {
+    if (value === null || value === undefined) return false;
+    return String(value).trim().length > 0;
+  }
+
+  /**
+   * Normalizes a part number from evidence text for comparison purposes only.
+   * Accepts "4203 400 1301", "4203-400-1301", "42034001301" and returns 11-digit canonical form.
+   */
+  static normalizeEvidencePartNumber(str) {
+    if (!str || typeof str !== 'string') return null;
+    const cleaned = str.replace(/[\s\-_.\/]/g, '').trim();
+    if (/^\d{11}$/.test(cleaned)) {
+      return cleaned;
+    }
+    return null;
+  }
+
+  /**
+   * Deterministically verifies exact from_part and to_part presence, replacement semantics,
+   * and directional safety in an authenticated evidence snippet.
+   *
+   * @param {string} snippet
+   * @param {string} fromPart - 11-digit canonical
+   * @param {string} toPart - 11-digit canonical
+   * @returns {{hasFrom: boolean, hasTo: boolean, hasSemantics: boolean, directionConfirmed: boolean, valid: boolean}}
+   */
+  static verifyExactPairInEvidence(snippet, fromPart, toPart) {
+    if (!snippet || typeof snippet !== 'string') {
+      return {
+        hasFrom: false,
+        hasTo: false,
+        hasSemantics: false,
+        directionConfirmed: false,
+        valid: false
+      };
+    }
+
+    function makePartRegex(partNo) {
+      if (/^\d{11}$/.test(partNo)) {
+        const p1 = partNo.slice(0, 4);
+        const p2 = partNo.slice(4, 7);
+        const p3 = partNo.slice(7, 11);
+        return new RegExp(`${p1}[\\s\\-\\.]*${p2}[\\s\\-\\.]*${p3}`, 'i');
+      }
+      return new RegExp(partNo.replace(/(.)/g, '$1[\\s\\-\\.]*'), 'i');
+    }
+
+    const fromRegex = makePartRegex(fromPart);
+    const toRegex = makePartRegex(toPart);
+
+    const fromMatch = fromRegex.exec(snippet);
+    const toMatch = toRegex.exec(snippet);
+
+    const hasFrom = Boolean(fromMatch);
+    const hasTo = Boolean(toMatch);
+    const hasSemantics = /replaced|superseded|replaces/i.test(snippet);
+
+    let directionConfirmed = false;
+    if (hasFrom && hasTo && hasSemantics) {
+      const fromIdx = fromMatch.index;
+      const toIdx = toMatch.index;
+
+      if (fromIdx < toIdx) {
+        // Pattern A: from_part ... [will be / is] replaced / superseded by ... to_part
+        const between = snippet.slice(fromIdx, toIdx);
+        if (/replaced|superseded/i.test(between) && /by/i.test(between)) {
+          directionConfirmed = true;
+        }
+      } else {
+        // Pattern B: to_part ... replaces ... from_part
+        const between = snippet.slice(toIdx, fromIdx);
+        if (/replaces/i.test(between)) {
+          directionConfirmed = true;
+        }
+      }
+    }
+
+    return {
+      hasFrom,
+      hasTo,
+      hasSemantics,
+      directionConfirmed,
+      valid: hasFrom && hasTo && hasSemantics && directionConfirmed
+    };
+  }
 }
 
 export const isMeaningfulDiagramPosition = PartNormalizer.isMeaningfulDiagramPosition;
+export const isRawDiagramPosition = PartNormalizer.isRawDiagramPosition;
 export const normalizeDiagramPosition = PartNormalizer.normalizeDiagramPosition;
+export const normalizeEvidencePartNumber = PartNormalizer.normalizeEvidencePartNumber;
+export const verifyExactPairInEvidence = PartNormalizer.verifyExactPairInEvidence;
