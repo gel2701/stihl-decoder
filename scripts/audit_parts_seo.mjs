@@ -262,6 +262,27 @@ console.log(`  Individual part details in sitemap: ${sitemapIndividualPartUrls.l
 if (!sitemapHubPresent) throw new Error('Parts hub missing from sitemap.xml');
 if (sitemapSeriesUrls.length !== seriesCodes.length) throw new Error(`Series pages count in sitemap mismatch: got ${sitemapSeriesUrls.length}, expected ${seriesCodes.length}`);
 if (sitemapModelPartsUrls.length !== indexableModelPartsCount) throw new Error(`Model parts in sitemap mismatch: got ${sitemapModelPartsUrls.length}, expected ${indexableModelPartsCount}`);
+
+// Verify exact membership between sitemap model parts URLs and published models with parts
+const expectedModelPartsUrls = new Set(
+  publishedModels
+    .filter((m) => PartCatalogResolver.hasPartsForModel(m, database))
+    .map((m) => `${PRIMARY_ORIGIN}${getSafeModelPartsPath(m)}`)
+    .filter(Boolean)
+);
+const actualModelPartsSet = new Set(sitemapModelPartsUrls);
+
+for (const expectedUrl of expectedModelPartsUrls) {
+  if (!actualModelPartsSet.has(expectedUrl)) {
+    throw new Error(`Expected model parts URL missing from sitemap.xml: ${expectedUrl}`);
+  }
+}
+for (const actualUrl of actualModelPartsSet) {
+  if (!expectedModelPartsUrls.has(actualUrl)) {
+    throw new Error(`Unexpected model parts URL leaked into sitemap.xml: ${actualUrl}`);
+  }
+}
+
 if (sitemapIndividualPartUrls.length > 0) throw new Error('🚨 CRITICAL LEAK: Individual part detail pages found in sitemap.xml!');
 
 console.log('  ✅ Sitemap Generator Verification 100% Clean.\n');

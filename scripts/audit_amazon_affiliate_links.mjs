@@ -22,6 +22,7 @@ import {
   isValidIsoTimestamp,
   isValidManualAsinOverride
 } from '../src/affiliate/AmazonAffiliateProvider.js';
+import { AffiliateOfferResolver } from '../src/affiliate/AffiliateOfferResolver.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { PartCatalogResolver } from '../src/parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
@@ -230,28 +231,64 @@ let unverifiedProductClaims = 0;
 
 for (const partNo of allTestParts) {
   const html = renderPartDetailPageHtml(partNo);
+  const resolvedOffers = AffiliateOfferResolver.resolveOffers({ partNumber: partNo });
+  const hasVerifiedOffer = resolvedOffers.some(o => o.match_type === AMAZON_MATCH_TYPES.MANUAL_ASIN || o.is_verified === true);
 
-  // Prohibited claims for search-only fallback
-  if (html.includes('Waar te koop')) {
-    fail(`Part ${partNo}: rendered "Waar te koop" for pure search fallback`);
-    unverifiedProductClaims++;
+  if (hasVerifiedOffer) {
+    // Assertions for verified product link
+    if (!html.includes('Waar te koop')) {
+      fail(`Part ${partNo}: missing "Waar te koop" for verified product link`);
+      unverifiedProductClaims++;
+    }
+    if (!html.includes('Bekijk product op Amazon')) {
+      fail(`Part ${partNo}: missing "Bekijk product op Amazon" CTA for verified product link`);
+      unverifiedProductClaims++;
+    }
+    if (!html.includes('Geverifieerd product')) {
+      fail(`Part ${partNo}: missing "Geverifieerd product" badge for verified product link`);
+      unverifiedProductClaims++;
+    }
+    if (html.includes('Amazon-zoekopdracht')) {
+      fail(`Part ${partNo}: unexpectedly rendered "Amazon-zoekopdracht" badge for verified product`);
+      unverifiedProductClaims++;
+    }
+  } else {
+    // Assertions for search-only fallback
+    if (html.includes('Waar te koop')) {
+      fail(`Part ${partNo}: rendered "Waar te koop" for pure search fallback`);
+      unverifiedProductClaims++;
+    }
+    if (html.includes('Bekijk op Amazon')) {
+      fail(`Part ${partNo}: rendered "Bekijk op Amazon" CTA for pure search fallback`);
+      unverifiedProductClaims++;
+    }
+    if (html.includes('Bekijk product op Amazon')) {
+      fail(`Part ${partNo}: rendered "Bekijk product op Amazon" CTA for pure search fallback`);
+      unverifiedProductClaims++;
+    }
+    if (html.includes('Geverifieerd product')) {
+      fail(`Part ${partNo}: rendered "Geverifieerd product" badge for pure search fallback`);
+      unverifiedProductClaims++;
+    }
+    if (html.includes('Beschikbaar op Amazon')) {
+      fail(`Part ${partNo}: rendered "Beschikbaar op Amazon" claim`);
+      unverifiedProductClaims++;
+    }
+    if (!html.includes('Zoek dit onderdeel online')) {
+      fail(`Part ${partNo}: missing "Zoek dit onderdeel online" heading`);
+    }
+    if (!html.includes('Zoek op Amazon.nl')) {
+      fail(`Part ${partNo}: missing "Zoek op Amazon.nl" CTA`);
+    }
+    if (!html.includes('Amazon-zoekopdracht')) {
+      fail(`Part ${partNo}: missing "Amazon-zoekopdracht" badge`);
+    }
+    if (!html.includes('De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd')) {
+      fail(`Part ${partNo}: missing honest search fallback disclaimer`);
+    }
   }
-  if (html.includes('Bekijk op Amazon')) {
-    fail(`Part ${partNo}: rendered "Bekijk op Amazon" CTA for pure search fallback`);
-    unverifiedProductClaims++;
-  }
-  if (html.includes('Bekijk product op Amazon')) {
-    fail(`Part ${partNo}: rendered "Bekijk product op Amazon" CTA for pure search fallback`);
-    unverifiedProductClaims++;
-  }
-  if (html.includes('Geverifieerd product')) {
-    fail(`Part ${partNo}: rendered "Geverifieerd product" badge for pure search fallback`);
-    unverifiedProductClaims++;
-  }
-  if (html.includes('Beschikbaar op Amazon')) {
-    fail(`Part ${partNo}: rendered "Beschikbaar op Amazon" claim`);
-    unverifiedProductClaims++;
-  }
+
+  // Common checks for all commercial offers
   if (/op voorraad/i.test(html)) {
     fail(`Part ${partNo}: rendered "op voorraad" claim`);
     unverifiedProductClaims++;
@@ -264,22 +301,8 @@ for (const partNo of allTestParts) {
     fail(`Part ${partNo}: rendered unverified price claim`);
     unverifiedProductClaims++;
   }
-
-  // Mandatory elements for search fallback
-  if (!html.includes('Zoek dit onderdeel online')) {
-    fail(`Part ${partNo}: missing "Zoek dit onderdeel online" heading`);
-  }
-  if (!html.includes('Zoek op Amazon.nl')) {
-    fail(`Part ${partNo}: missing "Zoek op Amazon.nl" CTA`);
-  }
-  if (!html.includes('Amazon-zoekopdracht')) {
-    fail(`Part ${partNo}: missing "Amazon-zoekopdracht" badge`);
-  }
   if (!html.includes('rel="sponsored nofollow noopener"')) {
     fail(`Part ${partNo}: missing sponsored nofollow noopener rel attribute`);
-  }
-  if (!html.includes('De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd')) {
-    fail(`Part ${partNo}: missing honest search fallback disclaimer`);
   }
 }
 

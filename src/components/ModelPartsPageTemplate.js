@@ -40,6 +40,10 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const configurations = PartCatalogResolver.getConfigurationsForModel(model, database);
   const sections = PartCatalogResolver.getSectionsForModel(model, null, selectedConfig, database);
   const totalPartsCount = sections.reduce((acc, s) => acc + s.parts.length, 0);
+  const allModelSections = PartCatalogResolver.getSectionsForModel(model, null, null, database);
+  const catalogTotalPartsCount = configurations.length > 0
+    ? configurations.reduce((acc, c) => acc + c.part_count, 0)
+    : allModelSections.reduce((acc, s) => acc + s.parts.length, 0);
   const hasRenderableParts = PartCatalogResolver.hasPartsForModel(model, database);
 
   const breadcrumbs = [
@@ -218,9 +222,11 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
         Onderdeelnummers, configuraties en compatibiliteit
       </p>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        ${totalPartsCount > 0
-          ? `Voor de STIHL ${model.model_name} bevat de catalogus ${totalPartsCount} bekende onderdelen${configurations.length > 0 ? ` verdeeld over ${configurations.length} configuraties` : ''}${sections.length > 0 ? ` en ${sections.length} gedocumenteerde secties` : ''}. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`
-          : `Bekijk onderdelen en onderhoudsinformatie voor de STIHL ${model.model_name}. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`}
+        ${selectedConfig
+          ? `Voor de geselecteerde uitvoering van de STIHL ${model.model_name} toont dit overzicht ${totalPartsCount} passende onderdelen verdeeld over ${sections.length} gedocumenteerde secties. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`
+          : (catalogTotalPartsCount > 0
+            ? `Voor de STIHL ${model.model_name} bevat de catalogus ${catalogTotalPartsCount} bekende onderdelen${configurations.length > 0 ? ` verdeeld over ${configurations.length} configuraties` : ''}${sections.length > 0 ? ` en ${sections.length} gedocumenteerde secties` : ''}. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`
+            : `Bekijk onderdelen en onderhoudsinformatie voor de STIHL ${model.model_name}. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`)}
       </p>
       ${model.series_code ? `
       <div class="mt-3 p-4 rounded-xl bg-gray-900 border border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
