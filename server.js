@@ -20,6 +20,7 @@ import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
+import { renderBreadcrumbsHtml } from './src/components/Breadcrumbs.js';
 import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
 import {
   getSafeCategorySlug,
@@ -1005,15 +1006,69 @@ function renderPartNumberHubHtml(database, baseUrl) {
     `;
   }).join('');
 
+  // Curated popular models with parts catalog support for direct internal linking
+  const popularSlugs = ['ms-170', 'ms-180', 'ms-200', 'ms-261', 'ms-361', 'fs-55', 'br-600', 'ts-410'];
+  const popularModelLinks = popularSlugs.map((slug) => {
+    const model = (database.models || []).find((m) => (m.slug || m.id).toLowerCase() === slug || m.slug === slug);
+    if (!model) return '';
+    const partsPath = getSafeModelPartsPath(model);
+    if (!partsPath || !PartCatalogResolver.hasPartsForModel(model, database)) return '';
+    return `
+      <a href="${partsPath}" class="bg-gray-950 p-3 rounded-xl border border-gray-800 hover:border-orange-500 block text-xs">
+        <span class="font-bold text-white block">STIHL ${model.model_name}</span>
+        <span class="text-orange-400 text-2xs block">Bekijk onderdelen & tekeningen →</span>
+      </a>
+    `;
+  }).filter(Boolean).join('');
+
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Onderdeelnummers', url: '/onderdeelnummer/' }
+  ];
+  const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Home',
+            'item': `${baseUrl}/`
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'Onderdeelnummers',
+            'item': `${baseUrl}/onderdeelnummer/`
+          }
+        ]
+      },
+      {
+        '@type': 'WebPage',
+        'name': 'STIHL Onderdeelnummer Opzoeken & Onderdelen Gids',
+        'description': 'Zoek STIHL onderdeelnummers (Teilenummer) en 4-cijferige serie prefixes op. Verifieer bij welke STIHL modellen een onderdeel past.',
+        'url': `${baseUrl}/onderdeelnummer/`,
+        'inLanguage': 'nl-NL'
+      }
+    ]
+  };
+
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>STIHL Onderdeelnummer Opzoeken & Gietnummers | STIHLDecoder</title>
+  <title>STIHL Onderdeelnummer Opzoeken & Onderdelen Gids | STIHLDecoder</title>
   <meta name="description" content="Zoek STIHL onderdeelnummers (Teilenummer) en 4-cijferige serie prefixes op. Verifieer bij welke STIHL modellen een onderdeel past.">
   <link rel="canonical" href="${baseUrl}/onderdeelnummer/">
   <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+${JSON.stringify(jsonLd, null, 2)}
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -1029,14 +1084,34 @@ function renderPartNumberHubHtml(database, baseUrl) {
     </div>
   </header>
   <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4">
-      <h1 class="text-3xl font-extrabold text-white">STIHL Onderdeelnummer Gids & Prefix Opzoeken</h1>
-      <p class="text-xs text-gray-300">
-        STIHL onderdeelnummers (11 cijfers) beginnen met een 4-cijferige serie-prefix die de machinetechnische familie aanduidt.
-      </p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs pt-2">
-        ${seriesCards}
+    ${breadcrumbsHtml}
+    <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-6">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-extrabold text-white">STIHL Onderdeelnummer Opzoeken & Onderdelengids</h1>
+        <p class="text-xs text-gray-300">
+          STIHL onderdeelnummers (11 cijfers) beginnen met een 4-cijferige serie-prefix die de machinetechnische familie aanduidt.
+        </p>
       </div>
+
+      <div class="space-y-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>Onderdelenseries & Prefixes</span>
+          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${seriesCodes.length} series</span>
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+          ${seriesCards}
+        </div>
+      </div>
+
+      ${popularModelLinks ? `
+      <div class="space-y-3 pt-4 border-t border-gray-800">
+        <h2 class="text-lg font-bold text-white">Populaire STIHL Modellen & Onderdelen</h2>
+        <p class="text-xs text-gray-400">Bekijk exploded views en onderdelencatalogi voor veelgebruikte modellen:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          ${popularModelLinks}
+        </div>
+      </div>
+      ` : ''}
     </article>
   </main>
 </body>
@@ -1046,16 +1121,70 @@ function renderPartNumberHubHtml(database, baseUrl) {
 function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
   const models = (database.models || []).filter((m) => m.series_code === seriesCode);
   const modelsContent = models.length > 0
-    ? `<ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+    ? `<ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
         ${models.map((m) => {
           const safePath = getSafeModelPath(m);
-          return `<li class="bg-gray-900/60 p-2.5 rounded-lg border border-gray-800/80">
-            ${safePath ? `<a href="${safePath}" class="font-bold text-orange-400 hover:underline">STIHL ${m.model_name}</a>` : `<span class="font-bold text-white">STIHL ${m.model_name}</span>`}
-            <span class="text-gray-400 text-2xs block">${m.category_name || m.category || 'STIHL Machine'}</span>
+          const partsPath = getSafeModelPartsPath(m);
+          const hasParts = PartCatalogResolver.hasPartsForModel(m, database);
+          return `<li class="bg-gray-900/60 p-3 rounded-xl border border-gray-800/80 space-y-1.5">
+            <div class="flex justify-between items-start">
+              ${safePath ? `<a href="${safePath}" class="font-bold text-orange-400 hover:underline">STIHL ${m.model_name}</a>` : `<span class="font-bold text-white">STIHL ${m.model_name}</span>`}
+              <span class="text-gray-400 text-2xs">${m.category_name || m.category || 'STIHL Machine'}</span>
+            </div>
+            ${hasParts && partsPath ? `
+              <div class="pt-1">
+                <a href="${partsPath}" class="text-2xs font-semibold text-emerald-400 hover:underline flex items-center gap-1">
+                  <span>🔧 Onderdelencatalogus & tekeningen →</span>
+                </a>
+              </div>
+            ` : ''}
           </li>`;
         }).join('')}
       </ul>`
     : `<p class="text-gray-400 text-xs italic">Voor deze serie is momenteel nog geen betrouwbare modelkoppeling beschikbaar in de database.</p>`;
+
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Onderdeelnummers', url: '/onderdeelnummer/' },
+    { name: `Serie ${seriesCode}`, url: `/onderdeelnummer/stihl-${seriesCode}/` }
+  ];
+  const breadcrumbsHtml = renderBreadcrumbsHtml(breadcrumbs);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Home',
+            'item': `${baseUrl}/`
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'Onderdeelnummers',
+            'item': `${baseUrl}/onderdeelnummer/`
+          },
+          {
+            '@type': 'ListItem',
+            'position': 3,
+            'name': `Serie ${seriesCode}`,
+            'item': `${baseUrl}/onderdeelnummer/stihl-${seriesCode}/`
+          }
+        ]
+      },
+      {
+        '@type': 'WebPage',
+        'name': `STIHL Serie ${seriesCode} Onderdeelnummers & Modellen`,
+        'description': `Bekijk welke STIHL kettingzagen of machines gebruik maken van onderdeelnummers behorend tot serie ${seriesCode}.`,
+        'url': `${baseUrl}/onderdeelnummer/stihl-${seriesCode}/`,
+        'inLanguage': 'nl-NL'
+      }
+    ]
+  };
 
   return `<!DOCTYPE html>
 <html lang="nl" class="dark">
@@ -1066,6 +1195,9 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
   <meta name="description" content="Bekijk welke STIHL kettingzagen of machines gebruik maken van onderdeelnummers behorend tot serie ${seriesCode}.">
   <link rel="canonical" href="${baseUrl}/onderdeelnummer/stihl-${seriesCode}/">
   <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+${JSON.stringify(jsonLd, null, 2)}
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -1081,6 +1213,7 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
     </div>
   </header>
   <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+    ${breadcrumbsHtml}
     <article class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4">
       <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">Serie Code: ${seriesCode}</span>
       <h1 class="text-3xl font-extrabold text-white">STIHL Serie ${seriesCode} Onderdeelnummers</h1>

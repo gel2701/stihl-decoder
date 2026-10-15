@@ -32,7 +32,34 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>STIHL ${formattedPartNo} Onderdeel | STIHLDecoder</title>
+  <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "${baseUrl}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Onderdeelnummers",
+        "item": "${baseUrl}/onderdeelnummer/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "STIHL ${formattedPartNo}",
+        "item": "${canonicalUrl}"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -94,6 +121,32 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
   <meta name="description" content="STIHL onderdeelnummer ${formattedPartNo} (${partName}). Bekijk geschikte modellen, montagelocatie en diagramposities.">
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "${baseUrl}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Onderdeelnummers",
+        "item": "${baseUrl}/onderdeelnummer/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "STIHL ${formattedPartNo}",
+        "item": "${canonicalUrl}"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">

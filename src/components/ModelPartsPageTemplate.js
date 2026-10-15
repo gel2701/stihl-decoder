@@ -40,29 +40,34 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const configurations = PartCatalogResolver.getConfigurationsForModel(model, database);
   const sections = PartCatalogResolver.getSectionsForModel(model, null, selectedConfig, database);
   const totalPartsCount = sections.reduce((acc, s) => acc + s.parts.length, 0);
+  const hasRenderableParts = PartCatalogResolver.hasPartsForModel(model, database);
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
     ...(categorySlug ? [{ name: model.category || 'Modellen', url: `/${categorySlug}/` }] : []),
     { name: `STIHL ${model.model_name}`, url: modelPath || canonicalUrl.replace('/onderdelen/', '/') },
-    { name: 'Onderdelen & Vervanging', url: categorySlug ? `/${categorySlug}/${slug}/onderdelen/` : canonicalUrl.replace(baseUrl, '') }
+    { name: 'Onderdelen & Tekeningen', url: categorySlug ? `/${categorySlug}/${slug}/onderdelen/` : canonicalUrl.replace(baseUrl, '') }
   ];
 
+  const metaDescription = `Bekijk STIHL ${model.model_name} onderdelen, onderdeelnummers, exploded views en compatibiliteit. Controleer uitvoering en onderdeelnummer voordat u bestelt.`;
+
   const jsonLdData = buildStructuredData({
-    pageType: 'intent',
+    pageType: 'model-parts',
+    model,
     intent: {
-      title: `STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids`,
-      description: `Bekijk zichtbare onderdeleninformatie en onderhoudscontext voor de STIHL ${model.model_name}. Controleer typeplaatje, uitvoering en bronstatus voordat u onderdelen bestelt.`
+      title: `STIHL ${model.model_name} Onderdelen & Tekeningen Gids`,
+      description: metaDescription
     },
     breadcrumbs,
     url: canonicalUrl
   });
 
   const seoMetaHtml = renderSeoMeta({
-    title: `STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids | STIHLDecoder`,
-    description: `Zoekt u onderdelen voor uw STIHL ${model.model_name}? Bekijk zichtbare modeldata, bronstatus en compatibele onderdelen als vertrekpunt voor een handmatige machinecheck.`,
+    title: `STIHL ${model.model_name} Onderdelen & Tekeningen Gids | STIHLDecoder`,
+    description: metaDescription,
     canonicalUrl,
     ogType: 'article',
+    robotsContent: hasRenderableParts ? 'index, follow' : 'noindex, follow',
     jsonLdData
   });
 
@@ -207,11 +212,32 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
         Onderdelen & Vervanging
       </span>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        STIHL ${model.model_name} Onderdelen & Compatibiliteitsgids
+        STIHL ${model.model_name} Onderdelen
       </h1>
-      <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Bekijk vervangingsonderdelen voor de STIHL ${model.model_name} op basis van de gecertificeerde repositorydata. Controleer altijd typeplaatje, uitvoering en bronstatus voordat u bestelt.
+      <p class="text-sm font-medium text-orange-400">
+        Onderdeelnummers, configuraties en compatibiliteit
       </p>
+      <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
+        ${totalPartsCount > 0
+          ? `Voor de STIHL ${model.model_name} bevat de catalogus ${totalPartsCount} bekende onderdelen${configurations.length > 0 ? ` verdeeld over ${configurations.length} configuraties` : ''}${sections.length > 0 ? ` en ${sections.length} gedocumenteerde secties` : ''}. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`
+          : `Bekijk onderdelen en onderhoudsinformatie voor de STIHL ${model.model_name}. Controleer altijd uitvoering en onderdeelnummer voordat u bestelt.`}
+      </p>
+      ${model.series_code ? `
+      <div class="mt-3 p-4 rounded-xl bg-gray-900 border border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div>
+          <span class="text-white font-bold block">Serie ${model.series_code} Machinefamilie</span>
+          <span class="text-gray-400 text-2xs block">Onderdeelnummers die beginnen met ${model.series_code} behoren tot de STIHL ${model.model_name} modelfamilie.</span>
+        </div>
+        <a href="/onderdeelnummer/stihl-${model.series_code}/" class="text-orange-400 font-bold hover:underline shrink-0">
+          Bekijk alle Serie ${model.series_code} Onderdelen →
+        </a>
+      </div>
+      ` : ''}
+      <div class="pt-2 flex flex-wrap gap-3 text-xs">
+        ${modelPath ? `<a href="${modelPath}" class="text-orange-400 hover:underline">← Bekijk complete STIHL ${model.model_name} machinegids & specificaties</a>` : ''}
+        <span class="text-gray-600 hidden sm:inline">•</span>
+        <a href="/stihl-paspoort/?model=${encodeURIComponent(model.model_name)}" class="text-gray-300 hover:text-white hover:underline">📋 Digitaal Machinepaspoort STIHL ${model.model_name} →</a>
+      </div>
     </header>
 
     ${configTabsHtml}
