@@ -11,6 +11,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { PRIMARY_ORIGIN } from '../src/config.js';
 import { renderPartNumberHubHtml, renderPartNumberSeriesHtml } from '../server.js';
+import { renderModelPageHtml } from '../src/components/ModelPageTemplate.js';
 import { renderModelPartsPageHtml } from '../src/components/ModelPartsPageTemplate.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { generateSitemapXml } from '../src/components/SitemapGenerator.js';
@@ -37,6 +38,15 @@ const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 const models = database.models || [];
 const seriesCodes = getCanonicalPartSeriesCodes(database);
 
+const inboundHrefs = new Set();
+function collectHrefs(html) {
+  if (!html) return;
+  const matches = html.matchAll(/href="([^"#?]+)"/g);
+  for (const m of matches) {
+    inboundHrefs.add(m[1]);
+  }
+}
+
 const audit = {
   model_parts_pages: 0,
   series_pages: 0,
@@ -52,6 +62,7 @@ const audit = {
   missing_h1: 0,
   missing_breadcrumb: 0,
   missing_internal_links: 0,
+  robots_mismatches: 0,
   duplicate_titles: 0,
   duplicate_descriptions: 0,
   orphan_pages: 0
@@ -101,6 +112,7 @@ if (hubRobots === 'index, follow') {
   audit.noindex_count++;
 }
 trackMetadata(hubTitle, hubDesc, '/onderdeelnummer/');
+collectHrefs(hubHtml);
 
 console.log(`  Title: ${hubTitle}`);
 console.log(`  Robots: ${hubRobots}`);
@@ -131,6 +143,7 @@ for (const code of seriesCodes) {
     audit.noindex_count++;
   }
   trackMetadata(title, desc, seriesUrl);
+  collectHrefs(seriesHtml);
 }
 console.log('  ✅ All Part Series Pages Audited Cleanly.\n');
 
@@ -163,16 +176,23 @@ for (const model of publishedModels) {
   if (hasParts) {
     if (robots !== 'index, follow') {
       console.error(`🚨 Model ${model.model_name} has parts but robots is ${robots}!`);
+      audit.robots_mismatches++;
     }
     indexableModelPartsCount++;
     audit.indexable_count++;
   } else {
     if (robots !== 'noindex, follow') {
       console.error(`🚨 Empty model ${model.model_name} has 0 parts but robots is ${robots}!`);
+      audit.robots_mismatches++;
     }
     noindexModelPartsCount++;
     audit.noindex_count++;
   }
+
+  // Collect inbound links from model guide and model parts page
+  const guideHtml = renderModelPageHtml(model, database, PRIMARY_ORIGIN);
+  collectHrefs(guideHtml);
+  collectHrefs(partsHtml);
 
   // Only track duplicate metadata for indexable pages to avoid false positives on unindexed shells
   if (robots === 'index, follow') {
@@ -237,13 +257,29 @@ console.log('  ✅ Sitemap Generator Verification 100% Clean.\n');
 
 // 7. Audit Internal Link Equity & Orphan Check
 console.log('▶ Running Orphan Page Check for indexable parts surfaces...');
-// Hub links to all series
-// Series links back to hub and to indexable model parts
-// Model guides link to model parts
-// Model parts link back to model guides and series
-audit.orphan_pages = 0;
-console.log('  Indexable Orphan Part Pages: 0');
-console.log('  ✅ Orphan Check Passed.\n');
+const indexablePartsUrls = [
+  '/onderdeelnummer/',
+  ...seriesCodes.map((code) => `/onderdeelnummer/stihl-${code}/`),
+  ...publishedModels
+    .filter((m) => PartCatalogResolver.hasPartsForModel(m, database))
+    .map((m) => getSafeModelPartsPath(m))
+    .filter(Boolean)
+];
+
+const orphanUrls = [];
+for (const url of indexablePartsUrls) {
+  if (!inboundHrefs.has(url)) {
+    orphanUrls.push(url);
+  }
+}
+
+audit.orphan_pages = orphanUrls.length;
+if (orphanUrls.length > 0) {
+  console.error(`🚨 Found ${orphanUrls.length} orphan indexable parts pages:\n`, orphanUrls.join('\n'));
+} else {
+  console.log(`  Indexable Orphan Part Pages: ${audit.orphan_pages} (verified across ${indexablePartsUrls.length} indexable parts routes against real link graph)`);
+  console.log('  ✅ Orphan Check Passed.\n');
+}
 
 // 8. Run Part Indexability Readiness Classifier
 console.log('▶ Running Part Indexability Readiness Classifier across 17,082 canonical parts...');
@@ -272,6 +308,7 @@ console.log(`  Missing Canonical:       ${audit.missing_canonical}`);
 console.log(`  Missing H1:              ${audit.missing_h1}`);
 console.log(`  Missing Breadcrumb:      ${audit.missing_breadcrumb}`);
 console.log(`  Missing Internal Links:  ${audit.missing_internal_links}`);
+console.log(`  Robots Mismatches:       ${audit.robots_mismatches}`);
 console.log(`  Duplicate Titles:        ${audit.duplicate_titles}`);
 console.log(`  Duplicate Descriptions:  ${audit.duplicate_descriptions}`);
 console.log(`  Orphan Pages:            ${audit.orphan_pages}`);
@@ -283,6 +320,8 @@ if (
   audit.missing_canonical > 0 ||
   audit.missing_h1 > 0 ||
   audit.missing_breadcrumb > 0 ||
+  audit.missing_internal_links > 0 ||
+  audit.robots_mismatches > 0 ||
   audit.duplicate_titles > 0 ||
   audit.duplicate_descriptions > 0 ||
   audit.orphan_pages > 0
