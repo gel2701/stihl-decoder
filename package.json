@@ -24,6 +24,7 @@
     "audit:document-authority": "node scripts/phase35_document_authority_validation.js",
     "audit:https-production": "node scripts/live_https_production_crawl.js",
     "audit:parts-catalog": "node scripts/audit_and_queue_catalog.mjs",
+    "audit:parts-technical-enrichment": "node scripts/audit_parts_technical_enrichment.mjs",
     "baseline:seo": "node scripts/build_phase34a_seo_baseline.js",
     "freeze:test": "node scripts/verify_seo_freeze_negative.js"
   },

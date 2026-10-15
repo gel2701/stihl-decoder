@@ -54,6 +54,44 @@ export class PartNormalizer {
   }
 
   /**
+   * Evaluates whether a diagram position value represents a genuine diagram position
+   * rather than a placeholder, missing value, or misplaced section string.
+   *
+   * Rejects: null, '', '-', '—', 'N/A', 'UNKNOWN', 'UNSPECIFIED', 'POS_UNSPECIFIED',
+   * 'OFFICIAL_REF', '-1', '0', and multi-token section strings like "C - Chassis".
+   *
+   * Accepts: alphanumeric positions like "1", "2A", "10b", "0.1", "100".
+   *
+   * @param {*} value
+   * @returns {boolean} true if meaningful position, false if placeholder/invalid
+   */
+  static isMeaningfulDiagramPosition(value) {
+    if (value === null || value === undefined) return false;
+    const str = String(value).trim();
+    if (!str) return false;
+    const upper = str.toUpperCase();
+    if (['POS_UNSPECIFIED', 'OFFICIAL_REF', 'UNKNOWN', 'UNSPECIFIED', 'N/A', 'NA', '-', '—', '-1', '0'].includes(upper)) {
+      return false;
+    }
+    if (str.includes(' - ') || str.includes(' – ') || str.includes(',')) {
+      return false;
+    }
+    return /^[0-9]+(\.[0-9]+)?[a-zA-Z]?$/i.test(str);
+  }
+
+  /**
+   * Normalizes a diagram position into standard string representation,
+   * or returns null if the position is a placeholder or not meaningful.
+   *
+   * @param {*} value
+   * @returns {string|null} normalized position string or null
+   */
+  static normalizeDiagramPosition(value) {
+    if (!PartNormalizer.isMeaningfulDiagramPosition(value)) return null;
+    return String(value).trim();
+  }
+
+  /**
    * Normalizes exploded diagram section keys:
    * Strips leading/trailing slashes, lowercases, and replaces non-alphanumeric chars with underscores.
    */
@@ -126,3 +164,6 @@ export class PartNormalizer {
     };
   }
 }
+
+export const isMeaningfulDiagramPosition = PartNormalizer.isMeaningfulDiagramPosition;
+export const normalizeDiagramPosition = PartNormalizer.normalizeDiagramPosition;
