@@ -14,6 +14,7 @@ import {
   getPublishedCategories,
   getCanonicalPartSeriesCodes
 } from '../publicationRules.js';
+import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 
 export function collectSitemapDiagnostics(database = {}) {
   const models = database.models || [];
@@ -57,11 +58,13 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
     const modelPath = getSafeModelPath(m);
     const partsPath = getSafeModelPartsPath(m);
     const lastmod = m.content_updated_at || m.updated_at || null;
-    if (!modelPath || !partsPath) {
+    if (!modelPath) {
       return;
     }
     urls.push({ loc: `${baseUrl}${modelPath}`, priority: '0.8', changefreq: 'weekly', lastmod });
-    urls.push({ loc: `${baseUrl}${partsPath}`, priority: '0.7', changefreq: 'weekly', lastmod });
+    if (partsPath && PartCatalogResolver.hasPartsForModel(m, database)) {
+      urls.push({ loc: `${baseUrl}${partsPath}`, priority: '0.7', changefreq: 'weekly', lastmod });
+    }
   });
 
   // 4. Comparison Pages

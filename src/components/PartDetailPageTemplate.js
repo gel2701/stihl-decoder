@@ -32,7 +32,34 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>STIHL ${formattedPartNo} Onderdeel | STIHLDecoder</title>
+  <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "${baseUrl}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Onderdeelnummers",
+        "item": "${baseUrl}/onderdeelnummer/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "STIHL ${formattedPartNo}",
+        "item": "${canonicalUrl}"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -94,6 +121,32 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
   <meta name="description" content="STIHL onderdeelnummer ${formattedPartNo} (${partName}). Bekijk geschikte modellen, montagelocatie en diagramposities.">
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "${baseUrl}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Onderdeelnummers",
+        "item": "${baseUrl}/onderdeelnummer/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "STIHL ${formattedPartNo}",
+        "item": "${canonicalUrl}"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -201,27 +254,45 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
       </div>
     </section>
 
-    ${offers.length > 0 ? `
-    <!-- Commercial Offers Section ("Waar te koop") -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs" aria-labelledby="waar-te-koop-heading">
+    ${offers.length > 0 ? (() => {
+      const hasVerifiedOffer = offers.some(o => o.match_type === 'MANUAL_ASIN' || o.is_verified === true);
+      const sectionTitle = hasVerifiedOffer ? 'Waar te koop' : 'Zoek dit onderdeel online';
+      const sectionPill = hasVerifiedOffer ? 'Aangesloten webwinkels' : 'Online zoeken';
+      const sectionIntro = hasVerifiedOffer
+        ? 'Bekijk gecontroleerde productpagina’s en zoekopties bij aangesloten webwinkels.'
+        : 'Zoek op Amazon naar dit onderdeelnummer. Beschikbaarheid en exacte productmatch zijn niet vooraf bevestigd.';
+      const sectionId = hasVerifiedOffer ? 'waar-te-koop-heading' : 'zoek-online-heading';
+
+      return `
+    <!-- Commercial Offers Section ("${sectionTitle}") -->
+    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs" aria-labelledby="${sectionId}">
       <div class="flex items-center justify-between">
-        <h2 id="waar-te-koop-heading" class="text-base font-bold text-white flex items-center gap-2">
-          <span>Waar te koop</span>
-          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">Externe aanbieders</span>
+        <h2 id="${sectionId}" class="text-base font-bold text-white flex items-center gap-2">
+          <span>${sectionTitle}</span>
+          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">${sectionPill}</span>
         </h2>
       </div>
       <p class="text-xs text-gray-400 leading-relaxed">
-        Zoek direct naar geschikte vervangende onderdelen bij aangesloten webwinkels en marktplaatsen.
+        ${sectionIntro}
       </p>
       <div class="space-y-3">
         ${offers.map(offer => {
+          const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
+          const badgeText = offer.badge_label || (isVerified ? 'Geverifieerd product' : 'Amazon-zoekopdracht');
+          const buttonText = offer.label || (isVerified ? 'Bekijk product op Amazon.nl' : 'Zoek op Amazon.nl');
+          const descriptionText = offer.description || (isVerified
+            ? 'Voor dit onderdeel is een specifieke Amazon-productpagina gecontroleerd. Controleer vóór aankoop altijd onderdeelnummer en machine-uitvoering.'
+            : `Zoek op Amazon naar STIHL onderdeel ${formattedPartNo}. De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd.`);
+          const ariaLabel = offer.cta_aria_label || `${buttonText} voor STIHL onderdeel ${formattedPartNo}`;
+
           const redirectParams = new URLSearchParams({
             url: offer.url,
             part_number: resolved.part_number,
             provider: offer.provider || 'amazon',
             marketplace: offer.marketplace || '',
             offer_type: offer.match_type || 'SEARCH_LINK',
-            asin_if_known: offer.asin || ''
+            asin_if_known: offer.asin || '',
+            product_verified: isVerified ? 'true' : 'false'
           });
           const redirectUrl = `/api/affiliate/out?${redirectParams.toString()}`;
           return `
@@ -229,10 +300,10 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
             <div class="space-y-1">
               <div class="flex items-center gap-2">
                 <span class="font-bold text-white text-sm capitalize">${offer.marketplace || offer.provider}</span>
-                <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-900 text-gray-400 border border-gray-800">${offer.match_type === 'MANUAL_ASIN' ? 'Geverifieerd product' : 'Zoekopdracht'}</span>
+                <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-900 text-gray-400 border border-gray-800">${badgeText}</span>
               </div>
               <div class="text-2xs text-gray-400">
-                ${offer.title || `Zoek STIHL ${formattedPartNo} op ${offer.marketplace}`}
+                ${descriptionText}
               </div>
             </div>
             <a
@@ -240,10 +311,10 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
               target="_blank"
               rel="sponsored nofollow noopener"
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
-              aria-label="${offer.label} voor STIHL onderdeel ${formattedPartNo}"
-              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', asin_if_known: '${offer.asin || ''}', page_path: window.location.pathname});}"
+              aria-label="${ariaLabel}"
+              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname});}"
             >
-              <span>${offer.label}</span>
+              <span>${buttonText}</span>
               <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -251,7 +322,7 @@ export function renderPartDetailPageHtml(rawPartNumber, database = null, baseUrl
       </div>
       ${renderAffiliateDisclosureHtml()}
     </section>
-    ` : ''}
+    `;})() : ''}
 
     <!-- Verification Disclaimer -->
     <section class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5 text-xs text-amber-200 space-y-2">

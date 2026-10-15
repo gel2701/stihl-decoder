@@ -411,8 +411,8 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
         <span class="text-gray-400 block text-2xs">Geverifieerde motorgegevens en bronstatus</span>
       </a>
       ${safePartsPath ? `<a href="${safePartsPath}" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
-        <span class="font-bold text-white text-sm block group-hover:underline">🔧 3. Bekijk Onderdelen</span>
-        <span class="text-gray-400 block text-2xs">${model.series_code ? `Modelgebonden onderdelen voor serie ${model.series_code}` : 'Modelgebonden onderdeleninformatie'}</span>
+        <span class="font-bold text-white text-sm block group-hover:underline">🔧 Bekijk onderdelen voor de STIHL ${model.model_name}</span>
+        <span class="text-gray-400 block text-2xs">${model.series_code ? `STIHL ${model.model_name} onderdelen & exploded views (serie ${model.series_code})` : `STIHL ${model.model_name} onderdelen & exploded views`}</span>
       </a>` : ''}
     </section>
 

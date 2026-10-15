@@ -200,6 +200,17 @@ export function buildStructuredData({ pageType, model, guide, intent, publicEvid
     });
   }
 
+  // 6. Model Parts Page Schemas (Phase 54C)
+  if (pageType === 'model-parts') {
+    graph.push({
+      '@type': 'WebPage',
+      'name': intent?.title || `STIHL ${model?.model_name || ''} Onderdelen`,
+      'description': intent?.description || '',
+      'url': canonicalUrl,
+      'inLanguage': 'nl-NL'
+    });
+  }
+
   return {
     '@context': 'https://schema.org',
     '@graph': graph

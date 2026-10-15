@@ -53,7 +53,9 @@ export const currentProductionSuites = [
   'tests/phase53a_serial_evidence_import.test.js',
   'tests/phase53a_reproducibility.test.js',
   'tests/phase54a_parts_amazon_affiliate.test.js',
-  'tests/phase54b_homepage_parts_ux.test.js'
+  'tests/phase54a_h_amazon_link_integrity.test.js',
+  'tests/phase54b_homepage_parts_ux.test.js',
+  'tests/phase54c_parts_seo.test.js'
 ];
 
 console.log('===============================================================');
