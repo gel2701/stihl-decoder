@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Controlled, evidence-verified display name overrides for STIHL parts catalog. Used for precision technical Dutch terms and cleaning complex residual catalog titles.",
+  "overrides": [
+    {
+      "part_number": "40080071000",
+      "display_name_nl": "Maaimesjes PolyCut 2-2 / 3-2",
+      "reason": "clean component name without retailer pack text",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "41386400201",
+      "display_name_nl": "Haakse aandrijfkop",
+      "reason": "stripped zero-width space entity and model list",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "42436400535",
+      "display_name_nl": "Aandrijfhuis",
+      "reason": "stripped retailer prefix and model list",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "49015009002",
+      "display_name_nl": "Filterzakken",
+      "reason": "clean component name without pack suffix",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "49015009010",
+      "display_name_nl": "Filterzakken",
+      "reason": "clean component name without pack suffix",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "49015009015",
+      "display_name_nl": "Filterzakken SE 60",
+      "reason": "clean component name with specific series code",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "63207035110",
+      "display_name_nl": "Trekveer",
+      "reason": "stripped model list and zero-width entity",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "96459487501",
+      "display_name_nl": "O-ring 9.3 x 2.4",
+      "reason": "stripped zero-width entity and model list",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "08114907860",
+      "display_name_nl": "Vijlhecht voor kettingzaagvijlen 4.0-5.5mm",
+      "reason": "clean technical accessory description",
+      "source": "CONTROLLED_NORMALIZATION"
+    },
+    {
+      "part_number": "00006051020",
+      "display_name_nl": "Condensator 30 µF",
+      "reason": "Capacitor 30µF microfarad electrical component",
+      "source": "official_stihl"
+    }
+  ]
+}

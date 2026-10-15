@@ -14,6 +14,7 @@ import Database from 'better-sqlite3';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PartNormalizer } from '../parts/PartNormalizer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -162,17 +163,17 @@ export class PartIndexReadinessClassifier {
 
     const db = new Database(dbPath, { readonly: true });
     const query = `
-      SELECT 
-        p.part_number, 
-        p.part_number_display, 
-        p.part_name, 
-        COUNT(f.fitment_id) as fitment_count, 
-        COUNT(DISTINCT f.canonical_model_id) as model_count, 
-        COUNT(DISTINCT f.section_name) as section_count, 
-        MAX(CASE WHEN f.diagram_position IS NOT NULL AND f.diagram_position != '' THEN 1 ELSE 0 END) as has_pos, 
-        MAX(CASE WHEN f.configuration_key IS NOT NULL AND f.configuration_key != '' THEN 1 ELSE 0 END) as has_config 
-      FROM parts p 
-      JOIN model_part_fitments f ON p.part_number = f.part_number 
+      SELECT
+        p.part_number,
+        p.part_number_display,
+        p.part_name,
+        COUNT(f.fitment_id) as fitment_count,
+        COUNT(DISTINCT f.canonical_model_id) as model_count,
+        COUNT(DISTINCT f.section_name) as section_count,
+        GROUP_CONCAT(f.diagram_position, '|') as raw_positions,
+        MAX(CASE WHEN f.configuration_key IS NOT NULL AND f.configuration_key != '' THEN 1 ELSE 0 END) as has_config
+      FROM parts p
+      JOIN model_part_fitments f ON p.part_number = f.part_number
       GROUP BY p.part_number
     `;
 
@@ -197,6 +198,8 @@ export class PartIndexReadinessClassifier {
     const evaluated = [];
 
     for (const raw of rawParts) {
+      const positions = (raw.raw_positions || '').split('|');
+      raw.has_pos = positions.some(p => PartNormalizer.isMeaningfulDiagramPosition(p)) ? 1 : 0;
       const result = PartIndexReadinessClassifier.evaluatePart(raw);
       counts[result.tier]++;
       for (const r of result.reasons) {

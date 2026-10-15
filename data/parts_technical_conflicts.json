@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Technical data conflict and multi-placement audit registry for STIHL parts catalog. Documents resolved casing variations, multi-position assembly placements, and supersession validation.",
+  "generated_at": "2026-10-15T20:00:00.000Z",
+  "summary": {
+    "semantic_section_conflicts": 0,
+    "section_conflicts": 0,
+    "position_conflicts": 0,
+    "casing_section_variations_resolved": 13,
+    "multi_position_section_placements": 17,
+    "supersession_conflicts": 0,
+    "supersession_self_loops": 0,
+    "supersession_cycles": 0
+  },
+  "casing_section_variations": [
+    {
+      "model_id": "026",
+      "part_number": "11210071043",
+      "raw_sections": ["Oil Pump", "Oil pump"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Oil Pump",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "026",
+      "part_number": "11210802101",
+      "raw_sections": ["Rewind Starter", "Rewind starter"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Rewind Starter",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "026",
+      "part_number": "11213500834",
+      "raw_sections": ["Tank Housing", "Tank housing"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Tank Housing",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "026",
+      "part_number": "11216403202",
+      "raw_sections": ["Oil Pump", "Oil pump"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Oil Pump",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "026",
+      "part_number": "11216403203",
+      "raw_sections": ["Oil Pump", "Oil pump"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Oil Pump",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "090",
+      "part_number": "11066403202",
+      "raw_sections": ["Oil Pump", "Oil pump"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Oil Pump",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "hsa_140_0",
+      "part_number": "00009673447",
+      "raw_sections": ["Serial Number", "Serial number"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Serial Number",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "ms_250",
+      "part_number": "11211623201",
+      "raw_sections": ["Clutch", "CLutch"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Clutch",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "ms_250",
+      "part_number": "11231602050",
+      "raw_sections": ["Clutch", "CLutch"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Clutch",
+      "reason": "Pure casing variation in source records"
+    },
+    {
+      "model_id": "ms_250",
+      "part_number": "11291620800",
+      "raw_sections": ["Clutch", "CLutch"],
+      "resolution": "RESOLVED_TO_CANONICAL_TITLE_CASE",
+      "canonical_section": "Clutch",
+      "reason": "Pure casing variation in source records"
+    }
+  ],
+  "multi_position_placements": [
+    {
+      "model_id": "064",
+      "section_name": "Handlebar",
+      "part_number": "11247915105",
+      "positions": ["21", "32"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Same fastener used at distinct physical positions within handlebar assembly."
+    },
+    {
+      "model_id": "066",
+      "section_name": "Handlebar",
+      "part_number": "11247915105",
+      "positions": ["8", "20"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Same fastener used at distinct physical positions within handlebar assembly."
+    },
+    {
+      "model_id": "ms_150",
+      "section_name": "Chain Sprocket Cover",
+      "part_number": "11466401704",
+      "positions": ["2", "4"],
+      "classification": "MULTI_PLACEMENT_COMPONENT",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Multiple assembly positions in chain sprocket cover."
+    },
+    {
+      "model_id": "ms_360",
+      "section_name": "Cylinder",
+      "part_number": "11190292301",
+      "positions": ["11", "13"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Fasteners mounted at multiple cylinder locations."
+    },
+    {
+      "model_id": "ms_360",
+      "section_name": "Cylinder",
+      "part_number": "11250201215",
+      "positions": ["1", "2"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Assembly hardware mounted at multiple positions."
+    },
+    {
+      "model_id": "rm_248_0",
+      "section_name": "Handle",
+      "part_number": "63507066800",
+      "positions": ["9", "16"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Lawn mower handle mounting hardware across multiple joints."
+    },
+    {
+      "model_id": "rm_248_0",
+      "section_name": "Handle",
+      "part_number": "63647900500",
+      "positions": ["13", "16"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Lawn mower handle mounting hardware across multiple joints."
+    },
+    {
+      "model_id": "rm_248_0",
+      "section_name": "Handle",
+      "part_number": "63717635001",
+      "positions": ["7", "10"],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+      "notes": "Lawn mower handle mounting hardware across multiple joints."
+    }
+  ]
+}

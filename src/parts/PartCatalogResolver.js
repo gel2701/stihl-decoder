@@ -4,6 +4,8 @@ import zlib from 'zlib';
 import { fileURLToPath } from 'url';
 
 import { PartNormalizer, FITMENT_SCOPES } from './PartNormalizer.js';
+import { SectionNormalizer } from './SectionNormalizer.js';
+import { PartNameNormalizer } from './PartNameNormalizer.js';
 import { normalizeModelQuery } from '../modelNormalizer.js';
 
 /**
@@ -29,6 +31,7 @@ const __dirname = path.dirname(__filename);
 const defaultPartsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_catalog.json');
 const defaultFitmentsPath = path.resolve(__dirname, '..', '..', 'data', 'model_part_fitments.json');
 const defaultConfigurationsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_model_configurations.json');
+const defaultSupersessionsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_supersessions.json');
 
 let cachedPartsCatalog = null;
 let cachedPartsMap = null;
@@ -36,6 +39,98 @@ let cachedFitments = null;
 let cachedFitmentsByPartMap = null;
 let cachedFitmentsByModelMap = null;
 let cachedConfigurations = null;
+let cachedSupersessionsMap = null;
+
+function loadDefaultSupersessionsData() {
+  if (cachedSupersessionsMap === null) {
+    cachedSupersessionsMap = new Map();
+    try {
+      if (fs.existsSync(defaultSupersessionsPath)) {
+        const doc = JSON.parse(fs.readFileSync(defaultSupersessionsPath, 'utf8'));
+        if (Array.isArray(doc.relations)) {
+          for (const rel of doc.relations) {
+            cachedSupersessionsMap.set(rel.from_part, rel);
+          }
+        }
+      }
+    } catch (e) {
+      cachedSupersessionsMap = new Map();
+    }
+  }
+}
+
+function buildTechnicalProfile(part, fitments, compatibleModels) {
+  loadDefaultSupersessionsData();
+  const canonicalPartNo = part.part_number;
+  const partNameRaw = part.part_name || '';
+  const displayName = PartNameNormalizer.normalizeDisplayName(partNameRaw, canonicalPartNo);
+
+  const qualityStatus = PartNameNormalizer.assessQuality(partNameRaw, canonicalPartNo);
+
+  const meaningfulSections = new Set();
+  const diagramContexts = [];
+  const configs = new Set();
+
+  for (const f of fitments) {
+    const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+    if (canonSec) {
+      meaningfulSections.add(canonSec);
+    }
+    if (f.configuration_key) {
+      configs.add(f.configuration_key);
+    }
+    const pos = PartNormalizer.normalizeDiagramPosition(f.diagram_position);
+    if (pos) {
+      diagramContexts.push({
+        canonical_model_id: f.canonical_model_id,
+        configuration_key: f.configuration_key || null,
+        configuration_name: f.configuration_name || null,
+        section_name: canonSec || f.section_name,
+        diagram_position: pos
+      });
+    }
+  }
+
+  const supersessionRel = cachedSupersessionsMap?.get(canonicalPartNo) || null;
+
+  return {
+    canonical_part_number: canonicalPartNo,
+    display_name: displayName,
+    part_name_raw: partNameRaw,
+    name_quality_status: qualityStatus,
+    quality_status: qualityStatus,
+    model_count: compatibleModels.length,
+    fitment_count: fitments.length,
+    configuration_count: configs.size,
+    sections: Array.from(meaningfulSections),
+    canonical_sections: Array.from(meaningfulSections),
+    has_meaningful_position: diagramContexts.length > 0,
+    diagram_contexts: diagramContexts,
+    supersession: supersessionRel ? {
+      replaced_by: supersessionRel.to_part,
+      relation: supersessionRel.relation,
+      evidence_status: supersessionRel.evidence_status,
+      source_id: supersessionRel.source_id,
+      source_document: supersessionRel.source_document,
+      provenance_status: supersessionRel.provenance_status || 'PROVENANCE_NOT_RECONFIRMED',
+      applicability: supersessionRel.applicability || 'EVIDENCE_ONLY_SCOPE_UNRESOLVED',
+      public_active: Boolean(supersessionRel.public_active),
+      scope: supersessionRel.scope || {
+        model_ids: [],
+        variant_keys: [],
+        configuration_keys: [],
+        serial_condition: null
+      },
+      target_in_catalog: supersessionRel.target_in_catalog,
+      active_in_catalog: supersessionRel.active_in_catalog
+    } : null,
+    evidence_summary: {
+      sources: part.sources || ['sparepartsworld'],
+      has_real_positions: diagramContexts.length > 0,
+      has_canonical_section: meaningfulSections.size > 0
+    }
+  };
+}
 
 function readShardFile(filePath) {
   if (!fs.existsSync(filePath)) return [];
@@ -254,6 +349,38 @@ export class PartCatalogResolver {
       if (!part) return { found: false, part_number: null, fitments: [] };
 
       const fitments = this._indexedFitmentsByPart.get(canonicalPartNo) || [];
+      const modelMap = new Map();
+      for (const f of fitments) {
+        const mId = f.canonical_model_id;
+        if (!modelMap.has(mId)) {
+          modelMap.set(mId, {
+            model_id: mId,
+            model_name: mId.replace(/_/g, ' ').toUpperCase(),
+            variants: new Set(),
+            configurations: new Set(),
+            sections: new Set(),
+            fitment_count: 0
+          });
+        }
+        const mEntry = modelMap.get(mId);
+        mEntry.fitment_count++;
+        if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
+        if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
+        const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+        if (canonSec) mEntry.sections.add(canonSec);
+      }
+
+      const compatibleModels = Array.from(modelMap.values()).map(m => ({
+        model_id: m.model_id,
+        model_name: m.model_name,
+        variants: Array.from(m.variants),
+        configurations: Array.from(m.configurations),
+        sections: Array.from(m.sections),
+        fitment_count: m.fitment_count
+      }));
+
+      const techProfile = buildTechnicalProfile(part, fitments, compatibleModels);
+
       return {
         found: true,
         part_number: part.part_number,
@@ -262,19 +389,29 @@ export class PartCatalogResolver {
         part_name_normalized: part.part_name_normalized,
         source_count: part.source_count,
         fitment_count: fitments.length,
-        fitments: fitments.map(f => ({
-          canonical_model_id: f.canonical_model_id,
-          variant_key: f.variant_key,
-          configuration_key: f.configuration_key || null,
-          configuration_name: f.configuration_name || null,
-          fitment_scope: f.fitment_scope,
-          section_key: f.section_key,
-          section_name: f.section_name,
-          diagram_position: f.diagram_position,
-          quantity: f.quantity,
-          source_evidence_status: f.source_evidence_status,
-          superseded_by: f.superseded_by || null
-        }))
+        compatible_models: compatibleModels,
+        technical_profile: techProfile,
+        fitments: fitments.map(f => {
+          const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+          const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+          return {
+            canonical_model_id: f.canonical_model_id,
+            variant_key: f.variant_key,
+            configuration_key: f.configuration_key || null,
+            configuration_name: f.configuration_name || null,
+            fitment_scope: f.fitment_scope,
+            section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
+            section_name: canonSec || f.section_name,
+            section_name_raw: f.section_name,
+            section_name_canonical: canonSec,
+            diagram_position: isRealPos ? f.diagram_position : null,
+            diagram_position_raw: f.diagram_position,
+            has_meaningful_position: isRealPos,
+            quantity: f.quantity,
+            source_evidence_status: f.source_evidence_status,
+            superseded_by: f.superseded_by || techProfile.supersession?.replaced_by || null
+          };
+        })
       };
     }
 
@@ -358,6 +495,8 @@ export class PartCatalogResolver {
         fitment_count: m.fitment_count
       }));
 
+      const techProfile = buildTechnicalProfile(part, fitments, compatibleModels);
+
       return {
         part_number: part.part_number,
         part_number_display: part.part_number_display || PartNormalizer.formatPartNumber(part.part_number),
@@ -366,19 +505,28 @@ export class PartCatalogResolver {
         source_count: part.source_count,
         fitment_count: fitments.length,
         compatible_models: compatibleModels,
-        fitments: fitments.map(f => ({
-          canonical_model_id: f.canonical_model_id,
-          variant_key: f.variant_key,
-          configuration_key: f.configuration_key || null,
-          configuration_name: f.configuration_name || null,
-          fitment_scope: f.fitment_scope,
-          section_key: f.section_key,
-          section_name: f.section_name,
-          diagram_position: f.diagram_position,
-          quantity: f.quantity,
-          source_evidence_status: f.source_evidence_status,
-          superseded_by: f.superseded_by || null
-        }))
+        technical_profile: techProfile,
+        fitments: fitments.map(f => {
+          const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+          const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+          return {
+            canonical_model_id: f.canonical_model_id,
+            variant_key: f.variant_key,
+            configuration_key: f.configuration_key || null,
+            configuration_name: f.configuration_name || null,
+            fitment_scope: f.fitment_scope,
+            section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
+            section_name: canonSec || f.section_name,
+            section_name_raw: f.section_name,
+            section_name_canonical: canonSec,
+            diagram_position: isRealPos ? f.diagram_position : null,
+            diagram_position_raw: f.diagram_position,
+            has_meaningful_position: isRealPos,
+            quantity: f.quantity,
+            source_evidence_status: f.source_evidence_status,
+            superseded_by: f.superseded_by || techProfile.supersession?.replaced_by || null
+          };
+        })
       };
     }
 
@@ -405,7 +553,8 @@ export class PartCatalogResolver {
       mEntry.fitment_count++;
       if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
       if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
-      if (f.section_name) mEntry.sections.add(f.section_name);
+      const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+      if (canonSec) mEntry.sections.add(canonSec);
     }
 
     const compatibleModels = Array.from(modelMap.values()).map(m => ({
@@ -417,6 +566,8 @@ export class PartCatalogResolver {
       fitment_count: m.fitment_count
     }));
 
+    const techProfile = buildTechnicalProfile(part, fitments, compatibleModels);
+
     return {
       part_number: part.part_number,
       part_number_display: part.part_number_display || PartNormalizer.formatPartNumber(part.part_number),
@@ -425,19 +576,28 @@ export class PartCatalogResolver {
       source_count: part.source_count,
       fitment_count: fitments.length,
       compatible_models: compatibleModels,
-      fitments: fitments.map(f => ({
-        canonical_model_id: f.canonical_model_id,
-        variant_key: f.variant_key,
-        configuration_key: f.configuration_key || null,
-        configuration_name: f.configuration_name || null,
-        fitment_scope: f.fitment_scope,
-        section_key: f.section_key,
-        section_name: f.section_name,
-        diagram_position: f.diagram_position,
-        quantity: f.quantity,
-        source_evidence_status: f.source_evidence_status,
-        superseded_by: f.superseded_by || null
-      }))
+      technical_profile: techProfile,
+      fitments: fitments.map(f => {
+        const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+        const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+        return {
+          canonical_model_id: f.canonical_model_id,
+          variant_key: f.variant_key,
+          configuration_key: f.configuration_key || null,
+          configuration_name: f.configuration_name || null,
+          fitment_scope: f.fitment_scope,
+          section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
+          section_name: canonSec || f.section_name,
+          section_name_raw: f.section_name,
+          section_name_canonical: canonSec,
+          diagram_position: isRealPos ? f.diagram_position : null,
+          diagram_position_raw: f.diagram_position,
+          has_meaningful_position: isRealPos,
+          quantity: f.quantity,
+          source_evidence_status: f.source_evidence_status,
+          superseded_by: f.superseded_by || techProfile.supersession?.replaced_by || null
+        };
+      })
     };
   }
 
@@ -570,13 +730,19 @@ export class PartCatalogResolver {
 
       return matchingFitments.map(f => {
         const part = partsMap.get(f.part_number);
+        const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+        const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
         return {
           part_number: f.part_number,
           part_number_display: PartNormalizer.formatPartNumber(f.part_number),
-          part_name: part?.part_name || f.section_name,
-          section_key: f.section_key,
-          section_name: f.section_name,
-          diagram_position: f.diagram_position,
+          part_name: part ? PartNameNormalizer.normalizeDisplayName(part.part_name, f.part_number) : (canonSec || f.section_name),
+          part_name_raw: part?.part_name || f.section_name,
+          section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
+          section_name: canonSec || f.section_name,
+          section_name_raw: f.section_name,
+          diagram_position: isRealPos ? f.diagram_position : null,
+          diagram_position_raw: f.diagram_position,
+          has_meaningful_position: isRealPos,
           quantity: f.quantity,
           variant_key: f.variant_key,
           configuration_key: f.configuration_key || null,
@@ -593,13 +759,19 @@ export class PartCatalogResolver {
 
     return matchingFitments.map(f => {
       const part = cachedPartsMap?.get(f.part_number);
+      const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+      const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
       return {
         part_number: f.part_number,
         part_number_display: PartNormalizer.formatPartNumber(f.part_number),
-        part_name: part?.part_name || f.section_name,
-        section_key: f.section_key,
-        section_name: f.section_name,
-        diagram_position: f.diagram_position,
+        part_name: part ? PartNameNormalizer.normalizeDisplayName(part.part_name, f.part_number) : (canonSec || f.section_name),
+        part_name_raw: part?.part_name || f.section_name,
+        section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
+        section_name: canonSec || f.section_name,
+        section_name_raw: f.section_name,
+        diagram_position: isRealPos ? f.diagram_position : null,
+        diagram_position_raw: f.diagram_position,
+        has_meaningful_position: isRealPos,
         quantity: f.quantity,
         variant_key: f.variant_key,
         configuration_key: f.configuration_key || null,

@@ -18,6 +18,7 @@ import {
 import { PRIMARY_ORIGIN } from '../config.js';
 import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
+import { PartNormalizer } from '../parts/PartNormalizer.js';
 
 function renderSafeTechnicalValue(model, field, database, formatter) {
   const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
@@ -157,7 +158,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                 <tbody class="divide-y divide-gray-800/50">
                   ${sec.parts.map(p => `
                     <tr class="hover:bg-gray-800/40 transition">
-                      <td class="py-2 pr-3 font-mono text-gray-400">${p.diagram_position || '—'}</td>
+                      <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
                       <td class="py-2 px-3 font-mono font-bold text-orange-400 whitespace-nowrap">
                         <a href="/onderdeelnummer/${p.part_number}/" class="hover:underline">${p.part_number_display || p.part_number}</a>
                       </td>
