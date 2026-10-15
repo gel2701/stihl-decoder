@@ -60,7 +60,8 @@ const WHITELISTED_METADATA_KEYS = [
   'asin_if_known',
   'page_path',
   'destination_url',
-  'marketplace'
+  'marketplace',
+  'product_verified'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

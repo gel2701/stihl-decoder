@@ -112,7 +112,7 @@ assert.strictEqual(offer.rel, 'sponsored nofollow noopener');
 assert.strictEqual(offer.target, '_blank');
 assert.strictEqual(offer.price, null, 'Must not claim price without live API feed');
 
-assert.strictEqual(offer.label, 'Bekijk op Amazon.nl');
+assert.strictEqual(offer.label, 'Zoek op Amazon.nl');
 assert(offer.title.includes('op Amazon.nl'));
 
 // Verify configured marketplace in fallback copy (e.g. amazon.de)
@@ -120,7 +120,7 @@ const deFallbackAmazon = new AmazonAffiliateProvider({ marketplace: 'amazon.de' 
 process.env.AMAZON_ASSOCIATE_TAG_DE = 'de-tag-21';
 const deFallbackSearch = deFallbackAmazon.getOffers({ partNumber: '11231602050' });
 assert.strictEqual(deFallbackSearch.length, 1);
-assert.strictEqual(deFallbackSearch[0].label, 'Bekijk op Amazon.de');
+assert.strictEqual(deFallbackSearch[0].label, 'Zoek op Amazon.de');
 assert(deFallbackSearch[0].title.includes('op Amazon.de'));
 delete process.env.AMAZON_ASSOCIATE_TAG_DE;
 console.log('  ✅ Test 3 Passed: Safe Amazon search link constructed properly with marketplace-derived copy.\n');
@@ -135,20 +135,26 @@ const manualOverrides = [
     asin: 'B07TEST123',
     marketplace: 'amazon.nl',
     title: 'STIHL Koppeling Origineel MS 250',
-    enabled: true
+    enabled: true,
+    verification_status: 'VERIFIED_EXACT_MATCH',
+    verified_at: '2026-10-15T00:00:00Z'
   },
   {
     part_number: '11210071001',
     asin: 'B07DISABLE',
     marketplace: 'amazon.nl',
-    enabled: false
+    enabled: false,
+    verification_status: 'VERIFIED_EXACT_MATCH',
+    verified_at: '2026-10-15T00:00:00Z'
   },
   {
     part_number: '11271200650',
     asin: 'B07GERMANY',
     marketplace: 'amazon.de',
     title: 'STIHL Vergaser MS 290',
-    enabled: true
+    enabled: true,
+    verification_status: 'VERIFIED_EXACT_MATCH',
+    verified_at: '2026-10-15T00:00:00Z'
   },
   {
     part_number: '11431200600',
@@ -156,7 +162,9 @@ const manualOverrides = [
     marketplace: 'amazon.de',
     tag: 'custom-de-tag-21',
     title: 'STIHL Vergaser MS 251 Custom',
-    enabled: true
+    enabled: true,
+    verification_status: 'VERIFIED_EXACT_MATCH',
+    verified_at: '2026-10-15T00:00:00Z'
   }
 ];
 
@@ -171,6 +179,8 @@ const asinOffer = asinOffers[0];
 assert.strictEqual(asinOffer.match_type, AMAZON_MATCH_TYPES.MANUAL_ASIN);
 assert.strictEqual(asinOffer.asin, 'B07TEST123');
 assert.strictEqual(asinOffer.confidence, 'HIGH');
+assert.strictEqual(asinOffer.label, 'Bekijk product op Amazon.nl');
+assert.strictEqual(asinOffer.badge_label, 'Geverifieerd product');
 const asinParsed = new URL(asinOffer.url);
 assert.strictEqual(asinParsed.pathname, '/dp/B07TEST123');
 assert.strictEqual(asinParsed.hostname, 'amazon.nl');
@@ -199,7 +209,7 @@ assert.strictEqual(deOffers[0].match_type, AMAZON_MATCH_TYPES.MANUAL_ASIN);
 assert.strictEqual(deOffers[0].marketplace, 'amazon.de');
 assert.strictEqual(new URL(deOffers[0].url).hostname, 'amazon.de');
 assert.strictEqual(new URL(deOffers[0].url).searchParams.get('tag'), 'stihltest-de-21');
-assert.strictEqual(deOffers[0].label, 'Bekijk op Amazon.de');
+assert.strictEqual(deOffers[0].label, 'Bekijk product op Amazon.de');
 delete process.env.AMAZON_ASSOCIATE_TAG_DE;
 
 // When override explicitly provides its own tag, that tag must be honored
@@ -547,8 +557,11 @@ process.env.AMAZON_ASSOCIATE_TAG = 'stihltest-21';
 
 const samplePartNo = '11231602050';
 const htmlWithAffiliate = renderPartDetailPageHtml(samplePartNo);
-assert(htmlWithAffiliate.includes('Waar te koop'), 'Page must contain "Waar te koop" section when enabled');
-assert(htmlWithAffiliate.includes('Bekijk op Amazon.nl'), 'Must render Amazon CTA');
+assert(htmlWithAffiliate.includes('Zoek dit onderdeel online'), 'Page must contain "Zoek dit onderdeel online" section when only search links exist');
+assert(!htmlWithAffiliate.includes('Waar te koop'), 'Page must NOT contain "Waar te koop" section when only search links exist');
+assert(htmlWithAffiliate.includes('Zoek op Amazon.nl'), 'Must render honest search Amazon CTA');
+assert(!htmlWithAffiliate.includes('Bekijk op Amazon.nl'), 'Must NOT render "Bekijk op Amazon.nl" for search links');
+assert(htmlWithAffiliate.includes('Amazon-zoekopdracht'), 'Must render "Amazon-zoekopdracht" badge');
 assert(htmlWithAffiliate.includes('rel="sponsored nofollow noopener"'), 'Must have rel="sponsored nofollow noopener"');
 assert(htmlWithAffiliate.includes('meta name="robots" content="noindex, follow"'), 'Must retain noindex SEO policy');
 assert(htmlWithAffiliate.includes(AFFILIATE_DISCLOSURE_TEXT), 'Must render disclosure');
@@ -557,16 +570,18 @@ assert(htmlWithAffiliate.includes('part_number=11231602050'), 'Redirect URL must
 assert(htmlWithAffiliate.includes('marketplace=amazon.nl'), 'Redirect URL must include marketplace parameter');
 assert(htmlWithAffiliate.includes('offer_type=SEARCH_LINK'), 'Redirect URL must include offer_type parameter');
 
-// Verify placement: "Waar te koop" must come AFTER "Montagelocatie & Diagramsecties"
+// Verify placement: "Zoek dit onderdeel online" must come AFTER "Montagelocatie & Diagramsecties"
 const diagramIdx = htmlWithAffiliate.indexOf('Montagelocatie & Diagramsecties');
-const waarTeKoopIdx = htmlWithAffiliate.indexOf('Waar te koop');
-assert(diagramIdx !== -1 && waarTeKoopIdx !== -1, 'Both sections must be present');
-assert(waarTeKoopIdx > diagramIdx, 'Commercial section must be below technical diagram section');
+const searchSectionIdx = htmlWithAffiliate.indexOf('Zoek dit onderdeel online');
+assert(diagramIdx !== -1 && searchSectionIdx !== -1, 'Both sections must be present');
+assert(searchSectionIdx > diagramIdx, 'Commercial section must be below technical diagram section');
 
 // B. When affiliate is disabled
 process.env.AMAZON_AFFILIATE_ENABLED = 'false';
 const htmlWithoutAffiliate = renderPartDetailPageHtml(samplePartNo);
 assert(!htmlWithoutAffiliate.includes('Waar te koop'), 'Page must NOT contain "Waar te koop" when disabled');
+assert(!htmlWithoutAffiliate.includes('Zoek dit onderdeel online'), 'Page must NOT contain "Zoek dit onderdeel online" when disabled');
+assert(!htmlWithoutAffiliate.includes('Zoek op Amazon.nl'), 'Must not render Amazon CTA when disabled');
 assert(!htmlWithoutAffiliate.includes('Bekijk op Amazon.nl'), 'Must not render Amazon CTA when disabled');
 assert(htmlWithoutAffiliate.includes('Montagelocatie & Diagramsecties'), 'Technical sections must remain intact');
 console.log('  ✅ Test 9 Passed: SSR Part Detail Page conditionally renders commercial block safely.\n');

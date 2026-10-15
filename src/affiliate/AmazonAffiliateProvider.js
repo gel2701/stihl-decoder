@@ -13,6 +13,10 @@ export const AMAZON_MATCH_TYPES = {
   API_HIGH_CONFIDENCE: 'API_HIGH_CONFIDENCE'
 };
 
+export const VERIFICATION_STATUSES = {
+  VERIFIED_EXACT_MATCH: 'VERIFIED_EXACT_MATCH'
+};
+
 export const ALLOWED_AMAZON_MARKETPLACES = new Set([
   'amazon.nl',
   'amazon.de',
@@ -24,6 +28,25 @@ export const ASIN_REGEX = /^[A-Z0-9]{10}$/;
 export function isValidAsin(rawAsin) {
   if (typeof rawAsin !== 'string') return false;
   return ASIN_REGEX.test(rawAsin.trim().toUpperCase());
+}
+
+export const ISO_TIMESTAMP_REGEX = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})$/;
+
+export function isValidIsoTimestamp(str) {
+  if (typeof str !== 'string') return false;
+  if (!ISO_TIMESTAMP_REGEX.test(str.trim())) return false;
+  const parsed = Date.parse(str.trim());
+  return !Number.isNaN(parsed);
+}
+
+export function isValidManualAsinOverride(override) {
+  if (!override || typeof override !== 'object') return false;
+  if (override.enabled !== true) return false;
+  if (!isValidAsin(override.asin)) return false;
+  if (override.verification_status !== VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH) return false;
+  if (!isValidIsoTimestamp(override.verified_at)) return false;
+  if (override.marketplace && !ALLOWED_AMAZON_MARKETPLACES.has(override.marketplace.trim().toLowerCase())) return false;
+  return true;
 }
 
 export class AmazonAffiliateProvider extends AffiliateProvider {
@@ -172,7 +195,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
     // 1. Check for verified manual ASIN override
     const manualOverride = this.manualOverrides.get(canonicalPartNumber);
-    if (manualOverride && manualOverride.enabled !== false && isValidAsin(manualOverride.asin)) {
+    if (manualOverride && isValidManualAsinOverride(manualOverride)) {
       const cleanAsin = manualOverride.asin.trim().toUpperCase();
       const rawMarketplace = (typeof manualOverride.marketplace === 'string' && manualOverride.marketplace.trim())
         ? manualOverride.marketplace.trim().toLowerCase()
@@ -203,8 +226,14 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
           currency: 'EUR',
           image_url: manualOverride.image_url || null,
           match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
+          is_verified: true,
+          verification_status: manualOverride.verification_status,
+          verified_at: manualOverride.verified_at,
           confidence: 'HIGH',
-          label: `Bekijk op ${displayMarketplace}`,
+          label: `Bekijk product op ${displayMarketplace}`,
+          badge_label: 'Geverifieerd product',
+          cta_aria_label: `Bekijk geverifieerd Amazon-product voor STIHL onderdeel ${formattedPartNumber}`,
+          description: 'Voor dit onderdeel is een specifieke Amazon-productpagina gecontroleerd. Controleer vóór aankoop altijd onderdeelnummer en machine-uitvoering.',
           rel: 'sponsored nofollow noopener',
           target: '_blank'
         }];
@@ -229,8 +258,14 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       currency: 'EUR',
       image_url: null,
       match_type: AMAZON_MATCH_TYPES.SEARCH_LINK,
+      is_verified: false,
+      verification_status: null,
+      verified_at: null,
       confidence: 'SEARCH_FALLBACK',
-      label: `Bekijk op ${displayMarketplace}`,
+      label: `Zoek op ${displayMarketplace}`,
+      badge_label: 'Amazon-zoekopdracht',
+      cta_aria_label: `Zoek STIHL onderdeel ${formattedPartNumber} op ${displayMarketplace}`,
+      description: `Zoek op Amazon naar STIHL onderdeel ${formattedPartNumber}. De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd.`,
       rel: 'sponsored nofollow noopener',
       target: '_blank'
     }];

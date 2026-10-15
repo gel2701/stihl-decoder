@@ -629,11 +629,14 @@ const server = http.createServer(async (req, res) => {
       } catch {}
     }
 
+    const productVerified = Boolean(matchedOffer && (matchedOffer.match_type === 'MANUAL_ASIN' || matchedOffer.is_verified === true));
+
     logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
       provider,
       marketplace,
       offer_type: offerType,
       asin_if_known: asinIfKnown,
+      product_verified: productVerified,
       destination_url: parsedTarget.href,
       part_number: resolvedPartNumber,
       page_path: pagePath,
