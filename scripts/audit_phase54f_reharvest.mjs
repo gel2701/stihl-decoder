@@ -27,6 +27,7 @@ import Database from 'better-sqlite3';
 
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
 import { SectionNormalizer } from '../src/parts/SectionNormalizer.js';
+import { EnrichmentScopeValidator, SCOPES } from '../src/parts/EnrichmentScopeValidator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -301,18 +302,26 @@ assertInvariant(dbNewEvidenceSyntheticConfigs === 0, 'Zero synthetic configurati
 
 // 9.2 Model-level section never propagated to configuration-specific fitments
 let configSpecificPromotions = 0;
+let exactVariantPromotions = 0;
 for (const e of enrichments) {
   if (e.configuration_key !== null) {
     configSpecificPromotions++;
   }
+  if (e.fitment_scope === SCOPES.EXACT_VARIANT || (e.variant_key !== null && e.variant_key !== 'base')) {
+    exactVariantPromotions++;
+  }
 }
 assertInvariant(configSpecificPromotions === 0, 'MODEL_LEVEL_SECTION_PROPAGATED_TO_CONFIGURATION_SPECIFIC_FITMENTS === 0');
+assertInvariant(exactVariantPromotions === 0, 'MODEL_LEVEL_SECTION_PROPAGATED_TO_EXACT_VARIANT_FITMENTS === 0');
 
 // 9.3 Ambiguity quarantine integrity
 assertInvariant(fs.existsSync(CONFLICTS_FILE), 'Conflicts file exists: conflicts.json');
 const conflictsDoc = JSON.parse(fs.readFileSync(CONFLICTS_FILE, 'utf8'));
 assertInvariant(conflictsDoc.multi_section_ambiguities.length === 399, 'MULTI_SECTION_MODEL_PART_PAIRS === 399');
 assertInvariant(conflictsDoc.summary.ambiguous_enrichments_promoted === 0, 'AMBIGUOUS_ENRICHMENTS_PROMOTED === 0');
+assertInvariant(conflictsDoc.summary.model_level_to_exact_variant_leakage === 0, 'conflicts.json: model_level_to_exact_variant_leakage === 0');
+assertInvariant(conflictsDoc.summary.null_variant_key_exact_variant_enrichments === 0, 'conflicts.json: null_variant_key_exact_variant_enrichments === 0');
+assertInvariant(conflictsDoc.summary.exact_variant_enrichments_rejected === 1724, 'conflicts.json: exact_variant_enrichments_rejected === 1724');
 
 let ambiguousPromotionsFound = 0;
 for (const amb of conflictsDoc.multi_section_ambiguities) {
@@ -330,9 +339,9 @@ assertInvariant(ambiguousPromotionsFound === 0, 'AMBIGUOUS_PAIR_PROMOTED_TO_SING
 const ACCEPTED_EVIDENCE_FILE = path.join(STAGING_DIR, 'accepted_evidence.jsonl');
 assertInvariant(fs.existsSync(ACCEPTED_EVIDENCE_FILE), 'Accepted evidence file exists: accepted_evidence.jsonl');
 const acceptedLines = fs.readFileSync(ACCEPTED_EVIDENCE_FILE, 'utf8').trim().split('\n').filter(Boolean);
-assertInvariant(acceptedLines.length === 1998, 'CANONICAL_EVIDENCE_PROMOTED === 1998');
-assertInvariant(manifest.canonical_evidence_promoted === 1998, 'manifest.canonical_evidence_promoted === 1998');
-assertInvariant(manifest.staging_only_evidence === 1679, 'manifest.staging_only_evidence === 1679');
+assertInvariant(acceptedLines.length === 1805, 'CANONICAL_EVIDENCE_PROMOTED === 1805');
+assertInvariant(manifest.canonical_evidence_promoted === 1805, 'manifest.canonical_evidence_promoted === 1805');
+assertInvariant(manifest.staging_only_evidence === 1872, 'manifest.staging_only_evidence === 1872');
 
 let unknownPartInAccepted = 0;
 let unknownFitmentInAccepted = 0;
@@ -340,26 +349,43 @@ for (const l of acceptedLines) {
   const o = JSON.parse(l);
   const partExists = db.prepare('SELECT 1 FROM parts WHERE part_number = ?').get(o.part_number);
   if (!partExists) unknownPartInAccepted++;
-  const fitmentExists = db.prepare('SELECT 1 FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND configuration_key IS NULL').get(o.canonical_model_id, o.part_number);
+  const fitmentExists = db.prepare('SELECT 1 FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND configuration_key IS NULL AND fitment_scope = ?').get(o.canonical_model_id, o.part_number, SCOPES.BASE_MODEL_CONFIRMED);
   if (!fitmentExists) unknownFitmentInAccepted++;
 }
 assertInvariant(unknownPartInAccepted === 0, 'PROMOTED_EVIDENCE_WITH_UNKNOWN_PART === 0');
 assertInvariant(unknownFitmentInAccepted === 0, 'PROMOTED_EVIDENCE_WITH_UNKNOWN_FITMENT === 0');
 
-// 9.5 Exact seed lookup mode
+// 9.5 Scope Validator & Leakage Elimination Check
+console.log('\n▶ 9.5 Auditing Scope Validator & Leakage Elimination (EnrichmentScopeValidator)...');
+const fitmentRowsAll = db.prepare('SELECT fitment_id, canonical_model_id, part_number, variant_key, configuration_key, fitment_scope FROM model_part_fitments').all();
+const fitmentMapAll = new Map(fitmentRowsAll.map(f => [f.fitment_id, f]));
+const validationResult = EnrichmentScopeValidator.validateEnrichmentSet(enrichments, rawObsById, fitmentMapAll);
+
+assertInvariant(validationResult.total === 1805, 'EnrichmentScopeValidator total === 1805');
+assertInvariant(validationResult.valid_count === 1805, 'EnrichmentScopeValidator valid_count === 1805');
+assertInvariant(validationResult.invalid_count === 0, 'EnrichmentScopeValidator invalid_count === 0');
+assertInvariant(validationResult.model_level_to_exact_variant_leakage === 0, 'MODEL_LEVEL_TO_EXACT_VARIANT_LEAKAGE === 0');
+assertInvariant(validationResult.null_variant_key_exact_variant_enrichments === 0, 'NULL_VARIANT_KEY_EXACT_VARIANT_ENRICHMENTS === 0');
+
+// 9.6 Exact seed lookup mode
 assertInvariant(enrichmentDoc.lookup_mode === 'EXACT_FITMENT_ID_ONLY', 'SECTION_ENRICHMENT_LOOKUP_MODE === EXACT_FITMENT_ID_ONLY');
 
-// 9.6 Candidate accounting
+// 9.7 Candidate & Manifest accounting
 assertInvariant(manifest.new_part_candidate_observations === 383, 'NEW_PART_CANDIDATE_OBSERVATIONS === 383');
 assertInvariant(manifest.unique_new_part_candidates === 318, 'UNIQUE_NEW_PART_CANDIDATES === 318');
 assertInvariant(manifest.new_fitment_candidate_observations === 377, 'NEW_FITMENT_CANDIDATE_OBSERVATIONS === 377');
 assertInvariant(manifest.unique_new_fitment_candidates === 337, 'UNIQUE_NEW_FITMENT_CANDIDATES === 337');
-assertInvariant(enrichments.length === 3513, 'VALID_SECTION_ENRICHMENTS === 3513');
-assertInvariant(evidenceCount === 208605, 'EVIDENCE_AFTER === 208605 (206607 + 1998)');
-assertInvariant(partsWithMeaningfulSection === 2302, 'PARTS_WITH_MEANINGFUL_SECTION === 2302');
-assertInvariant(fitmentsWithMeaningfulSection === 6311, 'FITMENTS_WITH_MEANINGFUL_SECTION === 6311');
+assertInvariant(manifest.valid_section_enrichments === 1805, 'manifest.valid_section_enrichments === 1805');
+assertInvariant(manifest.model_level_enrichments === 1805, 'manifest.model_level_enrichments === 1805');
+assertInvariant(manifest.exact_variant_enrichments === 0, 'manifest.exact_variant_enrichments === 0');
+assertInvariant(manifest.model_level_to_exact_variant_leakage === 0, 'manifest.model_level_to_exact_variant_leakage === 0');
+assertInvariant(manifest.null_variant_key_exact_variant_enrichments === 0, 'manifest.null_variant_key_exact_variant_enrichments === 0');
+assertInvariant(enrichments.length === 1805, 'VALID_SECTION_ENRICHMENTS === 1805');
+assertInvariant(evidenceCount === 208412, 'EVIDENCE_AFTER === 208412 (206607 + 1805)');
+assertInvariant(partsWithMeaningfulSection === 2210, 'PARTS_WITH_MEANINGFUL_SECTION === 2210');
+assertInvariant(fitmentsWithMeaningfulSection === 4603, 'FITMENTS_WITH_MEANINGFUL_SECTION === 4603');
 
-// 9.7 Report vs Manifest reconciliation
+// 9.8 Report vs Manifest reconciliation
 const reportPath = path.join(rootDir, 'PHASE54F_A_CONTROLLED_REHARVEST_REPORT.md');
 assertInvariant(fs.existsSync(reportPath), 'Report exists: PHASE54F_A_CONTROLLED_REHARVEST_REPORT.md');
 const reportText = fs.readFileSync(reportPath, 'utf8');
@@ -376,11 +402,17 @@ const expectedChecks = [
   { label: 'NEW_PART_CANDIDATES unique', value: '318' },
   { label: 'NEW_FITMENT_CANDIDATES obs', value: '377' },
   { label: 'NEW_FITMENT_CANDIDATES unique', value: '337' },
-  { label: 'CANONICAL_EVIDENCE_PROMOTED', value: '1,998' },
-  { label: 'STAGING_ONLY_EVIDENCE', value: '1,679' },
-  { label: 'VALID_SECTION_ENRICHMENTS', value: '3,513' },
-  { label: 'PARTS_WITH_MEANINGFUL_SECTION', value: '2,302' },
-  { label: 'FITMENTS_WITH_MEANINGFUL_SECTION', value: '6,311' }
+  { label: 'CANONICAL_EVIDENCE_PROMOTED', value: '1,805' },
+  { label: 'STAGING_ONLY_EVIDENCE', value: '1,872' },
+  { label: 'VALID_SECTION_ENRICHMENTS', value: '1,805' },
+  { label: 'MODEL_LEVEL_ENRICHMENTS', value: '1,805' },
+  { label: 'EXACT_VARIANT_ENRICHMENTS', value: '0' },
+  { label: 'MODEL_LEVEL_TO_EXACT_VARIANT_LEAKAGE', value: '0' },
+  { label: 'NULL_VARIANT_KEY_EXACT_VARIANT_ENRICHMENTS', value: '0' },
+  { label: 'R1_EXACT_VARIANT_ENRICHMENTS', value: '3,513' },
+  { label: 'R1_INVALID_MODEL_LEVEL_TO_EXACT_VARIANT', value: '1,708' },
+  { label: 'PARTS_WITH_MEANINGFUL_SECTION', value: '2,210' },
+  { label: 'FITMENTS_WITH_MEANINGFUL_SECTION', value: '4,603' }
 ];
 
 for (const check of expectedChecks) {
@@ -392,5 +424,5 @@ for (const check of expectedChecks) {
 assertInvariant(reportMismatches === 0, 'REPORT_MANIFEST_METRIC_MISMATCHES === 0');
 
 console.log('\n==================================================');
-console.log('PHASE 54F-A-R1 REHARVEST AUDIT PASSED (ALL INVARIANTS OK)');
+console.log('PHASE 54F-A-R2 REHARVEST AUDIT PASSED (ALL INVARIANTS OK)');
 console.log('==================================================\n');

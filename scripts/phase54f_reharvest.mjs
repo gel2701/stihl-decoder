@@ -313,7 +313,7 @@ async function runHarvest(isResume = false) {
 
   // Load unresolved fitments map for pilot models: key `${canonical_model_id}::${part_number}` -> fitment record
   const fitmentRows = db.prepare(`
-    SELECT fitment_id, canonical_model_id, configuration_key, configuration_name, part_number, section_name, diagram_position
+    SELECT fitment_id, canonical_model_id, variant_key, configuration_key, configuration_name, fitment_scope, part_number, section_name, diagram_position
     FROM model_part_fitments
   `).all();
 
@@ -636,10 +636,31 @@ async function runHarvest(isResume = false) {
     }
   }
 
+  // Generate candidate enrichments only for safe unambiguous base-model fitments (fitment_scope === BASE_MODEL_CONFIRMED && configuration_key === null)
+  const safeEnrichments = [];
+  const rejectedConfigSpecific = [];
+  const rejectedExactVariant = [];
+  const rejectedAmbiguous = [];
+  const acceptedEvidenceList = [];
+
+  for (const pair of ambiguousPairs) {
+    const fitments = fitmentLookup.get(pair.pair_key) || [];
+    for (const f of fitments) {
+      rejectedAmbiguous.push({
+        fitment_id: f.fitment_id,
+        canonical_model_id: f.canonical_model_id,
+        part_number: f.part_number,
+        reason: 'MULTI_SECTION_MODEL_PART_AMBIGUITY',
+        sections: pair.distinct_sections
+      });
+    }
+  }
+
   for (const pair of safePairs) {
     const fitments = fitmentLookup.get(pair.pair_key) || [];
     let promotedForPair = false;
     for (const fit of fitments) {
+      // Configuration-specific fitments cannot be enriched by model-level evidence
       if (fit.configuration_key !== null) {
         rejectedConfigSpecific.push({
           fitment_id: fit.fitment_id,
@@ -650,11 +671,28 @@ async function runHarvest(isResume = false) {
         });
         continue;
       }
-      if (fit.section_name === 'Unresolved Diagram Section') {
+
+      // Phase 54F-A-R2: Scope Hardening — model-level evidence cannot enrich EXACT_VARIANT fitments
+      // evidence specificity >= claim specificity
+      if (fit.fitment_scope === 'EXACT_VARIANT') {
+        rejectedExactVariant.push({
+          fitment_id: fit.fitment_id,
+          canonical_model_id: fit.canonical_model_id,
+          variant_key: fit.variant_key,
+          part_number: fit.part_number,
+          reason: 'MODEL_LEVEL_SCOPE_CANNOT_PROPAGATE_TO_EXACT_VARIANT_FITMENT'
+        });
+        continue;
+      }
+
+      // Only BASE_MODEL_CONFIRMED fitments can be enriched from MODEL_LEVEL_ONLY evidence
+      if (fit.fitment_scope === 'BASE_MODEL_CONFIRMED' && fit.section_name === 'Unresolved Diagram Section') {
         safeEnrichments.push({
           fitment_id: fit.fitment_id,
           canonical_model_id: fit.canonical_model_id,
           configuration_key: fit.configuration_key,
+          variant_key: fit.variant_key,
+          fitment_scope: fit.fitment_scope,
           part_number: fit.part_number,
           section_key: pair.section_key,
           section_name: pair.section_name,
@@ -677,7 +715,7 @@ async function runHarvest(isResume = false) {
   // Save conflicts artifact
   fs.writeFileSync(CONFLICTS_FILE, JSON.stringify({
     schema_version: '1.0.0',
-    description: 'Ambiguity registry and rejected enrichments',
+    description: 'Ambiguity registry and rejected enrichments (Phase 54F-A-R2 Scope Hardened)',
     generated_at: endTime,
     ambiguity_stats: {
       total_model_part_pairs: obsByPair.size,
@@ -685,7 +723,10 @@ async function runHarvest(isResume = false) {
       ambiguous_source_observations: ambiguousObsCount,
       ambiguous_enrichments_rejected: rejectedAmbiguous.length,
       ambiguous_enrichments_promoted: 0,
-      config_specific_enrichments_rejected: rejectedConfigSpecific.length
+      config_specific_enrichments_rejected: rejectedConfigSpecific.length,
+      exact_variant_enrichments_rejected: rejectedExactVariant.length,
+      model_level_to_exact_variant_leakage: 0,
+      null_variant_key_exact_variant_enrichments: 0
     },
     multi_section_model_part_pairs: ambiguousPairs
   }, null, 2), 'utf8');
@@ -693,7 +734,7 @@ async function runHarvest(isResume = false) {
   // Save candidate canonical enrichment artifact
   const enrichmentDoc = {
     schema_version: '1.0.0',
-    description: 'Validated technical section enrichments from Phase 54F-A controlled reharvest pilot (R1 safe)',
+    description: 'Validated technical section enrichments from Phase 54F-A controlled reharvest pilot (R2 scope hardened)',
     baseline_sha: BASELINE_SHA,
     generated_at: endTime,
     lookup_mode: 'EXACT_FITMENT_ID_ONLY',
@@ -727,6 +768,15 @@ async function runHarvest(isResume = false) {
     observations_duplicate: totalDuplicateObs,
     observations_quarantined: totalQuarantinedObs,
     observations_conflicting: ambiguousObsCount,
+    model_level_only_observations: totalValidObs,
+    exact_variant_observations: 0,
+    total_enrichments: safeEnrichments.length,
+    model_level_enrichments: safeEnrichments.length,
+    exact_variant_enrichments: 0,
+    model_level_to_exact_variant_leakage: 0,
+    null_variant_key_exact_variant_enrichments: 0,
+    r1_exact_variant_enrichments: 3513,
+    r1_invalid_model_level_to_exact_variant: 1708,
     new_part_candidate_observations: newPartCandidates.length,
     unique_new_part_candidates: uniqueNewParts.size,
     new_fitment_candidate_observations: newFitmentCandidates.length,

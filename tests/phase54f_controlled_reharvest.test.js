@@ -27,6 +27,7 @@ import Database from 'better-sqlite3';
 import { PartNormalizer, FITMENT_SCOPES } from '../src/parts/PartNormalizer.js';
 import { SectionNormalizer } from '../src/parts/SectionNormalizer.js';
 import { DiySparePartsSource } from '../src/parts/sources/DiySparePartsSource.js';
+import { EnrichmentScopeValidator, SCOPES } from '../src/parts/EnrichmentScopeValidator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -389,8 +390,8 @@ test('Phase 54F-A-R1: Report and Manifest Reconciliation (Section 60)', () => {
   assert.strictEqual(manifest.unique_new_part_candidates, 318);
   assert.strictEqual(manifest.new_fitment_candidate_observations, 377);
   assert.strictEqual(manifest.unique_new_fitment_candidates, 337);
-  assert.strictEqual(manifest.canonical_evidence_promoted, 1998);
-  assert.strictEqual(manifest.valid_section_enrichments, 3513);
+  assert.strictEqual(manifest.canonical_evidence_promoted, 1805);
+  assert.strictEqual(manifest.valid_section_enrichments, 1805);
 });
 
 test('Phase 54F-A-R1: Canonical Evidence Referential Integrity (Section 62)', () => {
@@ -398,7 +399,7 @@ test('Phase 54F-A-R1: Canonical Evidence Referential Integrity (Section 62)', ()
   const acceptedEvidence = fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'accepted_evidence.jsonl'), 'utf8')
     .trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
 
-  assert.strictEqual(acceptedEvidence.length, 1998, 'Accepted canonical evidence must contain exactly 1998 records');
+  assert.strictEqual(acceptedEvidence.length, 1805, 'Accepted canonical evidence must contain exactly 1805 records');
 
   for (const ev of acceptedEvidence) {
     assert.strictEqual(ev.source_scope, 'MODEL_LEVEL_ONLY');
@@ -408,7 +409,190 @@ test('Phase 54F-A-R1: Canonical Evidence Referential Integrity (Section 62)', ()
     const partExists = db.prepare('SELECT 1 FROM parts WHERE part_number = ?').get(ev.part_number);
     assert.ok(partExists, `Referential integrity: part ${ev.part_number} must exist in parts table`);
 
-    const fitmentExists = db.prepare('SELECT 1 FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND configuration_key IS NULL').get(ev.canonical_model_id, ev.part_number);
+    const fitmentExists = db.prepare('SELECT 1 FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND configuration_key IS NULL AND fitment_scope = ?').get(ev.canonical_model_id, ev.part_number, 'BASE_MODEL_CONFIRMED');
     assert.ok(fitmentExists, `Referential integrity: base-model fitment for ${ev.canonical_model_id}::${ev.part_number} must exist`);
   }
+});
+
+// =============================================================================
+// PHASE 54F-A-R2 TESTS: Evidence Scope Hardening & Variant Leakage Elimination
+// =============================================================================
+
+test('Phase 54F-A-R2 Test A — Null Variant Key Is No Wildcard (Section 5 & 12)', () => {
+  // MODEL_LEVEL_ONLY + variant_key = null must never generate EXACT_VARIANT output
+  const modelEvidence = {
+    evidence_id: 'ev_test_ms261_part1_cylinder',
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    source_scope: SCOPES.MODEL_LEVEL_ONLY,
+    variant_key: null,
+    configuration_key: null
+  };
+
+  const exactVariantFitment = {
+    fitment_id: '11410201200::ms_261::c_m::base::EXACT_VARIANT',
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    variant_key: 'c_m',
+    fitment_scope: SCOPES.EXACT_VARIANT,
+    configuration_key: null
+  };
+
+  const enrichmentCandidate = {
+    fitment_id: exactVariantFitment.fitment_id,
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    section_name: 'Cylinder'
+  };
+
+  const validation = EnrichmentScopeValidator.validateEnrichment(enrichmentCandidate, modelEvidence, exactVariantFitment);
+  assert.strictEqual(validation.valid, false, 'Validation must reject model-level evidence for exact-variant fitment');
+  assert.ok(validation.errors.some(e => e.includes('INVALID_MODEL_LEVEL_TO_EXACT_VARIANT') || e.includes('SPECIFICITY_LEAKAGE')),
+    'Must explicitly flag specificity leakage / model-level to exact-variant violation');
+});
+
+test('Phase 54F-A-R2 Test B — Multiple Variants Isolation (Section 12)', () => {
+  // Model MS 261 has multiple variants (c_be, c_bm, c_m, c_m_vw). None must be enriched from model-level evidence.
+  const enrichmentDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_section_enrichment.json'), 'utf8'));
+  const promotedFitmentIds = new Set(enrichmentDoc.enrichments.map(e => e.fitment_id));
+
+  const ms261VariantFitments = db.prepare(`
+    SELECT fitment_id, variant_key, fitment_scope
+    FROM model_part_fitments
+    WHERE canonical_model_id = 'ms_261' AND fitment_scope = 'EXACT_VARIANT'
+  `).all();
+
+  assert.ok(ms261VariantFitments.length > 0, 'MS 261 must have variant fitments in database');
+
+  let leakedFitments = 0;
+  for (const f of ms261VariantFitments) {
+    if (promotedFitmentIds.has(f.fitment_id)) {
+      leakedFitments++;
+    }
+  }
+  assert.strictEqual(leakedFitments, 0, 'Zero MS 261 EXACT_VARIANT fitments may be enriched from model-level evidence');
+});
+
+test('Phase 54F-A-R2 Test C — Single Known Variant Non-Upgrade (Section 12)', () => {
+  // Even when a model happens to have only 1 variant in catalog, model evidence cannot be upgraded to EXACT_VARIANT
+  const singleVariantEvidence = {
+    evidence_id: 'ev_test_single_model_part',
+    canonical_model_id: 'single_model',
+    part_number: '11410201200',
+    source_scope: SCOPES.MODEL_LEVEL_ONLY,
+    variant_key: null,
+    configuration_key: null
+  };
+
+  const singleVariantFitment = {
+    fitment_id: '11410201200::single_model::v1::base::EXACT_VARIANT',
+    canonical_model_id: 'single_model',
+    part_number: '11410201200',
+    variant_key: 'v1',
+    fitment_scope: SCOPES.EXACT_VARIANT,
+    configuration_key: null
+  };
+
+  const candidate = {
+    fitment_id: singleVariantFitment.fitment_id,
+    canonical_model_id: 'single_model',
+    part_number: '11410201200',
+    section_name: 'Cylinder'
+  };
+
+  const validation = EnrichmentScopeValidator.validateEnrichment(candidate, singleVariantEvidence, singleVariantFitment);
+  assert.strictEqual(validation.valid, false, 'Single variant model evidence cannot be upgraded to EXACT_VARIANT');
+});
+
+test('Phase 54F-A-R2 Test D — Real Exact Variant Evidence Remains Functional (Section 12)', () => {
+  // Legitimate variant-specific evidence with matching variant_key must pass validation cleanly
+  const legitimateVariantEvidence = {
+    evidence_id: 'ev_test_legit_variant_c_m',
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    source_scope: SCOPES.EXACT_VARIANT,
+    variant_key: 'c_m',
+    configuration_key: null
+  };
+
+  const matchingFitment = {
+    fitment_id: '11410201200::ms_261::c_m::base::EXACT_VARIANT',
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    variant_key: 'c_m',
+    fitment_scope: SCOPES.EXACT_VARIANT,
+    configuration_key: null
+  };
+
+  const candidate = {
+    fitment_id: matchingFitment.fitment_id,
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    section_name: 'Cylinder'
+  };
+
+  const validation = EnrichmentScopeValidator.validateEnrichment(candidate, legitimateVariantEvidence, matchingFitment);
+  assert.strictEqual(validation.valid, true, 'Legitimate exact variant evidence must pass validation');
+  assert.strictEqual(validation.errors.length, 0);
+});
+
+test('Phase 54F-A-R2 Test E — Multi-Section Fix Preserved (Section 7 & 12)', () => {
+  const conflictsDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'conflicts.json'), 'utf8'));
+  assert.strictEqual(conflictsDoc.multi_section_ambiguities.length, 399, 'Must retain all 399 multi-section ambiguous pairs');
+  assert.strictEqual(conflictsDoc.summary.ambiguous_enrichments_promoted, 0, 'Zero ambiguous enrichments promoted');
+});
+
+test('Phase 54F-A-R2 Test F — Configuration Isolation Preserved (Section 8 & 12)', () => {
+  const enrichmentDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_section_enrichment.json'), 'utf8'));
+  for (const e of enrichmentDoc.enrichments) {
+    assert.strictEqual(e.configuration_key, null, 'Enriched fitment configuration_key must be null');
+    assert.strictEqual(e.fitment_scope, 'BASE_MODEL_CONFIRMED', 'Enriched fitment scope must be BASE_MODEL_CONFIRMED');
+  }
+});
+
+test('Phase 54F-A-R2 Test G — Provenance Validator on Candidate Dataset (Section 11 & 14)', () => {
+  const enrichmentDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_section_enrichment.json'), 'utf8'));
+  const observations = fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'observations.jsonl'), 'utf8')
+    .trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
+
+  const evidenceMap = new Map();
+  for (const o of observations) {
+    evidenceMap.set(o.evidence_id, o);
+  }
+
+  const fitmentRows = db.prepare(`
+    SELECT fitment_id, canonical_model_id, variant_key, configuration_key, fitment_scope, part_number, section_name
+    FROM model_part_fitments
+  `).all();
+
+  const fitmentMap = new Map();
+  for (const f of fitmentRows) {
+    fitmentMap.set(f.fitment_id, f);
+  }
+
+  const result = EnrichmentScopeValidator.validateEnrichmentSet(enrichmentDoc.enrichments, evidenceMap, fitmentMap);
+  assert.strictEqual(result.total, 1805, 'Total enrichments must be exactly 1805');
+  assert.strictEqual(result.valid_count, 1805, 'All 1805 enrichments must be valid');
+  assert.strictEqual(result.invalid_count, 0, 'Zero invalid enrichments');
+  assert.strictEqual(result.model_level_to_exact_variant_leakage, 0, 'MODEL_LEVEL_TO_EXACT_VARIANT_LEAKAGE must be 0');
+  assert.strictEqual(result.null_variant_key_exact_variant_enrichments, 0, 'NULL_VARIANT_KEY_EXACT_VARIANT_ENRICHMENTS must be 0');
+});
+
+test('Phase 54F-A-R2 Test H — Reconciled Scope Accounting (Section 10)', () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'manifest.json'), 'utf8'));
+  const conflicts = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'conflicts.json'), 'utf8'));
+
+  assert.strictEqual(manifest.total_enrichments, 1805);
+  assert.strictEqual(manifest.model_level_enrichments, 1805);
+  assert.strictEqual(manifest.exact_variant_enrichments, 0);
+  assert.strictEqual(manifest.model_level_to_exact_variant_leakage, 0);
+  assert.strictEqual(manifest.null_variant_key_exact_variant_enrichments, 0);
+
+  // Accounting conservation: TOTAL_ENRICHMENTS = MODEL_LEVEL_ENRICHMENTS + EXACT_VARIANT_ENRICHMENTS
+  assert.strictEqual(manifest.total_enrichments, manifest.model_level_enrichments + manifest.exact_variant_enrichments);
+
+  // Conservation of R1 leakages: R1_EXACT_VARIANT_ENRICHMENTS (3513) = R2_SAFE (1805) + R1_INVALID_EXACT_VARIANT (1708)
+  assert.strictEqual(manifest.r1_exact_variant_enrichments, 3513);
+  assert.strictEqual(manifest.r1_invalid_model_level_to_exact_variant, 1708);
+  assert.strictEqual(manifest.total_enrichments + manifest.r1_invalid_model_level_to_exact_variant, 3513);
 });

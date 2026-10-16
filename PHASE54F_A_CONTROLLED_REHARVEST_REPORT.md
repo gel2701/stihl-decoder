@@ -1,32 +1,37 @@
-# Phase 54F-A — Controlled Technical Reharvest Pilot & Section Resolution Report
+# Phase 54F-A-R2 — Evidence Scope Hardening & Variant Leakage Elimination Report
 
-**Repository**: `gel2701/stihl-decoder`  
-**Production**: `https://www.stihldecoder.nl`  
-**Baseline SHA**: `b2a8d4259d8c7661c31e68af3b043a8acec846fc`  
-**Branch**: `feat/phase54f-controlled-technical-reharvest`  
-**PR Number**: `17`
-**Review Policy**: `CODEX_REVIEW_REQUIRED = NO`  
-**PR Policy**: `PR_OPEN = YES`, `PR_MERGED = NO`  
+**Repository**: `gel2701/stihl-decoder`<br>
+**Production**: `https://www.stihldecoder.nl`<br>
+**Baseline SHA**: `b2a8d4259d8c7661c31e68af3b043a8acec846fc`<br>
+**Branch**: `feat/phase54f-controlled-technical-reharvest`<br>
+**PR Number**: `17`<br>
+**Review Policy**: `CODEX_REVIEW_REQUIRED = NO`<br>
+**PR Policy**: `PR_OPEN = YES`, `PR_MERGED = NO`
 
 ---
 
 ## 1. Executive Summary
 
-Phase 54F-A executes a controlled, fail-closed technical reharvest pilot aimed at recovering authentic exploded-view diagram/assembly section context for STIHL parts previously cataloged under `"Unresolved Diagram Section"`. 
+Phase 54F-A executes a controlled, fail-closed technical reharvest pilot aimed at recovering authentic exploded-view diagram/assembly section context for STIHL parts previously cataloged under `"Unresolved Diagram Section"`.
 
-Prior to Phase 54F-A, only 857 parts (5.02%) and 2,798 fitments (1.60%) had meaningful diagram assembly sections, despite 16,600 parts and 169,990 fitments having genuine diagram callout positions. 
+Prior to Phase 54F-A, only 857 parts (5.02%) and 2,798 fitments (1.60%) possessed meaningful diagram assembly sections, despite 16,600 parts and 169,990 fitments having genuine diagram callout positions.
 
-Phase 54F-A proves that missing diagram assembly context can be deterministically and safely recovered from structured external technical sources using a strictly rate-limited, staging-first architecture with zero count drift and zero runtime scraping.
+### R1 Reconciliation:
+Phase 54F-A-R1 eliminated synthetic configuration generation (`SYNTHETIC_SOURCE_CONFIGURATION_KEYS = 0`), quarantined all 399 multi-section ambiguous model-part pairs (`AMBIGUOUS_ENRICHMENTS_PROMOTED = 0`), and isolated model-level evidence from configuration-specific fitments (`configuration_key != null`).
 
-### R1 Scope & Promotion Hardening Summary:
-Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate over-propagation and ambiguity:
-1. **Context Scope Integrity**: Model-level source observations (`source_scope = 'MODEL_LEVEL_ONLY'`) are strictly isolated to base-model canonical fitments (`configuration_key === null`). Model-level sections are NEVER propagated to configuration-specific fitments (`MODEL_LEVEL_SECTION_PROPAGATED_TO_CONFIGURATION_SPECIFIC_FITMENTS = 0`).
-2. **Synthetic Configuration Elimination**: Removed all generated/invented configuration identities (`SYNTHETIC_SOURCE_CONFIGURATION_KEYS = 0`). All raw harvest observations record `configuration_key = null`, `configuration_name = null`, and `variant_key = null`.
-3. **Multi-Section Ambiguity Quarantine**: All 399 model-part pairs appearing across multiple distinct diagram sections (958 observations total, representing 1,518 candidate fitments) are quarantined to `conflicts.json` without selecting an arbitrary winner (`AMBIGUOUS_ENRICHMENTS_PROMOTED = 0`).
-4. **Canonical Evidence Promotion Safety**: Separated raw harvest observations (`observations.jsonl`, 3,677 valid records) from canonical accepted evidence (`accepted_evidence.jsonl`, 1,998 records). Staging-only observations (1,679 records) are not promoted to canonical evidence until configuration or catalog identity is resolved.
-5. **Exact Fitment ID Lookup Only**: In `data/seed.cjs`, section enrichment lookup uses `sectionEnrichmentMap.get(f.fitment_id)` only (`SECTION_ENRICHMENT_LOOKUP_MODE = EXACT_FITMENT_ID_ONLY`), eliminating broad part+model fallbacks.
-6. **Robots Compliance Verified**: Independent HTTP check of `https://www.diyspareparts.com/robots.txt` returned HTTP 404 (no disallow rules for diagram paths; `TARGET_PATH_ALLOWED = true`).
-7. **Report & Manifest Reconciled**: Manifest metrics and report metrics are 100% mathematically conserved with 0 discrepancies (`REPORT_MANIFEST_METRIC_MISMATCHES = 0`).
+### R2 Root Cause & Evidence Scope Hardening:
+In Phase 54F-A-R2, forensic auditing identified a critical semantic defect in R1:
+- **1,708 enrichments** were applied to `EXACT_VARIANT` fitments (e.g., `ms_261` variants such as `c_be`, `c_bm`, `c_m`, `c_m_vw`), even though the supporting diagram source observations were explicitly `MODEL_LEVEL_ONLY` with `variant_key = null`.
+- **Root Cause**: The R1 selection filter checked `fit.configuration_key !== null` but omitted checking `fit.variant_key !== null` or `fit.fitment_scope === 'EXACT_VARIANT'`. Consequently, `variant_key = null` functioned as an inadvertent wildcard across all model variants.
+- **Rule Enforced**: `NO CLAIM MAY BE MORE SPECIFIC THAN ITS SUPPORTING EVIDENCE` (`evidence specificity >= claim specificity`). A model-level diagram source can NEVER be promoted to prove an exact-variant fitment claim. `variant_key = null` is strictly not a wildcard.
+- **Resolution**: Implemented `src/parts/EnrichmentScopeValidator.js` and CLI runner `scripts/validate_enrichment_provenance.mjs`. Enforced fail-closed filtering in `scripts/phase54f_reharvest.mjs`:
+  - Exactly **1,708** invalid model-level to exact-variant promotions rejected.
+  - Exactly **1,805** safe `BASE_MODEL_CONFIRMED` enrichments accepted and seeded.
+  - Conservation: `1,805 (safe) + 1,708 (rejected) = 3,513 (R1 total)`.
+  - Promoted canonical evidence updated to exactly 1,805 records. The 193 variant-only pairs remain in staging (1,679 R1 + 193 = 1,872 staging evidence). Total valid observations conserved: `1,805 + 1,872 = 3,677`.
+  - Database reseeded cleanly: PARTS = 17,082, FITMENTS = 175,106, CONFIGURATIONS = 766, EVIDENCE = 208,412.
+  - Meaningful sections: PARTS = 2,210 (+1,353 over baseline), FITMENTS = 4,603 (+1,805 over baseline).
+  - Positions strictly frozen at 16,600 parts and 169,990 fitments.
 
 ---
 
@@ -40,7 +45,7 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 | **MODELS_NO_DATA** | - | 3 (`ms_362`, `038`, `066`) | PASS (Legitimate fail-closed) |
 | **MAX_HTTP_REQUESTS** | 250 | 250 | PASS |
 | **HTTP_REQUESTS_USED** | <= 250 | 219 | PASS (Budget respected) |
-| **NEW_DIAGRAM_HARVEST_REQUESTS** | 0 (R1) | 0 | PASS |
+| **NEW_DIAGRAM_HARVEST_REQUESTS** | 0 (R1 & R2) | 0 | PASS |
 | **COMPLIANCE_REQUESTS** | <= 1 | 1 | PASS |
 | **CONCURRENCY** | 1 | 1 | PASS |
 | **MIN_DELAY_BETWEEN_REQUESTS** | >= 3000ms | >= 3000ms | PASS |
@@ -62,19 +67,20 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 | **OBSERVATIONS_QUARANTINED** | 0 | 0 malformed part numbers or invalid sections |
 | **RAW_CONSERVATION** | 3,719 | 3,677 (valid) + 42 (duplicate) + 0 (quarantined) = 3,719 |
 
-### Raw Valid Observations Classification:
+### Valid Observations Scope Classification:
 | Classification Category | Observations Count | Notes |
 | :--- | :--- | :--- |
-| **CANONICAL_EVIDENCE_PROMOTED** | 1,998 | Unambiguous base-model evidence promoted to canonical DB |
-| **STAGING_ONLY_EVIDENCE** | 1,679 | Quarantined in staging; not promoted to canonical DB |
-| **VALID_OBSERVATIONS_CONSERVATION** | 3,677 | 1,998 (promoted) + 1,679 (staging) = 3,677 |
+| **CANONICAL_EVIDENCE_PROMOTED** | 1,805 | Safe unambiguous base-model evidence promoted to canonical DB |
+| **STAGING_ONLY_EVIDENCE** | 1,872 | Quarantined in staging; not promoted to canonical DB |
+| **VALID_OBSERVATIONS_CONSERVATION** | 3,677 | 1,805 (promoted) + 1,872 (staging) = 3,677 |
 
-### Staging-Only Observations Breakdown (1,679 records):
+### Staging-Only Observations Breakdown (1,872 records):
 1. **Ambiguous Multi-Section Observations on Existing Fitments**: 842 records (representing part/model pairs appearing in >1 diagram section).
-2. **Configuration-Specific Only Fitment Observations**: 77 records (part/model pairs that only exist in canonical fitments with `configuration_key != null`).
-3. **New Part Candidate Observations**: 383 records (318 unique valid 11-digit part numbers not in canonical 17,082 parts).
-4. **New Fitment Candidate Observations**: 377 records (337 unique model-part pairs not in canonical 175,106 fitments).
-5. **Sum**: 842 + 77 + 383 + 377 = **1,679** (100% exact mathematical conservation).
+2. **Variant-Only Model-Part Pairs (No Base-Model Fitment)**: 193 records (model-part pairs present in canonical fitments only under exact variants).
+3. **Configuration-Specific Only Fitment Observations**: 77 records (part/model pairs that only exist in canonical fitments with `configuration_key != null`).
+4. **New Part Candidate Observations**: 383 records (318 unique valid 11-digit part numbers not in canonical 17,082 parts).
+5. **New Fitment Candidate Observations**: 377 records (337 unique model-part pairs not in canonical 175,106 fitments).
+6. **Sum**: 842 + 193 + 77 + 383 + 377 = **1,872** (100% exact mathematical conservation).
 
 ---
 
@@ -93,11 +99,34 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 | **SYNTHETIC_SOURCE_CONFIGURATION_KEYS** | 0 | Zero invented configurations |
 | **MODEL_LEVEL_TO_CONFIG_PROMOTIONS** | 0 | Zero model-to-config propagation |
 | **MODEL_LEVEL_SECTION_PROPAGATED_TO_CONFIGURATION_SPECIFIC_FITMENTS** | 0 | Zero configuration-specific fitments mutated |
+| **MODEL_LEVEL_SECTION_PROPAGATED_TO_EXACT_VARIANT_FITMENTS** | 0 | Zero exact-variant fitments mutated |
+| **MODEL_LEVEL_TO_EXACT_VARIANT_LEAKAGE** | 0 | Zero leakage verified by `EnrichmentScopeValidator` |
+| **NULL_VARIANT_KEY_EXACT_VARIANT_ENRICHMENTS** | 0 | Zero null wildcard promotions |
+| **EXACT_VARIANT_ENRICHMENTS_REJECTED** | 1,724 | 1,708 candidate fitments + 16 staging fitments rejected |
+| **R1_EXACT_VARIANT_ENRICHMENTS** | 3,513 | Historical R1 total before variant isolation |
+| **R1_INVALID_MODEL_LEVEL_TO_EXACT_VARIANT** | 1,708 | Exactly eliminated in R2 |
+| **TOTAL_ENRICHMENTS** | 1,805 | Safe `BASE_MODEL_CONFIRMED` enrichments |
+| **MODEL_LEVEL_ENRICHMENTS** | 1,805 | 100% of accepted enrichments are base model |
+| **EXACT_VARIANT_ENRICHMENTS** | 0 | 0 exact variant claims made from model-level evidence |
 | **SECTION_ENRICHMENT_LOOKUP_MODE** | `EXACT_FITMENT_ID_ONLY` | Fallbacks eliminated in seed |
 
 ---
 
-## 5. Candidate Registry
+## 5. Scope Before vs Scope After Comparison
+
+| Pipeline Stage / Scope | Phase 54F-A-R1 | Phase 54F-A-R2 | Net Change / Action |
+| :--- | :--- | :--- | :--- |
+| **`BASE_MODEL_CONFIRMED` Enrichments** | 1,805 | 1,805 | Retained & Verified |
+| **`EXACT_VARIANT` Enrichments** | 1,708 | 0 | **-1,708 (Eliminated)** |
+| **Total Section Enrichments Applied** | 3,513 | 1,805 | -1,708 (Strict Specificity Bound) |
+| **Model-Level to Variant Leakage** | 1,708 | 0 | **0 Leakage (PASS)** |
+| **Promoted Canonical Evidence** | 1,998 | 1,805 | -193 (Variant-only pairs kept in staging) |
+| **Staging-Only Evidence** | 1,679 | 1,872 | +193 (Safely retained in staging) |
+| **Total Valid Observations** | 3,677 | 3,677 | 0 (Conserved) |
+
+---
+
+## 6. Candidate Registry
 
 | Metric | Observations Count | Unique Entities Count | Canonical Infiltration |
 | :--- | :--- | :--- | :--- |
@@ -106,17 +135,17 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 
 ---
 
-## 6. Catalog & Section Coverage Comparison
+## 7. Catalog & Section Coverage Comparison
 
-| Metric | Before (Phase 54E Baseline) | After (Phase 54F-A-R1 Final) | Net Safe Change |
+| Metric | Before (Phase 54E Baseline) | After (Phase 54F-A-R2 Final) | Net Safe Change |
 | :--- | :--- | :--- | :--- |
 | **PARTS** | 17,082 | 17,082 | 0 (Strictly frozen) |
 | **FITMENTS** | 175,106 | 175,106 | 0 (Strictly frozen) |
 | **CONFIGURATIONS** | 766 | 766 | 0 (Strictly frozen) |
-| **EVIDENCE** | 206,607 | 208,605 | +1,998 safe accepted evidence |
-| **PARTS_WITH_MEANINGFUL_SECTION** | 857 (5.02%) | 2,302 (13.48%) | **+1,445 (+168.6%)** |
-| **FITMENTS_WITH_MEANINGFUL_SECTION** | 2,798 (1.60%) | 6,311 (3.60%) | **+3,513 (+125.6%)** |
-| **VALID_SECTION_ENRICHMENTS** | 0 | 3,513 | +3,513 safe unambiguous base-model |
+| **EVIDENCE** | 206,607 | 208,412 | +1,805 safe accepted evidence |
+| **PARTS_WITH_MEANINGFUL_SECTION** | 857 (5.02%) | 2,210 (12.94%) | **+1,353 (+157.9%)** |
+| **FITMENTS_WITH_MEANINGFUL_SECTION** | 2,798 (1.60%) | 4,603 (2.63%) | **+1,805 (+64.5%)** |
+| **VALID_SECTION_ENRICHMENTS** | 0 | 1,805 | +1,805 safe unambiguous base-model |
 | **PARTS_WITH_MEANINGFUL_POSITION** | 16,600 (97.18%) | 16,600 (97.18%) | 0 (Strictly preserved) |
 | **FITMENTS_WITH_MEANINGFUL_POSITION** | 169,990 (97.08%) | 169,990 (97.08%) | 0 (Strictly preserved) |
 | **RAW_PLACEHOLDER_POSITIONS** | 5,116 | 5,116 | 0 (Strictly preserved) |
@@ -124,16 +153,22 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 
 ---
 
-## 7. Quality & Provenance Verification
+## 8. Quality & Provenance Verification
 
 - **Deterministic Sample Verification**: Checked 25 random enriched fitment records against raw observations:
   - Sample size: 25
   - Sample failures: 0
   - False-positive section assignments: 0
+- **Scope & Provenance Validator (`EnrichmentScopeValidator`)**:
+  - Total records audited: 1,805
+  - Valid records: 1,805 (100%)
+  - Invalid records: 0
+  - Model-level to exact-variant leakage: 0
+  - Null-variant-key exact-variant enrichments: 0
 - **Canonical Evidence Referential Integrity**:
   - `PROMOTED_EVIDENCE_WITH_UNKNOWN_PART = 0`
   - `PROMOTED_EVIDENCE_WITH_UNKNOWN_FITMENT = 0`
-  - Every promoted observation references a verified canonical part, verified model, and verified base-model fitment.
+  - Every promoted observation references a verified canonical part, verified model, and verified base-model fitment (`fitment_scope = BASE_MODEL_CONFIRMED`).
 - **Section Normalization Determinism**:
   - Raw section names normalized deterministically via `src/parts/SectionNormalizer.js` and `data/parts_section_aliases.json`.
   - Zero fabricated section titles.
@@ -145,7 +180,7 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 
 ---
 
-## 8. Frozen Subsystem Verification
+## 9. Frozen Subsystem Verification
 
 | Subsystem | Verified Invariants | Status |
 | :--- | :--- | :--- |
@@ -156,10 +191,12 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 
 ---
 
-## 9. Test & Audit Suite Results
+## 10. Test & Audit Suite Results
 
 | Test / Audit Command | Result | Details |
 | :--- | :--- | :--- |
+| `node scripts/validate_enrichment_provenance.mjs` | **PASS** | 1,805 valid enrichments, 0 invalid, 0 variant leakage |
+| `node --test tests/phase54f_controlled_reharvest.test.js` | **PASS** | 8 Section 12 test suites passed cleanly |
 | `npm test` | **PASS** | 37 test suites passed cleanly (including 18 Phase 54F unit tests) |
 | `npm run test:e2e` | **PASS** | 19 of 19 Playwright tests passed |
 | `npm run audit:parts-catalog` | **PASS** | Catalog audit passed (1429 models audited) |
@@ -173,19 +210,12 @@ Under Phase 54F-A-R1, the promotion logic was strictly hardened to eliminate ove
 
 ---
 
-## 10. Phase 54F-B Expansion Readiness & Merge Gate
+## 11. Phase 54F-A-R2 Close Gate & Status
 
-- `VALID_SECTION_ENRICHMENTS > 0`: YES (3,513 safe enrichments)
-- `MULTI_SECTION_UNSAFE_PROMOTION = 0`: YES (0)
-- `CONFIGURATION_GLOBALIZATION = 0`: YES (0)
-- `CANONICAL_EVIDENCE_REFERENTIAL_INTEGRITY = PASS`: YES (0 unknown parts/fitments)
-- `REPORT_MANIFEST_METRIC_MISMATCHES = 0`: PASS (100% reconciled)
-- `ROBOTS_ACCESS_POLICY = PASS`: YES (404 no disallow rules)
-- `SAMPLE_FAILURES = 0`: YES (0)
-- `FALSE_POSITIVE_SECTION_ASSIGNMENTS = 0`: YES (0)
-- `ALL_REGRESSION_TESTS_PASS = YES`: YES (37 suites pass)
-- **`READY_FOR_PHASE54F_B_EXPANSION = YES`**
-- **`READY_FOR_PROTECTED_MERGE = YES`**
-- **`PHASE54F_A_R1_COMPLETE = YES`**
-- **`PHASE54F_A_MERGED = NO`**
-- **`PHASE54F_B_STARTED = NO`** (Strict fail-closed hard stop)
+```text
+PHASE_54F_A_R2 = PASS
+READY_FOR_PHASE_54F_A_CLOSE
+PR_OPEN = YES
+PR_MERGED = NO
+PHASE54F_B_STARTED = NO
+```
