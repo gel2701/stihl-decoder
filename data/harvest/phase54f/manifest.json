@@ -121,7 +121,8 @@
   "observations_raw_attempted": 3719,
   "observations_unique_valid": 3677,
   "duplicate_evidence_skipped": 42,
-  "multi_section_model_part_pairs": 349,
+  "multi_section_model_part_pairs": 399,
+  "canonical_fitments_multi_section_pairs": 349,
   "ambiguous_source_observations": 842,
   "total_ambiguous_source_observations": 958,
   "ambiguous_enrichments_rejected": 1518,
@@ -155,6 +156,8 @@
   "exact_variant_enrichments": 0,
   "model_level_to_exact_variant_leakage": 0,
   "null_variant_key_exact_variant_enrichments": 0,
-  "r1_exact_variant_enrichments": 3513,
-  "r1_invalid_model_level_to_exact_variant": 1708
+  "r1_total_enrichments": 3513,
+  "r1_safe_base_model_enrichments": 1805,
+  "r1_invalid_model_level_to_exact_variant": 1708,
+  "r1_exact_variant_enrichments": 3513
 }

@@ -775,8 +775,10 @@ async function runHarvest(isResume = false) {
     exact_variant_enrichments: 0,
     model_level_to_exact_variant_leakage: 0,
     null_variant_key_exact_variant_enrichments: 0,
-    r1_exact_variant_enrichments: 3513,
+    r1_total_enrichments: 3513,
+    r1_safe_base_model_enrichments: 1805,
     r1_invalid_model_level_to_exact_variant: 1708,
+    r1_exact_variant_enrichments: 3513, // DEPRECATED legacy field: historically misnamed; 3513 represents R1 total enrichments before variant isolation
     new_part_candidate_observations: newPartCandidates.length,
     unique_new_part_candidates: uniqueNewParts.size,
     new_fitment_candidate_observations: newFitmentCandidates.length,

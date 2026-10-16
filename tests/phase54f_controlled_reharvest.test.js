@@ -534,6 +534,25 @@ test('Phase 54F-A-R2 Test D — Real Exact Variant Evidence Remains Functional (
   const validation = EnrichmentScopeValidator.validateEnrichment(candidate, legitimateVariantEvidence, matchingFitment);
   assert.strictEqual(validation.valid, true, 'Legitimate exact variant evidence must pass validation');
   assert.strictEqual(validation.errors.length, 0);
+
+  // EXACT_VARIANT evidence + mismatching variant_key → forbidden
+  const mismatchingFitment = {
+    fitment_id: '11410201200::ms_261::c_be::base::EXACT_VARIANT',
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    variant_key: 'c_be',
+    fitment_scope: SCOPES.EXACT_VARIANT,
+    configuration_key: null
+  };
+  const mismatchCandidate = {
+    fitment_id: mismatchingFitment.fitment_id,
+    canonical_model_id: 'ms_261',
+    part_number: '11410201200',
+    section_name: 'Cylinder'
+  };
+  const mismatchValidation = EnrichmentScopeValidator.validateEnrichment(mismatchCandidate, legitimateVariantEvidence, mismatchingFitment);
+  assert.strictEqual(mismatchValidation.valid, false, 'Exact variant evidence cannot enrich mismatching variant');
+  assert.ok(mismatchValidation.errors.some(e => e.includes('VARIANT_MISMATCH')), 'Must report VARIANT_MISMATCH error');
 });
 
 test('Phase 54F-A-R2 Test E — Multi-Section Fix Preserved (Section 7 & 12)', () => {
@@ -591,8 +610,12 @@ test('Phase 54F-A-R2 Test H — Reconciled Scope Accounting (Section 10)', () =>
   // Accounting conservation: TOTAL_ENRICHMENTS = MODEL_LEVEL_ENRICHMENTS + EXACT_VARIANT_ENRICHMENTS
   assert.strictEqual(manifest.total_enrichments, manifest.model_level_enrichments + manifest.exact_variant_enrichments);
 
-  // Conservation of R1 leakages: R1_EXACT_VARIANT_ENRICHMENTS (3513) = R2_SAFE (1805) + R1_INVALID_EXACT_VARIANT (1708)
-  assert.strictEqual(manifest.r1_exact_variant_enrichments, 3513);
-  assert.strictEqual(manifest.r1_invalid_model_level_to_exact_variant, 1708);
-  assert.strictEqual(manifest.total_enrichments + manifest.r1_invalid_model_level_to_exact_variant, 3513);
+  // Normalized R1 accounting:
+  assert.strictEqual(manifest.r1_total_enrichments, 3513, 'R1 total enrichments must be 3513');
+  assert.strictEqual(manifest.r1_safe_base_model_enrichments, 1805, 'R1 safe base-model enrichments must be 1805');
+  assert.strictEqual(manifest.r1_invalid_model_level_to_exact_variant, 1708, 'R1 invalid promotions to exact-variant must be 1708');
+  assert.strictEqual(manifest.r1_total_enrichments, manifest.r1_safe_base_model_enrichments + manifest.r1_invalid_model_level_to_exact_variant, 'Exact sum: 1805 + 1708 === 3513');
+
+  // Legacy backwards-compatibility check:
+  assert.strictEqual(manifest.r1_exact_variant_enrichments, 3513, 'Legacy deprecated field preserved for compatibility');
 });

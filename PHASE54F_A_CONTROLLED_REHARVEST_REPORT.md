@@ -103,8 +103,9 @@ In Phase 54F-A-R2, forensic auditing identified a critical semantic defect in R1
 | **MODEL_LEVEL_TO_EXACT_VARIANT_LEAKAGE** | 0 | Zero leakage verified by `EnrichmentScopeValidator` |
 | **NULL_VARIANT_KEY_EXACT_VARIANT_ENRICHMENTS** | 0 | Zero null wildcard promotions |
 | **EXACT_VARIANT_ENRICHMENTS_REJECTED** | 1,724 | 1,708 candidate fitments + 16 staging fitments rejected |
-| **R1_EXACT_VARIANT_ENRICHMENTS** | 3,513 | Historical R1 total before variant isolation |
-| **R1_INVALID_MODEL_LEVEL_TO_EXACT_VARIANT** | 1,708 | Exactly eliminated in R2 |
+| **R1_TOTAL_ENRICHMENTS** | 3,513 | Historical R1 total before variant isolation (formerly misnamed R1_EXACT_VARIANT_ENRICHMENTS) |
+| **R1_SAFE_BASE_MODEL_ENRICHMENTS** | 1,805 | Safe base-model enrichments confirmed |
+| **R1_INVALID_MODEL_LEVEL_TO_EXACT_VARIANT** | 1,708 | Exactly eliminated in R2 (1,805 + 1,708 = 3,513) |
 | **TOTAL_ENRICHMENTS** | 1,805 | Safe `BASE_MODEL_CONFIRMED` enrichments |
 | **MODEL_LEVEL_ENRICHMENTS** | 1,805 | 100% of accepted enrichments are base model |
 | **EXACT_VARIANT_ENRICHMENTS** | 0 | 0 exact variant claims made from model-level evidence |

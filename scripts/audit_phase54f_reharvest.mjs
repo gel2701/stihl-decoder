@@ -380,6 +380,10 @@ assertInvariant(manifest.model_level_enrichments === 1805, 'manifest.model_level
 assertInvariant(manifest.exact_variant_enrichments === 0, 'manifest.exact_variant_enrichments === 0');
 assertInvariant(manifest.model_level_to_exact_variant_leakage === 0, 'manifest.model_level_to_exact_variant_leakage === 0');
 assertInvariant(manifest.null_variant_key_exact_variant_enrichments === 0, 'manifest.null_variant_key_exact_variant_enrichments === 0');
+assertInvariant(manifest.r1_total_enrichments === 3513, 'manifest.r1_total_enrichments === 3513');
+assertInvariant(manifest.r1_safe_base_model_enrichments === 1805, 'manifest.r1_safe_base_model_enrichments === 1805');
+assertInvariant(manifest.r1_invalid_model_level_to_exact_variant === 1708, 'manifest.r1_invalid_model_level_to_exact_variant === 1708');
+assertInvariant(manifest.r1_total_enrichments === manifest.r1_safe_base_model_enrichments + manifest.r1_invalid_model_level_to_exact_variant, 'R1 conservation: 1805 + 1708 === 3513');
 assertInvariant(enrichments.length === 1805, 'VALID_SECTION_ENRICHMENTS === 1805');
 assertInvariant(evidenceCount === 208412, 'EVIDENCE_AFTER === 208412 (206607 + 1805)');
 assertInvariant(partsWithMeaningfulSection === 2210, 'PARTS_WITH_MEANINGFUL_SECTION === 2210');
@@ -409,7 +413,8 @@ const expectedChecks = [
   { label: 'EXACT_VARIANT_ENRICHMENTS', value: '0' },
   { label: 'MODEL_LEVEL_TO_EXACT_VARIANT_LEAKAGE', value: '0' },
   { label: 'NULL_VARIANT_KEY_EXACT_VARIANT_ENRICHMENTS', value: '0' },
-  { label: 'R1_EXACT_VARIANT_ENRICHMENTS', value: '3,513' },
+  { label: 'R1_TOTAL_ENRICHMENTS', value: '3,513' },
+  { label: 'R1_SAFE_BASE_MODEL_ENRICHMENTS', value: '1,805' },
   { label: 'R1_INVALID_MODEL_LEVEL_TO_EXACT_VARIANT', value: '1,708' },
   { label: 'PARTS_WITH_MEANINGFUL_SECTION', value: '2,210' },
   { label: 'FITMENTS_WITH_MEANINGFUL_SECTION', value: '4,603' }
