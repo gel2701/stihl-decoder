@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Phase 54F-A Controlled Technical Reharvest Pilot Queue",
+  "created_at": "2026-10-16T03:13:02.459Z",
+  "baseline_sha": "b2a8d4259d8c7661c31e68af3b043a8acec846fc",
+  "max_models": 50,
+  "max_requests": 250,
+  "models_count": 16,
+  "configurations_count": 36,
+  "models": [
+    {
+      "queue_index": 1,
+      "canonical_model_id": "034",
+      "model_name": "034",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 1854,
+      "unresolved_fitments": 1806,
+      "meaningful_positions": 1723,
+      "configurations": [
+        {
+          "configuration_key": "ANTI_VIBRATION_ELECTRONIC_IGNITION_QUICKSTOP_QUICKSTOP_PLUS",
+          "configuration_name": "Anti-Vibration Electronic Ignition QuickStop Quickstop Plus"
+        },
+        {
+          "configuration_key": "AVEQWZ",
+          "configuration_name": "AVEQWZ"
+        },
+        {
+          "configuration_key": "AVEQW_ANTI_VIBRATION_ELECTRONIC_IGNITION_QUICKSTOP_QUICKSTOP_PLUS",
+          "configuration_name": "AVEQW Anti-Vibration Electronic Ignition QuickStop Quickstop Plus"
+        },
+        {
+          "configuration_key": "AVEQZ_FD",
+          "configuration_name": "AVEQZ-FD"
+        },
+        {
+          "configuration_key": "AVSEQW",
+          "configuration_name": "AVSEQW"
+        },
+        {
+          "configuration_key": "Z_FB",
+          "configuration_name": "Z FB"
+        },
+        {
+          "configuration_key": "VERSION_WITH_LARGER_PISTON_DIAM",
+          "configuration_name": "Version with Larger Piston Diam"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 1
+    },
+    {
+      "queue_index": 2,
+      "canonical_model_id": "ms_261",
+      "model_name": "MS 261",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 1817,
+      "unresolved_fitments": 1779,
+      "meaningful_positions": 1799,
+      "configurations": [
+        {
+          "configuration_key": "VW",
+          "configuration_name": "-VW"
+        },
+        {
+          "configuration_key": "MQ",
+          "configuration_name": "-MQ"
+        },
+        {
+          "configuration_key": "VWGASOLINE",
+          "configuration_name": "VWGasoline"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 2
+    },
+    {
+      "queue_index": 3,
+      "canonical_model_id": "ms_362",
+      "model_name": "MS 362",
+      "category": "Kettingzaag",
+      "category_slug": "kettingzagen",
+      "total_fitments": 1613,
+      "unresolved_fitments": 1582,
+      "meaningful_positions": 1612,
+      "configurations": [
+        {
+          "configuration_key": "VW",
+          "configuration_name": "-VW"
+        },
+        {
+          "configuration_key": "MQ",
+          "configuration_name": "-MQ"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 3
+    },
+    {
+      "queue_index": 4,
+      "canonical_model_id": "038",
+      "model_name": "038",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 1513,
+      "unresolved_fitments": 1460,
+      "meaningful_positions": 1429,
+      "configurations": [
+        {
+          "configuration_key": "FB_FARM_BOSS",
+          "configuration_name": "FB Farm Boss"
+        },
+        {
+          "configuration_key": "MRII_WRAP_HANDLE_MAGNUM",
+          "configuration_name": "MRII Wrap Handle Magnum"
+        },
+        {
+          "configuration_key": "MW_MAGNUM",
+          "configuration_name": "MW Magnum"
+        },
+        {
+          "configuration_key": "M_MAGNUM",
+          "configuration_name": "M Magnum"
+        },
+        {
+          "configuration_key": "SW_VERSION_WITH_LARGER_PISTON_DIAM",
+          "configuration_name": "SW Version with Larger Piston diam"
+        },
+        {
+          "configuration_key": "VERSION_WITH_LARGER_PISTON_DIAM",
+          "configuration_name": "Version with Larger Piston diam"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 4
+    },
+    {
+      "queue_index": 5,
+      "canonical_model_id": "066",
+      "model_name": "066",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 1459,
+      "unresolved_fitments": 1407,
+      "meaningful_positions": 1400,
+      "configurations": [
+        {
+          "configuration_key": "BR",
+          "configuration_name": "BR"
+        },
+        {
+          "configuration_key": "MR_MAGNUM_WRAP_HANDLE",
+          "configuration_name": "MR Magnum Wrap Handle"
+        },
+        {
+          "configuration_key": "M_MAGNUM",
+          "configuration_name": "M Magnum"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 5
+    },
+    {
+      "queue_index": 6,
+      "canonical_model_id": "fs_55",
+      "model_name": "FS 55",
+      "category": "Bosmaaier",
+      "category_slug": "bosmaaiers",
+      "total_fitments": 1399,
+      "unresolved_fitments": 1397,
+      "meaningful_positions": 1389,
+      "configurations": [
+        {
+          "configuration_key": "LOOP_HANDLE",
+          "configuration_name": "Loop Handle"
+        },
+        {
+          "configuration_key": "SPLIT_DRIVE_TUBE",
+          "configuration_name": "Split Drive Tube"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 6
+    },
+    {
+      "queue_index": 7,
+      "canonical_model_id": "ms_260",
+      "model_name": "MS 260",
+      "category": "Kettingzaag",
+      "category_slug": "kettingzagen",
+      "total_fitments": 1243,
+      "unresolved_fitments": 1224,
+      "meaningful_positions": 1148,
+      "configurations": [
+        {
+          "configuration_key": "D",
+          "configuration_name": "-D"
+        },
+        {
+          "configuration_key": "DWGASOLINE",
+          "configuration_name": "-DWGasoline"
+        },
+        {
+          "configuration_key": "W",
+          "configuration_name": "-W"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 7
+    },
+    {
+      "queue_index": 8,
+      "canonical_model_id": "fs_85",
+      "model_name": "FS 85",
+      "category": "Bosmaaier",
+      "category_slug": "bosmaaiers",
+      "total_fitments": 1011,
+      "unresolved_fitments": 992,
+      "meaningful_positions": 967,
+      "configurations": [
+        {
+          "configuration_key": "LOOP_HANDLE",
+          "configuration_name": "Loop Handle"
+        },
+        {
+          "configuration_key": "SPLIT_DRIVE_TUBE",
+          "configuration_name": "Split Drive Tube"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 8
+    },
+    {
+      "queue_index": 9,
+      "canonical_model_id": "fs_400",
+      "model_name": "FS 400",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 778,
+      "unresolved_fitments": 755,
+      "meaningful_positions": 778,
+      "configurations": [
+        {
+          "configuration_key": "K_SHORT_SHAFT",
+          "configuration_name": "-K Short Shaft"
+        },
+        {
+          "configuration_key": "L_LONG_SHAFT",
+          "configuration_name": "-L Long Shaft"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 9
+    },
+    {
+      "queue_index": 10,
+      "canonical_model_id": "009",
+      "model_name": "009",
+      "category": "Kettingzaag",
+      "category_slug": "kettingzagen",
+      "total_fitments": 751,
+      "unresolved_fitments": 736,
+      "meaningful_positions": 726,
+      "configurations": [
+        {
+          "configuration_key": "QUIET_QUICKSTOP_QUICKSTOP_PLUS",
+          "configuration_name": "Quiet QuickStop Quickstop Plus"
+        },
+        {
+          "configuration_key": "QUICKSTOP_QUICKSTOP_PLUS",
+          "configuration_name": "QuickStop Quickstop Plus"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 10
+    },
+    {
+      "queue_index": 11,
+      "canonical_model_id": "hs_81",
+      "model_name": "HS 81",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 673,
+      "unresolved_fitments": 667,
+      "meaningful_positions": 649,
+      "configurations": [],
+      "primary_source": "diyspareparts",
+      "priority_rank": 11
+    },
+    {
+      "queue_index": 12,
+      "canonical_model_id": "ts_350",
+      "model_name": "TS 350",
+      "category": "Onbekend",
+      "category_slug": "kettingzagen",
+      "total_fitments": 588,
+      "unresolved_fitments": 575,
+      "meaningful_positions": 575,
+      "configurations": [
+        {
+          "configuration_key": "AVE_ANTI_VIBRATION_ELECTRONIC_IGNITION",
+          "configuration_name": "AVE Anti-Vibration Electronic Ignition"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 12
+    },
+    {
+      "queue_index": 13,
+      "canonical_model_id": "bg_86",
+      "model_name": "BG 86",
+      "category": "Bladblazer",
+      "category_slug": "bladblazers",
+      "total_fitments": 542,
+      "unresolved_fitments": 531,
+      "meaningful_positions": 541,
+      "configurations": [
+        {
+          "configuration_key": "D",
+          "configuration_name": "-D"
+        },
+        {
+          "configuration_key": "D",
+          "configuration_name": "D"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 13
+    },
+    {
+      "queue_index": 14,
+      "canonical_model_id": "ts_410",
+      "model_name": "TS 410",
+      "category": "Doorslijper",
+      "category_slug": "doorslijpers",
+      "total_fitments": 449,
+      "unresolved_fitments": 437,
+      "meaningful_positions": 439,
+      "configurations": [
+        {
+          "configuration_key": "A_ELECTRONIC_WATER_CONTROL",
+          "configuration_name": "-A Electronic Water Control"
+        }
+      ],
+      "primary_source": "diyspareparts",
+      "priority_rank": 14
+    },
+    {
+      "queue_index": 15,
+      "canonical_model_id": "hs_45",
+      "model_name": "HS 45",
+      "category": "Heggenschaar",
+      "category_slug": "heggenscharen",
+      "total_fitments": 295,
+      "unresolved_fitments": 295,
+      "meaningful_positions": 295,
+      "configurations": [],
+      "primary_source": "diyspareparts",
+      "priority_rank": 15
+    },
+    {
+      "queue_index": 16,
+      "canonical_model_id": "br_600",
+      "model_name": "BR 600",
+      "category": "Bladblazer",
+      "category_slug": "bladblazers",
+      "total_fitments": 238,
+      "unresolved_fitments": 230,
+      "meaningful_positions": 238,
+      "configurations": [],
+      "primary_source": "diyspareparts",
+      "priority_rank": 16
+    }
+  ]
+}

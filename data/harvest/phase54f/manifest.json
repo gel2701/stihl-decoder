@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "baseline_sha": "b2a8d4259d8c7661c31e68af3b043a8acec846fc",
+  "started_at": "2026-10-16T03:14:27.104Z",
+  "completed_at": "2026-10-16T03:25:23.343Z",
+  "max_models": 50,
+  "models_attempted": 16,
+  "models_completed": 16,
+  "models_resolved": 13,
+  "models_no_data": 3,
+  "models_blocked": 0,
+  "request_budget": 250,
+  "requests_used": 219,
+  "sources_attempted": [
+    "diyspareparts"
+  ],
+  "sources_blocked": [],
+  "observations_raw": 3719,
+  "observations_valid": 3677,
+  "observations_duplicate": 42,
+  "observations_quarantined": 0,
+  "observations_conflicting": 842,
+  "new_part_candidates_count": 383,
+  "new_fitment_candidates_count": 377,
+  "valid_section_enrichments": 1805,
+  "target_results": [
+    {
+      "model_id": "034",
+      "status": "RESOLVED",
+      "sections": 18,
+      "observations": 395
+    },
+    {
+      "model_id": "ms_261",
+      "status": "RESOLVED",
+      "sections": 14,
+      "observations": 219
+    },
+    {
+      "model_id": "ms_362",
+      "status": "SOURCE_NOT_FOUND",
+      "http_status": 404
+    },
+    {
+      "model_id": "038",
+      "status": "SOURCE_NOT_FOUND",
+      "http_status": 404
+    },
+    {
+      "model_id": "066",
+      "status": "NO_TECHNICAL_DATA",
+      "sections": 0
+    },
+    {
+      "model_id": "fs_55",
+      "status": "RESOLVED",
+      "sections": 20,
+      "observations": 436
+    },
+    {
+      "model_id": "ms_260",
+      "status": "RESOLVED",
+      "sections": 14,
+      "observations": 283
+    },
+    {
+      "model_id": "fs_85",
+      "status": "RESOLVED",
+      "sections": 26,
+      "observations": 399
+    },
+    {
+      "model_id": "fs_400",
+      "status": "RESOLVED",
+      "sections": 17,
+      "observations": 335
+    },
+    {
+      "model_id": "009",
+      "status": "RESOLVED",
+      "sections": 23,
+      "observations": 284
+    },
+    {
+      "model_id": "hs_81",
+      "status": "RESOLVED",
+      "sections": 9,
+      "observations": 166
+    },
+    {
+      "model_id": "ts_350",
+      "status": "RESOLVED",
+      "sections": 18,
+      "observations": 242
+    },
+    {
+      "model_id": "bg_86",
+      "status": "RESOLVED",
+      "sections": 12,
+      "observations": 185
+    },
+    {
+      "model_id": "ts_410",
+      "status": "RESOLVED",
+      "sections": 12,
+      "observations": 261
+    },
+    {
+      "model_id": "hs_45",
+      "status": "RESOLVED",
+      "sections": 10,
+      "observations": 265
+    },
+    {
+      "model_id": "br_600",
+      "status": "RESOLVED",
+      "sections": 10,
+      "observations": 207
+    }
+  ],
+  "observations_raw_attempted": 3719,
+  "observations_unique_valid": 3677,
+  "duplicate_evidence_skipped": 42,
+  "multi_section_model_part_pairs": 399,
+  "canonical_fitments_multi_section_pairs": 349,
+  "ambiguous_source_observations": 842,
+  "total_ambiguous_source_observations": 958,
+  "ambiguous_enrichments_rejected": 1518,
+  "ambiguous_enrichments_promoted": 0,
+  "configuration_specific_source_observations": 0,
+  "model_level_source_observations": 3677,
+  "synthetic_source_configuration_keys": 0,
+  "model_level_section_propagated_to_configuration_specific_fitments": 0,
+  "model_level_to_config_promotions": 0,
+  "new_part_candidate_observations": 383,
+  "unique_new_part_candidates": 318,
+  "new_fitment_candidate_observations": 377,
+  "unique_new_fitment_candidates": 337,
+  "canonical_evidence_promoted": 1805,
+  "staging_only_evidence": 1872,
+  "promoted_evidence_with_unknown_part": 0,
+  "promoted_evidence_with_unknown_fitment": 0,
+  "false_positive_section_assignments": 0,
+  "section_enrichment_lookup_mode": "EXACT_FITMENT_ID_ONLY",
+  "parts_with_meaningful_section_before": 857,
+  "parts_with_meaningful_section_after": 2210,
+  "fitments_with_meaningful_section_before": 2798,
+  "fitments_with_meaningful_section_after": 4603,
+  "robots_fetch_status": "404_NO_DISALLOW",
+  "robots_policy_verified": true,
+  "target_path_allowed": true,
+  "model_level_only_observations": 3677,
+  "exact_variant_observations": 0,
+  "total_enrichments": 1805,
+  "model_level_enrichments": 1805,
+  "exact_variant_enrichments": 0,
+  "model_level_to_exact_variant_leakage": 0,
+  "null_variant_key_exact_variant_enrichments": 0,
+  "r1_total_enrichments": 3513,
+  "r1_safe_base_model_enrichments": 1805,
+  "r1_invalid_model_level_to_exact_variant": 1708,
+  "r1_exact_variant_enrichments": 3513
+}

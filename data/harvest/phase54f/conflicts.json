@@ -1,0 +1,5137 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-16T08:05:37.794Z",
+  "summary": {
+    "total_quarantined_items": 1872,
+    "multi_section_model_part_pairs": 399,
+    "ambiguous_source_observations": 842,
+    "total_ambiguous_source_observations": 958,
+    "ambiguous_enrichments_rejected": 1518,
+    "ambiguous_enrichments_promoted": 0,
+    "multi_config_unresolved_observations": 77,
+    "multi_config_fitments_rejected": 4146,
+    "exact_variant_enrichments_rejected": 1724,
+    "exact_variant_leakage_promoted": 0,
+    "model_level_to_exact_variant_leakage": 0,
+    "null_variant_key_exact_variant_enrichments": 0,
+    "variant_only_observations_quarantined": 193,
+    "new_part_candidate_observations": 383,
+    "unique_new_part_candidates": 318,
+    "new_fitment_candidate_observations": 377,
+    "unique_new_fitment_candidates": 337,
+    "r1_total_enrichments": 3513,
+    "r1_safe_base_model_enrichments": 1805,
+    "r1_invalid_model_level_to_exact_variant": 1708,
+    "r1_exact_variant_enrichments_legacy": 3513
+  },
+  "multi_section_ambiguities": [
+    {
+      "model_part_key": "034::11251418300",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251217700",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::11211412900",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::11301412300",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::94389294040",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::90412160650",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::11254421601",
+      "sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251200613",
+      "sections": [
+        "Air Filter/throttle Control",
+        "Carburetor C3A-S31E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/"
+      ]
+    },
+    {
+      "model_part_key": "034::90744784435",
+      "sections": [
+        "AV System",
+        "Heating"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/fce737a9-a666-4602-93b1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/9d238110-f874-4ecd-bd77/"
+      ]
+    },
+    {
+      "model_part_key": "034::11280071065",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11201227800",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251210802",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251290900",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11281214802",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11231217800",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::41161215100",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11201223004",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251215000",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251290901",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251214700",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11201219200",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11201226600",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251215408",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11231210700",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251210804",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11201226601",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251224200",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251223202",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251207101",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251229001",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251213301",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251227402",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251223203",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251207201",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251229003",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251212901",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251227403",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251226200",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11201223005",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251226702",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251226802",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251210803",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::41321226600",
+      "sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ]
+    },
+    {
+      "model_part_key": "034::11216486610",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Crankcase"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/"
+      ]
+    },
+    {
+      "model_part_key": "034::11287920900",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::11250808000",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::96469450590",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::90990213760",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::11210847000",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::11210846901",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::11220847100",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::11210847100",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Cylinder"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/3675c8a5-e9e7-4115-b4fc/"
+      ]
+    },
+    {
+      "model_part_key": "034::90744784475",
+      "sections": [
+        "Chain Cover/ Handle Bar",
+        "Heating"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/9d238110-f874-4ecd-bd77/"
+      ]
+    },
+    {
+      "model_part_key": "034::11250071050",
+      "sections": [
+        "Crankcase",
+        "Cylinder",
+        "Muffler"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/3675c8a5-e9e7-4115-b4fc/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a89269f2-02f0-45bd-bbc5/"
+      ]
+    },
+    {
+      "model_part_key": "034::90223711020",
+      "sections": [
+        "Crankcase",
+        "Cylinder",
+        "Muffler",
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/3675c8a5-e9e7-4115-b4fc/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a89269f2-02f0-45bd-bbc5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "034::00003500900",
+      "sections": [
+        "Crankcase",
+        "Tank Handle"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/81c95ecc-2632-4a98-ba07/"
+      ]
+    },
+    {
+      "model_part_key": "034::00003530600",
+      "sections": [
+        "Crankcase",
+        "Tank Handle"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/81c95ecc-2632-4a98-ba07/"
+      ]
+    },
+    {
+      "model_part_key": "034::90223130660",
+      "sections": [
+        "Crankcase",
+        "Oil Pump"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/64a79ccf-8d4c-4c4b-ba11/"
+      ]
+    },
+    {
+      "model_part_key": "034::92940210140",
+      "sections": [
+        "Heating",
+        "Shroud (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/9d238110-f874-4ecd-bd77/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ]
+    },
+    {
+      "model_part_key": "034::00009741000",
+      "sections": [
+        "Shroud (31.2001)",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "034::11100849102",
+      "sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "034::00009580923",
+      "sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "034::11251957200",
+      "sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "034::11281953500",
+      "sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "034::00007906103",
+      "sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::11387915903",
+      "sections": [
+        "AV System",
+        "Crankcase"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/8f2ed6e5-5079-4e2e-b885/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/b6091330-efa3-48b7-974d/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::11417915902",
+      "sections": [
+        "AV System",
+        "Crankcase"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/8f2ed6e5-5079-4e2e-b885/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/b6091330-efa3-48b7-974d/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::90223410983",
+      "sections": [
+        "AV System",
+        "Chain Tensioner",
+        "Cylinder"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/8f2ed6e5-5079-4e2e-b885/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/154e64d7-3024-4523-86f8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/00aab1a5-8e81-48cf-a3dd/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::11411200606",
+      "sections": [
+        "Carburetor Bracket",
+        "Carburetor C1Q-S178B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/b0d9ad19-4ff1-4385-8d1b/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/e024144b-4b7f-45ec-b329/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::96469450490",
+      "sections": [
+        "Carburetor C1Q-S178B",
+        "Chain Tensioner"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/e024144b-4b7f-45ec-b329/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/154e64d7-3024-4523-86f8/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::90223130660",
+      "sections": [
+        "Chain Brake",
+        "Cylinder",
+        "Oil Pump. Clutch"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/16867546-9e10-4b0c-b86a/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/00aab1a5-8e81-48cf-a3dd/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/48750798-1030-498f-b744/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::11410071000",
+      "sections": [
+        "Crankcase",
+        "Cylinder"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/b6091330-efa3-48b7-974d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/00aab1a5-8e81-48cf-a3dd/"
+      ]
+    },
+    {
+      "model_part_key": "ms_261::90394880984",
+      "sections": [
+        "Rewind Starter",
+        "Shroud"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/09d1e6f4-22ae-47dc-85e6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/bda23c3c-9a97-4608-b297/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90754784268",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/4b87680e-81d0-42c4-b81c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3973b6a3-0bf2-45bc-bbd9/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::07838302000",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/4b87680e-81d0-42c4-b81c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3973b6a3-0bf2-45bc-bbd9/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41400071050",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Muffler",
+        "Muffler Cat.",
+        "Air Filter - Fuel Tank"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/4b87680e-81d0-42c4-b81c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3973b6a3-0bf2-45bc-bbd9/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/16be47a2-0c74-40a5-a306/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b16ec20e-5fdf-4014-9316/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401900601",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::00009580923",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11181953500",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41161957200",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401953400",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::00009511100",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41400846801",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/d406ec3f-33c0-4e5b-8d07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/136981ea-5faa-44be-a3e0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401490602",
+      "sections": [
+        "Muffler",
+        "Muffler Cat."
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3973b6a3-0bf2-45bc-bbd9/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/16be47a2-0c74-40a5-a306/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90754784159",
+      "sections": [
+        "Muffler Cat.",
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar",
+        "Air Filter - Fuel Tank"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/16be47a2-0c74-40a5-a306/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/421dab0b-99a7-4f1f-8103/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b16ec20e-5fdf-4014-9316/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90754784155",
+      "sections": [
+        "Muffler Cat.",
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/16be47a2-0c74-40a5-a306/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/421dab0b-99a7-4f1f-8103/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41400848300",
+      "sections": [
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/421dab0b-99a7-4f1f-8103/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90754784115",
+      "sections": [
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/421dab0b-99a7-4f1f-8103/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401823300",
+      "sections": [
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/421dab0b-99a7-4f1f-8103/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42037117201",
+      "sections": [
+        "Engine Housing Two Handed Handle Bar",
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f0fd81a2-11c7-492c-930e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b5c42254-935e-4219-a478/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::92102600700",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b16ec20e-5fdf-4014-9316/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b5c42254-935e-4219-a478/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401200634",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b16ec20e-5fdf-4014-9316/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401200610",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b16ec20e-5fdf-4014-9316/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41371207100",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11231223000",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41371218900",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41371218600",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11201229000",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401213302",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11251227403",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11251229001",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11291214800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11231290905",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11231210800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11201227800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41161215100",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11201223004",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11251215000",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11201219200",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11201226600",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42261227100",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42291226800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11231217800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401210800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42261212700",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 5,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42291226200",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11251224200",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42291215800",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::43141223600",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42291223001",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11201217801",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41400071060",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11291290900",
+      "sections": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41291214700",
+      "sections": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42261207100",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41281210800",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11231223001",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41401226300",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41191210700",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41291210700",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42270071060",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41371213300",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41291290902",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42261202200",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11281227100",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::42261210800",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::11321215640",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::00009677253",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::00009673684",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::00007112500",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::07811201110",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90223411350",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::00001822100",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41400071006",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90223411270",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::90223411070",
+      "sections": [
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f0fd81a2-11c7-492c-930e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b5c42254-935e-4219-a478/"
+      ]
+    },
+    {
+      "model_part_key": "fs_55::41404401903",
+      "sections": [
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f0fd81a2-11c7-492c-930e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b5c42254-935e-4219-a478/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::90223711020",
+      "sections": [
+        "Crankcase",
+        "Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/c3e1faaf-ef15-4b47-8c8d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/94375457-d41b-4a85-b48d/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::90223410960",
+      "sections": [
+        "Crankcase",
+        "AV System - Handle Bar",
+        "Muffler"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/c3e1faaf-ef15-4b47-8c8d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/b23d8811-da3a-4026-be40/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/94375457-d41b-4a85-b48d/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11210071050",
+      "sections": [
+        "Crankcase",
+        "Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/c3e1faaf-ef15-4b47-8c8d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/94375457-d41b-4a85-b48d/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::90223130660",
+      "sections": [
+        "Oil Pump",
+        "Chain Brake"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/0c5a987a-98c1-40d1-a938/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/c0e23e2a-b46d-440c-b0a0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11254421601",
+      "sections": [
+        "Tank Housing",
+        "Air Filter - Throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/a00f5e05-895a-4258-b7c5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/e4458161-6d37-4479-9d76/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211237501",
+      "sections": [
+        "Tank Housing",
+        "Air Filter - Throttle Control"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/a00f5e05-895a-4258-b7c5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/e4458161-6d37-4479-9d76/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211200611",
+      "sections": [
+        "Air Filter - Throttle Control",
+        "Carburetor WT-426"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/e4458161-6d37-4479-9d76/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::41161215100",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11141223005",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11131215000",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11131219200",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11141227400",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::41171229402",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11201290900",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11131214705",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211210810",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211227101",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11101227400",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211213301",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11131223205",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211207105",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11171229000",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11141217800",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211214801",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11201290905",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211210805",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11221217700",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11211226205",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11141227100",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11210071062",
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d67c9cd1-2da7-4fdb-873f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/d7ba7e27-d99c-44ce-81d0/"
+      ]
+    },
+    {
+      "model_part_key": "ms_260::11210071042",
+      "sections": [
+        "Tools - Extras",
+        "Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/b72babe8-f655-4123-a6a8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/94375457-d41b-4a85-b48d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90223711050",
+      "sections": [
+        "A-Crankcase, Cylinder",
+        "D-Air Filter, Fuel Tank",
+        "F-Drive Tube FS 75, Wrap Around Handle"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/4b4078ce-de22-4e07-a2bf/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/cc45e589-15b3-4f00-8809/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90754784159",
+      "sections": [
+        "A-Crankcase, Cylinder",
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/4b4078ce-de22-4e07-a2bf/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::07838302000",
+      "sections": [
+        "A-Crankcase, Cylinder",
+        "Q-Tools, Extras"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/4b4078ce-de22-4e07-a2bf/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/a842d94b-f5c3-4dea-9293/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90394880984",
+      "sections": [
+        "B-Rewind Starter, Muffler",
+        "C-Ignition System, Clutch",
+        "M-Schneidwerkzeuge, Schutz",
+        "R_-Handle"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0c7c526a-165f-475f-8849/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/ae675077-2beb-4eab-b0f5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/48d9bfbb-5682-48a1-bfff/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::94556211130",
+      "sections": [
+        "C-Ignition System, Clutch",
+        "F-Drive Tube FS 75, Wrap Around Handle"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/ae675077-2beb-4eab-b0f5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90223711020",
+      "sections": [
+        "C-Ignition System, Clutch",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/ae675077-2beb-4eab-b0f5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e495e09d-cc41-41c4-9527/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41371200600",
+      "sections": [
+        "D_-Air Filter, Fuel Tank",
+        "E-Carburetor C1Q-S28c, C1Q-S41A",
+        "T_-Carburetor WT-447"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/605cb9d4-93e5-47cf-8ea2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e48b329b-db5f-49b5-ae45/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/fabea9ea-cabf-4bf9-b9c8/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::92910210120",
+      "sections": [
+        "D-Air Filter, Fuel Tank",
+        "H-Two-Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/cc45e589-15b3-4f00-8809/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/93558ca9-17a5-443c-88d1/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::92102600700",
+      "sections": [
+        "D-Air Filter, Fuel Tank",
+        "F-Drive Tube FS 75, Wrap Around Handle",
+        "S_-Two-Handed Handle Bar"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/cc45e589-15b3-4f00-8809/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41307131501",
+      "sections": [
+        "F-Drive Tube FS 75, Wrap Around Handle",
+        "L-Cutting Tools, Cutting Head Polycut"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/4d91e43c-6129-46df-bc8a/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90744784405",
+      "sections": [
+        "F-Drive Tube FS 75, Wrap Around Handle",
+        "M-Schneidwerkzeuge, Schutz"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/48d9bfbb-5682-48a1-bfff/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::92220680900",
+      "sections": [
+        "F-Drive Tube FS 75, Wrap Around Handle",
+        "G-Handle"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/f217afa5-a3bc-4530-b3f9/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::00007112500",
+      "sections": [
+        "F-Drive Tube FS 75, Wrap Around Handle",
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90744783025",
+      "sections": [
+        "G-Handle",
+        "H-Two-Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/f217afa5-a3bc-4530-b3f9/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/93558ca9-17a5-443c-88d1/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::42037117201",
+      "sections": [
+        "G-Handle",
+        "H-Two-Handed Handle Bar",
+        "R_-Handle",
+        "S_-Two-Handed Handle Bar"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/f217afa5-a3bc-4530-b3f9/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/93558ca9-17a5-443c-88d1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90223411070",
+      "sections": [
+        "H-Two-Handed Handle Bar",
+        "S_-Two-Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/93558ca9-17a5-443c-88d1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::92103190900",
+      "sections": [
+        "H-Two-Handed Handle Bar",
+        "L-Cutting Tools, Cutting Head Polycut"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/93558ca9-17a5-443c-88d1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/4d91e43c-6129-46df-bc8a/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::95030035190",
+      "sections": [
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e495e09d-cc41-41c4-9527/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::94566213100",
+      "sections": [
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e495e09d-cc41-41c4-9527/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41197136500",
+      "sections": [
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e495e09d-cc41-41c4-9527/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41266427600",
+      "sections": [
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e495e09d-cc41-41c4-9527/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::90223411270",
+      "sections": [
+        "J-Gear Head, Drive Tube FS 80",
+        "P-Cutting Tools, Grass Cutting Blade"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7b160178-6f39-4573-bb4c/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41376400100",
+      "sections": [
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9f7f668e-2112-44de-8160/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/e495e09d-cc41-41c4-9527/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::40037138301",
+      "sections": [
+        "K-Cutting Tools,autocut Mowing Head",
+        "N-Cutting Tools, Mowing Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/67080c64-9495-4c4a-ae9f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7ca4f7d4-7ddb-4045-94d9/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::40027136801",
+      "sections": [
+        "K-Cutting Tools,autocut Mowing Head",
+        "N-Cutting Tools, Mowing Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/67080c64-9495-4c4a-ae9f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7ca4f7d4-7ddb-4045-94d9/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41261824506",
+      "sections": [
+        "R_-Handle",
+        "S_-Two-Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ]
+    },
+    {
+      "model_part_key": "fs_85::41261826210",
+      "sections": [
+        "R_-Handle",
+        "S_-Two-Handed Handle Bar"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::90754784159",
+      "sections": [
+        "FS 400",
+        "B-Rewind Starter",
+        "C-Ignition System",
+        "H-Clutch Housing"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/bd2bb75b-bcba-4082-8c16/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c4415667-af8d-43ec-bd55/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/fa57e5c8-06a3-4879-859e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/7c8be1ad-6e6f-4cc4-849d/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41281490600",
+      "sections": [
+        "FS 400",
+        "B-Rewind Starter"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/bd2bb75b-bcba-4082-8c16/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c4415667-af8d-43ec-bd55/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41280071050",
+      "sections": [
+        "FS 400",
+        "E-Carburetor Housing"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/bd2bb75b-bcba-4082-8c16/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/0187196e-3799-4f99-8d28/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::00009511100",
+      "sections": [
+        "B-Rewind Starter",
+        "D-Cover",
+        "E-Carburetor Housing",
+        "J-Handlebar"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c4415667-af8d-43ec-bd55/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/f9fa1ffb-a269-4152-802c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/0187196e-3799-4f99-8d28/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/da1c7dee-d4a5-40e0-a40e/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41281200651",
+      "sections": [
+        "E-Carburetor Housing",
+        "F-Carburetor C1q#s34b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/0187196e-3799-4f99-8d28/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41161215100",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201223004",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201219200",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11251215000",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201226600",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41291290902",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41291214700",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41341210801",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201226601",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11231223000",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41281207150",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11251229001",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41341237300",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41281218900",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41371218600",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201229000",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::90793190280",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201227400",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11231217800",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11291214800",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11231290905",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::11201227800",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41191223002",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41191224200",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41341213000",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41281212900",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41340071060",
+      "sections": [
+        "F-Carburetor C1q#s34b",
+        "G_-Carburetor C1q#s33b"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/a6c121e7-0656-4a87-a214/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/3d8111e8-c04d-4a80-ac27/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::95030037452",
+      "sections": [
+        "H-Clutch Housing",
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/7c8be1ad-6e6f-4cc4-849d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::94566213860",
+      "sections": [
+        "H-Clutch Housing",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/7c8be1ad-6e6f-4cc4-849d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::92910210140",
+      "sections": [
+        "H-Clutch Housing",
+        "K-Gear Head",
+        "M-Polycut Head"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/7c8be1ad-6e6f-4cc4-849d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/79943fa7-2f0f-4eb6-a04f/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::90754784712",
+      "sections": [
+        "H-Clutch Housing",
+        "K-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/7c8be1ad-6e6f-4cc4-849d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::95030030210",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::95030035180",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::94566213100",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::94556211130",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::95030030102",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41167172800",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41196427600",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41197172800",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41197136500",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41197133100",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41167133100",
+      "sections": [
+        "K-Gear Head",
+        "L_-Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::41117169300",
+      "sections": [
+        "M-Polycut Head",
+        "N-Cutting Head Polymatic",
+        "O-Trimcut 40 # 2 Head",
+        "P-Cutting Tools"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/79943fa7-2f0f-4eb6-a04f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/8a2897e8-4b9b-4689-92bb/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/0f551141-fbdf-4b71-b3ad/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c80c077e-f498-4240-b3c6/"
+      ]
+    },
+    {
+      "model_part_key": "fs_400::40037136800",
+      "sections": [
+        "N-Cutting Head Polymatic",
+        "P-Cutting Tools"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/8a2897e8-4b9b-4689-92bb/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c80c077e-f498-4240-b3c6/"
+      ]
+    },
+    {
+      "model_part_key": "009::90793191010",
+      "sections": [
+        "A_-Crankcase",
+        "J_-Rewind Starter"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/03395e86-d988-49d5-875e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/dc963b61-4882-4aea-85d8/"
+      ]
+    },
+    {
+      "model_part_key": "009::90793190650",
+      "sections": [
+        "A-Crankcase",
+        "H_-Ignition System"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/6fda11f7-3a49-4658-adaa/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/51701f5f-dd05-458b-a455/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201200605",
+      "sections": [
+        "C-Air Filter / Oil Pump",
+        "F_-Carburetor C1s#s1b",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/5165a5ff-1cc5-4416-9c8e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4c5a781b-8e8a-4db8-86ff/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11216486600",
+      "sections": [
+        "D_-Clutch",
+        "E-Chain Brake"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/ff56462e-881f-4f66-a3f8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/20635aeb-def9-48ec-8218/"
+      ]
+    },
+    {
+      "model_part_key": "009::90990212360",
+      "sections": [
+        "D_-Clutch",
+        "H_-Ignition System"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/ff56462e-881f-4f66-a3f8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/154720b5-dfab-4669-93aa/"
+      ]
+    },
+    {
+      "model_part_key": "009::11206401716",
+      "sections": [
+        "D-Clutch",
+        "E-Chain Brake"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/958e987e-b1b5-4330-82b1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/20635aeb-def9-48ec-8218/"
+      ]
+    },
+    {
+      "model_part_key": "009::11181625001",
+      "sections": [
+        "D-Clutch",
+        "E-Chain Brake"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/958e987e-b1b5-4330-82b1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/20635aeb-def9-48ec-8218/"
+      ]
+    },
+    {
+      "model_part_key": "009::94606240400",
+      "sections": [
+        "D-Clutch",
+        "E-Chain Brake"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/958e987e-b1b5-4330-82b1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/20635aeb-def9-48ec-8218/"
+      ]
+    },
+    {
+      "model_part_key": "009::90623190650",
+      "sections": [
+        "D-Clutch",
+        "E-Chain Brake"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/958e987e-b1b5-4330-82b1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/20635aeb-def9-48ec-8218/"
+      ]
+    },
+    {
+      "model_part_key": "009::11101215100",
+      "sections": [
+        "F_-Carburetor C1s#s1b",
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b2822bd1-73d0-4388-ab07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201223001",
+      "sections": [
+        "F_-Carburetor C1s#s1b",
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b2822bd1-73d0-4388-ab07/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11131219200",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11131215000",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11141227400",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201215405",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::41171229402",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201290900",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11131214705",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11131210800",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11061227400",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201212402",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201223600",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201215801",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11131223205",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11171229000",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201213302",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11101227400",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11141217800",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201214805",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201290905",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11201200800",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::41171223006",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::41171226200",
+      "sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11141227100",
+      "sections": [
+        "G-Carburetor WT-323",
+        "L-Carburetor WA-99B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/"
+      ]
+    },
+    {
+      "model_part_key": "009::11061223000",
+      "sections": [
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11101223030",
+      "sections": [
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11101227800",
+      "sections": [
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "009::11171223900",
+      "sections": [
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::42371200618",
+      "sections": [
+        "Air Filter",
+        "Carburetor C1Q-S105"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/418e0729-f301-456d-a660/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/67c1b01c-9949-4dfb-ae29/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::42370071000",
+      "sections": [
+        "Air Filter",
+        "Crankcase"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/418e0729-f301-456d-a660/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/fe8f1768-bfe2-4c22-bc3b/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::00009888600",
+      "sections": [
+        "Crankcase",
+        "Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/fe8f1768-bfe2-4c22-bc3b/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/d9050342-54e7-405c-8740/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::90754784159",
+      "sections": [
+        "Crankcase",
+        "Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/fe8f1768-bfe2-4c22-bc3b/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/d9050342-54e7-405c-8740/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::90754783018",
+      "sections": [
+        "Crankcase",
+        "Gear Head",
+        "Ignition System"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/fe8f1768-bfe2-4c22-bc3b/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/d9050342-54e7-405c-8740/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/8dda8de6-5fa7-4476-bc54/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::00009511100",
+      "sections": [
+        "Handle Frame",
+        "Ignition System",
+        "Rewind Starter"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/c3166299-0234-45f6-809d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/8dda8de6-5fa7-4476-bc54/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/51c34804-aaba-4503-9e76/"
+      ]
+    },
+    {
+      "model_part_key": "hs_81::90744784420",
+      "sections": [
+        "Handle Frame",
+        "Rewind Starter"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/c3166299-0234-45f6-809d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-81/51c34804-aaba-4503-9e76/"
+      ]
+    },
+    {
+      "model_part_key": "ts_350::90223411010",
+      "sections": [
+        "A-Crankcase",
+        "D-Rewind Starter (pawl)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/bfcea80b-b789-4cf3-ba92/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/87d3122d-16ab-40b1-b8f0/"
+      ]
+    },
+    {
+      "model_part_key": "ts_350::42010071050",
+      "sections": [
+        "A-Crankcase",
+        "B-Cylinder"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/bfcea80b-b789-4cf3-ba92/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/d1ec509e-99f5-4444-9540/"
+      ]
+    },
+    {
+      "model_part_key": "ts_350::90990210810",
+      "sections": [
+        "B_-Cylinder",
+        "D_-Rewind Starter (pawl)"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/d364b129-c364-41cc-8ec9/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/87d34cf3-b6c1-4f65-8386/"
+      ]
+    },
+    {
+      "model_part_key": "ts_350::90223411300",
+      "sections": [
+        "B-Cylinder",
+        "F-Shroud",
+        "G-Connector"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/d1ec509e-99f5-4444-9540/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/600fa11d-d1d0-41e1-85a3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/1975ace0-4edc-406f-8dfb/"
+      ]
+    },
+    {
+      "model_part_key": "ts_350::92112601350",
+      "sections": [
+        "C-Clutch",
+        "H-Support with Guard"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/13c4f9e2-9904-4867-a739/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/3bbb8c02-6979-4fb5-a586/"
+      ]
+    },
+    {
+      "model_part_key": "ts_350::90223410960",
+      "sections": [
+        "F-Shroud",
+        "H-Support with Guard"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/600fa11d-d1d0-41e1-85a3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts350/3bbb8c02-6979-4fb5-a586/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::92102600700",
+      "sections": [
+        "Air Filter",
+        "Air Filter a"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41141491205",
+      "sections": [
+        "Air Filter",
+        "Air Filter a"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411200607",
+      "sections": [
+        "Air Filter",
+        "Carburetor C1M-S141E"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41281290900",
+      "sections": [
+        "Air Filter",
+        "Air Filter a"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::90754784136",
+      "sections": [
+        "Air Filter",
+        "Ignition System",
+        "Air Filter a"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/586388f2-80e6-4133-920f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41441202301",
+      "sections": [
+        "Air Filter",
+        "Air Filter a"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41441290900",
+      "sections": [
+        "Air Filter",
+        "Air Filter a"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41440071012",
+      "sections": [
+        "Air Filter",
+        "Crankcase",
+        "Ignition System",
+        "Air Filter a"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/407e428a-bdd1-4828-a1c0/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/586388f2-80e6-4133-920f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41281223000",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41161215100",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::11251215000",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::11201219200",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411226600",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411290901",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411214702",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411202200",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42261212700",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41401210800",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411227100",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411214800",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::11231290905",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411210800",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::11251224200",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41401226200",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::11201227800",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::11231217800",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::41401226800",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::90793190280",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411213500",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411225000",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42411829500",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::42410071700",
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ]
+    },
+    {
+      "model_part_key": "bg_86::90744774132",
+      "sections": [
+        "Fan Housing Outer",
+        "Fan Housing",
+        "Handle Frame"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/26b97ba4-2087-443c-a57d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/52fc8025-4536-4f49-a211/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/f3740c4a-0e67-4c31-9242/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::00009630809",
+      "sections": [
+        "Air Filter",
+        "Ignition System"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/ca23976a-ac1e-4ee2-b235/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/dade7dd0-e16f-4cc6-abd2/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::90223711020",
+      "sections": [
+        "Air Filter",
+        "Crankcase",
+        "Cylinder",
+        "Ignition System"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/ca23976a-ac1e-4ee2-b235/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/b32b323d-9dca-4a14-aec7/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/e16e2e00-6d2b-410b-997c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/dade7dd0-e16f-4cc6-abd2/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::90744774130",
+      "sections": [
+        "Air Filter",
+        "Tank Housing"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/ca23976a-ac1e-4ee2-b235/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/95b7fdb3-d6a7-40c8-9edc/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::90744784435",
+      "sections": [
+        "Air Filter",
+        "Clutch",
+        "Support with Guard with Water Attachment",
+        "Tank Housing"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/ca23976a-ac1e-4ee2-b235/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/eac6c0eb-da13-4cb4-8d13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/e31e3616-e0c9-461e-b628/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/95b7fdb3-d6a7-40c8-9edc/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::42381200607",
+      "sections": [
+        "Carburetor C1Q-S118A",
+        "Tank Housing"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/2f658262-9656-47b3-b56b/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/95b7fdb3-d6a7-40c8-9edc/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::00009550802",
+      "sections": [
+        "Clutch",
+        "Ignition System"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/eac6c0eb-da13-4cb4-8d13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/dade7dd0-e16f-4cc6-abd2/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::42380071003",
+      "sections": [
+        "Crankcase",
+        "Cylinder",
+        "Tank Housing"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/b32b323d-9dca-4a14-aec7/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/e16e2e00-6d2b-410b-997c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/95b7fdb3-d6a7-40c8-9edc/"
+      ]
+    },
+    {
+      "model_part_key": "ts_410::00006701700",
+      "sections": [
+        "Pressurized Water Tank",
+        "Support with Guard with Water Attachment"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/63477a6e-5686-4d93-b2fa/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/e31e3616-e0c9-461e-b628/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::90754784268",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Ignition System - Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/31b7e5c9-bce3-41b1-8ae4/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/caca98a6-26ad-4e4c-99e1/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42280071050",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Ignition System - Muffler",
+        "Air Filter - Fuel Tank"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/31b7e5c9-bce3-41b1-8ae4/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/caca98a6-26ad-4e4c-99e1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/22a27e71-2b84-4938-a327/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::90754784159",
+      "sections": [
+        "Ignition System - Muffler",
+        "Air Filter - Fuel Tank",
+        "Rewind Starter - Handle Housing",
+        "Gear Head"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/caca98a6-26ad-4e4c-99e1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/22a27e71-2b84-4938-a327/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/5146e49e-8395-4a02-ae60/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/26abfdb9-3fcc-47c1-b9c6/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42281200615",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/22a27e71-2b84-4938-a327/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42281200601",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/22a27e71-2b84-4938-a327/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::90744784140",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "Rewind Starter - Handle Housing"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/22a27e71-2b84-4938-a327/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/5146e49e-8395-4a02-ae60/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::00009511100",
+      "sections": [
+        "Rewind Starter - Handle Housing",
+        "Gear Head"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/5146e49e-8395-4a02-ae60/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/26abfdb9-3fcc-47c1-b9c6/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41371207100",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11231223000",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201227400",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11251229001",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41281218901",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201229000",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11291214800",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11231290905",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11231210800",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11251224200",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42291226200",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201227800",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41161215100",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201223004",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11251215000",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201219200",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201226600",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42261227100",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11231217800",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42281215602",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41401210800",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42261212700",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41371218600",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42291215800",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::43141223600",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42291223001",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11201217801",
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11291290900",
+      "sections": [
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41291214700",
+      "sections": [
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41401202200",
+      "sections": [
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11290071062",
+      "sections": [
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 3,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::42261207100",
+      "sections": [
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::11251227403",
+      "sections": [
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41281210800",
+      "sections": [
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41371225100",
+      "sections": [
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41191210700",
+      "sections": [
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "hs_45::41291210700",
+      "sections": [
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::90744774132",
+      "sections": [
+        "Air Filter",
+        "Fan Housing"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/0b8baea6-b515-4bec-8c4a/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/c19c55a2-15c7-4266-8723/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::42821200611",
+      "sections": [
+        "Air Filter",
+        "Carburetor C1Q-S99"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/0b8baea6-b515-4bec-8c4a/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/6133e10a-e1d4-4382-829c/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::42821829500",
+      "sections": [
+        "Air Filter",
+        "Carburetor C1Q-S99"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/0b8baea6-b515-4bec-8c4a/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/6133e10a-e1d4-4382-829c/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::42820071010",
+      "sections": [
+        "Air Filter",
+        "Cylinder",
+        "Muffler",
+        "Valve Timing Gear"
+      ],
+      "observations_count": 4,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/0b8baea6-b515-4bec-8c4a/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/a17f5ad6-7f5b-4614-b7ef/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/90536bbe-ef55-4eb8-aea1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/e682459c-a328-401b-8e3d/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::42824312101",
+      "sections": [
+        "Control Handle",
+        "Muffler"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/1c4e235d-f667-45e5-91ce/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/90536bbe-ef55-4eb8-aea1/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::90744784475",
+      "sections": [
+        "Control Handle",
+        "Pleated Hose"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/1c4e235d-f667-45e5-91ce/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/bb533340-cf06-44f0-a59d/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::07838302000",
+      "sections": [
+        "Cylinder",
+        "Valve Timing Gear"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/a17f5ad6-7f5b-4614-b7ef/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/e682459c-a328-401b-8e3d/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::90744784140",
+      "sections": [
+        "Fan Housing",
+        "Fuel Tank"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/c19c55a2-15c7-4266-8723/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/c953b997-1a52-400c-a636/"
+      ]
+    },
+    {
+      "model_part_key": "br_600::90223411010",
+      "sections": [
+        "Muffler",
+        "Rewind Starter"
+      ],
+      "observations_count": 2,
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/90536bbe-ef55-4eb8-aea1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/28a99ad5-3570-40d4-946f/"
+      ]
+    }
+  ]
+}

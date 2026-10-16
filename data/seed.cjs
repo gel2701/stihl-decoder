@@ -108,16 +108,30 @@ function loadEvidenceList(dir) {
   const evidencePath = path.join(dir, 'part_fitment_evidence.json');
   if (!fs.existsSync(evidencePath)) return [];
   const doc = JSON.parse(fs.readFileSync(evidencePath, 'utf8'));
-  if (Array.isArray(doc.observations)) return doc.observations;
-  if (Array.isArray(doc.shard_files)) {
-    const all = [];
+  const all = [];
+  if (Array.isArray(doc.observations)) {
+    all.push(...doc.observations);
+  } else if (Array.isArray(doc.shard_files)) {
     for (const sFile of doc.shard_files) {
       const sPath = path.join(dir, sFile);
       all.push(...readShardFile(sPath));
     }
-    return all;
   }
-  return [];
+
+  // Load Phase 54F-A accepted canonical evidence if available
+  const p54fObsPath = path.join(dir, 'harvest', 'phase54f', 'accepted_evidence.jsonl');
+  if (fs.existsSync(p54fObsPath)) {
+    const p54fObs = readShardFile(p54fObsPath);
+    const existingIds = new Set(all.map(o => o.evidence_id));
+    for (const obs of p54fObs) {
+      if (obs && obs.evidence_id && !existingIds.has(obs.evidence_id)) {
+        existingIds.add(obs.evidence_id);
+        all.push(obs);
+      }
+    }
+  }
+
+  return all;
 }
 
 function recreateSqliteDatabase(database) {
@@ -437,14 +451,45 @@ function recreateSqliteDatabase(database) {
         } catch (e) {}
       }
 
+      // Phase 54F-A candidate section enrichment
+      const sectionEnrichmentPath = path.join(__dirname, 'parts_section_enrichment.json');
+      const sectionEnrichmentMap = new Map();
+      if (fs.existsSync(sectionEnrichmentPath)) {
+        try {
+          const enrichDoc = JSON.parse(fs.readFileSync(sectionEnrichmentPath, 'utf8'));
+          if (Array.isArray(enrichDoc.enrichments)) {
+            for (const e of enrichDoc.enrichments) {
+              if (e.fitment_id) {
+                sectionEnrichmentMap.set(e.fitment_id, e);
+              }
+              if (e.canonical_model_id && e.part_number) {
+                sectionEnrichmentMap.set(`${e.part_number}::${e.canonical_model_id}`, e);
+              }
+            }
+          }
+        } catch (err) {}
+      }
+
       const fitStmt = db.prepare(`INSERT OR REPLACE INTO model_part_fitments VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
       const insertFitments = db.transaction(() => {
         for (const f of fitmentsList) {
           const scopedKey = `${f.part_number}::${f.canonical_model_id}`;
           const supersededBy = f.superseded_by || safeFitmentSupersessions.get(scopedKey) || (safeFitmentSupersessions.has(f.part_number) ? safeFitmentSupersessions.get(f.part_number) : null);
+
+          let sectionKey = f.section_key;
+          let sectionName = f.section_name;
+          if (sectionName === 'Unresolved Diagram Section') {
+            // Phase 54F-A-R1: EXACT_FITMENT_ID_ONLY lookup mode (no scopedKey fallback)
+            const enriched = sectionEnrichmentMap.get(f.fitment_id);
+            if (enriched && enriched.section_name) {
+              sectionKey = enriched.section_key;
+              sectionName = enriched.section_name;
+            }
+          }
+
           fitStmt.run(
             f.fitment_id, f.part_number, f.canonical_model_id, f.variant_key, f.configuration_key || null, f.configuration_name || null,
-            f.fitment_scope || 'BASE_MODEL_CONFIRMED', f.section_key, f.section_name, f.diagram_position || null, f.quantity ?? 1,
+            f.fitment_scope || 'BASE_MODEL_CONFIRMED', sectionKey, sectionName, f.diagram_position || null, f.quantity ?? 1,
             f.notes || null, f.variant_condition || null, f.serial_condition || null, supersededBy, f.source_id,
             f.source_url || null, f.source_evidence_status || 'SINGLE_STRUCTURED_PARTS_SOURCE'
           );
@@ -460,7 +505,7 @@ function recreateSqliteDatabase(database) {
       const insertEvidence = db.transaction(() => {
         for (const o of obsList) {
           obsStmt.run(
-            o.evidence_id, o.part_number, o.canonical_model_id, o.variant_key, o.configuration_key || null, o.configuration_name || null,
+            o.evidence_id, o.part_number, o.canonical_model_id, o.variant_key || 'standard', o.configuration_key || null, o.configuration_name || null,
             o.fitment_scope, o.section_key, o.section_name, o.section_attribution_status || null, o.diagram_position || null,
             o.source_id, o.source_url || null, o.requested_url || null, o.final_url || null,
             o.http_status || 200, o.source_response_sha256 || null, o.part_name_raw || null, o.quantity ?? 1
