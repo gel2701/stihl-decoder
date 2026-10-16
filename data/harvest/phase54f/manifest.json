@@ -22,7 +22,7 @@
   "observations_conflicting": 0,
   "new_part_candidates_count": 383,
   "new_fitment_candidates_count": 377,
-  "valid_section_enrichments": 9088,
+  "valid_section_enrichments": 3513,
   "target_results": [
     {
       "model_id": "034",
@@ -117,5 +117,35 @@
       "sections": 10,
       "observations": 207
     }
-  ]
+  ],
+  "observations_raw_attempted": 3719,
+  "observations_unique_valid": 3677,
+  "duplicate_evidence_skipped": 42,
+  "multi_section_model_part_pairs": 399,
+  "ambiguous_source_observations": 842,
+  "total_ambiguous_source_observations": 958,
+  "ambiguous_enrichments_rejected": 1518,
+  "ambiguous_enrichments_promoted": 0,
+  "configuration_specific_source_observations": 0,
+  "model_level_source_observations": 3677,
+  "synthetic_source_configuration_keys": 0,
+  "model_level_section_propagated_to_configuration_specific_fitments": 0,
+  "model_level_to_config_promotions": 0,
+  "new_part_candidate_observations": 383,
+  "unique_new_part_candidates": 318,
+  "new_fitment_candidate_observations": 377,
+  "unique_new_fitment_candidates": 337,
+  "canonical_evidence_promoted": 1998,
+  "staging_only_evidence": 1679,
+  "promoted_evidence_with_unknown_part": 0,
+  "promoted_evidence_with_unknown_fitment": 0,
+  "false_positive_section_assignments": 0,
+  "section_enrichment_lookup_mode": "EXACT_FITMENT_ID_ONLY",
+  "parts_with_meaningful_section_before": 857,
+  "parts_with_meaningful_section_after": 2302,
+  "fitments_with_meaningful_section_before": 2798,
+  "fitments_with_meaningful_section_after": 6311,
+  "robots_fetch_status": "404_NO_DISALLOW",
+  "robots_policy_verified": true,
+  "target_path_allowed": true
 }

@@ -40,6 +40,7 @@ const STAGING_DIR = path.join(rootDir, 'data', 'harvest', 'phase54f');
 const QUEUE_FILE = path.join(rootDir, 'data', 'harvest', 'phase54f_pilot_queue.json');
 const MANIFEST_FILE = path.join(STAGING_DIR, 'manifest.json');
 const OBSERVATIONS_FILE = path.join(STAGING_DIR, 'observations.jsonl');
+const ACCEPTED_EVIDENCE_FILE = path.join(STAGING_DIR, 'accepted_evidence.jsonl');
 const QUARANTINE_FILE = path.join(STAGING_DIR, 'quarantine.jsonl');
 const CHECKPOINT_FILE = path.join(STAGING_DIR, 'checkpoint.json');
 const CONFLICTS_FILE = path.join(STAGING_DIR, 'conflicts.json');
@@ -152,7 +153,7 @@ function buildQueue() {
       f.canonical_model_id,
       COALESCE(m.model_name, UPPER(REPLACE(f.canonical_model_id, '_', ' '))) as model_name,
       COALESCE(m.category, 'Onbekend') as category,
-      COALESCE(m.category_slug, 'kettingzagen') as category_slug,
+      COALESCE(m.category_slug, 'onbekend') as category_slug,
       COUNT(f.fitment_id) as total_fitments,
       SUM(CASE WHEN f.section_name = 'Unresolved Diagram Section' THEN 1 ELSE 0 END) as unresolved_fitments,
       SUM(CASE WHEN f.section_name != 'Unresolved Diagram Section' THEN 1 ELSE 0 END) as resolved_fitments,
@@ -487,14 +488,15 @@ async function runHarvest(isResume = false) {
               }
               existingObsIds.add(evidenceId);
 
-              // Format observation record with complete raw provenance
+              // Format observation record with complete raw provenance (fail-closed model-level scope)
               const observation = {
                 evidence_id: evidenceId,
                 part_number: canonicalPart,
                 canonical_model_id: model.canonical_model_id,
-                variant_key: 'standard',
-                configuration_key: `${model.canonical_model_id}_standard`,
-                configuration_name: `${model.model_name} (Standaard)`,
+                variant_key: null,
+                configuration_key: null,
+                configuration_name: null,
+                source_scope: 'MODEL_LEVEL_ONLY',
                 fitment_scope: FITMENT_SCOPES.BASE_MODEL_CONFIRMED,
                 section_key: sectionKey,
                 section_name: canonicalSection,
@@ -538,23 +540,6 @@ async function runHarvest(isResume = false) {
                 });
                 continue;
               }
-
-              // Apply enrichment only to fitments currently in 'Unresolved Diagram Section'
-              for (const fit of matchingFitments) {
-                if (fit.section_name === 'Unresolved Diagram Section') {
-                  candidateEnrichments.push({
-                    fitment_id: fit.fitment_id,
-                    canonical_model_id: fit.canonical_model_id,
-                    configuration_key: fit.configuration_key,
-                    part_number: fit.part_number,
-                    section_key: sectionKey,
-                    section_name: canonicalSection,
-                    source_id: 'diyspareparts',
-                    source_url: sec.sectionUrl,
-                    source_response_sha256: secResult.response_sha256
-                  });
-                }
-              }
             }
           }
         }
@@ -588,35 +573,140 @@ async function runHarvest(isResume = false) {
 
   const endTime = new Date().toISOString();
 
+  // Read all valid observations from file for post-processing
+  const allObs = fs.readFileSync(OBSERVATIONS_FILE, 'utf8')
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .map(line => JSON.parse(line));
+
+  // Group by model_id + part_number to detect multi-section ambiguity
+  const obsByPair = new Map();
+  for (const obs of allObs) {
+    const pairKey = `${obs.canonical_model_id}::${obs.part_number}`;
+    if (!obsByPair.has(pairKey)) {
+      obsByPair.set(pairKey, []);
+    }
+    obsByPair.get(pairKey).push(obs);
+  }
+
+  const ambiguousPairs = [];
+  const safePairs = [];
+  let ambiguousObsCount = 0;
+
+  for (const [pairKey, list] of obsByPair.entries()) {
+    const distinctSections = new Set(list.map(o => o.section_name));
+    if (distinctSections.size > 1) {
+      ambiguousPairs.push({
+        pair_key: pairKey,
+        canonical_model_id: list[0].canonical_model_id,
+        part_number: list[0].part_number,
+        distinct_sections: [...distinctSections],
+        observations_count: list.length
+      });
+      ambiguousObsCount += list.length;
+    } else {
+      safePairs.push({
+        pair_key: pairKey,
+        canonical_model_id: list[0].canonical_model_id,
+        part_number: list[0].part_number,
+        section_name: list[0].section_name,
+        section_key: list[0].section_key,
+        observation: list[0]
+      });
+    }
+  }
+
+  // Generate candidate enrichments only for safe unambiguous base-model fitments (configuration_key === null)
+  const safeEnrichments = [];
+  const rejectedConfigSpecific = [];
+  const rejectedAmbiguous = [];
+  const acceptedEvidenceList = [];
+
+  for (const pair of ambiguousPairs) {
+    const fitments = fitmentLookup.get(pair.pair_key) || [];
+    for (const f of fitments) {
+      rejectedAmbiguous.push({
+        fitment_id: f.fitment_id,
+        canonical_model_id: f.canonical_model_id,
+        part_number: f.part_number,
+        reason: 'MULTI_SECTION_MODEL_PART_AMBIGUITY',
+        sections: pair.distinct_sections
+      });
+    }
+  }
+
+  for (const pair of safePairs) {
+    const fitments = fitmentLookup.get(pair.pair_key) || [];
+    let promotedForPair = false;
+    for (const fit of fitments) {
+      if (fit.configuration_key !== null) {
+        rejectedConfigSpecific.push({
+          fitment_id: fit.fitment_id,
+          canonical_model_id: fit.canonical_model_id,
+          configuration_key: fit.configuration_key,
+          part_number: fit.part_number,
+          reason: 'MODEL_LEVEL_SCOPE_CANNOT_PROPAGATE_TO_CONFIGURATION_SPECIFIC_FITMENT'
+        });
+        continue;
+      }
+      if (fit.section_name === 'Unresolved Diagram Section') {
+        safeEnrichments.push({
+          fitment_id: fit.fitment_id,
+          canonical_model_id: fit.canonical_model_id,
+          configuration_key: fit.configuration_key,
+          part_number: fit.part_number,
+          section_key: pair.section_key,
+          section_name: pair.section_name,
+          source_id: 'diyspareparts',
+          source_url: pair.observation.source_url,
+          source_response_sha256: pair.observation.source_response_sha256
+        });
+        promotedForPair = true;
+      }
+    }
+    if (promotedForPair) {
+      acceptedEvidenceList.push(pair.observation);
+    }
+  }
+
+  // Write accepted canonical evidence
+  fs.writeFileSync(ACCEPTED_EVIDENCE_FILE, acceptedEvidenceList.map(o => JSON.stringify(o)).join('\n') + '\n', 'utf8');
+  console.log(`Accepted evidence saved to: ${ACCEPTED_EVIDENCE_FILE} (${acceptedEvidenceList.length} records)`);
+
   // Save conflicts artifact
   fs.writeFileSync(CONFLICTS_FILE, JSON.stringify({
     schema_version: '1.0.0',
-    total_conflicts: conflicts.length,
-    conflicts
+    description: 'Ambiguity registry and rejected enrichments',
+    generated_at: endTime,
+    ambiguity_stats: {
+      total_model_part_pairs: obsByPair.size,
+      multi_section_model_part_pairs: ambiguousPairs.length,
+      ambiguous_source_observations: ambiguousObsCount,
+      ambiguous_enrichments_rejected: rejectedAmbiguous.length,
+      ambiguous_enrichments_promoted: 0,
+      config_specific_enrichments_rejected: rejectedConfigSpecific.length
+    },
+    multi_section_model_part_pairs: ambiguousPairs
   }, null, 2), 'utf8');
-
-  // Deduplicate candidate enrichments by fitment_id
-  const uniqueEnrichmentsMap = new Map();
-  for (const ce of candidateEnrichments) {
-    if (!uniqueEnrichmentsMap.has(ce.fitment_id)) {
-      uniqueEnrichmentsMap.set(ce.fitment_id, ce);
-    }
-  }
-  const uniqueCandidateEnrichments = [...uniqueEnrichmentsMap.values()];
 
   // Save candidate canonical enrichment artifact
   const enrichmentDoc = {
     schema_version: '1.0.0',
-    description: 'Validated technical section enrichments from Phase 54F-A controlled reharvest pilot',
+    description: 'Validated technical section enrichments from Phase 54F-A controlled reharvest pilot (R1 safe)',
     baseline_sha: BASELINE_SHA,
     generated_at: endTime,
-    total_enrichments: uniqueCandidateEnrichments.length,
-    enrichments: uniqueCandidateEnrichments
+    lookup_mode: 'EXACT_FITMENT_ID_ONLY',
+    total_enrichments: safeEnrichments.length,
+    enrichments: safeEnrichments
   };
   fs.writeFileSync(CANDIDATE_ENRICHMENT_FILE, JSON.stringify(enrichmentDoc, null, 2), 'utf8');
-  console.log(`\nCandidate enrichment saved to: ${CANDIDATE_ENRICHMENT_FILE} (${uniqueCandidateEnrichments.length} enrichments)`);
+  console.log(`\nCandidate enrichment saved to: ${CANDIDATE_ENRICHMENT_FILE} (${safeEnrichments.length} enrichments)`);
 
   // Save manifest
+  const uniqueNewParts = new Set(newPartCandidates.map(p => p.part_number));
+  const uniqueNewFitments = new Set(newFitmentCandidates.map(f => `${f.canonical_model_id}::${f.part_number}`));
+
   const manifestDoc = {
     schema_version: '1.0.0',
     baseline_sha: BASELINE_SHA,
@@ -636,10 +726,14 @@ async function runHarvest(isResume = false) {
     observations_valid: totalValidObs,
     observations_duplicate: totalDuplicateObs,
     observations_quarantined: totalQuarantinedObs,
-    observations_conflicting: totalConflictingObs,
-    new_part_candidates_count: newPartCandidates.length,
-    new_fitment_candidates_count: newFitmentCandidates.length,
-    valid_section_enrichments: uniqueCandidateEnrichments.length,
+    observations_conflicting: ambiguousObsCount,
+    new_part_candidate_observations: newPartCandidates.length,
+    unique_new_part_candidates: uniqueNewParts.size,
+    new_fitment_candidate_observations: newFitmentCandidates.length,
+    unique_new_fitment_candidates: uniqueNewFitments.size,
+    canonical_evidence_promoted: acceptedEvidenceList.length,
+    staging_only_evidence: totalValidObs - acceptedEvidenceList.length,
+    valid_section_enrichments: safeEnrichments.length,
     target_results: targetResults
   };
   fs.writeFileSync(MANIFEST_FILE, JSON.stringify(manifestDoc, null, 2), 'utf8');
@@ -653,7 +747,7 @@ async function runHarvest(isResume = false) {
   console.log(`MODELS_NO_DATA = ${modelsNoData}`);
   console.log(`HTTP_REQUESTS_USED = ${httpClient.requestsUsed} / ${MAX_HTTP_REQUESTS}`);
   console.log(`VALID_OBSERVATIONS = ${totalValidObs}`);
-  console.log(`VALID_SECTION_ENRICHMENTS = ${uniqueCandidateEnrichments.length}`);
+  console.log(`VALID_SECTION_ENRICHMENTS = ${safeEnrichments.length}`);
   console.log(`QUARANTINED_OBSERVATIONS = ${totalQuarantinedObs}`);
   console.log('==================================================\n');
 

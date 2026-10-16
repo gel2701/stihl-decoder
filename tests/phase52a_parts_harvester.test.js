@@ -65,7 +65,7 @@ if (Array.isArray(evidenceDoc.shard_files)) {
     const sPath = path.join(rootDir, 'data', sFile);
     allObs.push(...readGzipJsonlFile(sPath));
   }
-  const p54fObsPath = path.join(rootDir, 'data', 'harvest', 'phase54f', 'observations.jsonl');
+  const p54fObsPath = path.join(rootDir, 'data', 'harvest', 'phase54f', 'accepted_evidence.jsonl');
   if (fs.existsSync(p54fObsPath)) {
     const raw = fs.readFileSync(p54fObsPath, 'utf8');
     const lines = raw.split('\n').filter(Boolean);

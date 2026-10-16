@@ -118,8 +118,8 @@ function loadEvidenceList(dir) {
     }
   }
 
-  // Load Phase 54F-A pilot observations if available
-  const p54fObsPath = path.join(dir, 'harvest', 'phase54f', 'observations.jsonl');
+  // Load Phase 54F-A accepted canonical evidence if available
+  const p54fObsPath = path.join(dir, 'harvest', 'phase54f', 'accepted_evidence.jsonl');
   if (fs.existsSync(p54fObsPath)) {
     const p54fObs = readShardFile(p54fObsPath);
     const existingIds = new Set(all.map(o => o.evidence_id));
@@ -479,7 +479,8 @@ function recreateSqliteDatabase(database) {
           let sectionKey = f.section_key;
           let sectionName = f.section_name;
           if (sectionName === 'Unresolved Diagram Section') {
-            const enriched = sectionEnrichmentMap.get(f.fitment_id) || sectionEnrichmentMap.get(scopedKey);
+            // Phase 54F-A-R1: EXACT_FITMENT_ID_ONLY lookup mode (no scopedKey fallback)
+            const enriched = sectionEnrichmentMap.get(f.fitment_id);
             if (enriched && enriched.section_name) {
               sectionKey = enriched.section_key;
               sectionName = enriched.section_name;
@@ -504,7 +505,7 @@ function recreateSqliteDatabase(database) {
       const insertEvidence = db.transaction(() => {
         for (const o of obsList) {
           obsStmt.run(
-            o.evidence_id, o.part_number, o.canonical_model_id, o.variant_key, o.configuration_key || null, o.configuration_name || null,
+            o.evidence_id, o.part_number, o.canonical_model_id, o.variant_key || 'standard', o.configuration_key || null, o.configuration_name || null,
             o.fitment_scope, o.section_key, o.section_name, o.section_attribution_status || null, o.diagram_position || null,
             o.source_id, o.source_url || null, o.requested_url || null, o.final_url || null,
             o.http_status || 200, o.source_response_sha256 || null, o.part_name_raw || null, o.quantity ?? 1

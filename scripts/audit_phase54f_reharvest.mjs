@@ -275,6 +275,122 @@ const serverContent = fs.readFileSync(path.join(rootDir, 'server.js'), 'utf8');
 assertInvariant(!serverContent.includes('fetchFromSource') && !serverContent.includes('scrapeDiagram'), 'No runtime scraping calls in server.js');
 console.log('  RUNTIME_TECHNICAL_SCRAPING = 0');
 
+// 9. Phase 54F-A-R1 Scope Hardening, Ambiguity Quarantine & Report Reconciliation
+console.log('\n▶ 9. Auditing Phase 54F-A-R1 Scope Hardening, Ambiguity Quarantine & Report Reconciliation...');
+
+// 9.1 Zero synthetic source configuration keys
+let syntheticConfigCount = 0;
+let invalidSourceScopeCount = 0;
+for (const obs of rawObsById.values()) {
+  if (obs.configuration_key !== null || obs.configuration_name !== null) {
+    syntheticConfigCount++;
+  }
+  if (obs.source_scope !== 'MODEL_LEVEL_ONLY') {
+    invalidSourceScopeCount++;
+  }
+}
+assertInvariant(syntheticConfigCount === 0, 'SYNTHETIC_SOURCE_CONFIGURATION_KEYS === 0 in observations.jsonl');
+assertInvariant(invalidSourceScopeCount === 0, 'All observations have source_scope === MODEL_LEVEL_ONLY');
+
+// Check in DB: newly inserted evidence has configuration_key IS NULL
+const dbNewEvidenceSyntheticConfigs = db.prepare(`
+  SELECT count(*) as c FROM part_fitment_evidence
+  WHERE source_id = 'diyspareparts' AND configuration_key IS NOT NULL
+`).get().c;
+assertInvariant(dbNewEvidenceSyntheticConfigs === 0, 'Zero synthetic configuration keys in part_fitment_evidence');
+
+// 9.2 Model-level section never propagated to configuration-specific fitments
+let configSpecificPromotions = 0;
+for (const e of enrichments) {
+  if (e.configuration_key !== null) {
+    configSpecificPromotions++;
+  }
+}
+assertInvariant(configSpecificPromotions === 0, 'MODEL_LEVEL_SECTION_PROPAGATED_TO_CONFIGURATION_SPECIFIC_FITMENTS === 0');
+
+// 9.3 Ambiguity quarantine integrity
+assertInvariant(fs.existsSync(CONFLICTS_FILE), 'Conflicts file exists: conflicts.json');
+const conflictsDoc = JSON.parse(fs.readFileSync(CONFLICTS_FILE, 'utf8'));
+assertInvariant(conflictsDoc.multi_section_ambiguities.length === 399, 'MULTI_SECTION_MODEL_PART_PAIRS === 399');
+assertInvariant(conflictsDoc.summary.ambiguous_enrichments_promoted === 0, 'AMBIGUOUS_ENRICHMENTS_PROMOTED === 0');
+
+let ambiguousPromotionsFound = 0;
+for (const amb of conflictsDoc.multi_section_ambiguities) {
+  const [modelId, partNumber] = amb.model_part_key.split('::');
+  const fitments = db.prepare('SELECT fitment_id FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ?').all(modelId, partNumber);
+  for (const f of fitments) {
+    if (seenFitmentIds.has(f.fitment_id)) {
+      ambiguousPromotionsFound++;
+    }
+  }
+}
+assertInvariant(ambiguousPromotionsFound === 0, 'AMBIGUOUS_PAIR_PROMOTED_TO_SINGLE_SECTION === 0');
+
+// 9.4 Accepted evidence promotion integrity
+const ACCEPTED_EVIDENCE_FILE = path.join(STAGING_DIR, 'accepted_evidence.jsonl');
+assertInvariant(fs.existsSync(ACCEPTED_EVIDENCE_FILE), 'Accepted evidence file exists: accepted_evidence.jsonl');
+const acceptedLines = fs.readFileSync(ACCEPTED_EVIDENCE_FILE, 'utf8').trim().split('\n').filter(Boolean);
+assertInvariant(acceptedLines.length === 1998, 'CANONICAL_EVIDENCE_PROMOTED === 1998');
+assertInvariant(manifest.canonical_evidence_promoted === 1998, 'manifest.canonical_evidence_promoted === 1998');
+assertInvariant(manifest.staging_only_evidence === 1679, 'manifest.staging_only_evidence === 1679');
+
+let unknownPartInAccepted = 0;
+let unknownFitmentInAccepted = 0;
+for (const l of acceptedLines) {
+  const o = JSON.parse(l);
+  const partExists = db.prepare('SELECT 1 FROM parts WHERE part_number = ?').get(o.part_number);
+  if (!partExists) unknownPartInAccepted++;
+  const fitmentExists = db.prepare('SELECT 1 FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND configuration_key IS NULL').get(o.canonical_model_id, o.part_number);
+  if (!fitmentExists) unknownFitmentInAccepted++;
+}
+assertInvariant(unknownPartInAccepted === 0, 'PROMOTED_EVIDENCE_WITH_UNKNOWN_PART === 0');
+assertInvariant(unknownFitmentInAccepted === 0, 'PROMOTED_EVIDENCE_WITH_UNKNOWN_FITMENT === 0');
+
+// 9.5 Exact seed lookup mode
+assertInvariant(enrichmentDoc.lookup_mode === 'EXACT_FITMENT_ID_ONLY', 'SECTION_ENRICHMENT_LOOKUP_MODE === EXACT_FITMENT_ID_ONLY');
+
+// 9.6 Candidate accounting
+assertInvariant(manifest.new_part_candidate_observations === 383, 'NEW_PART_CANDIDATE_OBSERVATIONS === 383');
+assertInvariant(manifest.unique_new_part_candidates === 318, 'UNIQUE_NEW_PART_CANDIDATES === 318');
+assertInvariant(manifest.new_fitment_candidate_observations === 377, 'NEW_FITMENT_CANDIDATE_OBSERVATIONS === 377');
+assertInvariant(manifest.unique_new_fitment_candidates === 337, 'UNIQUE_NEW_FITMENT_CANDIDATES === 337');
+assertInvariant(enrichments.length === 3513, 'VALID_SECTION_ENRICHMENTS === 3513');
+assertInvariant(evidenceCount === 208605, 'EVIDENCE_AFTER === 208605 (206607 + 1998)');
+assertInvariant(partsWithMeaningfulSection === 2302, 'PARTS_WITH_MEANINGFUL_SECTION === 2302');
+assertInvariant(fitmentsWithMeaningfulSection === 6311, 'FITMENTS_WITH_MEANINGFUL_SECTION === 6311');
+
+// 9.7 Report vs Manifest reconciliation
+const reportPath = path.join(rootDir, 'PHASE54F_A_CONTROLLED_REHARVEST_REPORT.md');
+assertInvariant(fs.existsSync(reportPath), 'Report exists: PHASE54F_A_CONTROLLED_REHARVEST_REPORT.md');
+const reportText = fs.readFileSync(reportPath, 'utf8');
+
+let reportMismatches = 0;
+const expectedChecks = [
+  { label: 'OBSERVATIONS_RAW_ATTEMPTED', value: '3,719' },
+  { label: 'OBSERVATIONS_UNIQUE_VALID', value: '3,677' },
+  { label: 'OBSERVATIONS_DUPLICATE', value: '42' },
+  { label: 'MULTI_SECTION_MODEL_PART_PAIRS', value: '399' },
+  { label: 'AMBIGUOUS_ENRICHMENTS_REJECTED', value: '1,518' },
+  { label: 'AMBIGUOUS_ENRICHMENTS_PROMOTED', value: '0' },
+  { label: 'NEW_PART_CANDIDATES obs', value: '383' },
+  { label: 'NEW_PART_CANDIDATES unique', value: '318' },
+  { label: 'NEW_FITMENT_CANDIDATES obs', value: '377' },
+  { label: 'NEW_FITMENT_CANDIDATES unique', value: '337' },
+  { label: 'CANONICAL_EVIDENCE_PROMOTED', value: '1,998' },
+  { label: 'STAGING_ONLY_EVIDENCE', value: '1,679' },
+  { label: 'VALID_SECTION_ENRICHMENTS', value: '3,513' },
+  { label: 'PARTS_WITH_MEANINGFUL_SECTION', value: '2,302' },
+  { label: 'FITMENTS_WITH_MEANINGFUL_SECTION', value: '6,311' }
+];
+
+for (const check of expectedChecks) {
+  if (!reportText.includes(check.value)) {
+    console.error(`Report mismatch for ${check.label}: expected ${check.value}`);
+    reportMismatches++;
+  }
+}
+assertInvariant(reportMismatches === 0, 'REPORT_MANIFEST_METRIC_MISMATCHES === 0');
+
 console.log('\n==================================================');
-console.log('PHASE 54F-A REHARVEST AUDIT PASSED (ALL INVARIANTS OK)');
+console.log('PHASE 54F-A-R1 REHARVEST AUDIT PASSED (ALL INVARIANTS OK)');
 console.log('==================================================\n');
