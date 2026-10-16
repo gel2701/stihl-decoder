@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "baseline_sha": "b2a8d4259d8c7661c31e68af3b043a8acec846fc",
+  "started_at": "2026-10-16T03:14:27.104Z",
+  "completed_at": "2026-10-16T03:25:23.343Z",
+  "max_models": 50,
+  "models_attempted": 16,
+  "models_completed": 16,
+  "models_resolved": 13,
+  "models_no_data": 3,
+  "models_blocked": 0,
+  "request_budget": 250,
+  "requests_used": 219,
+  "sources_attempted": [
+    "diyspareparts"
+  ],
+  "sources_blocked": [],
+  "observations_raw": 3719,
+  "observations_valid": 3677,
+  "observations_duplicate": 42,
+  "observations_quarantined": 0,
+  "observations_conflicting": 0,
+  "new_part_candidates_count": 383,
+  "new_fitment_candidates_count": 377,
+  "valid_section_enrichments": 9088,
+  "target_results": [
+    {
+      "model_id": "034",
+      "status": "RESOLVED",
+      "sections": 18,
+      "observations": 395
+    },
+    {
+      "model_id": "ms_261",
+      "status": "RESOLVED",
+      "sections": 14,
+      "observations": 219
+    },
+    {
+      "model_id": "ms_362",
+      "status": "SOURCE_NOT_FOUND",
+      "http_status": 404
+    },
+    {
+      "model_id": "038",
+      "status": "SOURCE_NOT_FOUND",
+      "http_status": 404
+    },
+    {
+      "model_id": "066",
+      "status": "NO_TECHNICAL_DATA",
+      "sections": 0
+    },
+    {
+      "model_id": "fs_55",
+      "status": "RESOLVED",
+      "sections": 20,
+      "observations": 436
+    },
+    {
+      "model_id": "ms_260",
+      "status": "RESOLVED",
+      "sections": 14,
+      "observations": 283
+    },
+    {
+      "model_id": "fs_85",
+      "status": "RESOLVED",
+      "sections": 26,
+      "observations": 399
+    },
+    {
+      "model_id": "fs_400",
+      "status": "RESOLVED",
+      "sections": 17,
+      "observations": 335
+    },
+    {
+      "model_id": "009",
+      "status": "RESOLVED",
+      "sections": 23,
+      "observations": 284
+    },
+    {
+      "model_id": "hs_81",
+      "status": "RESOLVED",
+      "sections": 9,
+      "observations": 166
+    },
+    {
+      "model_id": "ts_350",
+      "status": "RESOLVED",
+      "sections": 18,
+      "observations": 242
+    },
+    {
+      "model_id": "bg_86",
+      "status": "RESOLVED",
+      "sections": 12,
+      "observations": 185
+    },
+    {
+      "model_id": "ts_410",
+      "status": "RESOLVED",
+      "sections": 12,
+      "observations": 261
+    },
+    {
+      "model_id": "hs_45",
+      "status": "RESOLVED",
+      "sections": 10,
+      "observations": 265
+    },
+    {
+      "model_id": "br_600",
+      "status": "RESOLVED",
+      "sections": 10,
+      "observations": 207
+    }
+  ]
+}

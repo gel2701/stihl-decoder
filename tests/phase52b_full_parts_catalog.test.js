@@ -69,15 +69,31 @@ function loadShardedFitments() {
 
 // Load sharded evidence
 function loadShardedEvidence() {
+  const all = [];
   if (Array.isArray(evidenceDoc.shard_files)) {
-    const all = [];
     for (const sFile of evidenceDoc.shard_files) {
       const sPath = path.join(rootDir, 'data', sFile);
       all.push(...readGzipJsonlFile(sPath));
     }
-    return all;
+  } else if (Array.isArray(evidenceDoc.observations)) {
+    all.push(...evidenceDoc.observations);
   }
-  return evidenceDoc.observations || [];
+
+  const p54fObsPath = path.join(rootDir, 'data', 'harvest', 'phase54f', 'observations.jsonl');
+  if (fs.existsSync(p54fObsPath)) {
+    const raw = fs.readFileSync(p54fObsPath, 'utf8');
+    const lines = raw.split('\n').filter(Boolean);
+    const existingIds = new Set(all.map(o => o.evidence_id));
+    for (const line of lines) {
+      const obs = JSON.parse(line);
+      if (obs && obs.evidence_id && !existingIds.has(obs.evidence_id)) {
+        existingIds.add(obs.evidence_id);
+        all.push(obs);
+      }
+    }
+  }
+
+  return all;
 }
 
 const allFitments = loadShardedFitments();

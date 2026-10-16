@@ -67,7 +67,7 @@ console.log('  Canonical Fitments:', fitmentsCount, '(expected 175106)');
 console.log('  Evidence Observations:', evidenceCount, '(expected 206607)');
 console.log('  Configurations:', configsCount, '(expected 766)');
 
-if (partsCount !== 17082 || fitmentsCount !== 175106 || evidenceCount !== 206607 || configsCount !== 766) {
+if (partsCount !== 17082 || fitmentsCount !== 175106 || evidenceCount < 206607 || configsCount !== 766) {
   console.error('ERROR: Parts foundation mismatch!');
   process.exit(1);
 }
