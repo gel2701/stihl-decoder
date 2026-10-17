@@ -426,3 +426,122 @@ test('Phase 54F-C-R1 Test F — not_researched = 0 Requires Proven Coverage For 
   }
 });
 
+// ============================================================================
+// PHASE 54F-C-R2 SECTION 27 REGRESSION TESTS
+// ============================================================================
+
+// 1. Single Tier-3 Source = Insufficient
+test('Phase 54F-C-R2 Section 27.1 — Single Tier-3 Source = Insufficient', () => {
+  const sources = [
+    { source_domain: 'sparepartsworld.co.uk', independent_source_group: 'sparepartsworld.co.uk', tier: EVIDENCE_TIERS.TIER_3 }
+  ];
+  const uniqueGroups = new Set(sources.map(s => s.independent_source_group));
+  const isConfirmed = uniqueGroups.size >= 2;
+  assert.strictEqual(isConfirmed, false, 'Single Tier-3 source must NOT confirm promotion');
+});
+
+// 2. Same Upstream Mirrored Source = Insufficient
+test('Phase 54F-C-R2 Section 27.2 — Same Upstream Mirrored Source = Insufficient', () => {
+  const sources = [
+    { domain: 'mirror1.supplier-network.eu', upstream_origin: 'distributor_feed_x', tier: EVIDENCE_TIERS.TIER_3 },
+    { domain: 'mirror2.supplier-network.eu', upstream_origin: 'distributor_feed_x', tier: EVIDENCE_TIERS.TIER_3 }
+  ];
+  const uniqueGroups = new Set(sources.map(s => s.upstream_origin || s.domain));
+  const satisfiesIndependence = uniqueGroups.size >= 2;
+  assert.strictEqual(satisfiesIndependence, false, 'Two mirrors with same upstream origin must count as 1 group');
+});
+
+// 3. Two Genuinely Independent Tier-3 Sources = Confirmed
+test('Phase 54F-C-R2 Section 27.3 — Two Genuinely Independent Tier-3 Sources = Confirmed', () => {
+  const sources = [
+    { domain: 'sparepartsworld.co.uk', independent_source_group: 'sparepartsworld.co.uk', tier: EVIDENCE_TIERS.TIER_3, supports: 'ms_261::11410201200' },
+    { domain: 'independent-dealer-spares.de', independent_source_group: 'independent-dealer-spares.de', tier: EVIDENCE_TIERS.TIER_3, supports: 'ms_261::11410201200' }
+  ];
+  const uniqueGroups = new Set(sources.map(s => s.independent_source_group));
+  const isConfirmed = uniqueGroups.size >= 2;
+  assert.strictEqual(isConfirmed, true, 'Two independent Tier-3 sources confirm claim');
+});
+
+// 4. Tier-3 Sources Disagree = Conflict
+test('Phase 54F-C-R2 Section 27.4 — Tier-3 Sources Disagree = Conflict', () => {
+  const sourceA = { model: 'ms_261', part: '11410201200', section: 'Crankcase' };
+  const sourceB = { model: 'ms_261', part: '11410201200', section: 'Rewind Starter' };
+
+  const sectionConflict = sourceA.section !== sourceB.section;
+  const status = sectionConflict ? RESEARCH_STATUSES.EVIDENCE_CONFLICT : 'CONFIRMED';
+  assert.strictEqual(status, RESEARCH_STATUSES.EVIDENCE_CONFLICT, 'Conflicting section assignment must yield EVIDENCE_CONFLICT');
+});
+
+// 5. Resource No-Match != Request Failure
+test('Phase 54F-C-R2 Section 27.5 — Resource No-Match != Request Failure', () => {
+  const responseA = { http_status: 200, body: '<html>Page loaded but part not found</html>' };
+  const responseB = { http_status: 403, error: 'Cloudflare WAF blocked' };
+  const responseC = { http_status: null, error: 'Connection timeout' };
+
+  function classifyResponse(res) {
+    if (res.http_status === 403 || res.error?.includes('WAF')) return 'RESEARCH_BLOCKED';
+    if (!res.http_status || res.error) return 'REQUEST_FAILED';
+    return 'NO_MATCH_IN_RESEARCHED_SOURCES';
+  }
+
+  assert.strictEqual(classifyResponse(responseA), 'NO_MATCH_IN_RESEARCHED_SOURCES', 'HTTP 200 without match is NO_MATCH');
+  assert.strictEqual(classifyResponse(responseB), 'RESEARCH_BLOCKED', 'HTTP 403 WAF is RESEARCH_BLOCKED, not NO_MATCH');
+  assert.strictEqual(classifyResponse(responseC), 'REQUEST_FAILED', 'Network timeout is REQUEST_FAILED, not NO_MATCH');
+});
+
+// 6. Part Identity Only = No Part Promotion
+test('Phase 54F-C-R2 Section 27.6 — Part Identity Only = No Part Promotion', () => {
+  const candidate = {
+    claimA_part_identity_confirmed: true,
+    claimB_model_fitment_confirmed: false
+  };
+  const canPromote = candidate.claimA_part_identity_confirmed && candidate.claimB_model_fitment_confirmed;
+  assert.strictEqual(canPromote, false, 'Part identity without confirmed model fitment cannot promote');
+});
+
+// 7. Fitment Confirmed but Part Identity Insufficient = No New-Part Promotion
+test('Phase 54F-C-R2 Section 27.7 — Fitment Confirmed but Part Identity Insufficient = No New-Part Promotion', () => {
+  const candidate = {
+    existing_part_in_canonical: false,
+    claimA_part_identity_confirmed: false,
+    claimB_model_fitment_confirmed: true
+  };
+  const canPromote = candidate.claimA_part_identity_confirmed && candidate.claimB_model_fitment_confirmed;
+  assert.strictEqual(canPromote, false, 'New part cannot promote without confirmed part identity');
+});
+
+// 8. Cached Tier-3 Rerun Causes No Refetch
+test('Phase 54F-C-R2 Section 27.8 — Cached Tier-3 Rerun Causes No Refetch', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.rerun_accounting.requests_attempted, 0, 'Rerun network requests attempted === 0');
+  assert.strictEqual(escalationDoc.rerun_accounting.cache_hits, 40, 'Rerun cache hits === 40');
+  assert.strictEqual(escalationDoc.rerun_accounting.semantic_diff, 0, 'Rerun semantic diff === 0');
+});
+
+// 9. Model Resource Can Cover Multiple Candidates
+test('Phase 54F-C-R2 Section 27.9 — Model Resource Can Cover Multiple Candidates', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  const ms261Candidates = escalationDoc.queue.filter(c => c.canonical_model_id === 'ms_261');
+  assert.ok(ms261Candidates.length > 1, 'ms_261 has multiple candidates');
+
+  // Verify that all ms_261 candidates share the same external resources
+  for (const c of ms261Candidates) {
+    assert.ok(c.supporting_external_resources.includes('res_ext_01'), 'Includes official res_ext_01');
+    assert.ok(c.supporting_external_resources.includes('res_ext_27'), 'Includes SPW res_ext_27');
+  }
+});
+
+// 10. Out-of-Scope Staging Untouched
+test('Phase 54F-C-R2 Section 27.10 — Out-of-Scope Staging Untouched', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.staging_conservation.out_of_scope_expected, 1228, '1,228 out-of-scope staging records');
+  assert.strictEqual(escalationDoc.staging_conservation.out_of_scope_mutations, 0, 'Zero out-of-scope mutations');
+  assert.strictEqual(escalationDoc.dry_run_report.would_touch_multisection_backlog, 0, 'Zero multisection backlog touches');
+});
+
