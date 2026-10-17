@@ -61,7 +61,8 @@ export const currentProductionSuites = [
   'tests/phase54e_parts_technical_enrichment.test.js',
   'tests/phase54f_controlled_reharvest.test.js',
   'tests/phase54f_b_staging_adjudication.test.js',
-  'tests/phase54f_b_r1_promotion_eligibility.test.js'
+  'tests/phase54f_b_r1_promotion_eligibility.test.js',
+  'tests/phase54f_c_evidence_escalation.test.js'
 ];
 
 console.log('===============================================================');

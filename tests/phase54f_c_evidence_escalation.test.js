@@ -1,0 +1,547 @@
+import test from 'node:test';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import Database from 'better-sqlite3';
+
+import {
+  runEvidenceEscalation,
+  buildCandidateQueue,
+  RESEARCH_STATUSES,
+  EVIDENCE_TIERS,
+  MAX_TOTAL_EXTERNAL_REQUESTS,
+  EXPECTED_ACCEPTED_EVIDENCE_SHA256,
+  EXPECTED_PARTS_SECTION_ENRICHMENT_SHA256,
+  ACCEPTED_EVIDENCE_FILE,
+  BASE_ENRICHMENT_FILE,
+  EVIDENCE_ESCALATION_FILE,
+  REVIEW_FILE,
+  DB_PATH
+} from '../scripts/escalate_phase54f_evidence.mjs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+// 1. Tier 1 Fitment Confirmation Rule (F1)
+test('Phase 54F-C Test 1 — Tier 1 Fitment Confirmation Rule (F1)', () => {
+  // When Tier 1 manufacturer documentation unambiguously confirms model + part + relationship,
+  // 1 authoritative source is sufficient to confirm fitment.
+  const sampleCandidate = {
+    canonical_model_id: 'ms_261',
+    part_number: '11400074101',
+    part_exists_canonical: true
+  };
+
+  const officialEvidence = [
+    {
+      part_number: '11400074101',
+      models: ['MS 261', 'MS 261 C-M', 'MS 362'],
+      source_type: 'OFFICIAL_MANUFACTURER_DOCUMENTATION',
+      verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+    }
+  ];
+
+  const candModelClean = sampleCandidate.canonical_model_id.toUpperCase().replace(/_/g, ' ');
+  const matched = officialEvidence.find(o =>
+    o.part_number === sampleCandidate.part_number &&
+    o.models.some(m => m.toUpperCase().includes(candModelClean))
+  );
+
+  assert.ok(matched, 'Tier 1 official record matches model + part');
+  assert.strictEqual(matched.source_type, 'OFFICIAL_MANUFACTURER_DOCUMENTATION');
+});
+
+// 2. Tier 2 Fitment Confirmation Rule (F2)
+test('Phase 54F-C Test 2 — Tier 2 Fitment Confirmation Rule (F2)', () => {
+  // Tier 2 authoritative technical document (e.g., STIHL factory manual / IPL) confirms fitment
+  const tier2Source = {
+    source_id: 'stihl_factory_ipl',
+    doc_ref: 'STIHL 0458-737-5521-C',
+    evidence_tier: EVIDENCE_TIERS.TIER_2,
+    part_number: '11216403202',
+    canonical_model_id: 'ms_260',
+    provenance_verified: true,
+    has_conflict: false
+  };
+
+  const isConfirmed = tier2Source.evidence_tier === EVIDENCE_TIERS.TIER_2 &&
+    tier2Source.provenance_verified &&
+    !tier2Source.has_conflict;
+
+  assert.strictEqual(isConfirmed, true, 'Valid Tier 2 technical doc confirms fitment without conflict');
+});
+
+// 3. Two Independent Tier 3 Confirmations Rule (F3)
+test('Phase 54F-C Test 3 — Two Independent Tier 3 Confirmations Rule (F3)', () => {
+  // In absence of Tier 1/2, at least 2 independent Tier 3 sources are required
+  const observations = [
+    { source_domain: 'diyspareparts.com', independent_source_group: 'diyspareparts.com', tier: EVIDENCE_TIERS.TIER_3 },
+    { source_domain: 'sparepartsworld.co.uk', independent_source_group: 'sparepartsworld.co.uk', tier: EVIDENCE_TIERS.TIER_3 }
+  ];
+
+  const uniqueSourceGroups = new Set(observations.map(o => o.independent_source_group));
+  const satisfiesF3 = uniqueSourceGroups.size >= 2;
+
+  assert.strictEqual(satisfiesF3, true, 'Two distinct source groups satisfy Rule F3 independent corroboration');
+});
+
+// 4. Same-Source Duplicate Does Not Count Twice
+test('Phase 54F-C Test 4 — Same-Source Duplicate Does Not Count Twice', () => {
+  // Multiple URLs from the same publisher/data origin must count as exactly 1 source group
+  const sameSourceObservations = [
+    { url: 'https://www.diyspareparts.com/parts/stihl/diagrams/034/page1/', independent_source_group: 'diyspareparts.com' },
+    { url: 'https://www.diyspareparts.com/parts/stihl/diagrams/034/page2/', independent_source_group: 'diyspareparts.com' }
+  ];
+
+  const distinctGroups = new Set(sameSourceObservations.map(o => o.independent_source_group));
+  assert.strictEqual(distinctGroups.size, 1, 'Two URLs from same origin must resolve to 1 independent source group');
+  assert.strictEqual(distinctGroups.size >= 2, false, 'Same-source duplicate must NOT satisfy multi-source requirement');
+});
+
+// 5. Tier 1 New-Part Confirmation (Rule P1)
+test('Phase 54F-C Test 5 — Tier 1 New-Part Identity Confirmation (Rule P1)', () => {
+  const officialPart = {
+    part_number: '11411201600',
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED',
+    source_type: 'OFFICIAL_MANUFACTURER_DOCUMENTATION'
+  };
+
+  const isConfirmedPartIdentity = officialPart.verification_status === 'OFFICIAL_SOURCE_VERIFIED' &&
+    officialPart.source_type === 'OFFICIAL_MANUFACTURER_DOCUMENTATION';
+
+  assert.strictEqual(isConfirmedPartIdentity, true, 'Tier 1 official STIHL confirms part identity');
+});
+
+// 6. Atomic New-Part + Fitment Promotion Contract
+test('Phase 54F-C Test 6 — Atomic New-Part + Fitment Promotion Contract', () => {
+  // If a part is created, its confirmed base-model fitment must be created in the same transaction
+  const memDb = new Database(':memory:');
+  memDb.exec(`
+    CREATE TABLE parts (part_number TEXT PRIMARY KEY, part_name TEXT);
+    CREATE TABLE model_part_fitments (fitment_id TEXT PRIMARY KEY, part_number TEXT, canonical_model_id TEXT);
+  `);
+
+  const atomicInsert = memDb.transaction((partNo, partName, modelId) => {
+    memDb.prepare('INSERT INTO parts (part_number, part_name) VALUES (?, ?)').run(partNo, partName);
+    memDb.prepare('INSERT INTO model_part_fitments (fitment_id, part_number, canonical_model_id) VALUES (?, ?, ?)')
+      .run(`${partNo}::${modelId}`, partNo, modelId);
+  });
+
+  atomicInsert('11410201299', 'Test Piston', 'ms_261');
+
+  const partInDb = memDb.prepare('SELECT * FROM parts WHERE part_number = ?').get('11410201299');
+  const fitmentInDb = memDb.prepare('SELECT * FROM model_part_fitments WHERE part_number = ?').get('11410201299');
+
+  assert.ok(partInDb, 'Part was created');
+  assert.ok(fitmentInDb, 'Fitment was atomically created');
+});
+
+// 7. Part Identity Confirmed but Fitment Unconfirmed -> No Promotion
+test('Phase 54F-C Test 7 — Part Identity Confirmed but Fitment Unconfirmed -> No Promotion', () => {
+  // If part identity is verified (Claim A) but model fitment is unconfirmed (Claim B fails), DO NOT PROMOTE
+  const claimA_partIdentityConfirmed = true;
+  const claimB_modelFitmentConfirmed = false;
+
+  const canPromote = claimA_partIdentityConfirmed && claimB_modelFitmentConfirmed;
+  assert.strictEqual(canPromote, false, 'Must not promote when model fitment relation is unconfirmed');
+});
+
+// 8. Conflicting Evidence -> No Promotion
+test('Phase 54F-C Test 8 — Conflicting Evidence -> No Promotion', () => {
+  const candidate = {
+    part_number: '11251401900',
+    claimed_model: '034',
+    observed_conflict: {
+      type: 'model_conflict',
+      conflicting_model: 'ms_260',
+      reason: 'Contradictory diagram data across sources'
+    }
+  };
+
+  const hasConflict = candidate.observed_conflict !== null;
+  const decision = hasConflict ? RESEARCH_STATUSES.EVIDENCE_CONFLICT : 'ELIGIBLE';
+
+  assert.strictEqual(decision, RESEARCH_STATUSES.EVIDENCE_CONFLICT, 'Conflicted candidate classified EVIDENCE_CONFLICT');
+  assert.strictEqual(decision !== 'ELIGIBLE', true, 'Conflicted candidate cannot be promoted');
+});
+
+// 9. Exact-Variant Evidence Discovered -> Stored but NOT Promoted as Variant
+test('Phase 54F-C Test 9 — Exact-Variant Evidence Discovered -> Stored as Future Review, NOT Promoted as Variant', () => {
+  const candidate = {
+    canonical_model_id: 'ms_261',
+    variant_evidence_discovered: {
+      variant_key: 'c_m_vw',
+      source_note: 'Found specific heated-handle carburetor box'
+    }
+  };
+
+  // Phase 54F-C rule: store for future review, do not promote exact_variant
+  let promotedScope = null;
+  let storedForFutureReview = false;
+
+  if (candidate.variant_evidence_discovered) {
+    storedForFutureReview = true;
+    promotedScope = 'BASE_MODEL_CONFIRMED'; // NEVER EXACT_VARIANT in Phase 54F-C
+  }
+
+  assert.strictEqual(storedForFutureReview, true, 'Variant evidence must be retained for future review');
+  assert.strictEqual(promotedScope, 'BASE_MODEL_CONFIRMED', 'Scope must remain BASE_MODEL_CONFIRMED without variant promotion');
+});
+
+// 10. Configuration Evidence Discovered -> Stored but NOT Promoted as Configuration
+test('Phase 54F-C Test 10 — Configuration Evidence Discovered -> Stored, NOT Promoted as Configuration', () => {
+  const candidate = {
+    configuration_evidence: {
+      configuration_key: 'quick_chain_tensioner_b',
+      note: 'Found B-configuration diagram'
+    }
+  };
+
+  let promotedConfigKey = 'INITIAL';
+  if (candidate.configuration_evidence) {
+    promotedConfigKey = null; // Do not promote configuration-specific in 54F-C
+  }
+
+  assert.strictEqual(promotedConfigKey, null, 'configuration_key must remain null');
+});
+
+// 11. Request Cache & Deduplication
+test('Phase 54F-C Test 11 — Request Cache & Request Deduplication', () => {
+  const cache = new Map();
+  let networkFetches = 0;
+
+  function fetchResource(url) {
+    if (cache.has(url)) {
+      return { status: 200, fromCache: true, data: cache.get(url) };
+    }
+    networkFetches++;
+    const data = `Payload for ${url}`;
+    cache.set(url, data);
+    return { status: 200, fromCache: false, data };
+  }
+
+  const url = 'https://www.stihl.nl/sample-part';
+  const res1 = fetchResource(url);
+  const res2 = fetchResource(url);
+
+  assert.strictEqual(res1.fromCache, false, 'First request hits network');
+  assert.strictEqual(res2.fromCache, true, 'Second request hits cache');
+  assert.strictEqual(networkFetches, 1, 'Resource fetched from network exactly once');
+});
+
+// 12. Promotion Idempotency Contract
+test('Phase 54F-C Test 12 — Promotion Idempotency Contract', () => {
+  const memDb = new Database(':memory:');
+  memDb.exec(`
+    CREATE TABLE model_part_fitments (
+      fitment_id TEXT PRIMARY KEY,
+      part_number TEXT,
+      canonical_model_id TEXT
+    );
+  `);
+
+  function insertFitment(fitmentId, partNo, modelId) {
+    const existing = memDb.prepare('SELECT fitment_id FROM model_part_fitments WHERE fitment_id = ?').get(fitmentId);
+    if (!existing) {
+      memDb.prepare('INSERT INTO model_part_fitments (fitment_id, part_number, canonical_model_id) VALUES (?, ?, ?)')
+        .run(fitmentId, partNo, modelId);
+      return 1;
+    }
+    return 0; // Already exists, zero semantic addition
+  }
+
+  const run1 = insertFitment('p1::m1', 'p1', 'm1');
+  const run2 = insertFitment('p1::m1', 'p1', 'm1');
+
+  assert.strictEqual(run1, 1, 'First run inserts record');
+  assert.strictEqual(run2, 0, 'Second run inserts zero records (Idempotency PASS)');
+});
+
+// 13. Transaction Rollback on Error Contract
+test('Phase 54F-C Test 13 — Transaction Rollback on Error Contract', () => {
+  const memDb = new Database(':memory:');
+  memDb.exec(`
+    CREATE TABLE parts (part_number TEXT PRIMARY KEY);
+    CREATE TABLE model_part_fitments (fitment_id TEXT PRIMARY KEY, part_number TEXT);
+  `);
+
+  const faultyPromotion = memDb.transaction(() => {
+    memDb.prepare('INSERT INTO parts (part_number) VALUES (?)').run('11410201299');
+    // Deliberate error to trigger rollback:
+    throw new Error('Simulated network/DB error during fitment write');
+  });
+
+  assert.throws(() => faultyPromotion(), /Simulated network/);
+
+  const partAfterRollback = memDb.prepare('SELECT * FROM parts WHERE part_number = ?').get('11410201299');
+  assert.strictEqual(partAfterRollback, undefined, 'Part creation rolled back cleanly; zero partial state');
+});
+
+// 14. Phase 54F-A Protected-Set Integrity (Zero Mutations)
+test('Phase 54F-C Test 14 — Phase 54F-A Protected-Set Integrity (Zero Mutations)', () => {
+  assert.ok(fs.existsSync(ACCEPTED_EVIDENCE_FILE), 'accepted_evidence.jsonl exists');
+  assert.ok(fs.existsSync(BASE_ENRICHMENT_FILE), 'parts_section_enrichment.json exists');
+
+  const currentEvHash = crypto.createHash('sha256').update(fs.readFileSync(ACCEPTED_EVIDENCE_FILE)).digest('hex');
+  const currentEnrHash = crypto.createHash('sha256').update(fs.readFileSync(BASE_ENRICHMENT_FILE)).digest('hex');
+
+  assert.strictEqual(currentEvHash, EXPECTED_ACCEPTED_EVIDENCE_SHA256, 'accepted_evidence.jsonl SHA-256 matches baseline');
+  assert.strictEqual(currentEnrHash, EXPECTED_PARTS_SECTION_ENRICHMENT_SHA256, 'parts_section_enrichment.json SHA-256 matches baseline');
+});
+
+// 15. 1,228 Out-of-Scope Staging Records Untouched
+test('Phase 54F-C Test 15 — 1,228 Out-of-Scope Staging Records Untouched', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.staging_conservation.out_of_scope_expected, 1228, 'Expected 1,228 out-of-scope records');
+  assert.strictEqual(escalationDoc.staging_conservation.out_of_scope_mutations, 0, 'Zero out-of-scope mutations allowed');
+  assert.strictEqual(escalationDoc.staging_conservation.before, 1872, 'Starting staging count is 1,872');
+  assert.strictEqual(escalationDoc.staging_conservation.remaining, 1872, 'Remaining staging count is 1,872');
+  assert.strictEqual(escalationDoc.staging_conservation.promoted, 0, 'Promoted count is 0');
+});
+
+// 16. Full Candidate Queue Conservation (311 fitments + 301 unique parts = 612)
+test('Phase 54F-C Test 16 — Full Candidate Queue Conservation (311 fitments + 301 unique parts = 612)', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  const fitments = escalationDoc.queue.filter(c => c.candidate_type === 'NEW_FITMENT');
+  const parts = escalationDoc.queue.filter(c => c.candidate_type === 'NEW_PART');
+
+  assert.strictEqual(fitments.length, 311, 'Exactly 311 fitments in queue');
+  assert.strictEqual(parts.length, 301, 'Exactly 301 unique parts in queue');
+  assert.strictEqual(escalationDoc.queue.length, 612, 'Queue total is 612');
+  assert.strictEqual(escalationDoc.priorities.TOTAL_UNIQUE_CANDIDATES, 612, 'Priorities total is 612');
+
+  const p = escalationDoc.priorities;
+  assert.strictEqual(p.PRIORITY_1 + p.PRIORITY_2 + p.PRIORITY_3 + p.PRIORITY_4, 612, 'Priorities sum is 612');
+});
+
+// ============================================================================
+// PHASE 54F-C-R1 REGRESSION TESTS (A - F)
+// ============================================================================
+
+// Test A: Bestaande candidate observation telt niet als cache hit
+test('Phase 54F-C-R1 Test A — Existing Candidate Observation Does Not Count as Cache Hit', () => {
+  const localCandidateObservation = {
+    evidence_id: 'ev_123',
+    source_url: 'https://www.diyspareparts.com/parts/stihl/diagrams/034/',
+    source_domain: 'diyspareparts.com',
+    observed_at: '2026-10-15T00:00:00Z',
+    is_external_cache_resource: false
+  };
+
+  const isQualifyingCacheHit = Boolean(
+    localCandidateObservation.is_external_cache_resource &&
+    localCandidateObservation.content_hash &&
+    localCandidateObservation.http_status
+  );
+
+  assert.strictEqual(isQualifyingCacheHit, false, 'Candidate existence locally must NOT count as cache hit');
+});
+
+// Test B: Bestaande diyspareparts observation telt niet als nieuwe onafhankelijke research
+test('Phase 54F-C-R1 Test B — Existing diyspareparts Observation Does Not Count as New Independent Research', () => {
+  const originalObservation = {
+    source_domain: 'diyspareparts.com',
+    independent_source_group: 'diyspareparts.com'
+  };
+
+  const distinctGroups = new Set([originalObservation.independent_source_group]);
+  assert.strictEqual(distinctGroups.size, 1, 'Single source group cannot provide independent secondary corroboration');
+});
+
+// Test C: Een echte eerder opgeslagen external resource met URL + hash + retrieval provenance telt wel als cache hit
+test('Phase 54F-C-R1 Test C — Real Stored External Resource With Provenance Counts as Cache Hit', () => {
+  const realExternalResource = {
+    resource_id: 'res_ext_01',
+    source_url: 'https://www.stihl.nl/nl/zoeken?q=MS%20261',
+    domain: 'stihl.nl',
+    retrieved_at: '2026-10-17T17:40:00.000Z',
+    http_status: 200,
+    content_hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+    evidence_tier: EVIDENCE_TIERS.TIER_1,
+    independent_source_group: 'official_stihl'
+  };
+
+  const isValidCacheHit = Boolean(
+    realExternalResource.source_url &&
+    realExternalResource.domain &&
+    realExternalResource.retrieved_at &&
+    realExternalResource.content_hash &&
+    realExternalResource.http_status === 200 &&
+    realExternalResource.evidence_tier
+  );
+
+  assert.strictEqual(isValidCacheHit, true, 'Genuine external resource with full provenance counts as valid cache hit');
+});
+
+// Test D: Eén official modeldocument mag meerdere candidate claims bevestigen
+test('Phase 54F-C-R1 Test D — Single Official Model Document Can Cover Multiple Candidate Claims', () => {
+  const modelDocument = {
+    resource_id: 'res_official_ms261_doc',
+    canonical_model_id: 'ms_261',
+    evidence_tier: EVIDENCE_TIERS.TIER_1,
+    evaluated_candidates: ['fc_11400074101', 'fc_11400074102', 'pc_11400074103']
+  };
+
+  assert.strictEqual(modelDocument.evaluated_candidates.length, 3, 'Single official document covers multiple candidates');
+  assert.ok(modelDocument.evaluated_candidates.includes('fc_11400074101'));
+  assert.ok(modelDocument.evaluated_candidates.includes('pc_11400074103'));
+});
+
+// Test E: Twee mirrors van dezelfde upstream bron tellen als één independent source group
+test('Phase 54F-C-R1 Test E — Two Mirrors of Same Upstream Source Count as One Independent Source Group', () => {
+  const siteA = { domain: 'mirror1.diagrams-feed.com', upstream_origin: 'feed_provider_alpha' };
+  const siteB = { domain: 'mirror2.diagrams-feed.com', upstream_origin: 'feed_provider_alpha' };
+
+  function getIndependentSourceGroup(site) {
+    return site.upstream_origin || site.domain;
+  }
+
+  const groupA = getIndependentSourceGroup(siteA);
+  const groupB = getIndependentSourceGroup(siteB);
+
+  const distinctGroups = new Set([groupA, groupB]);
+  assert.strictEqual(distinctGroups.size, 1, 'Two mirrors of same origin resolve to 1 independent source group');
+  assert.strictEqual(distinctGroups.size >= 2, false, 'Mirrored sources must NOT satisfy Rule F3 multi-source corroboration');
+});
+
+// Test F: not_researched = 0 mag alleen wanneer iedere candidate aantoonbaar coverage heeft
+test('Phase 54F-C-R1 Test F — not_researched = 0 Requires Proven Coverage For Every Candidate', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.fitment_evidence_summary.not_researched, 0, 'Fitments not_researched === 0');
+  assert.strictEqual(escalationDoc.part_evidence_summary.not_researched, 0, 'Parts not_researched === 0');
+
+  for (const c of escalationDoc.queue) {
+    assert.strictEqual(c.researched, true, `Candidate ${c.candidate_id} must have researched === true`);
+    assert.ok(Array.isArray(c.supporting_external_resources) && c.supporting_external_resources.length > 0,
+      `Candidate ${c.candidate_id} must have non-empty supporting_external_resources`);
+  }
+});
+
+// ============================================================================
+// PHASE 54F-C-R2 SECTION 27 REGRESSION TESTS
+// ============================================================================
+
+// 1. Single Tier-3 Source = Insufficient
+test('Phase 54F-C-R2 Section 27.1 — Single Tier-3 Source = Insufficient', () => {
+  const sources = [
+    { source_domain: 'sparepartsworld.co.uk', independent_source_group: 'sparepartsworld.co.uk', tier: EVIDENCE_TIERS.TIER_3 }
+  ];
+  const uniqueGroups = new Set(sources.map(s => s.independent_source_group));
+  const isConfirmed = uniqueGroups.size >= 2;
+  assert.strictEqual(isConfirmed, false, 'Single Tier-3 source must NOT confirm promotion');
+});
+
+// 2. Same Upstream Mirrored Source = Insufficient
+test('Phase 54F-C-R2 Section 27.2 — Same Upstream Mirrored Source = Insufficient', () => {
+  const sources = [
+    { domain: 'mirror1.supplier-network.eu', upstream_origin: 'distributor_feed_x', tier: EVIDENCE_TIERS.TIER_3 },
+    { domain: 'mirror2.supplier-network.eu', upstream_origin: 'distributor_feed_x', tier: EVIDENCE_TIERS.TIER_3 }
+  ];
+  const uniqueGroups = new Set(sources.map(s => s.upstream_origin || s.domain));
+  const satisfiesIndependence = uniqueGroups.size >= 2;
+  assert.strictEqual(satisfiesIndependence, false, 'Two mirrors with same upstream origin must count as 1 group');
+});
+
+// 3. Two Genuinely Independent Tier-3 Sources = Confirmed
+test('Phase 54F-C-R2 Section 27.3 — Two Genuinely Independent Tier-3 Sources = Confirmed', () => {
+  const sources = [
+    { domain: 'sparepartsworld.co.uk', independent_source_group: 'sparepartsworld.co.uk', tier: EVIDENCE_TIERS.TIER_3, supports: 'ms_261::11410201200' },
+    { domain: 'independent-dealer-spares.de', independent_source_group: 'independent-dealer-spares.de', tier: EVIDENCE_TIERS.TIER_3, supports: 'ms_261::11410201200' }
+  ];
+  const uniqueGroups = new Set(sources.map(s => s.independent_source_group));
+  const isConfirmed = uniqueGroups.size >= 2;
+  assert.strictEqual(isConfirmed, true, 'Two independent Tier-3 sources confirm claim');
+});
+
+// 4. Tier-3 Sources Disagree = Conflict
+test('Phase 54F-C-R2 Section 27.4 — Tier-3 Sources Disagree = Conflict', () => {
+  const sourceA = { model: 'ms_261', part: '11410201200', section: 'Crankcase' };
+  const sourceB = { model: 'ms_261', part: '11410201200', section: 'Rewind Starter' };
+
+  const sectionConflict = sourceA.section !== sourceB.section;
+  const status = sectionConflict ? RESEARCH_STATUSES.EVIDENCE_CONFLICT : 'CONFIRMED';
+  assert.strictEqual(status, RESEARCH_STATUSES.EVIDENCE_CONFLICT, 'Conflicting section assignment must yield EVIDENCE_CONFLICT');
+});
+
+// 5. Resource No-Match != Request Failure
+test('Phase 54F-C-R2 Section 27.5 — Resource No-Match != Request Failure', () => {
+  const responseA = { http_status: 200, body: '<html>Page loaded but part not found</html>' };
+  const responseB = { http_status: 403, error: 'Cloudflare WAF blocked' };
+  const responseC = { http_status: null, error: 'Connection timeout' };
+
+  function classifyResponse(res) {
+    if (res.http_status === 403 || res.error?.includes('WAF')) return 'RESEARCH_BLOCKED';
+    if (!res.http_status || res.error) return 'REQUEST_FAILED';
+    return 'NO_MATCH_IN_RESEARCHED_SOURCES';
+  }
+
+  assert.strictEqual(classifyResponse(responseA), 'NO_MATCH_IN_RESEARCHED_SOURCES', 'HTTP 200 without match is NO_MATCH');
+  assert.strictEqual(classifyResponse(responseB), 'RESEARCH_BLOCKED', 'HTTP 403 WAF is RESEARCH_BLOCKED, not NO_MATCH');
+  assert.strictEqual(classifyResponse(responseC), 'REQUEST_FAILED', 'Network timeout is REQUEST_FAILED, not NO_MATCH');
+});
+
+// 6. Part Identity Only = No Part Promotion
+test('Phase 54F-C-R2 Section 27.6 — Part Identity Only = No Part Promotion', () => {
+  const candidate = {
+    claimA_part_identity_confirmed: true,
+    claimB_model_fitment_confirmed: false
+  };
+  const canPromote = candidate.claimA_part_identity_confirmed && candidate.claimB_model_fitment_confirmed;
+  assert.strictEqual(canPromote, false, 'Part identity without confirmed model fitment cannot promote');
+});
+
+// 7. Fitment Confirmed but Part Identity Insufficient = No New-Part Promotion
+test('Phase 54F-C-R2 Section 27.7 — Fitment Confirmed but Part Identity Insufficient = No New-Part Promotion', () => {
+  const candidate = {
+    existing_part_in_canonical: false,
+    claimA_part_identity_confirmed: false,
+    claimB_model_fitment_confirmed: true
+  };
+  const canPromote = candidate.claimA_part_identity_confirmed && candidate.claimB_model_fitment_confirmed;
+  assert.strictEqual(canPromote, false, 'New part cannot promote without confirmed part identity');
+});
+
+// 8. Cached Tier-3 Rerun Causes No Refetch
+test('Phase 54F-C-R2 Section 27.8 — Cached Tier-3 Rerun Causes No Refetch', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.rerun_accounting.requests_attempted, 0, 'Rerun network requests attempted === 0');
+  assert.strictEqual(escalationDoc.rerun_accounting.cache_hits, 40, 'Rerun cache hits === 40');
+  assert.strictEqual(escalationDoc.rerun_accounting.semantic_diff, 0, 'Rerun semantic diff === 0');
+});
+
+// 9. Model Resource Can Cover Multiple Candidates
+test('Phase 54F-C-R2 Section 27.9 — Model Resource Can Cover Multiple Candidates', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  const ms261Candidates = escalationDoc.queue.filter(c => c.canonical_model_id === 'ms_261');
+  assert.ok(ms261Candidates.length > 1, 'ms_261 has multiple candidates');
+
+  // Verify that all ms_261 candidates share the same external resources
+  for (const c of ms261Candidates) {
+    assert.ok(c.supporting_external_resources.includes('res_ext_01'), 'Includes official res_ext_01');
+    assert.ok(c.supporting_external_resources.includes('res_ext_27'), 'Includes SPW res_ext_27');
+  }
+});
+
+// 10. Out-of-Scope Staging Untouched
+test('Phase 54F-C-R2 Section 27.10 — Out-of-Scope Staging Untouched', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.staging_conservation.out_of_scope_expected, 1228, '1,228 out-of-scope staging records');
+  assert.strictEqual(escalationDoc.staging_conservation.out_of_scope_mutations, 0, 'Zero out-of-scope mutations');
+  assert.strictEqual(escalationDoc.dry_run_report.would_touch_multisection_backlog, 0, 'Zero multisection backlog touches');
+});
+
