@@ -79,33 +79,7 @@
     ]
   }
   </script>
-
-  <!-- Google tag (gtag.js) - Consent Gated -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-
-    function initGoogleAnalytics() {
-      if (window.__gaLoaded) return;
-      window.__gaLoaded = true;
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P2V0J69LDX';
-      document.head.appendChild(script);
-      gtag('js', new Date());
-      gtag('config', 'G-P2V0J69LDX', { 'anonymize_ip': true });
-    }
-
-    (function() {
-      try {
-        if (localStorage.getItem('stihl_cookie_consent') === 'granted') {
-          initGoogleAnalytics();
-        }
-      } catch (e) {}
-    })();
-  </script>
-
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 
@@ -1009,7 +983,7 @@
       <div class="space-y-1">
         <span class="font-bold text-white block">🍪 Privacy & Cookies</span>
         <p class="text-neutral-400 text-2xs leading-relaxed max-w-2xl">
-          Wij gebruiken optionele analytische cookies (Google Analytics) om het gebruik van de STIHL Decoder te analyseren en te verbeteren. Deze worden alleen geplaatst na uw expliciete toestemming.
+          De Google-tag gebruikt standaard een beperkte consentmodus. Analytische cookies en Analytics-opslag worden alleen ingeschakeld na uw expliciete toestemming.
         </p>
       </div>
       <div class="flex items-center gap-2 flex-shrink-0 self-end sm:self-center">
