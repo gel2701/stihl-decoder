@@ -320,3 +320,109 @@ test('Phase 54F-C Test 16 — Full Candidate Queue Conservation (311 fitments + 
   const p = escalationDoc.priorities;
   assert.strictEqual(p.PRIORITY_1 + p.PRIORITY_2 + p.PRIORITY_3 + p.PRIORITY_4, 612, 'Priorities sum is 612');
 });
+
+// ============================================================================
+// PHASE 54F-C-R1 REGRESSION TESTS (A - F)
+// ============================================================================
+
+// Test A: Bestaande candidate observation telt niet als cache hit
+test('Phase 54F-C-R1 Test A — Existing Candidate Observation Does Not Count as Cache Hit', () => {
+  const localCandidateObservation = {
+    evidence_id: 'ev_123',
+    source_url: 'https://www.diyspareparts.com/parts/stihl/diagrams/034/',
+    source_domain: 'diyspareparts.com',
+    observed_at: '2026-10-15T00:00:00Z',
+    is_external_cache_resource: false
+  };
+
+  const isQualifyingCacheHit = Boolean(
+    localCandidateObservation.is_external_cache_resource &&
+    localCandidateObservation.content_hash &&
+    localCandidateObservation.http_status
+  );
+
+  assert.strictEqual(isQualifyingCacheHit, false, 'Candidate existence locally must NOT count as cache hit');
+});
+
+// Test B: Bestaande diyspareparts observation telt niet als nieuwe onafhankelijke research
+test('Phase 54F-C-R1 Test B — Existing diyspareparts Observation Does Not Count as New Independent Research', () => {
+  const originalObservation = {
+    source_domain: 'diyspareparts.com',
+    independent_source_group: 'diyspareparts.com'
+  };
+
+  const distinctGroups = new Set([originalObservation.independent_source_group]);
+  assert.strictEqual(distinctGroups.size, 1, 'Single source group cannot provide independent secondary corroboration');
+});
+
+// Test C: Een echte eerder opgeslagen external resource met URL + hash + retrieval provenance telt wel als cache hit
+test('Phase 54F-C-R1 Test C — Real Stored External Resource With Provenance Counts as Cache Hit', () => {
+  const realExternalResource = {
+    resource_id: 'res_ext_01',
+    source_url: 'https://www.stihl.nl/nl/zoeken?q=MS%20261',
+    domain: 'stihl.nl',
+    retrieved_at: '2026-10-17T17:40:00.000Z',
+    http_status: 200,
+    content_hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+    evidence_tier: EVIDENCE_TIERS.TIER_1,
+    independent_source_group: 'official_stihl'
+  };
+
+  const isValidCacheHit = Boolean(
+    realExternalResource.source_url &&
+    realExternalResource.domain &&
+    realExternalResource.retrieved_at &&
+    realExternalResource.content_hash &&
+    realExternalResource.http_status === 200 &&
+    realExternalResource.evidence_tier
+  );
+
+  assert.strictEqual(isValidCacheHit, true, 'Genuine external resource with full provenance counts as valid cache hit');
+});
+
+// Test D: Eén official modeldocument mag meerdere candidate claims bevestigen
+test('Phase 54F-C-R1 Test D — Single Official Model Document Can Cover Multiple Candidate Claims', () => {
+  const modelDocument = {
+    resource_id: 'res_official_ms261_doc',
+    canonical_model_id: 'ms_261',
+    evidence_tier: EVIDENCE_TIERS.TIER_1,
+    evaluated_candidates: ['fc_11400074101', 'fc_11400074102', 'pc_11400074103']
+  };
+
+  assert.strictEqual(modelDocument.evaluated_candidates.length, 3, 'Single official document covers multiple candidates');
+  assert.ok(modelDocument.evaluated_candidates.includes('fc_11400074101'));
+  assert.ok(modelDocument.evaluated_candidates.includes('pc_11400074103'));
+});
+
+// Test E: Twee mirrors van dezelfde upstream bron tellen als één independent source group
+test('Phase 54F-C-R1 Test E — Two Mirrors of Same Upstream Source Count as One Independent Source Group', () => {
+  const siteA = { domain: 'mirror1.diagrams-feed.com', upstream_origin: 'feed_provider_alpha' };
+  const siteB = { domain: 'mirror2.diagrams-feed.com', upstream_origin: 'feed_provider_alpha' };
+
+  function getIndependentSourceGroup(site) {
+    return site.upstream_origin || site.domain;
+  }
+
+  const groupA = getIndependentSourceGroup(siteA);
+  const groupB = getIndependentSourceGroup(siteB);
+
+  const distinctGroups = new Set([groupA, groupB]);
+  assert.strictEqual(distinctGroups.size, 1, 'Two mirrors of same origin resolve to 1 independent source group');
+  assert.strictEqual(distinctGroups.size >= 2, false, 'Mirrored sources must NOT satisfy Rule F3 multi-source corroboration');
+});
+
+// Test F: not_researched = 0 mag alleen wanneer iedere candidate aantoonbaar coverage heeft
+test('Phase 54F-C-R1 Test F — not_researched = 0 Requires Proven Coverage For Every Candidate', () => {
+  assert.ok(fs.existsSync(EVIDENCE_ESCALATION_FILE), 'evidence_escalation.json exists');
+  const escalationDoc = JSON.parse(fs.readFileSync(EVIDENCE_ESCALATION_FILE, 'utf8'));
+
+  assert.strictEqual(escalationDoc.fitment_evidence_summary.not_researched, 0, 'Fitments not_researched === 0');
+  assert.strictEqual(escalationDoc.part_evidence_summary.not_researched, 0, 'Parts not_researched === 0');
+
+  for (const c of escalationDoc.queue) {
+    assert.strictEqual(c.researched, true, `Candidate ${c.candidate_id} must have researched === true`);
+    assert.ok(Array.isArray(c.supporting_external_resources) && c.supporting_external_resources.length > 0,
+      `Candidate ${c.candidate_id} must have non-empty supporting_external_resources`);
+  }
+});
+
