@@ -62,10 +62,36 @@ export function installSiteAnalyticsResponseInjection(res) {
   if (!res || res.__siteAnalyticsInjectionInstalled) return;
   res.__siteAnalyticsInjectionInstalled = true;
 
+  let writeHeadContentType = '';
+  const originalWriteHead =
+    typeof res.writeHead === 'function' ? res.writeHead.bind(res) : null;
   const originalEnd = res.end.bind(res);
 
+  if (originalWriteHead) {
+    res.writeHead = function writeHeadWithAnalyticsCapture(statusCode, statusMessageOrHeaders, maybeHeaders) {
+      const headers =
+        statusMessageOrHeaders && typeof statusMessageOrHeaders === 'object'
+          ? statusMessageOrHeaders
+          : (maybeHeaders && typeof maybeHeaders === 'object' ? maybeHeaders : null);
+
+      const directContentType = headers
+        ? (headers['Content-Type'] ?? headers['content-type'])
+        : undefined;
+
+      if (directContentType != null) {
+        writeHeadContentType = String(directContentType).toLowerCase();
+      } else {
+        const stored = res.getHeader?.('Content-Type');
+        if (stored != null) writeHeadContentType = String(stored).toLowerCase();
+      }
+
+      return originalWriteHead(statusCode, statusMessageOrHeaders, maybeHeaders);
+    };
+  }
+
   res.end = function endWithSiteAnalytics(chunk, encoding, callback) {
-    const contentType = String(res.getHeader?.('Content-Type') || '').toLowerCase();
+    const storedContentType = String(res.getHeader?.('Content-Type') || '').toLowerCase();
+    const contentType = writeHeadContentType || storedContentType;
 
     if (chunk != null && contentType.includes('text/html')) {
       const html = Buffer.isBuffer(chunk)
