@@ -21,10 +21,15 @@ assert.strictEqual((injected.match(/data-stihl-ga4-consent-bootstrap/g) || []).l
 assert.strictEqual(injectSiteAnalyticsIntoHtml(injected), injected, 'Second injection must not duplicate the Google tag');
 
 let captured = null;
+let writeHeadCalls = 0;
 const fakeRes = {
   __siteAnalyticsInjectionInstalled: false,
-  getHeader(name) {
-    return name.toLowerCase() === 'content-type' ? 'text/html; charset=UTF-8' : undefined;
+  getHeader() {
+    return undefined;
+  },
+  writeHead() {
+    writeHeadCalls += 1;
+    return this;
   },
   end(chunk) {
     captured = chunk;
@@ -33,8 +38,11 @@ const fakeRes = {
 };
 
 installSiteAnalyticsResponseInjection(fakeRes);
+fakeRes.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
 fakeRes.end(Buffer.from(html, 'utf8'));
-assert.ok(String(captured).includes('googletagmanager.com/gtag/js'), 'HTML Buffer responses must receive the direct Google tag');
+assert.strictEqual(writeHeadCalls, 1, 'Wrapped writeHead must preserve the underlying call');
+assert.ok(String(captured).includes('googletagmanager.com/gtag/js'), 'Direct writeHead HTML responses must receive the direct Google tag');
+assert.ok(String(captured).includes('data-stihl-ga4-consent-bootstrap'), 'Direct writeHead HTML responses must receive Consent Mode bootstrap');
 
 const serverSource = fs.readFileSync(new URL('../server.js', import.meta.url), 'utf8');
 const analyticsSource = fs.readFileSync(new URL('../src/components/SiteAnalytics.js', import.meta.url), 'utf8');
