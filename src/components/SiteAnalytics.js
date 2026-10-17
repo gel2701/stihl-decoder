@@ -1,14 +1,9 @@
 /**
- * Site-wide GA4 bootstrap + consent-aware click tracking for STIHLDecoder.nl.
- * Loaded on every HTML response by SiteAnalyticsInjector.
+ * Site-wide GA4 consent updates + click tracking for STIHLDecoder.nl.
+ * The Google tag itself is injected directly into every HTML <head>.
  */
 (() => {
-  const GA_MEASUREMENT_ID = 'G-P2V0J69LDX';
   const CONSENT_KEY = 'stihl_cookie_consent';
-  const existingInitGoogleAnalytics =
-    typeof window.initGoogleAnalytics === 'function'
-      ? window.initGoogleAnalytics.bind(window)
-      : null;
 
   function getConsent() {
     try {
@@ -22,50 +17,31 @@
     try {
       localStorage.setItem(CONSENT_KEY, value);
     } catch {
-      // Analytics remains opt-in even when storage is unavailable.
+      // Consent remains in-memory for this page if storage is unavailable.
     }
   }
 
   function ensureGtag() {
     window.dataLayer = window.dataLayer || [];
-    if (typeof window.gtag !== 'function') {
-      window.gtag = function gtag() {
-        window.dataLayer.push(arguments);
-      };
-    }
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
   }
 
-  function loadGoogleAnalytics() {
-    if (window.__gaLoaded) return;
-    window.__gaLoaded = true;
+  function updateAnalyticsConsent(granted) {
     ensureGtag();
-
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-    script.setAttribute('data-stihl-ga4', GA_MEASUREMENT_ID);
-    document.head.appendChild(script);
-
-    window.gtag('js', new Date());
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      anonymize_ip: true,
-      page_path: window.location.pathname + window.location.search,
-      page_location: window.location.href
+    window.gtag('consent', 'update', {
+      analytics_storage: granted ? 'granted' : 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
   }
 
-  function initGoogleAnalytics() {
-    if (window.__gaLoaded) return;
-    if (existingInitGoogleAnalytics) {
-      existingInitGoogleAnalytics();
-      return;
-    }
-    loadGoogleAnalytics();
-  }
-
-  if (!existingInitGoogleAnalytics) {
-    window.initGoogleAnalytics = initGoogleAnalytics;
-  }
+  window.initGoogleAnalytics = function initGoogleAnalytics() {
+    setConsent('granted');
+    updateAnalyticsConsent(true);
+  };
 
   function normalizedClickLabel(element) {
     const aria = element.getAttribute('aria-label');
@@ -136,7 +112,7 @@
       <div style="max-width:1152px;margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap">
         <div style="max-width:760px">
           <strong style="display:block;color:#fff;margin-bottom:3px">Privacy & Cookies</strong>
-          <span style="color:#a3a3a3">Wij gebruiken optionele Google Analytics-cookies om verkeer en interacties op STIHLDecoder.nl te meten. Analytics wordt alleen geladen na uw toestemming.</span>
+          <span style="color:#a3a3a3">De Google-tag is actief in beperkte consentmodus. Analytische cookies en Analytics-opslag worden alleen ingeschakeld na uw toestemming.</span>
         </div>
         <div style="display:flex;gap:8px;margin-left:auto">
           <button id="cookie-reject-btn" type="button" style="border:1px solid #404040;background:#262626;color:#f5f5f5;border-radius:10px;padding:8px 13px;font-weight:700;cursor:pointer">Weigeren</button>
@@ -147,13 +123,13 @@
     document.body.appendChild(banner);
 
     banner.querySelector('#cookie-accept-btn')?.addEventListener('click', () => {
-      setConsent('granted');
+      window.initGoogleAnalytics();
       banner.remove();
-      initGoogleAnalytics();
     });
 
     banner.querySelector('#cookie-reject-btn')?.addEventListener('click', () => {
       setConsent('denied');
+      updateAnalyticsConsent(false);
       banner.remove();
     });
   }
@@ -161,9 +137,9 @@
   function boot() {
     const consent = getConsent();
 
-    if (consent === 'granted') {
-      initGoogleAnalytics();
-    } else if (!consent && !document.getElementById('cookie-consent-banner')) {
+    updateAnalyticsConsent(consent === 'granted');
+
+    if (!consent && !document.getElementById('cookie-consent-banner')) {
       createConsentBanner();
     }
 
