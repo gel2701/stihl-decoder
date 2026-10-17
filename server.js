@@ -37,6 +37,7 @@ import {
   getCanonicalPartSeriesCodes
 } from './src/publicationRules.js';
 import { getPartIndexationPilotList, isPartIndexationPilotEnabled } from './src/seo/PartIndexationPilot.js';
+import { installSiteAnalyticsResponseInjection } from './src/components/SiteAnalyticsInjector.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -98,6 +99,7 @@ const PUBLIC_EXACT_FILES = new Set([
   '/src/components/StihlPassportGenerator.js',
   '/src/components/MachineDossierManager.js',
   '/src/components/AnalyticsTracker.js',
+  '/src/components/SiteAnalytics.js',
   '/src/categoryWhitelist.js',
   '/src/driveClassification.js',
   '/src/globalModelSearch.js',
@@ -221,6 +223,7 @@ function isSameOriginRequest(req) {
 }
 
 const server = http.createServer(async (req, res) => {
+  installSiteAnalyticsResponseInjection(res);
   try {
   const forwardedHost = (req.headers['x-forwarded-host'] || req.headers.host || PRIMARY_HOST).toLowerCase();
   const forwardedProto = (req.headers['x-forwarded-proto'] || 'https').toLowerCase();
