@@ -363,6 +363,19 @@ function recreateSqliteDatabase(database) {
       CREATE INDEX IF NOT EXISTS idx_section_contexts_model_part ON model_part_fitment_section_contexts(canonical_model_id, part_number);
       CREATE INDEX IF NOT EXISTS idx_section_contexts_section ON model_part_fitment_section_contexts(section_key);
 
+      CREATE TABLE IF NOT EXISTS part_fitment_scope_resolutions (
+        resolution_id VARCHAR(150) PRIMARY KEY,
+        source_evidence_id VARCHAR(150) UNIQUE NOT NULL,
+        resolved_fitment_id VARCHAR(150) NOT NULL,
+        resolved_scope_type VARCHAR(50) NOT NULL,
+        resolved_variant_key VARCHAR(50),
+        resolved_configuration_key VARCHAR(100),
+        resolution_status VARCHAR(100) NOT NULL,
+        provenance_hash VARCHAR(64) NOT NULL
+      );
+      CREATE INDEX IF NOT EXISTS idx_scope_res_fitment ON part_fitment_scope_resolutions(resolved_fitment_id);
+      CREATE INDEX IF NOT EXISTS idx_scope_res_source ON part_fitment_scope_resolutions(source_evidence_id);
+
       CREATE TABLE IF NOT EXISTS analytics_events (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         event_id VARCHAR(64),
@@ -616,6 +629,29 @@ function recreateSqliteDatabase(database) {
         }
       });
       insertContexts();
+    }
+
+    // Scope Resolutions (Additive relation for variant & configuration resolved fitments)
+    const scopeResPath = path.join(__dirname, 'part_fitment_scope_resolutions.json');
+    if (fs.existsSync(scopeResPath)) {
+      const scopeResData = JSON.parse(fs.readFileSync(scopeResPath, 'utf8'));
+      const scopeResList = Array.isArray(scopeResData.resolutions) ? scopeResData.resolutions : [];
+      const resStmt = db.prepare(`INSERT OR REPLACE INTO part_fitment_scope_resolutions VALUES (?, ?, ?, ?, ?, ?, ?, ?)`);
+      const insertScopeRes = db.transaction(() => {
+        for (const r of scopeResList) {
+          resStmt.run(
+            r.resolution_id,
+            r.source_evidence_id,
+            r.resolved_fitment_id,
+            r.resolved_scope_type,
+            r.resolved_variant_key || null,
+            r.resolved_configuration_key || null,
+            r.resolution_status,
+            r.provenance_hash
+          );
+        }
+      });
+      insertScopeRes();
     }
 
     db.close();
