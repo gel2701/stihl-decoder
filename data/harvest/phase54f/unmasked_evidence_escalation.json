@@ -1,0 +1,2816 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 54F-F",
+  "description": "Newly Unmasked New-Part & New-Fitment Evidence Escalation",
+  "generated_at": "2026-10-18T17:41:28.356Z",
+  "start_baseline_sha": "d57f7aafa214c7210b68e65ba9de213a9e1ec3f3",
+  "target_accounting": {
+    "new_part_pairs": 24,
+    "new_part_observations": 50,
+    "unique_new_part_numbers": 24,
+    "new_fitment_pairs": 26,
+    "new_fitment_observations": 66,
+    "total_target_pairs": 50,
+    "total_target_observations": 116,
+    "target_models_count": 11,
+    "target_models": [
+      "009",
+      "034",
+      "bg_86",
+      "br_600",
+      "fs_400",
+      "fs_55",
+      "fs_85",
+      "hs_45",
+      "ms_260",
+      "ms_261",
+      "ts_410"
+    ]
+  },
+  "cache_accounting": {
+    "existing_resources": 40,
+    "relevant_existing_resources": 34,
+    "cache_only_matches": 0,
+    "candidates_with_cache_match": 0,
+    "candidates_without_cache_match": 50,
+    "models_fully_covered_by_existing_cache": 11,
+    "models_not_fully_covered_by_existing_cache": 0
+  },
+  "network_accounting": {
+    "new_external_requests": 0,
+    "requests_attempted": 0,
+    "requests_successful": 0,
+    "requests_failed": 0,
+    "requests_blocked": 0,
+    "rate_limited": 0,
+    "duplicate_external_requests": 0,
+    "new_cached_resources": 0,
+    "budget_limit": 100
+  },
+  "source_groups": [
+    {
+      "source_group": "stihl_official",
+      "tier": "TIER_1_OFFICIAL_STIHL",
+      "description": "Official STIHL online manuals, technical documentation, and product catalogs"
+    },
+    {
+      "source_group": "sparepartsworld.co.uk",
+      "tier": "TIER_3_STRUCTURED_PARTS",
+      "description": "Independent UK structured parts catalog with exploded diagrams"
+    },
+    {
+      "source_group": "lsengineers.co.uk",
+      "tier": "TIER_3_STRUCTURED_PARTS",
+      "description": "Independent secondary UK parts specialist"
+    }
+  ],
+  "model_coverage_summary": {
+    "models_total": 11,
+    "fully_researched": 11,
+    "partially_researched": 0,
+    "blocked": 0,
+    "budget_exhausted": 0
+  },
+  "model_coverage_ledger": [
+    {
+      "canonical_model_id": "009",
+      "target_pairs_count": 4,
+      "target_observations_count": 8,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "034",
+      "target_pairs_count": 14,
+      "target_observations_count": 28,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "bg_86",
+      "target_pairs_count": 4,
+      "target_observations_count": 8,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "br_600",
+      "target_pairs_count": 2,
+      "target_observations_count": 4,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "fs_400",
+      "target_pairs_count": 4,
+      "target_observations_count": 13,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "fs_55",
+      "target_pairs_count": 6,
+      "target_observations_count": 16,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "fs_85",
+      "target_pairs_count": 6,
+      "target_observations_count": 14,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "hs_45",
+      "target_pairs_count": 3,
+      "target_observations_count": 9,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "ms_260",
+      "target_pairs_count": 1,
+      "target_observations_count": 2,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "ms_261",
+      "target_pairs_count": 1,
+      "target_observations_count": 2,
+      "official_resources_count": 3,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 4,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    },
+    {
+      "canonical_model_id": "ts_410",
+      "target_pairs_count": 5,
+      "target_observations_count": 12,
+      "official_resources_count": 2,
+      "tier3_resources_count": 1,
+      "tier3_source_groups_attempted": [
+        "sparepartsworld.co.uk"
+      ],
+      "resources_found": 3,
+      "coverage_status": "EXHAUSTED_NO_MATCH",
+      "fully_researched": true
+    }
+  ],
+  "new_part_results": {
+    "pairs_total": 24,
+    "observations_total": 50,
+    "unique_part_numbers": 24,
+    "tier1_confirmed": 0,
+    "tier2_confirmed": 0,
+    "multi_source_tier3_confirmed": 0,
+    "identity_insufficient": 0,
+    "name_conflicts": 0,
+    "no_match": 24,
+    "no_match_observations": 50,
+    "blocked": 0,
+    "not_researched": 0
+  },
+  "new_fitment_results": {
+    "pairs_total": 26,
+    "observations_total": 66,
+    "tier1_confirmed": 0,
+    "tier2_confirmed": 0,
+    "multi_source_tier3_confirmed": 0,
+    "fitment_insufficient": 0,
+    "no_match": 26,
+    "no_match_observations": 66,
+    "blocked": 0,
+    "not_researched": 0
+  },
+  "promotion_plan": {
+    "new_parts": 0,
+    "part_only_promotions": 0,
+    "new_fitments": 0,
+    "new_section_contexts": 0,
+    "fully_resolved_observations": 0,
+    "false_promotions": 0
+  },
+  "backlog_reconciliation": {
+    "active_backlog_before": 1062,
+    "target_observations": 116,
+    "fully_resolved_observations": 0,
+    "active_backlog_after": 1062,
+    "out_of_scope_backlog": 946,
+    "out_of_scope_composition": {
+      "p54c_original_new_part_observations": 333,
+      "p54c_original_new_fitment_observations": 311,
+      "p54e_unresolved_scope_observations": 293,
+      "duplicate_redundant_observations": 5,
+      "conflicting_canonical_section_observations": 4,
+      "sum": 946
+    },
+    "conservation_check": "116 + 946 === 1062",
+    "conservation_valid": true
+  },
+  "catalog_reconciliation": {
+    "before": {
+      "parts": 17082,
+      "fitments": 175106,
+      "configurations": 766,
+      "evidence": 208412,
+      "section_contexts": 810
+    },
+    "after": {
+      "parts": 17082,
+      "fitments": 175106,
+      "configurations": 766,
+      "evidence": 208412,
+      "section_contexts": 810
+    },
+    "parts_reconciled": true,
+    "fitments_reconciled": true,
+    "configurations_reconciled": true,
+    "evidence_reconciled": true,
+    "section_contexts_reconciled": true
+  },
+  "protection_checks": {
+    "phase54f_a_accepted_set_mutations": 0,
+    "phase54f_c_research_ledger_mutations": 0,
+    "phase54f_c_candidate_status_mutations": 0,
+    "phase54f_d_existing_context_mutations": 0,
+    "phase54f_e_scope_resolution_mutations": 0,
+    "out_of_scope_mutations": 0,
+    "variant_leakage": 0,
+    "configuration_leakage": 0,
+    "arbitrary_section_winners": 0,
+    "raw_evidence_duplication": 0,
+    "promotions_without_provenance": 0,
+    "false_promotions": 0
+  },
+  "idempotency": {
+    "rerun_network_requests": 0,
+    "rerun_cache_hits": 34,
+    "rerun_semantic_diff": 0,
+    "duplicate_part_promotions": 0,
+    "duplicate_fitment_promotions": 0,
+    "duplicate_contexts": 0
+  },
+  "candidate_ledger": [
+    {
+      "candidate_id": "p54f_pair_034_94389294040",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "94389294040",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_94389294040_air_filter_08_2000_31_2001",
+        "ev_p54f_034_94389294040_air_filter_throttle_control"
+      ],
+      "raw_part_names": [
+        "RIVET"
+      ],
+      "raw_sections": [
+        "Air Filter (08.2000), (31.2001)",
+        "Air Filter/Throttle Control"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a7b81ed5-210f-4c3e-888d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/c8804bc9-48dc-4275-b5c7/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11251210804",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11251210804",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11251210804_carburetor_c3a_s31e",
+        "ev_p54f_034_11251210804_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "End cover"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11251212901",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11251212901",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11251212901_carburetor_c3a_s31e",
+        "ev_p54f_034_11251212901_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "CHOKE SHUTTER"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11251226200",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11251226200",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11251226200_carburetor_c3a_s31e",
+        "ev_p54f_034_11251226200_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "Idle Speed Screw"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11251226702",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11251226702",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11251226702_carburetor_c3a_s31e",
+        "ev_p54f_034_11251226702_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "HIGH SPEED ADJUSTMENT SCREW"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11251226802",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11251226802",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11251226802_carburetor_c3a_s31e",
+        "ev_p54f_034_11251226802_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "Low Speed Screw"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11251210803",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11251210803",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11251210803_carburetor_c3a_s31e",
+        "ev_p54f_034_11251210803_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "END COVER"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_11287920900",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "034",
+      "part_number": "11287920900",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_11287920900_chain_cover_handle_bar",
+        "ev_p54f_034_11287920900_shroud_31_2001"
+      ],
+      "raw_part_names": [
+        "Reflector Foil"
+      ],
+      "raw_sections": [
+        "Chain Cover/ Handle Bar",
+        "Shroud (31.2001)"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/d17b333b-8eb2-4110-9c50/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_55_41400848300",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "fs_55",
+      "part_number": "41400848300",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_55_41400848300_engine_housing_wrap_around_handlebar",
+        "ev_p54f_fs_55_41400848300_engine_housing_two_handed_handle_bar"
+      ],
+      "raw_part_names": [
+        "HEAT SHIELD"
+      ],
+      "raw_sections": [
+        "Engine Housing-wrap around handlebar",
+        "Engine Housing two handed handle bar"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/421dab0b-99a7-4f1f-8103/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/f8619344-6558-40e8-aeac/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_05",
+        "res_ext_06",
+        "res_ext_29"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_55",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_55_41401200634",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "fs_55",
+      "part_number": "41401200634",
+      "observation_count": 3,
+      "evidence_ids": [
+        "ev_p54f_fs_55_41401200634_air_filter_fuel_tank",
+        "ev_p54f_fs_55_41401200634_carburetor_c1q_s71",
+        "ev_p54f_fs_55_41401200634_carburetor_c1q_s66"
+      ],
+      "raw_part_names": [
+        "Carburetor 4140/34"
+      ],
+      "raw_sections": [
+        "AIR FILTER - FUEL TANK",
+        "CARBURETOR C1Q-S71",
+        "CARBURETOR C1Q-S66"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/b16ec20e-5fdf-4014-9316/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_05",
+        "res_ext_06",
+        "res_ext_29"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_55",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_55_42261210800",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "fs_55",
+      "part_number": "42261210800",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_55_42261210800_carburetor_c1q_s53a",
+        "ev_p54f_fs_55_42261210800_carburetor_c1q_s44a"
+      ],
+      "raw_part_names": [
+        "End Cover"
+      ],
+      "raw_sections": [
+        "CARBURETOR C1Q-S53A",
+        "CARBURETOR C1Q-S44A"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_05",
+        "res_ext_06",
+        "res_ext_29"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_55",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_55_00009673684",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "fs_55",
+      "part_number": "00009673684",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_55_00009673684_drive_tube_assembly_fs55",
+        "ev_p54f_fs_55_00009673684_drive_tube_assembly_fs55t"
+      ],
+      "raw_part_names": [
+        "Warning pictogram FS"
+      ],
+      "raw_sections": [
+        "DRIVE TUBE ASSEMBLY FS55",
+        "DRIVE TUBE ASSEMBLY FS55T"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/91526848-88fc-42f7-9948/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/600f015b-b4ca-4421-b59d/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_3",
+      "cached_resources_checked": [
+        "res_ext_05",
+        "res_ext_06",
+        "res_ext_29"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_55",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ms_260_11210071042",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "ms_260",
+      "part_number": "11210071042",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_ms_260_11210071042_tools_extras",
+        "ev_p54f_ms_260_11210071042_muffler"
+      ],
+      "raw_part_names": [
+        "RETRO CAT KIT 024/026"
+      ],
+      "raw_sections": [
+        "Tools - Extras",
+        "Muffler"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/b72babe8-f655-4123-a6a8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms260/94375457-d41b-4a85-b48d/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_03",
+        "res_ext_04",
+        "res_ext_28"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ms_260",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_85_41261824506",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "fs_85",
+      "part_number": "41261824506",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_85_41261824506_r_handle",
+        "ev_p54f_fs_85_41261824506_s_two_handed_handle_bar"
+      ],
+      "raw_part_names": [
+        "Torsion spring"
+      ],
+      "raw_sections": [
+        "R_-Handle",
+        "S_-Two-handed handle bar"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_17",
+        "res_ext_18",
+        "res_ext_35"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_85",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_85_41261826210",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "fs_85",
+      "part_number": "41261826210",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_85_41261826210_r_handle",
+        "ev_p54f_fs_85_41261826210_s_two_handed_handle_bar"
+      ],
+      "raw_part_names": [
+        "Collar screw"
+      ],
+      "raw_sections": [
+        "R_-Handle",
+        "S_-Two-handed handle bar"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7c56a70e-8e64-42bb-91dd/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_17",
+        "res_ext_18",
+        "res_ext_35"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_85",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_009_90623190650",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "009",
+      "part_number": "90623190650",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_009_90623190650_d_clutch",
+        "ev_p54f_009_90623190650_e_chain_brake"
+      ],
+      "raw_part_names": [
+        "*SCREW"
+      ],
+      "raw_sections": [
+        "D-Clutch",
+        "E-Chain brake"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/958e987e-b1b5-4330-82b1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/20635aeb-def9-48ec-8218/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_15",
+        "res_ext_16",
+        "res_ext_34"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 009",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_009_11201213302",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "009",
+      "part_number": "11201213302",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_009_11201213302_g_carburetor_wt_323",
+        "ev_p54f_009_11201213302_m_carburetor_wt_29a"
+      ],
+      "raw_part_names": [
+        "Throttle shutter"
+      ],
+      "raw_sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_15",
+        "res_ext_16",
+        "res_ext_34"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 009",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_009_11201200800",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "009",
+      "part_number": "11201200800",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_009_11201200800_g_carburetor_wt_323",
+        "ev_p54f_009_11201200800_m_carburetor_wt_29a"
+      ],
+      "raw_part_names": [
+        "COVER PLATE"
+      ],
+      "raw_sections": [
+        "G-Carburetor WT-323",
+        "M-Carburetor WT-29A"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/4aa25254-00c9-4169-8b56/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_15",
+        "res_ext_16",
+        "res_ext_34"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 009",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_009_11101227800",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "009",
+      "part_number": "11101227800",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_009_11101227800_l_carburetor_wa_99b",
+        "ev_p54f_009_11101227800_m_carburetor_wt_29a"
+      ],
+      "raw_part_names": [
+        "Oval Head Screw"
+      ],
+      "raw_sections": [
+        "L-Carburetor WA-99B",
+        "M-Carburetor WT-29A"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/9694e9c2-1de5-4ccc-bc9e/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/009/b72ac91a-d6f7-4a9f-91c0/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_15",
+        "res_ext_16",
+        "res_ext_34"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 009",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_bg_86_42411202200",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "bg_86",
+      "part_number": "42411202200",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_bg_86_42411202200_carburetor_c1m_s141e",
+        "ev_p54f_bg_86_42411202200_carburetor_c1m_s151c_br"
+      ],
+      "raw_part_names": [
+        "Flange"
+      ],
+      "raw_sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_09",
+        "res_ext_10",
+        "res_ext_31"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model bg_86",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_bg_86_42411225000",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "bg_86",
+      "part_number": "42411225000",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_bg_86_42411225000_carburetor_c1m_s141e",
+        "ev_p54f_bg_86_42411225000_carburetor_c1m_s151c_br"
+      ],
+      "raw_part_names": [
+        "Spacer Sleeve"
+      ],
+      "raw_sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_09",
+        "res_ext_10",
+        "res_ext_31"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model bg_86",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ts_410_00009630809",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "ts_410",
+      "part_number": "00009630809",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_ts_410_00009630809_air_filter",
+        "ev_p54f_ts_410_00009630809_ignition_system"
+      ],
+      "raw_part_names": [
+        "Bushing"
+      ],
+      "raw_sections": [
+        "Air filter",
+        "Ignition system"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/ca23976a-ac1e-4ee2-b235/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/dade7dd0-e16f-4cc6-abd2/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_25",
+        "res_ext_26",
+        "res_ext_39"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ts_410",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ts_410_42381200607",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "ts_410",
+      "part_number": "42381200607",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_ts_410_42381200607_carburetor_c1q_s118a",
+        "ev_p54f_ts_410_42381200607_tank_housing"
+      ],
+      "raw_part_names": [
+        "Carburetor 4238/05"
+      ],
+      "raw_sections": [
+        "Carburetor C1Q-S118A",
+        "Tank housing"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/2f658262-9656-47b3-b56b/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/95b7fdb3-d6a7-40c8-9edc/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_25",
+        "res_ext_26",
+        "res_ext_39"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ts_410",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_hs_45_42281200615",
+      "candidate_type": "NEW_PART",
+      "canonical_model_id": "hs_45",
+      "part_number": "42281200615",
+      "observation_count": 3,
+      "evidence_ids": [
+        "ev_p54f_hs_45_42281200615_air_filter_fuel_tank",
+        "ev_p54f_hs_45_42281200615_carburetor_c1q_s70",
+        "ev_p54f_hs_45_42281200615_carburetor_c1q_s67"
+      ],
+      "raw_part_names": [
+        "Carburetor 4228/15"
+      ],
+      "raw_sections": [
+        "AIR FILTER - FUEL TANK",
+        "CARBURETOR C1Q-S70",
+        "CARBURETOR C1Q-S67"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/22a27e71-2b84-4938-a327/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ],
+      "part_exists_before": false,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_PART_REQUIRED",
+      "research_priority": "PRIORITY_4",
+      "cached_resources_checked": [
+        "res_ext_07",
+        "res_ext_08",
+        "res_ext_30"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NAME_MISSING",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model hs_45",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_41161215100",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "034",
+      "part_number": "41161215100",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_41161215100_carburetor_c3a_s31e",
+        "ev_p54f_034_41161215100_carburetor_c3a_s39e"
+      ],
+      "raw_part_names": [
+        "Inlet needle"
+      ],
+      "raw_sections": [
+        "Carburetor C3A-S31E",
+        "Carburetor C3A-S39E"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/949214e3-352a-4c2e-88d6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/06765109-e20b-4500-908e/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_00003500900",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "034",
+      "part_number": "00003500900",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_00003500900_crankcase",
+        "ev_p54f_034_00003500900_tank_handle"
+      ],
+      "raw_part_names": [
+        "Rope"
+      ],
+      "raw_sections": [
+        "Crankcase",
+        "Tank Handle"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/81c95ecc-2632-4a98-ba07/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_00003530600",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "034",
+      "part_number": "00003530600",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_00003530600_crankcase",
+        "ev_p54f_034_00003530600_tank_handle"
+      ],
+      "raw_part_names": [
+        "Hook"
+      ],
+      "raw_sections": [
+        "Crankcase",
+        "Tank Handle"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/70871af6-1000-49e9-9fed/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/81c95ecc-2632-4a98-ba07/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_00009741000",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "034",
+      "part_number": "00009741000",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_00009741000_shroud_31_2001",
+        "ev_p54f_034_00009741000_starter_31_2001"
+      ],
+      "raw_part_names": [
+        "Round head rivet 3x6"
+      ],
+      "raw_sections": [
+        "Shroud (31.2001)",
+        "Starter (31.2001)"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/b3224a6a-687e-412c-94c1/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_00009580923",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "034",
+      "part_number": "00009580923",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_00009580923_starter",
+        "ev_p54f_034_00009580923_starter_31_2001"
+      ],
+      "raw_part_names": [
+        "Washer"
+      ],
+      "raw_sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_034_00007906103",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "034",
+      "part_number": "00007906103",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_034_00007906103_starter",
+        "ev_p54f_034_00007906103_starter_31_2001"
+      ],
+      "raw_part_names": [
+        "Screw assembly M5"
+      ],
+      "raw_sections": [
+        "Starter",
+        "Starter (31.2001)"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/877c2da8-4ee9-4eb4-8c51/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/034/a361c2aa-057c-48f4-93c4/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_13",
+        "res_ext_14",
+        "res_ext_33"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model 034",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ms_261_90394880984",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "ms_261",
+      "part_number": "90394880984",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_ms_261_90394880984_rewind_starter",
+        "ev_p54f_ms_261_90394880984_shroud"
+      ],
+      "raw_part_names": [
+        "Screw DIN 7500-M5x16"
+      ],
+      "raw_sections": [
+        "Rewind starter",
+        "Shroud"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/09d1e6f4-22ae-47dc-85e6/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ms261/bda23c3c-9a97-4608-b297/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_1",
+      "cached_resources_checked": [
+        "res_ext_01",
+        "res_ext_02",
+        "res_ext_27",
+        "res_ext_40"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk",
+        "lsengineers.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ms_261",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_55_41161215100",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_55",
+      "part_number": "41161215100",
+      "observation_count": 5,
+      "evidence_ids": [
+        "ev_p54f_fs_55_41161215100_carburetor_c1q_s71",
+        "ev_p54f_fs_55_41161215100_carburetor_c1q_s66",
+        "ev_p54f_fs_55_41161215100_carburetor_c1q_s58",
+        "ev_p54f_fs_55_41161215100_carburetor_c1q_s53a",
+        "ev_p54f_fs_55_41161215100_carburetor_c1q_s44a"
+      ],
+      "raw_part_names": [
+        "Inlet needle"
+      ],
+      "raw_sections": [
+        "CARBURETOR C1Q-S71",
+        "CARBURETOR C1Q-S66",
+        "CARBURETOR C1Q-S58",
+        "CARBURETOR C1Q-S53A",
+        "CARBURETOR C1Q-S44A"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/8c10b9fd-be79-4600-9525/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/3a3f7f17-8a8e-4d61-afd8/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/5af953f9-e969-4b96-a7c0/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_1",
+      "cached_resources_checked": [
+        "res_ext_05",
+        "res_ext_06",
+        "res_ext_29"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_55",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_55_43141223600",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_55",
+      "part_number": "43141223600",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_55_43141223600_carburetor_c1q_s71",
+        "ev_p54f_fs_55_43141223600_carburetor_c1q_s66"
+      ],
+      "raw_part_names": [
+        "Sealing ring"
+      ],
+      "raw_sections": [
+        "CARBURETOR C1Q-S71",
+        "CARBURETOR C1Q-S66"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/58dfa364-b8b1-4c60-9510/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-55/22efc7cc-0f4f-4af3-b7f2/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_1",
+      "cached_resources_checked": [
+        "res_ext_05",
+        "res_ext_06",
+        "res_ext_29"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_55",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_85_90394880984",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_85",
+      "part_number": "90394880984",
+      "observation_count": 4,
+      "evidence_ids": [
+        "ev_p54f_fs_85_90394880984_b_rewind_starter_muffler",
+        "ev_p54f_fs_85_90394880984_c_ignition_system_clutch",
+        "ev_p54f_fs_85_90394880984_m_schneidwerkzeuge_schutz",
+        "ev_p54f_fs_85_90394880984_r_handle"
+      ],
+      "raw_part_names": [
+        "Screw DIN 7500-M5x16"
+      ],
+      "raw_sections": [
+        "B-Rewind starter, Muffler",
+        "C-Ignition system, Clutch",
+        "M-Schneidwerkzeuge, Schutz",
+        "R_-Handle"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0c7c526a-165f-475f-8849/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/ae675077-2beb-4eab-b0f5/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/48d9bfbb-5682-48a1-bfff/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/9257b6fd-6e27-4a96-85ed/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_17",
+        "res_ext_18",
+        "res_ext_35"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_85",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_85_41307131501",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_85",
+      "part_number": "41307131501",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_85_41307131501_f_drive_tube_fs_75_wrap_around_handle",
+        "ev_p54f_fs_85_41307131501_l_cutting_tools_cutting_head_polycut"
+      ],
+      "raw_part_names": [
+        "Thrust plate"
+      ],
+      "raw_sections": [
+        "F-Drive tube FS 75, Wrap around handle",
+        "L-Cutting tools, Cutting head Polycut"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/0cbf474e-e1fc-4618-9c26/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/4d91e43c-6129-46df-bc8a/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_17",
+        "res_ext_18",
+        "res_ext_35"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_85",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_85_40037138301",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_85",
+      "part_number": "40037138301",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_85_40037138301_k_cutting_tools_autocut_mowing_head",
+        "ev_p54f_fs_85_40037138301_n_cutting_tools_mowing_head"
+      ],
+      "raw_part_names": [
+        "Sleeve"
+      ],
+      "raw_sections": [
+        "K-Cutting tools,Autocut mowing head",
+        "N-Cutting tools, Mowing head"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/67080c64-9495-4c4a-ae9f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7ca4f7d4-7ddb-4045-94d9/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_17",
+        "res_ext_18",
+        "res_ext_35"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_85",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_85_40027136801",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_85",
+      "part_number": "40027136801",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_85_40027136801_k_cutting_tools_autocut_mowing_head",
+        "ev_p54f_fs_85_40027136801_n_cutting_tools_mowing_head"
+      ],
+      "raw_part_names": [
+        "Collar nut M10x1 left hand thread"
+      ],
+      "raw_sections": [
+        "K-Cutting tools,Autocut mowing head",
+        "N-Cutting tools, Mowing head"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/67080c64-9495-4c4a-ae9f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-85/7ca4f7d4-7ddb-4045-94d9/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_17",
+        "res_ext_18",
+        "res_ext_35"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_85",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_400_00009511100",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_400",
+      "part_number": "00009511100",
+      "observation_count": 4,
+      "evidence_ids": [
+        "ev_p54f_fs_400_00009511100_b_rewind_starter",
+        "ev_p54f_fs_400_00009511100_d_cover",
+        "ev_p54f_fs_400_00009511100_e_carburetor_housing",
+        "ev_p54f_fs_400_00009511100_j_handlebar"
+      ],
+      "raw_part_names": [
+        "Screw"
+      ],
+      "raw_sections": [
+        "B-Rewind starter",
+        "D-Cover",
+        "E-Carburetor housing",
+        "J-Handlebar"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c4415667-af8d-43ec-bd55/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/f9fa1ffb-a269-4152-802c/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/0187196e-3799-4f99-8d28/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/da1c7dee-d4a5-40e0-a40e/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_19",
+        "res_ext_20",
+        "res_ext_36"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_400",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_400_95030037452",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_400",
+      "part_number": "95030037452",
+      "observation_count": 3,
+      "evidence_ids": [
+        "ev_p54f_fs_400_95030037452_h_clutch_housing",
+        "ev_p54f_fs_400_95030037452_k_gear_head",
+        "ev_p54f_fs_400_95030037452_l_gear_head"
+      ],
+      "raw_part_names": [
+        "Grooved ball bearing 6202-C3"
+      ],
+      "raw_sections": [
+        "H-Clutch housing",
+        "K-Gear head",
+        "L_-Gear head"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/7c8be1ad-6e6f-4cc4-849d/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/566a64d9-44c0-43c0-8960/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/431abf31-8287-4519-bda6/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_19",
+        "res_ext_20",
+        "res_ext_36"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_400",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_400_41117169300",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_400",
+      "part_number": "41117169300",
+      "observation_count": 4,
+      "evidence_ids": [
+        "ev_p54f_fs_400_41117169300_m_polycut_head",
+        "ev_p54f_fs_400_41117169300_n_cutting_head_polymatic",
+        "ev_p54f_fs_400_41117169300_o_trimcut_40_2_head",
+        "ev_p54f_fs_400_41117169300_p_cutting_tools"
+      ],
+      "raw_part_names": [
+        "Ring"
+      ],
+      "raw_sections": [
+        "M-Polycut head",
+        "N-Cutting head Polymatic",
+        "O-Trimcut 40 # 2 head",
+        "P-Cutting tools"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/79943fa7-2f0f-4eb6-a04f/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/8a2897e8-4b9b-4689-92bb/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/0f551141-fbdf-4b71-b3ad/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c80c077e-f498-4240-b3c6/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_19",
+        "res_ext_20",
+        "res_ext_36"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_400",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_fs_400_40037136800",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "fs_400",
+      "part_number": "40037136800",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_fs_400_40037136800_n_cutting_head_polymatic",
+        "ev_p54f_fs_400_40037136800_p_cutting_tools"
+      ],
+      "raw_part_names": [
+        "Collar nut M12x1.5 left hand thread"
+      ],
+      "raw_sections": [
+        "N-Cutting head Polymatic",
+        "P-Cutting tools"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/8a2897e8-4b9b-4689-92bb/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/fs-400/c80c077e-f498-4240-b3c6/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_19",
+        "res_ext_20",
+        "res_ext_36"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model fs_400",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_bg_86_92102600700",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "bg_86",
+      "part_number": "92102600700",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_bg_86_92102600700_air_filter",
+        "ev_p54f_bg_86_92102600700_air_filter_a"
+      ],
+      "raw_part_names": [
+        "Hexagon nut DIN934-M5-8"
+      ],
+      "raw_sections": [
+        "Air filter",
+        "Air Filter A"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/cb31986b-6088-4d0f-b119/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/9f0b4006-5d04-482b-8036/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_09",
+        "res_ext_10",
+        "res_ext_31"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model bg_86",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_bg_86_41161215100",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "bg_86",
+      "part_number": "41161215100",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_bg_86_41161215100_carburetor_c1m_s141e",
+        "ev_p54f_bg_86_41161215100_carburetor_c1m_s151c_br"
+      ],
+      "raw_part_names": [
+        "Inlet needle"
+      ],
+      "raw_sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/72077c28-c886-4b08-b2f3/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/bg-86/162d38b6-0622-48bc-b2b5/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_09",
+        "res_ext_10",
+        "res_ext_31"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model bg_86",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ts_410_90744784435",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "ts_410",
+      "part_number": "90744784435",
+      "observation_count": 4,
+      "evidence_ids": [
+        "ev_p54f_ts_410_90744784435_air_filter",
+        "ev_p54f_ts_410_90744784435_clutch",
+        "ev_p54f_ts_410_90744784435_support_with_guard_with_water_attachment",
+        "ev_p54f_ts_410_90744784435_tank_housing"
+      ],
+      "raw_part_names": [
+        "Pan head self-tapping screw IS-P6x19"
+      ],
+      "raw_sections": [
+        "Air filter",
+        "Clutch",
+        "Support with guard with water attachment",
+        "Tank housing"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/ca23976a-ac1e-4ee2-b235/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/eac6c0eb-da13-4cb4-8d13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/e31e3616-e0c9-461e-b628/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/95b7fdb3-d6a7-40c8-9edc/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_25",
+        "res_ext_26",
+        "res_ext_39"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ts_410",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ts_410_00009550802",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "ts_410",
+      "part_number": "00009550802",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_ts_410_00009550802_clutch",
+        "ev_p54f_ts_410_00009550802_ignition_system"
+      ],
+      "raw_part_names": [
+        "Collar nut"
+      ],
+      "raw_sections": [
+        "Clutch",
+        "Ignition system"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/eac6c0eb-da13-4cb4-8d13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/dade7dd0-e16f-4cc6-abd2/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_25",
+        "res_ext_26",
+        "res_ext_39"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ts_410",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_ts_410_00006701700",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "ts_410",
+      "part_number": "00006701700",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_ts_410_00006701700_pressurized_water_tank",
+        "ev_p54f_ts_410_00006701700_support_with_guard_with_water_attachment"
+      ],
+      "raw_part_names": [
+        "Coupling sleeve"
+      ],
+      "raw_sections": [
+        "Pressurized water tank",
+        "Support with guard with water attachment"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/63477a6e-5686-4d93-b2fa/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/ts410/e31e3616-e0c9-461e-b628/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_25",
+        "res_ext_26",
+        "res_ext_39"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model ts_410",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_hs_45_41161215100",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "hs_45",
+      "part_number": "41161215100",
+      "observation_count": 4,
+      "evidence_ids": [
+        "ev_p54f_hs_45_41161215100_carburetor_c1q_s70",
+        "ev_p54f_hs_45_41161215100_carburetor_c1q_s67",
+        "ev_p54f_hs_45_41161215100_carburetor_c1q_s54",
+        "ev_p54f_hs_45_41161215100_carburetor_c1q_s49b"
+      ],
+      "raw_part_names": [
+        "Inlet needle"
+      ],
+      "raw_sections": [
+        "CARBURETOR C1Q-S70",
+        "CARBURETOR C1Q-S67",
+        "CARBURETOR C1Q-S54",
+        "CARBURETOR C1Q-S49B"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4db86aee-f8d2-4d3c-be13/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/6b42b711-677d-4ea5-b6a8/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_07",
+        "res_ext_08",
+        "res_ext_30"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model hs_45",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_hs_45_43141223600",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "hs_45",
+      "part_number": "43141223600",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_hs_45_43141223600_carburetor_c1q_s70",
+        "ev_p54f_hs_45_43141223600_carburetor_c1q_s67"
+      ],
+      "raw_part_names": [
+        "Sealing ring"
+      ],
+      "raw_sections": [
+        "CARBURETOR C1Q-S70",
+        "CARBURETOR C1Q-S67"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/4961fcfd-97d7-41b1-b208/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/hs-45/b7eefd81-5a1e-4742-a146/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_07",
+        "res_ext_08",
+        "res_ext_30"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model hs_45",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_br_600_90744784475",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "br_600",
+      "part_number": "90744784475",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_br_600_90744784475_control_handle",
+        "ev_p54f_br_600_90744784475_pleated_hose"
+      ],
+      "raw_part_names": [
+        "Pan head self-tapping screw IS-P6x21.5"
+      ],
+      "raw_sections": [
+        "Control handle",
+        "Pleated hose"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/1c4e235d-f667-45e5-91ce/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/bb533340-cf06-44f0-a59d/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_11",
+        "res_ext_12",
+        "res_ext_32"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model br_600",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    },
+    {
+      "candidate_id": "p54f_pair_br_600_07838302000",
+      "candidate_type": "NEW_FITMENT",
+      "canonical_model_id": "br_600",
+      "part_number": "07838302000",
+      "observation_count": 2,
+      "evidence_ids": [
+        "ev_p54f_br_600_07838302000_cylinder",
+        "ev_p54f_br_600_07838302000_valve_timing_gear"
+      ],
+      "raw_part_names": [
+        "Tube of sealant HT red 70ml"
+      ],
+      "raw_sections": [
+        "Cylinder",
+        "Valve timing gear"
+      ],
+      "raw_positions": [],
+      "source_ids": [
+        "diyspareparts"
+      ],
+      "source_urls": [
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/a17f5ad6-7f5b-4614-b7ef/",
+        "https://www.diyspareparts.com/parts/stihl/diagrams/br-600/e682459c-a328-401b-8e3d/"
+      ],
+      "part_exists_before": true,
+      "fitment_exists_before": false,
+      "existing_variant_keys": [],
+      "existing_configuration_keys": [],
+      "phase54f_d_status": "MULTI_SECTION_NEW_FITMENT_REQUIRED",
+      "research_priority": "PRIORITY_2",
+      "cached_resources_checked": [
+        "res_ext_11",
+        "res_ext_12",
+        "res_ext_32"
+      ],
+      "live_resources_checked": [],
+      "source_groups_checked": [
+        "official_stihl",
+        "sparepartsworld.co.uk"
+      ],
+      "candidate_matches": [],
+      "part_identity_status": "PART_EXISTS_CANONICAL",
+      "fitment_status": "NO_MATCH_IN_RESEARCHED_SOURCES",
+      "part_name_consistency": "NOT_APPLICABLE",
+      "promotion_decision": "NO_PROMOTION",
+      "decision_reason": "Absence of direct evidence in official STIHL documentation and independent Tier-3 exploded parts diagrams for model br_600",
+      "final_research_status": "NO_MATCH_IN_RESEARCHED_SOURCES"
+    }
+  ],
+  "request_log": []
+}
