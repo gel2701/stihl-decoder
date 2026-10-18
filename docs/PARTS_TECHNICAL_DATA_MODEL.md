@@ -224,3 +224,56 @@ Across 399 multi-section model-part pairs (958 staging observations):
 - **8 pairs / 16 observations**: Configuration scope unresolved (quarantined on FS 55, FS 85, MS 261 configurations).
 - **0 pairs / 0 observations**: Alias collapsed single-section.
 - **Active Staging Backlog**: Reduced from 1,872 to 1,062 observations (1,872 - 810 = 1,062).
+
+---
+
+## 7. Variant & Configuration Scope Resolution (Phase 54F-E)
+
+### 7.1 Architecture & Rationalization
+In external supplier and harvesting evidence, parts are frequently cataloged only at the base model level (`source_scope: 'MODEL_LEVEL_ONLY'`), even when canonical equipment models have discrete technical variants (e.g. HS 81 R vs HS 81 T) or configurations (e.g. FS 55 2-Mix vs standard 4-Mix, or Comfort variants).
+
+Phase 54F-E introduces a deterministic, fail-closed resolution framework governed by strict non-inference principles:
+- **Rule 13 & 15 (Candidate Uniqueness != Source Evidence)**: Even if exactly one exact variant or configuration fitment exists in the catalog for a given model and part, model-level evidence cannot be promoted to that narrow variant/configuration without explicit identity in the source evidence.
+- **Broad-to-Narrow Prevention**: Base model identifiers are never mapped to narrow variants/configurations (`BROAD_TO_NARROW_ALIAS_INFERENCE = 0`).
+- **No Synthetic Configurations**: No configurations or variants may be invented.
+- **Additive Scope Resolutions Relation**: Canonical resolutions are captured in `part_fitment_scope_resolutions`.
+
+### 7.2 Relation Schema
+```sql
+CREATE TABLE IF NOT EXISTS part_fitment_scope_resolutions (
+  resolution_id VARCHAR(150) PRIMARY KEY,
+  source_evidence_id VARCHAR(150) UNIQUE NOT NULL,
+  resolved_fitment_id VARCHAR(150) NOT NULL,
+  resolved_scope_type VARCHAR(50) NOT NULL,
+  resolved_variant_key VARCHAR(50),
+  resolved_configuration_key VARCHAR(100),
+  resolution_status VARCHAR(100) NOT NULL,
+  provenance_hash VARCHAR(64) NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_scope_res_fitment ON part_fitment_scope_resolutions(resolved_fitment_id);
+CREATE INDEX IF NOT EXISTS idx_scope_res_source ON part_fitment_scope_resolutions(source_evidence_id);
+```
+
+### 7.3 Scope Resolution Accounting (Phase 54F-E Cohort)
+- **Evaluated Scope Observations**: Exactly 293 observations (151 variant scope + 142 configuration scope across 276 unique pairs).
+- **Variant Scope Classification (151 obs / 142 pairs)**:
+  - `VARIANT_SCOPE_RESOLVED_EXPLICIT_SOURCE_IDENTITY`: 0
+  - `VARIANT_SCOPE_UNRESOLVED_MODEL_LEVEL_ONLY`: 7 (single candidate in catalog; inference strictly prohibited)
+  - `VARIANT_SCOPE_AMBIGUOUS_MULTIPLE_CANONICAL_MATCHES`: 144 (multiple candidate variants exist)
+  - `VARIANT_SCOPE_CONFLICTING_SOURCE_IDENTITY`: 0
+  - `VARIANT_SCOPE_NO_EXISTING_EXACT_FITMENT`: 0
+  - `VARIANT_SCOPE_INVALID_SOURCE_METADATA`: 0
+- **Configuration Scope Classification (142 obs / 134 pairs)**:
+  - `CONFIGURATION_SCOPE_RESOLVED_EXPLICIT_SOURCE_IDENTITY`: 0
+  - `CONFIGURATION_SCOPE_UNRESOLVED_MODEL_LEVEL_ONLY`: 92 (single candidate in catalog; inference strictly prohibited)
+  - `CONFIGURATION_SCOPE_AMBIGUOUS_MULTIPLE_CANONICAL_MATCHES`: 50 (multiple candidate configurations exist)
+  - `CONFIGURATION_SCOPE_CONFLICTING_SOURCE_IDENTITY`: 0
+  - `CONFIGURATION_SCOPE_NO_EXISTING_EXACT_FITMENT`: 0
+  - `CONFIGURATION_SCOPE_INVALID_SOURCE_METADATA`: 0
+- **Out-of-Scope Backlog Conservation**: Exactly 769 observations (383 new part, 377 new fitment, 5 duplicate, 4 section conflict).
+- **Total Conservation**: 293 + 769 = 1,062 active backlog observations conserved (`ACTIVE_BACKLOG_AFTER = 1062`).
+- **Safety Invariants**:
+  - `FALSE_SCOPE_RESOLUTION_COUNT = 0`
+  - `NEW_PARTS = 0`, `NEW_FITMENTS = 0`, `RAW_EVIDENCE_MUTATIONS = 0`
+  - `SCALAR_SECTION_MUTATIONS = 0`, `PHASE54F_D_CONTEXT_MUTATIONS = 0`
+  - `EXTERNAL_NETWORK_REQUESTS = 0`

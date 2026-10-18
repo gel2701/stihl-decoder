@@ -63,7 +63,8 @@ export const currentProductionSuites = [
   'tests/phase54f_b_staging_adjudication.test.js',
   'tests/phase54f_b_r1_promotion_eligibility.test.js',
   'tests/phase54f_c_evidence_escalation.test.js',
-  'tests/phase54f_d_multisection_resolution.test.js'
+  'tests/phase54f_d_multisection_resolution.test.js',
+  'tests/phase54f_e_scope_resolution.test.js'
 ];
 
 console.log('===============================================================');
