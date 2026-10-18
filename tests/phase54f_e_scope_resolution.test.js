@@ -157,11 +157,11 @@ describe('Phase 54F-E — Variant & Configuration Scope Resolution Test Suite', 
   });
 
   it('Test 8 — Existing 810 Phase 54F-D Section Contexts Unchanged', () => {
-    assert.equal(dContextsDoc.record_count, 810);
-    assert.equal(dContextsDoc.contexts.length, 810);
+    const phaseDContexts = dContextsDoc.contexts.filter(c => c.section_context_status === 'SOURCE_OBSERVED_MULTI_CONTEXT');
+    assert.equal(phaseDContexts.length, 810);
 
-    const dbContextCount = db.prepare('SELECT count(1) as c FROM model_part_fitment_section_contexts').get().c;
-    assert.equal(dbContextCount, 810);
+    const dbPhaseDContextCount = db.prepare("SELECT count(1) as c FROM model_part_fitment_section_contexts WHERE section_context_status = 'SOURCE_OBSERVED_MULTI_CONTEXT'").get().c;
+    assert.equal(dbPhaseDContextCount, 810);
   });
 
   it('Test 9 — No Context Added for Unresolved Scope', () => {

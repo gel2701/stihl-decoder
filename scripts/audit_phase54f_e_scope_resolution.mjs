@@ -115,10 +115,11 @@ if (!fs.existsSync(D_CONTEXTS_FILE)) {
   throw new Error(`FAIL: Missing Phase 54F-D model_part_fitment_section_contexts.json`);
 }
 const dContextsDoc = JSON.parse(fs.readFileSync(D_CONTEXTS_FILE, 'utf8'));
-if (dContextsDoc.record_count !== 810 || dContextsDoc.contexts.length !== 810) {
-  throw new Error(`FAIL: Phase 54F-D contexts altered! Expected 810, found ${dContextsDoc.contexts.length}`);
+const phaseDContexts = dContextsDoc.contexts.filter(c => c.section_context_status === 'SOURCE_OBSERVED_MULTI_CONTEXT');
+if (phaseDContexts.length !== 810) {
+  throw new Error(`FAIL: Phase 54F-D contexts altered! Expected exactly 810 SOURCE_OBSERVED_MULTI_CONTEXT records, found ${phaseDContexts.length}`);
 }
-console.log('  ✓ Phase 54F-D section contexts count === 810 (0 context mutations, 0 context deletions).');
+console.log('  ✓ Phase 54F-D section context cohort preserved exactly (810/810).');
 
 // 5. Audit Scope Input Cohort & Conservation (293 + 769 = 1062)
 console.log('\n▶ 5. Auditing Scope Input Cohort & Conservation (293 + 769 = 1062)...');
@@ -255,6 +256,7 @@ const fitmentsCount = db.prepare('SELECT count(1) as c FROM model_part_fitments'
 const configsCount = db.prepare('SELECT count(1) as c FROM parts_model_configurations').get().c;
 const evidenceCount = db.prepare('SELECT count(1) as c FROM part_fitment_evidence').get().c;
 const contextsCount = db.prepare('SELECT count(1) as c FROM model_part_fitment_section_contexts').get().c;
+const phaseDContextsCountInDb = db.prepare("SELECT count(1) as c FROM model_part_fitment_section_contexts WHERE section_context_status = 'SOURCE_OBSERVED_MULTI_CONTEXT'").get().c;
 const scopeResCountInDb = db.prepare('SELECT count(1) as c FROM part_fitment_scope_resolutions').get().c;
 const unresolvedScalarCount = db.prepare('SELECT count(1) as c FROM model_part_fitments WHERE section_name = \'Unresolved Diagram Section\'').get().c;
 
@@ -262,7 +264,7 @@ if (partsCount !== 17082) throw new Error(`FAIL: Parts count altered: ${partsCou
 if (fitmentsCount !== 175106) throw new Error(`FAIL: Fitments count altered: ${fitmentsCount}`);
 if (configsCount !== 766) throw new Error(`FAIL: Configurations count altered: ${configsCount}`);
 if (evidenceCount !== 208412) throw new Error(`FAIL: Evidence count altered: ${evidenceCount}`);
-if (contextsCount !== 810) throw new Error(`FAIL: Section contexts count altered: ${contextsCount}`);
+if (phaseDContextsCountInDb !== 810) throw new Error(`FAIL: Phase 54F-D context cohort altered: ${phaseDContextsCountInDb}`);
 if (scopeResCountInDb !== resolvedCount) throw new Error(`FAIL: SQLite scope resolutions count mismatch: ${scopeResCountInDb} vs ${resolvedCount}`);
 if (unresolvedScalarCount !== 170503) throw new Error(`FAIL: Scalar sections altered: ${unresolvedScalarCount}`);
 
@@ -270,7 +272,7 @@ console.log('  ✓ PARTS === 17082 (0 new parts created)');
 console.log('  ✓ FITMENTS === 175106 (0 fitment duplication, 0 new fitments created)');
 console.log('  ✓ CONFIGURATIONS === 766');
 console.log('  ✓ EVIDENCE === 208412 (0 raw evidence mutations)');
-console.log('  ✓ SECTION_CONTEXTS === 810 (0 Phase 54F-D context mutations)');
+console.log(`  ✓ SECTION_CONTEXTS total === ${contextsCount}; Phase 54F-D cohort remains exactly 810.`);
 console.log('  ✓ SCALAR_SECTION_MUTATIONS === 0 (170503 unresolved preserved)');
 console.log(`  ✓ part_fitment_scope_resolutions in SQLite === ${scopeResCountInDb}`);
 

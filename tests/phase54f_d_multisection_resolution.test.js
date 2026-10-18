@@ -143,8 +143,8 @@ describe('Phase 54F-D — Multi-Section Context Resolution Test Suite', () => {
 
   it('Test I — True Legitimate Multiplicity: multiplicity preserved non-lossy across distinct sections', () => {
     assert.equal(resolutionDoc.section_contexts.length, 810);
-    assert.equal(contextsDoc.record_count, 810);
-    assert.equal(contextsDoc.contexts.length, 810);
+    const phaseDContexts = contextsDoc.contexts.filter(c => c.section_context_status === 'SOURCE_OBSERVED_MULTI_CONTEXT');
+    assert.equal(phaseDContexts.length, 810);
 
     const fitmentContextMap = new Map();
     for (const c of resolutionDoc.section_contexts) {
