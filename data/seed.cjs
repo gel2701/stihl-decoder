@@ -338,6 +338,31 @@ function recreateSqliteDatabase(database) {
       );
       CREATE INDEX IF NOT EXISTS idx_configs_lookup ON parts_model_configurations(canonical_model_id, variant_key, configuration_key);
 
+      CREATE TABLE IF NOT EXISTS model_part_fitment_section_contexts (
+        context_id VARCHAR(150) PRIMARY KEY,
+        fitment_id VARCHAR(150) NOT NULL,
+        canonical_model_id VARCHAR(50) NOT NULL,
+        part_number VARCHAR(20) NOT NULL,
+        fitment_scope VARCHAR(50) NOT NULL DEFAULT 'BASE_MODEL_CONFIRMED',
+        variant_key VARCHAR(50) NOT NULL DEFAULT 'standard',
+        configuration_key VARCHAR(100),
+        section_key VARCHAR(100) NOT NULL,
+        section_name VARCHAR(150) NOT NULL,
+        section_key_raw VARCHAR(100),
+        section_name_raw VARCHAR(150),
+        diagram_position VARCHAR(50),
+        diagram_position_raw VARCHAR(50),
+        source_evidence_id VARCHAR(150) NOT NULL,
+        source_id VARCHAR(50) NOT NULL,
+        source_url TEXT,
+        source_scope VARCHAR(50) NOT NULL DEFAULT 'MODEL_LEVEL_ONLY',
+        section_context_status VARCHAR(50) NOT NULL DEFAULT 'SOURCE_OBSERVED_MULTI_CONTEXT',
+        provenance_hash VARCHAR(64) NOT NULL
+      );
+      CREATE INDEX IF NOT EXISTS idx_section_contexts_fitment ON model_part_fitment_section_contexts(fitment_id);
+      CREATE INDEX IF NOT EXISTS idx_section_contexts_model_part ON model_part_fitment_section_contexts(canonical_model_id, part_number);
+      CREATE INDEX IF NOT EXISTS idx_section_contexts_section ON model_part_fitment_section_contexts(section_key);
+
       CREATE TABLE IF NOT EXISTS analytics_events (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         event_id VARCHAR(64),
@@ -569,6 +594,28 @@ function recreateSqliteDatabase(database) {
         }
       });
       insertConfigs();
+    }
+
+    // Section Contexts (Additive relation for multi-section fitments)
+    const contextsPath = path.join(__dirname, 'model_part_fitment_section_contexts.json');
+    if (fs.existsSync(contextsPath)) {
+      const contextsData = JSON.parse(fs.readFileSync(contextsPath, 'utf8'));
+      const contextsList = Array.isArray(contextsData.contexts) ? contextsData.contexts : [];
+      const ctxStmt = db.prepare(`INSERT OR REPLACE INTO model_part_fitment_section_contexts VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+      const insertContexts = db.transaction(() => {
+        for (const c of contextsList) {
+          ctxStmt.run(
+            c.context_id, c.fitment_id, c.canonical_model_id, c.part_number,
+            c.fitment_scope || 'BASE_MODEL_CONFIRMED', c.variant_key || 'standard', c.configuration_key || null,
+            c.section_key, c.section_name, c.section_key_raw || null, c.section_name_raw || null,
+            c.diagram_position || null, c.diagram_position_raw || null,
+            c.source_evidence_id, c.source_id, c.source_url || null,
+            c.source_scope || 'MODEL_LEVEL_ONLY', c.section_context_status || 'SOURCE_OBSERVED_MULTI_CONTEXT',
+            c.provenance_hash
+          );
+        }
+      });
+      insertContexts();
     }
 
     db.close();

@@ -174,3 +174,53 @@ All observed conflicts are tracked in `data/parts_technical_conflicts.json`.
 - **Phase 54D SEO Pilot**: Frozen at exactly 50 allowlisted parts (`INDEXABLE_INDIVIDUAL_PARTS = 50`, `NOINDEX_INDIVIDUAL_PARTS = 17032`).
 - **Amazon Affiliate**: Frozen at 0 direct ASIN links, 17,082 search fallbacks, 0 unverified claims.
 - **Runtime Integrity**: `RUNTIME_TECHNICAL_SCRAPING = 0`, `RUNTIME_TI_DOCUMENT_PARSING = 0`. No live HTTP requests during runtime catalog resolution.
+
+---
+
+## 6. Multi-Section Diagram Contexts (Phase 54F-D)
+
+### 6.1 Architecture & Rationalization
+In exploded assembly diagrams, mechanical components (e.g., standard screws, washers, gaskets, clips) frequently appear in multiple physical sections of the same machine (e.g., Crankcase, Rewind Starter, and Carburetor).
+Previously, single-scalar section models forced arbitrary "winner" selection or caused observation-level ambiguity to freeze records in staging (`MULTI_SECTION_AMBIGUOUS`).
+
+Phase 54F-D resolves this with an additive, non-lossy relation:
+`model_part_fitment_section_contexts`
+
+### 6.2 Relational Invariants
+- **Non-Lossy Context Multiplicity**: All authentic section placements observed in evidence are captured without data loss (`CONTEXT_REDUCTION_LOSS = 0`).
+- **No Scalar Overwrite**: Existing fitment section fields in `model_part_fitments` are left strictly immutable (`SCALAR_SECTION_MUTATIONS = 0`).
+- **No Fitment Duplication**: The canonical fitment count remains exactly 175,106 (`FITMENT_DUPLICATION = 0`).
+- **Zero Hallucination / Leakage**: Observations are strictly scoped. Model-level generic observations are never promoted to variant-specific or configuration-specific contexts (`LEAKAGE = 0`).
+
+### 6.3 Relation Schema
+```sql
+CREATE TABLE IF NOT EXISTS model_part_fitment_section_contexts (
+  context_id TEXT PRIMARY KEY,
+  fitment_id TEXT NOT NULL,
+  canonical_part_number TEXT NOT NULL,
+  canonical_model_id TEXT NOT NULL,
+  configuration_key TEXT,
+  section_name_raw TEXT NOT NULL,
+  section_name_canonical TEXT NOT NULL,
+  diagram_position_raw TEXT NOT NULL,
+  has_meaningful_position INTEGER NOT NULL DEFAULT 0,
+  scope_type TEXT NOT NULL DEFAULT 'BASE_MODEL_GENERIC',
+  source_evidence_id TEXT NOT NULL,
+  FOREIGN KEY (fitment_id) REFERENCES model_part_fitments(id),
+  FOREIGN KEY (canonical_part_number) REFERENCES parts(canonical_part_number),
+  FOREIGN KEY (source_evidence_id) REFERENCES part_fitment_evidence(id)
+);
+CREATE INDEX IF NOT EXISTS idx_sec_ctx_fitment ON model_part_fitment_section_contexts(fitment_id);
+CREATE INDEX IF NOT EXISTS idx_sec_ctx_part ON model_part_fitment_section_contexts(canonical_part_number);
+CREATE INDEX IF NOT EXISTS idx_sec_ctx_model ON model_part_fitment_section_contexts(canonical_model_id);
+```
+
+### 6.4 Multi-Section Adjudication Accounting
+Across 399 multi-section model-part pairs (958 staging observations):
+- **334 pairs / 810 observations**: Confirmed legitimate base-model multi-section placements mapped cleanly to existing canonical fitments (yielding exactly 810 distinct section contexts).
+- **24 pairs / 50 observations**: Unmasked new-part candidates (missing part in catalog; quarantined).
+- **26 pairs / 66 observations**: Unmasked new-fitment candidates (part exists, base fitment missing; quarantined).
+- **7 pairs / 16 observations**: Variant scope unresolved (quarantined on HS 81 variants).
+- **8 pairs / 16 observations**: Configuration scope unresolved (quarantined on FS 55, FS 85, MS 261 configurations).
+- **0 pairs / 0 observations**: Alias collapsed single-section.
+- **Active Staging Backlog**: Reduced from 1,872 to 1,062 observations (1,872 - 810 = 1,062).
