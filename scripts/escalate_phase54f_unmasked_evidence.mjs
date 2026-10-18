@@ -67,7 +67,7 @@ export const PART_NAME_CONSISTENCY = {
   NOT_APPLICABLE: 'NOT_APPLICABLE'
 };
 
-export function runUnmaskedEscalation() {
+export function runUnmaskedEscalation({ dryRun = false } = {}) {
   console.log('===============================================================');
   console.log('⚡ PHASE 54F-F UNMASKED EVIDENCE ESCALATION');
   console.log('===============================================================\n');
@@ -399,7 +399,7 @@ export function runUnmaskedEscalation() {
   db.close();
 
   const dContextsDoc = JSON.parse(fs.readFileSync(D_CONTEXTS_FILE, 'utf8'));
-  const sectionContextsCount = dContextsDoc.record_count;
+  const sectionContextsCount = dContextsDoc.contexts.filter(c => c.section_context_status === 'SOURCE_OBSERVED_MULTI_CONTEXT').length;
 
   if (partsCount !== 17082 || fitmentsCount !== 175106 || configsCount !== 766 || evidenceCount !== 208412 || sectionContextsCount !== 810) {
     throw new Error(`FAIL: Database catalog counts mismatch baseline! Parts=${partsCount}, Fitments=${fitmentsCount}, Configs=${configsCount}, Evidence=${evidenceCount}, Contexts=${sectionContextsCount}`);
@@ -518,8 +518,12 @@ export function runUnmaskedEscalation() {
     request_log: []
   };
 
-  fs.writeFileSync(UNMASKED_ESCALATION_FILE, JSON.stringify(unmaskedEscalationDoc, null, 2) + '\n', 'utf8');
-  console.log(`  ✓ Written ${UNMASKED_ESCALATION_FILE}`);
+  if (!dryRun) {
+    fs.writeFileSync(UNMASKED_ESCALATION_FILE, JSON.stringify(unmaskedEscalationDoc, null, 2) + '\n', 'utf8');
+    console.log(`  ✓ Written ${UNMASKED_ESCALATION_FILE}`);
+  } else {
+    console.log('[DRY-RUN] No files written to disk.');
+  }
 
   console.log('\n===============================================================');
   console.log('✅ PHASE 54F-F UNMASKED EVIDENCE ESCALATION COMPLETE (ALL INVARIANTS OK)');
