@@ -66,7 +66,8 @@ export const currentProductionSuites = [
   'tests/phase54f_d_multisection_resolution.test.js',
   'tests/phase54f_e_scope_resolution.test.js',
   'tests/phase54f_f_unmasked_evidence.test.js',
-  'tests/phase54f_g_duplicate_conflict_resolution.test.js'
+  'tests/phase54f_g_duplicate_conflict_resolution.test.js',
+  'tests/phase54f_h_backlog_finalization.test.js'
 ];
 
 console.log('===============================================================');
