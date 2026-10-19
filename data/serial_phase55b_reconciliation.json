@@ -1,0 +1,79 @@
+{
+  "baseline_sha": "db863aca2471d3059c5aeb5748637a63cb3484e9",
+  "phase": "Phase 55B",
+  "snapshot_identity": {
+    "path": "C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten.csv",
+    "temp_copy": "C:\\Users\\GelliusSnippe\\.agents\\temp_snapshots\\stihl_resultaten_snapshot.csv",
+    "batch_source_copy": "data/import_batches/serials_2026-10-19_manual_delta/source/stihl_resultaten_snapshot.csv",
+    "sha256": "523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c",
+    "bytes": 8994337,
+    "date_min": "2026-10-17",
+    "date_max": "2026-10-19"
+  },
+  "phase55a_baseline": {
+    "anchors": 15660,
+    "aliases": 171
+  },
+  "source_accounting": {
+    "total_populated_rows": 7103,
+    "unique_serials": 6618,
+    "duplicate_rows": 485,
+    "raw_status_counts": {
+      "gevonden": 6501,
+      "fout": 479,
+      "time-out": 122,
+      "onbekend": 1,
+      "other": 0
+    }
+  },
+  "historical_overlap": {
+    "historical_batches_checked": [
+      "serials_2026-09-26",
+      "serials_2026-10-06",
+      "serials_2026-10-09",
+      "serials_2026-10-17_manual_followup",
+      "serials_2026-10-19_manual_followup"
+    ],
+    "overlap_rows": 7103,
+    "description": "All 7,103 populated source rows were verified against historical Phase 55A Batch B data and existing canonical anchors."
+  },
+  "delta_accounting": {
+    "snapshot_rows": 7103,
+    "historical_overlap_rows": 7103,
+    "true_delta_rows": 0,
+    "conservation_check": "7103 + 0 = 7103"
+  },
+  "positive_anchor_accounting": {
+    "anchors_before": 15660,
+    "reconfirmed_existing_anchors": 6486,
+    "previously_unresolved_now_positive": 0,
+    "new_official_anchors_promoted": 0,
+    "anchors_after": 15660
+  },
+  "alias_accounting": {
+    "aliases_before": 171,
+    "new_aliases_added": 0,
+    "aliases_after": 171
+  },
+  "conflict_accounting": {
+    "identity_conflicts": 0,
+    "invalid_input_serials": 0
+  },
+  "protection_checks": {
+    "ranges_created": 0,
+    "generic_prefix_rules_created": 0,
+    "negative_runtime_evidence_created": 0,
+    "phase55a_artifacts_mutated": 0,
+    "historical_batches_mutated": 0
+  },
+  "parity": {
+    "official_serial_anchors_json": 15660,
+    "stihl_database_json": 15660,
+    "sqlite_db": 15660,
+    "cross_store_parity": "PASS"
+  },
+  "idempotency": {
+    "status": "IDEMPOTENT_VERIFIED",
+    "clean_delta": true
+  }
+}

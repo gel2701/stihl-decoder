@@ -1,0 +1,87 @@
+{
+  "batch_id": "serials_2026-10-19_manual_delta",
+  "batch_import_date": "2026-10-20",
+  "verification_date_min": "2026-10-17",
+  "verification_date_max": "2026-10-19",
+  "date_basis": "per-row controle_datum in stihl_resultaten_snapshot.csv",
+  "snapshot_timestamp": "2026-10-19T23:00:08.644Z",
+  "source_file": "source/stihl_resultaten_snapshot.csv",
+  "source_sha256": "523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c",
+  "source_bytes": 8994337,
+  "source_rows": 7103,
+  "source_unique_serials": 6618,
+  "raw_status_counts": {
+    "gevonden": 6501,
+    "fout": 479,
+    "time-out": 122,
+    "onbekend": 1,
+    "other": 0
+  },
+  "historical_overlap_rows": 7103,
+  "true_delta_rows": 0,
+  "already_canonical": 6486,
+  "reconfirmed": 6486,
+  "previously_unresolved_now_positive": 0,
+  "new_positive_observations": 0,
+  "new_official_anchors": 0,
+  "new_no_match": 122,
+  "found_without_usable_identity": 10,
+  "technical_errors": 0,
+  "duplicate_rows": 485,
+  "identity_conflicts": 0,
+  "invalid_serials": 0,
+  "anchors_before": 15660,
+  "anchors_after": 15660,
+  "aliases_before": 171,
+  "aliases_after": 171,
+  "artifact_hashes": {
+    "serial_lookup_observations_2026-10-19.json": {
+      "bytes": 1931647,
+      "sha256": "2d76d8bab689776867b653a10b8c3b5c57c4375719a7cf61946409456a68deb3"
+    },
+    "serial_lookup_observations_2026-10-19.csv": {
+      "bytes": 633760,
+      "sha256": "d23c47180aa68d18c098ddcb46cdc67d528dddbd9f31ebebfa8e042e04244634"
+    },
+    "new_official_serial_anchors_only_2026-10-19.json": {
+      "bytes": 82,
+      "sha256": "40502b992877f1fa3959b88d6ea054fed322d6a7ee9875394385cebeb031a61d"
+    },
+    "new_official_serial_anchors_only_2026-10-19.csv": {
+      "bytes": 154,
+      "sha256": "6ad794cf1d2d6266a701341bc1065646e138c7d547aa7b222ecd03ec93e15bc7"
+    },
+    "reconfirmed_existing_anchors_2026-10-19.csv": {
+      "bytes": 555006,
+      "sha256": "c1cb003296bdc7961e278cea47ba296c8ca9476b78561b48f7814d79e2c95a18"
+    },
+    "previously_unresolved_now_positive_2026-10-19.csv": {
+      "bytes": 78,
+      "sha256": "dc05fafa32358ebce001899c409e0702f4984f5d0dfe9861e49170b0f9ec31b6"
+    },
+    "already_processed_rows_2026-10-19.csv": {
+      "bytes": 8939522,
+      "sha256": "998d8b8cedea7fddb5ca75cde7df671508715688baa1a1f352f9b3d4cbe25edd"
+    },
+    "serial_no_match_2026-10-19.csv": {
+      "bytes": 33272,
+      "sha256": "5acbb8ab4de6a245c1a66f3eb4fdafc92211fad0a4a43075ab242c912ede1b10"
+    },
+    "found_without_usable_identity_2026-10-19.csv": {
+      "bytes": 7286,
+      "sha256": "22c334ff6e8c0e0e45a578c4bd4971f1db09b6c6cd73a51fcf36ba01a33ffd2e"
+    },
+    "technical_errors_2026-10-19.csv": {
+      "bytes": 56,
+      "sha256": "2745ad7ef2db2c5ab68c8f765bfd97795ba0f89b8277047ca935cec34ed9c619"
+    },
+    "duplicate_source_rows_2026-10-19.csv": {
+      "bytes": 651550,
+      "sha256": "6fa0ce399761e43d45b39ee8e8a4e3747d5eb146273aa28a6bcd6b6f02d64ebe"
+    },
+    "identity_conflicts_2026-10-19.csv": {
+      "bytes": 28,
+      "sha256": "8c9f78eafe93fbd3e7af348d31883c90795757b1c71c5b1524c0b3564892364f"
+    }
+  }
+}
