@@ -54,7 +54,6 @@ export function runPhase55aAudit(options = {}) {
 
   // 1. Source Hash & Invariant Integrity
   console.log('▶ Check 1: Verifying Source File Integrity & Copy Parity...');
-  const externalSourcePath = 'C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten_17_10.csv';
   const batchSourcePath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'source', 'stihl_resultaten_17_10.csv');
 
   if (!fs.existsSync(batchSourcePath)) {

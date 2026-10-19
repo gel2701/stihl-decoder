@@ -137,5 +137,6 @@ A new batch directory `data/import_batches/serials_2026-10-17_manual_followup/` 
 - Critical Playwright Browser E2E: `npm run test:e2e` executed across 19 journeys: **19/19 PASS**.
 - Google Analytics 4 tracking: `tests/sitewide_google_analytics.test.js`: **PASS**.
 - Secret Scan across tracked candidate files: `COMMITTED_SECRET_MATCH_COUNT = 0`.
-- Remote GitHub CI: **PENDING_REMOTE_CONFIRMATION** (Runs queued on GitHub Actions).
-- Isolated Clean Checkout Gate: **BLOCKED / HARD_STOP** (`npm ci` fails on Node v25.4.0 on Windows due to `better-sqlite3@13.0.3` lack of prebuilt binaries and missing Visual Studio C++ toolchain; manual dependency workarounds strictly forbidden).
+- Node 25 local clean checkout: **FAIL** due to unsupported native dependency build environment (`better-sqlite3@13.0.3` requires C++ compiler).
+- Node 22 local clean checkout: **FAIL** on Windows due to `better-sqlite3@13.0.3` lack of prebuilt Windows binaries on GitHub releases and absence of Visual Studio C++ build tools; all dependency workarounds strictly forbidden.
+- Node 22 repository-supported clean checkout (GitHub Actions `ubuntu-latest` CI): `trust-audit` = **PASS**, `browser-e2e` = **PASS**.

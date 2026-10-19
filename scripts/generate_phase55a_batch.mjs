@@ -16,13 +16,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-export const FROZEN_SOURCE_PATH = 'C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten_17_10.csv';
-export const EXPECTED_SOURCE_SHA256 = 'c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680';
-export const EXPECTED_SOURCE_BYTES = 4564382;
-
 export const BATCH_DIR = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup');
 export const BATCH_DATA_DIR = path.join(BATCH_DIR, 'data');
 export const BATCH_SOURCE_DIR = path.join(BATCH_DIR, 'source');
+export const BATCH_SOURCE_COPY = path.join(BATCH_SOURCE_DIR, 'stihl_resultaten_17_10.csv');
+export const FROZEN_SOURCE_EXTERNAL = 'C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten_17_10.csv';
+export const FROZEN_SOURCE_PATH = fs.existsSync(FROZEN_SOURCE_EXTERNAL) ? FROZEN_SOURCE_EXTERNAL : BATCH_SOURCE_COPY;
+export const EXPECTED_SOURCE_SHA256 = 'c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680';
+export const EXPECTED_SOURCE_BYTES = 4564382;
 
 export function parseCSV(content) {
   const rows = [];
