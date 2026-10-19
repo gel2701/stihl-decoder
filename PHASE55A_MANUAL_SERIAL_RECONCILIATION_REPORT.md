@@ -132,5 +132,10 @@ A new batch directory `data/import_batches/serials_2026-10-17_manual_followup/` 
 
 - `scripts/audit_phase55a_manual_serial_import.mjs`: **PASS** (100% accounting and manifest checks passed).
 - `tests/phase55a_manual_serial_import.test.js`: **PASS** (13 comprehensive subtests passed).
-- `tests/phase53a_reproducibility.test.js`: **PASS** (Future-safe historical preservation tests passed).
-- Full production test runner: `tests/run_current_production_tests.js` updated and executed across 47 test suites.
+- `tests/phase53a_reproducibility.test.js`: **PASS** (32/32 tests passed; historical anchors strictly enforced).
+- Full production test runner: `tests/run_current_production_tests.js` executed across 47 suites: **47/47 PASS**.
+- Critical Playwright Browser E2E: `npm run test:e2e` executed across 19 journeys: **19/19 PASS**.
+- Google Analytics 4 tracking: `tests/sitewide_google_analytics.test.js`: **PASS**.
+- Secret Scan across tracked candidate files: `COMMITTED_SECRET_MATCH_COUNT = 0`.
+- Remote GitHub CI: **PENDING_REMOTE_CONFIRMATION** (Runs queued on GitHub Actions).
+- Isolated Clean Checkout Gate: **BLOCKED / HARD_STOP** (`npm ci` fails on Node v25.4.0 on Windows due to `better-sqlite3@13.0.3` lack of prebuilt binaries and missing Visual Studio C++ toolchain; manual dependency workarounds strictly forbidden).
