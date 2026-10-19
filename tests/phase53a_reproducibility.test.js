@@ -567,7 +567,7 @@ test('Phase 53A-M1 - Test 23: Verify Mode Leaves Zero Files and SQLite Intact (V
   assert.strictEqual(postSqliteSha, initialSqliteSha, 'STIHL_DATABASE_DB SHA256 must be identical');
 });
 
-test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added Across B, C, and D (8875 Total)', () => {
+test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added Across B, C, and D', () => {
   const env = createTempProductionEnvironment();
   try {
     const futureAnchor = {
@@ -586,6 +586,7 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
 
     // 1. Add to B (official_serial_anchors.json)
     const officialDoc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    const initialCount = officialDoc.anchors.length;
     officialDoc.anchors.push(futureAnchor);
     officialDoc.anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
     fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
@@ -631,10 +632,10 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
     assert.strictEqual(res.productionStats.historicalAnchorsPresent, 8874);
     assert.strictEqual(res.productionStats.historicalAnchorsMissing, 0);
     assert.strictEqual(res.productionStats.historicalAnchorsMutated, 0);
-    assert.strictEqual(res.productionStats.currentProductionJsonCount, 8875);
-    assert.strictEqual(res.productionStats.currentStihlDbJsonCount, 8875);
-    assert.strictEqual(res.productionStats.currentSqliteCount, 8875);
-    assert.strictEqual(res.productionStats.futurePostPhase53aAnchors, 1);
+    assert.strictEqual(res.productionStats.currentProductionJsonCount, initialCount + 1);
+    assert.strictEqual(res.productionStats.currentStihlDbJsonCount, initialCount + 1);
+    assert.strictEqual(res.productionStats.currentSqliteCount, initialCount + 1);
+    assert.strictEqual(res.productionStats.futurePostPhase53aAnchors, initialCount + 1 - 8874);
     assert.strictEqual(res.productionStats.fullParityPass, true);
 
     // Also verify 8-digit and 10-digit future anchors supported by OfficialSerialAnchorResolver (/^\d{8,10}$/)
@@ -678,9 +679,10 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
       sqliteDatabasePath: env.tempStihlDatabaseDb,
       throwOnError: false
     });
+
     assert.strictEqual(res8And10.success, true, `8- and 10-digit future anchors in B/C/D must PASS: ${res8And10.errors.join('; ')}`);
-    assert.strictEqual(res8And10.productionStats.currentProductionJsonCount, 8877);
-    assert.strictEqual(res8And10.productionStats.futurePostPhase53aAnchors, 3);
+    assert.strictEqual(res8And10.productionStats.currentProductionJsonCount, initialCount + 3);
+    assert.strictEqual(res8And10.productionStats.futurePostPhase53aAnchors, initialCount + 3 - 8874);
   } finally {
     env.cleanup();
   }

@@ -1,0 +1,42 @@
+{
+  "baseline_sha": "1dcc18d04495feba2099607a1208681ddab7fd56",
+  "source_identity": "C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten_17_10.csv",
+  "source_hash": "c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680",
+  "source_bytes": 4564382,
+  "source_row_accounting": {
+    "total_populated_rows": 7303,
+    "unique_input_serials": 7202,
+    "duplicate_source_rows": 101
+  },
+  "historical_overlap": {
+    "already_imported_identical": 202,
+    "already_observed_same_result": 402,
+    "previously_unresolved_now_positive": 13,
+    "previously_unresolved_still_no_match": 65,
+    "new_positive_observations": 1530,
+    "new_no_match_observations": 4985,
+    "found_without_usable_identity": 4,
+    "technical_errors": 1,
+    "identity_conflicts": 0,
+    "invalid_input_serials": 0
+  },
+  "positive_anchor_accounting": {
+    "anchors_before": 8874,
+    "new_official_anchors": 1543,
+    "reconfirmed_existing_anchors": 604,
+    "anchors_after": 10417
+  },
+  "alias_accounting": {
+    "aliases_before": 171,
+    "new_explicit_aliases": 0,
+    "aliases_after": 171
+  },
+  "protection_checks": {
+    "ranges_created": 0,
+    "generic_prefix_rules_created": 0,
+    "negative_runtime_evidence_created": 0,
+    "active_source_excluded": true,
+    "existing_batches_immutable": true,
+    "phase54f_protected": true
+  }
+}
