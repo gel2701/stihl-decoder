@@ -23,7 +23,7 @@ export const BATCH_B_DATA_DIR = path.join(BATCH_B_DIR, 'data');
 export const BATCH_B_SOURCE_DIR = path.join(BATCH_B_DIR, 'source');
 export const BATCH_B_SOURCE_COPY = path.join(BATCH_B_SOURCE_DIR, 'stihl_resultaten_3.csv');
 export const FROZEN_SOURCE_EXTERNAL = 'C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten.csv';
-export const FROZEN_SOURCE_PATH = fs.existsSync(FROZEN_SOURCE_EXTERNAL) ? FROZEN_SOURCE_EXTERNAL : BATCH_B_SOURCE_COPY;
+export const FROZEN_SOURCE_PATH = fs.existsSync(BATCH_B_SOURCE_COPY) ? BATCH_B_SOURCE_COPY : FROZEN_SOURCE_EXTERNAL;
 export const EXPECTED_SOURCE_SHA256 = '523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c';
 export const EXPECTED_SOURCE_BYTES = 8994337;
 
