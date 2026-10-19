@@ -1,24 +1,25 @@
 #!/usr/bin/env node
 /**
- * Phase 55A: Manual MY STIHL Serial Evidence Import Audit Suite
+ * Phase 55A: Manual MY STIHL Serial Evidence Import Audit Suite (Extended for Batch A & Batch B)
  *
  * Enforces strict fail-closed validation of:
- * 1. Source Hash & Invariant Integrity
- * 2. Complete Row Accounting (7,303 populated source rows, 0 unaccounted)
- * 3. Historical Overlap Integrity (serials_2026-09-26, serials_2026-10-06, serials_2026-10-09)
- * 4. Traceable Transition for Previously Unresolved -> Positive Serials
- * 5. Full Source Row Lineage for all New Anchors
- * 6. Zero Canonical Duplicate Anchors
+ * 1. Batch A and Batch B Source Hash & Invariant Integrity
+ * 2. Complete Row Accounting for Batch A (7,303 rows) and Batch B (7,103 rows)
+ * 3. Cross-Batch Overlap Accounting (120 overlapping serials, 117 same positive, 0 conflicts)
+ * 4. All Batch A & Batch B Artifacts and Manifest Hashes
+ * 5. Full Source Row Lineage for all New Anchors (1,543 in Batch A, 5,243 in Batch B)
+ * 6. Zero Canonical Duplicate Anchors across 15,660 total anchors
  * 7. Zero Identity Conflicts
  * 8. Zero Timeouts / No-Matches Promoted
  * 9. Zero Found-Without-Usable-Identity Promoted
- * 10. Zero Negative Runtime Evidence Introduced
- * 11. Zero Range Inferences Created
- * 12. Zero Generic Prefix (8->9) Rules Created
- * 13. Historical Batches Immutability (0 mutations)
- * 14. Phase 54F Final Close Immutability (0 mutations)
- * 15. 100% Parity across official_serial_anchors.json, stihl_database.json, and SQLite
- * 16. Full Idempotency
+ * 10. Zero Technical Errors Promoted
+ * 11. Zero Negative Runtime Evidence Introduced
+ * 12. Zero Range Inferences Created (8 baseline ranges strictly preserved)
+ * 13. Zero Generic Prefix (8->9) Rules Created (0 generic rules allowed)
+ * 14. Historical Batches Immutability (0 mutations in 2026-09-26, 2026-10-06, 2026-10-09)
+ * 15. Phase 54F Final Close Immutability (0 mutations)
+ * 16. 100% Parity across official_serial_anchors.json, stihl_database.json, and SQLite
+ * 17. Full Idempotency of Batch Processing Pipelines
  */
 
 import fs from 'fs';
@@ -34,136 +35,235 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-export const EXPECTED_SOURCE_SHA256 = 'c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680';
-export const EXPECTED_SOURCE_BYTES = 4564382;
-export const EXPECTED_SOURCE_ROWS = 7303;
-export const EXPECTED_UNIQUE_SERIALS = 7202;
+// Batch A constants
+export const EXPECTED_BATCH_A_SOURCE_SHA256 = 'c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680';
+export const EXPECTED_BATCH_A_SOURCE_BYTES = 4564382;
+export const EXPECTED_BATCH_A_SOURCE_ROWS = 7303;
+export const EXPECTED_BATCH_A_UNIQUE_SERIALS = 7202;
+export const EXPECTED_BATCH_A_NEW_ANCHORS = 1543;
+export const EXPECTED_BATCH_A_RECONFIRMED = 604;
 
-export const EXPECTED_NEW_ANCHORS = 1543;
-export const EXPECTED_RECONFIRMED = 604;
-export const EXPECTED_TOTAL_ANCHORS = 10417;
+// Batch B constants
+export const EXPECTED_BATCH_B_SOURCE_SHA256 = '523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c';
+export const EXPECTED_BATCH_B_SOURCE_BYTES = 8994337;
+export const EXPECTED_BATCH_B_SOURCE_ROWS = 7103;
+export const EXPECTED_BATCH_B_UNIQUE_SERIALS = 6618;
+export const EXPECTED_BATCH_B_NEW_ANCHORS = 5243;
+export const EXPECTED_BATCH_B_RECONFIRMED = 1243;
+
+// Cumulative constants
+export const EXPECTED_CROSS_BATCH_OVERLAP = 120;
+export const EXPECTED_CROSS_BATCH_SAME_POSITIVE = 117;
+export const EXPECTED_CROSS_BATCH_TIMEOUT_OVERLAP = 3;
+export const EXPECTED_TOTAL_SOURCE_ROWS = 14406;
+export const EXPECTED_TOTAL_UNIQUE_SERIALS = 13700;
+export const EXPECTED_CUMULATIVE_NEW_ANCHORS = 6786;
+export const EXPECTED_TOTAL_ANCHORS = 15660;
 export const EXPECTED_ALIASES_COUNT = 171;
+
+// Backward-compatible aliases for legacy imports
+export const EXPECTED_SOURCE_SHA256 = EXPECTED_BATCH_A_SOURCE_SHA256;
+export const EXPECTED_SOURCE_BYTES = EXPECTED_BATCH_A_SOURCE_BYTES;
+export const EXPECTED_SOURCE_ROWS = EXPECTED_BATCH_A_SOURCE_ROWS;
+export const EXPECTED_UNIQUE_SERIALS = EXPECTED_BATCH_A_UNIQUE_SERIALS;
+export const EXPECTED_NEW_ANCHORS = EXPECTED_BATCH_A_NEW_ANCHORS;
+export const EXPECTED_RECONFIRMED = EXPECTED_BATCH_A_RECONFIRMED;
 
 export function runPhase55aAudit(options = {}) {
   const throwOnError = Boolean(options.throwOnError);
   const errors = [];
 
   console.log('===============================================================');
-  console.log('🔍 RUNNING AUDIT: PHASE 55A MANUAL SERIAL IMPORT INTEGRITY');
+  console.log('🔍 RUNNING AUDIT: PHASE 55A MANUAL SERIAL IMPORT INTEGRITY (A & B)');
   console.log('===============================================================\n');
 
   // 1. Source Hash & Invariant Integrity
-  console.log('▶ Check 1: Verifying Source File Integrity & Copy Parity...');
-  const batchSourcePath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'source', 'stihl_resultaten_17_10.csv');
+  console.log('▶ Check 1: Verifying Batch A & Batch B Source File Integrity & Copy Parity...');
+  const batchASourcePath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'source', 'stihl_resultaten_17_10.csv');
+  const batchBSourcePath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-19_manual_followup', 'source', 'stihl_resultaten_3.csv');
 
-  if (!fs.existsSync(batchSourcePath)) {
-    errors.push(`Batch source copy missing at: ${batchSourcePath}`);
+  if (!fs.existsSync(batchASourcePath)) {
+    errors.push(`Batch A source copy missing at: ${batchASourcePath}`);
   } else {
-    const rawBatchSource = fs.readFileSync(batchSourcePath);
-    const batchHash = crypto.createHash('sha256').update(rawBatchSource).digest('hex');
-    if (batchHash !== EXPECTED_SOURCE_SHA256) {
-      errors.push(`Batch source SHA256 mismatch: got ${batchHash}, expected ${EXPECTED_SOURCE_SHA256}`);
+    const rawA = fs.readFileSync(batchASourcePath);
+    const hashA = crypto.createHash('sha256').update(rawA).digest('hex');
+    if (hashA !== EXPECTED_BATCH_A_SOURCE_SHA256) {
+      errors.push(`Batch A source SHA256 mismatch: got ${hashA}, expected ${EXPECTED_BATCH_A_SOURCE_SHA256}`);
     }
-    if (rawBatchSource.length !== EXPECTED_SOURCE_BYTES) {
-      errors.push(`Batch source byte size mismatch: got ${rawBatchSource.length}, expected ${EXPECTED_SOURCE_BYTES}`);
+    if (rawA.length !== EXPECTED_BATCH_A_SOURCE_BYTES) {
+      errors.push(`Batch A source byte size mismatch: got ${rawA.length}, expected ${EXPECTED_BATCH_A_SOURCE_BYTES}`);
     }
-    console.log(`  ✓ Batch source copy SHA256 verified: ${batchHash} (${rawBatchSource.length} bytes)`);
+    console.log(`  ✓ Batch A source verified: ${hashA} (${rawA.length} bytes)`);
   }
 
-  // 2. Complete Row Accounting
-  console.log('\n▶ Check 2: Verifying Complete Source Row Accounting...');
-  const manifestPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'batch_manifest.json');
+  if (!fs.existsSync(batchBSourcePath)) {
+    errors.push(`Batch B source copy missing at: ${batchBSourcePath}`);
+  } else {
+    const rawB = fs.readFileSync(batchBSourcePath);
+    const hashB = crypto.createHash('sha256').update(rawB).digest('hex');
+    if (hashB !== EXPECTED_BATCH_B_SOURCE_SHA256) {
+      errors.push(`Batch B source SHA256 mismatch: got ${hashB}, expected ${EXPECTED_BATCH_B_SOURCE_SHA256}`);
+    }
+    if (rawB.length !== EXPECTED_BATCH_B_SOURCE_BYTES) {
+      errors.push(`Batch B source byte size mismatch: got ${rawB.length}, expected ${EXPECTED_BATCH_B_SOURCE_BYTES}`);
+    }
+    console.log(`  ✓ Batch B source verified: ${hashB} (${rawB.length} bytes)`);
+  }
+
+  // 2. Complete Row Accounting for Batch A, Batch B, and Cumulative Reconciliation
+  console.log('\n▶ Check 2: Verifying Complete Source Row Accounting (Batch A & Batch B)...');
+  const manifestAPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'batch_manifest.json');
+  const manifestBPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-19_manual_followup', 'batch_manifest.json');
   const reconJsonPath = path.join(rootDir, 'data', 'serial_phase55a_reconciliation.json');
 
-  if (!fs.existsSync(manifestPath)) {
-    errors.push(`Batch manifest missing: ${manifestPath}`);
-  }
-  if (!fs.existsSync(reconJsonPath)) {
-    errors.push(`Reconciliation JSON missing: ${reconJsonPath}`);
+  if (!fs.existsSync(manifestAPath)) errors.push(`Batch A manifest missing: ${manifestAPath}`);
+  if (!fs.existsSync(manifestBPath)) errors.push(`Batch B manifest missing: ${manifestBPath}`);
+  if (!fs.existsSync(reconJsonPath)) errors.push(`Reconciliation JSON missing: ${reconJsonPath}`);
+
+  let manifestA = {};
+  if (fs.existsSync(manifestAPath)) {
+    manifestA = JSON.parse(fs.readFileSync(manifestAPath, 'utf8'));
+    if (manifestA.source_rows !== EXPECTED_BATCH_A_SOURCE_ROWS) {
+      errors.push(`Manifest A source_rows mismatch: expected ${EXPECTED_BATCH_A_SOURCE_ROWS}, got ${manifestA.source_rows}`);
+    }
+    if (manifestA.source_unique_serials !== EXPECTED_BATCH_A_UNIQUE_SERIALS) {
+      errors.push(`Manifest A source_unique_serials mismatch: expected ${EXPECTED_BATCH_A_UNIQUE_SERIALS}, got ${manifestA.source_unique_serials}`);
+    }
+    if (manifestA.new_official_anchors !== EXPECTED_BATCH_A_NEW_ANCHORS) {
+      errors.push(`Manifest A new_official_anchors mismatch: expected ${EXPECTED_BATCH_A_NEW_ANCHORS}, got ${manifestA.new_official_anchors}`);
+    }
+    if (manifestA.reconfirmed_existing_anchors !== EXPECTED_BATCH_A_RECONFIRMED) {
+      errors.push(`Manifest A reconfirmed_existing_anchors mismatch: expected ${EXPECTED_BATCH_A_RECONFIRMED}, got ${manifestA.reconfirmed_existing_anchors}`);
+    }
+    if (manifestA.identity_conflicts !== 0) {
+      errors.push(`Manifest A identity_conflicts must be 0, got ${manifestA.identity_conflicts}`);
+    }
+    console.log(`  ✓ Manifest A accounting validated: ${manifestA.source_rows} rows, ${manifestA.new_official_anchors} new anchors, ${manifestA.reconfirmed_existing_anchors} reconfirmed`);
   }
 
-  let manifest = {};
-  if (fs.existsSync(manifestPath)) {
-    manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    if (manifest.source_rows !== EXPECTED_SOURCE_ROWS) {
-      errors.push(`Manifest source_rows mismatch: expected ${EXPECTED_SOURCE_ROWS}, got ${manifest.source_rows}`);
+  let manifestB = {};
+  if (fs.existsSync(manifestBPath)) {
+    manifestB = JSON.parse(fs.readFileSync(manifestBPath, 'utf8'));
+    if (manifestB.source_rows !== EXPECTED_BATCH_B_SOURCE_ROWS) {
+      errors.push(`Manifest B source_rows mismatch: expected ${EXPECTED_BATCH_B_SOURCE_ROWS}, got ${manifestB.source_rows}`);
     }
-    if (manifest.source_unique_serials !== EXPECTED_UNIQUE_SERIALS) {
-      errors.push(`Manifest source_unique_serials mismatch: expected ${EXPECTED_UNIQUE_SERIALS}, got ${manifest.source_unique_serials}`);
+    if (manifestB.source_unique_serials !== EXPECTED_BATCH_B_UNIQUE_SERIALS) {
+      errors.push(`Manifest B source_unique_serials mismatch: expected ${EXPECTED_BATCH_B_UNIQUE_SERIALS}, got ${manifestB.source_unique_serials}`);
     }
-    if (manifest.new_official_anchors !== EXPECTED_NEW_ANCHORS) {
-      errors.push(`Manifest new_official_anchors mismatch: expected ${EXPECTED_NEW_ANCHORS}, got ${manifest.new_official_anchors}`);
+    if (manifestB.new_official_anchors !== EXPECTED_BATCH_B_NEW_ANCHORS) {
+      errors.push(`Manifest B new_official_anchors mismatch: expected ${EXPECTED_BATCH_B_NEW_ANCHORS}, got ${manifestB.new_official_anchors}`);
     }
-    if (manifest.reconfirmed_existing_anchors !== EXPECTED_RECONFIRMED) {
-      errors.push(`Manifest reconfirmed_existing_anchors mismatch: expected ${EXPECTED_RECONFIRMED}, got ${manifest.reconfirmed_existing_anchors}`);
+    if (manifestB.reconfirmed_existing_anchors !== EXPECTED_BATCH_B_RECONFIRMED) {
+      errors.push(`Manifest B reconfirmed_existing_anchors mismatch: expected ${EXPECTED_BATCH_B_RECONFIRMED}, got ${manifestB.reconfirmed_existing_anchors}`);
     }
-    if (manifest.identity_conflicts !== 0) {
-      errors.push(`Manifest identity_conflicts must be 0, got ${manifest.identity_conflicts}`);
+    if (manifestB.identity_conflicts !== 0) {
+      errors.push(`Manifest B identity_conflicts must be 0, got ${manifestB.identity_conflicts}`);
     }
-    console.log(`  ✓ Manifest accounting validated: ${manifest.source_rows} rows, ${manifest.new_official_anchors} new anchors, ${manifest.reconfirmed_existing_anchors} reconfirmed`);
+    console.log(`  ✓ Manifest B accounting validated: ${manifestB.source_rows} rows, ${manifestB.new_official_anchors} new anchors, ${manifestB.reconfirmed_existing_anchors} reconfirmed`);
   }
 
-  // 3. Batch Artifacts Existence and Hash Verification
-  console.log('\n▶ Check 3: Verifying All Batch Artifacts and Hashes...');
-  if (manifest.files && Array.isArray(manifest.files)) {
-    const batchDir = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup');
-    for (const fileEntry of manifest.files) {
-      const full = path.join(batchDir, fileEntry.path);
-      if (!fs.existsSync(full)) {
-        errors.push(`Batch artifact missing: ${fileEntry.path}`);
-        continue;
-      }
-      const bytes = fs.readFileSync(full);
-      const actualHash = crypto.createHash('sha256').update(bytes).digest('hex');
-      if (actualHash !== fileEntry.sha256) {
-        errors.push(`Batch artifact hash mismatch for ${fileEntry.path}: expected ${fileEntry.sha256}, got ${actualHash}`);
-      }
+  if (fs.existsSync(reconJsonPath)) {
+    const recon = JSON.parse(fs.readFileSync(reconJsonPath, 'utf8'));
+    const cum = recon.cumulative_phase55a || {};
+    if (cum.total_source_rows !== EXPECTED_TOTAL_SOURCE_ROWS) {
+      errors.push(`Cumulative total_source_rows mismatch: expected ${EXPECTED_TOTAL_SOURCE_ROWS}, got ${cum.total_source_rows}`);
     }
-    console.log(`  ✓ All ${manifest.files.length} batch artifacts verified against manifest SHA256 hashes`);
+    if (cum.total_unique_serials_across_sources !== EXPECTED_TOTAL_UNIQUE_SERIALS) {
+      errors.push(`Cumulative total_unique_serials mismatch: expected ${EXPECTED_TOTAL_UNIQUE_SERIALS}, got ${cum.total_unique_serials_across_sources}`);
+    }
+    if (cum.cross_batch_overlap_serials !== EXPECTED_CROSS_BATCH_OVERLAP) {
+      errors.push(`Cumulative cross_batch_overlap mismatch: expected ${EXPECTED_CROSS_BATCH_OVERLAP}, got ${cum.cross_batch_overlap_serials}`);
+    }
+    if (cum.cumulative_new_anchors !== EXPECTED_CUMULATIVE_NEW_ANCHORS) {
+      errors.push(`Cumulative cumulative_new_anchors mismatch: expected ${EXPECTED_CUMULATIVE_NEW_ANCHORS}, got ${cum.cumulative_new_anchors}`);
+    }
+    if (cum.anchors_after_phase55a !== EXPECTED_TOTAL_ANCHORS) {
+      errors.push(`Cumulative anchors_after_phase55a mismatch: expected ${EXPECTED_TOTAL_ANCHORS}, got ${cum.anchors_after_phase55a}`);
+    }
+    console.log(`  ✓ Cumulative reconciliation validated: ${cum.total_source_rows} source rows, ${cum.total_unique_serials_across_sources} unique serials, ${cum.cumulative_new_anchors} total new anchors`);
   }
+
+  // 3. Batch Artifacts Existence and Hash Verification (Batch A & Batch B)
+  console.log('\n▶ Check 3: Verifying All Batch Artifacts and Hashes (Batch A & Batch B)...');
+  function verifyManifestFiles(manifestObj, batchSubDir, batchLabel) {
+    if (manifestObj.files && Array.isArray(manifestObj.files)) {
+      const bDir = path.join(rootDir, 'data', 'import_batches', batchSubDir);
+      for (const fileEntry of manifestObj.files) {
+        const full = path.join(bDir, fileEntry.path);
+        if (!fs.existsSync(full)) {
+          errors.push(`${batchLabel} artifact missing: ${fileEntry.path}`);
+          continue;
+        }
+        const bytes = fs.readFileSync(full);
+        const actualHash = crypto.createHash('sha256').update(bytes).digest('hex');
+        if (actualHash !== fileEntry.sha256) {
+          errors.push(`${batchLabel} artifact hash mismatch for ${fileEntry.path}: expected ${fileEntry.sha256}, got ${actualHash}`);
+        }
+      }
+      console.log(`  ✓ All ${manifestObj.files.length} ${batchLabel} artifacts verified against manifest SHA256 hashes`);
+    }
+  }
+  verifyManifestFiles(manifestA, 'serials_2026-10-17_manual_followup', 'Batch A');
+  verifyManifestFiles(manifestB, 'serials_2026-10-19_manual_followup', 'Batch B');
 
   // 4. Source Row Lineage for all New Anchors
-  console.log('\n▶ Check 4: Verifying Full Lineage of New Anchors...');
-  const newAnchorsPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'data', 'new_official_serial_anchors_only_2026-10-17.json');
-  const obsJsonPath = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'data', 'serial_lookup_observations_2026-10-17.json');
+  console.log('\n▶ Check 4: Verifying Full Lineage of New Anchors (Batch A & Batch B)...');
+  function verifyAnchorLineage(newAnchorsRelPath, obsRelPath, expectedCount, batchLabel) {
+    const newAnchorsPath = path.join(rootDir, newAnchorsRelPath);
+    const obsJsonPath = path.join(rootDir, obsRelPath);
 
-  if (fs.existsSync(newAnchorsPath) && fs.existsSync(obsJsonPath)) {
-    const newAnchorsDoc = JSON.parse(fs.readFileSync(newAnchorsPath, 'utf8'));
-    const obsDoc = JSON.parse(fs.readFileSync(obsJsonPath, 'utf8'));
-    const obsMap = new Map();
-    for (const o of obsDoc.observations) {
-      obsMap.set(o.input_serial, o);
+    if (fs.existsSync(newAnchorsPath) && fs.existsSync(obsJsonPath)) {
+      const newAnchorsDoc = JSON.parse(fs.readFileSync(newAnchorsPath, 'utf8'));
+      const obsDoc = JSON.parse(fs.readFileSync(obsJsonPath, 'utf8'));
+      const obsMap = new Map();
+      for (const o of obsDoc.observations) {
+        obsMap.set(o.input_serial, o);
+      }
+
+      const newAnchors = newAnchorsDoc.anchors;
+      if (newAnchors.length !== expectedCount) {
+        errors.push(`${batchLabel} new anchors count mismatch: expected ${expectedCount}, got ${newAnchors.length}`);
+      }
+
+      const anchorSerialSet = new Set();
+      for (const a of newAnchors) {
+        if (anchorSerialSet.has(a.serial_number)) {
+          errors.push(`Duplicate serial number in ${batchLabel} new anchors: ${a.serial_number}`);
+        }
+        anchorSerialSet.add(a.serial_number);
+
+        if (!obsMap.has(a.serial_number)) {
+          errors.push(`${batchLabel} new anchor ${a.serial_number} lacks corresponding observation`);
+          continue;
+        }
+        const obs = obsMap.get(a.serial_number);
+        if (obs.lookup_outcome !== 'OFFICIAL_EXACT_FOUND') {
+          errors.push(`${batchLabel} new anchor ${a.serial_number} observation is not OFFICIAL_EXACT_FOUND`);
+        }
+        if (obs.official_product_name !== a.model_name) {
+          errors.push(`${batchLabel} new anchor ${a.serial_number} model_name mismatch: obs=${obs.official_product_name}, anchor=${a.model_name}`);
+        }
+        if (a.source !== 'MY_STIHL' || a.verification_status !== 'OFFICIAL_STIHL_LOOKUP') {
+          errors.push(`${batchLabel} new anchor ${a.serial_number} invalid source/status`);
+        }
+      }
+      console.log(`  ✓ All ${newAnchors.length} ${batchLabel} new anchors have 100% verified official MY STIHL observation lineage`);
     }
-
-    const newAnchors = newAnchorsDoc.anchors;
-    if (newAnchors.length !== EXPECTED_NEW_ANCHORS) {
-      errors.push(`new_official_serial_anchors_only count mismatch: expected ${EXPECTED_NEW_ANCHORS}, got ${newAnchors.length}`);
-    }
-
-    const anchorSerialSet = new Set();
-    for (const a of newAnchors) {
-      if (anchorSerialSet.has(a.serial_number)) {
-        errors.push(`Duplicate serial number in new anchors: ${a.serial_number}`);
-      }
-      anchorSerialSet.add(a.serial_number);
-
-      if (!obsMap.has(a.serial_number)) {
-        errors.push(`New anchor ${a.serial_number} lacks corresponding observation in batch`);
-        continue;
-      }
-      const obs = obsMap.get(a.serial_number);
-      if (obs.lookup_outcome !== 'OFFICIAL_EXACT_FOUND') {
-        errors.push(`New anchor ${a.serial_number} observation is not OFFICIAL_EXACT_FOUND (was ${obs.lookup_outcome})`);
-      }
-      if (obs.official_product_name !== a.model_name) {
-        errors.push(`New anchor ${a.serial_number} model_name mismatch: obs=${obs.official_product_name}, anchor=${a.model_name}`);
-      }
-      if (a.source !== 'MY_STIHL' || a.verification_status !== 'OFFICIAL_STIHL_LOOKUP') {
-        errors.push(`New anchor ${a.serial_number} has invalid source or verification_status: ${a.source} / ${a.verification_status}`);
-      }
-    }
-    console.log(`  ✓ All ${newAnchors.length} new anchors have 100% verified official MY STIHL observation lineage`);
   }
+
+  verifyAnchorLineage(
+    'data/import_batches/serials_2026-10-17_manual_followup/data/new_official_serial_anchors_only_2026-10-17.json',
+    'data/import_batches/serials_2026-10-17_manual_followup/data/serial_lookup_observations_2026-10-17.json',
+    EXPECTED_BATCH_A_NEW_ANCHORS,
+    'Batch A'
+  );
+
+  verifyAnchorLineage(
+    'data/import_batches/serials_2026-10-19_manual_followup/data/new_official_serial_anchors_only_2026-10-19.json',
+    'data/import_batches/serials_2026-10-19_manual_followup/data/serial_lookup_observations_2026-10-19.json',
+    EXPECTED_BATCH_B_NEW_ANCHORS,
+    'Batch B'
+  );
 
   // 5. Canonical Anchors Registry & SQLite Parity
   console.log('\n▶ Check 5: Verifying Canonical Anchors Registry & Database Parity...');
@@ -210,7 +310,6 @@ export function runPhase55aAudit(options = {}) {
 
   // 6. Negative Evidence and Range Inference Gates
   console.log('\n▶ Check 6: Verifying Absence of Negative Evidence, Ranges & Heuristics...');
-  // Check range table count
   const sqliteRangeCount = db.prepare('SELECT COUNT(*) as c FROM model_serial_ranges').get().c;
   const initialExpectedRanges = 8;
   if (sqliteRangeCount !== initialExpectedRanges) {
@@ -219,7 +318,6 @@ export function runPhase55aAudit(options = {}) {
     console.log(`  ✓ Range rules unaltered: exactly ${sqliteRangeCount} baseline ranges (0 inferred ranges created)`);
   }
 
-  // Check aliases generic rule allowed
   const genericAllowedAliases = db.prepare('SELECT COUNT(*) as c FROM official_serial_input_aliases WHERE generic_zero_prefix_rule_allowed = 1').get().c;
   if (genericAllowedAliases > 0) {
     errors.push(`Generic zero prefix rule allowed on ${genericAllowedAliases} aliases! Must be 0`);
@@ -255,7 +353,7 @@ export function runPhase55aAudit(options = {}) {
     return { success: false, errors };
   }
 
-  console.log('🎉 PHASE 55A AUDIT PASSED 100% CLEANLY!');
+  console.log('🎉 PHASE 55A AUDIT (BATCH A & B) PASSED 100% CLEANLY!');
   console.log('---------------------------------------------------------------');
   return { success: true, errors: [] };
 }

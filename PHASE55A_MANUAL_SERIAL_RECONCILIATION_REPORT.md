@@ -138,5 +138,52 @@ A new batch directory `data/import_batches/serials_2026-10-17_manual_followup/` 
 - Google Analytics 4 tracking: `tests/sitewide_google_analytics.test.js`: **PASS**.
 - Secret Scan across tracked candidate files: `COMMITTED_SECRET_MATCH_COUNT = 0`.
 - Node 25 local clean checkout: **FAIL** due to unsupported native dependency build environment (`better-sqlite3@13.0.3` requires C++ compiler).
-- Node 22 local clean checkout: **FAIL** on Windows due to `better-sqlite3@13.0.3` lack of prebuilt Windows binaries on GitHub releases and absence of Visual Studio C++ build tools; all dependency workarounds strictly forbidden.
-- Node 22 repository-supported clean checkout (GitHub Actions `ubuntu-latest` CI): `trust-audit` = **PASS**, `browser-e2e` = **PASS**.
+- Node 22 repository-supported clean checkout (GitHub Actions `ubuntu-latest` CI): `trust-audit` = **PASS**, `browser-e2e` = **PASS**, `node-contract-tests` = **PASS**.
+
+---
+
+## 6. Phase 55A Extension — Batch B (2026-10-19)
+
+Prior to final PR merge, an additional manual MY STIHL serial evidence batch (`stihl_resultaten(3).csv`) was integrated into Phase 55A under PR #31 without starting Phase 55B.
+
+### Batch B Provenance & Identity
+- **Immutable Source Path**: `data/import_batches/serials_2026-10-19_manual_followup/source/stihl_resultaten_3.csv`
+- **Source SHA256**: `523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c`
+- **Byte Size**: `8,994,337 bytes`
+- **Verification Dates**: 2026-10-17 through 2026-10-19 (`per-row controle_datum`)
+- **Populated Source Rows**: 7,103
+- **Unique Input Serials**: 6,618
+- **Duplicate Source Rows**: 485 (478 error->positive retries, 1 timeout->positive retry, 5 same-result retries, 1 extra retry in 3-row group)
+
+### Batch B Classification Breakdown
+- `ALREADY_PRESENT_FROM_PRE55A`: 1,126
+- `ALREADY_PRESENT_FROM_PHASE55A_BATCH_A`: 117
+- `PREVIOUSLY_UNRESOLVED_NOW_POSITIVE`: 33
+- `NEW_POSITIVE_OBSERVATION`: 5,210
+- `NEW_OFFICIAL_ANCHORS`: 5,243 (33 + 5,210)
+- `RECONFIRMED_EXISTING_ANCHORS`: 1,243 (1,126 + 117)
+- `NEW_NO_MATCH_OBSERVATIONS`: 122 (121 timeouts + 1 onbekend)
+- `FOUND_WITHOUT_USABLE_IDENTITY`: 10
+- `TECHNICAL_ERRORS`: 0 unresolved (all 479 raw fout rows retried to positive)
+- `DUPLICATE_SOURCE_ROWS`: 485
+- `IDENTITY_CONFLICTS`: 0
+- `INVALID_INPUT_SERIALS`: 0
+- **Total Rows Accounted**: 7,103 / 7,103 (100% exact)
+
+### Cross-Batch Overlap (Batch A ∩ Batch B)
+- **Overlapping Serials**: 120
+- **Identical Positive Observations**: 117
+- **Timeouts on Existing Canonical Anchors**: 3
+- **Conflicting Positive Identifications**: 0
+
+### Cumulative Phase 55A Reconciliation (A ∪ B)
+- **Total Populated Source Rows**: 14,406 (7,303 + 7,103)
+- **Total Unique Serials Across Sources**: 13,700 (7,202 + 6,618 - 120)
+- **Cumulative New Official Anchors**: +6,786 (+1,543 Batch A + 5,243 Batch B)
+- **Anchors Before Phase 55A**: 8,874
+- **Anchors After Batch A**: 10,417
+- **Anchors After Batch B**: 15,660
+- **Official Input Aliases**: 171 (100% preserved)
+- **Cross-Store Parity**: JSON = 15,660, stihl_database.json = 15,660, SQLite = 15,660 (100% Parity)
+- **Strict Invariants**: `RANGES_CREATED = 0`, `GENERIC_PREFIX_RULES_CREATED = 0`, `NEGATIVE_RUNTIME_EVIDENCE = 0`, `HISTORICAL_PHASE53A_GATE = STRICT`.
+

@@ -354,20 +354,20 @@ test('Phase 53A-M1 - Test 14: Actual Recheck Queue Records Present in Queue CSV'
   const queueCsvPath = path.join(BATCH_DATA_DIR, 'serial_recheck_queue_2026-10-09.csv');
   const queueContent = fs.readFileSync(queueCsvPath, 'utf8');
 
-  // 1. Technical Timeout: 163133770
-  assert.ok(queueContent.includes('163133770,TECHNICAL_TIMEOUT'), 'Queue must contain 163133770 with TECHNICAL_TIMEOUT');
+  // 1. Technical Timeout: 163136620
+  assert.ok(queueContent.includes('163136620,TECHNICAL_TIMEOUT'), 'Queue must contain 163136620 with TECHNICAL_TIMEOUT');
 
   // 2. Technical Error: 163150360
   assert.ok(queueContent.includes('163150360,TECHNICAL_ERROR'), 'Queue must contain 163150360 with TECHNICAL_ERROR');
 
-  // 3. Missing Identity: 163133490
-  assert.ok(queueContent.includes('163133490,FOUND_WITHOUT_USABLE_IDENTITY'), 'Queue must contain 163133490 with FOUND_WITHOUT_USABLE_IDENTITY');
+  // 3. Missing Identity: 163136520
+  assert.ok(queueContent.includes('163136520,FOUND_WITHOUT_USABLE_IDENTITY'), 'Queue must contain 163136520 with FOUND_WITHOUT_USABLE_IDENTITY');
 });
 
 test('Phase 53A-M1 - Test 15: Actual Recheck Queue Negative Controls Fail-Closed in Decoder', () => {
   const db = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
-  const recheckControls = ['163133770', '163150360', '163133490'];
+  const recheckControls = ['163136620', '163150360', '163136520'];
   for (const serial of recheckControls) {
     const res = decodeStihlCode(serial, db);
     assert.strictEqual(res.officialAnchor, null, `Recheck serial ${serial} must NOT have officialAnchor`);
