@@ -1,0 +1,87 @@
+{
+  "baseline_sha": "1dcc18d04495feba2099607a1208681ddab7fd56",
+  "batch_a": {
+    "source_identity": "C:\\Users\\GelliusSnippe\\.agents\\stihl_resultaten_17_10.csv",
+    "source_hash": "c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680",
+    "source_bytes": 4564382,
+    "source_row_accounting": {
+      "total_populated_rows": 7303,
+      "unique_input_serials": 7202,
+      "duplicate_source_rows": 101
+    },
+    "historical_overlap": {
+      "already_imported_identical": 202,
+      "already_observed_same_result": 402,
+      "previously_unresolved_now_positive": 13,
+      "previously_unresolved_still_no_match": 65,
+      "new_positive_observations": 1530,
+      "new_no_match_observations": 4985,
+      "found_without_usable_identity": 4,
+      "technical_errors": 1,
+      "identity_conflicts": 0,
+      "invalid_input_serials": 0
+    },
+    "positive_anchor_accounting": {
+      "anchors_before": 8874,
+      "new_official_anchors": 1543,
+      "reconfirmed_existing_anchors": 604,
+      "anchors_after": 10417
+    }
+  },
+  "batch_b": {
+    "source_identity": "data/import_batches/serials_2026-10-19_manual_followup/source/stihl_resultaten_3.csv",
+    "source_hash": "523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c",
+    "source_bytes": 8994337,
+    "source_row_accounting": {
+      "total_populated_rows": 7103,
+      "unique_input_serials": 6618,
+      "duplicate_source_rows": 485
+    },
+    "classification_accounting": {
+      "already_present_from_pre55a": 1126,
+      "already_present_from_batch_a": 117,
+      "already_observed_same_result": 0,
+      "previously_unresolved_now_positive": 33,
+      "previously_unresolved_still_no_match": 0,
+      "new_positive_observations": 5210,
+      "new_no_match_observations": 122,
+      "found_without_usable_identity": 10,
+      "technical_errors": 0,
+      "duplicate_source_rows": 485,
+      "identity_conflicts": 0,
+      "invalid_input_serials": 0
+    },
+    "positive_anchor_accounting": {
+      "anchors_before": 10417,
+      "new_official_anchors": 5243,
+      "reconfirmed_existing_anchors": 1243,
+      "anchors_after": 15660
+    }
+  },
+  "cumulative_phase55a": {
+    "total_source_rows": 14406,
+    "total_unique_serials_across_sources": 13700,
+    "cross_batch_overlap_serials": 120,
+    "cross_batch_same_positive_serials": 117,
+    "cross_batch_timeout_overlap_serials": 3,
+    "cross_batch_identity_conflicts": 0,
+    "anchors_before_phase55a": 8874,
+    "new_anchors_batch_a": 1543,
+    "new_anchors_batch_b": 5243,
+    "cumulative_new_anchors": 6786,
+    "reconfirmed_batch_a": 604,
+    "reconfirmed_batch_b": 1243,
+    "anchors_after_batch_a": 10417,
+    "anchors_after_phase55a": 15660,
+    "aliases_before_phase55a": 171,
+    "new_explicit_aliases": 0,
+    "aliases_after_phase55a": 171,
+    "protection_checks": {
+      "ranges_created": 0,
+      "generic_prefix_rules_created": 0,
+      "negative_runtime_evidence_created": 0,
+      "historical_batches_immutable": true,
+      "phase54f_protected": true
+    }
+  }
+}

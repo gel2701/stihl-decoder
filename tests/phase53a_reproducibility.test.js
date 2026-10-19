@@ -354,20 +354,20 @@ test('Phase 53A-M1 - Test 14: Actual Recheck Queue Records Present in Queue CSV'
   const queueCsvPath = path.join(BATCH_DATA_DIR, 'serial_recheck_queue_2026-10-09.csv');
   const queueContent = fs.readFileSync(queueCsvPath, 'utf8');
 
-  // 1. Technical Timeout: 163133770
-  assert.ok(queueContent.includes('163133770,TECHNICAL_TIMEOUT'), 'Queue must contain 163133770 with TECHNICAL_TIMEOUT');
+  // 1. Technical Timeout: 163136620
+  assert.ok(queueContent.includes('163136620,TECHNICAL_TIMEOUT'), 'Queue must contain 163136620 with TECHNICAL_TIMEOUT');
 
   // 2. Technical Error: 163150360
   assert.ok(queueContent.includes('163150360,TECHNICAL_ERROR'), 'Queue must contain 163150360 with TECHNICAL_ERROR');
 
-  // 3. Missing Identity: 163133490
-  assert.ok(queueContent.includes('163133490,FOUND_WITHOUT_USABLE_IDENTITY'), 'Queue must contain 163133490 with FOUND_WITHOUT_USABLE_IDENTITY');
+  // 3. Missing Identity: 163136520
+  assert.ok(queueContent.includes('163136520,FOUND_WITHOUT_USABLE_IDENTITY'), 'Queue must contain 163136520 with FOUND_WITHOUT_USABLE_IDENTITY');
 });
 
 test('Phase 53A-M1 - Test 15: Actual Recheck Queue Negative Controls Fail-Closed in Decoder', () => {
   const db = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
-  const recheckControls = ['163133770', '163150360', '163133490'];
+  const recheckControls = ['163136620', '163150360', '163136520'];
   for (const serial of recheckControls) {
     const res = decodeStihlCode(serial, db);
     assert.strictEqual(res.officialAnchor, null, `Recheck serial ${serial} must NOT have officialAnchor`);
@@ -567,7 +567,7 @@ test('Phase 53A-M1 - Test 23: Verify Mode Leaves Zero Files and SQLite Intact (V
   assert.strictEqual(postSqliteSha, initialSqliteSha, 'STIHL_DATABASE_DB SHA256 must be identical');
 });
 
-test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added Across B, C, and D (8875 Total)', () => {
+test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added Across B, C, and D', () => {
   const env = createTempProductionEnvironment();
   try {
     const futureAnchor = {
@@ -586,6 +586,7 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
 
     // 1. Add to B (official_serial_anchors.json)
     const officialDoc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
+    const initialCount = officialDoc.anchors.length;
     officialDoc.anchors.push(futureAnchor);
     officialDoc.anchors.sort((a, b) => a.serial_number.localeCompare(b.serial_number));
     fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(officialDoc, null, 2));
@@ -631,10 +632,10 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
     assert.strictEqual(res.productionStats.historicalAnchorsPresent, 8874);
     assert.strictEqual(res.productionStats.historicalAnchorsMissing, 0);
     assert.strictEqual(res.productionStats.historicalAnchorsMutated, 0);
-    assert.strictEqual(res.productionStats.currentProductionJsonCount, 8875);
-    assert.strictEqual(res.productionStats.currentStihlDbJsonCount, 8875);
-    assert.strictEqual(res.productionStats.currentSqliteCount, 8875);
-    assert.strictEqual(res.productionStats.futurePostPhase53aAnchors, 1);
+    assert.strictEqual(res.productionStats.currentProductionJsonCount, initialCount + 1);
+    assert.strictEqual(res.productionStats.currentStihlDbJsonCount, initialCount + 1);
+    assert.strictEqual(res.productionStats.currentSqliteCount, initialCount + 1);
+    assert.strictEqual(res.productionStats.futurePostPhase53aAnchors, initialCount + 1 - 8874);
     assert.strictEqual(res.productionStats.fullParityPass, true);
 
     // Also verify 8-digit and 10-digit future anchors supported by OfficialSerialAnchorResolver (/^\d{8,10}$/)
@@ -678,9 +679,10 @@ test('Phase 53A-M1 - Test 24: Future Anchor Acceptance When Consistently Added A
       sqliteDatabasePath: env.tempStihlDatabaseDb,
       throwOnError: false
     });
+
     assert.strictEqual(res8And10.success, true, `8- and 10-digit future anchors in B/C/D must PASS: ${res8And10.errors.join('; ')}`);
-    assert.strictEqual(res8And10.productionStats.currentProductionJsonCount, 8877);
-    assert.strictEqual(res8And10.productionStats.futurePostPhase53aAnchors, 3);
+    assert.strictEqual(res8And10.productionStats.currentProductionJsonCount, initialCount + 3);
+    assert.strictEqual(res8And10.productionStats.futurePostPhase53aAnchors, initialCount + 3 - 8874);
   } finally {
     env.cleanup();
   }
