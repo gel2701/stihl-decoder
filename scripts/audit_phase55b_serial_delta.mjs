@@ -9,6 +9,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { parseCSV } from './generate_phase55a_batch.mjs';
+import { runBatchProcessing as runPhase53ABatchProcessing } from './generate_phase53a_batch.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -115,18 +116,99 @@ if (manifest.metrics.ranges_created !== 0 ||
 }
 console.log('✅ Gate 6: Zero range inferences, generic prefix rules, or negative runtime evidence');
 
-// Gate 7: Phase 55A artifacts and batches strictly preserved
+// Gate 7: Phase 55A Authoritative Protected Set & Immutable Artifacts
 const phase55aBatchADir = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup');
 const phase55aBatchBDir = path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-19_manual_followup');
 if (!fs.existsSync(phase55aBatchADir) || !fs.existsSync(phase55aBatchBDir)) {
   throw new Error('Gate 7 FAIL: Phase 55A batch directories missing');
 }
-const b3Source = path.join(phase55aBatchBDir, 'source', 'stihl_resultaten_3.csv');
-const b3Sha = crypto.createHash('sha256').update(fs.readFileSync(b3Source)).digest('hex');
-if (b3Sha !== '523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c') {
+
+// 7.1 Verify immutable Batch A source & manifest artifacts
+const bASource = path.join(phase55aBatchADir, 'source', 'stihl_resultaten_17_10.csv');
+const bASha = crypto.createHash('sha256').update(fs.readFileSync(bASource)).digest('hex');
+if (bASha !== 'c7e682f06fe67881f9c66243b645cbd5f1c272323cd51f9451ec2b66684b7680') {
+  throw new Error('Gate 7 FAIL: Phase 55A Batch A source hash mismatch');
+}
+const manifestA = JSON.parse(fs.readFileSync(path.join(phase55aBatchADir, 'batch_manifest.json'), 'utf8'));
+for (const f of manifestA.files) {
+  const p = path.join(phase55aBatchADir, f.path);
+  const hash = crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  if (hash !== f.sha256) {
+    throw new Error(`Gate 7 FAIL: Phase 55A Batch A manifest hash mismatch for ${f.path}`);
+  }
+}
+
+// 7.2 Verify immutable Batch B source & manifest artifacts
+const bBSource = path.join(phase55aBatchBDir, 'source', 'stihl_resultaten_3.csv');
+const bBSha = crypto.createHash('sha256').update(fs.readFileSync(bBSource)).digest('hex');
+if (bBSha !== '523637fd45ae29b1b1d4256c208f3e744435b6b6baa701a963aa08d2098ba45c') {
   throw new Error('Gate 7 FAIL: Phase 55A Batch B source corrupted');
 }
-console.log('✅ Gate 7: Phase 55A artifacts and batches strictly preserved');
+const manifestB = JSON.parse(fs.readFileSync(path.join(phase55aBatchBDir, 'batch_manifest.json'), 'utf8'));
+for (const f of manifestB.files) {
+  const p = path.join(phase55aBatchBDir, f.path);
+  const hash = crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  if (hash !== f.sha256) {
+    throw new Error(`Gate 7 FAIL: Phase 55A Batch B manifest hash mismatch for ${f.path}`);
+  }
+}
+
+// 7.3 Load historical cohorts and assemble protected Phase 55A set
+const res53a = runPhase53ABatchProcessing();
+const hist53a = res53a.finalAnchorsList; // 8874
+if (hist53a.length !== 8874) {
+  throw new Error(`Gate 7 FAIL: Phase 53A historical subset must be 8874, got ${hist53a.length}`);
+}
+
+const batchAAnchors = JSON.parse(fs.readFileSync(path.join(phase55aBatchADir, 'data', 'new_official_serial_anchors_only_2026-10-17.json'), 'utf8')).anchors;
+if (batchAAnchors.length !== 1543) {
+  throw new Error(`Gate 7 FAIL: Phase 55A Batch A new anchors must be 1543, got ${batchAAnchors.length}`);
+}
+
+const batchBAnchors = JSON.parse(fs.readFileSync(path.join(phase55aBatchBDir, 'data', 'new_official_serial_anchors_only_2026-10-19.json'), 'utf8')).anchors;
+if (batchBAnchors.length !== 5243) {
+  throw new Error(`Gate 7 FAIL: Phase 55A Batch B new anchors must be 5243, got ${batchBAnchors.length}`);
+}
+
+const protectedPhase55ASet = [...hist53a, ...batchAAnchors, ...batchBAnchors];
+if (protectedPhase55ASet.length !== 15660) {
+  throw new Error(`Gate 7 FAIL: Protected set conservation mismatch: ${protectedPhase55ASet.length} vs 15660`);
+}
+
+// 7.4 Compare protected anchors by identity against current canonical registry
+const canonicalMap = new Map(canonicalAnchorsDoc.anchors.map(a => [a.serial_number, a]));
+const protectedFields = [
+  'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
+  'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
+];
+
+let phase55aPresent = 0;
+let phase55aMissing = 0;
+let phase55aMutated = 0;
+
+for (const exp of protectedPhase55ASet) {
+  const cur = canonicalMap.get(exp.serial_number);
+  if (!cur) {
+    phase55aMissing++;
+  } else {
+    phase55aPresent++;
+    for (const f of protectedFields) {
+      if ((exp[f] ?? null) !== (cur[f] ?? null)) {
+        phase55aMutated++;
+        break;
+      }
+    }
+  }
+}
+
+if (phase55aPresent !== 15660 || phase55aMissing !== 0 || phase55aMutated !== 0) {
+  throw new Error(`Gate 7 FAIL: Protected set invariant violated: present=${phase55aPresent}, missing=${phase55aMissing}, mutated=${phase55aMutated}`);
+}
+
+console.log('✅ Gate 7A: PHASE53A_HISTORICAL_SUBSET = 8874/8874 unchanged');
+console.log('✅ Gate 7B: PHASE55A_BATCH_A_NEW_ANCHORS = 1543/1543 present unchanged (source & manifest IMMUTABLE)');
+console.log('✅ Gate 7C: PHASE55A_BATCH_B_NEW_ANCHORS = 5243/5243 present unchanged (source & manifest IMMUTABLE)');
+console.log(`✅ Gate 7D: PHASE55A_PROTECTED_SET = ${phase55aPresent}/15660 present unchanged (missing: ${phase55aMissing}, mutated: ${phase55aMutated})`);
 
 // Gate 8: Authoritative serial_phase55b_reconciliation.json verified
 if (!fs.existsSync(RECON_FILE)) {

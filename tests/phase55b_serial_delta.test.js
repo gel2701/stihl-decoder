@@ -116,4 +116,52 @@ describe('Phase 55B — Genuine Serial Delta & Controlled Import Verification', 
     assert.equal(dryRun.mode, 'DRY_RUN');
     assert.equal(dryRun.classifications.IDENTITY_CONFLICT, 0);
   });
+
+  test('Phase 55B - Test 11: Explicit Protection for the Two Resolved Queue Transitions (163136520 & 163136620)', () => {
+    const canonicalDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'official_serial_anchors.json'), 'utf8'));
+    const canonicalMap = new Map(canonicalDoc.anchors.map(a => [a.serial_number, a]));
+
+    const p53aQueueCsv = fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-09', 'data', 'serial_recheck_queue_2026-10-09.csv'), 'utf8');
+
+    // Provenance in Phase 53A historical queue
+    assert.ok(p53aQueueCsv.includes('163136520,FOUND_WITHOUT_USABLE_IDENTITY'), '163136520 must have proven historical provenance as FOUND_WITHOUT_USABLE_IDENTITY');
+    assert.ok(p53aQueueCsv.includes('163136620,TECHNICAL_TIMEOUT'), '163136620 must have proven historical provenance as TECHNICAL_TIMEOUT');
+
+    // Transitions in Phase 55B
+    const manifest = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
+    assert.equal(manifest.accounting.PREVIOUSLY_UNRESOLVED_NOW_POSITIVE, 2, 'Accounting must confirm exactly 2 previously unresolved now positive');
+
+    for (const serial of ['163136520', '163136620']) {
+      const anchor = canonicalMap.get(serial);
+      assert.ok(anchor, `Serial ${serial} must exist in canonical official anchors`);
+      assert.equal(anchor.source, 'MY_STIHL', `Serial ${serial} source must be MY_STIHL`);
+      assert.equal(anchor.verification_status, 'OFFICIAL_STIHL_LOOKUP', `Serial ${serial} status must be OFFICIAL_STIHL_LOOKUP`);
+      assert.ok(anchor.model_name.includes('MS 250'), `Serial ${serial} model_name must contain MS 250 (got ${anchor.model_name})`);
+    }
+  });
+
+  test('Phase 55B - Test 12: Phase 55B New-Anchor Set Identity & Canonical Presence (414 Anchors)', () => {
+    const newAnchorsDoc = JSON.parse(fs.readFileSync(path.join(BATCH_DIR, 'data', 'new_official_serial_anchors_only_2026-10-20.json'), 'utf8'));
+    const manifest = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
+    const ac = manifest.accounting;
+
+    assert.equal(ac.NEW_POSITIVE_OBSERVATION + ac.PREVIOUSLY_UNRESOLVED_NOW_POSITIVE, 414, '412 wholly new + 2 previously unresolved = 414 new official anchors');
+    assert.equal(newAnchorsDoc.anchors.length, 414, 'Batch new anchors must contain exactly 414 records');
+
+    const canonicalDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'official_serial_anchors.json'), 'utf8'));
+    const canonicalMap = new Map(canonicalDoc.anchors.map(a => [a.serial_number, a]));
+
+    const fields = [
+      'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
+      'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
+    ];
+
+    for (const newAnchor of newAnchorsDoc.anchors) {
+      const can = canonicalMap.get(newAnchor.serial_number);
+      assert.ok(can, `New anchor ${newAnchor.serial_number} must exist in canonical registry`);
+      for (const f of fields) {
+        assert.equal(can[f], newAnchor[f], `Field ${f} mismatch for new anchor ${newAnchor.serial_number}`);
+      }
+    }
+  });
 });
