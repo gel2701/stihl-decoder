@@ -1,7 +1,8 @@
 /**
  * Phase 55D: Genuine Serial Delta Automated Test Suite
  * Validates fail-closed properties, source integrity, delta accounting,
- * zero conflicts, range prohibition, nested historical protection, and JSON/SQLite store parity.
+ * zero conflicts, range prohibition, nested historical protection,
+ * historical batch Git-tree immutability, corruption detection, and JSON/SQLite store parity.
  */
 
 import { test, describe } from 'node:test';
@@ -12,6 +13,8 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { runPhase55DReconciliation } from '../scripts/process_phase55d_serial_delta.mjs';
+import { verifyHistoricalBatchTrees, HISTORICAL_BATCHES } from '../scripts/audit_phase55d_serial_delta.mjs';
+import { runBatchProcessing as runPhase53ABatchProcessing } from '../scripts/generate_phase53a_batch.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +28,51 @@ const RECON_FILE = path.join(rootDir, 'data', 'serial_phase55d_reconciliation.js
 
 const EXPECTED_SOURCE_SHA256 = 'af1f7638d5161e02f586293ae4050c49e7b916119b3a8b2030996c9825192e29';
 const EXPECTED_SOURCE_BYTES = 2036808;
+
+const PROTECTED_FIELDS = [
+  'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
+  'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
+];
+
+function loadProtectedPhase55CSet() {
+  const res53a = runPhase53ABatchProcessing();
+  const hist53a = res53a.finalAnchorsList;
+  const batchA = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'data', 'new_official_serial_anchors_only_2026-10-17.json'), 'utf8')).anchors;
+  const batchB = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-19_manual_followup', 'data', 'new_official_serial_anchors_only_2026-10-19.json'), 'utf8')).anchors;
+  const batch55B = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-20_manual_delta', 'data', 'new_official_serial_anchors_only_2026-10-20.json'), 'utf8')).anchors;
+  const batch55C = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-20_manual_delta_55c', 'data', 'new_official_serial_anchors_only_2026-10-20.json'), 'utf8')).anchors;
+  return [...hist53a, ...batchA, ...batchB, ...batch55B, ...batch55C];
+}
+
+export function verifyProtectedCohort(protectedList, currentList) {
+  const currentMap = new Map(currentList.map(a => [a.serial_number, a]));
+  let present = 0;
+  let missing = 0;
+  let mutated = 0;
+
+  for (const exp of protectedList) {
+    const cur = currentMap.get(exp.serial_number);
+    if (!cur) {
+      missing++;
+    } else {
+      present++;
+      for (const f of PROTECTED_FIELDS) {
+        if ((exp[f] ?? null) !== (cur[f] ?? null)) {
+          mutated++;
+          break;
+        }
+      }
+    }
+  }
+
+  return {
+    expected: protectedList.length,
+    present,
+    missing,
+    mutated,
+    passed: present === protectedList.length && missing === 0 && mutated === 0
+  };
+}
 
 describe('Phase 55D — Genuine Serial Delta & Controlled Import Verification', () => {
 
@@ -111,30 +159,18 @@ describe('Phase 55D — Genuine Serial Delta & Controlled Import Verification', 
     assert.equal(sqlAliasCount, 171, 'SQLite alias count must remain 171');
   });
 
-  test('Phase 55D - Test 9: Complete Phase 55C Historical Protected Set Invariant (16,602 Anchors)', () => {
-    const priorBatches = [
-      'serials_2026-09-26',
-      'serials_2026-10-06',
-      'serials_2026-10-09',
-      'serials_2026-10-17_manual_followup',
-      'serials_2026-10-19_manual_followup',
-      'serials_2026-10-20_manual_delta',
-      'serials_2026-10-20_manual_delta_55c'
-    ];
-    for (const b of priorBatches) {
-      assert.ok(fs.existsSync(path.join(rootDir, 'data', 'import_batches', b)), `Prior batch ${b} must exist`);
-    }
+  test('Phase 55D - Test 9: Complete Full 16,602 Historical Protected Set Invariant (Keyed by Serial)', () => {
+    const protectedList = loadProtectedPhase55CSet();
+    assert.equal(protectedList.length, 16602, 'Protected historical cohort must equal exactly 16,602 anchors');
 
-    // Verify Phase 55C new anchors (528) remain 100% present in canonical
-    const p55cAnchorsDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-20_manual_delta_55c', 'data', 'new_official_serial_anchors_only_2026-10-20.json'), 'utf8'));
     const currentDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'official_serial_anchors.json'), 'utf8'));
-    const currentMap = new Map(currentDoc.anchors.map(a => [a.serial_number, a]));
+    const res = verifyProtectedCohort(protectedList, currentDoc.anchors);
 
-    for (const a of p55cAnchorsDoc.anchors) {
-      const cur = currentMap.get(a.serial_number);
-      assert.ok(cur, `Phase 55C anchor ${a.serial_number} must remain present in canonical`);
-      assert.equal(cur.model_name, a.model_name, `Phase 55C anchor ${a.serial_number} model_name must match`);
-    }
+    assert.equal(res.expected, 16602, 'PHASE55C_PROTECTED_EXPECTED must equal 16,602');
+    assert.equal(res.present, 16602, 'PHASE55C_PROTECTED_PRESENT must equal 16,602');
+    assert.equal(res.missing, 0, 'PHASE55C_PROTECTED_MISSING must be 0');
+    assert.equal(res.mutated, 0, 'PHASE55C_PROTECTED_MUTATED must be 0');
+    assert.equal(res.passed, true, 'Protected cohort verification must pass 100%');
   });
 
   test('Phase 55D - Test 10: Machine-Readable Reconciliation Document Verification', () => {
@@ -143,6 +179,10 @@ describe('Phase 55D — Genuine Serial Delta & Controlled Import Verification', 
     assert.equal(recon.start_baseline, '5482c4b23e0c74089f0488db87bc626c4b736ea1');
     assert.equal(recon.delta.true_delta_rows, 505);
     assert.equal(recon.canonical.anchors_after, 16779);
+    assert.ok(recon.historical_batch_immutability, 'historical_batch_immutability object must be present');
+    assert.equal(recon.historical_batch_immutability.directories_expected, 7);
+    assert.equal(recon.historical_batch_immutability.directories_verified, 7);
+    assert.equal(recon.historical_batch_immutability.tree_mismatches, 0);
   });
 
   test('Phase 55D - Test 11: Idempotency of Batch Processing Pipeline', () => {
@@ -159,17 +199,68 @@ describe('Phase 55D — Genuine Serial Delta & Controlled Import Verification', 
     const canonicalDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'official_serial_anchors.json'), 'utf8'));
     const canonicalMap = new Map(canonicalDoc.anchors.map(a => [a.serial_number, a]));
 
-    const fields = [
-      'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
-      'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
-    ];
-
     for (const newAnchor of newAnchorsDoc.anchors) {
       const can = canonicalMap.get(newAnchor.serial_number);
       assert.ok(can, `New anchor ${newAnchor.serial_number} must exist in canonical registry`);
-      for (const f of fields) {
+      for (const f of PROTECTED_FIELDS) {
         assert.equal(can[f], newAnchor[f], `Field ${f} mismatch for new anchor ${newAnchor.serial_number}`);
       }
     }
+  });
+
+  test('Phase 55D - Test 13: Historical Batch Immutability via Git Tree Verification & Fail-Closed Synthetic Mismatch', () => {
+    // 1. Authoritative verification of all 7 historical batch trees against Phase 55C baseline
+    const verif = verifyHistoricalBatchTrees();
+    assert.equal(verif.passed, true, 'All 7 historical batch Git trees must match baseline');
+    assert.equal(verif.directoriesExpected, 7, 'HISTORICAL_BATCH_DIRS_EXPECTED must be 7');
+    assert.equal(verif.directoriesVerified, 7, 'HISTORICAL_BATCH_DIRS_VERIFIED must be 7');
+    assert.equal(verif.treeMismatches, 0, 'HISTORICAL_BATCH_TREE_MISMATCHES must be 0');
+
+    // 2. Fail-closed test: Synthetic tree mismatch in one historical batch
+    const syntheticMismatched = verifyHistoricalBatchTrees({
+      getTreeHash: (ref, b) => {
+        if (ref === 'HEAD' && b === 'serials_2026-10-20_manual_delta_55c') {
+          return '0000000000000000000000000000000000000000';
+        }
+        return 'c4a15b904316dde493e4cfe3d4c49432f216619d';
+      }
+    });
+    assert.equal(syntheticMismatched.passed, false, 'Synthetic mismatch must fail closed');
+    assert.equal(syntheticMismatched.treeMismatches, 1, 'Expected 1 tree mismatch for synthetic tampering');
+  });
+
+  test('Phase 55D - Test 14: Historical Anchor Corruption Rejection (Mutation, Removal, Replacement)', () => {
+    const protectedList = loadProtectedPhase55CSet();
+    const currentDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'official_serial_anchors.json'), 'utf8'));
+
+    const targetSerial = '163118080'; // Well-known historical anchor: MS 440 Magnum
+
+    // 1. Mutation test: Alter model_name of target serial
+    const mutatedList = currentDoc.anchors.map(a => {
+      if (a.serial_number === targetSerial) {
+        return { ...a, model_name: 'CORRUPTED_MS_440_MAGNUM' };
+      }
+      return a;
+    });
+    const mutRes = verifyProtectedCohort(protectedList, mutatedList);
+    assert.equal(mutRes.passed, false, 'Mutation must fail verification');
+    assert.equal(mutRes.mutated, 1, 'Expected exactly 1 mutated record');
+
+    // 2. Removal test: Remove target historical anchor
+    const removedList = currentDoc.anchors.filter(a => a.serial_number !== targetSerial);
+    const remRes = verifyProtectedCohort(protectedList, removedList);
+    assert.equal(remRes.passed, false, 'Removal must fail verification');
+    assert.equal(remRes.missing, 1, 'Expected exactly 1 missing record');
+
+    // 3. Replacement test: Replace target historical anchor with a future / synthetic serial
+    const replacedList = currentDoc.anchors.map(a => {
+      if (a.serial_number === targetSerial) {
+        return { ...a, serial_number: '999999999', model_name: 'FUTURE_SYNTHETIC_MODEL' };
+      }
+      return a;
+    });
+    const repRes = verifyProtectedCohort(protectedList, replacedList);
+    assert.equal(repRes.passed, false, 'Replacement must fail verification');
+    assert.equal(repRes.missing, 1, 'Target historical anchor must be reported missing');
   });
 });

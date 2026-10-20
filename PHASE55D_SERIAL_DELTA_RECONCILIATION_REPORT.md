@@ -96,7 +96,26 @@ All historical anchor cohorts remain 100% bit-for-bit preserved in identity and 
 
 ---
 
-## 7. Safety Invariants & Heuristic Prohibition
+## 7. Historical Batch Immutability
+
+- **Baseline:** `5482c4b23e0c74089f0488db87bc626c4b736ea1`
+- **Historical batch trees verified:** `7/7`
+- **Tree mismatches:** `0`
+- **Method:** exact Git tree-object comparison against immutable Phase55C baseline
+
+| Batch Directory | Baseline Tree SHA | Candidate Tree SHA | Tree Match |
+| :--- | :--- | :--- | :--- |
+| `data/import_batches/serials_2026-09-26` | `7f135d03b4e652e59811cf6dc14952b50ae837b0` | `7f135d03b4e652e59811cf6dc14952b50ae837b0` | **YES** |
+| `data/import_batches/serials_2026-10-06` | `5cff7e5c37278ca410177ea980228ff9c40940a8` | `5cff7e5c37278ca410177ea980228ff9c40940a8` | **YES** |
+| `data/import_batches/serials_2026-10-09` | `793aaeee030c4c972c8ed539077a7afa60d19afd` | `793aaeee030c4c972c8ed539077a7afa60d19afd` | **YES** |
+| `data/import_batches/serials_2026-10-17_manual_followup` | `4323f2edd65f4928f83af7cdf982d58f7b485066` | `4323f2edd65f4928f83af7cdf982d58f7b485066` | **YES** |
+| `data/import_batches/serials_2026-10-19_manual_followup` | `656ee0936360396b0d2a56ed6297de0268a89166` | `656ee0936360396b0d2a56ed6297de0268a89166` | **YES** |
+| `data/import_batches/serials_2026-10-20_manual_delta` | `1574bc8a79b22dfd14598273df0e85e59a7203d1` | `1574bc8a79b22dfd14598273df0e85e59a7203d1` | **YES** |
+| `data/import_batches/serials_2026-10-20_manual_delta_55c` | `c4a15b904316dde493e4cfe3d4c49432f216619d` | `c4a15b904316dde493e4cfe3d4c49432f216619d` | **YES** |
+
+---
+
+## 8. Safety Invariants & Heuristic Prohibition
 
 - `RANGES_CREATED = 0` (No range inferences)
 - `GENERIC_PREFIX_RULES = 0` (No generic prefix rules)
@@ -106,7 +125,7 @@ All historical anchor cohorts remain 100% bit-for-bit preserved in identity and 
 
 ---
 
-## 8. Batch Manifest Artifacts
+## 9. Batch Manifest Artifacts
 
 All artifacts generated in `data/import_batches/serials_2026-10-20_manual_delta_55d/`:
 - `source/stihl_resultaten_snapshot.csv`

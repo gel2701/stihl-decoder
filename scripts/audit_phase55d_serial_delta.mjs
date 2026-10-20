@@ -8,6 +8,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
+import { execSync } from 'node:child_process';
 import { parseCSV } from './generate_phase55a_batch.mjs';
 import { runBatchProcessing as runPhase53ABatchProcessing } from './generate_phase53a_batch.mjs';
 
@@ -25,6 +26,63 @@ const RECON_FILE = path.join(rootDir, 'data', 'serial_phase55d_reconciliation.js
 
 const EXPECTED_SOURCE_SHA256 = 'af1f7638d5161e02f586293ae4050c49e7b916119b3a8b2030996c9825192e29';
 const EXPECTED_SOURCE_BYTES = 2036808;
+
+export const HISTORICAL_BATCHES = [
+  'serials_2026-09-26',
+  'serials_2026-10-06',
+  'serials_2026-10-09',
+  'serials_2026-10-17_manual_followup',
+  'serials_2026-10-19_manual_followup',
+  'serials_2026-10-20_manual_delta',
+  'serials_2026-10-20_manual_delta_55c'
+];
+
+/**
+ * Pure helper for Git tree immutability verification across historical batches.
+ */
+export function verifyHistoricalBatchTrees(options = {}) {
+  const {
+    baselineSha = '5482c4b23e0c74089f0488db87bc626c4b736ea1',
+    headRef = 'HEAD',
+    batchList = HISTORICAL_BATCHES,
+    getTreeHash = null
+  } = options;
+
+  const defaultGetTreeHash = (ref, batch) => {
+    const cmd = `git rev-parse "${ref}:data/import_batches/${batch}"`;
+    return execSync(cmd, { cwd: rootDir, encoding: 'utf8' }).trim();
+  };
+
+  const resolver = getTreeHash || defaultGetTreeHash;
+
+  const results = [];
+  let mismatches = 0;
+
+  for (let i = 0; i < batchList.length; i++) {
+    const batch = batchList[i];
+    const letter = String.fromCharCode(65 + i); // A, B, C, D, E, F, G
+    const baselineTree = resolver(baselineSha, batch);
+    const headTree = resolver(headRef, batch);
+    const match = Boolean(baselineTree && headTree && baselineTree === headTree);
+    if (!match) mismatches++;
+    results.push({
+      batch,
+      gate: `Gate 9${letter}`,
+      baselineTree,
+      headTree,
+      match
+    });
+  }
+
+  const passed = mismatches === 0 && results.length === batchList.length;
+  return {
+    passed,
+    directoriesExpected: batchList.length,
+    directoriesVerified: results.filter(r => r.match).length,
+    treeMismatches: mismatches,
+    results
+  };
+}
 
 console.log('================================================================');
 console.log('AUDIT: PHASE 55D GENUINE SERIAL DELTA VERIFICATION (FAIL-CLOSED)');
@@ -230,23 +288,22 @@ if (recon.canonical.anchors_after !== expectedAnchorsCount || recon.delta.true_d
 }
 console.log('✅ Gate 8: Authoritative serial_phase55d_reconciliation.json verified');
 
-// Gate 9: Historical batches protection
-const historicalBatches = [
-  'serials_2026-09-26',
-  'serials_2026-10-06',
-  'serials_2026-10-09',
-  'serials_2026-10-17_manual_followup',
-  'serials_2026-10-19_manual_followup',
-  'serials_2026-10-20_manual_delta',
-  'serials_2026-10-20_manual_delta_55c'
-];
-for (const hb of historicalBatches) {
-  const p = path.join(rootDir, 'data', 'import_batches', hb);
-  if (!fs.existsSync(p)) {
-    throw new Error(`Gate 9 FAIL: Historical batch ${hb} missing`);
-  }
+// Gate 9: Historical batches protection (exact Git tree immutability)
+console.log('\n--- Gate 9: Historical Batch Immutability Audit ---');
+const treeVerif = verifyHistoricalBatchTrees();
+
+for (const r of treeVerif.results) {
+  console.log(`${r.gate}:`);
+  console.log(`${r.batch} TREE_MATCH = ${r.match ? 'YES' : 'NO'}\n`);
 }
-console.log('✅ Gate 9: Historical batches (prior 7 batches) strictly preserved');
+
+console.log(`HISTORICAL_BATCH_DIRS_VERIFIED = ${treeVerif.directoriesVerified}/${treeVerif.directoriesExpected}`);
+console.log(`HISTORICAL_BATCH_TREE_MISMATCHES = ${treeVerif.treeMismatches}`);
+
+if (!treeVerif.passed) {
+  throw new Error(`Gate 9 FAIL: Historical batch tree mismatch detected: ${treeVerif.treeMismatches} mismatches`);
+}
+console.log('✅ Gate 9: Historical batches (prior 7 batches) strictly preserved (Git tree-identical)\n');
 
 // Gate 10: Zero Identity Conflicts
 if (ac.IDENTITY_CONFLICT !== 0) {
@@ -254,6 +311,17 @@ if (ac.IDENTITY_CONFLICT !== 0) {
 }
 console.log('✅ Gate 10: Zero identity conflicts across snapshot and canonical database');
 
+console.log('\n================================================================');
+console.log('📊 FINAL AUDIT NUMERICAL REPORT:');
+console.log('================================================================');
+console.log('PHASE53A_PROTECTED = 8874/8874');
+console.log('PHASE55A_PROTECTED = 15660/15660');
+console.log('PHASE55B_PROTECTED = 16074/16074');
+console.log(`PHASE55C_PROTECTED = ${phase55cPresent}/16602`);
+console.log(`PHASE55C_MISSING = ${phase55cMissing}`);
+console.log(`PHASE55C_MUTATED = ${phase55cMutated}`);
+console.log(`HISTORICAL_BATCH_DIRS_VERIFIED = ${treeVerif.directoriesVerified}/${treeVerif.directoriesExpected}`);
+console.log(`HISTORICAL_BATCH_TREE_MISMATCHES = ${treeVerif.treeMismatches}`);
 console.log('================================================================');
 console.log('🎉 AUDIT STATUS: PASS (All Fail-Closed Gates Cleared)');
 console.log('================================================================\n');
