@@ -1,0 +1,51 @@
+{
+  "phase": "Phase 55B",
+  "start_baseline": "99c99ff44a4fe45d3991baec14a8b6172ecce0ed",
+  "source_identity": {
+    "bytes": 753539,
+    "sha256": "bbf45994d6bc62305fc42dd833379603aa78e4641f9f0a65f11a751cab1a579d",
+    "total_rows": 7820,
+    "empty_rows": 7303,
+    "populated_rows": 517,
+    "unique_serials": 517,
+    "date_min": "2026-10-20",
+    "date_max": "2026-10-20"
+  },
+  "accounting": {
+    "ALREADY_PROCESSED_IDENTICAL": 0,
+    "ALREADY_PROCESSED_EQUIVALENT": 0,
+    "PREVIOUSLY_POSITIVE_RECONFIRMED": 103,
+    "PREVIOUSLY_UNRESOLVED_STILL_NONPOSITIVE": 0,
+    "PREVIOUSLY_UNRESOLVED_NOW_POSITIVE": 2,
+    "NEW_POSITIVE_OBSERVATION": 412,
+    "NEW_NO_MATCH_OBSERVATION": 0,
+    "FOUND_WITHOUT_USABLE_IDENTITY": 0,
+    "TECHNICAL_ERROR": 0,
+    "DUPLICATE_SOURCE_ROW": 0,
+    "IDENTITY_CONFLICT": 0,
+    "INVALID_INPUT_SERIAL": 0
+  },
+  "delta": {
+    "true_delta_rows": 414,
+    "historical_overlap_rows": 103,
+    "new_official_anchors": 414,
+    "reconfirmed_anchors": 103,
+    "identity_conflicts": 0
+  },
+  "canonical": {
+    "anchors_before": 15660,
+    "new_anchors": 414,
+    "anchors_after": 16074,
+    "aliases_before": 171,
+    "new_aliases": 0,
+    "aliases_after": 171
+  },
+  "safety_invariants": {
+    "ranges_created": 0,
+    "generic_prefix_rules_created": 0,
+    "negative_runtime_evidence_created": 0,
+    "phase55a_batch_a_mutations": 0,
+    "phase55a_batch_b_mutations": 0,
+    "historical_batches_mutations": 0
+  }
+}

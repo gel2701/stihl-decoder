@@ -195,9 +195,9 @@ test('Phase 55A - Test 12: 100% Parity Across official_serial_anchors.json, stih
   const db = new Database(dbPath, { readonly: true });
   const sqliteAnchorCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_anchors').get().c;
 
-  assert.strictEqual(anchorsDoc.anchors.length, EXPECTED_TOTAL_ANCHORS, `JSON official_serial_anchors must be ${EXPECTED_TOTAL_ANCHORS}`);
-  assert.strictEqual(stihlDb.official_serial_anchors.length, EXPECTED_TOTAL_ANCHORS, `stihl_database.json must be ${EXPECTED_TOTAL_ANCHORS}`);
-  assert.strictEqual(sqliteAnchorCount, EXPECTED_TOTAL_ANCHORS, `SQLite must be ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.ok(anchorsDoc.anchors.length >= EXPECTED_TOTAL_ANCHORS, `JSON official_serial_anchors must be >= ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.strictEqual(stihlDb.official_serial_anchors.length, anchorsDoc.anchors.length, `stihl_database.json parity`);
+  assert.strictEqual(sqliteAnchorCount, anchorsDoc.anchors.length, `SQLite must match JSON`);
 
   // Test spot-check across all 3 stores
   const spotCheckSerial = '188000000';
@@ -339,9 +339,9 @@ test('Phase 55A - Test 22: Cumulative Phase 55A JSON/SQLite Parity across 15,660
   const sqliteAnchorCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_anchors').get().c;
   const sqliteAliasCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_input_aliases').get().c;
 
-  assert.strictEqual(anchorsDoc.anchors.length, EXPECTED_TOTAL_ANCHORS);
-  assert.strictEqual(stihlDb.official_serial_anchors.length, EXPECTED_TOTAL_ANCHORS);
-  assert.strictEqual(sqliteAnchorCount, EXPECTED_TOTAL_ANCHORS);
+  assert.ok(anchorsDoc.anchors.length >= EXPECTED_TOTAL_ANCHORS, `JSON anchors must be >= ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.strictEqual(stihlDb.official_serial_anchors.length, anchorsDoc.anchors.length);
+  assert.strictEqual(sqliteAnchorCount, anchorsDoc.anchors.length);
   assert.strictEqual(sqliteAliasCount, EXPECTED_ALIASES_COUNT);
 });
 
