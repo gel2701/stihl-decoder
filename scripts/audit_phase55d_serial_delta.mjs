@@ -37,6 +37,16 @@ export const HISTORICAL_BATCHES = [
   'serials_2026-10-20_manual_delta_55c'
 ];
 
+export const AUTHORITATIVE_PHASE55C_BATCH_TREES = Object.freeze({
+  'serials_2026-09-26': '7f135d03b4e652e59811cf6dc14952b50ae837b0',
+  'serials_2026-10-06': '5cff7e5c37278ca410177ea980228ff9c40940a8',
+  'serials_2026-10-09': '793aaeee030c4c972c8ed539077a7afa60d19afd',
+  'serials_2026-10-17_manual_followup': '4323f2edd65f4928f83af7cdf982d58f7b485066',
+  'serials_2026-10-19_manual_followup': '656ee0936360396b0d2a56ed6297de0268a89166',
+  'serials_2026-10-20_manual_delta': '1574bc8a79b22dfd14598273df0e85e59a7203d1',
+  'serials_2026-10-20_manual_delta_55c': 'c4a15b904316dde493e4cfe3d4c49432f216619d'
+});
+
 /**
  * Pure helper for Git tree immutability verification across historical batches.
  */
@@ -49,8 +59,23 @@ export function verifyHistoricalBatchTrees(options = {}) {
   } = options;
 
   const defaultGetTreeHash = (ref, batch) => {
-    const cmd = `git rev-parse "${ref}:data/import_batches/${batch}"`;
-    return execSync(cmd, { cwd: rootDir, encoding: 'utf8' }).trim();
+    try {
+      const cmd = `git rev-parse "${ref}:data/import_batches/${batch}"`;
+      return execSync(cmd, { cwd: rootDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
+    } catch {
+      // In shallow clone environments (e.g. CI runner), baseline commits may not be present in local object store.
+      try {
+        execSync(`git fetch --depth=1 origin ${ref}`, { cwd: rootDir, stdio: ['pipe', 'pipe', 'pipe'] });
+        const cmd = `git rev-parse "${ref}:data/import_batches/${batch}"`;
+        return execSync(cmd, { cwd: rootDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
+      } catch {
+        // Fallback to immutable baseline tree constant if git object resolution is unavailable in shallow clone
+        if (ref === '5482c4b23e0c74089f0488db87bc626c4b736ea1' && AUTHORITATIVE_PHASE55C_BATCH_TREES[batch]) {
+          return AUTHORITATIVE_PHASE55C_BATCH_TREES[batch];
+        }
+        return null;
+      }
+    }
   };
 
   const resolver = getTreeHash || defaultGetTreeHash;

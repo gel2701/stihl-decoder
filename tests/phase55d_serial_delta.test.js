@@ -14,7 +14,6 @@ import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { runPhase55DReconciliation } from '../scripts/process_phase55d_serial_delta.mjs';
 import { verifyHistoricalBatchTrees, HISTORICAL_BATCHES } from '../scripts/audit_phase55d_serial_delta.mjs';
-import { runBatchProcessing as runPhase53ABatchProcessing } from '../scripts/generate_phase53a_batch.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,14 +33,25 @@ const PROTECTED_FIELDS = [
   'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
 ];
 
+let _cachedProtectedPhase55CSet = null;
+
 function loadProtectedPhase55CSet() {
-  const res53a = runPhase53ABatchProcessing();
-  const hist53a = res53a.finalAnchorsList;
+  if (_cachedProtectedPhase55CSet) return _cachedProtectedPhase55CSet;
+
+  const pre = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'reproducibility', 'phase53a', 'official_serial_anchors_pre_phase53a.json'), 'utf8')).anchors;
+  const p53a = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-09', 'data', 'new_official_serial_anchors_only_2026-10-09.json'), 'utf8')).anchors;
+  const map53a = new Map();
+  for (const a of pre) map53a.set(a.serial_number, a);
+  for (const a of p53a) map53a.set(a.serial_number, a);
+  const hist53a = [...map53a.values()];
+
   const batchA = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-17_manual_followup', 'data', 'new_official_serial_anchors_only_2026-10-17.json'), 'utf8')).anchors;
   const batchB = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-19_manual_followup', 'data', 'new_official_serial_anchors_only_2026-10-19.json'), 'utf8')).anchors;
   const batch55B = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-20_manual_delta', 'data', 'new_official_serial_anchors_only_2026-10-20.json'), 'utf8')).anchors;
   const batch55C = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'import_batches', 'serials_2026-10-20_manual_delta_55c', 'data', 'new_official_serial_anchors_only_2026-10-20.json'), 'utf8')).anchors;
-  return [...hist53a, ...batchA, ...batchB, ...batch55B, ...batch55C];
+
+  _cachedProtectedPhase55CSet = [...hist53a, ...batchA, ...batchB, ...batch55B, ...batch55C];
+  return _cachedProtectedPhase55CSet;
 }
 
 export function verifyProtectedCohort(protectedList, currentList) {
