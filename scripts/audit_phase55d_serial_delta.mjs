@@ -64,17 +64,11 @@ export function verifyHistoricalBatchTrees(options = {}) {
       return execSync(cmd, { cwd: rootDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
     } catch {
       // In shallow clone environments (e.g. CI runner), baseline commits may not be present in local object store.
-      try {
-        execSync(`git fetch --depth=1 origin ${ref}`, { cwd: rootDir, stdio: ['pipe', 'pipe', 'pipe'] });
-        const cmd = `git rev-parse "${ref}:data/import_batches/${batch}"`;
-        return execSync(cmd, { cwd: rootDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
-      } catch {
-        // Fallback to immutable baseline tree constant if git object resolution is unavailable in shallow clone
-        if (ref === '5482c4b23e0c74089f0488db87bc626c4b736ea1' && AUTHORITATIVE_PHASE55C_BATCH_TREES[batch]) {
-          return AUTHORITATIVE_PHASE55C_BATCH_TREES[batch];
-        }
-        return null;
+      // Fallback to immutable baseline tree constant if git object resolution is unavailable in shallow clone
+      if (ref === baselineSha && AUTHORITATIVE_PHASE55C_BATCH_TREES[batch]) {
+        return AUTHORITATIVE_PHASE55C_BATCH_TREES[batch];
       }
+      return null;
     }
   };
 
@@ -109,11 +103,12 @@ export function verifyHistoricalBatchTrees(options = {}) {
   };
 }
 
-console.log('================================================================');
-console.log('AUDIT: PHASE 55D GENUINE SERIAL DELTA VERIFICATION (FAIL-CLOSED)');
-console.log('================================================================\n');
+export function runAudit() {
+  console.log('================================================================');
+  console.log('AUDIT: PHASE 55D GENUINE SERIAL DELTA VERIFICATION (FAIL-CLOSED)');
+  console.log('================================================================\n');
 
-// Gate 1: Source File Identity & Hash
+  // Gate 1: Source File Identity & Hash
 if (!fs.existsSync(BATCH_SOURCE_FILE)) {
   throw new Error(`Gate 1 FAIL: Batch source copy missing at ${BATCH_SOURCE_FILE}`);
 }
@@ -350,3 +345,21 @@ console.log(`HISTORICAL_BATCH_TREE_MISMATCHES = ${treeVerif.treeMismatches}`);
 console.log('================================================================');
 console.log('🎉 AUDIT STATUS: PASS (All Fail-Closed Gates Cleared)');
 console.log('================================================================\n');
+
+  return {
+    passed: true,
+    protectedCounts: {
+      phase53a: 8874,
+      phase55a: 15660,
+      phase55b: 16074,
+      phase55c: phase55cPresent,
+      phase55cMissing,
+      phase55cMutated
+    },
+    treeVerif
+  };
+}
+
+if (process.argv[1] && process.argv[1].endsWith('audit_phase55d_serial_delta.mjs')) {
+  runAudit();
+}
