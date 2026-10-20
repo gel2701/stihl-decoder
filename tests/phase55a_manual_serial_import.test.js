@@ -195,9 +195,9 @@ test('Phase 55A - Test 12: 100% Parity Across official_serial_anchors.json, stih
   const db = new Database(dbPath, { readonly: true });
   const sqliteAnchorCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_anchors').get().c;
 
-  assert.strictEqual(anchorsDoc.anchors.length, EXPECTED_TOTAL_ANCHORS, `JSON official_serial_anchors must be ${EXPECTED_TOTAL_ANCHORS}`);
-  assert.strictEqual(stihlDb.official_serial_anchors.length, EXPECTED_TOTAL_ANCHORS, `stihl_database.json must be ${EXPECTED_TOTAL_ANCHORS}`);
-  assert.strictEqual(sqliteAnchorCount, EXPECTED_TOTAL_ANCHORS, `SQLite must be ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.ok(anchorsDoc.anchors.length >= EXPECTED_TOTAL_ANCHORS, `JSON official_serial_anchors must be >= ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.strictEqual(stihlDb.official_serial_anchors.length, anchorsDoc.anchors.length, `stihl_database.json parity`);
+  assert.strictEqual(sqliteAnchorCount, anchorsDoc.anchors.length, `SQLite must match JSON`);
 
   // Test spot-check across all 3 stores
   const spotCheckSerial = '188000000';
@@ -339,9 +339,9 @@ test('Phase 55A - Test 22: Cumulative Phase 55A JSON/SQLite Parity across 15,660
   const sqliteAnchorCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_anchors').get().c;
   const sqliteAliasCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_input_aliases').get().c;
 
-  assert.strictEqual(anchorsDoc.anchors.length, EXPECTED_TOTAL_ANCHORS);
-  assert.strictEqual(stihlDb.official_serial_anchors.length, EXPECTED_TOTAL_ANCHORS);
-  assert.strictEqual(sqliteAnchorCount, EXPECTED_TOTAL_ANCHORS);
+  assert.ok(anchorsDoc.anchors.length >= EXPECTED_TOTAL_ANCHORS, `JSON anchors must be >= ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.strictEqual(stihlDb.official_serial_anchors.length, anchorsDoc.anchors.length);
+  assert.strictEqual(sqliteAnchorCount, anchorsDoc.anchors.length);
   assert.strictEqual(sqliteAliasCount, EXPECTED_ALIASES_COUNT);
 });
 
@@ -353,4 +353,47 @@ test('Phase 55A - Test 23: Full Idempotency of Batch Processing Pipeline (Batch 
   assert.strictEqual(dryRunB.classifications.IDENTITY_CONFLICT, 0, 'Dry-run must report 0 conflicts');
   assert.strictEqual(dryRunB.newOfficialAnchorsOnly.length, 0, 'Dry-run against updated baseline must find 0 new anchors (already imported)');
   assert.strictEqual(dryRunB.reconfirmedAnchors.length, EXPECTED_BATCH_B_RECONFIRMED + EXPECTED_BATCH_B_NEW_ANCHORS, 'All positive matches are now reconfirmed');
+});
+
+test('Phase 55A - Test 24: Strict Phase 55A Historical Protected Subset (15,660/15,660 Unchanged)', async () => {
+  const gen53a = await import('../scripts/generate_phase53a_batch.mjs');
+  const res53a = gen53a.runBatchProcessing();
+  const hist53a = res53a.finalAnchorsList; // 8874
+
+  const batchAAnchors = JSON.parse(fs.readFileSync(path.join(batchDir, 'data', 'new_official_serial_anchors_only_2026-10-17.json'), 'utf8')).anchors; // 1543
+  const batchBAnchors = JSON.parse(fs.readFileSync(path.join(batchBDir, 'data', 'new_official_serial_anchors_only_2026-10-19.json'), 'utf8')).anchors; // 5243
+
+  const protectedSet = [...hist53a, ...batchAAnchors, ...batchBAnchors];
+  assert.strictEqual(protectedSet.length, EXPECTED_TOTAL_ANCHORS, `Phase 55A protected set must total exactly ${EXPECTED_TOTAL_ANCHORS} anchors`);
+
+  const currentDoc = JSON.parse(fs.readFileSync(canonicalAnchorsPath, 'utf8'));
+  const currentMap = new Map(currentDoc.anchors.map(a => [a.serial_number, a]));
+
+  const fields = [
+    'serial_number', 'model_name', 'canonical_model_id', 'category', 'drive_type',
+    'source', 'source_url', 'verification_date', 'verification_method', 'evidence_type', 'verification_status'
+  ];
+
+  let present = 0;
+  let missing = 0;
+  let mutated = 0;
+
+  for (const exp of protectedSet) {
+    const cur = currentMap.get(exp.serial_number);
+    if (!cur) {
+      missing++;
+    } else {
+      present++;
+      for (const f of fields) {
+        if ((exp[f] ?? null) !== (cur[f] ?? null)) {
+          mutated++;
+          break;
+        }
+      }
+    }
+  }
+
+  assert.strictEqual(present, EXPECTED_TOTAL_ANCHORS, `PHASE55A_PROTECTED_ANCHORS_PRESENT must be exactly ${EXPECTED_TOTAL_ANCHORS}`);
+  assert.strictEqual(missing, 0, 'PHASE55A_PROTECTED_ANCHORS_MISSING must be 0');
+  assert.strictEqual(mutated, 0, 'PHASE55A_PROTECTED_ANCHORS_MUTATED must be 0');
 });

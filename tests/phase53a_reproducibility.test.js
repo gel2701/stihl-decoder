@@ -354,26 +354,40 @@ test('Phase 53A-M1 - Test 14: Actual Recheck Queue Records Present in Queue CSV'
   const queueCsvPath = path.join(BATCH_DATA_DIR, 'serial_recheck_queue_2026-10-09.csv');
   const queueContent = fs.readFileSync(queueCsvPath, 'utf8');
 
-  // 1. Technical Timeout: 163136620
+  // Verify historical observations remain intact in queue CSV (HISTORICAL_QUEUE_MUTATIONS = 0)
   assert.ok(queueContent.includes('163136620,TECHNICAL_TIMEOUT'), 'Queue must contain 163136620 with TECHNICAL_TIMEOUT');
-
-  // 2. Technical Error: 163150360
   assert.ok(queueContent.includes('163150360,TECHNICAL_ERROR'), 'Queue must contain 163150360 with TECHNICAL_ERROR');
-
-  // 3. Missing Identity: 163136520
   assert.ok(queueContent.includes('163136520,FOUND_WITHOUT_USABLE_IDENTITY'), 'Queue must contain 163136520 with FOUND_WITHOUT_USABLE_IDENTITY');
+
+  // Verify unresolved replacement controls are present in queue with expected reasons
+  assert.ok(queueContent.includes('163137915,TECHNICAL_TIMEOUT'), 'Queue must contain 163137915 with TECHNICAL_TIMEOUT');
+  assert.ok(queueContent.includes('163146400,FOUND_WITHOUT_USABLE_IDENTITY'), 'Queue must contain 163146400 with FOUND_WITHOUT_USABLE_IDENTITY');
 });
 
 test('Phase 53A-M1 - Test 15: Actual Recheck Queue Negative Controls Fail-Closed in Decoder', () => {
+  const queueCsvPath = path.join(BATCH_DATA_DIR, 'serial_recheck_queue_2026-10-09.csv');
+  const queueContent = fs.readFileSync(queueCsvPath, 'utf8');
   const db = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
-  const recheckControls = ['163136620', '163150360', '163136520'];
-  for (const serial of recheckControls) {
-    const res = decodeStihlCode(serial, db);
-    assert.strictEqual(res.officialAnchor, null, `Recheck serial ${serial} must NOT have officialAnchor`);
-    assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED', `Recheck serial ${serial} must NOT have EXACT_MODEL_IDENTIFIED`);
-    assert.strictEqual(res.status, 'FORMAT_VALIDATED', `Recheck serial ${serial} status must be FORMAT_VALIDATED`);
-    assert.strictEqual(res.model, 'Nog niet definitief bevestigd', `Recheck serial ${serial} must NOT have exact model`);
+  const recheckControls = [
+    { serial: '163137915', reason: 'TECHNICAL_TIMEOUT' },
+    { serial: '163150360', reason: 'TECHNICAL_ERROR' },
+    { serial: '163146400', reason: 'FOUND_WITHOUT_USABLE_IDENTITY' }
+  ];
+
+  for (const control of recheckControls) {
+    // 1. Provenance: in historical queue = YES with expected reason
+    assert.ok(
+      queueContent.includes(`${control.serial},${control.reason}`),
+      `Recheck control ${control.serial} must have proven historical queue provenance with reason ${control.reason}`
+    );
+
+    // 2. Decoder evaluation: officialAnchor = null, identityStatus != EXACT_MODEL_IDENTIFIED, fail-closed
+    const res = decodeStihlCode(control.serial, db);
+    assert.strictEqual(res.officialAnchor, null, `Recheck serial ${control.serial} must NOT have officialAnchor`);
+    assert.notStrictEqual(res.identityStatus, 'EXACT_MODEL_IDENTIFIED', `Recheck serial ${control.serial} must NOT have EXACT_MODEL_IDENTIFIED`);
+    assert.strictEqual(res.status, 'FORMAT_VALIDATED', `Recheck serial ${control.serial} status must be FORMAT_VALIDATED`);
+    assert.strictEqual(res.model, 'Nog niet definitief bevestigd', `Recheck serial ${control.serial} must NOT have exact model`);
   }
 });
 
@@ -418,8 +432,13 @@ test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors
   try {
     const doc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
     assert.ok(doc.anchors.length >= 8874);
-    // Mutate record 4500 (non-sampled index) without changing count
-    doc.anchors[4500].model_name = 'CORRUPTED_MODEL_NAME_PHASE53A';
+
+    // Locate known historical Phase 53A protected serial by serial_number (not positional index)
+    const targetSerial = '163125960';
+    const idx = doc.anchors.findIndex(a => a.serial_number === targetSerial);
+    assert.ok(idx >= 0, `Known protected serial ${targetSerial} must exist in anchors`);
+
+    doc.anchors[idx].model_name = 'CORRUPTED_MODEL_NAME_PHASE53A';
     fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(doc, null, 2));
 
     const res = verifyReproducibility({
@@ -432,8 +451,8 @@ test('Phase 53A-M1 - Test 18: Corruption Injection E — official_serial_anchors
     assert.strictEqual(res.success, false, 'Verify must FAIL when official_serial_anchors.json model is mutated');
     assert.strictEqual(res.productionStats.historicalAnchorsMutated, 1);
     assert.ok(
-      res.errors.some(e => e.includes('official_serial_anchors.json record 4500') && e.includes('model_name')),
-      'Error message must pinpoint record 4500 model_name mismatch'
+      res.errors.some(e => e.includes(`official_serial_anchors.json record ${idx}`) && e.includes('model_name')),
+      `Error message must pinpoint record ${idx} model_name mismatch`
     );
   } finally {
     env.cleanup();
@@ -445,8 +464,13 @@ test('Phase 53A-M1 - Test 19: Corruption Injection F — official_serial_anchors
   try {
     const doc = JSON.parse(fs.readFileSync(env.tempOfficialAnchors, 'utf8'));
     assert.ok(doc.anchors.length >= 8874);
-    // Mutate record 1200 category without changing count
-    doc.anchors[1200].category = 'CORRUPTED_CATEGORY_PHASE53A';
+
+    // Locate known historical Phase 53A protected serial by serial_number (not positional index)
+    const targetSerial = '163121480';
+    const idx = doc.anchors.findIndex(a => a.serial_number === targetSerial);
+    assert.ok(idx >= 0, `Known protected serial ${targetSerial} must exist in anchors`);
+
+    doc.anchors[idx].category = 'CORRUPTED_CATEGORY_PHASE53A';
     fs.writeFileSync(env.tempOfficialAnchors, JSON.stringify(doc, null, 2));
 
     const res = verifyReproducibility({
@@ -459,8 +483,8 @@ test('Phase 53A-M1 - Test 19: Corruption Injection F — official_serial_anchors
     assert.strictEqual(res.success, false, 'Verify must FAIL when category is mutated');
     assert.strictEqual(res.productionStats.historicalAnchorsMutated, 1);
     assert.ok(
-      res.errors.some(e => e.includes('official_serial_anchors.json record 1200') && e.includes('category')),
-      'Error message must pinpoint record 1200 category mismatch'
+      res.errors.some(e => e.includes(`official_serial_anchors.json record ${idx}`) && e.includes('category')),
+      `Error message must pinpoint record ${idx} category mismatch`
     );
   } finally {
     env.cleanup();
@@ -472,8 +496,13 @@ test('Phase 53A-M1 - Test 20: Corruption Injection G — stihl_database.json Dri
   try {
     const doc = JSON.parse(fs.readFileSync(env.tempStihlDatabaseJson, 'utf8'));
     assert.ok(doc.official_serial_anchors.length >= 8874);
-    // Mutate record 6000 drive_type in stihl_database.json only
-    doc.official_serial_anchors[6000].drive_type = 'CORRUPTED_DRIVE_TYPE';
+
+    // Locate known historical Phase 53A protected serial by serial_number (not positional index)
+    const targetSerial = '163139380';
+    const idx = doc.official_serial_anchors.findIndex(a => a.serial_number === targetSerial);
+    assert.ok(idx >= 0, `Known protected serial ${targetSerial} must exist in stihl_database.json`);
+
+    doc.official_serial_anchors[idx].drive_type = 'CORRUPTED_DRIVE_TYPE';
     fs.writeFileSync(env.tempStihlDatabaseJson, JSON.stringify(doc, null, 2));
 
     const res = verifyReproducibility({
@@ -485,12 +514,12 @@ test('Phase 53A-M1 - Test 20: Corruption Injection G — stihl_database.json Dri
 
     assert.strictEqual(res.success, false, 'Verify must FAIL when stihl_database.json is mutated');
     assert.ok(
-      res.errors.some(e => e.includes('stihl_database.json record 6000') && e.includes('drive_type')),
-      'Error message must detect stihl_database.json record 6000 drive_type mismatch'
+      res.errors.some(e => e.includes(`stihl_database.json record ${idx}`) && e.includes('drive_type')),
+      `Error message must detect stihl_database.json record ${idx} drive_type mismatch`
     );
     assert.ok(
-      res.errors.some(e => e.includes('Cross-parity mismatch between official_serial_anchors.json and stihl_database.json at record 6000')),
-      'Error message must detect cross-parity mismatch between canonical json and stihl_database.json'
+      res.errors.some(e => e.includes(`Cross-parity mismatch between official_serial_anchors.json and stihl_database.json at record ${idx}`)),
+      `Error message must detect cross-parity mismatch between canonical json and stihl_database.json at record ${idx}`
     );
   } finally {
     env.cleanup();
