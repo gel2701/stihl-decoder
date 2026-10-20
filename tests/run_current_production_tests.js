@@ -70,7 +70,8 @@ export const currentProductionSuites = [
   'tests/phase54f_h_backlog_finalization.test.js',
   'tests/phase55a_manual_serial_import.test.js',
   'tests/phase55b_serial_delta.test.js',
-  'tests/phase55c_serial_delta.test.js'
+  'tests/phase55c_serial_delta.test.js',
+  'tests/phase55d_serial_delta.test.js'
 ];
 
 console.log('===============================================================');
