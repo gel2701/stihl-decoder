@@ -1,0 +1,52 @@
+{
+  "phase": "Phase 55C",
+  "start_baseline": "0d92a48f024549083c9d9545175f6c9b669af599",
+  "source_identity": {
+    "bytes": 1640010,
+    "sha256": "1a0b86b7b1b3654e3fdf16404aa144d19f002f4b2fd8f8a947089e305efc748e",
+    "total_rows": 8481,
+    "empty_rows": 7303,
+    "populated_rows": 1178,
+    "unique_serials": 1177,
+    "date_min": "2026-10-20",
+    "date_max": "2026-10-20"
+  },
+  "accounting": {
+    "ALREADY_PROCESSED_IDENTICAL": 0,
+    "ALREADY_PROCESSED_EQUIVALENT": 0,
+    "PREVIOUSLY_POSITIVE_RECONFIRMED": 649,
+    "PREVIOUSLY_UNRESOLVED_STILL_NONPOSITIVE": 0,
+    "PREVIOUSLY_UNRESOLVED_NOW_POSITIVE": 0,
+    "NEW_POSITIVE_OBSERVATION": 528,
+    "NEW_NO_MATCH_OBSERVATION": 0,
+    "NEW_FOUND_WITHOUT_USABLE_IDENTITY": 0,
+    "NEW_TECHNICAL_ERROR": 0,
+    "DUPLICATE_SOURCE_ROW": 1,
+    "IDENTITY_CONFLICT": 0,
+    "INVALID_INPUT_SERIAL": 0
+  },
+  "delta": {
+    "true_delta_rows": 528,
+    "historical_overlap_rows": 649,
+    "new_official_anchors": 528,
+    "reconfirmed_anchors": 649,
+    "identity_conflicts": 0
+  },
+  "canonical": {
+    "anchors_before": 16074,
+    "new_anchors": 528,
+    "anchors_after": 16602,
+    "aliases_before": 171,
+    "new_aliases": 0,
+    "aliases_after": 171
+  },
+  "safety_invariants": {
+    "ranges_created": 0,
+    "generic_prefix_rules_created": 0,
+    "negative_runtime_evidence_created": 0,
+    "phase53a_historical_mutations": 0,
+    "phase55a_protected_mutations": 0,
+    "phase55b_protected_mutations": 0,
+    "historical_batches_mutations": 0
+  }
+}
