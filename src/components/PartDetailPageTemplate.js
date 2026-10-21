@@ -362,9 +362,11 @@ ${supersessionHtml}
           const redirectParams = new URLSearchParams({
             url: offer.url,
             part_number: resolved.part_number,
+            model: compatibleModels[0]?.model_id || '',
             provider: offer.provider || 'amazon',
             marketplace: offer.marketplace || '',
             offer_type: offer.match_type || 'SEARCH_LINK',
+            match_type: offer.match_type || (isVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK'),
             asin_if_known: offer.asin || '',
             product_verified: isVerified ? 'true' : 'false',
             seo_tier: indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C'),

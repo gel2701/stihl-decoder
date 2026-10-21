@@ -73,7 +73,8 @@ export const currentProductionSuites = [
   'tests/phase55c_serial_delta.test.js',
   'tests/phase55d_serial_delta.test.js',
   'tests/phase55e_serial_delta.test.js',
-  'tests/phase56a_parts_commercial_growth.test.js'
+  'tests/phase56a_parts_commercial_growth.test.js',
+  'tests/phase56b_amazon_exact_match_pilot.test.js'
 ];
 
 console.log('===============================================================');
