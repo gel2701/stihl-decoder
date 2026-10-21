@@ -180,9 +180,9 @@ test('Phase 54C: Sitemap Generator Gating (Zero Empty Model Parts, Exactly 50 Pi
   assert.strictEqual(sitemapModelParts.length, expectedIndexableModelParts, 'Sitemap model parts count must match indexable parts models');
   assert.strictEqual(sitemapModelParts.length, 58, 'Exactly 58 model parts pages in sitemap');
 
-  // Exactly 50 pilot part detail pages in sitemap (zero unapproved parts)
+  // Authorized individual part detail pages in sitemap (50 pilot + 350 Phase 56A expansion)
   const sitemapParts = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
-  assert.strictEqual(sitemapParts.length, 50, 'Sitemap must contain exactly 50 pilot part detail pages');
+  assert.strictEqual(sitemapParts.length, 400, 'Sitemap must contain exactly 400 authorized individual part detail pages (50 pilot + 350 Phase 56A)');
 });
 
 test('Phase 54C: Canonical Parts Foundation Invariants Unchanged', () => {

@@ -9,6 +9,7 @@ import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
 import { PRIMARY_ORIGIN } from '../config.js';
+import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import {
   buildPublicEvidenceFields,
   buildPublicEvidenceFieldMap,
@@ -114,6 +115,8 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const canonicalUrl = categorySlug ? `${baseUrl}/${categorySlug}/${slug}/` : `${baseUrl}/modellen-onbekend/${slug}/`;
   const safeModelPath = getSafeModelPath(model);
   const safePartsPath = getSafeModelPartsPath(model);
+  const hasParts = Boolean(safePartsPath && PartCatalogResolver.hasPartsForModel(model, database));
+  const modelSections = hasParts ? PartCatalogResolver.getSectionsForModel(model, null, null, database) : [];
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -398,6 +401,44 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
           </div>
         </div>
       </section>
+    ` : ''}
+
+    ${hasParts && modelSections.length > 0 ? `
+    <!-- Canonical Model Parts & Diagram Sections Preview -->
+    <section class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>🔧 Onderdelen & Explosietekeningen STIHL ${model.model_name}</span>
+            <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">${modelSections.reduce((acc, s) => acc + s.parts.length, 0)} onderdelen</span>
+          </h2>
+          <p class="text-xs text-gray-400">Bekijk exploded views, diagramsecties en compatibele onderdelen voor de STIHL ${model.model_name}.</p>
+        </div>
+        ${safePartsPath ? `<a href="${safePartsPath}" class="text-xs text-orange-400 font-bold hover:underline shrink-0">Volledige onderdelengids →</a>` : ''}
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+        ${modelSections.slice(0, 6).map(sec => `
+          <a href="${safePartsPath}" class="bg-gray-950 p-3.5 rounded-xl border border-gray-800/80 hover:border-gray-700 transition space-y-1 block group">
+            <div class="font-bold text-white text-xs flex items-center justify-between">
+              <span class="group-hover:text-orange-400 transition">${sec.section_name}</span>
+              <span class="text-3xs font-mono text-gray-500 bg-gray-900 px-1.5 py-0.5 rounded">${sec.parts.length}</span>
+            </div>
+            <p class="text-3xs text-gray-400">Gedocumenteerde diagramsectie</p>
+          </a>
+        `).join('')}
+      </div>
+      <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <a href="${safePartsPath}" class="text-orange-400 font-semibold hover:underline flex items-center gap-1.5">
+          <span>Bekijk alle ${modelSections.length} exploded view secties voor STIHL ${model.model_name}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        ${model.series_code ? `
+          <a href="/onderdeelnummer/stihl-${model.series_code}/" class="text-gray-400 hover:text-white hover:underline text-2xs">
+            Bekijk alle serie ${model.series_code} onderdelen →
+          </a>
+        ` : ''}
+      </div>
+    </section>
     ` : ''}
 
     <!-- Conversion Funnel CTAs -->

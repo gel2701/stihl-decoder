@@ -15,6 +15,7 @@ import {
   getCanonicalPartSeriesCodes
 } from '../publicationRules.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
+import { getAllIndexablePartsList } from '../seo/PartIndexationRegistry.js';
 import { getPartIndexationPilotList } from '../seo/PartIndexationPilot.js';
 
 export function collectSitemapDiagnostics(database = {}) {
@@ -96,9 +97,9 @@ export function generateSitemapXml(baseUrl = PRIMARY_ORIGIN, database = {}) {
     urls.push({ loc: `${baseUrl}/onderdeelnummer/stihl-${code}/`, priority: '0.6', changefreq: 'monthly' });
   });
 
-  // 9. Individual Part Indexation Pilot (Explicit Allowlist Only, <= 50)
-  const pilotParts = getPartIndexationPilotList();
-  pilotParts.forEach(p => {
+  // 9. Individual Part Indexation (Explicit Allowlist: 50 Pilot + Phase 56A Expansion)
+  const indexableParts = getAllIndexablePartsList();
+  indexableParts.forEach(p => {
     urls.push({ loc: `${baseUrl}/onderdeelnummer/${p.part_number}/`, priority: '0.6', changefreq: 'monthly' });
   });
 

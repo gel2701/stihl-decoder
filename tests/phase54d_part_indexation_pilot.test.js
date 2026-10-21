@@ -28,6 +28,7 @@ import {
   getPartIndexationPilotSet
 } from '../src/seo/PartIndexationPilot.js';
 import { PartIndexReadinessClassifier } from '../src/seo/PartIndexReadinessClassifier.js';
+import { getAllIndexablePartsSet } from '../src/seo/PartIndexationRegistry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -155,7 +156,7 @@ test('Phase 54D: Sitemap Exact Set Equivalence (pilot allowlist == sitemap indiv
   const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
   const sitemapPartUrls = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
 
-  assert.strictEqual(sitemapPartUrls.length, 50, 'Sitemap must contain exactly 50 individual part URLs');
+  assert.strictEqual(sitemapPartUrls.length, 400, 'Sitemap must contain exactly 400 authorized individual part URLs (50 pilot + 350 Phase 56A expansion)');
 
   const sitemapPartNumbers = new Set(sitemapPartUrls.map((u) => {
     const m = u.match(/\/onderdeelnummer\/(\d{11})\//);
@@ -163,12 +164,13 @@ test('Phase 54D: Sitemap Exact Set Equivalence (pilot allowlist == sitemap indiv
   }).filter(Boolean));
 
   const pilotSet = getPartIndexationPilotSet();
+  const allIndexableSet = getAllIndexablePartsSet();
 
   for (const pilotNo of pilotSet) {
     assert.ok(sitemapPartNumbers.has(pilotNo), `Pilot part ${pilotNo} must be present in sitemap.xml`);
   }
   for (const sitemapNo of sitemapPartNumbers) {
-    assert.ok(pilotSet.has(sitemapNo), `Sitemap part ${sitemapNo} must be an authorized member of pilotSet`);
+    assert.ok(allIndexableSet.has(sitemapNo), `Sitemap part ${sitemapNo} must be an authorized member of indexable parts registry`);
   }
 });
 

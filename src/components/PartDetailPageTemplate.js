@@ -11,6 +11,7 @@ import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { getSafeModelPath } from '../publicationRules.js';
 import { AffiliateOfferResolver } from '../affiliate/AffiliateOfferResolver.js';
 import { renderAffiliateDisclosureHtml } from '../affiliate/AffiliateDisclosure.js';
+import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { isPartIndexationPilotEnabled, getPartIndexationPilotEntry } from '../seo/PartIndexationPilot.js';
 
 export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = null, baseUrl = PRIMARY_ORIGIN) {
@@ -96,14 +97,14 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
 </html>`;
   }
 
-  const isPilot = Boolean(resolved?.part_number && isPartIndexationPilotEnabled(resolved.part_number));
-  const pilotEntry = isPilot ? getPartIndexationPilotEntry(resolved.part_number) : null;
-  const displayPartName = pilotEntry?.clean_name || resolved.technical_profile?.display_name || resolved.part_name || 'STIHL Vervangingsonderdeel';
-  const robotsContent = isPilot ? 'index, follow' : 'noindex, follow';
-  const pageTitle = isPilot
+  const isIndexable = Boolean(resolved?.part_number && isPartIndexable(resolved.part_number));
+  const indexEntry = isIndexable ? getIndexablePartEntry(resolved.part_number) : null;
+  const displayPartName = indexEntry?.clean_name || resolved.technical_profile?.display_name || resolved.part_name || 'STIHL Vervangingsonderdeel';
+  const robotsContent = isIndexable ? 'index, follow' : 'noindex, follow';
+  const pageTitle = isIndexable
     ? `STIHL ${formattedPartNo} ${displayPartName} — Geschikte Modellen | STIHLDecoder`
     : `STIHL ${formattedPartNo} — ${displayPartName} | Compatibiliteit & Onderdeelgids`;
-  const metaDescription = isPilot
+  const metaDescription = isIndexable
     ? `Bekijk op welke STIHL machines onderdeel ${formattedPartNo} (${displayPartName.toLowerCase()}) voorkomt, met bekende uitvoeringen, montageposities en compatibiliteitsinformatie.`
     : `STIHL onderdeelnummer ${formattedPartNo} (${displayPartName}). Bekijk geschikte modellen, montagelocatie en diagramposities.`;
 
@@ -235,10 +236,10 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
         </span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        STIHL ${formattedPartNo}${isPilot ? ` — ${displayPartName}` : ''}
+        STIHL ${formattedPartNo}${isIndexable ? ` — ${displayPartName}` : ''}
       </h1>
       <p class="text-lg text-orange-400 font-semibold">
-        ${isPilot ? `${displayPartName} & Compatibiliteit` : displayPartName}
+        ${isIndexable ? `${displayPartName} & Compatibiliteit` : displayPartName}
       </p>
       <p class="text-xs text-gray-400 leading-relaxed max-w-3xl">
         Canonieke referentie voor STIHL onderdeelnummer <strong>${formattedPartNo}</strong>. Controleer altijd het typeplaatje en de specifieke machine-uitvoering vóór montage.
@@ -365,7 +366,9 @@ ${supersessionHtml}
             marketplace: offer.marketplace || '',
             offer_type: offer.match_type || 'SEARCH_LINK',
             asin_if_known: offer.asin || '',
-            product_verified: isVerified ? 'true' : 'false'
+            product_verified: isVerified ? 'true' : 'false',
+            seo_tier: indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C'),
+            commercial_tier: indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'
           });
           const redirectUrl = `/api/affiliate/out?${redirectParams.toString()}`;
           return `
@@ -385,7 +388,7 @@ ${supersessionHtml}
               rel="sponsored nofollow noopener"
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
               aria-label="${ariaLabel}"
-              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname});}"
+              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
               <span>${buttonText}</span>
               <span aria-hidden="true">↗</span>
