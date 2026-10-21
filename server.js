@@ -637,20 +637,48 @@ const server = http.createServer(async (req, res) => {
     const productVerified = Boolean(matchedOffer && (matchedOffer.match_type === 'MANUAL_ASIN' || matchedOffer.is_verified === true));
     const seoTierParam = urlObj.searchParams.get('seo_tier') || null;
     const commercialTierParam = urlObj.searchParams.get('commercial_tier') || null;
+    const modelParam = urlObj.searchParams.get('model') || null;
+    const matchTypeParam = urlObj.searchParams.get('match_type') || matchedOffer?.match_type || offerType || (productVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
 
+    // 1. General affiliate click event
     logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
       provider,
       marketplace,
       offer_type: offerType,
+      match_type: matchTypeParam,
       asin_if_known: asinIfKnown,
       product_verified: productVerified,
       destination_url: parsedTarget.href,
       part_number: resolvedPartNumber,
+      model: modelParam,
       page_path: pagePath,
       source_page: pagePath,
       seo_tier: seoTierParam,
       commercial_tier: commercialTierParam
     }, req.headers['user-agent']);
+
+    // 2. Specific event distinguishing verified product vs search fallback for conversion measurement
+    if (provider === 'amazon') {
+      const specificEventType = productVerified
+        ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK
+        : EVENT_TYPES.AMAZON_SEARCH_FALLBACK_CLICK;
+
+      logStihlEvent(specificEventType, {
+        provider,
+        marketplace,
+        offer_type: offerType,
+        match_type: matchTypeParam,
+        asin_if_known: asinIfKnown,
+        product_verified: productVerified,
+        destination_url: parsedTarget.href,
+        part_number: resolvedPartNumber,
+        model: modelParam,
+        page_path: pagePath,
+        source_page: pagePath,
+        seo_tier: seoTierParam,
+        commercial_tier: commercialTierParam
+      }, req.headers['user-agent']);
+    }
 
     res.writeHead(302, {
       'Location': parsedTarget.href,

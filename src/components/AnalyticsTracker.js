@@ -40,7 +40,9 @@ export const EVENT_TYPES = {
   COMPARISON_VIEWED: 'comparison_viewed',
   INTERNAL_MODEL_SEARCH: 'internal_model_search',
   PART_PAGE_VIEW: 'part_page_view',
-  MACHINE_TO_PART_CLICK: 'machine_to_part_click'
+  MACHINE_TO_PART_CLICK: 'machine_to_part_click',
+  AMAZON_SEARCH_FALLBACK_CLICK: 'amazon_search_fallback_click',
+  AMAZON_VERIFIED_PRODUCT_CLICK: 'amazon_verified_product_click'
 };
 
 const WHITELISTED_METADATA_KEYS = [
@@ -65,7 +67,8 @@ const WHITELISTED_METADATA_KEYS = [
   'marketplace',
   'product_verified',
   'seo_tier',
-  'commercial_tier'
+  'commercial_tier',
+  'match_type'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;
