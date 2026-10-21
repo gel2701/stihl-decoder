@@ -1,0 +1,93 @@
+{
+  "batch_name": "serials_2026-10-20_manual_delta_55e",
+  "batch_date": "2026-10-20",
+  "batch_purpose": "Controlled reconciliation and promotion of genuine manual MY STIHL serial delta (Phase 55E)",
+  "source_identity": {
+    "filename": "stihl_resultaten_snapshot.csv",
+    "bytes": 2252144,
+    "sha256": "9bdb732d185a82fdb0e9f626c37b17ea41469bc628ff433a9ab211258cad4423",
+    "total_rows": 9303,
+    "empty_rows": 7303,
+    "populated_rows": 2000,
+    "unique_serials": 1999
+  },
+  "accounting": {
+    "ALREADY_PROCESSED_IDENTICAL": 0,
+    "ALREADY_PROCESSED_EQUIVALENT": 0,
+    "PREVIOUSLY_POSITIVE_RECONFIRMED": 1423,
+    "PREVIOUSLY_UNRESOLVED_STILL_NONPOSITIVE": 328,
+    "PREVIOUSLY_UNRESOLVED_NOW_POSITIVE": 0,
+    "NEW_POSITIVE_OBSERVATION": 99,
+    "NEW_NO_MATCH_OBSERVATION": 149,
+    "NEW_FOUND_WITHOUT_USABLE_IDENTITY": 0,
+    "NEW_TECHNICAL_ERROR": 0,
+    "DUPLICATE_SOURCE_ROW": 1,
+    "IDENTITY_CONFLICT": 0,
+    "INVALID_INPUT_SERIAL": 0
+  },
+  "metrics": {
+    "canonical_anchors_before": 16779,
+    "new_official_anchors_added": 99,
+    "canonical_anchors_after": 16878,
+    "canonical_aliases_before": 171,
+    "new_aliases_added": 0,
+    "canonical_aliases_after": 171,
+    "ranges_created": 0,
+    "generic_prefix_rules_created": 0,
+    "negative_runtime_evidence_created": 0
+  },
+  "artifacts": {
+    "source/stihl_resultaten_snapshot.csv": {
+      "bytes": 2252144,
+      "sha256": "9bdb732d185a82fdb0e9f626c37b17ea41469bc628ff433a9ab211258cad4423"
+    },
+    "data/serial_lookup_observations_2026-10-20.json": {
+      "bytes": 2096157,
+      "sha256": "acecae3e26dd85ef7e7e370c3009ef6de7adf85be3f4a8e7570caef791d4f656"
+    },
+    "data/serial_lookup_observations_2026-10-20.csv": {
+      "bytes": 740164,
+      "sha256": "c8136d3a4550260927dbfb8ae5df70afa6b48cff0394f4ca9eb8861cb808ef8c"
+    },
+    "data/new_official_serial_anchors_only_2026-10-20.json": {
+      "bytes": 50363,
+      "sha256": "06bb84245d0fa091d914265ce9968dcdc04491b445b82946eab4a30baaff234b"
+    },
+    "data/new_official_serial_anchors_only_2026-10-20.csv": {
+      "bytes": 20746,
+      "sha256": "e886481d73a7001dc8919592866c5620ecd6f07735d39c35cd1ad8addbbc4aa2"
+    },
+    "data/reconfirmed_existing_anchors_2026-10-20.csv": {
+      "bytes": 161707,
+      "sha256": "38403f3fe346f46c17387d20d947fe5a8d584e27228e64aefef265668b909c49"
+    },
+    "data/previously_unresolved_now_positive_2026-10-20.csv": {
+      "bytes": 91,
+      "sha256": "4440d99c4da986524090326c7e209a56a3056886bc61251c4f6f6ed4ce72aaa3"
+    },
+    "data/historical_overlap_2026-10-20.csv": {
+      "bytes": 139237,
+      "sha256": "5c9f440b0704f26e1d87e5fac5022539cf3b43e7a92b6485e83ff84f22663ea8"
+    },
+    "data/new_no_match_2026-10-20.csv": {
+      "bytes": 5263,
+      "sha256": "210a79ccb1434ed219069775a38cd1ef708df7cd2a596ad85516f402dd9457ac"
+    },
+    "data/found_without_usable_identity_2026-10-20.csv": {
+      "bytes": 85,
+      "sha256": "95082e25d998ce95e5e820d4f0256e7ca151a630412aeb9d604c5301e723e6d8"
+    },
+    "data/technical_errors_2026-10-20.csv": {
+      "bytes": 74,
+      "sha256": "1a7253ffb1b212069ed993b64a031405a5ac75c07494e9b8f918460ebbaf85e4"
+    },
+    "data/duplicate_source_rows_2026-10-20.csv": {
+      "bytes": 251,
+      "sha256": "0ef4fbe2547370a1f1acdda65fbee4b3015dd88b9d08c6a159f36d3e33829d67"
+    },
+    "data/identity_conflicts_2026-10-20.csv": {
+      "bytes": 95,
+      "sha256": "4ec99f60832d96a55ad744faaa6ca93a73653301d090e45539a9568f86e32cc1"
+    }
+  }
+}
