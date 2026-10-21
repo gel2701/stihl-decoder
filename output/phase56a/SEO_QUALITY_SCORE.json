@@ -1,0 +1,921 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56A",
+  "total_parts_evaluated": 17082,
+  "tier_distribution": {
+    "SEO_TIER_A": 1384,
+    "SEO_TIER_B": 8150,
+    "SEO_TIER_C": 4481,
+    "SEO_THIN": 2818,
+    "SEO_BLOCKED": 249
+  },
+  "rules": {
+    "SEO_TIER_A": "Score >= 65, >= 2 models, canonical section and diagram position, no encoding issues, not generic hardware",
+    "SEO_TIER_B": "Score >= 45, >= 2 models, meaningful section or diagram position, not generic hardware",
+    "SEO_TIER_C": "Score >= 30, >= 1 fitment position",
+    "SEO_THIN": "Low context score < 30 or generic fasteners/hardware",
+    "SEO_BLOCKED": "Unresolved character encoding, mojibake, missing name, or active technical conflict"
+  },
+  "top_100_tier_a_samples": [
+    {
+      "part_number": "00000820419",
+      "part_name": "Stihl Cover for HB 685.1, MH 685.0 and RM2.0 RT.",
+      "clean_name": "Cover for HB 685.1, MH 685.0 and RM2.0 RT.",
+      "seo_score": 85,
+      "model_count": 8,
+      "fitment_count": 9,
+      "section_count": 2
+    },
+    {
+      "part_number": "00001201653",
+      "part_name": "Stihl Air Filter, Wire Mesh",
+      "clean_name": "Air Filter, Wire Mesh",
+      "seo_score": 95,
+      "model_count": 9,
+      "fitment_count": 23,
+      "section_count": 1
+    },
+    {
+      "part_number": "00001212301",
+      "part_name": "Stihl Holder Bracket",
+      "clean_name": "Holder Bracket",
+      "seo_score": 95,
+      "model_count": 10,
+      "fitment_count": 21,
+      "section_count": 1
+    },
+    {
+      "part_number": "00001404407",
+      "part_name": "Stihl Air Filter Hd2",
+      "clean_name": "Air Filter Hd2",
+      "seo_score": 95,
+      "model_count": 15,
+      "fitment_count": 35,
+      "section_count": 4
+    },
+    {
+      "part_number": "00001903400",
+      "part_name": "Stihl Starter Grip Elastostart 3Mm",
+      "clean_name": "Starter Grip Elastostart 3Mm",
+      "seo_score": 100,
+      "model_count": 21,
+      "fitment_count": 30,
+      "section_count": 1
+    },
+    {
+      "part_number": "00001903401",
+      "part_name": "Stihl Starter Grip Elastostart 3.5Mm",
+      "clean_name": "Starter Grip Elastostart 3.5Mm",
+      "seo_score": 95,
+      "model_count": 7,
+      "fitment_count": 19,
+      "section_count": 2
+    },
+    {
+      "part_number": "00001903404",
+      "part_name": "Stihl Starter Grip Elastostart 3Mm",
+      "clean_name": "Starter Grip Elastostart 3Mm",
+      "seo_score": 95,
+      "model_count": 6,
+      "fitment_count": 11,
+      "section_count": 2
+    },
+    {
+      "part_number": "00001957001",
+      "part_name": "Stihl Cap",
+      "clean_name": "Cap",
+      "seo_score": 90,
+      "model_count": 29,
+      "fitment_count": 56,
+      "section_count": 1
+    },
+    {
+      "part_number": "00001958200",
+      "part_name": "Stihl Starter Rope 3 X 800Mm",
+      "clean_name": "Starter Rope 3 X 800Mm",
+      "seo_score": 100,
+      "model_count": 47,
+      "fitment_count": 70,
+      "section_count": 2
+    },
+    {
+      "part_number": "00003500532",
+      "part_name": "Stihl 00003500532 Fuel Tank Cap For MS261 MS271 MS291 FS56 HS82",
+      "clean_name": "Fuel Tank Cap For",
+      "seo_score": 100,
+      "model_count": 15,
+      "fitment_count": 37,
+      "section_count": 1
+    },
+    {
+      "part_number": "00003500533",
+      "part_name": "Stihl 00003500533 Oil Tank Cap for MS171 MS200 MS261 MS362 MS462 MS500i",
+      "clean_name": "Oil Tank Cap for",
+      "seo_score": 100,
+      "model_count": 59,
+      "fitment_count": 123,
+      "section_count": 1
+    },
+    {
+      "part_number": "00003500534",
+      "part_name": "Stihl 00003500534 Filler cap",
+      "clean_name": "Filler cap",
+      "seo_score": 80,
+      "model_count": 4,
+      "fitment_count": 9,
+      "section_count": 1
+    },
+    {
+      "part_number": "00003500537",
+      "part_name": "Stihl 00003500537 Oil Filler Cap",
+      "clean_name": "Oil Filler Cap",
+      "seo_score": 95,
+      "model_count": 33,
+      "fitment_count": 63,
+      "section_count": 2
+    },
+    {
+      "part_number": "00003500900",
+      "part_name": "Stihl 00003500900 Rope",
+      "clean_name": "Rope",
+      "seo_score": 90,
+      "model_count": 104,
+      "fitment_count": 179,
+      "section_count": 2
+    },
+    {
+      "part_number": "00003503502",
+      "part_name": "Stihl 00003503502 Pickup Body",
+      "clean_name": "Pickup Body",
+      "seo_score": 95,
+      "model_count": 67,
+      "fitment_count": 110,
+      "section_count": 2
+    },
+    {
+      "part_number": "00003503503",
+      "part_name": "Stihl 00003503503 Pickup Body",
+      "clean_name": "Pickup Body",
+      "seo_score": 85,
+      "model_count": 13,
+      "fitment_count": 22,
+      "section_count": 1
+    },
+    {
+      "part_number": "00003503518",
+      "part_name": "Stihl 00003503518 Pickup Body for MS200 MS231 MS380 MS400 MS440 MS441",
+      "clean_name": "Pickup Body for",
+      "seo_score": 100,
+      "model_count": 44,
+      "fitment_count": 105,
+      "section_count": 3
+    },
+    {
+      "part_number": "00003505800",
+      "part_name": "Stihl 00003505800 Tank Vent For MS261 MS271 MS291 MS362 MS400 MS462",
+      "clean_name": "Tank Vent For",
+      "seo_score": 95,
+      "model_count": 47,
+      "fitment_count": 109,
+      "section_count": 2
+    },
+    {
+      "part_number": "00003513201",
+      "part_name": "Stihl 00003513201 Sleeve",
+      "clean_name": "Sleeve",
+      "seo_score": 85,
+      "model_count": 8,
+      "fitment_count": 22,
+      "section_count": 1
+    },
+    {
+      "part_number": "00003530800",
+      "part_name": "Stihl 00003530800 Filler Cap Retainer",
+      "clean_name": "Filler Cap Retainer",
+      "seo_score": 100,
+      "model_count": 44,
+      "fitment_count": 73,
+      "section_count": 3
+    },
+    {
+      "part_number": "00004001300",
+      "part_name": "Stihl 00004001300  Ignition Module",
+      "clean_name": "Ignition Module",
+      "seo_score": 100,
+      "model_count": 15,
+      "fitment_count": 29,
+      "section_count": 1
+    },
+    {
+      "part_number": "00004001306",
+      "part_name": "Stihl 00004001306 Ignition Module",
+      "clean_name": "Ignition Module",
+      "seo_score": 75,
+      "model_count": 5,
+      "fitment_count": 9,
+      "section_count": 1
+    },
+    {
+      "part_number": "00004007000",
+      "part_name": "Spark plug NGK CMR6H",
+      "clean_name": "Spark plug NGK CMR6H",
+      "seo_score": 100,
+      "model_count": 112,
+      "fitment_count": 217,
+      "section_count": 5
+    },
+    {
+      "part_number": "00004007025",
+      "part_name": "Stihl 00004007025 Spark plug STIHL ZK C Pack of 10",
+      "clean_name": "Spark plug STIHL ZK C Pack of 10",
+      "seo_score": 100,
+      "model_count": 46,
+      "fitment_count": 73,
+      "section_count": 1
+    },
+    {
+      "part_number": "00004007026",
+      "part_name": "Stihl 00004007026 Spark plug STIHL ZK C 10 (1= set of 40)",
+      "clean_name": "Spark plug STIHL ZK C 10 (1= set of 40)",
+      "seo_score": 100,
+      "model_count": 46,
+      "fitment_count": 73,
+      "section_count": 1
+    },
+    {
+      "part_number": "00004481250",
+      "part_name": "Stihl 00004481250 Lead Retainer",
+      "clean_name": "Lead Retainer",
+      "seo_score": 95,
+      "model_count": 22,
+      "fitment_count": 48,
+      "section_count": 1
+    },
+    {
+      "part_number": "00006421223",
+      "part_name": "Stihl 00006421223 Rim Sprocket 3/8\" 7T",
+      "clean_name": "Rim Sprocket 3/8\" 7T",
+      "seo_score": 100,
+      "model_count": 23,
+      "fitment_count": 61,
+      "section_count": 1
+    },
+    {
+      "part_number": "00006421231",
+      "part_name": "Stihl 00006421231 Rim Sprocket 3/8\" 7T",
+      "clean_name": "Rim Sprocket 3/8\" 7T",
+      "seo_score": 95,
+      "model_count": 9,
+      "fitment_count": 16,
+      "section_count": 1
+    },
+    {
+      "part_number": "00006421234",
+      "part_name": "Stihl 00006421234 Rim Sprocket .325\" 8T",
+      "clean_name": "Rim Sprocket .325\" 8T",
+      "seo_score": 100,
+      "model_count": 18,
+      "fitment_count": 41,
+      "section_count": 2
+    },
+    {
+      "part_number": "00006421236",
+      "part_name": "Stihl 00006421236 Rim Sprocket .325\" 7T",
+      "clean_name": "Rim Sprocket .325\" 7T",
+      "seo_score": 100,
+      "model_count": 18,
+      "fitment_count": 37,
+      "section_count": 2
+    },
+    {
+      "part_number": "00006421240",
+      "part_name": "Stihl 00006421240 Rim Sprocket 3/8\" Picco 7T",
+      "clean_name": "Rim Sprocket 3/8\" Picco 7T",
+      "seo_score": 100,
+      "model_count": 11,
+      "fitment_count": 33,
+      "section_count": 2
+    },
+    {
+      "part_number": "00007065901",
+      "part_name": "Stihl Pin for Viking GB 370.0 S Petrol Shredders - 0000 706 5901",
+      "clean_name": "Pin for Viking GB 370.0 S Petrol Shredders - 0000 706 5901",
+      "seo_score": 100,
+      "model_count": 11,
+      "fitment_count": 13,
+      "section_count": 1
+    },
+    {
+      "part_number": "00007103201",
+      "part_name": "Stihl 00007103201 Drive Shaft Extension Kombi Engine Parts KM55, KM55C, KM55R, KM55RC KM56C, KM56RC   KM85, KM85R KM94R,",
+      "clean_name": "Drive Shaft Extension Kombi Engine KM55, KM55C, KM55R, KM55RC KM56C, KM56RC KM85, KM85R KM94R,",
+      "seo_score": 95,
+      "model_count": 9,
+      "fitment_count": 11,
+      "section_count": 1
+    },
+    {
+      "part_number": "00007107103",
+      "part_name": "Stihl Drive Tube Assembly",
+      "clean_name": "Drive Tube Assembly",
+      "seo_score": 95,
+      "model_count": 9,
+      "fitment_count": 10,
+      "section_count": 5
+    },
+    {
+      "part_number": "00007163100",
+      "part_name": "Stihl Backing Plate",
+      "clean_name": "Backing Plate",
+      "seo_score": 95,
+      "model_count": 25,
+      "fitment_count": 40,
+      "section_count": 2
+    },
+    {
+      "part_number": "00007903901",
+      "part_name": "Stihl Transport Guard",
+      "clean_name": "Transport Guard",
+      "seo_score": 100,
+      "model_count": 16,
+      "fitment_count": 30,
+      "section_count": 9
+    },
+    {
+      "part_number": "00007912005",
+      "part_name": "Stihl Handle Hose 23Mm X 5M / 1X197\"",
+      "clean_name": "Handle Hose 23Mm X 5M / 1X197\"",
+      "seo_score": 95,
+      "model_count": 8,
+      "fitment_count": 12,
+      "section_count": 4
+    },
+    {
+      "part_number": "00007912009",
+      "part_name": "Stihl Handle Hose 19Mm X 5M / 3/4X197\"",
+      "clean_name": "Handle Hose 19Mm X 5M / 3/4X197\"",
+      "seo_score": 100,
+      "model_count": 23,
+      "fitment_count": 46,
+      "section_count": 4
+    },
+    {
+      "part_number": "00008902300",
+      "part_name": "Stihl Screwdriver",
+      "clean_name": "Screwdriver",
+      "seo_score": 95,
+      "model_count": 108,
+      "fitment_count": 191,
+      "section_count": 3
+    },
+    {
+      "part_number": "00009302203",
+      "part_name": "Stihl Starter Cord 3.5Mm X 30.5M",
+      "clean_name": "Starter Cord 3.5Mm X 30.5M",
+      "seo_score": 100,
+      "model_count": 36,
+      "fitment_count": 52,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009302208",
+      "part_name": "Stihl Starter Cord 3.0Mm X 30.5M",
+      "clean_name": "Starter Cord 3.0Mm X 30.5M",
+      "seo_score": 100,
+      "model_count": 72,
+      "fitment_count": 103,
+      "section_count": 3
+    },
+    {
+      "part_number": "00009302241",
+      "part_name": "Stihl Webbing",
+      "clean_name": "Webbing",
+      "seo_score": 90,
+      "model_count": 56,
+      "fitment_count": 90,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009302242",
+      "part_name": "Stihl Webbing",
+      "clean_name": "Webbing",
+      "seo_score": 90,
+      "model_count": 41,
+      "fitment_count": 72,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009302251",
+      "part_name": "Stihl Ignition Lead 10M",
+      "clean_name": "Ignition Lead 10M",
+      "seo_score": 100,
+      "model_count": 82,
+      "fitment_count": 148,
+      "section_count": 2
+    },
+    {
+      "part_number": "00009302267",
+      "part_name": "Stihl Elastostart Cord 3.5Mm X 28M",
+      "clean_name": "Elastostart Cord 3.5Mm X 28M",
+      "seo_score": 100,
+      "model_count": 25,
+      "fitment_count": 54,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009302803",
+      "part_name": "Stihl 00009302803 Hose 3.1X5.7 Mm X 1 M, R3",
+      "clean_name": "Hose 3.1X5.7 Mm X 1 M, R3",
+      "seo_score": 100,
+      "model_count": 84,
+      "fitment_count": 133,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009530818",
+      "part_name": "Stihl Stud",
+      "clean_name": "Stud",
+      "seo_score": 90,
+      "model_count": 11,
+      "fitment_count": 25,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009536605",
+      "part_name": "Stihl Stud",
+      "clean_name": "Stud",
+      "seo_score": 90,
+      "model_count": 20,
+      "fitment_count": 48,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009630902",
+      "part_name": "Stihl Bushing",
+      "clean_name": "Bushing",
+      "seo_score": 85,
+      "model_count": 6,
+      "fitment_count": 23,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009672128",
+      "part_name": "Stihl Trade Mark",
+      "clean_name": "Trade Mark",
+      "seo_score": 90,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009673447",
+      "part_name": "Stihl Instruction Label Serial Number",
+      "clean_name": "Instruction Label Serial Number",
+      "seo_score": 100,
+      "model_count": 26,
+      "fitment_count": 30,
+      "section_count": 8
+    },
+    {
+      "part_number": "00009677247",
+      "part_name": "Stihl Warning Pictogram Ms",
+      "clean_name": "Warning Pictogram Ms",
+      "seo_score": 100,
+      "model_count": 59,
+      "fitment_count": 123,
+      "section_count": 2
+    },
+    {
+      "part_number": "00009677253",
+      "part_name": "Stihl Warning Pictogram Fs",
+      "clean_name": "Warning Pictogram Fs",
+      "seo_score": 100,
+      "model_count": 36,
+      "fitment_count": 65,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009677268",
+      "part_name": "Stihl Warning Pictogram Hs",
+      "clean_name": "Warning Pictogram Hs",
+      "seo_score": 85,
+      "model_count": 6,
+      "fitment_count": 14,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009741200",
+      "part_name": "Stihl Notched Pin 2,6X8",
+      "clean_name": "Notched Pin 2,6X8",
+      "seo_score": 100,
+      "model_count": 42,
+      "fitment_count": 101,
+      "section_count": 3
+    },
+    {
+      "part_number": "00009885211",
+      "part_name": "Stihl Connector",
+      "clean_name": "Connector",
+      "seo_score": 95,
+      "model_count": 35,
+      "fitment_count": 83,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009888600",
+      "part_name": "Stihl Crankcase 00009888600 Sleeve Disc Cutter Parts TS400 TS410 TS420 MS361 / MS361C Chainsaw Parts  TS700 Disc Cutter",
+      "clean_name": "Crankcase 00009888600 Sleeve",
+      "seo_score": 100,
+      "model_count": 63,
+      "fitment_count": 119,
+      "section_count": 43
+    },
+    {
+      "part_number": "00009930508",
+      "part_name": "Stihl Ring 12X15X12",
+      "clean_name": "Ring 12X15X12",
+      "seo_score": 75,
+      "model_count": 2,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009970504",
+      "part_name": "Stihl Helical Spring",
+      "clean_name": "Helical Spring",
+      "seo_score": 75,
+      "model_count": 2,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009970603",
+      "part_name": "Stihl Helical Spring",
+      "clean_name": "Helical Spring",
+      "seo_score": 95,
+      "model_count": 12,
+      "fitment_count": 31,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009970615",
+      "part_name": "Stihl Helical Spring",
+      "clean_name": "Helical Spring",
+      "seo_score": 95,
+      "model_count": 20,
+      "fitment_count": 50,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009970628",
+      "part_name": "Stihl Helical Spring",
+      "clean_name": "Helical Spring",
+      "seo_score": 95,
+      "model_count": 41,
+      "fitment_count": 99,
+      "section_count": 3
+    },
+    {
+      "part_number": "00009972002",
+      "part_name": "Stihl Compression Spring",
+      "clean_name": "Compression Spring",
+      "seo_score": 90,
+      "model_count": 3,
+      "fitment_count": 14,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009975600",
+      "part_name": "Stihl Tension Spring",
+      "clean_name": "Tension Spring",
+      "seo_score": 95,
+      "model_count": 12,
+      "fitment_count": 30,
+      "section_count": 2
+    },
+    {
+      "part_number": "00009980603",
+      "part_name": "Stihl Torsion Spring",
+      "clean_name": "Torsion Spring",
+      "seo_score": 95,
+      "model_count": 27,
+      "fitment_count": 60,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009980604",
+      "part_name": "Stihl Torsion Spring",
+      "clean_name": "Torsion Spring",
+      "seo_score": 95,
+      "model_count": 94,
+      "fitment_count": 188,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009980612",
+      "part_name": "Stihl Torsion Spring",
+      "clean_name": "Torsion Spring",
+      "seo_score": 95,
+      "model_count": 34,
+      "fitment_count": 50,
+      "section_count": 1
+    },
+    {
+      "part_number": "00009981003",
+      "part_name": "Stihl Torsion Spring",
+      "clean_name": "Torsion Spring",
+      "seo_score": 70,
+      "model_count": 5,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "07811201109",
+      "part_name": "Stihl 07811201109 Multipurpose 80g Grease Tube For Hedge Trimmers",
+      "clean_name": "Multipurpose 80g Grease Tube For Hedge Trimmers",
+      "seo_score": 100,
+      "model_count": 105,
+      "fitment_count": 140,
+      "section_count": 1
+    },
+    {
+      "part_number": "07811201117",
+      "part_name": "Stihl 07811201117 Heavy Duty 80g Gear Grease Lubricant For Brushcutters",
+      "clean_name": "Heavy Duty 80g Gear Grease Lubricant For Brushcutters",
+      "seo_score": 100,
+      "model_count": 63,
+      "fitment_count": 106,
+      "section_count": 1
+    },
+    {
+      "part_number": "07838302000",
+      "part_name": "[NO LONGER AVAILABLE] Stihl 07838302000 Tube Of Sealant HT For 017,018,MS210 Chainsaw & Various Machines",
+      "clean_name": "[NO LONGER AVAILABLE] Stihl 07838302000 Tube Of Sealant HT For 017,018,MS210 Chainsaw & Various Machines",
+      "seo_score": 100,
+      "model_count": 138,
+      "fitment_count": 222,
+      "section_count": 1
+    },
+    {
+      "part_number": "08114907860",
+      "part_name": "Stihl 08114907860 Replacement File Handle for 4.0 to 5.5mm Chainsaw Files",
+      "clean_name": "Replacement File Handle for 4.0 to 5.5mm Chainsaw Files",
+      "seo_score": 80,
+      "model_count": 4,
+      "fitment_count": 7,
+      "section_count": 4
+    },
+    {
+      "part_number": "11060292300",
+      "part_name": "Stihl Cylinder Gasket",
+      "clean_name": "Cylinder Gasket",
+      "seo_score": 70,
+      "model_count": 2,
+      "fitment_count": 2,
+      "section_count": 2
+    },
+    {
+      "part_number": "11060298900",
+      "part_name": "Stihl Sealing Bar",
+      "clean_name": "Sealing Bar",
+      "seo_score": 80,
+      "model_count": 5,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061201602",
+      "part_name": "Stihl Air Filter Assembly",
+      "clean_name": "Air Filter Assembly",
+      "seo_score": 80,
+      "model_count": 2,
+      "fitment_count": 4,
+      "section_count": 4
+    },
+    {
+      "part_number": "11061201610",
+      "part_name": "Stihl Air Filter",
+      "clean_name": "Air Filter",
+      "seo_score": 75,
+      "model_count": 2,
+      "fitment_count": 4,
+      "section_count": 4
+    },
+    {
+      "part_number": "11061208801",
+      "part_name": "Stihl Inlet Needle",
+      "clean_name": "Inlet Needle",
+      "seo_score": 80,
+      "model_count": 5,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061214803",
+      "part_name": "Stihl Fuel Pump Diaphragm",
+      "clean_name": "Fuel Pump Diaphragm",
+      "seo_score": 90,
+      "model_count": 6,
+      "fitment_count": 9,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061215000",
+      "part_name": "Stihl Inlet Control Lever",
+      "clean_name": "Inlet Control Lever",
+      "seo_score": 95,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061215400",
+      "part_name": "Stihl Valve Nozzle",
+      "clean_name": "Valve Nozzle",
+      "seo_score": 90,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061218701",
+      "part_name": "Stihl Bushing",
+      "clean_name": "Bushing",
+      "seo_score": 85,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061223000",
+      "part_name": "Stihl Spring",
+      "clean_name": "Spring",
+      "seo_score": 90,
+      "model_count": 32,
+      "fitment_count": 68,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061223005",
+      "part_name": "[NO LONGER AVAILABLE] Stihl Spring",
+      "clean_name": "[NO LONGER AVAILABLE] Stihl Spring",
+      "seo_score": 90,
+      "model_count": 7,
+      "fitment_count": 8,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061292300",
+      "part_name": "Stihl Gasket",
+      "clean_name": "Gasket",
+      "seo_score": 85,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061293500",
+      "part_name": "Stihl Sealing Ring",
+      "clean_name": "Sealing Ring",
+      "seo_score": 90,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11061452900",
+      "part_name": "Stihl Muffler Cover",
+      "clean_name": "Muffler Cover",
+      "seo_score": 65,
+      "model_count": 2,
+      "fitment_count": 3,
+      "section_count": 2
+    },
+    {
+      "part_number": "11061490600",
+      "part_name": "Stihl Muffler Gasket",
+      "clean_name": "Muffler Gasket",
+      "seo_score": 75,
+      "model_count": 2,
+      "fitment_count": 4,
+      "section_count": 3
+    },
+    {
+      "part_number": "11061491200",
+      "part_name": "Stihl Filter Gasket",
+      "clean_name": "Filter Gasket",
+      "seo_score": 80,
+      "model_count": 5,
+      "fitment_count": 7,
+      "section_count": 1
+    },
+    {
+      "part_number": "11063580700",
+      "part_name": "Stihl Fuel Pipe",
+      "clean_name": "Fuel Pipe",
+      "seo_score": 90,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11064051000",
+      "part_name": "Stihl High Tension Lead Connector",
+      "clean_name": "High Tension Lead Connector",
+      "seo_score": 100,
+      "model_count": 103,
+      "fitment_count": 174,
+      "section_count": 4
+    },
+    {
+      "part_number": "11067900302",
+      "part_name": "Stihl Handle",
+      "clean_name": "Handle",
+      "seo_score": 70,
+      "model_count": 2,
+      "fitment_count": 4,
+      "section_count": 4
+    },
+    {
+      "part_number": "11067900307",
+      "part_name": "Stihl Handle",
+      "clean_name": "Handle",
+      "seo_score": 70,
+      "model_count": 2,
+      "fitment_count": 4,
+      "section_count": 4
+    },
+    {
+      "part_number": "11067901517",
+      "part_name": "Stihl Handlebar With Hose",
+      "clean_name": "Handlebar With Hose",
+      "seo_score": 80,
+      "model_count": 2,
+      "fitment_count": 4,
+      "section_count": 4
+    },
+    {
+      "part_number": "11071958200",
+      "part_name": "Stihl Starter Rope 4.5Mm X 100Cm",
+      "clean_name": "Starter Rope 4.5Mm X 100Cm",
+      "seo_score": 100,
+      "model_count": 24,
+      "fitment_count": 55,
+      "section_count": 1
+    },
+    {
+      "part_number": "11073500500",
+      "part_name": "Stihl Filler Cap",
+      "clean_name": "Filler Cap",
+      "seo_score": 90,
+      "model_count": 7,
+      "fitment_count": 10,
+      "section_count": 1
+    },
+    {
+      "part_number": "11074007000",
+      "part_name": "Stihl Spark Plug",
+      "clean_name": "Spark Plug",
+      "seo_score": 80,
+      "model_count": 6,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "11080290500",
+      "part_name": "Stihl Gasket",
+      "clean_name": "Gasket",
+      "seo_score": 75,
+      "model_count": 5,
+      "fitment_count": 6,
+      "section_count": 1
+    },
+    {
+      "part_number": "11080292300",
+      "part_name": "Stihl Cylinder Gasket",
+      "clean_name": "Cylinder Gasket",
+      "seo_score": 95,
+      "model_count": 9,
+      "fitment_count": 11,
+      "section_count": 2
+    },
+    {
+      "part_number": "11080300403",
+      "part_name": "Stihl Crankshaft",
+      "clean_name": "Crankshaft",
+      "seo_score": 80,
+      "model_count": 6,
+      "fitment_count": 7,
+      "section_count": 1
+    },
+    {
+      "part_number": "11080302020",
+      "part_name": "Stihl Piston",
+      "clean_name": "Piston",
+      "seo_score": 85,
+      "model_count": 8,
+      "fitment_count": 10,
+      "section_count": 1
+    }
+  ]
+}

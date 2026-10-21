@@ -37,6 +37,7 @@ import {
   getCanonicalPartSeriesCodes
 } from './src/publicationRules.js';
 import { getPartIndexationPilotList, isPartIndexationPilotEnabled } from './src/seo/PartIndexationPilot.js';
+import { isPartIndexable, getAllIndexablePartsList } from './src/seo/PartIndexationRegistry.js';
 import { installSiteAnalyticsResponseInjection } from './src/components/SiteAnalyticsInjector.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -634,6 +635,8 @@ const server = http.createServer(async (req, res) => {
     }
 
     const productVerified = Boolean(matchedOffer && (matchedOffer.match_type === 'MANUAL_ASIN' || matchedOffer.is_verified === true));
+    const seoTierParam = urlObj.searchParams.get('seo_tier') || null;
+    const commercialTierParam = urlObj.searchParams.get('commercial_tier') || null;
 
     logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
       provider,
@@ -644,7 +647,9 @@ const server = http.createServer(async (req, res) => {
       destination_url: parsedTarget.href,
       part_number: resolvedPartNumber,
       page_path: pagePath,
-      source_page: pagePath
+      source_page: pagePath,
+      seo_tier: seoTierParam,
+      commercial_tier: commercialTierParam
     }, req.headers['user-agent']);
 
     res.writeHead(302, {
@@ -846,9 +851,9 @@ const server = http.createServer(async (req, res) => {
     if (cleanDigits.length === 11) {
       const partHtml = renderPartDetailPageHtml(cleanDigits, database, PRIMARY_ORIGIN);
       logStihlEvent(EVENT_TYPES.PART_SEARCH, { part_number: cleanDigits }, req.headers['user-agent']);
-      const isPilot = isPartIndexationPilotEnabled(cleanDigits);
+      const isIndexable = isPartIndexable(cleanDigits);
       const headers = { 'Content-Type': 'text/html; charset=UTF-8' };
-      if (!isPilot) {
+      if (!isIndexable) {
         headers['X-Robots-Tag'] = 'noindex, follow';
       }
       res.writeHead(200, headers);
@@ -866,9 +871,9 @@ const server = http.createServer(async (req, res) => {
       const partResolved = PartCatalogResolver.resolvePartNumber(rawTarget, database);
       if (partResolved && partResolved.part_number) {
         const partHtml = renderPartDetailPageHtml(partResolved.part_number, database, PRIMARY_ORIGIN);
-        const isPilot = isPartIndexationPilotEnabled(partResolved.part_number);
+        const isIndexable = isPartIndexable(partResolved.part_number);
         const headers = { 'Content-Type': 'text/html; charset=UTF-8' };
-        if (!isPilot) {
+        if (!isIndexable) {
           headers['X-Robots-Tag'] = 'noindex, follow';
         }
         res.writeHead(200, headers);
@@ -1126,16 +1131,16 @@ ${JSON.stringify(jsonLd, null, 2)}
 
       <div class="space-y-3 pt-4 border-t border-gray-800">
         <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span>Gedocumenteerde Onderdelen (SEO Pilot)</span>
-          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${getPartIndexationPilotList().length} onderdelen</span>
+          <span>Gedocumenteerde Onderdelen (Canonieke Catalogus)</span>
+          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${getAllIndexablePartsList().length} onderdelen</span>
         </h2>
         <p class="text-xs text-gray-400">Bekijk compatibiliteit en montagedetails van geselecteerde canonieke STIHL onderdelen:</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-          ${getPartIndexationPilotList().map(p => `
+          ${getAllIndexablePartsList().map(p => `
             <a href="/onderdeelnummer/${p.part_number}/" class="bg-gray-900/60 p-2.5 rounded-lg border border-gray-800/80 hover:border-orange-500/50 transition flex justify-between items-center group">
               <div>
                 <span class="font-mono font-bold text-orange-400 block group-hover:underline">${p.part_number_display}</span>
-                <span class="text-gray-400 text-3xs">${p.clean_name}</span>
+                <span class="text-gray-400 text-3xs">${p.clean_name || 'Vervangingsonderdeel'}</span>
               </div>
               <span class="text-gray-500 group-hover:text-orange-400 text-xs">→</span>
             </a>
@@ -1217,18 +1222,18 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
     ]
   };
 
-  const pilotSeriesParts = getPartIndexationPilotList().filter(p => p.part_number.startsWith(seriesCode));
-  const pilotPartsHtml = pilotSeriesParts.length > 0 ? `
+  const seriesParts = getAllIndexablePartsList().filter(p => p.part_number.startsWith(seriesCode));
+  const seriesPartsHtml = seriesParts.length > 0 ? `
       <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs space-y-3">
         <h3 class="font-bold text-white text-sm">Gedocumenteerde Onderdelen in Serie ${seriesCode}:</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          ${pilotSeriesParts.map(p => `
+          ${seriesParts.map(p => `
             <div class="bg-gray-900/70 p-3 rounded-lg border border-gray-800 flex justify-between items-center">
               <div>
                 <a href="/onderdeelnummer/${p.part_number}/" class="font-bold text-orange-400 hover:underline">STIHL ${p.part_number_display}</a>
-                <span class="text-2xs text-gray-400 block">${p.clean_name}</span>
+                <span class="text-2xs text-gray-400 block">${p.clean_name || 'Vervangingsonderdeel'}</span>
               </div>
-              <span class="text-2xs font-mono text-gray-400 bg-gray-950 px-2 py-0.5 rounded border border-gray-800 capitalize">${p.category}</span>
+              <span class="text-2xs font-mono text-gray-400 bg-gray-950 px-2 py-0.5 rounded border border-gray-800 capitalize">${p.category || 'overige'}</span>
             </div>
           `).join('')}
         </div>
@@ -1273,7 +1278,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         <h3 class="font-bold text-white text-sm">Gekoppelde STIHL Modellen:</h3>
         ${modelsContent}
       </div>
-      ${pilotPartsHtml}
+      ${seriesPartsHtml}
       <div class="pt-2">
         <a href="/#decoder" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition">
           Verifieer serienummer via Decoder →

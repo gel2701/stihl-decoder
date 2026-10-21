@@ -1,0 +1,12 @@
+{
+  "phase": "Phase 56A",
+  "route": "Decoder / Homepage → Machine → Onderdelen → Onderdeel → Amazon",
+  "checks": {
+    "machine_page_parts_entry": "ModelPageTemplate renders prominent \"Onderdelen & Explosietekeningen\" section for models with canonical parts",
+    "model_parts_section_grouping": "ModelPartsPageTemplate groups parts by canonical diagram section with positions and configuration badges",
+    "part_detail_page_hierarchy": "PartDetailPageTemplate displays identity and model compatibility BEFORE commercial offers",
+    "amazon_cta_positioning": "Commercial CTA strictly placed after technical compatibility and diagram sections",
+    "affiliate_disclosure_present": "Full Dutch affiliate disclosure rendered alongside commercial offers",
+    "search_fallback_safety": "Clear indication that offer is a search query without false exact match or price guarantee"
+  }
+}

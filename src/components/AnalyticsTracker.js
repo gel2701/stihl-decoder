@@ -38,7 +38,9 @@ export const EVENT_TYPES = {
   SELL_LEAD_STARTED: 'sell_lead_started',
   SELL_LEAD_COMPLETED: 'sell_lead_completed',
   COMPARISON_VIEWED: 'comparison_viewed',
-  INTERNAL_MODEL_SEARCH: 'internal_model_search'
+  INTERNAL_MODEL_SEARCH: 'internal_model_search',
+  PART_PAGE_VIEW: 'part_page_view',
+  MACHINE_TO_PART_CLICK: 'machine_to_part_click'
 };
 
 const WHITELISTED_METADATA_KEYS = [
@@ -61,7 +63,9 @@ const WHITELISTED_METADATA_KEYS = [
   'page_path',
   'destination_url',
   'marketplace',
-  'product_verified'
+  'product_verified',
+  'seo_tier',
+  'commercial_tier'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

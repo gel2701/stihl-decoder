@@ -43,6 +43,15 @@
     updateAnalyticsConsent(true);
   };
 
+  window.trackStihlEvent = function trackStihlEvent(eventName, params = {}) {
+    if (getConsent() === 'granted' && typeof window.gtag === 'function') {
+      window.gtag('event', eventName, {
+        ...params,
+        transport_type: 'beacon'
+      });
+    }
+  };
+
   function normalizedClickLabel(element) {
     const aria = element.getAttribute('aria-label');
     const title = element.getAttribute('title');

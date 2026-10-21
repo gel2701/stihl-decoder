@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56A",
+  "total_parts_evaluated": 17082,
+  "tier_distribution": {
+    "COMMERCIAL_HIGH": 1440,
+    "COMMERCIAL_MEDIUM": 4277,
+    "COMMERCIAL_LOW": 7420,
+    "COMMERCIAL_UNKNOWN": 3945
+  },
+  "category_matches": {
+    "luchtfilter": 147,
+    "primer": 1,
+    "carburateurdelen": 77,
+    "tandwiel": 186,
+    "starter": 187,
+    "brandstoffilter": 23,
+    "bougie": 47,
+    "kettingwiel": 205,
+    "pakkingen": 373,
+    "antivibratie": 59,
+    "zaagketting_delen": 11,
+    "brandstofslang": 20,
+    "maaikop_delen": 60,
+    "koppeling": 158,
+    "carburateur": 34,
+    "oliepomp": 38
+  },
+  "rules": {
+    "COMMERCIAL_HIGH": "Recognized functional wear/maintenance component (spark plug, air/fuel/oil filter, starter, clutch, sprocket, guide bar, chain, oil pump, AV buffer, gaskets, fuel hose, primer, mowing head)",
+    "COMMERCIAL_MEDIUM": "Drive gears, high-breadth components (>= 5 models or >= 10 fitments)",
+    "COMMERCIAL_LOW": "Generic fasteners, hardware, low-breadth components (2-4 models)",
+    "COMMERCIAL_UNKNOWN": "Single-fitment specialized or uncategorized items"
+  }
+}
