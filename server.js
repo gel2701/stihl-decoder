@@ -38,7 +38,7 @@ import {
   getCanonicalPartSeriesCodes
 } from './src/publicationRules.js';
 import { getPartIndexationPilotList, isPartIndexationPilotEnabled } from './src/seo/PartIndexationPilot.js';
-import { isPartIndexable, getAllIndexablePartsList } from './src/seo/PartIndexationRegistry.js';
+import { isPartIndexable, getAllIndexablePartsList, getIndexablePartEntry } from './src/seo/PartIndexationRegistry.js';
 import { installSiteAnalyticsResponseInjection } from './src/components/SiteAnalyticsInjector.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -639,6 +639,8 @@ const server = http.createServer(async (req, res) => {
     const seoTierParam = urlObj.searchParams.get('seo_tier') || null;
     const commercialTierParam = urlObj.searchParams.get('commercial_tier') || null;
     const modelParam = urlObj.searchParams.get('model') || null;
+    const sectionContextParam = urlObj.searchParams.get('section_context') || null;
+    const waveIdentifierParam = urlObj.searchParams.get('wave_identifier') || null;
     const matchTypeParam = urlObj.searchParams.get('match_type') || matchedOffer?.match_type || offerType || (productVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
     const queryVariantParam = urlObj.searchParams.get('query_variant') || matchedOffer?.query_variant || null;
 
@@ -654,6 +656,8 @@ const server = http.createServer(async (req, res) => {
       part_number: resolvedPartNumber,
       model: modelParam,
       query_variant: queryVariantParam,
+      section_context: sectionContextParam,
+      wave_identifier: waveIdentifierParam,
       page_path: pagePath,
       source_page: pagePath,
       seo_tier: seoTierParam,
@@ -677,6 +681,8 @@ const server = http.createServer(async (req, res) => {
         part_number: resolvedPartNumber,
         model: modelParam,
         query_variant: queryVariantParam,
+        section_context: sectionContextParam,
+        wave_identifier: waveIdentifierParam,
         page_path: pagePath,
         source_page: pagePath,
         seo_tier: seoTierParam,
@@ -912,9 +918,16 @@ const server = http.createServer(async (req, res) => {
     // Check if it's an 11-digit part number or formatted part lookup
     if (cleanDigits.length === 11) {
       const partHtml = renderPartDetailPageHtml(cleanDigits, database, PRIMARY_ORIGIN);
-      logStihlEvent(EVENT_TYPES.PART_SEARCH, { part_number: cleanDigits }, req.headers['user-agent']);
-      logStihlEvent(EVENT_TYPES.PART_PAGE_VIEW, { part_number: cleanDigits, page_path: pathname }, req.headers['user-agent']);
       const isIndexable = isPartIndexable(cleanDigits);
+      const indexEntry = isIndexable ? getIndexablePartEntry(cleanDigits) : null;
+      logStihlEvent(EVENT_TYPES.PART_SEARCH, { part_number: cleanDigits }, req.headers['user-agent']);
+      logStihlEvent(EVENT_TYPES.PART_PAGE_VIEW, {
+        part_number: cleanDigits,
+        page_path: pathname,
+        seo_tier: indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C'),
+        commercial_tier: indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN',
+        wave_identifier: indexEntry?.wave_identifier || (isIndexable ? 'indexed' : 'noindex')
+      }, req.headers['user-agent']);
       const headers = { 'Content-Type': 'text/html; charset=UTF-8' };
       if (!isIndexable) {
         headers['X-Robots-Tag'] = 'noindex, follow';

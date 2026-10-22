@@ -101,15 +101,18 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
   const indexEntry = isIndexable ? getIndexablePartEntry(resolved.part_number) : null;
   const displayPartName = indexEntry?.clean_name || resolved.technical_profile?.display_name || resolved.part_name || 'STIHL Vervangingsonderdeel';
   const robotsContent = isIndexable ? 'index, follow' : 'noindex, follow';
+  const compatibleModels = resolved.compatible_models || [];
+  const fitments = resolved.fitments || [];
+  const primarySectionContext = (resolved.technical_profile?.canonical_sections && resolved.technical_profile.canonical_sections.length > 0)
+    ? resolved.technical_profile.canonical_sections[0]
+    : null;
+  const waveIdentifier = indexEntry?.wave_identifier || (isIndexable ? 'indexed' : 'noindex');
   const pageTitle = isIndexable
     ? `STIHL ${formattedPartNo} ${displayPartName} — Geschikte Modellen | STIHLDecoder`
     : `STIHL ${formattedPartNo} — ${displayPartName} | Compatibiliteit & Onderdeelgids`;
   const metaDescription = isIndexable
-    ? `Bekijk op welke STIHL machines onderdeel ${formattedPartNo} (${displayPartName.toLowerCase()}) voorkomt, met bekende uitvoeringen, montageposities en compatibiliteitsinformatie.`
+    ? `Bekijk op welke STIHL machines onderdeel ${formattedPartNo} (${displayPartName.toLowerCase()}) voorkomt (${compatibleModels.length} modellen${primarySectionContext ? `, sectie ${primarySectionContext}` : ''}), met bekende uitvoeringen, montageposities en compatibiliteitsinformatie.`
     : `STIHL onderdeelnummer ${formattedPartNo} (${displayPartName}). Bekijk geschikte modellen, montagelocatie en diagramposities.`;
-
-  const compatibleModels = resolved.compatible_models || [];
-  const fitments = resolved.fitments || [];
 
   const offers = AffiliateOfferResolver.resolveOffers({
     partNumber: resolved.part_number,
@@ -298,13 +301,27 @@ ${supersessionHtml}
             const mSlug = (mod.slug || mod.id).toLowerCase().replace(/[^a-z0-9]+/g, '_');
             return mSlug === m.model_id;
           });
-          const safePath = modelObj ? getSafeModelPath(modelObj) : null;
+          const isPublishedPartsModel = Boolean(
+            modelObj &&
+            modelObj.data_status !== 'EVIDENCE_STORE_LINKED' &&
+            PartCatalogResolver.hasPartsForModel(modelObj, database)
+          );
+          const safePath = isPublishedPartsModel ? getSafeModelPath(modelObj) : null;
+          const safeModelId = (m.model_id || '').replace(/'/g, "\\'");
+          const safeSectionCtx = (m.sections?.[0] || primarySectionContext || '').replace(/'/g, "\\'");
+          const backlinkClick = `if(window.trackStihlEvent){window.trackStihlEvent('part_to_model_click', {part_number: '${resolved.part_number}', model: '${safeModelId}', section_context: '${safeSectionCtx}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}', wave_identifier: '${waveIdentifier}', page_path: window.location.pathname});}`;
           return `
             <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-4 space-y-2 hover:border-gray-700 transition">
               <div class="flex justify-between items-start">
                 <span class="font-bold text-white text-sm">${m.model_name}</span>
                 <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${m.fitment_count} posities</span>
               </div>
+              ${(m.variants && m.variants.length > 0) ? `
+                <div class="text-2xs text-gray-400">
+                  <span class="text-gray-500 block">Variant:</span>
+                  <span>${m.variants.join(', ')}</span>
+                </div>
+              ` : ''}
               ${m.configurations.length > 0 ? `
                 <div class="text-2xs text-gray-400">
                   <span class="text-gray-500 block">Uitvoering:</span>
@@ -313,7 +330,7 @@ ${supersessionHtml}
               ` : ''}
               ${safePath ? `
                 <div class="pt-1">
-                  <a href="${safePath}onderdelen/" class="text-xs font-semibold text-orange-400 hover:underline">
+                  <a href="${safePath}onderdelen/" class="text-xs font-semibold text-orange-400 hover:underline" onclick="${backlinkClick}">
                     Bekijk alle onderdelen voor ${m.model_name} →
                   </a>
                 </div>
@@ -406,10 +423,13 @@ ${supersessionHtml}
             asin_if_known: offer.asin || '',
             product_verified: isVerified ? 'true' : 'false',
             query_variant: offer.query_variant || '',
+            section_context: primarySectionContext || '',
+            wave_identifier: waveIdentifier,
             seo_tier: indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C'),
             commercial_tier: indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'
           });
           const redirectUrl = `/api/affiliate/out?${redirectParams.toString()}`;
+          const safePrimarySec = (primarySectionContext || '').replace(/'/g, "\\'");
           return `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
             <div class="space-y-1">
@@ -427,7 +447,7 @@ ${supersessionHtml}
               rel="sponsored nofollow noopener"
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
               aria-label="${ariaLabel}"
-              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
               <span>${buttonText}</span>
               <span aria-hidden="true">↗</span>

@@ -1,0 +1,35 @@
+{
+  "phase": "PHASE_56I",
+  "artifact": "WAVE4_ANALYTICS_READINESS",
+  "tracked_funnel_events": [
+    "part_page_view",
+    "model_to_part_click",
+    "part_to_model_click",
+    "affiliate_click",
+    "amazon_search_fallback_click",
+    "amazon_verified_product_click",
+    "parts_search_results",
+    "parts_search_no_results"
+  ],
+  "whitelisted_wave4_dimensions": [
+    "part_number",
+    "model",
+    "section_context",
+    "commercial_tier",
+    "seo_tier",
+    "wave_identifier",
+    "match_type",
+    "query_variant",
+    "page_path"
+  ],
+  "bot_filtering_active": true,
+  "pii_leakage": 0,
+  "gsc_integration_state": {
+    "status": "NOT_CONFIGURED",
+    "missing_credentials": [
+      "GSC_ACCESS_TOKEN",
+      "GSC_SITE_URL"
+    ],
+    "fail_closed_without_fake_data": true
+  }
+}

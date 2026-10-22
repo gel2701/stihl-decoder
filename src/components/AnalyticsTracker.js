@@ -79,7 +79,9 @@ const WHITELISTED_METADATA_KEYS = [
   'query_type',
   'has_model_filter',
   'search_query_normalized',
-  'matched_model'
+  'matched_model',
+  'section_context',
+  'wave_identifier'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

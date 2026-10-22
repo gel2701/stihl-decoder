@@ -19,7 +19,9 @@ import {
   getWave2CohortList,
   getWave3CohortList,
   getWave3CohortSet,
+  getWave4CohortList,
   getPreWave3IndexablePartsSet,
+  getPreWave4IndexablePartsSet,
   MAX_WAVE3_COHORT_SIZE,
   MAX_TOTAL_INDEXABLE_PARTS
 } from '../src/seo/PartIndexationRegistry.js';
@@ -99,17 +101,19 @@ test('Phase 56G - Test 2: Controlled SEO Wave 3 Cohort & Strict H1-H7 Quality En
 });
 
 test('Phase 56G - Test 3: Sitemap.xml, Canonicals, Unique Titles & Internal Search Noindex', () => {
+  const wave4Count = getWave4CohortList().length;
   const allIndexable = getAllIndexablePartsList();
-  assert.strictEqual(allIndexable.length, 804);
-  assert.strictEqual(getAllIndexablePartsSet().size, 804);
+  assert.strictEqual(getPreWave4IndexablePartsSet().size, 804);
+  assert.strictEqual(allIndexable.length, 804 + wave4Count);
+  assert.strictEqual(getAllIndexablePartsSet().size, 804 + wave4Count);
 
   const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
   const allUrls = sitemapXml.match(/<loc>[^<]+<\/loc>/g) || [];
   const partUrls = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
 
-  assert.strictEqual(allUrls.length, 985, 'Sitemap must contain 985 URLs (981 + 4 Wave 3)');
-  assert.strictEqual(partUrls.length, 804, 'Sitemap must contain 804 part detail URLs');
-  assert.strictEqual(new Set(allUrls).size, 985, 'Zero duplicate URLs in sitemap');
+  assert.strictEqual(allUrls.length, 985 + wave4Count, 'Sitemap must contain 985 + Wave 4 URLs');
+  assert.strictEqual(partUrls.length, 804 + wave4Count, 'Sitemap must contain 804 + Wave 4 part detail URLs');
+  assert.strictEqual(new Set(allUrls).size, 985 + wave4Count, 'Zero duplicate URLs in sitemap');
 
   // Verify every Wave 3 part page renders index, follow, self-canonical, BreadcrumbList & Product JSON-LD
   for (const p of getWave3CohortList()) {

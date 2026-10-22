@@ -1,0 +1,546 @@
+{
+  "phase": "PHASE_56I",
+  "artifact": "WAVE5_PREFLIGHT",
+  "mode": "READ_ONLY_DIAGNOSTIC",
+  "total_canonical_parts": 17082,
+  "total_indexable_after_wave4": 843,
+  "remaining_non_indexable_parts": 16239,
+  "remaining_full_h1_to_h7_eligible": 0,
+  "remaining_h3_only_eligible": 112,
+  "blocker_distribution_on_published_models": {
+    "H1_ALREADY_INDEXABLE": 843,
+    "H2_NO_PUBLISHED_MODEL_WITH_PARTS_PAGE": 12378,
+    "H3_ZERO_RESOLVED_SECTIONS": 3285,
+    "H3_ONLY_1_RESOLVED_SECTION": 464,
+    "H4_NO_MEANINGFUL_DIAGRAM_POSITION": 3,
+    "H5_UNCLEAN_NAME_OR_AVAILABILITY_CLAIM": 7,
+    "H6_GENERIC_HARDWARE_THIN_CONTENT": 90,
+    "S1_SCORE_BELOW_THRESHOLD": 26
+  },
+  "dominant_catalog_blocker": "H3_ZERO_OR_SINGLE_RESOLVED_SECTION (parts appearing in only 1 resolved section or still in Unresolved Diagram Section)",
+  "dominant_blocker_among_h3_passing_parts": "H6_GENERIC_HARDWARE_THIN_CONTENT (96 of 98 remaining >=2-section parts are generic screws/nuts/washers/rings)",
+  "remaining_h3_passing_sample": [
+    {
+      "part_number": "00001822100",
+      "clean_name": "Onderdeel 0000 182 2100",
+      "score": 45,
+      "section_count": 3,
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t",
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "blockers": [
+        "H5_UNCLEAN_NAME_OR_AVAILABILITY_CLAIM",
+        "S1_SCORE_BELOW_THRESHOLD"
+      ]
+    },
+    {
+      "part_number": "00003500900",
+      "clean_name": "Rope",
+      "score": 58,
+      "section_count": 2,
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "D-Air Filter, Fuel Tank"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "00007112500",
+      "clean_name": "Sleeve",
+      "score": 63,
+      "section_count": 4,
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t",
+        "F-Drive Tube FS 75, Wrap Around Handle",
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "00009511100",
+      "clean_name": "Screw",
+      "score": 71,
+      "section_count": 4,
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart",
+        "Rewind Starter - Handle Housing",
+        "Gear Head"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "00009550802",
+      "clean_name": "Collar Nut",
+      "score": 69,
+      "section_count": 2,
+      "sections": [
+        "Ignition System - Muffler",
+        "Ignition System"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "00009580923",
+      "clean_name": "Washer",
+      "score": 74,
+      "section_count": 3,
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart",
+        "Rewind Starter - Handle Housing"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "00009581022",
+      "clean_name": "Washer 27Mm",
+      "score": 69,
+      "section_count": 2,
+      "sections": [
+        "Clutch - Chain Sprocket",
+        "Oil Pump. Clutch"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "00009890516",
+      "clean_name": "Grommet",
+      "score": 43,
+      "section_count": 2,
+      "sections": [
+        "D-Air Filter, Fuel Tank",
+        "Air Filter - Fuel Tank"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT",
+        "S1_SCORE_BELOW_THRESHOLD"
+      ]
+    },
+    {
+      "part_number": "08123701000",
+      "clean_name": "Allen Key",
+      "score": 69,
+      "section_count": 2,
+      "sections": [
+        "Tools - Extras",
+        "Tools"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11101227400",
+      "clean_name": "Round Head Screw",
+      "score": 74,
+      "section_count": 3,
+      "sections": [
+        "T_-Carburetor WT-447",
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11131223205",
+      "clean_name": "Hook On Spring",
+      "score": 48,
+      "section_count": 2,
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT",
+        "S1_SCORE_BELOW_THRESHOLD"
+      ]
+    },
+    {
+      "part_number": "11141223005",
+      "clean_name": "Spring",
+      "score": 34,
+      "section_count": 2,
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT",
+        "S1_SCORE_BELOW_THRESHOLD"
+      ]
+    },
+    {
+      "part_number": "11141227100",
+      "clean_name": "Screw",
+      "score": 74,
+      "section_count": 3,
+      "sections": [
+        "T_-Carburetor WT-447",
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11141227400",
+      "clean_name": "Screw",
+      "score": 74,
+      "section_count": 3,
+      "sections": [
+        "T_-Carburetor WT-447",
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11171229000",
+      "clean_name": "Retaining Ring",
+      "score": 74,
+      "section_count": 3,
+      "sections": [
+        "T_-Carburetor WT-447",
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11201226600",
+      "clean_name": "Kraagschroef",
+      "score": 79,
+      "section_count": 11,
+      "sections": [
+        "Carburetor C1Q-S99",
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A",
+        "E-Carburetor C1Q-S28c, C1Q-S41A",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11201226601",
+      "clean_name": "Kraagschroef",
+      "score": 69,
+      "section_count": 2,
+      "sections": [
+        "Carburetor C1Q-S99",
+        "Carburetor C1Q-S178B"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11201227400",
+      "clean_name": "Round Head Screw",
+      "score": 61,
+      "section_count": 2,
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11201227800",
+      "clean_name": "Oval Head Screw",
+      "score": 79,
+      "section_count": 13,
+      "sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR",
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A",
+        "E-Carburetor C1Q-S28c, C1Q-S41A",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B",
+        "Carburetor C1Q-S178B"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11201229000",
+      "clean_name": "E-Clip",
+      "score": 76,
+      "section_count": 11,
+      "sections": [
+        "Carburetor C1Q-S99",
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A",
+        "E-Carburetor C1Q-S28c, C1Q-S41A",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S49B"
+      ],
+      "blockers": [
+        "H6_GENERIC_HARDWARE_THIN_CONTENT"
+      ]
+    },
+    {
+      "part_number": "11210071050",
+      "clean_name": "Set Of Gaskets",
+      "score": 50,
+      "section_count": 2,
+      "sections": [
+        "Crankcase",
+        "Muffler"
+      ],
+      "blockers": [
+        "H4_NO_MEANINGFUL_DIAGRAM_POSITION"
+      ]
+    },
+    {
+      "part_number": "11210071062",
+      "clean_name": "Set Of Carburettor Parts",
+      "score": 50,
+      "section_count": 2,
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "H4_NO_MEANINGFUL_DIAGRAM_POSITION"
+      ]
+    },
+    {
+      "part_number": "11211200611",
+      "clean_name": "Carburettor",
+      "score": 50,
+      "section_count": 2,
+      "sections": [
+        "Air Filter - Throttle Control",
+        "Carburetor WT-426"
+      ],
+      "blockers": [
+        "H4_NO_MEANINGFUL_DIAGRAM_POSITION"
+      ]
+    },
+    {
+      "part_number": "11211210805",
+      "clean_name": "End Cover",
+      "score": 34,
+      "section_count": 2,
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "S1_SCORE_BELOW_THRESHOLD"
+      ]
+    },
+    {
+      "part_number": "11211210810",
+      "clean_name": "End Cover",
+      "score": 34,
+      "section_count": 2,
+      "sections": [
+        "Carburetor WT-426",
+        "Carb WT-427 -WT-581 -WT-590"
+      ],
+      "blockers": [
+        "S1_SCORE_BELOW_THRESHOLD"
+      ]
+    }
+  ],
+  "single_section_high_potential_wear_parts_count": 110,
+  "single_section_high_potential_wear_parts_sample": [
+    {
+      "part_number": "00004001306",
+      "clean_name": "Ontstekingsmodule",
+      "section": "Ignition",
+      "published_model_count": 4
+    },
+    {
+      "part_number": "11210201217",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11210302001",
+      "clean_name": "Piston 44Mm",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11210302003",
+      "clean_name": "Piston 44.7Mm",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11210341505",
+      "clean_name": "Piston Pin 10X6X30",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11210343002",
+      "clean_name": "Piston Ring 44.7Mm",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11210343010",
+      "clean_name": "Piston Ring 44X1.2Mm",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11211401915",
+      "clean_name": "Carburettor Box Cover",
+      "section": "Shroud - Carburetor Cover",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11211401916",
+      "clean_name": "Carburettor Box Cover",
+      "section": "Shroud - Carburetor Cover",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11231400610",
+      "clean_name": "Uitlaat",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11231400611",
+      "clean_name": "Uitlaat",
+      "section": "Muffler",
+      "published_model_count": 3
+    },
+    {
+      "part_number": "11250201215",
+      "clean_name": "Cylinder And Piston 48Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11270201213",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11270201214",
+      "clean_name": "Cylinder And Piston 47Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11270201216",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11270201217",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11280201221",
+      "clean_name": "Cylinder And Piston 52Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11281400603",
+      "clean_name": "Uitlaat",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11281400610",
+      "clean_name": "Uitlaat",
+      "section": "Muffler",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11300201207",
+      "clean_name": "Cylinder And Piston 37Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11300201208",
+      "clean_name": "Cylinder And Piston 38Mm",
+      "section": "Cylinder",
+      "published_model_count": 1
+    },
+    {
+      "part_number": "11300802110",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "section": "Rewind Starter",
+      "published_model_count": 2
+    },
+    {
+      "part_number": "11301240800",
+      "clean_name": "Air filter fleece",
+      "section": "Air Filter",
+      "published_model_count": 2
+    },
+    {
+      "part_number": "11301400608",
+      "clean_name": "Uitlaat",
+      "section": "Muffler",
+      "published_model_count": 2
+    },
+    {
+      "part_number": "11301400613",
+      "clean_name": "Uitlaat",
+      "section": "Muffler",
+      "published_model_count": 2
+    }
+  ],
+  "recommended_next_focus": "Evidence-based section harvesting or cross-reference enrichment for single-section COMMERCIAL_HIGH wear parts (253 high-value wear parts currently have 1 verified section and need a 2nd independent section or new evidence source)."
+}
