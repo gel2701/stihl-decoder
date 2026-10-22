@@ -1,0 +1,306 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "MS261_SECTION_AUDIT",
+  "canonical_model_id": "ms_261",
+  "model_name": "STIHL MS 261",
+  "fitment_totals": {
+    "total_fitments": 1817,
+    "unresolved_before": 1610,
+    "resolved_before": 207,
+    "newly_resolved_fitments_count": 8,
+    "unresolved_after": 1602,
+    "effective_resolved_after": 215,
+    "multi_section_fitments_count": 6,
+    "fitments_with_meaningful_diagram_position": 1799,
+    "diagram_position_coverage_pct": 99.01
+  },
+  "runtime_base_model_sections": {
+    "distinct_resolved_sections_count": 11,
+    "sections": [
+      {
+        "section_key": "general_unresolved",
+        "section_name": "Unresolved Diagram Section",
+        "parts_count": 208
+      },
+      {
+        "section_key": "fuel_system",
+        "section_name": "Fuel System",
+        "parts_count": 1
+      },
+      {
+        "section_key": "crankcase",
+        "section_name": "Crankcase",
+        "parts_count": 5
+      },
+      {
+        "section_key": "service_kits",
+        "section_name": "Service Kits",
+        "parts_count": 1
+      },
+      {
+        "section_key": "cylinder",
+        "section_name": "Cylinder",
+        "parts_count": 3
+      },
+      {
+        "section_key": "carburetor_bracket",
+        "section_name": "Carburetor Bracket",
+        "parts_count": 1
+      },
+      {
+        "section_key": "carburetor_c1q_s178b",
+        "section_name": "Carburetor C1Q-S178B",
+        "parts_count": 2
+      },
+      {
+        "section_key": "air_filter",
+        "section_name": "Air Filter",
+        "parts_count": 1
+      },
+      {
+        "section_key": "av_system",
+        "section_name": "AV System",
+        "parts_count": 2
+      },
+      {
+        "section_key": "chain_brake",
+        "section_name": "Chain Brake",
+        "parts_count": 1
+      },
+      {
+        "section_key": "oil_pump_clutch",
+        "section_name": "Oil Pump. Clutch",
+        "parts_count": 1
+      },
+      {
+        "section_key": "chain_tensioner",
+        "section_name": "Chain Tensioner",
+        "parts_count": 2
+      }
+    ]
+  },
+  "interactive_diagram_pilot_impact": {
+    "pilot_section": "Rewind Starter",
+    "pilot_section_fitments_before": 19,
+    "pilot_section_fitments_after": 19,
+    "pilot_section_hotspots_before": 18,
+    "pilot_section_hotspots_after": 18,
+    "pilot_section_unpositioned_parts": 1,
+    "model_hotspot_ready_fitments_before": 200,
+    "model_hotspot_ready_fitments_after": 208,
+    "unresolved_section_count": 1602,
+    "unresolved_position_count": 18
+  },
+  "newly_resolved_fitments": [
+    {
+      "fitment_id": "00004007000::ms_261::c_m::base::EXACT_VARIANT",
+      "part_number": "00004007000",
+      "part_name": "Spark plug NGK CMR6H",
+      "fitment_scope": "EXACT_VARIANT",
+      "variant_key": "c_m",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "resolved_sections": [
+        "Ignition System"
+      ],
+      "diagram_position": "23"
+    },
+    {
+      "fitment_id": "11410071000::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11410071000",
+      "part_name": "Stihl Set Of Gaskets",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Crankcase",
+        "Cylinder"
+      ],
+      "diagram_position": "34"
+    },
+    {
+      "fitment_id": "11411200606::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11411200606",
+      "part_name": "Stihl Carburettor C1Q-S211B",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor Bracket",
+        "Carburetor C1Q-S178B"
+      ],
+      "diagram_position": "2"
+    },
+    {
+      "fitment_id": "11413500824::ms_261::c_m::base::EXACT_VARIANT",
+      "part_number": "11413500824",
+      "part_name": "Stihl Tank Housing",
+      "fitment_scope": "EXACT_VARIANT",
+      "variant_key": "c_m",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "resolved_sections": [
+        "Tank Housing"
+      ],
+      "diagram_position": "1"
+    },
+    {
+      "fitment_id": "11417915902::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11417915902",
+      "part_name": "Stihl Stop Buffer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "AV System",
+        "Crankcase"
+      ],
+      "diagram_position": "8"
+    },
+    {
+      "fitment_id": "90223130660::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90223130660",
+      "part_name": "Stihl Spline Screw Is-M4X12",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Chain Brake",
+        "Cylinder",
+        "Oil Pump. Clutch"
+      ],
+      "diagram_position": "10"
+    },
+    {
+      "fitment_id": "90223410983::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90223410983",
+      "part_name": "Stihl Spline Screw Is-M5X16-12.9",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "AV System",
+        "Chain Tensioner",
+        "Cylinder"
+      ],
+      "diagram_position": "14"
+    },
+    {
+      "fitment_id": "96469450490::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "96469450490",
+      "part_name": "Stihl 96469450490 O-Ring Din3771-S7X1.5",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S178B",
+        "Chain Tensioner"
+      ],
+      "diagram_position": "5"
+    }
+  ],
+  "multi_section_fitments": [
+    {
+      "fitment_id": "11410071000::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11410071000",
+      "part_name": "Stihl Set Of Gaskets",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Crankcase",
+        "Cylinder"
+      ]
+    },
+    {
+      "fitment_id": "11411200606::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11411200606",
+      "part_name": "Stihl Carburettor C1Q-S211B",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor Bracket",
+        "Carburetor C1Q-S178B"
+      ]
+    },
+    {
+      "fitment_id": "11417915902::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11417915902",
+      "part_name": "Stihl Stop Buffer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "AV System",
+        "Crankcase"
+      ]
+    },
+    {
+      "fitment_id": "90223130660::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90223130660",
+      "part_name": "Stihl Spline Screw Is-M4X12",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Chain Brake",
+        "Cylinder",
+        "Oil Pump. Clutch"
+      ]
+    },
+    {
+      "fitment_id": "90223410983::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90223410983",
+      "part_name": "Stihl Spline Screw Is-M5X16-12.9",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "AV System",
+        "Chain Tensioner",
+        "Cylinder"
+      ]
+    },
+    {
+      "fitment_id": "96469450490::ms_261::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "96469450490",
+      "part_name": "Stihl 96469450490 O-Ring Din3771-S7X1.5",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S178B",
+        "Chain Tensioner"
+      ]
+    }
+  ],
+  "section_distribution_before": {
+    "Unresolved Diagram Section": 1610,
+    "Crankcase": 45,
+    "Oil Pump. Clutch": 30,
+    "Carburetor C1Q-S178B": 21,
+    "Rewind Starter": 19,
+    "Tank Housing": 12,
+    "Cylinder": 12,
+    "Chain Tensioner": 11,
+    "AV System": 11,
+    "Ignition System": 8,
+    "Throttle Control": 8,
+    "Chain Brake": 7,
+    "Shroud": 5,
+    "Heating": 5,
+    "Carburetor Bracket": 4,
+    "Tools": 3,
+    "Fuel System": 2,
+    "Service Kits": 2,
+    "Air Filter": 2
+  },
+  "section_distribution_after": {
+    "Unresolved Diagram Section": 1602,
+    "Crankcase": 47,
+    "Oil Pump. Clutch": 31,
+    "Carburetor C1Q-S178B": 23,
+    "Rewind Starter": 19,
+    "Cylinder": 15,
+    "Tank Housing": 13,
+    "Chain Tensioner": 13,
+    "AV System": 13,
+    "Ignition System": 9,
+    "Chain Brake": 8,
+    "Throttle Control": 8,
+    "Shroud": 5,
+    "Heating": 5,
+    "Carburetor Bracket": 5,
+    "Tools": 3,
+    "Fuel System": 2,
+    "Service Kits": 2,
+    "Air Filter": 2
+  }
+}

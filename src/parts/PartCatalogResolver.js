@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { PartNormalizer, FITMENT_SCOPES } from './PartNormalizer.js';
 import { SectionNormalizer } from './SectionNormalizer.js';
 import { PartNameNormalizer } from './PartNameNormalizer.js';
+import { SectionResolutionRegistry } from './SectionResolutionRegistry.js';
 import { normalizeModelQuery } from '../modelNormalizer.js';
 
 /**
@@ -72,22 +73,36 @@ function buildTechnicalProfile(part, fitments, compatibleModels) {
   const configs = new Set();
 
   for (const f of fitments) {
-    const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
-    if (canonSec) {
-      meaningfulSections.add(canonSec);
+    const secState = SectionResolutionRegistry.resolveFitmentSections(f);
+    for (const rs of secState.resolved_sections) {
+      if (rs.section_name) {
+        meaningfulSections.add(rs.section_name);
+      }
     }
     if (f.configuration_key) {
       configs.add(f.configuration_key);
     }
     const pos = PartNormalizer.normalizeDiagramPosition(f.diagram_position);
     if (pos) {
-      diagramContexts.push({
-        canonical_model_id: f.canonical_model_id,
-        configuration_key: f.configuration_key || null,
-        configuration_name: f.configuration_name || null,
-        section_name: canonSec || f.section_name,
-        diagram_position: pos
-      });
+      if (secState.resolved_sections.length > 0) {
+        for (const rs of secState.resolved_sections) {
+          diagramContexts.push({
+            canonical_model_id: f.canonical_model_id,
+            configuration_key: f.configuration_key || null,
+            configuration_name: f.configuration_name || null,
+            section_name: rs.section_name,
+            diagram_position: pos
+          });
+        }
+      } else {
+        diagramContexts.push({
+          canonical_model_id: f.canonical_model_id,
+          configuration_key: f.configuration_key || null,
+          configuration_name: f.configuration_name || null,
+          section_name: secState.primary_section_canonical || f.section_name,
+          diagram_position: pos
+        });
+      }
     }
   }
 
@@ -536,8 +551,10 @@ export class PartCatalogResolver {
         mEntry.fitment_count++;
         if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
         if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
-        const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
-        if (canonSec) mEntry.sections.add(canonSec);
+        const secState = SectionResolutionRegistry.resolveFitmentSections(f);
+        for (const rs of secState.resolved_sections) {
+          if (rs.section_name) mEntry.sections.add(rs.section_name);
+        }
       }
 
       const compatibleModels = Array.from(modelMap.values()).map(m => ({
@@ -562,18 +579,22 @@ export class PartCatalogResolver {
         compatible_models: compatibleModels,
         technical_profile: techProfile,
         fitments: fitments.map(f => {
-          const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+          const secState = SectionResolutionRegistry.resolveFitmentSections(f);
           const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
           return {
+            fitment_id: secState.fitment_id,
             canonical_model_id: f.canonical_model_id,
             variant_key: f.variant_key,
             configuration_key: f.configuration_key || null,
             configuration_name: f.configuration_name || null,
             fitment_scope: f.fitment_scope,
-            section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
-            section_name: canonSec || f.section_name,
+            section_key: secState.primary_section_key,
+            section_name: secState.primary_section_canonical || f.section_name,
             section_name_raw: f.section_name,
-            section_name_canonical: canonSec,
+            section_name_canonical: secState.primary_section_canonical,
+            section_resolution_status: secState.status,
+            section_resolution_rule: secState.resolution_rule,
+            resolved_sections: secState.resolved_sections,
             diagram_position: isRealPos ? f.diagram_position : null,
             diagram_position_raw: f.diagram_position,
             has_meaningful_position: isRealPos,
@@ -653,7 +674,13 @@ export class PartCatalogResolver {
         mEntry.fitment_count++;
         if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
         if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
-        if (f.section_name) mEntry.sections.add(f.section_name);
+        const secState = SectionResolutionRegistry.resolveFitmentSections(f);
+        for (const rs of secState.resolved_sections) {
+          if (rs.section_name) mEntry.sections.add(rs.section_name);
+        }
+        if (secState.resolved_sections.length === 0 && f.section_name) {
+          mEntry.sections.add(f.section_name);
+        }
       }
 
       const compatibleModels = Array.from(modelMap.values()).map(m => ({
@@ -677,18 +704,22 @@ export class PartCatalogResolver {
         compatible_models: compatibleModels,
         technical_profile: techProfile,
         fitments: fitments.map(f => {
-          const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+          const secState = SectionResolutionRegistry.resolveFitmentSections(f);
           const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
           return {
+            fitment_id: secState.fitment_id,
             canonical_model_id: f.canonical_model_id,
             variant_key: f.variant_key,
             configuration_key: f.configuration_key || null,
             configuration_name: f.configuration_name || null,
             fitment_scope: f.fitment_scope,
-            section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
-            section_name: canonSec || f.section_name,
+            section_key: secState.primary_section_key,
+            section_name: secState.primary_section_canonical || f.section_name,
             section_name_raw: f.section_name,
-            section_name_canonical: canonSec,
+            section_name_canonical: secState.primary_section_canonical,
+            section_resolution_status: secState.status,
+            section_resolution_rule: secState.resolution_rule,
+            resolved_sections: secState.resolved_sections,
             diagram_position: isRealPos ? f.diagram_position : null,
             diagram_position_raw: f.diagram_position,
             has_meaningful_position: isRealPos,
@@ -723,8 +754,10 @@ export class PartCatalogResolver {
       mEntry.fitment_count++;
       if (f.variant_key && f.variant_key !== 'base') mEntry.variants.add(f.variant_key);
       if (f.configuration_name) mEntry.configurations.add(f.configuration_name);
-      const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
-      if (canonSec) mEntry.sections.add(canonSec);
+      const secState = SectionResolutionRegistry.resolveFitmentSections(f);
+      for (const rs of secState.resolved_sections) {
+        if (rs.section_name) mEntry.sections.add(rs.section_name);
+      }
     }
 
     const compatibleModels = Array.from(modelMap.values()).map(m => ({
@@ -748,18 +781,22 @@ export class PartCatalogResolver {
       compatible_models: compatibleModels,
       technical_profile: techProfile,
       fitments: fitments.map(f => {
-        const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+        const secState = SectionResolutionRegistry.resolveFitmentSections(f);
         const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
         return {
+          fitment_id: secState.fitment_id,
           canonical_model_id: f.canonical_model_id,
           variant_key: f.variant_key,
           configuration_key: f.configuration_key || null,
           configuration_name: f.configuration_name || null,
           fitment_scope: f.fitment_scope,
-          section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
-          section_name: canonSec || f.section_name,
+          section_key: secState.primary_section_key,
+          section_name: secState.primary_section_canonical || f.section_name,
           section_name_raw: f.section_name,
-          section_name_canonical: canonSec,
+          section_name_canonical: secState.primary_section_canonical,
+          section_resolution_status: secState.status,
+          section_resolution_rule: secState.resolution_rule,
+          resolved_sections: secState.resolved_sections,
           diagram_position: isRealPos ? f.diagram_position : null,
           diagram_position_raw: f.diagram_position,
           has_meaningful_position: isRealPos,
@@ -900,16 +937,20 @@ export class PartCatalogResolver {
 
       return matchingFitments.map(f => {
         const part = partsMap.get(f.part_number);
-        const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+        const secState = SectionResolutionRegistry.resolveFitmentSections(f);
         const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
         return {
+          fitment_id: secState.fitment_id,
           part_number: f.part_number,
           part_number_display: PartNormalizer.formatPartNumber(f.part_number),
-          part_name: part ? PartNameNormalizer.normalizeDisplayName(part.part_name, f.part_number) : (canonSec || f.section_name),
+          part_name: part ? PartNameNormalizer.normalizeDisplayName(part.part_name, f.part_number) : (secState.primary_section_canonical || f.section_name),
           part_name_raw: part?.part_name || f.section_name,
-          section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
-          section_name: canonSec || f.section_name,
+          section_key: secState.primary_section_key,
+          section_name: secState.primary_section_canonical || f.section_name,
           section_name_raw: f.section_name,
+          section_resolution_status: secState.status,
+          section_resolution_rule: secState.resolution_rule,
+          resolved_sections: secState.resolved_sections,
           diagram_position: isRealPos ? f.diagram_position : null,
           diagram_position_raw: f.diagram_position,
           has_meaningful_position: isRealPos,
@@ -929,16 +970,20 @@ export class PartCatalogResolver {
 
     return matchingFitments.map(f => {
       const part = cachedPartsMap?.get(f.part_number);
-      const canonSec = SectionNormalizer.normalizeSectionName(f.section_name);
+      const secState = SectionResolutionRegistry.resolveFitmentSections(f);
       const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
       return {
+        fitment_id: secState.fitment_id,
         part_number: f.part_number,
         part_number_display: PartNormalizer.formatPartNumber(f.part_number),
-        part_name: part ? PartNameNormalizer.normalizeDisplayName(part.part_name, f.part_number) : (canonSec || f.section_name),
+        part_name: part ? PartNameNormalizer.normalizeDisplayName(part.part_name, f.part_number) : (secState.primary_section_canonical || f.section_name),
         part_name_raw: part?.part_name || f.section_name,
-        section_key: SectionNormalizer.normalizeSectionKey(f.section_key),
-        section_name: canonSec || f.section_name,
+        section_key: secState.primary_section_key,
+        section_name: secState.primary_section_canonical || f.section_name,
         section_name_raw: f.section_name,
+        section_resolution_status: secState.status,
+        section_resolution_rule: secState.resolution_rule,
+        resolved_sections: secState.resolved_sections,
         diagram_position: isRealPos ? f.diagram_position : null,
         diagram_position_raw: f.diagram_position,
         has_meaningful_position: isRealPos,
@@ -1011,22 +1056,47 @@ export class PartCatalogResolver {
 
   /**
    * Groups parts for a model by diagram section.
+   * Expands multi-section resolved fitments across their verified sections without duplicating the same part within a single section.
    */
   static getSectionsForModel(modelId, variantKey = null, configurationKey = null, database = null) {
     const parts = PartCatalogResolver.getPartsForModel(modelId, variantKey, configurationKey, database);
     const sectionMap = new Map();
+    const seenInSection = new Map();
 
     for (const part of parts) {
-      const sKey = part.section_key || 'algemeen';
-      const sName = part.section_name || 'Algemene Onderdelen';
-      if (!sectionMap.has(sKey)) {
-        sectionMap.set(sKey, {
-          section_key: sKey,
-          section_name: sName,
-          parts: []
-        });
+      const targetSections = (Array.isArray(part.resolved_sections) && part.resolved_sections.length > 0)
+        ? part.resolved_sections.map(rs => ({
+            section_key: rs.section_key || 'algemeen',
+            section_name: rs.section_name || 'Algemene Onderdelen'
+          }))
+        : [
+            {
+              section_key: part.section_key || 'algemeen',
+              section_name: part.section_name || 'Algemene Onderdelen'
+            }
+          ];
+
+      for (const ts of targetSections) {
+        const sKey = ts.section_key;
+        const sName = ts.section_name;
+        if (!sectionMap.has(sKey)) {
+          sectionMap.set(sKey, {
+            section_key: sKey,
+            section_name: sName,
+            parts: []
+          });
+          seenInSection.set(sKey, new Set());
+        }
+        const dedupKey = `${part.part_number}::${part.diagram_position || ''}`;
+        if (!seenInSection.get(sKey).has(dedupKey)) {
+          seenInSection.get(sKey).add(dedupKey);
+          sectionMap.get(sKey).parts.push({
+            ...part,
+            section_key: sKey,
+            section_name: sName
+          });
+        }
       }
-      sectionMap.get(sKey).parts.push(part);
     }
 
     return Array.from(sectionMap.values());

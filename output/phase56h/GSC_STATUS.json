@@ -1,0 +1,29 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "GSC_STATUS",
+  "gsc_status": "NOT_CONFIGURED",
+  "domain": "stihldecoder.nl",
+  "canonical_origin": "https://www.stihldecoder.nl",
+  "api_authorization_state": {
+    "status": "NOT_CONFIGURED",
+    "has_access_token": false,
+    "site_url": null,
+    "suggested_site_url": "sc-domain:stihldecoder.nl",
+    "required_scope": "https://www.googleapis.com/auth/webmasters.readonly",
+    "missing": [
+      "GSC_ACCESS_TOKEN",
+      "GSC_SITE_URL"
+    ]
+  },
+  "live_probes": {
+    "search_analytics_status": "NOT_CONFIGURED",
+    "search_analytics_rows": 0,
+    "sitemaps_status": "NOT_CONFIGURED",
+    "sitemaps_count": 0
+  },
+  "fabricated_metrics": 0,
+  "required_env_vars": [
+    "GSC_ACCESS_TOKEN",
+    "GSC_SITE_URL"
+  ]
+}
