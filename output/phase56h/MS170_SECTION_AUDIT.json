@@ -1,0 +1,97 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "MS170_SECTION_AUDIT",
+  "canonical_model_id": "ms_170",
+  "model_name": "STIHL MS 170",
+  "fitment_totals": {
+    "total_fitments": 681,
+    "unresolved_before": 668,
+    "resolved_before": 13,
+    "newly_resolved_fitments_count": 2,
+    "unresolved_after": 666,
+    "effective_resolved_after": 15,
+    "multi_section_fitments_count": 0,
+    "fitments_with_meaningful_diagram_position": 678,
+    "diagram_position_coverage_pct": 99.56
+  },
+  "runtime_base_model_sections": {
+    "distinct_resolved_sections_count": 3,
+    "sections": [
+      {
+        "section_key": "general_unresolved",
+        "section_name": "Unresolved Diagram Section",
+        "parts_count": 166
+      },
+      {
+        "section_key": "ignition_system",
+        "section_name": "Ignition System",
+        "parts_count": 1
+      },
+      {
+        "section_key": "service_kits",
+        "section_name": "Service Kits",
+        "parts_count": 3
+      },
+      {
+        "section_key": "air_filter",
+        "section_name": "Air Filter",
+        "parts_count": 1
+      }
+    ]
+  },
+  "interactive_diagram_pilot_impact": {
+    "pilot_section": "Muffler",
+    "pilot_section_fitments_before": 6,
+    "pilot_section_fitments_after": 6,
+    "pilot_section_hotspots_before": 4,
+    "pilot_section_hotspots_after": 4,
+    "pilot_section_unpositioned_parts": 0,
+    "model_hotspot_ready_fitments_before": 10,
+    "model_hotspot_ready_fitments_after": 12,
+    "unresolved_section_count": 666,
+    "unresolved_position_count": 3
+  },
+  "newly_resolved_fitments": [
+    {
+      "fitment_id": "11104007005::ms_170::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11104007005",
+      "part_name": "Spark plug Bosch WSR6F",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "resolved_sections": [
+        "Ignition System"
+      ],
+      "diagram_position": "13"
+    },
+    {
+      "fitment_id": "11301240800::ms_170::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11301240800",
+      "part_name": "Air filter fleece",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "resolved_sections": [
+        "Air Filter"
+      ],
+      "diagram_position": "20"
+    }
+  ],
+  "multi_section_fitments": [],
+  "section_distribution_before": {
+    "Unresolved Diagram Section": 668,
+    "Muffler": 6,
+    "Service Kits": 3,
+    "Cylinder": 2,
+    "Rewind Starter": 2
+  },
+  "section_distribution_after": {
+    "Unresolved Diagram Section": 666,
+    "Muffler": 6,
+    "Service Kits": 3,
+    "Cylinder": 2,
+    "Rewind Starter": 2,
+    "Ignition System": 1,
+    "Air Filter": 1
+  }
+}

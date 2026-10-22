@@ -1,0 +1,221 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "UNRESOLVED_SECTION_BASELINE",
+  "reproducible": true,
+  "database_totals": {
+    "total_canonical_parts": 17082,
+    "total_canonical_fitments": 175106,
+    "scalar_resolved_fitments": 4603,
+    "scalar_unresolved_fitments": 170503,
+    "canonical_section_contexts_table_rows": 814
+  },
+  "unresolved_breakdown": {
+    "unresolved_fitments_total": 170503,
+    "unique_part_numbers_in_unresolved": 16644,
+    "unique_model_part_pairs_in_unresolved": 105867,
+    "unique_canonical_models_in_unresolved": 900,
+    "unique_configurations_in_unresolved": 719,
+    "unresolved_fitments_with_linked_evidence_records": 170503,
+    "unresolved_fitments_with_existing_canonical_contexts": 334
+  },
+  "top_25_models_by_unresolved_fitments": [
+    {
+      "canonical_model_id": "034",
+      "total_fitments": 1854,
+      "unresolved_fitments": 1626,
+      "resolved_fitments": 228,
+      "unresolved_pct": 87.7
+    },
+    {
+      "canonical_model_id": "ms_261",
+      "total_fitments": 1817,
+      "unresolved_fitments": 1610,
+      "resolved_fitments": 207,
+      "unresolved_pct": 88.61
+    },
+    {
+      "canonical_model_id": "ms_362",
+      "total_fitments": 1613,
+      "unresolved_fitments": 1582,
+      "resolved_fitments": 31,
+      "unresolved_pct": 98.08
+    },
+    {
+      "canonical_model_id": "mt_5097_0",
+      "total_fitments": 1578,
+      "unresolved_fitments": 1578,
+      "resolved_fitments": 0,
+      "unresolved_pct": 100
+    },
+    {
+      "canonical_model_id": "038",
+      "total_fitments": 1513,
+      "unresolved_fitments": 1460,
+      "resolved_fitments": 53,
+      "unresolved_pct": 96.5
+    },
+    {
+      "canonical_model_id": "066",
+      "total_fitments": 1459,
+      "unresolved_fitments": 1407,
+      "resolved_fitments": 52,
+      "unresolved_pct": 96.44
+    },
+    {
+      "canonical_model_id": "046",
+      "total_fitments": 1394,
+      "unresolved_fitments": 1362,
+      "resolved_fitments": 32,
+      "unresolved_pct": 97.7
+    },
+    {
+      "canonical_model_id": "fs_55",
+      "total_fitments": 1399,
+      "unresolved_fitments": 1264,
+      "resolved_fitments": 135,
+      "unresolved_pct": 90.35
+    },
+    {
+      "canonical_model_id": "ms_441",
+      "total_fitments": 1240,
+      "unresolved_fitments": 1214,
+      "resolved_fitments": 26,
+      "unresolved_pct": 97.9
+    },
+    {
+      "canonical_model_id": "mt_6112_0",
+      "total_fitments": 1196,
+      "unresolved_fitments": 1196,
+      "resolved_fitments": 0,
+      "unresolved_pct": 100
+    },
+    {
+      "canonical_model_id": "036",
+      "total_fitments": 1230,
+      "unresolved_fitments": 1194,
+      "resolved_fitments": 36,
+      "unresolved_pct": 97.07
+    },
+    {
+      "canonical_model_id": "fs_240",
+      "total_fitments": 1187,
+      "unresolved_fitments": 1164,
+      "resolved_fitments": 23,
+      "unresolved_pct": 98.06
+    },
+    {
+      "canonical_model_id": "ms_361",
+      "total_fitments": 1144,
+      "unresolved_fitments": 1120,
+      "resolved_fitments": 24,
+      "unresolved_pct": 97.9
+    },
+    {
+      "canonical_model_id": "mt_5097_1",
+      "total_fitments": 1076,
+      "unresolved_fitments": 1076,
+      "resolved_fitments": 0,
+      "unresolved_pct": 100
+    },
+    {
+      "canonical_model_id": "fs_56",
+      "total_fitments": 1075,
+      "unresolved_fitments": 1075,
+      "resolved_fitments": 0,
+      "unresolved_pct": 100
+    },
+    {
+      "canonical_model_id": "ms_260",
+      "total_fitments": 1243,
+      "unresolved_fitments": 1038,
+      "resolved_fitments": 205,
+      "unresolved_pct": 83.51
+    },
+    {
+      "canonical_model_id": "rt_5097_0",
+      "total_fitments": 1077,
+      "unresolved_fitments": 1034,
+      "resolved_fitments": 43,
+      "unresolved_pct": 96.01
+    },
+    {
+      "canonical_model_id": "fs_460",
+      "total_fitments": 1060,
+      "unresolved_fitments": 1023,
+      "resolved_fitments": 37,
+      "unresolved_pct": 96.51
+    },
+    {
+      "canonical_model_id": "mb_650_0",
+      "total_fitments": 1018,
+      "unresolved_fitments": 1018,
+      "resolved_fitments": 0,
+      "unresolved_pct": 100
+    },
+    {
+      "canonical_model_id": "044",
+      "total_fitments": 994,
+      "unresolved_fitments": 976,
+      "resolved_fitments": 18,
+      "unresolved_pct": 98.19
+    },
+    {
+      "canonical_model_id": "ms_460",
+      "total_fitments": 967,
+      "unresolved_fitments": 936,
+      "resolved_fitments": 31,
+      "unresolved_pct": 96.79
+    },
+    {
+      "canonical_model_id": "024",
+      "total_fitments": 911,
+      "unresolved_fitments": 890,
+      "resolved_fitments": 21,
+      "unresolved_pct": 97.69
+    },
+    {
+      "canonical_model_id": "fs_80",
+      "total_fitments": 895,
+      "unresolved_fitments": 888,
+      "resolved_fitments": 7,
+      "unresolved_pct": 99.22
+    },
+    {
+      "canonical_model_id": "026",
+      "total_fitments": 905,
+      "unresolved_fitments": 882,
+      "resolved_fitments": 23,
+      "unresolved_pct": 97.46
+    },
+    {
+      "canonical_model_id": "mb_655_1",
+      "total_fitments": 852,
+      "unresolved_fitments": 852,
+      "resolved_fitments": 0,
+      "unresolved_pct": 100
+    }
+  ],
+  "focus_models_baseline": [
+    {
+      "canonical_model_id": "ms_261",
+      "total_fitments": 1817,
+      "unresolved_fitments": 1610,
+      "resolved_fitments": 207,
+      "unresolved_pct": 88.61
+    },
+    {
+      "canonical_model_id": "ms_170",
+      "total_fitments": 681,
+      "unresolved_fitments": 668,
+      "resolved_fitments": 13,
+      "unresolved_pct": 98.09
+    },
+    {
+      "canonical_model_id": "fs_55",
+      "total_fitments": 1399,
+      "unresolved_fitments": 1264,
+      "resolved_fitments": 135,
+      "unresolved_pct": 90.35
+    }
+  ]
+}

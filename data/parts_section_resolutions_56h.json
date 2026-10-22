@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56H",
+  "description": "Deterministic exact-scope diagram section resolutions backed by existing canonical evidence in part_fitment_evidence",
+  "lookup_mode": "EXACT_FITMENT_ID_ONLY",
+  "record_count": 10,
+  "resolutions": [
+    {
+      "fitment_id": "00004007000::ms_261::c_m::base::EXACT_VARIANT",
+      "part_number": "00004007000",
+      "canonical_model_id": "ms_261",
+      "variant_key": "c_m",
+      "configuration_key": null,
+      "fitment_scope": "EXACT_VARIANT",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "ignition_system",
+      "canonical_section_name": "Ignition System",
+      "section_name_raw": "Ignition System",
+      "diagram_position": "23",
+      "source_evidence_id": "obs_00004007000_ms_261_c_m_base_official_stihl_ignition_system_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_00004007000_ms_261_c_m_base_official_stihl_ignition_system_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11104007005::026::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11104007005",
+      "canonical_model_id": "026",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "ignition_system",
+      "canonical_section_name": "Ignition System",
+      "section_name_raw": "Ignition System",
+      "diagram_position": "22",
+      "source_evidence_id": "obs_11104007005_026_base_base_official_stihl_ignition_system_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11104007005_026_base_base_official_stihl_ignition_system_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11104007005::ms_170::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11104007005",
+      "canonical_model_id": "ms_170",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "ignition_system",
+      "canonical_section_name": "Ignition System",
+      "section_name_raw": "Ignition System",
+      "diagram_position": "13",
+      "source_evidence_id": "obs_11104007005_ms_170_base_base_official_stihl_ignition_system_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11104007005_ms_170_base_base_official_stihl_ignition_system_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11104007005::ms_180::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11104007005",
+      "canonical_model_id": "ms_180",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "ignition_system",
+      "canonical_section_name": "Ignition System",
+      "section_name_raw": "Ignition System",
+      "diagram_position": "14",
+      "source_evidence_id": "obs_11104007005_ms_180_base_base_official_stihl_ignition_system_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11104007005_ms_180_base_base_official_stihl_ignition_system_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11104007005::ts_420::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11104007005",
+      "canonical_model_id": "ts_420",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "ignition_system",
+      "canonical_section_name": "Ignition System",
+      "section_name_raw": "Ignition System",
+      "diagram_position": "11",
+      "source_evidence_id": "obs_11104007005_ts_420_base_base_official_stihl_ignition_system_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11104007005_ts_420_base_base_official_stihl_ignition_system_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11211201612::026::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11211201612",
+      "canonical_model_id": "026",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "air_filter",
+      "canonical_section_name": "Air Filter",
+      "section_name_raw": "Air Filter",
+      "diagram_position": "7",
+      "source_evidence_id": "obs_11211201612_026_base_base_official_stihl_air_filter_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11211201612_026_base_base_official_stihl_air_filter_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11301240800::ms_170::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11301240800",
+      "canonical_model_id": "ms_170",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "air_filter",
+      "canonical_section_name": "Air Filter",
+      "section_name_raw": "Air Filter",
+      "diagram_position": "20",
+      "source_evidence_id": "obs_11301240800_ms_170_base_base_official_stihl_air_filter_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11301240800_ms_170_base_base_official_stihl_air_filter_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11301240800::ms_180::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11301240800",
+      "canonical_model_id": "ms_180",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "air_filter",
+      "canonical_section_name": "Air Filter",
+      "section_name_raw": "Air Filter",
+      "diagram_position": "21",
+      "source_evidence_id": "obs_11301240800_ms_180_base_base_official_stihl_air_filter_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11301240800_ms_180_base_base_official_stihl_air_filter_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/c/service-sets-97200",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    },
+    {
+      "fitment_id": "11413500824::ms_261::c_m::base::EXACT_VARIANT",
+      "part_number": "11413500824",
+      "canonical_model_id": "ms_261",
+      "variant_key": "c_m",
+      "configuration_key": null,
+      "fitment_scope": "EXACT_VARIANT",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "tank_housing",
+      "canonical_section_name": "Tank Housing",
+      "section_name_raw": "Tank Housing",
+      "diagram_position": "1",
+      "source_evidence_id": "obs_11413500824_ms_261_c_m_base_sparepartsworld_tank_housing_1",
+      "all_supporting_evidence_ids": [
+        "obs_11413500824_ms_261_c_m_base_sparepartsworld_tank_housing_1"
+      ],
+      "source_id": "sparepartsworld",
+      "source_url": "https://www.sparepartsworld.co.uk/Stihl-MS-261-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782617",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "ca84010f0bd4182899ed004985711da8e1fbc473997c82b4de20936a1e5b7b2f"
+    },
+    {
+      "fitment_id": "11480074101::ms_182::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11480074101",
+      "canonical_model_id": "ms_182",
+      "variant_key": "base",
+      "configuration_key": null,
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "raw_section_name": "Unresolved Diagram Section",
+      "canonical_section_key": "service_kits",
+      "canonical_section_name": "Service Kits",
+      "section_name_raw": "Service Kits",
+      "diagram_position": "60",
+      "source_evidence_id": "obs_11480074101_ms_182_base_base_official_stihl_service_kits_OFFICIAL_REF",
+      "all_supporting_evidence_ids": [
+        "obs_11480074101_ms_182_base_base_official_stihl_service_kits_OFFICIAL_REF"
+      ],
+      "source_id": "official_stihl",
+      "source_url": "https://www.stihl.nl/nl/ap/service-kit-19-130028",
+      "resolution_rule": "RULE_A_EXPLICIT_EXACT_SCOPE_EVIDENCE",
+      "confidence_contract": "EXACT_SCOPE_SOURCE_EVIDENCE",
+      "provenance_hash": "35feb83f556080c13f105ae8528901e90088f817dfbdb526c35e477161b4e68b"
+    }
+  ]
+}

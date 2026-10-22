@@ -117,17 +117,31 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
     model: compatibleModels[0]?.model_id || null
   });
 
-  // Group fitments by section (meaningful, resolved diagram sections only)
+  // Group fitments by section (meaningful, resolved diagram sections only, including verified multi-section contexts)
   const sectionMap = new Map();
+  const seenInDetailSection = new Map();
   for (const f of fitments) {
-    const sName = f.section_name;
-    if (!sName || sName === 'Unresolved Diagram Section' || sName === 'Algemene sectie' || sName === 'general_unresolved') {
-      continue;
+    const resolvedSecs = Array.isArray(f.resolved_sections) && f.resolved_sections.length > 0
+      ? f.resolved_sections.map(rs => rs.section_name)
+      : [f.section_name];
+
+    for (const sName of resolvedSecs) {
+      if (!sName || sName === 'Unresolved Diagram Section' || sName === 'Algemene sectie' || sName === 'general_unresolved') {
+        continue;
+      }
+      if (!sectionMap.has(sName)) {
+        sectionMap.set(sName, []);
+        seenInDetailSection.set(sName, new Set());
+      }
+      const dedupKey = `${f.canonical_model_id}::${f.diagram_position || ''}`;
+      if (!seenInDetailSection.get(sName).has(dedupKey)) {
+        seenInDetailSection.get(sName).add(dedupKey);
+        sectionMap.get(sName).push({
+          ...f,
+          section_name: sName
+        });
+      }
     }
-    if (!sectionMap.has(sName)) {
-      sectionMap.set(sName, []);
-    }
-    sectionMap.get(sName).push(f);
   }
 
   const supersession = resolved.technical_profile?.supersession;

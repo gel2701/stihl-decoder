@@ -1,0 +1,1750 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "FS55_SECTION_AUDIT",
+  "canonical_model_id": "fs_55",
+  "model_name": "STIHL FS 55",
+  "fitment_totals": {
+    "total_fitments": 1399,
+    "unresolved_before": 1264,
+    "resolved_before": 135,
+    "newly_resolved_fitments_count": 63,
+    "unresolved_after": 1201,
+    "effective_resolved_after": 198,
+    "multi_section_fitments_count": 63,
+    "fitments_with_meaningful_diagram_position": 1389,
+    "diagram_position_coverage_pct": 99.29
+  },
+  "runtime_base_model_sections": {
+    "distinct_resolved_sections_count": 18,
+    "sections": [
+      {
+        "section_key": "general_unresolved",
+        "section_name": "Unresolved Diagram Section",
+        "parts_count": 186
+      },
+      {
+        "section_key": "drive_tube_assembly_fs55",
+        "section_name": "Drive Tube Assembly FS55",
+        "parts_count": 4
+      },
+      {
+        "section_key": "drive_tube_assembly_fs55t",
+        "section_name": "Drive Tube Assembly Fs55t",
+        "parts_count": 4
+      },
+      {
+        "section_key": "rewind_starter",
+        "section_name": "Rewind Starter",
+        "parts_count": 7
+      },
+      {
+        "section_key": "rewind_starter_ergostart",
+        "section_name": "Rewind Starter Ergostart",
+        "parts_count": 7
+      },
+      {
+        "section_key": "crankcase_cylinder",
+        "section_name": "Crankcase - Cylinder",
+        "parts_count": 3
+      },
+      {
+        "section_key": "muffler",
+        "section_name": "Muffler",
+        "parts_count": 4
+      },
+      {
+        "section_key": "carburetor_c1q_s71",
+        "section_name": "Carburetor C1Q-S71",
+        "parts_count": 27
+      },
+      {
+        "section_key": "carburetor_c1q_s66",
+        "section_name": "Carburetor C1Q-S66",
+        "parts_count": 29
+      },
+      {
+        "section_key": "carburetor_c1q_s58",
+        "section_name": "Carburetor C1Q-S58",
+        "parts_count": 26
+      },
+      {
+        "section_key": "carburetor_c1q_s53a",
+        "section_name": "Carburetor C1Q-S53A",
+        "parts_count": 29
+      },
+      {
+        "section_key": "carburetor_c1q_s44a",
+        "section_name": "Carburetor C1Q-S44A",
+        "parts_count": 29
+      },
+      {
+        "section_key": "muffler_cat",
+        "section_name": "Muffler Cat.",
+        "parts_count": 4
+      },
+      {
+        "section_key": "air_filter_fuel_tank",
+        "section_name": "Air Filter - Fuel Tank",
+        "parts_count": 4
+      },
+      {
+        "section_key": "service_kits",
+        "section_name": "Service Kits",
+        "parts_count": 2
+      },
+      {
+        "section_key": "two_handed_handle_bar_1",
+        "section_name": "TWO-HANDED Handle Bar 1",
+        "parts_count": 3
+      },
+      {
+        "section_key": "two_handed_handle_bar_2",
+        "section_name": "TWO-HANDED Handle Bar 2",
+        "parts_count": 4
+      },
+      {
+        "section_key": "engine_housing_two_handed_handle_bar",
+        "section_name": "Engine Housing Two Handed Handle Bar",
+        "parts_count": 3
+      },
+      {
+        "section_key": "engine_housing_wrap_around_handlebar",
+        "section_name": "Engine Housing-Wrap Around Handlebar",
+        "parts_count": 2
+      }
+    ]
+  },
+  "interactive_diagram_pilot_impact": {
+    "pilot_section": "Air Filter - Fuel Tank",
+    "pilot_section_fitments_before": 25,
+    "pilot_section_fitments_after": 29,
+    "pilot_section_hotspots_before": 25,
+    "pilot_section_hotspots_after": 29,
+    "pilot_section_unpositioned_parts": 0,
+    "model_hotspot_ready_fitments_before": 133,
+    "model_hotspot_ready_fitments_after": 196,
+    "unresolved_section_count": 1201,
+    "unresolved_position_count": 10
+  },
+  "newly_resolved_fitments": [
+    {
+      "fitment_id": "00001822100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00001822100",
+      "part_name": "Stihl Support � 25.4Mm",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "diagram_position": "17"
+    },
+    {
+      "fitment_id": "00007112500::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00007112500",
+      "part_name": "Stihl Sleeve",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "diagram_position": "8"
+    },
+    {
+      "fitment_id": "00009511100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00009511100",
+      "part_name": "Stihl Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "13"
+    },
+    {
+      "fitment_id": "00009580923::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00009580923",
+      "part_name": "Stihl Washer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "4"
+    },
+    {
+      "fitment_id": "00009677253::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00009677253",
+      "part_name": "Stihl Warning Pictogram Fs",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "diagram_position": "5"
+    },
+    {
+      "fitment_id": "07811201110::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "07811201110",
+      "part_name": "Stihl 07811201110 Multipurpose 225g Grease Tube For Hedge Trimmers",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "diagram_position": "9"
+    },
+    {
+      "fitment_id": "07838302000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "07838302000",
+      "part_name": "[NO LONGER AVAILABLE] Stihl 07838302000 Tube Of Sealant HT For 017,018,MS210 Chainsaw & Various Machines",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Crankcase - Cylinder",
+        "Muffler"
+      ],
+      "diagram_position": "9"
+    },
+    {
+      "fitment_id": "11181953500::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11181953500",
+      "part_name": "Stihl Spring Starter Pawl Clip for TS400 Disc Cutter - OEM No. 1118 195 3500",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "5"
+    },
+    {
+      "fitment_id": "11201217801::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201217801",
+      "part_name": "Stihl Strainer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "32"
+    },
+    {
+      "fitment_id": "11201219200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201219200",
+      "part_name": "Stihl Spindle",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "16"
+    },
+    {
+      "fitment_id": "11201223004::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201223004",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "15"
+    },
+    {
+      "fitment_id": "11201226600::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201226600",
+      "part_name": "Stihl Collar Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "17"
+    },
+    {
+      "fitment_id": "11201227800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201227800",
+      "part_name": "Stihl Oval Head Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "12"
+    },
+    {
+      "fitment_id": "11201229000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201229000",
+      "part_name": "Stihl E-Clip",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "6"
+    },
+    {
+      "fitment_id": "11231210800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231210800",
+      "part_name": "Stihl End Cover",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "12"
+    },
+    {
+      "fitment_id": "11231217800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231217800",
+      "part_name": "Stihl Strainer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "25"
+    },
+    {
+      "fitment_id": "11231223000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231223000",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "3"
+    },
+    {
+      "fitment_id": "11231223001::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231223001",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "14"
+    },
+    {
+      "fitment_id": "11231290905::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231290905",
+      "part_name": "Stihl Gasket",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "10"
+    },
+    {
+      "fitment_id": "11251215000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251215000",
+      "part_name": "Stihl Inlet Control Lever",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "15"
+    },
+    {
+      "fitment_id": "11251224200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251224200",
+      "part_name": "Stihl Ball",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "30"
+    },
+    {
+      "fitment_id": "11251227403::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251227403",
+      "part_name": "Stihl Round Head Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "5"
+    },
+    {
+      "fitment_id": "11251229001::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251229001",
+      "part_name": "Stihl E-Clip",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "6"
+    },
+    {
+      "fitment_id": "11281227100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11281227100",
+      "part_name": "Stihl Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "23"
+    },
+    {
+      "fitment_id": "11291214800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11291214800",
+      "part_name": "Stihl Pump Diaphragm",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "9"
+    },
+    {
+      "fitment_id": "11291290900::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11291290900",
+      "part_name": "Stihl Gasket",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58"
+      ],
+      "diagram_position": "18"
+    },
+    {
+      "fitment_id": "11321215640::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11321215640",
+      "part_name": "Stihl Fixed Jet 0.40",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "30"
+    },
+    {
+      "fitment_id": "41161957200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41161957200",
+      "part_name": "Stihl Pawl",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "6"
+    },
+    {
+      "fitment_id": "41191210700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41191210700",
+      "part_name": "Stihl Cup Plug",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "26"
+    },
+    {
+      "fitment_id": "41281210800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41281210800",
+      "part_name": "Stihl Cover Plate",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "11"
+    },
+    {
+      "fitment_id": "41291210700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41291210700",
+      "part_name": "Stihl Cup Plug",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "29"
+    },
+    {
+      "fitment_id": "41291214700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41291214700",
+      "part_name": "Stihl Metering Diaphragm",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "19"
+    },
+    {
+      "fitment_id": "41291290902::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41291290902",
+      "part_name": "Stihl Gasket",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "18"
+    },
+    {
+      "fitment_id": "41371207100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371207100",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "2"
+    },
+    {
+      "fitment_id": "41371213300::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371213300",
+      "part_name": "Stihl Throttle Shutter",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "4"
+    },
+    {
+      "fitment_id": "41371218600::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371218600",
+      "part_name": "Stihl Washer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "5"
+    },
+    {
+      "fitment_id": "41371218900::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371218900",
+      "part_name": "Stihl Pin",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "4"
+    },
+    {
+      "fitment_id": "41400071050::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41400071050",
+      "part_name": "Stihl Set Of Gaskets",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Crankcase - Cylinder",
+        "Muffler",
+        "Muffler Cat.",
+        "Air Filter - Fuel Tank"
+      ],
+      "diagram_position": "10"
+    },
+    {
+      "fitment_id": "41400071060::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41400071060",
+      "part_name": "Stihl Carburettor Parts Kit",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "21"
+    },
+    {
+      "fitment_id": "41400846801::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41400846801",
+      "part_name": "Stihl Spacer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "14"
+    },
+    {
+      "fitment_id": "41401200610::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401200610",
+      "part_name": "Stihl Carburettor C1Q-S58B",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "1"
+    },
+    {
+      "fitment_id": "41401210800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401210800",
+      "part_name": "Stihl End Cover",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58"
+      ],
+      "diagram_position": "27"
+    },
+    {
+      "fitment_id": "41401213302::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401213302",
+      "part_name": "Stihl Throttle Shutter",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "7"
+    },
+    {
+      "fitment_id": "41401226300::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401226300",
+      "part_name": "Stihl Idle Speed Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "22"
+    },
+    {
+      "fitment_id": "41401490602::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401490602",
+      "part_name": "Stihl Muffler Exhaust Gasket for HS45, HS81, HS86 Hedgetrimmers - OEM No. 4140 149 0602",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Muffler",
+        "Muffler Cat."
+      ],
+      "diagram_position": "7"
+    },
+    {
+      "fitment_id": "41401900601::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401900601",
+      "part_name": "Stihl 41401900601 Rewind Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "2"
+    },
+    {
+      "fitment_id": "41401953400::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401953400",
+      "part_name": "Stihl Starter Grip",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "diagram_position": "7"
+    },
+    {
+      "fitment_id": "41404401903::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41404401903",
+      "part_name": "Stihl Cable",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "diagram_position": "19"
+    },
+    {
+      "fitment_id": "42037117201::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42037117201",
+      "part_name": "Stihl Hose 960Mm / 37 13/16\"",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Engine Housing Two Handed Handle Bar",
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "diagram_position": "5"
+    },
+    {
+      "fitment_id": "42261202200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261202200",
+      "part_name": "Stihl Flange",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "20"
+    },
+    {
+      "fitment_id": "42261207100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261207100",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "2"
+    },
+    {
+      "fitment_id": "42261212700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261212700",
+      "part_name": "Stihl Cap",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "28"
+    },
+    {
+      "fitment_id": "42261227100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261227100",
+      "part_name": "Stihl Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "21"
+    },
+    {
+      "fitment_id": "42270071060::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42270071060",
+      "part_name": "Stihl Set Of Carburettor Parts",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ],
+      "diagram_position": "32"
+    },
+    {
+      "fitment_id": "42291215800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291215800",
+      "part_name": "Stihl Pump Piston",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "33"
+    },
+    {
+      "fitment_id": "42291223001::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291223001",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "35"
+    },
+    {
+      "fitment_id": "42291226200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291226200",
+      "part_name": "Stihl Idle Speed Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "29"
+    },
+    {
+      "fitment_id": "42291226800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291226800",
+      "part_name": "Stihl Low Speed Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ],
+      "diagram_position": "25"
+    },
+    {
+      "fitment_id": "90223411070::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90223411070",
+      "part_name": "Stihl Spline Screw Is-M5X30X22",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "diagram_position": "17"
+    },
+    {
+      "fitment_id": "90754784155::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90754784155",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is-D5X24",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Muffler Cat.",
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar"
+      ],
+      "diagram_position": "6"
+    },
+    {
+      "fitment_id": "90754784159::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90754784159",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is-D5X24",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Muffler Cat.",
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar",
+        "Air Filter - Fuel Tank"
+      ],
+      "diagram_position": "4"
+    },
+    {
+      "fitment_id": "90754784268::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90754784268",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is-D5X60",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Crankcase - Cylinder",
+        "Muffler"
+      ],
+      "diagram_position": "8"
+    },
+    {
+      "fitment_id": "92102600700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "92102600700",
+      "part_name": "Stihl Hexagon Nut Din934-M5-8",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "variant_key": "base",
+      "resolution_rule": "RULE_C_EXISTING_CANONICAL_MULTI_CONTEXT",
+      "resolved_sections": [
+        "Air Filter - Fuel Tank",
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "diagram_position": "16"
+    }
+  ],
+  "multi_section_fitments": [
+    {
+      "fitment_id": "00001822100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00001822100",
+      "part_name": "Stihl Support � 25.4Mm",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ]
+    },
+    {
+      "fitment_id": "00007112500::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00007112500",
+      "part_name": "Stihl Sleeve",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ]
+    },
+    {
+      "fitment_id": "00009511100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00009511100",
+      "part_name": "Stihl Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "00009580923::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00009580923",
+      "part_name": "Stihl Washer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "00009677253::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "00009677253",
+      "part_name": "Stihl Warning Pictogram Fs",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ]
+    },
+    {
+      "fitment_id": "07811201110::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "07811201110",
+      "part_name": "Stihl 07811201110 Multipurpose 225g Grease Tube For Hedge Trimmers",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ]
+    },
+    {
+      "fitment_id": "07838302000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "07838302000",
+      "part_name": "[NO LONGER AVAILABLE] Stihl 07838302000 Tube Of Sealant HT For 017,018,MS210 Chainsaw & Various Machines",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Muffler"
+      ]
+    },
+    {
+      "fitment_id": "11181953500::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11181953500",
+      "part_name": "Stihl Spring Starter Pawl Clip for TS400 Disc Cutter - OEM No. 1118 195 3500",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "11201217801::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201217801",
+      "part_name": "Stihl Strainer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "11201219200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201219200",
+      "part_name": "Stihl Spindle",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11201223004::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201223004",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "11201226600::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201226600",
+      "part_name": "Stihl Collar Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11201227800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201227800",
+      "part_name": "Stihl Oval Head Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11201229000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11201229000",
+      "part_name": "Stihl E-Clip",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11231210800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231210800",
+      "part_name": "Stihl End Cover",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "11231217800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231217800",
+      "part_name": "Stihl Strainer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11231223000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231223000",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11231223001::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231223001",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11231290905::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11231290905",
+      "part_name": "Stihl Gasket",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11251215000::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251215000",
+      "part_name": "Stihl Inlet Control Lever",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11251224200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251224200",
+      "part_name": "Stihl Ball",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "11251227403::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251227403",
+      "part_name": "Stihl Round Head Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11251229001::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11251229001",
+      "part_name": "Stihl E-Clip",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11281227100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11281227100",
+      "part_name": "Stihl Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11291214800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11291214800",
+      "part_name": "Stihl Pump Diaphragm",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "11291290900::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11291290900",
+      "part_name": "Stihl Gasket",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58"
+      ]
+    },
+    {
+      "fitment_id": "11321215640::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "11321215640",
+      "part_name": "Stihl Fixed Jet 0.40",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41161957200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41161957200",
+      "part_name": "Stihl Pawl",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "41191210700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41191210700",
+      "part_name": "Stihl Cup Plug",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41281210800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41281210800",
+      "part_name": "Stihl Cover Plate",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41291210700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41291210700",
+      "part_name": "Stihl Cup Plug",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41291214700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41291214700",
+      "part_name": "Stihl Metering Diaphragm",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41291290902::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41291290902",
+      "part_name": "Stihl Gasket",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41371207100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371207100",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "41371213300::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371213300",
+      "part_name": "Stihl Throttle Shutter",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41371218600::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371218600",
+      "part_name": "Stihl Washer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41371218900::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41371218900",
+      "part_name": "Stihl Pin",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41400071050::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41400071050",
+      "part_name": "Stihl Set Of Gaskets",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Muffler",
+        "Muffler Cat.",
+        "Air Filter - Fuel Tank"
+      ]
+    },
+    {
+      "fitment_id": "41400071060::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41400071060",
+      "part_name": "Stihl Carburettor Parts Kit",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "41400846801::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41400846801",
+      "part_name": "Stihl Spacer",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "41401200610::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401200610",
+      "part_name": "Stihl Carburettor C1Q-S58B",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41401210800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401210800",
+      "part_name": "Stihl End Cover",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58"
+      ]
+    },
+    {
+      "fitment_id": "41401213302::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401213302",
+      "part_name": "Stihl Throttle Shutter",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "41401226300::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401226300",
+      "part_name": "Stihl Idle Speed Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "41401490602::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401490602",
+      "part_name": "Stihl Muffler Exhaust Gasket for HS45, HS81, HS86 Hedgetrimmers - OEM No. 4140 149 0602",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Muffler",
+        "Muffler Cat."
+      ]
+    },
+    {
+      "fitment_id": "41401900601::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401900601",
+      "part_name": "Stihl 41401900601 Rewind Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "41401953400::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41401953400",
+      "part_name": "Stihl Starter Grip",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ]
+    },
+    {
+      "fitment_id": "41404401903::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "41404401903",
+      "part_name": "Stihl Cable",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ]
+    },
+    {
+      "fitment_id": "42037117201::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42037117201",
+      "part_name": "Stihl Hose 960Mm / 37 13/16\"",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Engine Housing Two Handed Handle Bar",
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ]
+    },
+    {
+      "fitment_id": "42261202200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261202200",
+      "part_name": "Stihl Flange",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "42261207100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261207100",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "42261212700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261212700",
+      "part_name": "Stihl Cap",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "42261227100::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42261227100",
+      "part_name": "Stihl Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "42270071060::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42270071060",
+      "part_name": "Stihl Set Of Carburettor Parts",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S44A"
+      ]
+    },
+    {
+      "fitment_id": "42291215800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291215800",
+      "part_name": "Stihl Pump Piston",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "42291223001::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291223001",
+      "part_name": "Stihl Spring",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "42291226200::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291226200",
+      "part_name": "Stihl Idle Speed Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "42291226800::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "42291226800",
+      "part_name": "Stihl Low Speed Screw",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Carburetor C1Q-S71",
+        "Carburetor C1Q-S66"
+      ]
+    },
+    {
+      "fitment_id": "90223411070::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90223411070",
+      "part_name": "Stihl Spline Screw Is-M5X30X22",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "TWO-HANDED Handle Bar 1",
+        "TWO-HANDED Handle Bar 2"
+      ]
+    },
+    {
+      "fitment_id": "90754784155::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90754784155",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is-D5X24",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Muffler Cat.",
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar"
+      ]
+    },
+    {
+      "fitment_id": "90754784159::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90754784159",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is-D5X24",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Muffler Cat.",
+        "Engine Housing-Wrap Around Handlebar",
+        "Engine Housing Two Handed Handle Bar",
+        "Air Filter - Fuel Tank"
+      ]
+    },
+    {
+      "fitment_id": "90754784268::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "90754784268",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is-D5X60",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Crankcase - Cylinder",
+        "Muffler"
+      ]
+    },
+    {
+      "fitment_id": "92102600700::fs_55::base::base::BASE_MODEL_CONFIRMED",
+      "part_number": "92102600700",
+      "part_name": "Stihl Hexagon Nut Din934-M5-8",
+      "fitment_scope": "BASE_MODEL_CONFIRMED",
+      "sections": [
+        "Air Filter - Fuel Tank",
+        "TWO-HANDED Handle Bar 2"
+      ]
+    }
+  ],
+  "section_distribution_before": {
+    "Unresolved Diagram Section": 1264,
+    "Air Filter - Fuel Tank": 25,
+    "Gear Head - Deflector": 24,
+    "TWO-HANDED Handle Bar 1": 20,
+    "Crankcase - Cylinder": 12,
+    "Tools - Extras": 12,
+    "Rewind Starter": 7,
+    "TWO-HANDED Handle Bar 2": 7,
+    "Ignition System - Clutch": 7,
+    "Carburetor C1Q-S71": 5,
+    "Carburetor C1Q-S66": 4,
+    "Drive Tube Assembly FS55": 4,
+    "Carburetor C1Q-S58": 3,
+    "Service Kits": 2,
+    "Engine Housing Two Handed Handle Bar": 2,
+    "Muffler": 1
+  },
+  "section_distribution_after": {
+    "Unresolved Diagram Section": 1201,
+    "Carburetor C1Q-S66": 33,
+    "Carburetor C1Q-S71": 32,
+    "Air Filter - Fuel Tank": 29,
+    "Carburetor C1Q-S58": 29,
+    "Carburetor C1Q-S53A": 29,
+    "Carburetor C1Q-S44A": 29,
+    "Gear Head - Deflector": 24,
+    "TWO-HANDED Handle Bar 1": 23,
+    "Crankcase - Cylinder": 15,
+    "Rewind Starter": 14,
+    "Tools - Extras": 12,
+    "TWO-HANDED Handle Bar 2": 11,
+    "Drive Tube Assembly FS55": 8,
+    "Rewind Starter Ergostart": 7,
+    "Ignition System - Clutch": 7,
+    "Muffler": 5,
+    "Engine Housing Two Handed Handle Bar": 5,
+    "Drive Tube Assembly Fs55t": 4,
+    "Muffler Cat.": 4,
+    "Service Kits": 2,
+    "Engine Housing-Wrap Around Handlebar": 2
+  }
+}

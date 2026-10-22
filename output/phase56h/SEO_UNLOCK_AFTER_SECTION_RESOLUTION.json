@@ -1,0 +1,1440 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "SEO_UNLOCK_AFTER_SECTION_RESOLUTION",
+  "reproducible": true,
+  "indexation_policy_in_56h": "ANALYTICAL_ONLY_ACTIVE_INDEXATION_FROZEN_AT_804",
+  "active_production_indexation_state": {
+    "active_indexable_parts": 804,
+    "sitemap_total_urls": 985,
+    "sitemap_part_urls": 804
+  },
+  "h3_multi_section_gate_comparison": {
+    "parts_with_2_plus_sections_on_published_models_before_56h": 57,
+    "parts_with_2_plus_sections_on_published_models_after_56h": 155,
+    "net_new_parts_passing_h3_gate": 98
+  },
+  "strict_h1_h7_wave3_unlock_comparison": {
+    "eligible_parts_before_56h": 4,
+    "eligible_parts_after_56h": 45,
+    "newly_unlocked_strict_candidates_for_future_wave4": 41,
+    "newly_unlocked_commercial_high": 32,
+    "newly_unlocked_commercial_medium": 9
+  },
+  "rejection_counts_after_56h": {
+    "H3_FEWER_THAN_2_INDEPENDENT_SECTIONS": 3749,
+    "H6_GENERIC_HARDWARE_THIN_CONTENT": 975,
+    "S1_SCORE_BELOW_THRESHOLD": 3701,
+    "H2_NO_PUBLISHED_MODEL_WITH_PARTS_PAGE": 12378,
+    "H1_ALREADY_INDEXABLE_PRE_WAVE3": 800,
+    "H5_UNCLEAN_NAME": 164,
+    "H4_NO_MEANINGFUL_DIAGRAM_POSITION": 103
+  },
+  "all_strict_eligible_candidates": [
+    {
+      "part_number": "42411214702",
+      "part_number_display": "4241 121 4702",
+      "clean_name": "Metering Diaphragm",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 86,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 18,
+        "intent": 15,
+        "content": 8,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 9,
+      "published_fitment_rows": 24,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "FS 80"
+      ]
+    },
+    {
+      "part_number": "42411290901",
+      "part_number_display": "4241 129 0901",
+      "clean_name": "Pakking",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 86,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 18,
+        "intent": 15,
+        "content": 8,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 9,
+      "published_fitment_rows": 24,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "FS 80"
+      ]
+    },
+    {
+      "part_number": "11291290900",
+      "part_number_display": "1129 129 0900",
+      "clean_name": "Pakking",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 86,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 12,
+        "intent": 15,
+        "content": 4,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 5,
+      "sections_after_56h": [
+        "Carburetor C1Q-S49B",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S67"
+      ],
+      "published_model_count": 6,
+      "published_fitment_rows": 14,
+      "sample_models": [
+        "FS 350",
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "41440071012",
+      "part_number_display": "4144 007 1012",
+      "clean_name": "Set Of Gaskets",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 86,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 10,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Air Filter",
+        "Air Filter a",
+        "Crankcase",
+        "Ignition System"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "96390031230",
+      "part_number_display": "9639 003 1230",
+      "clean_name": "Oil Seal Din3760-As12X22X7",
+      "already_in_wave3_56g": true,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 82,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 14,
+        "intent": 15,
+        "content": 8,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 2,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Crankcase",
+        "Crankcase - Cylinder"
+      ],
+      "published_model_count": 7,
+      "published_fitment_rows": 25,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "41266427600",
+      "part_number_display": "4126 642 7600",
+      "clean_name": "M10x1 LH Collar Blade Nut",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 82,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 12,
+        "intent": 15,
+        "content": 5,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 1,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "Gear Head - Deflector",
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "published_model_count": 6,
+      "published_fitment_rows": 16,
+      "sample_models": [
+        "FR 410",
+        "FS 100",
+        "FS 131",
+        "FS 55",
+        "FS 80"
+      ]
+    },
+    {
+      "part_number": "11211214801",
+      "part_number_display": "1121 121 4801",
+      "clean_name": "Pump Diaphragm",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 80,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 14,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426"
+      ],
+      "published_model_count": 7,
+      "published_fitment_rows": 19,
+      "sample_models": [
+        "FS 460 C-EM",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 260"
+      ]
+    },
+    {
+      "part_number": "95030039853",
+      "part_number_display": "9503 003 9853",
+      "clean_name": "Grooved Ball Bearing Din625-609-2Z",
+      "already_in_wave3_56g": true,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 80,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 14,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 2,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Gear Head - Deflector",
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "published_model_count": 7,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "FR 410",
+        "FS 100",
+        "FS 131",
+        "FS 55",
+        "FS 80"
+      ]
+    },
+    {
+      "part_number": "41401210800",
+      "part_number_display": "4140 121 0800",
+      "clean_name": "End Cover",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 79,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 20,
+        "intent": 0,
+        "content": 10,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 8,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S58",
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 11,
+      "published_fitment_rows": 35,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 100",
+        "FS 131"
+      ]
+    },
+    {
+      "part_number": "41371207100",
+      "part_number_display": "4137 120 7100",
+      "clean_name": "Throttle Shaft With Lever",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 79,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 8,
+        "intent": 15,
+        "content": 3,
+        "links": 8,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 4,
+      "published_fitment_rows": 10,
+      "sample_models": [
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "42291215800",
+      "part_number_display": "4229 121 5800",
+      "clean_name": "Pump Piston",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 79,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 8,
+        "intent": 15,
+        "content": 3,
+        "links": 8,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 4,
+      "published_fitment_rows": 10,
+      "sample_models": [
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "41441290900",
+      "part_number_display": "4144 129 0900",
+      "clean_name": "Pakking",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 76,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Air Filter",
+        "Air Filter a"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "42410071700",
+      "part_number_display": "4241 007 1700",
+      "clean_name": "Set Of Carburettor Parts",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 76,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "42411213500",
+      "part_number_display": "4241 121 3500",
+      "clean_name": "Throttle Lever",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 76,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "42411214800",
+      "part_number_display": "4241 121 4800",
+      "clean_name": "Pump Diaphragm",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 76,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "42411829500",
+      "part_number_display": "4241 182 9500",
+      "clean_name": "Choke Knob",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 76,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "11171229000",
+      "part_number_display": "1117 122 9000",
+      "clean_name": "Retaining Ring",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 74,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 20,
+        "intent": 0,
+        "content": 10,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 1,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426",
+        "T_-Carburetor WT-447"
+      ],
+      "published_model_count": 20,
+      "published_fitment_rows": 49,
+      "sample_models": [
+        "BR 420",
+        "FS 460 C-EM",
+        "FS 80",
+        "FS 85",
+        "MS 210"
+      ]
+    },
+    {
+      "part_number": "11131219200",
+      "part_number_display": "1113 121 9200",
+      "clean_name": "Axle",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 74,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 20,
+        "intent": 0,
+        "content": 10,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 1,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426",
+        "T_-Carburetor WT-447"
+      ],
+      "published_model_count": 19,
+      "published_fitment_rows": 49,
+      "sample_models": [
+        "BR 420",
+        "FS 460 C-EM",
+        "FS 80",
+        "FS 85",
+        "MS 210"
+      ]
+    },
+    {
+      "part_number": "11250071021",
+      "part_number_display": "1125 007 1021",
+      "clean_name": "Spur Gear / Chain Adjusting Screw Kit",
+      "already_in_wave3_56g": true,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 69,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 20,
+        "intent": 0,
+        "content": 10,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 2,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Chain Brake",
+        "Chain Tensioner"
+      ],
+      "published_model_count": 14,
+      "published_fitment_rows": 41,
+      "sample_models": [
+        "MS 260",
+        "MS 261",
+        "MS 270",
+        "MS 280",
+        "MS 340"
+      ]
+    },
+    {
+      "part_number": "41401226200",
+      "part_number_display": "4140 122 6200",
+      "clean_name": "Idle Speed Screw",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 69,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 20,
+        "intent": 0,
+        "content": 10,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 10,
+      "published_fitment_rows": 31,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 100",
+        "FS 55"
+      ]
+    },
+    {
+      "part_number": "11201290900",
+      "part_number_display": "1120 129 0900",
+      "clean_name": "Pakking",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 69,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 8,
+        "intent": 15,
+        "content": 3,
+        "links": 8,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426"
+      ],
+      "published_model_count": 4,
+      "published_fitment_rows": 11,
+      "sample_models": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "MS 260"
+      ]
+    },
+    {
+      "part_number": "42820071010",
+      "part_number_display": "4282 007 1010",
+      "clean_name": "Set Of Gaskets",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 68,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 4,
+        "intent": 15,
+        "content": 0,
+        "links": 4,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Air Filter",
+        "Cylinder",
+        "Muffler",
+        "Valve Timing Gear"
+      ],
+      "published_model_count": 2,
+      "published_fitment_rows": 2,
+      "sample_models": [
+        "BR 600",
+        "BR 700"
+      ]
+    },
+    {
+      "part_number": "41400071050",
+      "part_number_display": "4140 007 1050",
+      "clean_name": "Set Of Gaskets",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 66,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 2,
+        "intent": 15,
+        "content": 2,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Air Filter - Fuel Tank",
+        "Crankcase - Cylinder",
+        "Muffler",
+        "Muffler Cat."
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 6,
+      "sample_models": [
+        "FS 55"
+      ]
+    },
+    {
+      "part_number": "41371213300",
+      "part_number_display": "4137 121 3300",
+      "clean_name": "Throttle Shutter",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 65,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 6,
+        "intent": 15,
+        "content": 3,
+        "links": 6,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1Q-S44A",
+        "Carburetor C1Q-S53A"
+      ],
+      "published_model_count": 3,
+      "published_fitment_rows": 10,
+      "sample_models": [
+        "FS 55",
+        "FS 80",
+        "FS 85"
+      ]
+    },
+    {
+      "part_number": "41400071060",
+      "part_number_display": "4140 007 1060",
+      "clean_name": "Carburettor Parts Kit",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 65,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 6,
+        "intent": 15,
+        "content": 3,
+        "links": 6,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 3,
+      "published_fitment_rows": 9,
+      "sample_models": [
+        "FS 55",
+        "FS 80",
+        "FS 85"
+      ]
+    },
+    {
+      "part_number": "41401200610",
+      "part_number_display": "4140 120 0610",
+      "clean_name": "Carburettor C1Q-S58B",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 65,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 2,
+        "intent": 15,
+        "content": 1,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S44A",
+        "Carburetor C1Q-S53A",
+        "Carburetor C1Q-S58"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 5,
+      "sample_models": [
+        "FS 55"
+      ]
+    },
+    {
+      "part_number": "95030035190",
+      "part_number_display": "9503 003 5190",
+      "clean_name": "Grooved Ball Bearing 6001-C-2Hrs-C3",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 64,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 6,
+        "intent": 15,
+        "content": 2,
+        "links": 6,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "J-Gear Head, Drive Tube FS 80",
+        "U_-Gear Head FS 80, FS85"
+      ],
+      "published_model_count": 3,
+      "published_fitment_rows": 7,
+      "sample_models": [
+        "FS 100",
+        "FS 80",
+        "FS 85"
+      ]
+    },
+    {
+      "part_number": "41371200600",
+      "part_number_display": "4137 120 0600",
+      "clean_name": "Carburettor C1Q-S28G",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 64,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 4,
+        "intent": 15,
+        "content": 1,
+        "links": 4,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "D_-Air Filter, Fuel Tank",
+        "E-Carburetor C1Q-S28c, C1Q-S41A",
+        "T_-Carburetor WT-447"
+      ],
+      "published_model_count": 2,
+      "published_fitment_rows": 5,
+      "sample_models": [
+        "FS 80",
+        "FS 85"
+      ]
+    },
+    {
+      "part_number": "42411226600",
+      "part_number_display": "4241 122 6600",
+      "clean_name": "[NO LONGER AVAILABLE] Stihl Collar Screw",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 63,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 14,
+        "intent": 0,
+        "content": 5,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 1,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR",
+        "Carburetor C1Q-S178B"
+      ],
+      "published_model_count": 7,
+      "published_fitment_rows": 16,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "MS 261"
+      ]
+    },
+    {
+      "part_number": "42291226200",
+      "part_number_display": "4229 122 6200",
+      "clean_name": "Idle Speed Screw",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 63,
+      "score_breakdown": {
+        "evidence": 35,
+        "relevance": 10,
+        "intent": 0,
+        "content": 4,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 4,
+      "sections_after_56h": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S67",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 14,
+      "sample_models": [
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45",
+        "TS 420"
+      ]
+    },
+    {
+      "part_number": "41161957200",
+      "part_number_display": "4116 195 7200",
+      "clean_name": "Pawl",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 61,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 16,
+        "intent": 0,
+        "content": 6,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 1,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "published_model_count": 8,
+      "published_fitment_rows": 19,
+      "sample_models": [
+        "BR 420",
+        "BR 600",
+        "BR 700",
+        "FR 410",
+        "FS 100"
+      ]
+    },
+    {
+      "part_number": "42411200607",
+      "part_number_display": "4241 120 0607",
+      "clean_name": "Carburettor C1M-S203A",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 60,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 4,
+        "intent": 15,
+        "content": 2,
+        "links": 4,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Air Filter",
+        "Carburetor C1M-S141E"
+      ],
+      "published_model_count": 2,
+      "published_fitment_rows": 6,
+      "sample_models": [
+        "BG 86",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "42280071050",
+      "part_number_display": "4228 007 1050",
+      "clean_name": "Set Of Gaskets",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 59,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 2,
+        "intent": 15,
+        "content": 0,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "Air Filter - Fuel Tank",
+        "Crankcase - Cylinder",
+        "Ignition System - Muffler"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 1,
+      "sample_models": [
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "42281200601",
+      "part_number_display": "4228 120 0601",
+      "clean_name": "Carburettor C1Q-S54B",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 59,
+      "score_breakdown": {
+        "evidence": 30,
+        "relevance": 2,
+        "intent": 15,
+        "content": 0,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 3,
+      "sections_after_56h": [
+        "Air Filter - Fuel Tank",
+        "Carburetor C1Q-S49B",
+        "Carburetor C1Q-S54"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 1,
+      "sample_models": [
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "42821200611",
+      "part_number_display": "4282 120 0611",
+      "clean_name": "Carburettor 4282/11",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 58,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 4,
+        "intent": 15,
+        "content": 0,
+        "links": 4,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Air Filter",
+        "Carburetor C1Q-S99"
+      ],
+      "published_model_count": 2,
+      "published_fitment_rows": 2,
+      "sample_models": [
+        "BR 600",
+        "BR 700"
+      ]
+    },
+    {
+      "part_number": "42821829500",
+      "part_number_display": "4282 182 9500",
+      "clean_name": "Choke Knob",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 58,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 4,
+        "intent": 15,
+        "content": 0,
+        "links": 4,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Air Filter",
+        "Carburetor C1Q-S99"
+      ],
+      "published_model_count": 2,
+      "published_fitment_rows": 2,
+      "sample_models": [
+        "BR 600",
+        "BR 700"
+      ]
+    },
+    {
+      "part_number": "07811201110",
+      "part_number_display": "0781 120 1110",
+      "clean_name": "Multipurpose 225g Grease Tube",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 56,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 12,
+        "intent": 0,
+        "content": 5,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Drive Tube Assembly FS55",
+        "Drive Tube Assembly Fs55t"
+      ],
+      "published_model_count": 6,
+      "published_fitment_rows": 17,
+      "sample_models": [
+        "BG 86",
+        "FS 460 C-EM",
+        "FS 55",
+        "FS 80",
+        "FS 85"
+      ]
+    },
+    {
+      "part_number": "11410071000",
+      "part_number_display": "1141 007 1000",
+      "clean_name": "Set Of Gaskets",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 56,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 2,
+        "intent": 15,
+        "content": 2,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Crankcase",
+        "Cylinder"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 8,
+      "sample_models": [
+        "MS 261"
+      ]
+    },
+    {
+      "part_number": "41401900601",
+      "part_number_display": "4140 190 0601",
+      "clean_name": "Rewind Spring",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 56,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 2,
+        "intent": 15,
+        "content": 2,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Rewind Starter",
+        "Rewind Starter Ergostart"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 6,
+      "sample_models": [
+        "FS 55"
+      ]
+    },
+    {
+      "part_number": "42411210800",
+      "part_number_display": "4241 121 0800",
+      "clean_name": "End Cover",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 55,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 0,
+        "content": 6,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "SH 56",
+        "SH 86"
+      ]
+    },
+    {
+      "part_number": "11211207105",
+      "part_number_display": "1121 120 7105",
+      "clean_name": "Throttle Shaft With Lever",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 55,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 2,
+        "intent": 15,
+        "content": 1,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 5,
+      "sample_models": [
+        "MS 260"
+      ]
+    },
+    {
+      "part_number": "11211213301",
+      "part_number_display": "1121 121 3301",
+      "clean_name": "Throttle Shutter",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 55,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 2,
+        "intent": 15,
+        "content": 1,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 5,
+      "sample_models": [
+        "MS 260"
+      ]
+    },
+    {
+      "part_number": "41401213302",
+      "part_number_display": "4140 121 3302",
+      "clean_name": "Throttle Shutter",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 55,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 2,
+        "intent": 15,
+        "content": 1,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1Q-S66",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 4,
+      "sample_models": [
+        "FS 55"
+      ]
+    },
+    {
+      "part_number": "11411200606",
+      "part_number_display": "1141 120 0606",
+      "clean_name": "Carburettor C1Q-S211B",
+      "already_in_wave3_56g": false,
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "is_wear_component": true,
+      "seo_score": 54,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 2,
+        "intent": 15,
+        "content": 0,
+        "links": 2,
+        "affiliate": 10
+      },
+      "section_count_before_56h": 0,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor Bracket",
+        "Carburetor C1Q-S178B"
+      ],
+      "published_model_count": 1,
+      "published_fitment_rows": 1,
+      "sample_models": [
+        "MS 261"
+      ]
+    },
+    {
+      "part_number": "42291226701",
+      "part_number_display": "4229 122 6701",
+      "clean_name": "High Speed Screw",
+      "already_in_wave3_56g": true,
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "is_wear_component": false,
+      "seo_score": 53,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 0,
+        "content": 4,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count_before_56h": 2,
+      "section_count_after_56h": 2,
+      "sections_after_56h": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S71"
+      ],
+      "published_model_count": 5,
+      "published_fitment_rows": 12,
+      "sample_models": [
+        "FS 100",
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ]
+    }
+  ]
+}

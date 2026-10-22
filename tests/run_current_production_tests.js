@@ -79,7 +79,8 @@ export const currentProductionSuites = [
   'tests/phase56d_parts_discovery_seo_wave2.test.js',
   'tests/phase56e_parts_discovery_quality_growth.test.js',
   'tests/phase56f_growth_search_conversion.test.js',
-  'tests/phase56g_seo_affiliate_diagrams.test.js'
+  'tests/phase56g_seo_affiliate_diagrams.test.js',
+  'tests/phase56h_section_resolution.test.js'
 ];
 
 console.log('===============================================================');

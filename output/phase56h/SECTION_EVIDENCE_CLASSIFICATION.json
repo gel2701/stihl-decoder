@@ -1,0 +1,26 @@
+{
+  "phase": "PHASE_56H",
+  "artifact": "SECTION_EVIDENCE_CLASSIFICATION",
+  "reproducible": true,
+  "total_unresolved_fitments_evaluated": 170503,
+  "classification_summary": {
+    "EXPLICIT_SECTION_EVIDENCE": 10,
+    "EXISTING_CANONICAL_CONTEXT_MULTI_SECTION": 334,
+    "CROSS_SCOPE_BLOCKED_EVIDENCE": 5357,
+    "SCOPE_AMBIGUOUS_DEFERRED_EVIDENCE": 658,
+    "INSUFFICIENT_SECTION_EVIDENCE": 164144,
+    "total_accounted": 170503
+  },
+  "promotable_summary": {
+    "rule_a_explicit_exact_scope_fitments": 10,
+    "rule_c_existing_canonical_multi_section_fitments": 334,
+    "additional_contexts_on_scalar_resolved_fitments": 4,
+    "total_unresolved_fitments_resolved": 344,
+    "total_resolved_section_assignments_added": 824
+  },
+  "non_promotable_explanation": {
+    "cross_scope_blocked": "5,357 unresolved fitments belong to (model, part) pairs that have a resolved section on BASE_MODEL_CONFIRMED, while the unresolved fitment is on an EXACT_CONFIGURATION or EXACT_VARIANT scope. Propagating base-model section names across distinct configurations/variants is forbidden.",
+    "scope_ambiguous_deferred": "658 unresolved fitments have model-level diyspareparts observations where the model only has variant/configuration fitments and lacks explicit variant/configuration tokens in source HTML.",
+    "insufficient_evidence": "164144 unresolved fitments only have sparepartsworld observations where the source page itself listed 'Unresolved Diagram Section' (general_unresolved)."
+  }
+}
