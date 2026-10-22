@@ -7,6 +7,7 @@ import { PartNormalizer, FITMENT_SCOPES } from './PartNormalizer.js';
 import { SectionNormalizer } from './SectionNormalizer.js';
 import { PartNameNormalizer } from './PartNameNormalizer.js';
 import { SectionResolutionRegistry } from './SectionResolutionRegistry.js';
+import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { normalizeModelQuery } from '../modelNormalizer.js';
 
 /**
@@ -939,6 +940,7 @@ export class PartCatalogResolver {
         const part = partsMap.get(f.part_number);
         const secState = SectionResolutionRegistry.resolveFitmentSections(f);
         const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+        const indexEntry = getIndexablePartEntry(f.part_number);
         return {
           fitment_id: secState.fitment_id,
           part_number: f.part_number,
@@ -959,7 +961,12 @@ export class PartCatalogResolver {
           configuration_key: f.configuration_key || null,
           configuration_name: f.configuration_name || null,
           fitment_scope: f.fitment_scope,
-          source_evidence_status: f.source_evidence_status
+          source_evidence_status: f.source_evidence_status,
+          is_indexable: Boolean(indexEntry),
+          seo_tier: indexEntry?.seo_tier || null,
+          commercial_tier: indexEntry?.commercial_tier || null,
+          source_cohort: indexEntry?.source_cohort || null,
+          wave_identifier: indexEntry?.wave_identifier || null
         };
       });
     }
@@ -972,6 +979,7 @@ export class PartCatalogResolver {
       const part = cachedPartsMap?.get(f.part_number);
       const secState = SectionResolutionRegistry.resolveFitmentSections(f);
       const isRealPos = PartNormalizer.isMeaningfulDiagramPosition(f.diagram_position);
+      const indexEntry = getIndexablePartEntry(f.part_number);
       return {
         fitment_id: secState.fitment_id,
         part_number: f.part_number,
@@ -992,7 +1000,12 @@ export class PartCatalogResolver {
         configuration_key: f.configuration_key || null,
         configuration_name: f.configuration_name || null,
         fitment_scope: f.fitment_scope,
-        source_evidence_status: f.source_evidence_status
+        source_evidence_status: f.source_evidence_status,
+        is_indexable: Boolean(indexEntry),
+        seo_tier: indexEntry?.seo_tier || null,
+        commercial_tier: indexEntry?.commercial_tier || null,
+        source_cohort: indexEntry?.source_cohort || null,
+        wave_identifier: indexEntry?.wave_identifier || null
       };
     });
   }
@@ -1099,7 +1112,27 @@ export class PartCatalogResolver {
       }
     }
 
-    return Array.from(sectionMap.values());
+    const sectionsList = Array.from(sectionMap.values());
+
+    // Sort resolved canonical sections before Unresolved Diagram Section, and within each section prioritize verified COMMERCIAL_HIGH / COMMERCIAL_MEDIUM indexable parts
+    function getPartPriority(p) {
+      if (p.is_indexable && p.commercial_tier === 'COMMERCIAL_HIGH') return 0;
+      if (p.is_indexable && p.commercial_tier === 'COMMERCIAL_MEDIUM') return 1;
+      if (p.is_indexable) return 2;
+      return 3;
+    }
+
+    for (const sec of sectionsList) {
+      sec.parts.sort((a, b) => getPartPriority(a) - getPartPriority(b));
+    }
+
+    sectionsList.sort((a, b) => {
+      const aUnres = (a.section_key === 'general_unresolved' || a.section_key === 'algemeen' || a.section_name === 'Unresolved Diagram Section') ? 1 : 0;
+      const bUnres = (b.section_key === 'general_unresolved' || b.section_key === 'algemeen' || b.section_name === 'Unresolved Diagram Section') ? 1 : 0;
+      return aUnres - bUnres;
+    });
+
+    return sectionsList;
   }
 
   /**

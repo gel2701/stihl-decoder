@@ -40,7 +40,9 @@ import {
   getWave2CohortList,
   getWave2CohortSet,
   getWave3CohortList,
-  getPreWave3IndexablePartsSet
+  getWave4CohortList,
+  getPreWave3IndexablePartsSet,
+  getPreWave4IndexablePartsSet
 } from '../src/seo/PartIndexationRegistry.js';
 import {
   getDeterministicQueryVariant,
@@ -63,8 +65,9 @@ const database = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_da
 // Phase 56G: Wave 3 adds an explicit, audited cohort on top of the frozen 800-part Phase 56D baseline.
 // The 800 pre-Wave-3 parts stay exactly asserted; totals are asserted exactly as 800 + Wave 3 size.
 const WAVE3_COUNT = getWave3CohortList().length;
-const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT;
-const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT;
+const WAVE4_COUNT = getWave4CohortList().length;
+const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT + WAVE4_COUNT;
+const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT + WAVE4_COUNT;
 
 test('Phase 56D - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
   const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;

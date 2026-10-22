@@ -1,0 +1,32 @@
+{
+  "phase": "PHASE_56I",
+  "artifact": "WAVE4_BASELINE",
+  "baseline_commit": "d2760e4d2377c1995673612bc7b23836788cb930",
+  "canonical_database_invariants": {
+    "parts": 17082,
+    "model_part_fitments": 175106,
+    "parts_model_configurations": 766,
+    "part_fitment_evidence": 208412,
+    "model_part_fitment_section_contexts": 814,
+    "published_models": 85
+  },
+  "section_resolution_state_from_56h": {
+    "unresolved_fitments_before_56h": 170503,
+    "resolved_fitments_in_56h": 344,
+    "unresolved_fitments_after_56h": 170159,
+    "affected_parts": 241,
+    "affected_models": 17,
+    "guessed_sections": 0,
+    "variant_leakage": 0,
+    "configuration_leakage": 0
+  },
+  "seo_state_before_wave4": {
+    "pilot_52d": 50,
+    "wave1_56a": 350,
+    "wave2_56d": 400,
+    "wave3_56g": 4,
+    "total_indexable_parts_before": 804,
+    "noindex_parts_before": 16278,
+    "sitemap_urls_before": 985
+  }
+}

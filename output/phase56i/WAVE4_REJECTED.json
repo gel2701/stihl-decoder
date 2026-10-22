@@ -1,0 +1,72 @@
+{
+  "phase": "PHASE_56I",
+  "artifact": "WAVE4_REJECTED",
+  "rejected_count": 2,
+  "rejected_parts": [
+    {
+      "part_number": "11171229000",
+      "part_number_display": "1117 122 9000",
+      "part_name_raw": "Stihl Retaining Ring",
+      "clean_name": "Retaining Ring",
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "seo_score": 74,
+      "resolved_sections": [
+        "Carb WT-427 -WT-581 -WT-590",
+        "Carburetor WT-426",
+        "T_-Carburetor WT-447"
+      ],
+      "published_models": [
+        "br_420",
+        "fs_460",
+        "fs_80",
+        "fs_85",
+        "ms_210",
+        "ms_230",
+        "ms_250",
+        "ms_260",
+        "ms_270",
+        "ms_280",
+        "ms_290",
+        "ms_310",
+        "ms_311",
+        "ms_341",
+        "ms_361",
+        "ms_362",
+        "ms_390",
+        "ms_441",
+        "ms_460",
+        "ms_661"
+      ],
+      "rejection_reasons": [
+        "H6_GENERIC_FASTENING_HARDWARE_THIN_CONTENT"
+      ],
+      "explanation": "Normalized name \"Retaining Ring\" matches generic fastening hardware (retaining ring / circlip) and fails H6 thin-content protection."
+    },
+    {
+      "part_number": "42411226600",
+      "part_number_display": "4241 122 6600",
+      "part_name_raw": "[NO LONGER AVAILABLE] Stihl Collar Screw",
+      "clean_name": "[NO LONGER AVAILABLE] Stihl Collar Screw",
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "seo_score": 57,
+      "resolved_sections": [
+        "Carburetor C1M-S141E",
+        "Carburetor C1M-S151C BR",
+        "Carburetor C1Q-S178B"
+      ],
+      "published_models": [
+        "bg_56",
+        "bg_66",
+        "bg_86",
+        "fs_55",
+        "ms_261",
+        "sh_56",
+        "sh_86"
+      ],
+      "rejection_reasons": [
+        "H5_UNCLEAN_NAME_OR_UNPROVEN_AVAILABILITY_CLAIM"
+      ],
+      "explanation": "Raw catalog name \"[NO LONGER AVAILABLE] Stihl Collar Screw\" contains an unproven scraped retailer availability claim (violates H5/G4) and normalized name \"Collar Screw\" is generic fastening hardware (violates H6)."
+    }
+  ]
+}

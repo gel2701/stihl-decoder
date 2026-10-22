@@ -31,7 +31,7 @@ import {
 import { PartCatalogResolver } from '../src/parts/PartCatalogResolver.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { renderModelPartsPageHtml } from '../src/components/ModelPartsPageTemplate.js';
-import { getAllIndexablePartsList } from '../src/seo/PartIndexationRegistry.js';
+import { getAllIndexablePartsList, getPreWave4IndexablePartsSet, getWave4CohortList } from '../src/seo/PartIndexationRegistry.js';
 import { generateSitemapXml } from '../src/components/SitemapGenerator.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -57,12 +57,14 @@ test('Phase 56H Test 1: Frozen Canonical Database & SEO Invariants Intact', () =
   assert.strictEqual(contextsCount, 814, 'Section contexts must remain 814');
   assert.strictEqual(scalarUnresolved, 170503, 'SQLite scalar unresolved count must remain 170,503 for Phase 54F-D parity');
 
+  const wave4Count = getWave4CohortList().length;
   const indexableParts = getAllIndexablePartsList();
-  assert.strictEqual(indexableParts.length, 804, 'Active indexable parts must remain frozen at 804 in Phase 56H');
+  assert.strictEqual(getPreWave4IndexablePartsSet().size, 804, 'Pre-Wave-4 indexable baseline from Phase 56H must remain 804');
+  assert.strictEqual(indexableParts.length, 804 + wave4Count, 'Active indexable parts must equal 804 + Wave 4');
 
   const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, stihlDb);
   const sitemapUrls = sitemapXml.match(/<loc>[^<]+<\/loc>/g) || [];
-  assert.strictEqual(sitemapUrls.length, 985, 'Active sitemap URLs must remain frozen at 985 in Phase 56H');
+  assert.strictEqual(sitemapUrls.length, 985 + wave4Count, 'Active sitemap URLs must equal 985 + Wave 4');
 });
 
 test('Phase 56H Test 2: All 14 Required Artifacts Exist and Are Valid', () => {

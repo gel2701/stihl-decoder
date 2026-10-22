@@ -12,16 +12,17 @@ import Database from 'better-sqlite3';
 import { PRIMARY_ORIGIN } from '../src/config.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
 import { PartCatalogResolver, MULTILINGUAL_TECHNICAL_SYNONYMS } from '../src/parts/PartCatalogResolver.js';
-import { getAllIndexablePartsList, isPartIndexable, getWave3CohortList, getPreWave3IndexablePartsSet } from '../src/seo/PartIndexationRegistry.js';
+import { getAllIndexablePartsList, isPartIndexable, getWave3CohortList, getWave4CohortList, getPreWave3IndexablePartsSet } from '../src/seo/PartIndexationRegistry.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { renderPartsDiscoveryPageHtml } from '../src/components/PartsDiscoveryPageTemplate.js';
 import { renderModelPageHtml } from '../src/components/ModelPageTemplate.js';
 import { generateSitemapXml } from '../src/components/SitemapGenerator.js';
 
-// Phase 56G: Wave 3 adds an explicit, audited cohort on top of the frozen 800-part baseline.
+// Phase 56G / 56I: Wave 3 and Wave 4 add explicit, audited cohorts on top of the frozen 800-part baseline.
 const WAVE3_COUNT = getWave3CohortList().length;
-const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT;
-const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT;
+const WAVE4_COUNT = getWave4CohortList().length;
+const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT + WAVE4_COUNT;
+const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT + WAVE4_COUNT;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

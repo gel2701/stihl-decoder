@@ -232,19 +232,24 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-800/50">
-                  ${sec.parts.map(p => `
+                  ${sec.parts.map(p => {
+                    const safeSectionCtx = (sec.section_name || '').replace(/'/g, "\\'");
+                    const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
+                    const clickHandler = `if(window.trackStihlEvent){window.trackStihlEvent('model_to_part_click', {model: '${safeModelId}', part_number: '${p.part_number}', section_context: '${safeSectionCtx}', commercial_tier: '${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}', seo_tier: '${p.seo_tier || 'SEO_TIER_C'}', wave_identifier: '${p.wave_identifier || 'none'}', page_path: window.location.pathname});}`;
+                    return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
                       <td class="py-2 px-3 font-mono font-bold text-orange-400 whitespace-nowrap">
-                        <a href="/onderdeelnummer/${p.part_number}/" class="hover:underline">${p.part_number_display || p.part_number}</a>
+                        <a href="/onderdeelnummer/${p.part_number}/" class="hover:underline" onclick="${clickHandler}">${p.part_number_display || p.part_number}</a>
                       </td>
                       <td class="py-2 px-3 text-gray-200">
-                        <span>${p.part_name}</span>
+                        <a href="/onderdeelnummer/${p.part_number}/" class="hover:text-orange-300 hover:underline transition" onclick="${clickHandler}">${p.part_name}</a>
+                        ${(p.is_indexable && p.commercial_tier === 'COMMERCIAL_HIGH') ? `<a href="/onderdeelnummer/${p.part_number}/" class="ml-2 text-3xs font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 hover:border-emerald-400 transition whitespace-nowrap" onclick="${clickHandler}">Onderdeelgids →</a>` : ''}
                         ${p.configuration_name ? `<span class="ml-2 text-2xs font-mono text-gray-400 bg-gray-950 px-1.5 py-0.5 rounded border border-gray-800">${p.configuration_name}</span>` : ''}
                       </td>
                       <td class="py-2 pl-3 text-right font-mono text-gray-400">${p.quantity || 1}</td>
                     </tr>
-                  `).join('')}
+                  `;}).join('')}
                 </tbody>
               </table>
             </div>
