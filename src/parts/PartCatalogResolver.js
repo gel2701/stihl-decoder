@@ -1162,6 +1162,82 @@ export class PartCatalogResolver {
    * @param {Object} [options.database]
    * @returns {Array<Object>}
    */
+  /**
+   * Generates helpful suggestions and "did you mean" terms for queries that yielded zero results.
+   *
+   * @param {string} query
+   * @returns {Object} { suggestion: string|null, chips: Array<string> }
+   */
+  static getSearchSuggestions(query) {
+    const defaultChips = ['Bougie', 'Luchtfilter', 'Carburateur', 'Zaagketting', 'Zaagblad', 'MS 261', 'MS 170', 'FS 55'];
+    if (!query || typeof query !== 'string') {
+      return { suggestion: null, chips: defaultChips.slice(0, 5) };
+    }
+    const clean = query.trim().toLowerCase();
+
+    const knownTerms = [
+      { term: 'carburateur', display: 'Carburateur', variants: ['carburetor', 'caburateur', 'carburator', 'vergaser'] },
+      { term: 'bougie', display: 'Bougie', variants: ['bougi', 'boegie', 'sparkplug', 'spark plug', 'zundkerze', 'zündkerze'] },
+      { term: 'luchtfilter', display: 'Luchtfilter', variants: ['luchtfiltre', 'luchtfiter', 'luftfilter', 'air filter', 'airfilter'] },
+      { term: 'ketting', display: 'Ketting', variants: ['ketin', 'zaagketting', 'sagekette', 'sägekette', 'chain'] },
+      { term: 'zaagblad', display: 'Zaagblad', variants: ['zaagblat', 'schwert', 'geleiderad', 'guide bar'] },
+      { term: 'koppeling', display: 'Koppeling', variants: ['kopeling', 'kupplung', 'clutch'] },
+      { term: 'oliepomp', display: 'Oliepomp', variants: ['olie pomp', 'olpumpe', 'ölpumpe', 'oil pump'] },
+      { term: 'starter', display: 'Starter', variants: ['startkoord', 'anwerfer', 'recoil'] }
+    ];
+
+    function levDistance(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+        }
+      }
+      return dp[m][n];
+    }
+
+    let bestSuggestion = null;
+    let minDistance = 999;
+
+    for (const item of knownTerms) {
+      for (const variant of [item.term, ...item.variants]) {
+        if (clean === variant) {
+          bestSuggestion = item.display;
+          minDistance = 0;
+          break;
+        }
+        const dist = levDistance(clean, variant);
+        if (dist <= 2 && dist < minDistance && clean.length >= 4) {
+          minDistance = dist;
+          bestSuggestion = item.display;
+        }
+      }
+      if (minDistance === 0) break;
+    }
+
+    const chips = defaultChips.filter(c => !bestSuggestion || c.toLowerCase() !== bestSuggestion.toLowerCase()).slice(0, 5);
+
+    return {
+      suggestion: bestSuggestion,
+      chips
+    };
+  }
+
+  /**
+   * Searches canonical parts by query with exact part number, component keywords,
+   * multilingual Dutch and German synonyms, multi-factor relevance ranking, and model-specific scoping.
+   *
+   * @param {string} query
+   * @param {number} [limit=30]
+   * @param {Object} [options={}]
+   * @param {string} [options.modelId]
+   * @param {Object} [options.database]
+   * @returns {Array<Object>}
+   */
   static searchParts(query, limit = 30, options = {}) {
     loadDefaultPartsData();
     if (!query || typeof query !== 'string') return [];
@@ -1175,7 +1251,7 @@ export class PartCatalogResolver {
     // 1. Exact match priority
     if (norm && cachedPartsMap?.has(norm)) {
       const exact = cachedPartsMap.get(norm);
-      results.push({ ...exact, is_exact: true });
+      results.push({ ...exact, is_exact: true, relevance_score: 1000 });
       seen.add(norm);
     }
 
@@ -1193,41 +1269,101 @@ export class PartCatalogResolver {
       (componentTerm.split(/\s+/).map(t => MULTILINGUAL_TECHNICAL_SYNONYMS[t]).filter(Boolean)[0]) ||
       null;
 
+    function scorePart(part, term, trans, isModel) {
+      const name = (part.part_name || '').toLowerCase();
+      let score = 0;
+      const primary = trans || term;
+      const secondary = trans ? term : null;
+
+      if (name === primary || (secondary && name === secondary)) {
+        score += 500;
+      } else if (name.startsWith(primary) || (secondary && name.startsWith(secondary))) {
+        score += 300;
+      } else if (new RegExp(`\\b${primary}\\b`, 'i').test(name) || (secondary && new RegExp(`\\b${secondary}\\b`, 'i').test(name))) {
+        score += 200;
+      } else if (name.includes(primary) || (secondary && name.includes(secondary))) {
+        score += 80;
+      }
+
+      if (score === 0) return 0;
+
+      if (isModel) {
+        score += 150;
+      }
+
+      const isHardwareSearch = /screw|schroef|schraube|nut|moer|mutter|washer|ring|scheibe/i.test(term) || (trans && /screw|nut|washer/i.test(trans));
+      if (!isHardwareSearch) {
+        if (/^(pan head|hex|collar|self-tapping|spline|cheese head|countersunk|fillister|flat head|slotted)?\s*screw\b/i.test(name) ||
+            /^(hex|lock|square|collar|flange)?\s*nut\b/i.test(name) ||
+            /^(flat|spring|washer|circlip|snap ring)\b/i.test(name)) {
+          score -= 40;
+        }
+      }
+
+      const modelCount = part.model_count || 1;
+      score += Math.min(modelCount * 2, 40);
+
+      return score;
+    }
+
     if (targetModelId) {
       // Search parts specifically for this model
       const modelFitments = cachedFitmentsByModelMap?.get(targetModelId) || [];
       const modelPartNumbers = new Set(modelFitments.map(f => f.part_number));
+      const modelCandidates = [];
 
       for (const pNo of modelPartNumbers) {
         if (seen.has(pNo)) continue;
         const p = cachedPartsMap?.get(pNo);
         if (!p) continue;
-        const name = (p.part_name || '').toLowerCase();
-        if (name.includes(componentTerm) || (translated && name.includes(translated))) {
-          results.push({
-            ...p,
-            is_exact: false,
-            matched_model: targetModelId
+        const score = scorePart(p, componentTerm, translated, true);
+        if (score > 0) {
+          modelCandidates.push({
+            part: p,
+            score
           });
-          seen.add(pNo);
-          if (results.length >= limit) break;
         }
       }
 
-      if (results.length > 0) {
+      if (modelCandidates.length > 0) {
+        modelCandidates.sort((a, b) => b.score - a.score || a.part.part_number.localeCompare(b.part.part_number));
+        for (const item of modelCandidates) {
+          results.push({
+            ...item.part,
+            is_exact: false,
+            matched_model: targetModelId,
+            relevance_score: item.score
+          });
+          seen.add(item.part.part_number);
+          if (results.length >= limit) break;
+        }
         return results;
       }
     }
 
-    // 3. Global text search across parts catalog
+    // 3. Global text search across parts catalog with relevance ranking
+    const globalCandidates = [];
     for (const p of cachedPartsCatalog || []) {
       if (seen.has(p.part_number)) continue;
-      const name = (p.part_name || '').toLowerCase();
-      if (name.includes(componentTerm) || (translated && name.includes(translated))) {
-        results.push({ ...p, is_exact: false });
-        seen.add(p.part_number);
-        if (results.length >= limit) break;
+      const score = scorePart(p, componentTerm, translated, false);
+      if (score > 0) {
+        globalCandidates.push({
+          part: p,
+          score
+        });
       }
+    }
+
+    globalCandidates.sort((a, b) => b.score - a.score || a.part.part_number.localeCompare(b.part.part_number));
+
+    for (const item of globalCandidates) {
+      results.push({
+        ...item.part,
+        is_exact: false,
+        relevance_score: item.score
+      });
+      seen.add(item.part.part_number);
+      if (results.length >= limit) break;
     }
 
     return results;

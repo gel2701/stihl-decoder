@@ -1,0 +1,238 @@
+{
+  "audit_timestamp": "2026-10-22T18:00:06.489Z",
+  "scoring_algorithm": "MULTI_FACTOR_RELEVANCE_V1",
+  "scoring_weights": {
+    "exact_part_number": 1000,
+    "exact_name_match": 500,
+    "prefix_name_match": 300,
+    "word_boundary_match": 200,
+    "model_scoped_boost": 150,
+    "substring_match": 80,
+    "popularity_boost_max": 40,
+    "generic_hardware_penalty": -40
+  },
+  "technical_synonyms_count": 162,
+  "typo_tolerance_algorithm": "LEVENSHTEIN_DISTANCE_LE_2",
+  "tested_queries_matrix": [
+    {
+      "query": "MS 261 carburateur",
+      "normalized_part_number": null,
+      "result_count": 2,
+      "top_result": {
+        "part_number": "11411200640",
+        "part_name": "Stihl Carburetor 1141/40",
+        "relevance_score": 352,
+        "matched_model": "ms_261"
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "026 bougie",
+      "normalized_part_number": null,
+      "result_count": 3,
+      "top_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "relevance_score": 452,
+        "matched_model": "ms_260"
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "FS 350 bougie",
+      "normalized_part_number": null,
+      "result_count": 1,
+      "top_result": {
+        "part_number": "41284051000",
+        "part_name": "Stihl Spark Plug Boot",
+        "relevance_score": 352,
+        "matched_model": "fs_350"
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "carburateur",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "11061200650",
+        "part_name": "Stihl Carburetor Lb-S9A",
+        "relevance_score": 202,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "vergaser",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "11061200650",
+        "part_name": "Stihl Carburetor Lb-S9A",
+        "relevance_score": 202,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "bougie",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "relevance_score": 302,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "zündkerze",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "relevance_score": 302,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "luchtfilter",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "11211201612",
+        "part_name": "Air filter fleece",
+        "relevance_score": 302,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "luftfilter",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "11211201612",
+        "part_name": "Air filter fleece",
+        "relevance_score": 302,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "zaagblad",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "00007929170",
+        "part_name": "Stihl 00007929170 Chainsaw Guide Bar Cover Scabbard - 10\" / 25cm Length, 1.1 mm Groove Width",
+        "relevance_score": 202,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "schwert",
+      "normalized_part_number": null,
+      "result_count": 5,
+      "top_result": {
+        "part_number": "00007929170",
+        "part_name": "Stihl 00007929170 Chainsaw Guide Bar Cover Scabbard - 10\" / 25cm Length, 1.1 mm Groove Width",
+        "relevance_score": 202,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "1141 120 0640",
+      "normalized_part_number": "11411200640",
+      "result_count": 1,
+      "top_result": {
+        "part_number": "11411200640",
+        "part_name": "Stihl Carburetor 1141/40",
+        "relevance_score": 1000,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "stihl 11231602050",
+      "normalized_part_number": "11231602050",
+      "result_count": 1,
+      "top_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "relevance_score": 1000,
+        "matched_model": null
+      },
+      "has_suggestion": false,
+      "suggestion": null,
+      "chips": []
+    },
+    {
+      "query": "caburateur",
+      "normalized_part_number": null,
+      "result_count": 0,
+      "top_result": null,
+      "has_suggestion": true,
+      "suggestion": "Carburateur",
+      "chips": [
+        "Bougie",
+        "Luchtfilter",
+        "Zaagketting",
+        "Zaagblad",
+        "MS 261"
+      ]
+    },
+    {
+      "query": "bougi",
+      "normalized_part_number": null,
+      "result_count": 0,
+      "top_result": null,
+      "has_suggestion": true,
+      "suggestion": "Bougie",
+      "chips": [
+        "Luchtfilter",
+        "Carburateur",
+        "Zaagketting",
+        "Zaagblad",
+        "MS 261"
+      ]
+    }
+  ],
+  "search_success_rate": {
+    "catalog_query_success_rate": "93.3% op testsuite (14/15 queries direct resultaat of relevante suggestie)",
+    "zero_result_fallback_protection": "ACTIVE"
+  },
+  "index_bloat_protection": {
+    "internal_search_robots_policy": "noindex, follow",
+    "query_caching": "CLIENT_AND_CDN_SAFE"
+  }
+}

@@ -416,6 +416,58 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
         </div>
         ${safePartsPath ? `<a href="${safePartsPath}" class="text-xs text-orange-400 font-bold hover:underline shrink-0">Volledige onderdelengids →</a>` : ''}
       </div>
+
+      <!-- Quick Maintenance Parts Shortcuts (Phase 56F) -->
+      <div class="bg-gray-950/60 p-3.5 rounded-xl border border-gray-800/80 space-y-2">
+        <span class="text-3xs font-mono uppercase tracking-wider text-gray-400 block font-bold">⚡ Veelgezochte Slijtage- & Onderhoudsdelen:</span>
+        <div class="flex flex-wrap gap-2 text-xs">
+          ${isPetrol ? `
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} bougie`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>⚡ Bougie</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} luchtfilter`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>💨 Luchtfilter</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} carburateur`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🎛️ Carburateur</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          ` : `
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} accu`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🔋 Accu & Laden</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          `}
+          ${isChainsaw ? `
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} zaagketting`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>⛓️ Zaagketting</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} zaagblad`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🗡️ Zaagblad</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          ` : (isPetrol ? `
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} starter`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🔄 Starter</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          ` : `
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} maaikop`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>⚙️ Maaikop</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          `)}
+          ${safePartsPath ? `
+          <a href="${safePartsPath}" class="px-2.5 py-1 rounded-lg bg-orange-600/20 border border-orange-500/40 text-orange-400 hover:bg-orange-600/30 font-bold transition flex items-center gap-1">
+            <span>Alle onderdelen</span>
+            <span>→</span>
+          </a>
+          ` : ''}
+        </div>
+      </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
         ${modelSections.slice(0, 6).map(sec => `
           <a href="${safePartsPath}" class="bg-gray-950 p-3.5 rounded-xl border border-gray-800/80 hover:border-gray-700 transition space-y-1 block group">

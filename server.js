@@ -744,7 +744,8 @@ const server = http.createServer(async (req, res) => {
       const partsHtml = renderPartsDiscoveryPageHtml(q, database, PRIMARY_ORIGIN);
       if (q && q.trim().length >= 2) {
         const normNo = PartNormalizer.normalizePartNumber(q);
-        const searchRes = normNo ? [normNo] : PartCatalogResolver.searchParts(q, 1);
+        const resolvedPart = normNo ? PartCatalogResolver.resolvePartNumber(normNo, database) : null;
+        const searchRes = resolvedPart ? [resolvedPart] : (normNo ? [] : PartCatalogResolver.searchParts(q, 1));
         if (searchRes.length > 0) {
           logStihlEvent(EVENT_TYPES.PARTS_SEARCH_RESULTS, {
             query_type: normNo ? 'part_number' : 'text_search',
@@ -752,7 +753,7 @@ const server = http.createServer(async (req, res) => {
           }, req.headers['user-agent']);
         } else {
           logStihlEvent(EVENT_TYPES.PARTS_SEARCH_NO_RESULTS, {
-            query_type: 'unknown'
+            query_type: normNo ? 'part_number' : 'text_search'
           }, req.headers['user-agent']);
         }
       } else {

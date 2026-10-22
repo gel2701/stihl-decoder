@@ -1,0 +1,371 @@
+{
+  "audit_timestamp": "2026-10-22T18:00:06.232Z",
+  "audit_mode": "OFFLINE_REPRODUCIBLE_SEARCH_INTELLIGENCE",
+  "gsc_api_status": "DATA_COLLECTION_PENDING_OAUTH",
+  "gsc_connection_note": "Google Search Console API OAuth token niet lokaal geconfigureerd. Geen fictieve verkeerscijfers gegenereerd.",
+  "sitemap_verification": {
+    "total_urls": 981,
+    "indexable_parts": 800,
+    "model_guides": 85,
+    "crawl_discrepancies": 0,
+    "duplicate_titles": 0
+  },
+  "high_demand_components": [
+    {
+      "term": "bougie",
+      "label": "Bougie (Ontsteking)",
+      "importance": 10,
+      "avg_replacement_interval": "Jaarlijks of 100 draaiuren"
+    },
+    {
+      "term": "luchtfilter",
+      "label": "Luchtfilter",
+      "importance": 10,
+      "avg_replacement_interval": "Jaarlijks of bij vervuiling"
+    },
+    {
+      "term": "carburateur",
+      "label": "Carburateur & Membraanset",
+      "importance": 9,
+      "avg_replacement_interval": "Bij start-/stationairproblemen"
+    },
+    {
+      "term": "zaagketting",
+      "label": "Zaagketting",
+      "importance": 10,
+      "avg_replacement_interval": "Slijtageafhankelijk"
+    },
+    {
+      "term": "zaagblad",
+      "label": "Zaagblad / Geleideblad",
+      "importance": 9,
+      "avg_replacement_interval": "Slijtageafhankelijk (na ca. 4-5 kettingen)"
+    },
+    {
+      "term": "brandstoffilter",
+      "label": "Brandstoffilter / Zuigkop",
+      "importance": 8,
+      "avg_replacement_interval": "Jaarlijks"
+    },
+    {
+      "term": "starter",
+      "label": "Starter / Startkoord / Veer",
+      "importance": 8,
+      "avg_replacement_interval": "Bij slijtage/breuk"
+    },
+    {
+      "term": "koppeling",
+      "label": "Koppeling / Kettingtandwiel",
+      "importance": 8,
+      "avg_replacement_interval": "Bij inslijting tandwiel"
+    }
+  ],
+  "priority_model_matrix": [
+    {
+      "model": "MS 170",
+      "category": "Kettingzagen",
+      "slug": "ms-170",
+      "market_prevalence_score": 10,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 171,
+      "priority_score": 96,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20170%20bougie",
+        "/onderdelen/?q=MS%20170%20luchtfilter",
+        "/onderdelen/?q=MS%20170%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 180",
+      "category": "Kettingzagen",
+      "slug": "ms-180",
+      "market_prevalence_score": 10,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 165,
+      "priority_score": 96,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20180%20bougie",
+        "/onderdelen/?q=MS%20180%20luchtfilter",
+        "/onderdelen/?q=MS%20180%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 260",
+      "category": "Kettingzagen",
+      "slug": "ms-260",
+      "market_prevalence_score": 10,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 256,
+      "priority_score": 96,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20260%20bougie",
+        "/onderdelen/?q=MS%20260%20luchtfilter",
+        "/onderdelen/?q=MS%20260%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 261",
+      "category": "Kettingzagen",
+      "slug": "ms-261",
+      "market_prevalence_score": 10,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 220,
+      "priority_score": 96,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20261%20bougie",
+        "/onderdelen/?q=MS%20261%20luchtfilter",
+        "/onderdelen/?q=MS%20261%20carburateur"
+      ]
+    },
+    {
+      "model": "TS 420",
+      "category": "Doorslijpers",
+      "slug": "ts-420",
+      "market_prevalence_score": 10,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 230,
+      "priority_score": 96,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=TS%20420%20bougie",
+        "/onderdelen/?q=TS%20420%20luchtfilter",
+        "/onderdelen/?q=TS%20420%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 250",
+      "category": "Kettingzagen",
+      "slug": "ms-250",
+      "market_prevalence_score": 9,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 227,
+      "priority_score": 92,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20250%20bougie",
+        "/onderdelen/?q=MS%20250%20luchtfilter",
+        "/onderdelen/?q=MS%20250%20carburateur"
+      ]
+    },
+    {
+      "model": "TS 410",
+      "category": "Doorslijpers",
+      "slug": "ts-410",
+      "market_prevalence_score": 9,
+      "maintenance_frequency_score": 9,
+      "catalog_parts_count": 227,
+      "priority_score": 92,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=TS%20410%20bougie",
+        "/onderdelen/?q=TS%20410%20luchtfilter",
+        "/onderdelen/?q=TS%20410%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 290",
+      "category": "Kettingzagen",
+      "slug": "ms-290",
+      "market_prevalence_score": 9,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 214,
+      "priority_score": 88,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20290%20bougie",
+        "/onderdelen/?q=MS%20290%20luchtfilter",
+        "/onderdelen/?q=MS%20290%20carburateur"
+      ]
+    },
+    {
+      "model": "FS 38",
+      "category": "Bosmaaiers & Trimmers",
+      "slug": "fs-38",
+      "market_prevalence_score": 9,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 184,
+      "priority_score": 88,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=FS%2038%20bougie",
+        "/onderdelen/?q=FS%2038%20luchtfilter",
+        "/onderdelen/?q=FS%2038%20carburateur"
+      ]
+    },
+    {
+      "model": "FS 55",
+      "category": "Bosmaaiers & Trimmers",
+      "slug": "fs-55",
+      "market_prevalence_score": 9,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 251,
+      "priority_score": 88,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=FS%2055%20bougie",
+        "/onderdelen/?q=FS%2055%20luchtfilter",
+        "/onderdelen/?q=FS%2055%20carburateur"
+      ]
+    },
+    {
+      "model": "BR 600",
+      "category": "Bladblazers",
+      "slug": "br-600",
+      "market_prevalence_score": 9,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 238,
+      "priority_score": 88,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=BR%20600%20bougie",
+        "/onderdelen/?q=BR%20600%20luchtfilter",
+        "/onderdelen/?q=BR%20600%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 211",
+      "category": "Kettingzagen",
+      "slug": "ms-211",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 196,
+      "priority_score": 83,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20211%20bougie",
+        "/onderdelen/?q=MS%20211%20luchtfilter",
+        "/onderdelen/?q=MS%20211%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 230",
+      "category": "Kettingzagen",
+      "slug": "ms-230",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 237,
+      "priority_score": 83,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20230%20bougie",
+        "/onderdelen/?q=MS%20230%20luchtfilter",
+        "/onderdelen/?q=MS%20230%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 361",
+      "category": "Kettingzagen",
+      "slug": "ms-361",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 236,
+      "priority_score": 83,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20361%20bougie",
+        "/onderdelen/?q=MS%20361%20luchtfilter",
+        "/onderdelen/?q=MS%20361%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 362",
+      "category": "Kettingzagen",
+      "slug": "ms-362",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 213,
+      "priority_score": 83,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20362%20bougie",
+        "/onderdelen/?q=MS%20362%20luchtfilter",
+        "/onderdelen/?q=MS%20362%20carburateur"
+      ]
+    },
+    {
+      "model": "FS 350",
+      "category": "Bosmaaiers & Trimmers",
+      "slug": "fs-350",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 258,
+      "priority_score": 83,
+      "priority_tier": "TIER_1_CRITICAL",
+      "recommended_internal_links": [
+        "/onderdelen/?q=FS%20350%20bougie",
+        "/onderdelen/?q=FS%20350%20luchtfilter",
+        "/onderdelen/?q=FS%20350%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 440",
+      "category": "Kettingzagen",
+      "slug": "ms-440",
+      "market_prevalence_score": 7,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 245,
+      "priority_score": 79,
+      "priority_tier": "TIER_2_HIGH",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20440%20bougie",
+        "/onderdelen/?q=MS%20440%20luchtfilter",
+        "/onderdelen/?q=MS%20440%20carburateur"
+      ]
+    },
+    {
+      "model": "FS 85",
+      "category": "Bosmaaiers & Trimmers",
+      "slug": "fs-85",
+      "market_prevalence_score": 7,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 340,
+      "priority_score": 79,
+      "priority_tier": "TIER_2_HIGH",
+      "recommended_internal_links": [
+        "/onderdelen/?q=FS%2085%20bougie",
+        "/onderdelen/?q=FS%2085%20luchtfilter",
+        "/onderdelen/?q=FS%2085%20carburateur"
+      ]
+    },
+    {
+      "model": "BG 86",
+      "category": "Bladblazers",
+      "slug": "bg-86",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 7,
+      "catalog_parts_count": 131,
+      "priority_score": 79,
+      "priority_tier": "TIER_2_HIGH",
+      "recommended_internal_links": [
+        "/onderdelen/?q=BG%2086%20bougie",
+        "/onderdelen/?q=BG%2086%20luchtfilter",
+        "/onderdelen/?q=BG%2086%20carburateur"
+      ]
+    },
+    {
+      "model": "MS 462",
+      "category": "Kettingzagen",
+      "slug": "ms-462",
+      "market_prevalence_score": 8,
+      "maintenance_frequency_score": 8,
+      "catalog_parts_count": 0,
+      "priority_score": 68,
+      "priority_tier": "TIER_2_HIGH",
+      "recommended_internal_links": [
+        "/onderdelen/?q=MS%20462%20bougie",
+        "/onderdelen/?q=MS%20462%20luchtfilter",
+        "/onderdelen/?q=MS%20462%20carburateur"
+      ]
+    }
+  ],
+  "seo_recommendations": [
+    "Verbind 1-klik onderhouds-pillen op modelpagina's direct met model-scoped onderdelenzoekopdrachten.",
+    "Bied op zoekopdrachten zonder resultaat direct spellingcorrecties en populaire onderhoudscategorieën aan.",
+    "Voorzie alle 800 indexeerbare onderdelenpagina's van Schema.org Product gestructureerde data (MPN, SKU, Merk STIHL).",
+    "Bescherm de index met robots \"noindex, follow\" op alle interne zoekresultaten (/onderdelen/?q=...)."
+  ]
+}

@@ -199,6 +199,23 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
     ]
   }
   </script>
+  ${isIndexable ? `
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "STIHL ${formattedPartNo} ${displayPartName}",
+    "mpn": "${formattedPartNo}",
+    "sku": "${resolved?.part_number || rawPartNumber}",
+    "brand": {
+      "@type": "Brand",
+      "name": "STIHL"
+    },
+    "description": ${JSON.stringify(metaDescription)},
+    "category": "Tuin- en bosbouwmachine onderdelen"
+  }
+  </script>
+  ` : ''}
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">

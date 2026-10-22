@@ -77,7 +77,8 @@ export const currentProductionSuites = [
   'tests/phase56b_amazon_exact_match_pilot.test.js',
   'tests/phase56c_affiliate_production_readiness.test.js',
   'tests/phase56d_parts_discovery_seo_wave2.test.js',
-  'tests/phase56e_parts_discovery_quality_growth.test.js'
+  'tests/phase56e_parts_discovery_quality_growth.test.js',
+  'tests/phase56f_growth_search_conversion.test.js'
 ];
 
 console.log('===============================================================');

@@ -1,0 +1,30 @@
+{
+  "dashboard_timestamp": "2026-10-22T18:00:06.491Z",
+  "dashboard_version": "PHASE_56F_V1",
+  "data_provenance_declaration": {
+    "factual_catalog_data": "100% verified against canonical catalog json and SQLite registry",
+    "live_traffic_data": "NOT_FABRICATED (GSC OAuth and live GA4 browser traffic pending)",
+    "test_validation_data": "100% automated suites in isolated test environments"
+  },
+  "metrics_summary": {
+    "model_part_fitments": 175106,
+    "configurations": 766,
+    "evidence_records": 208412,
+    "section_contexts": 814,
+    "indexable_individual_parts": 800,
+    "strict_noindex_parts": null,
+    "sitemap_total_urls": 981,
+    "published_model_guides": 85,
+    "verified_direct_asins": 0,
+    "amazon_associate_tag": "srihldecoder2-21",
+    "multilingual_synonyms": 162,
+    "maintenance_quick_pills_models": 85,
+    "zero_result_suggestions_active": true
+  },
+  "funnel_stages_readiness": {
+    "stage_1_search_acquisition": "READY (800 indexable parts with Product schema, 85 model guides)",
+    "stage_2_internal_navigation": "READY (1-click maintenance pills, central /onderdelen/ search)",
+    "stage_3_part_gating": "READY (Montagelocaties, diagramposities, fail-closed supersessions)",
+    "stage_4_commercial_conversion": "READY (17.082 Amazon search fallbacks via /api/affiliate/out)"
+  }
+}
