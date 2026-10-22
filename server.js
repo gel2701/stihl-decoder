@@ -972,6 +972,7 @@ const server = http.createServer(async (req, res) => {
       }
       const html = renderModelPageHtml(targetModel, database, PRIMARY_ORIGIN);
       logStihlEvent(EVENT_TYPES.MODEL_IDENTIFIED, { model: targetModel.model_name }, req.headers['user-agent']);
+      logStihlEvent(EVENT_TYPES.MODEL_PAGE_VIEW, { model: targetModel.model_name, model_slug: modelSlug, page_path: pathname }, req.headers['user-agent']);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(html);
       return;

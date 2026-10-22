@@ -24,7 +24,9 @@ const rootDir = path.resolve(__dirname, '..', '..');
 export const PHASE54D_PILOT_SIZE = 50;
 export const MAX_EXPANSION_COHORT_SIZE = 350;
 export const MAX_WAVE2_COHORT_SIZE = 400;
-export const MAX_TOTAL_INDEXABLE_PARTS = PHASE54D_PILOT_SIZE + MAX_EXPANSION_COHORT_SIZE + MAX_WAVE2_COHORT_SIZE;
+// Phase 56G — Controlled SEO Wave 3 (strict H1-H7 criteria, max +400 => hard ceiling 1,200)
+export const MAX_WAVE3_COHORT_SIZE = 400;
+export const MAX_TOTAL_INDEXABLE_PARTS = PHASE54D_PILOT_SIZE + MAX_EXPANSION_COHORT_SIZE + MAX_WAVE2_COHORT_SIZE + MAX_WAVE3_COHORT_SIZE;
 
 let cachedPilotList = null;
 let cachedPilotMap = null;
@@ -34,6 +36,9 @@ let cachedExpansionMap = null;
 
 let cachedWave2List = null;
 let cachedWave2Map = null;
+
+let cachedWave3List = null;
+let cachedWave3Map = null;
 
 let cachedCombinedList = null;
 let cachedCombinedMap = null;
@@ -199,6 +204,61 @@ function loadWave2Config() {
   return { list: cachedWave2List, map: cachedWave2Map };
 }
 
+function loadWave3Config() {
+  if (cachedWave3Map) {
+    return { list: cachedWave3List, map: cachedWave3Map };
+  }
+
+  const wave3Path = path.join(rootDir, 'data', 'seo', 'part_indexation_wave3_56g.json');
+  const map = new Map();
+  const list = [];
+
+  if (fs.existsSync(wave3Path)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(wave3Path, 'utf8'));
+      const parts = Array.isArray(parsed?.parts) ? parsed.parts : [];
+
+      for (const p of parts) {
+        if (!p || typeof p !== 'object') continue;
+        const normPart = PartNormalizer.normalizePartNumber(p.part_number);
+        if (!normPart) continue;
+        // Fail-closed: Wave 3 entries require explicit enablement AND >= 2 independent sections
+        if (p.enabled !== true) continue;
+        if (!(Number(p.section_count) >= 2)) continue;
+        if (list.length >= MAX_WAVE3_COHORT_SIZE) {
+          console.error(`[PartIndexationRegistry] Hard stop: Wave 3 size exceeds ${MAX_WAVE3_COHORT_SIZE}`);
+          break;
+        }
+        const entry = {
+          part_number: normPart,
+          part_number_display: p.part_number_display || PartNormalizer.formatPartNumber(normPart),
+          clean_name: p.clean_name || null,
+          category: p.category || 'overige',
+          enabled: true,
+          source_cohort: 'PHASE_56G_WAVE3',
+          seo_tier: p.seo_tier || 'SEO_TIER_A',
+          commercial_tier: p.commercial_tier || 'COMMERCIAL_MEDIUM',
+          seo_score: p.seo_score,
+          model_count: p.model_count || 0,
+          fitment_count: p.fitment_count || 0,
+          section_count: p.section_count,
+          sample_models: p.sample_models || [],
+          primary_section: p.primary_section || null,
+          reason: p.reason || ''
+        };
+        map.set(normPart, entry);
+        list.push(entry);
+      }
+    } catch (err) {
+      console.error(`[PartIndexationRegistry] Error loading Wave 3 cohort: ${err.message}`);
+    }
+  }
+
+  cachedWave3List = list;
+  cachedWave3Map = map;
+  return { list: cachedWave3List, map: cachedWave3Map };
+}
+
 function ensureCombinedRegistry() {
   if (cachedCombinedMap) {
     return { list: cachedCombinedList, map: cachedCombinedMap };
@@ -207,6 +267,7 @@ function ensureCombinedRegistry() {
   const pilot = loadPilotConfig();
   const expansion = loadExpansionConfig();
   const wave2 = loadWave2Config();
+  const wave3 = loadWave3Config();
 
   const combinedMap = new Map();
   const combinedList = [];
@@ -231,6 +292,18 @@ function ensureCombinedRegistry() {
 
   // Add Phase 56D Wave 2 parts
   for (const entry of wave2.list) {
+    if (!combinedMap.has(entry.part_number)) {
+      if (combinedList.length >= MAX_TOTAL_INDEXABLE_PARTS) {
+        console.error(`[PartIndexationRegistry] Hard stop: Total indexable parts exceeds ${MAX_TOTAL_INDEXABLE_PARTS}`);
+        break;
+      }
+      combinedMap.set(entry.part_number, entry);
+      combinedList.push(entry);
+    }
+  }
+
+  // Add Phase 56G Wave 3 parts
+  for (const entry of wave3.list) {
     if (!combinedMap.has(entry.part_number)) {
       if (combinedList.length >= MAX_TOTAL_INDEXABLE_PARTS) {
         console.error(`[PartIndexationRegistry] Hard stop: Total indexable parts exceeds ${MAX_TOTAL_INDEXABLE_PARTS}`);
@@ -342,6 +415,37 @@ export function getWave2CohortSet() {
 }
 
 /**
+ * Returns Phase 56G Wave 3 cohort list only.
+ * @returns {Array<Object>}
+ */
+export function getWave3CohortList() {
+  const { list } = loadWave3Config();
+  return list;
+}
+
+/**
+ * Returns Phase 56G Wave 3 cohort set only.
+ * @returns {Set<string>}
+ */
+export function getWave3CohortSet() {
+  const { map } = loadWave3Config();
+  return new Set(map.keys());
+}
+
+/**
+ * Returns the indexable set as it existed before Wave 3 (pilot + 56A + 56D).
+ * Used by the reproducible Wave 3 builder so re-runs are idempotent.
+ * @returns {Set<string>}
+ */
+export function getPreWave3IndexablePartsSet() {
+  const set = new Set();
+  for (const e of loadPilotConfig().list) set.add(e.part_number);
+  for (const e of loadExpansionConfig().list) set.add(e.part_number);
+  for (const e of loadWave2Config().list) set.add(e.part_number);
+  return set;
+}
+
+/**
  * Resets all caches (for testing and hot-reloading).
  */
 export function resetRegistryCache() {
@@ -351,6 +455,8 @@ export function resetRegistryCache() {
   cachedExpansionMap = null;
   cachedWave2List = null;
   cachedWave2Map = null;
+  cachedWave3List = null;
+  cachedWave3Map = null;
   cachedCombinedList = null;
   cachedCombinedMap = null;
 }

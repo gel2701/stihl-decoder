@@ -1,0 +1,84 @@
+{
+  "phase": "PHASE_56G",
+  "artifact": "AFFILIATE_INTELLIGENCE_DASHBOARD",
+  "affiliate_integrity": {
+    "provider": "amazon",
+    "primary_marketplace": "amazon.nl",
+    "production_associate_tag": "srihldecoder2-21",
+    "redirect_endpoint": "/api/affiliate/out",
+    "rel_attributes": "sponsored nofollow noopener",
+    "verified_direct_asins": 0,
+    "search_fallback_coverage": "17082 / 17082",
+    "amazon_de_status": "FAIL_CLOSED_DISABLED",
+    "consent_mode": "GA4_CONSENT_MODE_V2_DEFAULT_DENIED",
+    "pii_collected": "NONE"
+  },
+  "deterministic_query_variant_distribution": {
+    "variant_a_definition": "STIHL <formatted part number> (bijv. STIHL 1123 160 2050)",
+    "variant_b_definition": "STIHL <compact part number> (bijv. STIHL 11231602050)",
+    "catalog_17082_split": {
+      "variant_a_count": 8518,
+      "variant_b_count": 8564,
+      "variant_a_share_pct": 49.87
+    },
+    "indexable_804_split": {
+      "variant_a_count": 414,
+      "variant_b_count": 390,
+      "variant_a_share_pct": 51.49
+    }
+  },
+  "first_party_funnel_metrics": {
+    "version": "PHASE_56G_V1",
+    "data_status": "REAL_FIRST_PARTY_EVENTS",
+    "production_events_considered": 10,
+    "counts": {
+      "model_page_views": 8,
+      "model_to_part_clicks": 0,
+      "part_page_views": 0,
+      "affiliate_outbound_clicks": 0,
+      "amazon_search_fallback_clicks": 0,
+      "amazon_verified_product_clicks": 0,
+      "parts_search_with_results": 0,
+      "parts_search_no_results": 0
+    },
+    "ratios": {
+      "model_to_part_click_rate": {
+        "value": 0,
+        "numerator": 0,
+        "denominator": 8,
+        "status": "MEASURED"
+      },
+      "part_view_to_affiliate_click_rate": {
+        "value": null,
+        "numerator": 0,
+        "denominator": 0,
+        "status": "NOT_COMPUTABLE",
+        "reason": "part_view_to_affiliate_click_rate: denominator is zero or unavailable"
+      },
+      "search_zero_result_rate": {
+        "value": null,
+        "numerator": 0,
+        "denominator": 0,
+        "status": "NOT_COMPUTABLE",
+        "reason": "search_zero_result_rate: denominator is zero or unavailable"
+      }
+    },
+    "top_clicked_parts": [],
+    "affiliate_clicks_by_offer_type": [],
+    "query_variant_comparison": {
+      "method": "Deterministic per-part A/B (VARIANT_A formatted vs VARIANT_B compact). Clicks only; Amazon conversion per variant is NOT observable first-party.",
+      "variants": [],
+      "statistical_significance": "NOT_EVALUATED (requires sufficient click volume and per-variant impression counts)"
+    },
+    "searches_leading_to_affiliate_click": {
+      "measurable_scope": "Only affiliate clicks emitted directly on /onderdelen/ search pages with a normalized query",
+      "results": [],
+      "cross_page_attribution": "NOT_MEASURABLE_WITHOUT_SESSION_TRACKING (deliberately not implemented for privacy)"
+    },
+    "revenue": {
+      "amazon_orders": null,
+      "amazon_commission_eur": null,
+      "status": "NOT_AVAILABLE (requires Amazon Associates reporting; never estimated)"
+    }
+  }
+}
