@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56D",
+  "generated_at": "2026-10-22T01:08:40.528Z",
+  "contract_invariants": {
+    "production_tag": "srihldecoder2-21",
+    "tag_source": "process.env.AMAZON_ASSOCIATE_TAG",
+    "hardcoded_tags_in_source": 0,
+    "search_fallback_coverage": "100% (17,082 / 17,082)",
+    "verified_direct_asin_count": 0,
+    "amazon_de_fail_closed": true,
+    "open_redirect_protection": true
+  },
+  "wave2_query_variant_distribution": {
+    "variant_a_formatted": 197,
+    "variant_b_compact": 203,
+    "determinism_verified": true
+  },
+  "funnel_ux": {
+    "technical_info_precedence": true,
+    "search_fallback_copy": "Zoek dit onderdeel op Amazon.nl",
+    "forbidden_commercial_claims": 0
+  }
+}

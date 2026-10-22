@@ -217,9 +217,14 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
           <span class="text-2xs text-gray-400 block -mt-1 font-mono">Onderdeel Details</span>
         </div>
       </a>
-      <a href="/onderdeelnummer/" class="text-xs text-orange-400 font-bold hover:underline">
-        ← Alle Onderdeelnummers
-      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="/onderdelen/" class="text-gray-300 hover:text-white transition hidden sm:inline">
+          Onderdelen Zoeker
+        </a>
+        <a href="/onderdeelnummer/" class="text-orange-400 font-bold hover:underline">
+          ← Alle Onderdeelnummers
+        </a>
+      </div>
     </div>
   </header>
 

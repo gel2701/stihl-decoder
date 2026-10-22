@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56D",
+  "generated_at": "2026-10-22T01:08:40.521Z",
+  "routes_audited": {
+    "central_search": "/onderdelen/",
+    "part_hub": "/onderdeelnummer/",
+    "series_hubs": "/onderdeelnummer/stihl-:series/",
+    "part_detail": "/onderdeelnummer/:partNo/",
+    "model_detail": "/:category/:model/",
+    "model_parts": "/:category/:model/onderdelen/",
+    "homepage_decoder": "/#decoder"
+  },
+  "friction_analysis": {
+    "clicks_model_to_part": {
+      "before": 2,
+      "after": 1,
+      "improvement": "Direct prominent link to parts gids from model header and quick section anchor jump"
+    },
+    "part_number_searchability": {
+      "compact_format_support": true,
+      "stihl_formatted_support": true,
+      "whitespace_normalization": true,
+      "zero_fuzzy_risk": true
+    },
+    "model_parts_navigation": {
+      "section_grouping_implemented": true,
+      "quick_section_jump_pills": true,
+      "maintenance_highlight_grid": true
+    },
+    "orphan_risk": {
+      "orphan_indexable_parts": 0,
+      "status": "FAIL_CLOSED_ZERO_ORPHANS"
+    }
+  }
+}

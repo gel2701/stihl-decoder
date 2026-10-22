@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56D",
+  "generated_at": "2026-10-22T01:08:40.527Z",
+  "search_test_cases": [
+    {
+      "query": "11231602050",
+      "type": "compact_number",
+      "expected": "exact_part_match",
+      "result": "PASS"
+    },
+    {
+      "query": "1123 160 2050",
+      "type": "stihl_formatted",
+      "expected": "exact_part_match",
+      "result": "PASS"
+    },
+    {
+      "query": "  1123  160  2050  ",
+      "type": "whitespace_padded",
+      "expected": "exact_part_match",
+      "result": "PASS"
+    },
+    {
+      "query": "carburateur",
+      "type": "component_text",
+      "expected": "text_search_results",
+      "result": "PASS"
+    },
+    {
+      "query": "MS 261",
+      "type": "model_query",
+      "expected": "model_filter_result",
+      "result": "PASS"
+    },
+    {
+      "query": "99999999999",
+      "type": "unknown_number",
+      "expected": "fail_closed_not_found",
+      "result": "PASS"
+    }
+  ],
+  "exact_vs_text_differentiation": true,
+  "zero_fuzzy_misattribution": true
+}
