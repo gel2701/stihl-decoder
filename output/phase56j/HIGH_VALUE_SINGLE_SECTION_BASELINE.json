@@ -1,0 +1,5248 @@
+{
+  "phase": "PHASE_56J",
+  "artifact": "HIGH_VALUE_SINGLE_SECTION_BASELINE",
+  "baseline_commit": "119853c6b13f10c8a816b0f0c747ef47909101da",
+  "canonical_database_invariants": {
+    "parts": 17082,
+    "model_part_fitments": 175106,
+    "parts_model_configurations": 766,
+    "part_fitment_evidence": 208412,
+    "model_part_fitment_section_contexts": 814,
+    "published_models": 85
+  },
+  "seo_state_frozen": {
+    "pilot_52d": 50,
+    "wave1_56a": 350,
+    "wave2_56d": 400,
+    "wave3_56g": 4,
+    "wave4_56i": 39,
+    "indexable_parts_total": 843,
+    "noindex_parts_total": 16239,
+    "sitemap_urls_total": 1024
+  },
+  "amazon_state": {
+    "search_fallbacks_count": 17082,
+    "verified_asins_count": 0,
+    "production_tag": "srihldecoder2-21"
+  },
+  "phase56i_wave5_preflight_alignment": {
+    "expected_target_count": 110,
+    "reconstructed_target_count": 110,
+    "exact_match_with_56i_sample_25": true
+  },
+  "target_cohort_summary": {
+    "total_targets": 110,
+    "all_commercial_high": true,
+    "all_have_1_resolved_section": true,
+    "all_have_meaningful_position": true,
+    "all_have_clean_name": true,
+    "zero_generic_hardware": true
+  },
+  "targets": [
+    {
+      "part_number": "00004001306",
+      "part_number_display": "0000 400 1306",
+      "raw_name": "Stihl 00004001306 Ignition Module",
+      "clean_name": "Ontstekingsmodule",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition",
+      "current_diagram_positions": [
+        "3",
+        "8"
+      ],
+      "published_models": [
+        "ms_200",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "published_model_count": 4,
+      "all_models": [
+        "mc_200",
+        "ms_200",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "all_model_count": 5,
+      "published_fitment_count": 8,
+      "total_fitment_count": 9,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 9,
+      "current_seo_score": 53,
+      "score_if_second_section_unlocked": 68,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11210201217",
+      "part_number_display": "1121 020 1217",
+      "raw_name": "Stihl Cylinder And Piston 44.7Mm",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_260"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 5,
+      "total_fitment_count": 5,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 6,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11210302001",
+      "part_number_display": "1121 030 2001",
+      "raw_name": "Stihl Piston 44Mm",
+      "clean_name": "Piston 44Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "9"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "026",
+        "ms_260"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 5,
+      "total_fitment_count": 9,
+      "configuration_count": 4,
+      "configurations": [
+        "026::COMFORT",
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 10,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11210302003",
+      "part_number_display": "1121 030 2003",
+      "raw_name": "Stihl Piston 44.7Mm",
+      "clean_name": "Piston 44.7Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_260"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 5,
+      "total_fitment_count": 5,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 6,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11210341505",
+      "part_number_display": "1121 034 1505",
+      "raw_name": "Stihl Piston Pin 10X6X30",
+      "clean_name": "Piston Pin 10X6X30",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "4"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "026",
+        "ms_260"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 5,
+      "total_fitment_count": 9,
+      "configuration_count": 4,
+      "configurations": [
+        "026::COMFORT",
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 10,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11210343002",
+      "part_number_display": "1121 034 3002",
+      "raw_name": "Stihl Piston Ring 44.7Mm",
+      "clean_name": "Piston Ring 44.7Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "3"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_260"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 5,
+      "total_fitment_count": 5,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 6,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11210343010",
+      "part_number_display": "1121 034 3010",
+      "raw_name": "Stihl Piston Ring 44X1.2Mm",
+      "clean_name": "Piston Ring 44X1.2Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "10"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "026",
+        "ms_260"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 5,
+      "total_fitment_count": 9,
+      "configuration_count": 4,
+      "configurations": [
+        "026::COMFORT",
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 10,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11211401915",
+      "part_number_display": "1121 140 1915",
+      "raw_name": "Stihl Carburettor Box Cover",
+      "clean_name": "Carburettor Box Cover",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Shroud - Carburetor Cover",
+      "current_diagram_positions": [
+        "7"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_240",
+        "ms_260"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 5,
+      "total_fitment_count": 6,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 7,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11211401916",
+      "part_number_display": "1121 140 1916",
+      "raw_name": "Stihl Carburettor Box Cover",
+      "clean_name": "Carburettor Box Cover",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Shroud - Carburetor Cover",
+      "current_diagram_positions": [
+        "10"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_240",
+        "ms_260"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 5,
+      "total_fitment_count": 6,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 7,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11231400610",
+      "part_number_display": "1123 140 0610",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "4"
+      ],
+      "published_models": [
+        "ms_230"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_230"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 3,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11231400611",
+      "part_number_display": "1123 140 0611",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "2",
+        "4",
+        "5"
+      ],
+      "published_models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 9,
+      "total_fitment_count": 9,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 9,
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11250201215",
+      "part_number_display": "1125 020 1215",
+      "raw_name": "Stihl Cylinder And Piston 48Mm",
+      "clean_name": "Cylinder And Piston 48Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1",
+        "2"
+      ],
+      "published_models": [
+        "ms_360"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "036",
+        "ms_360"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 9,
+      "configuration_count": 3,
+      "configurations": [
+        "036::ARCTIC",
+        "036::BR",
+        "036::QS_QUICKSTOP_QUICKSTOP_PLUS_VERSION_WITH_LARGER_PISTON_DIAM"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11270201213",
+      "part_number_display": "1127 020 1213",
+      "raw_name": "Stihl Cylinder And Piston 49Mm",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_390"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "039",
+        "ms_390"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 1,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11270201214",
+      "part_number_display": "1127 020 1214",
+      "raw_name": "Stihl Cylinder And Piston 47Mm",
+      "clean_name": "Cylinder And Piston 47Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_310"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_310"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11270201216",
+      "part_number_display": "1127 020 1216",
+      "raw_name": "Stihl Cylinder And Piston 49Mm",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "ms_390"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_390"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11270201217",
+      "part_number_display": "1127 020 1217",
+      "raw_name": "Stihl Cylinder And Piston 46Mm",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_290"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_290"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11280201221",
+      "part_number_display": "1128 020 1221",
+      "raw_name": "Stihl Cylinder And Piston 52Mm",
+      "clean_name": "Cylinder And Piston 52Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_460"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "046",
+        "ms_460"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 4,
+      "total_fitment_count": 9,
+      "configuration_count": 5,
+      "configurations": [
+        "046::COMFORT",
+        "046::MAGNUM_BR_MAGNUM",
+        "ms_460::D",
+        "ms_460::R_WRAP_HANDLE",
+        "ms_460::W"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11281400603",
+      "part_number_display": "1128 140 0603",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_460"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "046",
+        "ms_460"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 6,
+      "configuration_count": 2,
+      "configurations": [
+        "ms_460::R_WRAP_HANDLE",
+        "ms_460::W"
+      ],
+      "evidence_count": 6,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11281400610",
+      "part_number_display": "1128 140 0610",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "7"
+      ],
+      "published_models": [
+        "ms_460"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_460"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 1,
+      "total_fitment_count": 6,
+      "configuration_count": 4,
+      "configurations": [
+        "044::COMFORT",
+        "046::COMFORT",
+        "ms_440::D",
+        "ms_460::D"
+      ],
+      "evidence_count": 6,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11300201207",
+      "part_number_display": "1130 020 1207",
+      "raw_name": "Stihl Cylinder And Piston 37Mm",
+      "clean_name": "Cylinder And Piston 37Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_170"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "017",
+        "ms_170"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 5,
+      "configuration_count": 2,
+      "configurations": [
+        "017::COMFORT",
+        "ms_170::D"
+      ],
+      "evidence_count": 5,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11300201208",
+      "part_number_display": "1130 020 1208",
+      "raw_name": "Stihl Cylinder And Piston 38Mm",
+      "clean_name": "Cylinder And Piston 38Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_180"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "018",
+        "ms_180"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 4,
+      "configuration_count": 1,
+      "configurations": [
+        "ms_180::D_CATALYTIC_CONERTER"
+      ],
+      "evidence_count": 4,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11300802110",
+      "part_number_display": "1130 080 2110",
+      "raw_name": "Stihl Fan Housing With Rewind Starter",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_display": "1130 124 0800",
+      "raw_name": "Air filter fleece",
+      "clean_name": "Air filter fleece",
+      "name_quality_status": "CLEAN",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "20",
+        "21"
+      ],
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "017",
+        "018",
+        "ms_170",
+        "ms_180"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 7,
+      "total_fitment_count": 11,
+      "configuration_count": 4,
+      "configurations": [
+        "017::COMFORT",
+        "018::COMFORT",
+        "ms_170::D",
+        "ms_180::D_CATALYTIC_CONERTER"
+      ],
+      "evidence_count": 13,
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11301400608",
+      "part_number_display": "1130 140 0608",
+      "raw_name": "Stihl 11301400608 Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "017",
+        "018",
+        "ms_170",
+        "ms_180"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 5,
+      "total_fitment_count": 9,
+      "configuration_count": 2,
+      "configurations": [
+        "017::COMFORT",
+        "018::COMFORT"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11301400613",
+      "part_number_display": "1130 140 0613",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "11",
+        "12"
+      ],
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 3,
+      "configuration_count": 2,
+      "configurations": [
+        "ms_170::D",
+        "ms_180::D_CATALYTIC_CONERTER"
+      ],
+      "evidence_count": 3,
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11301400614",
+      "part_number_display": "1130 140 0614",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "7"
+      ],
+      "published_models": [
+        "ms_170"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_170"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11330201200",
+      "part_number_display": "1133 020 1200",
+      "raw_name": "Stihl Cylinder And Piston 44Mm",
+      "clean_name": "Cylinder And Piston 44Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_270"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_270"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11330201202",
+      "part_number_display": "1133 020 1202",
+      "raw_name": "Stihl Cylinder And Piston 46Mm",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_280"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_280"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11330201203",
+      "part_number_display": "1133 020 1203",
+      "raw_name": "Stihl Cylinder And Piston 46Mm",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "ms_280"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_280"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11331400600",
+      "part_number_display": "1133 140 0600",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_270",
+        "ms_280"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "ms_270",
+        "ms_280"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 5,
+      "total_fitment_count": 5,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11400802105",
+      "part_number_display": "1140 080 2105",
+      "raw_name": "Stihl Fan Housing With Rewind Starter",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_311"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_311",
+        "ms_391"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 1,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410071001",
+      "part_number_display": "1141 007 1001",
+      "raw_name": "Stihl Rim Sprocket Kit 3/8\" 7T",
+      "clean_name": "Rim Sprocket Kit 3/8\" 7T",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "22"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 7,
+      "total_fitment_count": 7,
+      "configuration_count": 2,
+      "configurations": [
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 8,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410071002",
+      "part_number_display": "1141 007 1002",
+      "raw_name": "Stihl Rim Sprocket Kit .325\" 7T",
+      "clean_name": "Rim Sprocket Kit .325\" 7T",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "20"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 7,
+      "total_fitment_count": 7,
+      "configuration_count": 2,
+      "configurations": [
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 8,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410071003",
+      "part_number_display": "1141 007 1003",
+      "raw_name": "Stihl Rim Sprocket Kit 0.325\" 8T",
+      "clean_name": "Rim Sprocket Kit 0.325\" 8T",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "21"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 7,
+      "total_fitment_count": 7,
+      "configuration_count": 2,
+      "configurations": [
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 8,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410071007",
+      "part_number_display": "1141 007 1007",
+      "raw_name": "Stihl Rim Sprocket Kit 3/8\"P 7 Teeth",
+      "clean_name": "Rim Sprocket Kit 3/8\"P 7 Teeth",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "23"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 7,
+      "total_fitment_count": 7,
+      "configuration_count": 2,
+      "configurations": [
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 8,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410201200",
+      "part_number_display": "1141 020 1200",
+      "raw_name": "Stihl Cylinder And Piston 44.7Mm",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "6"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 6,
+      "total_fitment_count": 6,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 7,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410290500",
+      "part_number_display": "1141 029 0500",
+      "raw_name": "Stihl Gasket",
+      "clean_name": "Pakking",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "31"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410292302",
+      "part_number_display": "1141 029 2302",
+      "raw_name": "Stihl Cylinder Gasket",
+      "clean_name": "Cylinder Gasket",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "19"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410300400",
+      "part_number_display": "1141 030 0400",
+      "raw_name": "Stihl Crankshaft",
+      "clean_name": "Krukas",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "33"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410341502",
+      "part_number_display": "1141 034 1502",
+      "raw_name": "Stihl Piston Pin 10X6X32",
+      "clean_name": "Piston Pin 10X6X32",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "14",
+        "4",
+        "9"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261",
+        "ms_271"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 8,
+      "total_fitment_count": 9,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 13,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11410801806",
+      "part_number_display": "1141 080 1806",
+      "raw_name": "Stihl Fan Housing",
+      "clean_name": "Fan Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 7,
+      "total_fitment_count": 7,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 8,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11411400631",
+      "part_number_display": "1141 140 0631",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "27"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11414001200",
+      "part_number_display": "1141 400 1200",
+      "raw_name": "Stihl Flywheel",
+      "clean_name": "Vliegwiel",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261",
+        "ms_271",
+        "ms_271p",
+        "ms_291",
+        "ms_291p"
+      ],
+      "all_model_count": 5,
+      "published_fitment_count": 1,
+      "total_fitment_count": 5,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 6,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11414001331",
+      "part_number_display": "1141 400 1331",
+      "raw_name": "Stihl Ignition Module",
+      "clean_name": "Ontstekingsmodule",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "current_diagram_positions": [
+        "13"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 3,
+      "total_fitment_count": 3,
+      "configuration_count": 1,
+      "configurations": [
+        "ms_261::VW"
+      ],
+      "evidence_count": 4,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11416403200",
+      "part_number_display": "1141 640 3200",
+      "raw_name": "Stihl Oil Pump",
+      "clean_name": "Oliepomp",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "oliepompen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11426401706",
+      "part_number_display": "1142 640 1706",
+      "raw_name": "Stihl Chain Sprocket Cover",
+      "clean_name": "Kettingwieldeksel",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_462"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_462"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11441200614",
+      "part_number_display": "1144 120 0614",
+      "raw_name": "Stihl Carburetor Wj-143A",
+      "clean_name": "Carburetor Wj-143A",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor WJ-143",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_661"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_661"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 1,
+      "configurations": [
+        "ms_661::W"
+      ],
+      "evidence_count": 4,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11446401700",
+      "part_number_display": "1144 640 1700",
+      "raw_name": "Stihl Chain Sprocket Cover",
+      "clean_name": "Kettingwieldeksel",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "ms_661"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_661"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 1,
+      "configurations": [
+        "ms_661::W"
+      ],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "11446401705",
+      "part_number_display": "1144 640 1705",
+      "raw_name": "Stihl Chain Sprocket Cover",
+      "clean_name": "Kettingwieldeksel",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "ms_661"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_661"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 1,
+      "configurations": [
+        "ms_661::W"
+      ],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "41371801100",
+      "part_number_display": "4137 180 1100",
+      "raw_name": "Stihl Throttle Cable",
+      "clean_name": "Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "H-Two-Handed Handle Bar",
+      "current_diagram_positions": [
+        "15"
+      ],
+      "published_models": [
+        "fs_80",
+        "fs_85"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "fs_80",
+        "fs_85"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 3,
+      "configuration_count": 2,
+      "configurations": [
+        "fs_80::4137",
+        "fs_85::SPLIT_DRIVE_TUBE"
+      ],
+      "evidence_count": 4,
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "41401801104",
+      "part_number_display": "4140 180 1104",
+      "raw_name": "Stihl Throttle Cable",
+      "clean_name": "Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "TWO-HANDED Handle Bar 2",
+      "current_diagram_positions": [
+        "18"
+      ],
+      "published_models": [
+        "fs_55"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "fs_55"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 3,
+      "total_fitment_count": 3,
+      "configuration_count": 1,
+      "configurations": [
+        "fs_55::SPLIT_DRIVE_TUBE"
+      ],
+      "evidence_count": 4,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "41401801109",
+      "part_number_display": "4140 180 1109",
+      "raw_name": "Stihl Throttle Cable",
+      "clean_name": "Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "TWO-HANDED Handle Bar 1",
+      "current_diagram_positions": [
+        "21"
+      ],
+      "published_models": [
+        "fs_55"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "fs_55",
+        "km_55"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 4,
+      "total_fitment_count": 6,
+      "configuration_count": 1,
+      "configurations": [
+        "fs_55::SPLIT_DRIVE_TUBE"
+      ],
+      "evidence_count": 7,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "41406400110",
+      "part_number_display": "4140 640 0110",
+      "raw_name": "Stihl Gear Head",
+      "clean_name": "Gear Head",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Gear Head - Deflector",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "fs_55"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "fs_55"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 6,
+      "total_fitment_count": 6,
+      "configuration_count": 2,
+      "configurations": [
+        "fs_55::LOOP_HANDLE",
+        "fs_55::SPLIT_DRIVE_TUBE"
+      ],
+      "evidence_count": 7,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "41476400112",
+      "part_number_display": "4147 640 0112",
+      "raw_name": "Stihl Gear Head",
+      "clean_name": "Gear Head",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Gear Head",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "fs_460"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "fs_460"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 1,
+      "configurations": [
+        "fs_460::SHORT_SHAFT"
+      ],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42037004104",
+      "part_number_display": "4203 700 4104",
+      "raw_name": "Stihl Fan Housing",
+      "clean_name": "Fan Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "br_420"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_340",
+        "br_380",
+        "br_420",
+        "sr_340",
+        "sr_420"
+      ],
+      "all_model_count": 5,
+      "published_fitment_count": 2,
+      "total_fitment_count": 6,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 6,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42280300402",
+      "part_number_display": "4228 030 0402",
+      "raw_name": "Stihl Crankshaft",
+      "clean_name": "Krukas",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Crankcase - Cylinder",
+      "current_diagram_positions": [
+        "5"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "bt_45",
+        "hs_45"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 1,
+      "total_fitment_count": 2,
+      "configuration_count": 1,
+      "configurations": [
+        "bt_45::Z_AUGERS_DRILLS"
+      ],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42280801800",
+      "part_number_display": "4228 080 1800",
+      "raw_name": "Stihl Fan Housing",
+      "clean_name": "Fan Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "current_diagram_positions": [
+        "2",
+        "3"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42280802100",
+      "part_number_display": "4228 080 2100",
+      "raw_name": "Stihl Fan Housing With Rewind Starter",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42280802101",
+      "part_number_display": "4228 080 2101",
+      "raw_name": "Stihl Fan Housing With Rewind Starter",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281241500",
+      "part_number_display": "4228 124 1500",
+      "raw_name": "Stihl 42281241500 Prefilter for HS 45 / HS 45 2-MIX Hedgetrimmers",
+      "clean_name": "Prefilter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "current_diagram_positions": [
+        "3"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281290905",
+      "part_number_display": "4228 129 0905",
+      "raw_name": "Stihl Gasket",
+      "clean_name": "Pakking",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "current_diagram_positions": [
+        "25"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281402850",
+      "part_number_display": "4228 140 2850",
+      "raw_name": "Stihl Filter Housing",
+      "clean_name": "Filter Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281410500",
+      "part_number_display": "4228 141 0500",
+      "raw_name": "Stihl Filter Cover",
+      "clean_name": "Filter Cover",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "current_diagram_positions": [
+        "9"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281410502",
+      "part_number_display": "4228 141 0502",
+      "raw_name": "Stihl Filter Cover",
+      "clean_name": "Filter Cover",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "current_diagram_positions": [
+        "7",
+        "8"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281602000",
+      "part_number_display": "4228 160 2000",
+      "raw_name": "Stihl Clutch",
+      "clean_name": "Koppeling",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "koppelingen",
+      "current_resolved_section": "Ignition System - Muffler",
+      "current_diagram_positions": [
+        "11",
+        "13"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281602901",
+      "part_number_display": "4228 160 2901",
+      "raw_name": "Stihl 42281602901 Clutch Drum For HS45 HS45 2-MIX HS52 Hedge Trimmer",
+      "clean_name": "Koppelingstrommel",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "koppelingen",
+      "current_resolved_section": "Gear Head",
+      "current_diagram_positions": [
+        "12",
+        "8"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281625400",
+      "part_number_display": "4228 162 5400",
+      "raw_name": "Stihl Brake Band",
+      "clean_name": "Brake Band",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "rem & kettingspanner",
+      "current_resolved_section": "Gear Head",
+      "current_diagram_positions": [
+        "10"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281801101",
+      "part_number_display": "4228 180 1101",
+      "raw_name": "Stihl Throttle Cable",
+      "clean_name": "Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "current_diagram_positions": [
+        "21",
+        "25"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42281821000",
+      "part_number_display": "4228 182 1000",
+      "raw_name": "Stihl Throttle Trigger",
+      "clean_name": "Throttle Trigger",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "current_diagram_positions": [
+        "20",
+        "24"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42286490301",
+      "part_number_display": "4228 649 0301",
+      "raw_name": "Stihl Gasket",
+      "clean_name": "Pakking",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head",
+      "current_diagram_positions": [
+        "12",
+        "16"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42286490302",
+      "part_number_display": "4228 649 0302",
+      "raw_name": "Stihl Gasket",
+      "clean_name": "Pakking",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head",
+      "current_diagram_positions": [
+        "10",
+        "14"
+      ],
+      "published_models": [
+        "hs_45"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "hs_45"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 2,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42411400601",
+      "part_number_display": "4241 140 0601",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Ignition System",
+      "current_diagram_positions": [
+        "14",
+        "15"
+      ],
+      "published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 3,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 4,
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42411401002",
+      "part_number_display": "4241 140 1002",
+      "raw_name": "Stihl Filter Cover",
+      "clean_name": "Filter Cover",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter a",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "bg_86::D",
+        "sh_86::D",
+        "sh_86::EVACUUM"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42411402803",
+      "part_number_display": "4241 140 2803",
+      "raw_name": "Stihl Filter Housing",
+      "clean_name": "Filter Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter a",
+      "current_diagram_positions": [
+        "5"
+      ],
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 6,
+      "total_fitment_count": 6,
+      "configuration_count": 2,
+      "configurations": [
+        "sh_86::D",
+        "sh_86::EVACUUM"
+      ],
+      "evidence_count": 7,
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42411821001",
+      "part_number_display": "4241 182 1001",
+      "raw_name": "Stihl Throttle Trigger",
+      "clean_name": "Throttle Trigger",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Handle Frame",
+      "current_diagram_positions": [
+        "16",
+        "18"
+      ],
+      "published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 9,
+      "total_fitment_count": 9,
+      "configuration_count": 4,
+      "configurations": [
+        "bg_66::D",
+        "bg_86::D",
+        "sh_86::D",
+        "sh_86::EVACUUM"
+      ],
+      "evidence_count": 10,
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42414001320",
+      "part_number_display": "4241 400 1320",
+      "raw_name": "Stihl Ignition Module",
+      "clean_name": "Ontstekingsmodule",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "current_diagram_positions": [
+        "1",
+        "2"
+      ],
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "bg_86",
+        "br_200",
+        "sh_86"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 8,
+      "total_fitment_count": 9,
+      "configuration_count": 3,
+      "configurations": [
+        "bg_86::D",
+        "sh_86::D",
+        "sh_86::EVACUUM"
+      ],
+      "evidence_count": 10,
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42417004100",
+      "part_number_display": "4241 700 4100",
+      "raw_name": "Stihl Fan Housing",
+      "clean_name": "Fan Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 9,
+      "total_fitment_count": 9,
+      "configuration_count": 4,
+      "configurations": [
+        "bg_66::D",
+        "bg_86::D",
+        "sh_86::D",
+        "sh_86::EVACUUM"
+      ],
+      "evidence_count": 10,
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42417010700",
+      "part_number_display": "4241 701 0700",
+      "raw_name": "Stihl Fan Housing, Outer",
+      "clean_name": "Fan Housing, Outer",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing Outer",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 2,
+      "configurations": [
+        "bg_56::D",
+        "bg_86::D"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42820071021",
+      "part_number_display": "4282 007 1021",
+      "raw_name": "Stihl Filter Housing Kit",
+      "clean_name": "Filter Housing Kit",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "6"
+      ],
+      "published_models": [
+        "br_600"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_550",
+        "br_600"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 1,
+      "total_fitment_count": 2,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42820073600",
+      "part_number_display": "4282 007 3600",
+      "raw_name": "Stihl Set Of Pickup Bodies",
+      "clean_name": "Set Of Pickup Bodies",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "brandstofcomponenten",
+      "current_resolved_section": "Fuel Tank",
+      "current_diagram_positions": [
+        "4"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42820201200",
+      "part_number_display": "4282 020 1200",
+      "raw_name": "Stihl Cylinder And Piston 50Mm",
+      "clean_name": "Cylinder And Piston 50Mm",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42820290500",
+      "part_number_display": "4282 029 0500",
+      "raw_name": "Stihl Gasket",
+      "clean_name": "Pakking",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Valve Timing Gear",
+      "current_diagram_positions": [
+        "26"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42820300404",
+      "part_number_display": "4282 030 0404",
+      "raw_name": "Stihl Crankshaft",
+      "clean_name": "Krukas",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "13"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821207100",
+      "part_number_display": "4282 120 7100",
+      "raw_name": "Stihl Throttle Shaft With Lever",
+      "clean_name": "Throttle Shaft With Lever",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "29"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 8,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821212900",
+      "part_number_display": "4282 121 2900",
+      "raw_name": "Stihl Choke Shutter",
+      "clean_name": "Choke Shutter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "21"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 11,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821213000",
+      "part_number_display": "4282 121 3000",
+      "raw_name": "Stihl Choke Shaft",
+      "clean_name": "Choke Shaft",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "22"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821213300",
+      "part_number_display": "4282 121 3300",
+      "raw_name": "Stihl Throttle Shutter",
+      "clean_name": "Throttle Shutter",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "23",
+        "24"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "all_model_count": 5,
+      "published_fitment_count": 3,
+      "total_fitment_count": 5,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 12,
+      "current_seo_score": 48,
+      "score_if_second_section_unlocked": 63,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821213500",
+      "part_number_display": "4282 121 3500",
+      "raw_name": "Stihl Throttle Lever",
+      "clean_name": "Throttle Lever",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "30",
+        "31"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "all_model_count": 5,
+      "published_fitment_count": 3,
+      "total_fitment_count": 5,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 12,
+      "current_seo_score": 48,
+      "score_if_second_section_unlocked": 63,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821400603",
+      "part_number_display": "4282 140 0603",
+      "raw_name": "Stihl Muffler",
+      "clean_name": "Uitlaat",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 2,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 4,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821401003",
+      "part_number_display": "4282 140 1003",
+      "raw_name": "Stihl Filter Cover",
+      "clean_name": "Filter Cover",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821402851",
+      "part_number_display": "4282 140 2851",
+      "raw_name": "Stihl Filter Housing",
+      "clean_name": "Filter Housing",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "5"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 2,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 4,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821458100",
+      "part_number_display": "4282 145 8100",
+      "raw_name": "Stihl Exhaust Deflector",
+      "clean_name": "Exhaust Deflector",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 2,
+      "total_fitment_count": 4,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 5,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821801100",
+      "part_number_display": "4282 180 1100",
+      "raw_name": "Stihl Throttle Cable",
+      "clean_name": "Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "current_diagram_positions": [
+        "16"
+      ],
+      "published_models": [
+        "br_600"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 1,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 4,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42821801103",
+      "part_number_display": "4282 180 1103",
+      "raw_name": "Stihl Throttle Cable",
+      "clean_name": "Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "current_diagram_positions": [
+        "12"
+      ],
+      "published_models": [
+        "br_600"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 1,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 7,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42824001308",
+      "part_number_display": "4282 400 1308",
+      "raw_name": "Stihl Ignition Module",
+      "clean_name": "Ontstekingsmodule",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "10"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "published_model_count": 2,
+      "all_models": [
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 2,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 4,
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42827010701",
+      "part_number_display": "4282 701 0701",
+      "raw_name": "Stihl Fan Housing, Outer",
+      "clean_name": "Fan Housing, Outer",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "current_diagram_positions": [
+        "9"
+      ],
+      "published_models": [
+        "br_600"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_600"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 2,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42827904901",
+      "part_number_display": "4282 790 4901",
+      "raw_name": "Stihl Control Handle With Throttle Cable",
+      "clean_name": "Control Handle With Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "br_700"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_700"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42827904902",
+      "part_number_display": "4282 790 4902",
+      "raw_name": "Stihl Control Handle With Throttle Cable",
+      "clean_name": "Control Handle With Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "br_600"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "all_model_count": 3,
+      "published_fitment_count": 1,
+      "total_fitment_count": 3,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 3,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "42837901300",
+      "part_number_display": "4283 790 1300",
+      "raw_name": "Stihl Control Handle With Throttle Cable",
+      "clean_name": "Control Handle With Throttle Cable",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_models": [
+        "br_800"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "br_800"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 1,
+      "total_fitment_count": 1,
+      "configuration_count": 0,
+      "configurations": [],
+      "evidence_count": 1,
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "95030030060",
+      "part_number_display": "9503 003 0060",
+      "raw_name": "Stihl Grooved Ball Bearing Din625-629-C3",
+      "clean_name": "Grooved Ball Bearing Din625-629-C3",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head - Deflector",
+      "current_diagram_positions": [
+        "2",
+        "22",
+        "23",
+        "3"
+      ],
+      "published_models": [
+        "fr_410",
+        "fs_131",
+        "fs_55",
+        "fsa_135"
+      ],
+      "published_model_count": 4,
+      "all_models": [
+        "fc_110",
+        "fcb_km",
+        "fcs_km",
+        "fr_131",
+        "fr_145",
+        "fr_410",
+        "fr_460",
+        "fs_111",
+        "fs_131",
+        "fs_240",
+        "fs_55",
+        "fs_91",
+        "fs_94",
+        "fs_km",
+        "fs_power_tool_attachments",
+        "fsa_130",
+        "fsa_135",
+        "fsa_200_0"
+      ],
+      "all_model_count": 18,
+      "published_fitment_count": 11,
+      "total_fitment_count": 32,
+      "configuration_count": 17,
+      "configurations": [
+        "fc_110::EDGERS_FC_110_STIHL_2_MIX",
+        "fcb_km::4180",
+        "fr_131::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_145::SEA_BACKPACK",
+        "fr_410::BACKPACK",
+        "fr_460::ELECTRIC_STARTER_SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_460::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fs_111::LOOP_HANDLE",
+        "fs_131::LOOP_HANDLE",
+        "fs_55::LOOP_HANDLE",
+        "fs_55::SPLIT_DRIVE_TUBE",
+        "fs_91::LOOP_HANDLE",
+        "fs_94::LOOP_HANDLE",
+        "fs_km::4180",
+        "fsa_130::LOOP_HANDLE",
+        "fsa_135::LOOP_HANDLE",
+        "fsa_200_0::LOOP_HANDLE"
+      ],
+      "evidence_count": 33,
+      "current_seo_score": 54,
+      "score_if_second_section_unlocked": 69,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "95030030242",
+      "part_number_display": "9503 003 0242",
+      "raw_name": "Stihl Grooved Ball Bearing Din625-6201",
+      "clean_name": "Grooved Ball Bearing Din625-6201",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "current_diagram_positions": [
+        "3",
+        "4",
+        "6"
+      ],
+      "published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "published_model_count": 5,
+      "all_models": [
+        "bg_72",
+        "bg_75",
+        "br_45",
+        "bt_120",
+        "bt_121",
+        "fc_72",
+        "fc_85",
+        "fh_75",
+        "fr_106",
+        "fr_108",
+        "fr_350",
+        "fr_410",
+        "fr_450",
+        "fr_460",
+        "fr_85",
+        "fs_106",
+        "fs_108",
+        "fs_120",
+        "fs_200",
+        "fs_240",
+        "fs_250",
+        "fs_260",
+        "fs_261",
+        "fs_300",
+        "fs_350",
+        "fs_360",
+        "fs_361",
+        "fs_400",
+        "fs_410",
+        "fs_411",
+        "fs_411_0",
+        "fs_450",
+        "fs_460",
+        "fs_461",
+        "fs_480",
+        "fs_60",
+        "fs_61",
+        "fs_62",
+        "fs_66",
+        "fs_72",
+        "fs_74",
+        "fs_75",
+        "fs_76",
+        "fs_80",
+        "fs_81",
+        "fs_85",
+        "fs_86",
+        "fs_88",
+        "hl_75",
+        "hs_72",
+        "hs_74",
+        "hs_75",
+        "hs_76",
+        "hs_80",
+        "hs_85",
+        "ht_70",
+        "ht_75",
+        "km_85",
+        "kw_85",
+        "sp_481",
+        "sp_85"
+      ],
+      "all_model_count": 61,
+      "published_fitment_count": 11,
+      "total_fitment_count": 91,
+      "configuration_count": 43,
+      "configurations": [
+        "br_45::MUFFLER_WITH_SPARK_ARRESTOR",
+        "bt_120::AUGERS_DRILLS",
+        "bt_121::AUGERS_DRILLS",
+        "fc_72::EDGERS",
+        "fc_85::EDGERS",
+        "fh_75::SCRUBB_CUTTERS",
+        "fr_106::BACKPACK",
+        "fr_108::BACKPACK",
+        "fr_350::BACKPACK",
+        "fr_410::BACKPACK",
+        "fr_450::BACKPACK",
+        "fr_460::ELECTRIC_STARTER_SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_460::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_85::BACKPACK",
+        "fr_85::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fs_120::LOOP_HANDLE",
+        "fs_200::LOOP_HANDLE",
+        "fs_240::LOOP_HANDLE",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR_LOOP_HANDLE",
+        "fs_250::LOOP_HANDLE",
+        "fs_260::LOOP_HANDLE",
+        "fs_360::4147",
+        "fs_400::K_SHORT_SHAFT",
+        "fs_400::L_LONG_SHAFT",
+        "fs_410::4147",
+        "fs_411_0::BRUSH_CUTTER_ATTACHMENT_CLEARING_SAW",
+        "fs_450::K_SHORT_SHAFT",
+        "fs_460::L_LONG_SHAFTCLEARING_SAWS",
+        "fs_460::SHORT_SHAFT",
+        "fs_461::L_LONG_SHAFT",
+        "fs_480::K_SHORT_SHAFT",
+        "fs_61::RE_ELECTRONIC_IGNITION_WRAP_HANDLE",
+        "fs_62::WRAP_HANDLE",
+        "fs_66::LOOP_HANDLE",
+        "fs_72::LOOP_HANDLE",
+        "fs_80::4137",
+        "fs_80::4137_LOOP_HANDLE",
+        "fs_85::LOOP_HANDLE",
+        "fs_85::SPLIT_DRIVE_TUBE",
+        "hl_75::SHORT_SHAFT",
+        "km_85::WRAP_HANDLE",
+        "kw_85::SWEEPER_DRUMS"
+      ],
+      "evidence_count": 93,
+      "current_seo_score": 58,
+      "score_if_second_section_unlocked": 73,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "95030030320",
+      "part_number_display": "9503 003 0320",
+      "raw_name": "Stihl Grooved Ball Bearing Din625-16002",
+      "clean_name": "Grooved Ball Bearing Din625-16002",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "7",
+        "8"
+      ],
+      "published_models": [
+        "ms_260"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "024",
+        "026",
+        "ms_240",
+        "ms_260"
+      ],
+      "all_model_count": 4,
+      "published_fitment_count": 5,
+      "total_fitment_count": 14,
+      "configuration_count": 7,
+      "configurations": [
+        "024::SWVH_VERSION_WITH_LARGER_PISTON_DIAM_CARBUERTOR_HEATING",
+        "024::SW_VERSION_WITH_LARGER_PISTON_DIAM",
+        "024::VERSION_WITH_LARGER_PISTON_DIAM",
+        "026::COMFORT",
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 15,
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "95030030322",
+      "part_number_display": "9503 003 0322",
+      "raw_name": "Stihl Grooved Ball Bearing Din625-15X32X8",
+      "clean_name": "Grooved Ball Bearing Din625-15X32X8",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "3"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_241",
+        "ms_261"
+      ],
+      "all_model_count": 2,
+      "published_fitment_count": 8,
+      "total_fitment_count": 11,
+      "configuration_count": 4,
+      "configurations": [
+        "ms_241::MP",
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 12,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "95030039850",
+      "part_number_display": "9503 003 9850",
+      "raw_name": "Stihl Grooved Ball Bearing Din625-609",
+      "clean_name": "Grooved Ball Bearing Din625-609",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "J-Gear Head, Drive Tube FS 80",
+      "current_diagram_positions": [
+        "3"
+      ],
+      "published_models": [
+        "fs_100",
+        "fs_80",
+        "fs_85"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "ec_70",
+        "fc_100",
+        "fc_44",
+        "fc_55",
+        "fc_72",
+        "fcb_km",
+        "fh_135",
+        "fh_75",
+        "fh_km",
+        "fr_125",
+        "fr_130",
+        "fr_135",
+        "fr_350",
+        "fr_450",
+        "fr_460",
+        "fr_85",
+        "fs_100",
+        "fs_120",
+        "fs_130",
+        "fs_200",
+        "fs_240",
+        "fs_25",
+        "fs_250",
+        "fs_260",
+        "fs_44",
+        "fs_62",
+        "fs_65",
+        "fs_66",
+        "fs_72",
+        "fs_74",
+        "fs_76",
+        "fs_80",
+        "fs_81",
+        "fs_85",
+        "fs_86",
+        "fs_87",
+        "fs_88",
+        "fs_90",
+        "fs_94",
+        "fs_km",
+        "fs_power_tool_attachments",
+        "hel_600",
+        "hel_700",
+        "hl_100",
+        "hl_135",
+        "hl_45",
+        "hl_75",
+        "hl_95",
+        "hl_km",
+        "hle_71"
+      ],
+      "all_model_count": 50,
+      "published_fitment_count": 7,
+      "total_fitment_count": 76,
+      "configuration_count": 50,
+      "configurations": [
+        "ec_70::EDGERS",
+        "fc_100::EDGERS",
+        "fc_44::EDGERS",
+        "fc_55::EDGERS",
+        "fc_72::EDGERS",
+        "fcb_km::4180",
+        "fh_135::POWER_TOOL_ATTACHMENTS",
+        "fh_75::SCRUBB_CUTTERS",
+        "fh_km::135",
+        "fr_125::SEA_BACKPACK",
+        "fr_130::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_135::SEA_BACKPACK",
+        "fr_350::BACKPACK",
+        "fr_450::BACKPACK",
+        "fr_460::ELECTRIC_STARTER_SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_460::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_85::BACKPACK",
+        "fr_85::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fs_100::LOOP_HANDLE",
+        "fs_120::LOOP_HANDLE",
+        "fs_130::LOOP_HANDLE",
+        "fs_200::LOOP_HANDLE",
+        "fs_240::LOOP_HANDLE",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR_LOOP_HANDLE",
+        "fs_250::LOOP_HANDLE",
+        "fs_25::4",
+        "fs_260::LOOP_HANDLE",
+        "fs_44::LOOP_HANDLE",
+        "fs_62::WRAP_HANDLE",
+        "fs_65::4",
+        "fs_66::LOOP_HANDLE",
+        "fs_72::LOOP_HANDLE",
+        "fs_80::4137",
+        "fs_80::4137_LOOP_HANDLE",
+        "fs_85::LOOP_HANDLE",
+        "fs_85::SPLIT_DRIVE_TUBE",
+        "fs_87::LOOP_HANDLE",
+        "fs_90::4180",
+        "fs_90::4180_LOOP_HANDLE",
+        "fs_94::LOOP_HANDLE",
+        "fs_km::4140",
+        "hel_600::EXTENDED",
+        "hel_700::EXTENDED",
+        "hl_100::SHORT_SHAFT",
+        "hl_135::POWER_TOOL_ATTACHMENTS",
+        "hl_75::SHORT_SHAFT",
+        "hl_95::SHORT_SHAFT",
+        "hle_71::ELECTRONIC_HEDGE_CUTTERS",
+        "hle_71::SHORT_SHAFT_ELECTRONIC_HEDGE_CUTTERS"
+      ],
+      "evidence_count": 91,
+      "current_seo_score": 49,
+      "score_if_second_section_unlocked": 64,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "95230034262",
+      "part_number_display": "9523 003 4262",
+      "raw_name": "Stihl Grooved Ball Bearing 15X35X13",
+      "clean_name": "Grooved Ball Bearing 15X35X13",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "13"
+      ],
+      "published_models": [
+        "ms_261"
+      ],
+      "published_model_count": 1,
+      "all_models": [
+        "ms_261"
+      ],
+      "all_model_count": 1,
+      "published_fitment_count": 8,
+      "total_fitment_count": 8,
+      "configuration_count": 3,
+      "configurations": [
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE"
+      ],
+      "evidence_count": 9,
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "96368150270",
+      "part_number_display": "9636 815 0270",
+      "raw_name": "Stihl Sealing Ring Din7603-5X9X1",
+      "clean_name": "Sealing Ring Din7603-5X9X1",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Valve Timing Gear",
+      "current_diagram_positions": [
+        "16",
+        "27",
+        "28",
+        "30"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "fs_100",
+        "fs_131"
+      ],
+      "published_model_count": 5,
+      "all_models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "br_800",
+        "bt_130",
+        "bt_131",
+        "fc_100",
+        "fc_110",
+        "fr_130",
+        "fr_131",
+        "fs_100",
+        "fs_111",
+        "fs_130",
+        "fs_131",
+        "fs_310",
+        "fs_87",
+        "fs_90",
+        "fs_91",
+        "hl_100",
+        "hl_95",
+        "ht_101",
+        "ht_103",
+        "ht_105",
+        "ht_131",
+        "ht_132",
+        "ht_133",
+        "ht_134",
+        "ht_135",
+        "km_100",
+        "km_111",
+        "km_130",
+        "km_131",
+        "km_90"
+      ],
+      "all_model_count": 34,
+      "published_fitment_count": 7,
+      "total_fitment_count": 46,
+      "configuration_count": 20,
+      "configurations": [
+        "bt_130::AUGERS_DRILLS",
+        "bt_131::AUGERS_DRILLS",
+        "fc_100::EDGERS",
+        "fc_110::EDGERS_FC_110_STIHL_2_MIX",
+        "fr_130::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_131::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fs_100::LOOP_HANDLE",
+        "fs_111::LOOP_HANDLE",
+        "fs_130::LOOP_HANDLE",
+        "fs_131::LOOP_HANDLE",
+        "fs_87::LOOP_HANDLE",
+        "fs_90::4180",
+        "fs_90::4180_LOOP_HANDLE",
+        "fs_91::LOOP_HANDLE",
+        "hl_100::SHORT_SHAFT",
+        "hl_95::SHORT_SHAFT",
+        "km_100::WRAP_HANDLE",
+        "km_111::WRAP_HANDLE",
+        "km_130::WRAP_HANDLE",
+        "km_90::WRAP_HANDLES"
+      ],
+      "evidence_count": 72,
+      "current_seo_score": 57,
+      "score_if_second_section_unlocked": 72,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "96390031585",
+      "part_number_display": "9639 003 1585",
+      "raw_name": "Stihl Oil Seal Din3760-As15X25X5",
+      "clean_name": "Oil Seal Din3760-As15X25X5",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "17",
+        "28",
+        "4",
+        "9"
+      ],
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "fr_410",
+        "fs_460",
+        "ms_162",
+        "ms_170",
+        "ms_172",
+        "ms_180",
+        "ms_182",
+        "ms_210",
+        "ms_212",
+        "ms_230",
+        "ms_250",
+        "ms_270",
+        "ms_280",
+        "ms_311"
+      ],
+      "published_model_count": 17,
+      "all_models": [
+        "017",
+        "018",
+        "019",
+        "021",
+        "023",
+        "025",
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "br_800",
+        "fr_410",
+        "fr_460",
+        "fs_240",
+        "fs_260",
+        "fs_261",
+        "fs_360",
+        "fs_361",
+        "fs_410",
+        "fs_411",
+        "fs_411_0",
+        "fs_460",
+        "fs_461",
+        "fs_490",
+        "fs_491",
+        "fs_491_0",
+        "fs_510",
+        "fs_560",
+        "fs_561",
+        "fs_561_0",
+        "ms_162",
+        "ms_170",
+        "ms_171",
+        "ms_172",
+        "ms_180",
+        "ms_181",
+        "ms_182",
+        "ms_190",
+        "ms_210",
+        "ms_211",
+        "ms_212",
+        "ms_230",
+        "ms_250",
+        "ms_270",
+        "ms_280",
+        "ms_311",
+        "ms_391",
+        "sr_430",
+        "sr_450"
+      ],
+      "all_model_count": 49,
+      "published_fitment_count": 38,
+      "total_fitment_count": 86,
+      "configuration_count": 22,
+      "configurations": [
+        "017::COMFORT",
+        "018::COMFORT",
+        "019::TOPHANDLE",
+        "023::L_QUIET",
+        "fr_410::BACKPACK",
+        "fr_460::ELECTRIC_STARTER_SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_460::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fs_240::LOOP_HANDLE",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR_LOOP_HANDLE",
+        "fs_260::LOOP_HANDLE",
+        "fs_360::4147",
+        "fs_410::4147",
+        "fs_411_0::BRUSH_CUTTER_ATTACHMENT_CLEARING_SAW",
+        "fs_460::L_LONG_SHAFTCLEARING_SAWS",
+        "fs_460::SHORT_SHAFT",
+        "fs_461::L_LONG_SHAFT",
+        "fs_490::W",
+        "fs_491_0::BRUSH_CUTTER_ATTACHMENT_CLEARING_SAW",
+        "fs_561_0::BRUSH_CUTTER_CLEARING_SAW_ATTACHMENT",
+        "ms_170::D",
+        "ms_180::D_CATALYTIC_CONERTER"
+      ],
+      "evidence_count": 87,
+      "current_seo_score": 75,
+      "score_if_second_section_unlocked": 90,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "96400031190",
+      "part_number_display": "9640 003 1190",
+      "raw_name": "Stihl Oil Seal Din3760-Bs12X20X5",
+      "clean_name": "Oil Seal Din3760-Bs12X20X5",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "published_models": [
+        "ms_260",
+        "ms_340",
+        "ms_360"
+      ],
+      "published_model_count": 3,
+      "all_models": [
+        "020",
+        "024",
+        "026",
+        "034",
+        "036",
+        "fs_160",
+        "fs_180",
+        "fs_202",
+        "fs_220",
+        "fs_280",
+        "ms_240",
+        "ms_260",
+        "ms_340",
+        "ms_360"
+      ],
+      "all_model_count": 14,
+      "published_fitment_count": 9,
+      "total_fitment_count": 40,
+      "configuration_count": 20,
+      "configurations": [
+        "020::1114",
+        "024::SWVH_VERSION_WITH_LARGER_PISTON_DIAM_CARBUERTOR_HEATING",
+        "024::SW_VERSION_WITH_LARGER_PISTON_DIAM",
+        "024::VERSION_WITH_LARGER_PISTON_DIAM",
+        "026::COMFORT",
+        "034::ANTI_VIBRATION_ELECTRONIC_IGNITION_QUICKSTOP_QUICKSTOP_PLUS",
+        "034::AVEQWZ",
+        "034::AVEQW_ANTI_VIBRATION_ELECTRONIC_IGNITION_QUICKSTOP_QUICKSTOP_PLUS",
+        "034::AVEQZ_FD",
+        "034::AVSEQW",
+        "034::VERSION_WITH_LARGER_PISTON_DIAM",
+        "034::Z_FB",
+        "036::ARCTIC",
+        "036::BR",
+        "036::QS_QUICKSTOP_QUICKSTOP_PLUS_VERSION_WITH_LARGER_PISTON_DIAM",
+        "fs_220::SHORT_SHAFT",
+        "fs_280::SHORT_SHAFT",
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W"
+      ],
+      "evidence_count": 42,
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "96400031195",
+      "part_number_display": "9640 003 1195",
+      "raw_name": "Stihl Oil Seal Din3760-Bs12X22X5",
+      "clean_name": "Oil Seal Din3760-Bs12X22X5",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "current_diagram_positions": [
+        "4",
+        "6",
+        "7"
+      ],
+      "published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "published_model_count": 5,
+      "all_models": [
+        "bg_60",
+        "bg_61",
+        "bg_72",
+        "bg_75",
+        "bt_120",
+        "bt_121",
+        "fc_72",
+        "fc_85",
+        "fh_75",
+        "fr_106",
+        "fr_108",
+        "fr_135",
+        "fr_350",
+        "fr_410",
+        "fr_450",
+        "fr_460",
+        "fr_85",
+        "fs_106",
+        "fs_108",
+        "fs_120",
+        "fs_200",
+        "fs_240",
+        "fs_250",
+        "fs_260",
+        "fs_261",
+        "fs_300",
+        "fs_350",
+        "fs_360",
+        "fs_361",
+        "fs_400",
+        "fs_410",
+        "fs_411",
+        "fs_411_0",
+        "fs_450",
+        "fs_460",
+        "fs_461",
+        "fs_480",
+        "fs_490",
+        "fs_491",
+        "fs_491_0",
+        "fs_510",
+        "fs_560",
+        "fs_561",
+        "fs_561_0",
+        "fs_60",
+        "fs_61",
+        "fs_65",
+        "fs_72",
+        "fs_74",
+        "fs_75",
+        "fs_76",
+        "fs_80",
+        "fs_81",
+        "fs_85",
+        "fs_86",
+        "fs_88",
+        "fs_90",
+        "fs_94",
+        "fs_96",
+        "hl_75",
+        "hl_91",
+        "hl_92",
+        "hl_94",
+        "hs_60",
+        "hs_61",
+        "hs_72",
+        "hs_74",
+        "hs_75",
+        "hs_76",
+        "hs_80",
+        "hs_81",
+        "hs_82",
+        "hs_85",
+        "hs_86",
+        "hs_87",
+        "ht_70",
+        "ht_75",
+        "km_85",
+        "km_94",
+        "kw_85",
+        "sp_481",
+        "sp_85"
+      ],
+      "all_model_count": 82,
+      "published_fitment_count": 15,
+      "total_fitment_count": 126,
+      "configuration_count": 55,
+      "configurations": [
+        "bt_120::AUGERS_DRILLS",
+        "bt_121::AUGERS_DRILLS",
+        "fc_72::EDGERS",
+        "fc_85::EDGERS",
+        "fh_75::SCRUBB_CUTTERS",
+        "fr_106::BACKPACK",
+        "fr_108::BACKPACK",
+        "fr_135::SEA_BACKPACK",
+        "fr_350::BACKPACK",
+        "fr_410::BACKPACK",
+        "fr_450::BACKPACK",
+        "fr_460::ELECTRIC_STARTER_SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_460::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fr_85::BACKPACK",
+        "fr_85::SPLIT_DRIVE_TUBE_BACKPACK",
+        "fs_120::LOOP_HANDLE",
+        "fs_200::LOOP_HANDLE",
+        "fs_240::LOOP_HANDLE",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR",
+        "fs_240::Z_MUFFLER_WITH_SPARK_ARRESTOR_LOOP_HANDLE",
+        "fs_250::LOOP_HANDLE",
+        "fs_260::LOOP_HANDLE",
+        "fs_360::4147",
+        "fs_400::K_SHORT_SHAFT",
+        "fs_400::L_LONG_SHAFT",
+        "fs_410::4147",
+        "fs_411_0::BRUSH_CUTTER_ATTACHMENT_CLEARING_SAW",
+        "fs_450::K_SHORT_SHAFT",
+        "fs_460::L_LONG_SHAFTCLEARING_SAWS",
+        "fs_460::SHORT_SHAFT",
+        "fs_461::L_LONG_SHAFT",
+        "fs_480::K_SHORT_SHAFT",
+        "fs_490::W",
+        "fs_491_0::BRUSH_CUTTER_ATTACHMENT_CLEARING_SAW",
+        "fs_561_0::BRUSH_CUTTER_CLEARING_SAW_ATTACHMENT",
+        "fs_61::RE_ELECTRONIC_IGNITION_WRAP_HANDLE",
+        "fs_65::AVRE",
+        "fs_72::LOOP_HANDLE",
+        "fs_80::4112_ELECTRONIC_IGNITION",
+        "fs_80::4137",
+        "fs_80::4137_LOOP_HANDLE",
+        "fs_80::AVE_4112_ANTI_VIBRATION_ELECTRONIC_IGNITION",
+        "fs_80::AVRE_4112_ANTI_VIBRATION_ELECTRONIC_IGNITION_WRAP_HANDLE",
+        "fs_80::RE_4112_WRAP_HANDLE_ELECTRONIC_IGNITION",
+        "fs_85::LOOP_HANDLE",
+        "fs_85::SPLIT_DRIVE_TUBE",
+        "fs_90::4117",
+        "fs_94::LOOP_HANDLE",
+        "hl_75::SHORT_SHAFT",
+        "hl_91::KC_E_SHORT_SHAFT",
+        "hl_92::KC_E_SHORT_SHAFT",
+        "hl_94::KC_E_SHORT_SHAFT",
+        "km_85::WRAP_HANDLE",
+        "km_94::WRAP_HANDLES",
+        "kw_85::SWEEPER_DRUMS"
+      ],
+      "evidence_count": 128,
+      "current_seo_score": 60,
+      "score_if_second_section_unlocked": 75,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    },
+    {
+      "part_number": "96400031600",
+      "part_number_display": "9640 003 1600",
+      "raw_name": "Stihl Oil Seal Din3760-Bs15X29,6X4",
+      "clean_name": "Oil Seal Din3760-Bs15X29,6X4",
+      "name_quality_status": "NORMALIZED_SAFE",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "10",
+        "11",
+        "12",
+        "14",
+        "16",
+        "17",
+        "18",
+        "20",
+        "22",
+        "24",
+        "8"
+      ],
+      "published_models": [
+        "br_420",
+        "ms_260",
+        "ms_261",
+        "ms_340",
+        "ms_341",
+        "ms_360",
+        "ms_361",
+        "ms_362",
+        "ms_400",
+        "ms_441",
+        "ms_460",
+        "ms_462"
+      ],
+      "published_model_count": 12,
+      "all_models": [
+        "024",
+        "026",
+        "028",
+        "034",
+        "036",
+        "046",
+        "084",
+        "br_320",
+        "br_340",
+        "br_380",
+        "br_400",
+        "br_420",
+        "fs_360",
+        "fs_420",
+        "fs_500",
+        "fs_550",
+        "gs_461",
+        "ms_240",
+        "ms_241",
+        "ms_260",
+        "ms_261",
+        "ms_340",
+        "ms_341",
+        "ms_360",
+        "ms_361",
+        "ms_362",
+        "ms_400",
+        "ms_400_1",
+        "ms_441",
+        "ms_460",
+        "ms_461",
+        "ms_462",
+        "sr_320",
+        "sr_340",
+        "sr_400",
+        "sr_420"
+      ],
+      "all_model_count": 36,
+      "published_fitment_count": 45,
+      "total_fitment_count": 100,
+      "configuration_count": 39,
+      "configurations": [
+        "024::SWVH_VERSION_WITH_LARGER_PISTON_DIAM_CARBUERTOR_HEATING",
+        "024::SW_VERSION_WITH_LARGER_PISTON_DIAM",
+        "024::VERSION_WITH_LARGER_PISTON_DIAM",
+        "026::COMFORT",
+        "028::QUICKSTOP_QUICKSTOP_PLUS",
+        "028::WB_WOODBOSS",
+        "034::ANTI_VIBRATION_ELECTRONIC_IGNITION_QUICKSTOP_QUICKSTOP_PLUS",
+        "034::AVEQWZ",
+        "034::AVEQW_ANTI_VIBRATION_ELECTRONIC_IGNITION_QUICKSTOP_QUICKSTOP_PLUS",
+        "034::AVEQZ_FD",
+        "034::AVSEQW",
+        "034::VERSION_WITH_LARGER_PISTON_DIAM",
+        "034::Z_FB",
+        "036::ARCTIC",
+        "036::BR",
+        "036::QS_QUICKSTOP_QUICKSTOP_PLUS_VERSION_WITH_LARGER_PISTON_DIAM",
+        "046::COMFORT",
+        "046::MAGNUM_BR_MAGNUM",
+        "084::WRAP_HANDLE",
+        "br_320::L_Z_MUFFLER_WITH_SPARK_ARRESTOR",
+        "fs_360::4116",
+        "fs_550::L_QUIET",
+        "gs_461::CONCRETE_CUTTERS",
+        "ms_241::MP",
+        "ms_260::D",
+        "ms_260::DWGASOLINE",
+        "ms_260::W",
+        "ms_261::MQ",
+        "ms_261::VW",
+        "ms_261::VWGASOLINE",
+        "ms_361::W",
+        "ms_362::MQ",
+        "ms_362::VW",
+        "ms_441::W",
+        "ms_460::D",
+        "ms_460::R_WRAP_HANDLE",
+        "ms_460::W",
+        "ms_461::R_WRAP_HANDLE",
+        "ms_462::R"
+      ],
+      "evidence_count": 103,
+      "current_seo_score": 75,
+      "score_if_second_section_unlocked": 90,
+      "current_h1_to_h7_status": {
+        "H1_not_yet_indexable": true,
+        "H2_has_published_model_link": true,
+        "H3_min_2_independent_sections": false,
+        "H4_has_meaningful_diagram_position": true,
+        "H5_clean_technical_name": true,
+        "H6_not_generic_hardware": true,
+        "H7_unique_metadata_and_non_orphan": true,
+        "sole_blocker": "H3_ONLY_1_RESOLVED_SECTION"
+      }
+    }
+  ]
+}

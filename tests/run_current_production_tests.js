@@ -81,7 +81,8 @@ export const currentProductionSuites = [
   'tests/phase56f_growth_search_conversion.test.js',
   'tests/phase56g_seo_affiliate_diagrams.test.js',
   'tests/phase56h_section_resolution.test.js',
-  'tests/phase56i_wave4_activation.test.js'
+  'tests/phase56i_wave4_activation.test.js',
+  'tests/phase56j_high_value_section_recovery.test.js'
 ];
 
 console.log('===============================================================');

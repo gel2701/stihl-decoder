@@ -1,0 +1,2328 @@
+{
+  "phase": "PHASE_56J",
+  "artifact": "SECOND_SECTION_BLOCKED",
+  "blocked_parts_count": 110,
+  "blocker_breakdown": {
+    "CROSS_SCOPE_BLOCKED": 57,
+    "ONLY_SAME_SECTION_DUPLICATES": 42,
+    "INSUFFICIENT_EVIDENCE": 11
+  },
+  "blocked_targets": [
+    {
+      "part_number": "00004001306",
+      "part_number_display": "0000 400 1306",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition",
+      "published_models": [
+        "ms_200",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Ignition\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 7 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11210201217",
+      "part_number_display": "1121 020 1217",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11210302001",
+      "part_number_display": "1121 030 2001",
+      "clean_name": "Piston 44Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11210302003",
+      "part_number_display": "1121 030 2003",
+      "clean_name": "Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11210341505",
+      "part_number_display": "1121 034 1505",
+      "clean_name": "Piston Pin 10X6X30",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11210343002",
+      "part_number_display": "1121 034 3002",
+      "clean_name": "Piston Ring 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11210343010",
+      "part_number_display": "1121 034 3010",
+      "clean_name": "Piston Ring 44X1.2Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11211401915",
+      "part_number_display": "1121 140 1915",
+      "clean_name": "Carburettor Box Cover",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Shroud - Carburetor Cover",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Shroud - Carburetor Cover\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 1 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11211401916",
+      "part_number_display": "1121 140 1916",
+      "clean_name": "Carburettor Box Cover",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Shroud - Carburetor Cover",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Shroud - Carburetor Cover\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 1 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11231400610",
+      "part_number_display": "1123 140 0610",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_230"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 3 resolved evidence record(s) across 3 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11231400611",
+      "part_number_display": "1123 140 0611",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 9 resolved evidence record(s) across 9 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11250201215",
+      "part_number_display": "1125 020 1215",
+      "clean_name": "Cylinder And Piston 48Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_360"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 9 resolved evidence record(s) across 9 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Cylinder\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11270201213",
+      "part_number_display": "1127 020 1213",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_390"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Cylinder\") on 1 resolved fitment, and 1 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11270201214",
+      "part_number_display": "1127 020 1214",
+      "clean_name": "Cylinder And Piston 47Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_310"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Cylinder\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11270201216",
+      "part_number_display": "1127 020 1216",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_390"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Cylinder\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11270201217",
+      "part_number_display": "1127 020 1217",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_290"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Cylinder\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11280201221",
+      "part_number_display": "1128 020 1221",
+      "clean_name": "Cylinder And Piston 52Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_460"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 9 resolved evidence record(s) across 9 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Cylinder\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11281400603",
+      "part_number_display": "1128 140 0603",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_460"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 6 resolved evidence record(s) across 6 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11281400610",
+      "part_number_display": "1128 140 0610",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_460"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 4 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11300201207",
+      "part_number_display": "1130 020 1207",
+      "clean_name": "Cylinder And Piston 37Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_170"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Cylinder\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11300201208",
+      "part_number_display": "1130 020 1208",
+      "clean_name": "Cylinder And Piston 38Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_180"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Cylinder\") on base/variant scope, while 2 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11300802110",
+      "part_number_display": "1130 080 2110",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Rewind Starter\") on 1 resolved fitment, and 1 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_display": "1130 124 0800",
+      "clean_name": "Air filter fleece",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Air Filter\") on base/variant scope, while 5 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11301400608",
+      "part_number_display": "1130 140 0608",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Muffler\") on base/variant scope, while 2 other variant/configuration fitment(s) on the same model and 3 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11301400613",
+      "part_number_display": "1130 140 0613",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 1 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11301400614",
+      "part_number_display": "1130 140 0614",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_170"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Muffler\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11330201200",
+      "part_number_display": "1133 020 1200",
+      "clean_name": "Cylinder And Piston 44Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_270"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Cylinder\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11330201202",
+      "part_number_display": "1133 020 1202",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_280"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Cylinder\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "11330201203",
+      "part_number_display": "1133 020 1203",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_280"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Cylinder\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11331400600",
+      "part_number_display": "1133 140 0600",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "ms_270",
+        "ms_280"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 5 resolved evidence record(s) across 5 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11400802105",
+      "part_number_display": "1140 080 2105",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "published_models": [
+        "ms_311"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Rewind Starter\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11410071001",
+      "part_number_display": "1141 007 1001",
+      "clean_name": "Rim Sprocket Kit 3/8\" 7T",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Oil Pump. Clutch\") on base/variant scope, while 6 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410071002",
+      "part_number_display": "1141 007 1002",
+      "clean_name": "Rim Sprocket Kit .325\" 7T",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Oil Pump. Clutch\") on base/variant scope, while 6 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410071003",
+      "part_number_display": "1141 007 1003",
+      "clean_name": "Rim Sprocket Kit 0.325\" 8T",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Oil Pump. Clutch\") on base/variant scope, while 6 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410071007",
+      "part_number_display": "1141 007 1007",
+      "clean_name": "Rim Sprocket Kit 3/8\"P 7 Teeth",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Oil Pump. Clutch\") on base/variant scope, while 6 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410201200",
+      "part_number_display": "1141 020 1200",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Cylinder\") on base/variant scope, while 5 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410290500",
+      "part_number_display": "1141 029 0500",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410292302",
+      "part_number_display": "1141 029 2302",
+      "clean_name": "Cylinder Gasket",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Cylinder\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410300400",
+      "part_number_display": "1141 030 0400",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410341502",
+      "part_number_display": "1141 034 1502",
+      "clean_name": "Piston Pin 10X6X32",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Cylinder\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 1 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11410801806",
+      "part_number_display": "1141 080 1806",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Rewind Starter\") on base/variant scope, while 6 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11411400631",
+      "part_number_display": "1141 140 0631",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Cylinder\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11414001200",
+      "part_number_display": "1141 400 1200",
+      "clean_name": "Vliegwiel",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Ignition System\"). Remaining 4 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11414001331",
+      "part_number_display": "1141 400 1331",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Ignition System\") on base/variant scope, while 2 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11416403200",
+      "part_number_display": "1141 640 3200",
+      "clean_name": "Oliepomp",
+      "category": "oliepompen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Oil Pump. Clutch\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "11426401706",
+      "part_number_display": "1142 640 1706",
+      "clean_name": "Kettingwieldeksel",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "published_models": [
+        "ms_462"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Chain Sprocket Cover\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11441200614",
+      "part_number_display": "1144 120 0614",
+      "clean_name": "Carburetor Wj-143A",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor WJ-143",
+      "published_models": [
+        "ms_661"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 4 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Carburetor WJ-143\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11446401700",
+      "part_number_display": "1144 640 1700",
+      "clean_name": "Kettingwieldeksel",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "published_models": [
+        "ms_661"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Chain Sprocket Cover\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "11446401705",
+      "part_number_display": "1144 640 1705",
+      "clean_name": "Kettingwieldeksel",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "published_models": [
+        "ms_661"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 2 resolved evidence record(s) across 2 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Chain Sprocket Cover\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "41371801100",
+      "part_number_display": "4137 180 1100",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "H-Two-Handed Handle Bar",
+      "published_models": [
+        "fs_80",
+        "fs_85"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"H-Two-Handed Handle Bar\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 1 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "41401801104",
+      "part_number_display": "4140 180 1104",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "TWO-HANDED Handle Bar 2",
+      "published_models": [
+        "fs_55"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"TWO-HANDED Handle Bar 2\") on base/variant scope, while 2 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "41401801109",
+      "part_number_display": "4140 180 1109",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "TWO-HANDED Handle Bar 1",
+      "published_models": [
+        "fs_55"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"TWO-HANDED Handle Bar 1\") on base/variant scope, while 3 other variant/configuration fitment(s) on the same model and 2 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "41406400110",
+      "part_number_display": "4140 640 0110",
+      "clean_name": "Gear Head",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Gear Head - Deflector",
+      "published_models": [
+        "fs_55"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Gear Head - Deflector\") on base/variant scope, while 5 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "41476400112",
+      "part_number_display": "4147 640 0112",
+      "clean_name": "Gear Head",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Gear Head",
+      "published_models": [
+        "fs_460"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Gear Head\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "42037004104",
+      "part_number_display": "4203 700 4104",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "published_models": [
+        "br_420"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 6 resolved evidence record(s) across 6 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Fan Housing\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42280300402",
+      "part_number_display": "4228 030 0402",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Crankcase - Cylinder",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Crankcase - Cylinder\"). Remaining 1 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42280801800",
+      "part_number_display": "4228 080 1800",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Rewind Starter - Handle Housing\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42280802100",
+      "part_number_display": "4228 080 2100",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Rewind Starter - Handle Housing\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42280802101",
+      "part_number_display": "4228 080 2101",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Rewind Starter - Handle Housing\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42281241500",
+      "part_number_display": "4228 124 1500",
+      "clean_name": "Prefilter",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Air Filter - Fuel Tank\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42281290905",
+      "part_number_display": "4228 129 0905",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Air Filter - Fuel Tank\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42281402850",
+      "part_number_display": "4228 140 2850",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Air Filter - Fuel Tank\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42281410500",
+      "part_number_display": "4228 141 0500",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Air Filter - Fuel Tank\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42281410502",
+      "part_number_display": "4228 141 0502",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Air Filter - Fuel Tank\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42281602000",
+      "part_number_display": "4228 160 2000",
+      "clean_name": "Koppeling",
+      "category": "koppelingen",
+      "current_resolved_section": "Ignition System - Muffler",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Ignition System - Muffler\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42281602901",
+      "part_number_display": "4228 160 2901",
+      "clean_name": "Koppelingstrommel",
+      "category": "koppelingen",
+      "current_resolved_section": "Gear Head",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Gear Head\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42281625400",
+      "part_number_display": "4228 162 5400",
+      "clean_name": "Brake Band",
+      "category": "rem & kettingspanner",
+      "current_resolved_section": "Gear Head",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Gear Head\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42281801101",
+      "part_number_display": "4228 180 1101",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Rewind Starter - Handle Housing\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42281821000",
+      "part_number_display": "4228 182 1000",
+      "clean_name": "Throttle Trigger",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Rewind Starter - Handle Housing\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42286490301",
+      "part_number_display": "4228 649 0301",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Gear Head\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42286490302",
+      "part_number_display": "4228 649 0302",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head",
+      "published_models": [
+        "hs_45"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Gear Head\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42411400601",
+      "part_number_display": "4241 140 0601",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Ignition System",
+      "published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Ignition System\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 1 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42411401002",
+      "part_number_display": "4241 140 1002",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter a",
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Air Filter a\") on base/variant scope, while 3 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42411402803",
+      "part_number_display": "4241 140 2803",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "current_resolved_section": "Air Filter a",
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Air Filter a\") on base/variant scope, while 1 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42411821001",
+      "part_number_display": "4241 182 1001",
+      "clean_name": "Throttle Trigger",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Handle Frame",
+      "published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Handle Frame\") on base/variant scope, while 3 other variant/configuration fitment(s) on the same model and 5 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42414001320",
+      "part_number_display": "4241 400 1320",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Ignition System\") on base/variant scope, while 3 other variant/configuration fitment(s) on the same model and 5 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42417004100",
+      "part_number_display": "4241 700 4100",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Fan Housing\") on base/variant scope, while 3 other variant/configuration fitment(s) on the same model and 5 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42417010700",
+      "part_number_display": "4241 701 0700",
+      "clean_name": "Fan Housing, Outer",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing Outer",
+      "published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Fan Housing Outer\") on base/variant scope, while 3 other variant/configuration fitment(s) on the same model and 4 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "42820071021",
+      "part_number_display": "4282 007 1021",
+      "clean_name": "Filter Housing Kit",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "published_models": [
+        "br_600"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Air Filter\"). Remaining 1 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42820073600",
+      "part_number_display": "4282 007 3600",
+      "clean_name": "Set Of Pickup Bodies",
+      "category": "brandstofcomponenten",
+      "current_resolved_section": "Fuel Tank",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Fuel Tank\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42820201200",
+      "part_number_display": "4282 020 1200",
+      "clean_name": "Cylinder And Piston 50Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Cylinder\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42820290500",
+      "part_number_display": "4282 029 0500",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Valve Timing Gear",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Valve Timing Gear\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42820300404",
+      "part_number_display": "4282 030 0404",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Cylinder\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821207100",
+      "part_number_display": "4282 120 7100",
+      "clean_name": "Throttle Shaft With Lever",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Carburetor C1Q-S99\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821212900",
+      "part_number_display": "4282 121 2900",
+      "clean_name": "Choke Shutter",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Carburetor C1Q-S99\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821213000",
+      "part_number_display": "4282 121 3000",
+      "clean_name": "Choke Shaft",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Carburetor C1Q-S99\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821213300",
+      "part_number_display": "4282 121 3300",
+      "clean_name": "Throttle Shutter",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Carburetor C1Q-S99\"). Remaining 4 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821213500",
+      "part_number_display": "4282 121 3500",
+      "clean_name": "Throttle Lever",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Carburetor C1Q-S99\"). Remaining 4 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821400603",
+      "part_number_display": "4282 140 0603",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 2 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821401003",
+      "part_number_display": "4282 140 1003",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Air Filter\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821402851",
+      "part_number_display": "4282 140 2851",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Air Filter\"). Remaining 2 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821458100",
+      "part_number_display": "4282 145 8100",
+      "clean_name": "Exhaust Deflector",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 3 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821801100",
+      "part_number_display": "4282 180 1100",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "published_models": [
+        "br_600"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Control Handle\"). Remaining 2 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42821801103",
+      "part_number_display": "4282 180 1103",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "published_models": [
+        "br_600"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Control Handle\"). Remaining 2 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42824001308",
+      "part_number_display": "4282 400 1308",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Muffler",
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Muffler\"). Remaining 2 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42827010701",
+      "part_number_display": "4282 701 0701",
+      "clean_name": "Fan Housing, Outer",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "published_models": [
+        "br_600"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Fan Housing\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42827904901",
+      "part_number_display": "4282 790 4901",
+      "clean_name": "Control Handle With Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "published_models": [
+        "br_700"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Control Handle\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "42827904902",
+      "part_number_display": "4282 790 4902",
+      "clean_name": "Control Handle With Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "published_models": [
+        "br_600"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 3 resolved evidence record(s) across 3 resolved fitment(s) and 0 Phase 54F observation(s) map to the exact same canonical section (\"Control Handle\"). Remaining 0 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "42837901300",
+      "part_number_display": "4283 790 1300",
+      "clean_name": "Control Handle With Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "published_models": [
+        "br_800"
+      ],
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "block_reason_code": "SINGLE_RESOLVED_EVIDENCE_RECORD_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has only 1 resolved evidence record (\"Control Handle\") on 1 resolved fitment, and 0 unresolved fitment(s) on other models with zero section attribution in any source."
+    },
+    {
+      "part_number": "95030030060",
+      "part_number_display": "9503 003 0060",
+      "clean_name": "Grooved Ball Bearing Din625-629-C3",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head - Deflector",
+      "published_models": [
+        "fr_410",
+        "fs_131",
+        "fs_55",
+        "fsa_135"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Gear Head - Deflector\") on base/variant scope, while 5 other variant/configuration fitment(s) on the same model and 26 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "95030030242",
+      "part_number_display": "9503 003 0242",
+      "clean_name": "Grooved Ball Bearing Din625-6201",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "NON_PUBLISHED_MODEL_FALLBACK_AND_REJECTED_NEW_FITMENT_SCOPE",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [
+        {
+          "candidate_section": "FS 400",
+          "canonical_model_id": "fs_400",
+          "source_id": "sparepartsworld",
+          "contract_evaluated": "S1_EXACT_FITMENT_EVIDENCE",
+          "verdict": "REJECTED_NON_PUBLISHED_MODEL_NAME_FALLBACK",
+          "reason": "fs_400 is not a published model in stihl_database.json and \"FS 400\" is a model-name fallback, not a valid technical diagram section."
+        },
+        {
+          "candidate_section": "Crankcase - Cylinder",
+          "canonical_model_id": "fs_55 / hs_45",
+          "source_id": "diyspareparts",
+          "contract_evaluated": "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+          "verdict": "REJECTED_NO_CANONICAL_FITMENT_ON_MODEL",
+          "reason": "Adjudicated in Phase 54F staging_adjudication.json as NEW_FITMENT_CANDIDATE (existing_fitments_count: 0); Phase 56J forbids creating uncorroborated canonical fitments."
+        }
+      ],
+      "rationale": "Published model fs_85 (base::base) has resolved section \"A-Crankcase, Cylinder\". Other fs_85 fitments (r::loop_handle, t::split_drive_tube) are EXACT_CONFIGURATION scopes with only Unresolved Diagram Section (cross-scope transfer forbidden). Fitment on fs_400 has section string \"FS 400\" (model-name fallback on non-published model). Phase 54F observations on fs_55 and hs_45 (\"Crankcase - Cylinder\") were adjudicated as NEW_FITMENT_CANDIDATE (0 existing canonical fitments on fs_55/hs_45) and blocked from canonical fitment creation."
+    },
+    {
+      "part_number": "95030030320",
+      "part_number_display": "9503 003 0320",
+      "clean_name": "Grooved Ball Bearing Din625-16002",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "ms_260"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 4 other variant/configuration fitment(s) on the same model and 9 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "95030030322",
+      "part_number_display": "9503 003 0322",
+      "clean_name": "Grooved Ball Bearing Din625-15X32X8",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 3 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "95030039850",
+      "part_number_display": "9503 003 9850",
+      "clean_name": "Grooved Ball Bearing Din625-609",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "J-Gear Head, Drive Tube FS 80",
+      "published_models": [
+        "fs_100",
+        "fs_80",
+        "fs_85"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"J-Gear Head, Drive Tube FS 80\") on base/variant scope, while 2 other variant/configuration fitment(s) on the same model and 73 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "95230034262",
+      "part_number_display": "9523 003 4262",
+      "clean_name": "Grooved Ball Bearing 15X35X13",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "ms_261"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 7 other variant/configuration fitment(s) on the same model and 0 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "96368150270",
+      "part_number_display": "9636 815 0270",
+      "clean_name": "Sealing Ring Din7603-5X9X1",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Valve Timing Gear",
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "fs_100",
+        "fs_131"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Valve Timing Gear\"). Remaining 45 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "96390031585",
+      "part_number_display": "9639 003 1585",
+      "clean_name": "Oil Seal Din3760-As15X25X5",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Cylinder",
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "fr_410",
+        "fs_460",
+        "ms_162",
+        "ms_170",
+        "ms_172",
+        "ms_180",
+        "ms_182",
+        "ms_210",
+        "ms_212",
+        "ms_230",
+        "ms_250",
+        "ms_270",
+        "ms_280",
+        "ms_311"
+      ],
+      "classification": "ONLY_SAME_SECTION_DUPLICATES",
+      "block_reason_code": "MULTIPLE_EVIDENCE_RECORDS_CONFIRM_ONLY_SAME_SINGLE_SECTION",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "All 1 resolved evidence record(s) across 1 resolved fitment(s) and 1 Phase 54F observation(s) map to the exact same canonical section (\"Cylinder\"). Remaining 85 fitment(s) on other models have only \"Unresolved Diagram Section\". Zero evidence exists for a second distinct section."
+    },
+    {
+      "part_number": "96400031190",
+      "part_number_display": "9640 003 1190",
+      "clean_name": "Oil Seal Din3760-Bs12X20X5",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "ms_260",
+        "ms_340",
+        "ms_360"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 11 other variant/configuration fitment(s) on the same model and 27 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    },
+    {
+      "part_number": "96400031195",
+      "part_number_display": "9640 003 1195",
+      "clean_name": "Oil Seal Din3760-Bs12X22X5",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "VARIANT_SCOPE_UNRESOLVED_AND_NON_PUBLISHED_MODEL",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [
+        {
+          "candidate_section": "FS 400",
+          "canonical_model_id": "fs_400",
+          "source_id": "sparepartsworld",
+          "contract_evaluated": "S1_EXACT_FITMENT_EVIDENCE",
+          "verdict": "REJECTED_NON_PUBLISHED_MODEL_NAME_FALLBACK",
+          "reason": "fs_400 is not a published model in stihl_database.json and \"FS 400\" is a model-name fallback."
+        },
+        {
+          "candidate_section": "Crankcase",
+          "canonical_model_id": "hs_81",
+          "source_id": "diyspareparts",
+          "contract_evaluated": "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+          "verdict": "REJECTED_CROSS_SCOPE_VARIANT_AMBIGUITY_AND_UNPUBLISHED_MODEL",
+          "reason": "Blocked in Phase 54F scope_resolution.json as VARIANT_SCOPE_UNRESOLVED (MODEL_LEVEL_ONLY source cannot be distributed to 4 EXACT_VARIANT fitments r, rc_e, t, tc_e without variant leakage), and hs_81 is not a published model."
+        }
+      ],
+      "rationale": "Published model fs_85 (base::base) has resolved section \"A-Crankcase, Cylinder\". Other fs_85 fitments (r::loop_handle, t::split_drive_tube) are EXACT_CONFIGURATION scopes with only Unresolved Diagram Section. Fitment on fs_400 has section string \"FS 400\" (model-name fallback on non-published model). Phase 54F observation on hs_81 (\"Crankcase\", source_scope: MODEL_LEVEL_ONLY) was blocked in scope_resolution.json as VARIANT_SCOPE_UNRESOLVED across 4 EXACT_VARIANT fitments (r, rc_e, t, tc_e), and hs_81 is also not a published model."
+    },
+    {
+      "part_number": "96400031600",
+      "part_number_display": "9640 003 1600",
+      "clean_name": "Oil Seal Din3760-Bs15X29,6X4",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "published_models": [
+        "br_420",
+        "ms_260",
+        "ms_261",
+        "ms_340",
+        "ms_341",
+        "ms_360",
+        "ms_361",
+        "ms_362",
+        "ms_400",
+        "ms_441",
+        "ms_460",
+        "ms_462"
+      ],
+      "classification": "CROSS_SCOPE_BLOCKED",
+      "block_reason_code": "SAME_MODEL_VARIANT_OR_CONFIG_SCOPE_BOUNDARY_AND_SINGLE_SECTION_ONLY",
+      "contracts_checked": [
+        "S1_EXACT_FITMENT_EVIDENCE",
+        "S2_EXACT_MODEL_SCOPE_EVIDENCE",
+        "S3_EXISTING_MULTI_SECTION_CONTEXT",
+        "S4_SAME_MODEL_EXACT_POSITION_EVIDENCE"
+      ],
+      "candidate_second_sections_evaluated": [],
+      "rationale": "Part has 1 resolved section (\"Crankcase\") on base/variant scope, while 18 other variant/configuration fitment(s) on the same model and 79 fitment(s) on other models have only \"Unresolved Diagram Section\" in part_fitment_evidence. Cross-scope transfer across variant_key/configuration_key boundaries is forbidden, and no second distinct section name exists anywhere in repository evidence."
+    }
+  ]
+}
