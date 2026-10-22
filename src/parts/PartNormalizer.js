@@ -18,7 +18,10 @@ export class PartNormalizer {
    */
   static normalizePartNumber(rawPartNo) {
     if (!rawPartNo || typeof rawPartNo !== 'string') return null;
-    const cleaned = rawPartNo.replace(/[\s\-_.\/]/g, '').trim();
+    let str = rawPartNo.trim();
+    // Strip common leading brand or keyword prefixes (e.g. "STIHL", "Stihl", "Teilenummer", "Onderdeel", "Art.", "Part", etc.)
+    str = str.replace(/^(?:stihl|teilenummer|onderdeelnummer|onderdeel|artikelnummer|artikel|art\.?|part(?:\s*(?:no|nr)\.?)?)\s+/i, '');
+    const cleaned = str.replace(/[\s\-_.\/]/g, '').trim();
     if (!/^\d{11}$/.test(cleaned)) {
       return null;
     }
