@@ -1,0 +1,326 @@
+{
+  "phase": "PHASE_56G",
+  "artifact": "SEO_WAVE3_ELIGIBILITY",
+  "reproducible": true,
+  "generator": "scripts/build_phase56g_wave3_cohort.mjs",
+  "criteria": {
+    "hard": [
+      "H1_NOT_ALREADY_INDEXABLE",
+      "H2_PUBLISHED_MODEL_WITH_PARTS_PAGE",
+      "H3_MIN_2_INDEPENDENT_SECTIONS",
+      "H4_MEANINGFUL_DIAGRAM_POSITION",
+      "H5_CLEAN_NAME",
+      "H6_NOT_GENERIC_HARDWARE",
+      "H7_UNIQUE_TITLE"
+    ],
+    "min_score": 50,
+    "max_cohort": 400,
+    "score_components": {
+      "evidence": "0-35: ≥2 sections => 20 (+5 per extra, max +10); meaningful position +5",
+      "relevance": "0-20: 2 pts per published model",
+      "intent": "0-15: maintenance/wear component",
+      "content": "0-10: 1 pt per 3 published fitment rows",
+      "links": "0-10: 2 pts per linking published parts page",
+      "affiliate": "0-10: wear (6) + clean commercial name (4); no revenue estimates"
+    }
+  },
+  "population": {
+    "canonical_parts": 17082,
+    "already_indexable": 800,
+    "evaluated_on_published_models": 3904,
+    "eligible_and_selected": 4
+  },
+  "rejection_counts": {
+    "H3_FEWER_THAN_2_INDEPENDENT_SECTIONS": 3847,
+    "H6_GENERIC_HARDWARE_THIN_CONTENT": 975,
+    "S1_SCORE_BELOW_THRESHOLD": 3758,
+    "H2_NO_PUBLISHED_MODEL_WITH_PARTS_PAGE": 12378,
+    "H1_ALREADY_INDEXABLE": 800,
+    "H5_UNCLEAN_NAME": 164,
+    "H4_NO_MEANINGFUL_DIAGRAM_POSITION": 103
+  },
+  "selected": [
+    {
+      "part_number": "96390031230",
+      "part_number_display": "9639 003 1230",
+      "clean_name": "Oil Seal Din3760-As12X22X7",
+      "name_quality": "NORMALIZED_SAFE",
+      "score": 82,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 14,
+        "intent": 15,
+        "content": 8,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count": 2,
+      "sections": [
+        "Crankcase",
+        "Crankcase - Cylinder"
+      ],
+      "has_meaningful_diagram_position": true,
+      "published_model_count": 7,
+      "linking_parts_pages": 7,
+      "published_fitment_rows": 25,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "HS 45"
+      ],
+      "is_wear_component": true,
+      "hard_criteria_failures": [],
+      "eligible": true
+    },
+    {
+      "part_number": "95030039853",
+      "part_number_display": "9503 003 9853",
+      "clean_name": "Grooved Ball Bearing Din625-609-2Z",
+      "name_quality": "NORMALIZED_SAFE",
+      "score": 80,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 14,
+        "intent": 15,
+        "content": 6,
+        "links": 10,
+        "affiliate": 10
+      },
+      "section_count": 2,
+      "sections": [
+        "Gear Head - Deflector",
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "has_meaningful_diagram_position": true,
+      "published_model_count": 7,
+      "linking_parts_pages": 7,
+      "published_fitment_rows": 18,
+      "sample_models": [
+        "FR 410",
+        "FS 100",
+        "FS 131",
+        "FS 55",
+        "FS 80"
+      ],
+      "is_wear_component": true,
+      "hard_criteria_failures": [],
+      "eligible": true
+    },
+    {
+      "part_number": "11250071021",
+      "part_number_display": "1125 007 1021",
+      "clean_name": "Spur Gear / Chain Adjusting Screw Kit",
+      "name_quality": "NORMALIZED_SAFE",
+      "score": 69,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 20,
+        "intent": 0,
+        "content": 10,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count": 2,
+      "sections": [
+        "Chain Brake",
+        "Chain Tensioner"
+      ],
+      "has_meaningful_diagram_position": true,
+      "published_model_count": 14,
+      "linking_parts_pages": 14,
+      "published_fitment_rows": 41,
+      "sample_models": [
+        "MS 260",
+        "MS 261",
+        "MS 270",
+        "MS 280",
+        "MS 340"
+      ],
+      "is_wear_component": false,
+      "hard_criteria_failures": [],
+      "eligible": true
+    },
+    {
+      "part_number": "42291226701",
+      "part_number_display": "4229 122 6701",
+      "clean_name": "High Speed Screw",
+      "name_quality": "NORMALIZED_SAFE",
+      "score": 53,
+      "score_breakdown": {
+        "evidence": 25,
+        "relevance": 10,
+        "intent": 0,
+        "content": 4,
+        "links": 10,
+        "affiliate": 4
+      },
+      "section_count": 2,
+      "sections": [
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S71"
+      ],
+      "has_meaningful_diagram_position": true,
+      "published_model_count": 5,
+      "linking_parts_pages": 5,
+      "published_fitment_rows": 12,
+      "sample_models": [
+        "FS 100",
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ],
+      "is_wear_component": false,
+      "hard_criteria_failures": [],
+      "eligible": true
+    }
+  ],
+  "near_miss_single_section_top50": [
+    {
+      "part_number": "96390031585",
+      "clean_name": "Oil Seal Din3760-As15X25X5",
+      "score": 75,
+      "sections": [
+        "Cylinder"
+      ],
+      "published_model_count": 17
+    },
+    {
+      "part_number": "96400031600",
+      "clean_name": "Oil Seal Din3760-Bs15X29,6X4",
+      "score": 75,
+      "sections": [
+        "Crankcase"
+      ],
+      "published_model_count": 12
+    },
+    {
+      "part_number": "41266427600",
+      "clean_name": "M10x1 LH Collar Blade Nut",
+      "score": 62,
+      "sections": [
+        "Gear Head - Deflector"
+      ],
+      "published_model_count": 6
+    },
+    {
+      "part_number": "96400031195",
+      "clean_name": "Oil Seal Din3760-Bs12X22X5",
+      "score": 60,
+      "sections": [
+        "A-Crankcase, Cylinder"
+      ],
+      "published_model_count": 5
+    },
+    {
+      "part_number": "95030030242",
+      "clean_name": "Grooved Ball Bearing Din625-6201",
+      "score": 58,
+      "sections": [
+        "A-Crankcase, Cylinder"
+      ],
+      "published_model_count": 5
+    },
+    {
+      "part_number": "96368150270",
+      "clean_name": "Sealing Ring Din7603-5X9X1",
+      "score": 57,
+      "sections": [
+        "Valve Timing Gear"
+      ],
+      "published_model_count": 5
+    },
+    {
+      "part_number": "11171229000",
+      "clean_name": "Retaining Ring",
+      "score": 54,
+      "sections": [
+        "T_-Carburetor WT-447"
+      ],
+      "published_model_count": 20
+    },
+    {
+      "part_number": "11131219200",
+      "clean_name": "Axle",
+      "score": 54,
+      "sections": [
+        "T_-Carburetor WT-447"
+      ],
+      "published_model_count": 19
+    },
+    {
+      "part_number": "11226479400",
+      "clean_name": "Hose",
+      "score": 54,
+      "sections": [
+        "Crankcase"
+      ],
+      "published_model_count": 11
+    },
+    {
+      "part_number": "95030030060",
+      "clean_name": "Grooved Ball Bearing Din625-629-C3",
+      "score": 54,
+      "sections": [
+        "Gear Head - Deflector"
+      ],
+      "published_model_count": 4
+    },
+    {
+      "part_number": "11231957200",
+      "clean_name": "Pawl",
+      "score": 53,
+      "sections": [
+        "Rewind Starter"
+      ],
+      "published_model_count": 14
+    },
+    {
+      "part_number": "00004001306",
+      "clean_name": "Ontstekingsmodule",
+      "score": 53,
+      "sections": [
+        "Ignition"
+      ],
+      "published_model_count": 4
+    },
+    {
+      "part_number": "11231400611",
+      "clean_name": "Uitlaat",
+      "score": 50,
+      "sections": [
+        "Muffler"
+      ],
+      "published_model_count": 3
+    },
+    {
+      "part_number": "42411821001",
+      "clean_name": "Throttle Trigger",
+      "score": 50,
+      "sections": [
+        "Handle Frame"
+      ],
+      "published_model_count": 3
+    },
+    {
+      "part_number": "42417004100",
+      "clean_name": "Fan Housing",
+      "score": 50,
+      "sections": [
+        "Fan Housing"
+      ],
+      "published_model_count": 3
+    },
+    {
+      "part_number": "96400031190",
+      "clean_name": "Oil Seal Din3760-Bs12X20X5",
+      "score": 50,
+      "sections": [
+        "Crankcase"
+      ],
+      "published_model_count": 3
+    }
+  ]
+}

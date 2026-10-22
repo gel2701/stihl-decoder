@@ -1,0 +1,103 @@
+{
+  "phase": "PHASE_56G",
+  "artifact": "SEO_WAVE3_SUMMARY",
+  "policy": "QUALITY_OVER_VOLUME_STRICT_H1_H7",
+  "cohorts": {
+    "phase_54d_pilot": 50,
+    "phase_56a_wave1": 350,
+    "phase_56d_wave2": 400,
+    "phase_56g_wave3": 4,
+    "pre_wave3_total": 800,
+    "new_total_indexable_parts": 804,
+    "strict_noindex_parts": 16278
+  },
+  "sitemap_impact": {
+    "previous_total_urls": 981,
+    "wave3_added_urls": 4,
+    "new_total_urls": 985,
+    "new_part_detail_urls": 804,
+    "duplicate_urls": 0,
+    "orphan_part_pages": 0
+  },
+  "selection_summary": {
+    "canonical_parts_evaluated": 17082,
+    "already_indexable_skipped": 800,
+    "fitted_to_published_models": 3904,
+    "passed_all_hard_criteria_h1_h7": 4,
+    "rejection_counts": {
+      "H3_FEWER_THAN_2_INDEPENDENT_SECTIONS": 3847,
+      "H6_GENERIC_HARDWARE_THIN_CONTENT": 975,
+      "S1_SCORE_BELOW_THRESHOLD": 3758,
+      "H2_NO_PUBLISHED_MODEL_WITH_PARTS_PAGE": 12378,
+      "H1_ALREADY_INDEXABLE": 800,
+      "H5_UNCLEAN_NAME": 164,
+      "H4_NO_MEANINGFUL_DIAGRAM_POSITION": 103
+    }
+  },
+  "promoted_wave3_parts": [
+    {
+      "part_number": "96390031230",
+      "part_number_display": "9639 003 1230",
+      "clean_name": "Oil Seal Din3760-As12X22X7",
+      "seo_score": 82,
+      "section_count": 2,
+      "model_count": 7,
+      "primary_section": "Crankcase",
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "HS 45"
+      ]
+    },
+    {
+      "part_number": "95030039853",
+      "part_number_display": "9503 003 9853",
+      "clean_name": "Grooved Ball Bearing Din625-609-2Z",
+      "seo_score": 80,
+      "section_count": 2,
+      "model_count": 7,
+      "primary_section": "Gear Head - Deflector",
+      "sample_models": [
+        "FR 410",
+        "FS 100",
+        "FS 131",
+        "FS 55",
+        "FS 80"
+      ]
+    },
+    {
+      "part_number": "11250071021",
+      "part_number_display": "1125 007 1021",
+      "clean_name": "Spur Gear / Chain Adjusting Screw Kit",
+      "seo_score": 69,
+      "section_count": 2,
+      "model_count": 14,
+      "primary_section": "Chain Brake",
+      "sample_models": [
+        "MS 260",
+        "MS 261",
+        "MS 270",
+        "MS 280",
+        "MS 340"
+      ]
+    },
+    {
+      "part_number": "42291226701",
+      "part_number_display": "4229 122 6701",
+      "clean_name": "High Speed Screw",
+      "seo_score": 53,
+      "section_count": 2,
+      "model_count": 5,
+      "primary_section": "Carburetor C1Q-S70",
+      "sample_models": [
+        "FS 100",
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ]
+    }
+  ]
+}

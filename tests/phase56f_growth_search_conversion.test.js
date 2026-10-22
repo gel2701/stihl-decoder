@@ -12,11 +12,16 @@ import Database from 'better-sqlite3';
 import { PRIMARY_ORIGIN } from '../src/config.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
 import { PartCatalogResolver, MULTILINGUAL_TECHNICAL_SYNONYMS } from '../src/parts/PartCatalogResolver.js';
-import { getAllIndexablePartsList, isPartIndexable } from '../src/seo/PartIndexationRegistry.js';
+import { getAllIndexablePartsList, isPartIndexable, getWave3CohortList, getPreWave3IndexablePartsSet } from '../src/seo/PartIndexationRegistry.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { renderPartsDiscoveryPageHtml } from '../src/components/PartsDiscoveryPageTemplate.js';
 import { renderModelPageHtml } from '../src/components/ModelPageTemplate.js';
 import { generateSitemapXml } from '../src/components/SitemapGenerator.js';
+
+// Phase 56G: Wave 3 adds an explicit, audited cohort on top of the frozen 800-part baseline.
+const WAVE3_COUNT = getWave3CohortList().length;
+const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT;
+const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -117,7 +122,8 @@ test('Phase 56F - Test 5: Model Page 1-Click Maintenance Wear Parts Navigation',
 
 test('Phase 56F - Test 6: Schema.org Product Structured Data on Indexable Parts', () => {
   const allIndexable = getAllIndexablePartsList();
-  assert.strictEqual(allIndexable.length, 800, 'Must have exactly 800 indexable parts');
+  assert.strictEqual(getPreWave3IndexablePartsSet().size, 800, 'Pre-Wave-3 indexable baseline must remain exactly 800');
+  assert.strictEqual(allIndexable.length, EXPECTED_INDEXABLE_PARTS, 'Must have exactly 800 + Wave 3 indexable parts');
 
   // Verify first 20 parts render valid Product Schema and BreadcrumbList
   for (let i = 0; i < 20; i++) {
@@ -143,11 +149,11 @@ test('Phase 56F - Test 7: Sitemap Exact URL & Set Equivalence Preserved (981 Tot
   const allUrls = sitemapXml.match(/<loc>[^<]+<\/loc>/g) || [];
   const partUrls = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
 
-  assert.strictEqual(allUrls.length, 981, 'Sitemap must contain exactly 981 URLs');
-  assert.strictEqual(partUrls.length, 800, 'Sitemap must contain exactly 800 part detail URLs');
+  assert.strictEqual(allUrls.length, EXPECTED_SITEMAP_URLS, 'Sitemap must contain exactly 981 + Wave 3 URLs');
+  assert.strictEqual(partUrls.length, EXPECTED_INDEXABLE_PARTS, 'Sitemap must contain exactly 800 + Wave 3 part detail URLs');
 
   const set = new Set(allUrls);
-  assert.strictEqual(set.size, 981, 'Zero duplicate URLs');
+  assert.strictEqual(set.size, EXPECTED_SITEMAP_URLS, 'Zero duplicate URLs');
 });
 
 test('Phase 56F - Test 8: Amazon Affiliate Contract & Fail-Closed Integrity Preserved', () => {

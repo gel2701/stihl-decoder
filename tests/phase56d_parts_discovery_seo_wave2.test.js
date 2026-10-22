@@ -38,7 +38,9 @@ import {
   getPilotPartsList,
   getExpansionCohortList,
   getWave2CohortList,
-  getWave2CohortSet
+  getWave2CohortSet,
+  getWave3CohortList,
+  getPreWave3IndexablePartsSet
 } from '../src/seo/PartIndexationRegistry.js';
 import {
   getDeterministicQueryVariant,
@@ -57,6 +59,12 @@ delete process.env.AMAZON_ASSOCIATE_TAG_DE;
 const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 const database = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
+
+// Phase 56G: Wave 3 adds an explicit, audited cohort on top of the frozen 800-part Phase 56D baseline.
+// The 800 pre-Wave-3 parts stay exactly asserted; totals are asserted exactly as 800 + Wave 3 size.
+const WAVE3_COUNT = getWave3CohortList().length;
+const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT;
+const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT;
 
 test('Phase 56D - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
   const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
@@ -83,10 +91,11 @@ test('Phase 56D - Test 2: SEO Protection & Cohort Progression (400 -> 800 parts)
   assert.strictEqual(wave2List.length, 400, 'Phase 56D Wave 2 cohort must contain exactly 400 parts');
 
   const allIndexable = getAllIndexablePartsList();
-  assert.strictEqual(allIndexable.length, 800, 'Total indexable parts must be exactly 800');
+  assert.strictEqual(getPreWave3IndexablePartsSet().size, 800, 'Pre-Wave-3 indexable baseline must remain exactly 800');
+  assert.strictEqual(allIndexable.length, EXPECTED_INDEXABLE_PARTS, 'Total indexable parts must be exactly 800 + Wave 3 cohort');
 
   const allSet = getAllIndexablePartsSet();
-  assert.strictEqual(allSet.size, 800, 'Total indexable set must contain exactly 800 unique parts');
+  assert.strictEqual(allSet.size, EXPECTED_INDEXABLE_PARTS, 'Total indexable set must contain exactly 800 + Wave 3 unique parts');
 
   // Verify all 400 prior parts are strictly preserved in the 800 set
   for (const p of [...pilotList, ...expansionList]) {
@@ -106,8 +115,8 @@ test('Phase 56D - Test 3: Sitemap.xml Exact Equivalence (981 total URLs, 800 par
   const allUrls = sitemapXml.match(/<loc>[^<]+<\/loc>/g) || [];
   const partUrls = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
 
-  assert.strictEqual(allUrls.length, 981, 'Sitemap must contain exactly 981 total URLs (581 baseline + 400 wave2)');
-  assert.strictEqual(partUrls.length, 800, 'Sitemap must contain exactly 800 individual part URLs');
+  assert.strictEqual(allUrls.length, EXPECTED_SITEMAP_URLS, 'Sitemap must contain exactly 981 + Wave 3 total URLs (581 baseline + 400 wave2 + wave3)');
+  assert.strictEqual(partUrls.length, EXPECTED_INDEXABLE_PARTS, 'Sitemap must contain exactly 800 + Wave 3 individual part URLs');
 
   // Verify zero duplicate URLs in sitemap
   const urlSet = new Set(allUrls);
@@ -120,7 +129,7 @@ test('Phase 56D - Test 3: Sitemap.xml Exact Equivalence (981 total URLs, 800 par
     return m ? m[1] : null;
   }).filter(Boolean));
 
-  assert.strictEqual(sitemapPartNumbers.size, 800, 'All 800 parts in sitemap must be unique');
+  assert.strictEqual(sitemapPartNumbers.size, EXPECTED_INDEXABLE_PARTS, 'All sitemap part URLs must be unique');
   for (const pNo of allIndexableSet) {
     assert.ok(sitemapPartNumbers.has(pNo), `Part ${pNo} must be in sitemap.xml`);
   }

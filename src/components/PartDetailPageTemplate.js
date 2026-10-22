@@ -413,7 +413,7 @@ ${supersessionHtml}
               rel="sponsored nofollow noopener"
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
               aria-label="${ariaLabel}"
-              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
               <span>${buttonText}</span>
               <span aria-hidden="true">↗</span>

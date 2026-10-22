@@ -35,7 +35,9 @@ import {
   getAllIndexablePartsSet,
   getPilotPartsList,
   getExpansionCohortList,
-  getWave2CohortList
+  getWave2CohortList,
+  getWave3CohortList,
+  getPreWave3IndexablePartsSet
 } from '../src/seo/PartIndexationRegistry.js';
 import { renderPartDetailPageHtml } from '../src/components/PartDetailPageTemplate.js';
 import { renderPartsDiscoveryPageHtml } from '../src/components/PartsDiscoveryPageTemplate.js';
@@ -54,6 +56,12 @@ delete process.env.AMAZON_ASSOCIATE_TAG_DE;
 const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 const database = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
+
+// Phase 56G: Wave 3 adds an explicit, audited cohort on top of the frozen 800-part Phase 56D/56E baseline.
+// The 800 pre-Wave-3 parts stay exactly asserted; totals are asserted exactly as 800 + Wave 3 size.
+const WAVE3_COUNT = getWave3CohortList().length;
+const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT;
+const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT;
 
 test('Phase 56E - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
   const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
@@ -151,7 +159,8 @@ test('Phase 56E - Test 4: Model-Scoped Joint Query Resolution', () => {
 
 test('Phase 56E - Test 5: SEO Quality Evaluation across all 800 Indexable Parts', () => {
   const allIndexable = getAllIndexablePartsList();
-  assert.strictEqual(allIndexable.length, 800, 'Total indexable parts must be exactly 800');
+  assert.strictEqual(getPreWave3IndexablePartsSet().size, 800, 'Pre-Wave-3 indexable baseline must remain exactly 800');
+  assert.strictEqual(allIndexable.length, EXPECTED_INDEXABLE_PARTS, 'Total indexable parts must be exactly 800 + Wave 3 cohort');
 
   const titles = new Set();
   const publishedModelSlugs = new Set(
@@ -188,7 +197,7 @@ test('Phase 56E - Test 5: SEO Quality Evaluation across all 800 Indexable Parts'
     }
   }
 
-  assert.strictEqual(titles.size, 800, 'All 800 indexable part titles must be 100% unique');
+  assert.strictEqual(titles.size, EXPECTED_INDEXABLE_PARTS, 'All indexable part titles must be 100% unique');
   assert.strictEqual(wave2Orphans, 0, 'Wave 2 must have zero orphan pages without published model links');
 });
 
@@ -197,12 +206,12 @@ test('Phase 56E - Test 6: Sitemap.xml Exact Equivalence (981 URLs, 800 Parts)', 
   const allUrls = sitemapXml.match(/<loc>[^<]+<\/loc>/g) || [];
   const partUrls = sitemapXml.match(/<loc>https:\/\/www\.stihldecoder\.nl\/onderdeelnummer\/\d{11}\/<\/loc>/g) || [];
 
-  assert.strictEqual(allUrls.length, 981, 'Sitemap must contain exactly 981 total URLs');
-  assert.strictEqual(partUrls.length, 800, 'Sitemap must contain exactly 800 individual part detail URLs');
+  assert.strictEqual(allUrls.length, EXPECTED_SITEMAP_URLS, 'Sitemap must contain exactly 981 + Wave 3 total URLs');
+  assert.strictEqual(partUrls.length, EXPECTED_INDEXABLE_PARTS, 'Sitemap must contain exactly 800 + Wave 3 individual part detail URLs');
 
   // Verify uniqueness
   const uniqueUrls = new Set(allUrls);
-  assert.strictEqual(uniqueUrls.size, 981, 'Zero duplicate URLs in sitemap');
+  assert.strictEqual(uniqueUrls.size, EXPECTED_SITEMAP_URLS, 'Zero duplicate URLs in sitemap');
 });
 
 test('Phase 56E - Test 7: Amazon Affiliate Contract & Conversion Funnel', () => {

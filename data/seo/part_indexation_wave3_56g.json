@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56G",
+  "policy": "EXPLICIT_ALLOWLIST_ONLY",
+  "selection_policy": "WAVE3_STRICT_H1_H7_MIN_2_INDEPENDENT_SECTIONS",
+  "cohort_size": 4,
+  "parts": [
+    {
+      "part_number": "96390031230",
+      "part_number_display": "9639 003 1230",
+      "clean_name": "Oil Seal Din3760-As12X22X7",
+      "category": "overige",
+      "enabled": true,
+      "source_cohort": "PHASE_56G_WAVE3",
+      "seo_tier": "SEO_TIER_A",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "seo_score": 82,
+      "model_count": 7,
+      "fitment_count": 25,
+      "section_count": 2,
+      "sample_models": [
+        "BG 56",
+        "BG 66",
+        "BG 86",
+        "FS 55",
+        "HS 45"
+      ],
+      "primary_section": "Crankcase",
+      "reason": "Wave 3 strict candidate (82 pts): 2 independent sections (Crankcase, Crankcase - Cylinder), 7 published models"
+    },
+    {
+      "part_number": "95030039853",
+      "part_number_display": "9503 003 9853",
+      "clean_name": "Grooved Ball Bearing Din625-609-2Z",
+      "category": "overige",
+      "enabled": true,
+      "source_cohort": "PHASE_56G_WAVE3",
+      "seo_tier": "SEO_TIER_A",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "seo_score": 80,
+      "model_count": 7,
+      "fitment_count": 18,
+      "section_count": 2,
+      "sample_models": [
+        "FR 410",
+        "FS 100",
+        "FS 131",
+        "FS 55",
+        "FS 80"
+      ],
+      "primary_section": "Gear Head - Deflector",
+      "reason": "Wave 3 strict candidate (80 pts): 2 independent sections (Gear Head - Deflector, J-Gear Head, Drive Tube FS 80), 7 published models"
+    },
+    {
+      "part_number": "11250071021",
+      "part_number_display": "1125 007 1021",
+      "clean_name": "Spur Gear / Chain Adjusting Screw Kit",
+      "category": "overige",
+      "enabled": true,
+      "source_cohort": "PHASE_56G_WAVE3",
+      "seo_tier": "SEO_TIER_A",
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "seo_score": 69,
+      "model_count": 14,
+      "fitment_count": 41,
+      "section_count": 2,
+      "sample_models": [
+        "MS 260",
+        "MS 261",
+        "MS 270",
+        "MS 280",
+        "MS 340"
+      ],
+      "primary_section": "Chain Brake",
+      "reason": "Wave 3 strict candidate (69 pts): 2 independent sections (Chain Brake, Chain Tensioner), 14 published models"
+    },
+    {
+      "part_number": "42291226701",
+      "part_number_display": "4229 122 6701",
+      "clean_name": "High Speed Screw",
+      "category": "overige",
+      "enabled": true,
+      "source_cohort": "PHASE_56G_WAVE3",
+      "seo_tier": "SEO_TIER_A",
+      "commercial_tier": "COMMERCIAL_MEDIUM",
+      "seo_score": 53,
+      "model_count": 5,
+      "fitment_count": 12,
+      "section_count": 2,
+      "sample_models": [
+        "FS 100",
+        "FS 55",
+        "FS 80",
+        "FS 85",
+        "HS 45"
+      ],
+      "primary_section": "Carburetor C1Q-S70",
+      "reason": "Wave 3 strict candidate (53 pts): 2 independent sections (Carburetor C1Q-S70, Carburetor C1Q-S71), 5 published models"
+    }
+  ]
+}
