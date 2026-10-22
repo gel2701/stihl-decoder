@@ -123,8 +123,84 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     </div>
   ` : '';
 
+  // Extract authentic maintenance & wear parts for this model
+  const wearRules = [
+    { label: 'Bougie', regex: /\b(spark plug|bougie|zündkerze)\b/i },
+    { label: 'Luchtfilter', regex: /\b(air filter|luchtfilter|filterelement|filter element)\b/i },
+    { label: 'Brandstoffilter', regex: /\b(fuel filter|brandstoffilter|pickup body|saugkopf)\b/i },
+    { label: 'Koppeling / Aandrijving', regex: /\b(clutch|koppeling|chain sprocket|kettingwiel|rim sprocket)\b/i },
+    { label: 'Starter & Koord', regex: /\b(starter|starter rope|startkoord|anwerfseil|recoil starter)\b/i },
+    { label: 'Ketting & Zaagblad', regex: /\b(guide bar|zaagblad|zaagketting|saw chain)\b/i },
+    { label: 'Oliepomp & Smering', regex: /\b(oil pump|oliepomp|worm gear|schnecke)\b/i }
+  ];
+
+  const maintenanceParts = [];
+  const seenMaintenanceParts = new Set();
+  const allPartsFlat = sections.flatMap(s => s.parts.map(p => ({ ...p, section_name: s.section_name })));
+
+  for (const rule of wearRules) {
+    const match = allPartsFlat.find(p => !seenMaintenanceParts.has(p.part_number) && rule.regex.test(p.part_name));
+    if (match) {
+      seenMaintenanceParts.add(match.part_number);
+      maintenanceParts.push({ ...match, wear_label: rule.label });
+    }
+  }
+
+  const maintenanceHighlightHtml = maintenanceParts.length >= 2 ? `
+    <!-- Maintenance & Wear Parts Highlight (Evidence-Backed) -->
+    <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-5 space-y-3">
+      <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+        <h3 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+          <span>🔧 Veelgezochte Onderhouds- & Slijtagedelen</span>
+          <span class="text-2xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Canonieke Selectie</span>
+        </h3>
+        <span class="text-2xs text-gray-400">STIHL ${model.model_name}</span>
+      </div>
+      <p class="text-xs text-gray-400 leading-relaxed">
+        Gedocumenteerde onderdelen voor regulier onderhoud en periodieke vervanging op de STIHL ${model.model_name}.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-1">
+        ${maintenanceParts.map(p => `
+          <a
+            href="/onderdeelnummer/${p.part_number}/"
+            class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition block space-y-1 group"
+          >
+            <div class="flex items-center justify-between">
+              <span class="text-2xs font-mono font-bold text-orange-400 group-hover:underline">STIHL ${p.part_number_display || p.part_number}</span>
+              <span class="text-3xs font-mono text-gray-500 bg-gray-900 px-1.5 py-0.5 rounded">${p.wear_label}</span>
+            </div>
+            <div class="text-xs font-semibold text-white group-hover:text-orange-300 transition truncate">${p.part_name}</div>
+            <div class="text-3xs text-gray-400">Sectie: ${p.section_name}</div>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  const sectionNavPillsHtml = sections.length > 1 ? `
+    <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-1.5">
+      <div class="text-2xs font-mono text-gray-400 flex items-center justify-between">
+        <span>SNEL NAAR EXPLODED VIEW SECTIE:</span>
+        <span class="text-orange-400 font-bold">${sections.length} secties</span>
+      </div>
+      <div class="flex flex-wrap gap-1.5 pt-1">
+        ${sections.map((sec, idx) => `
+          <a
+            href="#section-${idx}"
+            class="px-2.5 py-1 rounded-lg text-2xs font-semibold bg-gray-950 border border-gray-800 text-gray-300 hover:text-white hover:border-orange-500 transition"
+          >
+            ${sec.section_name} <span class="text-gray-500 font-mono">(${sec.parts.length})</span>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
   const catalogSectionsHtml = sections.length > 0 ? `
     <section class="space-y-6">
+      ${maintenanceHighlightHtml}
+      ${sectionNavPillsHtml}
+
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
         <div>
           <h2 class="text-xl font-bold text-white flex items-center gap-2">
@@ -136,8 +212,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       </div>
 
       <div class="space-y-6">
-        ${sections.map(sec => `
-          <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-5 space-y-3">
+        ${sections.map((sec, idx) => `
+          <div id="section-${idx}" class="bg-gray-900/80 border border-gray-800 rounded-2xl p-5 space-y-3 scroll-mt-20">
             <div class="flex justify-between items-center border-b border-gray-800/80 pb-2.5">
               <h3 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-orange-500"></span>
@@ -202,9 +278,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           <span class="text-2xs text-gray-400 block -mt-1 font-mono">Model Onderdelen Gids</span>
         </div>
       </a>
-      <a href="${modelPath || '/'}" class="text-xs text-orange-400 font-bold hover:underline">
-        ← Terug naar STIHL ${model.model_name}
-      </a>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="/onderdelen/" class="text-gray-300 hover:text-white transition hidden sm:inline">
+          Centrale Onderdelenzoeker
+        </a>
+        <a href="${modelPath || '/'}" class="text-orange-400 font-bold hover:underline">
+          ← Terug naar STIHL ${model.model_name}
+        </a>
+      </div>
     </div>
   </header>
 

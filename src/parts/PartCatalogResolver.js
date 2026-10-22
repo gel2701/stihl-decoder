@@ -928,4 +928,75 @@ export class PartCatalogResolver {
   resolveCanonicalModelId(modelInput, database = null) {
     return PartCatalogResolver.resolveCanonicalModelId(modelInput, database);
   }
+
+  /**
+   * Fast text-based search across canonical parts catalog.
+   * Segregates exact part number matches from substring name matches.
+   *
+   * @param {string} query
+   * @param {number} [limit=30]
+   * @returns {Array<Object>}
+   */
+  static searchParts(query, limit = 30) {
+    loadDefaultPartsData();
+    if (!query || typeof query !== 'string') return [];
+    const qClean = query.trim().toLowerCase();
+    if (qClean.length < 2) return [];
+
+    const norm = PartNormalizer.normalizePartNumber(qClean);
+    const results = [];
+    const seen = new Set();
+
+    // 1. Exact match priority
+    if (norm && cachedPartsMap?.has(norm)) {
+      const exact = cachedPartsMap.get(norm);
+      results.push({ ...exact, is_exact: true });
+      seen.add(norm);
+    }
+
+    // Map common Dutch technical terms to English terms in catalog
+    const synonymMap = {
+      'carburateur': 'carburetor',
+      'carburateurs': 'carburetor',
+      'koppeling': 'clutch',
+      'koppelingen': 'clutch',
+      'bougie': 'spark plug',
+      'bougies': 'spark plug',
+      'luchtfilter': 'air filter',
+      'luchtfilters': 'air filter',
+      'brandstoffilter': 'fuel filter',
+      'brandstoffilters': 'fuel filter',
+      'oliefilter': 'oil filter',
+      'oliepomp': 'oil pump',
+      'oliepompen': 'oil pump',
+      'zaagblad': 'guide bar',
+      'zaagbladen': 'guide bar',
+      'zaagketting': 'chain',
+      'ketting': 'chain',
+      'kettingwiel': 'sprocket',
+      'startkoord': 'rope',
+      'startkoorden': 'rope',
+      'starter': 'starter',
+      'pakking': 'gasket',
+      'pakkingen': 'gasket',
+      'membraan': 'diaphragm',
+      'membranen': 'diaphragm',
+      'veer': 'spring',
+      'veren': 'spring'
+    };
+    const translated = synonymMap[qClean] || null;
+
+    // 2. Text matches
+    for (const p of cachedPartsCatalog || []) {
+      if (seen.has(p.part_number)) continue;
+      const name = (p.part_name || '').toLowerCase();
+      if (name.includes(qClean) || (translated && name.includes(translated))) {
+        results.push({ ...p, is_exact: false });
+        seen.add(p.part_number);
+        if (results.length >= limit) break;
+      }
+    }
+
+    return results;
+  }
 }

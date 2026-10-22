@@ -13,6 +13,7 @@ import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
 import { renderCategoryPageHtml } from './src/components/CategoryPageTemplate.js';
 import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplate.js';
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
+import { renderPartsDiscoveryPageHtml } from './src/components/PartsDiscoveryPageTemplate.js';
 import { renderPartDetailPageHtml } from './src/components/PartDetailPageTemplate.js';
 import { PartCatalogResolver } from './src/parts/PartCatalogResolver.js';
 import { PartNormalizer } from './src/parts/PartNormalizer.js';
@@ -730,9 +731,23 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 8. Model Parts Compatibility Pages (e.g. /kettingzagen/ms-261/onderdelen/)
+  // 8. Central Parts Discovery Page (/onderdelen/) and Model Parts Compatibility Pages (e.g. /kettingzagen/ms-261/onderdelen/)
   if (pathname.endsWith('/onderdelen/') || pathname.endsWith('/onderdelen')) {
     const parts = pathname.split('/').filter(Boolean);
+    if (parts.length === 1 && parts[0].toLowerCase() === 'onderdelen') {
+      if (!pathname.endsWith('/')) {
+        res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/onderdelen/` });
+        res.end();
+        return;
+      }
+      const q = urlObj.searchParams.get('q') || '';
+      const partsHtml = renderPartsDiscoveryPageHtml(q, database, PRIMARY_ORIGIN);
+      logStihlEvent(EVENT_TYPES.PART_SEARCH, { query: q }, req.headers['user-agent']);
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+      res.end(partsHtml);
+      return;
+    }
+
     if (parts.length >= 2 && KNOWN_CATEGORIES.includes(parts[0].toLowerCase())) {
       const catSlug = parts[0].toLowerCase();
       const modelSlug = parts[1].toLowerCase();
@@ -1138,6 +1153,15 @@ ${JSON.stringify(jsonLd, null, 2)}
         <p class="text-xs text-gray-300">
           STIHL onderdeelnummers (11 cijfers) beginnen met een 4-cijferige serie-prefix die de machinetechnische familie aanduidt.
         </p>
+        <div class="mt-3 p-4 rounded-xl bg-gradient-to-r from-orange-950/40 to-gray-900 border border-orange-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div>
+            <span class="text-white font-bold block">🔍 Direct zoeken in alle 17.082 STIHL onderdelen?</span>
+            <span class="text-gray-400 text-2xs block">Gebruik de Centrale Onderdelenzoeker op trefwoord, component of exact nummer.</span>
+          </div>
+          <a href="/onderdelen/" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition text-center shrink-0">
+            Naar Onderdelenzoeker →
+          </a>
+        </div>
       </div>
 
       <div class="space-y-3">

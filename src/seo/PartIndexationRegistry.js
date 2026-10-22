@@ -22,14 +22,18 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..', '..');
 
 export const PHASE54D_PILOT_SIZE = 50;
-export const MAX_EXPANSION_COHORT_SIZE = 500;
-export const MAX_TOTAL_INDEXABLE_PARTS = PHASE54D_PILOT_SIZE + MAX_EXPANSION_COHORT_SIZE;
+export const MAX_EXPANSION_COHORT_SIZE = 350;
+export const MAX_WAVE2_COHORT_SIZE = 400;
+export const MAX_TOTAL_INDEXABLE_PARTS = PHASE54D_PILOT_SIZE + MAX_EXPANSION_COHORT_SIZE + MAX_WAVE2_COHORT_SIZE;
 
 let cachedPilotList = null;
 let cachedPilotMap = null;
 
 let cachedExpansionList = null;
 let cachedExpansionMap = null;
+
+let cachedWave2List = null;
+let cachedWave2Map = null;
 
 let cachedCombinedList = null;
 let cachedCombinedMap = null;
@@ -140,6 +144,61 @@ function loadExpansionConfig() {
   return { list: cachedExpansionList, map: cachedExpansionMap };
 }
 
+function loadWave2Config() {
+  if (cachedWave2Map) {
+    return { list: cachedWave2List, map: cachedWave2Map };
+  }
+
+  const wave2Path = path.join(rootDir, 'data', 'seo', 'part_indexation_wave2_56d.json');
+  const map = new Map();
+  const list = [];
+
+  if (fs.existsSync(wave2Path)) {
+    try {
+      const raw = fs.readFileSync(wave2Path, 'utf8');
+      const parsed = JSON.parse(raw);
+      const parts = Array.isArray(parsed?.parts) ? parsed.parts : [];
+
+      for (const p of parts) {
+        if (!p || typeof p !== 'object') continue;
+        const normPart = PartNormalizer.normalizePartNumber(p.part_number);
+        if (!normPart) continue;
+
+        if (p.enabled === true) {
+          if (list.length >= MAX_WAVE2_COHORT_SIZE) {
+            console.error(`[PartIndexationRegistry] Hard stop: Wave 2 size exceeds ${MAX_WAVE2_COHORT_SIZE}`);
+            break;
+          }
+          const entry = {
+            part_number: normPart,
+            part_number_display: p.part_number_display || PartNormalizer.formatPartNumber(normPart),
+            clean_name: p.clean_name || null,
+            category: p.category || 'overige',
+            enabled: true,
+            source_cohort: 'PHASE_56D_WAVE2',
+            seo_tier: p.seo_tier || 'SEO_TIER_A',
+            commercial_tier: p.commercial_tier || 'COMMERCIAL_MEDIUM',
+            seo_score: p.seo_score,
+            model_count: p.model_count || 0,
+            fitment_count: p.fitment_count || 0,
+            sample_models: p.sample_models || [],
+            primary_section: p.primary_section || null,
+            reason: p.reason || ''
+          };
+          map.set(normPart, entry);
+          list.push(entry);
+        }
+      }
+    } catch (err) {
+      console.error(`[PartIndexationRegistry] Error loading Wave 2 cohort: ${err.message}`);
+    }
+  }
+
+  cachedWave2List = list;
+  cachedWave2Map = map;
+  return { list: cachedWave2List, map: cachedWave2Map };
+}
+
 function ensureCombinedRegistry() {
   if (cachedCombinedMap) {
     return { list: cachedCombinedList, map: cachedCombinedMap };
@@ -147,6 +206,7 @@ function ensureCombinedRegistry() {
 
   const pilot = loadPilotConfig();
   const expansion = loadExpansionConfig();
+  const wave2 = loadWave2Config();
 
   const combinedMap = new Map();
   const combinedList = [];
@@ -157,8 +217,20 @@ function ensureCombinedRegistry() {
     combinedList.push(entry);
   }
 
-  // Add expansion parts
+  // Add Phase 56A expansion parts
   for (const entry of expansion.list) {
+    if (!combinedMap.has(entry.part_number)) {
+      if (combinedList.length >= MAX_TOTAL_INDEXABLE_PARTS) {
+        console.error(`[PartIndexationRegistry] Hard stop: Total indexable parts exceeds ${MAX_TOTAL_INDEXABLE_PARTS}`);
+        break;
+      }
+      combinedMap.set(entry.part_number, entry);
+      combinedList.push(entry);
+    }
+  }
+
+  // Add Phase 56D Wave 2 parts
+  for (const entry of wave2.list) {
     if (!combinedMap.has(entry.part_number)) {
       if (combinedList.length >= MAX_TOTAL_INDEXABLE_PARTS) {
         console.error(`[PartIndexationRegistry] Hard stop: Total indexable parts exceeds ${MAX_TOTAL_INDEXABLE_PARTS}`);
@@ -252,6 +324,24 @@ export function getExpansionCohortList() {
 }
 
 /**
+ * Returns Phase 56D Wave 2 cohort list only.
+ * @returns {Array<Object>}
+ */
+export function getWave2CohortList() {
+  const { list } = loadWave2Config();
+  return list;
+}
+
+/**
+ * Returns Phase 56D Wave 2 cohort set only.
+ * @returns {Set<string>}
+ */
+export function getWave2CohortSet() {
+  const { map } = loadWave2Config();
+  return new Set(map.keys());
+}
+
+/**
  * Resets all caches (for testing and hot-reloading).
  */
 export function resetRegistryCache() {
@@ -259,6 +349,8 @@ export function resetRegistryCache() {
   cachedPilotMap = null;
   cachedExpansionList = null;
   cachedExpansionMap = null;
+  cachedWave2List = null;
+  cachedWave2Map = null;
   cachedCombinedList = null;
   cachedCombinedMap = null;
 }
