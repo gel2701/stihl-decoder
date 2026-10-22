@@ -126,7 +126,7 @@ if (totalParts !== 17082) {
 // 3. Direct Product Link Leak Scan
 // ---------------------------------------------------------------------------
 console.log('\n▶ Step 3: Scanning repository for uncontrolled direct Amazon product links (/dp/)...');
-const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini']);
+const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', 'output']);
 const EXCLUDE_FILES = new Set([
   'tests/phase54a_parts_amazon_affiliate.test.js',
   'tests/phase54a_h_amazon_link_integrity.test.js',

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56C",
+  "generated_at": "2026-10-22T00:02:53.220Z",
+  "tool_script": "scripts/import_verified_amazon_offers.mjs",
+  "supported_input_formats": [
+    "JSON",
+    "CSV"
+  ],
+  "intake_validation_rules": {
+    "canonical_part_number_format": "Normalized 11 digits",
+    "catalog_existence_check": "Mandatory match against data/parts_catalog.json",
+    "asin_format": "10-character alphanumeric uppercase",
+    "allowed_marketplaces": [
+      "amazon.nl",
+      "amazon.de",
+      "amazon.com"
+    ],
+    "duplicate_part_detection": "Rejects candidate if part already mapped in offers or batch",
+    "duplicate_asin_detection": "Rejects candidate if ASIN already mapped in offers or batch",
+    "classification_gates": [
+      "OEM_STIHL_EXACT",
+      "AFTERMARKET_EXACT_REFERENCE"
+    ],
+    "disallowed_classifications": [
+      "AMBIGUOUS",
+      "REJECTED",
+      "NOT_FOUND"
+    ],
+    "evidence_provenance": "Mandatory evidence_source URL and valid ISO 8601 timestamp",
+    "volatile_facts_prohibition": "price and in_stock must be null (cannot store dynamic claims)",
+    "fail_closed_atomicity": "Rejects full batch and executes ZERO writes if any record is invalid/duplicate/ambiguous",
+    "dry_run_support": "--dry-run flag supported"
+  },
+  "target_file": "data/affiliate/amazon_part_offers.json",
+  "current_verified_offers_count": 0,
+  "intake_ready": true
+}

@@ -193,6 +193,8 @@ export class AmazonExactMatchVerifier {
     }
 
     // Default Fail-Closed: Zero guessing
+    const defaultTag = process.env.AMAZON_ASSOCIATE_TAG || null;
+    const tagParam = defaultTag ? `&tag=${encodeURIComponent(defaultTag)}` : '';
     return {
       part_number: normPart,
       part_number_display: queueItem.part_number_display || PartNormalizer.formatPartNumber(normPart),
@@ -203,7 +205,7 @@ export class AmazonExactMatchVerifier {
       reason: 'Geen officiële Amazon API of geverifieerde ASIN-bron met 100% bewezen STIHL-onderdeelnummerkoppeling beschikbaar in deze omgeving.',
       verified_asin: null,
       affiliate_action: 'SEARCH_FALLBACK_ONLY',
-      search_url: `https://www.amazon.nl/s?k=STIHL+${PartNormalizer.formatPartNumber(normPart)}&tag=stihldecoder-21`
+      search_url: `https://www.amazon.nl/s?k=STIHL+${PartNormalizer.formatPartNumber(normPart)}${tagParam}`
     };
   }
 }

@@ -68,7 +68,8 @@ const WHITELISTED_METADATA_KEYS = [
   'product_verified',
   'seo_tier',
   'commercial_tier',
-  'match_type'
+  'match_type',
+  'query_variant'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;
