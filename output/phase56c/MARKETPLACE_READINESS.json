@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56C",
+  "generated_at": "2026-10-22T00:02:53.220Z",
+  "marketplaces": {
+    "amazon.nl": {
+      "status": "ACTIVE_PRIMARY",
+      "associate_tag": "srihldecoder2-21",
+      "coverage": "17,082 / 17,082 parts (100%)",
+      "cta_label": "Bekijk op Amazon.nl"
+    },
+    "amazon.de": {
+      "status": "SUPPORTED_OPTIONAL",
+      "env_variable": "AMAZON_ASSOCIATE_TAG_DE",
+      "current_production_state": "DISABLED (No regional tag configured)",
+      "fail_closed_verified": true,
+      "cta_label": "Zoek op Amazon.de"
+    },
+    "amazon.com": {
+      "status": "SUPPORTED_OPTIONAL",
+      "env_variable": "AMAZON_ASSOCIATE_TAG_COM",
+      "current_production_state": "DISABLED",
+      "fail_closed_verified": true
+    }
+  },
+  "cross_border_policy": "Never reuse NL associate tag on DE marketplace. Require explicit regional tag."
+}

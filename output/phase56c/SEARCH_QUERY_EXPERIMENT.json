@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56C",
+  "generated_at": "2026-10-22T00:02:53.218Z",
+  "total_parts": 17082,
+  "variants": {
+    "VARIANT_A": {
+      "description": "STIHL <formatted part number>",
+      "example": "STIHL 1123 160 2050",
+      "count": 8518,
+      "percentage": "49.87%",
+      "samples": [
+        {
+          "part_number": "00000071043",
+          "formatted": "0000 007 1043",
+          "query": "STIHL 0000 007 1043"
+        },
+        {
+          "part_number": "00000071300",
+          "formatted": "0000 007 1300",
+          "query": "STIHL 0000 007 1300"
+        },
+        {
+          "part_number": "00000071902",
+          "formatted": "0000 007 1902",
+          "query": "STIHL 0000 007 1902"
+        },
+        {
+          "part_number": "00000820416",
+          "formatted": "0000 082 0416",
+          "query": "STIHL 0000 082 0416"
+        },
+        {
+          "part_number": "00000820427",
+          "formatted": "0000 082 0427",
+          "query": "STIHL 0000 082 0427"
+        }
+      ]
+    },
+    "VARIANT_B": {
+      "description": "STIHL <compact part number>",
+      "example": "STIHL 11231602050",
+      "count": 8564,
+      "percentage": "50.13%",
+      "samples": [
+        {
+          "part_number": "00000071044",
+          "formatted": "0000 007 1044",
+          "query": "STIHL 00000071044"
+        },
+        {
+          "part_number": "00000071800",
+          "formatted": "0000 007 1800",
+          "query": "STIHL 00000071800"
+        },
+        {
+          "part_number": "00000073600",
+          "formatted": "0000 007 3600",
+          "query": "STIHL 00000073600"
+        },
+        {
+          "part_number": "00000820413",
+          "formatted": "0000 082 0413",
+          "query": "STIHL 00000820413"
+        },
+        {
+          "part_number": "00000820415",
+          "formatted": "0000 082 0415",
+          "query": "STIHL 00000820415"
+        }
+      ]
+    }
+  },
+  "split_type": "DETERMINISTIC_HASH_50_50",
+  "hash_algorithm": "(hash * 31 + charCode) >>> 0 mod 2",
+  "stability": "STABLE_PER_PART (Zero random variance per pageview)",
+  "tracked_parameters": [
+    "part_number",
+    "query_variant",
+    "marketplace",
+    "seo_tier",
+    "commercial_tier",
+    "source_page"
+  ],
+  "conversion_reporting_readiness": "DATA_NOT_YET_MATURE"
+}

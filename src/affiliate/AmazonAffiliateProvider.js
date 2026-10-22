@@ -17,6 +17,28 @@ export const VERIFICATION_STATUSES = {
   VERIFIED_EXACT_MATCH: 'VERIFIED_EXACT_MATCH'
 };
 
+export const QUERY_VARIANTS = {
+  VARIANT_A: 'VARIANT_A', // STIHL <formatted part number>, e.g. "STIHL 1123 160 2050"
+  VARIANT_B: 'VARIANT_B'  // STIHL <compact part number>, e.g. "STIHL 11231602050"
+};
+
+/**
+ * Deterministically computes query variant for a given canonical part number.
+ * Yields exactly ~50/50 distribution across canonical parts.
+ *
+ * @param {string} partNumber
+ * @returns {string} 'VARIANT_A' | 'VARIANT_B'
+ */
+export function getDeterministicQueryVariant(partNumber) {
+  const norm = PartNormalizer.normalizePartNumber(partNumber);
+  if (!norm) return QUERY_VARIANTS.VARIANT_A;
+  let hash = 0;
+  for (let i = 0; i < norm.length; i++) {
+    hash = (hash * 31 + norm.charCodeAt(i)) >>> 0;
+  }
+  return (hash % 2 === 0) ? QUERY_VARIANTS.VARIANT_B : QUERY_VARIANTS.VARIANT_A;
+}
+
 export const ALLOWED_AMAZON_MARKETPLACES = new Set([
   'amazon.nl',
   'amazon.de',
@@ -132,13 +154,18 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
   }
 
   /**
-   * Builds safe, encoded Amazon search URL.
+   * Builds safe, encoded Amazon search URL with deterministic A/B query variant.
    * @param {string} canonicalPartNumber
    * @param {string} tag
+   * @param {string} [queryVariant]
    * @returns {string}
    */
-  buildSearchUrl(canonicalPartNumber, tag) {
-    const query = `STIHL ${canonicalPartNumber}`;
+  buildSearchUrl(canonicalPartNumber, tag, queryVariant = null) {
+    const variant = queryVariant || getDeterministicQueryVariant(canonicalPartNumber);
+    const formattedPartNumber = PartNormalizer.formatPartNumber(canonicalPartNumber);
+    const query = (variant === QUERY_VARIANTS.VARIANT_A)
+      ? `STIHL ${formattedPartNumber}`
+      : `STIHL ${canonicalPartNumber}`;
     const params = new URLSearchParams();
     params.set('k', query);
     params.set('tag', tag);
@@ -224,6 +251,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
           title: manualOverride.title || (params.partName ? `STIHL ${params.partName} (${formattedPartNumber})` : `STIHL ${formattedPartNumber}`),
           price: null,
           currency: 'EUR',
+          in_stock: null,
           image_url: manualOverride.image_url || null,
           match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
           is_verified: true,
@@ -241,9 +269,10 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
     }
 
     // 2. Safe deterministic Amazon search link fallback
-    const searchUrl = this.buildSearchUrl(canonicalPartNumber, defaultTag);
+    const queryVariant = params.queryVariant || getDeterministicQueryVariant(canonicalPartNumber);
+    const searchUrl = this.buildSearchUrl(canonicalPartNumber, defaultTag, queryVariant);
     const displayMarketplace = this.marketplace.charAt(0).toUpperCase() + this.marketplace.slice(1);
-    return [{
+    const offers = [{
       provider: 'amazon',
       marketplace: this.marketplace,
       part_number: canonicalPartNumber,
@@ -251,11 +280,13 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       tag: defaultTag,
       url: searchUrl,
       affiliate_url: searchUrl,
+      query_variant: queryVariant,
       title: params.partName
         ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op ${displayMarketplace}`
         : `Zoek STIHL ${formattedPartNumber} op ${displayMarketplace}`,
       price: null,
       currency: 'EUR',
+      in_stock: null,
       image_url: null,
       match_type: AMAZON_MATCH_TYPES.SEARCH_LINK,
       is_verified: false,
@@ -269,5 +300,47 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       rel: 'sponsored nofollow noopener',
       target: '_blank'
     }];
+
+    // 3. Optional secondary Amazon.de search offer (ONLY if explicit regional AMAZON_ASSOCIATE_TAG_DE is set)
+    const deTag = this.getAssociateTag('amazon.de');
+    if (deTag && this.marketplace !== 'amazon.de') {
+      const deQuery = (queryVariant === QUERY_VARIANTS.VARIANT_A)
+        ? `STIHL ${formattedPartNumber}`
+        : `STIHL ${canonicalPartNumber}`;
+      const deParams = new URLSearchParams();
+      deParams.set('k', deQuery);
+      deParams.set('tag', deTag);
+      const deSearchUrl = `https://amazon.de/s?${deParams.toString()}`;
+      offers.push({
+        provider: 'amazon',
+        marketplace: 'amazon.de',
+        part_number: canonicalPartNumber,
+        asin: null,
+        tag: deTag,
+        url: deSearchUrl,
+        affiliate_url: deSearchUrl,
+        query_variant: queryVariant,
+        title: params.partName
+          ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op Amazon.de`
+          : `Zoek STIHL ${formattedPartNumber} op Amazon.de`,
+        price: null,
+        currency: 'EUR',
+        in_stock: null,
+        image_url: null,
+        match_type: AMAZON_MATCH_TYPES.SEARCH_LINK,
+        is_verified: false,
+        verification_status: null,
+        verified_at: null,
+        confidence: 'SEARCH_FALLBACK',
+        label: 'Zoek op Amazon.de',
+        badge_label: 'Amazon.de zoekopdracht',
+        cta_aria_label: `Zoek STIHL onderdeel ${formattedPartNumber} op Amazon.de`,
+        description: `Zoek op Amazon.de naar STIHL onderdeel ${formattedPartNumber}. De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd.`,
+        rel: 'sponsored nofollow noopener',
+        target: '_blank'
+      });
+    }
+
+    return offers;
   }
 }

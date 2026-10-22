@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56C",
+  "generated_at": "2026-10-22T00:02:53.221Z",
+  "events": {
+    "amazon_search_fallback_click": {
+      "trigger": "Click on search fallback CTA link on part detail page",
+      "whitelisted_metadata": [
+        "part_number",
+        "marketplace",
+        "query_variant",
+        "seo_tier",
+        "commercial_tier",
+        "model",
+        "page_path"
+      ],
+      "privacy_policy": "ZERO PII. Non-reversible metadata only."
+    },
+    "amazon_verified_product_click": {
+      "trigger": "Click on verified exact match direct ASIN link",
+      "whitelisted_metadata": [
+        "part_number",
+        "marketplace",
+        "match_type",
+        "asin_if_known",
+        "product_verified",
+        "seo_tier",
+        "commercial_tier",
+        "model",
+        "page_path"
+      ],
+      "privacy_policy": "ZERO PII."
+    },
+    "affiliate_click": {
+      "trigger": "Generic outbound redirect event emitted at /api/affiliate/out",
+      "whitelisted_metadata": [
+        "provider",
+        "marketplace",
+        "offer_type",
+        "part_number",
+        "model",
+        "query_variant",
+        "seo_tier",
+        "commercial_tier",
+        "page_path"
+      ]
+    }
+  },
+  "commercial_reporting_schema": {
+    "status": "DATA_NOT_YET_MATURE",
+    "reason": "Production affiliate tracking recently deployed; zero real user conversions recorded yet",
+    "metrics_definitions": {
+      "part_page_views": "Total views of part detail pages (indexable + non-indexable)",
+      "amazon_clicks": "Total outbound clicks to Amazon via /api/affiliate/out",
+      "click_through_rate": "amazon_clicks / part_page_views",
+      "clicks_by_commercial_tier": "Breakdown of clicks across COMMERCIAL_HIGH, COMMERCIAL_MEDIUM, COMMERCIAL_LOW",
+      "clicks_by_seo_tier": "Breakdown of clicks across SEO_TIER_A, SEO_TIER_C",
+      "clicks_by_query_variant": "Variant A (formatted) vs Variant B (compact)",
+      "clicks_by_marketplace": "Amazon.nl vs Amazon.de",
+      "clicks_by_match_type": "SEARCH_LINK vs MANUAL_ASIN"
+    }
+  }
+}

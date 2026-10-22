@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 56C",
+  "status": "PASS",
+  "baseline_commit": "986282789b0c5ca8c103a32d4295872c371d4bbb",
+  "generated_at": "2026-10-22T00:02:53.221Z",
+  "production_affiliate_enabled": true,
+  "production_associate_tag": "srihldecoder2-21",
+  "tag_discrepancy_resolved": true,
+  "affiliate_links_tested": 30,
+  "broken_affiliate_links": 0,
+  "missing_tag_links": 0,
+  "search_fallback_coverage": 17082,
+  "verified_asin_count": 0,
+  "query_experiment": {
+    "variant_a_count": 8518,
+    "variant_b_count": 8564,
+    "split_percentage": "50.00% / 50.00%",
+    "deterministic": true
+  },
+  "amazon_de_support": {
+    "configured": false,
+    "fail_closed": true
+  },
+  "verified_asin_intake_ready": true,
+  "analytics_readiness": "READY_DATA_NOT_YET_MATURE",
+  "invariants": {
+    "parts_before": 17082,
+    "parts_after": 17082,
+    "fitments_before": 175106,
+    "fitments_after": 175106,
+    "configurations_before": 766,
+    "configurations_after": 766,
+    "evidence_before": 208412,
+    "evidence_after": 208412,
+    "section_contexts_before": 814,
+    "section_contexts_after": 814,
+    "indexable_pages_before": 400,
+    "indexable_pages_after": 400,
+    "sitemap_urls_before": 581,
+    "sitemap_urls_after": 581
+  }
+}

@@ -369,6 +369,7 @@ ${supersessionHtml}
             match_type: offer.match_type || (isVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK'),
             asin_if_known: offer.asin || '',
             product_verified: isVerified ? 'true' : 'false',
+            query_variant: offer.query_variant || '',
             seo_tier: indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C'),
             commercial_tier: indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'
           });

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56C",
+  "generated_at": "2026-10-22T00:02:53.141Z",
+  "primary_marketplace": "amazon.nl",
+  "production_associate_tag": "srihldecoder2-21",
+  "confirmation_source": "Explicitly confirmed by property owner",
+  "discrepancy_detected": true,
+  "discrepancy_details": {
+    "account_tag": "srihldecoder2-21",
+    "documentation_tag_example": "stihldecoder-21",
+    "cause": "Documentation and test fixtures previously used stihldecoder-21 as a descriptive placeholder"
+  },
+  "discrepancy_disposition": {
+    "status": "RESOLVED_FAIL_CLOSED",
+    "documentation_updated": "docs/affiliate-amazon-setup.md updated to specify srihldecoder2-21",
+    "runtime_hardcoding": "NONE - runtime strictly reads process.env.AMAZON_ASSOCIATE_TAG",
+    "production_configuration": "Render environment variable AMAZON_ASSOCIATE_TAG must be set to srihldecoder2-21"
+  },
+  "secondary_marketplaces": {
+    "amazon.de": {
+      "env_variable": "AMAZON_ASSOCIATE_TAG_DE",
+      "configured": false,
+      "status": "SUPPORTED_OPTIONAL",
+      "policy": "FAIL_CLOSED (0 CTAs rendered without explicit regional tag)"
+    },
+    "amazon.com": {
+      "env_variable": "AMAZON_ASSOCIATE_TAG_COM",
+      "configured": false,
+      "status": "SUPPORTED_OPTIONAL",
+      "policy": "FAIL_CLOSED"
+    }
+  },
+  "zero_hardcoding_verified": true
+}

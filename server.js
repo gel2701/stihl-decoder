@@ -639,6 +639,7 @@ const server = http.createServer(async (req, res) => {
     const commercialTierParam = urlObj.searchParams.get('commercial_tier') || null;
     const modelParam = urlObj.searchParams.get('model') || null;
     const matchTypeParam = urlObj.searchParams.get('match_type') || matchedOffer?.match_type || offerType || (productVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+    const queryVariantParam = urlObj.searchParams.get('query_variant') || matchedOffer?.query_variant || null;
 
     // 1. General affiliate click event
     logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
@@ -651,6 +652,7 @@ const server = http.createServer(async (req, res) => {
       destination_url: parsedTarget.href,
       part_number: resolvedPartNumber,
       model: modelParam,
+      query_variant: queryVariantParam,
       page_path: pagePath,
       source_page: pagePath,
       seo_tier: seoTierParam,
@@ -673,6 +675,7 @@ const server = http.createServer(async (req, res) => {
         destination_url: parsedTarget.href,
         part_number: resolvedPartNumber,
         model: modelParam,
+        query_variant: queryVariantParam,
         page_path: pagePath,
         source_page: pagePath,
         seo_tier: seoTierParam,

@@ -20,7 +20,7 @@ In het Render Dashboard onder **Environment Variables**:
 | Variabele | Waarde (Voorbeeld) | Beschrijving |
 | :--- | :--- | :--- |
 | `AMAZON_AFFILIATE_ENABLED` | `true` | Feature flag om de affiliate-sectie te activeren op onderdeelpagina's. |
-| `AMAZON_ASSOCIATE_TAG` | `stihldecoder-21` | Uw unieke Amazon PartnerNet tracking-ID (Associate Tag) voor de primaire markt (Amazon.nl). |
+| `AMAZON_ASSOCIATE_TAG` | `srihldecoder2-21` | Bevestigde productie Amazon PartnerNet tracking-ID (Associate Tag) voor Amazon.nl. |
 | `AMAZON_ASSOCIATE_TAG_DE` | `stihldecoder-de-21` | *(Optioneel)* Regionale Associate Tag voor Amazon.de. |
 | `AMAZON_ASSOCIATE_TAG_COM`| `stihldecoder-com-20`| *(Optioneel)* Regionale Associate Tag voor Amazon.com. |
 
