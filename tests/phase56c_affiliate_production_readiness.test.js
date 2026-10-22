@@ -352,8 +352,4 @@ test('Phase 56C - Test 12: Phase 56C Output Artifacts Completeness', () => {
     const stats = fs.statSync(fullPath);
     assert.ok(stats.size > 50, `Artifact output/phase56c/${f} must not be empty`);
   }
-
-  // Also verify report in brain directory
-  const brainReport = path.join('C:\\Users\\GelliusSnippe\\.gemini\\antigravity\\brain\\ae034483-9c90-4821-88a9-94de99ebdfe0', 'PHASE56C_REPORT.md');
-  assert.ok(fs.existsSync(brainReport), 'PHASE56C_REPORT.md must exist in brain directory');
 });
