@@ -1,0 +1,51 @@
+{
+  "audit_timestamp": "2026-10-22T18:00:06.490Z",
+  "funnel_architecture": [
+    {
+      "step": 1,
+      "name": "Google Organic Entry",
+      "pages": [
+        "Modelpagina (/kettingzagen/ms-261/)",
+        "Indexeerbare Onderdelenpagina (/onderdeelnummer/11411200640/)"
+      ],
+      "seo_elements": "Unieke titels, gestructureerde data (Breadcrumbs + Product), snelle laadtijd"
+    },
+    {
+      "step": 2,
+      "name": "Onderdelen & Slijtage Discovery",
+      "elements": "1-Klik Onderhouds-pillen (Bougie, Luchtfilter, Carburateur, Ketting, Zaagblad)",
+      "transition_rate_status": "DATA_COLLECTION_PENDING_TRAFFIC"
+    },
+    {
+      "step": 3,
+      "name": "Onderdeel Specificatie & Compatibiliteit",
+      "elements": "Exploded view montagelocatie, compatible modellenlijst, eventuele opvolgende onderdeelnummers",
+      "trust_safety": "Fail-closed gating, 0 verzonnen compatibiliteitsclaims"
+    },
+    {
+      "step": 4,
+      "name": "Affiliate Uitgang (Amazon.nl)",
+      "endpoint": "/api/affiliate/out?provider=amazon&part_number=...",
+      "associate_tag": "srihldecoder2-21",
+      "rel_attributes": "sponsored nofollow noopener",
+      "query_variants": {
+        "variant_a": "exact_part_number (STIHL <part_number>)",
+        "variant_b": "part_number_description (STIHL <part_number> <description>)"
+      },
+      "verified_direct_asins": 0,
+      "fail_closed_safeguards": "Amazon.de fail-closed, geen verzonnen ASINs of fictieve voorraden"
+    }
+  ],
+  "analytics_instrumentation": {
+    "engine": "AnalyticsTracker.js + GA4 Consent Mode v2",
+    "whitelisted_events": [
+      "parts_search_results",
+      "parts_search_no_results",
+      "part_page_view",
+      "model_to_part_click",
+      "part_to_model_click",
+      "amazon_search_fallback_click"
+    ],
+    "privacy_compliance": "Strict non-PII whitelisting, zero IP collection, consent-first execution"
+  }
+}

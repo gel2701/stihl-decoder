@@ -68,6 +68,10 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
     textSearchResults = PartCatalogResolver.searchParts(rawQuery, 30, { database, modelId: options.modelId });
   }
 
+  const searchSuggestions = (searched && !exactMatchResult && modelMatches.length === 0 && textSearchResults.length === 0)
+    ? PartCatalogResolver.getSearchSuggestions(rawQuery)
+    : null;
+
   const pageTitle = searched
     ? `STIHL Onderdelen Zoeken: "${rawQuery}" | STIHLDecoder`
     : `STIHL Onderdelen Zoeken & Explosietekeningen Catalogus | STIHLDecoder`;
@@ -239,12 +243,22 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
       </div>
       ` : (isPartNumberQuery ? `
       <!-- Part Number Not Found Banner -->
-      <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 text-center space-y-2">
+      <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 text-center space-y-3">
         <span class="text-3xl">⚠️</span>
         <h2 class="text-lg font-bold text-white">Geen Exacte Match voor "${rawQuery}"</h2>
         <p class="text-xs text-gray-400 max-w-xl mx-auto">
           Het nummer <strong>${normPartNo}</strong> is een geldig 11-cijferig formaat, maar komt niet voor in de actuele canonieke STIHL-catalogus. Controleer het nummer op de originele verpakking of het oude onderdeel.
         </p>
+        <div class="pt-2 space-y-2">
+          <span class="text-2xs uppercase tracking-wider text-gray-400 font-mono block">Zoek op veelgezochte categorieën:</span>
+          <div class="flex flex-wrap justify-center gap-2">
+            ${['Bougie', 'Luchtfilter', 'Carburateur', 'Zaagketting', 'Zaagblad'].map(chip => `
+              <a href="/onderdelen/?q=${encodeURIComponent(chip)}" class="px-3 py-1 rounded-lg bg-gray-950 border border-gray-800 hover:border-orange-500/50 text-xs text-gray-300 hover:text-white transition">
+                ${chip}
+              </a>
+            `).join('')}
+          </div>
+        </div>
       </div>
       ` : '')}
 
@@ -320,13 +334,36 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
         </div>
       </div>
       ` : (!exactMatchResult && modelMatches.length === 0 && !isPartNumberQuery ? `
-      <!-- No Results State -->
-      <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-8 text-center space-y-3">
+      <!-- No Results State with Helpful Suggestions (Phase 56F) -->
+      <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-8 text-center space-y-4">
         <span class="text-3xl">🔍</span>
         <h2 class="text-base font-bold text-white">Geen onderdelen gevonden voor "${rawQuery}"</h2>
         <p class="text-xs text-gray-400 max-w-md mx-auto">
-          Probeer een specifieker trefwoord, een exact 11-cijferig onderdeelnummer of selecteer een model uit onderstaande lijst.
+          We konden geen directe onderdelen vinden voor deze zoekterm. Controleer de spelling of kies uit de onderstaande suggesties:
         </p>
+
+        ${searchSuggestions?.suggestion ? `
+          <div class="pt-1">
+            <span class="text-xs text-gray-300">Bedoelde u misschien:</span>
+            <a href="/onderdelen/?q=${encodeURIComponent(searchSuggestions.suggestion)}" class="ml-2 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/40 text-xs font-bold hover:bg-orange-500/30 transition">
+              <span>💡 ${searchSuggestions.suggestion}</span>
+              <span>→</span>
+            </a>
+          </div>
+        ` : ''}
+
+        ${searchSuggestions?.chips && searchSuggestions.chips.length > 0 ? `
+          <div class="pt-2 space-y-2">
+            <span class="text-2xs uppercase tracking-wider text-gray-400 font-mono block">Veelgezochte categorieën & modellen:</span>
+            <div class="flex flex-wrap justify-center gap-2">
+              ${searchSuggestions.chips.map(chip => `
+                <a href="/onderdelen/?q=${encodeURIComponent(chip)}" class="px-3 py-1 rounded-lg bg-gray-950 border border-gray-800 hover:border-orange-500/50 text-xs text-gray-300 hover:text-white transition">
+                  ${chip}
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
       </div>
       ` : '')}
 
