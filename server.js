@@ -742,7 +742,22 @@ const server = http.createServer(async (req, res) => {
       }
       const q = urlObj.searchParams.get('q') || '';
       const partsHtml = renderPartsDiscoveryPageHtml(q, database, PRIMARY_ORIGIN);
-      logStihlEvent(EVENT_TYPES.PART_SEARCH, { query: q }, req.headers['user-agent']);
+      if (q && q.trim().length >= 2) {
+        const normNo = PartNormalizer.normalizePartNumber(q);
+        const searchRes = normNo ? [normNo] : PartCatalogResolver.searchParts(q, 1);
+        if (searchRes.length > 0) {
+          logStihlEvent(EVENT_TYPES.PARTS_SEARCH_RESULTS, {
+            query_type: normNo ? 'part_number' : 'text_search',
+            result_count: searchRes.length
+          }, req.headers['user-agent']);
+        } else {
+          logStihlEvent(EVENT_TYPES.PARTS_SEARCH_NO_RESULTS, {
+            query_type: 'unknown'
+          }, req.headers['user-agent']);
+        }
+      } else {
+        logStihlEvent(EVENT_TYPES.PART_SEARCH, { query: q }, req.headers['user-agent']);
+      }
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(partsHtml);
       return;
@@ -897,6 +912,7 @@ const server = http.createServer(async (req, res) => {
     if (cleanDigits.length === 11) {
       const partHtml = renderPartDetailPageHtml(cleanDigits, database, PRIMARY_ORIGIN);
       logStihlEvent(EVENT_TYPES.PART_SEARCH, { part_number: cleanDigits }, req.headers['user-agent']);
+      logStihlEvent(EVENT_TYPES.PART_PAGE_VIEW, { part_number: cleanDigits, page_path: pathname }, req.headers['user-agent']);
       const isIndexable = isPartIndexable(cleanDigits);
       const headers = { 'Content-Type': 'text/html; charset=UTF-8' };
       if (!isIndexable) {

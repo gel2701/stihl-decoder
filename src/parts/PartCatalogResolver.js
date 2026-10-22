@@ -285,6 +285,176 @@ function filterFitmentsForModel(allModelFitments, variantKey, configurationKey) 
   });
 }
 
+
+
+export const MULTILINGUAL_TECHNICAL_SYNONYMS = {
+  // Dutch -> English
+  'carburateur': 'carburetor',
+  'carburateurs': 'carburetor',
+  'koppeling': 'clutch',
+  'koppelingen': 'clutch',
+  'bougie': 'spark plug',
+  'bougies': 'spark plug',
+  'luchtfilter': 'air filter',
+  'luchtfilters': 'air filter',
+  'brandstoffilter': 'fuel filter',
+  'brandstoffilters': 'fuel filter',
+  'benzinefilter': 'fuel filter',
+  'benzinefilters': 'fuel filter',
+  'oliefilter': 'oil filter',
+  'oliefilters': 'oil filter',
+  'oliepomp': 'oil pump',
+  'oliepompen': 'oil pump',
+  'zaagblad': 'guide bar',
+  'zaagbladen': 'guide bar',
+  'zwaard': 'guide bar',
+  'zwaarden': 'guide bar',
+  'zaagketting': 'chain',
+  'zaagkettingen': 'chain',
+  'ketting': 'chain',
+  'kettingen': 'chain',
+  'kettingwiel': 'sprocket',
+  'kettingwielen': 'sprocket',
+  'tandwiel': 'sprocket',
+  'tandwielen': 'sprocket',
+  'rondsel': 'sprocket',
+  'startkoord': 'rope',
+  'startkoorden': 'rope',
+  'trekkoord': 'rope',
+  'trekkoorden': 'rope',
+  'starter': 'starter',
+  'starters': 'starter',
+  'trekstarter': 'starter',
+  'handstarter': 'starter',
+  'pakking': 'gasket',
+  'pakkingen': 'gasket',
+  'pakkingset': 'gasket set',
+  'membraan': 'diaphragm',
+  'membranen': 'diaphragm',
+  'membraanset': 'diaphragm',
+  'veer': 'spring',
+  'veren': 'spring',
+  'trekveer': 'spring',
+  'cilinder': 'cylinder',
+  'cilinders': 'cylinder',
+  'cilinderset': 'cylinder',
+  'zuiger': 'piston',
+  'zuigers': 'piston',
+  'zuigerveer': 'piston ring',
+  'zuigerveren': 'piston ring',
+  'uitlaat': 'muffler',
+  'uitlaten': 'muffler',
+  'demper': 'muffler',
+  'dempers': 'muffler',
+  'krukas': 'crankshaft',
+  'krukassen': 'crankshaft',
+  'kettingrem': 'chain brake',
+  'remband': 'brake band',
+  'ontsteking': 'ignition',
+  'ontstekingsmodule': 'ignition module',
+  'bobine': 'ignition module',
+  'vliegwiel': 'flywheel',
+  'kettingdeksel': 'clutch cover',
+  'koppelingsdeksel': 'clutch cover',
+  'handgreep': 'handle',
+  'beugelgreep': 'handlebar',
+  'handbeschermer': 'hand guard',
+  'schakelaar': 'switch',
+  'stopschakelaar': 'switch',
+  'gashendel': 'throttle trigger',
+  'gastrekker': 'throttle trigger',
+  'tankdop': 'filler cap',
+  'oliedop': 'oil cap',
+  'benzinedop': 'fuel cap',
+  'slang': 'hose',
+  'brandstofslang': 'fuel hose',
+  'olieslang': 'oil hose',
+  'aanzuigslang': 'intake hose',
+  'spruitstuk': 'manifold',
+  'keerring': 'oil seal',
+  'keerringen': 'oil seal',
+  'oliekering': 'oil seal',
+  'lager': 'bearing',
+  'lagers': 'bearing',
+  'kogellager': 'ball bearing',
+  'naaldlager': 'needle bearing',
+
+  // German -> English
+  'vergaser': 'carburetor',
+  'kupplung': 'clutch',
+  'kupplungen': 'clutch',
+  'fliehkraftkupplung': 'clutch',
+  'zündkerze': 'spark plug',
+  'zündkerzen': 'spark plug',
+  'kerze': 'spark plug',
+  'luftfilter': 'air filter',
+  'kraftstofffilter': 'fuel filter',
+  'benzinfilter': 'fuel filter',
+  'kraftstoffschlauch': 'fuel hose',
+  'benzinschlauch': 'fuel hose',
+  'ölfilter': 'oil filter',
+  'ölpumpe': 'oil pump',
+  'ölpumpen': 'oil pump',
+  'führungsschiene': 'guide bar',
+  'führungsschienen': 'guide bar',
+  'schwert': 'guide bar',
+  'schwerter': 'guide bar',
+  'sägekette': 'chain',
+  'sägeketten': 'chain',
+  'kette': 'chain',
+  'ketten': 'chain',
+  'kettenrad': 'sprocket',
+  'ritzel': 'sprocket',
+  'anwerfseil': 'rope',
+  'starterseil': 'rope',
+  'anwerfer': 'starter',
+  'seilzugstarter': 'starter',
+  'rückholfeder': 'rewind spring',
+  'dichtung': 'gasket',
+  'dichtungen': 'gasket',
+  'dichtsatz': 'gasket set',
+  'membran': 'diaphragm',
+  'membrane': 'diaphragm',
+  'membransatz': 'diaphragm',
+  'feder': 'spring',
+  'federn': 'spring',
+  'zylinder': 'cylinder',
+  'kolben': 'piston',
+  'kolbenring': 'piston ring',
+  'kolbenringe': 'piston ring',
+  'auspuff': 'muffler',
+  'schalldämpfer': 'muffler',
+  'kurbelwelle': 'crankshaft',
+  'kettenbremse': 'chain brake',
+  'bremsband': 'brake band',
+  'zündung': 'ignition',
+  'zündspule': 'ignition module',
+  'zündmodul': 'ignition module',
+  'polrad': 'flywheel',
+  'schwungrad': 'flywheel',
+  'kettenraddeckel': 'clutch cover',
+  'kupplungsdeckel': 'clutch cover',
+  'griffrahmen': 'handle',
+  'rohrgriff': 'handlebar',
+  'handschutz': 'hand guard',
+  'schalter': 'switch',
+  'stoppschalter': 'switch',
+  'gashebel': 'throttle trigger',
+  'gasbetätigung': 'throttle trigger',
+  'tankverschluss': 'filler cap',
+  'tankdeckel': 'filler cap',
+  'öldeckel': 'oil cap',
+  'kraftstoffdeckel': 'fuel cap',
+  'schlauch': 'hose',
+  'ansaugstutzen': 'manifold',
+  'krümmer': 'manifold',
+  'wellendichtring': 'oil seal',
+  'simmerring': 'oil seal',
+  'wellendichtringe': 'oil seal',
+  'kugellager': 'ball bearing',
+  'nadellager': 'needle bearing'
+};
+
 export class PartCatalogResolver {
   constructor(partsCatalog = null, fitments = null) {
     this.partsCatalog = Array.isArray(partsCatalog?.parts) ? partsCatalog.parts : (Array.isArray(partsCatalog) ? partsCatalog : null);
@@ -937,7 +1107,62 @@ export class PartCatalogResolver {
    * @param {number} [limit=30]
    * @returns {Array<Object>}
    */
-  static searchParts(query, limit = 30) {
+
+
+  /**
+   * Extracts model tokens and component keywords from a composite query.
+   * E.g. "MS 261 carburateur" -> { raw_model: "MS 261", canonical_model_id: "ms_261", component_query: "carburateur" }
+   */
+  static extractModelAndComponent(query) {
+    if (!query || typeof query !== 'string') return null;
+    const clean = query.trim();
+    const modelRegex = /\b((?:ms|fs|bg|br|ts|hs|sh|hl|ht|km|mm|bt|fr|re|se|gs|fsa|msa|hsa|bga|hla|tsa|sha|mse|hse|fse)\s*[0-9]{2,3}(?:\s+(?:c-m|c-be|c-b|c|t|tc-m|magnum|pro|r|rx|tx))?|0[0-9]{2})\b/i;
+    const match = clean.match(modelRegex);
+    if (!match) return null;
+
+    const rawModelStr = match[1].trim();
+    const componentStr = clean.replace(match[0], '').replace(/\s{2,}/g, ' ').trim();
+    let canonicalModelId = rawModelStr.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    const legacyAliases = {
+      '026': 'ms_260',
+      '020': 'ms_200',
+      '020_t': 'ms_200_t',
+      '021': 'ms_210',
+      '023': 'ms_230',
+      '025': 'ms_250',
+      '036': 'ms_360',
+      '044': 'ms_440',
+      '046': 'ms_460',
+      '066': 'ms_660',
+      '088': 'ms_880',
+      '029': 'ms_290',
+      '034': 'ms_340',
+      '038': 'ms_380',
+      '039': 'ms_390'
+    };
+    if (legacyAliases[canonicalModelId]) {
+      canonicalModelId = legacyAliases[canonicalModelId];
+    }
+
+    return {
+      raw_model: rawModelStr,
+      canonical_model_id: canonicalModelId,
+      component_query: componentStr
+    };
+  }
+
+  /**
+   * Searches canonical parts by query with exact part number, component keywords,
+   * multilingual Dutch and German synonyms, and model-specific scoping.
+   *
+   * @param {string} query
+   * @param {number} [limit=30]
+   * @param {Object} [options={}]
+   * @param {string} [options.modelId]
+   * @param {Object} [options.database]
+   * @returns {Array<Object>}
+   */
+  static searchParts(query, limit = 30, options = {}) {
     loadDefaultPartsData();
     if (!query || typeof query !== 'string') return [];
     const qClean = query.trim().toLowerCase();
@@ -954,43 +1179,51 @@ export class PartCatalogResolver {
       seen.add(norm);
     }
 
-    // Map common Dutch technical terms to English terms in catalog
-    const synonymMap = {
-      'carburateur': 'carburetor',
-      'carburateurs': 'carburetor',
-      'koppeling': 'clutch',
-      'koppelingen': 'clutch',
-      'bougie': 'spark plug',
-      'bougies': 'spark plug',
-      'luchtfilter': 'air filter',
-      'luchtfilters': 'air filter',
-      'brandstoffilter': 'fuel filter',
-      'brandstoffilters': 'fuel filter',
-      'oliefilter': 'oil filter',
-      'oliepomp': 'oil pump',
-      'oliepompen': 'oil pump',
-      'zaagblad': 'guide bar',
-      'zaagbladen': 'guide bar',
-      'zaagketting': 'chain',
-      'ketting': 'chain',
-      'kettingwiel': 'sprocket',
-      'startkoord': 'rope',
-      'startkoorden': 'rope',
-      'starter': 'starter',
-      'pakking': 'gasket',
-      'pakkingen': 'gasket',
-      'membraan': 'diaphragm',
-      'membranen': 'diaphragm',
-      'veer': 'spring',
-      'veren': 'spring'
-    };
-    const translated = synonymMap[qClean] || null;
+    // 2. Check for joint model + component query or options.modelId
+    const modelExtraction = PartCatalogResolver.extractModelAndComponent(qClean);
+    const targetModelId = options.modelId
+      ? options.modelId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')
+      : (modelExtraction && modelExtraction.component_query ? modelExtraction.canonical_model_id : null);
+    const componentTerm = options.modelId
+      ? qClean
+      : (modelExtraction && modelExtraction.component_query ? modelExtraction.component_query.toLowerCase() : qClean);
 
-    // 2. Text matches
+    // Resolve synonym
+    const translated = MULTILINGUAL_TECHNICAL_SYNONYMS[componentTerm] ||
+      (componentTerm.split(/\s+/).map(t => MULTILINGUAL_TECHNICAL_SYNONYMS[t]).filter(Boolean)[0]) ||
+      null;
+
+    if (targetModelId) {
+      // Search parts specifically for this model
+      const modelFitments = cachedFitmentsByModelMap?.get(targetModelId) || [];
+      const modelPartNumbers = new Set(modelFitments.map(f => f.part_number));
+
+      for (const pNo of modelPartNumbers) {
+        if (seen.has(pNo)) continue;
+        const p = cachedPartsMap?.get(pNo);
+        if (!p) continue;
+        const name = (p.part_name || '').toLowerCase();
+        if (name.includes(componentTerm) || (translated && name.includes(translated))) {
+          results.push({
+            ...p,
+            is_exact: false,
+            matched_model: targetModelId
+          });
+          seen.add(pNo);
+          if (results.length >= limit) break;
+        }
+      }
+
+      if (results.length > 0) {
+        return results;
+      }
+    }
+
+    // 3. Global text search across parts catalog
     for (const p of cachedPartsCatalog || []) {
       if (seen.has(p.part_number)) continue;
       const name = (p.part_name || '').toLowerCase();
-      if (name.includes(qClean) || (translated && name.includes(translated))) {
+      if (name.includes(componentTerm) || (translated && name.includes(translated))) {
         results.push({ ...p, is_exact: false });
         seen.add(p.part_number);
         if (results.length >= limit) break;

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56E",
+  "generated_at": "2026-10-22T01:21:53.998Z",
+  "data_maturity": "DATA_NOT_YET_MATURE",
+  "event_coverage": {
+    "parts_search_results": "parts_search_results",
+    "parts_search_no_results": "parts_search_no_results",
+    "model_to_part_click": "model_to_part_click",
+    "part_to_model_click": "part_to_model_click",
+    "part_page_view": "part_page_view",
+    "amazon_search_fallback_click": "amazon_search_fallback_click",
+    "amazon_verified_product_click": "amazon_verified_product_click"
+  },
+  "privacy_and_consent": {
+    "consent_mode_v2": true,
+    "non_pii_whitelisting": true,
+    "ip_anonymization": true
+  }
+}

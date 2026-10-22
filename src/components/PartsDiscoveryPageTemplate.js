@@ -64,27 +64,8 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
       return mNameClean.includes(cleanQ) || mSlugClean.includes(cleanQ);
     }).slice(0, 6);
 
-    // 3. Text search across parts catalog
-    if (options.db) {
-      try {
-        const textSql = `
-          SELECT p.part_number, p.part_number_display, p.part_name,
-                 COUNT(DISTINCT f.canonical_model_id) as model_count,
-                 f.section_name
-          FROM parts p
-          LEFT JOIN model_part_fitments f ON p.part_number = f.part_number
-          WHERE p.part_name LIKE ?
-          GROUP BY p.part_number
-          ORDER BY model_count DESC
-          LIMIT 30
-        `;
-        textSearchResults = options.db.prepare(textSql).all(`%${rawQuery}%`);
-      } catch (err) {
-        textSearchResults = PartCatalogResolver.searchParts(rawQuery, 30);
-      }
-    } else {
-      textSearchResults = PartCatalogResolver.searchParts(rawQuery, 30);
-    }
+    // 3. Multilingual Text Search with Dutch & German Synonyms across parts catalog
+    textSearchResults = PartCatalogResolver.searchParts(rawQuery, 30, { database, modelId: options.modelId });
   }
 
   const pageTitle = searched

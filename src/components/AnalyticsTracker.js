@@ -41,6 +41,10 @@ export const EVENT_TYPES = {
   INTERNAL_MODEL_SEARCH: 'internal_model_search',
   PART_PAGE_VIEW: 'part_page_view',
   MACHINE_TO_PART_CLICK: 'machine_to_part_click',
+  MODEL_TO_PART_CLICK: 'model_to_part_click',
+  PART_TO_MODEL_CLICK: 'part_to_model_click',
+  PARTS_SEARCH_RESULTS: 'parts_search_results',
+  PARTS_SEARCH_NO_RESULTS: 'parts_search_no_results',
   AMAZON_SEARCH_FALLBACK_CLICK: 'amazon_search_fallback_click',
   AMAZON_VERIFIED_PRODUCT_CLICK: 'amazon_verified_product_click'
 };
@@ -69,7 +73,12 @@ const WHITELISTED_METADATA_KEYS = [
   'seo_tier',
   'commercial_tier',
   'match_type',
-  'query_variant'
+  'query_variant',
+  'result_count',
+  'query_type',
+  'has_model_filter',
+  'search_query_normalized',
+  'matched_model'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

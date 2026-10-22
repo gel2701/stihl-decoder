@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "Phase 56E",
+  "generated_at": "2026-10-22T01:21:53.997Z",
+  "test_cases_total": 30,
+  "test_cases_passed": 30,
+  "test_cases_failed": 0,
+  "synonyms_supported": 162,
+  "dutch_synonyms_count": 53,
+  "german_synonyms_count": 52,
+  "results": [
+    {
+      "query": "11231602050",
+      "type": "compact_number",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "1123 160 2050",
+      "type": "formatted_number",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "  1123   160   2050  ",
+      "type": "whitespace_padded",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "1123-160-2050",
+      "type": "hyphenated_number",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "1123.160.2050",
+      "type": "dot_separated_number",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "STIHL 1123 160 2050",
+      "type": "brand_prefix_stihl",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "Stihl 11231602050",
+      "type": "brand_prefix_stihl_compact",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "Teilenummer 1123 160 2050",
+      "type": "brand_prefix_teilenummer",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "Onderdeel 1123 160 2050",
+      "type": "brand_prefix_onderdeel",
+      "normalized_number": "11231602050",
+      "match_count": 1,
+      "first_result": {
+        "part_number": "11231602050",
+        "part_name": "Stihl Clutch",
+        "is_exact": true,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "carburateur",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "11061200650",
+        "part_name": "Stihl Carburetor Lb-S9A",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "bougie",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "koppeling",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00009970911",
+        "part_name": "Stihl Clutch Spring",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "luchtfilter",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00001201653",
+        "part_name": "Stihl Air Filter, Wire Mesh",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "brandstoffilter",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00003501800",
+        "part_name": "Stihl 00003501800 In-Line Fuel Filter",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "zaagblad",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00007929170",
+        "part_name": "Stihl 00007929170 Chainsaw Guide Bar Cover Scabbard - 10\" / 25cm Length, 1.1 mm Groove Width",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "cilinder",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "11060292300",
+        "part_name": "Stihl Cylinder Gasket",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "uitlaat",
+      "type": "nl_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "11061400502",
+        "part_name": "Stihl Muffler",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "vergaser",
+      "type": "de_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "11061200650",
+        "part_name": "Stihl Carburetor Lb-S9A",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "zündkerze",
+      "type": "de_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "kupplung",
+      "type": "de_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00009970911",
+        "part_name": "Stihl Clutch Spring",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "schwert",
+      "type": "de_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00007929170",
+        "part_name": "Stihl 00007929170 Chainsaw Guide Bar Cover Scabbard - 10\" / 25cm Length, 1.1 mm Groove Width",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "auspuff",
+      "type": "de_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "11061400502",
+        "part_name": "Stihl Muffler",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "dichtung",
+      "type": "de_synonym",
+      "normalized_number": null,
+      "match_count": 10,
+      "first_result": {
+        "part_number": "00006792000",
+        "part_name": "Stihl 00006792000 Gasket",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "MS 261 carburateur",
+      "type": "joint_model_component",
+      "normalized_number": null,
+      "match_count": 2,
+      "first_result": {
+        "part_number": "11411200640",
+        "part_name": "Stihl Carburetor 1141/40",
+        "is_exact": false,
+        "matched_model": "ms_261"
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "026 bougie",
+      "type": "joint_legacy_model_component",
+      "normalized_number": null,
+      "match_count": 3,
+      "first_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "is_exact": false,
+        "matched_model": "ms_260"
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "026 zündkerze",
+      "type": "joint_legacy_model_de_component",
+      "normalized_number": null,
+      "match_count": 3,
+      "first_result": {
+        "part_number": "00004007000",
+        "part_name": "Spark plug NGK CMR6H",
+        "is_exact": false,
+        "matched_model": "ms_260"
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "FS 350 bougie",
+      "type": "joint_model_component",
+      "normalized_number": null,
+      "match_count": 1,
+      "first_result": {
+        "part_number": "41284051000",
+        "part_name": "Stihl Spark Plug Boot",
+        "is_exact": false,
+        "matched_model": "fs_350"
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "99999999999",
+      "type": "unknown_part_number",
+      "normalized_number": "99999999999",
+      "match_count": 0,
+      "first_result": null,
+      "status": "PASS"
+    },
+    {
+      "query": "1123",
+      "type": "too_short_numeric",
+      "normalized_number": null,
+      "match_count": 7,
+      "first_result": {
+        "part_number": "11230071004",
+        "part_name": "Stihl 11230071004 Spur Gear / Chain Adjusting Screw Kit MS180 / MS180C Chainsaw Parts  MS210 MS210C Chainsaw Parts     M",
+        "is_exact": false,
+        "matched_model": null
+      },
+      "status": "PASS"
+    },
+    {
+      "query": "112316020501",
+      "type": "too_long_numeric",
+      "normalized_number": null,
+      "match_count": 0,
+      "first_result": null,
+      "status": "PASS"
+    }
+  ]
+}
