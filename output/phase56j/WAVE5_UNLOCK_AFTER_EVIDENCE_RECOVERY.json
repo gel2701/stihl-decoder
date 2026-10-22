@@ -1,0 +1,1784 @@
+{
+  "phase": "PHASE_56J",
+  "artifact": "WAVE5_UNLOCK_AFTER_EVIDENCE_RECOVERY",
+  "mode": "READ_ONLY_DIAGNOSTIC_NO_WAVE5_ACTIVATION",
+  "seo_freeze_verified": {
+    "indexable_parts_before_56j": 843,
+    "indexable_parts_after_56j": 843,
+    "sitemap_urls_before_56j": 1024,
+    "sitemap_urls_after_56j": 1024,
+    "wave5_activated_in_56j": false
+  },
+  "unlock_metrics": {
+    "targets_evaluated": 110,
+    "before_section_count_1": 110,
+    "after_section_count_ge_2": 0,
+    "newly_h3_eligible_count": 0,
+    "newly_full_h1_to_h7_eligible_count": 0,
+    "commercial_high_unlocked_count": 0,
+    "wave5_ready_count": 0
+  },
+  "root_cause_finding": "All 110 high-value single-section parts have been exhaustively audited across all canonical SQLite tables, Phase 54F harvest ledgers (sparepartsworld + diyspareparts), and enrichment registries. Exactly 0 parts have a verifiable second section on a published model under strict exact-scope provenance contracts. Unlocking these 110 high-value parts for a future SEO Wave 5 requires new external diagram/IPL source harvesting for the remaining unresolved model fitments, rather than re-mining existing repository tables.",
+  "targets_evaluation": [
+    {
+      "part_number": "00004001306",
+      "clean_name": "Ontstekingsmodule",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Ignition"
+      ],
+      "current_seo_score": 53,
+      "score_if_second_section_unlocked": 68,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11210201217",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11210302001",
+      "clean_name": "Piston 44Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11210302003",
+      "clean_name": "Piston 44.7Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11210341505",
+      "clean_name": "Piston Pin 10X6X30",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11210343002",
+      "clean_name": "Piston Ring 44.7Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11210343010",
+      "clean_name": "Piston Ring 44X1.2Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11211401915",
+      "clean_name": "Carburettor Box Cover",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Shroud - Carburetor Cover"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11211401916",
+      "clean_name": "Carburettor Box Cover",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Shroud - Carburetor Cover"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11231400610",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11231400611",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11250201215",
+      "clean_name": "Cylinder And Piston 48Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11270201213",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11270201214",
+      "clean_name": "Cylinder And Piston 47Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11270201216",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11270201217",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11280201221",
+      "clean_name": "Cylinder And Piston 52Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11281400603",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11281400610",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11300201207",
+      "clean_name": "Cylinder And Piston 37Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11300201208",
+      "clean_name": "Cylinder And Piston 38Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11300802110",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11301240800",
+      "clean_name": "Air filter fleece",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter"
+      ],
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11301400608",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11301400613",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11301400614",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11330201200",
+      "clean_name": "Cylinder And Piston 44Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11330201202",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11330201203",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11331400600",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11400802105",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410071001",
+      "clean_name": "Rim Sprocket Kit 3/8\" 7T",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Oil Pump. Clutch"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410071002",
+      "clean_name": "Rim Sprocket Kit .325\" 7T",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Oil Pump. Clutch"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410071003",
+      "clean_name": "Rim Sprocket Kit 0.325\" 8T",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Oil Pump. Clutch"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410071007",
+      "clean_name": "Rim Sprocket Kit 3/8\"P 7 Teeth",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Oil Pump. Clutch"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410201200",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410290500",
+      "clean_name": "Pakking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410292302",
+      "clean_name": "Cylinder Gasket",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410300400",
+      "clean_name": "Krukas",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410341502",
+      "clean_name": "Piston Pin 10X6X32",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11410801806",
+      "clean_name": "Fan Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11411400631",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11414001200",
+      "clean_name": "Vliegwiel",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Ignition System"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11414001331",
+      "clean_name": "Ontstekingsmodule",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Ignition System"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11416403200",
+      "clean_name": "Oliepomp",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "oliepompen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Oil Pump. Clutch"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11426401706",
+      "clean_name": "Kettingwieldeksel",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Chain Sprocket Cover"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11441200614",
+      "clean_name": "Carburetor Wj-143A",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Carburetor WJ-143"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11446401700",
+      "clean_name": "Kettingwieldeksel",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Chain Sprocket Cover"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "11446401705",
+      "clean_name": "Kettingwieldeksel",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "kettingwielen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Chain Sprocket Cover"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "41371801100",
+      "clean_name": "Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "H-Two-Handed Handle Bar"
+      ],
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "41401801104",
+      "clean_name": "Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "TWO-HANDED Handle Bar 2"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "41401801109",
+      "clean_name": "Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "TWO-HANDED Handle Bar 1"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "41406400110",
+      "clean_name": "Gear Head",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "maaikopcomponenten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head - Deflector"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "41476400112",
+      "clean_name": "Gear Head",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "maaikopcomponenten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42037004104",
+      "clean_name": "Fan Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Fan Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42280300402",
+      "clean_name": "Krukas",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase - Cylinder"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42280801800",
+      "clean_name": "Fan Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter - Handle Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42280802100",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter - Handle Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42280802101",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter - Handle Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281241500",
+      "clean_name": "Prefilter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter - Fuel Tank"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281290905",
+      "clean_name": "Pakking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter - Fuel Tank"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281402850",
+      "clean_name": "Filter Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter - Fuel Tank"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281410500",
+      "clean_name": "Filter Cover",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter - Fuel Tank"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281410502",
+      "clean_name": "Filter Cover",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter - Fuel Tank"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281602000",
+      "clean_name": "Koppeling",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "koppelingen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Ignition System - Muffler"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281602901",
+      "clean_name": "Koppelingstrommel",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "koppelingen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281625400",
+      "clean_name": "Brake Band",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "rem & kettingspanner",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281801101",
+      "clean_name": "Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter - Handle Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42281821000",
+      "clean_name": "Throttle Trigger",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Rewind Starter - Handle Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42286490301",
+      "clean_name": "Pakking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42286490302",
+      "clean_name": "Pakking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42411400601",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Ignition System"
+      ],
+      "current_seo_score": 44,
+      "score_if_second_section_unlocked": 59,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42411401002",
+      "clean_name": "Filter Cover",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter a"
+      ],
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42411402803",
+      "clean_name": "Filter Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter a"
+      ],
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42411821001",
+      "clean_name": "Throttle Trigger",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Handle Frame"
+      ],
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42414001320",
+      "clean_name": "Ontstekingsmodule",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Ignition System"
+      ],
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42417004100",
+      "clean_name": "Fan Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Fan Housing"
+      ],
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42417010700",
+      "clean_name": "Fan Housing, Outer",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Fan Housing Outer"
+      ],
+      "current_seo_score": 45,
+      "score_if_second_section_unlocked": 60,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42820071021",
+      "clean_name": "Filter Housing Kit",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42820073600",
+      "clean_name": "Set Of Pickup Bodies",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "brandstofcomponenten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Fuel Tank"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42820201200",
+      "clean_name": "Cylinder And Piston 50Mm",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42820290500",
+      "clean_name": "Pakking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Valve Timing Gear"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42820300404",
+      "clean_name": "Krukas",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "cilinder & zuiger",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821207100",
+      "clean_name": "Throttle Shaft With Lever",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Carburetor C1Q-S99"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821212900",
+      "clean_name": "Choke Shutter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Carburetor C1Q-S99"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821213000",
+      "clean_name": "Choke Shaft",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Carburetor C1Q-S99"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821213300",
+      "clean_name": "Throttle Shutter",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Carburetor C1Q-S99"
+      ],
+      "current_seo_score": 48,
+      "score_if_second_section_unlocked": 63,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821213500",
+      "clean_name": "Throttle Lever",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Carburetor C1Q-S99"
+      ],
+      "current_seo_score": 48,
+      "score_if_second_section_unlocked": 63,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821400603",
+      "clean_name": "Uitlaat",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "uitlaten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821401003",
+      "clean_name": "Filter Cover",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821402851",
+      "clean_name": "Filter Housing",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "filters",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Air Filter"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821458100",
+      "clean_name": "Exhaust Deflector",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "maaikopcomponenten",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821801100",
+      "clean_name": "Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Control Handle"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42821801103",
+      "clean_name": "Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Control Handle"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42824001308",
+      "clean_name": "Ontstekingsmodule",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "ontsteking",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Muffler"
+      ],
+      "current_seo_score": 43,
+      "score_if_second_section_unlocked": 58,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42827010701",
+      "clean_name": "Fan Housing, Outer",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "starterdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Fan Housing"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42827904901",
+      "clean_name": "Control Handle With Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Control Handle"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42827904902",
+      "clean_name": "Control Handle With Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Control Handle"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "42837901300",
+      "clean_name": "Control Handle With Throttle Cable",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "carburateurdelen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Control Handle"
+      ],
+      "current_seo_score": 39,
+      "score_if_second_section_unlocked": 54,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "95030030060",
+      "clean_name": "Grooved Ball Bearing Din625-629-C3",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Gear Head - Deflector"
+      ],
+      "current_seo_score": 54,
+      "score_if_second_section_unlocked": 69,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "95030030242",
+      "clean_name": "Grooved Ball Bearing Din625-6201",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "A-Crankcase, Cylinder"
+      ],
+      "current_seo_score": 58,
+      "score_if_second_section_unlocked": 73,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "95030030320",
+      "clean_name": "Grooved Ball Bearing Din625-16002",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 40,
+      "score_if_second_section_unlocked": 55,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "95030030322",
+      "clean_name": "Grooved Ball Bearing Din625-15X32X8",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "95030039850",
+      "clean_name": "Grooved Ball Bearing Din625-609",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "J-Gear Head, Drive Tube FS 80"
+      ],
+      "current_seo_score": 49,
+      "score_if_second_section_unlocked": 64,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "95230034262",
+      "clean_name": "Grooved Ball Bearing 15X35X13",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 41,
+      "score_if_second_section_unlocked": 56,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "96368150270",
+      "clean_name": "Sealing Ring Din7603-5X9X1",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Valve Timing Gear"
+      ],
+      "current_seo_score": 57,
+      "score_if_second_section_unlocked": 72,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "96390031585",
+      "clean_name": "Oil Seal Din3760-As15X25X5",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Cylinder"
+      ],
+      "current_seo_score": 75,
+      "score_if_second_section_unlocked": 90,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "96400031190",
+      "clean_name": "Oil Seal Din3760-Bs12X20X5",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 50,
+      "score_if_second_section_unlocked": 65,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "96400031195",
+      "clean_name": "Oil Seal Din3760-Bs12X22X5",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "A-Crankcase, Cylinder"
+      ],
+      "current_seo_score": 60,
+      "score_if_second_section_unlocked": 75,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    },
+    {
+      "part_number": "96400031600",
+      "clean_name": "Oil Seal Din3760-Bs15X29,6X4",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "category": "lagers & keerringen",
+      "before_section_count": 1,
+      "after_section_count": 1,
+      "resolved_sections": [
+        "Crankcase"
+      ],
+      "current_seo_score": 75,
+      "score_if_second_section_unlocked": 90,
+      "h3_eligible_after_56j": false,
+      "full_h1_to_h7_eligible_after_56j": false,
+      "wave5_ready": false
+    }
+  ]
+}

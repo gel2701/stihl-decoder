@@ -1,0 +1,79 @@
+{
+  "phase": "PHASE_56J",
+  "baseline_commit": "119853c6b13f10c8a816b0f0c747ef47909101da",
+  "routing": {
+    "nine_router_found_in_environment": true,
+    "nine_router_location": "C:\\Users\\GelliusSnippe\\AppData\\Roaming\\npm\\9router.ps1 (listening on http://127.0.0.1:20128/v1)",
+    "nine_router_used": false,
+    "fallback_reason": "9Router is installed locally as an HTTP proxy for OpenAI Codex CLI / OpenCode, but is not registered as an Antigravity MCP server or native subagent provider, and Codex invocation is explicitly prohibited by prompt instructions. Executed via direct workspace tools without modifying environment configuration."
+  },
+  "target_audit_metrics": {
+    "high_value_single_section_targets_audited": 110,
+    "second_section_safe": 0,
+    "multi_section_safe": 0,
+    "only_same_section_duplicates": 42,
+    "cross_scope_blocked": 57,
+    "conflicting_evidence": 0,
+    "insufficient_evidence": 11
+  },
+  "resolution_and_preservation_metrics": {
+    "new_fitments_resolved_in_56j": 0,
+    "new_parts_unlocked_for_h3_in_56j": 0,
+    "phase56h_resolved_fitments_preserved": 344,
+    "phase56h_rule_a_records_preserved": 10,
+    "canonical_multi_section_contexts_preserved": 814,
+    "guessed_sections": 0,
+    "variant_leakage": 0,
+    "configuration_leakage": 0
+  },
+  "wave5_readiness_metrics": {
+    "newly_h3_eligible": 0,
+    "newly_full_h1_to_h7_eligible": 0,
+    "wave5_ready_count": 0,
+    "wave5_activated": false,
+    "indexable_parts_frozen": 843,
+    "noindex_parts_frozen": 16239,
+    "sitemap_urls_frozen": 1024
+  },
+  "interactive_diagram_pilot_impact": [
+    {
+      "canonical_model_id": "ms_261",
+      "model_name": "MS 261",
+      "pilot_section": "Rewind Starter",
+      "pilot_section_parts_count": 19,
+      "positioned_hotspots_count": 18,
+      "unpositioned_parts_count": 1,
+      "single_section_targets_on_model": 17,
+      "new_sections_added_in_56j": 0,
+      "zero_guessed_coordinates": true
+    },
+    {
+      "canonical_model_id": "ms_170",
+      "model_name": "MS 170",
+      "pilot_section": "Muffler",
+      "pilot_section_parts_count": 6,
+      "positioned_hotspots_count": 4,
+      "unpositioned_parts_count": 0,
+      "single_section_targets_on_model": 7,
+      "new_sections_added_in_56j": 0,
+      "zero_guessed_coordinates": true
+    },
+    {
+      "canonical_model_id": "fs_55",
+      "model_name": "FS 55",
+      "pilot_section": "Air Filter - Fuel Tank",
+      "pilot_section_parts_count": 29,
+      "positioned_hotspots_count": 29,
+      "unpositioned_parts_count": 0,
+      "single_section_targets_on_model": 4,
+      "new_sections_added_in_56j": 0,
+      "zero_guessed_coordinates": true
+    }
+  ],
+  "gsc_status": "NOT_CONFIGURED",
+  "amazon_status": {
+    "search_fallbacks": 17082,
+    "verified_asins": 0,
+    "production_tag": "srihldecoder2-21"
+  }
+}

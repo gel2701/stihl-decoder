@@ -1,0 +1,21 @@
+{
+  "phase": "PHASE_56J",
+  "artifact": "SECOND_SECTION_CONFLICTS",
+  "semantic_section_conflicts_count": 0,
+  "multi_position_same_section_placements_count": 1,
+  "multi_position_same_section_placements": [
+    {
+      "part_number": "11250201215",
+      "clean_name": "Cylinder And Piston 48Mm",
+      "model_id": "ms_360",
+      "section_name": "Cylinder",
+      "positions": [
+        "1",
+        "2"
+      ],
+      "classification": "MULTI_PLACEMENT_FASTENER",
+      "note": "Multiple diagram positions within the SAME single section (\"Cylinder\"); does not provide a second independent section."
+    }
+  ],
+  "conflicts": []
+}

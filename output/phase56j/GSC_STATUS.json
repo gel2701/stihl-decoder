@@ -1,0 +1,12 @@
+{
+  "phase": "PHASE_56J",
+  "artifact": "GSC_STATUS",
+  "status": "NOT_CONFIGURED",
+  "missing_credentials": [
+    "GSC_ACCESS_TOKEN",
+    "GSC_SITE_URL"
+  ],
+  "live_pulls_executed": false,
+  "fail_closed_honest_reporting": true,
+  "note": "Live Google Search Console API credentials (GSC_CLIENT_EMAIL / GSC_PRIVATE_KEY or GSC_ACCESS_TOKEN) are not present in the current workspace environment. Status remains NOT_CONFIGURED without fabricated metrics."
+}

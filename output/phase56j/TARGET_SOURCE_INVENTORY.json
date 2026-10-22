@@ -1,0 +1,4034 @@
+{
+  "phase": "PHASE_56J",
+  "artifact": "TARGET_SOURCE_INVENTORY",
+  "sources_inspected": [
+    "data/stihl_database.db :: model_part_fitments (175,106 rows)",
+    "data/stihl_database.db :: part_fitment_evidence (208,412 rows)",
+    "data/stihl_database.db :: model_part_fitment_section_contexts (814 rows)",
+    "data/parts_section_resolutions_56h.json (10 Rule A records)",
+    "data/parts_section_enrichment.json (312 records)",
+    "data/parts_conflicts.json (0 conflicts)",
+    "data/parts_technical_conflicts.json (13 casing variations, 17 multi-position placements)",
+    "data/part_fitment_scope_resolutions.json",
+    "data/harvest/phase54f/observations.jsonl (1,215 records)",
+    "data/harvest/phase54f/accepted_evidence.jsonl (1,115 records)",
+    "data/harvest/phase54f/quarantine.jsonl (100 records)",
+    "data/harvest/phase54f/staging_adjudication.json",
+    "data/harvest/phase54f/scope_resolution.json",
+    "data/harvest/phase54f/multisection_resolution.json",
+    "data/harvest/phase54f/final_backlog_registry.json"
+  ],
+  "inventory_summary": {
+    "total_targets_inventoried": 110,
+    "targets_with_phase54f_diyspareparts_observations": 78,
+    "targets_with_sparepartsworld_only": 32,
+    "targets_with_extra_section_strings_anywhere_in_repo": 2,
+    "targets_with_extra_section_strings_part_numbers": [
+      "95030030242",
+      "96400031195"
+    ],
+    "targets_with_same_section_multi_position_placements": 1
+  },
+  "target_inventories": [
+    {
+      "part_number": "00004001306",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 7
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Ignition"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11210201217",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 5,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11210302001",
+      "clean_name": "Piston 44Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 10,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 9,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11210302003",
+      "clean_name": "Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 5,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11210341505",
+      "clean_name": "Piston Pin 10X6X30",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 10,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 9,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11210343002",
+      "clean_name": "Piston Ring 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 5,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11210343010",
+      "clean_name": "Piston Ring 44X1.2Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 10,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 9,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11211401915",
+      "clean_name": "Carburettor Box Cover",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Shroud - Carburetor Cover",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Shroud - Carburetor Cover"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Shroud - Carburetor Cover"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11211401916",
+      "clean_name": "Carburettor Box Cover",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Shroud - Carburetor Cover",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Shroud - Carburetor Cover"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Shroud - Carburetor Cover"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11231400610",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 3,
+        "resolved_fitments_count": 3,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 3,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11231400611",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 9,
+        "resolved_fitments_count": 9,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 9,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11250201215",
+      "clean_name": "Cylinder And Piston 48Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 3,
+        "resolved_fitments_count": 9,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 9,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": [
+        {
+          "model_id": "ms_360",
+          "section_name": "Cylinder",
+          "part_number": "11250201215",
+          "positions": [
+            "1",
+            "2"
+          ],
+          "classification": "MULTI_PLACEMENT_FASTENER",
+          "public_display_policy": "DISPLAY_ALL_VALID_POSITIONS",
+          "notes": "Assembly hardware mounted at multiple positions."
+        }
+      ]
+    },
+    {
+      "part_number": "11270201213",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11270201214",
+      "clean_name": "Cylinder And Piston 47Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11270201216",
+      "clean_name": "Cylinder And Piston 49Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11270201217",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11280201221",
+      "clean_name": "Cylinder And Piston 52Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 4,
+        "resolved_fitments_count": 9,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 9,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11281400603",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 3,
+        "resolved_fitments_count": 6,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 6,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11281400610",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 1,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11300201207",
+      "clean_name": "Cylinder And Piston 37Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 3,
+        "resolved_fitments_count": 4,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 4,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11300201208",
+      "clean_name": "Cylinder And Piston 38Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 3,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 2,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11300802110",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11301240800",
+      "clean_name": "Air filter fleece",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "fitments_summary": {
+        "total_fitments": 11,
+        "published_fitments": 7,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 9,
+        "same_model_other_scope_unresolved_count": 5,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 13,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 11,
+        "distinct_sources": [
+          "official_stihl",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11301400608",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 5,
+        "resolved_fitments_count": 4,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 2,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 4,
+        "unresolved_evidence_rows": 5,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11301400613",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 3,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11301400614",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11330201200",
+      "clean_name": "Cylinder And Piston 44Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11330201202",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11330201203",
+      "clean_name": "Cylinder And Piston 46Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11331400600",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 5,
+        "resolved_fitments_count": 5,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 5,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11400802105",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 1,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410071001",
+      "clean_name": "Rim Sprocket Kit 3/8\" 7T",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "fitments_summary": {
+        "total_fitments": 7,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 6,
+        "same_model_other_scope_unresolved_count": 6,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 8,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 7,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410071002",
+      "clean_name": "Rim Sprocket Kit .325\" 7T",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "fitments_summary": {
+        "total_fitments": 7,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 6,
+        "same_model_other_scope_unresolved_count": 6,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 8,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 7,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410071003",
+      "clean_name": "Rim Sprocket Kit 0.325\" 8T",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "fitments_summary": {
+        "total_fitments": 7,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 6,
+        "same_model_other_scope_unresolved_count": 6,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 8,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 7,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410071007",
+      "clean_name": "Rim Sprocket Kit 3/8\"P 7 Teeth",
+      "category": "kettingwielen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "fitments_summary": {
+        "total_fitments": 7,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 6,
+        "same_model_other_scope_unresolved_count": 6,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 8,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 7,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410201200",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 6,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 5,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410290500",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410292302",
+      "clean_name": "Cylinder Gasket",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410300400",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410341502",
+      "clean_name": "Piston Pin 10X6X32",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 13,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 12,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11410801806",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter",
+      "fitments_summary": {
+        "total_fitments": 7,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 6,
+        "same_model_other_scope_unresolved_count": 6,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 8,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 7,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Rewind Starter"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11411400631",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11414001200",
+      "clean_name": "Vliegwiel",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 5,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Ignition System"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Ignition System"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11414001331",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 3,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 2,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Ignition System"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Ignition System"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11416403200",
+      "clean_name": "Oliepomp",
+      "category": "oliepompen",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Oil Pump. Clutch"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11426401706",
+      "clean_name": "Kettingwieldeksel",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Chain Sprocket Cover"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11441200614",
+      "clean_name": "Carburetor Wj-143A",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor WJ-143",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 4,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Carburetor WJ-143"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11446401700",
+      "clean_name": "Kettingwieldeksel",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Chain Sprocket Cover"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "11446401705",
+      "clean_name": "Kettingwieldeksel",
+      "category": "kettingwielen",
+      "current_resolved_section": "Chain Sprocket Cover",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Chain Sprocket Cover"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "41371801100",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "H-Two-Handed Handle Bar",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 3,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "H-Two-Handed Handle Bar"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "H-Two-Handed Handle Bar"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "41401801104",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "TWO-HANDED Handle Bar 2",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 3,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 2,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "TWO-HANDED Handle Bar 2"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "TWO-HANDED Handle Bar 2"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "41401801109",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "TWO-HANDED Handle Bar 1",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 4,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 3,
+        "different_model_unresolved_count": 2
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "TWO-HANDED Handle Bar 1"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "TWO-HANDED Handle Bar 1"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "41406400110",
+      "clean_name": "Gear Head",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Gear Head - Deflector",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 6,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 5,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head - Deflector"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Gear Head - Deflector"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "41476400112",
+      "clean_name": "Gear Head",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Gear Head",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42037004104",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 2,
+        "resolved_fitments_count": 6,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 6,
+        "resolved_evidence_rows": 6,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Fan Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42280300402",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Crankcase - Cylinder",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase - Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase - Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42280801800",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42280802100",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42280802101",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281241500",
+      "clean_name": "Prefilter",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281290905",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281402850",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281410500",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281410502",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter - Fuel Tank",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter - Fuel Tank"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281602000",
+      "clean_name": "Koppeling",
+      "category": "koppelingen",
+      "current_resolved_section": "Ignition System - Muffler",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Ignition System - Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Ignition System - Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281602901",
+      "clean_name": "Koppelingstrommel",
+      "category": "koppelingen",
+      "current_resolved_section": "Gear Head",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Gear Head"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281625400",
+      "clean_name": "Brake Band",
+      "category": "rem & kettingspanner",
+      "current_resolved_section": "Gear Head",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Gear Head"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281801101",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42281821000",
+      "clean_name": "Throttle Trigger",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Rewind Starter - Handle Housing",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Rewind Starter - Handle Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42286490301",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Gear Head"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42286490302",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Gear Head"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42411400601",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Ignition System",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 3,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Ignition System"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Ignition System"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42411401002",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter a",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 3,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter a"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter a"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42411402803",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "current_resolved_section": "Air Filter a",
+      "fitments_summary": {
+        "total_fitments": 6,
+        "published_fitments": 6,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 5,
+        "same_model_other_scope_unresolved_count": 1,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter a"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter a"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42411821001",
+      "clean_name": "Throttle Trigger",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Handle Frame",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 9,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 3,
+        "different_model_unresolved_count": 5
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 10,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 9,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Handle Frame"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Handle Frame"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42414001320",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Ignition System",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 3,
+        "different_model_unresolved_count": 5
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 10,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 9,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Ignition System"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Ignition System"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42417004100",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "fitments_summary": {
+        "total_fitments": 9,
+        "published_fitments": 9,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 8,
+        "same_model_other_scope_unresolved_count": 3,
+        "different_model_unresolved_count": 5
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 10,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 9,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Fan Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Fan Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42417010700",
+      "clean_name": "Fan Housing, Outer",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing Outer",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 3,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Fan Housing Outer"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Fan Housing Outer"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42820071021",
+      "clean_name": "Filter Housing Kit",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "fitments_summary": {
+        "total_fitments": 2,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 1,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 1
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 2,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42820073600",
+      "clean_name": "Set Of Pickup Bodies",
+      "category": "brandstofcomponenten",
+      "current_resolved_section": "Fuel Tank",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Fuel Tank"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Fuel Tank"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42820201200",
+      "clean_name": "Cylinder And Piston 50Mm",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42820290500",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Valve Timing Gear",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Valve Timing Gear"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Valve Timing Gear"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42820300404",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821207100",
+      "clean_name": "Throttle Shaft With Lever",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 8,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 7,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821212900",
+      "clean_name": "Choke Shutter",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 11,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 10,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821213000",
+      "clean_name": "Choke Shaft",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821213300",
+      "clean_name": "Throttle Shutter",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 3,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 12,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 11,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821213500",
+      "clean_name": "Throttle Lever",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "fitments_summary": {
+        "total_fitments": 5,
+        "published_fitments": 3,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 4,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 4
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 12,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 11,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Carburetor C1Q-S99"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821400603",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 2
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821401003",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821402851",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "current_resolved_section": "Air Filter",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 2
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Air Filter"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Air Filter"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821458100",
+      "clean_name": "Exhaust Deflector",
+      "category": "maaikopcomponenten",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 4,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 3,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 5,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 4,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821801100",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 2
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Control Handle"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Control Handle"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42821801103",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 2
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 7,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 6,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Control Handle"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Control Handle"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42824001308",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "current_resolved_section": "Muffler",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 2,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 2,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 2
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 4,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 3,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Muffler"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Muffler"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42827010701",
+      "clean_name": "Fan Housing, Outer",
+      "category": "starterdelen",
+      "current_resolved_section": "Fan Housing",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 2,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 1,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Fan Housing"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Fan Housing"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42827904901",
+      "clean_name": "Control Handle With Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Control Handle"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42827904902",
+      "clean_name": "Control Handle With Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "fitments_summary": {
+        "total_fitments": 3,
+        "published_fitments": 1,
+        "resolved_fitments_count": 3,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 3,
+        "resolved_evidence_rows": 3,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Control Handle"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "42837901300",
+      "clean_name": "Control Handle With Throttle Cable",
+      "category": "carburateurdelen",
+      "current_resolved_section": "Control Handle",
+      "fitments_summary": {
+        "total_fitments": 1,
+        "published_fitments": 1,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 0,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 1,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 0,
+        "distinct_sources": [
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Control Handle"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 0,
+        "accepted_evidence_count": 0,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": []
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "95030030060",
+      "clean_name": "Grooved Ball Bearing Din625-629-C3",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Gear Head - Deflector",
+      "fitments_summary": {
+        "total_fitments": 32,
+        "published_fitments": 11,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 31,
+        "same_model_other_scope_unresolved_count": 5,
+        "different_model_unresolved_count": 26
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 33,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 32,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Gear Head - Deflector"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Gear Head - Deflector"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "95030030242",
+      "clean_name": "Grooved Ball Bearing Din625-6201",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "fitments_summary": {
+        "total_fitments": 91,
+        "published_fitments": 11,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 89,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 85
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 93,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 91,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "A-Crankcase, Cylinder",
+          "FS 400"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 4,
+        "accepted_evidence_count": 2,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "A-Crankcase, Cylinder",
+          "Crankcase - Cylinder",
+          "FS 400"
+        ]
+      },
+      "extra_section_strings_in_repo": [
+        "Crankcase - Cylinder",
+        "FS 400"
+      ],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "95030030320",
+      "clean_name": "Grooved Ball Bearing Din625-16002",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 14,
+        "published_fitments": 5,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 13,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 9
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 15,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 14,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "95030030322",
+      "clean_name": "Grooved Ball Bearing Din625-15X32X8",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 11,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 10,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 3
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 12,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 11,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "95030039850",
+      "clean_name": "Grooved Ball Bearing Din625-609",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "J-Gear Head, Drive Tube FS 80",
+      "fitments_summary": {
+        "total_fitments": 76,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 75,
+        "same_model_other_scope_unresolved_count": 2,
+        "different_model_unresolved_count": 73
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 91,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 90,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "J-Gear Head, Drive Tube FS 80"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "J-Gear Head, Drive Tube FS 80"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "95230034262",
+      "clean_name": "Grooved Ball Bearing 15X35X13",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 8,
+        "published_fitments": 8,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 7,
+        "same_model_other_scope_unresolved_count": 7,
+        "different_model_unresolved_count": 0
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 9,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 8,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "96368150270",
+      "clean_name": "Sealing Ring Din7603-5X9X1",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Valve Timing Gear",
+      "fitments_summary": {
+        "total_fitments": 46,
+        "published_fitments": 7,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 45,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 45
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 72,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 71,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Valve Timing Gear"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Valve Timing Gear"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "96390031585",
+      "clean_name": "Oil Seal Din3760-As15X25X5",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Cylinder",
+      "fitments_summary": {
+        "total_fitments": 86,
+        "published_fitments": 38,
+        "resolved_fitments_count": 1,
+        "unresolved_fitments_count": 85,
+        "same_model_other_scope_unresolved_count": 0,
+        "different_model_unresolved_count": 85
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 87,
+        "resolved_evidence_rows": 1,
+        "unresolved_evidence_rows": 86,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Cylinder"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 1,
+        "accepted_evidence_count": 1,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Cylinder"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "96400031190",
+      "clean_name": "Oil Seal Din3760-Bs12X20X5",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 40,
+        "published_fitments": 9,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 38,
+        "same_model_other_scope_unresolved_count": 11,
+        "different_model_unresolved_count": 27
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 42,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 40,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 2,
+        "accepted_evidence_count": 2,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "96400031195",
+      "clean_name": "Oil Seal Din3760-Bs12X22X5",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "fitments_summary": {
+        "total_fitments": 126,
+        "published_fitments": 15,
+        "resolved_fitments_count": 2,
+        "unresolved_fitments_count": 124,
+        "same_model_other_scope_unresolved_count": 4,
+        "different_model_unresolved_count": 120
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 128,
+        "resolved_evidence_rows": 2,
+        "unresolved_evidence_rows": 126,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "A-Crankcase, Cylinder",
+          "FS 400"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 3,
+        "accepted_evidence_count": 2,
+        "quarantine_count": 0,
+        "scope_deferred_count": 1,
+        "distinct_sections_in_p54f": [
+          "A-Crankcase, Cylinder",
+          "Crankcase",
+          "FS 400"
+        ]
+      },
+      "extra_section_strings_in_repo": [
+        "Crankcase",
+        "FS 400"
+      ],
+      "multi_position_placements_in_same_section": []
+    },
+    {
+      "part_number": "96400031600",
+      "clean_name": "Oil Seal Din3760-Bs15X29,6X4",
+      "category": "lagers & keerringen",
+      "current_resolved_section": "Crankcase",
+      "fitments_summary": {
+        "total_fitments": 100,
+        "published_fitments": 45,
+        "resolved_fitments_count": 3,
+        "unresolved_fitments_count": 97,
+        "same_model_other_scope_unresolved_count": 18,
+        "different_model_unresolved_count": 79
+      },
+      "evidence_table_summary": {
+        "total_evidence_rows": 103,
+        "resolved_evidence_rows": 3,
+        "unresolved_evidence_rows": 100,
+        "distinct_sources": [
+          "diyspareparts",
+          "sparepartsworld"
+        ],
+        "distinct_resolved_sections_in_evidence": [
+          "Crankcase"
+        ]
+      },
+      "phase54f_harvest_summary": {
+        "observations_count": 3,
+        "accepted_evidence_count": 3,
+        "quarantine_count": 0,
+        "scope_deferred_count": 0,
+        "distinct_sections_in_p54f": [
+          "Crankcase"
+        ]
+      },
+      "extra_section_strings_in_repo": [],
+      "multi_position_placements_in_same_section": []
+    }
+  ]
+}
