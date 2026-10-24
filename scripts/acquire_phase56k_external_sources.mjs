@@ -172,8 +172,27 @@ export function extractFromHtml(html, pn, targetModels) {
   };
 }
 
-async function fetchPage(url, pn, targetModels) {
-  const rec = { requested_url: url, host: null, robots_allowed: null, robots_status: null, http_status: null, final_url: null, content_type: null, body_sha256: null, fetch_outcome: null };
+export async function fetchPage(url, pn, targetModels) {
+  const rec = {
+    requested_url: url,
+    final_url: null,
+    host: null,
+    robots_allowed: null,
+    robots_status: null,
+    http_status: null,
+    content_type: null,
+    body_sha256: null,
+    fetch_outcome: null,
+    retrieval_started_at: null,
+    retrieved_at: null,
+    page_title: null,
+    page_h1: null,
+    part_number_present: false,
+    models_in_title_or_h1: [],
+    models_in_body: [],
+    preceding_heading: null,
+    text_extract: null
+  };
   let u;
   try { u = new URL(url); } catch { rec.fetch_outcome = 'INVALID_URL'; return rec; }
   rec.host = u.hostname;
@@ -184,7 +203,9 @@ async function fetchPage(url, pn, targetModels) {
   rec.robots_status = rb.robots_status;
   if (!rb.allowed) { rec.fetch_outcome = 'ROBOTS_DISALLOWED'; return rec; }
   try {
+    rec.retrieval_started_at = new Date().toISOString();
     const r = await fetch(url, { headers: { 'User-Agent': USER_AGENT, 'Accept': 'text/html' }, signal: AbortSignal.timeout(20000), redirect: 'follow' });
+    rec.retrieved_at = new Date().toISOString();
     rec.http_status = r.status;
     rec.final_url = r.url;
     rec.content_type = r.headers.get('content-type');
@@ -202,9 +223,41 @@ async function fetchPage(url, pn, targetModels) {
     }
   } catch (e) {
     rec.fetch_outcome = 'NETWORK_ERROR:' + e.message;
+    rec.retrieved_at = rec.retrieved_at || new Date().toISOString();
   }
   await sleep(DELAY_MS);
   return rec;
+}
+
+export async function revalidateExistingObservations() {
+  if (!fs.existsSync(outPath)) {
+    throw new Error(`fetch_ledger.json does not exist at ${outPath}`);
+  }
+  const ledger = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+  const pilot = JSON.parse(fs.readFileSync(path.join(rootDir, 'output', 'phase56k', 'EXTERNAL_EVIDENCE_PILOT_INPUT.json'), 'utf8'));
+  const targetsMap = new Map(pilot.pilot_targets.map(t => [t.part_number, t]));
+
+  console.log('🔄 Revalidating existing Phase 56K external observations with exact per-page timestamps...');
+  let revalidatedCount = 0;
+  for (const t of ledger.targets) {
+    const pilotTarget = targetsMap.get(t.part_number);
+    const targetModels = pilotTarget?.published_models || [];
+    for (let i = 0; i < t.pages.length; i++) {
+      const p = t.pages[i];
+      if (p.fetch_outcome === 'FETCHED' || p.requested_url) {
+        if (p.fetch_outcome === 'FETCHED') {
+          console.log(`  Fetching live page for target #${t.pilot_rank} (${t.part_number}): ${p.requested_url}`);
+          const updated = await fetchPage(p.requested_url, t.part_number, targetModels);
+          t.pages[i] = updated;
+          revalidatedCount++;
+        }
+      }
+    }
+  }
+  ledger.revalidated_at = new Date().toISOString();
+  fs.writeFileSync(outPath, JSON.stringify(ledger, null, 2) + '\n', 'utf8');
+  console.log(`✅ Revalidated ${revalidatedCount} pages with distinct per-page timestamps in ${outPath}`);
+  return ledger;
 }
 
 export async function acquire() {

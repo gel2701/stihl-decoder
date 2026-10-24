@@ -1,0 +1,657 @@
+{
+  "phase": "PHASE_56K",
+  "artifact": "DISCOVERY_LEADS",
+  "total_leads_count": 64,
+  "lead_type_counts": {
+    "DISCOVERY_ONLY": 7,
+    "FETCH_BLOCKED": 0,
+    "ROBOTS_DISALLOWED": 0,
+    "HTTP_ERROR": 1,
+    "SEARCH_ANTI_BOT": 44,
+    "EXCLUDED_SOURCE": 6,
+    "FETCHED_BUT_NO_TECHNICAL_EVIDENCE": 6
+  },
+  "all_eligible_for_resolution_false": true,
+  "leads": [
+    {
+      "lead_id": "lead_96400031600_ddg_antibot_722b580a",
+      "part_number": "96400031600",
+      "query": "\"9640 003 1600\" STIHL \"BR 420\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229640%20003%201600%22%20STIHL%20%22BR%20420%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96400031600_ddg_antibot_964a7f8e",
+      "part_number": "96400031600",
+      "query": "\"9640 003 1600\" STIHL \"MS 340\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229640%20003%201600%22%20STIHL%20%22MS%20340%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96368150270_ddg_antibot_08bce3f4",
+      "part_number": "96368150270",
+      "query": "\"9636 815 0270\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229636%20815%200270%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96368150270_ddg_antibot_009a1bae",
+      "part_number": "96368150270",
+      "query": "\"9636 815 0270\" STIHL \"FS 100\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229636%20815%200270%22%20STIHL%20%22FS%20100%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96400031195_ddg_antibot_0b64a2cf",
+      "part_number": "96400031195",
+      "query": "\"9640 003 1195\" STIHL \"FS 350\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229640%20003%201195%22%20STIHL%20%22FS%20350%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96400031195_ddg_antibot_95fa438d",
+      "part_number": "96400031195",
+      "query": "\"9640 003 1195\" STIHL \"FS 460\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229640%20003%201195%22%20STIHL%20%22FS%20460%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_95030030242_ddg_antibot_c42f6da4",
+      "part_number": "95030030242",
+      "query": "\"9503 003 0242\" STIHL \"FS 350\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229503%20003%200242%22%20STIHL%20%22FS%20350%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_95030030242_ddg_antibot_e31a0957",
+      "part_number": "95030030242",
+      "query": "\"9503 003 0242\" STIHL \"FS 460\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229503%20003%200242%22%20STIHL%20%22FS%20460%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_95030030060_ddg_antibot_593fac21",
+      "part_number": "95030030060",
+      "query": "\"9503 003 0060\" STIHL \"FS 131\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229503%20003%200060%22%20STIHL%20%22FS%20131%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_95030030060_ddg_antibot_aa8af4f4",
+      "part_number": "95030030060",
+      "query": "\"9503 003 0060\" STIHL \"FSA 135\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229503%20003%200060%22%20STIHL%20%22FSA%20135%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_00004001306_ddg_antibot_0595a94f",
+      "part_number": "00004001306",
+      "query": "\"0000 400 1306\" STIHL \"MS 200\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%220000%20400%201306%22%20STIHL%20%22MS%20200%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_00004001306_ddg_antibot_c1469db4",
+      "part_number": "00004001306",
+      "query": "\"0000 400 1306\" STIHL \"MS 210\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%220000%20400%201306%22%20STIHL%20%22MS%20210%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821213300_ddg_antibot_88a95f99",
+      "part_number": "42821213300",
+      "query": "\"4282 121 3300\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20121%203300%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821213500_ddg_antibot_ef810de4",
+      "part_number": "42821213500",
+      "query": "\"4282 121 3500\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20121%203500%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42411821001_ddg_antibot_a1a9dddd",
+      "part_number": "42411821001",
+      "query": "\"4241 182 1001\" STIHL \"SH 86\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224241%20182%201001%22%20STIHL%20%22SH%2086%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42417004100_ddg_antibot_25297e10",
+      "part_number": "42417004100",
+      "query": "\"4241 700 4100\" STIHL \"SH 86\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224241%20700%204100%22%20STIHL%20%22SH%2086%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96400031190_ddg_antibot_fb4a4f31",
+      "part_number": "96400031190",
+      "query": "\"9640 003 1190\" STIHL \"MS 340\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229640%20003%201190%22%20STIHL%20%22MS%20340%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_96400031190_ddg_antibot_66f9bd8c",
+      "part_number": "96400031190",
+      "query": "\"9640 003 1190\" STIHL \"MS 360\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229640%20003%201190%22%20STIHL%20%22MS%20360%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_95030039850_ddg_antibot_31a0de9e",
+      "part_number": "95030039850",
+      "query": "\"9503 003 9850\" STIHL \"FS 100\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%229503%20003%209850%22%20STIHL%20%22FS%20100%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11301240800_ddg_antibot_ec1c2a9e",
+      "part_number": "11301240800",
+      "query": "\"1130 124 0800\" STIHL \"MS 170\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221130%20124%200800%22%20STIHL%20%22MS%20170%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11301240800_ddg_antibot_44350dff",
+      "part_number": "11301240800",
+      "query": "\"1130 124 0800\" STIHL \"MS 180\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221130%20124%200800%22%20STIHL%20%22MS%20180%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42411401002_ddg_antibot_0fb52f81",
+      "part_number": "42411401002",
+      "query": "\"4241 140 1002\" STIHL \"SH 86\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224241%20140%201002%22%20STIHL%20%22SH%2086%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42411402803_ddg_antibot_bfbb73ab",
+      "part_number": "42411402803",
+      "query": "\"4241 140 2803\" STIHL \"SH 86\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224241%20140%202803%22%20STIHL%20%22SH%2086%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42414001320_ddg_antibot_90bb4bcc",
+      "part_number": "42414001320",
+      "query": "\"4241 400 1320\" STIHL \"SH 86\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224241%20400%201320%22%20STIHL%20%22SH%2086%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11301400608_ddg_antibot_6b5a2870",
+      "part_number": "11301400608",
+      "query": "\"1130 140 0608\" STIHL \"MS 170\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221130%20140%200608%22%20STIHL%20%22MS%20170%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11301400613_ddg_antibot_fd1e3671",
+      "part_number": "11301400613",
+      "query": "\"1130 140 0613\" STIHL \"MS 180\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221130%20140%200613%22%20STIHL%20%22MS%20180%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11300802110_ddg_antibot_9e1bc329",
+      "part_number": "11300802110",
+      "query": "\"1130 080 2110\" STIHL \"MS 180\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221130%20080%202110%22%20STIHL%20%22MS%20180%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42820073600_ddg_antibot_49c5373d",
+      "part_number": "42820073600",
+      "query": "\"4282 007 3600\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20007%203600%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42820201200_ddg_antibot_c46a9a3f",
+      "part_number": "42820201200",
+      "query": "\"4282 020 1200\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20020%201200%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42820290500_ddg_antibot_338e9150",
+      "part_number": "42820290500",
+      "query": "\"4282 029 0500\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20029%200500%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42820300404_ddg_antibot_a9e04d4b",
+      "part_number": "42820300404",
+      "query": "\"4282 030 0404\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20030%200404%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821207100_ddg_antibot_17ed40f8",
+      "part_number": "42821207100",
+      "query": "\"4282 120 7100\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20120%207100%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821212900_ddg_antibot_15802756",
+      "part_number": "42821212900",
+      "query": "\"4282 121 2900\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20121%202900%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821213000_ddg_antibot_9beee74d",
+      "part_number": "42821213000",
+      "query": "\"4282 121 3000\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20121%203000%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821400603_ddg_antibot_56b3dd1b",
+      "part_number": "42821400603",
+      "query": "\"4282 140 0603\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20140%200603%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821401003_ddg_antibot_b77085ea",
+      "part_number": "42821401003",
+      "query": "\"4282 140 1003\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20140%201003%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42821402851_ddg_antibot_8fb7745e",
+      "part_number": "42821402851",
+      "query": "\"4282 140 2851\" STIHL \"BR 700\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224282%20140%202851%22%20STIHL%20%22BR%20700%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_excluded_34a5990e",
+      "part_number": "42824001308",
+      "query": "\"4282 400 1308\" STIHL \"BR 700\"",
+      "lead_type": "EXCLUDED_SOURCE",
+      "lead_url": "https://www.ebay.com/itm/227363943301",
+      "host": "www.ebay.com",
+      "reason": "Excluded host policy: MARKETPLACE_LISTING_NOT_TECHNICAL_DOCUMENTATION",
+      "title_snippet": "USED OEM Stihl BR 700 Backpack Blower Ignition Module Coil 4282 400 1308",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_disc_332f37ca",
+      "part_number": "42824001308",
+      "query": "\"4282 400 1308\" STIHL \"BR 700\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://www.alldadelawnmowers.com/stihl-ignition-module-4282-400-1308-for-br-550-br-600-br-700-br-700-x.html",
+      "host": "www.alldadelawnmowers.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "Stihl Ignition Module | 4282 400 1308 | For BR 550, BR 600, BR 700, BR ...",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_disc_071ee0aa",
+      "part_number": "42824001308",
+      "query": "\"4282 400 1308\" STIHL \"BR 700\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://shop.johnsonshg.com/p/ignition-module-886661170722",
+      "host": "shop.johnsonshg.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "Stihl 4282 400 1308 Ignition Module, For Br 700 Backpack Blower",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_disc_4e9eab89",
+      "part_number": "42824001308",
+      "query": "\"4282 400 1308\" STIHL \"BR 700\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://mowpart.com/ignition-module-br-700-4282-400-1308-4282-400-1308/",
+      "host": "mowpart.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "Ignition Module Br 700 - 4282 400 1308 - 4282 400 1308",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_page_excl_34a5990e",
+      "part_number": "42824001308",
+      "lead_type": "EXCLUDED_SOURCE",
+      "lead_url": "https://www.ebay.com/itm/227363943301",
+      "host": "www.ebay.com",
+      "reason": "EXCLUDED:MARKETPLACE_LISTING_NOT_TECHNICAL_DOCUMENTATION",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_page_notec_332f37ca",
+      "part_number": "42824001308",
+      "lead_type": "FETCHED_BUT_NO_TECHNICAL_EVIDENCE",
+      "lead_url": "https://www.alldadelawnmowers.com/stihl-ignition-module-4282-400-1308-for-br-550-br-600-br-700-br-700-x.html",
+      "host": "www.alldadelawnmowers.com",
+      "reason": "Page fetched successfully with part number & model, but contains no technical exploded diagram section heading",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_page_notec_071ee0aa",
+      "part_number": "42824001308",
+      "lead_type": "FETCHED_BUT_NO_TECHNICAL_EVIDENCE",
+      "lead_url": "https://shop.johnsonshg.com/p/ignition-module-886661170722",
+      "host": "shop.johnsonshg.com",
+      "reason": "Page fetched successfully with part number & model, but contains no technical exploded diagram section heading",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42824001308_page_notec_4e9eab89",
+      "part_number": "42824001308",
+      "lead_type": "FETCHED_BUT_NO_TECHNICAL_EVIDENCE",
+      "lead_url": "https://mowpart.com/ignition-module-br-700-4282-400-1308-4282-400-1308/",
+      "host": "mowpart.com",
+      "reason": "Page fetched successfully with part number & model, but contains no technical exploded diagram section heading",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42417010700_disc_d4381e71",
+      "part_number": "42417010700",
+      "query": "\"4241 701 0700\" STIHL \"BG 56\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://mowpart.com/fan-housing-outer-bg-56-86-sh56-4241-701-0700-4241-701-0700/",
+      "host": "mowpart.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "Fan Housing Outer Bg 56/86-sh56 - 4241 701 0700 - 4241 701 0700",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42417010700_excluded_8daaf787",
+      "part_number": "42417010700",
+      "query": "\"4241 701 0700\" STIHL \"BG 56\"",
+      "lead_type": "EXCLUDED_SOURCE",
+      "lead_url": "https://www.ebay.com/itm/227385520729",
+      "host": "www.ebay.com",
+      "reason": "Excluded host policy: MARKETPLACE_LISTING_NOT_TECHNICAL_DOCUMENTATION",
+      "title_snippet": "USED OEM Stihl BG 56 Blower Fan Housing Outer 4241 701 0700 - eBay",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42417010700_page_excl_8daaf787",
+      "part_number": "42417010700",
+      "lead_type": "EXCLUDED_SOURCE",
+      "lead_url": "https://www.ebay.com/itm/227385520729",
+      "host": "www.ebay.com",
+      "reason": "EXCLUDED:MARKETPLACE_LISTING_NOT_TECHNICAL_DOCUMENTATION",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42417010700_page_notec_d4381e71",
+      "part_number": "42417010700",
+      "lead_type": "FETCHED_BUT_NO_TECHNICAL_EVIDENCE",
+      "lead_url": "https://mowpart.com/fan-housing-outer-bg-56-86-sh56-4241-701-0700-4241-701-0700/",
+      "host": "mowpart.com",
+      "reason": "Page fetched successfully with part number & model, but contains no technical exploded diagram section heading",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_disc_1923116f",
+      "part_number": "41371801100",
+      "query": "\"4137 180 1100\" STIHL \"FS 80\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://cutlers.com/products/4137-180-1100",
+      "host": "cutlers.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "STIHL 4137 180 1100 Throttle Cable for FS 80 4137 and FS 85 Trimmers",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_disc_03e48f01",
+      "part_number": "41371801100",
+      "query": "\"4137 180 1100\" STIHL \"FS 80\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://www.profarmparts.com/product/stihl-4137-180-1100-throttle-cable/",
+      "host": "www.profarmparts.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "Stihl 4137 180 1100 Throttle Cable - profarmparts.com",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_disc_5fae6f9c",
+      "part_number": "41371801100",
+      "query": "\"4137 180 1100\" STIHL \"FS 80\"",
+      "lead_type": "DISCOVERY_ONLY",
+      "lead_url": "https://americanforestry.com/products/stihl-4137-180-1100-throttle-cable",
+      "host": "americanforestry.com",
+      "reason": "Discovered in search snippets; secondary weak source, discovery-only, unverified",
+      "title_snippet": "Stihl 4137 180 1100 Throttle Cable - American Forestry",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_excluded_6821020a",
+      "part_number": "41371801100",
+      "query": "\"4137 180 1100\" STIHL \"FS 80\"",
+      "lead_type": "EXCLUDED_SOURCE",
+      "lead_url": "https://www.ebay.com/itm/357979692251",
+      "host": "www.ebay.com",
+      "reason": "Excluded host policy: MARKETPLACE_LISTING_NOT_TECHNICAL_DOCUMENTATION",
+      "title_snippet": "Throttle Cable 4137 180 1100 for Stihl FS 80 85 85T, 850mm ... - eBay",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_ddg_antibot_4b25ddbd",
+      "part_number": "41371801100",
+      "query": "\"4137 180 1100\" STIHL \"FS 85\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224137%20180%201100%22%20STIHL%20%22FS%2085%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_page_excl_6821020a",
+      "part_number": "41371801100",
+      "lead_type": "EXCLUDED_SOURCE",
+      "lead_url": "https://www.ebay.com/itm/357979692251",
+      "host": "www.ebay.com",
+      "reason": "EXCLUDED:MARKETPLACE_LISTING_NOT_TECHNICAL_DOCUMENTATION",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_page_notec_1923116f",
+      "part_number": "41371801100",
+      "lead_type": "FETCHED_BUT_NO_TECHNICAL_EVIDENCE",
+      "lead_url": "https://cutlers.com/products/4137-180-1100",
+      "host": "cutlers.com",
+      "reason": "Page fetched successfully with part number & model, but contains no technical exploded diagram section heading",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_page_err_03e48f01",
+      "part_number": "41371801100",
+      "lead_type": "HTTP_ERROR",
+      "lead_url": "https://www.profarmparts.com/product/stihl-4137-180-1100-throttle-cable/",
+      "host": "www.profarmparts.com",
+      "reason": "Server error status: HTTP_520",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_41371801100_page_notec_5fae6f9c",
+      "part_number": "41371801100",
+      "lead_type": "FETCHED_BUT_NO_TECHNICAL_EVIDENCE",
+      "lead_url": "https://americanforestry.com/products/stihl-4137-180-1100-throttle-cable",
+      "host": "americanforestry.com",
+      "reason": "Page fetched successfully with part number & model, but contains no technical exploded diagram section heading",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_42411400601_ddg_antibot_38ab88c5",
+      "part_number": "42411400601",
+      "query": "\"4241 140 0601\" STIHL \"BG 56\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%224241%20140%200601%22%20STIHL%20%22BG%2056%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11410071001_ddg_antibot_eb841e19",
+      "part_number": "11410071001",
+      "query": "\"1141 007 1001\" STIHL \"MS 261\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221141%20007%201001%22%20STIHL%20%22MS%20261%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11410071002_ddg_antibot_87010b3a",
+      "part_number": "11410071002",
+      "query": "\"1141 007 1002\" STIHL \"MS 261\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221141%20007%201002%22%20STIHL%20%22MS%20261%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11410071003_ddg_antibot_082f31df",
+      "part_number": "11410071003",
+      "query": "\"1141 007 1003\" STIHL \"MS 261\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221141%20007%201003%22%20STIHL%20%22MS%20261%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11410071007_ddg_antibot_90ae324e",
+      "part_number": "11410071007",
+      "query": "\"1141 007 1007\" STIHL \"MS 261\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221141%20007%201007%22%20STIHL%20%22MS%20261%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    },
+    {
+      "lead_id": "lead_11410201200_ddg_antibot_0991150a",
+      "part_number": "11410201200",
+      "query": "\"1141 020 1200\" STIHL \"MS 261\"",
+      "lead_type": "SEARCH_ANTI_BOT",
+      "lead_url": "https://html.duckduckgo.com/html/?q=%221141%20020%201200%22%20STIHL%20%22MS%20261%22",
+      "host": "html.duckduckgo.com",
+      "reason": "Search engine returned HTTP 202 challenge/bot-protection; no automated bypass attempted",
+      "eligible_for_resolution": false
+    }
+  ]
+}
