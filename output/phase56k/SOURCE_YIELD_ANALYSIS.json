@@ -198,5 +198,5 @@
       "not_found": 40
     }
   ],
-  "strategic_conclusion": "External IPL and technical parts catalogs (ersatzteil-service.de, motoruf.de, serv-tec.com, diyspareparts.com) confirm that dedicated wear/service components (Mufflers, Air Filters, Rewind Starters, Carburetor shutters/shafts, Cylinder & Piston kits, Fan Housings, Crankcase Oil Seals, Valve Timing Gear seals, Gear Head bearings) reside in the EXACT SAME single functional diagram section across all compatible STIHL models (31/40 SAME_SECTION_ONLY). On 3 targets (96390031585, 42824001308, 42411400601), external IPLs use a combined multi-assembly sheet header (\"Crankcase / Cylinder\" or \"Muffler, Ignition system\") that overlaps with the existing single section rather than proving an independent second placement (3/40 AMBIGUOUS -> quarantined). On 6 targets (41371801100 and 5 single-model MS 261 variant/config parts), only base-model IPLs exist while remaining fitments are variant/configuration scopes (6/40 CROSS_SCOPE). Therefore, broader external web harvesting for a second section on single-assembly wear parts has zero yield under strict H3 (>= 2 independent sections)."
+  "strategic_conclusion": "External technical parts references confirm part numbers and models without standalone exploded diagram section headings. Zero safe second sections found under strict criteria."
 }

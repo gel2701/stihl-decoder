@@ -1,14 +1,27 @@
 {
   "phase": "PHASE_56K",
-  "baseline_commit": "64b89244f3960cfe31c21ed5e9a0063ea13f692f",
+  "baseline_commit": "6cb400b53719142aae371cf51c50da9dda5dccf4",
   "outcome_status": "PASS",
   "outcome_code": "ZERO_SAFE_EXTERNAL_SECOND_SECTIONS",
   "routing": {
     "nine_router_endpoint_reachable": true,
     "nine_router_endpoint_url": "http://127.0.0.1:20128/v1",
     "nine_router_used": false,
-    "execution_method": "Direct native workspace execution + targeted search_web queries",
+    "execution_method": "Direct native workspace execution + targeted fetch scripts",
     "fallback_reason": "Local 9Router HTTP endpoint (http://127.0.0.1:20128/v1) is reachable (HTTP 200), but Antigravity native tool/subagent runtime does not route through a custom local OpenAI base URL, and invoking Codex CLI is prohibited by prompt rules."
+  },
+  "provenance_integrity": {
+    "technical_evidence_records_checked": 6,
+    "actual_pages_verified": 6,
+    "discovery_only_records": 64,
+    "unverifiable_records": 0,
+    "fabricated_urls_detected": 0,
+    "fabricated_titles_detected": 0,
+    "fabricated_locators_detected": 0,
+    "fabricated_positions_detected": 0,
+    "synthetic_observations_detected": 0,
+    "FABRICATED_PROVENANCE_RECORDS": 0,
+    "status": "PASS"
   },
   "pilot_metrics": {
     "source_cohort_size": 110,

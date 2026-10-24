@@ -42,10 +42,11 @@ const outputDir = path.join(rootDir, 'output', 'phase56k');
 
 console.log('🧪 Running Phase 56K Targeted External Evidence Acquisition Pilot Tests...');
 
-// 1. Verify all 14 required Phase 56K artifacts exist on disk
+// 1. Verify all 16 required Phase 56K artifacts exist on disk
 const requiredArtifacts = [
   'EXTERNAL_EVIDENCE_PILOT_INPUT.json',
   'SOURCE_DISCOVERY_RESULTS.json',
+  'DISCOVERY_LEADS.json',
   'SOURCE_QUALITY_AUDIT.json',
   'EXTERNAL_EVIDENCE_LEDGER.json',
   'EXTERNAL_SECOND_SECTION_CANDIDATES.json',
@@ -53,6 +54,7 @@ const requiredArtifacts = [
   'EXTERNAL_EVIDENCE_REJECTIONS.json',
   'SOURCE_YIELD_ANALYSIS.json',
   'WAVE5_UNLOCK_PREVIEW.json',
+  'PROVENANCE_INTEGRITY_AUDIT.json',
   'CATALOG_INTEGRITY.json',
   'AMAZON_STATUS.json',
   'GSC_STATUS.json',
@@ -64,12 +66,12 @@ for (const filename of requiredArtifacts) {
   const fullPath = path.join(outputDir, filename);
   assert.ok(fs.existsSync(fullPath), `Missing required Phase 56K artifact: ${filename}`);
 }
-console.log('  ✅ All 14 required Phase 56K artifacts exist in output/phase56k/');
+console.log('  ✅ All 16 required Phase 56K artifacts exist in output/phase56k/');
 
 // 2. Verify cold read-only dry run determinism
 const dryRun = buildPhase56KExternalEvidencePilot({ write: false });
 const savedSummary = JSON.parse(fs.readFileSync(path.join(outputDir, 'PHASE56K_SUMMARY.json'), 'utf8'));
-assert.deepEqual(dryRun.artifact13Summary, savedSummary, 'Cold run summary must match saved PHASE56K_SUMMARY.json');
+assert.deepEqual(dryRun.artifact15Summary, savedSummary, 'Cold run summary must match saved PHASE56K_SUMMARY.json');
 assert.equal(dryRun.artifact1PilotInput.selected_pilot_count, MAX_PILOT_TARGETS);
 assert.equal(dryRun.artifact1PilotInput.pilot_composition_summary.all_from_existing_110_cohort, true);
 assert.equal(dryRun.artifact1PilotInput.pilot_composition_summary.all_commercial_high, true);
@@ -162,7 +164,7 @@ assert.equal(resCombinedAmbiguous.quarantine, true);
 console.log('  ✅ Source contract & evidence evaluation unit tests passed (all positive & negative branches verified)');
 
 // 4. Verify Pilot Classification & Ledger Totals
-const candDoc = dryRun.artifact5Candidates;
+const candDoc = dryRun.artifact6Candidates;
 assert.equal(candDoc.total_pilot_targets_evaluated, 40);
 assert.equal(candDoc.classification_summary.EXTERNAL_SECOND_SECTION_SAFE, 0);
 assert.equal(candDoc.classification_summary.PART_NUMBER_ONLY, 3);
@@ -177,24 +179,66 @@ assert.equal(
   40,
   'Pilot candidate classifications must sum to 40'
 );
-assert.equal(dryRun.artifact6Promotions.outcome_code, 'ZERO_SAFE_EXTERNAL_SECOND_SECTIONS');
-assert.equal(dryRun.artifact6Promotions.promoted_targets_count, 0);
-assert.equal(dryRun.artifact7Rejections.quarantined_ambiguous_observations_count, 0);
-assert.equal(dryRun.artifact7Rejections.rejected_targets_count, 40);
+assert.equal(dryRun.artifact7Promotions.outcome_code, 'ZERO_SAFE_EXTERNAL_SECOND_SECTIONS');
+assert.equal(dryRun.artifact7Promotions.promoted_targets_count, 0);
+assert.equal(dryRun.artifact8Rejections.quarantined_ambiguous_observations_count, 0);
+assert.equal(dryRun.artifact8Rejections.rejected_targets_count, 40);
 assert.equal(AUDITED_EXTERNAL_DOMAINS.length, 12);
 console.log('  ✅ Pilot classification & ledger totals verified (40 targets: 3 PART_NUMBER_ONLY, 37 NOT_FOUND, 0 safe second sections)');
 
-// 5. Historical Protection Tests (Phase 56H & Phase 56J)
+// 5. Provenance Integrity & Audit Hardening (Phase 56K.1 Gates)
+const provAudit = dryRun.artifact11ProvenanceIntegrity;
+assert.equal(provAudit.status, 'PASS', 'Provenance integrity status must be PASS');
+assert.equal(provAudit.FABRICATED_PROVENANCE_RECORDS, 0, 'FABRICATED_PROVENANCE_RECORDS must be strictly 0');
+assert.equal(provAudit.synthetic_observations_detected, 0, 'No synthetic observations allowed');
+assert.equal(provAudit.unverifiable_records, 0, 'No unverifiable records allowed');
+assert.equal(provAudit.technical_evidence_records_checked, 6, 'All 6 observations must be checked');
+assert.equal(provAudit.verified_source_urls, 6);
+assert.equal(provAudit.verified_titles, 6);
+assert.equal(provAudit.verified_locators, 6);
+assert.equal(provAudit.verified_body_hashes, 6);
+assert.equal(provAudit.verified_retrieval_timestamps, 6);
+
+// 5a. Fetch ledger linkage and per-page timestamps
+const rawFetchLedger = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase56k', 'fetch_ledger.json'), 'utf8'));
+assert.ok(rawFetchLedger.started_at, 'Fetch ledger started_at must be present');
+const allFetchedPages = (rawFetchLedger.targets || []).flatMap(t => t.pages || []);
+
+for (const obs of dryRun.artifact5Ledger.observations) {
+  assert.ok(obs.retrieved_at, 'Observation must have retrieved_at');
+  assert.notEqual(
+    obs.retrieved_at,
+    rawFetchLedger.started_at,
+    `Observation retrieved_at (${obs.retrieved_at}) must be per-request timestamp, not fetchLedger.started_at`
+  );
+  assert.ok(!isNaN(Date.parse(obs.retrieved_at)), 'retrieved_at must be valid ISO timestamp');
+
+  const matchingPage = allFetchedPages.find(p => p.requested_url === obs.source_url || p.final_url === obs.source_url);
+  assert.ok(matchingPage, `Observation source_url ${obs.source_url} must exist in fetch_ledger.json`);
+  assert.equal(matchingPage.fetch_outcome, 'FETCHED', 'Matching page must have fetch_outcome FETCHED');
+  assert.equal(obs.source_body_sha256, matchingPage.body_sha256, 'Observation body sha256 must match fetch_ledger body sha256');
+  assert.equal(obs.retrieved_at, matchingPage.retrieved_at, 'Observation retrieved_at must match fetch_ledger page retrieved_at');
+  assert.ok(obs.evidence_locator.includes(matchingPage.body_sha256.substring(0, 8)), 'Evidence locator must reference body SHA prefix');
+}
+
+// 5b. Discovery Leads isolation
+assert.equal(dryRun.artifact3DiscoveryLeads.all_eligible_for_resolution_false, true, 'All discovery leads must have eligible_for_resolution === false');
+for (const lead of dryRun.artifact3DiscoveryLeads.leads) {
+  assert.equal(lead.eligible_for_resolution, false, 'Discovery lead must not be eligible for resolution');
+}
+console.log('  ✅ Provenance integrity & audit hardening verified (0 fabricated records, per-page timestamps, full ledger linkage, discovery isolation)');
+
+// 6. Historical Protection Tests (Phase 56H & Phase 56J)
 resetSectionResolutionCache();
 const regStats = SectionResolutionRegistry.getRegistryStats();
 assert.equal(regStats.rule_a_resolutions_count, 10, 'Phase 56H 10 Rule A resolutions must remain intact');
 assert.equal(regStats.total_context_rows, 814, 'Canonical 814 multi-section contexts must remain intact');
-assert.equal(dryRun.artifact10CatalogIntegrity.historical_protection.phase56h_resolutions_intact_count, 344);
-assert.equal(dryRun.artifact10CatalogIntegrity.historical_protection.phase56j_classifications_intact_count, 110);
-assert.equal(dryRun.artifact10CatalogIntegrity.historical_protection.evidence_loss, 0);
+assert.equal(dryRun.artifact12CatalogIntegrity.historical_protection.phase56h_resolutions_intact_count, 344);
+assert.equal(dryRun.artifact12CatalogIntegrity.historical_protection.phase56j_classifications_intact_count, 110);
+assert.equal(dryRun.artifact12CatalogIntegrity.historical_protection.evidence_loss, 0);
 console.log('  ✅ Historical protection verified (344 Phase 56H resolutions, 110 Phase 56J classifications, 814 contexts intact)');
 
-// 6. SEO Freeze & Sitemap Invariants
+// 7. SEO Freeze & Sitemap Invariants
 resetRegistryCache();
 const allIndexable = getAllIndexablePartsList();
 assert.equal(allIndexable.length, 843, 'Indexable part pages must remain frozen at 843');
@@ -202,10 +246,10 @@ const stihlDb = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_dat
 const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, stihlDb);
 const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 assert.equal(sitemapUrls.length, 1024, 'Sitemap URLs must remain frozen at 1,024');
-assert.equal(dryRun.artifact9Wave5Preview.wave5_activated_in_56k, false);
+assert.equal(dryRun.artifact10Wave5Preview.wave5_activated_in_56k, false);
 console.log('  ✅ SEO freeze verified (843 indexable part pages, 1,024 sitemap URLs, no Wave 5 activation)');
 
-// 7. Catalog & Affiliate Invariants
+// 8. Catalog & Affiliate Invariants
 const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { readonly: true });
 assert.equal(db.prepare('SELECT COUNT(*) as c FROM parts').get().c, 17082);
 assert.equal(db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c, 175106);
@@ -214,12 +258,12 @@ assert.equal(db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get()
 assert.equal(db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c, 814);
 db.close();
 
-assert.equal(dryRun.artifact11AmazonStatus.production_tag, 'srihldecoder2-21');
-assert.equal(dryRun.artifact11AmazonStatus.search_fallbacks_count, 17082);
-assert.equal(dryRun.artifact11AmazonStatus.verified_asin_count, 0);
-assert.equal(dryRun.artifact11AmazonStatus.ab_query_experiment.all_17082_variant_a, 8518);
-assert.equal(dryRun.artifact11AmazonStatus.ab_query_experiment.all_17082_variant_b, 8564);
-assert.equal(dryRun.artifact12GscStatus.gsc_status, 'NOT_CONFIGURED');
+assert.equal(dryRun.artifact13AmazonStatus.production_tag, 'srihldecoder2-21');
+assert.equal(dryRun.artifact13AmazonStatus.search_fallbacks_count, 17082);
+assert.equal(dryRun.artifact13AmazonStatus.verified_asin_count, 0);
+assert.equal(dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_a, 8518);
+assert.equal(dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_b, 8564);
+assert.equal(dryRun.artifact14GscStatus.gsc_status, 'NOT_CONFIGURED');
 console.log('  ✅ Catalog, Amazon affiliate, and GSC invariants verified');
 
 console.log('🎉 ALL PHASE 56K TESTS PASSED!');

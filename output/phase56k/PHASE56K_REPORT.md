@@ -3,14 +3,14 @@
 ## 1. Routing
 - **9Router endpoint reachable (`http://127.0.0.1:20128/v1`)**: **JA** (`HTTP 200 OK` op `/v1/models`)
 - **9Router gebruikt**: **NEE**
-- **Methode**: Directe uitvoering via native workspace-tools en gerichte `search_web` queries
-- **Fallback reden**: De lokale 9Router HTTP-proxy (`http://127.0.0.1:20128/v1`) is bereikbaar, maar de Antigravity agent/subagent-runtime ondersteunt geen custom OpenAI base-URL routing en het starten van Codex CLI is expliciet verboden (`Gebruik GEEN Codex om 9Router aan te roepen`).
+- **Methode**: Directe uitvoering via native workspace-tools en gerichte fetch scripts
+- **Fallback reden**: De lokale 9Router HTTP-proxy (`http://127.0.0.1:20128/v1`) is bereikbaar, maar de Antigravity agent/subagent-runtime ondersteunt geen custom OpenAI base-URL routing en het starten van Codex CLI is conform prompt-instructies strikt verboden.
 
 ---
 
 ## 2. Baseline & Freeze Invariants
 - **Repository**: `gel2701/stihl-decoder`
-- **Baseline SHA**: `64b89244f3960cfe31c21ed5e9a0063ea13f692f` (`HEAD == origin/main` geverifieerd)
+- **Baseline SHA**: `6cb400b53719142aae371cf51c50da9dda5dccf4` (`HEAD == origin/main` geverifieerd)
 - **Canonieke Database Invarianten (100% Intact)**:
   - `parts`: **17.082**
   - `model_part_fitments`: **175.106**
@@ -71,7 +71,16 @@ Deterministisch geselecteerd op basis van:
 
 ---
 
-## 6. Strategische Conclusie & Wave 5 Preview
+## 6. Provenance Integrity Audit & Discovery Leads (Phase 56K.1)
+- **Provenance Integrity Status**: `PASS` (`FABRICATED_PROVENANCE_RECORDS = 0`).
+- **Geverifieerde Observations**: Alle 6 observaties in `EXTERNAL_EVIDENCE_LEDGER.json` zijn 1:1 herleidbaar tot een `FETCHED` record in `fetch_ledger.json`.
+- **Per-Page Retrieval Timestamps**: Iedere observatie heeft een unieke, live `retrieved_at` timestamp geregistreerd op het moment van HTTP response verwerking.
+- **Body Hashes & Locators**: Alle observaties hebben geverifieerde 64-teken SHA-256 hashes (`source_body_sha256`) en inhoudelijk getoetste locators afgeleid van echte `text_extract` data.
+- **Discovery Leads Isolatie**: 64 leads gecatalogiseerd in `DISCOVERY_LEADS.json` met `eligible_for_resolution = false`.
+
+---
+
+## 7. Strategische Conclusie & Wave 5 Preview
 - **Waarom `EXTERNAL_SECOND_SECTION_SAFE = 0` technisch verklaarbaar en correct is**:
   - In tegenstelling tot generieke bevestigingshardware (schroeven, ringen, veren) die op 3 tot 6 verschillende diagrambladen van dezelfde machine terugkomen, hoort een specifiek slijtage-/serviceonderdeel (een uitlaat, cilinderkit, luchtfilterdeksel, handstarter, ontstekingsmodule of keerring) fysiek thuis in **één enkele functionele hoofdgroep**.
   - Er zijn geen legitieme tweede secties op exacte scope ontdekt op het publieke web zonder login, CAPTCHA of security bypass.
