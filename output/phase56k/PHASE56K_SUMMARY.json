@@ -1,0 +1,64 @@
+{
+  "phase": "PHASE_56K",
+  "baseline_commit": "64b89244f3960cfe31c21ed5e9a0063ea13f692f",
+  "outcome_status": "PASS",
+  "outcome_code": "ZERO_SAFE_EXTERNAL_SECOND_SECTIONS",
+  "routing": {
+    "nine_router_endpoint_reachable": true,
+    "nine_router_endpoint_url": "http://127.0.0.1:20128/v1",
+    "nine_router_used": false,
+    "execution_method": "Direct native workspace execution + targeted search_web queries",
+    "fallback_reason": "Local 9Router HTTP endpoint (http://127.0.0.1:20128/v1) is reachable (HTTP 200), but Antigravity native tool/subagent runtime does not route through a custom local OpenAI base URL, and invoking Codex CLI is prohibited by prompt rules."
+  },
+  "pilot_metrics": {
+    "source_cohort_size": 110,
+    "selected_pilot_targets": 40,
+    "researched_pilot_targets": 40,
+    "audited_domains_count": 12,
+    "external_evidence_records_logged": 6
+  },
+  "source_quality_metrics": {
+    "OFFICIAL_STIHL": 1,
+    "AUTHORIZED_TECHNICAL_SOURCE": 0,
+    "INDEPENDENT_PARTS_CATALOG": 3,
+    "RETAILER_EXACT_TECHNICAL_REFERENCE": 7,
+    "SECONDARY_WEAK_SOURCE": 0,
+    "UNUSABLE": 1,
+    "MIRROR_DOMAINS_DETECTED": 0
+  },
+  "classification_metrics": {
+    "EXTERNAL_SECOND_SECTION_SAFE": 0,
+    "SAME_SECTION_ONLY": 0,
+    "CROSS_SCOPE": 0,
+    "MIRROR_ONLY": 0,
+    "PART_NUMBER_ONLY": 3,
+    "MODEL_ONLY": 0,
+    "AMBIGUOUS": 0,
+    "NOT_FOUND": 37
+  },
+  "promotions_and_quarantine": {
+    "external_evidence_promoted": 0,
+    "new_section_contexts": 0,
+    "conflicts_or_ambiguous_quarantined": 0
+  },
+  "wave5_preview": {
+    "newly_h3_eligible": 0,
+    "newly_h1_to_h7_eligible": 0,
+    "potential_wave5_cohort": 0
+  },
+  "integrity_and_freeze": {
+    "parts": 17082,
+    "fitments": 175106,
+    "configurations": 766,
+    "evidence": 208412,
+    "section_contexts": 814,
+    "phase56h_resolutions_intact": 344,
+    "phase56j_classifications_intact": 110,
+    "indexable_parts": 843,
+    "sitemap_urls": 1024,
+    "amazon_fallbacks": 17082,
+    "verified_asins": 0,
+    "amazon_tag": "srihldecoder2-21",
+    "gsc_status": "NOT_CONFIGURED"
+  }
+}
