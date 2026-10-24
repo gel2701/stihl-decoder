@@ -1,0 +1,1291 @@
+{
+  "phase": "PHASE_56K",
+  "artifact": "EXTERNAL_EVIDENCE_PILOT_INPUT",
+  "baseline_commit": "64b89244f3960cfe31c21ed5e9a0063ea13f692f",
+  "source_cohort_artifact": "output/phase56j/HIGH_VALUE_SINGLE_SECTION_BASELINE.json",
+  "total_source_cohort_size": 110,
+  "max_pilot_size_enforced": 40,
+  "selected_pilot_count": 40,
+  "selection_policy": "DETERMINISTIC_PRIORITY_RANKING (1: unresolved published fitments > 0, 2: published_model_count DESC, 3: priority_models_count DESC, 4: current_seo_score DESC, 5: part_number ASC)",
+  "priority_models": [
+    "br_600",
+    "ms_261",
+    "br_700",
+    "hs_45",
+    "ms_260",
+    "bg_86",
+    "ms_170",
+    "ms_180",
+    "sh_86",
+    "br_800",
+    "fs_55",
+    "fs_85"
+  ],
+  "pilot_composition_summary": {
+    "multi_model_targets_count": 35,
+    "single_model_priority_targets_count": 5,
+    "all_commercial_high": true,
+    "all_from_existing_110_cohort": true
+  },
+  "pilot_targets": [
+    {
+      "pilot_rank": 1,
+      "part_number": "96390031585",
+      "part_number_display": "9639 003 1585",
+      "clean_name": "Oil Seal Din3760-As15X25X5",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "17",
+        "28",
+        "4",
+        "9"
+      ],
+      "published_model_count": 17,
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "fr_410",
+        "fs_460",
+        "ms_162",
+        "ms_170",
+        "ms_172",
+        "ms_180",
+        "ms_182",
+        "ms_210",
+        "ms_212",
+        "ms_230",
+        "ms_250",
+        "ms_270",
+        "ms_280",
+        "ms_311"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_published_models": [
+        "br_700",
+        "br_800",
+        "fr_410",
+        "fs_460",
+        "ms_162",
+        "ms_170",
+        "ms_172",
+        "ms_180",
+        "ms_182",
+        "ms_210",
+        "ms_212",
+        "ms_230",
+        "ms_250",
+        "ms_270",
+        "ms_280",
+        "ms_311"
+      ],
+      "unresolved_base_models": [
+        "br_700",
+        "fs_460",
+        "ms_162",
+        "ms_170",
+        "ms_172",
+        "ms_180",
+        "ms_182",
+        "ms_210",
+        "ms_212",
+        "ms_230",
+        "ms_250",
+        "ms_270",
+        "ms_280",
+        "ms_311"
+      ],
+      "current_seo_score": 75
+    },
+    {
+      "pilot_rank": 2,
+      "part_number": "96400031600",
+      "part_number_display": "9640 003 1600",
+      "clean_name": "Oil Seal Din3760-Bs15X29,6X4",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "10",
+        "11",
+        "12",
+        "14",
+        "16",
+        "17",
+        "18",
+        "20",
+        "22",
+        "24",
+        "8"
+      ],
+      "published_model_count": 12,
+      "published_models": [
+        "br_420",
+        "ms_260",
+        "ms_261",
+        "ms_340",
+        "ms_341",
+        "ms_360",
+        "ms_361",
+        "ms_362",
+        "ms_400",
+        "ms_441",
+        "ms_460",
+        "ms_462"
+      ],
+      "priority_models_matched": [
+        "ms_260",
+        "ms_261"
+      ],
+      "unresolved_published_models": [
+        "br_420",
+        "ms_260",
+        "ms_261",
+        "ms_340",
+        "ms_341",
+        "ms_360",
+        "ms_361",
+        "ms_362",
+        "ms_400",
+        "ms_441",
+        "ms_460",
+        "ms_462"
+      ],
+      "unresolved_base_models": [
+        "br_420",
+        "ms_340",
+        "ms_341",
+        "ms_360",
+        "ms_361",
+        "ms_362",
+        "ms_441",
+        "ms_460"
+      ],
+      "current_seo_score": 75
+    },
+    {
+      "pilot_rank": 3,
+      "part_number": "96368150270",
+      "part_number_display": "9636 815 0270",
+      "clean_name": "Sealing Ring Din7603-5X9X1",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Valve Timing Gear",
+      "current_diagram_positions": [
+        "16",
+        "27",
+        "28",
+        "30"
+      ],
+      "published_model_count": 5,
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800",
+        "fs_100",
+        "fs_131"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "unresolved_published_models": [
+        "br_700",
+        "br_800",
+        "fs_100",
+        "fs_131"
+      ],
+      "unresolved_base_models": [
+        "br_700",
+        "fs_100",
+        "fs_131"
+      ],
+      "current_seo_score": 57
+    },
+    {
+      "pilot_rank": 4,
+      "part_number": "96400031195",
+      "part_number_display": "9640 003 1195",
+      "clean_name": "Oil Seal Din3760-Bs12X22X5",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "current_diagram_positions": [
+        "4",
+        "6",
+        "7"
+      ],
+      "published_model_count": 5,
+      "published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "priority_models_matched": [
+        "fs_85"
+      ],
+      "unresolved_published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "unresolved_base_models": [
+        "fs_350",
+        "fs_460"
+      ],
+      "current_seo_score": 60
+    },
+    {
+      "pilot_rank": 5,
+      "part_number": "95030030242",
+      "part_number_display": "9503 003 0242",
+      "clean_name": "Grooved Ball Bearing Din625-6201",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "A-Crankcase, Cylinder",
+      "current_diagram_positions": [
+        "3",
+        "4",
+        "6"
+      ],
+      "published_model_count": 5,
+      "published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "priority_models_matched": [
+        "fs_85"
+      ],
+      "unresolved_published_models": [
+        "fr_410",
+        "fs_350",
+        "fs_460",
+        "fs_80",
+        "fs_85"
+      ],
+      "unresolved_base_models": [
+        "fs_350",
+        "fs_460"
+      ],
+      "current_seo_score": 58
+    },
+    {
+      "pilot_rank": 6,
+      "part_number": "95030030060",
+      "part_number_display": "9503 003 0060",
+      "clean_name": "Grooved Ball Bearing Din625-629-C3",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Gear Head - Deflector",
+      "current_diagram_positions": [
+        "2",
+        "22",
+        "23",
+        "3"
+      ],
+      "published_model_count": 4,
+      "published_models": [
+        "fr_410",
+        "fs_131",
+        "fs_55",
+        "fsa_135"
+      ],
+      "priority_models_matched": [
+        "fs_55"
+      ],
+      "unresolved_published_models": [
+        "fr_410",
+        "fs_131",
+        "fs_55",
+        "fsa_135"
+      ],
+      "unresolved_base_models": [
+        "fs_131",
+        "fsa_135"
+      ],
+      "current_seo_score": 54
+    },
+    {
+      "pilot_rank": 7,
+      "part_number": "00004001306",
+      "part_number_display": "0000 400 1306",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Ignition",
+      "current_diagram_positions": [
+        "3",
+        "8"
+      ],
+      "published_model_count": 4,
+      "published_models": [
+        "ms_200",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "priority_models_matched": [],
+      "unresolved_published_models": [
+        "ms_200",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "unresolved_base_models": [
+        "ms_200",
+        "ms_210",
+        "ms_250"
+      ],
+      "current_seo_score": 53
+    },
+    {
+      "pilot_rank": 8,
+      "part_number": "42821213300",
+      "part_number_display": "4282 121 3300",
+      "clean_name": "Throttle Shutter",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "23",
+        "24"
+      ],
+      "published_model_count": 3,
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "unresolved_published_models": [
+        "br_700",
+        "br_800"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 48
+    },
+    {
+      "pilot_rank": 9,
+      "part_number": "42821213500",
+      "part_number_display": "4282 121 3500",
+      "clean_name": "Throttle Lever",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "30",
+        "31"
+      ],
+      "published_model_count": 3,
+      "published_models": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700",
+        "br_800"
+      ],
+      "unresolved_published_models": [
+        "br_700",
+        "br_800"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 48
+    },
+    {
+      "pilot_rank": 10,
+      "part_number": "42411821001",
+      "part_number_display": "4241 182 1001",
+      "clean_name": "Throttle Trigger",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Handle Frame",
+      "current_diagram_positions": [
+        "16",
+        "18"
+      ],
+      "published_model_count": 3,
+      "published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "priority_models_matched": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_base_models": [
+        "sh_86"
+      ],
+      "current_seo_score": 50
+    },
+    {
+      "pilot_rank": 11,
+      "part_number": "42417004100",
+      "part_number_display": "4241 700 4100",
+      "clean_name": "Fan Housing",
+      "category": "starterdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Fan Housing",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_model_count": 3,
+      "published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "priority_models_matched": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_published_models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_base_models": [
+        "sh_86"
+      ],
+      "current_seo_score": 50
+    },
+    {
+      "pilot_rank": 12,
+      "part_number": "96400031190",
+      "part_number_display": "9640 003 1190",
+      "clean_name": "Oil Seal Din3760-Bs12X20X5",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Crankcase",
+      "current_diagram_positions": [
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "published_model_count": 3,
+      "published_models": [
+        "ms_260",
+        "ms_340",
+        "ms_360"
+      ],
+      "priority_models_matched": [
+        "ms_260"
+      ],
+      "unresolved_published_models": [
+        "ms_260",
+        "ms_340",
+        "ms_360"
+      ],
+      "unresolved_base_models": [
+        "ms_340",
+        "ms_360"
+      ],
+      "current_seo_score": 50
+    },
+    {
+      "pilot_rank": 13,
+      "part_number": "95030039850",
+      "part_number_display": "9503 003 9850",
+      "clean_name": "Grooved Ball Bearing Din625-609",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "J-Gear Head, Drive Tube FS 80",
+      "current_diagram_positions": [
+        "3"
+      ],
+      "published_model_count": 3,
+      "published_models": [
+        "fs_100",
+        "fs_80",
+        "fs_85"
+      ],
+      "priority_models_matched": [
+        "fs_85"
+      ],
+      "unresolved_published_models": [
+        "fs_100",
+        "fs_80",
+        "fs_85"
+      ],
+      "unresolved_base_models": [
+        "fs_100"
+      ],
+      "current_seo_score": 49
+    },
+    {
+      "pilot_rank": 14,
+      "part_number": "11301240800",
+      "part_number_display": "1130 124 0800",
+      "clean_name": "Air filter fleece",
+      "category": "filters",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "20",
+        "21"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "priority_models_matched": [
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 45
+    },
+    {
+      "pilot_rank": 15,
+      "part_number": "42411401002",
+      "part_number_display": "4241 140 1002",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Air Filter a",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "priority_models_matched": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_base_models": [
+        "sh_86"
+      ],
+      "current_seo_score": 45
+    },
+    {
+      "pilot_rank": 16,
+      "part_number": "42411402803",
+      "part_number_display": "4241 140 2803",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Air Filter a",
+      "current_diagram_positions": [
+        "5"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "priority_models_matched": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_base_models": [
+        "sh_86"
+      ],
+      "current_seo_score": 45
+    },
+    {
+      "pilot_rank": 17,
+      "part_number": "42414001320",
+      "part_number_display": "4241 400 1320",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Ignition System",
+      "current_diagram_positions": [
+        "1",
+        "2"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "priority_models_matched": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_published_models": [
+        "bg_86",
+        "sh_86"
+      ],
+      "unresolved_base_models": [
+        "sh_86"
+      ],
+      "current_seo_score": 45
+    },
+    {
+      "pilot_rank": 18,
+      "part_number": "11301400608",
+      "part_number_display": "1130 140 0608",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "priority_models_matched": [
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_base_models": [
+        "ms_170"
+      ],
+      "current_seo_score": 44
+    },
+    {
+      "pilot_rank": 19,
+      "part_number": "11301400613",
+      "part_number_display": "1130 140 0613",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "11",
+        "12"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "priority_models_matched": [
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_published_models": [
+        "ms_180"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 44
+    },
+    {
+      "pilot_rank": 20,
+      "part_number": "11300802110",
+      "part_number_display": "1130 080 2110",
+      "clean_name": "Fan Housing With Rewind Starter",
+      "category": "starterdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Rewind Starter",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "priority_models_matched": [
+        "ms_170",
+        "ms_180"
+      ],
+      "unresolved_published_models": [
+        "ms_180"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 21,
+      "part_number": "42820073600",
+      "part_number_display": "4282 007 3600",
+      "clean_name": "Set Of Pickup Bodies",
+      "category": "brandstofcomponenten",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Fuel Tank",
+      "current_diagram_positions": [
+        "4"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 22,
+      "part_number": "42820201200",
+      "part_number_display": "4282 020 1200",
+      "clean_name": "Cylinder And Piston 50Mm",
+      "category": "cilinder & zuiger",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 23,
+      "part_number": "42820290500",
+      "part_number_display": "4282 029 0500",
+      "clean_name": "Pakking",
+      "category": "lagers & keerringen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Valve Timing Gear",
+      "current_diagram_positions": [
+        "26"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 24,
+      "part_number": "42820300404",
+      "part_number_display": "4282 030 0404",
+      "clean_name": "Krukas",
+      "category": "cilinder & zuiger",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "13"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 25,
+      "part_number": "42821207100",
+      "part_number_display": "4282 120 7100",
+      "clean_name": "Throttle Shaft With Lever",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "29"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 26,
+      "part_number": "42821212900",
+      "part_number_display": "4282 121 2900",
+      "clean_name": "Choke Shutter",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "21"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 27,
+      "part_number": "42821213000",
+      "part_number_display": "4282 121 3000",
+      "clean_name": "Choke Shaft",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Carburetor C1Q-S99",
+      "current_diagram_positions": [
+        "22"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 28,
+      "part_number": "42821400603",
+      "part_number_display": "4282 140 0603",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 29,
+      "part_number": "42821401003",
+      "part_number_display": "4282 140 1003",
+      "clean_name": "Filter Cover",
+      "category": "filters",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 30,
+      "part_number": "42821402851",
+      "part_number_display": "4282 140 2851",
+      "clean_name": "Filter Housing",
+      "category": "filters",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Air Filter",
+      "current_diagram_positions": [
+        "5"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 31,
+      "part_number": "42821458100",
+      "part_number_display": "4282 145 8100",
+      "clean_name": "Exhaust Deflector",
+      "category": "maaikopcomponenten",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "2"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 32,
+      "part_number": "42824001308",
+      "part_number_display": "4282 400 1308",
+      "clean_name": "Ontstekingsmodule",
+      "category": "ontsteking",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Muffler",
+      "current_diagram_positions": [
+        "10"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "br_600",
+        "br_700"
+      ],
+      "priority_models_matched": [
+        "br_600",
+        "br_700"
+      ],
+      "unresolved_published_models": [
+        "br_700"
+      ],
+      "unresolved_base_models": [
+        "br_700"
+      ],
+      "current_seo_score": 43
+    },
+    {
+      "pilot_rank": 33,
+      "part_number": "42417010700",
+      "part_number_display": "4241 701 0700",
+      "clean_name": "Fan Housing, Outer",
+      "category": "starterdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Fan Housing Outer",
+      "current_diagram_positions": [
+        "1"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "priority_models_matched": [
+        "bg_86"
+      ],
+      "unresolved_published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "unresolved_base_models": [
+        "bg_56"
+      ],
+      "current_seo_score": 45
+    },
+    {
+      "pilot_rank": 34,
+      "part_number": "41371801100",
+      "part_number_display": "4137 180 1100",
+      "clean_name": "Throttle Cable",
+      "category": "carburateurdelen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "H-Two-Handed Handle Bar",
+      "current_diagram_positions": [
+        "15"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "fs_80",
+        "fs_85"
+      ],
+      "priority_models_matched": [
+        "fs_85"
+      ],
+      "unresolved_published_models": [
+        "fs_80",
+        "fs_85"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 44
+    },
+    {
+      "pilot_rank": 35,
+      "part_number": "42411400601",
+      "part_number_display": "4241 140 0601",
+      "clean_name": "Uitlaat",
+      "category": "uitlaten",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Ignition System",
+      "current_diagram_positions": [
+        "14",
+        "15"
+      ],
+      "published_model_count": 2,
+      "published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "priority_models_matched": [
+        "bg_86"
+      ],
+      "unresolved_published_models": [
+        "bg_56",
+        "bg_86"
+      ],
+      "unresolved_base_models": [
+        "bg_56"
+      ],
+      "current_seo_score": 44
+    },
+    {
+      "pilot_rank": 36,
+      "part_number": "11410071001",
+      "part_number_display": "1141 007 1001",
+      "clean_name": "Rim Sprocket Kit 3/8\" 7T",
+      "category": "kettingwielen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "22"
+      ],
+      "published_model_count": 1,
+      "published_models": [
+        "ms_261"
+      ],
+      "priority_models_matched": [
+        "ms_261"
+      ],
+      "unresolved_published_models": [
+        "ms_261"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 41
+    },
+    {
+      "pilot_rank": 37,
+      "part_number": "11410071002",
+      "part_number_display": "1141 007 1002",
+      "clean_name": "Rim Sprocket Kit .325\" 7T",
+      "category": "kettingwielen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "20"
+      ],
+      "published_model_count": 1,
+      "published_models": [
+        "ms_261"
+      ],
+      "priority_models_matched": [
+        "ms_261"
+      ],
+      "unresolved_published_models": [
+        "ms_261"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 41
+    },
+    {
+      "pilot_rank": 38,
+      "part_number": "11410071003",
+      "part_number_display": "1141 007 1003",
+      "clean_name": "Rim Sprocket Kit 0.325\" 8T",
+      "category": "kettingwielen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "21"
+      ],
+      "published_model_count": 1,
+      "published_models": [
+        "ms_261"
+      ],
+      "priority_models_matched": [
+        "ms_261"
+      ],
+      "unresolved_published_models": [
+        "ms_261"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 41
+    },
+    {
+      "pilot_rank": 39,
+      "part_number": "11410071007",
+      "part_number_display": "1141 007 1007",
+      "clean_name": "Rim Sprocket Kit 3/8\"P 7 Teeth",
+      "category": "kettingwielen",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Oil Pump. Clutch",
+      "current_diagram_positions": [
+        "23"
+      ],
+      "published_model_count": 1,
+      "published_models": [
+        "ms_261"
+      ],
+      "priority_models_matched": [
+        "ms_261"
+      ],
+      "unresolved_published_models": [
+        "ms_261"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 41
+    },
+    {
+      "pilot_rank": 40,
+      "part_number": "11410201200",
+      "part_number_display": "1141 020 1200",
+      "clean_name": "Cylinder And Piston 44.7Mm",
+      "category": "cilinder & zuiger",
+      "commercial_tier": "COMMERCIAL_HIGH",
+      "current_resolved_section": "Cylinder",
+      "current_diagram_positions": [
+        "6"
+      ],
+      "published_model_count": 1,
+      "published_models": [
+        "ms_261"
+      ],
+      "priority_models_matched": [
+        "ms_261"
+      ],
+      "unresolved_published_models": [
+        "ms_261"
+      ],
+      "unresolved_base_models": [],
+      "current_seo_score": 41
+    }
+  ]
+}

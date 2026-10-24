@@ -1,0 +1,137 @@
+{
+  "phase": "PHASE_56K",
+  "artifact": "SOURCE_QUALITY_AUDIT",
+  "valid_source_types": [
+    "OFFICIAL_STIHL",
+    "AUTHORIZED_TECHNICAL_SOURCE",
+    "INDEPENDENT_PARTS_CATALOG",
+    "RETAILER_EXACT_TECHNICAL_REFERENCE",
+    "SECONDARY_WEAK_SOURCE",
+    "UNUSABLE"
+  ],
+  "valid_source_lineages": [
+    "INDEPENDENT_SOURCE",
+    "LIKELY_MIRROR",
+    "SAME_SOURCE_LINEAGE",
+    "UNKNOWN_LINEAGE"
+  ],
+  "quality_counts": {
+    "OFFICIAL_STIHL": 1,
+    "AUTHORIZED_TECHNICAL_SOURCE": 0,
+    "INDEPENDENT_PARTS_CATALOG": 3,
+    "RETAILER_EXACT_TECHNICAL_REFERENCE": 7,
+    "SECONDARY_WEAK_SOURCE": 0,
+    "UNUSABLE": 1,
+    "MIRROR_DOMAINS_DETECTED": 0
+  },
+  "audited_domains": [
+    {
+      "domain": "stihl.nl",
+      "source_title": "STIHL Nederland Officiële Onderdelen & Service Kits",
+      "source_type": "OFFICIAL_STIHL",
+      "source_lineage": "INDEPENDENT_SOURCE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Official STIHL manufacturer service kit compatibility pages; already ingested in canonical database for service kits."
+    },
+    {
+      "domain": "diyspareparts.com",
+      "source_title": "DIY Spare Parts STIHL Exploded Diagrams",
+      "source_type": "INDEPENDENT_PARTS_CATALOG",
+      "source_lineage": "SAME_SOURCE_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Already harvested in Phase 54F from identical underlying dataset; 403 on automated search queries."
+    },
+    {
+      "domain": "lsengineers.co.uk",
+      "source_title": "L&S Engineers Genuine STIHL Spare Parts Reference",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "UK technical parts specialist; returns HTTP 403 to programmatic fetch, no bypass attempted."
+    },
+    {
+      "domain": "ersatzteil-service.de",
+      "source_title": "Ersatzteil-Service.de STIHL Exploviews & Ersatzteillisten",
+      "source_type": "INDEPENDENT_PARTS_CATALOG",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "German technical exploded-view parts catalog portal; no accessible public pages found without security bypass."
+    },
+    {
+      "domain": "motoruf.de",
+      "source_title": "Motoruf.de / Motoruf.com STIHL Ersatzteilzeichnungen",
+      "source_type": "INDEPENDENT_PARTS_CATALOG",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "European technical parts diagram portal; no accessible public pages found without security bypass."
+    },
+    {
+      "domain": "alldadelawnmowers.com",
+      "source_title": "All Dade Lawnmowers OEM Parts Reference",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Outdoor power equipment dealer listing exact STIHL OEM part numbers and model fitments without diagram section breakdown."
+    },
+    {
+      "domain": "shop.johnsonshg.com",
+      "source_title": "Johnsons Home & Garden STIHL Parts Reference",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Hardware & garden retailer listing exact STIHL OEM part numbers and machine fitments without diagram section breakdown."
+    },
+    {
+      "domain": "mowpart.com",
+      "source_title": "Mowpart / Four Brothers Outdoor Power Technical Reference",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Commercial mower & outdoor power parts retailer listing OEM part numbers and models without diagram section headers."
+    },
+    {
+      "domain": "cutlers.com",
+      "source_title": "Cutlers Power Equipment Genuine STIHL Reference",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Power equipment dealer confirming exact OEM STIHL part number and model fitments without exploded diagram section breakdown."
+    },
+    {
+      "domain": "americanforestry.com",
+      "source_title": "American Forestry Genuine STIHL Spares Reference",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": true,
+      "is_mirror": false,
+      "notes": "Forestry supply dealer listing OEM STIHL part numbers without model-specific diagram section tables."
+    },
+    {
+      "domain": "profarmparts.com",
+      "source_title": "Pro Farm Parts STIHL Replacement Parts",
+      "source_type": "RETAILER_EXACT_TECHNICAL_REFERENCE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": false,
+      "is_mirror": false,
+      "notes": "Agricultural parts supplier; returned HTTP 520 server error during pilot fetch."
+    },
+    {
+      "domain": "ebay.com",
+      "source_title": "eBay Marketplace Listings",
+      "source_type": "UNUSABLE",
+      "source_lineage": "UNKNOWN_LINEAGE",
+      "usable_for_evidence": false,
+      "is_mirror": false,
+      "notes": "Excluded consumer marketplace listing; not a verifiable technical parts catalog or authorized manufacturer reference."
+    }
+  ]
+}
