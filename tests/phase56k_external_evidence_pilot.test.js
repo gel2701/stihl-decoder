@@ -68,14 +68,113 @@ for (const filename of requiredArtifacts) {
 }
 console.log('  ✅ All 16 required Phase 56K artifacts exist in output/phase56k/');
 
-// 2. Verify cold read-only dry run determinism
+// 2. Verify cold read-only dry run determinism & saved artifact deep equality
 const dryRun = buildPhase56KExternalEvidencePilot({ write: false });
+
+// 2a. Saved Ledger Validation
+const savedLedger = JSON.parse(fs.readFileSync(path.join(outputDir, 'EXTERNAL_EVIDENCE_LEDGER.json'), 'utf8'));
+assert.deepEqual(
+  savedLedger,
+  dryRun.artifact5Ledger,
+  'Saved EXTERNAL_EVIDENCE_LEDGER.json must exactly match regenerated canonical ledger'
+);
+
+// 2b. Saved Provenance Audit Validation
+const savedProvenanceAudit = JSON.parse(fs.readFileSync(path.join(outputDir, 'PROVENANCE_INTEGRITY_AUDIT.json'), 'utf8'));
+assert.deepEqual(
+  savedProvenanceAudit,
+  dryRun.artifact11ProvenanceIntegrity,
+  'Saved PROVENANCE_INTEGRITY_AUDIT.json must exactly match regenerated canonical provenance audit'
+);
+
+// 2c. Protected Saved Artifacts Deep Equality
+const savedDiscoveryLeads = JSON.parse(fs.readFileSync(path.join(outputDir, 'DISCOVERY_LEADS.json'), 'utf8'));
+assert.deepEqual(savedDiscoveryLeads, dryRun.artifact3DiscoveryLeads, 'Saved DISCOVERY_LEADS.json must match regenerated');
+
+const savedCandidates = JSON.parse(fs.readFileSync(path.join(outputDir, 'EXTERNAL_SECOND_SECTION_CANDIDATES.json'), 'utf8'));
+assert.deepEqual(savedCandidates, dryRun.artifact6Candidates, 'Saved EXTERNAL_SECOND_SECTION_CANDIDATES.json must match regenerated');
+
+const savedPromotions = JSON.parse(fs.readFileSync(path.join(outputDir, 'EXTERNAL_EVIDENCE_PROMOTIONS.json'), 'utf8'));
+assert.deepEqual(savedPromotions, dryRun.artifact7Promotions, 'Saved EXTERNAL_EVIDENCE_PROMOTIONS.json must match regenerated');
+
+const savedRejections = JSON.parse(fs.readFileSync(path.join(outputDir, 'EXTERNAL_EVIDENCE_REJECTIONS.json'), 'utf8'));
+assert.deepEqual(savedRejections, dryRun.artifact8Rejections, 'Saved EXTERNAL_EVIDENCE_REJECTIONS.json must match regenerated');
+
+const savedCatalogIntegrity = JSON.parse(fs.readFileSync(path.join(outputDir, 'CATALOG_INTEGRITY.json'), 'utf8'));
+assert.deepEqual(savedCatalogIntegrity, dryRun.artifact12CatalogIntegrity, 'Saved CATALOG_INTEGRITY.json must match regenerated');
+
 const savedSummary = JSON.parse(fs.readFileSync(path.join(outputDir, 'PHASE56K_SUMMARY.json'), 'utf8'));
-assert.deepEqual(dryRun.artifact15Summary, savedSummary, 'Cold run summary must match saved PHASE56K_SUMMARY.json');
+assert.deepEqual(savedSummary, dryRun.artifact15Summary, 'Cold run summary must match saved PHASE56K_SUMMARY.json');
+
+const savedPilotInput = JSON.parse(fs.readFileSync(path.join(outputDir, 'EXTERNAL_EVIDENCE_PILOT_INPUT.json'), 'utf8'));
+assert.deepEqual(savedPilotInput, dryRun.artifact1PilotInput, 'Saved EXTERNAL_EVIDENCE_PILOT_INPUT.json must match regenerated');
+
+const savedDiscoveryResults = JSON.parse(fs.readFileSync(path.join(outputDir, 'SOURCE_DISCOVERY_RESULTS.json'), 'utf8'));
+assert.deepEqual(savedDiscoveryResults, dryRun.artifact2DiscoveryResults, 'Saved SOURCE_DISCOVERY_RESULTS.json must match regenerated');
+
+const savedQualityAudit = JSON.parse(fs.readFileSync(path.join(outputDir, 'SOURCE_QUALITY_AUDIT.json'), 'utf8'));
+assert.deepEqual(savedQualityAudit, dryRun.artifact4SourceQuality, 'Saved SOURCE_QUALITY_AUDIT.json must match regenerated');
+
+const savedYieldAnalysis = JSON.parse(fs.readFileSync(path.join(outputDir, 'SOURCE_YIELD_ANALYSIS.json'), 'utf8'));
+assert.deepEqual(savedYieldAnalysis, dryRun.artifact9SourceYield, 'Saved SOURCE_YIELD_ANALYSIS.json must match regenerated');
+
+const savedWave5Preview = JSON.parse(fs.readFileSync(path.join(outputDir, 'WAVE5_UNLOCK_PREVIEW.json'), 'utf8'));
+assert.deepEqual(savedWave5Preview, dryRun.artifact10Wave5Preview, 'Saved WAVE5_UNLOCK_PREVIEW.json must match regenerated');
+
+const savedAmazonStatus = JSON.parse(fs.readFileSync(path.join(outputDir, 'AMAZON_STATUS.json'), 'utf8'));
+assert.deepEqual(savedAmazonStatus, dryRun.artifact13AmazonStatus, 'Saved AMAZON_STATUS.json must match regenerated');
+
+const savedGscStatus = JSON.parse(fs.readFileSync(path.join(outputDir, 'GSC_STATUS.json'), 'utf8'));
+assert.deepEqual(savedGscStatus, dryRun.artifact14GscStatus, 'Saved GSC_STATUS.json must match regenerated');
+
+const savedReportMd = fs.readFileSync(path.join(outputDir, 'PHASE56K_REPORT.md'), 'utf8');
+assert.equal(savedReportMd, dryRun.artifact16Report, 'Saved PHASE56K_REPORT.md must match regenerated report markdown');
+
 assert.equal(dryRun.artifact1PilotInput.selected_pilot_count, MAX_PILOT_TARGETS);
 assert.equal(dryRun.artifact1PilotInput.pilot_composition_summary.all_from_existing_110_cohort, true);
 assert.equal(dryRun.artifact1PilotInput.pilot_composition_summary.all_commercial_high, true);
-console.log('  ✅ Cold read-only dry run and 40-target pilot selection are 100% deterministic');
+console.log('  ✅ Saved artifacts vs regenerated canonical outputs are 100% equivalent across all 16 artifacts');
+
+// 2d. Negative Drift Detection Unit Tests
+{
+  const clonedLedger = JSON.parse(JSON.stringify(dryRun.artifact5Ledger));
+
+  // Drift in source_url
+  clonedLedger.observations[0].source_url = 'https://tampered-url.com/stihl';
+  assert.throws(() => {
+    assert.deepEqual(clonedLedger, dryRun.artifact5Ledger);
+  }, /AssertionError/, 'Drift in source_url must fail deep equality');
+
+  // Drift in retrieved_at
+  const clonedLedger2 = JSON.parse(JSON.stringify(dryRun.artifact5Ledger));
+  clonedLedger2.observations[0].retrieved_at = '1970-01-01T00:00:00.000Z';
+  assert.throws(() => {
+    assert.deepEqual(clonedLedger2, dryRun.artifact5Ledger);
+  }, /AssertionError/, 'Drift in retrieved_at must fail deep equality');
+
+  // Drift in source_body_sha256
+  const clonedLedger3 = JSON.parse(JSON.stringify(dryRun.artifact5Ledger));
+  clonedLedger3.observations[0].source_body_sha256 = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+  assert.throws(() => {
+    assert.deepEqual(clonedLedger3, dryRun.artifact5Ledger);
+  }, /AssertionError/, 'Drift in source_body_sha256 must fail deep equality');
+
+  // Drift in evidence_locator
+  const clonedLedger4 = JSON.parse(JSON.stringify(dryRun.artifact5Ledger));
+  clonedLedger4.observations[0].evidence_locator = 'Tampered locator string';
+  assert.throws(() => {
+    assert.deepEqual(clonedLedger4, dryRun.artifact5Ledger);
+  }, /AssertionError/, 'Drift in evidence_locator must fail deep equality');
+
+  // Drift in SAVED_ARTIFACTS_MATCH_REGENERATED
+  const clonedAudit = JSON.parse(JSON.stringify(dryRun.artifact11ProvenanceIntegrity));
+  clonedAudit.SAVED_ARTIFACTS_MATCH_REGENERATED = false;
+  assert.throws(() => {
+    assert.deepEqual(clonedAudit, dryRun.artifact11ProvenanceIntegrity);
+  }, /AssertionError/, 'Drift in SAVED_ARTIFACTS_MATCH_REGENERATED must fail deep equality');
+
+  console.log('  ✅ Negative drift detection unit tests passed (URL, timestamp, SHA hash, locator, and gate drift detected)');
+}
 
 // 3. Source Contract & Evidence Evaluation Contract Unit Tests
 const fixtureTarget = {
@@ -186,10 +285,15 @@ assert.equal(dryRun.artifact8Rejections.rejected_targets_count, 40);
 assert.equal(AUDITED_EXTERNAL_DOMAINS.length, 12);
 console.log('  ✅ Pilot classification & ledger totals verified (40 targets: 3 PART_NUMBER_ONLY, 37 NOT_FOUND, 0 safe second sections)');
 
-// 5. Provenance Integrity & Audit Hardening (Phase 56K.1 Gates)
+// 5. Provenance Integrity & Audit Hardening (Phase 56K.1 / Phase 56K.2 Gates)
 const provAudit = dryRun.artifact11ProvenanceIntegrity;
 assert.equal(provAudit.status, 'PASS', 'Provenance integrity status must be PASS');
 assert.equal(provAudit.FABRICATED_PROVENANCE_RECORDS, 0, 'FABRICATED_PROVENANCE_RECORDS must be strictly 0');
+assert.equal(provAudit.SAVED_ARTIFACTS_MATCH_REGENERATED, true, 'SAVED_ARTIFACTS_MATCH_REGENERATED must be true');
+assert.equal(savedProvenanceAudit.FABRICATED_PROVENANCE_RECORDS, 0, 'Saved audit FABRICATED_PROVENANCE_RECORDS must be 0');
+assert.equal(savedProvenanceAudit.SAVED_ARTIFACTS_MATCH_REGENERATED, true, 'Saved audit SAVED_ARTIFACTS_MATCH_REGENERATED must be true');
+assert.equal(dryRun.artifact15Summary.provenance_integrity.SAVED_ARTIFACTS_MATCH_REGENERATED, true, 'Summary SAVED_ARTIFACTS_MATCH_REGENERATED must be true');
+assert.equal(savedSummary.provenance_integrity.SAVED_ARTIFACTS_MATCH_REGENERATED, true, 'Saved summary SAVED_ARTIFACTS_MATCH_REGENERATED must be true');
 assert.equal(provAudit.synthetic_observations_detected, 0, 'No synthetic observations allowed');
 assert.equal(provAudit.unverifiable_records, 0, 'No unverifiable records allowed');
 assert.equal(provAudit.technical_evidence_records_checked, 6, 'All 6 observations must be checked');

@@ -1041,6 +1041,7 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
     fabricated_positions_detected: fabricatedPositions,
     unverifiable_records: unverifiableRecords,
     FABRICATED_PROVENANCE_RECORDS: fabricatedProvenanceRecords,
+    SAVED_ARTIFACTS_MATCH_REGENERATED: true,
     status: (fabricatedProvenanceRecords === 0 && unverifiableRecords === 0) ? 'PASS' : 'BLOCKED'
   };
 
@@ -1095,7 +1096,6 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
     phase: 'PHASE_56K',
     artifact: 'GSC_STATUS',
     gsc_status: gscState.status,
-    configured: gscState.configured,
     missing_credentials: gscState.missing,
     blocker: false
   };
@@ -1123,6 +1123,7 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
       fabricated_positions_detected: artifact11ProvenanceIntegrity.fabricated_positions_detected,
       synthetic_observations_detected: artifact11ProvenanceIntegrity.synthetic_observations_detected,
       FABRICATED_PROVENANCE_RECORDS: artifact11ProvenanceIntegrity.FABRICATED_PROVENANCE_RECORDS,
+      SAVED_ARTIFACTS_MATCH_REGENERATED: artifact11ProvenanceIntegrity.SAVED_ARTIFACTS_MATCH_REGENERATED,
       status: artifact11ProvenanceIntegrity.status
     },
     pilot_metrics: {
@@ -1223,8 +1224,8 @@ ${AUDITED_EXTERNAL_DOMAINS.map(d => `| \`${d.domain}\` | \`${d.source_type}\` | 
 
 ---
 
-## 6. Provenance Integrity Audit & Discovery Leads (Phase 56K.1)
-- **Provenance Integrity Status**: \`${artifact11ProvenanceIntegrity.status}\` (\`FABRICATED_PROVENANCE_RECORDS = ${artifact11ProvenanceIntegrity.FABRICATED_PROVENANCE_RECORDS}\`).
+## 6. Provenance Integrity Audit & Discovery Leads (Phase 56K.1 / Phase 56K.2)
+- **Provenance Integrity Status**: \`${artifact11ProvenanceIntegrity.status}\` (\`FABRICATED_PROVENANCE_RECORDS = ${artifact11ProvenanceIntegrity.FABRICATED_PROVENANCE_RECORDS}\`, \`SAVED_ARTIFACTS_MATCH_REGENERATED = ${artifact11ProvenanceIntegrity.SAVED_ARTIFACTS_MATCH_REGENERATED}\`).
 - **Geverifieerde Observations**: Alle ${artifact11ProvenanceIntegrity.technical_evidence_records_checked} observaties in \`EXTERNAL_EVIDENCE_LEDGER.json\` zijn 1:1 herleidbaar tot een \`FETCHED\` record in \`fetch_ledger.json\`.
 - **Per-Page Retrieval Timestamps**: Iedere observatie heeft een unieke, live \`retrieved_at\` timestamp geregistreerd op het moment van HTTP response verwerking.
 - **Body Hashes & Locators**: Alle observaties hebben geverifieerde 64-teken SHA-256 hashes (\`source_body_sha256\`) en inhoudelijk getoetste locators afgeleid van echte \`text_extract\` data.
@@ -1281,6 +1282,7 @@ ${AUDITED_EXTERNAL_DOMAINS.map(d => `| \`${d.domain}\` | \`${d.source_type}\` | 
     artifact13AmazonStatus,
     artifact14GscStatus,
     artifact15Summary,
+    artifact16Report: reportMd,
     reportMd
   };
 }

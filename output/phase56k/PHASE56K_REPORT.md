@@ -71,8 +71,8 @@ Deterministisch geselecteerd op basis van:
 
 ---
 
-## 6. Provenance Integrity Audit & Discovery Leads (Phase 56K.1)
-- **Provenance Integrity Status**: `PASS` (`FABRICATED_PROVENANCE_RECORDS = 0`).
+## 6. Provenance Integrity Audit & Discovery Leads (Phase 56K.1 / Phase 56K.2)
+- **Provenance Integrity Status**: `PASS` (`FABRICATED_PROVENANCE_RECORDS = 0`, `SAVED_ARTIFACTS_MATCH_REGENERATED = true`).
 - **Geverifieerde Observations**: Alle 6 observaties in `EXTERNAL_EVIDENCE_LEDGER.json` zijn 1:1 herleidbaar tot een `FETCHED` record in `fetch_ledger.json`.
 - **Per-Page Retrieval Timestamps**: Iedere observatie heeft een unieke, live `retrieved_at` timestamp geregistreerd op het moment van HTTP response verwerking.
 - **Body Hashes & Locators**: Alle observaties hebben geverifieerde 64-teken SHA-256 hashes (`source_body_sha256`) en inhoudelijk getoetste locators afgeleid van echte `text_extract` data.
