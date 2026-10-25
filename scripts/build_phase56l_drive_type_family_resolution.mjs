@@ -658,7 +658,8 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
       nine_router_note: 'Native direct execution used per instructions.',
       codex_used: false,
       codex_review_requested: false,
-      automatic_external_review_note: 'Dynamic inspection will record review activity upon PR creation.'
+      automatic_external_review_triggered: true,
+      automatic_external_review_note: 'chatgpt-codex-connector bot triggered automatically on PR #57 upon PR opening; not requested and not used for acceptance.'
     }
   };
 
