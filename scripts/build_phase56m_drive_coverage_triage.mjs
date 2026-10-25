@@ -675,6 +675,9 @@ export function buildPhase56mDriveCoverageTriage({ write = true } = {}) {
 
 **Status:** ${summaryArtifact.outcome_status}
 **Baseline commit:** \`${BASELINE_COMMIT}\`
+**Candidate commit:** \`f1420f9d1a4459785d050aa247b4b4fcdc3287e4\`
+**PR:** #60 (Merged)
+**Definitieve main commit:** \`42d941ac347f4339ee58261a6f02b41f3823e8a7\`
 **Datum:** ${new Date().toISOString()}
 **Repository:** \`gel2701/stihl-decoder\`
 
@@ -731,7 +734,7 @@ ${rankingTableRows}
 
 ## 5. Expliciete Data Recovery Audit
 
-Er zijn **145 modellen** geïdentificeerd met termen zoals \`Gasoline\`, \`Battery\` of \`Electric\` in het veld \`parts_model_variants.source_model_name\`.
+Er zijn **183 modellen** geïdentificeerd met termen zoals \`Gasoline\`, \`Battery\` of \`Electric\` in het veld \`parts_model_variants.source_model_name\`.
 - **Besluit:** Deze velden zijn afkomstig uit externe onderdelencatalogi (derden), niet van officiële STIHL-bronnen.
 - **Activering:** **0 modellen geactiveerd** (\`safe_to_activate: false\`).
 - **Motivatie:** Directe activatie zonder officiële STIHL-verificatie zou een inbreuk vormen op de eis \`PROMOTED_WITHOUT_OFFICIAL_EVIDENCE = 0\`.
