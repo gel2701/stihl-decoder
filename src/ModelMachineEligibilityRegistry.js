@@ -193,7 +193,7 @@ function extractModelName(modelInput) {
   if (!modelInput) return '';
   if (typeof modelInput === 'string') return modelInput.trim();
   if (typeof modelInput === 'object') {
-    return (modelInput.model_name || modelInput.base_model_name || modelInput.variant_name || modelInput.id || '').trim();
+    return (modelInput.model_name || modelInput.base_model_name || modelInput.variant_name || modelInput.slug || modelInput.id || '').trim();
   }
   return String(modelInput).trim();
 }

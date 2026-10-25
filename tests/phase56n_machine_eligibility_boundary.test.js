@@ -48,6 +48,14 @@ test('Phase 56N: Existing unpowered attachments are classified as UNPOWERED_ATTA
     assert.strictEqual(driveRes.drive_type, DRIVE_TYPES.UNKNOWN);
     assert.strictEqual(driveRes.resolution, 'ATTACHMENT_NOT_POWERED');
   }
+
+  // Slug-only attachment object test (retains safety gate against explicit power source bypass)
+  const slugAttachmentObj = { slug: 'BG-KM', explicit_power_source: 'GASOLINE' };
+  const slugRes = resolveMachineEligibility(slugAttachmentObj);
+  assert.strictEqual(slugRes.eligibility, MACHINE_ELIGIBILITY.UNPOWERED_ATTACHMENT);
+  const slugDriveRes = resolveDriveType(slugAttachmentObj);
+  assert.strictEqual(slugDriveRes.drive_type, DRIVE_TYPES.UNKNOWN);
+  assert.strictEqual(slugDriveRes.resolution, 'ATTACHMENT_NOT_POWERED');
 });
 
 test('Phase 56N: Real machines are classified as POWERED_MACHINE (False-exclusion safety gate)', () => {
