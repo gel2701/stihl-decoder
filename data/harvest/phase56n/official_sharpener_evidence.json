@@ -1,7 +1,7 @@
 {
-  "phase": "PHASE_56N.1",
+  "phase": "PHASE_56N.2",
   "harvest_type": "OFFICIAL_POWERED_SHARPENER_EVIDENCE",
-  "timestamp": "2026-10-25T19:36:33.543Z",
+  "timestamp": "2026-10-25T20:52:05.427Z",
   "records_count": 2,
   "records": [
     {
@@ -12,11 +12,15 @@
       "resolution": "EXPLICIT_MODEL",
       "source_type": "OFFICIAL_STIHL_MODEL_DOCUMENT",
       "source_title": "STIHL USG Universal Sharpener Instruction Manual (0458-523-0121-A)",
+      "requested_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
       "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
       "final_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
       "document_filename": "USG_Manual.pdf",
       "http_status": 200,
-      "retrieved_at": "2026-10-25T19:36:33.533Z",
+      "content_type": "application/pdf",
+      "content_origin": "HTTP_FETCH",
+      "retrieval_started_at": "2026-10-25T20:52:04.434Z",
+      "retrieved_at": "2026-10-25T20:52:04.436Z",
       "document_sha256": "d782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf",
       "document_bytes": 1060207,
       "pdf_text_extraction": true,
@@ -27,11 +31,11 @@
       "matched_drive_terms": [
         "single-phase ac",
         "230 v",
-        "0.18 kw",
+        "180 w",
         "2,800 rpm"
       ],
-      "evidence_excerpt": "21 Specifications - 21.1 Motor (230 V): Type: Single-phase AC, squirrel cage motor. Voltage: 230 V. Frequency: 50 Hz. Rated current: 1.1 A. Power consumption: 180 W (0.18 kW). Motor speed: 2,800 rpm.",
-      "evidence_excerpt_sha256": "eff2291fcee5525bfcaf49c0ff92ee9e9ee248e1ffba40ecb1bc7058dee52387",
+      "evidence_excerpt": "21   Specifications  21.1   Motor (230 V)  Type:   Single-phase AC, squir‐ rel cage motor Voltage:   230 V Frequency:   50 Hz Rated current:   1.1 A Power consumption:   180 W Motor speed:   2,800 rpm Weight   8.8 kg Type of protection   I",
+      "evidence_excerpt_sha256": "45933e2d883423457386fe9f253ebd1b675a0e30b9b7d53db8ac63c3e436b714",
       "verification_status": "VERIFIED"
     },
     {
@@ -41,18 +45,22 @@
       "display": "Elektrisch / netstroom",
       "resolution": "EXPLICIT_MODEL",
       "source_type": "OFFICIAL_STIHL_MODEL_DOCUMENT",
-      "source_title": "STIHL HOS Instruction Manual (hosmanual.pdf)",
-      "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/hosmanual.pdf",
-      "final_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/hosmanual.pdf",
+      "source_title": "STIHL HOS Instruction Manual (0458-522-0121)",
+      "requested_url": "https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf",
+      "source_url": "https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf",
+      "final_url": "https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf",
       "document_filename": "hosmanual.pdf",
       "http_status": 200,
-      "retrieved_at": "2026-10-25T19:36:33.543Z",
-      "document_sha256": "e11a88925bd9a4331d2c702938898771fa886a958e29da781bc13a11f9d56d5a",
-      "document_bytes": 742,
+      "content_type": "application/pdf",
+      "content_origin": "HTTP_FETCH",
+      "retrieval_started_at": "2026-10-25T20:52:05.142Z",
+      "retrieved_at": "2026-10-25T20:52:05.147Z",
+      "document_sha256": "e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83",
+      "document_bytes": 1057881,
       "pdf_text_extraction": true,
       "pdf_parser": "pdfjs-dist/legacy",
-      "pdf_page_count": 1,
-      "page_number": 1,
+      "pdf_page_count": 26,
+      "page_number": 20,
       "matched_model": "HOS",
       "matched_drive_terms": [
         "single-phase ac",
@@ -60,8 +68,8 @@
         "0.18 kw",
         "2,800 rpm"
       ],
-      "evidence_excerpt": "STIHL HOS Instruction Manual - Specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.",
-      "evidence_excerpt_sha256": "c94030fbf91f1fd96d7f734792a11cef87a0b61a5282b4ecd689e44bdc854ca0",
+      "evidence_excerpt": "Type:   Single-phase AC, squirrel-cage motor Operating voltage:   230 V Frequency:   50 Hz Rated current:   1.3 A Power rating:   0.18 kW Motor speed:   2,800 RPM Type of protection: IP 54 (DIN 40050)",
+      "evidence_excerpt_sha256": "02d46f784cf80e07cde78981264ab17afc8b4cc6ce3e2ffa43cf2d32ba3e5537",
       "verification_status": "VERIFIED"
     }
   ]

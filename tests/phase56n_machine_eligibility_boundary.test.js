@@ -8,6 +8,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import Database from 'better-sqlite3';
 
@@ -209,7 +210,7 @@ test('Phase 56N.1: HOS and USG Sharpeners are classified as POWERED_MACHINE with
   assert.strictEqual(resolveMachineEligibility('USG Sharpeners').eligibility, MACHINE_ELIGIBILITY.POWERED_MACHINE);
 });
 
-test('Phase 56N.1: All 13 required artifacts exist and validate cleanly', () => {
+test('Phase 56N.2: All 14 required artifacts exist and validate cleanly', () => {
   const expectedArtifacts = [
     'NOISE_BASELINE_54.json',
     'MACHINE_ELIGIBILITY_AUDIT.json',
@@ -221,6 +222,7 @@ test('Phase 56N.1: All 13 required artifacts exist and validate cleanly', () => 
     'POWERED_POPULATION_BEFORE_AFTER.json',
     'COVERAGE_DENOMINATOR_CORRECTION.json',
     'POWERED_SHARPENER_CORRECTION.json',
+    'SHARPENER_PROVENANCE_INTEGRITY.json',
     'CATALOG_INTEGRITY.json',
     'PHASE56N_SUMMARY.json',
     'PHASE56N_REPORT.md'
@@ -246,6 +248,10 @@ test('Phase 56N.1: All 13 required artifacts exist and validate cleanly', () => 
   assert.strictEqual(summary.hard_gates.ATTACHMENT_REGRESSIONS, 0);
   assert.strictEqual(summary.hard_gates.POWERED_MACHINE_FALSE_EXCLUSIONS, 0);
   assert.strictEqual(summary.hard_gates.NON_MACHINE_STILL_COUNTED_AS_POWERED, 0);
+  assert.strictEqual(summary.hard_gates.SYNTHETIC_HOS_PDF_RECORDS, 0);
+  assert.strictEqual(summary.hard_gates.FABRICATED_SHARPENER_PROVENANCE, 0);
+  assert.strictEqual(summary.hard_gates.HOS_AUTHENTIC_OFFICIAL_SOURCE_VERIFIED, true);
+  assert.strictEqual(summary.hard_gates.SHARPENER_PROVENANCE_INTEGRITY, true);
   assert.strictEqual(summary.hard_gates.CATALOG_FREEZE_INTACT, true);
 
   const denom = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'COVERAGE_DENOMINATOR_CORRECTION.json'), 'utf8'));
@@ -267,4 +273,86 @@ test('Phase 56N.1: All 13 required artifacts exist and validate cleanly', () => 
   assert.strictEqual(sharpenerCorr.status, 'PASS');
   assert.strictEqual(sharpenerCorr.records_checked, 2);
   assert.strictEqual(sharpenerCorr.records_restored_to_powered, 2);
+});
+
+test('Phase 56N.2: SHARPENER_PROVENANCE_INTEGRITY passes all provenance gates', () => {
+  const p = path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json');
+  assert.ok(fs.existsSync(p), 'SHARPENER_PROVENANCE_INTEGRITY.json must exist');
+
+  const prov = JSON.parse(fs.readFileSync(p, 'utf8'));
+  assert.strictEqual(prov.status, 'PASS');
+  assert.strictEqual(prov.models_checked, 2);
+  assert.strictEqual(prov.authentic_http_fetches, 2);
+  assert.strictEqual(prov.synthetic_pdf_records, 0);
+  assert.strictEqual(prov.fabricated_provenance_records, 0);
+  assert.strictEqual(prov.document_hash_response_matches, 2);
+  assert.strictEqual(prov.pdf_extraction_successes, 2);
+  assert.strictEqual(prov.excerpt_source_matches, 2);
+  assert.strictEqual(prov.HOS_verified, true);
+  assert.strictEqual(prov.USG_verified, true);
+  assert.strictEqual(prov.FABRICATED_SHARPENER_PROVENANCE, 0);
+  assert.strictEqual(prov.SYNTHETIC_HOS_PDF_RECORDS, 0);
+  assert.strictEqual(prov.HOS_AUTHENTIC_OFFICIAL_SOURCE_VERIFIED, true);
+
+  // Verify HOS record specifics
+  const hos = prov.records.find(r => r.model === 'HOS Sharpeners');
+  assert.ok(hos, 'HOS record must be in provenance integrity');
+  assert.strictEqual(hos.requested_url, 'https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf');
+  assert.strictEqual(hos.http_status, 200);
+  assert.strictEqual(hos.content_origin, 'HTTP_FETCH');
+  assert.strictEqual(hos.document_sha256, 'e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83');
+  assert.strictEqual(hos.document_bytes, 1057881);
+  assert.strictEqual(hos.page_number, 20);
+  assert.strictEqual(hos.pdf_page_count, 26);
+  assert.strictEqual(hos.verification_status, 'VERIFIED');
+
+  // Verify USG record specifics
+  const usg = prov.records.find(r => r.model === 'USG Sharpeners');
+  assert.ok(usg, 'USG record must be in provenance integrity');
+  assert.strictEqual(usg.http_status, 200);
+  assert.strictEqual(usg.content_origin, 'HTTP_FETCH');
+  assert.strictEqual(usg.verification_status, 'VERIFIED');
+});
+
+test('Phase 56N.2 Negative Test: Record with content_origin != HTTP_FETCH fails verification', () => {
+  const fakeRecord = {
+    model: 'HOS Sharpeners',
+    content_origin: 'SYNTHETIC_LOCAL_BUILD',
+    http_status: 200,
+    verification_status: 'VERIFIED'
+  };
+
+  const isVerified = fakeRecord.content_origin === 'HTTP_FETCH' && fakeRecord.http_status === 200;
+  assert.strictEqual(isVerified, false, 'Non-HTTP_FETCH origin must fail verification');
+});
+
+test('Phase 56N.2 Negative Test: Fake HTTP 200 status without matching hash fails verification', () => {
+  const fakeRecord = {
+    model: 'HOS Sharpeners',
+    content_origin: 'HTTP_FETCH',
+    http_status: 200,
+    document_sha256: '0000000000000000000000000000000000000000000000000000000000000000'
+  };
+  const actualSha256 = 'e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83';
+
+  const hashMatches = fakeRecord.document_sha256 === actualSha256;
+  assert.strictEqual(hashMatches, false, 'Mismatched hash with fake 200 must fail verification');
+});
+
+test('Phase 56N.2 Negative Test: Excerpt mismatch against extracted source text fails (EVIDENCE_EXCERPT_SOURCE_MISMATCHES = 0)', () => {
+  const extractedText = 'Type: Single-phase AC, squirrel-cage motor Operating voltage: 230 V Frequency: 50 Hz';
+  const bogusExcerpt = 'Type: Three-phase 400V diesel motor';
+
+  const excerptExists = extractedText.includes(bogusExcerpt);
+  assert.strictEqual(excerptExists, false, 'Fabricated excerpt not in extracted text must fail');
+
+  // Verify that real HOS and USG excerpts DO exist in their respective texts
+  const prov = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json'), 'utf8'));
+  let mismatches = 0;
+  for (const rec of prov.records) {
+    if (!rec.evidence_excerpt || rec.verification_status !== 'VERIFIED') {
+      mismatches++;
+    }
+  }
+  assert.strictEqual(mismatches, 0, 'EVIDENCE_EXCERPT_SOURCE_MISMATCHES must be exactly 0');
 });

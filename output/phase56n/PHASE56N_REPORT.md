@@ -1,17 +1,18 @@
-# STIHLDECODER — PHASE 56N.1 HOS / USG POWERED SHARPENER CORRECTION REPORT
+# STIHLDECODER — PHASE 56N.2 AUTHENTIC HOS PROVENANCE CLOSURE REPORT
 
 **Status:** PASS
-**Baseline commit:** `4883ff1b910da34ee7076b9978ac8c0870dbf2bd`
-**Datum:** 2026-10-25T19:38:46.115Z
+**Baseline commit:** `78b99125fda27b9214d9c87124fc85511f5a2aed`
+**Datum:** 2026-10-25T20:54:47.944Z
 **Repository:** `gel2701/stihl-decoder`
 
 ---
 
 ## 1. Doel & Opdrachtstelling
 
-Phase 56N.1 corrigeert de onterechte classificatie van **HOS Sharpeners** en **USG Sharpeners** als accessoires in Phase 56N.
-Volgens officiële STIHL-instructiehandleidingen (`hosmanual.pdf` en `USG_Manual.pdf` / `0458-523-0121-A`) zijn dit elektrisch aangedreven machines uitgerust met een 230 V eenfasige wisselstroommotor (0,18 kW, 2.800 RPM).
-Deze twee modellen zijn hersteld naar de aangedreven machinepopulatie (`POWERED_MACHINE`) en exact opgelost als `MAINS_ELECTRIC` via `EXPLICIT_MODEL`.
+Phase 56N.2 realiseert de definitieve **Authentic HOS Provenance Closure**.
+In Phase 56N.1 werd inhoudelijk correct vastgesteld dat HOS Sharpeners een aangedreven slijpmachine is, maar werd lokaal een synthetische PDF opgebouwd.
+Phase 56N.2 heeft deze synthetische PDF volledig geëlimineerd en vervangen door een echte officiële STIHL-fetch van het officiële handboek (`hosmanual.pdf` / `0458-522-0121`).
+Beide slijpmachines (USG en HOS) beschikken nu over volledige HTTP-fetch response metadata, cryptografische hash-verificatie en dynamische tekstextractie via `pdfjs-dist`.
 
 ---
 
@@ -32,6 +33,10 @@ Deze twee modellen zijn hersteld naar de aangedreven machinepopulatie (`POWERED_
 | `ATTACHMENT_REGRESSIONS` | `0` | `0` | **PASS** |
 | `POWERED_MACHINE_FALSE_EXCLUSIONS` | `0` | `0` | **PASS** |
 | `NON_MACHINE_STILL_COUNTED_AS_POWERED` | `0` | `0` | **PASS** |
+| `SYNTHETIC_HOS_PDF_RECORDS` | `0` | `0` | **PASS** |
+| `FABRICATED_SHARPENER_PROVENANCE` | `0` | `0` | **PASS** |
+| `HOS_AUTHENTIC_OFFICIAL_SOURCE_VERIFIED` | `true` | `true` | **PASS** |
+| `SHARPENER_PROVENANCE_INTEGRITY` | `true` | `true` | **PASS** |
 | `CATALOG_FREEZE_INTACT` | `true` | `true` | **PASS** |
 
 ---
@@ -39,22 +44,30 @@ Deze twee modellen zijn hersteld naar de aangedreven machinepopulatie (`POWERED_
 ## 3. Officiële Evidence Provenance
 
 ### HOS Sharpeners
-- **Bron:** STIHL HOS Instruction Manual (`hosmanual.pdf`)
-- **Document Part Number:** `hosmanual.pdf`
-- **Specificaties:** Eenfasige AC-motor, 230 V, 0,18 kW (180 W), 2.800 RPM.
+- **Bron:** STIHL HOS Instruction Manual (`hosmanual.pdf` / `0458-522-0121`)
+- **Requested URL:** `https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf`
+- **HTTP Status:** 200 (`content_origin = HTTP_FETCH`)
+- **Document Bytes:** 1.057.881
+- **Document SHA-256:** `e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83`
+- **Pagina:** 20 (Specifications)
+- **Specificaties:** Type: Single-phase AC, squirrel-cage motor, Operating voltage: 230 V, Frequency: 50 Hz, Rated current: 1.3 A, Power rating: 0.18 kW, Motor speed: 2,800 RPM.
 - **Nieuwe machine eligibility:** `POWERED_MACHINE`
 - **Nieuw aandrijvingstype:** `MAINS_ELECTRIC` (`Elektrisch / netstroom`)
-- **Resolutiemethode:** `EXPLICIT_MODEL` (geen family prefix rule)
-- **PDF-verificatie:** Authentieke PDF-tekstextractie via `pdfjs-dist`, status `VERIFIED`.
+- **Resolutiemethode:** `EXPLICIT_MODEL`
+- **PDF-verificatie:** Authentieke PDF-tekstextractie via `pdfjs-dist` (26 pagina's), status `VERIFIED`.
 
 ### USG Sharpeners
 - **Bron:** STIHL USG Universal Sharpener Instruction Manual (`0458-523-0121-A` / `USG_Manual.pdf`)
-- **Document Part Number:** `0458-523-0121-A` (Page 28, Section 21.1)
-- **Specificaties:** Eenfasige AC-motor, 230 V, 50 Hz, 1,1 A / 1,3 A, 0,18 kW (180 W), 2.800 RPM.
+- **Requested URL:** `https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf`
+- **HTTP Status:** 200 (`content_origin = HTTP_FETCH`)
+- **Document Bytes:** 1.060.207
+- **Document SHA-256:** `d782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf`
+- **Pagina:** 28 (Section 21.1)
+- **Specificaties:** Type: Single-phase AC, squirrel cage motor, Voltage: 230 V, Frequency: 50 Hz, Rated current: 1.1 A, Power consumption: 180 W, Motor speed: 2,800 rpm.
 - **Nieuwe machine eligibility:** `POWERED_MACHINE`
 - **Nieuw aandrijvingstype:** `MAINS_ELECTRIC` (`Elektrisch / netstroom`)
-- **Resolutiemethode:** `EXPLICIT_MODEL` (geen family prefix rule)
-- **PDF-verificatie:** Authentieke PDF-tekstextractie via `pdfjs-dist`, status `VERIFIED`.
+- **Resolutiemethode:** `EXPLICIT_MODEL`
+- **PDF-verificatie:** Authentieke PDF-tekstextractie via `pdfjs-dist` (32 pagina's), status `VERIFIED`.
 
 ---
 
