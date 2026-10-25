@@ -1178,11 +1178,11 @@ export const EXACT_POWERED_MODELS = Object.freeze({
     drive_type: DRIVE_TYPES.MAINS_ELECTRIC,
     display: DISPLAY_LABELS.MAINS_ELECTRIC,
     resolution: 'EXPLICIT_MODEL',
-    source_type: 'OFFICIAL_STIHL_MODEL_DOCUMENT',
+    source_type: 'OFFICIAL_STIHL_ARCHIVED_DOCUMENT',
     confidence: 'HIGH',
     evidence_document: 'hosmanual.pdf',
     evidence_excerpt: 'Type:   Single-phase AC, squirrel-cage motor Operating voltage:   230 V Frequency:   50 Hz Rated current:   1.3 A Power rating:   0.18 kW Motor speed:   2,800 RPM Type of protection: IP 54 (DIN 40050)',
-    notes: 'Official STIHL HOS instruction manual (0458-522-0121) specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.'
+    notes: 'Official STIHL HOS instruction manual (0458-522-0121) archived document (Common Crawl WARC capture of cdnassets.stihlusa.com/1625859444-hosmanual.pdf): single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.'
   }),
   'USG Sharpeners': Object.freeze({
     model_name: 'USG Sharpeners',
