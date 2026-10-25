@@ -1,16 +1,16 @@
 {
-  "phase": "PHASE_56N",
+  "phase": "PHASE_56N.1",
   "artifact": "NOISE_BASELINE_54",
-  "timestamp": "2026-10-25T18:36:34.183Z",
-  "expected_count": 54,
-  "actual_count": 54,
+  "timestamp": "2026-10-25T19:38:46.115Z",
+  "initial_phase56m_noise_candidates": 54,
+  "confirmed_true_noise_after_validation": 52,
+  "powered_sharpeners_restored": 2,
   "noise_models": [
     "BATTERY BELT Battery Belt",
     "Blade for FS 111, FS 120",
     "CARRYING SYSTEM CARRYING SYSTEM",
     "DOUBLE BATTERY SLOT ADAPTER ADA 1000 DOUBLE BATTERY SLOT ADAPTER ADA 1000",
     "Grey Plastic Sleeve/Insert for FS55, FS75, FS85",
-    "HOS Sharpeners",
     "Mowing Head Auto Cut 11-2",
     "Mowing Head Auto Cut 5-2",
     "Mowing Head Auto Cut C 26-2",
@@ -57,7 +57,11 @@
     "Muffler Exhaust Gasket for HS45, HS81, HS86",
     "Skirt for FS90, FS100, FS100R",
     "Starter Rope � 2.7x910 mm for MS180, MS181",
-    "TELESCOPIC SHAFT 456 CM Hand Tool",
+    "TELESCOPIC SHAFT 456 CM Hand Tool"
+  ],
+  "restored_powered_models": [
+    "HOS Sharpeners",
     "USG Sharpeners"
-  ]
+  ],
+  "note": "Initial Phase 56M candidate noise list contained 54 items. Following official STIHL manual authentication in Phase 56N.1, HOS and USG were confirmed as 230 V electric sharpening power tools, leaving exactly 52 confirmed true non-machine noise records (47 accessories, 5 replacement parts)."
 }

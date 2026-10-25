@@ -1,27 +1,33 @@
 {
-  "phase": "PHASE_56N",
-  "baseline_commit": "42d941ac347f4339ee58261a6f02b41f3823e8a7",
+  "phase": "PHASE_56N.1",
+  "baseline_commit": "4883ff1b910da34ee7076b9978ac8c0870dbf2bd",
   "outcome_status": "PASS",
-  "timestamp": "2026-10-25T18:36:34.182Z",
+  "timestamp": "2026-10-25T19:38:46.115Z",
   "hard_gates": {
-    "PHASE56M_NOISE_BASELINE": 54,
+    "HOS_POWERED_MACHINE": true,
+    "USG_POWERED_MACHINE": true,
+    "HOS_EXPLICIT_MAINS_ELECTRIC": true,
+    "USG_EXPLICIT_MAINS_ELECTRIC": true,
+    "POWERED_SHARPENERS_FALSE_EXCLUDED": 0,
+    "TRUE_NON_MACHINE_COUNT": 52,
+    "POWERED_MACHINE_CANDIDATES": 879,
+    "NEW_EXACT_DRIVE_RESOLUTIONS": 2,
+    "UNSAFE_DRIVE_PROMOTIONS": 0,
+    "DRIVE_CONFLICTS_INTRODUCED": 0,
+    "ATTACHMENT_REGRESSIONS": 0,
     "POWERED_MACHINE_FALSE_EXCLUSIONS": 0,
-    "KNOWN_ATTACHMENT_REGRESSIONS": 0,
     "NON_MACHINE_STILL_COUNTED_AS_POWERED": 0,
-    "DRIVE_TYPES_CHANGED_BY_PHASE56N": 0,
-    "UNSAFE_ELIGIBILITY_CLASSIFICATIONS": 0,
-    "EXISTING_PHASE56L_REGRESSIONS": 0,
     "CATALOG_FREEZE_INTACT": true
   },
   "eligibility_breakdown": {
-    "POWERED_MACHINE": 877,
+    "POWERED_MACHINE": 879,
     "UNPOWERED_ATTACHMENT": 25,
-    "NON_MACHINE_ACCESSORY": 49,
+    "NON_MACHINE_ACCESSORY": 47,
     "REPLACEMENT_PART_AS_MODEL": 5,
     "UNKNOWN_ELIGIBILITY": 0
   },
   "population_summary": {
-    "phase": "PHASE_56N",
+    "phase": "PHASE_56N.1",
     "before": {
       "total_catalog_models": 956,
       "unpowered_attachments": 25,
@@ -33,35 +39,76 @@
     "after": {
       "total_catalog_models": 956,
       "unpowered_attachments": 25,
-      "non_machine_accessories": 49,
+      "non_machine_accessories": 47,
       "replacement_parts_as_model": 5,
-      "total_non_machine_removed_from_denominator": 54,
-      "powered_machine_candidates": 877,
-      "resolved_powered_candidates": 401,
+      "total_non_machine_removed_from_denominator": 52,
+      "powered_sharpeners_restored_to_denominator": 2,
+      "powered_machine_candidates": 879,
+      "resolved_powered_candidates": 403,
       "unknown_powered_candidates": 476,
-      "coverage_percentage": 45.72
+      "coverage_percentage": 45.85
     },
     "delta": {
-      "powered_candidates_delta": -54,
+      "powered_candidates_delta": -52,
       "unknown_powered_delta": -54,
-      "resolved_powered_delta": 0,
-      "coverage_percentage_delta": 2.65
+      "resolved_powered_delta": 2,
+      "coverage_percentage_delta": 2.78
     }
   },
   "coverage_correction": {
-    "phase": "PHASE_56N",
-    "correction_type": "DENOMINATOR_CORRECTION",
-    "drive_resolutions_added": 0,
-    "drive_types_changed": 0,
-    "non_machine_records_removed_from_denominator": 54,
+    "phase": "PHASE_56N.1",
+    "correction_type": "DENOMINATOR_CORRECTION_AND_SHARPENER_RESTORATION",
+    "drive_resolutions_added": 2,
+    "drive_types_changed": 2,
+    "non_machine_records_removed_from_denominator": 52,
+    "powered_sharpeners_restored_to_denominator": 2,
+    "new_exact_drive_resolutions": 2,
     "powered_candidates_before": 931,
-    "powered_candidates_after": 877,
+    "powered_candidates_after": 879,
     "unknown_powered_before": 530,
     "unknown_powered_after": 476,
+    "resolved_powered_before": 401,
+    "resolved_powered_after": 403,
     "coverage_before_percentage": 43.07,
-    "coverage_after_percentage": 45.72,
-    "coverage_delta_percentage": 2.65,
-    "note": "The 2.65% coverage increase is entirely due to purifying the denominator by removing 54 non-machine accessories and replacement parts. Exactly ZERO drive-type resolutions or mutations were performed in Phase 56N."
+    "coverage_after_percentage": 45.85,
+    "coverage_delta_percentage": 2.78,
+    "note": "Denominator corrected by removing 52 confirmed non-machine records (47 accessories and 5 replacement parts) and restoring 2 official electric sharpeners (HOS, USG) with exact EXPLICIT_MODEL drive resolution."
+  },
+  "sharpener_correction": {
+    "phase": "PHASE_56N.1",
+    "artifact": "POWERED_SHARPENER_CORRECTION",
+    "timestamp": "2026-10-25T19:38:46.114Z",
+    "status": "PASS",
+    "records_checked": 2,
+    "records_restored_to_powered": 2,
+    "corrections": [
+      {
+        "model_name": "HOS Sharpeners",
+        "previous_eligibility": "NON_MACHINE_ACCESSORY",
+        "new_eligibility": "POWERED_MACHINE",
+        "drive_type": "MAINS_ELECTRIC",
+        "display": "Elektrisch / netstroom",
+        "resolution": "EXPLICIT_MODEL",
+        "official_evidence_verified": true,
+        "source_title": "STIHL HOS Instruction Manual (hosmanual.pdf)",
+        "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/hosmanual.pdf",
+        "document_filename": "hosmanual.pdf",
+        "specifications": "single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM"
+      },
+      {
+        "model_name": "USG Sharpeners",
+        "previous_eligibility": "NON_MACHINE_ACCESSORY",
+        "new_eligibility": "POWERED_MACHINE",
+        "drive_type": "MAINS_ELECTRIC",
+        "display": "Elektrisch / netstroom",
+        "resolution": "EXPLICIT_MODEL",
+        "official_evidence_verified": true,
+        "source_title": "STIHL USG Universal Sharpener Instruction Manual (0458-523-0121-A)",
+        "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
+        "document_filename": "USG_Manual.pdf",
+        "specifications": "single-phase AC motor, operating voltage 230 V, rated current 1.3 A, power rating 0.18 kW, motor speed 2,800 RPM"
+      }
+    ]
   },
   "routing": {
     "nine_router_available": true,

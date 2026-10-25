@@ -98,24 +98,6 @@ export const EXACT_NON_MACHINE_ACCESSORIES = Object.freeze({
     reason_flagged: 'Manual unpowered telescopic extension shaft (4.56 m) for hand saws/loppers',
     confidence: 'HIGH',
     evidence: 'STIHL manual pole pruner extension accessory catalog'
-  }),
-  'HOS Sharpeners': Object.freeze({
-    model_name: 'HOS Sharpeners',
-    normalized_name: 'HOS SHARPENERS',
-    category: MACHINE_ELIGIBILITY.NON_MACHINE_ACCESSORY,
-    accessory_type: 'SHARPENING_TOOL',
-    reason_flagged: 'Manual sharpening stone accessory for hedge trimmer blades',
-    confidence: 'HIGH',
-    evidence: 'STIHL HOS whetstone maintenance accessory documentation'
-  }),
-  'USG Sharpeners': Object.freeze({
-    model_name: 'USG Sharpeners',
-    normalized_name: 'USG SHARPENERS',
-    category: MACHINE_ELIGIBILITY.NON_MACHINE_ACCESSORY,
-    accessory_type: 'WORKSHOP_EQUIPMENT',
-    reason_flagged: 'Universal sharpening apparatus (USG) workshop accessory/attachment catalog record',
-    confidence: 'HIGH',
-    evidence: 'STIHL USG universal sharpener workshop equipment catalog'
   })
 });
 
@@ -178,8 +160,7 @@ const SPECIFIC_ACCESSORY_PATTERNS = [
   /^battery\s+belt\b/i,
   /^carrying\s+system\b/i,
   /^double\s+battery\s+slot\s+adapter\b/i,
-  /^telescopic\s+shaft\b/i,
-  /^(?:hos|usg)\s+sharpeners\b/i
+  /^telescopic\s+shaft\b/i
 ];
 const SPECIFIC_REPLACEMENT_PART_PATTERNS = [
   /^blade\s+for\s+fs\b/i,

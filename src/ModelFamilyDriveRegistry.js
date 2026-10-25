@@ -1169,6 +1169,35 @@ export function getFamilyRule(modelInput) {
 }
 
 /**
+ * Exact-model drive evidence registry for standalone powered machinery
+ * supported by official STIHL documentation (Phase 56N.1).
+ */
+export const EXACT_POWERED_MODELS = Object.freeze({
+  'HOS Sharpeners': Object.freeze({
+    model_name: 'HOS Sharpeners',
+    drive_type: DRIVE_TYPES.MAINS_ELECTRIC,
+    display: DISPLAY_LABELS.MAINS_ELECTRIC,
+    resolution: 'EXPLICIT_MODEL',
+    source_type: 'OFFICIAL_STIHL_MODEL_DOCUMENT',
+    confidence: 'HIGH',
+    evidence_document: 'hosmanual.pdf',
+    evidence_excerpt: 'Specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.',
+    notes: 'Official STIHL HOS instruction manual specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.'
+  }),
+  'USG Sharpeners': Object.freeze({
+    model_name: 'USG Sharpeners',
+    drive_type: DRIVE_TYPES.MAINS_ELECTRIC,
+    display: DISPLAY_LABELS.MAINS_ELECTRIC,
+    resolution: 'EXPLICIT_MODEL',
+    source_type: 'OFFICIAL_STIHL_MODEL_DOCUMENT',
+    confidence: 'HIGH',
+    evidence_document: 'USG_Manual.pdf',
+    evidence_excerpt: 'Specifications: single-phase AC motor, operating voltage 230 V, rated current 1.3 A, power rating 0.18 kW, motor speed 2,800 RPM.',
+    notes: 'Official STIHL USG instruction manual specifications: single-phase AC motor, operating voltage 230 V, rated current 1.3 A, power rating 0.18 kW, motor speed 2,800 RPM.'
+  })
+});
+
+/**
  * Resolves the drive type of a model with strict precedence:
  *   1. Attachment safety gate (ATTACHMENT_NOT_POWERED)
  *   2. Canonical explicit evidence extraction
@@ -1177,7 +1206,8 @@ export function getFamilyRule(modelInput) {
  *   5. Official semantically verified STIHL family rule (FAMILY_RULE)
  *   6. Fail-closed UNKNOWN ('Niet vastgesteld')
  */
-export function resolveDriveType(modelInput) {
+export function resolveDriveType(modelInput, options = {}) {
+  const { exactModels = true } = options;
   const eligibilityInfo = resolveMachineEligibility(modelInput);
 
   // Precedence 1A: Attachment safety gate (Unpowered KombiTools / MultiTools)
@@ -1233,6 +1263,36 @@ export function resolveDriveType(modelInput) {
     if (explicitDriveType) {
       rawSourceBasis = rawPowerSource || rawFuelType;
     }
+  }
+
+  const rawModelStr = extractModelString(modelInput);
+  const normalizedModelName = rawModelStr ? rawModelStr.trim() : '';
+
+  // Precedence 2A: Exact model drive evidence (Official STIHL documentation, e.g. HOS, USG)
+  if (exactModels && normalizedModelName && EXACT_POWERED_MODELS[normalizedModelName]) {
+    const exact = EXACT_POWERED_MODELS[normalizedModelName];
+    if (explicitDriveType && explicitDriveType !== exact.drive_type) {
+      return {
+        drive_type: DRIVE_TYPES.UNKNOWN,
+        display: DISPLAY_LABELS.UNKNOWN,
+        resolution: 'CONFLICT_QUARANTINED',
+        family: null,
+        explicit_value: explicitDriveType,
+        exact_value: exact.drive_type,
+        source_type: 'QUARANTINED_CONFLICT',
+        confidence: 'NONE',
+        notes: `Explicit model evidence (${rawSourceBasis}) conflicts with verified STIHL exact model evidence (${exact.drive_type}). Quarantined without unsafe override.`
+      };
+    }
+    return {
+      drive_type: exact.drive_type,
+      display: exact.display,
+      resolution: exact.resolution,
+      family: null,
+      source_type: exact.source_type,
+      confidence: exact.confidence,
+      notes: exact.notes
+    };
   }
 
   const family = parseModelFamily(modelInput);
@@ -1297,12 +1357,12 @@ export function resolveDriveType(modelInput) {
   };
 }
 
-export function getDriveResolutionMetadata(modelInput) {
+export function getDriveResolutionMetadata(modelInput, options = {}) {
   const modelStr = extractModelString(modelInput);
   const isAttachment = isAttachmentDesignation(modelInput);
   const family = parseModelFamily(modelInput);
   const rule = family ? OFFICIAL_STIHL_FAMILY_RULES[family] || null : null;
-  const resolution = resolveDriveType(modelInput);
+  const resolution = resolveDriveType(modelInput, options);
 
   return {
     model_name: modelStr,
@@ -1338,6 +1398,7 @@ export const ModelFamilyDriveRegistry = Object.freeze({
   OFFICIAL_STIHL_FAMILY_RULES,
   DISABLED_FAMILY_RULES,
   UNVERIFIED_FAMILY_PREFIXES,
+  EXACT_POWERED_MODELS,
   isAttachmentDesignation,
   isPoweredModelDesignation,
   parseModelFamily,

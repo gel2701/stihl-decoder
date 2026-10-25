@@ -114,9 +114,7 @@ test('Phase 56N: Actual Phase 56M noise items receive exact non-machine categori
     'BATTERY BELT Battery Belt',
     'CARRYING SYSTEM CARRYING SYSTEM',
     'DOUBLE BATTERY SLOT ADAPTER ADA 1000 DOUBLE BATTERY SLOT ADAPTER ADA 1000',
-    'TELESCOPIC SHAFT 456 CM Hand Tool',
-    'HOS Sharpeners',
-    'USG Sharpeners'
+    'TELESCOPIC SHAFT 456 CM Hand Tool'
   ];
   for (const a of accessorySamples) {
     const res = resolveMachineEligibility(a);
@@ -191,7 +189,27 @@ test('Phase 56N: Catalog, SEO and Commercial Freezes Intact', () => {
   assert.strictEqual(sectionContextsCount, 814, 'Section contexts count must be exactly 814');
 });
 
-test('Phase 56N: All 12 required artifacts exist and validate cleanly', () => {
+test('Phase 56N.1: HOS and USG Sharpeners are classified as POWERED_MACHINE with MAINS_ELECTRIC / EXPLICIT_MODEL', () => {
+  const sharpeners = ['HOS Sharpeners', 'USG Sharpeners'];
+
+  for (const name of sharpeners) {
+    const res = resolveMachineEligibility(name);
+    assert.strictEqual(res.eligibility, MACHINE_ELIGIBILITY.POWERED_MACHINE, `${name} must be POWERED_MACHINE`);
+    assert.strictEqual(isPoweredMachine(name), true, `${name} must return isPoweredMachine = true`);
+    assert.strictEqual(isNonMachineNoise(name), false, `${name} must not be non-machine noise`);
+
+    const driveRes = resolveDriveType(name);
+    assert.strictEqual(driveRes.drive_type, DRIVE_TYPES.MAINS_ELECTRIC, `${name} drive_type must be MAINS_ELECTRIC`);
+    assert.strictEqual(driveRes.display, 'Elektrisch / netstroom', `${name} display must be Elektrisch / netstroom`);
+    assert.strictEqual(driveRes.resolution, 'EXPLICIT_MODEL', `${name} resolution must be EXPLICIT_MODEL`);
+  }
+
+  // Negative check: ensure no generic accessory pattern matches HOS or USG
+  assert.strictEqual(resolveMachineEligibility('HOS Sharpeners').eligibility, MACHINE_ELIGIBILITY.POWERED_MACHINE);
+  assert.strictEqual(resolveMachineEligibility('USG Sharpeners').eligibility, MACHINE_ELIGIBILITY.POWERED_MACHINE);
+});
+
+test('Phase 56N.1: All 13 required artifacts exist and validate cleanly', () => {
   const expectedArtifacts = [
     'NOISE_BASELINE_54.json',
     'MACHINE_ELIGIBILITY_AUDIT.json',
@@ -202,6 +220,7 @@ test('Phase 56N: All 12 required artifacts exist and validate cleanly', () => {
     'PUBLIC_NON_MACHINE_EXPOSURE_AUDIT.json',
     'POWERED_POPULATION_BEFORE_AFTER.json',
     'COVERAGE_DENOMINATOR_CORRECTION.json',
+    'POWERED_SHARPENER_CORRECTION.json',
     'CATALOG_INTEGRITY.json',
     'PHASE56N_SUMMARY.json',
     'PHASE56N_REPORT.md'
@@ -214,23 +233,38 @@ test('Phase 56N: All 12 required artifacts exist and validate cleanly', () => {
 
   const summary = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'PHASE56N_SUMMARY.json'), 'utf8'));
   assert.strictEqual(summary.outcome_status, 'PASS');
-  assert.strictEqual(summary.hard_gates.PHASE56M_NOISE_BASELINE, 54);
+  assert.strictEqual(summary.hard_gates.HOS_POWERED_MACHINE, true);
+  assert.strictEqual(summary.hard_gates.USG_POWERED_MACHINE, true);
+  assert.strictEqual(summary.hard_gates.HOS_EXPLICIT_MAINS_ELECTRIC, true);
+  assert.strictEqual(summary.hard_gates.USG_EXPLICIT_MAINS_ELECTRIC, true);
+  assert.strictEqual(summary.hard_gates.POWERED_SHARPENERS_FALSE_EXCLUDED, 0);
+  assert.strictEqual(summary.hard_gates.TRUE_NON_MACHINE_COUNT, 52);
+  assert.strictEqual(summary.hard_gates.POWERED_MACHINE_CANDIDATES, 879);
+  assert.strictEqual(summary.hard_gates.NEW_EXACT_DRIVE_RESOLUTIONS, 2);
+  assert.strictEqual(summary.hard_gates.UNSAFE_DRIVE_PROMOTIONS, 0);
+  assert.strictEqual(summary.hard_gates.DRIVE_CONFLICTS_INTRODUCED, 0);
+  assert.strictEqual(summary.hard_gates.ATTACHMENT_REGRESSIONS, 0);
   assert.strictEqual(summary.hard_gates.POWERED_MACHINE_FALSE_EXCLUSIONS, 0);
-  assert.strictEqual(summary.hard_gates.KNOWN_ATTACHMENT_REGRESSIONS, 0);
   assert.strictEqual(summary.hard_gates.NON_MACHINE_STILL_COUNTED_AS_POWERED, 0);
-  assert.strictEqual(summary.hard_gates.DRIVE_TYPES_CHANGED_BY_PHASE56N, 0);
-  assert.strictEqual(summary.hard_gates.UNSAFE_ELIGIBILITY_CLASSIFICATIONS, 0);
-  assert.strictEqual(summary.hard_gates.EXISTING_PHASE56L_REGRESSIONS, 0);
   assert.strictEqual(summary.hard_gates.CATALOG_FREEZE_INTACT, true);
 
   const denom = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'COVERAGE_DENOMINATOR_CORRECTION.json'), 'utf8'));
-  assert.strictEqual(denom.drive_resolutions_added, 0);
-  assert.strictEqual(denom.drive_types_changed, 0);
-  assert.strictEqual(denom.non_machine_records_removed_from_denominator, 54);
+  assert.strictEqual(denom.drive_resolutions_added, 2);
+  assert.strictEqual(denom.drive_types_changed, 2);
+  assert.strictEqual(denom.non_machine_records_removed_from_denominator, 52);
+  assert.strictEqual(denom.powered_sharpeners_restored_to_denominator, 2);
+  assert.strictEqual(denom.new_exact_drive_resolutions, 2);
   assert.strictEqual(denom.powered_candidates_before, 931);
-  assert.strictEqual(denom.powered_candidates_after, 877);
+  assert.strictEqual(denom.powered_candidates_after, 879);
   assert.strictEqual(denom.unknown_powered_before, 530);
   assert.strictEqual(denom.unknown_powered_after, 476);
+  assert.strictEqual(denom.resolved_powered_before, 401);
+  assert.strictEqual(denom.resolved_powered_after, 403);
   assert.strictEqual(denom.coverage_before_percentage, 43.07);
-  assert.strictEqual(denom.coverage_after_percentage, 45.72);
+  assert.strictEqual(denom.coverage_after_percentage, 45.85);
+
+  const sharpenerCorr = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'POWERED_SHARPENER_CORRECTION.json'), 'utf8'));
+  assert.strictEqual(sharpenerCorr.status, 'PASS');
+  assert.strictEqual(sharpenerCorr.records_checked, 2);
+  assert.strictEqual(sharpenerCorr.records_restored_to_powered, 2);
 });

@@ -1,5 +1,5 @@
 {
-  "phase": "PHASE_56N",
+  "phase": "PHASE_56N.1",
   "before": {
     "total_catalog_models": 956,
     "unpowered_attachments": 25,
@@ -11,18 +11,19 @@
   "after": {
     "total_catalog_models": 956,
     "unpowered_attachments": 25,
-    "non_machine_accessories": 49,
+    "non_machine_accessories": 47,
     "replacement_parts_as_model": 5,
-    "total_non_machine_removed_from_denominator": 54,
-    "powered_machine_candidates": 877,
-    "resolved_powered_candidates": 401,
+    "total_non_machine_removed_from_denominator": 52,
+    "powered_sharpeners_restored_to_denominator": 2,
+    "powered_machine_candidates": 879,
+    "resolved_powered_candidates": 403,
     "unknown_powered_candidates": 476,
-    "coverage_percentage": 45.72
+    "coverage_percentage": 45.85
   },
   "delta": {
-    "powered_candidates_delta": -54,
+    "powered_candidates_delta": -52,
     "unknown_powered_delta": -54,
-    "resolved_powered_delta": 0,
-    "coverage_percentage_delta": 2.65
+    "resolved_powered_delta": 2,
+    "coverage_percentage_delta": 2.78
   }
 }
