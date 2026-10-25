@@ -1,8 +1,8 @@
 {
-  "phase": "PHASE_56L.2",
-  "baseline_commit": "43fe7741b083a050a5767e878d1835436c7c7212",
+  "phase": "PHASE_56L.3",
+  "baseline_commit": "ccdaf09e739fdf401f00b47d14ffd91cd8504a6d",
   "outcome_status": "PASS",
-  "timestamp": "2026-10-25T15:58:17.525Z",
+  "timestamp": "2026-10-25T16:55:59.664Z",
   "hard_gates": {
     "POWERED_ATTACHMENT_MISCLASSIFICATIONS": 0,
     "EXPLICIT_EVIDENCE_PROPAGATION_VALID": true,
@@ -10,7 +10,11 @@
     "WRONG_CONTENT_VERIFIED_RECORDS": 0,
     "IMPOSSIBLE_TIMESTAMP_ORDER_RECORDS": 0,
     "ACTIVE_RULES_WITHOUT_SEMANTIC_EVIDENCE": 0,
-    "SEMANTIC_FAMILY_PROVENANCE_VERIFIED": true
+    "SEMANTIC_FAMILY_PROVENANCE_VERIFIED": true,
+    "RAW_PDF_BYTE_VERIFICATION_RECORDS": 0,
+    "PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS": 0,
+    "ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT": 0,
+    "CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED": true
   },
   "primary_resolution_target": {
     "model": "MS 211",
@@ -194,7 +198,7 @@
     "nine_router_note": "Native direct execution used per instructions.",
     "codex_used": false,
     "codex_review_requested": false,
-    "automatic_external_review_note": "chatgpt-codex-connector bot triggered automatically on PR #57 upon PR opening; not requested and not used for acceptance.",
-    "automatic_external_review_triggered": true
+    "automatic_external_review_triggered": true,
+    "automatic_external_review_note": "chatgpt-codex-connector bot triggered automatically on PRs upon opening; not requested and not used for acceptance."
   }
 }

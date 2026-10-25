@@ -1,23 +1,30 @@
 /**
  * scripts/fetch_official_family_evidence.mjs
  *
- * Phase 56L.2 — Semantic STIHL Family Evidence Acquisition & Verification
+ * Phase 56L.3 — Evidence Extraction & Context Binding Closure
  *
- * Performs semantic provenance validation:
- *   1. Fetches authentic official STIHL sources (HTML product pages & official PDF manuals/catalogs).
- *   2. Strict evidence contract per family: family tokens, representative models, required drive terms,
- *      and negative mismatch checks (false positive prevention).
- *   3. Real extracted evidence locator (matched tokens, matched models, drive terms, excerpt, and excerpt hash).
- *   4. Clean distinction between HTTP fetch records and family evidence records.
- *   5. Robust cache reuse without impossible timestamp orders (fetch_started_at <= fetch_completed_at).
- *   6. Verification statuses: VERIFIED, UNVERIFIED_HTTP, UNVERIFIED_WRONG_CONTENT,
- *      UNVERIFIED_NO_FAMILY_MATCH, UNVERIFIED_NO_DRIVE_MATCH, UNVERIFIED_SOURCE_UNAVAILABLE.
+ * Performs context-bound semantic provenance validation:
+ *   1. Authentic PDF text extraction:
+ *      Uses pdfjs-dist/legacy/build/pdf.mjs to parse document text streams.
+ *      Zero reliance on raw Latin-1 bytes (RAW_PDF_BYTE_VERIFICATION_RECORDS = 0).
+ *      Records pdf_parser, pdf_page_count, pdf_text_length, and exact page_number.
+ *   2. Primary HTML product extraction:
+ *      extractPrimaryProductEvidence isolates page_title, h1, jsonld_product_name,
+ *      and primary_text from secondary navigation, footer, and related-product widgets.
+ *   3. Strict context binding:
+ *      Enforces family_match_context == drive_match_context within the primary product context
+ *      or within the exact PDF page context (PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS = 0).
+ *   4. Verification statuses:
+ *      VERIFIED, UNVERIFIED_HTTP, UNVERIFIED_WRONG_CONTENT, UNVERIFIED_NO_FAMILY_MATCH,
+ *      UNVERIFIED_NO_DRIVE_MATCH, UNVERIFIED_SOURCE_UNAVAILABLE,
+ *      UNVERIFIED_PDF_TEXT_EXTRACTION_FAILED, UNVERIFIED_CONTEXT_MISMATCH.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -338,15 +345,175 @@ export const FAMILY_SOURCE_TARGETS = [
 ];
 
 /**
- * Evaluates semantic evidence on an acquired HTTP fetch response body.
+ * Extracts true document text from PDF buffer using pdfjs-dist.
+ * Zero reliance on raw byte strings or Latin-1 decoding.
+ */
+export async function extractPdfDocumentText(buffer) {
+  try {
+    const doc = await pdfjsLib.getDocument({
+      data: new Uint8Array(buffer),
+      useSystemFonts: true,
+      disableFontFace: true,
+      isEvalSupported: false
+    }).promise;
+
+    const pageCount = doc.numPages;
+    const pages = [];
+    let fullText = '';
+
+    for (let i = 1; i <= pageCount; i++) {
+      const page = await doc.getPage(i);
+      const textContent = await page.getTextContent();
+      const pageText = textContent.items.map(item => item.str).join(' ');
+      pages.push({
+        page_number: i,
+        text: pageText
+      });
+      fullText += (i === 1 ? '' : '\n') + `--- Page ${i} ---\n` + pageText;
+    }
+
+    return {
+      success: true,
+      page_count: pageCount,
+      text_length: fullText.length,
+      pages,
+      full_text: fullText,
+      parser: 'pdfjs-dist/legacy',
+      error: null
+    };
+  } catch (err) {
+    return {
+      success: false,
+      page_count: 0,
+      text_length: 0,
+      pages: [],
+      full_text: '',
+      parser: 'pdfjs-dist/legacy',
+      error: err.message
+    };
+  }
+}
+
+/**
+ * Isolates primary product evidence from secondary navigation, footer, and related-product blocks.
+ */
+export function extractPrimaryProductEvidence(html) {
+  if (!html || typeof html !== 'string') {
+    return {
+      page_title: '',
+      h1: '',
+      canonical_url: null,
+      jsonld_product_name: null,
+      primary_text: '',
+      secondary_text: '',
+      combined_primary_text: ''
+    };
+  }
+
+  // 1. Title
+  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  const pageTitle = titleMatch ? titleMatch[1].trim().replace(/\s+/g, ' ') : '';
+
+  // 2. H1
+  const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  const h1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim().replace(/\s+/g, ' ') : '';
+
+  // 3. Canonical URL
+  const canonMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i) ||
+                     html.match(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i);
+  const canonicalUrl = canonMatch ? canonMatch[1] : null;
+
+  // 4. JSON-LD product name
+  let jsonldProductName = null;
+  const jsonLdBlocks = html.match(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) || [];
+  for (const block of jsonLdBlocks) {
+    const content = block.replace(/^<script[^>]*>/i, '').replace(/<\/script>$/i, '').trim();
+    try {
+      const parsed = JSON.parse(content);
+      const candidates = Array.isArray(parsed) ? parsed : (parsed['@graph'] ? parsed['@graph'] : [parsed]);
+      for (const item of candidates) {
+        if (item && (item['@type'] === 'Product' || item['@type'] === 'ProductModel' || item.name)) {
+          if (typeof item.name === 'string' && item.name.trim()) {
+            jsonldProductName = item.name.trim();
+            break;
+          }
+        }
+      }
+    } catch {}
+    if (jsonldProductName) break;
+  }
+
+  // 5. Separate Secondary HTML: navigation, header, footer, aside, and related products
+  let secondaryHtml = '';
+  const secondaryRegexes = [
+    /<nav\b[^>]*>[\s\S]*?<\/nav>/gi,
+    /<header\b[^>]*>[\s\S]*?<\/header>/gi,
+    /<footer\b[^>]*>[\s\S]*?<\/footer>/gi,
+    /<aside\b[^>]*>[\s\S]*?<\/aside>/gi,
+    /<div\b[^>]*class="[^"]*(?:related|recommendation|product-slider|cross-sell|upsell|accessory|accessories)[^"]*"[^>]*>[\s\S]*?<\/div>/gi,
+    /<section\b[^>]*class="[^"]*(?:related|recommendation|product-slider|cross-sell|upsell|accessory|accessories)[^"]*"[^>]*>[\s\S]*?<\/section>/gi
+  ];
+
+  let sanitizedHtml = html;
+  for (const re of secondaryRegexes) {
+    sanitizedHtml = sanitizedHtml.replace(re, (match) => {
+      secondaryHtml += ' ' + match;
+      return ' ';
+    });
+  }
+
+  // Strip script and style tags
+  sanitizedHtml = sanitizedHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+                               .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ');
+  secondaryHtml = secondaryHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+                               .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ');
+
+  // Convert HTML tags to plain text
+  function htmlToText(str) {
+    return str
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/p>/gi, '\n')
+      .replace(/<\/div>/gi, '\n')
+      .replace(/<\/li>/gi, '\n')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/&amp;/gi, '&')
+      .replace(/&quot;/gi, '"')
+      .replace(/&#39;/gi, "'")
+      .replace(/&lt;/gi, '<')
+      .replace(/&gt;/gi, '>')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  const primaryText = htmlToText(sanitizedHtml);
+  const secondaryText = htmlToText(secondaryHtml);
+  const combinedPrimaryText = [pageTitle, h1, jsonldProductName, primaryText].filter(Boolean).join('\n');
+
+  return {
+    page_title: pageTitle,
+    h1,
+    canonical_url: canonicalUrl,
+    jsonld_product_name: jsonldProductName,
+    primary_text: primaryText,
+    secondary_text: secondaryText,
+    combined_primary_text: combinedPrimaryText
+  };
+}
+
+/**
+ * Evaluates semantic evidence with strict context binding and authentic PDF extraction.
  *
  * Checks:
  *   1. HTTP status == 200
- *   2. False positive prevention: negative patterns / wrong content
- *   3. Family presence: family tokens and/or representative models
- *   4. Drive presence: required drive terms (fuel, battery, mains electric)
- *
- * Returns structured semantic evaluation with verification status and extracted evidence.
+ *   2. PDF:
+ *      - Requires authentic PDF extraction (pdfjs-dist/legacy). Zero raw Latin-1 bytes.
+ *      - Requires page-level context binding: both family and drive term must appear on the same page.
+ *   3. HTML:
+ *      - Negative pattern check on primary title/H1 (fail-closed UNVERIFIED_WRONG_CONTENT).
+ *      - Primary context binding: family and drive must both be present in the primary product context.
+ *      - If family is in primary but drive only in secondary -> UNVERIFIED_CONTEXT_MISMATCH.
+ *      - If family is only in secondary (e.g. related products) -> UNVERIFIED_WRONG_CONTENT.
  */
 export function evaluateSemanticEvidence(target, fetchResult) {
   if (!fetchResult || fetchResult.http_status !== 200) {
@@ -359,22 +526,163 @@ export function evaluateSemanticEvidence(target, fetchResult) {
       matched_drive_terms: [],
       matched_models: [],
       evidence_locator: 'Source fetch was not successful (HTTP ' + (fetchResult?.http_status || '0') + ').',
-      extracted_evidence: null
+      extracted_evidence: null,
+      context_bound: false,
+      evidence_context_id: null,
+      page_number: null
     };
   }
 
-  const title = fetchResult.page_title || '';
-  const body = fetchResult.body_text || '';
-  const combined = (title + '\n' + body);
+  const contentType = fetchResult.content_type || '';
+  const isPdf = contentType.includes('pdf');
 
-  // 1. Negative pattern check (Wrong page / Redirected content)
+  // ==========================================
+  // CASE A: PDF DOCUMENT EXTRACTION & VERIFICATION
+  // ==========================================
+  if (isPdf) {
+    const pdfExtraction = fetchResult.pdf_extraction;
+
+    if (!pdfExtraction || !pdfExtraction.success || pdfExtraction.text_length <= 0) {
+      return {
+        verification_status: 'UNVERIFIED_PDF_TEXT_EXTRACTION_FAILED',
+        family_match: false,
+        drive_match: false,
+        wrong_content: false,
+        matched_family_tokens: [],
+        matched_drive_terms: [],
+        matched_models: [],
+        evidence_locator: `PDF text extraction failed for ${target.requested_url}: ${pdfExtraction?.error || 'no text extracted'}.`,
+        extracted_evidence: null,
+        context_bound: false,
+        evidence_context_id: null,
+        page_number: null
+      };
+    }
+
+    // Search for a page that satisfies context binding: BOTH family and drive terms on that exact page
+    let matchedPage = null;
+    let pageMatchedTokens = [];
+    let pageMatchedModels = [];
+    let pageMatchedDriveTerms = [];
+    let pageExcerpt = '';
+
+    for (const page of pdfExtraction.pages) {
+      const pageText = page.text;
+
+      // Check family tokens
+      const curTokens = [];
+      for (const token of target.family_tokens) {
+        const re = new RegExp(`\\b${token}\\s*\\d+|\\b${token}\\b`, 'i');
+        if (re.test(pageText)) curTokens.push(token);
+      }
+
+      // Check representative models
+      const curModels = [];
+      for (const model of target.representative_models) {
+        const re = new RegExp('\\b' + model.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i');
+        if (re.test(pageText)) curModels.push(model);
+      }
+
+      const hasFamOnPage = curTokens.length > 0 || curModels.length > 0;
+      if (!hasFamOnPage) continue;
+
+      // Check drive terms on this exact page
+      const curDrive = [];
+      for (const term of target.required_drive_terms) {
+        const re = new RegExp('\\b' + term.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i');
+        if (re.test(pageText)) curDrive.push(term);
+      }
+
+      if (curDrive.length > 0) {
+        // Found page-level context-bound match!
+        matchedPage = page;
+        pageMatchedTokens = curTokens;
+        pageMatchedModels = curModels;
+        pageMatchedDriveTerms = curDrive;
+
+        // Build authentic excerpt
+        const sampleTerm = curDrive[0];
+        const idx = pageText.toLowerCase().indexOf(sampleTerm.toLowerCase());
+        const start = Math.max(0, idx - 40);
+        const end = Math.min(pageText.length, idx + sampleTerm.length + 60);
+        pageExcerpt = pageText.slice(start, end).replace(/\s+/g, ' ').trim();
+        break;
+      }
+    }
+
+    if (matchedPage) {
+      const excerptHash = crypto.createHash('sha256').update(pageExcerpt).digest('hex');
+      const locator = `Official STIHL PDF manual/catalog page ${matchedPage.page_number}: matches family [${pageMatchedTokens.join(', ')}], models [${pageMatchedModels.slice(0, 3).join(', ')}], and drive terms [${pageMatchedDriveTerms.slice(0, 3).join(', ')}].`;
+
+      return {
+        verification_status: 'VERIFIED',
+        family_match: true,
+        drive_match: true,
+        wrong_content: false,
+        matched_family_tokens: pageMatchedTokens,
+        matched_drive_terms: pageMatchedDriveTerms,
+        matched_models: pageMatchedModels,
+        evidence_locator: locator,
+        extracted_evidence: {
+          page_number: matchedPage.page_number,
+          matched_family_text: pageMatchedTokens.join(', '),
+          matched_drive_text: pageMatchedDriveTerms.join(', '),
+          matched_models: pageMatchedModels,
+          source_excerpt: pageExcerpt,
+          source_excerpt_hash: excerptHash,
+          evidence_context_id: 'PDF_DOCUMENT_PAGE_CONTEXT',
+          pdf_parser: 'pdfjs-dist/legacy'
+        },
+        context_bound: true,
+        evidence_context_id: 'PDF_DOCUMENT_PAGE_CONTEXT',
+        page_number: matchedPage.page_number
+      };
+    }
+
+    // If no single page matched both, check whole document to report precise unverified cause
+    const docText = pdfExtraction.full_text;
+    const docHasFam = target.family_tokens.some(t => new RegExp(`\\b${t}\\s*\\d+|\\b${t}\\b`, 'i').test(docText)) ||
+                      target.representative_models.some(m => new RegExp('\\b' + m.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i').test(docText));
+    const docHasDrive = target.required_drive_terms.some(d => new RegExp('\\b' + d.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i').test(docText));
+
+    let status = 'UNVERIFIED_CONTEXT_MISMATCH';
+    if (!docHasFam) status = 'UNVERIFIED_NO_FAMILY_MATCH';
+    else if (!docHasDrive) status = 'UNVERIFIED_NO_DRIVE_MATCH';
+
+    return {
+      verification_status: status,
+      family_match: docHasFam,
+      drive_match: docHasDrive,
+      wrong_content: false,
+      matched_family_tokens: [],
+      matched_drive_terms: [],
+      matched_models: [],
+      evidence_locator: `PDF document text unverified [${status}]: family on any page: ${docHasFam}, drive on any page: ${docHasDrive}, page-bound: false.`,
+      extracted_evidence: null,
+      context_bound: false,
+      evidence_context_id: null,
+      page_number: null
+    };
+  }
+
+  // ==========================================
+  // CASE B: HTML PRIMARY CONTEXT EXTRACTION & VERIFICATION
+  // ==========================================
+  const primaryEvidence = fetchResult.primary_evidence || extractPrimaryProductEvidence(fetchResult.body_text || '');
+  const title = primaryEvidence.page_title || fetchResult.page_title || '';
+  const h1 = primaryEvidence.h1 || '';
+  const primaryText = primaryEvidence.combined_primary_text || '';
+  const secondaryText = primaryEvidence.secondary_text || '';
+
+  // 1. Negative pattern check on primary product title / H1
   let isWrongContent = false;
   if (target.negative_patterns && target.negative_patterns.length > 0) {
     for (const pat of target.negative_patterns) {
-      if (pat.test(title) || pat.test(body)) {
-        // If it matches a negative pattern, check if ANY representative model is actually present
-        const hasRepModel = target.representative_models.some(m => new RegExp('\\b' + m.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i').test(combined));
-        if (!hasRepModel) {
+      if (pat.test(title) || pat.test(h1) || pat.test(primaryEvidence.jsonld_product_name || '')) {
+        const hasRepModelInPrimary = target.representative_models.some(m =>
+          new RegExp('\\b' + m.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i').test(title + ' ' + h1)
+        );
+        if (!hasRepModelInPrimary) {
           isWrongContent = true;
           break;
         }
@@ -392,47 +700,72 @@ export function evaluateSemanticEvidence(target, fetchResult) {
       matched_drive_terms: [],
       matched_models: [],
       evidence_locator: `Wrong content detected for target ${target.family}: source page "${title}" does not contain expected models and matched negative content patterns.`,
-      extracted_evidence: null
+      extracted_evidence: null,
+      context_bound: false,
+      evidence_context_id: null,
+      page_number: null
     };
   }
 
-  // 2. Family match
-  const matchedTokens = [];
+  // 2. Family match in Primary Context vs Secondary Context
+  const primaryMatchedTokens = [];
   for (const token of target.family_tokens) {
-    // Word boundary check for family token or token + digits
     const re = new RegExp(`\\b${token}\\s*\\d+|\\b${token}\\b`, 'i');
-    if (re.test(title) || re.test(body)) {
-      matchedTokens.push(token);
-    }
+    if (re.test(primaryText)) primaryMatchedTokens.push(token);
   }
 
-  const matchedModels = [];
+  const primaryMatchedModels = [];
   for (const model of target.representative_models) {
     const re = new RegExp('\\b' + model.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i');
-    if (re.test(title) || re.test(body)) {
-      matchedModels.push(model);
+    if (re.test(primaryText)) primaryMatchedModels.push(model);
+  }
+
+  const familyInPrimary = primaryMatchedTokens.length > 0 || primaryMatchedModels.length > 0;
+
+  // Check if family is only in secondary (e.g. related products slider)
+  let familyInSecondary = false;
+  if (!familyInPrimary) {
+    for (const token of target.family_tokens) {
+      if (new RegExp(`\\b${token}\\s*\\d+|\\b${token}\\b`, 'i').test(secondaryText)) familyInSecondary = true;
+    }
+    for (const model of target.representative_models) {
+      if (new RegExp('\\b' + model.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i').test(secondaryText)) familyInSecondary = true;
     }
   }
 
-  const hasFamilyMatch = matchedTokens.length > 0 || matchedModels.length > 0;
-
-  // 3. Drive match
-  const matchedDriveTerms = [];
+  // 3. Drive match in Primary Context vs Secondary Context
+  const primaryMatchedDriveTerms = [];
   for (const term of target.required_drive_terms) {
     const re = new RegExp('\\b' + term.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i');
-    if (re.test(title) || re.test(body)) {
-      matchedDriveTerms.push(term);
+    if (re.test(primaryText)) primaryMatchedDriveTerms.push(term);
+  }
+
+  const driveInPrimary = primaryMatchedDriveTerms.length > 0;
+
+  let driveInSecondary = false;
+  if (!driveInPrimary) {
+    for (const term of target.required_drive_terms) {
+      if (new RegExp('\\b' + term.replace(/\s+/g, '[\\s\\-_]+') + '\\b', 'i').test(secondaryText)) driveInSecondary = true;
     }
   }
 
-  const hasDriveMatch = matchedDriveTerms.length > 0;
-
-  // 4. Verification status
+  // 4. Context-Bound Verification Status Evaluation
   let status = 'VERIFIED';
-  if (!hasFamilyMatch) {
+  let contextBound = false;
+
+  if (!familyInPrimary && !familyInSecondary) {
     status = 'UNVERIFIED_NO_FAMILY_MATCH';
-  } else if (!hasDriveMatch) {
+  } else if (!familyInPrimary && familyInSecondary) {
+    // Model / Family token only appeared in secondary related product links or navigation
+    status = 'UNVERIFIED_WRONG_CONTENT';
+  } else if (familyInPrimary && !driveInPrimary && !driveInSecondary) {
     status = 'UNVERIFIED_NO_DRIVE_MATCH';
+  } else if (familyInPrimary && !driveInPrimary && driveInSecondary) {
+    // Family was in primary product, but drive term was only found in footer/secondary
+    status = 'UNVERIFIED_CONTEXT_MISMATCH';
+  } else if (familyInPrimary && driveInPrimary) {
+    status = 'VERIFIED';
+    contextBound = true;
   }
 
   // 5. Build authentic extracted evidence locator
@@ -440,43 +773,48 @@ export function evaluateSemanticEvidence(target, fetchResult) {
   let extractedEvidence = null;
 
   if (status === 'VERIFIED') {
-    // Find representative excerpt
     let excerpt = '';
-    const sampleTerm = matchedDriveTerms[0] || '';
-    const idx = combined.toLowerCase().indexOf(sampleTerm.toLowerCase());
+    const sampleTerm = primaryMatchedDriveTerms[0] || '';
+    const idx = primaryText.toLowerCase().indexOf(sampleTerm.toLowerCase());
     if (idx !== -1) {
       const start = Math.max(0, idx - 40);
-      const end = Math.min(combined.length, idx + sampleTerm.length + 60);
-      excerpt = combined.slice(start, end).replace(/\s+/g, ' ').trim();
+      const end = Math.min(primaryText.length, idx + sampleTerm.length + 60);
+      excerpt = primaryText.slice(start, end).replace(/\s+/g, ' ').trim();
     } else {
       excerpt = title;
     }
 
     const excerptHash = crypto.createHash('sha256').update(excerpt).digest('hex');
 
-    evidenceLocator = `Official STIHL verification: "${title}" matches family [${matchedTokens.join(', ')}], models [${matchedModels.slice(0, 3).join(', ')}], and drive terms [${matchedDriveTerms.slice(0, 3).join(', ')}].`;
+    evidenceLocator = `Official STIHL verification: "${title}" matches family [${primaryMatchedTokens.join(', ')}], models [${primaryMatchedModels.slice(0, 3).join(', ')}], and drive terms [${primaryMatchedDriveTerms.slice(0, 3).join(', ')}] within primary product context.`;
 
     extractedEvidence = {
-      matched_family_text: matchedTokens.join(', '),
-      matched_drive_text: matchedDriveTerms.join(', '),
-      matched_models: matchedModels,
+      matched_family_text: primaryMatchedTokens.join(', '),
+      matched_drive_text: primaryMatchedDriveTerms.join(', '),
+      matched_models: primaryMatchedModels,
       source_excerpt: excerpt,
-      source_excerpt_hash: excerptHash
+      source_excerpt_hash: excerptHash,
+      evidence_context_id: 'PRIMARY_PRODUCT_CONTEXT',
+      primary_h1: h1,
+      primary_product_name: primaryEvidence.jsonld_product_name
     };
   } else {
-    evidenceLocator = `Unverified status [${status}]: title "${title}". Family matched: ${hasFamilyMatch}, Drive matched: ${hasDriveMatch}.`;
+    evidenceLocator = `Unverified status [${status}]: title "${title}". Family matched in primary: ${familyInPrimary}, Drive matched in primary: ${driveInPrimary}. Context bound: ${contextBound}.`;
   }
 
   return {
     verification_status: status,
-    family_match: hasFamilyMatch,
-    drive_match: hasDriveMatch,
-    wrong_content: false,
-    matched_family_tokens: matchedTokens,
-    matched_drive_terms: matchedDriveTerms,
-    matched_models: matchedModels,
+    family_match: familyInPrimary,
+    drive_match: driveInPrimary,
+    wrong_content: status === 'UNVERIFIED_WRONG_CONTENT',
+    matched_family_tokens: primaryMatchedTokens,
+    matched_drive_terms: primaryMatchedDriveTerms,
+    matched_models: primaryMatchedModels,
     evidence_locator: evidenceLocator,
-    extracted_evidence: extractedEvidence
+    extracted_evidence: extractedEvidence,
+    context_bound: contextBound,
+    evidence_context_id: contextBound ? 'PRIMARY_PRODUCT_CONTEXT' : null,
+    page_number: null
   };
 }
 
@@ -520,16 +858,17 @@ export async function fetchAllOfficialFamilyEvidence() {
         let contentType = res.headers.get('content-type') || 'text/html;charset=utf-8';
         let bodyText = '';
         let pageTitle = 'STIHL Officiële Bron';
+        let pdfExtraction = null;
+        let primaryEvidence = null;
 
         if (contentType.includes('pdf')) {
-          bodyText = bodyBuf.toString('latin1');
+          pdfExtraction = await extractPdfDocumentText(bodyBuf);
           pageTitle = `STIHL Official PDF Manual / Catalog (${path.basename(target.requested_url)})`;
+          bodyText = pdfExtraction.full_text;
         } else {
           bodyText = bodyBuf.toString('utf8');
-          const titleMatch = bodyText.match(/<title[^>]*>([^<]+)<\/title>/i);
-          if (titleMatch && titleMatch[1].trim()) {
-            pageTitle = titleMatch[1].trim().replace(/\s+/g, ' ');
-          }
+          primaryEvidence = extractPrimaryProductEvidence(bodyText);
+          pageTitle = primaryEvidence.page_title || 'STIHL Officiële Pagina';
         }
 
         fetchRecord = {
@@ -543,7 +882,13 @@ export async function fetchAllOfficialFamilyEvidence() {
           fetch_completed_at: completedAt,
           body_sha256: hash,
           body_bytes: bodyBuf.length,
-          body_text: bodyText
+          body_text: bodyText,
+          pdf_extraction: pdfExtraction,
+          primary_evidence: primaryEvidence,
+          pdf_parser: pdfExtraction ? pdfExtraction.parser : null,
+          pdf_text_extracted: pdfExtraction ? pdfExtraction.success : false,
+          pdf_page_count: pdfExtraction ? pdfExtraction.page_count : null,
+          pdf_text_length: pdfExtraction ? pdfExtraction.text_length : null
         };
 
         urlFetchMap.set(target.requested_url, fetchRecord);
@@ -563,6 +908,12 @@ export async function fetchAllOfficialFamilyEvidence() {
           body_sha256: null,
           body_bytes: 0,
           body_text: '',
+          pdf_extraction: null,
+          primary_evidence: null,
+          pdf_parser: null,
+          pdf_text_extracted: false,
+          pdf_page_count: null,
+          pdf_text_length: null,
           error: err.message
         };
         urlFetchMap.set(target.requested_url, fetchRecord);
@@ -573,7 +924,7 @@ export async function fetchAllOfficialFamilyEvidence() {
       console.log(`[Cache] Reusing cached fetch ${fetchRecord.fetch_id} for family ${target.family}`);
     }
 
-    // Semantic evaluation
+    // Context-bound semantic evaluation
     const evaluation = evaluateSemanticEvidence(target, fetchRecord);
 
     const familyRecord = {
@@ -603,35 +954,19 @@ export async function fetchAllOfficialFamilyEvidence() {
       matched_models: evaluation.matched_models,
       evidence_locator: evaluation.evidence_locator,
       extracted_evidence: evaluation.extracted_evidence,
-      verification_status: evaluation.verification_status
+      verification_status: evaluation.verification_status,
+      pdf_parser: fetchRecord.pdf_parser,
+      pdf_text_extracted: fetchRecord.pdf_text_extracted,
+      pdf_page_count: fetchRecord.pdf_page_count,
+      pdf_text_length: fetchRecord.pdf_text_length,
+      raw_bytes_used: false,
+      context_bound: evaluation.context_bound,
+      evidence_context_id: evaluation.evidence_context_id,
+      page_number: evaluation.page_number
     };
 
     familyEvidenceRecords.push(familyRecord);
   }
-
-  // Strip large body_text from disk output to keep repository lean
-  const cleanFetchRecords = fetchRecords.map(({ body_text, ...rest }) => rest);
-
-  const ledgerPayload = {
-    phase: 'PHASE_56L.2',
-    timestamp: new Date().toISOString(),
-    unique_fetches_count: cleanFetchRecords.length,
-    family_evidence_count: familyEvidenceRecords.length,
-    fetches: cleanFetchRecords,
-    family_evidence: familyEvidenceRecords,
-    // Provide array root for backward-compatibility with ledger loaders expecting an array
-    entries: familyEvidenceRecords
-  };
-
-  // Save the full ledger; also allow JSON array iteration if needed
-  // We can add Symbol.iterator or write entries as top level array with metadata properties,
-  // or write familyEvidenceRecords with fetch references.
-  // To preserve backwards-compatibility with `JSON.parse(...)` expecting an array:
-  const arrayWithMeta = [...familyEvidenceRecords];
-  arrayWithMeta.__meta = {
-    fetches: cleanFetchRecords,
-    unique_fetches: cleanFetchRecords.length
-  };
 
   fs.writeFileSync(LEDGER_PATH, JSON.stringify(familyEvidenceRecords, null, 2), 'utf8');
   console.log(`[Ledger] Saved ${familyEvidenceRecords.length} entries to ${LEDGER_PATH}`);

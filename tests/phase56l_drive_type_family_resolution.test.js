@@ -35,7 +35,11 @@ import {
 } from '../src/publicationRules.js';
 
 import { resolveMachineClassification, getClassificationContextLabel } from '../src/driveClassification.js';
-import { evaluateSemanticEvidence } from '../scripts/fetch_official_family_evidence.mjs';
+import {
+  evaluateSemanticEvidence,
+  extractPrimaryProductEvidence,
+  extractPdfDocumentText
+} from '../scripts/fetch_official_family_evidence.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -153,7 +157,7 @@ test('Phase 56L.2: Primary acceptance target MS 211 resolves to Benzine (PETROL)
   assert.strictEqual(result.confidence, 'HIGH');
 });
 
-test('Phase 56L.2: Semantic source verification & false positive prevention fixtures', () => {
+test('Phase 56L.3: Semantic source verification & context-bound HTML isolation fixtures', () => {
   const mseTarget = {
     family: 'MSE',
     drive_type: 'MAINS_ELECTRIC',
@@ -195,7 +199,61 @@ test('Phase 56L.2: Semantic source verification & false positive prevention fixt
   assert.strictEqual(noDriveEval.family_match, true);
   assert.strictEqual(noDriveEval.drive_match, false);
 
-  // 4. Genuine matching page -> VERIFIED
+  // 4. Split context fixture: family model in primary, drive term ONLY in secondary footer
+  const splitContextHtml = `
+    <html>
+      <head><title>STIHL MSE 141 Kettingzaag</title></head>
+      <body>
+        <main>
+          <h1>STIHL MSE 141</h1>
+          <p>Handige kettingzaag voor het zagen van haardhout en tuinklussen.</p>
+        </main>
+        <footer>
+          <p>STIHL adviseert 230 V elektrische apparatuur te gebruiken met goedgekeurde verlengsnoeren.</p>
+        </footer>
+      </body>
+    </html>
+  `;
+  const splitEval = evaluateSemanticEvidence(mseTarget, {
+    http_status: 200,
+    content_type: 'text/html',
+    body_text: splitContextHtml
+  });
+  assert.strictEqual(splitEval.verification_status, 'UNVERIFIED_CONTEXT_MISMATCH', 'Split context must fail with UNVERIFIED_CONTEXT_MISMATCH');
+  assert.strictEqual(splitEval.context_bound, false);
+
+  // 5. Secondary-only related products fixture: target is BGA (battery blower), but primary page is BG 86 (petrol blower)
+  const bgaTarget = {
+    family: 'BGA',
+    drive_type: 'BATTERY',
+    family_tokens: ['BGA'],
+    representative_models: ['BGA 45', 'BGA 57', 'BGA 60'],
+    required_drive_terms: ['accu', 'battery', 'ak-systeem'],
+    negative_patterns: []
+  };
+  const relatedProductHtml = `
+    <html>
+      <head><title>STIHL BG 86 Benzinebladblazer</title></head>
+      <body>
+        <main>
+          <h1>STIHL BG 86</h1>
+          <p>Krachtige benzine bladblazer voor professioneel terreinonderhoud.</p>
+        </main>
+        <div class="product-slider related-items">
+          <h3>Wellicht ook interessant: BGA 60 Accubladblazer met handige accu-aandrijving</h3>
+        </div>
+      </body>
+    </html>
+  `;
+  const relatedEval = evaluateSemanticEvidence(bgaTarget, {
+    http_status: 200,
+    content_type: 'text/html',
+    body_text: relatedProductHtml
+  });
+  assert.notStrictEqual(relatedEval.verification_status, 'VERIFIED', 'Related product mention must never verify another family target');
+  assert.strictEqual(relatedEval.context_bound, false);
+
+  // 6. Genuine matching primary page -> VERIFIED
   const validFixture = {
     http_status: 200,
     page_title: 'MSE 141 elektrische kettingzaag kopen',
@@ -205,6 +263,8 @@ test('Phase 56L.2: Semantic source verification & false positive prevention fixt
   assert.strictEqual(validEval.verification_status, 'VERIFIED');
   assert.strictEqual(validEval.family_match, true);
   assert.strictEqual(validEval.drive_match, true);
+  assert.strictEqual(validEval.context_bound, true);
+  assert.strictEqual(validEval.evidence_context_id, 'PRIMARY_PRODUCT_CONTEXT');
   assert.ok(validEval.extracted_evidence, 'Extracted evidence must be populated');
   assert.ok(validEval.extracted_evidence.source_excerpt_hash, 'Excerpt hash must be present');
 });
@@ -307,7 +367,95 @@ test('Phase 56L.2: Integration with publicationRules.js and driveClassification.
   assert.strictEqual(isPetrolModel({ model_name: '026', explicit_power_source: 'GASOLINE' }), true);
 });
 
-test('Phase 56L.2: Catalog & SEO Freeze Invariants', () => {
+test('Phase 56L.3: True PDF text extraction & page-level context binding fixtures', () => {
+  const bgeTarget = {
+    family: 'BGE',
+    drive_type: 'MAINS_ELECTRIC',
+    family_tokens: ['BGE'],
+    representative_models: ['BGE 61', 'BGE 71', 'BGE 81'],
+    required_drive_terms: ['elektrisch', 'elektrische', 'electric', 'netstroom', '230v', '230 v', 'elektro'],
+    negative_patterns: []
+  };
+
+  // 1. PDF text extraction failure fixture
+  const failedExtractionFixture = {
+    http_status: 200,
+    content_type: 'application/pdf',
+    pdf_extraction: {
+      success: false,
+      error: 'Corrupt PDF header stream',
+      pages: [],
+      text_length: 0
+    }
+  };
+  const failedEval = evaluateSemanticEvidence(bgeTarget, failedExtractionFixture);
+  assert.strictEqual(failedEval.verification_status, 'UNVERIFIED_PDF_TEXT_EXTRACTION_FAILED');
+  assert.strictEqual(failedEval.context_bound, false);
+
+  // 2. Split page context fixture: family on page 1, drive term only on page 50
+  const splitPageFixture = {
+    http_status: 200,
+    content_type: 'application/pdf',
+    pdf_extraction: {
+      success: true,
+      error: null,
+      page_count: 50,
+      text_length: 5000,
+      full_text: 'BGE 71 manual ... electric power tools',
+      pages: [
+        { page_number: 1, text: 'STIHL BGE 71 Handbuch für Gebläse' },
+        { page_number: 2, text: 'Allgemeine Hinweise zur Sicherheit und Bedienung' },
+        { page_number: 50, text: 'Elektrische Entsorgungshinweise nach ElektroG 230 V' }
+      ]
+    }
+  };
+  const splitPageEval = evaluateSemanticEvidence(bgeTarget, splitPageFixture);
+  assert.strictEqual(splitPageEval.verification_status, 'UNVERIFIED_CONTEXT_MISMATCH', 'Split page PDF evidence must fail with UNVERIFIED_CONTEXT_MISMATCH');
+  assert.strictEqual(splitPageEval.context_bound, false);
+
+  // 3. Page-bound co-occurrence fixture -> VERIFIED
+  const validPageFixture = {
+    http_status: 200,
+    content_type: 'application/pdf',
+    pdf_extraction: {
+      success: true,
+      error: null,
+      page_count: 10,
+      text_length: 3000,
+      full_text: '...',
+      pages: [
+        { page_number: 7, text: 'Bauart: Elektro-Blasgerät STIHL Typ BGE 61 BGE 71 BGE 81' }
+      ]
+    }
+  };
+  const validPageEval = evaluateSemanticEvidence(bgeTarget, validPageFixture);
+  assert.strictEqual(validPageEval.verification_status, 'VERIFIED');
+  assert.strictEqual(validPageEval.context_bound, true);
+  assert.strictEqual(validPageEval.evidence_context_id, 'PDF_DOCUMENT_PAGE_CONTEXT');
+  assert.strictEqual(validPageEval.page_number, 7);
+  assert.ok(validPageEval.extracted_evidence.source_excerpt_hash);
+
+  // 4. Validate authentic PDF entries in fetch ledger (HLE, BGE, SHE)
+  const ledgerPath = path.join(HARVEST_DIR, 'official_family_fetch_ledger.json');
+  const ledger = JSON.parse(fs.readFileSync(ledgerPath, 'utf8'));
+
+  for (const fam of ['HLE', 'BGE', 'SHE']) {
+    const entry = ledger.find(l => l.family === fam);
+    assert.ok(entry, `Ledger entry for PDF family ${fam} must exist`);
+    assert.strictEqual(entry.verification_status, 'VERIFIED');
+    assert.strictEqual(entry.content_type.includes('pdf'), true);
+    assert.strictEqual(entry.pdf_parser, 'pdfjs-dist/legacy');
+    assert.strictEqual(entry.pdf_text_extracted, true);
+    assert.ok(entry.pdf_page_count > 0, `${fam} page count must be > 0`);
+    assert.ok(entry.pdf_text_length > 10000, `${fam} text length must be > 10,000 chars`);
+    assert.strictEqual(entry.raw_bytes_used, false, `${fam} must not use raw bytes`);
+    assert.strictEqual(entry.context_bound, true, `${fam} must be context bound`);
+    assert.strictEqual(entry.evidence_context_id, 'PDF_DOCUMENT_PAGE_CONTEXT');
+    assert.ok(Number.isInteger(entry.page_number) && entry.page_number > 0, `${fam} page_number must be positive int`);
+  }
+});
+
+test('Phase 56L.3: Catalog & SEO Freeze Invariants', () => {
   const db = new Database(path.join(DATA_DIR, 'stihl_database.db'), { readonly: true });
   const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
   const fitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
@@ -322,7 +470,7 @@ test('Phase 56L.2: Catalog & SEO Freeze Invariants', () => {
   assert.strictEqual(sectionContextsCount, 814, 'Section contexts count must be exactly 814');
 });
 
-test('Phase 56L.2: All 12 required artifacts exist and pass semantic provenance hard gates', () => {
+test('Phase 56L.3: All 12 required artifacts exist and pass Phase 56L.3 hard gates', () => {
   const expectedArtifacts = [
     'MODEL_FAMILY_INVENTORY.json',
     'OFFICIAL_FAMILY_EVIDENCE.json',
@@ -354,13 +502,21 @@ test('Phase 56L.2: All 12 required artifacts exist and pass semantic provenance 
   assert.strictEqual(summary.hard_gates.IMPOSSIBLE_TIMESTAMP_ORDER_RECORDS, 0);
   assert.strictEqual(summary.hard_gates.ACTIVE_RULES_WITHOUT_SEMANTIC_EVIDENCE, 0);
   assert.strictEqual(summary.hard_gates.SEMANTIC_FAMILY_PROVENANCE_VERIFIED, true);
+  assert.strictEqual(summary.hard_gates.RAW_PDF_BYTE_VERIFICATION_RECORDS, 0);
+  assert.strictEqual(summary.hard_gates.PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS, 0);
+  assert.strictEqual(summary.hard_gates.ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT, 0);
+  assert.strictEqual(summary.hard_gates.CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED, true);
 
   const provenanceIntegrity = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'FAMILY_PROVENANCE_INTEGRITY.json'), 'utf8'));
   assert.strictEqual(provenanceIntegrity.status, 'PASS');
   assert.strictEqual(provenanceIntegrity.SEMANTIC_FAMILY_PROVENANCE_VERIFIED, true);
+  assert.strictEqual(provenanceIntegrity.CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED, true);
   assert.strictEqual(provenanceIntegrity.wrong_content_records, 1);
   assert.strictEqual(provenanceIntegrity.WRONG_CONTENT_VERIFIED_RECORDS, 0);
   assert.strictEqual(provenanceIntegrity.impossible_timestamp_order_records, 0);
   assert.strictEqual(provenanceIntegrity.ACTIVE_RULES_WITHOUT_SEMANTIC_EVIDENCE, 0);
   assert.strictEqual(provenanceIntegrity.fabricated_family_provenance, 0);
+  assert.strictEqual(provenanceIntegrity.RAW_PDF_BYTE_VERIFICATION_RECORDS, 0);
+  assert.strictEqual(provenanceIntegrity.PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS, 0);
+  assert.strictEqual(provenanceIntegrity.ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT, 0);
 });
