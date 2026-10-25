@@ -1,0 +1,28 @@
+{
+  "phase": "PHASE_56N",
+  "before": {
+    "total_catalog_models": 956,
+    "unpowered_attachments": 25,
+    "powered_machine_candidates": 931,
+    "resolved_powered_candidates": 401,
+    "unknown_powered_candidates": 530,
+    "coverage_percentage": 43.07
+  },
+  "after": {
+    "total_catalog_models": 956,
+    "unpowered_attachments": 25,
+    "non_machine_accessories": 49,
+    "replacement_parts_as_model": 5,
+    "total_non_machine_removed_from_denominator": 54,
+    "powered_machine_candidates": 877,
+    "resolved_powered_candidates": 401,
+    "unknown_powered_candidates": 476,
+    "coverage_percentage": 45.72
+  },
+  "delta": {
+    "powered_candidates_delta": -54,
+    "unknown_powered_delta": -54,
+    "resolved_powered_delta": 0,
+    "coverage_percentage_delta": 2.65
+  }
+}

@@ -1060,36 +1060,30 @@ function extractModelString(modelInput) {
  * Identifies unpowered KombiTools, MultiTools, and cutting attachments that do not
  * contain an engine or motor of their own.
  */
-export function isAttachmentDesignation(modelInput) {
-  const rawStr = extractModelString(modelInput);
-  if (!rawStr) return false;
-  const s = rawStr.trim();
+import {
+  MACHINE_ELIGIBILITY,
+  isAttachmentDesignation,
+  resolveMachineEligibility,
+  isPoweredMachine,
+  isUnpoweredAttachment,
+  isNonMachineNoise,
+  EXACT_NON_MACHINE_ACCESSORIES,
+  EXACT_REPLACEMENT_PARTS
+} from './ModelMachineEligibilityRegistry.js';
 
-  // 1. Explicit tool attachment patterns in titles
-  if (/\b(?:attachment|attachments|anbauwerkzeug|kombimanual)\b/i.test(s)) {
-    return true;
-  }
+export {
+  MACHINE_ELIGIBILITY,
+  isAttachmentDesignation,
+  resolveMachineEligibility,
+  isPoweredMachine,
+  isUnpoweredAttachment,
+  isNonMachineNoise,
+  EXACT_NON_MACHINE_ACCESSORIES,
+  EXACT_REPLACEMENT_PARTS
+};
 
-  // 2. KombiTool attachments ending with -KM or space KM
-  // e.g. BG-KM, FS-KM, HL-KM, HT-KM, BC-KM, BF-KM, FCB-KM, FCS-KM, FH-KM, FSB-KM, KB-KM, KW-KM, RG-KM, SP-KM
-  if (/^[A-Za-z0-9]{2,5}[_\-]KM(?:\s|$)/i.test(s) || /\b[A-Za-z0-9]{2,5}[_\-]KM\b/i.test(s)) {
-    return true;
-  }
-
-  // 3. MultiSystem tool attachments ending with -MM
-  // e.g. BF-MM, BK-MM, FC-MM, KB-MM, MF-MM, RL-MM
-  if (/^[A-Za-z0-9]{2,5}[_\-]MM(?:\s|$)/i.test(s) || /\b[A-Za-z0-9]{2,5}[_\-]MM\b/i.test(s)) {
-    return true;
-  }
-
-  return false;
-}
-
-/**
- * Returns true if the designation represents a powered machine candidate, false if an attachment.
- */
 export function isPoweredModelDesignation(modelInput) {
-  return !isAttachmentDesignation(modelInput);
+  return resolveMachineEligibility(modelInput).eligibility === MACHINE_ELIGIBILITY.POWERED_MACHINE;
 }
 
 function normalizeExplicitDriveType(raw) {
@@ -1184,16 +1178,47 @@ export function getFamilyRule(modelInput) {
  *   6. Fail-closed UNKNOWN ('Niet vastgesteld')
  */
 export function resolveDriveType(modelInput) {
-  // Precedence 1: Attachment safety gate
-  if (isAttachmentDesignation(modelInput)) {
+  const eligibilityInfo = resolveMachineEligibility(modelInput);
+
+  // Precedence 1A: Attachment safety gate (Unpowered KombiTools / MultiTools)
+  if (eligibilityInfo.eligibility === MACHINE_ELIGIBILITY.UNPOWERED_ATTACHMENT) {
     return {
       drive_type: DRIVE_TYPES.UNKNOWN,
       display: DISPLAY_LABELS.UNKNOWN,
       resolution: 'ATTACHMENT_NOT_POWERED',
+      eligibility: MACHINE_ELIGIBILITY.UNPOWERED_ATTACHMENT,
       family: null,
       source_type: 'ATTACHMENT_SAFETY_GATE',
       confidence: 'HIGH',
       notes: 'Unpowered tool or attachment designation. Contains no independent engine/motor.'
+    };
+  }
+
+  // Precedence 1B: Non-machine accessories (Mowing heads, carrying systems, adapters)
+  if (eligibilityInfo.eligibility === MACHINE_ELIGIBILITY.NON_MACHINE_ACCESSORY) {
+    return {
+      drive_type: DRIVE_TYPES.UNKNOWN,
+      display: DISPLAY_LABELS.UNKNOWN,
+      resolution: 'NON_MACHINE_ACCESSORY',
+      eligibility: MACHINE_ELIGIBILITY.NON_MACHINE_ACCESSORY,
+      family: null,
+      source_type: 'MACHINE_ELIGIBILITY_GATE',
+      confidence: 'HIGH',
+      notes: eligibilityInfo.reason
+    };
+  }
+
+  // Precedence 1C: Replacement parts cataloged as models (gaskets, starter ropes, skirts)
+  if (eligibilityInfo.eligibility === MACHINE_ELIGIBILITY.REPLACEMENT_PART_AS_MODEL) {
+    return {
+      drive_type: DRIVE_TYPES.UNKNOWN,
+      display: DISPLAY_LABELS.UNKNOWN,
+      resolution: 'REPLACEMENT_PART_AS_MODEL',
+      eligibility: MACHINE_ELIGIBILITY.REPLACEMENT_PART_AS_MODEL,
+      family: null,
+      source_type: 'MACHINE_ELIGIBILITY_GATE',
+      confidence: 'HIGH',
+      notes: eligibilityInfo.reason
     };
   }
 
