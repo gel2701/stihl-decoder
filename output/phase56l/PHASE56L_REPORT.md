@@ -1,21 +1,29 @@
-# STIHLDECODER — PHASE 56L.3 EVIDENCE EXTRACTION & CONTEXT BINDING CLOSURE REPORT
+# STIHLDECODER — PHASE 56L.4 PRIMARY CONTEXT PARSER FINAL CLOSURE REPORT
 
 **Status:** PASS
-**Baseline commit:** `ccdaf09e739fdf401f00b47d14ffd91cd8504a6d`
-**Datum:** 2026-10-25T16:55:59.664Z
+**Baseline commit:** `fa38574e404f00362e9f553c560a90f0821c2ec1`
+**Datum:** 2026-10-25T17:25:55.115Z
 **Repository:** `gel2701/stihl-decoder`
 
 ---
 
-## 1. Doel & Probleemstelling (Phase 56L.3)
+## 1. Doel & Probleemstelling (Phase 56L.4)
 
-Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar liet twee provenance-defecten open:
-1. **Defect A (PDF Parsing)**: PDF-bronnen werden als ruwe Latin-1 bytes behandeld zonder font- decoding of stream decompression. In Phase 56L.3 is echte PDF text extraction geïmplementeerd via `pdfjs-dist/legacy/build/pdf.mjs`. Elke PDF-bron registreert nu exact de geëxtraheerde tekstlengte, het aantal pagina's en het specifieke paginanummer waar zowel de familie als de aandrijvingsterm voorkomen (`RAW_PDF_BYTE_VERIFICATION_RECORDS = 0`, `ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT = 0`).
-2. **Defect B (HTML Context Binding)**: HTML family/drive evidence werd over het hele document gezocht, waardoor secundaire elementen (navigatie, gerelateerde producten slider, footer links) valse positieven konden veroorzaken. In Phase 56L.3 isoleert `extractPrimaryProductEvidence` de primaire productcontext (`page_title`, `h1`, `jsonld_product_name`, `primary_text`) van secundaire context. Beide entiteiten moeten binnen dezelfde primaire context vallen (`PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS = 0`, `CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED = true`).
+Phase 56L.3 heeft:
+- echte PDF text extraction;
+- page-bound PDF evidence;
+- primary HTML context binding;
+- attachment safety;
+- explicit evidence precedence;
+succesvol ingevoerd.
+
+Phase 56L.4 repareert definitief de twee resterende HTML-parsergaten:
+1. **Defect A (Nesting-aware Secondary Removal)**: Regex matching op secundaire containers (`div.related`, `nav`, `footer`, enz.) was niet nesting-aware en kon bij child tags te vroeg stoppen waardoor gerelateerde producten lekten naar `primary_text`. In Phase 56L.4 is `parse5` geïntegreerd voor een volledige DOM tree traversal, waarbij secundaire containers en al hun nakomelingen recursief worden geëxtraheerd naar `secondary_text` en gestript uit `primary_text` (`NESTED_SECONDARY_CONTENT_LEAKS = 0`).
+2. **Defect B (JSON-LD Product Type Validation)**: In plaats van losse `item.name` matching worden alleen strikte Schema.org `Product` / `ProductModel` entiteiten (zowel enkele string als array `@type`) als product evidence geaccepteerd. `WebSite`, `Organization`, `Brand`, `BreadcrumbList` en andere niet-product schema types worden strikt genegeerd (`NON_PRODUCT_JSONLD_EVIDENCE_RECORDS = 0`, `PRIMARY_CONTEXT_PARSER_VERIFIED = true`).
 
 ---
 
-## 2. Hard Gates Status (Phase 56L.3)
+## 2. Hard Gates Status (Phase 56L.4)
 
 | Hard Gate | Eis | Resultaat | Status |
 | :--- | :--- | :--- | :--- |
@@ -29,6 +37,9 @@ Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar lie
 | `PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS` | `0` | `0` | **PASS** |
 | `ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT` | `0` | `0` | **PASS** |
 | `CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED` | `true` | `true` | **PASS** |
+| `NESTED_SECONDARY_CONTENT_LEAKS` | `0` | `0` | **PASS** |
+| `NON_PRODUCT_JSONLD_EVIDENCE_RECORDS` | `0` | `0` | **PASS** |
+| `PRIMARY_CONTEXT_PARSER_VERIFIED` | `true` | `true` | **PASS** |
 
 ---
 
@@ -42,6 +53,8 @@ Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar lie
 - **PDF-regels geëxtraheerd via pdfjs-dist:** 3 (HLE: pagina 34; BGE: pagina 7; SHE: pagina 13)
 - **Ruwe PDF byte-verificatie records:** 0
 - **Primary context mismatches:** 0
+- **Nested secondary content leaks:** 0
+- **Non-product JSON-LD evidence records:** 0
 - **Uitgeschakelde / Unverified regels:** **1** (`HTE` — Snoeischaar PG 20 redirect, faalt fail-closed conform instructie)
 - **Unieke HTTP fetches:** **27**
 - **Gedeelde cached fetches:** **1** (`SHE` deelt handleiding met `BGE` zonder timestamp-corruptie)

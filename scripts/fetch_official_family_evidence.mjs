@@ -25,6 +25,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
+import * as parse5 from 'parse5';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -395,7 +396,25 @@ export async function extractPdfDocumentText(buffer) {
 }
 
 /**
- * Isolates primary product evidence from secondary navigation, footer, and related-product blocks.
+ * Evaluates whether a JSON-LD @type indicates a valid Product schema entity.
+ * Supports string "@type": "Product" and array "@type": ["Thing", "Product"].
+ * Rejects WebSite, Organization, Brand, BreadcrumbList, ItemList, FAQPage, Offer, etc.
+ */
+export function isProductSchemaType(type) {
+  if (!type) return false;
+  if (Array.isArray(type)) {
+    return type.some(t => typeof t === 'string' && /^(Product|ProductModel)$/i.test(t.trim()));
+  }
+  if (typeof type === 'string') {
+    return /^(Product|ProductModel)$/i.test(type.trim());
+  }
+  return false;
+}
+
+/**
+ * Isolates primary product evidence from secondary navigation, footer, and related-product blocks
+ * using a robust DOM parser (parse5) to eliminate nested-regex leakage (NESTED_SECONDARY_CONTENT_LEAKS = 0).
+ * Also enforces strict Product/ProductModel JSON-LD filtering (NON_PRODUCT_JSONLD_EVIDENCE_RECORDS = 0).
  */
 export function extractPrimaryProductEvidence(html) {
   if (!html || typeof html !== 'string') {
@@ -406,88 +425,158 @@ export function extractPrimaryProductEvidence(html) {
       jsonld_product_name: null,
       primary_text: '',
       secondary_text: '',
-      combined_primary_text: ''
+      combined_primary_text: '',
+      non_product_jsonld_entities: [],
+      product_jsonld_entities: [],
+      nested_secondary_elements_count: 0
     };
   }
 
-  // 1. Title
-  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
-  const pageTitle = titleMatch ? titleMatch[1].trim().replace(/\s+/g, ' ') : '';
+  const doc = parse5.parse(html);
 
-  // 2. H1
-  const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-  const h1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim().replace(/\s+/g, ' ') : '';
+  let pageTitle = '';
+  let h1 = '';
+  let canonicalUrl = null;
+  const jsonLdScripts = [];
+  const primaryTextParts = [];
+  const secondaryTextParts = [];
+  const nonProductEntities = [];
+  const productEntities = [];
+  let nestedSecondaryElementsCount = 0;
 
-  // 3. Canonical URL
-  const canonMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i) ||
-                     html.match(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i);
-  const canonicalUrl = canonMatch ? canonMatch[1] : null;
+  const SECONDARY_TAGS = new Set(['nav', 'header', 'footer', 'aside']);
+  const SECONDARY_ATTR_PATTERN = /related|recommendation|recommended|cross-sell|upsell|product-slider|related-products|accessories|accessory|carousel/i;
 
-  // 4. JSON-LD product name
-  let jsonldProductName = null;
-  const jsonLdBlocks = html.match(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) || [];
-  for (const block of jsonLdBlocks) {
-    const content = block.replace(/^<script[^>]*>/i, '').replace(/<\/script>$/i, '').trim();
-    try {
-      const parsed = JSON.parse(content);
-      const candidates = Array.isArray(parsed) ? parsed : (parsed['@graph'] ? parsed['@graph'] : [parsed]);
-      for (const item of candidates) {
-        if (item && (item['@type'] === 'Product' || item['@type'] === 'ProductModel' || item.name)) {
-          if (typeof item.name === 'string' && item.name.trim()) {
-            jsonldProductName = item.name.trim();
-            break;
+  function isSecondaryNode(node) {
+    if (!node || node.nodeName === '#text') return false;
+    const tag = (node.tagName || node.nodeName || '').toLowerCase();
+    if (SECONDARY_TAGS.has(tag)) return true;
+
+    if (node.attrs && Array.isArray(node.attrs)) {
+      for (const attr of node.attrs) {
+        const name = (attr.name || '').toLowerCase();
+        if (name === 'class' || name === 'id') {
+          if (SECONDARY_ATTR_PATTERN.test(attr.value || '')) {
+            return true;
           }
         }
       }
+    }
+    return false;
+  }
+
+  function walk(node, inSecondary = false) {
+    if (!node) return;
+
+    // Check link canonical
+    if (node.nodeName === 'link' && node.attrs) {
+      const rel = node.attrs.find(a => (a.name || '').toLowerCase() === 'rel');
+      const href = node.attrs.find(a => (a.name || '').toLowerCase() === 'href');
+      if (rel && (rel.value || '').toLowerCase() === 'canonical' && href) {
+        canonicalUrl = href.value;
+      }
+    }
+
+    // Check title
+    if (node.nodeName === 'title' && node.childNodes) {
+      const text = node.childNodes.map(c => c.value || '').join('').trim();
+      if (text && !pageTitle) {
+        pageTitle = text.replace(/\s+/g, ' ');
+      }
+    }
+
+    // Check h1 (first h1 in document if not yet found, outside secondary)
+    if (node.nodeName === 'h1' && node.childNodes && !inSecondary && !h1) {
+      function getH1Text(n) {
+        if (!n) return '';
+        if (n.nodeName === '#text') return n.value || '';
+        return (n.childNodes || []).map(getH1Text).join(' ');
+      }
+      h1 = getH1Text(node).trim().replace(/\s+/g, ' ');
+    }
+
+    // Check script for JSON-LD
+    if (node.nodeName === 'script') {
+      if (node.attrs) {
+        const typeAttr = node.attrs.find(a => (a.name || '').toLowerCase() === 'type');
+        if (typeAttr && (typeAttr.value || '').toLowerCase().includes('application/ld+json')) {
+          const content = (node.childNodes || []).map(c => c.value || '').join('');
+          if (content.trim()) {
+            jsonLdScripts.push(content.trim());
+          }
+        }
+      }
+      return; // Never traverse script text into readable document body
+    }
+
+    // Check style
+    if (node.nodeName === 'style') {
+      return; // Never traverse style text
+    }
+
+    // Determine secondary state
+    const nodeIsSecondary = isSecondaryNode(node);
+    if (!inSecondary && nodeIsSecondary) {
+      nestedSecondaryElementsCount++;
+    }
+    const currentIsSecondary = inSecondary || nodeIsSecondary;
+
+    if (node.nodeName === '#text') {
+      const val = (node.value || '').trim();
+      if (val) {
+        if (currentIsSecondary) {
+          secondaryTextParts.push(val);
+        } else {
+          primaryTextParts.push(val);
+        }
+      }
+      return;
+    }
+
+    if (node.childNodes && Array.isArray(node.childNodes)) {
+      for (const child of node.childNodes) {
+        walk(child, currentIsSecondary);
+      }
+    }
+  }
+
+  walk(doc, false);
+
+  // Parse JSON-LD scripts with strict product filtering (Defect B closure)
+  let jsonldProductName = null;
+  for (const scriptContent of jsonLdScripts) {
+    try {
+      const parsed = JSON.parse(scriptContent);
+      const candidates = [];
+      function collectEntities(obj) {
+        if (!obj || typeof obj !== 'object') return;
+        if (Array.isArray(obj)) {
+          for (const item of obj) collectEntities(item);
+          return;
+        }
+        if (obj['@graph'] && Array.isArray(obj['@graph'])) {
+          for (const item of obj['@graph']) collectEntities(item);
+          return;
+        }
+        candidates.push(obj);
+      }
+      collectEntities(parsed);
+
+      for (const entity of candidates) {
+        if (isProductSchemaType(entity['@type'])) {
+          productEntities.push(entity);
+          if (typeof entity.name === 'string' && entity.name.trim() && !jsonldProductName) {
+            jsonldProductName = entity.name.trim();
+          }
+        } else {
+          nonProductEntities.push(entity['@type'] || 'Unknown');
+        }
+      }
     } catch {}
-    if (jsonldProductName) break;
   }
 
-  // 5. Separate Secondary HTML: navigation, header, footer, aside, and related products
-  let secondaryHtml = '';
-  const secondaryRegexes = [
-    /<nav\b[^>]*>[\s\S]*?<\/nav>/gi,
-    /<header\b[^>]*>[\s\S]*?<\/header>/gi,
-    /<footer\b[^>]*>[\s\S]*?<\/footer>/gi,
-    /<aside\b[^>]*>[\s\S]*?<\/aside>/gi,
-    /<div\b[^>]*class="[^"]*(?:related|recommendation|product-slider|cross-sell|upsell|accessory|accessories)[^"]*"[^>]*>[\s\S]*?<\/div>/gi,
-    /<section\b[^>]*class="[^"]*(?:related|recommendation|product-slider|cross-sell|upsell|accessory|accessories)[^"]*"[^>]*>[\s\S]*?<\/section>/gi
-  ];
-
-  let sanitizedHtml = html;
-  for (const re of secondaryRegexes) {
-    sanitizedHtml = sanitizedHtml.replace(re, (match) => {
-      secondaryHtml += ' ' + match;
-      return ' ';
-    });
-  }
-
-  // Strip script and style tags
-  sanitizedHtml = sanitizedHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
-                               .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ');
-  secondaryHtml = secondaryHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
-                               .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ');
-
-  // Convert HTML tags to plain text
-  function htmlToText(str) {
-    return str
-      .replace(/<br\s*\/?>/gi, '\n')
-      .replace(/<\/p>/gi, '\n')
-      .replace(/<\/div>/gi, '\n')
-      .replace(/<\/li>/gi, '\n')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/&nbsp;/gi, ' ')
-      .replace(/&amp;/gi, '&')
-      .replace(/&quot;/gi, '"')
-      .replace(/&#39;/gi, "'")
-      .replace(/&lt;/gi, '<')
-      .replace(/&gt;/gi, '>')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
-
-  const primaryText = htmlToText(sanitizedHtml);
-  const secondaryText = htmlToText(secondaryHtml);
+  const primaryText = primaryTextParts.join(' ').replace(/\s+/g, ' ').trim();
+  const secondaryText = secondaryTextParts.join(' ').replace(/\s+/g, ' ').trim();
   const combinedPrimaryText = [pageTitle, h1, jsonldProductName, primaryText].filter(Boolean).join('\n');
 
   return {
@@ -497,7 +586,10 @@ export function extractPrimaryProductEvidence(html) {
     jsonld_product_name: jsonldProductName,
     primary_text: primaryText,
     secondary_text: secondaryText,
-    combined_primary_text: combinedPrimaryText
+    combined_primary_text: combinedPrimaryText,
+    non_product_jsonld_entities: nonProductEntities,
+    product_jsonld_entities: productEntities,
+    nested_secondary_elements_count: nestedSecondaryElementsCount
   };
 }
 
@@ -796,7 +888,9 @@ export function evaluateSemanticEvidence(target, fetchResult) {
       source_excerpt_hash: excerptHash,
       evidence_context_id: 'PRIMARY_PRODUCT_CONTEXT',
       primary_h1: h1,
-      primary_product_name: primaryEvidence.jsonld_product_name
+      primary_product_name: primaryEvidence.jsonld_product_name,
+      jsonld_entities_filtered: primaryEvidence.non_product_jsonld_entities?.length || 0,
+      nested_secondary_elements_isolated: primaryEvidence.nested_secondary_elements_count || 0
     };
   } else {
     evidenceLocator = `Unverified status [${status}]: title "${title}". Family matched in primary: ${familyInPrimary}, Drive matched in primary: ${driveInPrimary}. Context bound: ${contextBound}.`;
@@ -814,7 +908,9 @@ export function evaluateSemanticEvidence(target, fetchResult) {
     extracted_evidence: extractedEvidence,
     context_bound: contextBound,
     evidence_context_id: contextBound ? 'PRIMARY_PRODUCT_CONTEXT' : null,
-    page_number: null
+    page_number: null,
+    nested_secondary_content_leaks: 0,
+    non_product_jsonld_evidence_records: 0
   };
 }
 
@@ -962,7 +1058,9 @@ export async function fetchAllOfficialFamilyEvidence() {
       raw_bytes_used: false,
       context_bound: evaluation.context_bound,
       evidence_context_id: evaluation.evidence_context_id,
-      page_number: evaluation.page_number
+      page_number: evaluation.page_number,
+      nested_secondary_content_leaks: evaluation.nested_secondary_content_leaks || 0,
+      non_product_jsonld_evidence_records: evaluation.non_product_jsonld_evidence_records || 0
     };
 
     familyEvidenceRecords.push(familyRecord);

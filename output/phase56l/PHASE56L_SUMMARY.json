@@ -1,8 +1,8 @@
 {
-  "phase": "PHASE_56L.3",
-  "baseline_commit": "ccdaf09e739fdf401f00b47d14ffd91cd8504a6d",
+  "phase": "PHASE_56L.4",
+  "baseline_commit": "fa38574e404f00362e9f553c560a90f0821c2ec1",
   "outcome_status": "PASS",
-  "timestamp": "2026-10-25T16:55:59.664Z",
+  "timestamp": "2026-10-25T17:25:55.115Z",
   "hard_gates": {
     "POWERED_ATTACHMENT_MISCLASSIFICATIONS": 0,
     "EXPLICIT_EVIDENCE_PROPAGATION_VALID": true,
@@ -14,7 +14,10 @@
     "RAW_PDF_BYTE_VERIFICATION_RECORDS": 0,
     "PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS": 0,
     "ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT": 0,
-    "CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED": true
+    "CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED": true,
+    "NESTED_SECONDARY_CONTENT_LEAKS": 0,
+    "NON_PRODUCT_JSONLD_EVIDENCE_RECORDS": 0,
+    "PRIMARY_CONTEXT_PARSER_VERIFIED": true
   },
   "primary_resolution_target": {
     "model": "MS 211",

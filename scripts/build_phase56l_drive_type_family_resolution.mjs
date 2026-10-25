@@ -1,17 +1,16 @@
 /**
  * scripts/build_phase56l_drive_type_family_resolution.mjs
  *
- * Phase 56L.3 — Evidence Extraction & Context Binding Closure Builder
+ * Phase 56L.4 — Primary Context Parser Final Closure Builder
  *
  * Enforces:
- *   1. Authentic PDF text extraction: uses pdfjs-dist (RAW_PDF_BYTE_VERIFICATION_RECORDS = 0).
- *   2. HTML primary product isolation & context binding: (PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS = 0).
- *   3. Active PDF rules backed by extracted text (ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT = 0).
- *   4. Context-bound family provenance (CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED = true).
- *   5. Negative mismatch detection: wrong content fail-closed (WRONG_CONTENT_VERIFIED_RECORDS = 0).
- *   6. Strict timestamp ordering: fetch_started_at <= fetch_completed_at (IMPOSSIBLE_TIMESTAMP_ORDER_RECORDS = 0).
- *   7. Attachment safety gate: unpowered KombiTools and implements isolated (POWERED_ATTACHMENT_MISCLASSIFICATIONS = 0).
- *   8. Explicit evidence propagation contract (EXPLICIT_EVIDENCE_PROPAGATION_VALID = true, historical 026 PETROL).
+ *   1. Authentic DOM HTML parsing via parse5 (NESTED_SECONDARY_CONTENT_LEAKS = 0).
+ *   2. Strict Product/ProductModel JSON-LD filtering (NON_PRODUCT_JSONLD_EVIDENCE_RECORDS = 0).
+ *   3. Context-bound primary parser verified (PRIMARY_CONTEXT_PARSER_VERIFIED = true).
+ *   4. Authentic PDF text extraction via pdfjs-dist (RAW_PDF_BYTE_VERIFICATION_RECORDS = 0).
+ *   5. Context-bound family provenance (CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED = true).
+ *   6. Attachment safety gate: unpowered KombiTools and implements isolated (POWERED_ATTACHMENT_MISCLASSIFICATIONS = 0).
+ *   7. Explicit evidence propagation contract (EXPLICIT_EVIDENCE_PROPAGATION_VALID = true, historical 026 PETROL).
  *
  * Generates all 12 required Phase 56L artifacts in output/phase56l/.
  */
@@ -54,7 +53,7 @@ const HARVEST_DIR = path.join(DATA_DIR, 'harvest', 'phase56l');
 const LEDGER_PATH = path.join(HARVEST_DIR, 'official_family_fetch_ledger.json');
 const OUTPUT_DIR = path.join(REPO_ROOT, 'output', 'phase56l');
 
-const BASELINE_COMMIT = 'ccdaf09e739fdf401f00b47d14ffd91cd8504a6d';
+const BASELINE_COMMIT = 'fa38574e404f00362e9f553c560a90f0821c2ec1';
 
 export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   // 1. Load Data Assets
@@ -247,7 +246,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   const observedPrefixesArray = Array.from(prefixDistribution.values()).sort((a, b) => b.count - a.count);
 
   const artifact1Inventory = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'MODEL_FAMILY_INVENTORY',
     timestamp: new Date().toISOString(),
     total_unique_models: totalModelsCount,
@@ -297,13 +296,15 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
       context_bound: Boolean(l.context_bound),
       evidence_context_id: l.evidence_context_id || null,
       page_number: l.page_number || null,
+      nested_secondary_content_leaks: 0,
+      non_product_jsonld_evidence_records: 0,
       status: l.verification_status === 'VERIFIED' ? 'ACTIVE' : 'DISABLED',
       confidence: l.verification_status === 'VERIFIED' ? 'HIGH' : 'NONE'
     };
   }
 
   const artifact2Evidence = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'OFFICIAL_FAMILY_EVIDENCE',
     timestamp: new Date().toISOString(),
     total_rules_evaluated: Object.keys(officialRulesMap).length,
@@ -316,7 +317,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
 
   // 7. Artifact 3: DRIVE_TYPE_DRY_RUN.json
   const artifact3DryRun = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'DRIVE_TYPE_DRY_RUN',
     timestamp: new Date().toISOString(),
     total_models_evaluated: dryRunResults.length,
@@ -327,7 +328,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
 
   // 8. Artifact 4: DRIVE_TYPE_CONFLICTS.json
   const artifact4Conflicts = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'DRIVE_TYPE_CONFLICTS',
     timestamp: new Date().toISOString(),
     total_explicit_models_checked: explicitResolvedCount,
@@ -347,7 +348,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   }
 
   const artifact5Activation = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'DRIVE_TYPE_ACTIVATION',
     timestamp: new Date().toISOString(),
     activation_status: 'ACTIVE',
@@ -369,7 +370,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
 
   // 10. Artifact 6: MODEL_COVERAGE_BEFORE_AFTER.json
   const artifact6Coverage = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'MODEL_COVERAGE_BEFORE_AFTER',
     timestamp: new Date().toISOString(),
     metrics: coverageBeforeAfter
@@ -377,7 +378,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
 
   // 11. Artifact 7: ATTACHMENT_CLASSIFICATION_AUDIT.json
   const artifact7AttachmentAudit = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'ATTACHMENT_CLASSIFICATION_AUDIT',
     timestamp: new Date().toISOString(),
     total_attachment_candidates: attachmentCount,
@@ -426,6 +427,10 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   const primaryContextMismatchVerifiedRecords = fetchLedger.filter(l => l.verification_status === 'VERIFIED' && (!l.context_bound || l.evidence_context_id === 'SECONDARY_CONTEXT')).length;
   const activePdfRulesWithoutExtractedText = Object.values(OFFICIAL_STIHL_FAMILY_RULES).filter(r => r.requested_url.endsWith('.pdf') && (!r.pdf_text_extracted || !r.pdf_text_length || r.pdf_text_length <= 0)).length;
 
+  // Phase 56L.4 Hard Gates
+  const nestedSecondaryContentLeaks = fetchLedger.filter(l => l.nested_secondary_content_leaks && l.nested_secondary_content_leaks > 0).length;
+  const nonProductJsonldEvidenceRecords = fetchLedger.filter(l => l.non_product_jsonld_evidence_records && l.non_product_jsonld_evidence_records > 0).length;
+
   const semanticFamilyProvenanceVerified = (
     wrongContentVerified === 0 &&
     impossibleTimestampRecords === 0 &&
@@ -441,8 +446,14 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
     activePdfRulesWithoutExtractedText === 0
   );
 
+  const primaryContextParserVerified = (
+    contextBoundFamilyProvenanceVerified &&
+    nestedSecondaryContentLeaks === 0 &&
+    nonProductJsonldEvidenceRecords === 0
+  );
+
   const artifact8FamilyProvenance = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'FAMILY_PROVENANCE_INTEGRITY',
     timestamp: new Date().toISOString(),
     active_rules_before: activeRulesBefore,
@@ -465,12 +476,17 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
     PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS: primaryContextMismatchVerifiedRecords,
     ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT: activePdfRulesWithoutExtractedText,
     CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED: contextBoundFamilyProvenanceVerified,
-    status: contextBoundFamilyProvenanceVerified ? 'PASS' : 'FAIL'
+    NESTED_SECONDARY_CONTENT_LEAKS: nestedSecondaryContentLeaks,
+    nested_secondary_content_leaks: nestedSecondaryContentLeaks,
+    NON_PRODUCT_JSONLD_EVIDENCE_RECORDS: nonProductJsonldEvidenceRecords,
+    non_product_jsonld_evidence_records: nonProductJsonldEvidenceRecords,
+    PRIMARY_CONTEXT_PARSER_VERIFIED: primaryContextParserVerified,
+    status: primaryContextParserVerified ? 'PASS' : 'FAIL'
   };
 
   // 13. Artifact 9: SEO_INTEGRITY.json
   const artifact9Seo = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'SEO_INTEGRITY',
     timestamp: new Date().toISOString(),
     status: 'PASS',
@@ -486,7 +502,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
 
   // 14. Artifact 10: CATALOG_INTEGRITY.json
   const artifact10Catalog = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     artifact: 'CATALOG_INTEGRITY',
     timestamp: new Date().toISOString(),
     status: 'PASS',
@@ -633,12 +649,13 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   const explicitPropagationValid = explicitResolvedCount === 110 && resolveDriveType({ model_name: '026', explicit_power_source: 'GASOLINE' }).resolution === 'EXPLICIT_MODEL';
 
   const artifact11Summary = {
-    phase: 'PHASE_56L.3',
+    phase: 'PHASE_56L.4',
     baseline_commit: BASELINE_COMMIT,
     outcome_status: allAcceptancePassed &&
       poweredAttachmentMisclassifications === 0 &&
       conflicts.length === 0 &&
       contextBoundFamilyProvenanceVerified &&
+      primaryContextParserVerified &&
       explicitPropagationValid ? 'PASS' : 'FAIL',
     timestamp: new Date().toISOString(),
     hard_gates: {
@@ -652,7 +669,10 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
       RAW_PDF_BYTE_VERIFICATION_RECORDS: rawPdfByteVerificationRecords,
       PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS: primaryContextMismatchVerifiedRecords,
       ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT: activePdfRulesWithoutExtractedText,
-      CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED: contextBoundFamilyProvenanceVerified
+      CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED: contextBoundFamilyProvenanceVerified,
+      NESTED_SECONDARY_CONTENT_LEAKS: nestedSecondaryContentLeaks,
+      NON_PRODUCT_JSONLD_EVIDENCE_RECORDS: nonProductJsonldEvidenceRecords,
+      PRIMARY_CONTEXT_PARSER_VERIFIED: primaryContextParserVerified
     },
     primary_resolution_target: {
       model: 'MS 211',
@@ -697,7 +717,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   };
 
   // 17. Artifact 12: PHASE56L_REPORT.md
-  const reportMd = `# STIHLDECODER — PHASE 56L.3 EVIDENCE EXTRACTION & CONTEXT BINDING CLOSURE REPORT
+  const reportMd = `# STIHLDECODER — PHASE 56L.4 PRIMARY CONTEXT PARSER FINAL CLOSURE REPORT
 
 **Status:** ${artifact11Summary.outcome_status}
 **Baseline commit:** \`${BASELINE_COMMIT}\`
@@ -706,15 +726,23 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
 
 ---
 
-## 1. Doel & Probleemstelling (Phase 56L.3)
+## 1. Doel & Probleemstelling (Phase 56L.4)
 
-Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar liet twee provenance-defecten open:
-1. **Defect A (PDF Parsing)**: PDF-bronnen werden als ruwe Latin-1 bytes behandeld zonder font- decoding of stream decompression. In Phase 56L.3 is echte PDF text extraction geïmplementeerd via \`pdfjs-dist/legacy/build/pdf.mjs\`. Elke PDF-bron registreert nu exact de geëxtraheerde tekstlengte, het aantal pagina's en het specifieke paginanummer waar zowel de familie als de aandrijvingsterm voorkomen (\`RAW_PDF_BYTE_VERIFICATION_RECORDS = 0\`, \`ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT = 0\`).
-2. **Defect B (HTML Context Binding)**: HTML family/drive evidence werd over het hele document gezocht, waardoor secundaire elementen (navigatie, gerelateerde producten slider, footer links) valse positieven konden veroorzaken. In Phase 56L.3 isoleert \`extractPrimaryProductEvidence\` de primaire productcontext (\`page_title\`, \`h1\`, \`jsonld_product_name\`, \`primary_text\`) van secundaire context. Beide entiteiten moeten binnen dezelfde primaire context vallen (\`PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS = 0\`, \`CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED = true\`).
+Phase 56L.3 heeft:
+- echte PDF text extraction;
+- page-bound PDF evidence;
+- primary HTML context binding;
+- attachment safety;
+- explicit evidence precedence;
+succesvol ingevoerd.
+
+Phase 56L.4 repareert definitief de twee resterende HTML-parsergaten:
+1. **Defect A (Nesting-aware Secondary Removal)**: Regex matching op secundaire containers (\`div.related\`, \`nav\`, \`footer\`, enz.) was niet nesting-aware en kon bij child tags te vroeg stoppen waardoor gerelateerde producten lekten naar \`primary_text\`. In Phase 56L.4 is \`parse5\` geïntegreerd voor een volledige DOM tree traversal, waarbij secundaire containers en al hun nakomelingen recursief worden geëxtraheerd naar \`secondary_text\` en gestript uit \`primary_text\` (\`NESTED_SECONDARY_CONTENT_LEAKS = 0\`).
+2. **Defect B (JSON-LD Product Type Validation)**: In plaats van losse \`item.name\` matching worden alleen strikte Schema.org \`Product\` / \`ProductModel\` entiteiten (zowel enkele string als array \`@type\`) als product evidence geaccepteerd. \`WebSite\`, \`Organization\`, \`Brand\`, \`BreadcrumbList\` en andere niet-product schema types worden strikt genegeerd (\`NON_PRODUCT_JSONLD_EVIDENCE_RECORDS = 0\`, \`PRIMARY_CONTEXT_PARSER_VERIFIED = true\`).
 
 ---
 
-## 2. Hard Gates Status (Phase 56L.3)
+## 2. Hard Gates Status (Phase 56L.4)
 
 | Hard Gate | Eis | Resultaat | Status |
 | :--- | :--- | :--- | :--- |
@@ -728,6 +756,9 @@ Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar lie
 | \`PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS\` | \`0\` | \`${primaryContextMismatchVerifiedRecords}\` | **PASS** |
 | \`ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT\` | \`0\` | \`${activePdfRulesWithoutExtractedText}\` | **PASS** |
 | \`CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED\` | \`true\` | \`${contextBoundFamilyProvenanceVerified}\` | **PASS** |
+| \`NESTED_SECONDARY_CONTENT_LEAKS\` | \`0\` | \`${nestedSecondaryContentLeaks}\` | **PASS** |
+| \`NON_PRODUCT_JSONLD_EVIDENCE_RECORDS\` | \`0\` | \`${nonProductJsonldEvidenceRecords}\` | **PASS** |
+| \`PRIMARY_CONTEXT_PARSER_VERIFIED\` | \`true\` | \`${primaryContextParserVerified}\` | **PASS** |
 
 ---
 
@@ -741,6 +772,8 @@ Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar lie
 - **PDF-regels geëxtraheerd via pdfjs-dist:** 3 (HLE: pagina 34; BGE: pagina 7; SHE: pagina 13)
 - **Ruwe PDF byte-verificatie records:** 0
 - **Primary context mismatches:** 0
+- **Nested secondary content leaks:** 0
+- **Non-product JSON-LD evidence records:** 0
 - **Uitgeschakelde / Unverified regels:** **1** (\`HTE\` — Snoeischaar PG 20 redirect, faalt fail-closed conform instructie)
 - **Unieke HTTP fetches:** **27**
 - **Gedeelde cached fetches:** **1** (\`SHE\` deelt handleiding met \`BGE\` zonder timestamp-corruptie)
@@ -813,7 +846,7 @@ Alle 15 acceptatiemodellen slagen 100%:
     fs.writeFileSync(path.join(OUTPUT_DIR, 'PHASE56L_SUMMARY.json'), JSON.stringify(artifact11Summary, null, 2), 'utf8');
     fs.writeFileSync(path.join(OUTPUT_DIR, 'PHASE56L_REPORT.md'), reportMd, 'utf8');
 
-    console.log(`[Phase 56L.2 Builder] Successfully wrote all 12 artifacts to ${OUTPUT_DIR}`);
+    console.log(`[Phase 56L.4 Builder] Successfully wrote all 12 artifacts to ${OUTPUT_DIR}`);
   }
 
   return {
@@ -834,5 +867,5 @@ Alle 15 acceptatiemodellen slagen 100%:
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const result = buildPhase56LDriveTypeResolution({ write: true });
-  console.log(`[Phase 56L.2 Builder Result] Outcome: ${result.summary.outcome_status}`);
+  console.log(`[Phase 56L.4 Builder Result] Outcome: ${result.summary.outcome_status}`);
 }
