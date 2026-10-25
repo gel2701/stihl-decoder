@@ -83,7 +83,8 @@ export const currentProductionSuites = [
   'tests/phase56h_section_resolution.test.js',
   'tests/phase56i_wave4_activation.test.js',
   'tests/phase56j_high_value_section_recovery.test.js',
-  'tests/phase56k_external_evidence_pilot.test.js'
+  'tests/phase56k_external_evidence_pilot.test.js',
+  'tests/phase56l_drive_type_family_resolution.test.js'
 ];
 
 console.log('===============================================================');

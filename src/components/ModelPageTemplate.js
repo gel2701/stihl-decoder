@@ -8,6 +8,7 @@ import { renderSeoMeta } from './SeoMeta.js';
 import { renderBreadcrumbsHtml } from './Breadcrumbs.js';
 import { getRelatedModels, renderRelatedModelsHtml } from './RelatedModels.js';
 import { getModelVerificationSummary } from '../canonicalData.js';
+import { ModelFamilyDriveRegistry } from '../ModelFamilyDriveRegistry.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import {
@@ -339,7 +340,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
         </div>
         <div class="space-y-0.5">
           <span class="text-gray-400 block">Aandrijving</span>
-          <span class="text-white font-bold">${{GASOLINE:'Benzine',ELECTRIC:'Elektrisch',BATTERY:'Accu',MANUAL:'Handkracht'}[model.basic_classification.power_source] || model.basic_classification.power_source}</span>
+          <span class="text-white font-bold">${{GASOLINE:'Benzine',ELECTRIC:'Elektrisch',BATTERY:'Accu',MANUAL:'Handkracht'}[model.basic_classification.power_source] || (ModelFamilyDriveRegistry.resolveDriveType(model).drive_type !== 'UNKNOWN' ? ModelFamilyDriveRegistry.resolveDriveType(model).display : (model.basic_classification.power_source || 'Niet vastgesteld'))}</span>
         </div>
         <div class="space-y-0.5">
           <span class="text-gray-400 block">Hoofdfunctie</span>

@@ -1,4 +1,5 @@
 import { getModelVerificationSummary } from './canonicalData.js';
+import { ModelFamilyDriveRegistry } from './ModelFamilyDriveRegistry.js';
 
 export const CATEGORY_REGISTRY = {
   'kettingzagen': { label: 'STIHL Kettingzagen', status: 'PUBLISHED' },
@@ -124,6 +125,19 @@ export function getFuelTypeCode(model) {
   if (rawFuelType === 'PETROL_4MIX') {
     return 'PETROL_4MIX';
   }
+
+  // Phase 56L: Fallback to verified STIHL model-family drive resolution
+  const familyResolution = ModelFamilyDriveRegistry.resolveDriveType(model);
+  if (familyResolution.drive_type === 'BATTERY') {
+    return 'BATTERY';
+  }
+  if (familyResolution.drive_type === 'MAINS_ELECTRIC') {
+    return 'ELECTRIC';
+  }
+  if (familyResolution.drive_type === 'PETROL') {
+    return 'PETROL';
+  }
+
   return 'UNKNOWN';
 }
 
@@ -131,13 +145,13 @@ export function getFuelDriveLabel(model) {
   const fuelTypeCode = getFuelTypeCode(model);
 
   if (fuelTypeCode === 'BATTERY') {
-    if (model.battery_system && model.voltage_v) {
+    if (model?.battery_system && model?.voltage_v) {
       return `${model.battery_system} ${model.voltage_v}V`;
     }
-    if (model.battery_system) {
+    if (model?.battery_system) {
       return model.battery_system;
     }
-    if (model.voltage_v) {
+    if (model?.voltage_v) {
       return `${model.voltage_v}V`;
     }
     return 'Accu-aandrijving';
@@ -155,6 +169,10 @@ export function getFuelDriveLabel(model) {
     return model?.fuel_type_label || 'Benzine-aandrijving (4-MIX)';
   }
 
+  if (fuelTypeCode === 'PETROL') {
+    return model?.fuel_type_label || 'Benzine-aandrijving';
+  }
+
   return 'Niet vastgesteld';
 }
 
@@ -164,7 +182,7 @@ export function isBatteryModel(model) {
 
 export function isPetrolModel(model) {
   const fuelTypeCode = getFuelTypeCode(model);
-  return fuelTypeCode === 'PETROL_2STROKE' || fuelTypeCode === 'PETROL_4MIX';
+  return fuelTypeCode === 'PETROL' || fuelTypeCode === 'PETROL_2STROKE' || fuelTypeCode === 'PETROL_4MIX';
 }
 
 export function getRegisteredComparisons(categorySlug = null) {

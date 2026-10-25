@@ -1,0 +1,37 @@
+{
+  "phase": "PHASE_56L",
+  "artifact": "MODEL_COVERAGE_BEFORE_AFTER",
+  "timestamp": "2026-10-25T00:17:19.698Z",
+  "metrics": {
+    "total_unique_models": 956,
+    "before": {
+      "resolved_count": 110,
+      "resolved_percentage": 11.51,
+      "unknown_count": 846,
+      "unknown_percentage": 88.49
+    },
+    "after": {
+      "resolved_count": 400,
+      "resolved_percentage": 41.84,
+      "unknown_count": 556,
+      "unknown_percentage": 58.16
+    },
+    "delta": {
+      "newly_resolved_count": 298,
+      "coverage_gain_percentage": 30.33
+    },
+    "breakdown_by_drive_type_after": {
+      "PETROL": 276,
+      "BATTERY": 100,
+      "MAINS_ELECTRIC": 24,
+      "UNKNOWN": 556
+    },
+    "breakdown_by_resolution_method": {
+      "EXPLICIT_MODEL": 0,
+      "FAMILY_RULE": 400,
+      "UNVERIFIED_FAMILY": 409,
+      "UNKNOWN": 147,
+      "CONFLICT_QUARANTINED": 0
+    }
+  }
+}

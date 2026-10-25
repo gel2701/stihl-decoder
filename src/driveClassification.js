@@ -2,6 +2,8 @@
  * Safe categorical classification only. This module never returns technical specifications.
  */
 
+import { ModelFamilyDriveRegistry } from './ModelFamilyDriveRegistry.js';
+
 const PREFIX_CLASSIFICATIONS = {
   MSA: { machine_type: 'CHAINSAW', power_source: 'BATTERY', drive_type: 'BATTERY_ELECTRIC' },
   MSE: { machine_type: 'CHAINSAW', power_source: 'ELECTRIC_CORDED', drive_type: 'CORDED_ELECTRIC' },
@@ -126,11 +128,32 @@ export function resolveMachineClassification({
     return buildClassification(prefixBase, identityStatus === 'USER_CONFIRMED_MODEL' ? 'USER_CONFIRMED_PROPERTY' : 'PREFIX_DERIVED', 'SUPPORTED', seriesPrefix);
   }
 
+  // Phase 56L: Fallback to verified model-family drive resolution
+  const candidateModel = modelObj || resolvedModel || modelKey || probableModelSeries;
+  if (candidateModel && (identityStatus !== 'MODEL_NOT_IDENTIFIED' || modelObj)) {
+    const familyRes = ModelFamilyDriveRegistry.resolveDriveType(candidateModel);
+    if (familyRes.resolution === 'FAMILY_RULE') {
+      const driveTypeMapped = familyRes.drive_type === 'PETROL' ? 'PETROL_OTHER' :
+        (familyRes.drive_type === 'BATTERY' ? 'BATTERY_ELECTRIC' :
+        (familyRes.drive_type === 'MAINS_ELECTRIC' ? 'CORDED_ELECTRIC' : 'UNKNOWN'));
+      const powerSourceMapped = familyRes.drive_type === 'PETROL' ? 'PETROL' :
+        (familyRes.drive_type === 'BATTERY' ? 'BATTERY' :
+        (familyRes.drive_type === 'MAINS_ELECTRIC' ? 'ELECTRIC_CORDED' : 'UNKNOWN'));
+
+      return buildClassification({
+        machine_type: familyRes.machine_type || prefixBase?.machine_type || 'UNKNOWN',
+        power_source: powerSourceMapped,
+        drive_type: driveTypeMapped
+      }, 'FAMILY_RULE_DERIVED', 'SUPPORTED', typeof candidateModel === 'string' ? candidateModel : candidateModel.model_name || modelKey);
+    }
+  }
+
   return unknownClassification();
 }
 
 export function getClassificationContextLabel(classification = {}) {
   if (classification?.evidence === 'SERIES_DERIVED') return '≈ Afgeleid van waarschijnlijke modelreeks';
   if (classification?.evidence === 'PREFIX_DERIVED') return '≈ Afgeleid van modelaanduiding';
+  if (classification?.evidence === 'FAMILY_RULE_DERIVED') return '≈ Afgeleid van geverifieerde modelfamilie';
   return null;
 }
