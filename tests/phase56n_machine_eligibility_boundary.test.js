@@ -29,6 +29,18 @@ import {
 } from '../src/ModelMachineEligibilityRegistry.js';
 
 import { buildPhase56nPoweredMachineBoundary } from '../scripts/build_phase56n_powered_machine_boundary.mjs';
+import {
+  verifyEvidenceExcerpt,
+  verifySharpenerProvenance,
+  verifySemanticPurityOfReconstruction,
+  verifyEvidenceTraceability,
+  HOS_ARCHIVED_BODY_SHA256,
+  HOS_DERIVED_PDF_SHA256,
+  HOS_WARC_RECORD_SHA256,
+  HOS_OFFICIAL_URL,
+  USG_OFFICIAL_URL
+} from '../scripts/fetch_official_sharpener_evidence.mjs';
+import { extractPdfDocumentText } from '../scripts/fetch_official_family_evidence.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -248,9 +260,15 @@ test('Phase 56N.2: All 14 required artifacts exist and validate cleanly', () => 
   assert.strictEqual(summary.hard_gates.ATTACHMENT_REGRESSIONS, 0);
   assert.strictEqual(summary.hard_gates.POWERED_MACHINE_FALSE_EXCLUSIONS, 0);
   assert.strictEqual(summary.hard_gates.NON_MACHINE_STILL_COUNTED_AS_POWERED, 0);
-  assert.strictEqual(summary.hard_gates.SYNTHETIC_HOS_PDF_RECORDS, 0);
   assert.strictEqual(summary.hard_gates.FABRICATED_SHARPENER_PROVENANCE, 0);
-  assert.strictEqual(summary.hard_gates.HOS_AUTHENTIC_OFFICIAL_SOURCE_VERIFIED, true);
+  assert.strictEqual(summary.hard_gates.MISLABELED_ARCHIVE_AS_LIVE_HTTP, 0);
+  assert.strictEqual(summary.hard_gates.LOCAL_RECONSTRUCTION_ADDED_SEMANTIC_CONTENT, 0);
+  assert.strictEqual(summary.hard_gates.HOS_SOURCE_ORIGIN_TRUTHFUL, true);
+  assert.strictEqual(summary.hard_gates.HOS_EVIDENCE_TRACEABLE_TO_SOURCE_BYTES, true);
+  assert.strictEqual(summary.hard_gates.HOS_PDF_REEXTRACTION_SUCCESS, true);
+  assert.strictEqual(summary.hard_gates.HOS_EXCERPT_REVALIDATED, true);
+  assert.strictEqual(summary.hard_gates.USG_PDF_REEXTRACTION_SUCCESS, true);
+  assert.strictEqual(summary.hard_gates.USG_EXCERPT_REVALIDATED, true);
   assert.strictEqual(summary.hard_gates.SHARPENER_PROVENANCE_INTEGRITY, true);
   assert.strictEqual(summary.hard_gates.CATALOG_FREEZE_INTACT, true);
 
@@ -275,84 +293,262 @@ test('Phase 56N.2: All 14 required artifacts exist and validate cleanly', () => 
   assert.strictEqual(sharpenerCorr.records_restored_to_powered, 2);
 });
 
-test('Phase 56N.2: SHARPENER_PROVENANCE_INTEGRITY passes all provenance gates', () => {
+test('Phase 56N.3: SHARPENER_PROVENANCE_INTEGRITY passes all truthful provenance gates', () => {
   const p = path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json');
   assert.ok(fs.existsSync(p), 'SHARPENER_PROVENANCE_INTEGRITY.json must exist');
 
   const prov = JSON.parse(fs.readFileSync(p, 'utf8'));
   assert.strictEqual(prov.status, 'PASS');
   assert.strictEqual(prov.models_checked, 2);
-  assert.strictEqual(prov.authentic_http_fetches, 2);
-  assert.strictEqual(prov.synthetic_pdf_records, 0);
-  assert.strictEqual(prov.fabricated_provenance_records, 0);
-  assert.strictEqual(prov.document_hash_response_matches, 2);
-  assert.strictEqual(prov.pdf_extraction_successes, 2);
-  assert.strictEqual(prov.excerpt_source_matches, 2);
-  assert.strictEqual(prov.HOS_verified, true);
-  assert.strictEqual(prov.USG_verified, true);
-  assert.strictEqual(prov.FABRICATED_SHARPENER_PROVENANCE, 0);
-  assert.strictEqual(prov.SYNTHETIC_HOS_PDF_RECORDS, 0);
-  assert.strictEqual(prov.HOS_AUTHENTIC_OFFICIAL_SOURCE_VERIFIED, true);
+  assert.strictEqual(prov.live_official_fetches, 1);
+  assert.strictEqual(prov.archived_official_captures, 1);
+  assert.strictEqual(prov.derived_parser_artifacts, 1);
+  assert.strictEqual(prov.synthetic_semantic_content_records, 0);
+  assert.strictEqual(prov.mislabelled_origin_records, 0);
+  assert.strictEqual(prov.document_hash_matches, 2);
+  assert.strictEqual(prov.fresh_pdf_extraction_successes, 2);
+  assert.strictEqual(prov.fresh_excerpt_source_matches, 2);
+  assert.strictEqual(prov.HOS_source_mode, 'ARCHIVED_OFFICIAL_CAPTURE');
+  assert.strictEqual(prov.HOS_source_origin_truthful, true);
+  assert.strictEqual(prov.HOS_evidence_traceable, true);
+  assert.strictEqual(prov.USG_source_mode, 'LIVE_OFFICIAL_HTTP');
+
+  assert.strictEqual(prov.gates.FABRICATED_SHARPENER_PROVENANCE, 0);
+  assert.strictEqual(prov.gates.MISLABELED_ARCHIVE_AS_LIVE_HTTP, 0);
+  assert.strictEqual(prov.gates.LOCAL_RECONSTRUCTION_ADDED_SEMANTIC_CONTENT, 0);
+  assert.strictEqual(prov.gates.HOS_SOURCE_ORIGIN_TRUTHFUL, true);
+  assert.strictEqual(prov.gates.HOS_EVIDENCE_TRACEABLE_TO_SOURCE_BYTES, true);
+  assert.strictEqual(prov.gates.HOS_PDF_REEXTRACTION_SUCCESS, true);
+  assert.strictEqual(prov.gates.HOS_EXCERPT_REVALIDATED, true);
+  assert.strictEqual(prov.gates.USG_PDF_REEXTRACTION_SUCCESS, true);
+  assert.strictEqual(prov.gates.USG_EXCERPT_REVALIDATED, true);
+  assert.strictEqual(prov.gates.SHARPENER_PROVENANCE_INTEGRITY, true);
 
   // Verify HOS record specifics
   const hos = prov.records.find(r => r.model === 'HOS Sharpeners');
   assert.ok(hos, 'HOS record must be in provenance integrity');
-  assert.strictEqual(hos.requested_url, 'https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf');
-  assert.strictEqual(hos.http_status, 200);
-  assert.strictEqual(hos.content_origin, 'HTTP_FETCH');
-  assert.strictEqual(hos.document_sha256, 'e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83');
-  assert.strictEqual(hos.document_bytes, 1057881);
+  assert.strictEqual(hos.source_mode, 'ARCHIVED_OFFICIAL_CAPTURE');
+  assert.strictEqual(hos.content_origin, 'ARCHIVED_OFFICIAL_HTTP_CAPTURE');
+  assert.strictEqual(hos.archive_provider, 'COMMON_CRAWL');
+  assert.strictEqual(hos.source_type, 'OFFICIAL_STIHL_ARCHIVED_DOCUMENT');
+  assert.strictEqual(hos.original_source_url, HOS_OFFICIAL_URL);
+  assert.strictEqual(hos.requested_url, HOS_OFFICIAL_URL);
+  assert.ok(hos.evidence_retrieval_url.includes('commoncrawl.org'));
+  assert.strictEqual(hos.source_artifact, 'hosmanual_source_body.bin');
+  assert.strictEqual(hos.source_body_sha256, HOS_ARCHIVED_BODY_SHA256);
+  assert.strictEqual(hos.source_body_bytes, 1048576);
+  assert.strictEqual(hos.derived_parser_artifact, 'hosmanual.pdf');
+  assert.strictEqual(hos.derived_pdf_sha256, HOS_DERIVED_PDF_SHA256);
+  assert.strictEqual(hos.derived_pdf_bytes, 1057881);
+  assert.strictEqual(hos.derived_structure_added, true);
+  assert.strictEqual(hos.local_reconstruction_added_semantic_content, 0);
   assert.strictEqual(hos.page_number, 20);
   assert.strictEqual(hos.pdf_page_count, 26);
+  assert.strictEqual(hos.source_objects_present_in_archived_body, true);
+  assert.deepStrictEqual(hos.evidence_object_ids, [179, 180, 181]);
   assert.strictEqual(hos.verification_status, 'VERIFIED');
 
   // Verify USG record specifics
   const usg = prov.records.find(r => r.model === 'USG Sharpeners');
   assert.ok(usg, 'USG record must be in provenance integrity');
+  assert.strictEqual(usg.source_mode, 'LIVE_OFFICIAL_HTTP');
   assert.strictEqual(usg.http_status, 200);
-  assert.strictEqual(usg.content_origin, 'HTTP_FETCH');
+  assert.strictEqual(usg.content_origin, 'OFFICIAL_HTTP_FETCH');
+  assert.strictEqual(usg.source_type, 'OFFICIAL_STIHL_MODEL_DOCUMENT');
+  assert.strictEqual(usg.requested_url, USG_OFFICIAL_URL);
+  assert.strictEqual(usg.source_url, USG_OFFICIAL_URL);
+  assert.strictEqual(usg.final_url, USG_OFFICIAL_URL);
+  assert.strictEqual(usg.document_filename, 'USG_Manual.pdf');
+  assert.strictEqual(usg.document_sha256, 'd782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf');
+  assert.strictEqual(usg.document_bytes, 1060207);
+  assert.strictEqual(usg.derived_document, false);
+  assert.strictEqual(usg.derived_structure_added, false);
+  assert.strictEqual(usg.page_number, 28);
+  assert.strictEqual(usg.pdf_page_count, 32);
   assert.strictEqual(usg.verification_status, 'VERIFIED');
 });
 
-test('Phase 56N.2 Negative Test: Record with content_origin != HTTP_FETCH fails verification', () => {
-  const fakeRecord = {
-    model: 'HOS Sharpeners',
-    content_origin: 'SYNTHETIC_LOCAL_BUILD',
-    http_status: 200,
-    verification_status: 'VERIFIED'
-  };
-
-  const isVerified = fakeRecord.content_origin === 'HTTP_FETCH' && fakeRecord.http_status === 200;
-  assert.strictEqual(isVerified, false, 'Non-HTTP_FETCH origin must fail verification');
+test('Phase 56N.3 Contract: Direct official HTTP provenance for USG', () => {
+  const p = path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json');
+  const prov = JSON.parse(fs.readFileSync(p, 'utf8'));
+  const usg = prov.records.find(r => r.model === 'USG Sharpeners');
+  assert.strictEqual(usg.content_origin, 'OFFICIAL_HTTP_FETCH');
+  assert.strictEqual(usg.http_status, 200);
+  assert.strictEqual(usg.final_url, USG_OFFICIAL_URL);
+  assert.strictEqual(usg.derived_document, false);
 });
 
-test('Phase 56N.2 Negative Test: Fake HTTP 200 status without matching hash fails verification', () => {
-  const fakeRecord = {
-    model: 'HOS Sharpeners',
-    content_origin: 'HTTP_FETCH',
-    http_status: 200,
-    document_sha256: '0000000000000000000000000000000000000000000000000000000000000000'
-  };
-  const actualSha256 = 'e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83';
-
-  const hashMatches = fakeRecord.document_sha256 === actualSha256;
-  assert.strictEqual(hashMatches, false, 'Mismatched hash with fake 200 must fail verification');
+test('Phase 56N.3 Contract: Archive provenance is NOT labeled as live HTTP fetch', () => {
+  const p = path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json');
+  const prov = JSON.parse(fs.readFileSync(p, 'utf8'));
+  const hos = prov.records.find(r => r.model === 'HOS Sharpeners');
+  assert.notStrictEqual(hos.content_origin, 'OFFICIAL_HTTP_FETCH');
+  assert.notStrictEqual(hos.content_origin, 'HTTP_FETCH');
+  assert.strictEqual(hos.content_origin, 'ARCHIVED_OFFICIAL_HTTP_CAPTURE');
+  assert.strictEqual(hos.archive_provider, 'COMMON_CRAWL');
+  assert.ok(hos.evidence_retrieval_url.includes('commoncrawl.org'));
 });
 
-test('Phase 56N.2 Negative Test: Excerpt mismatch against extracted source text fails (EVIDENCE_EXCERPT_SOURCE_MISMATCHES = 0)', () => {
-  const extractedText = 'Type: Single-phase AC, squirrel-cage motor Operating voltage: 230 V Frequency: 50 Hz';
-  const bogusExcerpt = 'Type: Three-phase 400V diesel motor';
+test('Phase 56N.3 Contract: Derived reconstruction has separate hash from source body', () => {
+  const p = path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json');
+  const prov = JSON.parse(fs.readFileSync(p, 'utf8'));
+  const hos = prov.records.find(r => r.model === 'HOS Sharpeners');
+  assert.notStrictEqual(hos.derived_pdf_sha256, hos.source_body_sha256);
+  assert.strictEqual(hos.source_body_sha256, HOS_ARCHIVED_BODY_SHA256);
+  assert.strictEqual(hos.derived_pdf_sha256, HOS_DERIVED_PDF_SHA256);
+  assert.strictEqual(hos.source_body_bytes, 1048576);
+  assert.strictEqual(hos.derived_pdf_bytes, 1057881);
+});
 
-  const excerptExists = extractedText.includes(bogusExcerpt);
-  assert.strictEqual(excerptExists, false, 'Fabricated excerpt not in extracted text must fail');
+test('Phase 56N.3 Contract: Semantic content cannot originate from reconstruction', () => {
+  // Negative injection: test that semantic terms in reconstruction are caught and rejected
+  const maliciousReconstruction = '\n374 0 obj\n<</Type /Pages /Kids [] /Count 1>>\nendobj\n% Injected: HOS 230 V 0.18 kW motor speed 2,800 RPM\n';
+  const violations = verifySemanticPurityOfReconstruction(maliciousReconstruction, '', '');
+  assert.ok(violations > 0, 'Injected semantic terms must be detected as violations');
 
-  // Verify that real HOS and USG excerpts DO exist in their respective texts
-  const prov = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json'), 'utf8'));
-  let mismatches = 0;
-  for (const rec of prov.records) {
-    if (!rec.evidence_excerpt || rec.verification_status !== 'VERIFIED') {
-      mismatches++;
-    }
-  }
-  assert.strictEqual(mismatches, 0, 'EVIDENCE_EXCERPT_SOURCE_MISMATCHES must be exactly 0');
+  // Clean reconstruction has exactly 0 violations
+  const cleanObjs = '\n374 0 obj\n<</Type /Pages /Kids [375 0 R] /Count 1>>\nendobj\n';
+  const cleanXref = 'xref\n0 375\n0000000000 65535 f \n';
+  const cleanTrailer = 'trailer\n<</Size 375/Root 387 0 R>>\nstartxref\n100\n%%EOF\n';
+  assert.strictEqual(verifySemanticPurityOfReconstruction(cleanObjs, cleanXref, cleanTrailer), 0);
+});
+
+test('Phase 56N.3 Contract: Fresh PDF re-extraction succeeds dynamically on disk artifacts', async () => {
+  const usgBuf = fs.readFileSync(path.join(DATA_DIR, 'harvest', 'phase56n', 'USG_Manual.pdf'));
+  const hosBuf = fs.readFileSync(path.join(DATA_DIR, 'harvest', 'phase56n', 'hosmanual.pdf'));
+
+  const usgExt = await extractPdfDocumentText(usgBuf);
+  assert.strictEqual(usgExt.success, true);
+  assert.strictEqual(usgExt.page_count, 32);
+
+  const hosExt = await extractPdfDocumentText(hosBuf);
+  assert.strictEqual(hosExt.success, true);
+  assert.strictEqual(hosExt.page_count, 26);
+});
+
+test('Phase 56N.3 Contract: Real excerpt match against freshly extracted pages', async () => {
+  const p = path.join(OUTPUT_DIR, 'SHARPENER_PROVENANCE_INTEGRITY.json');
+  const prov = JSON.parse(fs.readFileSync(p, 'utf8'));
+
+  const hos = prov.records.find(r => r.model === 'HOS Sharpeners');
+  const usg = prov.records.find(r => r.model === 'USG Sharpeners');
+
+  const hosBuf = fs.readFileSync(path.join(DATA_DIR, 'harvest', 'phase56n', 'hosmanual.pdf'));
+  const hosExt = await extractPdfDocumentText(hosBuf);
+  assert.strictEqual(verifyEvidenceExcerpt(hos, hosExt.pages), true, 'HOS excerpt must match extracted page text');
+
+  const usgBuf = fs.readFileSync(path.join(DATA_DIR, 'harvest', 'phase56n', 'USG_Manual.pdf'));
+  const usgExt = await extractPdfDocumentText(usgBuf);
+  assert.strictEqual(verifyEvidenceExcerpt(usg, usgExt.pages), true, 'USG excerpt must match extracted page text');
+});
+
+test('Phase 56N.3 Negative Test: Fake excerpt rejection ("FABRICATED TEXT")', () => {
+  const fakeHos = {
+    page_number: 20,
+    evidence_excerpt: 'FABRICATED TEXT: 400 V diesel hydraulic motor'
+  };
+  const mockPages = [
+    { page_number: 20, text: 'Type: Single-phase AC, squirrel-cage motor Operating voltage: 230 V' }
+  ];
+
+  const matched = verifyEvidenceExcerpt(fakeHos, mockPages);
+  assert.strictEqual(matched, false, 'Fabricated excerpt must be rejected by verifyEvidenceExcerpt');
+});
+
+test('Phase 56N.3 Negative Test: Fake stored VERIFIED rejection when excerpt mismatches', async () => {
+  const badEvidence = {
+    records: [
+      {
+        model: 'USG Sharpeners',
+        document_filename: 'USG_Manual.pdf',
+        document_sha256: 'd782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf',
+        http_status: 200,
+        content_origin: 'OFFICIAL_HTTP_FETCH',
+        page_number: 28,
+        evidence_excerpt: '21   Specifications',
+        evidence_excerpt_sha256: 'd57386fe9f253ebd1b675a0e30b9b7d53db8ac63c3e436b71400000000000000', // bad hash
+        verification_status: 'VERIFIED'
+      },
+      {
+        model: 'HOS Sharpeners',
+        source_artifact: 'hosmanual_source_body.bin',
+        derived_parser_artifact: 'hosmanual.pdf',
+        source_body_sha256: HOS_ARCHIVED_BODY_SHA256,
+        derived_pdf_sha256: HOS_DERIVED_PDF_SHA256,
+        content_origin: 'ARCHIVED_OFFICIAL_HTTP_CAPTURE',
+        archive_provider: 'COMMON_CRAWL',
+        source_type: 'OFFICIAL_STIHL_ARCHIVED_DOCUMENT',
+        original_source_url: HOS_OFFICIAL_URL,
+        derived_structure_added: true,
+        local_reconstruction_added_semantic_content: 0,
+        source_objects_present_in_archived_body: true,
+        page_number: 20,
+        evidence_excerpt: 'FABRICATED EXCERPT NOT IN MANUAL',
+        verification_status: 'VERIFIED' // falsely claimed
+      }
+    ]
+  };
+
+  const audit = await verifySharpenerProvenance({ sharpenerEvidence: badEvidence, harvestDir: path.join(DATA_DIR, 'harvest', 'phase56n') });
+  assert.strictEqual(audit.status, 'FAIL', 'Falsely claimed VERIFIED status with mismatching excerpt must fail');
+  assert.strictEqual(audit.gates.SHARPENER_PROVENANCE_INTEGRITY, false);
+  assert.strictEqual(audit.gates.HOS_EXCERPT_REVALIDATED, false);
+});
+
+test('Phase 56N.3 Negative Test: Failed extraction rejection', async () => {
+  // A record claiming pdf_text_extraction = true and verification_status = VERIFIED,
+  // pointing to an invalid/corrupted PDF file must fail verification
+  const badPdfEvidence = {
+    records: [
+      {
+        model: 'USG Sharpeners',
+        document_filename: 'USG_Manual.pdf',
+        document_sha256: 'd782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf',
+        http_status: 200,
+        content_origin: 'OFFICIAL_HTTP_FETCH',
+        page_number: 28,
+        evidence_excerpt: '21   Specifications',
+        verification_status: 'VERIFIED'
+      },
+      {
+        model: 'HOS Sharpeners',
+        source_artifact: 'hosmanual_source_body.bin',
+        derived_parser_artifact: 'corrupted_file.pdf', // non-existent / broken
+        source_body_sha256: HOS_ARCHIVED_BODY_SHA256,
+        derived_pdf_sha256: '1111111111111111111111111111111111111111111111111111111111111111',
+        content_origin: 'ARCHIVED_OFFICIAL_HTTP_CAPTURE',
+        archive_provider: 'COMMON_CRAWL',
+        source_type: 'OFFICIAL_STIHL_ARCHIVED_DOCUMENT',
+        original_source_url: HOS_OFFICIAL_URL,
+        derived_structure_added: true,
+        local_reconstruction_added_semantic_content: 0,
+        source_objects_present_in_archived_body: true,
+        pdf_text_extraction: true, // stored claim
+        verification_status: 'VERIFIED' // stored claim
+      }
+    ]
+  };
+
+  const audit = await verifySharpenerProvenance({ sharpenerEvidence: badPdfEvidence, harvestDir: path.join(DATA_DIR, 'harvest', 'phase56n') });
+  assert.strictEqual(audit.status, 'FAIL', 'Record pointing to missing/failed parser artifact must FAIL');
+  assert.strictEqual(audit.gates.HOS_PDF_REEXTRACTION_SUCCESS, false);
+  assert.strictEqual(audit.gates.SHARPENER_PROVENANCE_INTEGRITY, false);
+});
+
+test('Phase 56N.3 Regression: HOS Sharpeners is POWERED_MACHINE with MAINS_ELECTRIC / EXPLICIT_MODEL', () => {
+  const res = resolveMachineEligibility('HOS Sharpeners');
+  assert.strictEqual(res.eligibility, MACHINE_ELIGIBILITY.POWERED_MACHINE);
+  const drive = resolveDriveType('HOS Sharpeners');
+  assert.strictEqual(drive.drive_type, DRIVE_TYPES.MAINS_ELECTRIC);
+  assert.strictEqual(drive.resolution, 'EXPLICIT_MODEL');
+  assert.strictEqual(drive.source_type, 'OFFICIAL_STIHL_ARCHIVED_DOCUMENT');
+});
+
+test('Phase 56N.3 Regression: USG Sharpeners is POWERED_MACHINE with MAINS_ELECTRIC / EXPLICIT_MODEL', () => {
+  const res = resolveMachineEligibility('USG Sharpeners');
+  assert.strictEqual(res.eligibility, MACHINE_ELIGIBILITY.POWERED_MACHINE);
+  const drive = resolveDriveType('USG Sharpeners');
+  assert.strictEqual(drive.drive_type, DRIVE_TYPES.MAINS_ELECTRIC);
+  assert.strictEqual(drive.resolution, 'EXPLICIT_MODEL');
+  assert.strictEqual(drive.source_type, 'OFFICIAL_STIHL_MODEL_DOCUMENT');
 });

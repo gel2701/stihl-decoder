@@ -1,18 +1,25 @@
-# STIHLDECODER — PHASE 56N.2 AUTHENTIC HOS PROVENANCE CLOSURE REPORT
+# STIHLDECODER — PHASE 56N.3 ARCHIVED HOS PROVENANCE TRUTHFULNESS CLOSURE REPORT
 
 **Status:** PASS
-**Baseline commit:** `78b99125fda27b9214d9c87124fc85511f5a2aed`
-**Datum:** 2026-10-25T20:54:47.944Z
+**Baseline commit:** `ed05fbe15063965b7151c520246f42bba5eec88f`
+**Datum:** 2026-10-25T23:05:14.228Z
 **Repository:** `gel2701/stihl-decoder`
 
 ---
 
 ## 1. Doel & Opdrachtstelling
 
-Phase 56N.2 realiseert de definitieve **Authentic HOS Provenance Closure**.
-In Phase 56N.1 werd inhoudelijk correct vastgesteld dat HOS Sharpeners een aangedreven slijpmachine is, maar werd lokaal een synthetische PDF opgebouwd.
-Phase 56N.2 heeft deze synthetische PDF volledig geëlimineerd en vervangen door een echte officiële STIHL-fetch van het officiële handboek (`hosmanual.pdf` / `0458-522-0121`).
-Beide slijpmachines (USG en HOS) beschikken nu over volledige HTTP-fetch response metadata, cryptografische hash-verificatie en dynamische tekstextractie via `pdfjs-dist`.
+Phase 56N.3 voltooit de definitieve **Archived HOS Provenance Truthfulness Closure**.
+In Phase 56N.2 werd een Common Crawl WARC capture van het HOS-handboek gebruikt, maar werd het resultaat van de lokale PDF-structuurreconstructie ten onrechte aangeduid als een rechtstreekse HTTP-fetch en als officiële documenthash.
+Phase 56N.3 maakt de provenance 100% waarheidsgetrouw:
+1. De Common Crawl capture wordt eerlijk geregistreerd als `ARCHIVED_OFFICIAL_HTTP_CAPTURE` (`archive_provider = COMMON_CRAWL`).
+2. De originele STIHL CDN URL en de daadwerkelijke WARC-retrieval URL worden expliciet onderscheiden.
+3. De originele 1.048.576 bytes uit de HTTP-body worden als afzonderlijk brondocument bewaard en gehasht (`10f84eb019b7c4e2e90f5168edb0ac473d8254a020b4b45541f0e804912649d7`).
+4. De gereconstrueerde PDF geldt strikt als `derived_parser_artifact` met een eigen hash (`e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83`).
+5. Aangetoond is dat alle bewijsdragende PDF-objecten (pagina 20: objecten 179, 180, 181) al volledig binnen de oorspronkelijke responsebody aanwezig waren.
+6. Lokaal toegevoegde structuurobjecten bevatten nul semantische termen (`LOCAL_RECONSTRUCTION_ADDED_SEMANTIC_CONTENT = 0`).
+7. Dynamische PDF-tekstextractie via `pdfjs-dist` en excerpt-matching worden opnieuw programmatisch uitgevoerd.
+8. USG Sharpeners behoudt de geverifieerde rechtstreekse live HTTP-fetch (`OFFICIAL_HTTP_FETCH`).
 
 ---
 
@@ -33,9 +40,15 @@ Beide slijpmachines (USG en HOS) beschikken nu over volledige HTTP-fetch respons
 | `ATTACHMENT_REGRESSIONS` | `0` | `0` | **PASS** |
 | `POWERED_MACHINE_FALSE_EXCLUSIONS` | `0` | `0` | **PASS** |
 | `NON_MACHINE_STILL_COUNTED_AS_POWERED` | `0` | `0` | **PASS** |
-| `SYNTHETIC_HOS_PDF_RECORDS` | `0` | `0` | **PASS** |
 | `FABRICATED_SHARPENER_PROVENANCE` | `0` | `0` | **PASS** |
-| `HOS_AUTHENTIC_OFFICIAL_SOURCE_VERIFIED` | `true` | `true` | **PASS** |
+| `MISLABELED_ARCHIVE_AS_LIVE_HTTP` | `0` | `0` | **PASS** |
+| `LOCAL_RECONSTRUCTION_ADDED_SEMANTIC_CONTENT` | `0` | `0` | **PASS** |
+| `HOS_SOURCE_ORIGIN_TRUTHFUL` | `true` | `true` | **PASS** |
+| `HOS_EVIDENCE_TRACEABLE_TO_SOURCE_BYTES` | `true` | `true` | **PASS** |
+| `HOS_PDF_REEXTRACTION_SUCCESS` | `true` | `true` | **PASS** |
+| `HOS_EXCERPT_REVALIDATED` | `true` | `true` | **PASS** |
+| `USG_PDF_REEXTRACTION_SUCCESS` | `true` | `true` | **PASS** |
+| `USG_EXCERPT_REVALIDATED` | `true` | `true` | **PASS** |
 | `SHARPENER_PROVENANCE_INTEGRITY` | `true` | `true` | **PASS** |
 | `CATALOG_FREEZE_INTACT` | `true` | `true` | **PASS** |
 
@@ -44,46 +57,57 @@ Beide slijpmachines (USG en HOS) beschikken nu over volledige HTTP-fetch respons
 ## 3. Officiële Evidence Provenance
 
 ### HOS Sharpeners
-- **Bron:** STIHL HOS Instruction Manual (`hosmanual.pdf` / `0458-522-0121`)
-- **Requested URL:** `https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf`
-- **HTTP Status:** 200 (`content_origin = HTTP_FETCH`)
-- **Document Bytes:** 1.057.881
-- **Document SHA-256:** `e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83`
-- **Pagina:** 20 (Specifications)
+- **Bron:** STIHL HOS Instruction Manual (`0458-522-0121`)
+- **Source Mode:** `ARCHIVED_OFFICIAL_CAPTURE`
+- **Content Origin:** `ARCHIVED_OFFICIAL_HTTP_CAPTURE`
+- **Original Target URL:** `https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf`
+- **Live Fetch Status:** 403 (`FAILED_RETIRED_CDN_ASSET`)
+- **Archive Provider:** Common Crawl (`CC-MAIN-2024-18`)
+- **Evidence Retrieval URL:** `https://data.commoncrawl.org/crawl-data/CC-MAIN-2024-18/segments/1712296817819.93/warc/CC-MAIN-20240421194551-20240421224551-00324.warc.gz`
+- **WARC Record SHA-256:** `8a38c323a3bd2a5da8251ce0bcf86f269ee1ddeb4281fedca44f5573bb3741f6`
+- **Archived Source Body Bytes:** 1.048.576
+- **Archived Source Body SHA-256:** `10f84eb019b7c4e2e90f5168edb0ac473d8254a020b4b45541f0e804912649d7`
+- **Derived Parser Artifact:** `hosmanual.pdf` (1.057.881 bytes, SHA-256: `e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83`)
+- **Derived Structure Added:** `true` (page tree + xref exclusively as parsing aid)
+- **Local Reconstruction Added Semantic Content:** `0`
+- **Evidence Page:** 20 (Specifications)
+- **Evidence Objects:** 179, 180, 181 (alle aanwezig binnen de 1.048.576 source bytes)
 - **Specificaties:** Type: Single-phase AC, squirrel-cage motor, Operating voltage: 230 V, Frequency: 50 Hz, Rated current: 1.3 A, Power rating: 0.18 kW, Motor speed: 2,800 RPM.
-- **Nieuwe machine eligibility:** `POWERED_MACHINE`
-- **Nieuw aandrijvingstype:** `MAINS_ELECTRIC` (`Elektrisch / netstroom`)
+- **Machine Eligibility:** `POWERED_MACHINE`
+- **Aandrijvingstype:** `MAINS_ELECTRIC` (`Elektrisch / netstroom`)
 - **Resolutiemethode:** `EXPLICIT_MODEL`
-- **PDF-verificatie:** Authentieke PDF-tekstextractie via `pdfjs-dist` (26 pagina's), status `VERIFIED`.
+- **PDF-extractie & Excerpt:** Verse re-extractie via `pdfjs-dist` (26 pagina's), excerpt re-validated, status `VERIFIED`.
 
 ### USG Sharpeners
 - **Bron:** STIHL USG Universal Sharpener Instruction Manual (`0458-523-0121-A` / `USG_Manual.pdf`)
-- **Requested URL:** `https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf`
-- **HTTP Status:** 200 (`content_origin = HTTP_FETCH`)
+- **Source Mode:** `LIVE_OFFICIAL_HTTP`
+- **Content Origin:** `OFFICIAL_HTTP_FETCH`
+- **Original & Final URL:** `https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf`
+- **HTTP Status:** 200
 - **Document Bytes:** 1.060.207
 - **Document SHA-256:** `d782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf`
 - **Pagina:** 28 (Section 21.1)
 - **Specificaties:** Type: Single-phase AC, squirrel cage motor, Voltage: 230 V, Frequency: 50 Hz, Rated current: 1.1 A, Power consumption: 180 W, Motor speed: 2,800 rpm.
-- **Nieuwe machine eligibility:** `POWERED_MACHINE`
-- **Nieuw aandrijvingstype:** `MAINS_ELECTRIC` (`Elektrisch / netstroom`)
+- **Machine Eligibility:** `POWERED_MACHINE`
+- **Aandrijvingstype:** `MAINS_ELECTRIC` (`Elektrisch / netstroom`)
 - **Resolutiemethode:** `EXPLICIT_MODEL`
-- **PDF-verificatie:** Authentieke PDF-tekstextractie via `pdfjs-dist` (32 pagina's), status `VERIFIED`.
+- **PDF-extractie & Excerpt:** Verse re-extractie via `pdfjs-dist` (32 pagina's), excerpt re-validated, status `VERIFIED`.
 
 ---
 
 ## 4. Gecorrigeerde Populatie- en Dekkingsstatistieken
 
-| Indicator | Phase 56M Baseline | Phase 56N (Voor correctie) | Phase 56N.1 (Na correctie) | Delta t.o.v. 56N |
+| Indicator | Phase 56M Baseline | Phase 56N.1 / 56N.2 | Phase 56N.3 | Delta |
 | :--- | :--- | :--- | :--- | :--- |
 | Totaal catalogusmodellen | 956 | 956 | 956 | 0 |
 | Kombi/MultiTool attachments | 25 | 25 | 25 | 0 |
-| Echte niet-machine ruis | 0 | 54 | **52** | -2 (herstel slijpmachines) |
-| - Non-machine accessories | 0 | 49 | **47** | -2 (HOS, USG verwijderd) |
+| Echte niet-machine ruis | 0 | 52 | **52** | 0 |
+| - Non-machine accessories | 0 | 47 | **47** | 0 |
 | - Replacement parts as model | 0 | 5 | **5** | 0 |
-| **Aangedreven machinekandidaten (noemer)** | **931** | **877** | **879** | **+2** |
-| Opgeloste aangedreven machines | 401 | 401 | **403** | **+2** (HOS, USG opgelost) |
+| **Aangedreven machinekandidaten (noemer)** | **931** | **879** | **879** | **0** |
+| Opgeloste aangedreven machines | 401 | 403 | **403** | 0 |
 | Onbekende aangedreven machines | 530 | 476 | **476** | 0 |
-| **Dekkingspercentage** | **43,07%** | **45,72%** | **45,85%** | **+0,13%** |
+| **Dekkingspercentage** | **43,07%** | **45,85%** | **45,85%** | **0,00%** |
 
 ---
 
