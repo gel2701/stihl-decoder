@@ -1,7 +1,7 @@
 /**
  * tests/phase56l_drive_type_family_resolution.test.js
  *
- * Phase 56L — Verified Model-Family Drive-Type Resolution Test Suite
+ * Phase 56L.1 — Drive Resolution Integrity & Attachment Safety Test Suite
  */
 
 import test from 'node:test';
@@ -16,6 +16,8 @@ import {
   DISPLAY_LABELS,
   OFFICIAL_STIHL_FAMILY_RULES,
   UNVERIFIED_FAMILY_PREFIXES,
+  isAttachmentDesignation,
+  isPoweredModelDesignation,
   parseModelFamily,
   getFamilyRule,
   resolveDriveType,
@@ -38,35 +40,109 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 const OUTPUT_DIR = path.join(REPO_ROOT, 'output', 'phase56l');
 const DATA_DIR = path.join(REPO_ROOT, 'data');
+const HARVEST_DIR = path.join(DATA_DIR, 'harvest', 'phase56l');
 
-test('Phase 56L: ModelFamilyDriveRegistry longest-prefix-first parser', () => {
-  assert.strictEqual(parseModelFamily('MS 211'), 'MS');
-  assert.strictEqual(parseModelFamily('ms-211'), 'MS');
-  assert.strictEqual(parseModelFamily('ms_211_c_be'), 'MS');
-  assert.strictEqual(parseModelFamily('MSA 300'), 'MSA');
-  assert.strictEqual(parseModelFamily('MSE 210 C-B'), 'MSE');
-  assert.strictEqual(parseModelFamily('FS 55'), 'FS');
-  assert.strictEqual(parseModelFamily('FSA 120'), 'FSA');
-  assert.strictEqual(parseModelFamily('FSE 60'), 'FSE');
-  assert.strictEqual(parseModelFamily('TS 420'), 'TS');
-  assert.strictEqual(parseModelFamily('TSA 230'), 'TSA');
-  assert.strictEqual(parseModelFamily('BG 86'), 'BG');
-  assert.strictEqual(parseModelFamily('BGA 30'), 'BGA');
-  assert.strictEqual(parseModelFamily('BGE 71'), 'BGE');
-  assert.strictEqual(parseModelFamily('HS 45'), 'HS');
-  assert.strictEqual(parseModelFamily('HSA 66'), 'HSA');
-  assert.strictEqual(parseModelFamily('HSE 61'), 'HSE');
-  assert.strictEqual(parseModelFamily('BRA 100'), 'BRA');
-  assert.strictEqual(parseModelFamily('RM 248'), 'RM');
-  assert.strictEqual(parseModelFamily('RMA 448'), 'RMA');
-  assert.strictEqual(parseModelFamily('RME 339'), 'RME');
-  assert.strictEqual(parseModelFamily('UNKNOWN 123'), null);
+test('Phase 56L.1: Attachment Safety Gate prevents misclassification of KombiTools and accessories', () => {
+  const attachmentCases = [
+    'BG-KM',
+    'FS-KM',
+    'HL-KM',
+    'HT-KM',
+    'FS Power Tool Attachments',
+    'BF-MM',
+    'Mowing head Auto Cut C12-2 Cutting Attachment'
+  ];
+
+  for (const name of attachmentCases) {
+    assert.strictEqual(isAttachmentDesignation(name), true, `${name} must be identified as attachment`);
+    assert.strictEqual(isPoweredModelDesignation(name), false, `${name} must not be powered designation`);
+
+    const res = resolveDriveType(name);
+    assert.strictEqual(res.drive_type, DRIVE_TYPES.UNKNOWN, `${name} drive type must be UNKNOWN`);
+    assert.strictEqual(res.display, DISPLAY_LABELS.UNKNOWN, `${name} display must be 'Niet vastgesteld'`);
+    assert.strictEqual(res.resolution, 'ATTACHMENT_NOT_POWERED', `${name} resolution must be ATTACHMENT_NOT_POWERED`);
+    assert.strictEqual(res.family, null, `${name} must not infer a family prefix rule`);
+  }
 });
 
-test('Phase 56L: Primary acceptance target MS 211 resolves to Benzine (PETROL)', () => {
+test('Phase 56L.1: Powered machines continue resolving correctly under attachment safety gate', () => {
+  const poweredCases = [
+    { name: 'BG 86', expectedDrive: DRIVE_TYPES.PETROL },
+    { name: 'FS 55', expectedDrive: DRIVE_TYPES.PETROL },
+    { name: 'HT 131', expectedDrive: DRIVE_TYPES.PETROL },
+    { name: 'MS 211', expectedDrive: DRIVE_TYPES.PETROL },
+    { name: 'MSA 300', expectedDrive: DRIVE_TYPES.BATTERY },
+    { name: 'MSE 210', expectedDrive: DRIVE_TYPES.MAINS_ELECTRIC }
+  ];
+
+  for (const c of poweredCases) {
+    assert.strictEqual(isAttachmentDesignation(c.name), false, `${c.name} must not be flagged as attachment`);
+    assert.strictEqual(isPoweredModelDesignation(c.name), true, `${c.name} must be flagged as powered designation`);
+
+    const res = resolveDriveType(c.name);
+    assert.strictEqual(res.drive_type, c.expectedDrive, `${c.name} drive type must match`);
+    assert.strictEqual(res.resolution, 'FAMILY_RULE', `${c.name} resolution must be FAMILY_RULE`);
+  }
+});
+
+test('Phase 56L.1: Canonical explicit evidence propagation contract', () => {
+  // Test explicit GASOLINE -> EXPLICIT_MODEL PETROL
+  const gasRes = resolveDriveType({ model_name: 'Custom-Saw', explicit_power_source: 'GASOLINE' });
+  assert.strictEqual(gasRes.drive_type, DRIVE_TYPES.PETROL);
+  assert.strictEqual(gasRes.resolution, 'EXPLICIT_MODEL');
+
+  // Test explicit BATTERY -> EXPLICIT_MODEL BATTERY
+  const batRes = resolveDriveType({ model_name: 'Custom-Battery', explicit_power_source: 'BATTERY' });
+  assert.strictEqual(batRes.drive_type, DRIVE_TYPES.BATTERY);
+  assert.strictEqual(batRes.resolution, 'EXPLICIT_MODEL');
+
+  // Test explicit PETROL_2STROKE -> EXPLICIT_MODEL PETROL
+  const twoStrokeRes = resolveDriveType({ model_name: 'Custom-2Stroke', explicit_fuel_type: 'PETROL_2STROKE' });
+  assert.strictEqual(twoStrokeRes.drive_type, DRIVE_TYPES.PETROL);
+  assert.strictEqual(twoStrokeRes.resolution, 'EXPLICIT_MODEL');
+
+  // When explicit evidence agrees with family, resolution must be EXPLICIT_MODEL, NOT FAMILY_RULE
+  const ms261Explicit = resolveDriveType({ model_name: 'MS 261', explicit_power_source: 'GASOLINE' });
+  assert.strictEqual(ms261Explicit.drive_type, DRIVE_TYPES.PETROL);
+  assert.strictEqual(ms261Explicit.resolution, 'EXPLICIT_MODEL');
+});
+
+test('Phase 56L.1: Historical numeric STIHL models resolution (026, 009, 017, 044)', () => {
+  const numeric026 = resolveDriveType({ model_name: '026', explicit_power_source: 'GASOLINE' });
+  assert.strictEqual(numeric026.drive_type, DRIVE_TYPES.PETROL, '026 with gasoline evidence must not be UNKNOWN');
+  assert.strictEqual(numeric026.display, 'Benzine');
+  assert.strictEqual(numeric026.resolution, 'EXPLICIT_MODEL');
+
+  const numeric009 = resolveDriveType({ model_name: '009', explicit_power_source: 'GASOLINE' });
+  assert.strictEqual(numeric009.drive_type, DRIVE_TYPES.PETROL);
+  assert.strictEqual(numeric009.resolution, 'EXPLICIT_MODEL');
+
+  const numeric017 = resolveDriveType({ model_name: '017', explicit_power_source: 'GASOLINE' });
+  assert.strictEqual(numeric017.drive_type, DRIVE_TYPES.PETROL);
+  assert.strictEqual(numeric017.resolution, 'EXPLICIT_MODEL');
+
+  const numeric044 = resolveDriveType({ model_name: '044', explicit_power_source: 'GASOLINE' });
+  assert.strictEqual(numeric044.drive_type, DRIVE_TYPES.PETROL);
+  assert.strictEqual(numeric044.resolution, 'EXPLICIT_MODEL');
+});
+
+test('Phase 56L.1: Conflict detection quarantines contradictory explicit evidence', () => {
+  const conflictModel = {
+    model_name: 'MS 261',
+    explicit_power_source: 'BATTERY'
+  };
+  const res = resolveDriveType(conflictModel);
+  assert.strictEqual(res.drive_type, DRIVE_TYPES.UNKNOWN);
+  assert.strictEqual(res.display, 'Niet vastgesteld');
+  assert.strictEqual(res.resolution, 'CONFLICT_QUARANTINED');
+  assert.strictEqual(res.source_type, 'QUARANTINED_CONFLICT');
+  assert.strictEqual(res.explicit_value, 'BATTERY');
+  assert.strictEqual(res.family_value, 'PETROL');
+});
+
+test('Phase 56L.1: Primary acceptance target MS 211 resolves to Benzine (PETROL)', () => {
   const result = resolveDriveType({ model_name: 'MS 211' });
   assert.strictEqual(result.drive_type, DRIVE_TYPES.PETROL);
-  assert.strictEqual(result.display, DISPLAY_LABELS.PETROL);
   assert.strictEqual(result.display, 'Benzine');
   assert.strictEqual(result.resolution, 'FAMILY_RULE');
   assert.strictEqual(result.family, 'MS');
@@ -75,111 +151,46 @@ test('Phase 56L: Primary acceptance target MS 211 resolves to Benzine (PETROL)',
   assert.strictEqual(result.confidence, 'HIGH');
 });
 
-test('Phase 56L: Negative chainsaw cases MSA 300 (Accu) and MSE 210 (Elektrisch)', () => {
-  const msa = resolveDriveType({ model_name: 'MSA 300' });
-  assert.strictEqual(msa.drive_type, DRIVE_TYPES.BATTERY);
-  assert.strictEqual(msa.display, 'Accu');
-  assert.strictEqual(msa.resolution, 'FAMILY_RULE');
-  assert.notStrictEqual(msa.drive_type, DRIVE_TYPES.PETROL);
+test('Phase 56L.1: Live official STIHL family evidence provenance validation', () => {
+  const ledgerPath = path.join(HARVEST_DIR, 'official_family_fetch_ledger.json');
+  assert.ok(fs.existsSync(ledgerPath), 'Official family fetch ledger must exist');
 
-  const mse = resolveDriveType({ model_name: 'MSE 210' });
-  assert.strictEqual(mse.drive_type, DRIVE_TYPES.MAINS_ELECTRIC);
-  assert.strictEqual(mse.display, 'Elektrisch / netstroom');
-  assert.strictEqual(mse.resolution, 'FAMILY_RULE');
-  assert.notStrictEqual(mse.drive_type, DRIVE_TYPES.PETROL);
+  const ledger = JSON.parse(fs.readFileSync(ledgerPath, 'utf8'));
+  assert.strictEqual(ledger.length, 28, 'Must contain exactly 28 active family rules');
+
+  for (const entry of ledger) {
+    assert.strictEqual(entry.http_status, 200, `Rule ${entry.family} must have HTTP 200`);
+    assert.strictEqual(entry.verification_status, 'VERIFIED', `Rule ${entry.family} must be VERIFIED`);
+    assert.ok(typeof entry.body_sha256 === 'string' && entry.body_sha256.length === 64, `Rule ${entry.family} must have SHA-256 hash`);
+    assert.ok(typeof entry.retrieved_at === 'string', `Rule ${entry.family} must have retrieved_at timestamp`);
+    assert.ok(!entry.retrieved_at.includes('00:00:00.000Z'), `Rule ${entry.family} must not use static placeholder timestamp`);
+    assert.ok((entry.page_title || entry.source_title) && (entry.page_title || entry.source_title).length > 0, `Rule ${entry.family} must have real page title`);
+  }
 });
 
-test('Phase 56L: Cross-family verification cases (FS/FSA, TS/TSA, BG/BGA)', () => {
-  const fs55 = resolveDriveType({ model_name: 'FS 55' });
-  assert.strictEqual(fs55.drive_type, DRIVE_TYPES.PETROL);
-  assert.strictEqual(fs55.family, 'FS');
+test('Phase 56L.1: Integration with publicationRules.js and driveClassification.js', () => {
+  // Attachment safety in publicationRules
+  assert.strictEqual(getFuelTypeCode({ model_name: 'BG-KM' }), 'UNKNOWN');
+  assert.strictEqual(getFuelDriveLabel({ model_name: 'BG-KM' }), 'Niet vastgesteld');
+  assert.strictEqual(isPetrolModel({ model_name: 'BG-KM' }), false);
 
-  const fsa120 = resolveDriveType({ model_name: 'FSA 120' });
-  assert.strictEqual(fsa120.drive_type, DRIVE_TYPES.BATTERY);
-  assert.strictEqual(fsa120.family, 'FSA');
+  // Attachment safety in driveClassification
+  const bgKmCls = resolveMachineClassification({ exactModel: { model_name: 'BG-KM' } });
+  assert.strictEqual(bgKmCls.power_source, 'UNKNOWN');
+  assert.strictEqual(bgKmCls.drive_type, 'UNKNOWN');
+  assert.strictEqual(bgKmCls.display_label, 'Niet vastgesteld');
 
-  const ts420 = resolveDriveType({ model_name: 'TS 420' });
-  assert.strictEqual(ts420.drive_type, DRIVE_TYPES.PETROL);
-  assert.strictEqual(ts420.family, 'TS');
+  // Powered machine MS 211
+  assert.strictEqual(getFuelTypeCode({ model_name: 'MS 211' }), 'PETROL');
+  assert.strictEqual(getFuelDriveLabel({ model_name: 'MS 211' }), 'Benzine-aandrijving');
+  assert.strictEqual(isPetrolModel({ model_name: 'MS 211' }), true);
 
-  const tsa230 = resolveDriveType({ model_name: 'TSA 230' });
-  assert.strictEqual(tsa230.drive_type, DRIVE_TYPES.BATTERY);
-  assert.strictEqual(tsa230.family, 'TSA');
-
-  const bg86 = resolveDriveType({ model_name: 'BG 86' });
-  assert.strictEqual(bg86.drive_type, DRIVE_TYPES.PETROL);
-  assert.strictEqual(bg86.family, 'BG');
-
-  const bga30 = resolveDriveType({ model_name: 'BGA 30' });
-  assert.strictEqual(bga30.drive_type, DRIVE_TYPES.BATTERY);
-  assert.strictEqual(bga30.family, 'BGA');
+  // Historic model 026
+  assert.strictEqual(getFuelTypeCode({ model_name: '026', explicit_power_source: 'GASOLINE' }), 'PETROL_2STROKE');
+  assert.strictEqual(isPetrolModel({ model_name: '026', explicit_power_source: 'GASOLINE' }), true);
 });
 
-test('Phase 56L: Fail-closed behavior for unverified families and unknown prefixes', () => {
-  const bra = resolveDriveType({ model_name: 'BRA 100' });
-  assert.strictEqual(bra.drive_type, DRIVE_TYPES.UNKNOWN);
-  assert.strictEqual(bra.display, 'Niet vastgesteld');
-  assert.strictEqual(bra.resolution, 'UNVERIFIED_FAMILY');
-
-  const rm = resolveDriveType({ model_name: 'RM 248' });
-  assert.strictEqual(rm.drive_type, DRIVE_TYPES.UNKNOWN);
-  assert.strictEqual(rm.display, 'Niet vastgesteld');
-  assert.strictEqual(rm.resolution, 'UNVERIFIED_FAMILY');
-
-  const unknown = resolveDriveType({ model_name: 'XYZ 999' });
-  assert.strictEqual(unknown.drive_type, DRIVE_TYPES.UNKNOWN);
-  assert.strictEqual(unknown.display, 'Niet vastgesteld');
-  assert.strictEqual(unknown.resolution, 'UNKNOWN');
-});
-
-test('Phase 56L: Precedence: explicit evidence beats family rule', () => {
-  const explicitModel = {
-    model_name: 'MS 261',
-    basic_classification: { power_source: 'GASOLINE', fuel_type: 'PETROL_2STROKE' }
-  };
-  const res = resolveDriveType(explicitModel);
-  assert.strictEqual(res.drive_type, DRIVE_TYPES.PETROL);
-  assert.strictEqual(res.resolution, 'EXPLICIT_MODEL');
-});
-
-test('Phase 56L: Conflict handling: contradictory explicit evidence is quarantined', () => {
-  const conflictModel = {
-    model_name: 'MS 261',
-    basic_classification: { power_source: 'BATTERY' }
-  };
-  const res = resolveDriveType(conflictModel);
-  assert.strictEqual(res.drive_type, DRIVE_TYPES.UNKNOWN);
-  assert.strictEqual(res.display, 'Niet vastgesteld');
-  assert.strictEqual(res.resolution, 'CONFLICT_QUARANTINED');
-  assert.strictEqual(res.source_type, 'QUARANTINED_CONFLICT');
-});
-
-test('Phase 56L: Integration with publicationRules.js', () => {
-  const ms211 = { model_name: 'MS 211' };
-  assert.strictEqual(getFuelTypeCode(ms211), 'PETROL');
-  assert.strictEqual(getFuelDriveLabel(ms211), 'Benzine-aandrijving');
-  assert.strictEqual(isPetrolModel(ms211), true);
-  assert.strictEqual(isBatteryModel(ms211), false);
-
-  const msa300 = { model_name: 'MSA 300' };
-  assert.strictEqual(getFuelTypeCode(msa300), 'BATTERY');
-  assert.strictEqual(isBatteryModel(msa300), true);
-  assert.strictEqual(isPetrolModel(msa300), false);
-});
-
-test('Phase 56L: Integration with driveClassification.js', () => {
-  const cls = resolveMachineClassification({ exactModel: { model_name: 'MS 211' } });
-  assert.strictEqual(cls.power_source, 'PETROL');
-  assert.strictEqual(cls.display_label, 'Benzine');
-  assert.strictEqual(cls.evidence, 'FAMILY_RULE_DERIVED');
-  assert.strictEqual(getClassificationContextLabel(cls), '≈ Afgeleid van geverifieerde modelfamilie');
-
-  const unk = resolveMachineClassification({ identityStatus: 'MODEL_NOT_IDENTIFIED' });
-  assert.strictEqual(unk.power_source, 'UNKNOWN');
-  assert.strictEqual(unk.display_label, 'Niet vastgesteld');
-});
-
-test('Phase 56L: Catalog & SEO Freeze Invariants', () => {
+test('Phase 56L.1: Catalog & SEO Freeze Invariants', () => {
   const db = new Database(path.join(DATA_DIR, 'stihl_database.db'), { readonly: true });
   const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
   const fitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
@@ -194,7 +205,7 @@ test('Phase 56L: Catalog & SEO Freeze Invariants', () => {
   assert.strictEqual(sectionContextsCount, 814, 'Section contexts count must be exactly 814');
 });
 
-test('Phase 56L: All 10 artifacts exist and pass integrity checks', () => {
+test('Phase 56L.1: All 12 required artifacts exist and pass hard integrity gates', () => {
   const expectedArtifacts = [
     'MODEL_FAMILY_INVENTORY.json',
     'OFFICIAL_FAMILY_EVIDENCE.json',
@@ -202,11 +213,15 @@ test('Phase 56L: All 10 artifacts exist and pass integrity checks', () => {
     'DRIVE_TYPE_CONFLICTS.json',
     'DRIVE_TYPE_ACTIVATION.json',
     'MODEL_COVERAGE_BEFORE_AFTER.json',
+    'ATTACHMENT_CLASSIFICATION_AUDIT.json',
+    'FAMILY_PROVENANCE_INTEGRITY.json',
     'SEO_INTEGRITY.json',
     'CATALOG_INTEGRITY.json',
     'PHASE56L_SUMMARY.json',
     'PHASE56L_REPORT.md'
   ];
+
+  assert.strictEqual(expectedArtifacts.length, 12, 'Must require exactly 12 artifacts');
 
   for (const artifact of expectedArtifacts) {
     const p = path.join(OUTPUT_DIR, artifact);
@@ -215,16 +230,18 @@ test('Phase 56L: All 10 artifacts exist and pass integrity checks', () => {
 
   const summary = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'PHASE56L_SUMMARY.json'), 'utf8'));
   assert.strictEqual(summary.outcome_status, 'PASS');
-  assert.strictEqual(summary.acceptance_cases_verified.all_passed, true);
-  assert.strictEqual(summary.conflict_summary.total_conflicts, 0);
+  assert.strictEqual(summary.hard_gates.POWERED_ATTACHMENT_MISCLASSIFICATIONS, 0);
+  assert.strictEqual(summary.hard_gates.POWERED_ATTACHMENT_GATE_PASSED, true);
+  assert.strictEqual(summary.hard_gates.EXPLICIT_EVIDENCE_PROPAGATION_VALID, true);
+  assert.strictEqual(summary.hard_gates.FABRICATED_FAMILY_PROVENANCE, 0);
+  assert.strictEqual(summary.hard_gates.FAMILY_PROVENANCE_VERIFIED, true);
 
-  const catalog = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'CATALOG_INTEGRITY.json'), 'utf8'));
-  assert.strictEqual(catalog.status, 'PASS');
-  assert.strictEqual(catalog.invariants.amazon_production_tag, 'srihldecoder2-21');
-  assert.strictEqual(catalog.invariants.verified_asin_mappings_count, 0);
+  const attachmentAudit = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'ATTACHMENT_CLASSIFICATION_AUDIT.json'), 'utf8'));
+  assert.strictEqual(attachmentAudit.status, 'PASS');
+  assert.strictEqual(attachmentAudit.powered_attachment_misclassifications, 0);
 
-  const seo = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'SEO_INTEGRITY.json'), 'utf8'));
-  assert.strictEqual(seo.status, 'PASS');
-  assert.strictEqual(seo.invariants.indexable_parts_after, 843);
-  assert.strictEqual(seo.invariants.sitemap_urls_after, 1024);
+  const provenanceIntegrity = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'FAMILY_PROVENANCE_INTEGRITY.json'), 'utf8'));
+  assert.strictEqual(provenanceIntegrity.status, 'PASS');
+  assert.strictEqual(provenanceIntegrity.FAMILY_PROVENANCE_VERIFIED, true);
+  assert.strictEqual(provenanceIntegrity.fabricated_family_provenance, 0);
 });

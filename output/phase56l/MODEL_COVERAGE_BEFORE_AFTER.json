@@ -1,37 +1,32 @@
 {
-  "phase": "PHASE_56L",
+  "phase": "PHASE_56L.1",
   "artifact": "MODEL_COVERAGE_BEFORE_AFTER",
-  "timestamp": "2026-10-25T00:17:19.698Z",
+  "timestamp": "2026-10-25T13:59:09.569Z",
   "metrics": {
-    "total_unique_models": 956,
-    "before": {
-      "resolved_count": 110,
-      "resolved_percentage": 11.51,
-      "unknown_count": 846,
-      "unknown_percentage": 88.49
+    "all_catalog_entries": {
+      "total_count": 956,
+      "explicit_resolved": 110,
+      "family_resolved": 292,
+      "attachment_not_powered": 25,
+      "unverified_family": 403,
+      "unknown": 126,
+      "conflict_quarantined": 0
     },
-    "after": {
-      "resolved_count": 400,
-      "resolved_percentage": 41.84,
-      "unknown_count": 556,
-      "unknown_percentage": 58.16
+    "powered_machine_candidates": {
+      "total_count": 931,
+      "resolved_count": 402,
+      "resolved_percentage": 43.18,
+      "unknown_count": 529,
+      "unknown_percentage": 56.82,
+      "breakdown_by_drive_type": {
+        "PETROL": 278,
+        "BATTERY": 100,
+        "MAINS_ELECTRIC": 24
+      }
     },
-    "delta": {
-      "newly_resolved_count": 298,
-      "coverage_gain_percentage": 30.33
-    },
-    "breakdown_by_drive_type_after": {
-      "PETROL": 276,
-      "BATTERY": 100,
-      "MAINS_ELECTRIC": 24,
-      "UNKNOWN": 556
-    },
-    "breakdown_by_resolution_method": {
-      "EXPLICIT_MODEL": 0,
-      "FAMILY_RULE": 400,
-      "UNVERIFIED_FAMILY": 409,
-      "UNKNOWN": 147,
-      "CONFLICT_QUARANTINED": 0
+    "delta_vs_baseline": {
+      "newly_resolved_via_family_rule": 292,
+      "attachments_safely_isolated": 25
     }
   }
 }

@@ -1,8 +1,10 @@
 {
-  "phase": "PHASE_56L",
+  "phase": "PHASE_56L.1",
   "artifact": "MODEL_FAMILY_INVENTORY",
-  "timestamp": "2026-10-25T00:17:19.696Z",
+  "timestamp": "2026-10-25T13:59:09.567Z",
   "total_unique_models": 956,
+  "powered_machine_candidates": 931,
+  "unpowered_attachments_count": 25,
   "total_active_families": 28,
   "total_unverified_families": 67,
   "active_family_rules": [
@@ -108,7 +110,7 @@
     {
       "prefix": "UNKNOWN_NO_PREFIX",
       "is_active": false,
-      "count": 147,
+      "count": 134,
       "sample_models": [
         "009",
         "010",
@@ -120,7 +122,7 @@
     {
       "prefix": "FS",
       "is_active": true,
-      "count": 86,
+      "count": 84,
       "sample_models": [
         "FS 08",
         "FS 100",
@@ -175,6 +177,18 @@
         "GE 105",
         "GE 105.1",
         "GE 110"
+      ]
+    },
+    {
+      "prefix": "ATTACHMENT_UNPOWERED",
+      "is_active": false,
+      "count": 25,
+      "sample_models": [
+        "BC-KM",
+        "BF Power Tool Attachments",
+        "BF-KM",
+        "BF-MM",
+        "BG-KM"
       ]
     },
     {
@@ -298,18 +312,6 @@
       ]
     },
     {
-      "prefix": "BG",
-      "is_active": true,
-      "count": 13,
-      "sample_models": [
-        "BG 17",
-        "BG 45",
-        "BG 50",
-        "BG 55",
-        "BG 56"
-      ]
-    },
-    {
       "prefix": "RT",
       "is_active": false,
       "count": 13,
@@ -322,6 +324,18 @@
       ]
     },
     {
+      "prefix": "BG",
+      "is_active": true,
+      "count": 12,
+      "sample_models": [
+        "BG 17",
+        "BG 45",
+        "BG 50",
+        "BG 55",
+        "BG 56"
+      ]
+    },
+    {
       "prefix": "FR",
       "is_active": true,
       "count": 12,
@@ -331,18 +345,6 @@
         "FR 125",
         "FR 130",
         "FR 131"
-      ]
-    },
-    {
-      "prefix": "HT",
-      "is_active": true,
-      "count": 12,
-      "sample_models": [
-        "HT 101",
-        "HT 103",
-        "HT 105",
-        "HT 131",
-        "HT 132"
       ]
     },
     {
@@ -370,6 +372,18 @@
       ]
     },
     {
+      "prefix": "HT",
+      "is_active": true,
+      "count": 10,
+      "sample_models": [
+        "HT 101",
+        "HT 103",
+        "HT 105",
+        "HT 131",
+        "HT 132"
+      ]
+    },
+    {
       "prefix": "ME",
       "is_active": false,
       "count": 10,
@@ -379,18 +393,6 @@
         "ME 340",
         "ME 360",
         "ME 400"
-      ]
-    },
-    {
-      "prefix": "HL",
-      "is_active": true,
-      "count": 9,
-      "sample_models": [
-        "HL 100",
-        "HL 135",
-        "HL 45",
-        "HL 75",
-        "HL 91"
       ]
     },
     {
@@ -415,6 +417,18 @@
         "MSE 141 C-Q",
         "MSE 160",
         "MSE 170"
+      ]
+    },
+    {
+      "prefix": "HL",
+      "is_active": true,
+      "count": 8,
+      "sample_models": [
+        "HL 100",
+        "HL 135",
+        "HL 45",
+        "HL 75",
+        "HL 91"
       ]
     },
     {
@@ -451,18 +465,6 @@
         "SE 201",
         "SE 202",
         "SE 50"
-      ]
-    },
-    {
-      "prefix": "FC",
-      "is_active": false,
-      "count": 7,
-      "sample_models": [
-        "FC 100",
-        "FC 110",
-        "FC 44",
-        "FC 55",
-        "FC 72"
       ]
     },
     {
@@ -514,15 +516,15 @@
       ]
     },
     {
-      "prefix": "BC",
+      "prefix": "FC",
       "is_active": false,
       "count": 6,
       "sample_models": [
-        "BC 20",
-        "BC 3",
-        "BC 30",
-        "BC 35",
-        "BC 40"
+        "FC 100",
+        "FC 110",
+        "FC 44",
+        "FC 55",
+        "FC 72"
       ]
     },
     {
@@ -550,15 +552,15 @@
       ]
     },
     {
-      "prefix": "FH",
+      "prefix": "BC",
       "is_active": false,
       "count": 5,
       "sample_models": [
-        "FH 0",
-        "FH 135",
-        "FH 145",
-        "FH 75",
-        "FH-KM"
+        "BC 20",
+        "BC 3",
+        "BC 30",
+        "BC 35",
+        "BC 40"
       ]
     },
     {
@@ -582,6 +584,17 @@
         "AR 2000",
         "AR 3000",
         "AR 900"
+      ]
+    },
+    {
+      "prefix": "FH",
+      "is_active": false,
+      "count": 4,
+      "sample_models": [
+        "FH 0",
+        "FH 135",
+        "FH 145",
+        "FH 75"
       ]
     },
     {
@@ -713,16 +726,6 @@
       ]
     },
     {
-      "prefix": "SP",
-      "is_active": false,
-      "count": 3,
-      "sample_models": [
-        "SP 481",
-        "SP 85",
-        "SP-KM"
-      ]
-    },
-    {
       "prefix": "TE",
       "is_active": false,
       "count": 3,
@@ -823,15 +826,6 @@
       ]
     },
     {
-      "prefix": "KW",
-      "is_active": false,
-      "count": 2,
-      "sample_models": [
-        "KW 85",
-        "KW-KM"
-      ]
-    },
-    {
       "prefix": "LB",
       "is_active": false,
       "count": 2,
@@ -895,21 +889,21 @@
       ]
     },
     {
-      "prefix": "RL",
-      "is_active": false,
-      "count": 2,
-      "sample_models": [
-        "RL 540.0",
-        "RL-MM"
-      ]
-    },
-    {
       "prefix": "SHA",
       "is_active": true,
       "count": 2,
       "sample_models": [
         "SHA 140.0",
         "SHA 56"
+      ]
+    },
+    {
+      "prefix": "SP",
+      "is_active": false,
+      "count": 2,
+      "sample_models": [
+        "SP 481",
+        "SP 85"
       ]
     },
     {
@@ -1025,6 +1019,14 @@
       ]
     },
     {
+      "prefix": "KW",
+      "is_active": false,
+      "count": 1,
+      "sample_models": [
+        "KW 85"
+      ]
+    },
+    {
       "prefix": "LA",
       "is_active": false,
       "count": 1,
@@ -1070,6 +1072,14 @@
       "count": 1,
       "sample_models": [
         "RGA 140"
+      ]
+    },
+    {
+      "prefix": "RL",
+      "is_active": false,
+      "count": 1,
+      "sample_models": [
+        "RL 540.0"
       ]
     },
     {

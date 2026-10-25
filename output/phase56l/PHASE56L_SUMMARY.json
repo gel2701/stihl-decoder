@@ -1,8 +1,15 @@
 {
-  "phase": "PHASE_56L",
-  "baseline_commit": "40c76e21beac7474f60390741c28e674799815d2",
+  "phase": "PHASE_56L.1",
+  "baseline_commit": "f7c9231ddec6599b0afe690bd873cc5186b2bda1",
   "outcome_status": "PASS",
-  "timestamp": "2026-10-25T00:17:19.698Z",
+  "timestamp": "2026-10-25T13:59:09.570Z",
+  "hard_gates": {
+    "POWERED_ATTACHMENT_MISCLASSIFICATIONS": 0,
+    "POWERED_ATTACHMENT_GATE_PASSED": true,
+    "EXPLICIT_EVIDENCE_PROPAGATION_VALID": true,
+    "FABRICATED_FAMILY_PROVENANCE": 0,
+    "FAMILY_PROVENANCE_VERIFIED": true
+  },
   "primary_resolution_target": {
     "model": "MS 211",
     "resolved_family": "MS",
@@ -12,8 +19,8 @@
     "previous_status": "Niet vastgesteld"
   },
   "acceptance_cases_verified": {
-    "total": 11,
-    "passed": 11,
+    "total": 15,
+    "passed": 15,
     "all_passed": true
   },
   "registry_stats": {
@@ -125,11 +132,31 @@
     ]
   },
   "coverage_summary": {
-    "total_models": 956,
-    "before_resolved": 110,
-    "after_resolved": 400,
-    "newly_resolved": 298,
-    "coverage_gain_pct": 30.33
+    "all_catalog_entries": {
+      "total_count": 956,
+      "explicit_resolved": 110,
+      "family_resolved": 292,
+      "attachment_not_powered": 25,
+      "unverified_family": 403,
+      "unknown": 126,
+      "conflict_quarantined": 0
+    },
+    "powered_machine_candidates": {
+      "total_count": 931,
+      "resolved_count": 402,
+      "resolved_percentage": 43.18,
+      "unknown_count": 529,
+      "unknown_percentage": 56.82,
+      "breakdown_by_drive_type": {
+        "PETROL": 278,
+        "BATTERY": 100,
+        "MAINS_ELECTRIC": 24
+      }
+    },
+    "delta_vs_baseline": {
+      "newly_resolved_via_family_rule": 292,
+      "attachments_safely_isolated": 25
+    }
   },
   "conflict_summary": {
     "total_conflicts": 0,
@@ -148,8 +175,11 @@
     "verified_asins": 0
   },
   "routing": {
+    "nine_router_endpoint_reachable": true,
     "nine_router_used": false,
+    "nine_router_note": "Native direct execution used per instructions.",
     "codex_used": false,
-    "codex_review_requested": false
+    "codex_review_requested": false,
+    "automatic_external_review_triggered": false
   }
 }
