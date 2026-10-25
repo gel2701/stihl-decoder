@@ -107,7 +107,8 @@ const PUBLIC_EXACT_FILES = new Set([
   '/src/globalModelSearch.js',
   '/src/modelRecommendations.js',
   '/src/publicEvidence.js',
-  '/src/plantResolver.js'
+  '/src/plantResolver.js',
+  '/src/ModelFamilyDriveRegistry.js'
 ]);
 
 const rateLimitMap = new Map();
