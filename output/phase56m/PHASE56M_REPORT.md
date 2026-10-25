@@ -2,7 +2,7 @@
 
 **Status:** PASS
 **Baseline commit:** `9307174fb9ee2079b32b06c191b533f3c1eb3c6b`
-**Datum:** 2026-10-25T17:57:43.640Z
+**Datum:** 2026-10-25T18:13:23.407Z
 **Repository:** `gel2701/stihl-decoder`
 
 ---
@@ -52,16 +52,16 @@ $$\text{priority\_score} = (\text{impact} \times 0,40) + (\text{evidence\_availa
 
 | Rang | Cohort | Prefix / Patroon | Modellen | Categorie | Score | Aanbevolen Actie |
 | :---: | :--- | :--- | :---: | :--- | :---: | :--- |
-| **1** | COHORT-02-NOISE | CATALOG_NOISE | 54 | Accessoire | **93.50** | Quarantaine als niet-aangedreven toebehoren in accessoireregistry |
-| **2** | COHORT-01-RE | RE | 71 | Hogedrukreiniger | **93.50** | Officiële context-gebonden verificatie (netstroom 230V/400V) |
-| **3** | COHORT-06-RM | RM | 25 | Grasmaaier | **88.70** | Officiële context-gebonden verificatie (Benzine) |
-| **4** | COHORT-07-RMA | RMA | 22 | Accugrasmaaier | **87.50** | Officiële context-gebonden verificatie (Accu) |
-| **5** | COHORT-04-0XX | NUMERIC_0XX | 31 | Historische zaag | **78.50** | Insluiten van interne archief- en handleidingdata (Benzine) |
-| **6** | COHORT-03-MB | MB | 48 | Grasmaaier (Viking) | **80.50** | Viking/STIHL meertalige officiële catalogusverificatie |
-| **7** | COHORT-05-GE | GE | 27 | Tuinhakselaar | **72.50** | Elektrische hakselaarverificatie |
-| **8** | COHORT-09-RT | RT | 13 | Zitmaaier | **76.50** | Benzine-zitmaaierverificatie |
-| **9** | COHORT-10-BT | BT | 10 | Grondboor | **75.50** | Benzine-boorapparaatverificatie |
-| **10** | COHORT-08-MT | MT | 21 | Zitmaaier (Viking) | **70.30** | Viking zitmaaierverificatie |
+| **1** | COHORT-01-RE | RE | 71 | PRESSURE_WASHER | **93.50** | Acquire context-bound official STIHL evidence for family RE |
+| **2** | COHORT-02-NOISE | CATALOG_NOISE | 54 | NON_MACHINE | **93.50** | Quarantine as unpowered accessories in dedicated accessory registry |
+| **3** | COHORT-03-MB | MB | 48 | LAWN_MOWER | **80.50** | Acquire context-bound official STIHL evidence for family MB |
+| **4** | COHORT-06-RM | RM | 25 | LAWN_MOWER | **78.70** | Acquire context-bound official STIHL evidence for family RM |
+| **5** | COHORT-04-0XX | NUMERIC_0XX | 31 | HISTORIC_CHAINSAW | **78.50** | Incorporate internal archive evidence for historic chainsaws (010-090) |
+| **6** | COHORT-07-RMA | RMA | 22 | CORDLESS_LAWN_MOWER | **78.50** | Acquire context-bound official STIHL evidence for family RMA |
+| **7** | COHORT-05-GE | GE | 27 | GARDEN_SHREDDER | **72.50** | Acquire context-bound official STIHL evidence for family GE |
+| **8** | COHORT-09-RT | RT | 13 | RIDEON_MOWER | **66.50** | Acquire context-bound official STIHL evidence for family RT |
+| **9** | COHORT-08-MT | MT | 21 | RIDEON_MOWER | **66.30** | Acquire context-bound official STIHL evidence for family MT |
+| **10** | COHORT-10-BT | BT | 10 | EARTH_AUGER | **65.50** | Acquire context-bound official STIHL evidence for family BT |
 
 ---
 

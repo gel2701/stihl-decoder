@@ -667,6 +667,10 @@ export function buildPhase56mDriveCoverageTriage({ write = true } = {}) {
   };
 
   // 14. Phase 56M Markdown Report
+  const rankingTableRows = cohortPriorityRanking.map(c =>
+    `| **${c.rank}** | ${c.cohort_id} | ${c.pattern_or_prefix} | ${c.unknown_model_count} | ${c.category} | **${c.priority_score.toFixed(2)}** | ${c.recommended_action} |`
+  ).join('\n');
+
   const reportMd = `# STIHLDECODER — PHASE 56M REMAINING DRIVE-TYPE COVERAGE TRIAGE REPORT
 
 **Status:** ${summaryArtifact.outcome_status}
@@ -721,16 +725,7 @@ $$\\text{priority\\_score} = (\\text{impact} \\times 0,40) + (\\text{evidence\\_
 
 | Rang | Cohort | Prefix / Patroon | Modellen | Categorie | Score | Aanbevolen Actie |
 | :---: | :--- | :--- | :---: | :--- | :---: | :--- |
-| **1** | COHORT-02-NOISE | CATALOG_NOISE | 54 | Accessoire | **93.50** | Quarantaine als niet-aangedreven toebehoren in accessoireregistry |
-| **2** | COHORT-01-RE | RE | 71 | Hogedrukreiniger | **93.50** | Officiële context-gebonden verificatie (netstroom 230V/400V) |
-| **3** | COHORT-06-RM | RM | 25 | Grasmaaier | **88.70** | Officiële context-gebonden verificatie (Benzine) |
-| **4** | COHORT-07-RMA | RMA | 22 | Accugrasmaaier | **87.50** | Officiële context-gebonden verificatie (Accu) |
-| **5** | COHORT-04-0XX | NUMERIC_0XX | 31 | Historische zaag | **78.50** | Insluiten van interne archief- en handleidingdata (Benzine) |
-| **6** | COHORT-03-MB | MB | 48 | Grasmaaier (Viking) | **80.50** | Viking/STIHL meertalige officiële catalogusverificatie |
-| **7** | COHORT-05-GE | GE | 27 | Tuinhakselaar | **72.50** | Elektrische hakselaarverificatie |
-| **8** | COHORT-09-RT | RT | 13 | Zitmaaier | **76.50** | Benzine-zitmaaierverificatie |
-| **9** | COHORT-10-BT | BT | 10 | Grondboor | **75.50** | Benzine-boorapparaatverificatie |
-| **10** | COHORT-08-MT | MT | 21 | Zitmaaier (Viking) | **70.30** | Viking zitmaaierverificatie |
+${rankingTableRows}
 
 ---
 
