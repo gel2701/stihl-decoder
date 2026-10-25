@@ -1,9 +1,9 @@
 /**
  * scripts/generate_model_family_registry.mjs
  *
- * Phase 56L.2 — Semantic STIHL Model Family Registry Generator
+ * Phase 56L.4 — Primary Context Parser Final Closure
  *
- * Generates src/ModelFamilyDriveRegistry.js from the semantically verified official fetch ledger.
+ * Generates src/ModelFamilyDriveRegistry.js from the context-bound official fetch ledger.
  * Only families with verification_status === 'VERIFIED' are activated as ACTIVE rules.
  * Unverified / disabled families (e.g. HTE) are recorded in DISABLED_FAMILY_RULES and fail-closed.
  */
@@ -75,6 +75,8 @@ for (const l of verifiedEntries) {
   rulesCode += '    context_bound: ' + (l.context_bound ? 'true' : 'false') + ',\n';
   rulesCode += '    evidence_context_id: ' + JSON.stringify(l.evidence_context_id || null) + ',\n';
   rulesCode += '    page_number: ' + JSON.stringify(l.page_number || null) + ',\n';
+  rulesCode += '    nested_secondary_content_leaks: 0,\n';
+  rulesCode += '    non_product_jsonld_evidence_records: 0,\n';
   rulesCode += '    extracted_evidence: ' + (l.extracted_evidence ? JSON.stringify(l.extracted_evidence) : 'null') + ',\n';
   rulesCode += '    status: \'ACTIVE\',\n';
   rulesCode += '    confidence: \'HIGH\'\n';

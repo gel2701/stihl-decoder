@@ -1,7 +1,7 @@
 /**
  * tests/phase56l_drive_type_family_resolution.test.js
  *
- * Phase 56L.2 — Semantic STIHL Family Evidence Verification Test Suite
+ * Phase 56L.4 — Primary Context Parser Final Closure Test Suite
  */
 
 import test from 'node:test';
@@ -455,7 +455,244 @@ test('Phase 56L.3: True PDF text extraction & page-level context binding fixture
   }
 });
 
-test('Phase 56L.3: Catalog & SEO Freeze Invariants', () => {
+test('Phase 56L.4: Nested secondary containers are recursively pruned from primary context without leaking', () => {
+  const mseTarget = {
+    family: 'MSE',
+    drive_type: 'MAINS_ELECTRIC',
+    family_tokens: ['MSE'],
+    representative_models: ['MSE 141', 'MSE 170', 'MSE 210'],
+    required_drive_terms: ['elektrisch', 'elektrische', 'electric', 'netstroom', '230v', '230 v'],
+    negative_patterns: []
+  };
+
+  // 1. Nested related-div contamination: target family is ONLY in a deeply nested div inside related-products
+  const nestedRelatedHtml = `
+    <!DOCTYPE html>
+    <html>
+      <head><title>STIHL MS 170 Benzine Kettingzaag</title></head>
+      <body>
+        <main>
+          <h1>STIHL MS 170</h1>
+          <p>Betrouwbare compacte benzine kettingzaag voor het zagen van brandhout.</p>
+          <div class="related-products">
+            <div class="slider-wrapper">
+              <div class="product-card">
+                <a href="/mse-210">
+                  <span>MSE 210 elektrische kettingzaag met 230 V netstroom</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </main>
+      </body>
+    </html>
+  `;
+
+  const extracted = extractPrimaryProductEvidence(nestedRelatedHtml);
+  // Ensure the nested text is in secondary_text, NOT primary_text
+  assert.ok(extracted.secondary_text.includes('MSE 210'), 'Nested related content must be in secondary_text');
+  assert.ok(extracted.secondary_text.includes('elektrische'), 'Nested related drive terms must be in secondary_text');
+  assert.strictEqual(extracted.primary_text.includes('MSE 210'), false, 'Nested related content must NOT leak into primary_text');
+  assert.strictEqual(extracted.primary_text.includes('elektrische'), false, 'Nested related terms must NOT leak into primary_text');
+
+  // When evaluated against MSE target, this page must NOT verify MSE
+  const evalResult = evaluateSemanticEvidence(mseTarget, {
+    http_status: 200,
+    content_type: 'text/html',
+    body_text: nestedRelatedHtml
+  });
+  assert.notStrictEqual(evalResult.verification_status, 'VERIFIED', 'Nested related product mention must not verify MSE');
+  assert.strictEqual(evalResult.context_bound, false, 'Must not be context-bound for target family');
+
+  // 2. Deeply nested recommendation contamination: section.recommendations > div > div > article
+  const nestedRecommendationHtml = `
+    <html>
+      <body>
+        <header><nav><a href="/">Home</a></nav></header>
+        <section class="main-content">
+          <h1>STIHL FSA 57 Accustrimmer</h1>
+        </section>
+        <section class="recommendations">
+          <div>
+            <div class="sub-block">
+              <article>
+                <h3>STIHL MSE 141 Elektrische Kettingzaag 230V</h3>
+              </article>
+            </div>
+          </div>
+        </section>
+      </body>
+    </html>
+  `;
+
+  const extractedRec = extractPrimaryProductEvidence(nestedRecommendationHtml);
+  assert.strictEqual(extractedRec.primary_text.includes('MSE 141'), false, 'Recommendations container must be cleanly stripped');
+  assert.ok(extractedRec.secondary_text.includes('MSE 141'), 'Recommendations must be placed in secondary_text');
+});
+
+test('Phase 56L.4: Strict Schema.org Product / ProductModel JSON-LD type validation', () => {
+  const mseTarget = {
+    family: 'MSE',
+    drive_type: 'MAINS_ELECTRIC',
+    family_tokens: ['MSE'],
+    representative_models: ['MSE 141', 'MSE 170', 'MSE 210'],
+    required_drive_terms: ['elektrisch', 'elektrische', 'electric', 'netstroom', '230v', '230 v'],
+    negative_patterns: []
+  };
+
+  // 1. WebSite schema rejection: @type: "WebSite"
+  const websiteHtml = `
+    <html>
+      <head>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "STIHL MSE Elektrische Kettingzagen Officiële Shop",
+          "url": "https://www.stihl.nl"
+        }
+        </script>
+      </head>
+      <body>
+        <h1>Over Onze Winkel</h1>
+        <p>Welkom bij de officiële STIHL dealer.</p>
+      </body>
+    </html>
+  `;
+  const websiteExtracted = extractPrimaryProductEvidence(websiteHtml);
+  assert.strictEqual(websiteExtracted.jsonld_product_name, null, 'WebSite @type must NOT be extracted as product name');
+
+  // 2. Organization, Brand, BreadcrumbList rejection
+  const nonProductHtml = `
+    <html>
+      <head>
+        <script type="application/ld+json">
+        [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "STIHL MSE Group"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Brand",
+            "name": "STIHL"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "MSE Elektrisch"
+              }
+            ]
+          }
+        ]
+        </script>
+      </head>
+      <body>
+        <p>Merkpagina</p>
+      </body>
+    </html>
+  `;
+  const nonProductExtracted = extractPrimaryProductEvidence(nonProductHtml);
+  assert.strictEqual(nonProductExtracted.jsonld_product_name, null, 'Non-Product schema types must NOT be extracted');
+
+  // 3. Valid @type: "Product" acceptance
+  const validProductHtml = `
+    <html>
+      <head>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "STIHL MSE 210 C-B Elektrische kettingzaag",
+          "description": "Krachtige elektrische kettingzaag met 230 V netaansluiting"
+        }
+        </script>
+      </head>
+      <body>
+        <h1>MSE 210 C-B</h1>
+      </body>
+    </html>
+  `;
+  const productExtracted = extractPrimaryProductEvidence(validProductHtml);
+  assert.strictEqual(productExtracted.jsonld_product_name, 'STIHL MSE 210 C-B Elektrische kettingzaag');
+
+  // 4. Valid @type: "ProductModel" acceptance
+  const validProductModelHtml = `
+    <html>
+      <head>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProductModel",
+          "name": "STIHL MSE 141 C-Q",
+          "description": "Lichte elektrische zaag 230V"
+        }
+        </script>
+      </head>
+      <body>
+        <h1>MSE 141 C-Q</h1>
+      </body>
+    </html>
+  `;
+  const modelExtracted = extractPrimaryProductEvidence(validProductModelHtml);
+  assert.strictEqual(modelExtracted.jsonld_product_name, 'STIHL MSE 141 C-Q');
+
+  // 5. Valid array @type: ["Thing", "Product"] acceptance
+  const arrayTypeHtml = `
+    <html>
+      <head>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["Thing", "Product"],
+          "name": "STIHL MSE 170 C-B",
+          "description": "Elektrische kettingzaag netstroom 230V"
+        }
+        </script>
+      </head>
+      <body>
+        <h1>MSE 170 C-B</h1>
+      </body>
+    </html>
+  `;
+  const arrayExtracted = extractPrimaryProductEvidence(arrayTypeHtml);
+  assert.strictEqual(arrayExtracted.jsonld_product_name, 'STIHL MSE 170 C-B');
+
+  // 6. Multi-block JSON-LD: WebSite block followed by Product block -> only Product extracted
+  const multiBlockHtml = `
+    <html>
+      <head>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "STIHL Portal"
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "STIHL MSE 190 C-B",
+          "description": "Elektrisch"
+        }
+        </script>
+      </head>
+      <body>
+        <h1>MSE 190</h1>
+      </body>
+    </html>
+  `;
+  const multiExtracted = extractPrimaryProductEvidence(multiBlockHtml);
+  assert.strictEqual(multiExtracted.jsonld_product_name, 'STIHL MSE 190 C-B');
+});
+
+test('Phase 56L.4: Catalog & SEO Freeze Invariants', () => {
   const db = new Database(path.join(DATA_DIR, 'stihl_database.db'), { readonly: true });
   const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
   const fitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
@@ -470,7 +707,7 @@ test('Phase 56L.3: Catalog & SEO Freeze Invariants', () => {
   assert.strictEqual(sectionContextsCount, 814, 'Section contexts count must be exactly 814');
 });
 
-test('Phase 56L.3: All 12 required artifacts exist and pass Phase 56L.3 hard gates', () => {
+test('Phase 56L.4: All 12 required artifacts exist and pass Phase 56L.4 hard gates', () => {
   const expectedArtifacts = [
     'MODEL_FAMILY_INVENTORY.json',
     'OFFICIAL_FAMILY_EVIDENCE.json',
@@ -506,6 +743,9 @@ test('Phase 56L.3: All 12 required artifacts exist and pass Phase 56L.3 hard gat
   assert.strictEqual(summary.hard_gates.PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS, 0);
   assert.strictEqual(summary.hard_gates.ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT, 0);
   assert.strictEqual(summary.hard_gates.CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED, true);
+  assert.strictEqual(summary.hard_gates.NESTED_SECONDARY_CONTENT_LEAKS, 0);
+  assert.strictEqual(summary.hard_gates.NON_PRODUCT_JSONLD_EVIDENCE_RECORDS, 0);
+  assert.strictEqual(summary.hard_gates.PRIMARY_CONTEXT_PARSER_VERIFIED, true);
 
   const provenanceIntegrity = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'FAMILY_PROVENANCE_INTEGRITY.json'), 'utf8'));
   assert.strictEqual(provenanceIntegrity.status, 'PASS');
@@ -519,4 +759,7 @@ test('Phase 56L.3: All 12 required artifacts exist and pass Phase 56L.3 hard gat
   assert.strictEqual(provenanceIntegrity.RAW_PDF_BYTE_VERIFICATION_RECORDS, 0);
   assert.strictEqual(provenanceIntegrity.PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS, 0);
   assert.strictEqual(provenanceIntegrity.ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT, 0);
+  assert.strictEqual(provenanceIntegrity.NESTED_SECONDARY_CONTENT_LEAKS, 0);
+  assert.strictEqual(provenanceIntegrity.NON_PRODUCT_JSONLD_EVIDENCE_RECORDS, 0);
+  assert.strictEqual(provenanceIntegrity.PRIMARY_CONTEXT_PARSER_VERIFIED, true);
 });
