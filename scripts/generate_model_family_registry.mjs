@@ -1,7 +1,11 @@
 /**
  * scripts/generate_model_family_registry.mjs
  *
- * Generates src/ModelFamilyDriveRegistry.js from the live official fetch ledger.
+ * Phase 56L.2 — Semantic STIHL Model Family Registry Generator
+ *
+ * Generates src/ModelFamilyDriveRegistry.js from the semantically verified official fetch ledger.
+ * Only families with verification_status === 'VERIFIED' are activated as ACTIVE rules.
+ * Unverified / disabled families (e.g. HTE) are recorded in DISABLED_FAMILY_RULES and fail-closed.
  */
 
 import fs from 'node:fs';
@@ -16,7 +20,11 @@ const REGISTRY_PATH = path.join(REPO_ROOT, 'src', 'ModelFamilyDriveRegistry.js')
 
 const ledger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
 
-const unverifiedPrefixes = [
+// Filter verified vs disabled rules
+const verifiedEntries = ledger.filter(l => l.verification_status === 'VERIFIED');
+const disabledEntries = ledger.filter(l => l.verification_status !== 'VERIFIED');
+
+const baseUnverifiedPrefixes = [
   'BRA', 'RM', 'RMA', 'RME', 'RMI',
   'MB', 'ME', 'MA', 'MI', 'RT', 'MT',
   'RE', 'REA', 'SE', 'SEA', 'KG', 'KGA',
@@ -31,36 +39,62 @@ const unverifiedPrefixes = [
   'MVC', 'RGA', 'RL'
 ];
 
+// Add disabled ledger families (e.g. HTE) to unverified prefixes
+const allUnverifiedPrefixes = Array.from(new Set([
+  ...disabledEntries.map(d => d.family),
+  ...baseUnverifiedPrefixes
+])).sort();
+
 let rulesCode = 'export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({\n';
-for (const l of ledger) {
+for (const l of verifiedEntries) {
   rulesCode += '  ' + l.family + ': Object.freeze({\n';
   rulesCode += '    family: ' + JSON.stringify(l.family) + ',\n';
   rulesCode += '    machine_type: ' + JSON.stringify(l.machine_type) + ',\n';
   rulesCode += '    drive_type: DRIVE_TYPES.' + l.drive_type + ',\n';
   rulesCode += '    display: DISPLAY_LABELS.' + l.drive_type + ',\n';
   rulesCode += '    source_type: \'OFFICIAL_STIHL_FAMILY_EVIDENCE\',\n';
+  rulesCode += '    fetch_id: ' + JSON.stringify(l.fetch_id) + ',\n';
   rulesCode += '    requested_url: ' + JSON.stringify(l.requested_url) + ',\n';
   rulesCode += '    source_url: ' + JSON.stringify(l.final_url) + ',\n';
-  rulesCode += '    source_title: ' + JSON.stringify(l.page_title) + ',\n';
+  rulesCode += '    source_title: ' + JSON.stringify(l.source_title || l.page_title) + ',\n';
   rulesCode += '    evidence_locator: ' + JSON.stringify(l.evidence_locator) + ',\n';
-  rulesCode += '    retrieval_started_at: ' + JSON.stringify(l.retrieval_started_at) + ',\n';
+  rulesCode += '    family_match: true,\n';
+  rulesCode += '    drive_match: true,\n';
+  rulesCode += '    matched_family_tokens: ' + JSON.stringify(l.matched_family_tokens || []) + ',\n';
+  rulesCode += '    matched_drive_terms: ' + JSON.stringify(l.matched_drive_terms || []) + ',\n';
+  rulesCode += '    matched_models: ' + JSON.stringify(l.matched_models || []) + ',\n';
+  rulesCode += '    retrieval_started_at: ' + JSON.stringify(l.fetch_started_at || l.retrieval_started_at) + ',\n';
   rulesCode += '    retrieved_at: ' + JSON.stringify(l.retrieved_at) + ',\n';
   rulesCode += '    body_sha256: ' + JSON.stringify(l.body_sha256) + ',\n';
   rulesCode += '    body_bytes: ' + l.body_bytes + ',\n';
-  rulesCode += '    status: ' + JSON.stringify(l.verification_status === 'VERIFIED' ? 'ACTIVE' : 'UNVERIFIED') + ',\n';
+  rulesCode += '    status: \'ACTIVE\',\n';
   rulesCode += '    confidence: \'HIGH\'\n';
   rulesCode += '  }),\n';
 }
-rulesCode += '});\n';
+rulesCode += '});\n\n';
+
+let disabledCode = 'export const DISABLED_FAMILY_RULES = Object.freeze({\n';
+for (const d of disabledEntries) {
+  disabledCode += '  ' + d.family + ': Object.freeze({\n';
+  disabledCode += '    family: ' + JSON.stringify(d.family) + ',\n';
+  disabledCode += '    machine_type: ' + JSON.stringify(d.machine_type) + ',\n';
+  disabledCode += '    intended_drive_type: DRIVE_TYPES.' + d.drive_type + ',\n';
+  disabledCode += '    status: \'DISABLED\',\n';
+  disabledCode += '    verification_status: ' + JSON.stringify(d.verification_status) + ',\n';
+  disabledCode += '    reason: ' + JSON.stringify(d.evidence_locator) + ',\n';
+  disabledCode += '    requested_url: ' + JSON.stringify(d.requested_url) + '\n';
+  disabledCode += '  }),\n';
+}
+disabledCode += '});\n';
 
 const fileContent = `/**
  * ModelFamilyDriveRegistry.js
  *
- * Phase 56L.1 — Drive Resolution Integrity & Attachment Safety Registry.
+ * Phase 56L.2 — Semantic STIHL Model Family Evidence Registry.
  *
  * Resolves STIHL machine drive types (PETROL, BATTERY, MAINS_ELECTRIC, UNKNOWN)
  * with strict attachment safety, canonical explicit evidence propagation,
- * and live-verified official STIHL family rules.
+ * and semantically verified official STIHL family rules.
  *
  * Invariants & Precedence:
  *   1. Attachment safety gate: Unpowered attachments (e.g. BG-KM, FS-KM, HL-KM, HT-KM, Tool Attachments)
@@ -69,9 +103,9 @@ const fileContent = `/**
  *      and prioritized as EXPLICIT_MODEL.
  *   3. Conflict quarantine: If explicit model evidence contradicts verified family rule, resolution is
  *      quarantined (CONFLICT_QUARANTINED) fail-closed.
- *   4. Verified family rule: Official STIHL family rule applied when explicit evidence is absent (FAMILY_RULE).
+ *   4. Semantically verified family rule: Official STIHL family rule applied when explicit evidence is absent (FAMILY_RULE).
  *   5. Longest-prefix-first token parsing: MSA before MS, FSA before FS, TSA before TS, etc.
- *   6. Fail-closed: Unrecognized prefixes or unverified families resolve to UNKNOWN ('Niet vastgesteld').
+ *   6. Fail-closed: Unrecognized prefixes or unverified/disabled families resolve to UNKNOWN ('Niet vastgesteld').
  *   7. No engine technology inference: Family rules resolve only drive type (PETROL, BATTERY, MAINS_ELECTRIC),
  *      never 2-stroke vs 4-MIX or engine capacity.
  *   8. Zero Node built-ins: 100% browser-safe ES module.
@@ -92,7 +126,8 @@ export const DISPLAY_LABELS = Object.freeze({
 });
 
 ${rulesCode}
-export const UNVERIFIED_FAMILY_PREFIXES = Object.freeze(${JSON.stringify(unverifiedPrefixes, null, 2)});
+${disabledCode}
+export const UNVERIFIED_FAMILY_PREFIXES = Object.freeze(${JSON.stringify(allUnverifiedPrefixes, null, 2)});
 
 const ALL_ACTIVE_PREFIXES_DESC = Object.freeze(
   Object.keys(OFFICIAL_STIHL_FAMILY_RULES).sort((a, b) => b.length - a.length)
@@ -233,7 +268,7 @@ export function getFamilyRule(modelInput) {
  *   2. Canonical explicit evidence extraction
  *   3. Conflict detection between explicit evidence and verified family rule (CONFLICT_QUARANTINED)
  *   4. Explicit model evidence (EXPLICIT_MODEL)
- *   5. Official verified STIHL family rule (FAMILY_RULE)
+ *   5. Official semantically verified STIHL family rule (FAMILY_RULE)
  *   6. Fail-closed UNKNOWN ('Niet vastgesteld')
  */
 export function resolveDriveType(modelInput) {
@@ -295,7 +330,7 @@ export function resolveDriveType(modelInput) {
     };
   }
 
-  // Precedence 5: Official verified STIHL family rule
+  // Precedence 5: Official semantically verified STIHL family rule
   if (rule && rule.status === 'ACTIVE') {
     return {
       drive_type: rule.drive_type,
@@ -355,6 +390,7 @@ export function getRegistryStats() {
     active_by_drive_type: activeByDrive,
     total_unverified_prefixes: UNVERIFIED_FAMILY_PREFIXES.length,
     active_families: Object.keys(OFFICIAL_STIHL_FAMILY_RULES),
+    disabled_families: Object.keys(DISABLED_FAMILY_RULES),
     unverified_families: [...UNVERIFIED_FAMILY_PREFIXES]
   };
 }
@@ -363,6 +399,7 @@ export const ModelFamilyDriveRegistry = Object.freeze({
   DRIVE_TYPES,
   DISPLAY_LABELS,
   OFFICIAL_STIHL_FAMILY_RULES,
+  DISABLED_FAMILY_RULES,
   UNVERIFIED_FAMILY_PREFIXES,
   isAttachmentDesignation,
   isPoweredModelDesignation,
@@ -376,3 +413,4 @@ export const ModelFamilyDriveRegistry = Object.freeze({
 
 fs.writeFileSync(REGISTRY_PATH, fileContent, 'utf8');
 console.log('Successfully generated', REGISTRY_PATH);
+console.log(`Active rules: ${verifiedEntries.length}, Disabled rules: ${disabledEntries.length}`);
