@@ -1,0 +1,942 @@
+{
+  "phase": "PHASE_56M",
+  "artifact": "FAMILY_RULE_CANDIDATES",
+  "timestamp": "2026-10-25T17:57:43.653Z",
+  "total_unverified_families": 68,
+  "families": [
+    {
+      "family": "RE",
+      "unknown_model_count": 71,
+      "sample_models": [
+        "RE 100",
+        "RE 100.0",
+        "RE 101",
+        "RE 102",
+        "RE 104"
+      ],
+      "machine_type": "PRESSURE_WASHER",
+      "suspected_drive_type": "MAINS_ELECTRIC",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MB",
+      "unknown_model_count": 48,
+      "sample_models": [
+        "MB 140",
+        "MB 2",
+        "MB 2.1",
+        "MB 2.2",
+        "MB 248.0"
+      ],
+      "machine_type": "LAWN_MOWER",
+      "suspected_drive_type": "PETROL",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GE",
+      "unknown_model_count": 27,
+      "sample_models": [
+        "GE 101",
+        "GE 103",
+        "GE 105",
+        "GE 105.1",
+        "GE 110"
+      ],
+      "machine_type": "GARDEN_SHREDDER",
+      "suspected_drive_type": "MAINS_ELECTRIC",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RM",
+      "unknown_model_count": 25,
+      "sample_models": [
+        "RM 2.0",
+        "RM 2.1",
+        "RM 2.2",
+        "RM 248.0",
+        "RM 248.1"
+      ],
+      "machine_type": "LAWN_MOWER",
+      "suspected_drive_type": "PETROL",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RMA",
+      "unknown_model_count": 22,
+      "sample_models": [
+        "RMA 2.0",
+        "RMA 2.1",
+        "RMA 2.2",
+        "RMA 239.1",
+        "RMA 243.3"
+      ],
+      "machine_type": "CORDLESS_LAWN_MOWER",
+      "suspected_drive_type": "BATTERY",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MT",
+      "unknown_model_count": 21,
+      "sample_models": [
+        "MT 4097.0",
+        "MT 4097.1",
+        "MT 4112.0",
+        "MT 4112.1",
+        "MT 5097.0"
+      ],
+      "machine_type": "RIDEON_MOWER",
+      "suspected_drive_type": "PETROL",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RT",
+      "unknown_model_count": 13,
+      "sample_models": [
+        "RT 4082.0",
+        "RT 4082.1",
+        "RT 4097.0",
+        "RT 4097.1",
+        "RT 4112.0"
+      ],
+      "machine_type": "RIDEON_MOWER",
+      "suspected_drive_type": "PETROL",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AP",
+      "unknown_model_count": 10,
+      "sample_models": [
+        "AP 100",
+        "AP 115",
+        "AP 120",
+        "AP 160",
+        "AP 180"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "BT",
+      "unknown_model_count": 10,
+      "sample_models": [
+        "BT 120",
+        "BT 121",
+        "BT 130",
+        "BT 131",
+        "BT 308"
+      ],
+      "machine_type": "EARTH_AUGER",
+      "suspected_drive_type": "PETROL",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "ME",
+      "unknown_model_count": 10,
+      "sample_models": [
+        "ME 235.0",
+        "ME 339.0",
+        "ME 340",
+        "ME 360",
+        "ME 400"
+      ],
+      "machine_type": "ELECTRIC_LAWN_MOWER",
+      "suspected_drive_type": "MAINS_ELECTRIC",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MH",
+      "unknown_model_count": 8,
+      "sample_models": [
+        "MH 445",
+        "MH 445.0",
+        "MH 445.1",
+        "MH 585.0",
+        "MH 600.1"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "SE",
+      "unknown_model_count": 8,
+      "sample_models": [
+        "SE 100",
+        "SE 200",
+        "SE 201",
+        "SE 202",
+        "SE 50"
+      ],
+      "machine_type": "WET_DRY_VACUUM",
+      "suspected_drive_type": "MAINS_ELECTRIC",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "HB",
+      "unknown_model_count": 7,
+      "sample_models": [
+        "HB 445.0",
+        "HB 445.1",
+        "HB 455.2",
+        "HB 585.0",
+        "HB 585.1"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "FC",
+      "unknown_model_count": 6,
+      "sample_models": [
+        "FC 100",
+        "FC 110",
+        "FC 44",
+        "FC 55",
+        "FC 72"
+      ],
+      "machine_type": "EDGER",
+      "suspected_drive_type": "PETROL",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MI",
+      "unknown_model_count": 6,
+      "sample_models": [
+        "MI 322.0",
+        "MI 422.0",
+        "MI 422.1",
+        "MI 555.0",
+        "MI 632.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RMI",
+      "unknown_model_count": 6,
+      "sample_models": [
+        "RMI 422.0",
+        "RMI 422.1",
+        "RMI 422.2",
+        "RMI 522.0",
+        "RMI 632.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "BC",
+      "unknown_model_count": 5,
+      "sample_models": [
+        "BC 20",
+        "BC 3",
+        "BC 30",
+        "BC 35",
+        "BC 40"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MA",
+      "unknown_model_count": 5,
+      "sample_models": [
+        "MA 339.0",
+        "MA 339.1",
+        "MA 400",
+        "MA 443.1",
+        "MA 450"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AR",
+      "unknown_model_count": 4,
+      "sample_models": [
+        "AR 1000",
+        "AR 2000",
+        "AR 3000",
+        "AR 900"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "FH",
+      "unknown_model_count": 4,
+      "sample_models": [
+        "FH 0",
+        "FH 135",
+        "FH 145",
+        "FH 75"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GH",
+      "unknown_model_count": 4,
+      "sample_models": [
+        "GH 370.0",
+        "GH 370.1",
+        "GH 460.0",
+        "GH 460.1"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GHE",
+      "unknown_model_count": 4,
+      "sample_models": [
+        "GHE 105.0",
+        "GHE 150.0",
+        "GHE 250.0",
+        "GHE 355.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "SG",
+      "unknown_model_count": 4,
+      "sample_models": [
+        "SG 17",
+        "SG 31",
+        "SG 51",
+        "SG 71"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "VH",
+      "unknown_model_count": 4,
+      "sample_models": [
+        "VH 400",
+        "VH 440",
+        "VH 500",
+        "VH 550"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "FE",
+      "unknown_model_count": 3,
+      "sample_models": [
+        "FE 35",
+        "FE 40",
+        "FE 55"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GTA",
+      "unknown_model_count": 3,
+      "sample_models": [
+        "GTA 26",
+        "GTA 40",
+        "GTA 40.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "KG",
+      "unknown_model_count": 3,
+      "sample_models": [
+        "KG 550",
+        "KG 770",
+        "KG 770.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RME",
+      "unknown_model_count": 3,
+      "sample_models": [
+        "RME 339.0",
+        "RME 443.0",
+        "RME 545.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "TE",
+      "unknown_model_count": 3,
+      "sample_models": [
+        "TE 1000",
+        "TE 600",
+        "TE 700"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AB",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "AB 4080",
+        "AB 4099"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "ASA",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "ASA 65",
+        "ASA 85"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "BE",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "BE 55",
+        "BE 600"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "BRA",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "BRA 500.0",
+        "BRA 600.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "FG",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "FG 2",
+        "FG 3"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "FW",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "FW",
+        "FW 20"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GA",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "GA 016401700",
+        "GA 017107020"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "HA",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "HA 010071000",
+        "HA 017907501"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "HEL",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "HEL 600",
+        "HEL 700"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "KGA",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "KGA 770",
+        "KGA 770.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "LB",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "LB 540",
+        "LB 540.1"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MM",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "MM 55",
+        "MM 56"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MVP",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "MVP 600.1",
+        "MVP 850.1"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "NG",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "NG 3",
+        "NG 6"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "P",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "P 835",
+        "P 840"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RB",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "RB 220",
+        "RB 400"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "REA",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "REA 100.0",
+        "REA 60.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "SP",
+      "unknown_model_count": 2,
+      "sample_models": [
+        "SP 481",
+        "SP 85"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AD",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "AD 4064"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AHK",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "AHK 110"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AL",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "AL 301"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "AZ",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "AZ 4000"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "BM",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "BM 500"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "CRANKCASE",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "Crankcase 00009888600 Sleeve Disc Cutter Parts TS400 TS410 TS420 MS361 / MS361C"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "EC",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "EC 70"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "ES",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "ES 40"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GEGARDEN",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "GEGarden"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "GS",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "GS 461"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "HTE",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "HTE 60"
+      ],
+      "machine_type": "POLE_PRUNER",
+      "suspected_drive_type": "MAINS_ELECTRIC",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "K",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "K 46"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "KW",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "KW 85"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "LA",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "LA 010071002"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "LE",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "LE 240.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "LSG",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "LSG 950"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MC",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "MC 200"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "MVC",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "MVC 600.1"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RGA",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "RGA 140"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "RL",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "RL 540.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    },
+    {
+      "family": "SEA",
+      "unknown_model_count": 1,
+      "sample_models": [
+        "SEA 100.0"
+      ],
+      "machine_type": "GENERAL_TOOL",
+      "suspected_drive_type": "UNKNOWN",
+      "official_evidence_found": false,
+      "evidence_quality": "UNAUDITED",
+      "safe_to_activate": false
+    }
+  ]
+}

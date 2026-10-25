@@ -1,0 +1,1067 @@
+{
+  "phase": "PHASE_56M",
+  "artifact": "PREFIX_FREQUENCY_ANALYSIS",
+  "timestamp": "2026-10-25T17:57:43.651Z",
+  "total_patterns_identified": 76,
+  "patterns": [
+    {
+      "pattern_or_prefix": "RE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 71,
+      "sample_models": [
+        "RE 100",
+        "RE 100.0",
+        "RE 101",
+        "RE 102",
+        "RE 104"
+      ],
+      "likely_machine_category": "PRESSURE_WASHER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/c/hogedrukreinigers-alleszuigers-veegmachines-hogedrukreinigers-98242",
+      "research_priority": "TIER_1_CRITICAL"
+    },
+    {
+      "pattern_or_prefix": "CATALOG_NOISE_ACCESSORIES",
+      "pattern_type": "NON_MACHINE",
+      "model_count": 54,
+      "sample_models": [
+        "BATTERY BELT Battery Belt",
+        "Blade for FS 111, FS 120",
+        "CARRYING SYSTEM CARRYING SYSTEM",
+        "DOUBLE BATTERY SLOT ADAPTER ADA 1000 DOUBLE BATTERY SLOT ADAPTER ADA 1000",
+        "Grey Plastic Sleeve/Insert for FS55, FS75, FS85"
+      ],
+      "likely_machine_category": "UNPOWERED_ACCESSORY",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "Parts catalog cross-reference",
+      "research_priority": "TIER_3_QUARANTINE"
+    },
+    {
+      "pattern_or_prefix": "MB",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 48,
+      "sample_models": [
+        "MB 140",
+        "MB 2",
+        "MB 2.1",
+        "MB 2.2",
+        "MB 248.0"
+      ],
+      "likely_machine_category": "LAWN_MOWER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/c/grasmaaiers-verticuteerders-zitmaaiers-98150",
+      "research_priority": "TIER_1_CRITICAL"
+    },
+    {
+      "pattern_or_prefix": "NUMERIC_HISTORIC_0XX",
+      "pattern_type": "NUMERIC_HISTORIC",
+      "model_count": 31,
+      "sample_models": [
+        "010",
+        "011",
+        "012",
+        "015",
+        "019"
+      ],
+      "likely_machine_category": "HISTORIC_CHAINSAW",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "Repository historical evidence archive",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "GE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 27,
+      "sample_models": [
+        "GE 101",
+        "GE 103",
+        "GE 105",
+        "GE 105.1",
+        "GE 110"
+      ],
+      "likely_machine_category": "GARDEN_SHREDDER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/c/tuinhakselaars-98235",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "RM",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 25,
+      "sample_models": [
+        "RM 2.0",
+        "RM 2.1",
+        "RM 2.2",
+        "RM 248.0",
+        "RM 248.1"
+      ],
+      "likely_machine_category": "LAWN_MOWER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/p/grasmaaiers-verticuteerders-zitmaaiers-benzinegrasmaaiers-rm-2-r-98156",
+      "research_priority": "TIER_1_CRITICAL"
+    },
+    {
+      "pattern_or_prefix": "RMA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 22,
+      "sample_models": [
+        "RMA 2.0",
+        "RMA 2.1",
+        "RMA 2.2",
+        "RMA 239.1",
+        "RMA 243.3"
+      ],
+      "likely_machine_category": "CORDLESS_LAWN_MOWER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/p/grasmaaiers-verticuteerders-zitmaaiers-accugrasmaaiers-rma-248-103328",
+      "research_priority": "TIER_1_CRITICAL"
+    },
+    {
+      "pattern_or_prefix": "MT",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 21,
+      "sample_models": [
+        "MT 4097.0",
+        "MT 4097.1",
+        "MT 4112.0",
+        "MT 4112.1",
+        "MT 5097.0"
+      ],
+      "likely_machine_category": "RIDEON_MOWER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/c/grasmaaiers-verticuteerders-zitmaaiers-zitmaaiers-98188",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "RT",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 13,
+      "sample_models": [
+        "RT 4082.0",
+        "RT 4082.1",
+        "RT 4097.0",
+        "RT 4097.1",
+        "RT 4112.0"
+      ],
+      "likely_machine_category": "RIDEON_MOWER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/c/grasmaaiers-verticuteerders-zitmaaiers-zitmaaiers-98188",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "HE_SERIES_HEDGETRIMMER",
+      "pattern_type": "UNINDEXED_PREFIX",
+      "model_count": 12,
+      "sample_models": [
+        "HE 400",
+        "HE 450",
+        "HE 500",
+        "HE 515",
+        "HE 550"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AP",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 10,
+      "sample_models": [
+        "AP 100",
+        "AP 115",
+        "AP 120",
+        "AP 160",
+        "AP 180"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "BT",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 10,
+      "sample_models": [
+        "BT 120",
+        "BT 121",
+        "BT 130",
+        "BT 131",
+        "BT 308"
+      ],
+      "likely_machine_category": "EARTH_AUGER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/p/grondboren-accessoires-grondboor-bt-131-74438",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "ME",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 10,
+      "sample_models": [
+        "ME 235.0",
+        "ME 339.0",
+        "ME 340",
+        "ME 360",
+        "ME 400"
+      ],
+      "likely_machine_category": "ELECTRIC_LAWN_MOWER",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/c/grasmaaiers-verticuteerders-zitmaaiers-elektrische-grasmaaiers-98175",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "E_SERIES_ELECTRIC",
+      "pattern_type": "AMBIGUOUS_PREFIX",
+      "model_count": 9,
+      "sample_models": [
+        "E 10",
+        "E 14",
+        "E 140",
+        "E 15",
+        "E 160"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MH",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 8,
+      "sample_models": [
+        "MH 445",
+        "MH 445.0",
+        "MH 445.1",
+        "MH 585.0",
+        "MH 600.1"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "SE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 8,
+      "sample_models": [
+        "SE 100",
+        "SE 200",
+        "SE 201",
+        "SE 202",
+        "SE 50"
+      ],
+      "likely_machine_category": "WET_DRY_VACUUM",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": "https://www.stihl.nl/nl/p/hogedrukreinigers-alleszuigers-veegmachines-alleszuigers-se-62-1065",
+      "research_priority": "TIER_2_HIGH"
+    },
+    {
+      "pattern_or_prefix": "HB",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 7,
+      "sample_models": [
+        "HB 445.0",
+        "HB 445.1",
+        "HB 455.2",
+        "HB 585.0",
+        "HB 585.1"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "IMOW_ROBOTIC_MOWER",
+      "pattern_type": "UNINDEXED_PREFIX",
+      "model_count": 7,
+      "sample_models": [
+        "IMOW 5.0",
+        "IMOW 6.0",
+        "IMOW 7.0",
+        "iMOW� 3.0",
+        "iMOW� 3.0 EVO"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "FC",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 6,
+      "sample_models": [
+        "FC 100",
+        "FC 110",
+        "FC 44",
+        "FC 55",
+        "FC 72"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GB_SERIES_SHREDDER",
+      "pattern_type": "UNINDEXED_PREFIX",
+      "model_count": 6,
+      "sample_models": [
+        "GB 350",
+        "GB 370",
+        "GB 370.1",
+        "GB 370.2",
+        "GB 460"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MI",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 6,
+      "sample_models": [
+        "MI 322.0",
+        "MI 422.0",
+        "MI 422.1",
+        "MI 555.0",
+        "MI 632.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "RMI",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 6,
+      "sample_models": [
+        "RMI 422.0",
+        "RMI 422.1",
+        "RMI 422.2",
+        "RMI 522.0",
+        "RMI 632.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "BC",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 5,
+      "sample_models": [
+        "BC 20",
+        "BC 3",
+        "BC 30",
+        "BC 35",
+        "BC 40"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 5,
+      "sample_models": [
+        "MA 339.0",
+        "MA 339.1",
+        "MA 400",
+        "MA 443.1",
+        "MA 450"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MR_SERIES_RIDEON",
+      "pattern_type": "UNINDEXED_PREFIX",
+      "model_count": 5,
+      "sample_models": [
+        "MR 345",
+        "MR 385",
+        "MR 4082.0",
+        "MR 4082.1",
+        "MR 4082.2"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AR",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 4,
+      "sample_models": [
+        "AR 1000",
+        "AR 2000",
+        "AR 3000",
+        "AR 900"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "FH",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 4,
+      "sample_models": [
+        "FH 0",
+        "FH 135",
+        "FH 145",
+        "FH 75"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GH",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 4,
+      "sample_models": [
+        "GH 370.0",
+        "GH 370.1",
+        "GH 460.0",
+        "GH 460.1"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GHE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 4,
+      "sample_models": [
+        "GHE 105.0",
+        "GHE 150.0",
+        "GHE 250.0",
+        "GHE 355.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "SG",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 4,
+      "sample_models": [
+        "SG 17",
+        "SG 31",
+        "SG 51",
+        "SG 71"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "VH",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 4,
+      "sample_models": [
+        "VH 400",
+        "VH 440",
+        "VH 500",
+        "VH 550"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "FE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 3,
+      "sample_models": [
+        "FE 35",
+        "FE 40",
+        "FE 55"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GTA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 3,
+      "sample_models": [
+        "GTA 26",
+        "GTA 40",
+        "GTA 40.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "KG",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 3,
+      "sample_models": [
+        "KG 550",
+        "KG 770",
+        "KG 770.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "RME",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 3,
+      "sample_models": [
+        "RME 339.0",
+        "RME 443.0",
+        "RME 545.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "TE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 3,
+      "sample_models": [
+        "TE 1000",
+        "TE 600",
+        "TE 700"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AB",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "AB 4080",
+        "AB 4099"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "ASA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "ASA 65",
+        "ASA 85"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "BE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "BE 55",
+        "BE 600"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "BRA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "BRA 500.0",
+        "BRA 600.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "FG",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "FG 2",
+        "FG 3"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "FW",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "FW",
+        "FW 20"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "GA 016401700",
+        "GA 017107020"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "HA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "HA 010071000",
+        "HA 017907501"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "HEL",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "HEL 600",
+        "HEL 700"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "KGA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "KGA 770",
+        "KGA 770.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "LB",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "LB 540",
+        "LB 540.1"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MM",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "MM 55",
+        "MM 56"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MVP",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "MVP 600.1",
+        "MVP 850.1"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "NG",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "NG 3",
+        "NG 6"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "P",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "P 835",
+        "P 840"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "RB",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "RB 220",
+        "RB 400"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "REA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "REA 100.0",
+        "REA 60.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MISC_UNGROUPED",
+      "pattern_type": "UNGROUPED",
+      "model_count": 2,
+      "sample_models": [
+        "SGA 85",
+        "T 3"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "SP",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 2,
+      "sample_models": [
+        "SP 481",
+        "SP 85"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AD",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "AD 4064"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AHK",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "AHK 110"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AL",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "AL 301"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "AZ",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "AZ 4000"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "BM",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "BM 500"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "CRANKCASE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "Crankcase 00009888600 Sleeve Disc Cutter Parts TS400 TS410 TS420 MS361 / MS361C"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "EC",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "EC 70"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "ES",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "ES 40"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GEGARDEN",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "GEGarden"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "GS",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "GS 461"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "HTE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "HTE 60"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "K",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "K 46"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "KW",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "KW 85"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "LA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "LA 010071002"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "LE",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "LE 240.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "LSG",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "LSG 950"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MC",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "MC 200"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "MVC",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "MVC 600.1"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "RGA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "RGA 140"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "RL",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "RL 540.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    },
+    {
+      "pattern_or_prefix": "SEA",
+      "pattern_type": "KNOWN_PREFIX",
+      "model_count": 1,
+      "sample_models": [
+        "SEA 100.0"
+      ],
+      "likely_machine_category": "SPECIALIZED_TOOL",
+      "existing_verified_family_rule": false,
+      "official_source_candidate": null,
+      "research_priority": "TIER_3_DEFERRED"
+    }
+  ]
+}
