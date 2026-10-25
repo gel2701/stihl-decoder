@@ -396,17 +396,27 @@ export async function extractPdfDocumentText(buffer) {
 }
 
 /**
+ * Normalizes a Schema.org type string by stripping leading IRI prefixes.
+ * E.g., "https://schema.org/Product" -> "Product", "http://schema.org/ProductModel" -> "ProductModel".
+ */
+export function normalizeSchemaType(typeStr) {
+  if (typeof typeStr !== 'string') return '';
+  return typeStr.trim().replace(/^https?:\/\/schema\.org\//i, '');
+}
+
+/**
  * Evaluates whether a JSON-LD @type indicates a valid Product schema entity.
- * Supports string "@type": "Product" and array "@type": ["Thing", "Product"].
+ * Supports string "@type": "Product", fully qualified IRIs like "https://schema.org/Product",
+ * "http://schema.org/ProductModel", and array types like ["Thing", "https://schema.org/Product"].
  * Rejects WebSite, Organization, Brand, BreadcrumbList, ItemList, FAQPage, Offer, etc.
  */
 export function isProductSchemaType(type) {
   if (!type) return false;
   if (Array.isArray(type)) {
-    return type.some(t => typeof t === 'string' && /^(Product|ProductModel)$/i.test(t.trim()));
+    return type.some(t => typeof t === 'string' && /^(Product|ProductModel)$/i.test(normalizeSchemaType(t)));
   }
   if (typeof type === 'string') {
-    return /^(Product|ProductModel)$/i.test(type.trim());
+    return /^(Product|ProductModel)$/i.test(normalizeSchemaType(type));
   }
   return false;
 }

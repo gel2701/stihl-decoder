@@ -1,0 +1,55 @@
+{
+  "phase": "PHASE_56M",
+  "baseline_commit": "9307174fb9ee2079b32b06c191b533f3c1eb3c6b",
+  "outcome_status": "PASS",
+  "timestamp": "2026-10-25T18:13:23.407Z",
+  "hard_gates": {
+    "UNKNOWN_POWERED_CANDIDATES_BASELINE": 530,
+    "UNKNOWN_SET_CONTAINS_ATTACHMENTS": 0,
+    "UNSAFE_DRIVE_PROMOTIONS": 0,
+    "DRIVE_CONFLICTS_INTRODUCED": 0,
+    "FABRICATED_PROVENANCE": 0,
+    "EXISTING_PHASE56L_REGRESSIONS": 0,
+    "CATALOG_FREEZE_INTACT": true,
+    "PROMOTED_WITHOUT_OFFICIAL_EVIDENCE": 0
+  },
+  "population_metrics": {
+    "total_catalog_entries": 956,
+    "unpowered_attachments": 25,
+    "powered_machine_candidates": 931,
+    "resolved_candidates": 401,
+    "unknown_candidates": 530,
+    "coverage_percentage": 43.07
+  },
+  "cause_breakdown": {
+    "HISTORIC_NUMERIC_MODEL": 31,
+    "KNOWN_PREFIX_NO_VERIFIED_RULE": 403,
+    "DISABLED_FAMILY_RULE": 1,
+    "UNKNOWN_OR_AMBIGUOUS_PREFIX": 10,
+    "NON_MACHINE_OR_CATALOG_NOISE": 54,
+    "EXPLICIT_DATA_PRESENT_BUT_UNMAPPED": 0,
+    "MANUAL_RESEARCH_REQUIRED": 31
+  },
+  "priority_ranking_top_cohort": {
+    "cohort_id": "COHORT-01-RE",
+    "pattern_or_prefix": "RE",
+    "unknown_model_count": 71,
+    "category": "PRESSURE_WASHER",
+    "impact_score": 100,
+    "evidence_availability_score": 90,
+    "confidence_score": 90,
+    "research_cost_score": 85,
+    "priority_score": 93.5,
+    "recommended_action": "Acquire context-bound official STIHL evidence for family RE",
+    "rank": 1
+  },
+  "routing": {
+    "nine_router_available": true,
+    "nine_router_used": false,
+    "nine_router_note": "Native direct execution used per instructions.",
+    "codex_used": false,
+    "codex_review_requested": false,
+    "automatic_external_review_triggered": true,
+    "automatic_external_review_note": "chatgpt-codex-connector webhook monitored passively."
+  }
+}
