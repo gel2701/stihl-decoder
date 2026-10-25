@@ -97,6 +97,12 @@ export function resolveMachineClassification({
   modelPrefix = null,
   seriesClassification = null
 } = {}) {
+  // Phase 56L.1: Attachment Safety Gate - Unpowered attachments have no power source
+  const candidate = exactModel || confirmedModel || resolvedModel || modelKey || probableModelSeries;
+  if (candidate && ModelFamilyDriveRegistry.isAttachmentDesignation(candidate)) {
+    return unknownClassification();
+  }
+
   const modelObj = exactModel || (identityStatus === 'USER_CONFIRMED_MODEL' ? confirmedModel : null);
   const exactBase = modelObj ? fromFuelType(modelObj) : null;
   const exactPrefix = getPrefix(modelObj?.model_name, resolvedModel, modelKey, modelPrefix);

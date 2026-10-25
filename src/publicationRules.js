@@ -106,12 +106,16 @@ export function getSerialLocationAnswer(categorySlug) {
 }
 
 export function getFuelTypeCode(model) {
-  const rawFuelType = typeof model?.fuel_type === 'string'
-    ? model.fuel_type.toUpperCase()
-    : (typeof model?.basic_classification?.fuel_type === 'string' ? model.basic_classification.fuel_type.toUpperCase() : null);
-  const powerSource = typeof model?.power_source === 'string'
-    ? model.power_source.toUpperCase()
-    : (typeof model?.basic_classification?.power_source === 'string' ? model.basic_classification.power_source.toUpperCase() : null);
+  const rawFuelType = typeof model?.explicit_fuel_type === 'string'
+    ? model.explicit_fuel_type.toUpperCase()
+    : (typeof model?.fuel_type === 'string'
+      ? model.fuel_type.toUpperCase()
+      : (typeof model?.basic_classification?.fuel_type === 'string' ? model.basic_classification.fuel_type.toUpperCase() : null));
+  const powerSource = typeof model?.explicit_power_source === 'string'
+    ? model.explicit_power_source.toUpperCase()
+    : (typeof model?.power_source === 'string'
+      ? model.power_source.toUpperCase()
+      : (typeof model?.basic_classification?.power_source === 'string' ? model.basic_classification.power_source.toUpperCase() : null));
 
   if (powerSource === 'BATTERY' || (rawFuelType && rawFuelType.startsWith('BATTERY'))) {
     return 'BATTERY';

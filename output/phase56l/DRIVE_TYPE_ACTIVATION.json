@@ -1,29 +1,29 @@
 {
-  "phase": "PHASE_56L",
+  "phase": "PHASE_56L.1",
   "artifact": "DRIVE_TYPE_ACTIVATION",
-  "timestamp": "2026-10-25T00:17:19.698Z",
+  "timestamp": "2026-10-25T13:59:09.568Z",
   "activation_status": "ACTIVE",
-  "total_activated_models": 298,
+  "total_activated_models": 292,
   "activated_by_drive_type": {
-    "PETROL": 200,
+    "PETROL": 194,
     "BATTERY": 80,
     "MAINS_ELECTRIC": 18
   },
   "activated_by_family": {
-    "BG": 9,
+    "BG": 8,
     "BGA": 14,
     "BR": 9,
     "FR": 11,
-    "FS": 68,
+    "FS": 66,
     "FSA": 15,
     "FSE": 2,
-    "HL": 9,
+    "HL": 8,
     "HLA": 4,
     "HLE": 1,
     "HS": 18,
     "HSA": 14,
     "HSE": 6,
-    "HT": 12,
+    "HT": 10,
     "HTA": 8,
     "HTE": 1,
     "KM": 9,
@@ -90,13 +90,6 @@
     },
     {
       "model_name": "BG 85",
-      "family": "BG",
-      "drive_type": "PETROL",
-      "display": "Benzine",
-      "resolution": "FAMILY_RULE"
-    },
-    {
-      "model_name": "BG-KM",
       "family": "BG",
       "drive_type": "PETROL",
       "display": "Benzine",
@@ -209,6 +202,13 @@
     },
     {
       "model_name": "BR 320",
+      "family": "BR",
+      "drive_type": "PETROL",
+      "display": "Benzine",
+      "resolution": "FAMILY_RULE"
+    },
+    {
+      "model_name": "BR 340",
       "family": "BR",
       "drive_type": "PETROL",
       "display": "Benzine",
