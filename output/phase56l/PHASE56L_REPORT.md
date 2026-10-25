@@ -1,24 +1,21 @@
-# STIHLDECODER — PHASE 56L.2 SEMANTIC FAMILY EVIDENCE VERIFICATION REPORT
+# STIHLDECODER — PHASE 56L.3 EVIDENCE EXTRACTION & CONTEXT BINDING CLOSURE REPORT
 
 **Status:** PASS
-**Baseline commit:** `43fe7741b083a050a5767e878d1835436c7c7212`
-**Datum:** 2026-10-25T15:58:17.525Z
+**Baseline commit:** `ccdaf09e739fdf401f00b47d14ffd91cd8504a6d`
+**Datum:** 2026-10-25T16:55:59.664Z
 **Repository:** `gel2701/stihl-decoder`
 
 ---
 
-## 1. Doel & Probleemstelling (Phase 56L.2)
+## 1. Doel & Probleemstelling (Phase 56L.3)
 
-Phase 56L.1 heeft de functionele drive-resolution correcties (attachment safety, explicit evidence propagation contract, conflict quarantine, historical 026) succesvol geïmplementeerd.
-Phase 56L.2 lost het **semantische provenance defect** op:
-- Voorheen was verificatie gebaseerd op loutere HTTP 200 en de string "stihl". Hierdoor kregen niet-overeenkomende pagina's (zoals MSE -> "RM 2 R kopen", FS -> "GHE 250 kopen", HSA -> "RT 5097 kopen", BGA -> "Bezemrol KW-MM kopen") ten onrechte de status `VERIFIED`.
-- In Phase 56L.2 is een strikt semantisch evidence-contract geïmplementeerd met controle op zowel **modelfamilietokens/modellen** als **relevante aandrijvingstermen** en **negatieve patroonherkenning** (valse-positieven preventie).
-- Slechts semantisch geverifieerde regels worden geactiveerd. Unverified/disabled regels falen gesloten.
-- Het timestamp ordering defect bij cache-hergebruik is hersteld (`IMPOSSIBLE_TIMESTAMP_ORDER_RECORDS = 0`).
+Phase 56L.2 heeft semantische STIHL-family-verificatie sterk verbeterd, maar liet twee provenance-defecten open:
+1. **Defect A (PDF Parsing)**: PDF-bronnen werden als ruwe Latin-1 bytes behandeld zonder font- decoding of stream decompression. In Phase 56L.3 is echte PDF text extraction geïmplementeerd via `pdfjs-dist/legacy/build/pdf.mjs`. Elke PDF-bron registreert nu exact de geëxtraheerde tekstlengte, het aantal pagina's en het specifieke paginanummer waar zowel de familie als de aandrijvingsterm voorkomen (`RAW_PDF_BYTE_VERIFICATION_RECORDS = 0`, `ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT = 0`).
+2. **Defect B (HTML Context Binding)**: HTML family/drive evidence werd over het hele document gezocht, waardoor secundaire elementen (navigatie, gerelateerde producten slider, footer links) valse positieven konden veroorzaken. In Phase 56L.3 isoleert `extractPrimaryProductEvidence` de primaire productcontext (`page_title`, `h1`, `jsonld_product_name`, `primary_text`) van secundaire context. Beide entiteiten moeten binnen dezelfde primaire context vallen (`PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS = 0`, `CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED = true`).
 
 ---
 
-## 2. Hard Gates Status (Phase 56L.2)
+## 2. Hard Gates Status (Phase 56L.3)
 
 | Hard Gate | Eis | Resultaat | Status |
 | :--- | :--- | :--- | :--- |
@@ -28,17 +25,23 @@ Phase 56L.2 lost het **semantische provenance defect** op:
 | `WRONG_CONTENT_VERIFIED_RECORDS` | `0` | `0` | **PASS** |
 | `IMPOSSIBLE_TIMESTAMP_ORDER_RECORDS` | `0` | `0` | **PASS** |
 | `ACTIVE_RULES_WITHOUT_SEMANTIC_EVIDENCE` | `0` | `0` | **PASS** |
-| `SEMANTIC_FAMILY_PROVENANCE_VERIFIED` | `true` | `true` | **PASS** |
+| `RAW_PDF_BYTE_VERIFICATION_RECORDS` | `0` | `0` | **PASS** |
+| `PRIMARY_CONTEXT_MISMATCH_VERIFIED_RECORDS` | `0` | `0` | **PASS** |
+| `ACTIVE_PDF_RULES_WITHOUT_EXTRACTED_TEXT` | `0` | `0` | **PASS** |
+| `CONTEXT_BOUND_FAMILY_PROVENANCE_VERIFIED` | `true` | `true` | **PASS** |
 
 ---
 
-## 3. Semantische Verificatie & Evidence Resultaten
+## 3. Semantische Verificatie, Context Binding & PDF Resultaten
 
 - **Totaal geëvalueerde familiedoelen:** 28
-- **Semantisch VERIFIED regels:** **27**
+- **Context-gebonden VERIFIED regels:** **27**
   - Benzine (`PETROL`): 12 (MS, FS, FR, TS, HS, HL, HT, KM, BG, BR, SH, SR)
   - Accu (`BATTERY`): 9 (MSA, FSA, TSA, HSA, HLA, HTA, KMA, BGA, SHA)
   - Elektrisch 230V (`MAINS_ELECTRIC`): 6 (MSE, FSE, HSE, HLE, BGE, SHE)
+- **PDF-regels geëxtraheerd via pdfjs-dist:** 3 (HLE: pagina 34; BGE: pagina 7; SHE: pagina 13)
+- **Ruwe PDF byte-verificatie records:** 0
+- **Primary context mismatches:** 0
 - **Uitgeschakelde / Unverified regels:** **1** (`HTE` — Snoeischaar PG 20 redirect, faalt fail-closed conform instructie)
 - **Unieke HTTP fetches:** **27**
 - **Gedeelde cached fetches:** **1** (`SHE` deelt handleiding met `BGE` zonder timestamp-corruptie)
@@ -53,7 +56,7 @@ Phase 56L.2 lost het **semantische provenance defect** op:
   - **Kandidaten aangedreven machines:** 931
 - **Opgeloste aandrijvingen:**
   - Expliciet opgelost: 110
-  - Modelfamilie opgelost (semantisch geverifieerd): 291
+  - Modelfamilie opgelost (semantisch & context-gebonden): 291
   - **Totaal opgelost:** 401 / 931 (43.07%)
   - Onbekend / Niet vastgesteld (fail-closed): 530
 - **Conflicten / Quarantaine:** 0

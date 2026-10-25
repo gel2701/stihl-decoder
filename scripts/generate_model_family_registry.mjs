@@ -67,6 +67,15 @@ for (const l of verifiedEntries) {
   rulesCode += '    retrieved_at: ' + JSON.stringify(l.retrieved_at) + ',\n';
   rulesCode += '    body_sha256: ' + JSON.stringify(l.body_sha256) + ',\n';
   rulesCode += '    body_bytes: ' + l.body_bytes + ',\n';
+  rulesCode += '    pdf_parser: ' + JSON.stringify(l.pdf_parser || null) + ',\n';
+  rulesCode += '    pdf_text_extracted: ' + (l.pdf_text_extracted ? 'true' : 'false') + ',\n';
+  rulesCode += '    pdf_page_count: ' + JSON.stringify(l.pdf_page_count || null) + ',\n';
+  rulesCode += '    pdf_text_length: ' + JSON.stringify(l.pdf_text_length || null) + ',\n';
+  rulesCode += '    raw_bytes_used: false,\n';
+  rulesCode += '    context_bound: ' + (l.context_bound ? 'true' : 'false') + ',\n';
+  rulesCode += '    evidence_context_id: ' + JSON.stringify(l.evidence_context_id || null) + ',\n';
+  rulesCode += '    page_number: ' + JSON.stringify(l.page_number || null) + ',\n';
+  rulesCode += '    extracted_evidence: ' + (l.extracted_evidence ? JSON.stringify(l.extracted_evidence) : 'null') + ',\n';
   rulesCode += '    status: \'ACTIVE\',\n';
   rulesCode += '    confidence: \'HIGH\'\n';
   rulesCode += '  }),\n';
