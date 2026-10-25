@@ -1,8 +1,8 @@
 {
-  "phase": "PHASE_56N",
+  "phase": "PHASE_56N.1",
   "artifact": "NON_MACHINE_ACCESSORIES",
-  "timestamp": "2026-10-25T18:36:34.189Z",
-  "count": 49,
+  "timestamp": "2026-10-25T19:38:46.122Z",
+  "count": 47,
   "records": [
     {
       "model_name": "BATTERY BELT Battery Belt",
@@ -50,22 +50,6 @@
       "resolved_drive_type": "UNKNOWN",
       "resolution_method": "NON_MACHINE_ACCESSORY",
       "source_model_description": "Stihl DOUBLE BATTERY SLOT ADAPTER ADA 1000 DOUBLE BATTERY SLOT ADAPTER ADA 1000 Spare Parts",
-      "recommended_action": "Quarantine from machine denominator; maintain parts fitments strictly for accessory components"
-    },
-    {
-      "model_name": "HOS Sharpeners",
-      "normalized_name": "HOS SHARPENERS",
-      "source": "parts_model_variants",
-      "machine_eligibility": "NON_MACHINE_ACCESSORY",
-      "category_type": "SHARPENING_TOOL",
-      "confidence": "HIGH",
-      "reason_flagged": "Manual sharpening stone accessory for hedge trimmer blades",
-      "evidence": "Manual sharpening stone accessory for hedge trimmer blades",
-      "public_model_page_exists": false,
-      "in_sitemap": false,
-      "resolved_drive_type": "UNKNOWN",
-      "resolution_method": "NON_MACHINE_ACCESSORY",
-      "source_model_description": "Stihl HOS Sharpeners Spare Parts",
       "recommended_action": "Quarantine from machine denominator; maintain parts fitments strictly for accessory components"
     },
     {
@@ -770,22 +754,6 @@
       "resolved_drive_type": "UNKNOWN",
       "resolution_method": "NON_MACHINE_ACCESSORY",
       "source_model_description": "Stihl TELESCOPIC SHAFT 456 CM Hand Tool Spare Parts",
-      "recommended_action": "Quarantine from machine denominator; maintain parts fitments strictly for accessory components"
-    },
-    {
-      "model_name": "USG Sharpeners",
-      "normalized_name": "USG SHARPENERS",
-      "source": "parts_model_variants",
-      "machine_eligibility": "NON_MACHINE_ACCESSORY",
-      "category_type": "WORKSHOP_EQUIPMENT",
-      "confidence": "HIGH",
-      "reason_flagged": "Universal sharpening apparatus (USG) workshop accessory/attachment catalog record",
-      "evidence": "Universal sharpening apparatus (USG) workshop accessory/attachment catalog record",
-      "public_model_page_exists": false,
-      "in_sitemap": false,
-      "resolved_drive_type": "UNKNOWN",
-      "resolution_method": "NON_MACHINE_ACCESSORY",
-      "source_model_description": "Stihl USG Sharpeners Spare Parts",
       "recommended_action": "Quarantine from machine denominator; maintain parts fitments strictly for accessory components"
     }
   ]

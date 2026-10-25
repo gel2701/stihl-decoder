@@ -123,7 +123,7 @@ export function buildPhase56mDriveCoverageTriage({ write = true } = {}) {
 
   for (const m of allModels) {
     const isAttachment = isAttachmentDesignation(m);
-    const res = resolveDriveType(m);
+    const res = resolveDriveType(m, { exactModels: false });
     const family = parseModelFamily(m);
 
     if (isAttachment) {

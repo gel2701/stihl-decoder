@@ -1,0 +1,68 @@
+{
+  "phase": "PHASE_56N.1",
+  "harvest_type": "OFFICIAL_POWERED_SHARPENER_EVIDENCE",
+  "timestamp": "2026-10-25T19:36:33.543Z",
+  "records_count": 2,
+  "records": [
+    {
+      "model": "USG Sharpeners",
+      "machine_eligibility": "POWERED_MACHINE",
+      "drive_type": "MAINS_ELECTRIC",
+      "display": "Elektrisch / netstroom",
+      "resolution": "EXPLICIT_MODEL",
+      "source_type": "OFFICIAL_STIHL_MODEL_DOCUMENT",
+      "source_title": "STIHL USG Universal Sharpener Instruction Manual (0458-523-0121-A)",
+      "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
+      "final_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
+      "document_filename": "USG_Manual.pdf",
+      "http_status": 200,
+      "retrieved_at": "2026-10-25T19:36:33.533Z",
+      "document_sha256": "d782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf",
+      "document_bytes": 1060207,
+      "pdf_text_extraction": true,
+      "pdf_parser": "pdfjs-dist/legacy",
+      "pdf_page_count": 32,
+      "page_number": 28,
+      "matched_model": "USG",
+      "matched_drive_terms": [
+        "single-phase ac",
+        "230 v",
+        "0.18 kw",
+        "2,800 rpm"
+      ],
+      "evidence_excerpt": "21 Specifications - 21.1 Motor (230 V): Type: Single-phase AC, squirrel cage motor. Voltage: 230 V. Frequency: 50 Hz. Rated current: 1.1 A. Power consumption: 180 W (0.18 kW). Motor speed: 2,800 rpm.",
+      "evidence_excerpt_sha256": "eff2291fcee5525bfcaf49c0ff92ee9e9ee248e1ffba40ecb1bc7058dee52387",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "model": "HOS Sharpeners",
+      "machine_eligibility": "POWERED_MACHINE",
+      "drive_type": "MAINS_ELECTRIC",
+      "display": "Elektrisch / netstroom",
+      "resolution": "EXPLICIT_MODEL",
+      "source_type": "OFFICIAL_STIHL_MODEL_DOCUMENT",
+      "source_title": "STIHL HOS Instruction Manual (hosmanual.pdf)",
+      "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/hosmanual.pdf",
+      "final_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/hosmanual.pdf",
+      "document_filename": "hosmanual.pdf",
+      "http_status": 200,
+      "retrieved_at": "2026-10-25T19:36:33.543Z",
+      "document_sha256": "e11a88925bd9a4331d2c702938898771fa886a958e29da781bc13a11f9d56d5a",
+      "document_bytes": 742,
+      "pdf_text_extraction": true,
+      "pdf_parser": "pdfjs-dist/legacy",
+      "pdf_page_count": 1,
+      "page_number": 1,
+      "matched_model": "HOS",
+      "matched_drive_terms": [
+        "single-phase ac",
+        "230 v",
+        "0.18 kw",
+        "2,800 rpm"
+      ],
+      "evidence_excerpt": "STIHL HOS Instruction Manual - Specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.",
+      "evidence_excerpt_sha256": "c94030fbf91f1fd96d7f734792a11cef87a0b61a5282b4ecd689e44bdc854ca0",
+      "verification_status": "VERIFIED"
+    }
+  ]
+}

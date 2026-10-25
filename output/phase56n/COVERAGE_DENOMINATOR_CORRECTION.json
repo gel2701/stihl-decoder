@@ -1,15 +1,19 @@
 {
-  "phase": "PHASE_56N",
-  "correction_type": "DENOMINATOR_CORRECTION",
-  "drive_resolutions_added": 0,
-  "drive_types_changed": 0,
-  "non_machine_records_removed_from_denominator": 54,
+  "phase": "PHASE_56N.1",
+  "correction_type": "DENOMINATOR_CORRECTION_AND_SHARPENER_RESTORATION",
+  "drive_resolutions_added": 2,
+  "drive_types_changed": 2,
+  "non_machine_records_removed_from_denominator": 52,
+  "powered_sharpeners_restored_to_denominator": 2,
+  "new_exact_drive_resolutions": 2,
   "powered_candidates_before": 931,
-  "powered_candidates_after": 877,
+  "powered_candidates_after": 879,
   "unknown_powered_before": 530,
   "unknown_powered_after": 476,
+  "resolved_powered_before": 401,
+  "resolved_powered_after": 403,
   "coverage_before_percentage": 43.07,
-  "coverage_after_percentage": 45.72,
-  "coverage_delta_percentage": 2.65,
-  "note": "The 2.65% coverage increase is entirely due to purifying the denominator by removing 54 non-machine accessories and replacement parts. Exactly ZERO drive-type resolutions or mutations were performed in Phase 56N."
+  "coverage_after_percentage": 45.85,
+  "coverage_delta_percentage": 2.78,
+  "note": "Denominator corrected by removing 52 confirmed non-machine records (47 accessories and 5 replacement parts) and restoring 2 official electric sharpeners (HOS, USG) with exact EXPLICIT_MODEL drive resolution."
 }

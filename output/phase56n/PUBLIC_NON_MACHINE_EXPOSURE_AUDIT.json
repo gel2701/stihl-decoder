@@ -1,11 +1,11 @@
 {
-  "phase": "PHASE_56N",
+  "phase": "PHASE_56N.1",
   "total_noise_records_audited": 54,
   "non_machine_entries_with_model_page": 0,
   "non_machine_entries_in_search": 0,
   "non_machine_entries_in_jsonld": 0,
   "non_machine_entries_in_sitemap": 0,
-  "exposure_summary": "All 54 catalog noise records are exclusively parts-diagram nodes. Zero records possess public standalone model pages, zero records appear in sitemap.xml, and zero records produce machine JSON-LD entities.",
+  "exposure_summary": "All catalog noise records and sharpener nodes are exclusively parts-diagram nodes. Zero records possess public standalone model pages, zero records appear in sitemap.xml, and zero records produce machine JSON-LD entities.",
   "records": [
     {
       "model_name": "BATTERY BELT Battery Belt",
@@ -39,7 +39,7 @@
     },
     {
       "model_name": "HOS Sharpeners",
-      "category": "NON_MACHINE_ACCESSORY",
+      "category": "POWERED_MACHINE",
       "public_model_page_exists": false,
       "in_sitemap": false
     },
@@ -327,7 +327,7 @@
     },
     {
       "model_name": "USG Sharpeners",
-      "category": "NON_MACHINE_ACCESSORY",
+      "category": "POWERED_MACHINE",
       "public_model_page_exists": false,
       "in_sitemap": false
     }
