@@ -1181,8 +1181,8 @@ export const EXACT_POWERED_MODELS = Object.freeze({
     source_type: 'OFFICIAL_STIHL_MODEL_DOCUMENT',
     confidence: 'HIGH',
     evidence_document: 'hosmanual.pdf',
-    evidence_excerpt: 'Specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.',
-    notes: 'Official STIHL HOS instruction manual specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.'
+    evidence_excerpt: 'Type:   Single-phase AC, squirrel-cage motor Operating voltage:   230 V Frequency:   50 Hz Rated current:   1.3 A Power rating:   0.18 kW Motor speed:   2,800 RPM Type of protection: IP 54 (DIN 40050)',
+    notes: 'Official STIHL HOS instruction manual (0458-522-0121) specifications: single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM.'
   }),
   'USG Sharpeners': Object.freeze({
     model_name: 'USG Sharpeners',
@@ -1192,8 +1192,8 @@ export const EXACT_POWERED_MODELS = Object.freeze({
     source_type: 'OFFICIAL_STIHL_MODEL_DOCUMENT',
     confidence: 'HIGH',
     evidence_document: 'USG_Manual.pdf',
-    evidence_excerpt: 'Specifications: single-phase AC motor, operating voltage 230 V, rated current 1.3 A, power rating 0.18 kW, motor speed 2,800 RPM.',
-    notes: 'Official STIHL USG instruction manual specifications: single-phase AC motor, operating voltage 230 V, rated current 1.3 A, power rating 0.18 kW, motor speed 2,800 RPM.'
+    evidence_excerpt: '21   Specifications  21.1   Motor (230 V)  Type:   Single-phase AC, squir‐ rel cage motor Voltage:   230 V Frequency:   50 Hz Rated current:   1.1 A Power consumption:   180 W Motor speed:   2,800 rpm Weight   8.8 kg Type of protection   I',
+    notes: 'Official STIHL USG instruction manual (0458-523-0121-A) specifications: single-phase AC motor, operating voltage 230 V, rated current 1.1 A, power consumption 180 W, motor speed 2,800 rpm.'
   })
 });
 

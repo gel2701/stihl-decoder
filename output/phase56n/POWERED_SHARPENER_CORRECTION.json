@@ -1,7 +1,7 @@
 {
-  "phase": "PHASE_56N.1",
+  "phase": "PHASE_56N.2",
   "artifact": "POWERED_SHARPENER_CORRECTION",
-  "timestamp": "2026-10-25T19:38:46.114Z",
+  "timestamp": "2026-10-25T20:54:47.928Z",
   "status": "PASS",
   "records_checked": 2,
   "records_restored_to_powered": 2,
@@ -14,9 +14,13 @@
       "display": "Elektrisch / netstroom",
       "resolution": "EXPLICIT_MODEL",
       "official_evidence_verified": true,
-      "source_title": "STIHL HOS Instruction Manual (hosmanual.pdf)",
-      "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/hosmanual.pdf",
+      "source_title": "STIHL HOS Instruction Manual (0458-522-0121)",
+      "requested_url": "https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf",
+      "source_url": "https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf",
+      "final_url": "https://cdnassets.stihlusa.com/1625859444-hosmanual.pdf",
       "document_filename": "hosmanual.pdf",
+      "document_sha256": "e4488c2687e47486071dea11771ac50c584b26b1393664f9ea18cda62cc5de83",
+      "content_origin": "HTTP_FETCH",
       "specifications": "single-phase AC motor, operating voltage 230 V, power rating 0.18 kW, motor speed 2,800 RPM"
     },
     {
@@ -28,9 +32,13 @@
       "resolution": "EXPLICIT_MODEL",
       "official_evidence_verified": true,
       "source_title": "STIHL USG Universal Sharpener Instruction Manual (0458-523-0121-A)",
+      "requested_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
       "source_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
+      "final_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL/ZBA/ZBA/0458-523-0121-A_ZBA_01_01.pdf",
       "document_filename": "USG_Manual.pdf",
-      "specifications": "single-phase AC motor, operating voltage 230 V, rated current 1.3 A, power rating 0.18 kW, motor speed 2,800 RPM"
+      "document_sha256": "d782f571b2f09f249536bd3288608ab469b5dbd336ca6813cb5aa5a50e86d3bf",
+      "content_origin": "HTTP_FETCH",
+      "specifications": "single-phase AC motor, operating voltage 230 V, rated current 1.1 A, power consumption 180 W, motor speed 2,800 rpm"
     }
   ]
 }
