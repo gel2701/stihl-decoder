@@ -897,3 +897,55 @@ test('Phase 52A-R7 - Test 41: Data Minimization - Zero Full External HTML Fixtur
     }
   }
 });
+
+// -------------------------------------------------------------
+// Test 42: Service Kit 45 Source Repair and Source-Rot Verification (Phase 56N.4)
+// -------------------------------------------------------------
+test('Phase 52A - Test 42: Service Kit 45 Source Repair and Source-Rot Verification', async () => {
+  const validatorModule = await import('../scripts/validate_official_parts_evidence.mjs');
+  const { HASH_STATUS, validateOfficialEvidenceFile } = validatorModule;
+
+  const evidencePath = path.join(rootDir, 'data', 'verified_official_parts_evidence.json');
+  const records = JSON.parse(fs.readFileSync(evidencePath, 'utf8'));
+
+  const sk45 = records.find(r => r.part_number === '11300074103');
+  assert.ok(sk45, 'Service Kit 45 record must exist in verified evidence');
+
+  // Assert historical retired source recorded truthfully
+  assert.strictEqual(sk45.previous_source_url, 'https://www.stihl.nl/nl/ap/service-kit-45-140895');
+  assert.strictEqual(sk45.previous_source_status, 'RETIRED_404');
+  const RETIRED_SOURCE_404_HANDLED_TRUTHFULLY = Boolean(sk45.previous_source_url && sk45.previous_source_status === 'RETIRED_404');
+  assert.strictEqual(RETIRED_SOURCE_404_HANDLED_TRUTHFULLY, true);
+
+  // Assert replacement official source verified
+  assert.strictEqual(sk45.source_url, 'https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf');
+  assert.strictEqual(sk45.page_number, 184);
+  assert.ok(sk45.document_sha256, 'Document SHA-256 must be present');
+  assert.ok(sk45.evidence_excerpt, 'Evidence excerpt must be present');
+  assert.ok(sk45.evidence_excerpt_sha256, 'Evidence excerpt SHA-256 must be present');
+  const SERVICE_KIT45_OFFICIAL_REPLACEMENT_SOURCE_VERIFIED = Boolean(
+    sk45.source_url.startsWith('https://www.stihl.') &&
+    sk45.page_number === 184 &&
+    sk45.verification_status === 'OFFICIAL_SOURCE_VERIFIED'
+  );
+  assert.strictEqual(SERVICE_KIT45_OFFICIAL_REPLACEMENT_SOURCE_VERIFIED, true);
+
+  // Assert canonical fitment claim preserved
+  assert.deepStrictEqual(sk45.models, ['MS 170', 'MS 180']);
+  const SERVICE_KIT45_CLAIM_VALID = Boolean(
+    sk45.part_number === '11300074103' &&
+    sk45.models.includes('MS 170') &&
+    sk45.models.includes('MS 180')
+  );
+  assert.strictEqual(SERVICE_KIT45_CLAIM_VALID, true);
+
+  // Assert validator audit result classifies record as SOURCE_RETIRED_REPLACEMENT_VERIFIED
+  const auditResult = await validateOfficialEvidenceFile(evidencePath, {
+    hashPolicy: validatorModule.HASH_POLICIES.CLAIM_REVALIDATION
+  });
+  const sk45Result = auditResult.results.find(r => r.part_number === '11300074103');
+  assert.ok(sk45Result, 'Service Kit 45 audit result must exist');
+  assert.strictEqual(sk45Result.hash_status, HASH_STATUS.SOURCE_RETIRED_REPLACEMENT_VERIFIED);
+  assert.strictEqual(sk45Result.claim_valid, true);
+  assert.strictEqual(sk45Result.errors.length, 0);
+});

@@ -123,3 +123,21 @@ Phase 56N.3 maakt de provenance 100% waarheidsgetrouw:
 - Amazon fallbacks: 17.082 (**INTACT**)
 - Amazon partner tag: `srihldecoder2-21` (**INTACT**)
 - Verified direct ASINs: 0 (**INTACT**)
+
+---
+
+## 6. Historische CI-Audit & Phase 56N.4 Opvolging
+
+- **PR #64 Candidate Commit SHA**: `577228ee72b634aecc3206c11385bef92871edcf`
+- **PR #64 Merge Commit SHA**: `86e60d9882a0855b9427536357737859b66ad183`
+- **PR #64 CI Status**:
+  - `browser-e2e`: **PASS**
+  - `trust-audit`: **PASS**
+  - `node-contract-tests`: **FAIL**
+  - **Oorzaak**: `tests/phase52a_parts_harvester.test.js` Test 35 faalde op externe HTTP 404 voor de gearchiveerde/gepensioneerde officiële STIHL bron van Service Kit 45 (`https://www.stihl.nl/nl/ap/service-kit-45-140895`).
+- **Phase 56N.4 Oplossing**:
+  - Canonieke compatibiliteitsclaim behouden: Service Kit 45 (`1130 007 4103`) voor `MS 170` en `MS 180` (2-MIX motoren).
+  - Gepensioneerde URL waarheidsgetrouw geregistreerd: `previous_source_url = 'https://www.stihl.nl/nl/ap/service-kit-45-140895'`, `previous_source_status = 'RETIRED_404'`.
+  - Officiële vervangende bron geverifieerd: STIHL Product Catalogue (`https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf`, pagina 184, doc_ref `0463 931 8023`, SHA-256 `406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162`).
+  - Strict Content-Level Validator uitgebreid met formele Source-Rot Policy (`SOURCE_RETIRED_REPLACEMENT_VERIFIED`) en dynamische PDF-tekstextractie via `pdfjs-dist`.
+  - Dedicated Test 42 toegevoegd aan `tests/phase52a_parts_harvester.test.js`.
