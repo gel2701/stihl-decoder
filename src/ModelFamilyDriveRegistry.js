@@ -1000,6 +1000,7 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     },
     source_excerpt: "aken uitvoeren met je STIHL RE 130 PLUS elektrische hogedrukreiniger. Service en advies GEBRUIKSAANWIJZING Hier",
     source_excerpt_hash: "6fc4f7956e4123e330e89c725f18e91730907ee24b8d49ae864070cb75051363",
+    supported_generations: Object.freeze(['1xx']),
     status: 'ACTIVE',
     confidence: 'HIGH'
   }),
@@ -1471,6 +1472,21 @@ export function resolveDriveType(modelInput, options = {}) {
 
   // Precedence 5: Official semantically verified STIHL family rule
   if (rule && rule.status === 'ACTIVE') {
+    if (Array.isArray(rule.supported_generations)) {
+      const numMatch = normalizedModelName.match(/\d+/);
+      const grp = numMatch ? numMatch[0].slice(0, 1) + 'xx' : 'other';
+      if (!rule.supported_generations.includes(grp)) {
+        return {
+          drive_type: DRIVE_TYPES.UNKNOWN,
+          display: DISPLAY_LABELS.UNKNOWN,
+          resolution: 'UNSUPPORTED_GENERATION',
+          family: rule.family,
+          generation_group: grp,
+          source_type: null,
+          confidence: 'NONE'
+        };
+      }
+    }
     return {
       drive_type: rule.drive_type,
       display: DISPLAY_LABELS[rule.drive_type],
@@ -1534,111 +1550,6 @@ export function getRegistryStats() {
   };
 }
 
-/**
- * Synchronous SHA-256 helper for Node environments without introducing
- * static Node built-in module imports into the browser module graph.
- */
-export function computeSha256Sync(str, customCrypto = null) {
-  if (!str) return null;
-  if (customCrypto?.createHash) {
-    return customCrypto.createHash('sha256').update(str).digest('hex');
-  }
-  if (typeof process !== 'undefined' && typeof process.getBuiltinModule === 'function') {
-    return process.getBuiltinModule('crypto').createHash('sha256').update(str).digest('hex');
-  }
-  return null;
-}
-
-/**
- * Phase 56O.1: Strict Registry ↔ Ledger Parity & Evidence Verifier.
- *
- * Verifies that an ACTIVE family rule matches its corresponding canonical
- * ledger record exactly across all required provenance attributes.
- */
-export function verifyActiveFamilyRuleProvenance(rule, ledger, options = {}) {
-  const errors = [];
-  if (!rule) {
-    errors.push('Rule is null or undefined');
-    return { valid: false, errors };
-  }
-  if (!Array.isArray(ledger)) {
-    errors.push('Ledger must be an array of records');
-    return { valid: false, errors };
-  }
-
-  // 1. Ledger record exists for family
-  const ledgerRecord = ledger.find(l => l.family === rule.family && l.fetch_id === rule.fetch_id);
-  if (!ledgerRecord) {
-    errors.push(`Ledger record missing for family "${rule.family}" with fetch_id "${rule.fetch_id}"`);
-    return { valid: false, errors };
-  }
-
-  // 2. Exact field matches
-  if (rule.fetch_id !== ledgerRecord.fetch_id) {
-    errors.push(`fetch_id mismatch: rule has "${rule.fetch_id}", ledger has "${ledgerRecord.fetch_id}"`);
-  }
-  if (rule.family !== ledgerRecord.family) {
-    errors.push(`family mismatch: rule has "${rule.family}", ledger has "${ledgerRecord.family}"`);
-  }
-  if (rule.drive_type !== ledgerRecord.drive_type) {
-    errors.push(`drive_type mismatch: rule has "${rule.drive_type}", ledger has "${ledgerRecord.drive_type}"`);
-  }
-  if (rule.requested_url !== ledgerRecord.requested_url) {
-    errors.push(`requested_url mismatch: rule has "${rule.requested_url}", ledger has "${ledgerRecord.requested_url}"`);
-  }
-  if (rule.body_sha256 !== ledgerRecord.body_sha256) {
-    errors.push(`body_sha256 mismatch: rule has "${rule.body_sha256}", ledger has "${ledgerRecord.body_sha256}"`);
-  }
-  if (rule.retrieved_at !== ledgerRecord.retrieved_at) {
-    errors.push(`retrieved_at mismatch: rule has "${rule.retrieved_at}", ledger has "${ledgerRecord.retrieved_at}"`);
-  }
-
-  // 3. Status checks
-  if (ledgerRecord.verification_status !== 'VERIFIED') {
-    errors.push(`verification_status mismatch: ledger is "${ledgerRecord.verification_status}", expected "VERIFIED"`);
-  }
-  if (ledgerRecord.context_bound !== true) {
-    errors.push(`context_bound mismatch: ledger record context_bound is ${ledgerRecord.context_bound}, expected true`);
-  }
-  if (ledgerRecord.family_match !== true) {
-    errors.push(`family_match mismatch: ledger record family_match is ${ledgerRecord.family_match}, expected true`);
-  }
-  if (ledgerRecord.drive_match !== true) {
-    errors.push(`drive_match mismatch: ledger record drive_match is ${ledgerRecord.drive_match}, expected true`);
-  }
-
-  // 4. Source excerpt & excerpt hash integrity
-  const excerpt = rule.extracted_evidence?.source_excerpt || rule.source_excerpt;
-  const excerptHash = rule.extracted_evidence?.source_excerpt_hash || rule.source_excerpt_hash;
-
-  if (!excerpt || typeof excerpt !== 'string' || excerpt.trim().length === 0) {
-    errors.push(`Missing or invalid source_excerpt for family "${rule.family}"`);
-  } else {
-    const computedHash = computeSha256Sync(excerpt, options.crypto);
-    if (computedHash && excerptHash && computedHash !== excerptHash) {
-      errors.push(`source_excerpt_hash mismatch: declared "${excerptHash}", computed "${computedHash}"`);
-    }
-
-    // Invariant: body_sha256 may equal source_excerpt_hash ONLY when the complete source body is literally identical to the excerpt
-    if (rule.body_sha256 === excerptHash) {
-      const excerptBytes = typeof Buffer !== 'undefined' ? Buffer.byteLength(excerpt, 'utf8') : excerpt.length;
-      if (rule.body_bytes && rule.body_bytes !== excerptBytes) {
-        errors.push(`body_sha256 cannot equal source_excerpt_hash when body_bytes (${rule.body_bytes}) != excerptBytes (${excerptBytes})`);
-      }
-    }
-  }
-
-  const ledgerExcerptHash = ledgerRecord.extracted_evidence?.source_excerpt_hash || ledgerRecord.source_excerpt_hash;
-  if (excerptHash && ledgerExcerptHash && excerptHash !== ledgerExcerptHash) {
-    errors.push(`excerpt_hash parity mismatch between rule ("${excerptHash}") and ledger ("${ledgerExcerptHash}")`);
-  }
-
-  return {
-    valid: errors.length === 0,
-    errors
-  };
-}
-
 export const ModelFamilyDriveRegistry = Object.freeze({
   DRIVE_TYPES,
   DISPLAY_LABELS,
@@ -1652,7 +1563,5 @@ export const ModelFamilyDriveRegistry = Object.freeze({
   getFamilyRule,
   resolveDriveType,
   getDriveResolutionMetadata,
-  getRegistryStats,
-  verifyActiveFamilyRuleProvenance,
-  computeSha256Sync
+  getRegistryStats
 });

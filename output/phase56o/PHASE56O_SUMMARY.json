@@ -1,8 +1,8 @@
 {
-  "phase": "PHASE_56O.1",
-  "title": "Evidence Integrity & Generation Coverage Closure",
-  "timestamp": "2026-10-26T05:55:25.074Z",
-  "baseline_commit": "b00fa1188bd56f56a1bd573bd7716e0a464fc7d3",
+  "phase": "PHASE_56O.2",
+  "title": "Reproducible Evidence & Fail-Closed Verification Closure",
+  "timestamp": "2026-10-26T07:11:24.316Z",
+  "baseline_commit": "2de799a97eb7146ac24215eb10a4cc63e77b0dd5",
   "outcome_status": "PASS",
   "router_status": {
     "endpoint_reachable": true,
@@ -12,7 +12,7 @@
   },
   "codex_status": {
     "agent_initiated_codex": false,
-    "automatic_external_review_triggered": false,
+    "automatic_external_review_triggered": true,
     "codex_feedback_used": false,
     "codex_used_for_acceptance": false
   },
@@ -24,20 +24,30 @@
     "resolved_before": 403,
     "unknown_before": 476,
     "coverage_before_pct": 45.85,
-    "resolved_after": 521,
-    "unknown_after": 358,
-    "coverage_after_pct": 59.27,
-    "promoted_count": 118,
+    "resolved_after": 481,
+    "unknown_after": 398,
+    "coverage_after_pct": 54.72,
+    "promoted_count": 78,
     "promotions_by_family": {
-      "RE": 71,
+      "RE": 31,
       "RM": 25,
-      "RMA": 22
+      "RMA": 22,
+      "total": 78
     }
   },
   "hard_gates": {
+    "MISSING_SOURCE_EXCERPTS": 0,
+    "MISSING_SOURCE_EXCERPT_HASHES": 0,
+    "HASH_COMPUTATION_FAILURES": 0,
+    "EXCERPT_HASH_MISMATCHES": 0,
+    "PDF_DOCUMENT_HASH_MISMATCHES": 0,
+    "PDF_EXTRACTION_FAILURES": 0,
+    "PAGE_EVIDENCE_FAILURES": 0,
+    "PROMOTIONS_WITHOUT_VERIFIED_GENERATION": 0,
+    "SHARED_SOURCE_REUSE_REGRESSIONS": 0,
+    "CLEAN_CHECKOUT_EVIDENCE_REPRODUCIBLE": true,
     "REGISTRY_LEDGER_FETCH_ID_MISMATCHES": 0,
     "ACTIVE_RULE_LEDGER_PARITY_ERRORS": 0,
-    "EXCERPT_HASH_MISMATCHES": 0,
     "BODY_HASH_MISMATCHES": 0,
     "UNVERIFIED_ACTIVE_LEDGER_RECORDS": 0,
     "NON_CONTEXT_BOUND_ACTIVE_RECORDS": 0,

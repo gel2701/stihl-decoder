@@ -993,26 +993,18 @@ export async function fetchAllOfficialFamilyEvidence({ targetFamilies = null, re
           fetchSeq = num + 1;
         }
       }
-      urlFetchMap.set(target.requested_url, {
-        fetch_id: existing.fetch_id,
-        final_url: existing.final_url || target.requested_url,
-        http_status: existing.http_status || 200,
-        content_type: existing.content_type || 'text/html',
-        page_title: existing.page_title,
-        fetch_started_at: existing.fetch_started_at,
-        fetch_completed_at: existing.fetch_completed_at,
-        body_sha256: existing.body_sha256,
-        body_bytes: existing.body_bytes,
-        pdf_parser: existing.pdf_parser,
-        pdf_text_extracted: existing.pdf_text_extracted,
-        pdf_page_count: existing.pdf_page_count,
-        pdf_text_length: existing.pdf_text_length
-      });
+      // CRITICAL FIX (Phase 56O.2 Defect C):
+      // Do NOT put incomplete retained ledger entries into urlFetchMap without body_text,
+      // pdf_extraction, or primary_evidence. Retained ledger metadata != reusable fetched content.
       familyEvidenceRecords.push(existing);
       continue;
     }
 
     let fetchRecord = urlFetchMap.get(target.requested_url);
+    // Strict reuse check: only reuse if complete parsed fetch payload is available
+    if (fetchRecord && !fetchRecord.body_text && !fetchRecord.pdf_extraction) {
+      fetchRecord = null;
+    }
     let reusedCachedFetch = false;
 
     if (!fetchRecord) {
