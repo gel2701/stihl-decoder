@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T18:13:50.290Z",
+  "timestamp": "2026-10-26T21:47:16.891Z",
   "manufacturer_heritage": {
     "manufacturer": "VIKING GmbH / STIHL Tirol GmbH",
     "headquarters": "Langkampfen, Austria",
@@ -15,24 +15,32 @@
   },
   "official_service_kit_evidence": {
     "service_kit_id": "STIHL_SERVICE_KIT_51",
+    "evidence_role": "CORROBORATING_EVIDENCE",
     "part_number": "1022025",
     "title": "Service Kit 51 voor RM 248.0 en MB 248.4",
     "source_url": "https://www.stihl.nl/nl/ap/service-kit-51-1022025",
-    "retrieval_started_at": "2026-10-26T18:13:50.287Z",
+    "retrieval_started_at": "2026-10-26T21:47:16.882Z",
     "retrieved_at": "2026-10-08T16:14:37.651Z",
     "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
     "body_bytes": 172961,
+    "stored_body_sha256": "98515d9aaf253bdfb78eea540336bb3c4ea13b0e6fd7d130c53a506f8172b53c",
+    "observed_body_sha256": "98515d9aaf253bdfb78eea540336bb3c4ea13b0e6fd7d130c53a506f8172b53c",
     "body_sha256": "98515d9aaf253bdfb78eea540336bb3c4ea13b0e6fd7d130c53a506f8172b53c",
+    "hash_match": true,
+    "primary_context_verified": true,
     "supported_models": [
       "RM 248.0",
       "MB 248.4"
     ],
     "machine_category": "STIHL benzinegrasmaaiers",
-    "source_excerpt": "Service Kit 51 voor RM 248.0 en MB 248.4. STIHL benzinegrasmaaiers.",
-    "source_excerpt_hash": "9e72f9bb1706593a390a9c6c58c5402baa13f5e39f49cc391573436742f8d60f",
+    "source_excerpt": "De volgende machines zijn compatibel met de STIHL Service Kit 51: RM 248.0 en MB 248.4",
+    "source_excerpt_hash": "a4efb908305aae626c86621e20532ceaff144628c0b78274830d234678a5ebe1",
+    "excerpt_present_in_source": true,
+    "acquisition_mode": "VERIFIED_CACHE_ENTRY",
     "verification_status": "VERIFIED",
     "failure_reason": null,
-    "cross_generation_proof": "Explicitly couples STIHL RM 248.0 (PETROL) with VIKING MB 248.4 under identical engine service kit (Service Kit 51) within official STIHL benzinegrasmaaiers product taxonomy."
+    "cross_generation_proof": "Explicitly couples STIHL RM 248.0 (PETROL) with VIKING MB 248.4 under identical engine service kit (Service Kit 51) within official STIHL benzinegrasmaaiers primary product context."
   },
   "official_manuals": [
     {

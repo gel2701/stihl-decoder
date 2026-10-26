@@ -489,3 +489,215 @@ test('Phase 56P — 22. Cross-Family Regression Freeze', async () => {
     assert.equal(res.resolution, a.res, `${a.name} resolution must be ${a.res}`);
   }
 });
+
+test('Phase 56P — 23. Manual Cache Roundtrip Parity (Live -> TempDir -> Offline)', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-roundtrip-'));
+  const cfg = OFFICIAL_MB_MANUAL_CONFIGS[0];
+
+  try {
+    // Step 1: Live acquisition into tempDir
+    const resLive = await verifyMbManual(cfg, {
+      allowLiveFetch: true,
+      cacheDir: emptyTempDir
+    });
+
+    assert.equal(resLive.verification_status, 'VERIFIED');
+    assert.ok(resLive.document_bytes > 0);
+    assert.equal(resLive.hash_match, true);
+
+    // Step 2: Offline re-verification using identical cacheDir
+    const resOffline = await verifyMbManual(cfg, {
+      allowLiveFetch: false,
+      cacheDir: emptyTempDir
+    });
+
+    assert.equal(resOffline.verification_status, 'VERIFIED');
+    assert.equal(resOffline.acquisition_mode, 'VERIFIED_CACHE_ENTRY');
+    assert.equal(resOffline.actual_sha256, resLive.actual_sha256);
+    assert.equal(resOffline.document_bytes, resLive.document_bytes);
+    assert.equal(resOffline.source_excerpt_hash, resLive.source_excerpt_hash);
+    assert.equal(resOffline.source_excerpt, resLive.source_excerpt);
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 24. All-12 Manual Offline Cache Roundtrip Reproducibility', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-all-cache-'));
+  const liveRepoCacheDir = path.join(REPO_ROOT, '.cache', 'parts-harvester', 'live');
+
+  try {
+    // Populate tempDir from live repo cache using canonical cache paths
+    for (const cfg of OFFICIAL_MB_MANUAL_CONFIGS) {
+      const urlHash = crypto.createHash('sha256').update(cfg.url).digest('hex');
+      const srcPath = path.join(liveRepoCacheDir, `${urlHash}.json`);
+      if (fs.existsSync(srcPath)) {
+        fs.copyFileSync(srcPath, path.join(emptyTempDir, `${urlHash}.json`));
+      }
+    }
+
+    const serviceKitUrl = 'https://www.stihl.nl/nl/ap/service-kit-51-1022025';
+    const skHash = crypto.createHash('sha256').update(serviceKitUrl).digest('hex');
+    const skSrc = path.join(liveRepoCacheDir, `${skHash}.json`);
+    if (fs.existsSync(skSrc)) {
+      fs.copyFileSync(skSrc, path.join(emptyTempDir, `${skHash}.json`));
+    }
+
+    // Verify completely offline against tempDir
+    const result = await verifyAllMbManuals({
+      allowLiveFetch: false,
+      cacheDir: emptyTempDir
+    });
+
+    assert.equal(result.manuals_required, 12);
+    assert.equal(result.manuals_acquired, 12);
+    assert.equal(result.manuals_hash_verified, 12);
+    assert.equal(result.manuals_pdf_extracted, 12);
+    assert.equal(result.manuals_excerpt_verified, 12);
+    assert.equal(result.manuals_semantically_verified, 12);
+    assert.equal(result.manuals_failed, 0);
+    assert.equal(result.service_kit_verified, true);
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 25. Corrupted Manual Cache Entry Rejected', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-corrupt-manual-'));
+  const cfg = OFFICIAL_MB_MANUAL_CONFIGS[0];
+
+  try {
+    const urlHash = crypto.createHash('sha256').update(cfg.url).digest('hex');
+    const corruptCachePath = path.join(emptyTempDir, `${urlHash}.json`);
+    fs.writeFileSync(corruptCachePath, JSON.stringify({
+      url: cfg.url,
+      status: 200,
+      is_binary: true,
+      body_encoding: 'latin1',
+      body_sha256: 'deadbeef12345678deadbeef12345678deadbeef12345678deadbeef12345678',
+      body: 'corrupted manual byte string'
+    }));
+
+    const res = await verifyMbManual(cfg, {
+      allowLiveFetch: false,
+      cacheDir: emptyTempDir
+    });
+
+    assert.equal(res.verification_status, 'UNVERIFIED_HASH_MISMATCH');
+    assert.ok(res.failure_reason.includes('CORRUPTED_CACHE'));
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 26. Service Kit Actual Body Hash Recomputed & Verified', async () => {
+  const res = await verifyServiceKit51Evidence();
+
+  assert.equal(res.verification_status, 'VERIFIED');
+  assert.ok(res.body_bytes > 0);
+  assert.ok(typeof res.observed_body_sha256 === 'string' && res.observed_body_sha256.length === 64);
+  assert.equal(res.hash_match, true);
+  assert.equal(res.body_sha256, res.observed_body_sha256);
+});
+
+test('Phase 56P — 27. Corrupted Service Kit Cache Entry Rejected', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-corrupt-sk-'));
+  const serviceKitUrl = 'https://www.stihl.nl/nl/ap/service-kit-51-1022025';
+
+  try {
+    const urlHash = crypto.createHash('sha256').update(serviceKitUrl).digest('hex');
+    const corruptCachePath = path.join(emptyTempDir, `${urlHash}.json`);
+    fs.writeFileSync(corruptCachePath, JSON.stringify({
+      url: serviceKitUrl,
+      status: 200,
+      body_sha256: 'fakehash99999999fakehash99999999fakehash99999999fakehash99999999',
+      body: '<html><body>Tampered content without matching hash</body></html>'
+    }));
+
+    const res = await verifyServiceKit51Evidence({
+      allowLiveFetch: false,
+      cacheDir: emptyTempDir
+    });
+
+    assert.equal(res.verification_status, 'UNVERIFIED_HASH_MISMATCH');
+    assert.ok(res.failure_reason.includes('CORRUPTED_SERVICE_KIT_CACHE'));
+    assert.equal(res.hash_match, false);
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 28. Service Kit Excerpt Demonstrably Comes From Source', async () => {
+  const res = await verifyServiceKit51Evidence();
+
+  assert.equal(res.verification_status, 'VERIFIED');
+  assert.ok(res.source_excerpt && res.source_excerpt.length > 0);
+  assert.equal(res.excerpt_present_in_source, true);
+  const expectedHash = crypto.createHash('sha256').update(res.source_excerpt, 'utf8').digest('hex');
+  assert.equal(res.source_excerpt_hash, expectedHash);
+});
+
+test('Phase 56P — 29. Separated-Token HTML Fixture Rejected (Secondary Context Contamination)', async () => {
+  const separatedHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head><title>Test Page</title></head>
+    <body>
+      <nav>STIHL benzinegrasmaaiers en aanverwante categorieen</nav>
+      <main>
+        <h1>Service Kit 51</h1>
+        <p>Standaard onderhoudspakket voor tuinonderhoud.</p>
+      </main>
+      <footer>
+        <p>Compatibel met de modellen RM 248.0 en MB 248.4</p>
+      </footer>
+    </body>
+    </html>
+  `;
+
+  const res = await verifyServiceKit51Evidence({ mockHtml: separatedHtml });
+
+  assert.equal(res.primary_context_verified, false);
+  assert.equal(res.verification_status, 'UNVERIFIED_PRIMARY_CONTEXT');
+  assert.ok(res.failure_reason.includes('Primary product context missing'));
+});
+
+test('Phase 56P — 30. Correct Primary-Context HTML Fixture Accepted', async () => {
+  const validPrimaryHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head><title>Service Kit 51</title></head>
+    <body>
+      <main>
+        <h1>Service Kit 51 voor RM 248.0 en MB 248.4</h1>
+        <p>Onderhoudsset voor STIHL benzinegrasmaaiers.</p>
+        <p>De volgende machines zijn compatibel met de STIHL Service Kit 51: RM 248.0 en MB 248.4</p>
+      </main>
+    </body>
+    </html>
+  `;
+
+  const res = await verifyServiceKit51Evidence({ mockHtml: validPrimaryHtml });
+
+  assert.equal(res.primary_context_verified, true);
+  assert.equal(res.excerpt_present_in_source, true);
+  assert.equal(res.verification_status, 'VERIFIED');
+  assert.equal(res.source_excerpt, 'De volgende machines zijn compatibel met de STIHL Service Kit 51: RM 248.0 en MB 248.4');
+});
+
+test('Phase 56P — 31. MB 248 / 253 Required-vs-Corroborating Evidence Behavior', async () => {
+  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const mb248Grp = result.generationGroups['MB 248 / 253'];
+
+  assert.ok(mb248Grp.required_evidence_ids.includes('0478-111-9828-B'));
+  assert.ok(mb248Grp.required_evidence_ids.includes('0478-111-9928-B'));
+  assert.ok(mb248Grp.corroborating_evidence_ids.includes('STIHL_SERVICE_KIT_51'));
+  assert.equal(mb248Grp.status, 'COVERED');
+
+  // Verify that all 6 models in group resolve to PETROL
+  for (const m of mb248Grp.models) {
+    const res = resolveDriveType(m);
+    assert.equal(res.drive_type, DRIVE_TYPES.PETROL);
+    assert.equal(res.resolution, 'FAMILY_RULE');
+  }
+});

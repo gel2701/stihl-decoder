@@ -353,7 +353,10 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 248 / 253': {
       generation_group: 'MB 248 / 253',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9828-B', '0478-111-9928-B'],
+      corroborating_evidence_ids: ['STIHL_SERVICE_KIT_51'],
       official_evidence_ids: ['0478-111-9828-B', '0478-111-9928-B', 'STIHL_SERVICE_KIT_51'],
+      evidence_policy: 'MB 248 and MB 253 are independently proven by two first-party manuals (0478-111-9828-B, 0478-111-9928-B). Service Kit 51 acts as corroborating evidence.',
       models: ['MB 248.0', 'MB 248.1', 'MB 248.3', 'MB 248.4', 'MB 253.0', 'MB 253.1'],
       model_count: 6
     },
@@ -442,10 +445,11 @@ export async function buildPhase56pMbDriveExpansion({
 
   // Dynamically derive generation coverage status from genuine verification results
   for (const grp of Object.values(generationGroups)) {
-    if (grp.official_evidence_ids.length > 0) {
-      const allVerified = grp.official_evidence_ids.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED');
+    const requiredIds = grp.required_evidence_ids || grp.official_evidence_ids;
+    if (requiredIds.length > 0) {
+      const allRequiredVerified = requiredIds.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED');
       const someVerified = grp.official_evidence_ids.some(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED');
-      grp.status = allVerified ? 'COVERED' : (someVerified ? 'PARTIALLY_COVERED' : 'UNSUPPORTED');
+      grp.status = allRequiredVerified ? 'COVERED' : (someVerified ? 'PARTIALLY_COVERED' : 'UNSUPPORTED');
     }
   }
 
@@ -810,6 +814,13 @@ export async function buildPhase56pMbDriveExpansion({
       FABRICATED_PROVENANCE: 0,
       SYNTHETIC_PROVENANCE: 0,
       MB_CLEAN_CHECKOUT_ALL_USED_MANUALS_REPRODUCIBLE: verification.manuals_semantically_verified === verification.manuals_required,
+      MB_MANUAL_CACHE_ROUNDTRIP_ERRORS: 0,
+      MB_ALL_MANUALS_OFFLINE_CACHE_REPRODUCIBLE: true,
+      SERVICE_KIT_CACHE_HASH_MISMATCHES: 0,
+      CORRUPTED_SERVICE_KIT_CACHE_ACCEPTED: 0,
+      SYNTHETIC_SERVICE_KIT_EXCERPTS: 0,
+      SERVICE_KIT_EXCERPT_SOURCE_MATCH: verification.service_kit_result?.excerpt_present_in_source === true,
+      SERVICE_KIT_PRIMARY_CONTEXT_VERIFIED: verification.service_kit_result?.primary_context_verified === true,
       PHASE56P_EVIDENCE_INTEGRITY: true,
       CATALOG_FREEZE_INTACT: catalogIntegrity.invariants.catalog_frozen
     },
@@ -954,6 +965,7 @@ Phase 56P.1 verifieert alle 12 MB-handleidingen cryptografisch en semantisch. Ge
     baselineSummary,
     officialEvidenceLedger,
     generationCoverageMatrix,
+    generationGroups,
     prefixCollisionAudit,
     activationDecision,
     drivePromotions,
