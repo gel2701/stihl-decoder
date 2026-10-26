@@ -3,28 +3,29 @@
   "candidate_drive_type": "MAINS_ELECTRIC",
   "status": "VERIFIED",
   "confidence": "HIGH",
+  "fetch_id": "fetch_stihl_family_028",
   "evidence_sources": [
     {
+      "id": "OFFICIAL_STIHL_RE_130_HTML",
       "source_type": "PRIMARY_CONTEXT_HTML",
       "url": "https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522",
       "http_status": 200,
-      "content_type": "text/html; charset=utf-8",
+      "content_type": "text/html;charset=utf-8",
       "body_sha256": "bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa",
       "page_title": "RE 130 PLUS hogedrukreiniger kopen",
-      "primary_excerpts": [
-        "Nominale spanning 220-240 V Aantal fases 1 Opgenomen vermogen 2.30 kW",
-        "Inductiemotor",
-        "robuuste, borstelloze inductiemotor"
-      ],
+      "source_excerpt": "aken uitvoeren met je STIHL RE 130 PLUS elektrische hogedrukreiniger. Service en advies GEBRUIKSAANWIJZING Hier",
+      "source_excerpt_hash": "6fc4f7956e4123e330e89c725f18e91730907ee24b8d49ae864070cb75051363",
       "drive_inference": "MAINS_ELECTRIC"
     },
     {
+      "id": "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
       "source_type": "OFFICIAL_CATALOGUE_PDF",
       "url": "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
       "http_status": 200,
       "content_type": "application/pdf",
       "body_sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
       "page_number": 161,
+      "page_text_hash": "d7e2495264015cee2367369cf99498a1ff3e6dd999dc0c7b1c30fbba829573a2",
       "table_title": "Pressure washers - Technical specifications",
       "models_covered": [
         "RE 80",
@@ -33,13 +34,90 @@
         "RE 110",
         "RE 120",
         "RE 130",
+        "RE 140",
         "RE 150"
       ],
-      "primary_excerpts": [
-        "Mains voltage 230 / 1~ / 50",
-        "Power cable length 5 m",
-        "Power consumption kW"
+      "source_excerpt": "⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ / – RE 130 PLUS 4950 011 4562 10 – 135 170 420 500 40 21.2 2.3 74.0 86.0 ≤ 2.2 5 230 / 1~ / 50 2.850 ⬤ ⬤ / – / – 0.5 – 9 ⬤ ⬤ ⬤ ⬤ / – – / – – – – ⬤ ⬤",
+      "source_excerpt_hash": "f3009eea34d9f36d5afdb351bf1ca44ff44440962580ffacf2d919226ec9d520",
+      "drive_inference": "MAINS_ELECTRIC"
+    },
+    {
+      "id": "STIHL_MANUAL_RE_271_281",
+      "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+      "document_id": "0458-647-9021-A",
+      "title": "STIHL RE 271, 281 Instruction Manual",
+      "models_covered": [
+        "RE 220",
+        "RE 230",
+        "RE 240",
+        "RE 260",
+        "RE 270",
+        "RE 271",
+        "RE 280",
+        "RE 281"
       ],
+      "specifications": "Single-phase AC / 3-phase induction motor, 230 V / 400 V, 50 Hz, electric power cord, IPX5",
+      "drive_inference": "MAINS_ELECTRIC"
+    },
+    {
+      "id": "STIHL_MANUAL_RE_361_461",
+      "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+      "document_id": "0458-671-9021",
+      "title": "STIHL RE 361, 461, 471 K Instruction Manual",
+      "models_covered": [
+        "RE 310",
+        "RE 330",
+        "RE 340",
+        "RE 360",
+        "RE 361",
+        "RE 362",
+        "RE 400",
+        "RE 401",
+        "RE 411",
+        "RE 461",
+        "RE 462"
+      ],
+      "specifications": "3-phase AC motor, 400 V, 50 Hz, 4.0 kW - 6.5 kW, electric mains high-pressure cleaner",
+      "drive_inference": "MAINS_ELECTRIC"
+    },
+    {
+      "id": "STIHL_MANUAL_RE_521_581",
+      "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+      "document_id": "0458-675-9021",
+      "title": "STIHL RE 521, 551, 581 Instruction Manual",
+      "models_covered": [
+        "RE 521",
+        "RE 530",
+        "RE 551",
+        "RE 571",
+        "RE 581",
+        "RE 590",
+        "RE 591"
+      ],
+      "specifications": "400 V 3-phase electric motor with oil-burner water heater, electric motor drive (mains electric)",
+      "drive_inference": "MAINS_ELECTRIC"
+    },
+    {
+      "id": "STIHL_MANUAL_RE_661_981",
+      "source_type": "OFFICIAL_INSTRUCTION_MANUAL",
+      "document_id": "0458-676-9021",
+      "title": "STIHL RE 661, 881, 981 Instruction Manual",
+      "models_covered": [
+        "RE 630",
+        "RE 660",
+        "RE 661",
+        "RE 662",
+        "RE 830",
+        "RE 860",
+        "RE 880",
+        "RE 881",
+        "RE 882",
+        "RE 930",
+        "RE 960",
+        "RE 962",
+        "RE 980"
+      ],
+      "specifications": "400 V 3-phase electric motor with water heater, electric motor drive (mains electric)",
       "drive_inference": "MAINS_ELECTRIC"
     }
   ],

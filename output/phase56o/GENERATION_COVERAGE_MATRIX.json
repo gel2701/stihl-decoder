@@ -1,632 +1,468 @@
 {
-  "RE": {
-    "1xx": [
-      {
-        "model_name": "RE 100",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+  "phase": "PHASE_56O",
+  "timestamp": "2026-10-26T05:55:25.069Z",
+  "families": {
+    "RE": {
+      "1xx": {
+        "family": "RE",
+        "generation_group": "1xx",
+        "target_models": [
+          "RE 100",
+          "RE 100.0",
+          "RE 101",
+          "RE 102",
+          "RE 104",
+          "RE 105",
+          "RE 106",
+          "RE 107",
+          "RE 108",
+          "RE 109",
+          "RE 110",
+          "RE 115",
+          "RE 116",
+          "RE 117",
+          "RE 118",
+          "RE 119",
+          "RE 120",
+          "RE 125",
+          "RE 126",
+          "RE 127",
+          "RE 128",
+          "RE 129",
+          "RE 130",
+          "RE 140",
+          "RE 141",
+          "RE 142",
+          "RE 143",
+          "RE 150",
+          "RE 160",
+          "RE 161",
+          "RE 162"
+        ],
+        "representative_models_verified": [
+          "RE 80",
+          "RE 90",
+          "RE 100",
+          "RE 110",
+          "RE 120",
+          "RE 130",
+          "RE 150"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_RE_130_HTML",
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "PRIMARY_CONTEXT_HTML",
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 100.0",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "2xx": {
+        "family": "RE",
+        "generation_group": "2xx",
+        "target_models": [
+          "RE 220",
+          "RE 240",
+          "RE 250",
+          "RE 260",
+          "RE 270",
+          "RE 271",
+          "RE 280",
+          "RE 281"
+        ],
+        "representative_models_verified": [
+          "RE 271",
+          "RE 281"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_271_281"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 101",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "3xx": {
+        "family": "RE",
+        "generation_group": "3xx",
+        "target_models": [
+          "RE 300",
+          "RE 310",
+          "RE 330",
+          "RE 340",
+          "RE 360",
+          "RE 361"
+        ],
+        "representative_models_verified": [
+          "RE 361",
+          "RE 362"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_361_461"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 102",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "4xx": {
+        "family": "RE",
+        "generation_group": "4xx",
+        "target_models": [
+          "RE 400",
+          "RE 401",
+          "RE 440",
+          "RE 460",
+          "RE 461"
+        ],
+        "representative_models_verified": [
+          "RE 461",
+          "RE 462"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_361_461"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 104",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "5xx": {
+        "family": "RE",
+        "generation_group": "5xx",
+        "target_models": [
+          "RE 500",
+          "RE 520",
+          "RE 530",
+          "RE 550",
+          "RE 551",
+          "RE 560",
+          "RE 580",
+          "RE 581"
+        ],
+        "representative_models_verified": [
+          "RE 521",
+          "RE 551",
+          "RE 581"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_521_581"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 105",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "6xx": {
+        "family": "RE",
+        "generation_group": "6xx",
+        "target_models": [
+          "RE 600",
+          "RE 630",
+          "RE 640",
+          "RE 661"
+        ],
+        "representative_models_verified": [
+          "RE 660",
+          "RE 661"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_661_981"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 106",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "8xx": {
+        "family": "RE",
+        "generation_group": "8xx",
+        "target_models": [
+          "RE 80.0",
+          "RE 820",
+          "RE 830",
+          "RE 840",
+          "RE 88"
+        ],
+        "representative_models_verified": [
+          "RE 880",
+          "RE 881"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_661_981"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 107",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 108",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 109",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 110",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 115",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 116",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 117",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 118",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 119",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 120",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 125",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 126",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 127",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 128",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 129",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 130",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 140",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 141",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 142",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 143",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 150",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 160",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 161",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 162",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "9xx": {
+        "family": "RE",
+        "generation_group": "9xx",
+        "target_models": [
+          "RE 90",
+          "RE 90.0",
+          "RE 900",
+          "RE 98"
+        ],
+        "representative_models_verified": [
+          "RE 960",
+          "RE 980"
+        ],
+        "official_evidence_ids": [
+          "STIHL_MANUAL_RE_661_981"
+        ],
+        "source_types": [
+          "OFFICIAL_INSTRUCTION_MANUAL"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       }
-    ],
-    "2xx": [
-      {
-        "model_name": "RE 220",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+    },
+    "RM": {
+      "2xx": {
+        "family": "RM",
+        "generation_group": "2xx",
+        "target_models": [
+          "RM 2.0",
+          "RM 2.1",
+          "RM 2.2",
+          "RM 248.0",
+          "RM 248.1",
+          "RM 248.2",
+          "RM 248.3",
+          "RM 253.0",
+          "RM 253.1",
+          "RM 253.2",
+          "RM 253.3"
+        ],
+        "representative_models_verified": [
+          "RM 248",
+          "RM 253",
+          "RM 2.1 R"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
+          "STIHL_SERVICE_KIT_49"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF",
+          "VERIFIED_PARTS_EVIDENCE"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 240",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "4xx": {
+        "family": "RM",
+        "generation_group": "4xx",
+        "target_models": [
+          "RM 4.0",
+          "RM 443.0",
+          "RM 443.1",
+          "RM 443.3",
+          "RM 448.0",
+          "RM 448.1",
+          "RM 488.1"
+        ],
+        "representative_models_verified": [
+          "RM 443",
+          "RM 448"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_RM_448_HTML",
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
+          "STIHL_SERVICE_KIT_49"
+        ],
+        "source_types": [
+          "PRIMARY_CONTEXT_HTML",
+          "OFFICIAL_CATALOGUE_PDF",
+          "VERIFIED_PARTS_EVIDENCE"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 250",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "5xx": {
+        "family": "RM",
+        "generation_group": "5xx",
+        "target_models": [
+          "RM 545.0",
+          "RM 545.1"
+        ],
+        "representative_models_verified": [
+          "RM 545"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 260",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "6xx": {
+        "family": "RM",
+        "generation_group": "6xx",
+        "target_models": [
+          "RM 650.0",
+          "RM 650.1",
+          "RM 655.0",
+          "RM 655.1"
+        ],
+        "representative_models_verified": [
+          "RM 650",
+          "RM 655"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 270",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 271",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 280",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 281",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "7xx": {
+        "family": "RM",
+        "generation_group": "7xx",
+        "target_models": [
+          "RM 756.0"
+        ],
+        "representative_models_verified": [
+          "RM 756"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       }
-    ],
-    "3xx": [
-      {
-        "model_name": "RE 300",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+    },
+    "RMA": {
+      "2xx": {
+        "family": "RMA",
+        "generation_group": "2xx",
+        "target_models": [
+          "RMA 2.0",
+          "RMA 2.1",
+          "RMA 2.2",
+          "RMA 239.1",
+          "RMA 243.3",
+          "RMA 248.0",
+          "RMA 248.3",
+          "RMA 253.0",
+          "RMA 253.3"
+        ],
+        "representative_models_verified": [
+          "RMA 235",
+          "RMA 248",
+          "RMA 253",
+          "RMA 2 RV"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 310",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "3xx": {
+        "family": "RMA",
+        "generation_group": "3xx",
+        "target_models": [
+          "RMA 339.0"
+        ],
+        "representative_models_verified": [
+          "RMA 339"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 330",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "4xx": {
+        "family": "RMA",
+        "generation_group": "4xx",
+        "target_models": [
+          "RMA 410",
+          "RMA 443.0",
+          "RMA 443.1",
+          "RMA 443.2",
+          "RMA 443.3",
+          "RMA 448.0",
+          "RMA 448.1",
+          "RMA 448.2",
+          "RMA 448.3",
+          "RMA 453.3"
+        ],
+        "representative_models_verified": [
+          "RMA 443",
+          "RMA 448"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_RMA_448_HTML",
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "PRIMARY_CONTEXT_HTML",
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       },
-      {
-        "model_name": "RE 340",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 360",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 361",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
+      "7xx": {
+        "family": "RMA",
+        "generation_group": "7xx",
+        "target_models": [
+          "RMA 750",
+          "RMA 765.0"
+        ],
+        "representative_models_verified": [
+          "RMA 765 V"
+        ],
+        "official_evidence_ids": [
+          "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+        ],
+        "source_types": [
+          "OFFICIAL_CATALOGUE_PDF"
+        ],
+        "family_identity_verified": true,
+        "drive_type_verified": true,
+        "coverage_status": "COVERED"
       }
-    ],
-    "4xx": [
-      {
-        "model_name": "RE 400",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 401",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 440",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 460",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 461",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "5xx": [
-      {
-        "model_name": "RE 500",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 520",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 530",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 550",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 551",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 560",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 580",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 581",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "6xx": [
-      {
-        "model_name": "RE 600",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 630",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 640",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 661",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "8xx": [
-      {
-        "model_name": "RE 80.0",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 820",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 830",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 840",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 88",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "9xx": [
-      {
-        "model_name": "RE 90",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 90.0",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 900",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RE 98",
-        "drive_type": "MAINS_ELECTRIC",
-        "resolution": "FAMILY_RULE"
-      }
-    ]
-  },
-  "RM": {
-    "2xx": [
-      {
-        "model_name": "RM 2.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 2.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 2.2",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 248.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 248.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 248.2",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 248.3",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 253.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 253.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 253.2",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 253.3",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "4xx": [
-      {
-        "model_name": "RM 4.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 443.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 443.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 443.3",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 448.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 448.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 488.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "5xx": [
-      {
-        "model_name": "RM 545.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 545.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "6xx": [
-      {
-        "model_name": "RM 650.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 650.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 655.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RM 655.1",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "7xx": [
-      {
-        "model_name": "RM 756.0",
-        "drive_type": "PETROL",
-        "resolution": "FAMILY_RULE"
-      }
-    ]
-  },
-  "RMA": {
-    "2xx": [
-      {
-        "model_name": "RMA 2.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 2.1",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 2.2",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 239.1",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 243.3",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 248.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 248.3",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 253.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 253.3",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "3xx": [
-      {
-        "model_name": "RMA 339.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "4xx": [
-      {
-        "model_name": "RMA 410",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 443.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 443.1",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 443.2",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 443.3",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 448.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 448.1",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 448.2",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 448.3",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 453.3",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      }
-    ],
-    "7xx": [
-      {
-        "model_name": "RMA 750",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      },
-      {
-        "model_name": "RMA 765.0",
-        "drive_type": "BATTERY",
-        "resolution": "FAMILY_RULE"
-      }
-    ]
+    }
   }
 }

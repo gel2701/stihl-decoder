@@ -342,6 +342,39 @@ export const FAMILY_SOURCE_TARGETS = [
     representative_models: ['SR 200', 'SR 430', 'SR 450'],
     required_drive_terms: ['gasoline', 'benzine', 'combustion', '2-stroke', '2-mix', '2-takt'],
     negative_patterns: [/pikhaak|sappie/i]
+  },
+  {
+    family: 'RE',
+    machine_type: 'PRESSURE_WASHER',
+    drive_type: 'MAINS_ELECTRIC',
+    display: 'Elektrisch / netstroom',
+    requested_url: 'https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522',
+    family_tokens: ['RE'],
+    representative_models: ['RE 130'],
+    required_drive_terms: ['elektrisch', 'elektrische', 'inductiemotor', '230 v', '220-240 v', 'netstroom'],
+    negative_patterns: [/gazonmaaier|rasenmäher/i]
+  },
+  {
+    family: 'RM',
+    machine_type: 'LAWN_MOWER',
+    drive_type: 'PETROL',
+    display: 'Benzine',
+    requested_url: 'https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012',
+    family_tokens: ['RM'],
+    representative_models: ['RM 448'],
+    required_drive_terms: ['benzine', 'brandstof', 'motor', 'combustion'],
+    negative_patterns: [/hogedrukreiniger|heggenschaar/i]
+  },
+  {
+    family: 'RMA',
+    machine_type: 'LAWN_MOWER',
+    drive_type: 'BATTERY',
+    display: 'Accu',
+    requested_url: 'https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059',
+    family_tokens: ['RMA'],
+    representative_models: ['RMA 448'],
+    required_drive_terms: ['accu', 'battery', 'batterij', 'ak-systeem', 'ap-systeem'],
+    negative_patterns: [/hogedrukreiniger|heggenschaar/i]
   }
 ];
 
@@ -927,9 +960,18 @@ export function evaluateSemanticEvidence(target, fetchResult) {
 /**
  * Fetches all official family evidence sources and generates the fetch ledger.
  */
-export async function fetchAllOfficialFamilyEvidence() {
+export async function fetchAllOfficialFamilyEvidence({ targetFamilies = null, reuseLedgerCache = true } = {}) {
   if (!fs.existsSync(HARVEST_DIR)) {
     fs.mkdirSync(HARVEST_DIR, { recursive: true });
+  }
+
+  let existingLedger = [];
+  if (reuseLedgerCache && fs.existsSync(LEDGER_PATH)) {
+    try {
+      existingLedger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
+    } catch (e) {
+      existingLedger = [];
+    }
   }
 
   const urlFetchMap = new Map();
@@ -939,6 +981,37 @@ export async function fetchAllOfficialFamilyEvidence() {
   let fetchSeq = 1;
 
   for (const target of FAMILY_SOURCE_TARGETS) {
+    const isTarget = !targetFamilies || targetFamilies.includes(target.family);
+    const existing = existingLedger.find(l => l.family === target.family);
+
+    if (!isTarget && existing) {
+      // Retain existing authentic entry
+      const numMatch = existing.fetch_id ? existing.fetch_id.match(/(\d+)$/) : null;
+      if (numMatch) {
+        const num = parseInt(numMatch[1], 10);
+        if (num >= fetchSeq) {
+          fetchSeq = num + 1;
+        }
+      }
+      urlFetchMap.set(target.requested_url, {
+        fetch_id: existing.fetch_id,
+        final_url: existing.final_url || target.requested_url,
+        http_status: existing.http_status || 200,
+        content_type: existing.content_type || 'text/html',
+        page_title: existing.page_title,
+        fetch_started_at: existing.fetch_started_at,
+        fetch_completed_at: existing.fetch_completed_at,
+        body_sha256: existing.body_sha256,
+        body_bytes: existing.body_bytes,
+        pdf_parser: existing.pdf_parser,
+        pdf_text_extracted: existing.pdf_text_extracted,
+        pdf_page_count: existing.pdf_page_count,
+        pdf_text_length: existing.pdf_text_length
+      });
+      familyEvidenceRecords.push(existing);
+      continue;
+    }
+
     let fetchRecord = urlFetchMap.get(target.requested_url);
     let reusedCachedFetch = false;
 
@@ -1060,6 +1133,8 @@ export async function fetchAllOfficialFamilyEvidence() {
       matched_models: evaluation.matched_models,
       evidence_locator: evaluation.evidence_locator,
       extracted_evidence: evaluation.extracted_evidence,
+      source_excerpt: evaluation.extracted_evidence ? evaluation.extracted_evidence.source_excerpt : null,
+      source_excerpt_hash: evaluation.extracted_evidence ? evaluation.extracted_evidence.source_excerpt_hash : null,
       verification_status: evaluation.verification_status,
       pdf_parser: fetchRecord.pdf_parser,
       pdf_text_extracted: fetchRecord.pdf_text_extracted,

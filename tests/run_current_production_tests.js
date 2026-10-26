@@ -86,7 +86,8 @@ export const currentProductionSuites = [
   'tests/phase56k_external_evidence_pilot.test.js',
   'tests/phase56l_drive_type_family_resolution.test.js',
   'tests/phase56m_drive_coverage_triage.test.js',
-  'tests/phase56n_machine_eligibility_boundary.test.js'
+  'tests/phase56n_machine_eligibility_boundary.test.js',
+  'tests/phase56o_re_rm_rma_drive_expansion.test.js'
 ];
 
 console.log('===============================================================');

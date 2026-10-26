@@ -969,12 +969,12 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     family_match: true,
     drive_match: true,
     matched_family_tokens: ["RE"],
-    matched_drive_terms: ["elektrisch", "elektrische", "inductiemotor", "220-240 v", "spanning"],
+    matched_drive_terms: ["elektrische", "inductiemotor", "220-240 v"],
     matched_models: ["RE 130"],
-    retrieval_started_at: "2026-10-26T01:17:36.000Z",
-    retrieved_at: "2026-10-26T01:17:41.000Z",
+    retrieval_started_at: "2026-10-26T05:42:41.014Z",
+    retrieved_at: "2026-10-26T05:42:46.433Z",
     body_sha256: "bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa",
-    body_bytes: 217133,
+    body_bytes: 217318,
     pdf_parser: null,
     pdf_text_extracted: false,
     pdf_page_count: null,
@@ -989,8 +989,8 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
       matched_family_text: "RE",
       matched_drive_text: "elektrische, inductiemotor, 220-240 v",
       matched_models: ["RE 130"],
-      source_excerpt: "RE 130 PLUS hogedrukreiniger kopen Hogedrukreinigers RE 130 PLUS Nominale spanning 220-240 V Aantal fases 1 Opgenomen vermogen 2.30 kW Inductiemotor",
-      source_excerpt_hash: "28e08d6d63309aef8cb4893707e4d825c317ad0230536ba9067b58832a849f16",
+      source_excerpt: "aken uitvoeren met je STIHL RE 130 PLUS elektrische hogedrukreiniger. Service en advies GEBRUIKSAANWIJZING Hier",
+      source_excerpt_hash: "6fc4f7956e4123e330e89c725f18e91730907ee24b8d49ae864070cb75051363",
       evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
       primary_h1: "",
       primary_product_name: "RE 130",
@@ -998,6 +998,8 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
       secondary_pdf_page: 161,
       secondary_pdf_sha256: "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162"
     },
+    source_excerpt: "aken uitvoeren met je STIHL RE 130 PLUS elektrische hogedrukreiniger. Service en advies GEBRUIKSAANWIJZING Hier",
+    source_excerpt_hash: "6fc4f7956e4123e330e89c725f18e91730907ee24b8d49ae864070cb75051363",
     status: 'ACTIVE',
     confidence: 'HIGH'
   }),
@@ -1011,16 +1013,16 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     requested_url: "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
     source_url: "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
     source_title: "RM 448 T benzinegrasmaaier kopen",
-    evidence_locator: "Official STIHL verification: \"RM 448 T benzinegrasmaaier kopen\" matches family [RM], models [RM 448], and drive terms [benzine, brandstof, motor] within primary product context.",
+    evidence_locator: "Official STIHL verification: \"RM 448 T benzinegrasmaaier kopen\" matches family [RM], models [RM 448], and drive terms [benzine, motor] within primary product context.",
     family_match: true,
     drive_match: true,
     matched_family_tokens: ["RM"],
-    matched_drive_terms: ["benzine", "brandstof", "motor"],
+    matched_drive_terms: ["benzine", "motor"],
     matched_models: ["RM 448"],
-    retrieval_started_at: "2026-10-26T01:17:36.000Z",
-    retrieved_at: "2026-10-26T01:17:41.000Z",
+    retrieval_started_at: "2026-10-26T05:42:46.532Z",
+    retrieved_at: "2026-10-26T05:42:51.408Z",
     body_sha256: "0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729",
-    body_bytes: 193306,
+    body_bytes: 193518,
     pdf_parser: null,
     pdf_text_extracted: false,
     pdf_page_count: null,
@@ -1033,10 +1035,10 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     non_product_jsonld_evidence_records: 0,
     extracted_evidence: {
       matched_family_text: "RM",
-      matched_drive_text: "benzine, brandstof, motor",
+      matched_drive_text: "benzine, motor",
       matched_models: ["RM 448"],
-      source_excerpt: "RM 448 T benzinegrasmaaier kopen Grasmaaiers RM 448 T benzine motor",
-      source_excerpt_hash: "a1a8c3d7904e2978ffc71e9a2632b45ec2d3a2e724b17e47a9ef4e3599e0db2c",
+      source_excerpt: "RM 448 T benzinegrasmaaier kopen RM 448 RM 448 T benzinegrasmaaier kopen Bli",
+      source_excerpt_hash: "c91a8a04fec64d25ae98ec4350ae8f0e909a21cafb3b89cb07031e8a01470a15",
       evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
       primary_h1: "",
       primary_product_name: "RM 448",
@@ -1045,6 +1047,8 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
       secondary_pdf_sha256: "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
       service_kit_manual_doc: "0458-007-0049"
     },
+    source_excerpt: "RM 448 T benzinegrasmaaier kopen RM 448 RM 448 T benzinegrasmaaier kopen Bli",
+    source_excerpt_hash: "c91a8a04fec64d25ae98ec4350ae8f0e909a21cafb3b89cb07031e8a01470a15",
     status: 'ACTIVE',
     confidence: 'HIGH'
   }),
@@ -1058,16 +1062,16 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     requested_url: "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
     source_url: "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
     source_title: "RMA 448 V accugrasmaaier kopen",
-    evidence_locator: "Official STIHL verification: \"RMA 448 V accugrasmaaier kopen\" matches family [RMA], models [RMA 448], and drive terms [accu, ak-systeem, batterij] within primary product context.",
+    evidence_locator: "Official STIHL verification: \"RMA 448 V accugrasmaaier kopen\" matches family [RMA], models [RMA 448], and drive terms [accu, batterij] within primary product context.",
     family_match: true,
     drive_match: true,
     matched_family_tokens: ["RMA"],
-    matched_drive_terms: ["accu", "ak-systeem", "batterij"],
+    matched_drive_terms: ["accu", "batterij"],
     matched_models: ["RMA 448"],
-    retrieval_started_at: "2026-10-26T01:17:36.000Z",
-    retrieved_at: "2026-10-26T01:17:41.000Z",
+    retrieval_started_at: "2026-10-26T05:42:51.477Z",
+    retrieved_at: "2026-10-26T05:42:56.156Z",
     body_sha256: "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f",
-    body_bytes: 208864,
+    body_bytes: 209081,
     pdf_parser: null,
     pdf_text_extracted: false,
     pdf_page_count: null,
@@ -1080,10 +1084,10 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     non_product_jsonld_evidence_records: 0,
     extracted_evidence: {
       matched_family_text: "RMA",
-      matched_drive_text: "accu, ak-systeem, batterij",
+      matched_drive_text: "accu, batterij",
       matched_models: ["RMA 448"],
-      source_excerpt: "RMA 448 V accugrasmaaier kopen Grasmaaiers RMA 448 V zonder accu en lader AK systeem",
-      source_excerpt_hash: "3b07ef902b9e2c4f74d08154e19574bf2002f5a6b0cfa0b86a014902263dae20",
+      source_excerpt: "RMA 448 V accugrasmaaier kopen RMA 448 - AK systeem RMA 448 V accugrasmaai",
+      source_excerpt_hash: "ee59bfc343b1bb036a08d87d25751369dba09196bfc20fb30e8ef0208981d258",
       evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
       primary_h1: "",
       primary_product_name: "RMA 448 - AK systeem",
@@ -1091,6 +1095,8 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
       secondary_pdf_page: 108,
       secondary_pdf_sha256: "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162"
     },
+    source_excerpt: "RMA 448 V accugrasmaaier kopen RMA 448 - AK systeem RMA 448 V accugrasmaai",
+    source_excerpt_hash: "ee59bfc343b1bb036a08d87d25751369dba09196bfc20fb30e8ef0208981d258",
     status: 'ACTIVE',
     confidence: 'HIGH'
   }),
@@ -1528,6 +1534,111 @@ export function getRegistryStats() {
   };
 }
 
+/**
+ * Synchronous SHA-256 helper for Node environments without introducing
+ * static Node built-in module imports into the browser module graph.
+ */
+export function computeSha256Sync(str, customCrypto = null) {
+  if (!str) return null;
+  if (customCrypto?.createHash) {
+    return customCrypto.createHash('sha256').update(str).digest('hex');
+  }
+  if (typeof process !== 'undefined' && typeof process.getBuiltinModule === 'function') {
+    return process.getBuiltinModule('crypto').createHash('sha256').update(str).digest('hex');
+  }
+  return null;
+}
+
+/**
+ * Phase 56O.1: Strict Registry ↔ Ledger Parity & Evidence Verifier.
+ *
+ * Verifies that an ACTIVE family rule matches its corresponding canonical
+ * ledger record exactly across all required provenance attributes.
+ */
+export function verifyActiveFamilyRuleProvenance(rule, ledger, options = {}) {
+  const errors = [];
+  if (!rule) {
+    errors.push('Rule is null or undefined');
+    return { valid: false, errors };
+  }
+  if (!Array.isArray(ledger)) {
+    errors.push('Ledger must be an array of records');
+    return { valid: false, errors };
+  }
+
+  // 1. Ledger record exists for family
+  const ledgerRecord = ledger.find(l => l.family === rule.family && l.fetch_id === rule.fetch_id);
+  if (!ledgerRecord) {
+    errors.push(`Ledger record missing for family "${rule.family}" with fetch_id "${rule.fetch_id}"`);
+    return { valid: false, errors };
+  }
+
+  // 2. Exact field matches
+  if (rule.fetch_id !== ledgerRecord.fetch_id) {
+    errors.push(`fetch_id mismatch: rule has "${rule.fetch_id}", ledger has "${ledgerRecord.fetch_id}"`);
+  }
+  if (rule.family !== ledgerRecord.family) {
+    errors.push(`family mismatch: rule has "${rule.family}", ledger has "${ledgerRecord.family}"`);
+  }
+  if (rule.drive_type !== ledgerRecord.drive_type) {
+    errors.push(`drive_type mismatch: rule has "${rule.drive_type}", ledger has "${ledgerRecord.drive_type}"`);
+  }
+  if (rule.requested_url !== ledgerRecord.requested_url) {
+    errors.push(`requested_url mismatch: rule has "${rule.requested_url}", ledger has "${ledgerRecord.requested_url}"`);
+  }
+  if (rule.body_sha256 !== ledgerRecord.body_sha256) {
+    errors.push(`body_sha256 mismatch: rule has "${rule.body_sha256}", ledger has "${ledgerRecord.body_sha256}"`);
+  }
+  if (rule.retrieved_at !== ledgerRecord.retrieved_at) {
+    errors.push(`retrieved_at mismatch: rule has "${rule.retrieved_at}", ledger has "${ledgerRecord.retrieved_at}"`);
+  }
+
+  // 3. Status checks
+  if (ledgerRecord.verification_status !== 'VERIFIED') {
+    errors.push(`verification_status mismatch: ledger is "${ledgerRecord.verification_status}", expected "VERIFIED"`);
+  }
+  if (ledgerRecord.context_bound !== true) {
+    errors.push(`context_bound mismatch: ledger record context_bound is ${ledgerRecord.context_bound}, expected true`);
+  }
+  if (ledgerRecord.family_match !== true) {
+    errors.push(`family_match mismatch: ledger record family_match is ${ledgerRecord.family_match}, expected true`);
+  }
+  if (ledgerRecord.drive_match !== true) {
+    errors.push(`drive_match mismatch: ledger record drive_match is ${ledgerRecord.drive_match}, expected true`);
+  }
+
+  // 4. Source excerpt & excerpt hash integrity
+  const excerpt = rule.extracted_evidence?.source_excerpt || rule.source_excerpt;
+  const excerptHash = rule.extracted_evidence?.source_excerpt_hash || rule.source_excerpt_hash;
+
+  if (!excerpt || typeof excerpt !== 'string' || excerpt.trim().length === 0) {
+    errors.push(`Missing or invalid source_excerpt for family "${rule.family}"`);
+  } else {
+    const computedHash = computeSha256Sync(excerpt, options.crypto);
+    if (computedHash && excerptHash && computedHash !== excerptHash) {
+      errors.push(`source_excerpt_hash mismatch: declared "${excerptHash}", computed "${computedHash}"`);
+    }
+
+    // Invariant: body_sha256 may equal source_excerpt_hash ONLY when the complete source body is literally identical to the excerpt
+    if (rule.body_sha256 === excerptHash) {
+      const excerptBytes = typeof Buffer !== 'undefined' ? Buffer.byteLength(excerpt, 'utf8') : excerpt.length;
+      if (rule.body_bytes && rule.body_bytes !== excerptBytes) {
+        errors.push(`body_sha256 cannot equal source_excerpt_hash when body_bytes (${rule.body_bytes}) != excerptBytes (${excerptBytes})`);
+      }
+    }
+  }
+
+  const ledgerExcerptHash = ledgerRecord.extracted_evidence?.source_excerpt_hash || ledgerRecord.source_excerpt_hash;
+  if (excerptHash && ledgerExcerptHash && excerptHash !== ledgerExcerptHash) {
+    errors.push(`excerpt_hash parity mismatch between rule ("${excerptHash}") and ledger ("${ledgerExcerptHash}")`);
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
+
 export const ModelFamilyDriveRegistry = Object.freeze({
   DRIVE_TYPES,
   DISPLAY_LABELS,
@@ -1541,5 +1652,7 @@ export const ModelFamilyDriveRegistry = Object.freeze({
   getFamilyRule,
   resolveDriveType,
   getDriveResolutionMetadata,
-  getRegistryStats
+  getRegistryStats,
+  verifyActiveFamilyRuleProvenance,
+  computeSha256Sync
 });

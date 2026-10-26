@@ -1,27 +1,26 @@
-# STIHLDecoder — Phase 56O Eindrapport
-## Verified RE / RM / RMA Drive-Type Expansion
+# STIHLDecoder — Phase 56O.1 Eindrapport
+## Evidence Integrity & Generation Coverage Closure
 
-**Status:** PASS  
-**Datum:** 2026-10-26T01:41:19.474Z  
-**Baseline commit:** `b00fa1188bd56f56a1bd573bd7716e0a464fc7d3`  
-**Branch:** `feat/phase56o-re-rm-rma-drive-expansion`
+**Status:** PASS<br>
+**Datum:** 2026-10-26T06:06:00.000Z<br>
+**Baseline commit:** `762bbefc15dfea21e04dc29f64d48c97131ea191`<br>
+**Branch:** `fix/phase56o-evidence-integrity-closure`
 
 ---
 
 ## 1. Doel & Context
 
-In Phase 56O zijn drie hoogwaardige STIHL machinefamilies onderzocht en gepromoveerd naar geverifieerde aandrijvingstypes:
-- **RE**: Hogedrukreinigers (`MAINS_ELECTRIC`)
-- **RM**: Benzinemaaiers (`PETROL`)
-- **RMA**: Accugrasmaaiers (`BATTERY`)
-
-Er is voldaan aan de harde eis: uitsluitend promotie op basis van authentieke, officiële STIHL-evidence en met strikte prefix collision boundaries.
+In Phase 56O.1 is de provenance-audit voor de drie gepromoveerde STIHL-machinefamilies (`RE`, `RM`, `RMA`) definitief gesloten:
+- **Registry ↔ Ledger Parity:** Exacte afstemming van fetch IDs (`fetch_stihl_family_028`, `029`, `030`), URL's, timestamps en hashes.
+- **Excerpt SHA-Integriteit:** Strikte invariant gehandhaafd dat `source_excerpt_hash = SHA256(UTF8(source_excerpt))` en dat `body_sha256 ≠ source_excerpt_hash` voor HTML-bronnen.
+- **Dynamische Provenance Gates:** Alle integriteits- en provenance-validaties worden dynamisch berekend zonder hardcoded constanten.
+- **Evidence-Gedreven Generation Coverage:** Elke generatiegroep (`1xx`-`9xx` voor RE; `2xx`-`7xx` voor RM; `2xx`-`7xx` voor RMA) is expliciet gekoppeld aan authentieke officiële documentatie.
 
 ---
 
 ## 2. Populatie & Coverage Resultaten
 
-| Parameter | Baseline (Phase 56N) | Na Phase 56O | Delta |
+| Parameter | Baseline (Phase 56N) | Na Phase 56O / 56O.1 | Delta |
 | :--- | :--- | :--- | :--- |
 | **Catalogustotaal** | 956 | 956 | 0 |
 | **Niet-aangedreven attachments** | 25 | 25 | 0 |
@@ -31,82 +30,46 @@ Er is voldaan aan de harde eis: uitsluitend promotie op basis van authentieke, o
 | **Onbekende aangedreven machines** | **476** | **358** | **-118 (-24.79%)** |
 | **Coverage percentage** | **45.85%** | **59.27%** | **+13.42 pp** |
 
-### Uitsplitsing promoties per familie:
-- **RE (Hogedrukreinigers)**: **71 modellen** gepromoveerd naar `MAINS_ELECTRIC`.
-- **RM (Benzinegrasmaaiers)**: **25 modellen** gepromoveerd naar `PETROL`.
-- **RMA (Accugrasmaaiers)**: **22 modellen** gepromoveerd naar `BATTERY`.
-- **Totaal promoties**: **118 modellen**.
+---
+
+## 3. Evidence-Gedreven Generation Matrix
+
+### RE Generaties (`MAINS_ELECTRIC`)
+- **1xx (31 modellen):** Gedekt door live HTML (`RE 130 PLUS`) en *STIHL GB Catalogue 2023* p. 156-161.
+- **2xx (8 modellen):** Gedekt door officiële handleiding `0458-647-9021-A` (RE 271, 281).
+- **3xx (6 modellen) & 4xx (5 modellen):** Gedekt door officiële handleiding `0458-671-9021` (RE 361, 461, 471 K).
+- **5xx (8 modellen):** Gedekt door officiële handleiding `0458-675-9021` (RE 521, 551, 581).
+- **6xx (4 modellen), 8xx (5 modellen), 9xx (4 modellen):** Gedekt door officiële handleiding `0458-676-9021` (RE 661, 881, 981).
+
+### RM Generaties (`PETROL`)
+- **2xx, 4xx, 5xx, 6xx, 7xx (25 modellen):** Volledig gedekt door live HTML (`RM 448 T`), *STIHL GB Catalogue 2023* p. 107 en Service Kit 49 doc `0458-007-0049`.
+
+### RMA Generaties (`BATTERY`)
+- **2xx, 3xx, 4xx, 7xx (22 modellen):** Volledig gedekt door live HTML (`RMA 448 V`) en *STIHL GB Catalogue 2023* p. 108.
 
 ---
 
-## 3. Officiële STIHL Evidence
-
-1. **RE Familie (`MAINS_ELECTRIC`):**
-   - **Live HTML:** `https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522` (SHA-256: `bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa`)
-     - *"Nominale spanning 220-240 V Aantal fases 1 Opgenomen vermogen 2.30 kW", "robuuste, borstelloze inductiemotor"*
-   - **PDF Catalogus 2023:** `https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf` (SHA-256: `406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162`), Pagina 161 (Mains voltage 230 / 1~ / 50, Power cable length 5 m, Power consumption kW).
-
-2. **RM Familie (`PETROL`):**
-   - **Live HTML:** `https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012` (SHA-256: `0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729`)
-     - *"Grasmaaiers RM 448 T benzine"*
-   - **PDF Catalogus 2023:** `https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf` (SHA-256: `406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162`), Pagina 107 (petrol lawn mowers, Displacement cm3, Engine type STIHL EVC 200 / Kohler XT800 / Kawasaki FJ 180).
-   - **Service Kit 49:** Doc `0458-007-0049` bevestigt verbrandingsmotoronderdelen (luchtfilter, bougie, brandstoffilter).
-
-3. **RMA Familie (`BATTERY`):**
-   - **Live HTML:** `https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059` (SHA-256: `029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f`)
-     - *"Grasmaaiers RMA 448 V, AK systeem, accu"*
-   - **PDF Catalogus 2023:** `https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf` (SHA-256: `406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162`), Pagina 108 (cordless lawn mowers, STIHL cordless power system, 36 V).
-
----
-
-## 4. Prefix Collision Safety Audit
-
-| Regel | Geteste Negatieve Controle / Prefix | Resultaat | Status |
-| :--- | :--- | :--- | :--- |
-| **RE** | `REA 60.0`, `REA 100.0` (Cordless) | Geen match met RE | **GEEN COLLISIE (PASS)** |
-| **RM** | `RMA 448`, alle 22 RMA modellen | Matched RMA (BATTERY), niet RM | **GEEN COLLISIE (PASS)** |
-| **RM** | `RME 339.0 C`, `RME 443.0 C`, `RME 545.0 C` | Geen match met RM | **GEEN COLLISIE (PASS)** |
-| **RM** | `RMI 422.0`, `RMI 522.0 C`, `RMI 632.0 PC` | Geen match met RM | **GEEN COLLISIE (PASS)** |
-
----
-
-## 5. Hard Gates Verificatie
+## 4. Hard Gates Verificatie
 
 ```text
-UNSAFE_DRIVE_PROMOTIONS              = 0
-PROMOTIONS_WITHOUT_OFFICIAL_EVIDENCE = 0
-PREFIX_COLLISION_ERRORS              = 0
-RE_RULE_AFFECTED_REA                 = 0
-RM_RULE_AFFECTED_RMA                 = 0
-RM_RULE_AFFECTED_RME                 = 0
-RM_RULE_AFFECTED_RMI                 = 0
-TARGET_NON_MACHINE_RECORDS           = 0
-TARGET_ATTACHMENT_RECORDS            = 0
-DRIVE_CONFLICTS_INTRODUCED           = 0
+REGISTRY_LEDGER_FETCH_ID_MISMATCHES   = 0
+ACTIVE_RULE_LEDGER_PARITY_ERRORS     = 0
+EXCERPT_HASH_MISMATCHES              = 0
+BODY_HASH_MISMATCHES                 = 0
+UNVERIFIED_ACTIVE_LEDGER_RECORDS     = 0
+NON_CONTEXT_BOUND_ACTIVE_RECORDS     = 0
+PROMOTIONS_WITHOUT_EVIDENCE_IDS      = 0
+PROMOTIONS_WITH_UNSUPPORTED_GEN     = 0
 FABRICATED_PROVENANCE                = 0
-PHASE56N_REGRESSIONS                 = 0
-CATALOG_FREEZE_INTACT                = true
+SYNTHETIC_PROVENANCE                 = 0
+PREFIX_COLLISION_ERRORS              = 0
+DRIVE_CONFLICTS_INTRODUCED           = 0
 PHASE56O_EVIDENCE_INTEGRITY          = true
+CATALOG_FREEZE_INTACT                = true
 ```
 
 ---
 
-## 6. Routing & Governance Status
+## 5. Conclusie
 
-```text
-9router_endpoint_reachable = YES
-9router_used = NO
-9router_model/routes_used = NONE
-9router_fallback_reason = 503 upstream / 402 Credits Required; native fallback actief
-
-agent_initiated_codex = NO
-automatic_external_review_triggered = NO
-codex_feedback_used = NO
-codex_used_for_acceptance = NO
-```
-
----
-
-## 7. Conclusie
-
-Phase 56O is succesvol afgerond met 100% sluitende evidence, 0 prefix collisions, 0 regressies en een stijging van de aangedreven coverage van 45.85% naar 59.27%.
+Phase 56O.1 is succesvol afgerond met volledige provenance-integriteit, geverifieerde generatiedekking en 100% sluitende parity tussen registry en fetch ledger.
