@@ -123,7 +123,7 @@ export function buildPhase56mDriveCoverageTriage({ write = true } = {}) {
 
   for (const m of allModels) {
     const isAttachment = isAttachmentDesignation(m);
-    const res = resolveDriveType(m, { exactModels: false, excludeFamilies: ['RE', 'RM', 'RMA'] });
+    const res = resolveDriveType(m, { exactModels: false, excludeFamilies: ['RE', 'RM', 'RMA', 'MB'] });
     const family = parseModelFamily(m);
 
     if (isAttachment) {
@@ -143,7 +143,7 @@ export function buildPhase56mDriveCoverageTriage({ write = true } = {}) {
           family
         });
       } else {
-        const rule = family && !['RE', 'RM', 'RMA'].includes(family) ? OFFICIAL_STIHL_FAMILY_RULES[family] || null : null;
+        const rule = family && !['RE', 'RM', 'RMA', 'MB'].includes(family) ? OFFICIAL_STIHL_FAMILY_RULES[family] || null : null;
         const disabledRule = family ? DISABLED_FAMILY_RULES[family] || null : null;
 
         let ruleStatus = 'NO_RULE';

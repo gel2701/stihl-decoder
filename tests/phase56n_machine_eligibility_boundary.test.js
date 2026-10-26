@@ -90,7 +90,7 @@ test('Phase 56N: Real machines are classified as POWERED_MACHINE (False-exclusio
 });
 
 test('Phase 56N: Unknown-but-real-machine cohorts are POWERED_MACHINE candidates without premature drive assignment', () => {
-  const unknownMachineCandidates = ['BT 131', 'MB 448', 'GE 250', 'RT 4082', 'RL 540', 'SG 17'];
+  const unknownMachineCandidates = ['BT 131', 'MB 400', 'GE 250', 'RT 4082', 'RL 540', 'SG 17'];
 
   for (const name of unknownMachineCandidates) {
     const res = resolveMachineEligibility(name);

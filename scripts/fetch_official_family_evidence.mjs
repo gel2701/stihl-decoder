@@ -375,6 +375,17 @@ export const FAMILY_SOURCE_TARGETS = [
     representative_models: ['RMA 448'],
     required_drive_terms: ['accu', 'battery', 'batterij', 'ak-systeem', 'ap-systeem'],
     negative_patterns: [/hogedrukreiniger|heggenschaar/i]
+  },
+  {
+    family: 'MB',
+    machine_type: 'LAWN_MOWER',
+    drive_type: 'PETROL',
+    display: 'Benzine',
+    requested_url: 'https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9828-B_ZBA_01_00.PDF',
+    family_tokens: ['MB'],
+    representative_models: ['MB 248', 'MB 253'],
+    required_drive_terms: ['silnik spalinowy', 'paliwo', 'combustion engine', 'benzine', 'verbrandingsmotor'],
+    negative_patterns: [/hogedrukreiniger|heggenschaar/i]
   }
 ];
 

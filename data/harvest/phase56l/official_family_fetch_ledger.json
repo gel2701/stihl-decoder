@@ -1819,5 +1819,76 @@
     "page_number": null,
     "nested_secondary_content_leaks": 0,
     "non_product_jsonld_evidence_records": 0
+  },
+  {
+    "family": "MB",
+    "machine_type": "LAWN_MOWER",
+    "drive_type": "PETROL",
+    "display": "Benzine",
+    "fetch_id": "fetch_stihl_family_031",
+    "reused_cached_fetch": false,
+    "requested_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9828-B_ZBA_01_00.PDF",
+    "final_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9828-B_ZBA_01_00.PDF",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "page_title": "VIKING MB 248, MB 248 T, MB 253, MB 253 T Instruction Manual (0478-111-9828-B)",
+    "source_title": "VIKING MB 248, MB 248 T, MB 253, MB 253 T Instruction Manual (0478-111-9828-B)",
+    "fetch_started_at": "2026-10-26T15:34:00.000Z",
+    "retrieval_started_at": "2026-10-26T15:34:00.000Z",
+    "retrieved_at": "2026-10-26T15:34:05.000Z",
+    "fetch_completed_at": "2026-10-26T15:34:05.000Z",
+    "body_sha256": "99c73f0b54052c11bc228fa058beab016a5e2616e1927620674f5a7ac4094dc8",
+    "body_bytes": 20057790,
+    "family_match": true,
+    "drive_match": true,
+    "wrong_content": false,
+    "matched_family_tokens": [
+      "MB"
+    ],
+    "matched_drive_terms": [
+      "silnik spalinowy",
+      "paliwo",
+      "combustion engine",
+      "benzine",
+      "verbrandingsmotor"
+    ],
+    "matched_models": [
+      "MB 248",
+      "MB 253"
+    ],
+    "evidence_locator": "Official VIKING/STIHL verification: \"VIKING MB 248, MB 248 T, MB 253, MB 253 T\" matches family [MB], models [MB 248, MB 253], and drive terms [silnik spalinowy, paliwo, combustion engine, benzine, verbrandingsmotor] within primary manufacturer documentation.",
+    "extracted_evidence": {
+      "page_number": 28,
+      "matched_family_text": "MB",
+      "matched_drive_text": "silnik spalinowy, paliwo",
+      "matched_models": [
+        "MB 248.4",
+        "MB 248.3 T",
+        "MB 253.1",
+        "MB 253.1 T"
+      ],
+      "source_excerpt": "MB 248.4:  Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść   skokowa:   139 cm 3 Zbiornik paliwa:   0,9 l Pr ę dko ść   obrotowa",
+      "source_excerpt_hash": "74758c7361c6e96d0caae7430aad477b730de4897d54dd285c6171b64e9f4adb",
+      "evidence_context_id": "PRIMARY_PRODUCT_MANUAL",
+      "primary_h1": "VIKING MB 248, MB 253",
+      "primary_product_name": "MB 248.4",
+      "secondary_pdf_catalog_url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9928-B_ZBA_01_00.PDF",
+      "secondary_pdf_page": 84,
+      "secondary_pdf_sha256": "75147f6d217affb80ca224c9c5358a775093d9de69c3d97d75b2a192134ce8a9",
+      "service_kit_manual_doc": "0478-111-9828-B"
+    },
+    "source_excerpt": "MB 248.4:  Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść   skokowa:   139 cm 3 Zbiornik paliwa:   0,9 l Pr ę dko ść   obrotowa",
+    "source_excerpt_hash": "74758c7361c6e96d0caae7430aad477b730de4897d54dd285c6171b64e9f4adb",
+    "verification_status": "VERIFIED",
+    "pdf_parser": "pdfjs-dist",
+    "pdf_text_extracted": true,
+    "pdf_page_count": 350,
+    "pdf_text_length": 934500,
+    "raw_bytes_used": false,
+    "context_bound": true,
+    "evidence_context_id": "PRIMARY_PRODUCT_MANUAL",
+    "page_number": 28,
+    "nested_secondary_content_leaks": 0,
+    "non_product_jsonld_evidence_records": 0
   }
 ]

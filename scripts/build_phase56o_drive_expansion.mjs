@@ -160,7 +160,7 @@ export async function buildPhase56oDriveExpansion({
     const parsed = parseModelFamily(m.model_name);
     const prefix = typeof parsed === 'string' ? parsed : (parsed ? parsed.prefix : null);
 
-    const currentRes = resolveDriveType(m);
+    const currentRes = resolveDriveType(m, { excludeFamilies: ['MB'] });
     const isExplicit = currentRes.resolution === 'EXPLICIT_MODEL';
 
     if (prefix === 'RE' && !isExplicit) {
@@ -171,7 +171,7 @@ export async function buildPhase56oDriveExpansion({
       targetCohort.RMA.push(m.model_name);
     }
 
-    if (isExplicit || (currentRes.drive_type !== DRIVE_TYPES.UNKNOWN && !['RE', 'RM', 'RMA'].includes(prefix))) {
+    if (isExplicit || (currentRes.drive_type !== DRIVE_TYPES.UNKNOWN && !['RE', 'RM', 'RMA', 'MB'].includes(prefix))) {
       baselineResolved.push(m.model_name);
     } else {
       baselineUnknown.push(m.model_name);
