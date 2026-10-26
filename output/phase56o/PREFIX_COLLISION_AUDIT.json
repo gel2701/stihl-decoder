@@ -1,0 +1,293 @@
+{
+  "phase": "PHASE_56O",
+  "timestamp": "2026-10-26T01:41:19.467Z",
+  "metrics": {
+    "re_rule_affected_rea": 0,
+    "rm_rule_affected_rma": 0,
+    "rm_rule_affected_rme": 0,
+    "rm_rule_affected_rmi": 0,
+    "prefix_collision_errors": 0,
+    "passed": true
+  },
+  "rules_evaluated": [
+    {
+      "rule": "RE",
+      "regex": "^RE\\\\b",
+      "expected_drive": "MAINS_ELECTRIC"
+    },
+    {
+      "rule": "RMA",
+      "regex": "^RMA\\\\b",
+      "expected_drive": "BATTERY"
+    },
+    {
+      "rule": "RM",
+      "regex": "^RM\\\\b",
+      "expected_drive": "PETROL"
+    }
+  ],
+  "test_results": [
+    {
+      "model_name": "REA 60.0",
+      "expected_family": "REA",
+      "tested_rule": "RE",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "REA 100.0",
+      "expected_family": "REA",
+      "tested_rule": "RE",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RME 339.0 C",
+      "expected_family": "RME",
+      "tested_rule": "RM",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RME 443.0 C",
+      "expected_family": "RME",
+      "tested_rule": "RM",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RME 545.0 C",
+      "expected_family": "RME",
+      "tested_rule": "RM",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMI 422.0",
+      "expected_family": "RMI",
+      "tested_rule": "RM",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMI 522.0 C",
+      "expected_family": "RMI",
+      "tested_rule": "RM",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMI 632.0 PC",
+      "expected_family": "RMI",
+      "tested_rule": "RM",
+      "resolved_drive_type": "UNKNOWN",
+      "resolution_method": "UNVERIFIED_FAMILY",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 2.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 2.1",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 2.2",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 239.1",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 243.3",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 248.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 248.3",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 253.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 253.3",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 339.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 410",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 443.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 443.1",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 443.2",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 443.3",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 448.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 448.1",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 448.2",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 448.3",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 453.3",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 750",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    },
+    {
+      "model_name": "RMA 765.0",
+      "parsed_family": "RMA",
+      "expected_family": "RMA",
+      "tested_rule": "RM",
+      "resolved_drive_type": "BATTERY",
+      "resolution_method": "FAMILY_RULE",
+      "collision_prevented": true
+    }
+  ]
+}

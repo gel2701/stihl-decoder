@@ -955,6 +955,145 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     status: 'ACTIVE',
     confidence: 'HIGH'
   }),
+  RE: Object.freeze({
+    family: "RE",
+    machine_type: "PRESSURE_WASHER",
+    drive_type: DRIVE_TYPES.MAINS_ELECTRIC,
+    display: DISPLAY_LABELS.MAINS_ELECTRIC,
+    source_type: 'OFFICIAL_STIHL_FAMILY_EVIDENCE',
+    fetch_id: "fetch_stihl_family_028",
+    requested_url: "https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522",
+    source_url: "https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522",
+    source_title: "RE 130 PLUS hogedrukreiniger kopen",
+    evidence_locator: "Official STIHL verification: \"RE 130 PLUS hogedrukreiniger kopen\" matches family [RE], models [RE 130], and drive terms [elektrische, inductiemotor, 220-240 v] within primary product context.",
+    family_match: true,
+    drive_match: true,
+    matched_family_tokens: ["RE"],
+    matched_drive_terms: ["elektrisch", "elektrische", "inductiemotor", "220-240 v", "spanning"],
+    matched_models: ["RE 130"],
+    retrieval_started_at: "2026-10-26T01:17:36.000Z",
+    retrieved_at: "2026-10-26T01:17:41.000Z",
+    body_sha256: "bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa",
+    body_bytes: 217133,
+    pdf_parser: null,
+    pdf_text_extracted: false,
+    pdf_page_count: null,
+    pdf_text_length: null,
+    raw_bytes_used: false,
+    context_bound: true,
+    evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
+    page_number: null,
+    nested_secondary_content_leaks: 0,
+    non_product_jsonld_evidence_records: 0,
+    extracted_evidence: {
+      matched_family_text: "RE",
+      matched_drive_text: "elektrische, inductiemotor, 220-240 v",
+      matched_models: ["RE 130"],
+      source_excerpt: "RE 130 PLUS hogedrukreiniger kopen Hogedrukreinigers RE 130 PLUS Nominale spanning 220-240 V Aantal fases 1 Opgenomen vermogen 2.30 kW Inductiemotor",
+      source_excerpt_hash: "28e08d6d63309aef8cb4893707e4d825c317ad0230536ba9067b58832a849f16",
+      evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
+      primary_h1: "",
+      primary_product_name: "RE 130",
+      secondary_pdf_catalog_url: "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
+      secondary_pdf_page: 161,
+      secondary_pdf_sha256: "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162"
+    },
+    status: 'ACTIVE',
+    confidence: 'HIGH'
+  }),
+  RM: Object.freeze({
+    family: "RM",
+    machine_type: "LAWN_MOWER",
+    drive_type: DRIVE_TYPES.PETROL,
+    display: DISPLAY_LABELS.PETROL,
+    source_type: 'OFFICIAL_STIHL_FAMILY_EVIDENCE',
+    fetch_id: "fetch_stihl_family_029",
+    requested_url: "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
+    source_url: "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
+    source_title: "RM 448 T benzinegrasmaaier kopen",
+    evidence_locator: "Official STIHL verification: \"RM 448 T benzinegrasmaaier kopen\" matches family [RM], models [RM 448], and drive terms [benzine, brandstof, motor] within primary product context.",
+    family_match: true,
+    drive_match: true,
+    matched_family_tokens: ["RM"],
+    matched_drive_terms: ["benzine", "brandstof", "motor"],
+    matched_models: ["RM 448"],
+    retrieval_started_at: "2026-10-26T01:17:36.000Z",
+    retrieved_at: "2026-10-26T01:17:41.000Z",
+    body_sha256: "0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729",
+    body_bytes: 193306,
+    pdf_parser: null,
+    pdf_text_extracted: false,
+    pdf_page_count: null,
+    pdf_text_length: null,
+    raw_bytes_used: false,
+    context_bound: true,
+    evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
+    page_number: null,
+    nested_secondary_content_leaks: 0,
+    non_product_jsonld_evidence_records: 0,
+    extracted_evidence: {
+      matched_family_text: "RM",
+      matched_drive_text: "benzine, brandstof, motor",
+      matched_models: ["RM 448"],
+      source_excerpt: "RM 448 T benzinegrasmaaier kopen Grasmaaiers RM 448 T benzine motor",
+      source_excerpt_hash: "a1a8c3d7904e2978ffc71e9a2632b45ec2d3a2e724b17e47a9ef4e3599e0db2c",
+      evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
+      primary_h1: "",
+      primary_product_name: "RM 448",
+      secondary_pdf_catalog_url: "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
+      secondary_pdf_page: 107,
+      secondary_pdf_sha256: "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
+      service_kit_manual_doc: "0458-007-0049"
+    },
+    status: 'ACTIVE',
+    confidence: 'HIGH'
+  }),
+  RMA: Object.freeze({
+    family: "RMA",
+    machine_type: "LAWN_MOWER",
+    drive_type: DRIVE_TYPES.BATTERY,
+    display: DISPLAY_LABELS.BATTERY,
+    source_type: 'OFFICIAL_STIHL_FAMILY_EVIDENCE',
+    fetch_id: "fetch_stihl_family_030",
+    requested_url: "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
+    source_url: "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
+    source_title: "RMA 448 V accugrasmaaier kopen",
+    evidence_locator: "Official STIHL verification: \"RMA 448 V accugrasmaaier kopen\" matches family [RMA], models [RMA 448], and drive terms [accu, ak-systeem, batterij] within primary product context.",
+    family_match: true,
+    drive_match: true,
+    matched_family_tokens: ["RMA"],
+    matched_drive_terms: ["accu", "ak-systeem", "batterij"],
+    matched_models: ["RMA 448"],
+    retrieval_started_at: "2026-10-26T01:17:36.000Z",
+    retrieved_at: "2026-10-26T01:17:41.000Z",
+    body_sha256: "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f",
+    body_bytes: 208864,
+    pdf_parser: null,
+    pdf_text_extracted: false,
+    pdf_page_count: null,
+    pdf_text_length: null,
+    raw_bytes_used: false,
+    context_bound: true,
+    evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
+    page_number: null,
+    nested_secondary_content_leaks: 0,
+    non_product_jsonld_evidence_records: 0,
+    extracted_evidence: {
+      matched_family_text: "RMA",
+      matched_drive_text: "accu, ak-systeem, batterij",
+      matched_models: ["RMA 448"],
+      source_excerpt: "RMA 448 V accugrasmaaier kopen Grasmaaiers RMA 448 V zonder accu en lader AK systeem",
+      source_excerpt_hash: "3b07ef902b9e2c4f74d08154e19574bf2002f5a6b0cfa0b86a014902263dae20",
+      evidence_context_id: "PRIMARY_PRODUCT_CONTEXT",
+      primary_h1: "",
+      primary_product_name: "RMA 448 - AK systeem",
+      secondary_pdf_catalog_url: "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
+      secondary_pdf_page: 108,
+      secondary_pdf_sha256: "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162"
+    },
+    status: 'ACTIVE',
+    confidence: 'HIGH'
+  }),
 });
 
 
@@ -1024,12 +1163,9 @@ export const UNVERIFIED_FAMILY_PREFIXES = Object.freeze([
   "NG",
   "P",
   "RB",
-  "RE",
   "REA",
   "RGA",
   "RL",
-  "RM",
-  "RMA",
   "RME",
   "RMI",
   "RT",
@@ -1207,7 +1343,7 @@ export const EXACT_POWERED_MODELS = Object.freeze({
  *   6. Fail-closed UNKNOWN ('Niet vastgesteld')
  */
 export function resolveDriveType(modelInput, options = {}) {
-  const { exactModels = true } = options;
+  const { exactModels = true, excludeFamilies = null } = options;
   const eligibilityInfo = resolveMachineEligibility(modelInput);
 
   // Precedence 1A: Attachment safety gate (Unpowered KombiTools / MultiTools)
@@ -1296,7 +1432,7 @@ export function resolveDriveType(modelInput, options = {}) {
   }
 
   const family = parseModelFamily(modelInput);
-  const rule = family ? OFFICIAL_STIHL_FAMILY_RULES[family] : null;
+  const rule = family && (!excludeFamilies || !excludeFamilies.includes(family)) ? OFFICIAL_STIHL_FAMILY_RULES[family] : null;
 
   // Precedence 3: Conflict detection between explicit and verified family rule
   if (explicitDriveType && rule && rule.status === 'ACTIVE') {
