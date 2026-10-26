@@ -111,6 +111,8 @@ export class HttpClient {
     // 1. Check local cache for the active mode
     const cached = this.readFromCache(url);
     if (cached) {
+      const isPdf = (cached.content_type && cached.content_type.includes('application/pdf')) || url.endsWith('.pdf');
+      const buffer = isPdf && cached.body ? Buffer.from(cached.body, 'latin1') : null;
       return {
         url,
         requested_url: cached.requested_url || cached.url || url,
@@ -119,7 +121,8 @@ export class HttpClient {
         statusText: cached.status === 200 ? 'OK' : `HTTP ${cached.status}`,
         contentType: cached.content_type || 'text/html',
         body: cached.body,
-        bodySha256: cached.body_sha256 || crypto.createHash('sha256').update(cached.body || '').digest('hex'),
+        buffer,
+        bodySha256: cached.body_sha256 || crypto.createHash('sha256').update(buffer || cached.body || '').digest('hex'),
         fromCache: true,
         fetchedAt: cached.fetched_at,
         mode: this.mode
@@ -172,9 +175,18 @@ export class HttpClient {
 
         clearTimeout(timeout);
 
-        const body = await response.text();
         const contentType = response.headers.get('content-type') || 'text/html';
-        const bodySha256 = crypto.createHash('sha256').update(body || '').digest('hex');
+        const isPdf = contentType.includes('application/pdf') || url.endsWith('.pdf') || Boolean(options.binary);
+        let body;
+        let buffer = null;
+        if (isPdf) {
+          const ab = await response.arrayBuffer();
+          buffer = Buffer.from(ab);
+          body = buffer.toString('latin1');
+        } else {
+          body = await response.text();
+        }
+        const bodySha256 = crypto.createHash('sha256').update(buffer || body || '').digest('hex');
         const finalUrl = response.url || url;
 
         // Cache response in live cache directory
@@ -188,6 +200,7 @@ export class HttpClient {
           statusText: response.statusText || (response.status === 200 ? 'OK' : `HTTP ${response.status}`),
           contentType,
           body,
+          buffer,
           bodySha256,
           fromCache: false,
           fetchedAt: new Date().toISOString(),

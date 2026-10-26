@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Strict Content-Level Validator for Official STIHL Parts Evidence (Phase 52B-R3A)
+ * Strict Content-Level Validator for Official STIHL Parts Evidence (Phase 52B-R3A / Phase 56N.4)
  *
  * Supports two distinct validation policies:
  * 1. 'STRICT_SNAPSHOT': Validates stored snapshot/fixture integrity (exact response_sha256 match required).
- * 2. 'CLAIM_REVALIDATION' (default): Validates manufacturer claim authority on live/current webpage.
- *    - Full-body SHA drift is reported as a non-fatal warning (SOURCE_BODY_CHANGED_CLAIM_STILL_VALID / VERIFIED_SOURCE_CHANGED).
+ * 2. 'CLAIM_REVALIDATION' (default): Validates manufacturer claim authority on live/current source.
+ *    - Full-body SHA drift is reported as a non-fatal warning (SOURCE_CHANGED_CLAIM_VALID).
+ *    - Retired sources (e.g. HTTP 404 on legacy URLs) with verified official replacement sources are validated truthfully (SOURCE_RETIRED_REPLACEMENT_VERIFIED).
  *    - All claim-level checks (part number, models, locator, condition, official STIHL domain) remain FAIL-CLOSED.
  */
 
@@ -26,10 +27,15 @@ export const HASH_POLICIES = {
 };
 
 export const HASH_STATUS = {
-  VERIFIED_UNCHANGED: 'VERIFIED_UNCHANGED',
-  SOURCE_BODY_CHANGED_CLAIM_STILL_VALID: 'SOURCE_BODY_CHANGED_CLAIM_STILL_VALID',
-  CLAIM_FAILED_BODY_CHANGED: 'CLAIM_FAILED_BODY_CHANGED',
-  CLAIM_FAILED_BODY_MATCHED: 'CLAIM_FAILED_BODY_MATCHED'
+  SOURCE_LIVE_VALID: 'SOURCE_LIVE_VALID',
+  SOURCE_CHANGED_CLAIM_VALID: 'SOURCE_CHANGED_CLAIM_VALID',
+  SOURCE_RETIRED_REPLACEMENT_VERIFIED: 'SOURCE_RETIRED_REPLACEMENT_VERIFIED',
+  SOURCE_UNAVAILABLE_UNVERIFIED: 'SOURCE_UNAVAILABLE_UNVERIFIED',
+  // Backwards compatibility aliases
+  VERIFIED_UNCHANGED: 'SOURCE_LIVE_VALID',
+  SOURCE_BODY_CHANGED_CLAIM_STILL_VALID: 'SOURCE_CHANGED_CLAIM_VALID',
+  CLAIM_FAILED_BODY_CHANGED: 'SOURCE_UNAVAILABLE_UNVERIFIED',
+  CLAIM_FAILED_BODY_MATCHED: 'SOURCE_UNAVAILABLE_UNVERIFIED'
 };
 
 export function validateOfficialRecord(item, responseBody = null, options = {}) {
@@ -112,9 +118,17 @@ export function validateOfficialRecord(item, responseBody = null, options = {}) 
       }
     }
 
-    // 8. Content-Level Validation (when response body is provided)
-    if (responseBody !== null) {
-      actualSha = crypto.createHash('sha256').update(responseBody).digest('hex');
+    // 8. Content-Level Validation (when response body or pageText is provided)
+    if (responseBody !== null || options.pageText !== undefined) {
+      if (responseBody !== null) {
+        if (Buffer.isBuffer(responseBody) || responseBody instanceof Uint8Array) {
+          actualSha = crypto.createHash('sha256').update(responseBody).digest('hex');
+        } else {
+          actualSha = crypto.createHash('sha256').update(responseBody).digest('hex');
+        }
+      } else {
+        actualSha = item.response_sha256;
+      }
       hashMatch = Boolean(item.response_sha256 && item.response_sha256.toLowerCase() === actualSha.toLowerCase());
 
       // 8a. Hash policy evaluation
@@ -124,36 +138,40 @@ export function validateOfficialRecord(item, responseBody = null, options = {}) 
         }
       }
 
-      // 8b. Verify exact 11-digit part number presence in response body
+      const checkText = typeof options.pageText === 'string'
+        ? options.pageText
+        : (typeof responseBody === 'string' ? responseBody : '');
+
+      // 8b. Verify exact 11-digit part number presence in response content
       if (norm) {
         const formatted = PartNormalizer.formatPartNumber(norm);
-        const hasPartNo = responseBody.includes(norm) || (formatted && responseBody.includes(formatted));
+        const hasPartNo = checkText.includes(norm) || (formatted && checkText.includes(formatted));
         if (!hasPartNo) {
           errors.push(`Part number "${norm}" (${formatted}) not found in official response body content`);
           claimContentValid = false;
         }
       }
 
-      // 8c. Verify claimed models presence in response body
+      // 8c. Verify claimed models presence in response content
       if (Array.isArray(item.models)) {
         for (const m of item.models) {
           const cleanM = m.replace(/^STIHL\s+/i, '').trim();
-          if (!responseBody.includes(cleanM)) {
+          if (!checkText.includes(cleanM)) {
             errors.push(`Claimed model "${cleanM}" not found in official response body content`);
             claimContentValid = false;
           }
         }
       }
 
-      // 8d. Verify claimed source_locator presence in response body
+      // 8d. Verify claimed source_locator presence in response content
       if (item.source_locator) {
-        if (!responseBody.toLowerCase().includes(item.source_locator.toLowerCase())) {
+        if (!checkText.includes(item.source_locator)) {
           errors.push(`Claimed source_locator "${item.source_locator}" not found in official response body content`);
           claimContentValid = false;
         }
       }
 
-      // 8e. Verify claimed variant_condition presence in response body
+      // 8e. Verify claimed variant_condition presence in response content
       if (item.variant_condition) {
         const conditionTokens = item.variant_condition.match(/\b[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\b/g) || [];
         const criticalTokens = conditionTokens.filter(w => {
@@ -161,17 +179,46 @@ export function validateOfficialRecord(item, responseBody = null, options = {}) 
           return w.length > 2 && !['models', 'engine', 'generation', 'standard', 'carburetors', 'early', 'serial', 'numbers', 'comfort', 'variants', 'later', 'and', 'the', 'for'].includes(lower);
         });
         for (const token of criticalTokens) {
-          if (!responseBody.toLowerCase().includes(token.toLowerCase())) {
+          if (!checkText.toLowerCase().includes(token.toLowerCase())) {
             errors.push(`Claimed variant_condition term "${token}" (from "${item.variant_condition}") not found in official response body content`);
             claimContentValid = false;
           }
         }
       }
 
+      // 8f. Verify evidence_excerpt and evidence_excerpt_sha256 if present
+      if (item.evidence_excerpt) {
+        const normCheck = checkText.replace(/\s+/g, ' ');
+        const normExcerpt = item.evidence_excerpt.replace(/\s+/g, ' ');
+        if (!normCheck.includes(normExcerpt)) {
+          errors.push(`Evidence excerpt "${item.evidence_excerpt}" not found in extracted response text`);
+          claimContentValid = false;
+        }
+        if (item.evidence_excerpt_sha256) {
+          const computedExcerptSha = crypto.createHash('sha256').update(item.evidence_excerpt).digest('hex');
+          if (computedExcerptSha !== item.evidence_excerpt_sha256) {
+            errors.push(`Evidence excerpt SHA-256 mismatch: expected ${item.evidence_excerpt_sha256}, got ${computedExcerptSha}`);
+            claimContentValid = false;
+          }
+        }
+      }
+
+      // 8g. Evaluate Hash & Source Status
       if (claimContentValid) {
-        hashStatus = hashMatch ? HASH_STATUS.VERIFIED_UNCHANGED : HASH_STATUS.SOURCE_BODY_CHANGED_CLAIM_STILL_VALID;
+        if (item.previous_source_url && item.previous_source_status === 'RETIRED_404') {
+          hashStatus = HASH_STATUS.SOURCE_RETIRED_REPLACEMENT_VERIFIED;
+        } else {
+          hashStatus = hashMatch ? HASH_STATUS.SOURCE_LIVE_VALID : HASH_STATUS.SOURCE_CHANGED_CLAIM_VALID;
+        }
       } else {
-        hashStatus = hashMatch ? HASH_STATUS.CLAIM_FAILED_BODY_MATCHED : HASH_STATUS.CLAIM_FAILED_BODY_CHANGED;
+        hashStatus = HASH_STATUS.SOURCE_UNAVAILABLE_UNVERIFIED;
+      }
+    } else {
+      // No response body provided
+      if (item.previous_source_url && item.previous_source_status === 'RETIRED_404') {
+        hashStatus = HASH_STATUS.SOURCE_UNAVAILABLE_UNVERIFIED;
+        errors.push('No response body or replacement content provided to verify retired source claim');
+        claimContentValid = false;
       }
     }
   }
@@ -219,8 +266,8 @@ export function runNegativeValidationTests() {
   if (posErrors.length > 0) {
     throw new Error(`Positive mock test failed: ${posErrors.join(', ')}`);
   }
-  if (posErrors.hashStatus !== HASH_STATUS.VERIFIED_UNCHANGED) {
-    throw new Error(`Expected VERIFIED_UNCHANGED, got ${posErrors.hashStatus}`);
+  if (posErrors.hashStatus !== HASH_STATUS.SOURCE_LIVE_VALID) {
+    throw new Error(`Expected SOURCE_LIVE_VALID, got ${posErrors.hashStatus}`);
   }
 
   // Regression Test 1: Harmless HTML change (Hash drift with identical valid claims) -> PASS under CLAIM_REVALIDATION
@@ -229,8 +276,8 @@ export function runNegativeValidationTests() {
   if (driftErrors.length > 0) {
     throw new Error(`Harmless HTML change should pass CLAIM_REVALIDATION, but failed: ${driftErrors.join(', ')}`);
   }
-  if (driftErrors.hashStatus !== HASH_STATUS.SOURCE_BODY_CHANGED_CLAIM_STILL_VALID) {
-    throw new Error(`Expected SOURCE_BODY_CHANGED_CLAIM_STILL_VALID, got ${driftErrors.hashStatus}`);
+  if (driftErrors.hashStatus !== HASH_STATUS.SOURCE_CHANGED_CLAIM_VALID) {
+    throw new Error(`Expected SOURCE_CHANGED_CLAIM_VALID, got ${driftErrors.hashStatus}`);
   }
 
   // Regression Test 2: Strict snapshot mode rejects hash mismatch -> FAIL under STRICT_SNAPSHOT
@@ -281,7 +328,50 @@ export function runNegativeValidationTests() {
     throw new Error('Negative test failed: Mismatched variant condition did not trigger validation error');
   }
 
-  console.log('  ✓ Negative tests passed: Harmless drift accepted, STRICT_SNAPSHOT enforced, fake parts/models/locators/conditions/URLs rejected.\n');
+  // Regression Test 9: Retired source with verified official replacement PDF -> PASS with SOURCE_RETIRED_REPLACEMENT_VERIFIED
+  const mockPdfPageText = 'chainsaw Service Kits NEW Service Kit 45 for MS 170 ⑤ , MS 180 ⑤ 2-MIX Order number 1130 007 4103 ⑤ From 2015';
+  const mockExcerpt = 'NEW Service Kit 45 for MS 170 ⑤ , MS 180 ⑤ 2-MIX Order number 1130 007 4103';
+  const mockExcerptSha = crypto.createHash('sha256').update(mockExcerpt).digest('hex');
+  const retiredRecord = {
+    ...baseRecord,
+    previous_source_url: 'https://www.stihl.nl/nl/ap/service-kit-45-140895',
+    previous_source_status: 'RETIRED_404',
+    source_url: 'https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf',
+    page_number: 184,
+    content_type: 'application/pdf',
+    evidence_excerpt: mockExcerpt,
+    evidence_excerpt_sha256: mockExcerptSha
+  };
+  const retiredResult = validateOfficialRecord(retiredRecord, Buffer.from('mock pdf binary'), {
+    hashPolicy: HASH_POLICIES.CLAIM_REVALIDATION,
+    pageText: mockPdfPageText
+  });
+  if (retiredResult.length > 0) {
+    throw new Error(`Retired replacement test failed: ${retiredResult.join(', ')}`);
+  }
+  if (retiredResult.hashStatus !== HASH_STATUS.SOURCE_RETIRED_REPLACEMENT_VERIFIED) {
+    throw new Error(`Expected SOURCE_RETIRED_REPLACEMENT_VERIFIED, got ${retiredResult.hashStatus}`);
+  }
+
+  // Negative Test 10: Retired source with mismatched excerpt SHA-256 -> FAIL
+  const badExcerptShaRecord = { ...retiredRecord, evidence_excerpt_sha256: '0000000000000000000000000000000000000000000000000000000000000000' };
+  const badExcerptShaResult = validateOfficialRecord(badExcerptShaRecord, Buffer.from('mock pdf binary'), {
+    pageText: mockPdfPageText
+  });
+  if (badExcerptShaResult.length === 0) {
+    throw new Error('Negative test failed: Mismatched excerpt SHA-256 did not trigger validation error');
+  }
+
+  // Negative Test 11: Retired source without replacement body -> FAIL closed to SOURCE_UNAVAILABLE_UNVERIFIED
+  const missingBodyResult = validateOfficialRecord(retiredRecord, null);
+  if (missingBodyResult.length === 0) {
+    throw new Error('Negative test failed: Missing body for retired source did not trigger validation error');
+  }
+  if (missingBodyResult.hashStatus !== HASH_STATUS.SOURCE_UNAVAILABLE_UNVERIFIED) {
+    throw new Error(`Expected SOURCE_UNAVAILABLE_UNVERIFIED for missing replacement, got ${missingBodyResult.hashStatus}`);
+  }
+
+  console.log('  ✓ Negative tests passed: Harmless drift accepted, STRICT_SNAPSHOT enforced, fake parts/models/locators/conditions/URLs rejected, retired replacement policy verified.\n');
 }
 
 export async function validateOfficialEvidenceFile(evidencePath, options = {}) {
@@ -304,6 +394,7 @@ export async function validateOfficialEvidenceFile(evidencePath, options = {}) {
   let verifiedCount = 0;
   let demotedCount = 0;
   let sourceChangedCount = 0;
+  let retiredReplacementCount = 0;
   let allErrors = [];
   const detailedResults = [];
 
@@ -313,17 +404,37 @@ export async function validateOfficialEvidenceFile(evidencePath, options = {}) {
 
     let responseBody = null;
     let httpStatus = null;
+    let pageText = null;
+
     if (item.verification_status === 'OFFICIAL_SOURCE_VERIFIED') {
-      const res = await client.get(item.source_url, { purpose: `validate_official_evidence_${item.part_number}` });
+      const isPdf = item.content_type === 'application/pdf' || (item.source_url && item.source_url.endsWith('.pdf'));
+      const res = await client.get(item.source_url, { binary: isPdf, purpose: `validate_official_evidence_${item.part_number}` });
       httpStatus = res.status;
-      if (res.status === 200 && res.body) {
-        responseBody = res.body;
+      if (res.status === 200) {
+        if (isPdf) {
+          const buf = res.buffer || (res.body ? Buffer.from(res.body, 'latin1') : null);
+          if (buf) {
+            responseBody = buf;
+            const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
+            const doc = await pdfjs.getDocument({ data: new Uint8Array(buf) }).promise;
+            const pageNum = item.page_number || 1;
+            const page = await doc.getPage(pageNum);
+            const content = await page.getTextContent();
+            pageText = content.items.map(it => it.str).join(' ');
+          } else {
+            allErrors.push(`${idx}: Failed to extract PDF buffer for ${item.source_url}`);
+          }
+        } else if (res.body) {
+          responseBody = res.body;
+        } else {
+          allErrors.push(`${idx}: Failed to fetch official source body for ${item.source_url} (HTTP ${res.status})`);
+        }
       } else {
         allErrors.push(`${idx}: Failed to fetch official source body for ${item.source_url} (HTTP ${res.status})`);
       }
     }
 
-    const recordErrors = validateOfficialRecord(item, responseBody, { hashPolicy });
+    const recordErrors = validateOfficialRecord(item, responseBody, { hashPolicy, pageText });
     if (recordErrors.length > 0) {
       recordErrors.forEach(e => allErrors.push(`${idx}: ${e}`));
     }
@@ -344,7 +455,10 @@ export async function validateOfficialEvidenceFile(evidencePath, options = {}) {
 
     if (item.verification_status === 'OFFICIAL_SOURCE_VERIFIED') {
       verifiedCount++;
-      if (recordErrors.hashStatus === HASH_STATUS.SOURCE_BODY_CHANGED_CLAIM_STILL_VALID) {
+      if (recordErrors.hashStatus === HASH_STATUS.SOURCE_RETIRED_REPLACEMENT_VERIFIED) {
+        retiredReplacementCount++;
+        console.log(`  ✓ [SOURCE_RETIRED_REPLACEMENT_VERIFIED] ${item.part_number_display.padEnd(16)} | ${item.part_name.slice(0, 38).padEnd(38)} | [${item.models.join(', ')}] (Retired: ${item.previous_source_url} -> Replacement: ${item.source_url} p.${item.page_number})`);
+      } else if (recordErrors.hashStatus === HASH_STATUS.SOURCE_CHANGED_CLAIM_VALID) {
         sourceChangedCount++;
         console.log(`  ⚠ [VERIFIED_SOURCE_CHANGED] ${item.part_number_display.padEnd(16)} | ${item.part_name.slice(0, 38).padEnd(38)} | [${item.models.join(', ')}] (SHA Drift: Stored ${item.response_sha256.slice(0, 8)}... vs Live ${recordErrors.actualSha?.slice(0, 8)}...)`);
       } else {
@@ -358,8 +472,9 @@ export async function validateOfficialEvidenceFile(evidencePath, options = {}) {
 
   console.log('\n---------------------------------------------------------------');
   console.log(`Verified Official Claims: ${verifiedCount}`);
-  console.log(`  - Unchanged Source:     ${verifiedCount - sourceChangedCount}`);
+  console.log(`  - Live / Unchanged:     ${verifiedCount - sourceChangedCount - retiredReplacementCount}`);
   console.log(`  - Changed Source Body:  ${sourceChangedCount} (Claims 100% Valid)`);
+  console.log(`  - Retired Replacement:  ${retiredReplacementCount} (Claims 100% Valid)`);
   console.log(`Demoted / Curated Claims: ${demotedCount}`);
   console.log(`Validation Errors:        ${allErrors.length}`);
   console.log('---------------------------------------------------------------');
@@ -370,7 +485,7 @@ export async function validateOfficialEvidenceFile(evidencePath, options = {}) {
     throw new Error(`Official evidence validation failed with ${allErrors.length} errors`);
   } else {
     console.log('\n🎉 ALL OFFICIAL STIHL EVIDENCE RECORDS STRICTLY COMPLIANT!');
-    return { verifiedCount, demotedCount, sourceChangedCount, total: records.length, results: detailedResults };
+    return { verifiedCount, demotedCount, sourceChangedCount, retiredReplacementCount, total: records.length, results: detailedResults };
   }
 }
 
