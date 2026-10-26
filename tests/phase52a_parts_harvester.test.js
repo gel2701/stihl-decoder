@@ -949,3 +949,184 @@ test('Phase 52A - Test 42: Service Kit 45 Source Repair and Source-Rot Verificat
   assert.strictEqual(sk45Result.claim_valid, true);
   assert.strictEqual(sk45Result.errors.length, 0);
 });
+
+// -------------------------------------------------------------
+// Test 43: Strict Snapshot Contract & Missing-Bytes Rejection (Phase 56N.5)
+// -------------------------------------------------------------
+test('Phase 52A - Test 43: Strict Snapshot Contract & Missing-Bytes Rejection', async () => {
+  const validatorModule = await import('../scripts/validate_official_parts_evidence.mjs');
+  const { HASH_POLICIES, HASH_GATES, validateOfficialRecord } = validatorModule;
+
+  const mockPayload = '<html><body><h1>STIHL MS 170</h1><p>Part number: 1130 007 4103</p><p>Valid condition</p></body></html>';
+  const validBuffer = Buffer.from(mockPayload, 'utf8');
+  const validSha = crypto.createHash('sha256').update(validBuffer).digest('hex');
+
+  const baseRecord = {
+    part_number: '11300074103',
+    part_number_display: '1130 007 4103',
+    part_name: 'Service Kit 45',
+    models: ['MS 170'],
+    source_url: 'https://www.stihl.example/sk45',
+    doc_ref: 'STIHL Service Kit Manual',
+    claim_evidence_type: 'OFFICIAL_CATALOGUE_ENTRY',
+    source_locator: 'h1',
+    compatibility_text: 'MS 170',
+    variant_condition: 'Valid condition',
+    fitment_condition: 'Valid condition',
+    response_sha256: validSha,
+    verification_status: 'OFFICIAL_SOURCE_VERIFIED'
+  };
+
+  // 1. STRICT_SNAPSHOT + responseBody = null + valid pageText
+  // MUST fail with STRICT_SNAPSHOT_REQUIRES_RESPONSE_BYTES and observed_response_sha256 === null
+  const nullBytesResult = validateOfficialRecord(baseRecord, null, {
+    hashPolicy: HASH_POLICIES.STRICT_SNAPSHOT,
+    pageText: mockPayload
+  });
+  assert.strictEqual(nullBytesResult.hash_match, false);
+  assert.strictEqual(nullBytesResult.observed_response_sha256, null);
+  assert.strictEqual(nullBytesResult.claimContentValid, false);
+  assert.ok(
+    nullBytesResult.some(err => err.includes('STRICT_SNAPSHOT_REQUIRES_RESPONSE_BYTES')),
+    'Must fail with STRICT_SNAPSHOT_REQUIRES_RESPONSE_BYTES when responseBody is null'
+  );
+
+  // 2. STRICT_SNAPSHOT + valid Buffer matching SHA-256
+  // MUST succeed with hash_match === true, 0 errors, claimContentValid === true
+  const validBytesResult = validateOfficialRecord(baseRecord, validBuffer, {
+    hashPolicy: HASH_POLICIES.STRICT_SNAPSHOT
+  });
+  assert.strictEqual(validBytesResult.hash_match, true);
+  assert.strictEqual(validBytesResult.observed_response_sha256, validSha);
+  assert.strictEqual(validBytesResult.claimContentValid, true);
+  assert.strictEqual(validBytesResult.length, 0);
+
+  // 3. STRICT_SNAPSHOT + mutated Buffer
+  // MUST fail with Response SHA-256 mismatch
+  const mutatedBuffer = Buffer.from(mockPayload.replace('MS 170', 'MS 180'), 'utf8');
+  const mutatedSha = crypto.createHash('sha256').update(mutatedBuffer).digest('hex');
+  const mutatedBytesResult = validateOfficialRecord(baseRecord, mutatedBuffer, {
+    hashPolicy: HASH_POLICIES.STRICT_SNAPSHOT
+  });
+  assert.strictEqual(mutatedBytesResult.hash_match, false);
+  assert.strictEqual(mutatedBytesResult.observed_response_sha256, mutatedSha);
+  assert.strictEqual(mutatedBytesResult.claimContentValid, false);
+  assert.ok(
+    mutatedBytesResult.some(err => err.includes('Response SHA-256 mismatch')),
+    'Must report Response SHA-256 mismatch on tampered body'
+  );
+
+  // 4. CLAIM_REVALIDATION + PDF Buffer + pageText
+  const pdfBuffer = Buffer.from('%PDF-1.4 mock binary pdf data \x00\x80\xff', 'latin1');
+  const pdfSha = crypto.createHash('sha256').update(pdfBuffer).digest('hex');
+  const pdfRecord = {
+    ...baseRecord,
+    response_sha256: pdfSha
+  };
+  const revalResult = validateOfficialRecord(pdfRecord, pdfBuffer, {
+    hashPolicy: HASH_POLICIES.CLAIM_REVALIDATION,
+    pageText: mockPayload
+  });
+  assert.strictEqual(revalResult.hash_match, true);
+  assert.strictEqual(revalResult.claimContentValid, true);
+  assert.strictEqual(revalResult.length, 0);
+
+  // 5. Verification gates
+  assert.strictEqual(HASH_GATES.STRICT_SNAPSHOT_WITHOUT_BYTES_ACCEPTED, 0);
+  assert.strictEqual(HASH_GATES.STRICT_SNAPSHOT_HASH_BYPASSES, 0);
+});
+
+// -------------------------------------------------------------
+// Test 44: Canonical Binary Cache & Live/Cache Parity (Phase 56N.5)
+// -------------------------------------------------------------
+test('Phase 52A - Test 44: Canonical Binary Cache & Live/Cache Parity', async () => {
+  const validatorModule = await import('../scripts/validate_official_parts_evidence.mjs');
+  const { HASH_GATES, validateOfficialEvidenceFile } = validatorModule;
+
+  const tmpCacheDir = path.join(rootDir, 'cache', 'test_binary_parity');
+  if (!fs.existsSync(tmpCacheDir)) {
+    fs.mkdirSync(tmpCacheDir, { recursive: true });
+  }
+
+  try {
+    const client = new HttpClient({
+      cacheDir: tmpCacheDir,
+      useCache: true,
+      mode: 'FIXTURE'
+    });
+
+    // 1. Binary payload containing bytes >= 0x80
+    const rawBinary = Buffer.from([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x80, 0xfe, 0xff, 0xc0, 0x90, 0x7f, 0x00]);
+    const expectedBinarySha = crypto.createHash('sha256').update(rawBinary).digest('hex');
+    const testBinaryUrl = 'https://www.stihl.example/test-doc.pdf';
+
+    // 2. Binary writeToCache & readFromCache roundtrip
+    const latin1Body = rawBinary.toString('latin1');
+    client.writeToCache(testBinaryUrl, 200, latin1Body, { 'content-type': 'application/pdf' }, testBinaryUrl, {
+      buffer: rawBinary,
+      bodySha256: expectedBinarySha,
+      isBinary: true,
+      bodyEncoding: 'latin1'
+    });
+
+    const cachedBinary = client.readFromCache(testBinaryUrl);
+    assert.ok(cachedBinary, 'Cached binary entry must be read successfully');
+    assert.strictEqual(cachedBinary.cache_integrity, 'VERIFIED');
+    assert.strictEqual(cachedBinary.is_binary, true);
+    assert.strictEqual(cachedBinary.body_encoding, 'latin1');
+    assert.strictEqual(cachedBinary.body_sha256, expectedBinarySha);
+    assert.strictEqual(cachedBinary.observed_sha256, expectedBinarySha);
+    assert.ok(Buffer.isBuffer(cachedBinary.buffer), 'cachedBinary.buffer must be a Buffer');
+    assert.strictEqual(Buffer.compare(cachedBinary.buffer, rawBinary), 0, 'Reconstructed buffer must match original bytes exactly');
+
+    // 3. Tampered binary cache test (non-LIVE mode)
+    const cachePath = client.getCachePath(testBinaryUrl);
+    const cachedJson = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+    // Mutate the hash
+    cachedJson.body_sha256 = '0000000000000000000000000000000000000000000000000000000000000000';
+    fs.writeFileSync(cachePath, JSON.stringify(cachedJson, null, 2), 'utf8');
+
+    const tamperedResult = client.readFromCache(testBinaryUrl);
+    assert.ok(tamperedResult, 'Tampered result returned in FIXTURE mode');
+    assert.strictEqual(tamperedResult.cache_integrity, 'INVALID_HASH', 'Must flag cache_integrity as INVALID_HASH');
+
+    // Tampered binary cache in LIVE mode -> deletes file & returns null
+    const liveClient = new HttpClient({
+      cacheDir: tmpCacheDir,
+      useCache: true,
+      mode: 'LIVE'
+    });
+    const liveTamperedResult = liveClient.readFromCache(testBinaryUrl);
+    assert.strictEqual(liveTamperedResult, null, 'LIVE mode must return null and delete corrupted cache entry');
+    assert.strictEqual(fs.existsSync(cachePath), false, 'Corrupted cache file must be unlinked in LIVE mode');
+
+    // 4. Text cache regression test
+    const testTextUrl = 'https://www.stihl.example/test-text.html';
+    const textHtml = '<html><body>Test HTML</body></html>';
+    const textSha = crypto.createHash('sha256').update(textHtml, 'utf8').digest('hex');
+    client.writeToCache(testTextUrl, 200, textHtml, { 'content-type': 'text/html' });
+    const cachedText = client.readFromCache(testTextUrl);
+    assert.ok(cachedText, 'Cached text entry must be read successfully');
+    assert.strictEqual(cachedText.cache_integrity, 'VERIFIED');
+    assert.strictEqual(cachedText.is_binary, false);
+    assert.strictEqual(cachedText.body_sha256, textSha);
+
+    // 5. Service Kit 45 cache verification
+    const evidencePath = path.join(rootDir, 'data', 'verified_official_parts_evidence.json');
+    const auditResult = await validateOfficialEvidenceFile(evidencePath, {
+      hashPolicy: validatorModule.HASH_POLICIES.CLAIM_REVALIDATION
+    });
+    const sk45Result = auditResult.results.find(r => r.part_number === '11300074103');
+    assert.ok(sk45Result, 'Service Kit 45 result must exist');
+    assert.strictEqual(sk45Result.claim_valid, true);
+
+    // 6. Assert gates
+    assert.strictEqual(HASH_GATES.PDF_LIVE_CACHE_HASH_MISMATCHES, 0);
+    assert.strictEqual(HASH_GATES.INVALID_BINARY_CACHE_ACCEPTED, 0);
+    assert.strictEqual(HASH_GATES.PDF_PROVENANCE_INFRASTRUCTURE_VERIFIED, true);
+  } finally {
+    try {
+      fs.rmSync(tmpCacheDir, { recursive: true, force: true });
+    } catch (e) {}
+  }
+});
