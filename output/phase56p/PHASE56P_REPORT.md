@@ -1,10 +1,10 @@
 # STIHLDECODER — PHASE 56P REPORT
-## VIKING MB Verified Drive-Type Expansion
+## VIKING MB Verified Drive-Type Expansion & Evidence Integrity Closure
 
 **Status:** PASS<br>
-**Datum:** 2026-10-26T16:08:19.930Z<br>
+**Datum:** 2026-10-26T18:13:50.305Z<br>
 **Baseline commit:** `8253d08fe11275b1826cb92132a4fb613f005925`<br>
-**Branch:** `feat/phase56p-viking-mb-drive-expansion`
+**Branch:** `fix/phase56p1-mb-evidence-integrity`
 
 ---
 
@@ -17,9 +17,11 @@ Er is uitdrukkelijk **geen algemene blanket rule** toegepast. Alleen modellen wa
 - **36 modellen** geactiveerd als `PETROL` (9 gedocumenteerde generaties);
 - **12 historische modellen** blijven `UNKNOWN` (`UNSUPPORTED_GENERATION`) fail-closed wegens het ontbreken van digitale handleiding-bytes op STIHL-infrastructuur.
 
+In Phase 56P.1 zijn alle 12 gebruikte manuals cryptografisch gecontroleerd via SHA-256, met PDF.js uitgelezen, voorzien van geverifieerde excerpten met SHA-256 excerpt-hashes, en is canonical model designation normalisatie ingevoerd.
+
 ---
 
-## 2. GENERATION MATRIX & SELECTIVE ACTIVATION
+## 2. GENERATION MATRIX & DYNAMIC ACTIVATION
 
 | Generatiegroep | Aantal | Status | Primaire Officiële Documentatie | Modellen |
 | :--- | :--- | :--- | :--- | :--- |
@@ -43,7 +45,7 @@ Er is uitdrukkelijk **geen algemene blanket rule** toegepast. Alleen modellen wa
 
 Sommige MB-modellen, zoals **MB 545 VE**, beschikken over een elektrische sleutelstart met een kleine lithium-ion startaccu.
 Handleiding `0478-111-9932-B` sectie 8.6 documenteert expliciet:
-> *"De benzinemaaier MB 545 VE is voorzien van een elektrische startinrichting. Als startaccu dient een lithium-ionaccu."*
+> *"De grasmaaier MB 545 VE is voorzien van een elektrische startmotor. Als startaccu is een lithium-ionaccu ingebouwd."*
 
 De hoofdmotor / primaire aandrijving is een 4-takt benzinemotor. De startaccu is louter een hulpmiddel voor de elektrische startmotor.
 De aandrijfclassificatie van **MB 545 VE** lost conform deze verificatie correct op als:
@@ -87,6 +89,8 @@ Conflicten:                        0
 | `MB_UNSUPPORTED_EXACT` | Exact 12 modellen fail-closed UNKNOWN | 12 | PASS |
 | `MB_DRIVE_CONFLICTS` | 0 conflicten | 0 | PASS |
 | `STARTER_BATTERY_DISCRIMINATED` | MB 545 VE is PETROL (niet BATTERY) | PETROL | PASS |
+| `VERIFIED_MANUALS_WITHOUT_EXCERPT_HASH` | 0 geverifieerde manuals zonder excerpt hash | 0 | PASS |
+| `PROMOTIONS_REFERENCING_UNVERIFIED_MANUALS` | 0 promoties met ongeverifieerde manuals | 0 | PASS |
 | `CLEAN_CHECKOUT_REPRODUCIBLE` | Live fetch & cache reproduceerbaar | PASS | PASS |
 | `CATALOG_FREEZE_INTACT` | Catalogus- en SEO-bevriezing intact | 956/25/52/879 | PASS |
 
@@ -94,4 +98,4 @@ Conflicten:                        0
 
 ## 6. CONCLUSIE
 
-Phase 56P bereikt met succes een dekking van **58.82%** (517 bekrachtigde machines opgelost) met 100% first-party manufacturer evidence provenance en strikte generatie-isolatie.
+Phase 56P.1 verifieert alle 12 MB-handleidingen cryptografisch en semantisch. Geen enkel record vertrouwt op statische metadata. Alle excerpt hashes zijn non-null en afgeleid van daadwerkelijke PDF-tekst. De dekking van **58.82%** (517 bekrachtigde machines) is 100% fail-closed geborgd.

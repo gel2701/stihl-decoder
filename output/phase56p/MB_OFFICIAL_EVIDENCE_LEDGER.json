@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T16:08:19.924Z",
+  "timestamp": "2026-10-26T18:13:50.290Z",
   "manufacturer_heritage": {
     "manufacturer": "VIKING GmbH / STIHL Tirol GmbH",
     "headquarters": "Langkampfen, Austria",
@@ -18,9 +18,21 @@
     "part_number": "1022025",
     "title": "Service Kit 51 voor RM 248.0 en MB 248.4",
     "source_url": "https://www.stihl.nl/nl/ap/service-kit-51-1022025",
+    "retrieval_started_at": "2026-10-26T18:13:50.287Z",
+    "retrieved_at": "2026-10-08T16:14:37.651Z",
+    "http_status": 200,
+    "body_bytes": 172961,
+    "body_sha256": "98515d9aaf253bdfb78eea540336bb3c4ea13b0e6fd7d130c53a506f8172b53c",
+    "supported_models": [
+      "RM 248.0",
+      "MB 248.4"
+    ],
     "machine_category": "STIHL benzinegrasmaaiers",
-    "evidence_excerpt": "Service Kit 51 voor RM 248.0 en MB 248.4. STIHL benzinegrasmaaiers.",
-    "cross_generation_proof": "Explicitly couples STIHL RM 248.0 (PETROL) with VIKING MB 248.4 under identical engine service kit (Service Kit 51) within official \"STIHL benzinegrasmaaiers\" product taxonomy."
+    "source_excerpt": "Service Kit 51 voor RM 248.0 en MB 248.4. STIHL benzinegrasmaaiers.",
+    "source_excerpt_hash": "9e72f9bb1706593a390a9c6c58c5402baa13f5e39f49cc391573436742f8d60f",
+    "verification_status": "VERIFIED",
+    "failure_reason": null,
+    "cross_generation_proof": "Explicitly couples STIHL RM 248.0 (PETROL) with VIKING MB 248.4 under identical engine service kit (Service Kit 51) within official STIHL benzinegrasmaaiers product taxonomy."
   },
   "official_manuals": [
     {
@@ -37,23 +49,20 @@
         "MB 253.1 T"
       ],
       "drive_terms": [
-        "silnik spalinowy",
-        "paliwo",
-        "combustion engine",
-        "benzine",
-        "verbrandingsmotor"
+        "silnik spalinowy"
       ],
-      "source_excerpt": "MB 248.4:  Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść   skokowa:   139 cm 3 Zbiornik paliwa:   0,9 l Pr ę dko ść   obrotowa",
-      "source_excerpt_hash": "74758c7361c6e96d0caae7430aad477b730de4897d54dd285c6171b64e9f4adb",
-      "verification_status": "VERIFIED"
+      "source_excerpt": "3 T, MB 253. 1 / MB 253. 1 T: Silnik spalinowy, rodzaj konstrukcji: 4-suwowy silnik spalinowy Rodzaj urz ą dzenia tn ą cego: nó ż listwowy Urz ą dzenia zabezpieczaj ą ce: hamulec silnika Urz",
+      "source_excerpt_hash": "f50bc31fdcedb3596434ad3e5de6f37171952dacb0a8a1e8c03b7b5091f029ba",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9928-B",
-      "title": "VIKING MB 248.4, MB 248.3 T, MB 253.1, MB 253.1 T Instruction Manual & CE Declaration",
+      "title": "VIKING MB 248.4, MB 248.3 T, MB 253.1, MB 253.1 T CE Declaration & Manual",
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9928-B_ZBA_01_00.PDF",
       "sha256": "75147f6d217affb80ca224c9c5358a775093d9de69c3d97d75b2a192134ce8a9",
       "bytes": 16317450,
-      "page_count": 284,
+      "page_count": 282,
       "primary_models": [
         "MB 248.4",
         "MB 248.3 T",
@@ -61,13 +70,13 @@
         "MB 253.1 T"
       ],
       "drive_terms": [
-        "Grasmaaier, handgeduwd met verbrandingsmotor (MB)",
-        "Fabrikant VIKING GmbH",
-        "Type MB 248.4"
+        "verbrandingsmotor",
+        "Grasmaaier, handgeduwd met verbrandingsmotor (MB)"
       ],
-      "source_excerpt": "Fabrikant VIKING GmbH Grasmaaier, handgeduwd met verbrandingsmotor (MB) Type: MB 248.4 MB 248.3 T MB 253.1 MB 253.1 T Serienummer: 6350",
-      "source_excerpt_hash": "ceb7ae94917fbf2382903e1a8fa4868f0003006456f5a34f81014e7dc41c2c2f",
-      "verification_status": "VERIFIED"
+      "source_excerpt": "ne Grasmaaier, handgeduwd met verbrandingsmotor (MB) stemt overeen met volgende EU- richtlijnen: 97/68/EC, 2000/14/EC, 2014/30/EU, 2006/42/EC Het product is ontwikkeld in overeenstemming met",
+      "source_excerpt_hash": "08a13dd6e15e0e4e56617676407d142ca4579b7b472a8c963ca14159afcd7052",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9926-C",
@@ -75,20 +84,17 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9926-C_ZBA_01_00.PDF",
       "sha256": "bd6cdeaba24a1233aabdaade076c5b336fe6933471d9c292b561dda0c9363b42",
       "bytes": 23759370,
-      "page_count": 360,
+      "page_count": 428,
       "primary_models": [
-        "MB 2",
-        "MB 2.1",
-        "MB 2.2"
+        "MB 2"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "petrol"
       ],
-      "source_excerpt": "VIKING MB 2 R, MB 2 RC, MB 2 RT Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "Refilling the tank – handling petrol 32 Clothing and equipment 32 Transporting the machine 32 Before operation 32 Working with your machine 33 Maintenance and repairs 34 Storage for prolonge",
+      "source_excerpt_hash": "15bcc6c77f845cded74d1824d1279e9e031372da41e9d81d72c70ef4f4a0c1b3",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9933-A",
@@ -96,20 +102,19 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9933-A_ZBA_01_00.PDF",
       "sha256": "fc35ba04955637a64a1a75b28678ca09c218d9c513c2d02dc25a567eb4d47015",
       "bytes": 27852120,
-      "page_count": 388,
+      "page_count": 510,
       "primary_models": [
         "MB 3",
         "MB 3.1",
         "MB 3.2"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "combustion engine"
       ],
-      "source_excerpt": "VIKING MB 3 R, MB 3 RT Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "ally-operated lawn mower with combustion engine (MB) conforms to the following EC directives: 97/68/EC, 2000/14/EC, 2006/42/EC, 2014/30/EU The product has been developed in conformance with",
+      "source_excerpt_hash": "899c512388e1a63c0b76d40cec3347aca29b56f95cf71a8ee9a330f2d9efe4b8",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9929-B",
@@ -117,19 +122,17 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9929-B_ZBA_01_00.PDF",
       "sha256": "ab59b253b7f9fbeb0628a235196bb07a0736929e4322bd0904fb992ad6452599",
       "bytes": 21826470,
-      "page_count": 320,
+      "page_count": 368,
       "primary_models": [
-        "MB 4.0",
-        "MB 4.1"
+        "MB 4.0"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "petrol"
       ],
-      "source_excerpt": "VIKING MB 4 R, MB 4 RT, MB 4 RTP Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "Refilling the tank – handling petrol 32 Clothing and equipment 32 Transporting the machine 32 Before operation 33 Working with your machine 33 Maintenance and repairs 35 Storage for prolonge",
+      "source_excerpt_hash": "20c3813aa25eb26c14afb54aa3e00044c35afd41f478815e6b9b8c1e6c3ca774",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9923-F",
@@ -137,21 +140,18 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9923-F_ZBA_01_00.PDF",
       "sha256": "0fe1c73589a3dded8dca7a44e37bc5539ac2fb2a5aed877f6a640e4ce820a875",
       "bytes": 19122450,
-      "page_count": 284,
+      "page_count": 292,
       "primary_models": [
-        "MB 443.0",
         "MB 443.1",
-        "MB 448.0",
         "MB 448.1"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "verbrandingsmotor"
       ],
-      "source_excerpt": "VIKING MB 443, MB 443 T, MB 448 T, MB 448 TX Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "Grasmaaier, handgeduwd en met verbrandingsmotor (MB) voldoet aan de volgende EG richtlijnen: 97/68/EC, 2000/14/EC, 2014/30/EU, 2006/42/EC Het product is in overeenstemming met de volgende no",
+      "source_excerpt_hash": "482e0475cacf43ac7747845d294a291bb301a965b1452f200e1d8186e26e3ce1",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9932-B",
@@ -159,20 +159,18 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9932-B_ZBA_01_00.PDF",
       "sha256": "4891cd5e70ca8d31b9336dbd4f2380cdbe478d438f3d972923956b48cfa53476",
       "bytes": 23392680,
-      "page_count": 340,
+      "page_count": 384,
       "primary_models": [
-        "MB 545.0",
-        "MB 545.1"
+        "MB 545.1",
+        "MB 545 VE"
       ],
       "drive_terms": [
-        "startaccu",
-        "elektrische startinrichting",
-        "benzinemaaier MB 545 VE",
-        "verbrandingsmotor"
+        "combustion engine"
       ],
-      "source_excerpt": "Startaccu en oplaadapparaat (MB 545 VE) De benzinemaaier MB 545 VE is voorzien van een elektrische startinrichting. Als startaccu dient een lithium-ionaccu.",
-      "source_excerpt_hash": "215f93e9ad3691ea44f53bfbe17fc243fe8dbe326fcfdf31da817c1bf209706a",
-      "verification_status": "VERIFIED"
+      "source_excerpt": "ally-operated lawn mower with combustion engine (MB) conforms to the following EC directives: 97/68/EC, 2000/14/EC, 2014/30/EU, 2006/42/EC, 2006/66/EC (MB 545.1 VE) The product has been deve",
+      "source_excerpt_hash": "3bd4aca0cd16e3622b75cbe704c86cabe011b75ed542efddd7d598c7be7da2e1",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9917-F",
@@ -180,20 +178,20 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9917-F_ZBA_01_00.pdf",
       "sha256": "e0b250931c42c4fd1353e229a9bead417733a527e08466eef7bb956743428958",
       "bytes": 35017620,
-      "page_count": 420,
+      "page_count": 544,
       "primary_models": [
         "MB 6",
         "MB 6.1",
         "MB 6.2"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "Combustion engine",
+        "combustion engine"
       ],
-      "source_excerpt": "VIKING MB 6 RH, MB 6 RV Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "mber 6380 6380 Engine, design Combustion engine Combustion engine Briggs&Stratton Briggs&Stratton Series 750 Series 850 Displacement cm 3 160 190 Nominal output at nominal speed kW - rpm 2.7",
+      "source_excerpt_hash": "b77debc6c3aab576a367a1df89d05a6533227f89ac44efb0c2f25dadfbca4bbb",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9918-F",
@@ -201,21 +199,19 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9918-F_ZBA_01_00.pdf",
       "sha256": "54c33280848d88fcd77bce0350e4427eb6dacaef099e314d5470780eb2c1e66c",
       "bytes": 41480850,
-      "page_count": 480,
+      "page_count": 376,
       "primary_models": [
         "MB 650.0",
-        "MB 650.1",
-        "MB 655.0",
-        "MB 655.1"
+        "MB 650.1"
       ],
       "drive_terms": [
         "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "4-stroke combustion engine"
       ],
-      "source_excerpt": "VIKING MB 650, MB 655 Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "6360 Engine, design 4-stroke combustion engine Type B&S B&S B&S Series 675 Series 750 1, 2 Series 675 Series 675 3, 4 Displacement ccm 190 161 1, 2 / 190 3, 4 190 Nominal output at nominal",
+      "source_excerpt_hash": "7a2257af56a449084d5651d4f0f74ed458f7c050c88d6fa94724c0733faf1bc4",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9931-D",
@@ -223,20 +219,18 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9931-D_ZBA_01_00.PDF",
       "sha256": "28e7107567114b0234022a159af1aa6f7c1ea478138daa214f2f791e98302f22",
       "bytes": 29064900,
-      "page_count": 360,
+      "page_count": 444,
       "primary_models": [
         "MB 650.3",
-        "MB 655.2",
         "MB 655.3"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "combustion engine"
       ],
-      "source_excerpt": "VIKING MB 650.3, MB 655.3 Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "ally-operated lawn mower with combustion engine (MB) conforms to the following EC directives: 97/68/EC, 2000/14/EC, 2014/30/EU, 2006/42/EC, 2006/66/EC (MB 650.3 VE) The product has been deve",
+      "source_excerpt_hash": "6318262a511b00fdd3d947a169ceb2924bf98de50ebbd2bae800952b372fe5a8",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9921-A",
@@ -244,22 +238,17 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9921-A_ZBA_01_00.PDF",
       "sha256": "b2094c3fbb12df56135b85e885ac1b0b3c7bd9df1a7b96774a06ccd91d123b6c",
       "bytes": 10253040,
-      "page_count": 180,
+      "page_count": 229,
       "primary_models": [
-        "MB 750.0",
-        "MB 750.1",
-        "MB 755.0",
-        "MB 755.1",
         "MB 755.2"
       ],
       "drive_terms": [
-        "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "combustion engine"
       ],
-      "source_excerpt": "VIKING MB 750, MB 755 Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "ally-operated lawn mower with combustion engine (MB) conforms to the following EU directives: 97/68/EC, 2000/14/EC, 2004/108/EC, 2006/42/EC The product has been developed in conformance with",
+      "source_excerpt_hash": "62378a52061a1d9a495161626a4a5a222835e21444b3841a4f92fc3b4487d856",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     },
     {
       "document_id": "0478-111-9925-E",
@@ -267,18 +256,18 @@
       "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9925-E_ZBA_01_00.PDF",
       "sha256": "ab3141610438a450ad0e44630dba8262cbde356b416c7858db04465dc50cf66a",
       "bytes": 19431510,
-      "page_count": 260,
+      "page_count": 278,
       "primary_models": [
         "MB 756.0"
       ],
       "drive_terms": [
         "combustion engine",
-        "verbrandingsmotor",
-        "benzine"
+        "petrol"
       ],
-      "source_excerpt": "VIKING MB 756 Benzinerasenmäher Petrol lawn mower",
-      "source_excerpt_hash": null,
-      "verification_status": "VERIFIED"
+      "source_excerpt": "ally operated lawn mower with combustion engine (MB) conforms to the following EC directives: 97/68/EC, 2000/14/EC, 2014/30/EU, 2006/42/EC The product has been developed in conformance with",
+      "source_excerpt_hash": "243404a9cc76cb1301138cbc0c38b545a6fc7c620c4d36c9f28677cccaca5d6e",
+      "verification_status": "VERIFIED",
+      "failure_reason": null
     }
   ]
 }
