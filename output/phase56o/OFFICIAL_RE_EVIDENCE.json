@@ -1,0 +1,47 @@
+{
+  "family": "RE",
+  "candidate_drive_type": "MAINS_ELECTRIC",
+  "status": "VERIFIED",
+  "confidence": "HIGH",
+  "evidence_sources": [
+    {
+      "source_type": "PRIMARY_CONTEXT_HTML",
+      "url": "https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "body_sha256": "bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa",
+      "page_title": "RE 130 PLUS hogedrukreiniger kopen",
+      "primary_excerpts": [
+        "Nominale spanning 220-240 V Aantal fases 1 Opgenomen vermogen 2.30 kW",
+        "Inductiemotor",
+        "robuuste, borstelloze inductiemotor"
+      ],
+      "drive_inference": "MAINS_ELECTRIC"
+    },
+    {
+      "source_type": "OFFICIAL_CATALOGUE_PDF",
+      "url": "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "body_sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
+      "page_number": 161,
+      "table_title": "Pressure washers - Technical specifications",
+      "models_covered": [
+        "RE 80",
+        "RE 90",
+        "RE 100",
+        "RE 110",
+        "RE 120",
+        "RE 130",
+        "RE 150"
+      ],
+      "primary_excerpts": [
+        "Mains voltage 230 / 1~ / 50",
+        "Power cable length 5 m",
+        "Power consumption kW"
+      ],
+      "drive_inference": "MAINS_ELECTRIC"
+    }
+  ],
+  "prefix_collision_safeguards": "Strict prefix boundary regex ensures RE does NOT match REA (cordless) or RB (petrol) or any extended prefixes."
+}

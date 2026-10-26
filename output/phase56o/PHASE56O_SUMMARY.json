@@ -1,0 +1,53 @@
+{
+  "phase": "PHASE_56O",
+  "title": "Verified RE / RM / RMA Drive-Type Expansion",
+  "timestamp": "2026-10-26T01:41:19.474Z",
+  "baseline_commit": "b00fa1188bd56f56a1bd573bd7716e0a464fc7d3",
+  "outcome_status": "PASS",
+  "router_status": {
+    "endpoint_reachable": true,
+    "used": false,
+    "model_routes_used": "NONE",
+    "fallback_reason": "503 upstream / 402 Credits Required; native fallback active"
+  },
+  "codex_status": {
+    "agent_initiated_codex": false,
+    "automatic_external_review_triggered": false,
+    "codex_feedback_used": false,
+    "codex_used_for_acceptance": false
+  },
+  "cohort_statistics": {
+    "total_catalog_models": 956,
+    "unpowered_attachments": 25,
+    "confirmed_non_machine_noise": 52,
+    "powered_machine_candidates": 879,
+    "resolved_before": 403,
+    "unknown_before": 476,
+    "coverage_before_pct": 45.85,
+    "resolved_after": 521,
+    "unknown_after": 358,
+    "coverage_after_pct": 59.27,
+    "promoted_count": 118,
+    "promotions_by_family": {
+      "RE": 71,
+      "RM": 25,
+      "RMA": 22
+    }
+  },
+  "hard_gates": {
+    "UNSAFE_DRIVE_PROMOTIONS": 0,
+    "PROMOTIONS_WITHOUT_OFFICIAL_EVIDENCE": 0,
+    "PREFIX_COLLISION_ERRORS": 0,
+    "RE_RULE_AFFECTED_REA": 0,
+    "RM_RULE_AFFECTED_RMA": 0,
+    "RM_RULE_AFFECTED_RME": 0,
+    "RM_RULE_AFFECTED_RMI": 0,
+    "TARGET_NON_MACHINE_RECORDS": 0,
+    "TARGET_ATTACHMENT_RECORDS": 0,
+    "DRIVE_CONFLICTS_INTRODUCED": 0,
+    "FABRICATED_PROVENANCE": 0,
+    "PHASE56N_REGRESSIONS": 0,
+    "CATALOG_FREEZE_INTACT": true,
+    "PHASE56O_EVIDENCE_INTEGRITY": true
+  }
+}

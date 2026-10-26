@@ -1,0 +1,58 @@
+{
+  "phase": "PHASE_56O",
+  "timestamp": "2026-10-26T01:41:19.473Z",
+  "activations": [
+    {
+      "family": "RE",
+      "action": "ACTIVATED",
+      "drive_type": "MAINS_ELECTRIC",
+      "promoted_count": 71,
+      "evidence_status": "VERIFIED",
+      "evidence_summary": "Live HTML specification (230V / 2.3kW brushless induction motor) and 2023 UK PDF Catalogue p.161.",
+      "prefix_boundary_regex": "^RE\\\\b",
+      "collision_safe": true
+    },
+    {
+      "family": "RM",
+      "action": "ACTIVATED",
+      "drive_type": "PETROL",
+      "promoted_count": 25,
+      "evidence_status": "VERIFIED",
+      "evidence_summary": "Live HTML specification (petrol engine), 2023 UK PDF Catalogue p.107, and Service Kit 49 engine components.",
+      "prefix_boundary_regex": "^RM\\\\b",
+      "collision_safe": true
+    },
+    {
+      "family": "RMA",
+      "action": "ACTIVATED",
+      "drive_type": "BATTERY",
+      "promoted_count": 22,
+      "evidence_status": "VERIFIED",
+      "evidence_summary": "Live HTML specification (AK system 36V cordless mower) and 2023 UK PDF Catalogue p.108.",
+      "prefix_boundary_regex": "^RMA\\\\b",
+      "collision_safe": true
+    }
+  ],
+  "disabled_families_maintained": [
+    {
+      "family": "REA",
+      "reason": "Cordless pressure washers (requires separate official battery evidence)"
+    },
+    {
+      "family": "RME",
+      "reason": "Electric mains mowers (requires separate official mains electric evidence)"
+    },
+    {
+      "family": "RMI",
+      "reason": "Robotic lawn mowers (requires separate official iMOW evidence)"
+    },
+    {
+      "family": "RT",
+      "reason": "Ride-on lawn mowers (petrol/diesel/battery variants need multi-source evidence)"
+    },
+    {
+      "family": "RL",
+      "reason": "Lawn scarifiers (petrol/electric variants need separate resolution)"
+    }
+  ]
+}

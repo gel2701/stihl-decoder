@@ -1,0 +1,48 @@
+{
+  "family": "RMA",
+  "candidate_drive_type": "BATTERY",
+  "status": "VERIFIED",
+  "confidence": "HIGH",
+  "evidence_sources": [
+    {
+      "source_type": "PRIMARY_CONTEXT_HTML",
+      "url": "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "body_sha256": "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f",
+      "page_title": "RMA 448 V accugrasmaaier kopen",
+      "primary_excerpts": [
+        "Grasmaaiers RMA 448 V",
+        "AK systeem",
+        "accu"
+      ],
+      "drive_inference": "BATTERY"
+    },
+    {
+      "source_type": "OFFICIAL_CATALOGUE_PDF",
+      "url": "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "body_sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
+      "page_number": 108,
+      "table_title": "Cordless lawn mowers - Technical specifications",
+      "models_covered": [
+        "RMA 235",
+        "RMA 248",
+        "RMA 253",
+        "RMA 339",
+        "RMA 443",
+        "RMA 448",
+        "RMA 765"
+      ],
+      "primary_excerpts": [
+        "cordless lawn mowers",
+        "STIHL cordless power system",
+        "Weight excluding battery",
+        "36 V"
+      ],
+      "drive_inference": "BATTERY"
+    }
+  ],
+  "prefix_collision_safeguards": "RMA has highest precedence over RM; matches all RMA models exclusively without collision."
+}

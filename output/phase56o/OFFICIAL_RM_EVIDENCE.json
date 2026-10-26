@@ -1,0 +1,72 @@
+{
+  "family": "RM",
+  "candidate_drive_type": "PETROL",
+  "status": "VERIFIED",
+  "confidence": "HIGH",
+  "evidence_sources": [
+    {
+      "source_type": "PRIMARY_CONTEXT_HTML",
+      "url": "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "body_sha256": "0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729",
+      "page_title": "RM 448 T benzinegrasmaaier kopen",
+      "primary_excerpts": [
+        "Grasmaaiers RM 448 T",
+        "benzine",
+        "Krachtige benzinemotor"
+      ],
+      "drive_inference": "PETROL"
+    },
+    {
+      "source_type": "OFFICIAL_CATALOGUE_PDF",
+      "url": "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "body_sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
+      "page_number": 107,
+      "table_title": "Petrol lawn mowers - Technical specifications",
+      "models_covered": [
+        "RM 248",
+        "RM 253",
+        "RM 443",
+        "RM 448",
+        "RM 545",
+        "RM 650",
+        "RM 655",
+        "RM 756"
+      ],
+      "primary_excerpts": [
+        "petrol lawn mowers",
+        "Displacement cm3",
+        "Engine type STIHL EVC 200 / Kohler XT800 / Kawasaki FJ 180",
+        "Net weight excluding fuels and lubricants"
+      ],
+      "drive_inference": "PETROL"
+    },
+    {
+      "source_type": "VERIFIED_PARTS_EVIDENCE",
+      "document_id": "0458-007-0049",
+      "title": "STIHL Service Kit 49 Instruction Manual",
+      "models_covered": [
+        "RM 2.1 R",
+        "RM 2.2 R",
+        "RM 248.1",
+        "RM 248.2",
+        "RM 253.1",
+        "RM 253.2",
+        "RM 443.1",
+        "RM 443.3",
+        "RM 448.1 TC",
+        "RM 488.1 TX"
+      ],
+      "components": [
+        "Air filter",
+        "Spark plug",
+        "Fuel pickup body / filter"
+      ],
+      "drive_inference": "PETROL"
+    }
+  ],
+  "prefix_collision_safeguards": "Strict prefix boundary regex and precedence order: RMA is evaluated before RM; RM does not match RMA, RME, RMI."
+}
