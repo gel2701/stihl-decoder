@@ -6,11 +6,14 @@
  * evidence page extraction, model and drive term presence, dynamic excerpt derivation,
  * and excerpt hash verification.
  *
- * Adheres strictly to Phase 56P.1 requirements:
- * - No manual is assumed VERIFIED without genuine runtime validation.
- * - Source excerpt hashes are never null for active verified evidence.
- * - Excerpt text must demonstrably exist within the extracted PDF page text.
- * - Supports clean checkout reproducibility (live fetch + local caching).
+ * Adheres strictly to Phase 56P.1 / 56P.2 requirements:
+ * - Single cache path contract: HttpClient.getCachePath() is canonical for read and write.
+ * - Live manual -> cache -> offline manual cache roundtrip reproducibility.
+ * - Cryptographic body hash recomputation on acquired Service Kit HTML bodies.
+ * - Rejection of tampered or corrupted manual and service kit caches.
+ * - Non-synthetic, contiguous Service Kit excerpts extracted directly from verified primary product context.
+ * - Prevention of secondary-content contamination (navigation, footer, related products).
+ * - Explicit distinction between REQUIRED_EVIDENCE (manuals) and CORROBORATING_EVIDENCE (Service Kit 51).
  */
 
 import fs from 'node:fs';
@@ -160,8 +163,39 @@ export const OFFICIAL_MB_MANUAL_CONFIGS = Object.freeze([
 ]);
 
 /**
+ * Extracts primary product context from HTML to isolate genuine product content
+ * from navigation, header, footer, and other peripheral elements.
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+export function extractPrimaryContext(html) {
+  if (!html || typeof html !== 'string') return '';
+
+  // 1. Check for standard <main> container
+  const mainMatch = html.match(/<main[\s\S]*?<\/main>/i);
+  if (mainMatch) return mainMatch[0];
+
+  // 2. Check for explicit role="main" or product-detail classes
+  const roleMainMatch = html.match(/<div[^>]*role=["']main["'][\s\S]*?<\/div>/i);
+  if (roleMainMatch) return roleMainMatch[0];
+
+  const productDetailMatch = html.match(/<div[^>]*class=["'][^"']*product-detail[^"']*["'][\s\S]*?<\/div>/i);
+  if (productDetailMatch) return productDetailMatch[0];
+
+  // 3. Fallback: explicitly strip peripheral structural containers
+  return html
+    .replace(/<header[\s\S]*?<\/header>/gi, '')
+    .replace(/<nav[\s\S]*?<\/nav>/gi, '')
+    .replace(/<footer[\s\S]*?<\/footer>/gi, '')
+    .replace(/<aside[\s\S]*?<\/aside>/gi, '');
+}
+
+/**
  * Verifies a single official MB instruction manual against genuine HTTP acquisition
  * and cryptographic/semantic integrity gates.
+ *
+ * Adheres to Single Cache Path Contract: HttpClient.getCachePath() is canonical for read and write.
  *
  * @param {object} manualConfig
  * @param {object} options
@@ -218,33 +252,55 @@ export async function verifyMbManual(manualConfig, options = {}) {
     pdfBuf = Buffer.isBuffer(mockBuffer) ? mockBuffer : Buffer.from(mockBuffer);
     acquisitionMode = 'MOCK_BUFFER';
   } else {
-    // 1. Check local cache
-    const effectiveCacheDir = cacheDir || path.join(REPO_ROOT, '.cache', 'parts-harvester');
-    const liveDir = path.join(effectiveCacheDir, 'live');
-    const urlHash = crypto.createHash('sha256').update(manualConfig.url).digest('hex');
-    const cacheFile = path.join(liveDir, `${urlHash}.json`);
+    // Single Canonical Cache Path via HttpClient
+    const client = new HttpClient({
+      mode: 'LIVE',
+      useCache: true,
+      ...(cacheDir ? { cacheDir } : {})
+    });
+    const cachePath = client.getCachePath(manualConfig.url);
 
-    if (fs.existsSync(cacheFile)) {
+    // 1. Check local cache via canonical cachePath
+    if (fs.existsSync(cachePath)) {
       try {
-        const cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+        const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
         if (cached && (cached.body || cached.buffer)) {
-          pdfBuf = cached.buffer ? Buffer.from(cached.buffer) : Buffer.from(cached.body, cached.body_encoding || 'latin1');
-          acquisitionMode = 'VERIFIED_CACHE_ENTRY';
-          httpStatus = cached.status || 200;
+          const isBinary = Boolean(
+            cached.is_binary ||
+            cached.body_encoding === 'latin1' ||
+            (cached.content_type && cached.content_type.includes('application/pdf')) ||
+            manualConfig.url.toLowerCase().endsWith('.pdf')
+          );
+          const encoding = cached.body_encoding || (isBinary ? 'latin1' : 'utf8');
+          const buffer = cached.buffer ? Buffer.from(cached.buffer) : Buffer.from(cached.body, encoding);
+          const observedHash = crypto.createHash('sha256').update(buffer).digest('hex');
+          const storedHash = cached.body_sha256 || null;
+
+          if (storedHash && storedHash.toLowerCase() !== observedHash.toLowerCase()) {
+            // Corrupted cache detection
+            if (!allowLiveFetch) {
+              record.verification_status = 'UNVERIFIED_HASH_MISMATCH';
+              record.failure_reason = `CORRUPTED_CACHE: stored hash ${storedHash} does not match observed ${observedHash}`;
+              return record;
+            }
+          } else {
+            pdfBuf = buffer;
+            acquisitionMode = 'VERIFIED_CACHE_ENTRY';
+            httpStatus = cached.status || 200;
+          }
         }
       } catch (err) {
-        // Cache read failed, proceed to fetch
+        if (!allowLiveFetch) {
+          record.verification_status = 'UNVERIFIED_FETCH_FAILED';
+          record.failure_reason = `CACHE_READ_ERROR: ${err.message}`;
+          return record;
+        }
       }
     }
 
-    // 2. Fetch live if cache not present
+    // 2. Fetch live if cache not present (or corrupted with allowLiveFetch)
     if (!pdfBuf && allowLiveFetch) {
       try {
-        const client = new HttpClient({
-          mode: 'LIVE',
-          useCache: true,
-          cacheDir: effectiveCacheDir
-        });
         const fetchRes = await client.get(manualConfig.url);
         if (fetchRes && (fetchRes.buffer || fetchRes.body)) {
           pdfBuf = fetchRes.buffer ? fetchRes.buffer : Buffer.from(fetchRes.body);
@@ -377,7 +433,14 @@ export async function verifyMbManual(manualConfig, options = {}) {
 }
 
 /**
- * Verifies official Service Kit 51 evidence connecting RM 248.0 (PETROL) and MB 248.4.
+ * Verifies official Service Kit 51 corroborating evidence connecting RM 248.0 (PETROL) and MB 248.4.
+ *
+ * Enforces:
+ * - Single Canonical Cache Path via HttpClient.
+ * - Mandatory recomputation of observed body SHA-256 against stored hash.
+ * - Rejection of tampered / corrupted cache entries.
+ * - Non-synthetic, contiguous excerpt extraction directly from verified primary product context.
+ * - Explicit designation as CORROBORATING_EVIDENCE.
  *
  * @param {object} options
  * @returns {Promise<object>}
@@ -395,20 +458,29 @@ export async function verifyServiceKit51Evidence(options = {}) {
 
   const record = {
     service_kit_id: 'STIHL_SERVICE_KIT_51',
+    evidence_role: 'CORROBORATING_EVIDENCE',
     part_number: '1022025',
     title: 'Service Kit 51 voor RM 248.0 en MB 248.4',
     source_url: serviceKitUrl,
     retrieval_started_at: startedAt,
     retrieved_at: null,
     http_status: 200,
+    content_type: 'text/html; charset=utf-8',
     body_bytes: 0,
-    body_sha256: null,
+    stored_body_sha256: null,
+    observed_body_sha256: null,
+    body_sha256: null, // backward compatibility alias
+    hash_match: false,
+    primary_context_verified: false,
     supported_models: ['RM 248.0', 'MB 248.4'],
     machine_category: 'STIHL benzinegrasmaaiers',
     source_excerpt: null,
     source_excerpt_hash: null,
+    excerpt_present_in_source: false,
+    acquisition_mode: null,
     verification_status: 'UNVERIFIED',
-    failure_reason: null
+    failure_reason: null,
+    cross_generation_proof: null
   };
 
   if (mockError) {
@@ -418,43 +490,69 @@ export async function verifyServiceKit51Evidence(options = {}) {
   }
 
   let html = null;
+  let storedSha = null;
+  let retrievedAt = null;
+  let acquisitionMode = null;
+
   if (mockHtml) {
     html = mockHtml;
+    acquisitionMode = 'MOCK_HTML';
+    retrievedAt = new Date().toISOString();
   } else {
-    const effectiveCacheDir = cacheDir || path.join(REPO_ROOT, '.cache', 'parts-harvester');
-    const liveDir = path.join(effectiveCacheDir, 'live');
-    const urlHash = crypto.createHash('sha256').update(serviceKitUrl).digest('hex');
-    const cacheFile = path.join(liveDir, `${urlHash}.json`);
+    const client = new HttpClient({
+      mode: 'LIVE',
+      useCache: true,
+      ...(cacheDir ? { cacheDir } : {})
+    });
+    const cachePath = client.getCachePath(serviceKitUrl);
 
-    if (fs.existsSync(cacheFile)) {
+    // 1. Check local cache via canonical cachePath
+    if (fs.existsSync(cachePath)) {
       try {
-        const cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
-        if (cached && cached.body) {
-          html = cached.body;
-          record.body_sha256 = cached.body_sha256;
-          record.retrieved_at = cached.fetched_at;
+        const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+        if (cached && typeof cached.body === 'string') {
+          const observedHash = crypto.createHash('sha256').update(cached.body, 'utf8').digest('hex');
+          const storedHash = cached.body_sha256 || null;
+
+          if (storedHash && storedHash.toLowerCase() !== observedHash.toLowerCase()) {
+            // Tampered or corrupted cache entry
+            if (!allowLiveFetch) {
+              record.verification_status = 'UNVERIFIED_HASH_MISMATCH';
+              record.failure_reason = `CORRUPTED_SERVICE_KIT_CACHE: stored hash ${storedHash} does not match observed ${observedHash}`;
+              record.stored_body_sha256 = storedHash;
+              record.observed_body_sha256 = observedHash;
+              record.hash_match = false;
+              return record;
+            }
+          } else {
+            html = cached.body;
+            storedSha = storedHash;
+            retrievedAt = cached.fetched_at || null;
+            acquisitionMode = 'VERIFIED_CACHE_ENTRY';
+          }
         }
       } catch (err) {
-        // Fall back to live fetch
+        if (!allowLiveFetch) {
+          record.verification_status = 'UNVERIFIED_FETCH_FAILED';
+          record.failure_reason = `CACHE_READ_ERROR: ${err.message}`;
+          return record;
+        }
       }
     }
 
+    // 2. Fall back to live fetch if cache not present (or corrupted with allowLiveFetch)
     if (!html && allowLiveFetch) {
       try {
-        const client = new HttpClient({
-          mode: 'LIVE',
-          useCache: true,
-          cacheDir: effectiveCacheDir
-        });
         const res = await client.get(serviceKitUrl);
         if (res && res.body) {
           html = res.body;
-          record.body_sha256 = res.body_sha256;
-          record.retrieved_at = res.fetched_at;
+          storedSha = res.body_sha256 || null;
+          retrievedAt = res.fetched_at || new Date().toISOString();
+          acquisitionMode = 'LIVE_OFFICIAL_FETCH';
         }
       } catch (err) {
         record.verification_status = 'UNVERIFIED_FETCH_FAILED';
-        record.failure_reason = err.message;
+        record.failure_reason = `FETCH_FAILED: ${err.message}`;
         return record;
       }
     }
@@ -466,27 +564,86 @@ export async function verifyServiceKit51Evidence(options = {}) {
     return record;
   }
 
+  // Compute actual observed body bytes and SHA-256
   record.body_bytes = Buffer.byteLength(html, 'utf8');
-  if (!record.body_sha256) {
-    record.body_sha256 = crypto.createHash('sha256').update(html, 'utf8').digest('hex');
-  }
+  record.retrieved_at = retrievedAt;
+  record.acquisition_mode = acquisitionMode;
 
-  const hasKit = html.includes('Service Kit 51');
-  const hasRm = html.includes('RM 248.0');
-  const hasMb = html.includes('MB 248.4');
-  const hasCategory = html.includes('benzinegrasmaaiers');
+  const observedSha = crypto.createHash('sha256').update(html, 'utf8').digest('hex');
+  record.observed_body_sha256 = observedSha;
+  record.body_sha256 = observedSha;
+  record.stored_body_sha256 = storedSha;
 
-  if (hasKit && hasRm && hasMb && hasCategory) {
-    const excerpt = 'Service Kit 51 voor RM 248.0 en MB 248.4. STIHL benzinegrasmaaiers.';
-    record.source_excerpt = excerpt;
-    record.source_excerpt_hash = crypto.createHash('sha256').update(excerpt).digest('hex');
-    record.verification_status = 'VERIFIED';
-    record.cross_generation_proof = 'Explicitly couples STIHL RM 248.0 (PETROL) with VIKING MB 248.4 under identical engine service kit (Service Kit 51) within official STIHL benzinegrasmaaiers product taxonomy.';
+  if (storedSha) {
+    record.hash_match = (storedSha.toLowerCase() === observedSha.toLowerCase());
+    if (!record.hash_match) {
+      record.verification_status = 'UNVERIFIED_HASH_MISMATCH';
+      record.failure_reason = `BODY_HASH_MISMATCH: stored ${storedSha} vs observed ${observedSha}`;
+      return record;
+    }
   } else {
-    record.verification_status = 'UNVERIFIED_CONTENT_MISMATCH';
-    record.failure_reason = 'Service Kit 51 page missing required cross-generation model couplings or benzinegrasmaaiers category';
+    record.hash_match = true;
   }
 
+  // 3. Primary Context Extraction & Verification
+  const primaryContextHtml = extractPrimaryContext(html);
+  const primaryText = primaryContextHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const fullNormalizedSource = html.replace(/\s+/g, ' ');
+
+  const hasKit = primaryText.includes('Service Kit 51');
+  const hasRm = primaryText.includes('RM 248.0');
+  const hasMb = primaryText.includes('MB 248.4');
+  const hasCategory = primaryText.toLowerCase().includes('benzinegrasmaaiers');
+
+  if (!hasKit || !hasRm || !hasMb || !hasCategory) {
+    record.primary_context_verified = false;
+    record.verification_status = 'UNVERIFIED_PRIMARY_CONTEXT';
+    record.failure_reason = 'Primary product context missing required models (RM 248.0, MB 248.4), kit identity, or benzinegrasmaaiers category';
+    return record;
+  }
+
+  record.primary_context_verified = true;
+
+  // 4. Derive authentic, contiguous source excerpt directly from primary content
+  let excerpt = null;
+
+  // Prefer canonical compatibility statement if present verbatim in primary text
+  const canonicalPhrase = 'De volgende machines zijn compatibel met de STIHL Service Kit 51: RM 248.0 en MB 248.4';
+  if (primaryText.includes(canonicalPhrase)) {
+    excerpt = canonicalPhrase;
+  } else {
+    // Dynamically extract contiguous slice around MB 248.4 from primary text
+    const mbIdx = primaryText.indexOf('MB 248.4');
+    if (mbIdx !== -1) {
+      const start = Math.max(0, primaryText.lastIndexOf('. ', Math.max(0, mbIdx - 10)) + 2 || Math.max(0, mbIdx - 60));
+      const endCandidate = primaryText.indexOf('. ', mbIdx + 8);
+      const end = endCandidate !== -1 ? endCandidate + 1 : Math.min(primaryText.length, mbIdx + 80);
+      excerpt = primaryText.slice(start, end).trim();
+    }
+  }
+
+  if (!excerpt || excerpt.length === 0) {
+    record.verification_status = 'UNVERIFIED_EXCERPT_EXTRACTION_FAILED';
+    record.failure_reason = 'Failed to extract contiguous source excerpt from primary context';
+    return record;
+  }
+
+  // Strict Invariant: Excerpt must demonstrably exist within the primary text / source
+  const excerptPresent = primaryText.includes(excerpt) || fullNormalizedSource.includes(excerpt);
+  record.excerpt_present_in_source = excerptPresent;
+
+  if (!excerptPresent) {
+    record.verification_status = 'UNVERIFIED_SYNTHETIC_EXCERPT';
+    record.failure_reason = 'Excerpt does not exist as contiguous text within acquired source';
+    return record;
+  }
+
+  record.source_excerpt = excerpt;
+  record.source_excerpt_hash = crypto.createHash('sha256').update(excerpt, 'utf8').digest('hex');
+
+  record.verification_status = 'VERIFIED';
+  record.failure_reason = null;
+  record.cross_generation_proof = 'Explicitly couples STIHL RM 248.0 (PETROL) with VIKING MB 248.4 under identical engine service kit (Service Kit 51) within official STIHL benzinegrasmaaiers primary product context.';
   return record;
 }
 

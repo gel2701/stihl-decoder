@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T18:13:50.290Z",
+  "timestamp": "2026-10-26T21:47:16.891Z",
   "total_target_models": 48,
   "covered_models_count": 36,
   "unsupported_models_count": 12,
@@ -24,11 +24,19 @@
     "MB 248 / 253": {
       "generation_group": "MB 248 / 253",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9828-B",
+        "0478-111-9928-B"
+      ],
+      "corroborating_evidence_ids": [
+        "STIHL_SERVICE_KIT_51"
+      ],
       "official_evidence_ids": [
         "0478-111-9828-B",
         "0478-111-9928-B",
         "STIHL_SERVICE_KIT_51"
       ],
+      "evidence_policy": "MB 248 and MB 253 are independently proven by two first-party manuals (0478-111-9828-B, 0478-111-9928-B). Service Kit 51 acts as corroborating evidence.",
       "models": [
         "MB 248.0",
         "MB 248.1",
