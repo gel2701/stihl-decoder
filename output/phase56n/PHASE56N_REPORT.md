@@ -141,3 +141,60 @@ Phase 56N.3 maakt de provenance 100% waarheidsgetrouw:
   - Officiële vervangende bron geverifieerd: STIHL Product Catalogue (`https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf`, pagina 184, doc_ref `0463 931 8023`, SHA-256 `406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162`).
   - Strict Content-Level Validator uitgebreid met formele Source-Rot Policy (`SOURCE_RETIRED_REPLACEMENT_VERIFIED`) en dynamische PDF-tekstextractie via `pdfjs-dist`.
   - Dedicated Test 42 toegevoegd aan `tests/phase52a_parts_harvester.test.js`.
+- **PR #65 Candidate Commit SHA**: `e1ce4f4f61d40ec38e82043926a379ef1395f327`
+- **PR #65 Merge Commit SHA**: `d782d86e7de2c8d2a74a976ebf5f8ccc41644180`
+- **PR #65 CI Status**:
+  - `browser-e2e`: **PASS**
+  - `trust-audit`: **PASS**
+  - `node-contract-tests`: **PASS** (100% green)
+- **Codex Beoordeling Status**:
+  - `agent_initiated_codex`: **NO**
+  - `automatic_external_review_triggered`: **YES** (`chatgpt-codex-connector[bot]`)
+  - `codex_feedback_used`: **NO**
+  - `codex_used_for_acceptance`: **NO**
+
+---
+
+## 7. Phase 56N.5 Strict Snapshot & Binary Cache Provenance Closure
+
+### A. Defect A — STRICT_SNAPSHOT zonder documentbytes geëlimineerd
+- In `scripts/validate_official_parts_evidence.mjs` faalde `STRICT_SNAPSHOT` voorheen niet wanneer `responseBody === null` zolang `pageText` aanwezig was.
+- Hersteld contract:
+  - Voor `HASH_POLICIES.STRICT_SNAPSHOT` is `responseBody !== null` verplicht.
+  - Zonder werkelijke bytes faalt de validatie per direct met `STRICT_SNAPSHOT_REQUIRES_RESPONSE_BYTES`.
+  - `pageText` valideert onder `CLAIM_REVALIDATION` claims en locators, maar genereert `observed_response_sha256 = null` bij afwezigheid van documentbytes en overschrijft nooit de hash.
+  - Response metadata onderscheidt helder tussen `expected_response_sha256`, `observed_response_sha256` en `hash_match`.
+
+### B. Defect B — Binaire PDF Live/Cache Hash Drift geëlimineerd
+- In `src/parts/HttpClient.js` berekende live fetch `bodySha256 = sha256(buffer)`, converteerde binaire buffers naar `latin1` strings, maar `writeToCache()` hashte de string standaard als UTF-8.
+- Hersteld canoniek contract:
+  - Voor binaire payloads is SHA-256 altijd de hash van de originele bytes (`sha256(buffer)`).
+  - `writeToCache()` accepteert binaire opties `{ buffer, bodySha256, isBinary, bodyEncoding }`.
+  - `readFromCache()` reconstrueert de buffer via `Buffer.from(cached.body, cached.body_encoding || 'latin1')`, berekent `observedHash = sha256(buffer)` en verifieert `observedHash === cached.body_sha256`.
+  - Bij corruptie of tampering wordt de cachestatus gezet op `cache_integrity = 'INVALID_HASH'`. In `LIVE` modus wordt het corrupte bestand verwijderd en `null` geretourneerd om een schone live fetch af te dwingen.
+  - Uniforme ondersteuning voor custom `cacheDir` over zowel `LIVE` als `FIXTURE` modus.
+
+### C. Dedicated Regressietests (Tests 43 & 44)
+- **Test 43 (`Phase 52A - Test 43: Strict Snapshot Contract & Missing-Bytes Rejection`)**:
+  - Verifieert dat `STRICT_SNAPSHOT` zonder bytes faalt met `STRICT_SNAPSHOT_REQUIRES_RESPONSE_BYTES` en `observed_response_sha256 === null`.
+  - Verifieert dat valide buffers met overeenkomstige SHA-256 100% slagen.
+  - Verifieert dat gemuteerde buffers falen op `Response SHA-256 mismatch`.
+  - Verifieert dat `CLAIM_REVALIDATION` met binaire PDF en `pageText` slaagt.
+  - Verifieert poorten: `HASH_GATES.STRICT_SNAPSHOT_WITHOUT_BYTES_ACCEPTED === 0` en `HASH_GATES.STRICT_SNAPSHOT_HASH_BYPASSES === 0`.
+- **Test 44 (`Phase 52A - Test 44: Canonical Binary Cache & Live/Cache Parity`)**:
+  - Verifieert binaire round-trip bytes- en hashpariteit met bytes >= 0x80.
+  - Verifieert tampered binary cache detectie (`INVALID_HASH`) en veilige verwijdering in `LIVE` modus.
+  - Verifieert regressievrij tekst-cachegedrag.
+  - Verifieert Service Kit 45 live/cache auditpariteit.
+  - Verifieert poorten: `HASH_GATES.PDF_LIVE_CACHE_HASH_MISMATCHES === 0`, `HASH_GATES.INVALID_BINARY_CACHE_ACCEPTED === 0`, `HASH_GATES.PDF_PROVENANCE_INFRASTRUCTURE_VERIFIED === true`.
+
+### D. Verificatiepoorten & Resultaat
+- `STRICT_SNAPSHOT_WITHOUT_BYTES_ACCEPTED = 0`
+- `STRICT_SNAPSHOT_HASH_BYPASSES = 0`
+- `PDF_LIVE_CACHE_HASH_MISMATCHES = 0`
+- `INVALID_BINARY_CACHE_ACCEPTED = 0`
+- `PDF_PROVENANCE_INFRASTRUCTURE_VERIFIED = true`
+- `SERVICE_KIT45_SOURCE_ROT_VALID = true`
+- `CANONICAL_PRODUCTION_65_OF_65 = true` (exact 65 productietestsuites, 0 failures)
+- `PHASE56N_REGRESSIONS = 0`
+- `CATALOG_FREEZE_INTACT = true`

@@ -29,7 +29,7 @@ export class HttpClient {
         fs.mkdirSync(this.cacheDir, { recursive: true });
       }
     } else {
-      this.cacheDir = options.fixtureDir || FIXTURE_DIR;
+      this.cacheDir = options.cacheDir || options.fixtureDir || FIXTURE_DIR;
       if (!fs.existsSync(this.cacheDir)) {
         fs.mkdirSync(this.cacheDir, { recursive: true });
       }
@@ -54,6 +54,53 @@ export class HttpClient {
       try {
         const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
         if (cached && cached.url === url && typeof cached.body === 'string') {
+          const isBinary = Boolean(
+            cached.is_binary ||
+            cached.body_encoding === 'latin1' ||
+            (cached.content_type && cached.content_type.includes('application/pdf')) ||
+            url.endsWith('.pdf')
+          );
+
+          if (isBinary) {
+            const encoding = cached.body_encoding || 'latin1';
+            const buffer = Buffer.from(cached.body, encoding);
+            const observedHash = crypto.createHash('sha256').update(buffer).digest('hex');
+            const storedHash = cached.body_sha256 || null;
+
+            if (!storedHash || storedHash.toLowerCase() !== observedHash.toLowerCase()) {
+              cached.cache_integrity = 'INVALID_HASH';
+              cached.observed_sha256 = observedHash;
+              if (this.mode === 'LIVE') {
+                try { fs.unlinkSync(cachePath); } catch (e) {}
+                return null;
+              }
+            } else {
+              cached.cache_integrity = 'VERIFIED';
+              cached.observed_sha256 = observedHash;
+            }
+            cached.buffer = buffer;
+            cached.is_binary = true;
+            cached.body_encoding = encoding;
+          } else {
+            const observedHash = crypto.createHash('sha256').update(cached.body, 'utf8').digest('hex');
+            const storedHash = cached.body_sha256 || null;
+
+            if (!storedHash || storedHash.toLowerCase() !== observedHash.toLowerCase()) {
+              cached.cache_integrity = 'INVALID_HASH';
+              cached.observed_sha256 = observedHash;
+              if (this.mode === 'LIVE') {
+                try { fs.unlinkSync(cachePath); } catch (e) {}
+                return null;
+              }
+            } else {
+              cached.cache_integrity = 'VERIFIED';
+              cached.observed_sha256 = observedHash;
+            }
+            cached.buffer = null;
+            cached.is_binary = false;
+            cached.body_encoding = 'utf8';
+          }
+
           return cached;
         }
       } catch (err) {
@@ -69,18 +116,43 @@ export class HttpClient {
     return null;
   }
 
-  writeToCache(url, status, body, headers = {}, finalUrl = null) {
+  writeToCache(url, status, body, headers = {}, finalUrl = null, options = {}) {
     if (!this.useCache) return;
     try {
       const cachePath = this.getCachePath(url);
+      const isBinary = Boolean(
+        options.isBinary ||
+        options.buffer ||
+        options.bodyEncoding === 'latin1' ||
+        (headers['content-type'] && headers['content-type'].includes('application/pdf')) ||
+        url.endsWith('.pdf')
+      );
+
+      const bodyEncoding = options.bodyEncoding || (isBinary ? 'latin1' : 'utf8');
+
+      let bodySha256;
+      if (options.bodySha256) {
+        bodySha256 = options.bodySha256;
+      } else if (options.buffer) {
+        bodySha256 = crypto.createHash('sha256').update(options.buffer).digest('hex');
+      } else if (isBinary) {
+        const buf = Buffer.from(body || '', bodyEncoding);
+        bodySha256 = crypto.createHash('sha256').update(buf).digest('hex');
+      } else {
+        bodySha256 = crypto.createHash('sha256').update(body || '', 'utf8').digest('hex');
+      }
+
       const cacheData = {
         url,
         requested_url: url,
         final_url: finalUrl || url,
         status,
-        content_type: headers['content-type'] || 'text/html',
+        content_type: headers['content-type'] || (isBinary ? 'application/pdf' : 'text/html'),
         fetched_at: new Date().toISOString(),
-        body_sha256: crypto.createHash('sha256').update(body || '').digest('hex'),
+        is_binary: isBinary,
+        body_encoding: bodyEncoding,
+        body_sha256: bodySha256,
+        cache_integrity: 'VERIFIED',
         body: body || '',
         mode: this.mode
       };
@@ -111,22 +183,44 @@ export class HttpClient {
     // 1. Check local cache for the active mode
     const cached = this.readFromCache(url);
     if (cached) {
-      const isPdf = (cached.content_type && cached.content_type.includes('application/pdf')) || url.endsWith('.pdf');
-      const buffer = isPdf && cached.body ? Buffer.from(cached.body, 'latin1') : null;
-      return {
-        url,
-        requested_url: cached.requested_url || cached.url || url,
-        final_url: cached.final_url || cached.url || url,
-        status: cached.status,
-        statusText: cached.status === 200 ? 'OK' : `HTTP ${cached.status}`,
-        contentType: cached.content_type || 'text/html',
-        body: cached.body,
-        buffer,
-        bodySha256: cached.body_sha256 || crypto.createHash('sha256').update(buffer || cached.body || '').digest('hex'),
-        fromCache: true,
-        fetchedAt: cached.fetched_at,
-        mode: this.mode
-      };
+      if (cached.cache_integrity === 'INVALID_HASH') {
+        if (this.mode === 'LIVE') {
+          // Already invalidated in readFromCache, will fall through to live fetch
+        } else {
+          return {
+            url,
+            requested_url: cached.requested_url || cached.url || url,
+            final_url: cached.final_url || cached.url || url,
+            status: cached.status,
+            statusText: 'CACHE_INVALID_HASH',
+            contentType: cached.content_type || 'text/html',
+            body: cached.body,
+            buffer: cached.buffer || null,
+            bodySha256: cached.body_sha256,
+            cache_integrity: 'INVALID_HASH',
+            fromCache: true,
+            fetchedAt: cached.fetched_at,
+            mode: this.mode,
+            error: 'INVALID_BINARY_CACHE: stored hash does not match computed payload hash'
+          };
+        }
+      } else {
+        return {
+          url,
+          requested_url: cached.requested_url || cached.url || url,
+          final_url: cached.final_url || cached.url || url,
+          status: cached.status,
+          statusText: cached.status === 200 ? 'OK' : `HTTP ${cached.status}`,
+          contentType: cached.content_type || 'text/html',
+          body: cached.body,
+          buffer: cached.buffer || null,
+          bodySha256: cached.body_sha256,
+          cache_integrity: cached.cache_integrity || 'VERIFIED',
+          fromCache: true,
+          fetchedAt: cached.fetched_at,
+          mode: this.mode
+        };
+      }
     }
 
     // 2. In FIXTURE mode, do NOT make network calls
@@ -186,11 +280,18 @@ export class HttpClient {
         } else {
           body = await response.text();
         }
-        const bodySha256 = crypto.createHash('sha256').update(buffer || body || '').digest('hex');
+        const bodySha256 = buffer
+          ? crypto.createHash('sha256').update(buffer).digest('hex')
+          : crypto.createHash('sha256').update(body || '', 'utf8').digest('hex');
         const finalUrl = response.url || url;
 
         // Cache response in live cache directory
-        this.writeToCache(url, response.status, body, { 'content-type': contentType }, finalUrl);
+        this.writeToCache(url, response.status, body, { 'content-type': contentType }, finalUrl, {
+          buffer,
+          bodySha256,
+          isBinary: Boolean(isPdf),
+          bodyEncoding: isPdf ? 'latin1' : 'utf8'
+        });
 
         return {
           url,
@@ -202,6 +303,7 @@ export class HttpClient {
           body,
           buffer,
           bodySha256,
+          cache_integrity: 'VERIFIED',
           fromCache: false,
           fetchedAt: new Date().toISOString(),
           mode: 'LIVE'
