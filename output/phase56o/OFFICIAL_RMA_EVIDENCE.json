@@ -3,28 +3,29 @@
   "candidate_drive_type": "BATTERY",
   "status": "VERIFIED",
   "confidence": "HIGH",
+  "fetch_id": "fetch_stihl_family_030",
   "evidence_sources": [
     {
+      "id": "OFFICIAL_STIHL_RMA_448_HTML",
       "source_type": "PRIMARY_CONTEXT_HTML",
       "url": "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
       "http_status": 200,
-      "content_type": "text/html; charset=utf-8",
+      "content_type": "text/html;charset=utf-8",
       "body_sha256": "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f",
       "page_title": "RMA 448 V accugrasmaaier kopen",
-      "primary_excerpts": [
-        "Grasmaaiers RMA 448 V",
-        "AK systeem",
-        "accu"
-      ],
+      "source_excerpt": "RMA 448 V accugrasmaaier kopen RMA 448 - AK systeem RMA 448 V accugrasmaai",
+      "source_excerpt_hash": "ee59bfc343b1bb036a08d87d25751369dba09196bfc20fb30e8ef0208981d258",
       "drive_inference": "BATTERY"
     },
     {
+      "id": "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
       "source_type": "OFFICIAL_CATALOGUE_PDF",
       "url": "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
       "http_status": 200,
       "content_type": "application/pdf",
       "body_sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
       "page_number": 108,
+      "page_text_hash": "3a7121827a993539147359a6fe294d53931937376d10a677cec0a53f777fea0f",
       "table_title": "Cordless lawn mowers - Technical specifications",
       "models_covered": [
         "RMA 235",
@@ -33,14 +34,11 @@
         "RMA 339",
         "RMA 443",
         "RMA 448",
-        "RMA 765"
+        "RMA 765",
+        "RMA 2 RV"
       ],
-      "primary_excerpts": [
-        "cordless lawn mowers",
-        "STIHL cordless power system",
-        "Weight excluding battery",
-        "36 V"
-      ],
+      "source_excerpt": "be switched off on RMA 235, RMA 248 and RMA 253 ⬤ ⬤ As standard • Retrofittable (accessory) Engine types SC = SmartChoke OHV/DOV = Overhead valves C = Comfort version R = Mulch mower V = Vario drive For up to date",
+      "source_excerpt_hash": "a6812f7b9908aebf586dd5af8a479a8ce872bc853dc88c3678d296c5cd1ef5fe",
       "drive_inference": "BATTERY"
     }
   ],

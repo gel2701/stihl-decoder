@@ -1,58 +1,62 @@
 {
   "phase": "PHASE_56O",
-  "timestamp": "2026-10-26T01:41:19.473Z",
-  "activations": [
+  "timestamp": "2026-10-26T05:55:25.073Z",
+  "decisions": [
     {
       "family": "RE",
-      "action": "ACTIVATED",
+      "target_count": 71,
+      "supported_count": 71,
+      "unsupported_count": 0,
+      "generation_groups_total": 8,
+      "generation_groups_covered": 8,
+      "generation_groups_partial": 0,
+      "generation_groups_unsupported": 0,
+      "activation_status": "ACTIVE",
       "drive_type": "MAINS_ELECTRIC",
-      "promoted_count": 71,
-      "evidence_status": "VERIFIED",
-      "evidence_summary": "Live HTML specification (230V / 2.3kW brushless induction motor) and 2023 UK PDF Catalogue p.161.",
-      "prefix_boundary_regex": "^RE\\\\b",
-      "collision_safe": true
+      "evidence_ids": [
+        "OFFICIAL_STIHL_RE_130_HTML",
+        "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
+        "STIHL_MANUAL_RE_271_281",
+        "STIHL_MANUAL_RE_361_461",
+        "STIHL_MANUAL_RE_521_581",
+        "STIHL_MANUAL_RE_661_981"
+      ],
+      "reason": "All 8 RE generation groups (1xx-9xx) covered by authentic official STIHL evidence: live HTML, 2023 UK catalogue, and verified official instruction manuals."
     },
     {
       "family": "RM",
-      "action": "ACTIVATED",
+      "target_count": 25,
+      "supported_count": 25,
+      "unsupported_count": 0,
+      "generation_groups_total": 5,
+      "generation_groups_covered": 5,
+      "generation_groups_partial": 0,
+      "generation_groups_unsupported": 0,
+      "activation_status": "ACTIVE",
       "drive_type": "PETROL",
-      "promoted_count": 25,
-      "evidence_status": "VERIFIED",
-      "evidence_summary": "Live HTML specification (petrol engine), 2023 UK PDF Catalogue p.107, and Service Kit 49 engine components.",
-      "prefix_boundary_regex": "^RM\\\\b",
-      "collision_safe": true
+      "evidence_ids": [
+        "OFFICIAL_STIHL_RM_448_HTML",
+        "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
+        "STIHL_SERVICE_KIT_49"
+      ],
+      "reason": "All 5 RM generation groups (2xx, 4xx, 5xx, 6xx, 7xx) covered by authentic official STIHL evidence: live HTML, 2023 UK catalogue, and Service Kit 49 engine documentation."
     },
     {
       "family": "RMA",
-      "action": "ACTIVATED",
+      "target_count": 22,
+      "supported_count": 22,
+      "unsupported_count": 0,
+      "generation_groups_total": 4,
+      "generation_groups_covered": 4,
+      "generation_groups_partial": 0,
+      "generation_groups_unsupported": 0,
+      "activation_status": "ACTIVE",
       "drive_type": "BATTERY",
-      "promoted_count": 22,
-      "evidence_status": "VERIFIED",
-      "evidence_summary": "Live HTML specification (AK system 36V cordless mower) and 2023 UK PDF Catalogue p.108.",
-      "prefix_boundary_regex": "^RMA\\\\b",
-      "collision_safe": true
-    }
-  ],
-  "disabled_families_maintained": [
-    {
-      "family": "REA",
-      "reason": "Cordless pressure washers (requires separate official battery evidence)"
-    },
-    {
-      "family": "RME",
-      "reason": "Electric mains mowers (requires separate official mains electric evidence)"
-    },
-    {
-      "family": "RMI",
-      "reason": "Robotic lawn mowers (requires separate official iMOW evidence)"
-    },
-    {
-      "family": "RT",
-      "reason": "Ride-on lawn mowers (petrol/diesel/battery variants need multi-source evidence)"
-    },
-    {
-      "family": "RL",
-      "reason": "Lawn scarifiers (petrol/electric variants need separate resolution)"
+      "evidence_ids": [
+        "OFFICIAL_STIHL_RMA_448_HTML",
+        "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
+      ],
+      "reason": "All 4 RMA generation groups (2xx, 3xx, 4xx, 7xx) covered by authentic official STIHL evidence: live HTML and 2023 UK catalogue p.108."
     }
   ]
 }

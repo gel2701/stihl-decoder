@@ -1,32 +1,55 @@
 {
   "phase": "PHASE_56O",
-  "timestamp": "2026-10-26T01:41:19.474Z",
+  "timestamp": "2026-10-26T05:55:25.074Z",
+  "metrics": {
+    "active_target_rules_checked": 3,
+    "ledger_records_found": 3,
+    "ledger_records_missing": 0,
+    "fetch_id_mismatches": 0,
+    "family_mismatches": 0,
+    "drive_type_mismatches": 0,
+    "url_mismatches": 0,
+    "body_hash_mismatches": 0,
+    "excerpt_hash_mismatches": 0,
+    "unverified_ledger_records": 0,
+    "non_context_bound_records": 0,
+    "family_match_failures": 0,
+    "drive_match_failures": 0,
+    "generation_coverage_gaps": 0,
+    "fabricated_provenance_count": 0,
+    "synthetic_records_count": 0,
+    "active_rule_ledger_parity_errors": 0,
+    "provenance_integrity_passed": true
+  },
   "evidence_documents": [
     {
       "id": "OFFICIAL_STIHL_RE_130_HTML",
       "url": "https://www.stihl.nl/nl/p/hogedrukreinigers-re-130-81522",
-      "sha256": "bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa",
+      "body_sha256": "bb312ab038f1f0366e48906a75fb16df91d8ec522a27b76108226ecef7a280aa",
+      "source_excerpt_hash": "6fc4f7956e4123e330e89c725f18e91730907ee24b8d49ae864070cb75051363",
       "type": "HTML",
       "verified": true
     },
     {
       "id": "OFFICIAL_STIHL_RM_448_HTML",
       "url": "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
-      "sha256": "0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729",
+      "body_sha256": "0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729",
+      "source_excerpt_hash": "c91a8a04fec64d25ae98ec4350ae8f0e909a21cafb3b89cb07031e8a01470a15",
       "type": "HTML",
       "verified": true
     },
     {
       "id": "OFFICIAL_STIHL_RMA_448_HTML",
       "url": "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
-      "sha256": "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f",
+      "body_sha256": "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f",
+      "source_excerpt_hash": "ee59bfc343b1bb036a08d87d25751369dba09196bfc20fb30e8ef0208981d258",
       "type": "HTML",
       "verified": true
     },
     {
       "id": "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
       "url": "https://www.stihl.co.uk/content/dam/stihl/vu/gb/en/download-files/pdf-files/STIHL_GB_Product_Catalogue_2023.pdf",
-      "sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
+      "body_sha256": "406ce31aa5607699cfdea2714dc4e1c454ae569eb1dfc1c48a529d8d8d47a162",
       "type": "PDF",
       "verified": true
     },
@@ -37,7 +60,5 @@
       "verified": true
     }
   ],
-  "fabricated_provenance_count": 0,
-  "synthetic_records_count": 0,
   "provenance_integrity_passed": true
 }

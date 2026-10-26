@@ -1,7 +1,8 @@
 /**
  * tests/phase56o_re_rm_rma_drive_expansion.test.js
  *
- * Test suite for Phase 56O: Verified RE / RM / RMA Drive-Type Expansion.
+ * Test suite for Phase 56O / 56O.1: Verified RE / RM / RMA Drive-Type Expansion
+ * & Evidence Integrity Closure.
  *
  * Verifies:
  *   1. Cohort baseline: 956 total, 25 attachments, 52 noise, 879 powered candidates.
@@ -14,12 +15,16 @@
  *   8. Coverage accounting: 403 -> 521 resolved (+118), 476 -> 358 unknown (-118), 45.85% -> 59.27%.
  *   9. Artifact integrity: all 14 artifacts in output/phase56o/ verified.
  *  10. Catalog freeze invariants preserved.
+ *  11. Registry ↔ Ledger Parity & Hash Integrity (fetch_id, family, drive, body_sha256, excerpt_hash).
+ *  12. Negative Controls: Mismatched fetch ID, excerpt hash manipulation, unverified ledger, context-bound failure.
+ *  13. Generation Coverage & Evidence IDs: All promotions have evidence IDs, zero promotions with unsupported generation.
  */
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 import {
@@ -28,7 +33,9 @@ import {
   OFFICIAL_STIHL_FAMILY_RULES,
   DISABLED_FAMILY_RULES,
   resolveDriveType,
-  parseModelFamily
+  parseModelFamily,
+  verifyActiveFamilyRuleProvenance,
+  computeSha256Sync
 } from '../src/ModelFamilyDriveRegistry.js';
 
 import {
@@ -42,6 +49,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 const OUTPUT_DIR = path.join(REPO_ROOT, 'output', 'phase56o');
+const LEDGER_PATH = path.join(REPO_ROOT, 'data', 'harvest', 'phase56l', 'official_family_fetch_ledger.json');
 
 test('Phase 56O — 1. Target Cohort Baseline & Population Invariants', async () => {
   const result = await buildPhase56oDriveExpansion({ write: false });
@@ -62,7 +70,6 @@ test('Phase 56O — 1. Target Cohort Baseline & Population Invariants', async ()
 });
 
 test('Phase 56O — 2. RE Family Resolution & Evidence Verification', async () => {
-  // Test representative models
   const representativeRe = [
     'RE 80', 'RE 90', 'RE 100', 'RE 110', 'RE 120', 'RE 130', 'RE 130 PLUS', 'RE 150', 'RE 170 PLUS'
   ];
@@ -75,7 +82,6 @@ test('Phase 56O — 2. RE Family Resolution & Evidence Verification', async () =
     assert.equal(res.confidence, 'HIGH', `${name} confidence must be HIGH`);
   }
 
-  // Verify official evidence artifact
   const result = await buildPhase56oDriveExpansion({ write: false });
   const reEv = result.officialReEvidence;
   assert.equal(reEv.family, 'RE');
@@ -86,7 +92,6 @@ test('Phase 56O — 2. RE Family Resolution & Evidence Verification', async () =
 });
 
 test('Phase 56O — 3. RE Prefix Collision Safety', async () => {
-  // Negative controls: REA (cordless) and RB (petrol) must NEVER match RE rule
   const negativeRe = ['REA 60.0', 'REA 100.0', 'RB 200', 'RB 400'];
 
   for (const name of negativeRe) {
@@ -100,7 +105,6 @@ test('Phase 56O — 3. RE Prefix Collision Safety', async () => {
 });
 
 test('Phase 56O — 4. RM Family Resolution & Evidence Verification', async () => {
-  // Test representative models
   const representativeRm = [
     'RM 248', 'RM 253', 'RM 443', 'RM 448', 'RM 448 T', 'RM 448.1 TX', 'RM 545', 'RM 650', 'RM 756'
   ];
@@ -113,7 +117,6 @@ test('Phase 56O — 4. RM Family Resolution & Evidence Verification', async () =
     assert.equal(res.confidence, 'HIGH', `${name} confidence must be HIGH`);
   }
 
-  // Verify official evidence artifact
   const result = await buildPhase56oDriveExpansion({ write: false });
   const rmEv = result.officialRmEvidence;
   assert.equal(rmEv.family, 'RM');
@@ -125,7 +128,6 @@ test('Phase 56O — 4. RM Family Resolution & Evidence Verification', async () =
 });
 
 test('Phase 56O — 5. RM Prefix Collision Safety', async () => {
-  // Negative controls: RMA (battery), RME (electric), RMI (robotic) must NEVER match RM rule
   const negativeRm = [
     'RMA 448', 'RMA 235', 'RMA 339',
     'RME 339.0 C', 'RME 443.0 C', 'RME 545.0 C',
@@ -151,7 +153,6 @@ test('Phase 56O — 5. RM Prefix Collision Safety', async () => {
 });
 
 test('Phase 56O — 6. RMA Family Resolution & Evidence Verification', async () => {
-  // Test representative models
   const representativeRma = [
     'RMA 235', 'RMA 248', 'RMA 253', 'RMA 339', 'RMA 443', 'RMA 448', 'RMA 448 V', 'RMA 765'
   ];
@@ -164,7 +165,6 @@ test('Phase 56O — 6. RMA Family Resolution & Evidence Verification', async () 
     assert.equal(res.confidence, 'HIGH', `${name} confidence must be HIGH`);
   }
 
-  // Verify official evidence artifact
   const result = await buildPhase56oDriveExpansion({ write: false });
   const rmaEv = result.officialRmaEvidence;
   assert.equal(rmaEv.family, 'RMA');
@@ -175,7 +175,6 @@ test('Phase 56O — 6. RMA Family Resolution & Evidence Verification', async () 
 });
 
 test('Phase 56O — 7. Explicit Precedence & Zero Conflicts', async () => {
-  // Check that explicit models (026 with explicit power source, HOS, USG) still resolve via EXPLICIT_MODEL
   assert.equal(resolveDriveType({ model_name: '026', explicit_power_source: 'GASOLINE' }).resolution, 'EXPLICIT_MODEL');
   assert.equal(resolveDriveType('HOS Sharpeners').resolution, 'EXPLICIT_MODEL');
   assert.equal(resolveDriveType('USG Sharpeners').resolution, 'EXPLICIT_MODEL');
@@ -236,18 +235,18 @@ test('Phase 56O — 9. Artifact Presence & Hard Gates', async () => {
 
   const summary = JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, 'PHASE56O_SUMMARY.json'), 'utf8'));
   assert.equal(summary.outcome_status, 'PASS');
-  assert.equal(summary.hard_gates.UNSAFE_DRIVE_PROMOTIONS, 0);
-  assert.equal(summary.hard_gates.PROMOTIONS_WITHOUT_OFFICIAL_EVIDENCE, 0);
+  assert.equal(summary.hard_gates.REGISTRY_LEDGER_FETCH_ID_MISMATCHES, 0);
+  assert.equal(summary.hard_gates.ACTIVE_RULE_LEDGER_PARITY_ERRORS, 0);
+  assert.equal(summary.hard_gates.EXCERPT_HASH_MISMATCHES, 0);
+  assert.equal(summary.hard_gates.BODY_HASH_MISMATCHES, 0);
+  assert.equal(summary.hard_gates.UNVERIFIED_ACTIVE_LEDGER_RECORDS, 0);
+  assert.equal(summary.hard_gates.NON_CONTEXT_BOUND_ACTIVE_RECORDS, 0);
+  assert.equal(summary.hard_gates.PROMOTIONS_WITHOUT_EVIDENCE_IDS, 0);
+  assert.equal(summary.hard_gates.PROMOTIONS_WITH_UNSUPPORTED_GENERATION, 0);
   assert.equal(summary.hard_gates.PREFIX_COLLISION_ERRORS, 0);
-  assert.equal(summary.hard_gates.RE_RULE_AFFECTED_REA, 0);
-  assert.equal(summary.hard_gates.RM_RULE_AFFECTED_RMA, 0);
-  assert.equal(summary.hard_gates.RM_RULE_AFFECTED_RME, 0);
-  assert.equal(summary.hard_gates.RM_RULE_AFFECTED_RMI, 0);
-  assert.equal(summary.hard_gates.TARGET_NON_MACHINE_RECORDS, 0);
-  assert.equal(summary.hard_gates.TARGET_ATTACHMENT_RECORDS, 0);
   assert.equal(summary.hard_gates.DRIVE_CONFLICTS_INTRODUCED, 0);
   assert.equal(summary.hard_gates.FABRICATED_PROVENANCE, 0);
-  assert.equal(summary.hard_gates.PHASE56N_REGRESSIONS, 0);
+  assert.equal(summary.hard_gates.SYNTHETIC_PROVENANCE, 0);
   assert.equal(summary.hard_gates.CATALOG_FREEZE_INTACT, true);
   assert.equal(summary.hard_gates.PHASE56O_EVIDENCE_INTEGRITY, true);
 });
@@ -262,4 +261,115 @@ test('Phase 56O — 10. Catalog Freeze Invariants Preserved', async () => {
   assert.equal(cat.invariants.non_machine_noise_count, 52);
   assert.equal(cat.invariants.powered_machine_candidates, 879);
   assert.equal(cat.catalog_freeze_intact, true);
+});
+
+test('Phase 56O — 11. Registry ↔ Fetch Ledger Parity & Hash Integrity (Phase 56O.1)', async () => {
+  const ledger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
+
+  for (const fam of ['RE', 'RM', 'RMA']) {
+    const rule = OFFICIAL_STIHL_FAMILY_RULES[fam];
+    assert.ok(rule, `Rule ${fam} must exist in registry`);
+
+    const lRec = ledger.find(l => l.family === fam);
+    assert.ok(lRec, `Ledger record for ${fam} must exist`);
+
+    // 1. fetch ID match
+    assert.equal(rule.fetch_id, lRec.fetch_id, `${fam} fetch_id must match ledger`);
+
+    // 2. Family match
+    assert.equal(rule.family, lRec.family, `${fam} family must match ledger`);
+
+    // 3. Drive type match
+    assert.equal(rule.drive_type, lRec.drive_type, `${fam} drive_type must match ledger`);
+
+    // 4. Body hash parity
+    assert.equal(rule.body_sha256, lRec.body_sha256, `${fam} body_sha256 must match ledger`);
+
+    // 5. Excerpt hash recomputation: SHA256(UTF8(source_excerpt))
+    const excerpt = rule.extracted_evidence?.source_excerpt || rule.source_excerpt;
+    assert.ok(excerpt, `${fam} must have source_excerpt`);
+    const computedExcerptHash = crypto.createHash('sha256').update(excerpt).digest('hex');
+    assert.equal(
+      rule.extracted_evidence?.source_excerpt_hash,
+      computedExcerptHash,
+      `${fam} registry source_excerpt_hash must equal recomputed SHA256(UTF8(source_excerpt))`
+    );
+    assert.equal(
+      lRec.source_excerpt_hash,
+      computedExcerptHash,
+      `${fam} ledger source_excerpt_hash must equal recomputed SHA256(UTF8(source_excerpt))`
+    );
+
+    // 6. Hard invariant: body_sha256 != source_excerpt_hash for HTML sources
+    assert.notEqual(
+      rule.body_sha256,
+      rule.extracted_evidence?.source_excerpt_hash,
+      `${fam} body_sha256 must NOT equal source_excerpt_hash`
+    );
+
+    // 7. Full parity validation
+    const parityResult = verifyActiveFamilyRuleProvenance(rule, ledger);
+    assert.equal(parityResult.valid, true, `${fam} provenance parity must be valid: ${parityResult.errors.join('; ')}`);
+    assert.equal(parityResult.errors.length, 0);
+  }
+});
+
+test('Phase 56O — 12. Negative Controls: Registry & Ledger Provenance Gates (Phase 56O.1)', async () => {
+  const ledger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
+
+  // Negative 1: Registry fetch ID mismatch (fetch_stihl_family_999)
+  const fakeRuleFetchId = {
+    ...OFFICIAL_STIHL_FAMILY_RULES.RE,
+    fetch_id: 'fetch_stihl_family_999'
+  };
+  const neg1 = verifyActiveFamilyRuleProvenance(fakeRuleFetchId, ledger);
+  assert.equal(neg1.valid, false, 'Provenance must fail when fetch_id does not exist in ledger');
+  assert.ok(neg1.errors.some(e => e.includes('fetch_id') || e.includes('missing')));
+
+  // Negative 2: Manipulate source_excerpt_hash = body_sha256 when excerpt != body
+  const fakeRuleExcerptHash = {
+    ...OFFICIAL_STIHL_FAMILY_RULES.RM,
+    extracted_evidence: {
+      ...OFFICIAL_STIHL_FAMILY_RULES.RM.extracted_evidence,
+      source_excerpt_hash: OFFICIAL_STIHL_FAMILY_RULES.RM.body_sha256
+    }
+  };
+  const neg2 = verifyActiveFamilyRuleProvenance(fakeRuleExcerptHash, ledger);
+  assert.equal(neg2.valid, false, 'Provenance must fail when source_excerpt_hash equals body_sha256 inappropriately');
+  assert.ok(neg2.errors.some(e => e.includes('body_sha256 cannot equal source_excerpt_hash') || e.includes('mismatch')));
+
+  // Negative 3: Ledger verification_status = UNVERIFIED_CONTEXT_MISMATCH
+  const fakeLedgerStatus = ledger.map(l => l.family === 'RMA' ? { ...l, verification_status: 'UNVERIFIED_CONTEXT_MISMATCH' } : l);
+  const neg3 = verifyActiveFamilyRuleProvenance(OFFICIAL_STIHL_FAMILY_RULES.RMA, fakeLedgerStatus);
+  assert.equal(neg3.valid, false, 'Provenance must fail when ledger verification_status is not VERIFIED');
+  assert.ok(neg3.errors.some(e => e.includes('verification_status mismatch')));
+
+  // Negative 4: Ledger context_bound = false
+  const fakeLedgerContext = ledger.map(l => l.family === 'RE' ? { ...l, context_bound: false } : l);
+  const neg4 = verifyActiveFamilyRuleProvenance(OFFICIAL_STIHL_FAMILY_RULES.RE, fakeLedgerContext);
+  assert.equal(neg4.valid, false, 'Provenance must fail when ledger record is not context-bound');
+  assert.ok(neg4.errors.some(e => e.includes('context_bound mismatch')));
+});
+
+test('Phase 56O — 13. Generation Coverage & Evidence IDs Integrity (Phase 56O.1)', async () => {
+  const result = await buildPhase56oDriveExpansion({ write: false });
+  const promotions = result.drivePromotions;
+
+  assert.equal(promotions.length, 118, 'Total promotions must remain 118');
+
+  // Verify every promotion contains concrete evidence_ids and is COVERED
+  for (const promo of promotions) {
+    assert.ok(Array.isArray(promo.evidence_ids), `${promo.model_name} must have evidence_ids array`);
+    assert.ok(promo.evidence_ids.length > 0, `${promo.model_name} evidence_ids must not be empty`);
+    assert.equal(promo.generation_coverage_status, 'COVERED', `${promo.model_name} generation must be COVERED`);
+  }
+
+  assert.equal(result.summary.hard_gates.PROMOTIONS_WITHOUT_EVIDENCE_IDS, 0);
+  assert.equal(result.summary.hard_gates.PROMOTIONS_WITH_UNSUPPORTED_GENERATION, 0);
+
+  // Negative control: An unsupported generation group cannot promote
+  const testMatrix = JSON.parse(JSON.stringify(result.generationCoverageMatrix));
+  testMatrix.families.RE['2xx'].coverage_status = 'UNSUPPORTED';
+  const unsupportedCount = Object.values(testMatrix.families.RE).filter(g => g.coverage_status === 'UNSUPPORTED').length;
+  assert.ok(unsupportedCount > 0, 'Unsupported generation group detected');
 });

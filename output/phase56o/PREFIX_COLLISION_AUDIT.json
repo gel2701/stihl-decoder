@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56O",
-  "timestamp": "2026-10-26T01:41:19.467Z",
+  "timestamp": "2026-10-26T05:55:25.068Z",
   "metrics": {
     "re_rule_affected_rea": 0,
     "rm_rule_affected_rma": 0,
@@ -12,17 +12,17 @@
   "rules_evaluated": [
     {
       "rule": "RE",
-      "regex": "^RE\\\\b",
+      "regex": "^RE\\b",
       "expected_drive": "MAINS_ELECTRIC"
     },
     {
       "rule": "RMA",
-      "regex": "^RMA\\\\b",
+      "regex": "^RMA\\b",
       "expected_drive": "BATTERY"
     },
     {
       "rule": "RM",
-      "regex": "^RM\\\\b",
+      "regex": "^RM\\b",
       "expected_drive": "PETROL"
     }
   ],
