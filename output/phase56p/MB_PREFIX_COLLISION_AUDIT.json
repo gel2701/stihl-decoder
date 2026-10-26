@@ -1,0 +1,104 @@
+{
+  "phase": "PHASE_56P",
+  "timestamp": "2026-10-26T16:08:19.924Z",
+  "metrics": {
+    "mb_rule_affected_me": 0,
+    "mb_rule_affected_ma": 0,
+    "mb_rule_affected_rm": 0,
+    "mb_rule_affected_rma": 0,
+    "mb_rule_affected_ms": 0,
+    "starter_battery_discrimination_verified": true
+  },
+  "starter_battery_discrimination": {
+    "tested_model": "MB 545 VE",
+    "resolved_drive_type": "PETROL",
+    "resolved_resolution": "FAMILY_RULE",
+    "is_battery": false,
+    "official_manual_ref": "0478-111-9932-B",
+    "section": "8.6 Startaccu en oplaadapparaat (MB 545 VE)",
+    "rationale": "Official manual 0478-111-9932-B Section 8.6 explicitly documents that the lithium-ion battery in MB 545 VE is strictly an auxiliary starting device (\"elektrische startinrichting\") for the petrol combustion engine (\"benzinemaaier MB 545 VE\"). The primary prime mover remains a 4-stroke petrol combustion engine."
+  },
+  "tested_negative_prefixes": [
+    {
+      "prefix": "ME",
+      "sample": "ME 235",
+      "resolved": {
+        "drive_type": "UNKNOWN",
+        "display": "Niet vastgesteld",
+        "resolution": "UNVERIFIED_FAMILY",
+        "family": "ME",
+        "source_type": null,
+        "confidence": "NONE"
+      }
+    },
+    {
+      "prefix": "MA",
+      "sample": "MA 339",
+      "resolved": {
+        "drive_type": "UNKNOWN",
+        "display": "Niet vastgesteld",
+        "resolution": "UNVERIFIED_FAMILY",
+        "family": "MA",
+        "source_type": null,
+        "confidence": "NONE"
+      }
+    },
+    {
+      "prefix": "RM",
+      "sample": "RM 448",
+      "resolved": {
+        "drive_type": "PETROL",
+        "display": "Benzine",
+        "resolution": "FAMILY_RULE",
+        "family": "RM",
+        "machine_type": "LAWN_MOWER",
+        "source_type": "OFFICIAL_STIHL_FAMILY_EVIDENCE",
+        "source_url": "https://www.stihl.nl/nl/p/grasmaaiers-rm-448-185012",
+        "source_title": "RM 448 T benzinegrasmaaier kopen",
+        "evidence_locator": "Official STIHL verification: \"RM 448 T benzinegrasmaaier kopen\" matches family [RM], models [RM 448], and drive terms [benzine, motor] within primary product context.",
+        "confidence": "HIGH",
+        "retrieval_started_at": "2026-10-26T05:42:46.532Z",
+        "retrieved_at": "2026-10-26T05:42:51.408Z",
+        "body_sha256": "0859432bfc193b32503a27a51d75ea724f54c5d955ff1cfe37e2fd1d539da729"
+      }
+    },
+    {
+      "prefix": "RMA",
+      "sample": "RMA 448",
+      "resolved": {
+        "drive_type": "BATTERY",
+        "display": "Accu",
+        "resolution": "FAMILY_RULE",
+        "family": "RMA",
+        "machine_type": "LAWN_MOWER",
+        "source_type": "OFFICIAL_STIHL_FAMILY_EVIDENCE",
+        "source_url": "https://www.stihl.nl/nl/p/grasmaaiers-rma-448-ak-systeem-185059",
+        "source_title": "RMA 448 V accugrasmaaier kopen",
+        "evidence_locator": "Official STIHL verification: \"RMA 448 V accugrasmaaier kopen\" matches family [RMA], models [RMA 448], and drive terms [accu, batterij] within primary product context.",
+        "confidence": "HIGH",
+        "retrieval_started_at": "2026-10-26T05:42:51.477Z",
+        "retrieved_at": "2026-10-26T05:42:56.156Z",
+        "body_sha256": "029075bc0de0f7bc8ccfdd15f669c664efb8684f04de1022d55230c0efc5075f"
+      }
+    },
+    {
+      "prefix": "MS",
+      "sample": "MS 211",
+      "resolved": {
+        "drive_type": "PETROL",
+        "display": "Benzine",
+        "resolution": "FAMILY_RULE",
+        "family": "MS",
+        "machine_type": "CHAINSAW",
+        "source_type": "OFFICIAL_STIHL_FAMILY_EVIDENCE",
+        "source_url": "https://www.stihl.nl/nl/p/kettingzagen-motorzagen-ms-151-102583",
+        "source_title": "MS 151 C-E en MS 151 TC-E benzinekettingzaag kopen",
+        "evidence_locator": "Official STIHL verification: \"MS 151 C-E en MS 151 TC-E benzinekettingzaag kopen\" matches family [MS], models [MS 151], and drive terms [benzine, brandstof, 2-takt] within primary product context.",
+        "confidence": "HIGH",
+        "retrieval_started_at": "2026-10-25T17:19:34.010Z",
+        "retrieved_at": "2026-10-25T17:19:39.415Z",
+        "body_sha256": "a46b9fac6f9ce6c5b5080ed9939a0b295451b591535c517a041b4a714c8f1a65"
+      }
+    }
+  ]
+}

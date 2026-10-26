@@ -1,0 +1,44 @@
+{
+  "phase": "PHASE_56P",
+  "title": "VIKING MB Verified Drive-Type Expansion",
+  "timestamp": "2026-10-26T16:08:19.930Z",
+  "baseline_commit": "8253d08fe11275b1826cb92132a4fb613f005925",
+  "outcome_status": "PASS",
+  "router_status": {
+    "total_catalog_models": 956,
+    "unpowered_attachments": 25,
+    "confirmed_non_machine_noise": 52,
+    "powered_machine_candidates": 879,
+    "resolved_powered_candidates": 517,
+    "unknown_powered_candidates": 362,
+    "coverage_percentage": "58.82%"
+  },
+  "hard_gates": {
+    "MB_TARGET_TOTAL": true,
+    "MB_ATTACHMENT_LEAKAGE": 0,
+    "MB_NON_MACHINE_LEAKAGE": 0,
+    "MB_BLANKET_RULE_PREVENTED": true,
+    "MB_PROMOTIONS_EXACT": true,
+    "MB_UNSUPPORTED_EXACT": true,
+    "MB_DRIVE_CONFLICTS": 0,
+    "UNSAFE_DRIVE_PROMOTIONS": 0,
+    "PROMOTIONS_WITHOUT_EVIDENCE_IDS": 0,
+    "STARTER_BATTERY_DISCRIMINATED": true,
+    "CLEAN_CHECKOUT_EVIDENCE_REPRODUCIBLE": true,
+    "PDF_DOCUMENT_HASH_MISMATCHES": 0,
+    "PDF_EXTRACTION_FAILURES": 0,
+    "PAGE_EVIDENCE_FAILURES": 0,
+    "CATALOG_FREEZE_INTACT": true
+  },
+  "coverage_delta": {
+    "before_resolved": 481,
+    "after_resolved": 517,
+    "resolved_delta": 36,
+    "before_unknown": 398,
+    "after_unknown": 362,
+    "unknown_delta": -36,
+    "before_coverage": "54.72%",
+    "after_coverage": "58.82%",
+    "coverage_delta": "+4.1%"
+  }
+}

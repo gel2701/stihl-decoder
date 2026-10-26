@@ -1,0 +1,189 @@
+{
+  "phase": "PHASE_56P",
+  "timestamp": "2026-10-26T16:08:19.924Z",
+  "total_target_models": 48,
+  "covered_models_count": 36,
+  "unsupported_models_count": 12,
+  "generation_groups_covered": 9,
+  "generation_groups_unsupported": 4,
+  "generation_groups": {
+    "MB 2.x": {
+      "generation_group": "MB 2.x",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9926-C"
+      ],
+      "models": [
+        "MB 2",
+        "MB 2.1",
+        "MB 2.2"
+      ],
+      "model_count": 3
+    },
+    "MB 248 / 253": {
+      "generation_group": "MB 248 / 253",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9828-B",
+        "0478-111-9928-B",
+        "STIHL_SERVICE_KIT_51"
+      ],
+      "models": [
+        "MB 248.0",
+        "MB 248.1",
+        "MB 248.3",
+        "MB 248.4",
+        "MB 253.0",
+        "MB 253.1"
+      ],
+      "model_count": 6
+    },
+    "MB 3.x": {
+      "generation_group": "MB 3.x",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9933-A"
+      ],
+      "models": [
+        "MB 3",
+        "MB 3.1",
+        "MB 3.2"
+      ],
+      "model_count": 3
+    },
+    "MB 4.x": {
+      "generation_group": "MB 4.x",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9929-B"
+      ],
+      "models": [
+        "MB 4.0",
+        "MB 4.1"
+      ],
+      "model_count": 2
+    },
+    "MB 443 / 448": {
+      "generation_group": "MB 443 / 448",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9923-F"
+      ],
+      "models": [
+        "MB 443.0",
+        "MB 443.1",
+        "MB 448.0",
+        "MB 448.1"
+      ],
+      "model_count": 4
+    },
+    "MB 545": {
+      "generation_group": "MB 545",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9932-B"
+      ],
+      "models": [
+        "MB 545.0",
+        "MB 545.1"
+      ],
+      "model_count": 2
+    },
+    "MB 6.x": {
+      "generation_group": "MB 6.x",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9917-F"
+      ],
+      "models": [
+        "MB 6",
+        "MB 6.1",
+        "MB 6.2"
+      ],
+      "model_count": 3
+    },
+    "MB 650 / 655": {
+      "generation_group": "MB 650 / 655",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9918-F",
+        "0478-111-9931-D"
+      ],
+      "models": [
+        "MB 650.0",
+        "MB 650.1",
+        "MB 650.3",
+        "MB 655.0",
+        "MB 655.1",
+        "MB 655.2",
+        "MB 655.3"
+      ],
+      "model_count": 7
+    },
+    "MB 750 / 755 / 756": {
+      "generation_group": "MB 750 / 755 / 756",
+      "status": "COVERED",
+      "official_evidence_ids": [
+        "0478-111-9921-A",
+        "0478-111-9925-E"
+      ],
+      "models": [
+        "MB 750.0",
+        "MB 750.1",
+        "MB 755.0",
+        "MB 755.1",
+        "MB 755.2",
+        "MB 756.0"
+      ],
+      "model_count": 6
+    },
+    "MB 1xx": {
+      "generation_group": "MB 1xx",
+      "status": "UNSUPPORTED",
+      "official_evidence_ids": [],
+      "models": [
+        "MB 140"
+      ],
+      "model_count": 1,
+      "reason": "Historical early VIKING model lacking official first-party digital manual on STIHL infrastructure. Fails closed to UNKNOWN."
+    },
+    "MB 4xx": {
+      "generation_group": "MB 4xx",
+      "status": "UNSUPPORTED",
+      "official_evidence_ids": [],
+      "models": [
+        "MB 400",
+        "MB 410",
+        "MB 450",
+        "MB 455",
+        "MB 460",
+        "MB 465"
+      ],
+      "model_count": 6,
+      "reason": "Historical 1990s models lacking verifiable digital manual bytes on STIHL infrastructure. Fails closed to UNKNOWN."
+    },
+    "MB 5xx": {
+      "generation_group": "MB 5xx",
+      "status": "UNSUPPORTED",
+      "official_evidence_ids": [],
+      "models": [
+        "MB 500",
+        "MB 505",
+        "MB 555"
+      ],
+      "model_count": 3,
+      "reason": "Historical legacy models lacking verifiable digital manual bytes. Fails closed to UNKNOWN."
+    },
+    "MB 7xx / 8xx": {
+      "generation_group": "MB 7xx / 8xx",
+      "status": "UNSUPPORTED",
+      "official_evidence_ids": [],
+      "models": [
+        "MB 780.1",
+        "MB 858.0"
+      ],
+      "model_count": 2,
+      "reason": "Historical heavy-duty legacy models lacking verifiable digital manual bytes. Fails closed to UNKNOWN."
+    }
+  }
+}

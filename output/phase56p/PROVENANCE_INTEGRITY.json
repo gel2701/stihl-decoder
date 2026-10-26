@@ -1,0 +1,51 @@
+{
+  "phase": "PHASE_56P",
+  "timestamp": "2026-10-26T16:08:19.930Z",
+  "provenance_integrity_passed": true,
+  "metrics": {
+    "active_rules_checked": 31,
+    "ledger_records_found": 31,
+    "ledger_records_missing": 0,
+    "missing_excerpts": 0,
+    "missing_excerpt_hashes": 0,
+    "excerpt_hash_mismatches": 0,
+    "fetch_id_mismatches": 0,
+    "family_mismatches": 0,
+    "drive_type_mismatches": 0,
+    "unverified_ledger_records": 0,
+    "document_fetch_failures": 0,
+    "document_hash_mismatches": 0,
+    "pdf_extraction_failures": 0
+  },
+  "primary_document_evidence": {
+    "document_id": "0478-111-9828-B",
+    "url": "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9828-B_ZBA_01_00.PDF",
+    "pdf_sha256_expected": "99c73f0b54052c11bc228fa058beab016a5e2616e1927620674f5a7ac4094dc8",
+    "pdf_sha256_actual": "99c73f0b54052c11bc228fa058beab016a5e2616e1927620674f5a7ac4094dc8",
+    "pdf_fetched_or_verified_snapshot": true,
+    "pdf_sha_match": true,
+    "pdf_extraction_success": true,
+    "acquisition_mode": "VERIFIED_CACHE_ENTRY",
+    "page28": {
+      "page_number": 28,
+      "page_text_hash": "30e1400d5c2064eba4da802c58c6833dc6f10bc6098f7d6784002d077127d261",
+      "source_excerpt": "MB 248.4: Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść skokowa: 139 cm 3 Zbiornik paliwa: 0,9 l Pr ę dko ść obrotowa",
+      "source_excerpt_hash": "a75ab66d7ef018e3886f2bfc10bfa1f48af2814d7e6bbe19783663b773d329a8",
+      "matched_models": [
+        "MB 248.4",
+        "MB 248.3 T",
+        "MB 253.1",
+        "MB 253.1 T"
+      ],
+      "matched_drive_terms": [
+        "silnik spalinowy",
+        "paliwo",
+        "VIKING EVC 200",
+        "139 cm 3",
+        "0,9 l"
+      ],
+      "verification_status": "VERIFIED"
+    },
+    "error": null
+  }
+}

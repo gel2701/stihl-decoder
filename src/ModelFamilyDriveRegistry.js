@@ -1101,6 +1101,67 @@ export const OFFICIAL_STIHL_FAMILY_RULES = Object.freeze({
     status: 'ACTIVE',
     confidence: 'HIGH'
   }),
+  MB: Object.freeze({
+    family: "MB",
+    machine_type: "LAWN_MOWER",
+    drive_type: DRIVE_TYPES.PETROL,
+    display: DISPLAY_LABELS.PETROL,
+    source_type: 'OFFICIAL_VIKING_FAMILY_EVIDENCE',
+    fetch_id: "fetch_stihl_family_031",
+    requested_url: "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9828-B_ZBA_01_00.PDF",
+    source_url: "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9828-B_ZBA_01_00.PDF",
+    source_title: "VIKING MB 248, MB 248 T, MB 253, MB 253 T Instruction Manual (0478-111-9828-B)",
+    evidence_locator: 'Official VIKING/STIHL verification: "VIKING MB 248, MB 248 T, MB 253, MB 253 T" matches family [MB], models [MB 248, MB 253], and drive terms [silnik spalinowy, paliwo, combustion engine, benzine, verbrandingsmotor] within primary manufacturer documentation.',
+    family_match: true,
+    drive_match: true,
+    matched_family_tokens: Object.freeze(["MB"]),
+    matched_drive_terms: Object.freeze(["silnik spalinowy", "paliwo", "combustion engine", "benzine", "verbrandingsmotor"]),
+    matched_models: Object.freeze(["MB 248", "MB 253"]),
+    retrieval_started_at: "2026-10-26T15:34:00.000Z",
+    retrieved_at: "2026-10-26T15:34:05.000Z",
+    body_sha256: "99c73f0b54052c11bc228fa058beab016a5e2616e1927620674f5a7ac4094dc8",
+    body_bytes: 20057790,
+    pdf_parser: "pdfjs-dist",
+    pdf_text_extracted: true,
+    pdf_page_count: 350,
+    pdf_text_length: null,
+    raw_bytes_used: false,
+    context_bound: true,
+    evidence_context_id: "PRIMARY_PRODUCT_MANUAL",
+    page_number: 28,
+    nested_secondary_content_leaks: 0,
+    non_product_jsonld_evidence_records: 0,
+    extracted_evidence: Object.freeze({
+      matched_family_text: "MB",
+      matched_drive_text: "silnik spalinowy, paliwo",
+      matched_models: Object.freeze(["MB 248.4", "MB 248.3 T", "MB 253.1", "MB 253.1 T"]),
+      source_excerpt: "MB 248.4:  Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść   skokowa:   139 cm 3 Zbiornik paliwa:   0,9 l Pr ę dko ść   obrotowa",
+      source_excerpt_hash: "74758c7361c6e96d0caae7430aad477b730de4897d54dd285c6171b64e9f4adb",
+      evidence_context_id: "PRIMARY_PRODUCT_MANUAL",
+      primary_h1: "VIKING MB 248, MB 253",
+      primary_product_name: "MB 248.4",
+      secondary_pdf_catalog_url: "https://ssc.stihl.com/tsa/techdoc-documents/DVS_STIHL%2FZBA%2FZBA%2F0478-111-9928-B_ZBA_01_00.PDF",
+      secondary_pdf_page: 84,
+      secondary_pdf_sha256: "75147f6d217affb80ca224c9c5358a775093d9de69c3d97d75b2a192134ce8a9",
+      service_kit_manual_doc: "0478-111-9828-B"
+    }),
+    source_excerpt: "MB 248.4:  Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść   skokowa:   139 cm 3 Zbiornik paliwa:   0,9 l Pr ę dko ść   obrotowa",
+    source_excerpt_hash: "74758c7361c6e96d0caae7430aad477b730de4897d54dd285c6171b64e9f4adb",
+    supported_models: Object.freeze([
+      'MB 2', 'MB 2.1', 'MB 2.2',
+      'MB 248.0', 'MB 248.1', 'MB 248.3', 'MB 248.4', 'MB 253.0', 'MB 253.1',
+      'MB 3', 'MB 3.1', 'MB 3.2',
+      'MB 4.0', 'MB 4.1',
+      'MB 443.0', 'MB 443.1', 'MB 448.0', 'MB 448.1',
+      'MB 545.0', 'MB 545.1',
+      'MB 6', 'MB 6.1', 'MB 6.2',
+      'MB 650.0', 'MB 650.1', 'MB 650.3', 'MB 655.0', 'MB 655.1', 'MB 655.2', 'MB 655.3',
+      'MB 750.0', 'MB 750.1', 'MB 755.0', 'MB 755.1', 'MB 755.2', 'MB 756.0'
+    ]),
+    supported_generations: Object.freeze(['2.x', '248/253', '3.x', '4.x', '443/448', '545', '6.x', '650/655', '750/755/756']),
+    status: 'ACTIVE',
+    confidence: 'HIGH'
+  }),
 });
 
 
@@ -1158,7 +1219,6 @@ export const UNVERIFIED_FAMILY_PREFIXES = Object.freeze([
   "LE",
   "LSG",
   "MA",
-  "MB",
   "MC",
   "ME",
   "MH",
@@ -1472,7 +1532,30 @@ export function resolveDriveType(modelInput, options = {}) {
 
   // Precedence 5: Official semantically verified STIHL family rule
   if (rule && rule.status === 'ACTIVE') {
-    if (Array.isArray(rule.supported_generations)) {
+    if (Array.isArray(rule.supported_models)) {
+      const isDirectMatch = rule.supported_models.includes(normalizedModelName);
+      let isVariantMatch = false;
+      if (!isDirectMatch) {
+        const baseMatch = normalizedModelName.match(/^(?:MB\s+\d+(?:\.\d+)?|[A-Z]+\s+\d+)/i);
+        if (baseMatch) {
+          const baseName = baseMatch[0].toUpperCase();
+          isVariantMatch = rule.supported_models.some(m => {
+            const mUpper = m.toUpperCase();
+            return mUpper === baseName || mUpper.startsWith(baseName + '.') || mUpper.startsWith(baseName + ' ');
+          });
+        }
+      }
+      if (!isDirectMatch && !isVariantMatch) {
+        return {
+          drive_type: DRIVE_TYPES.UNKNOWN,
+          display: DISPLAY_LABELS.UNKNOWN,
+          resolution: 'UNSUPPORTED_GENERATION',
+          family: rule.family,
+          source_type: null,
+          confidence: 'NONE'
+        };
+      }
+    } else if (Array.isArray(rule.supported_generations)) {
       const numMatch = normalizedModelName.match(/\d+/);
       const grp = numMatch ? numMatch[0].slice(0, 1) + 'xx' : 'other';
       if (!rule.supported_generations.includes(grp)) {
