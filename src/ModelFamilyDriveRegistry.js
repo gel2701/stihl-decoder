@@ -1330,6 +1330,42 @@ function normalizeExplicitDriveType(raw) {
  *   'TS 420'      -> 'TS'
  *   'TSA 230'     -> 'TSA'
  */
+/**
+ * Canonical model designation normalizer for pure browser-safe model matching.
+ * - Trims and converts to uppercase
+ * - Strips leading manufacturer labels ('STIHL' or 'VIKING')
+ * - Normalizes hyphens and underscores to spaces
+ * - Inserts space between alphabetic family prefix and digits (e.g. MB248.4 -> MB 248.4)
+ * - Inserts space between numbers and trailing variant letters (e.g. 545VE -> 545 VE)
+ * - Collapses whitespace and preserves meaningful decimal / version suffixes
+ *
+ * @param {string|object} modelInput
+ * @returns {string}
+ */
+export function normalizeModelDesignation(modelInput) {
+  const rawStr = extractModelString(modelInput);
+  if (!rawStr) return '';
+
+  let s = rawStr.trim().toUpperCase();
+
+  // Strip leading manufacturer labels
+  s = s.replace(/^(?:STIHL|VIKING)[\s_\-]+/i, '');
+
+  // Normalize hyphens and underscores to spaces
+  s = s.replace(/[_\-]+/g, ' ');
+
+  // Insert space between leading family letters and digits (e.g. MB248.4 -> MB 248.4, MB400 -> MB 400)
+  s = s.replace(/^([A-Z]+)(\d)/, (match, p1, p2) => p1 + ' ' + p2);
+
+  // Insert space between digits (including decimal version) and trailing letters (e.g. 545VE -> 545 VE, 248T -> 248 T)
+  s = s.replace(/(\d(?:\.\d+)?)([A-Z]+)/g, (match, p1, p2) => p1 + ' ' + p2);
+
+  // Collapse multiple whitespaces
+  s = s.replace(/\s+/g, ' ').trim();
+
+  return s;
+}
+
 export function parseModelFamily(modelInput) {
   const rawStr = extractModelString(modelInput);
   if (!rawStr) return null;
@@ -1470,10 +1506,11 @@ export function resolveDriveType(modelInput, options = {}) {
 
   const rawModelStr = extractModelString(modelInput);
   const normalizedModelName = rawModelStr ? rawModelStr.trim() : '';
+  const canonicalDesignation = normalizeModelDesignation(modelInput);
 
   // Precedence 2A: Exact model drive evidence (Official STIHL documentation, e.g. HOS, USG)
-  if (exactModels && normalizedModelName && EXACT_POWERED_MODELS[normalizedModelName]) {
-    const exact = EXACT_POWERED_MODELS[normalizedModelName];
+  if (exactModels && (EXACT_POWERED_MODELS[canonicalDesignation] || EXACT_POWERED_MODELS[normalizedModelName])) {
+    const exact = EXACT_POWERED_MODELS[canonicalDesignation] || EXACT_POWERED_MODELS[normalizedModelName];
     if (explicitDriveType && explicitDriveType !== exact.drive_type) {
       return {
         drive_type: DRIVE_TYPES.UNKNOWN,
@@ -1533,15 +1570,15 @@ export function resolveDriveType(modelInput, options = {}) {
   // Precedence 5: Official semantically verified STIHL family rule
   if (rule && rule.status === 'ACTIVE') {
     if (Array.isArray(rule.supported_models)) {
-      const isDirectMatch = rule.supported_models.includes(normalizedModelName);
+      const isDirectMatch = rule.supported_models.some(m => normalizeModelDesignation(m) === canonicalDesignation);
       let isVariantMatch = false;
       if (!isDirectMatch) {
-        const baseMatch = normalizedModelName.match(/^(?:MB\s+\d+(?:\.\d+)?|[A-Z]+\s+\d+)/i);
+        const baseMatch = canonicalDesignation.match(/^(?:MB\s+\d+(?:\.\d+)?|[A-Z]+\s+\d+)/i);
         if (baseMatch) {
           const baseName = baseMatch[0].toUpperCase();
           isVariantMatch = rule.supported_models.some(m => {
-            const mUpper = m.toUpperCase();
-            return mUpper === baseName || mUpper.startsWith(baseName + '.') || mUpper.startsWith(baseName + ' ');
+            const mNorm = normalizeModelDesignation(m);
+            return mNorm === baseName || mNorm.startsWith(baseName + '.') || mNorm.startsWith(baseName + ' ');
           });
         }
       }
@@ -1556,7 +1593,7 @@ export function resolveDriveType(modelInput, options = {}) {
         };
       }
     } else if (Array.isArray(rule.supported_generations)) {
-      const numMatch = normalizedModelName.match(/\d+/);
+      const numMatch = canonicalDesignation.match(/\d+/);
       const grp = numMatch ? numMatch[0].slice(0, 1) + 'xx' : 'other';
       if (!rule.supported_generations.includes(grp)) {
         return {
@@ -1640,6 +1677,7 @@ export const ModelFamilyDriveRegistry = Object.freeze({
   DISABLED_FAMILY_RULES,
   UNVERIFIED_FAMILY_PREFIXES,
   EXACT_POWERED_MODELS,
+  normalizeModelDesignation,
   isAttachmentDesignation,
   isPoweredModelDesignation,
   parseModelFamily,

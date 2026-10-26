@@ -1,6 +1,25 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T16:08:19.930Z",
+  "timestamp": "2026-10-26T18:13:50.304Z",
+  "manuals_required": 12,
+  "manuals_fetched": 12,
+  "manuals_hash_verified": 12,
+  "manuals_pdf_extracted": 12,
+  "manuals_excerpt_verified": 12,
+  "manuals_semantically_verified": 12,
+  "manual_fetch_failures": 0,
+  "manual_hash_mismatches": 0,
+  "manual_extraction_failures": 0,
+  "manual_excerpt_hash_missing": 0,
+  "manual_excerpt_mismatches": 0,
+  "manual_context_failures": 0,
+  "generations_covered": 9,
+  "generations_partial": 0,
+  "generations_unsupported": 4,
+  "promotions_total": 36,
+  "promotions_with_verified_evidence": 36,
+  "promotions_with_unverified_evidence": 0,
+  "clean_checkout_all_manuals_reproducible": true,
   "provenance_integrity_passed": true,
   "metrics": {
     "active_rules_checked": 31,
@@ -27,10 +46,10 @@
     "pdf_extraction_success": true,
     "acquisition_mode": "VERIFIED_CACHE_ENTRY",
     "page28": {
-      "page_number": 28,
-      "page_text_hash": "30e1400d5c2064eba4da802c58c6833dc6f10bc6098f7d6784002d077127d261",
-      "source_excerpt": "MB 248.4: Typ silnika: VIKING EVC 200 Moc znam. przy znam. pr ę dko ś ci obr.: 2,1-2900 kW-obr/min Pojemno ść skokowa: 139 cm 3 Zbiornik paliwa: 0,9 l Pr ę dko ść obrotowa",
-      "source_excerpt_hash": "a75ab66d7ef018e3886f2bfc10bfa1f48af2814d7e6bbe19783663b773d329a8",
+      "page_number": 27,
+      "page_text_hash": "c53c0d7e272a1fc271b70cde05fe0d4d31e19544bb3f6470239575ac0a66e162",
+      "source_excerpt": "3 T, MB 253. 1 / MB 253. 1 T: Silnik spalinowy, rodzaj konstrukcji: 4-suwowy silnik spalinowy Rodzaj urz ą dzenia tn ą cego: nó ż listwowy Urz ą dzenia zabezpieczaj ą ce: hamulec silnika Urz",
+      "source_excerpt_hash": "f50bc31fdcedb3596434ad3e5de6f37171952dacb0a8a1e8c03b7b5091f029ba",
       "matched_models": [
         "MB 248.4",
         "MB 248.3 T",
@@ -38,11 +57,7 @@
         "MB 253.1 T"
       ],
       "matched_drive_terms": [
-        "silnik spalinowy",
-        "paliwo",
-        "VIKING EVC 200",
-        "139 cm 3",
-        "0,9 l"
+        "silnik spalinowy"
       ],
       "verification_status": "VERIFIED"
     },

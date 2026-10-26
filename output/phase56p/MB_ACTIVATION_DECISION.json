@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T16:08:19.927Z",
+  "timestamp": "2026-10-26T18:13:50.299Z",
   "family": "MB",
   "target_models_total": 48,
   "promoted_models_count": 36,
@@ -66,7 +66,6 @@
   "official_evidence_ids": [
     "0478-111-9828-B",
     "0478-111-9928-B",
-    "STIHL_SERVICE_KIT_51",
     "0478-111-9926-C",
     "0478-111-9933-A",
     "0478-111-9929-B",
@@ -76,7 +75,8 @@
     "0478-111-9918-F",
     "0478-111-9931-D",
     "0478-111-9921-A",
-    "0478-111-9925-E"
+    "0478-111-9925-E",
+    "STIHL_SERVICE_KIT_51"
   ],
-  "reason": "Active with strict model whitelist filter covering 36 models across 9 verified generation groups. 12 historical models without official digital manual bytes fail closed to UNKNOWN."
+  "reason": "Active with strict model whitelist filter covering 36 models across verified generation groups. 12 models without verified digital manual bytes fail closed to UNKNOWN."
 }

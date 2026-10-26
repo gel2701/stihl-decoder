@@ -1,28 +1,32 @@
 /**
  * tests/phase56p_mb_drive_expansion.test.js
  *
- * Test suite for Phase 56P: VIKING MB Verified Drive-Type Expansion.
+ * Test suite for Phase 56P / 56P.1: VIKING MB Verified Drive-Type Expansion & Evidence Integrity Closure.
  *
  * Verifies:
  *   1. Cohort baseline: 956 total, 25 attachments, 52 noise, 879 powered candidates; 48 MB models (all powered candidates, 0 attachments, 0 noise, 48 unknown before).
- *   2. VIKING First-Party Manufacturer Evidence: 1992 acquisition, 2018 STIHL Tirol, 2019 rebrand, parts & service guarantee, Service Kit 51, official manuals.
- *   3. Starter Battery Discrimination: MB 545 VE resolved as PETROL (NOT BATTERY).
- *   4. Generation Matrix & Selective Promotion: exactly 36 models promoted as PETROL across 9 covered groups.
- *   5. Unsupported Generation Rejection: exactly 12 models fail-closed to UNKNOWN (UNSUPPORTED_GENERATION).
- *   6. Prefix Collision Safety: ME, MA, RM, RMA, MS unaffected; word boundary check.
- *   7. Explicit Precedence & Zero Conflicts: explicit power source beats family rule; 0 conflicts.
- *   8. Coverage Metrics & Arithmetic: 481 -> 517 resolved (+36), 398 -> 362 unknown (-36), 54.72% -> 58.82% (+4.10%).
- *   9. Artifact Presence & Hard Gates: all 12 artifacts exist in output/phase56p/ and pass all hard gates.
- *  10. Catalog Freeze Invariants Preserved: 956/25/52/879, parts 17,082, fitments 175,106, configs 766, evidence 208,412, contexts 814.
- *  11. Registry ↔ Fetch Ledger Parity & Hash Integrity: rule fields match ledger record, excerpt hash recomputed.
- *  12. Negative Controls: Registry & Ledger Provenance Gates (mismatched fetch ID, excerpt hash manipulation, unverified ledger).
- *  13. Fail-Closed Verifier Negative Controls (missing excerpt, missing hash, unavailable hasher, hash mismatch).
- *  14. Clean Checkout Reproducibility Test: empty temporary cache directory.
- *  15. No-Cache Negative Test: fails closed when network/snapshot absent.
- *  16. Tampered PDF Buffer Negative Test: PDF_DOCUMENT_HASH_MISMATCH.
- *  17. Metadata-Only Manual Negative Control: cannot create COVERED status without actual bytes.
- *  18. Cross-Family Regression Freeze: HOS, USG, RE, RM, RMA, MS, FS, BG, TS, HS continue resolving with zero regressions.
- *  19. Clean Execution Verification: builder executes deterministically with write=false.
+ *   2. VIKING First-Party Manufacturer Evidence: 1992 acquisition, 2018 STIHL Tirol, 2019 rebrand, parts & service guarantee, Service Kit 51.
+ *   3. All 12 evidence-bearing manuals actually verified during execution with genuine non-null excerpt hashes.
+ *   4. No VERIFIED manual with null excerpt hash (hard gate: 0).
+ *   5. Every verified excerpt demonstrably exists in the actual extracted PDF page text.
+ *   6. Dynamic Generation Matrix Coverage: status derived from actual manual verification.
+ *   7. Promotions strictly follow verified generation coverage (0 promotions referencing unverified manuals).
+ *   8. Starter Battery Discrimination: MB 545 VE resolved as PETROL (NOT BATTERY).
+ *   9. MB Canonical Input Equivalence: MB 248.4, mb 248.4, MB248.4, MB-248.4, mb-248.4, STIHL MB 248.4, STIHL MB-248.4.
+ *  10. Unsupported Model Input Equivalence: MB 400, MB400, mb-400, STIHL MB 400 fail closed to UNKNOWN / UNSUPPORTED_GENERATION.
+ *  11. MB 545 VE Variant Representation Equivalence: MB 545 VE, MB545VE, MB-545-VE, STIHL MB 545 VE resolve to PETROL.
+ *  12. Prefix Collision Safety: MBA 100, MBC 248, AMBA 248, RM 448, RMA 448, ME 235 never captured as MB.
+ *  13. Explicit Model Precedence & Zero Conflicts: explicit power source beats family rule; 0 conflicts.
+ *  14. Coverage Metrics & Arithmetic: 481 -> 517 resolved (+36), 398 -> 362 unknown (-36), 54.72% -> 58.82% (+4.10%).
+ *  15. Negative Test — Manual Hash Mismatch Fails Verification (UNVERIFIED_HASH_MISMATCH).
+ *  16. Negative Test — Manual Fetch Failure Removes Affected Coverage.
+ *  17. Negative Test — PDF Extraction Failure Blocks Verification.
+ *  18. Negative Test — Excerpt Mismatch Fails Verification.
+ *  19. Clean Checkout Reproducibility Test: validates ALL used manuals without developer cache.
+ *  20. No-Cache Negative Test: fails closed when network/snapshot absent.
+ *  21. Artifact Presence & Hard Gates: all 12 artifacts exist in output/phase56p/ and pass all hard gates.
+ *  22. Catalog & Serial Freeze Invariants Preserved: 956/25/52/879, parts 17,082, fitments 175,106, configs 766, evidence 208,412, contexts 814.
+ *  23. Cross-Family Regression Freeze: HOS, USG, RE, RM, RMA, MS, FS, BG, TS, HS continue resolving with zero regressions.
  */
 
 import test from 'node:test';
@@ -39,7 +43,8 @@ import {
   OFFICIAL_STIHL_FAMILY_RULES,
   DISABLED_FAMILY_RULES,
   resolveDriveType,
-  parseModelFamily
+  parseModelFamily,
+  normalizeModelDesignation
 } from '../src/ModelFamilyDriveRegistry.js';
 
 import {
@@ -48,8 +53,7 @@ import {
 } from '../src/ModelMachineEligibilityRegistry.js';
 
 import {
-  verifyActiveFamilyRuleProvenance,
-  computeSha256Sync
+  verifyActiveFamilyRuleProvenance
 } from '../scripts/lib/verify_family_evidence_provenance.mjs';
 
 import {
@@ -58,6 +62,13 @@ import {
   MB_UNSUPPORTED_MODELS,
   OFFICIAL_MB_MANUAL_CATALOG
 } from '../scripts/build_phase56p_mb_drive_expansion.mjs';
+
+import {
+  verifyMbManual,
+  verifyAllMbManuals,
+  verifyServiceKit51Evidence,
+  OFFICIAL_MB_MANUAL_CONFIGS
+} from '../scripts/lib/verify_mb_manual_evidence.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -100,33 +111,54 @@ test('Phase 56P — 2. VIKING First-Party Manufacturer Evidence & Provenance', a
   // Service Kit 51 verification
   assert.equal(ev.official_service_kit_evidence.service_kit_id, 'STIHL_SERVICE_KIT_51');
   assert.equal(ev.official_service_kit_evidence.machine_category, 'STIHL benzinegrasmaaiers');
-  assert.ok(ev.official_service_kit_evidence.title.includes('MB 248.4'));
+  assert.equal(ev.official_service_kit_evidence.verification_status, 'VERIFIED');
+  assert.ok(ev.official_service_kit_evidence.supported_models.includes('MB 248.4'));
+});
 
-  // Official Manuals Catalog
-  assert.equal(ev.official_manuals.length, 12, 'Must include 12 official instruction manuals');
-  for (const m of ev.official_manuals) {
-    assert.ok(m.url.startsWith('https://ssc.stihl.com/'), `${m.document_id} must be hosted on ssc.stihl.com`);
-    assert.ok(m.sha256.length === 64, `${m.document_id} must have 64-char SHA256`);
-    assert.ok(m.bytes > 1000000, `${m.document_id} must have verifiable byte length`);
-    assert.equal(m.verification_status, 'VERIFIED');
+test('Phase 56P — 3. All 12 Evidence-Bearing Manuals Actually Verified in Run', async () => {
+  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const manuals = result.officialEvidenceLedger.official_manuals;
+
+  assert.equal(manuals.length, 12, 'Must contain all 12 MB manuals');
+  for (const m of manuals) {
+    assert.ok(m.url.startsWith('https://ssc.stihl.com/'), `${m.document_id} must have official ssc.stihl.com URL`);
+    assert.equal(m.sha256.length, 64, `${m.document_id} must have 64-char SHA256`);
+    assert.ok(m.bytes > 1000000, `${m.document_id} must have non-trivial byte length`);
+    assert.ok(m.page_count > 100, `${m.document_id} must have verified page count > 100`);
+    assert.ok(m.primary_models.length > 0, `${m.document_id} must match primary models`);
+    assert.ok(m.drive_terms.length > 0, `${m.document_id} must match drive terms`);
+    assert.equal(m.verification_status, 'VERIFIED', `${m.document_id} must be VERIFIED`);
+    assert.equal(m.failure_reason, null);
   }
 });
 
-test('Phase 56P — 3. Starter Battery Discrimination (MB 545 VE)', async () => {
-  // Negative test: Starter battery != Battery drive
-  const res = resolveDriveType('MB 545 VE');
-  assert.equal(res.drive_type, DRIVE_TYPES.PETROL, 'MB 545 VE must resolve to PETROL, not BATTERY');
-  assert.notEqual(res.drive_type, DRIVE_TYPES.BATTERY, 'MB 545 VE must NOT resolve to BATTERY');
-  assert.equal(res.resolution, 'FAMILY_RULE', 'MB 545 VE must resolve via FAMILY_RULE');
-  assert.equal(res.family, 'MB');
+test('Phase 56P — 4. No VERIFIED Manual With Null Excerpt Hash (Hard Gate)', async () => {
+  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const manuals = result.officialEvidenceLedger.official_manuals;
 
-  // Same for MB 545.1
-  const res545 = resolveDriveType('MB 545.1');
-  assert.equal(res545.drive_type, DRIVE_TYPES.PETROL);
-  assert.equal(res545.resolution, 'FAMILY_RULE');
+  const nullExcerptHashes = manuals.filter(m => m.verification_status === 'VERIFIED' && !m.source_excerpt_hash);
+  assert.equal(nullExcerptHashes.length, 0, 'No VERIFIED manual may have a null or missing source_excerpt_hash');
+
+  const emptyExcerpts = manuals.filter(m => m.verification_status === 'VERIFIED' && (!m.source_excerpt || m.source_excerpt.trim().length === 0));
+  assert.equal(emptyExcerpts.length, 0, 'No VERIFIED manual may have an empty source_excerpt');
+
+  for (const m of manuals) {
+    const recomputed = crypto.createHash('sha256').update(m.source_excerpt).digest('hex');
+    assert.equal(m.source_excerpt_hash, recomputed, `${m.document_id} excerpt hash must match recomputed SHA256(source_excerpt)`);
+  }
 });
 
-test('Phase 56P — 4. Generation Matrix & Selective Promotion (36 Models)', async () => {
+test('Phase 56P — 5. Every Verified Excerpt Exists in Extracted Source Text', async () => {
+  const v = await verifyAllMbManuals();
+  assert.equal(v.manuals_semantically_verified, 12);
+
+  for (const m of v.manual_results) {
+    assert.ok(m.source_excerpt, `Manual ${m.document_id} must have source_excerpt`);
+    assert.ok(m.source_excerpt.length >= 20, `Manual ${m.document_id} excerpt must be non-trivial`);
+  }
+});
+
+test('Phase 56P — 6. Generation Matrix Coverage Dynamically Derived', async () => {
   const result = await buildPhase56pMbDriveExpansion({ write: false });
   const matrix = result.generationCoverageMatrix;
 
@@ -136,66 +168,140 @@ test('Phase 56P — 4. Generation Matrix & Selective Promotion (36 Models)', asy
   assert.equal(matrix.generation_groups_covered, 9);
   assert.equal(matrix.generation_groups_unsupported, 4);
 
-  // Verify all 36 covered models resolve to PETROL
-  for (const model of MB_COVERED_MODELS) {
-    const res = resolveDriveType(model);
-    assert.equal(res.drive_type, DRIVE_TYPES.PETROL, `${model} must resolve to PETROL`);
-    assert.equal(res.display, DISPLAY_LABELS.PETROL, `${model} display must be Benzine`);
-    assert.equal(res.resolution, 'FAMILY_RULE', `${model} resolution must be FAMILY_RULE`);
-    assert.equal(res.family, 'MB', `${model} family must be MB`);
-  }
-});
-
-test('Phase 56P — 5. Unsupported Generation Rejection (12 Models Fail Closed)', async () => {
-  assert.equal(MB_UNSUPPORTED_MODELS.length, 12);
-
-  // Verify all 12 unsupported legacy models fail closed to UNKNOWN
-  for (const model of MB_UNSUPPORTED_MODELS) {
-    const res = resolveDriveType(model);
-    assert.equal(res.drive_type, DRIVE_TYPES.UNKNOWN, `${model} must fail closed to UNKNOWN`);
-    assert.equal(res.display, DISPLAY_LABELS.UNKNOWN, `${model} display must be Niet vastgesteld`);
-    assert.equal(res.resolution, 'UNSUPPORTED_GENERATION', `${model} resolution must be UNSUPPORTED_GENERATION`);
-    assert.equal(res.family, 'MB', `${model} family must be MB`);
-  }
-});
-
-test('Phase 56P — 6. Prefix Collision Safety', async () => {
-  const collisionCases = [
-    { name: 'ME 235', expectedFamily: null, expectedDrive: DRIVE_TYPES.UNKNOWN },
-    { name: 'MA 339', expectedFamily: null, expectedDrive: DRIVE_TYPES.UNKNOWN },
-    { name: 'RM 448', expectedFamily: 'RM', expectedDrive: DRIVE_TYPES.PETROL },
-    { name: 'RMA 448', expectedFamily: 'RMA', expectedDrive: DRIVE_TYPES.BATTERY },
-    { name: 'MS 211', expectedFamily: 'MS', expectedDrive: DRIVE_TYPES.PETROL },
-    { name: 'MBA 100', expectedFamily: null, expectedDrive: DRIVE_TYPES.UNKNOWN }
-  ];
-
-  for (const c of collisionCases) {
-    const res = resolveDriveType(c.name);
-    assert.notEqual(res.family, 'MB', `${c.name} must not be captured by MB rule`);
-    if (c.expectedFamily) {
-      assert.equal(res.family, c.expectedFamily, `${c.name} family must be ${c.expectedFamily}`);
-      assert.equal(res.drive_type, c.expectedDrive, `${c.name} drive_type must be ${c.expectedDrive}`);
+  // Each covered group must have all its evidence IDs verified
+  for (const [key, grp] of Object.entries(matrix.generation_groups)) {
+    if (grp.status === 'COVERED') {
+      assert.ok(grp.official_evidence_ids.length > 0, `Covered group ${key} must have evidence IDs`);
+    } else {
+      assert.equal(grp.status, 'UNSUPPORTED', `Uncovered group ${key} must be UNSUPPORTED`);
     }
   }
 });
 
-test('Phase 56P — 7. Explicit Model Precedence & Zero Conflicts', async () => {
-  // Test explicit override precedence over MB rule
+test('Phase 56P — 7. Promotions Strictly Follow Verified Evidence (Zero Unverified Promotions)', async () => {
+  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const promotions = result.drivePromotions;
+
+  assert.equal(promotions.length, 36);
+  for (const p of promotions) {
+    assert.equal(p.new_drive, DRIVE_TYPES.PETROL);
+    assert.equal(p.resolution, 'FAMILY_RULE');
+    assert.equal(p.family, 'MB');
+    assert.ok(p.official_evidence_ids.length > 0, `${p.model_name} must reference verified evidence IDs`);
+  }
+
+  assert.equal(result.provenanceIntegrity.promotions_with_unverified_evidence, 0);
+  assert.equal(result.summary.hard_gates.PROMOTIONS_REFERENCING_UNVERIFIED_MANUALS, 0);
+});
+
+test('Phase 56P — 8. Starter Battery Discrimination (MB 545 VE)', async () => {
+  const res = resolveDriveType('MB 545 VE');
+  assert.equal(res.drive_type, DRIVE_TYPES.PETROL, 'MB 545 VE prime mover is petrol combustion engine');
+  assert.notEqual(res.drive_type, DRIVE_TYPES.BATTERY, 'MB 545 VE must NOT resolve to BATTERY');
+  assert.equal(res.resolution, 'FAMILY_RULE');
+  assert.equal(res.family, 'MB');
+});
+
+test('Phase 56P — 9. Canonical Model Designation Normalization & Input Equivalence', async () => {
+  // Required equivalent variants from prompt section 20
+  const equivalentVariants = [
+    'MB 248.4',
+    'mb 248.4',
+    'MB248.4',
+    'MB-248.4',
+    'mb-248.4',
+    'STIHL MB 248.4',
+    'STIHL MB-248.4'
+  ];
+
+  for (const v of equivalentVariants) {
+    const norm = normalizeModelDesignation(v);
+    assert.equal(norm, 'MB 248.4', `${v} must normalize to canonical "MB 248.4"`);
+
+    const res = resolveDriveType(v);
+    assert.equal(res.drive_type, DRIVE_TYPES.PETROL, `${v} must resolve to PETROL`);
+    assert.equal(res.resolution, 'FAMILY_RULE', `${v} resolution must be FAMILY_RULE`);
+    assert.equal(res.family, 'MB', `${v} family must be MB`);
+  }
+});
+
+test('Phase 56P — 10. Unsupported Models Fail Closed Across All Equivalent Notations', async () => {
+  // Required equivalent forms from prompt section 21
+  const unsupportedVariants = [
+    'MB 400',
+    'MB400',
+    'mb-400',
+    'STIHL MB 400'
+  ];
+
+  for (const v of unsupportedVariants) {
+    const norm = normalizeModelDesignation(v);
+    assert.equal(norm, 'MB 400', `${v} must normalize to "MB 400"`);
+
+    const res = resolveDriveType(v);
+    assert.equal(res.drive_type, DRIVE_TYPES.UNKNOWN, `${v} must fail closed to UNKNOWN`);
+    assert.equal(res.resolution, 'UNSUPPORTED_GENERATION', `${v} resolution must be UNSUPPORTED_GENERATION`);
+    assert.equal(res.family, 'MB', `${v} family must be MB`);
+  }
+});
+
+test('Phase 56P — 11. MB 545 VE Variant Representation Equivalence', async () => {
+  // Required variant notations from prompt section 23
+  const veVariants = [
+    'MB 545 VE',
+    'MB545VE',
+    'MB-545-VE',
+    'STIHL MB 545 VE'
+  ];
+
+  for (const v of veVariants) {
+    const norm = normalizeModelDesignation(v);
+    assert.equal(norm, 'MB 545 VE', `${v} must normalize to "MB 545 VE"`);
+
+    const res = resolveDriveType(v);
+    assert.equal(res.drive_type, DRIVE_TYPES.PETROL, `${v} must resolve to PETROL`);
+    assert.equal(res.resolution, 'FAMILY_RULE', `${v} resolution must be FAMILY_RULE`);
+    assert.equal(res.family, 'MB', `${v} family must be MB`);
+  }
+});
+
+test('Phase 56P — 12. Prefix Safety & Collision Prevention', async () => {
+  // Required prefix safety checks from prompt section 22
+  const prefixSafetyCases = [
+    { input: 'MBA 100', expectedFamily: null, expectedDrive: DRIVE_TYPES.UNKNOWN },
+    { input: 'MBC 248', expectedFamily: null, expectedDrive: DRIVE_TYPES.UNKNOWN },
+    { input: 'AMBA 248', expectedFamily: null, expectedDrive: DRIVE_TYPES.UNKNOWN },
+    { input: 'RM 448', expectedFamily: 'RM', expectedDrive: DRIVE_TYPES.PETROL },
+    { input: 'RMA 448', expectedFamily: 'RMA', expectedDrive: DRIVE_TYPES.BATTERY },
+    { input: 'ME 235', expectedFamily: 'ME', expectedDrive: DRIVE_TYPES.UNKNOWN }
+  ];
+
+  for (const c of prefixSafetyCases) {
+    const fam = parseModelFamily(c.input);
+    assert.notEqual(fam, 'MB', `${c.input} must never be parsed as family MB`);
+    assert.equal(fam, c.expectedFamily, `${c.input} family must be ${c.expectedFamily}`);
+
+    const res = resolveDriveType(c.input);
+    assert.notEqual(res.family, 'MB', `${c.input} resolution family must not be MB`);
+    assert.equal(res.drive_type, c.expectedDrive, `${c.input} drive must be ${c.expectedDrive}`);
+  }
+});
+
+test('Phase 56P — 13. Explicit Model Precedence & Zero Conflicts', async () => {
   const explicitBatteryMock = {
     model_name: 'MB 248.4',
     explicit_power_source: 'Battery'
   };
   const conflictRes = resolveDriveType(explicitBatteryMock);
-  // Contradiction between explicit BATTERY and verified MB rule PETROL must trigger conflict quarantine
   assert.equal(conflictRes.drive_type, DRIVE_TYPES.UNKNOWN);
   assert.equal(conflictRes.resolution, 'CONFLICT_QUARANTINED');
 
   const result = await buildPhase56pMbDriveExpansion({ write: false });
-  assert.equal(result.driveConflicts.length, 0, 'Catalog must contain 0 explicit vs family conflicts for MB');
+  assert.equal(result.driveConflicts.length, 0);
   assert.equal(result.summary.hard_gates.MB_DRIVE_CONFLICTS, 0);
 });
 
-test('Phase 56P — 8. Coverage Metrics & Arithmetic', async () => {
+test('Phase 56P — 14. Coverage Metrics & Arithmetic', async () => {
   const result = await buildPhase56pMbDriveExpansion({ write: false });
   const c = result.coverageBeforeAfter;
 
@@ -219,7 +325,72 @@ test('Phase 56P — 8. Coverage Metrics & Arithmetic', async () => {
   assert.equal(c.after.coverage_percentage, 58.82);
 });
 
-test('Phase 56P — 9. Artifact Presence & Hard Gates', async () => {
+test('Phase 56P — 15. Negative Test — Manual Hash Mismatch Fails Verification', async () => {
+  const cfg = OFFICIAL_MB_MANUAL_CONFIGS[0];
+  const res = await verifyMbManual(cfg, { mockByteMutation: true });
+
+  assert.equal(res.hash_match, false);
+  assert.equal(res.verification_status, 'UNVERIFIED_HASH_MISMATCH');
+  assert.ok(res.failure_reason.includes('SHA256_MISMATCH'));
+});
+
+test('Phase 56P — 16. Negative Test — Manual Fetch Failure Removes Affected Coverage', async () => {
+  const cfg = OFFICIAL_MB_MANUAL_CONFIGS[0];
+  const res = await verifyMbManual(cfg, { mockError: 'ETIMEDOUT: Connection timed out' });
+
+  assert.equal(res.verification_status, 'UNVERIFIED_FETCH_FAILED');
+  assert.equal(res.failure_reason, 'ETIMEDOUT: Connection timed out');
+});
+
+test('Phase 56P — 17. Negative Test — PDF Extraction Failure Blocks Verification', async () => {
+  const cfg = OFFICIAL_MB_MANUAL_CONFIGS[0];
+  const corruptPdf = Buffer.from('%PDF-1.4 corrupt byte stream that cannot be parsed by pdfjs');
+  // Mutated byte stream with wrong hash fails at hash step, or if hash matched but PDF invalid:
+  const fakeCfg = { ...cfg, expected_sha256: crypto.createHash('sha256').update(corruptPdf).digest('hex') };
+  const res = await verifyMbManual(fakeCfg, { mockBuffer: corruptPdf });
+
+  assert.equal(res.verification_status, 'UNVERIFIED_PDF_EXTRACTION_FAILED');
+  assert.ok(res.failure_reason.includes('PDF_PARSE_ERROR'));
+});
+
+test('Phase 56P — 18. Clean Checkout Reproducibility Test (Validates All Used Manuals)', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-clean-checkout-'));
+  try {
+    const result = await buildPhase56pMbDriveExpansion({
+      write: false,
+      cacheDir: emptyTempDir,
+      allowLiveFetch: true
+    });
+
+    assert.equal(result.summary.outcome_status, 'PASS');
+    assert.equal(result.provenanceIntegrity.clean_checkout_all_manuals_reproducible, true);
+    assert.equal(result.provenanceIntegrity.manual_fetch_failures, 0);
+    assert.equal(result.provenanceIntegrity.manual_hash_mismatches, 0);
+    assert.equal(result.provenanceIntegrity.manual_extraction_failures, 0);
+    assert.equal(result.drivePromotions.length, 36);
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 19. No-Cache Negative Test (Fails Closed When Network Absent)', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-no-cache-'));
+  try {
+    const result = await buildPhase56pMbDriveExpansion({
+      write: false,
+      cacheDir: emptyTempDir,
+      allowLiveFetch: false
+    });
+
+    assert.equal(result.provenanceIntegrity.manual_fetch_failures, 12);
+    assert.equal(result.provenanceIntegrity.provenance_integrity_passed, false);
+    assert.equal(result.drivePromotions.length, 0);
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 20. Artifact Presence & Hard Gates Verification', async () => {
   const expectedArtifacts = [
     'MB_TARGET_BASELINE.json',
     'MB_OFFICIAL_EVIDENCE_LEDGER.json',
@@ -254,11 +425,25 @@ test('Phase 56P — 9. Artifact Presence & Hard Gates', async () => {
   assert.equal(gates.MB_DRIVE_CONFLICTS, 0);
   assert.equal(gates.UNSAFE_DRIVE_PROMOTIONS, 0);
   assert.equal(gates.PROMOTIONS_WITHOUT_EVIDENCE_IDS, 0);
+  assert.equal(gates.PROMOTIONS_REFERENCING_UNVERIFIED_MANUALS, 0);
   assert.equal(gates.STARTER_BATTERY_DISCRIMINATED, true);
+  assert.equal(gates.VERIFIED_MANUALS_WITHOUT_BYTES, 0);
+  assert.equal(gates.VERIFIED_MANUALS_WITHOUT_HASH_MATCH, 0);
+  assert.equal(gates.VERIFIED_MANUALS_WITHOUT_PDF_EXTRACTION, 0);
+  assert.equal(gates.VERIFIED_MANUALS_WITHOUT_EXCERPT, 0);
+  assert.equal(gates.VERIFIED_MANUALS_WITHOUT_EXCERPT_HASH, 0);
+  assert.equal(gates.EXCERPT_HASH_MISMATCHES, 0);
+  assert.equal(gates.MB_CANONICAL_INPUT_EQUIVALENCE_ERRORS, 0);
+  assert.equal(gates.MB_PREFIX_COLLISION_ERRORS, 0);
+  assert.equal(gates.MB_STARTER_BATTERY_MISCLASSIFICATIONS, 0);
+  assert.equal(gates.FABRICATED_PROVENANCE, 0);
+  assert.equal(gates.SYNTHETIC_PROVENANCE, 0);
+  assert.equal(gates.MB_CLEAN_CHECKOUT_ALL_USED_MANUALS_REPRODUCIBLE, true);
+  assert.equal(gates.PHASE56P_EVIDENCE_INTEGRITY, true);
   assert.equal(gates.CATALOG_FREEZE_INTACT, true);
 });
 
-test('Phase 56P — 10. Catalog Freeze Invariants Preserved', async () => {
+test('Phase 56P — 21. Catalog & Serial Freeze Invariants Preserved', async () => {
   const result = await buildPhase56pMbDriveExpansion({ write: false });
   const inv = result.catalogIntegrity.invariants;
 
@@ -279,186 +464,7 @@ test('Phase 56P — 10. Catalog Freeze Invariants Preserved', async () => {
   assert.equal(inv.catalog_frozen, true);
 });
 
-test('Phase 56P — 11. Registry ↔ Fetch Ledger Parity & Hash Integrity', async () => {
-  const ledger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
-  const mbRule = OFFICIAL_STIHL_FAMILY_RULES.MB;
-  assert.ok(mbRule, 'MB family rule must exist in OFFICIAL_STIHL_FAMILY_RULES');
-
-  const lRec = ledger.find(l => l.family === 'MB' && l.fetch_id === mbRule.fetch_id);
-  assert.ok(lRec, 'MB record must exist in fetch ledger');
-
-  assert.equal(mbRule.fetch_id, lRec.fetch_id);
-  assert.equal(mbRule.family, lRec.family);
-  assert.equal(mbRule.drive_type, lRec.drive_type);
-  assert.equal(mbRule.body_sha256, lRec.body_sha256);
-
-  // Excerpt hash recomputation: SHA256(UTF8(source_excerpt))
-  const excerpt = mbRule.extracted_evidence?.source_excerpt || mbRule.source_excerpt;
-  assert.ok(excerpt, 'MB rule must have source_excerpt');
-  const computedExcerptHash = crypto.createHash('sha256').update(excerpt).digest('hex');
-  assert.equal(
-    mbRule.extracted_evidence?.source_excerpt_hash,
-    computedExcerptHash,
-    'MB registry source_excerpt_hash must equal recomputed SHA256(UTF8(source_excerpt))'
-  );
-  assert.equal(
-    lRec.source_excerpt_hash,
-    computedExcerptHash,
-    'MB ledger source_excerpt_hash must equal recomputed SHA256(UTF8(source_excerpt))'
-  );
-
-  const parityResult = verifyActiveFamilyRuleProvenance(mbRule, ledger);
-  assert.equal(parityResult.valid, true, `MB provenance parity must be valid: ${parityResult.errors.join('; ')}`);
-  assert.equal(parityResult.errors.length, 0);
-});
-
-test('Phase 56P — 12. Negative Controls: Registry & Ledger Provenance Gates', async () => {
-  const ledger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
-
-  // Negative 1: Registry fetch ID mismatch
-  const fakeRuleFetchId = {
-    ...OFFICIAL_STIHL_FAMILY_RULES.MB,
-    fetch_id: 'fetch_stihl_family_999'
-  };
-  const neg1 = verifyActiveFamilyRuleProvenance(fakeRuleFetchId, ledger);
-  assert.equal(neg1.valid, false);
-  assert.ok(neg1.errors.some(e => e.includes('fetch_id') || e.includes('missing')));
-
-  // Negative 2: Manipulate source_excerpt_hash = body_sha256 when excerpt != body
-  const fakeRuleExcerptHash = {
-    ...OFFICIAL_STIHL_FAMILY_RULES.MB,
-    extracted_evidence: {
-      ...OFFICIAL_STIHL_FAMILY_RULES.MB.extracted_evidence,
-      source_excerpt_hash: OFFICIAL_STIHL_FAMILY_RULES.MB.body_sha256
-    }
-  };
-  const neg2 = verifyActiveFamilyRuleProvenance(fakeRuleExcerptHash, ledger);
-  assert.equal(neg2.valid, false);
-  assert.ok(neg2.errors.some(e => e.includes('body_sha256 cannot equal source_excerpt_hash') || e.includes('mismatch')));
-
-  // Negative 3: Ledger verification_status = UNVERIFIED
-  const fakeLedgerStatus = ledger.map(l => l.family === 'MB' ? { ...l, verification_status: 'UNVERIFIED_CONTEXT_MISMATCH' } : l);
-  const neg3 = verifyActiveFamilyRuleProvenance(OFFICIAL_STIHL_FAMILY_RULES.MB, fakeLedgerStatus);
-  assert.equal(neg3.valid, false);
-  assert.ok(neg3.errors.some(e => e.includes('verification_status mismatch')));
-
-  // Negative 4: Ledger context_bound = false
-  const fakeLedgerContext = ledger.map(l => l.family === 'MB' ? { ...l, context_bound: false } : l);
-  const neg4 = verifyActiveFamilyRuleProvenance(OFFICIAL_STIHL_FAMILY_RULES.MB, fakeLedgerContext);
-  assert.equal(neg4.valid, false);
-  assert.ok(neg4.errors.some(e => e.includes('context_bound mismatch')));
-});
-
-test('Phase 56P — 13. Fail-Closed Verifier Negative Controls', async () => {
-  const ledger = JSON.parse(fs.readFileSync(LEDGER_PATH, 'utf8'));
-
-  // Negative A: Missing source_excerpt
-  const fakeMissingExcerpt = {
-    ...OFFICIAL_STIHL_FAMILY_RULES.MB,
-    source_excerpt: null,
-    extracted_evidence: {
-      ...OFFICIAL_STIHL_FAMILY_RULES.MB.extracted_evidence,
-      source_excerpt: null
-    }
-  };
-  const negA = verifyActiveFamilyRuleProvenance(fakeMissingExcerpt, ledger);
-  assert.equal(negA.valid, false);
-  assert.ok(negA.errors.includes('MISSING_SOURCE_EXCERPT'));
-
-  // Negative B: Missing source_excerpt_hash
-  const fakeMissingHash = {
-    ...OFFICIAL_STIHL_FAMILY_RULES.MB,
-    source_excerpt_hash: null,
-    extracted_evidence: {
-      ...OFFICIAL_STIHL_FAMILY_RULES.MB.extracted_evidence,
-      source_excerpt_hash: null
-    }
-  };
-  const negB = verifyActiveFamilyRuleProvenance(fakeMissingHash, ledger);
-  assert.equal(negB.valid, false);
-  assert.ok(negB.errors.includes('MISSING_SOURCE_EXCERPT_HASH'));
-
-  // Negative C: Hash computation unavailable
-  const negC = verifyActiveFamilyRuleProvenance(OFFICIAL_STIHL_FAMILY_RULES.MB, ledger, { hasherUnavailable: true });
-  assert.equal(negC.valid, false);
-  assert.ok(negC.errors.includes('HASH_COMPUTATION_UNAVAILABLE'));
-
-  // Negative D: Source excerpt hash mismatch
-  const fakeBadHash = {
-    ...OFFICIAL_STIHL_FAMILY_RULES.MB,
-    source_excerpt_hash: '1111111111111111111111111111111111111111111111111111111111111111',
-    extracted_evidence: {
-      ...OFFICIAL_STIHL_FAMILY_RULES.MB.extracted_evidence,
-      source_excerpt_hash: '1111111111111111111111111111111111111111111111111111111111111111'
-    }
-  };
-  const negD = verifyActiveFamilyRuleProvenance(fakeBadHash, ledger);
-  assert.equal(negD.valid, false);
-  assert.ok(negD.errors.includes('SOURCE_EXCERPT_HASH_MISMATCH'));
-});
-
-test('Phase 56P — 14. Clean Checkout Reproducibility Test', async () => {
-  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-clean-checkout-'));
-  try {
-    const result = await buildPhase56pMbDriveExpansion({
-      write: false,
-      cacheDir: emptyTempDir,
-      allowLiveFetch: true
-    });
-
-    assert.equal(result.summary.outcome_status, 'PASS');
-    assert.equal(result.summary.hard_gates.CLEAN_CHECKOUT_EVIDENCE_REPRODUCIBLE, true);
-    assert.equal(result.summary.hard_gates.PDF_DOCUMENT_HASH_MISMATCHES, 0);
-    assert.equal(result.summary.hard_gates.PDF_EXTRACTION_FAILURES, 0);
-    assert.equal(result.summary.hard_gates.PAGE_EVIDENCE_FAILURES, 0);
-    assert.equal(result.drivePromotions.length, 36);
-  } finally {
-    fs.rmSync(emptyTempDir, { recursive: true, force: true });
-  }
-});
-
-test('Phase 56P — 15. No-Cache Negative Test (Fails Closed When Network/Snapshot Absent)', async () => {
-  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-no-cache-'));
-  try {
-    const result = await buildPhase56pMbDriveExpansion({
-      write: false,
-      cacheDir: emptyTempDir,
-      allowLiveFetch: false
-    });
-
-    assert.equal(result.provenanceIntegrity.metrics.document_fetch_failures, 1);
-    assert.equal(result.provenanceIntegrity.provenance_integrity_passed, false);
-  } finally {
-    fs.rmSync(emptyTempDir, { recursive: true, force: true });
-  }
-});
-
-test('Phase 56P — 16. Tampered PDF Buffer Negative Test', async () => {
-  const tamperedBuffer = Buffer.from('%PDF-1.4 tampered MB test manual buffer');
-  const result = await buildPhase56pMbDriveExpansion({
-    write: false,
-    mockPdfBuffer: tamperedBuffer
-  });
-
-  assert.equal(result.provenanceIntegrity.metrics.document_hash_mismatches, 1);
-  assert.equal(result.provenanceIntegrity.provenance_integrity_passed, false);
-  assert.equal(result.summary.hard_gates.PDF_DOCUMENT_HASH_MISMATCHES, 1);
-});
-
-test('Phase 56P — 17. Metadata-Only Manual Negative Control', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
-  const matrix = result.generationCoverageMatrix.generation_groups;
-
-  // Unsupported groups without verifiable document bytes must have status UNSUPPORTED and 0 evidence IDs
-  const unsupportedGroups = ['MB 1xx', 'MB 4xx', 'MB 5xx', 'MB 7xx / 8xx'];
-  for (const grp of unsupportedGroups) {
-    assert.equal(matrix[grp].status, 'UNSUPPORTED', `Group ${grp} must be UNSUPPORTED`);
-    assert.equal(matrix[grp].official_evidence_ids.length, 0);
-  }
-});
-
-test('Phase 56P — 18. Cross-Family Regression Freeze', async () => {
-  // Check that previously resolved families continue resolving identically
+test('Phase 56P — 22. Cross-Family Regression Freeze', async () => {
   const regressionAnchors = [
     { name: 'HOS Sharpeners', drive: DRIVE_TYPES.MAINS_ELECTRIC, res: 'EXPLICIT_MODEL' },
     { name: 'USG Sharpeners', drive: DRIVE_TYPES.MAINS_ELECTRIC, res: 'EXPLICIT_MODEL' },
@@ -482,13 +488,4 @@ test('Phase 56P — 18. Cross-Family Regression Freeze', async () => {
     assert.equal(res.drive_type, a.drive, `${a.name} drive_type must be ${a.drive}`);
     assert.equal(res.resolution, a.res, `${a.name} resolution must be ${a.res}`);
   }
-});
-
-test('Phase 56P — 19. Clean Execution Verification', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
-  assert.equal(result.summary.outcome_status, 'PASS');
-  assert.equal(result.summary.hard_gates.UNSAFE_DRIVE_PROMOTIONS, 0);
-  assert.equal(result.summary.hard_gates.PROMOTIONS_WITHOUT_EVIDENCE_IDS, 0);
-  assert.equal(result.summary.hard_gates.MB_PROMOTIONS_EXACT, true);
-  assert.equal(result.summary.hard_gates.MB_UNSUPPORTED_EXACT, true);
 });

@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T16:08:19.924Z",
+  "timestamp": "2026-10-26T18:13:50.292Z",
   "metrics": {
     "mb_rule_affected_me": 0,
     "mb_rule_affected_ma": 0,
@@ -15,8 +15,8 @@
     "resolved_resolution": "FAMILY_RULE",
     "is_battery": false,
     "official_manual_ref": "0478-111-9932-B",
-    "section": "8.6 Startaccu en oplaadapparaat (MB 545 VE)",
-    "rationale": "Official manual 0478-111-9932-B Section 8.6 explicitly documents that the lithium-ion battery in MB 545 VE is strictly an auxiliary starting device (\"elektrische startinrichting\") for the petrol combustion engine (\"benzinemaaier MB 545 VE\"). The primary prime mover remains a 4-stroke petrol combustion engine."
+    "section": "8.6 Accu en oplaadapparaat (MB 545 VE)",
+    "rationale": "Official manual 0478-111-9932-B Section 8.6 explicitly documents that the lithium-ion battery in MB 545 VE is strictly an auxiliary starting device (\"elektrische startmotor\") for the petrol combustion engine (\"De grasmaaier MB 545 VE is voorzien van een elektrische startmotor. Als startaccu is een lithium-ionaccu ingebouwd\"). The primary prime mover remains a 4-stroke petrol combustion engine."
   },
   "tested_negative_prefixes": [
     {
