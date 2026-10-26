@@ -1,27 +1,26 @@
 {
   "phase": "PHASE_56O",
-  "timestamp": "2026-10-26T05:55:25.073Z",
+  "timestamp": "2026-10-26T07:11:24.314Z",
   "decisions": [
     {
       "family": "RE",
       "target_count": 71,
-      "supported_count": 71,
-      "unsupported_count": 0,
+      "supported_count": 31,
+      "unsupported_count": 40,
       "generation_groups_total": 8,
-      "generation_groups_covered": 8,
+      "generation_groups_covered": 1,
       "generation_groups_partial": 0,
-      "generation_groups_unsupported": 0,
+      "generation_groups_unsupported": 7,
       "activation_status": "ACTIVE",
+      "supported_generations": [
+        "1xx"
+      ],
       "drive_type": "MAINS_ELECTRIC",
       "evidence_ids": [
         "OFFICIAL_STIHL_RE_130_HTML",
-        "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF",
-        "STIHL_MANUAL_RE_271_281",
-        "STIHL_MANUAL_RE_361_461",
-        "STIHL_MANUAL_RE_521_581",
-        "STIHL_MANUAL_RE_661_981"
+        "OFFICIAL_STIHL_GB_CATALOGUE_2023_PDF"
       ],
-      "reason": "All 8 RE generation groups (1xx-9xx) covered by authentic official STIHL evidence: live HTML, 2023 UK catalogue, and verified official instruction manuals."
+      "reason": "RE 1xx generation (31 models) verified via live HTML and 2023 UK catalogue p.161. Historical generations 2xx-9xx (40 models) lack verifiable document bytes and fail-closed remain UNKNOWN."
     },
     {
       "family": "RM",

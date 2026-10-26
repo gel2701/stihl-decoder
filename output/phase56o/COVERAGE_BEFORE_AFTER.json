@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56O",
-  "timestamp": "2026-10-26T05:55:25.073Z",
+  "timestamp": "2026-10-26T07:11:24.315Z",
   "baseline": {
     "total_catalog_models": 956,
     "unpowered_attachments": 25,
@@ -15,19 +15,19 @@
     "unpowered_attachments": 25,
     "confirmed_non_machine_noise": 52,
     "powered_machine_candidates": 879,
-    "resolved_powered_candidates": 521,
-    "unknown_powered_candidates": 358,
-    "coverage_percentage": 59.27
+    "resolved_powered_candidates": 481,
+    "unknown_powered_candidates": 398,
+    "coverage_percentage": 54.72
   },
   "deltas": {
-    "resolved_candidates_delta": 118,
-    "unknown_candidates_delta": -118,
-    "coverage_percentage_delta": 13.42,
+    "resolved_candidates_delta": 78,
+    "unknown_candidates_delta": -78,
+    "coverage_percentage_delta": 8.87,
     "promotions_by_family": {
-      "RE": 71,
+      "RE": 31,
       "RM": 25,
       "RMA": 22,
-      "total": 118
+      "total": 78
     }
   }
 }
