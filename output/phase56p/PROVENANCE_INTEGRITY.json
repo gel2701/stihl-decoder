@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T21:47:16.904Z",
+  "timestamp": "2026-10-27T08:21:54.407Z",
   "manuals_required": 12,
   "manuals_fetched": 12,
   "manuals_hash_verified": 12,
@@ -19,7 +19,22 @@
   "promotions_total": 36,
   "promotions_with_verified_evidence": 36,
   "promotions_with_unverified_evidence": 0,
+  "promotions_with_verified_required_evidence": 36,
+  "promotions_with_missing_required_evidence": 0,
+  "promotions_with_verified_corroborating_evidence": 6,
+  "promotions_with_failed_corroborating_evidence": 0,
   "clean_checkout_all_manuals_reproducible": true,
+  "manual_cache_roundtrip_tested": 12,
+  "manual_cache_roundtrip_verified": 12,
+  "manual_cache_roundtrip_errors": 0,
+  "manual_offline_cache_verified": true,
+  "required_evidence_failures": 0,
+  "corroborating_evidence_failures": 0,
+  "service_kit_hash_mismatches": 0,
+  "corrupted_service_kit_cache_accepted": 0,
+  "synthetic_service_kit_excerpts": 0,
+  "service_kit_excerpt_source_match": true,
+  "service_kit_primary_context_verified": true,
   "provenance_integrity_passed": true,
   "metrics": {
     "active_rules_checked": 31,
@@ -34,7 +49,9 @@
     "unverified_ledger_records": 0,
     "document_fetch_failures": 0,
     "document_hash_mismatches": 0,
-    "pdf_extraction_failures": 0
+    "pdf_extraction_failures": 0,
+    "required_evidence_failures": 0,
+    "corroborating_evidence_failures": 0
   },
   "primary_document_evidence": {
     "document_id": "0478-111-9828-B",

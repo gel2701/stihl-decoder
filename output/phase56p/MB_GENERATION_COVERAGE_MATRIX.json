@@ -1,6 +1,6 @@
 {
   "phase": "PHASE_56P",
-  "timestamp": "2026-10-26T21:47:16.891Z",
+  "timestamp": "2026-10-27T08:21:54.394Z",
   "total_target_models": 48,
   "covered_models_count": 36,
   "unsupported_models_count": 12,
@@ -11,6 +11,10 @@
     "MB 2.x": {
       "generation_group": "MB 2.x",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9926-C"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9926-C"
       ],
@@ -50,6 +54,10 @@
     "MB 3.x": {
       "generation_group": "MB 3.x",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9933-A"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9933-A"
       ],
@@ -63,6 +71,10 @@
     "MB 4.x": {
       "generation_group": "MB 4.x",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9929-B"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9929-B"
       ],
@@ -75,6 +87,10 @@
     "MB 443 / 448": {
       "generation_group": "MB 443 / 448",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9923-F"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9923-F"
       ],
@@ -89,6 +105,10 @@
     "MB 545": {
       "generation_group": "MB 545",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9932-B"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9932-B"
       ],
@@ -101,6 +121,10 @@
     "MB 6.x": {
       "generation_group": "MB 6.x",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9917-F"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9917-F"
       ],
@@ -114,6 +138,11 @@
     "MB 650 / 655": {
       "generation_group": "MB 650 / 655",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9918-F",
+        "0478-111-9931-D"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9918-F",
         "0478-111-9931-D"
@@ -132,6 +161,11 @@
     "MB 750 / 755 / 756": {
       "generation_group": "MB 750 / 755 / 756",
       "status": "COVERED",
+      "required_evidence_ids": [
+        "0478-111-9921-A",
+        "0478-111-9925-E"
+      ],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [
         "0478-111-9921-A",
         "0478-111-9925-E"
@@ -149,6 +183,8 @@
     "MB 1xx": {
       "generation_group": "MB 1xx",
       "status": "UNSUPPORTED",
+      "required_evidence_ids": [],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [],
       "models": [
         "MB 140"
@@ -159,6 +195,8 @@
     "MB 4xx": {
       "generation_group": "MB 4xx",
       "status": "UNSUPPORTED",
+      "required_evidence_ids": [],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [],
       "models": [
         "MB 400",
@@ -174,6 +212,8 @@
     "MB 5xx": {
       "generation_group": "MB 5xx",
       "status": "UNSUPPORTED",
+      "required_evidence_ids": [],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [],
       "models": [
         "MB 500",
@@ -186,6 +226,8 @@
     "MB 7xx / 8xx": {
       "generation_group": "MB 7xx / 8xx",
       "status": "UNSUPPORTED",
+      "required_evidence_ids": [],
+      "corroborating_evidence_ids": [],
       "official_evidence_ids": [],
       "models": [
         "MB 780.1",
