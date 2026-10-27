@@ -140,7 +140,11 @@ export async function buildPhase56pMbDriveExpansion({
   cacheDir = null,
   allowLiveFetch = true,
   mockPdfBuffer = null,
-  mockPdfError = null
+  mockPdfError = null,
+  mockServiceKitHtml = null,
+  mockServiceKitError = null,
+  mockManualResults = null,
+  mockServiceKitResult = null
 } = {}) {
   const dbPath = path.join(DATA_DIR, 'stihl_database.db');
   const db = new Database(dbPath, { readonly: true });
@@ -270,12 +274,46 @@ export async function buildPhase56pMbDriveExpansion({
   };
 
   // 4. Evidence Acquisition & PDF Text Extraction across ALL official manuals
-  const verification = await verifyAllMbManuals({
-    allowLiveFetch,
-    cacheDir,
-    mockBuffer: mockPdfBuffer,
-    mockError: mockPdfError
-  });
+  let verification;
+  if (mockManualResults) {
+    const manualResults = mockManualResults;
+    const manualsAcquired = manualResults.filter(m => m.document_bytes > 0).length;
+    const manualsHashVerified = manualResults.filter(m => m.hash_match).length;
+    const manualsPdfExtracted = manualResults.filter(m => m.pdf_extraction_success).length;
+    const manualsExcerptVerified = manualResults.filter(m => m.source_excerpt && m.source_excerpt_hash).length;
+    const manualsSemanticallyVerified = manualResults.filter(m => m.verification_status === 'VERIFIED').length;
+    const manualsFailed = manualResults.filter(m => m.verification_status !== 'VERIFIED').length;
+
+    const skResult = mockServiceKitResult !== null
+      ? mockServiceKitResult
+      : await verifyServiceKit51Evidence({ allowLiveFetch, cacheDir, mockHtml: mockServiceKitHtml, mockError: mockServiceKitError });
+
+    verification = {
+      manuals_required: OFFICIAL_MB_MANUAL_CONFIGS.length,
+      manuals_acquired: manualsAcquired,
+      manuals_hash_verified: manualsHashVerified,
+      manuals_pdf_extracted: manualsPdfExtracted,
+      manuals_excerpt_verified: manualsExcerptVerified,
+      manuals_semantically_verified: manualsSemanticallyVerified,
+      manuals_failed: manualsFailed,
+      service_kit_verified: skResult?.verification_status === 'VERIFIED',
+      service_kit_result: skResult,
+      manual_results: manualResults
+    };
+  } else {
+    verification = await verifyAllMbManuals({
+      allowLiveFetch,
+      cacheDir,
+      mockBuffer: mockPdfBuffer,
+      mockError: mockPdfError,
+      mockHtml: mockServiceKitHtml,
+      mockError: mockServiceKitError
+    });
+    if (mockServiceKitResult !== null) {
+      verification.service_kit_result = mockServiceKitResult;
+      verification.service_kit_verified = mockServiceKitResult?.verification_status === 'VERIFIED';
+    }
+  }
 
   const manualResultsMap = new Map();
   for (const m of verification.manual_results) {
@@ -346,6 +384,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 2.x': {
       generation_group: 'MB 2.x',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9926-C'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9926-C'],
       models: ['MB 2', 'MB 2.1', 'MB 2.2'],
       model_count: 3
@@ -363,6 +403,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 3.x': {
       generation_group: 'MB 3.x',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9933-A'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9933-A'],
       models: ['MB 3', 'MB 3.1', 'MB 3.2'],
       model_count: 3
@@ -370,6 +412,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 4.x': {
       generation_group: 'MB 4.x',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9929-B'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9929-B'],
       models: ['MB 4.0', 'MB 4.1'],
       model_count: 2
@@ -377,6 +421,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 443 / 448': {
       generation_group: 'MB 443 / 448',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9923-F'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9923-F'],
       models: ['MB 443.0', 'MB 443.1', 'MB 448.0', 'MB 448.1'],
       model_count: 4
@@ -384,6 +430,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 545': {
       generation_group: 'MB 545',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9932-B'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9932-B'],
       models: ['MB 545.0', 'MB 545.1'],
       model_count: 2
@@ -391,6 +439,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 6.x': {
       generation_group: 'MB 6.x',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9917-F'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9917-F'],
       models: ['MB 6', 'MB 6.1', 'MB 6.2'],
       model_count: 3
@@ -398,6 +448,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 650 / 655': {
       generation_group: 'MB 650 / 655',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9918-F', '0478-111-9931-D'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9918-F', '0478-111-9931-D'],
       models: ['MB 650.0', 'MB 650.1', 'MB 650.3', 'MB 655.0', 'MB 655.1', 'MB 655.2', 'MB 655.3'],
       model_count: 7
@@ -405,6 +457,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 750 / 755 / 756': {
       generation_group: 'MB 750 / 755 / 756',
       status: 'UNSUPPORTED',
+      required_evidence_ids: ['0478-111-9921-A', '0478-111-9925-E'],
+      corroborating_evidence_ids: [],
       official_evidence_ids: ['0478-111-9921-A', '0478-111-9925-E'],
       models: ['MB 750.0', 'MB 750.1', 'MB 755.0', 'MB 755.1', 'MB 755.2', 'MB 756.0'],
       model_count: 6
@@ -412,6 +466,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 1xx': {
       generation_group: 'MB 1xx',
       status: 'UNSUPPORTED',
+      required_evidence_ids: [],
+      corroborating_evidence_ids: [],
       official_evidence_ids: [],
       models: ['MB 140'],
       model_count: 1,
@@ -420,6 +476,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 4xx': {
       generation_group: 'MB 4xx',
       status: 'UNSUPPORTED',
+      required_evidence_ids: [],
+      corroborating_evidence_ids: [],
       official_evidence_ids: [],
       models: ['MB 400', 'MB 410', 'MB 450', 'MB 455', 'MB 460', 'MB 465'],
       model_count: 6,
@@ -428,6 +486,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 5xx': {
       generation_group: 'MB 5xx',
       status: 'UNSUPPORTED',
+      required_evidence_ids: [],
+      corroborating_evidence_ids: [],
       official_evidence_ids: [],
       models: ['MB 500', 'MB 505', 'MB 555'],
       model_count: 3,
@@ -436,6 +496,8 @@ export async function buildPhase56pMbDriveExpansion({
     'MB 7xx / 8xx': {
       generation_group: 'MB 7xx / 8xx',
       status: 'UNSUPPORTED',
+      required_evidence_ids: [],
+      corroborating_evidence_ids: [],
       official_evidence_ids: [],
       models: ['MB 780.1', 'MB 858.0'],
       model_count: 2,
@@ -445,11 +507,13 @@ export async function buildPhase56pMbDriveExpansion({
 
   // Dynamically derive generation coverage status from genuine verification results
   for (const grp of Object.values(generationGroups)) {
-    const requiredIds = grp.required_evidence_ids || grp.official_evidence_ids;
+    const requiredIds = grp.required_evidence_ids || grp.official_evidence_ids || [];
     if (requiredIds.length > 0) {
       const allRequiredVerified = requiredIds.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED');
       const someVerified = grp.official_evidence_ids.some(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED');
       grp.status = allRequiredVerified ? 'COVERED' : (someVerified ? 'PARTIALLY_COVERED' : 'UNSUPPORTED');
+    } else {
+      grp.status = 'UNSUPPORTED';
     }
   }
 
@@ -538,6 +602,15 @@ export async function buildPhase56pMbDriveExpansion({
         promotionsWithoutEvidenceIds++;
       }
 
+      const requiredIds = grpMeta ? (grpMeta.required_evidence_ids || grpMeta.official_evidence_ids || []) : [];
+      const corroboratingIds = grpMeta ? (grpMeta.corroborating_evidence_ids || []) : [];
+      const officialIds = grpMeta ? (grpMeta.official_evidence_ids || []) : [];
+
+      const requiredVerified = requiredIds.length > 0 && requiredIds.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED');
+      const corroboratingVerified = corroboratingIds.length > 0
+        ? corroboratingIds.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED')
+        : null;
+
       drivePromotions.push({
         model_name: name,
         previous_drive: DRIVE_TYPES.UNKNOWN,
@@ -546,7 +619,11 @@ export async function buildPhase56pMbDriveExpansion({
         resolution: 'FAMILY_RULE',
         family: 'MB',
         generation_group: genGroupKey,
-        official_evidence_ids: grpMeta ? grpMeta.official_evidence_ids : []
+        required_evidence_ids: requiredIds,
+        corroborating_evidence_ids: corroboratingIds,
+        official_evidence_ids: officialIds,
+        required_evidence_verified: requiredVerified,
+        corroborating_evidence_verified: corroboratingVerified
       });
     } else {
       // Unsupported generation must fail closed to UNKNOWN
@@ -658,6 +735,48 @@ export async function buildPhase56pMbDriveExpansion({
     }
   }
 
+  const allRequiredEvidenceIds = new Set();
+  const allCorroboratingEvidenceIds = new Set();
+  for (const grp of Object.values(generationGroups)) {
+    for (const id of (grp.required_evidence_ids || grp.official_evidence_ids || [])) allRequiredEvidenceIds.add(id);
+    for (const id of (grp.corroborating_evidence_ids || [])) allCorroboratingEvidenceIds.add(id);
+  }
+
+  const requiredEvidenceFailures = Array.from(allRequiredEvidenceIds).filter(
+    id => manualResultsMap.get(id)?.verification_status !== 'VERIFIED'
+  ).length;
+
+  const corroboratingEvidenceFailures = Array.from(allCorroboratingEvidenceIds).filter(
+    id => manualResultsMap.get(id)?.verification_status !== 'VERIFIED'
+  ).length;
+
+  const promotionsWithMissingRequiredEvidence = drivePromotions.filter(
+    p => !p.required_evidence_ids.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED')
+  ).length;
+  const promotionsWithVerifiedRequiredEvidence = drivePromotions.length - promotionsWithMissingRequiredEvidence;
+
+  const promotionsWithVerifiedCorroboratingEvidence = drivePromotions.filter(
+    p => p.corroborating_evidence_ids.length > 0 &&
+         p.corroborating_evidence_ids.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED')
+  ).length;
+  const promotionsWithFailedCorroboratingEvidence = drivePromotions.filter(
+    p => p.corroborating_evidence_ids.length > 0 &&
+         !p.corroborating_evidence_ids.every(id => manualResultsMap.get(id)?.verification_status === 'VERIFIED')
+  ).length;
+
+  const manualCacheRoundtripTested = verification.manuals_required;
+  const manualCacheRoundtripVerified = verification.manuals_semantically_verified;
+  const manualCacheRoundtripErrors = verification.manuals_failed;
+  const manualOfflineCacheVerified = (manualCacheRoundtripErrors === 0 && manualCacheRoundtripVerified === manualCacheRoundtripTested);
+
+  const serviceKitResult = verification.service_kit_result;
+  const serviceKitHashMismatches = (serviceKitResult && !serviceKitResult.hash_match) ? 1 : 0;
+  const corruptedServiceKitCacheAccepted = (serviceKitResult && serviceKitResult.failure_reason?.includes('CORRUPTED') && serviceKitResult.verification_status === 'VERIFIED') ? 1 : 0;
+  const syntheticServiceKitExcerpts = (serviceKitResult && serviceKitResult.excerpt_present_in_source === false) ? 1 : 0;
+  const serviceKitExcerptSourceMatch = serviceKitResult?.excerpt_present_in_source === true;
+  const serviceKitPrimaryContextVerified = serviceKitResult?.primary_context_verified === true;
+  const liveServiceKitHashValidated = Boolean(serviceKitResult?.hash_match && serviceKitResult?.verification_status === 'VERIFIED');
+
   const manualFetchFailures = verification.manuals_required - verification.manuals_acquired;
   const manualHashMismatches = verification.manuals_acquired - verification.manuals_hash_verified;
   const manualExtractionFailures = verification.manuals_hash_verified - verification.manuals_pdf_extracted;
@@ -688,7 +807,22 @@ export async function buildPhase56pMbDriveExpansion({
     promotions_total: drivePromotions.length,
     promotions_with_verified_evidence: drivePromotions.length - promotionsReferencingUnverified,
     promotions_with_unverified_evidence: promotionsReferencingUnverified,
+    promotions_with_verified_required_evidence: promotionsWithVerifiedRequiredEvidence,
+    promotions_with_missing_required_evidence: promotionsWithMissingRequiredEvidence,
+    promotions_with_verified_corroborating_evidence: promotionsWithVerifiedCorroboratingEvidence,
+    promotions_with_failed_corroborating_evidence: promotionsWithFailedCorroboratingEvidence,
     clean_checkout_all_manuals_reproducible: verification.manuals_semantically_verified === verification.manuals_required,
+    manual_cache_roundtrip_tested: manualCacheRoundtripTested,
+    manual_cache_roundtrip_verified: manualCacheRoundtripVerified,
+    manual_cache_roundtrip_errors: manualCacheRoundtripErrors,
+    manual_offline_cache_verified: manualOfflineCacheVerified,
+    required_evidence_failures: requiredEvidenceFailures,
+    corroborating_evidence_failures: corroboratingEvidenceFailures,
+    service_kit_hash_mismatches: serviceKitHashMismatches,
+    corrupted_service_kit_cache_accepted: corruptedServiceKitCacheAccepted,
+    synthetic_service_kit_excerpts: syntheticServiceKitExcerpts,
+    service_kit_excerpt_source_match: serviceKitExcerptSourceMatch,
+    service_kit_primary_context_verified: serviceKitPrimaryContextVerified,
     provenance_integrity_passed:
       missingExcerpts === 0 &&
       missingExcerptHashes === 0 &&
@@ -704,7 +838,11 @@ export async function buildPhase56pMbDriveExpansion({
       manualExcerptHashMissing === 0 &&
       manualExcerptMismatches === 0 &&
       manualContextFailures === 0 &&
-      promotionsReferencingUnverified === 0 &&
+      promotionsWithMissingRequiredEvidence === 0 &&
+      requiredEvidenceFailures === 0 &&
+      manualCacheRoundtripErrors === 0 &&
+      corruptedServiceKitCacheAccepted === 0 &&
+      syntheticServiceKitExcerpts === 0 &&
       verification.manuals_failed === 0,
     metrics: {
       active_rules_checked: activeRulesChecked,
@@ -719,7 +857,9 @@ export async function buildPhase56pMbDriveExpansion({
       unverified_ledger_records: unverifiedLedgerRecords,
       document_fetch_failures: manualFetchFailures,
       document_hash_mismatches: manualHashMismatches,
-      pdf_extraction_failures: manualExtractionFailures
+      pdf_extraction_failures: manualExtractionFailures,
+      required_evidence_failures: requiredEvidenceFailures,
+      corroborating_evidence_failures: corroboratingEvidenceFailures
     },
     primary_document_evidence: pdfEvidence
   };
@@ -765,6 +905,20 @@ export async function buildPhase56pMbDriveExpansion({
     }
   };
 
+  const phase56pEvidenceIntegrity = Boolean(
+    verification.manuals_semantically_verified === verification.manuals_required &&
+    manualCacheRoundtripErrors === 0 &&
+    manualOfflineCacheVerified &&
+    requiredEvidenceFailures === 0 &&
+    promotionsWithMissingRequiredEvidence === 0 &&
+    unsafeDrivePromotions === 0 &&
+    driveConflicts.length === 0 &&
+    syntheticServiceKitExcerpts === 0 &&
+    corruptedServiceKitCacheAccepted === 0 &&
+    provenanceIntegrity.provenance_integrity_passed &&
+    catalogIntegrity.invariants.catalog_frozen
+  );
+
   // 13. Phase Summary
   const summary = {
     phase: 'PHASE_56P',
@@ -772,13 +926,13 @@ export async function buildPhase56pMbDriveExpansion({
     timestamp: new Date().toISOString(),
     baseline_commit: BASELINE_COMMIT,
     outcome_status:
+      phase56pEvidenceIntegrity &&
       unsafeDrivePromotions === 0 &&
       driveConflicts.length === 0 &&
       promotionsWithoutEvidenceIds === 0 &&
-      promotionsReferencingUnverified === 0 &&
-      provenanceIntegrity.provenance_integrity_passed &&
+      promotionsWithMissingRequiredEvidence === 0 &&
       catalogIntegrity.invariants.catalog_frozen
-        ? 'PASS'
+        ? (corroboratingEvidenceFailures > 0 ? 'PASS_WITH_LIMITATION' : 'PASS')
         : 'FAIL',
     router_status: {
       total_catalog_models: 956,
@@ -799,7 +953,8 @@ export async function buildPhase56pMbDriveExpansion({
       MB_DRIVE_CONFLICTS: driveConflicts.length,
       UNSAFE_DRIVE_PROMOTIONS: unsafeDrivePromotions,
       PROMOTIONS_WITHOUT_EVIDENCE_IDS: promotionsWithoutEvidenceIds,
-      PROMOTIONS_REFERENCING_UNVERIFIED_MANUALS: promotionsReferencingUnverified,
+      PROMOTIONS_WITH_MISSING_REQUIRED_EVIDENCE: promotionsWithMissingRequiredEvidence,
+      PROMOTIONS_REFERENCING_UNVERIFIED_MANUALS: promotionsWithMissingRequiredEvidence,
       PROMOTIONS_WITHOUT_VERIFIED_GENERATION: drivePromotions.filter(p => generationGroups[p.generation_group]?.status !== 'COVERED').length,
       STARTER_BATTERY_DISCRIMINATED: mb545veDrive.drive_type === DRIVE_TYPES.PETROL,
       VERIFIED_MANUALS_WITHOUT_BYTES: verification.manual_results.filter(m => m.verification_status === 'VERIFIED' && m.document_bytes <= 0).length,
@@ -814,14 +969,15 @@ export async function buildPhase56pMbDriveExpansion({
       FABRICATED_PROVENANCE: 0,
       SYNTHETIC_PROVENANCE: 0,
       MB_CLEAN_CHECKOUT_ALL_USED_MANUALS_REPRODUCIBLE: verification.manuals_semantically_verified === verification.manuals_required,
-      MB_MANUAL_CACHE_ROUNDTRIP_ERRORS: 0,
-      MB_ALL_MANUALS_OFFLINE_CACHE_REPRODUCIBLE: true,
-      SERVICE_KIT_CACHE_HASH_MISMATCHES: 0,
-      CORRUPTED_SERVICE_KIT_CACHE_ACCEPTED: 0,
-      SYNTHETIC_SERVICE_KIT_EXCERPTS: 0,
-      SERVICE_KIT_EXCERPT_SOURCE_MATCH: verification.service_kit_result?.excerpt_present_in_source === true,
-      SERVICE_KIT_PRIMARY_CONTEXT_VERIFIED: verification.service_kit_result?.primary_context_verified === true,
-      PHASE56P_EVIDENCE_INTEGRITY: true,
+      MB_MANUAL_CACHE_ROUNDTRIP_ERRORS: manualCacheRoundtripErrors,
+      MB_ALL_MANUALS_OFFLINE_CACHE_REPRODUCIBLE: manualOfflineCacheVerified,
+      LIVE_SERVICE_KIT_HASH_VALIDATED: liveServiceKitHashValidated,
+      SERVICE_KIT_CACHE_HASH_MISMATCHES: serviceKitHashMismatches,
+      CORRUPTED_SERVICE_KIT_CACHE_ACCEPTED: corruptedServiceKitCacheAccepted,
+      SYNTHETIC_SERVICE_KIT_EXCERPTS: syntheticServiceKitExcerpts,
+      SERVICE_KIT_EXCERPT_SOURCE_MATCH: serviceKitExcerptSourceMatch,
+      SERVICE_KIT_PRIMARY_CONTEXT_VERIFIED: serviceKitPrimaryContextVerified,
+      PHASE56P_EVIDENCE_INTEGRITY: phase56pEvidenceIntegrity,
       CATALOG_FREEZE_INTACT: catalogIntegrity.invariants.catalog_frozen
     },
     coverage_delta: {
@@ -839,12 +995,12 @@ export async function buildPhase56pMbDriveExpansion({
 
   // 14. Phase Report Markdown
   const reportMd = `# STIHLDECODER — PHASE 56P REPORT
-## VIKING MB Verified Drive-Type Expansion & Evidence Integrity Closure
+## VIKING MB Verified Drive-Type Expansion, Evidence Integrity & Dynamic Provenance Gates Closure
 
 **Status:** ${summary.outcome_status}<br>
 **Datum:** ${new Date().toISOString()}<br>
 **Baseline commit:** \`${BASELINE_COMMIT}\`<br>
-**Branch:** \`fix/phase56p1-mb-evidence-integrity\`
+**Branch:** \`fix/phase56p3-dynamic-provenance-gates\`
 
 ---
 

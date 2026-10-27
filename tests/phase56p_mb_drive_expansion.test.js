@@ -76,8 +76,16 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 const OUTPUT_DIR = path.join(REPO_ROOT, 'output', 'phase56p');
 const LEDGER_PATH = path.join(REPO_ROOT, 'data', 'harvest', 'phase56l', 'official_family_fetch_ledger.json');
 
+let defaultBuildPromise = null;
+function getDefaultBuild() {
+  if (!defaultBuildPromise) {
+    defaultBuildPromise = buildPhase56pMbDriveExpansion({ write: false });
+  }
+  return defaultBuildPromise;
+}
+
 test('Phase 56P — 1. Target Cohort Baseline & Population Invariants', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const b = result.baselineSummary;
 
   assert.equal(b.total_catalog_models, 956, 'Total catalog models must remain 956');
@@ -97,7 +105,7 @@ test('Phase 56P — 1. Target Cohort Baseline & Population Invariants', async ()
 });
 
 test('Phase 56P — 2. VIKING First-Party Manufacturer Evidence & Provenance', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const ev = result.officialEvidenceLedger;
 
   // Heritage verification
@@ -116,7 +124,7 @@ test('Phase 56P — 2. VIKING First-Party Manufacturer Evidence & Provenance', a
 });
 
 test('Phase 56P — 3. All 12 Evidence-Bearing Manuals Actually Verified in Run', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const manuals = result.officialEvidenceLedger.official_manuals;
 
   assert.equal(manuals.length, 12, 'Must contain all 12 MB manuals');
@@ -133,7 +141,7 @@ test('Phase 56P — 3. All 12 Evidence-Bearing Manuals Actually Verified in Run'
 });
 
 test('Phase 56P — 4. No VERIFIED Manual With Null Excerpt Hash (Hard Gate)', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const manuals = result.officialEvidenceLedger.official_manuals;
 
   const nullExcerptHashes = manuals.filter(m => m.verification_status === 'VERIFIED' && !m.source_excerpt_hash);
@@ -159,7 +167,7 @@ test('Phase 56P — 5. Every Verified Excerpt Exists in Extracted Source Text', 
 });
 
 test('Phase 56P — 6. Generation Matrix Coverage Dynamically Derived', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const matrix = result.generationCoverageMatrix;
 
   assert.equal(matrix.total_target_models, 48);
@@ -179,7 +187,7 @@ test('Phase 56P — 6. Generation Matrix Coverage Dynamically Derived', async ()
 });
 
 test('Phase 56P — 7. Promotions Strictly Follow Verified Evidence (Zero Unverified Promotions)', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const promotions = result.drivePromotions;
 
   assert.equal(promotions.length, 36);
@@ -296,13 +304,13 @@ test('Phase 56P — 13. Explicit Model Precedence & Zero Conflicts', async () =>
   assert.equal(conflictRes.drive_type, DRIVE_TYPES.UNKNOWN);
   assert.equal(conflictRes.resolution, 'CONFLICT_QUARANTINED');
 
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   assert.equal(result.driveConflicts.length, 0);
   assert.equal(result.summary.hard_gates.MB_DRIVE_CONFLICTS, 0);
 });
 
 test('Phase 56P — 14. Coverage Metrics & Arithmetic', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const c = result.coverageBeforeAfter;
 
   // Denominator: 879
@@ -413,7 +421,7 @@ test('Phase 56P — 20. Artifact Presence & Hard Gates Verification', async () =
     assert.ok(stat.size > 0, `Artifact ${file} must not be empty`);
   }
 
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const gates = result.summary.hard_gates;
 
   assert.equal(gates.MB_TARGET_TOTAL, true);
@@ -444,7 +452,7 @@ test('Phase 56P — 20. Artifact Presence & Hard Gates Verification', async () =
 });
 
 test('Phase 56P — 21. Catalog & Serial Freeze Invariants Preserved', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const inv = result.catalogIntegrity.invariants;
 
   assert.equal(inv.total_catalog_models, 956);
@@ -686,7 +694,7 @@ test('Phase 56P — 30. Correct Primary-Context HTML Fixture Accepted', async ()
 });
 
 test('Phase 56P — 31. MB 248 / 253 Required-vs-Corroborating Evidence Behavior', async () => {
-  const result = await buildPhase56pMbDriveExpansion({ write: false });
+  const result = await getDefaultBuild();
   const mb248Grp = result.generationGroups['MB 248 / 253'];
 
   assert.ok(mb248Grp.required_evidence_ids.includes('0478-111-9828-B'));
@@ -700,4 +708,197 @@ test('Phase 56P — 31. MB 248 / 253 Required-vs-Corroborating Evidence Behavior
     assert.equal(res.drive_type, DRIVE_TYPES.PETROL);
     assert.equal(res.resolution, 'FAMILY_RULE');
   }
+});
+
+test('Phase 56P — 32. Live Service Kit Uses bodySha256 Contract Property', async () => {
+  const skRes = await verifyServiceKit51Evidence();
+  assert.equal(skRes.verification_status, 'VERIFIED');
+  assert.ok(skRes.observed_body_sha256, 'observed_body_sha256 must be present');
+  assert.ok(skRes.stored_body_sha256, 'stored_body_sha256 must be present');
+  assert.equal(skRes.stored_body_sha256.toLowerCase(), skRes.observed_body_sha256.toLowerCase(), 'stored and observed hash must match');
+  assert.equal(skRes.hash_match, true, 'hash_match must be true');
+});
+
+test('Phase 56P — 33. Live Service Kit Uses fetchedAt Contract Property', async () => {
+  const skRes = await verifyServiceKit51Evidence();
+  assert.equal(skRes.verification_status, 'VERIFIED');
+  assert.ok(skRes.retrieved_at, 'retrieved_at must be present');
+  assert.ok(!isNaN(Date.parse(skRes.retrieved_at)), 'retrieved_at must be a valid ISO date');
+});
+
+test('Phase 56P — 34. Missing Acquired Hash Fails Closed (UNVERIFIED_MISSING_ACQUIRED_HASH)', async () => {
+  const mockHtml = `
+    <main>
+      <h1>Service Kit 51 voor RM 248.0 en MB 248.4</h1>
+      <p>Onderhoudsset voor STIHL benzinegrasmaaiers.</p>
+      <p>De volgende machines zijn compatibel met de STIHL Service Kit 51: RM 248.0 en MB 248.4</p>
+    </main>
+  `;
+  const res = await verifyServiceKit51Evidence({
+    mockHtml,
+    acquisitionMode: 'LIVE_OFFICIAL_FETCH',
+    mockAcquiredHash: null
+  });
+
+  assert.equal(res.verification_status, 'UNVERIFIED_MISSING_ACQUIRED_HASH');
+  assert.equal(res.hash_match, false);
+  assert.ok(res.failure_reason.includes('MISSING_ACQUIRED_HASH'));
+});
+
+test('Phase 56P — 35. Offline Empty-Cache Gate Becomes False', async () => {
+  const emptyTempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stihl-mb-empty-cache-'));
+  try {
+    const res = await buildPhase56pMbDriveExpansion({
+      write: false,
+      allowLiveFetch: false,
+      cacheDir: emptyTempDir
+    });
+
+    assert.equal(res.summary.hard_gates.MB_ALL_MANUALS_OFFLINE_CACHE_REPRODUCIBLE, false);
+    assert.equal(res.summary.hard_gates.PHASE56P_EVIDENCE_INTEGRITY, false);
+    assert.ok(res.summary.hard_gates.MB_MANUAL_CACHE_ROUNDTRIP_ERRORS > 0);
+    assert.equal(res.summary.outcome_status, 'FAIL');
+  } finally {
+    fs.rmSync(emptyTempDir, { recursive: true, force: true });
+  }
+});
+
+test('Phase 56P — 36. Manual Roundtrip Gates Derived, Not Constants', async () => {
+  const res = await getDefaultBuild();
+  assert.equal(typeof res.summary.hard_gates.MB_MANUAL_CACHE_ROUNDTRIP_ERRORS, 'number');
+  assert.equal(typeof res.summary.hard_gates.MB_ALL_MANUALS_OFFLINE_CACHE_REPRODUCIBLE, 'boolean');
+  assert.equal(
+    res.summary.hard_gates.MB_MANUAL_CACHE_ROUNDTRIP_ERRORS,
+    res.provenanceIntegrity.manual_cache_roundtrip_errors
+  );
+  assert.equal(
+    res.summary.hard_gates.MB_ALL_MANUALS_OFFLINE_CACHE_REPRODUCIBLE,
+    res.provenanceIntegrity.manual_offline_cache_verified
+  );
+});
+
+test('Phase 56P — 37. Corrupted Service Kit Increments Actual Mismatch Metric', async () => {
+  const healthy = await getDefaultBuild();
+  const mockManuals = healthy.officialEvidenceLedger.official_manuals.map(m => ({
+    ...m,
+    document_bytes: m.bytes,
+    pdf_extraction_success: true,
+    hash_match: true
+  }));
+
+  const corruptSK = {
+    service_kit_id: 'STIHL_SERVICE_KIT_51',
+    verification_status: 'UNVERIFIED_HASH_MISMATCH',
+    hash_match: false,
+    failure_reason: 'CORRUPTED_SERVICE_KIT_CACHE: stored hash does not match observed'
+  };
+
+  const res = await buildPhase56pMbDriveExpansion({
+    write: false,
+    mockManualResults: mockManuals,
+    mockServiceKitResult: corruptSK
+  });
+
+  assert.equal(res.summary.hard_gates.SERVICE_KIT_CACHE_HASH_MISMATCHES, 1);
+  assert.equal(res.provenanceIntegrity.service_kit_hash_mismatches, 1);
+});
+
+test('Phase 56P — 38. Required Manuals Valid + Service Kit Failed => Promotions Remain Valid', async () => {
+  const healthy = await getDefaultBuild();
+  const mockManuals = healthy.officialEvidenceLedger.official_manuals.map(m => ({
+    ...m,
+    document_bytes: m.bytes,
+    pdf_extraction_success: true,
+    hash_match: true
+  }));
+
+  const failedSK = {
+    service_kit_id: 'STIHL_SERVICE_KIT_51',
+    verification_status: 'UNVERIFIED_FETCH_FAILED',
+    hash_match: false,
+    failure_reason: 'FETCH_FAILED: Network timeout'
+  };
+
+  const res = await buildPhase56pMbDriveExpansion({
+    write: false,
+    mockManualResults: mockManuals,
+    mockServiceKitResult: failedSK
+  });
+
+  // MB 248 / 253 required manuals are still valid, so group status remains COVERED
+  assert.equal(res.generationGroups['MB 248 / 253'].status, 'COVERED');
+  assert.equal(res.summary.hard_gates.MB_PROMOTIONS_EXACT, true);
+  assert.equal(res.drivePromotions.length, 36);
+  assert.equal(res.provenanceIntegrity.required_evidence_failures, 0);
+  assert.equal(res.provenanceIntegrity.corroborating_evidence_failures, 1);
+  // Service Kit failure is non-blocking when required evidence is valid
+  assert.equal(res.summary.hard_gates.PROMOTIONS_WITH_MISSING_REQUIRED_EVIDENCE, 0);
+  assert.equal(res.summary.hard_gates.PHASE56P_EVIDENCE_INTEGRITY, true);
+  assert.equal(res.summary.outcome_status, 'PASS_WITH_LIMITATION');
+});
+
+test('Phase 56P — 39. Required Manual Failed + Service Kit Valid => Promotions Rejected', async () => {
+  const healthy = await getDefaultBuild();
+  const mockManuals = healthy.officialEvidenceLedger.official_manuals.map(m => {
+    if (m.document_id === '0478-111-9828-B') {
+      return {
+        ...m,
+        verification_status: 'UNVERIFIED_HASH_MISMATCH',
+        hash_match: false,
+        failure_reason: 'SHA256_MISMATCH'
+      };
+    }
+    return {
+      ...m,
+      document_bytes: m.bytes,
+      pdf_extraction_success: true,
+      hash_match: true
+    };
+  });
+
+  const res = await buildPhase56pMbDriveExpansion({
+    write: false,
+    mockManualResults: mockManuals
+  });
+
+  // MB 248 / 253 depends on 0478-111-9828-B; failure of required manual prevents COVERED
+  assert.notEqual(res.generationGroups['MB 248 / 253'].status, 'COVERED');
+  assert.ok(res.provenanceIntegrity.required_evidence_failures > 0);
+  assert.equal(res.summary.hard_gates.PHASE56P_EVIDENCE_INTEGRITY, false);
+});
+
+test('Phase 56P — 40. Promotion Validation Checks Required Evidence', async () => {
+  const res = await getDefaultBuild();
+  for (const promo of res.drivePromotions) {
+    assert.ok(Array.isArray(promo.required_evidence_ids), 'required_evidence_ids must be an array');
+    assert.ok(promo.required_evidence_ids.length > 0, 'required_evidence_ids must not be empty');
+    assert.equal(promo.required_evidence_verified, true, 'required_evidence_verified must be true');
+    assert.ok(Array.isArray(promo.corroborating_evidence_ids), 'corroborating_evidence_ids must be an array');
+  }
+  assert.equal(res.summary.hard_gates.PROMOTIONS_WITH_MISSING_REQUIRED_EVIDENCE, 0);
+});
+
+test('Phase 56P — 41. PHASE56P_EVIDENCE_INTEGRITY Flips False on Blocking Failure', async () => {
+  const healthy = await getDefaultBuild();
+  const mockManuals = healthy.officialEvidenceLedger.official_manuals.map(m => ({
+    ...m,
+    document_bytes: m.bytes,
+    pdf_extraction_success: true,
+    hash_match: true
+  }));
+
+  // Introduce a blocking extraction failure in one manual
+  mockManuals[0] = {
+    ...mockManuals[0],
+    verification_status: 'UNVERIFIED_PDF_EXTRACTION_FAILED',
+    pdf_extraction_success: false
+  };
+
+  const res = await buildPhase56pMbDriveExpansion({
+    write: false,
+    mockManualResults: mockManuals
+  });
+
+  assert.equal(res.summary.hard_gates.PHASE56P_EVIDENCE_INTEGRITY, false);
+  assert.equal(res.summary.outcome_status, 'FAIL');
 });

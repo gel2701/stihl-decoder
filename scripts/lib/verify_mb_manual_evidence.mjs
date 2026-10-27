@@ -450,7 +450,10 @@ export async function verifyServiceKit51Evidence(options = {}) {
     cacheDir = null,
     allowLiveFetch = true,
     mockHtml = null,
-    mockError = null
+    mockError = null,
+    mockAcquiredHash = undefined,
+    mockFetchedAt = undefined,
+    acquisitionMode: requestedAcquisitionMode = null
   } = options;
 
   const serviceKitUrl = 'https://www.stihl.nl/nl/ap/service-kit-51-1022025';
@@ -496,8 +499,9 @@ export async function verifyServiceKit51Evidence(options = {}) {
 
   if (mockHtml) {
     html = mockHtml;
-    acquisitionMode = 'MOCK_HTML';
-    retrievedAt = new Date().toISOString();
+    acquisitionMode = requestedAcquisitionMode || 'MOCK_HTML';
+    storedSha = mockAcquiredHash !== undefined ? mockAcquiredHash : null;
+    retrievedAt = mockFetchedAt || new Date().toISOString();
   } else {
     const client = new HttpClient({
       mode: 'LIVE',
@@ -512,7 +516,7 @@ export async function verifyServiceKit51Evidence(options = {}) {
         const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
         if (cached && typeof cached.body === 'string') {
           const observedHash = crypto.createHash('sha256').update(cached.body, 'utf8').digest('hex');
-          const storedHash = cached.body_sha256 || null;
+          const storedHash = cached.bodySha256 || cached.body_sha256 || null;
 
           if (storedHash && storedHash.toLowerCase() !== observedHash.toLowerCase()) {
             // Tampered or corrupted cache entry
@@ -527,7 +531,7 @@ export async function verifyServiceKit51Evidence(options = {}) {
           } else {
             html = cached.body;
             storedSha = storedHash;
-            retrievedAt = cached.fetched_at || null;
+            retrievedAt = cached.fetchedAt || cached.fetched_at || null;
             acquisitionMode = 'VERIFIED_CACHE_ENTRY';
           }
         }
@@ -546,8 +550,8 @@ export async function verifyServiceKit51Evidence(options = {}) {
         const res = await client.get(serviceKitUrl);
         if (res && res.body) {
           html = res.body;
-          storedSha = res.body_sha256 || null;
-          retrievedAt = res.fetched_at || new Date().toISOString();
+          storedSha = res.bodySha256 || null;
+          retrievedAt = res.fetchedAt || new Date().toISOString();
           acquisitionMode = 'LIVE_OFFICIAL_FETCH';
         }
       } catch (err) {
@@ -574,7 +578,14 @@ export async function verifyServiceKit51Evidence(options = {}) {
   record.body_sha256 = observedSha;
   record.stored_body_sha256 = storedSha;
 
-  if (storedSha) {
+  // Strict hash contract for LIVE and CACHE acquisitions:
+  if (acquisitionMode === 'LIVE_OFFICIAL_FETCH' || acquisitionMode === 'VERIFIED_CACHE_ENTRY') {
+    if (!storedSha) {
+      record.verification_status = 'UNVERIFIED_MISSING_ACQUIRED_HASH';
+      record.hash_match = false;
+      record.failure_reason = `MISSING_ACQUIRED_HASH: No bodySha256 acquired in ${acquisitionMode}`;
+      return record;
+    }
     record.hash_match = (storedSha.toLowerCase() === observedSha.toLowerCase());
     if (!record.hash_match) {
       record.verification_status = 'UNVERIFIED_HASH_MISMATCH';
@@ -582,7 +593,16 @@ export async function verifyServiceKit51Evidence(options = {}) {
       return record;
     }
   } else {
-    record.hash_match = true;
+    if (storedSha) {
+      record.hash_match = (storedSha.toLowerCase() === observedSha.toLowerCase());
+      if (!record.hash_match) {
+        record.verification_status = 'UNVERIFIED_HASH_MISMATCH';
+        record.failure_reason = `BODY_HASH_MISMATCH: stored ${storedSha} vs observed ${observedSha}`;
+        return record;
+      }
+    } else {
+      record.hash_match = true;
+    }
   }
 
   // 3. Primary Context Extraction & Verification
