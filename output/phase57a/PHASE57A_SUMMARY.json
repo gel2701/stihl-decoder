@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57A",
+  "title": "Parts Affiliate Linking Optimization — Verified ASIN Acquisition Pilot",
+  "status": "PASS_WITH_LIMITATION",
+  "outcome_reason": "Pilot executed across 100 high-priority commercial parts; 0 verifiable direct Amazon.nl ASIN product matches identified with exact part number proof; 17,082 search fallbacks retained with 100% fail-closed consumer protections intact.",
+  "executed_at": "2026-10-27T21:26:14.231Z",
+  "baseline": {
+    "canonical_parts": 17082,
+    "amazon_search_fallbacks": 17082,
+    "verified_direct_asin_mappings": 0,
+    "production_marketplace": "amazon.nl",
+    "production_associate_tag": "srihldecoder2-21"
+  },
+  "pilot_queue": {
+    "total_evaluated": 100,
+    "indexable_parts": 100,
+    "commercial_high_parts": 100,
+    "seo_tier_a_parts": 100,
+    "legacy_56b_top50_included": 50,
+    "new_priority_cohort": 50
+  },
+  "external_verification": {
+    "official_amazon_paapi_configured": false,
+    "amazon_api_available": "NO",
+    "amazon_api_used": "NO",
+    "fallback_reason": "No Amazon PAAPI credentials configured in environment; audited via web/browser search discovery",
+    "candidates_discovered": 0,
+    "exact_matches_found": 0
+  },
+  "candidate_results": {
+    "oem_exact": 0,
+    "aftermarket_exact": 0,
+    "ambiguous": 0,
+    "rejected": 0,
+    "not_found": 100,
+    "discovered_unverified": 0
+  },
+  "production_promotions": {
+    "promotions_count": 0,
+    "direct_mappings_written": 0
+  },
+  "accounting": {
+    "direct_link_parts": 0,
+    "fallback_only_parts": 17082,
+    "direct_link_percentage": "0.00%",
+    "fallback_percentage": "100.00%"
+  },
+  "hard_gates": {
+    "FABRICATED_ASINS": 0,
+    "GUESSED_ASINS": 0,
+    "INVALID_ASIN_FORMATS": 0,
+    "DUPLICATE_PART_MAPPINGS": 0,
+    "DUPLICATE_ASIN_MAPPINGS": 0,
+    "VERIFIED_WITHOUT_EXACT_PART_NUMBER_PROOF": 0,
+    "VERIFIED_WITHOUT_PRODUCT_CONTEXT": 0,
+    "VERIFIED_WITHOUT_PROVENANCE": 0,
+    "AFTERMARKET_MISLABELED_AS_OEM": 0,
+    "OEM_WITHOUT_BRAND_PROOF": 0,
+    "STATIC_PRICE_CLAIMS": 0,
+    "STATIC_STOCK_CLAIMS": 0,
+    "UNCONTROLLED_DIRECT_DP_LINKS": 0,
+    "OLD_TAG_PRODUCTION_LINKS": 0,
+    "DIRECT_MAPPING_VERIFIER_FAILURES": 0,
+    "DIRECT_MAPPING_RESOLVER_FAILURES": 0,
+    "SEARCH_FALLBACKS_MISSING_FOR_UNVERIFIED_PARTS": 0,
+    "AFFILIATE_TAG_INTACT": true,
+    "CATALOG_FREEZE_INTACT": true,
+    "SEO_FREEZE_INTACT": true
+  },
+  "governance": {
+    "agent_initiated_codex": "NO",
+    "automatic_external_review_triggered": "NO",
+    "codex_feedback_used": "NO",
+    "codex_used_for_acceptance": "NO"
+  }
+}
