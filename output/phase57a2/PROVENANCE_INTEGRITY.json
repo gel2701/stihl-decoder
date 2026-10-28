@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57A.2",
+  "generated_at": "2026-10-28T20:25:00.000Z",
+  "hard_gates": {
+    "SYNTHETIC_SEARCH_EVIDENCE": 0,
+    "GENERATED_FAKE_EXECUTION_TIMESTAMPS": 0,
+    "CLASSIFICATIONS_WITHOUT_RAW_EVIDENCE": 0,
+    "NOT_FOUND_WITHOUT_EXECUTED_QUERY_SET": 0,
+    "EMPTY_EVIDENCE_OBJECTS_ACCEPTED": 0,
+    "INVALID_EVIDENCE_SOURCE_ENTRIES_ACCEPTED": 0,
+    "NON_VERIFIED_CLASSIFICATIONS_IMPORTABLE": 0,
+    "AUTO_VERIFICATION_METADATA_CREATED": 0,
+    "UNVERIFIED_RECORDS_RENDERED_AS_DIRECT_PRODUCT": 0,
+    "KNOWN_WRONG_ASIN_PART_MAPPING_ACCEPTED": 0,
+    "FABRICATED_ASINS": 0,
+    "GUESSED_ASINS": 0
+  },
+  "audit_summary": {
+    "total_raw_evidence_records": 60,
+    "cohort_size": 10,
+    "all_cohort_parts_have_real_evidence": true,
+    "status": "ALL_GATES_PASSED"
+  }
+}

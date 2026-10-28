@@ -21,6 +21,25 @@ import {
   ALLOWED_AMAZON_MARKETPLACES,
   VERIFICATION_STATUSES
 } from './AmazonAffiliateProvider.js';
+import {
+  PRODUCTION_VERIFIED_CLASSIFICATIONS,
+  NON_PRODUCTION_CLASSIFICATIONS,
+  isValidEvidenceSource,
+  isValidStructuredProof,
+  isKnownPartNumberMismatch,
+  isProductionVerifiedClassification,
+  isProductionVerifiedAmazonOffer
+} from './AmazonProductionOfferContract.js';
+
+export {
+  PRODUCTION_VERIFIED_CLASSIFICATIONS,
+  NON_PRODUCTION_CLASSIFICATIONS,
+  isValidEvidenceSource,
+  isValidStructuredProof,
+  isKnownPartNumberMismatch,
+  isProductionVerifiedClassification,
+  isProductionVerifiedAmazonOffer
+};
 
 export const MATCH_CLASSIFICATIONS = {
   OEM_STIHL_EXACT: 'OEM_STIHL_EXACT',
@@ -31,7 +50,9 @@ export const MATCH_CLASSIFICATIONS = {
   AMBIGUOUS: 'AMBIGUOUS',
   REJECTED: 'REJECTED',
   NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH: 'NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH',
-  NOT_FOUND: 'NOT_FOUND' // Backwards-compatible alias
+  NOT_FOUND: 'NOT_FOUND', // Backwards-compatible alias
+  UNAUDITED: 'UNAUDITED',
+  UNAUDITED_LEGACY_PHASE57A1: 'UNAUDITED_LEGACY_PHASE57A1'
 };
 
 export const VERIFICATION_METHODS = {
@@ -67,10 +88,24 @@ export class AmazonExactMatchVerifier {
       errors.push(`Invalid canonical 11-digit STIHL part number: ${candidate.part_number}`);
     }
 
+    // 1b. Known Part Number Identity Mismatch Check (e.g. 0000 400 7000 + B001RMA5S2)
+    if (isKnownPartNumberMismatch(candidate.part_number, candidate.asin, candidate.product || candidate.title || candidate.candidate_product)) {
+      errors.push('PART_NUMBER_PRODUCT_IDENTITY_MISMATCH: Candidate part number and product identity mismatch (known cross-number error)');
+    }
+
     // 2. Classification Validation
     const classification = candidate.classification || candidate.match_type;
     if (!classification || !Object.values(MATCH_CLASSIFICATIONS).includes(classification)) {
       errors.push(`Invalid or missing match classification: ${classification}`);
+    }
+
+    // Unaudited statuses
+    if (classification === MATCH_CLASSIFICATIONS.UNAUDITED || classification === MATCH_CLASSIFICATIONS.UNAUDITED_LEGACY_PHASE57A1) {
+      return {
+        valid: errors.length === 0,
+        errors,
+        classification
+      };
     }
 
     // 3. For NOT_FOUND or NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH or REJECTED:
@@ -144,10 +179,19 @@ export class AmazonExactMatchVerifier {
     }
 
     // Provenance / Evidence Source
-    const hasEvidenceString = typeof candidate.evidence_source === 'string' && candidate.evidence_source.trim().length >= 5;
-    const hasEvidenceSources = Array.isArray(candidate.evidence_sources) && candidate.evidence_sources.length > 0;
-    if (!hasEvidenceString && !hasEvidenceSources) {
-      errors.push(`Explicit evidence source or provenance document is required`);
+    if (Array.isArray(candidate.evidence_sources)) {
+      if (candidate.evidence_sources.length === 0) {
+        errors.push('Explicit evidence source or provenance document is required');
+      } else {
+        const invalidSources = candidate.evidence_sources.filter(s => !isValidEvidenceSource(s));
+        if (invalidSources.length > 0) {
+          errors.push('All evidence sources must be valid structured objects with type, url, title, claim, and retrieved_at');
+        }
+      }
+    } else if (typeof candidate.evidence_source === 'string' && candidate.evidence_source.trim().length >= 5) {
+      // Single string provenance allowed for legacy compatibility if non-empty
+    } else {
+      errors.push('Explicit evidence source or provenance document is required');
     }
 
     // Reject title-only matching without part number proof (Section 10, 31, 32)
@@ -158,6 +202,25 @@ export class AmazonExactMatchVerifier {
     // Verification Method
     if (!candidate.verification_method || !Object.values(VERIFICATION_METHODS).includes(candidate.verification_method)) {
       errors.push(`Valid verification method is required (got ${candidate.verification_method})`);
+    }
+
+    // Structured proof validation (Section 22, 31-33)
+    if (candidate.proof !== undefined && candidate.proof !== null) {
+      if (typeof candidate.proof !== 'object' || Array.isArray(candidate.proof)) {
+        errors.push('Structured proof object is required for verified candidates');
+      } else {
+        if (candidate.proof.exact_part_number_found !== true) {
+          errors.push('Exact STIHL part number proof not found in listing context');
+        }
+        if (candidate.proof.asin_identity_verified !== true) {
+          errors.push('ASIN identity unverified');
+        }
+        if (candidate.proof.marketplace_verified !== true) {
+          errors.push('Marketplace availability unverified');
+        }
+      }
+    } else if (classification === MATCH_CLASSIFICATIONS.VERIFIED_OEM_EXACT || classification === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT) {
+      errors.push('Structured proof object is required for verified candidates');
     }
 
     // Product Type Classification
@@ -172,19 +235,6 @@ export class AmazonExactMatchVerifier {
       const brand = candidate.aftermarket_brand || candidate.brand;
       if (!brand || brand.toLowerCase().includes('stihl')) {
         errors.push(`Aftermarket replacements must identify third-party brand and never claim to be STIHL OEM`);
-      }
-
-      // Structured proof validation (Section 31-33)
-      if (candidate.proof && typeof candidate.proof === 'object') {
-        if (candidate.proof.exact_part_number_found !== true) {
-          errors.push('Exact STIHL part number proof not found in listing context');
-        }
-        if (candidate.proof.asin_identity_verified !== true) {
-          errors.push('ASIN identity unverified');
-        }
-        if (candidate.proof.marketplace_verified !== true) {
-          errors.push('Marketplace availability unverified');
-        }
       }
     }
 

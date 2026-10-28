@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57A.2",
+  "description": "Negative Fixture Security Audit for import_verified_amazon_offers.mjs",
+  "total_negative_fixtures": 11,
+  "total_rejected": 11,
+  "total_accepted": 0,
+  "zero_accepted_verified": true,
+  "zero_written": true,
+  "gate_status": "PASS",
+  "evaluated_cases": [
+    {
+      "test_id": "SEC-IMP-01",
+      "name": "Reject NOT_FOUND classification even with valid ASIN and part number",
+      "result": "REJECTED",
+      "reason": "Classification \"NOT_FOUND\" is not permitted for production import. Only production-verified classifications (VERIFIED_OEM_EXACT, VERIFIED_AFTERMARKET_EXACT, OEM_STIHL_EXACT, AFTERMARKET_EXACT_REFERENCE) are accepted."
+    },
+    {
+      "test_id": "SEC-IMP-02",
+      "name": "Reject DISCOVERED_UNVERIFIED classification even with valid ASIN and candidate brand",
+      "result": "REJECTED",
+      "reason": "Classification \"DISCOVERED_UNVERIFIED\" is not permitted for production import. Only production-verified classifications (VERIFIED_OEM_EXACT, VERIFIED_AFTERMARKET_EXACT, OEM_STIHL_EXACT, AFTERMARKET_EXACT_REFERENCE) are accepted."
+    },
+    {
+      "test_id": "SEC-IMP-03",
+      "name": "Reject AMBIGUOUS classification",
+      "result": "REJECTED",
+      "reason": "Classification \"AMBIGUOUS\" is not permitted for production import. Only production-verified classifications (VERIFIED_OEM_EXACT, VERIFIED_AFTERMARKET_EXACT, OEM_STIHL_EXACT, AFTERMARKET_EXACT_REFERENCE) are accepted."
+    },
+    {
+      "test_id": "SEC-IMP-04",
+      "name": "Reject UNAUDITED classification",
+      "result": "REJECTED",
+      "reason": "Classification \"UNAUDITED\" is not permitted for production import. Only production-verified classifications (VERIFIED_OEM_EXACT, VERIFIED_AFTERMARKET_EXACT, OEM_STIHL_EXACT, AFTERMARKET_EXACT_REFERENCE) are accepted."
+    },
+    {
+      "test_id": "SEC-IMP-05",
+      "name": "Reject empty evidence_sources object [{}]",
+      "result": "REJECTED",
+      "reason": "evidence_sources contains empty or invalid evidence source objects"
+    },
+    {
+      "test_id": "SEC-IMP-06",
+      "name": "Reject missing structured proof object (proof = null)",
+      "result": "REJECTED",
+      "reason": "Structured proof object is required (proof cannot be null or non-object)"
+    },
+    {
+      "test_id": "SEC-IMP-07",
+      "name": "Reject proof with marketplace_verified = false",
+      "result": "REJECTED",
+      "reason": "proof.marketplace_verified must be true for production import"
+    },
+    {
+      "test_id": "SEC-IMP-08",
+      "name": "Reject missing verification_status (disallow auto-defaulting)",
+      "result": "REJECTED",
+      "reason": "Missing explicit verification_status (auto-defaulting is forbidden)"
+    },
+    {
+      "test_id": "SEC-IMP-09",
+      "name": "Reject missing verification_method (disallow auto-defaulting)",
+      "result": "REJECTED",
+      "reason": "Missing explicit verification_method (auto-defaulting is forbidden)"
+    },
+    {
+      "test_id": "SEC-IMP-10",
+      "name": "Reject missing verified_at timestamp (disallow auto-defaulting)",
+      "result": "REJECTED",
+      "reason": "Missing explicit verified_at (auto-defaulting is forbidden)"
+    },
+    {
+      "test_id": "SEC-IMP-11",
+      "name": "Reject known cross-part mismatch: 0000 400 7000 + B001RMA5S2 (NGK CMR6H)",
+      "result": "REJECTED",
+      "reason": "PART_NUMBER_PRODUCT_IDENTITY_MISMATCH: Candidate part number and product identity mismatch (known cross-number error)"
+    }
+  ]
+}
