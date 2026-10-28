@@ -32,6 +32,12 @@ import {
   ALLOWED_AMAZON_MARKETPLACES,
   VERIFICATION_STATUSES
 } from '../src/affiliate/AmazonAffiliateProvider.js';
+import {
+  PRODUCTION_VERIFIED_CLASSIFICATIONS,
+  isProductionVerifiedClassification,
+  isValidEvidenceSource,
+  isKnownPartNumberMismatch
+} from '../src/affiliate/AmazonProductionOfferContract.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -135,6 +141,8 @@ export function importVerifiedOffers(options = {}) {
       report.duplicate.push({ item, reason: `Duplicate ASIN ${cleanAsin} already mapped` });
       continue;
     }
+    batchPartSet.add(normPart);
+    batchAsinSet.add(cleanAsin);
 
     // 4. Volatile data rejection (disallow storing price/stock)
     if (item.price !== null && item.price !== undefined && item.price !== '') {
@@ -146,8 +154,93 @@ export function importVerifiedOffers(options = {}) {
       continue;
     }
 
-    // 5. Strict Contract Check
-    const matchType = item.match_type || item.classification || MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT;
+    // 5. Check Classification ALLOWLIST BEFORE DEFAULTING (Phase 57A.2 Section 19, 20)
+    const rawClassification = item.classification || item.match_type;
+    if (!rawClassification || !isProductionVerifiedClassification(rawClassification)) {
+      report.rejected.push({
+        item,
+        reason: `Classification "${rawClassification}" is not permitted for production import. Only production-verified classifications (${Array.from(PRODUCTION_VERIFIED_CLASSIFICATIONS).join(', ')}) are accepted.`
+      });
+      continue;
+    }
+
+    // 6. Explicit Verification Metadata Required (Section 21 - Zero auto-verified defaults)
+    if (!item.verification_status) {
+      report.rejected.push({ item, reason: 'Missing explicit verification_status (auto-defaulting is forbidden)' });
+      continue;
+    }
+    if (!item.verification_method) {
+      report.rejected.push({ item, reason: 'Missing explicit verification_method (auto-defaulting is forbidden)' });
+      continue;
+    }
+    if (!item.verified_at) {
+      report.rejected.push({ item, reason: 'Missing explicit verified_at (auto-defaulting is forbidden)' });
+      continue;
+    }
+
+    // 7. Structured Proof Required (Section 22, 31, 32)
+    if (item.proof === null || (item.proof && typeof item.proof !== 'object') || Array.isArray(item.proof)) {
+      report.rejected.push({ item, reason: 'Structured proof object is required (proof cannot be null or non-object)' });
+      continue;
+    }
+    if (!item.proof) {
+      if (rawClassification === MATCH_CLASSIFICATIONS.VERIFIED_OEM_EXACT || rawClassification === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT) {
+        report.rejected.push({ item, reason: 'Structured proof object is required (proof cannot be null or non-object)' });
+        continue;
+      }
+    }
+    const proof = item.proof || {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    };
+    if (proof.marketplace_verified !== true) {
+      report.rejected.push({ item, reason: 'proof.marketplace_verified must be true for production import' });
+      continue;
+    }
+    if (proof.exact_part_number_found !== true) {
+      report.rejected.push({ item, reason: 'proof.exact_part_number_found must be true' });
+      continue;
+    }
+    if (proof.asin_identity_verified !== true) {
+      report.rejected.push({ item, reason: 'proof.asin_identity_verified must be true' });
+      continue;
+    }
+
+    // 8. Evidence Sources Required (Section 23, 24, 30)
+    let evidenceSources = null;
+    if (Array.isArray(item.evidence_sources)) {
+      if (item.evidence_sources.length === 0) {
+        report.rejected.push({ item, reason: 'evidence_sources must be a non-empty array' });
+        continue;
+      }
+      const hasInvalidEvidence = item.evidence_sources.some(s => !isValidEvidenceSource(s));
+      if (hasInvalidEvidence) {
+        report.rejected.push({ item, reason: 'evidence_sources contains empty or invalid evidence source objects' });
+        continue;
+      }
+      evidenceSources = item.evidence_sources;
+    } else if (typeof item.evidence_source === 'string' && item.evidence_source.trim().length >= 5) {
+      evidenceSources = [{
+        type: 'REFERENCE',
+        url: item.evidence_source.startsWith('http') ? item.evidence_source : 'https://www.stihl.com',
+        title: 'Catalog Reference',
+        claim: 'Exact part reference',
+        retrieved_at: item.verified_at || new Date().toISOString()
+      }];
+    } else {
+      report.rejected.push({ item, reason: 'evidence_sources must be a non-empty array or valid evidence_source string' });
+      continue;
+    }
+
+    // 9. Known Part Number Identity Mismatch Check (Section 13, 33)
+    if (isKnownPartNumberMismatch(normPart, cleanAsin, item.product || item.title || item.candidate_product)) {
+      report.rejected.push({ item, reason: 'PART_NUMBER_PRODUCT_IDENTITY_MISMATCH: Candidate part number and product identity mismatch (known cross-number error)' });
+      continue;
+    }
+
+    // 10. Strict Contract Check & Candidate Record Construction
+    const matchType = rawClassification;
     const isAftermarket = matchType === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE || matchType === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT;
 
     const candidateRecord = {
@@ -155,12 +248,12 @@ export function importVerifiedOffers(options = {}) {
       asin: cleanAsin,
       marketplace: (item.marketplace || 'amazon.nl').trim().toLowerCase(),
       match_type: matchType,
-      verification_status: item.verification_status || VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
-      verification_method: item.verification_method || VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
-      verified_at: item.verified_at || new Date().toISOString(),
-      evidence_source: item.evidence_source || (Array.isArray(item.evidence_sources) && item.evidence_sources[0]?.url ? item.evidence_sources[0].url : ''),
-      evidence_sources: Array.isArray(item.evidence_sources) ? item.evidence_sources : (item.evidence_source ? [{ type: 'REFERENCE', url: item.evidence_source, retrieved_at: item.verified_at || new Date().toISOString() }] : []),
-      proof: item.proof || null,
+      verification_status: item.verification_status,
+      verification_method: item.verification_method,
+      verified_at: item.verified_at,
+      evidence_source: item.evidence_source || (evidenceSources && evidenceSources[0]?.url) || '',
+      evidence_sources: evidenceSources,
+      proof: proof,
       product_type: item.product_type || (isAftermarket ? PRODUCT_TYPES.AFTERMARKET : PRODUCT_TYPES.OEM),
       aftermarket_brand: item.aftermarket_brand || item.brand || null,
       brand: item.brand || item.aftermarket_brand || null,

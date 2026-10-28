@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57A.2",
+  "baseline_main_sha": "6b83ddabfdbf937cd3e3adf5069b3bcee609a2bf",
+  "catalog_freeze": {
+    "canonical_parts": 17082,
+    "direct_verified_asin_mappings": 0,
+    "amazon_search_fallbacks": 17082,
+    "production_tag": "srihldecoder2-21"
+  },
+  "cohort": {
+    "size": 10,
+    "audited_count": 10,
+    "discovered_unverified_count": 9,
+    "rejected_count": 1,
+    "verified_oem_exact_count": 0,
+    "verified_aftermarket_exact_count": 0,
+    "not_found_after_evidenced_search_count": 0
+  },
+  "backlog_reclassification": {
+    "unaudited_legacy_phase57a1_count": 21,
+    "unaudited_backlog_count": 69,
+    "total_priority_queue": 100
+  },
+  "security_audit": {
+    "negative_fixtures_tested": 11,
+    "negative_fixtures_rejected": 11,
+    "zero_accepted": true,
+    "zero_written": true,
+    "provider_defense_cases_passed": 5
+  },
+  "label_discrepancy": {
+    "part_number": "00004007000",
+    "discrepancy": "0000 400 7000 is NGK BPMR7A; CMR6H is 0000 400 7011",
+    "status": "FLAGGED_DISCREPANCY_CATALOG_FROZEN",
+    "candidate_asin_b001rma5s2_status": "REJECTED_PART_NUMBER_MISMATCH"
+  },
+  "provenance_hard_gates_status": "ALL_PASS"
+}

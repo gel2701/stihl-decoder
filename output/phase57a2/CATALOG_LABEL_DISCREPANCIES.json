@@ -1,0 +1,14 @@
+[
+  {
+    "part_number": "00004007000",
+    "part_number_display": "0000 400 7000",
+    "current_catalog_label": "Spark plug NGK CMR6H",
+    "observed_authoritative_label": "Spark plug NGK BPMR7A (M14x1.25, 19mm hex)",
+    "canonical_twin_part_number": "00004007011",
+    "canonical_twin_display": "0000 400 7011",
+    "canonical_twin_label": "Stihl 00004007011 Spark Plug Ngk Cmr6H",
+    "evidence": "First-party STIHL service literature and official manuals confirm 0000 400 7000 is the standard M14 thread NGK BPMR7A spark plug. The compact M10 thread NGK CMR6H is 0000 400 7011. Both exist in canonical parts_catalog.json. Current catalog label for 0000 400 7000 is an inherited scrape label discrepancy.",
+    "status": "FLAGGED_DISCREPANCY_CATALOG_FROZEN",
+    "recommended_action": "Maintain catalog freeze in Phase 57A.2. Plan authoritative label update in future catalog normalization phase. Strictly reject any mapping of 0000 400 7000 to CMR6H / ASIN B001RMA5S2."
+  }
+]

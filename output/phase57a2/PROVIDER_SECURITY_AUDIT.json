@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57A.2",
+  "description": "AmazonAffiliateProvider Defense-in-Depth Validation Audit",
+  "total_cases": 5,
+  "all_passed": true,
+  "results": [
+    {
+      "name": "Provider rejects override with classification NOT_FOUND",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "name": "Provider rejects override with classification DISCOVERED_UNVERIFIED",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "name": "Provider rejects override with 0000 400 7000 + B001RMA5S2 mismatch",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "name": "Provider rejects override with proof.marketplace_verified = false",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "name": "Provider accepts production-verified override with valid fields",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ]
+}

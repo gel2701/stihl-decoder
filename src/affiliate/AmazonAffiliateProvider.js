@@ -5,6 +5,11 @@
 
 import { AffiliateProvider } from './AffiliateProvider.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
+import {
+  PRODUCTION_VERIFIED_CLASSIFICATIONS,
+  isProductionVerifiedClassification,
+  isKnownPartNumberMismatch
+} from './AmazonProductionOfferContract.js';
 
 export const AMAZON_MATCH_TYPES = {
   SEARCH_LINK: 'SEARCH_LINK',
@@ -68,6 +73,25 @@ export function isValidManualAsinOverride(override) {
   if (override.verification_status !== VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH) return false;
   if (!isValidIsoTimestamp(override.verified_at)) return false;
   if (override.marketplace && !ALLOWED_AMAZON_MARKETPLACES.has(override.marketplace.trim().toLowerCase())) return false;
+
+  // Phase 57A.2 Defence in depth: Classification must be in production-verified allowlist
+  const classification = override.classification || override.match_type;
+  if (classification && !isProductionVerifiedClassification(classification)) {
+    return false;
+  }
+
+  // Known part number / ASIN identity mismatch check (e.g. 0000 400 7000 + B001RMA5S2)
+  if (isKnownPartNumberMismatch(override.part_number, override.asin, override.title || override.product)) {
+    return false;
+  }
+
+  // Structured proof check: marketplace verification must not be false
+  if (override.proof && typeof override.proof === 'object') {
+    if (override.proof.marketplace_verified === false) {
+      return false;
+    }
+  }
+
   return true;
 }
 
