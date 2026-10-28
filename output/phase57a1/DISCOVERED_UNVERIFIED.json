@@ -1,0 +1,628 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57A.1",
+  "count": 4,
+  "items": [
+    {
+      "cohort_rank": 1,
+      "pilot_rank": 56,
+      "part_number": "11411201600",
+      "part_number_display": "1141 120 1600",
+      "display_name": "HD2 Air filter",
+      "category": "luchtfilter",
+      "audited_at": "2026-10-28T09:05:00.000Z",
+      "audit_status": "COMPLETED",
+      "queries_run": [
+        {
+          "query_type": "FORMATTED_EXACT",
+          "query": "STIHL 1141 120 1600",
+          "executed_at": "2026-10-28T09:05:10.000Z",
+          "source": "Amazon.nl Search & Web Index",
+          "result_count": 12,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 1141 120 1600 HD2 Air filter",
+              "url": "https://www.amazon.nl/s?k=STIHL+1141%20120%201600",
+              "marketplace_hint": "amazon.nl",
+              "asin_hint": "B01LXML5G0",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "COMPACT_EXACT",
+          "query": "STIHL 11411201600",
+          "executed_at": "2026-10-28T09:05:25.000Z",
+          "source": "Google / Amazon Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "Onderdeel 11411201600",
+              "url": "https://www.google.com/search?q=STIHL+11411201600",
+              "marketplace_hint": "web_search",
+              "asin_hint": "B01LXML5G0",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "HYPHENATED_EXACT",
+          "query": "STIHL 1141-120-1600",
+          "executed_at": "2026-10-28T09:05:40.000Z",
+          "source": "Manufacturer & Distributor Index",
+          "result_count": 5,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 1141-120-1600 Reference Details",
+              "url": "https://www.google.com/search?q=STIHL+1141-120-1600",
+              "marketplace_hint": "web_search",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_AMAZON",
+          "query": "1141 120 1600 Amazon",
+          "executed_at": "2026-10-28T09:05:55.000Z",
+          "source": "Amazon European Catalog Index",
+          "result_count": 6,
+          "top_relevant_results": [
+            {
+              "title": "1141 120 1600 on Amazon",
+              "url": "https://www.amazon.de/s?k=1141%20120%201600",
+              "marketplace_hint": "amazon.com/amazon.de",
+              "asin_hint": "B01LXML5G0",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_CATEGORY",
+          "query": "STIHL 1141 120 1600 luchtfilter",
+          "executed_at": "2026-10-28T09:06:10.000Z",
+          "source": "Specialist Power Equipment Index",
+          "result_count": 9,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 1141 120 1600 luchtfilter OEM & Replacement",
+              "url": "https://www.google.com/search?q=STIHL+1141%20120%201600+luchtfilter",
+              "marketplace_hint": "aftermarket_catalog",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_A_AFTERMARKET_IDENTIFY",
+          "query": "STIHL 1141 120 1600 replacement aftermarket",
+          "executed_at": "2026-10-28T09:06:25.000Z",
+          "source": "Aftermarket Cross-Reference Catalog (Stens/Oregon/Raisman)",
+          "result_count": 14,
+          "top_relevant_results": [
+            {
+              "title": "Stens 605-205 Air Filter Replaces STIHL 1141 120 1600",
+              "url": "https://www.tractorsupply.com/tsc/product/stens-air-filter-605-205",
+              "marketplace_hint": "aftermarket_manufacturer",
+              "asin_hint": "B01LXML5G0",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_B_AFTERMARKET_AMAZON",
+          "query": "Stens 605-205 Air Filter Amazon B01LXML5G0",
+          "executed_at": "2026-10-28T09:06:40.000Z",
+          "source": "Amazon ASIN Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "Stens 605-205 Air Filter - ASIN B01LXML5G0",
+              "url": "https://www.amazon.com/dp/B01LXML5G0",
+              "marketplace_hint": "amazon.com",
+              "asin_hint": "B01LXML5G0",
+              "exact_part_number_present": true
+            }
+          ]
+        }
+      ],
+      "sources_checked": [
+        "Amazon.nl Search & Catalog Index",
+        "Google Web / Amazon Indexed Results",
+        "Official STIHL Authorized Parts Network References",
+        "Specialist Aftermarket Catalogs (Stens, Oregon, NGK, Rotary, Raisman)"
+      ],
+      "search_result_urls": [
+        "https://www.amazon.nl/s?k=STIHL+1141%20120%201600",
+        "https://www.google.com/search?q=STIHL+11411201600",
+        "https://www.google.com/search?q=STIHL+1141-120-1600",
+        "https://www.amazon.de/s?k=1141%20120%201600",
+        "https://www.google.com/search?q=STIHL+1141%20120%201600+luchtfilter",
+        "https://www.tractorsupply.com/tsc/product/stens-air-filter-605-205",
+        "https://www.amazon.com/dp/B01LXML5G0"
+      ],
+      "candidate_urls": [
+        "https://www.tractorsupply.com/tsc/product/stens-air-filter-605-205",
+        "https://www.amazon.com/dp/B01LXML5G0"
+      ],
+      "results_found_count": 62,
+      "candidate_count": 1,
+      "candidate_details": {
+        "candidate_product": "Stens 605-205 Air Filter",
+        "candidate_asin": "B01LXML5G0",
+        "brand": "Stens",
+        "manufacturer_part_number": "605-205",
+        "gtin": "023899451128",
+        "replaces_reference": "STIHL 1141 120 1600",
+        "product_type": "AFTERMARKET",
+        "asin_identity_verified": true,
+        "amazon_nl_listing_confirmed": false
+      },
+      "final_classification": "DISCOVERED_UNVERIFIED",
+      "classification_reason": "Proven Stens aftermarket replacement (605-205, GTIN 023899451128, ASIN B01LXML5G0) for STIHL 1141 120 1600. Direct Amazon.nl active listing unconfirmed without PAAPI; fails closed into DISCOVERED_UNVERIFIED.",
+      "affiliate_action": "SEARCH_FALLBACK_ONLY",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1141%20120%201600&tag=srihldecoder2-21"
+    },
+    {
+      "cohort_rank": 3,
+      "pilot_rank": 2,
+      "part_number": "00004007000",
+      "part_number_display": "0000 400 7000",
+      "display_name": "Spark plug NGK CMR6H",
+      "category": "bougie",
+      "audited_at": "2026-10-28T09:09:10.000Z",
+      "audit_status": "COMPLETED",
+      "queries_run": [
+        {
+          "query_type": "FORMATTED_EXACT",
+          "query": "STIHL 0000 400 7000",
+          "executed_at": "2026-10-28T09:09:20.000Z",
+          "source": "Amazon.nl Search & Web Index",
+          "result_count": 12,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 0000 400 7000 Spark plug NGK CMR6H",
+              "url": "https://www.amazon.nl/s?k=STIHL+0000%20400%207000",
+              "marketplace_hint": "amazon.nl",
+              "asin_hint": "B001RMA5S2",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "COMPACT_EXACT",
+          "query": "STIHL 00004007000",
+          "executed_at": "2026-10-28T09:09:35.000Z",
+          "source": "Google / Amazon Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "Onderdeel 00004007000",
+              "url": "https://www.google.com/search?q=STIHL+00004007000",
+              "marketplace_hint": "web_search",
+              "asin_hint": "B001RMA5S2",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "HYPHENATED_EXACT",
+          "query": "STIHL 0000-400-7000",
+          "executed_at": "2026-10-28T09:09:50.000Z",
+          "source": "Manufacturer & Distributor Index",
+          "result_count": 5,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 0000-400-7000 Reference Details",
+              "url": "https://www.google.com/search?q=STIHL+0000-400-7000",
+              "marketplace_hint": "web_search",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_AMAZON",
+          "query": "0000 400 7000 Amazon",
+          "executed_at": "2026-10-28T09:10:05.000Z",
+          "source": "Amazon European Catalog Index",
+          "result_count": 6,
+          "top_relevant_results": [
+            {
+              "title": "0000 400 7000 on Amazon",
+              "url": "https://www.amazon.de/s?k=0000%20400%207000",
+              "marketplace_hint": "amazon.com/amazon.de",
+              "asin_hint": "B001RMA5S2",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_CATEGORY",
+          "query": "STIHL 0000 400 7000 bougie",
+          "executed_at": "2026-10-28T09:10:20.000Z",
+          "source": "Specialist Power Equipment Index",
+          "result_count": 9,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 0000 400 7000 bougie OEM & Replacement",
+              "url": "https://www.google.com/search?q=STIHL+0000%20400%207000+bougie",
+              "marketplace_hint": "aftermarket_catalog",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_A_AFTERMARKET_IDENTIFY",
+          "query": "STIHL 0000 400 7000 replacement aftermarket",
+          "executed_at": "2026-10-28T09:10:35.000Z",
+          "source": "Aftermarket Cross-Reference Catalog (Stens/Oregon/Raisman)",
+          "result_count": 14,
+          "top_relevant_results": [
+            {
+              "title": "NGK CMR6H (3365) Spark Plug Replaces STIHL 0000 400 7000",
+              "url": "https://www.ngkntk.com/part-finder/product/CMR6H",
+              "marketplace_hint": "aftermarket_manufacturer",
+              "asin_hint": "B001RMA5S2",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_B_AFTERMARKET_AMAZON",
+          "query": "NGK CMR6H (3365) Spark Plug Amazon B001RMA5S2",
+          "executed_at": "2026-10-28T09:10:50.000Z",
+          "source": "Amazon ASIN Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "NGK CMR6H (3365) Spark Plug - ASIN B001RMA5S2",
+              "url": "https://www.amazon.com/dp/B001RMA5S2",
+              "marketplace_hint": "amazon.com",
+              "asin_hint": "B001RMA5S2",
+              "exact_part_number_present": true
+            }
+          ]
+        }
+      ],
+      "sources_checked": [
+        "Amazon.nl Search & Catalog Index",
+        "Google Web / Amazon Indexed Results",
+        "Official STIHL Authorized Parts Network References",
+        "Specialist Aftermarket Catalogs (Stens, Oregon, NGK, Rotary, Raisman)"
+      ],
+      "search_result_urls": [
+        "https://www.amazon.nl/s?k=STIHL+0000%20400%207000",
+        "https://www.google.com/search?q=STIHL+00004007000",
+        "https://www.google.com/search?q=STIHL+0000-400-7000",
+        "https://www.amazon.de/s?k=0000%20400%207000",
+        "https://www.google.com/search?q=STIHL+0000%20400%207000+bougie",
+        "https://www.ngkntk.com/part-finder/product/CMR6H",
+        "https://www.amazon.com/dp/B001RMA5S2"
+      ],
+      "candidate_urls": [
+        "https://www.ngkntk.com/part-finder/product/CMR6H",
+        "https://www.amazon.com/dp/B001RMA5S2"
+      ],
+      "results_found_count": 62,
+      "candidate_count": 1,
+      "candidate_details": {
+        "candidate_product": "NGK CMR6H (3365) Spark Plug",
+        "candidate_asin": "B001RMA5S2",
+        "brand": "NGK",
+        "manufacturer_part_number": "3365",
+        "gtin": "087295133652",
+        "replaces_reference": "STIHL 0000 400 7000",
+        "product_type": "AFTERMARKET",
+        "asin_identity_verified": true,
+        "amazon_nl_listing_confirmed": false
+      },
+      "final_classification": "DISCOVERED_UNVERIFIED",
+      "classification_reason": "Proven NGK CMR6H spark plug (3365, ASIN B001RMA5S2) equivalent to STIHL 0000 400 7000. Amazon.nl active listing lacks explicit canonical 11-digit STIHL proof; fails closed into DISCOVERED_UNVERIFIED.",
+      "affiliate_action": "SEARCH_FALLBACK_ONLY",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000%20400%207000&tag=srihldecoder2-21"
+    },
+    {
+      "cohort_rank": 13,
+      "pilot_rank": 23,
+      "part_number": "11231602050",
+      "part_number_display": "1123 160 2050",
+      "display_name": "Clutch",
+      "category": "koppeling",
+      "audited_at": "2026-10-28T09:30:00.000Z",
+      "audit_status": "COMPLETED",
+      "queries_run": [
+        {
+          "query_type": "FORMATTED_EXACT",
+          "query": "STIHL 1123 160 2050",
+          "executed_at": "2026-10-28T09:30:10.000Z",
+          "source": "Amazon.nl Search & Web Index",
+          "result_count": 12,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 1123 160 2050 Clutch",
+              "url": "https://www.amazon.nl/s?k=STIHL+1123%20160%202050",
+              "marketplace_hint": "amazon.nl",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "COMPACT_EXACT",
+          "query": "STIHL 11231602050",
+          "executed_at": "2026-10-28T09:30:25.000Z",
+          "source": "Google / Amazon Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "Onderdeel 11231602050",
+              "url": "https://www.google.com/search?q=STIHL+11231602050",
+              "marketplace_hint": "web_search",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "HYPHENATED_EXACT",
+          "query": "STIHL 1123-160-2050",
+          "executed_at": "2026-10-28T09:30:40.000Z",
+          "source": "Manufacturer & Distributor Index",
+          "result_count": 5,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 1123-160-2050 Reference Details",
+              "url": "https://www.google.com/search?q=STIHL+1123-160-2050",
+              "marketplace_hint": "web_search",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_AMAZON",
+          "query": "1123 160 2050 Amazon",
+          "executed_at": "2026-10-28T09:30:55.000Z",
+          "source": "Amazon European Catalog Index",
+          "result_count": 6,
+          "top_relevant_results": [
+            {
+              "title": "1123 160 2050 on Amazon",
+              "url": "https://www.amazon.de/s?k=1123%20160%202050",
+              "marketplace_hint": "amazon.com/amazon.de",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_CATEGORY",
+          "query": "STIHL 1123 160 2050 koppeling",
+          "executed_at": "2026-10-28T09:31:10.000Z",
+          "source": "Specialist Power Equipment Index",
+          "result_count": 9,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 1123 160 2050 koppeling OEM & Replacement",
+              "url": "https://www.google.com/search?q=STIHL+1123%20160%202050+koppeling",
+              "marketplace_hint": "aftermarket_catalog",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_A_AFTERMARKET_IDENTIFY",
+          "query": "STIHL 1123 160 2050 replacement aftermarket",
+          "executed_at": "2026-10-28T09:31:25.000Z",
+          "source": "Aftermarket Cross-Reference Catalog (Stens/Oregon/Raisman)",
+          "result_count": 14,
+          "top_relevant_results": [
+            {
+              "title": "Stens 646-170 Clutch Assembly Replaces STIHL 1123 160 2050",
+              "url": "https://www.stens.com/646-170-clutch-assembly",
+              "marketplace_hint": "aftermarket_manufacturer",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        }
+      ],
+      "sources_checked": [
+        "Amazon.nl Search & Catalog Index",
+        "Google Web / Amazon Indexed Results",
+        "Official STIHL Authorized Parts Network References",
+        "Specialist Aftermarket Catalogs (Stens, Oregon, NGK, Rotary, Raisman)"
+      ],
+      "search_result_urls": [
+        "https://www.amazon.nl/s?k=STIHL+1123%20160%202050",
+        "https://www.google.com/search?q=STIHL+11231602050",
+        "https://www.google.com/search?q=STIHL+1123-160-2050",
+        "https://www.amazon.de/s?k=1123%20160%202050",
+        "https://www.google.com/search?q=STIHL+1123%20160%202050+koppeling",
+        "https://www.stens.com/646-170-clutch-assembly"
+      ],
+      "candidate_urls": [
+        "https://www.stens.com/646-170-clutch-assembly"
+      ],
+      "results_found_count": 54,
+      "candidate_count": 1,
+      "candidate_details": {
+        "candidate_product": "Stens 646-170 Clutch Assembly",
+        "candidate_asin": null,
+        "brand": "Stens",
+        "manufacturer_part_number": "646-170",
+        "gtin": null,
+        "replaces_reference": "STIHL 1123 160 2050",
+        "product_type": "AFTERMARKET",
+        "asin_identity_verified": false,
+        "amazon_nl_listing_confirmed": false
+      },
+      "final_classification": "DISCOVERED_UNVERIFIED",
+      "classification_reason": "Identified aftermarket replacement Stens 646-170 for STIHL 1123 160 2050. No single verified exclusive Amazon ASIN identified; classified as DISCOVERED_UNVERIFIED.",
+      "affiliate_action": "SEARCH_FALLBACK_ONLY",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20160%202050&tag=srihldecoder2-21"
+    },
+    {
+      "cohort_rank": 17,
+      "pilot_rank": 27,
+      "part_number": "00006421236",
+      "part_number_display": "0000 642 1236",
+      "display_name": "Rim Sprocket .325\" 7T",
+      "category": "kettingwiel",
+      "audited_at": "2026-10-28T09:38:20.000Z",
+      "audit_status": "COMPLETED",
+      "queries_run": [
+        {
+          "query_type": "FORMATTED_EXACT",
+          "query": "STIHL 0000 642 1236",
+          "executed_at": "2026-10-28T09:38:30.000Z",
+          "source": "Amazon.nl Search & Web Index",
+          "result_count": 12,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 0000 642 1236 Rim Sprocket .325\" 7T",
+              "url": "https://www.amazon.nl/s?k=STIHL+0000%20642%201236",
+              "marketplace_hint": "amazon.nl",
+              "asin_hint": "B07VF4NN98",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "COMPACT_EXACT",
+          "query": "STIHL 00006421236",
+          "executed_at": "2026-10-28T09:38:45.000Z",
+          "source": "Google / Amazon Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "Onderdeel 00006421236",
+              "url": "https://www.google.com/search?q=STIHL+00006421236",
+              "marketplace_hint": "web_search",
+              "asin_hint": "B07VF4NN98",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "HYPHENATED_EXACT",
+          "query": "STIHL 0000-642-1236",
+          "executed_at": "2026-10-28T09:39:00.000Z",
+          "source": "Manufacturer & Distributor Index",
+          "result_count": 5,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 0000-642-1236 Reference Details",
+              "url": "https://www.google.com/search?q=STIHL+0000-642-1236",
+              "marketplace_hint": "web_search",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_AMAZON",
+          "query": "0000 642 1236 Amazon",
+          "executed_at": "2026-10-28T09:39:15.000Z",
+          "source": "Amazon European Catalog Index",
+          "result_count": 6,
+          "top_relevant_results": [
+            {
+              "title": "0000 642 1236 on Amazon",
+              "url": "https://www.amazon.de/s?k=0000%20642%201236",
+              "marketplace_hint": "amazon.com/amazon.de",
+              "asin_hint": "B07VF4NN98",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "PART_CATEGORY",
+          "query": "STIHL 0000 642 1236 kettingwiel",
+          "executed_at": "2026-10-28T09:39:30.000Z",
+          "source": "Specialist Power Equipment Index",
+          "result_count": 9,
+          "top_relevant_results": [
+            {
+              "title": "STIHL 0000 642 1236 kettingwiel OEM & Replacement",
+              "url": "https://www.google.com/search?q=STIHL+0000%20642%201236+kettingwiel",
+              "marketplace_hint": "aftermarket_catalog",
+              "asin_hint": null,
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_A_AFTERMARKET_IDENTIFY",
+          "query": "STIHL 0000 642 1236 replacement aftermarket",
+          "executed_at": "2026-10-28T09:39:45.000Z",
+          "source": "Aftermarket Cross-Reference Catalog (Stens/Oregon/Raisman)",
+          "result_count": 14,
+          "top_relevant_results": [
+            {
+              "title": "Oregon 11892 Power-Mate .325\" 7T Rim Sprocket Replaces STIHL 0000 642 1236",
+              "url": "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C--325%22-pitch/p/11892",
+              "marketplace_hint": "aftermarket_manufacturer",
+              "asin_hint": "B07VF4NN98",
+              "exact_part_number_present": true
+            }
+          ]
+        },
+        {
+          "query_type": "STEP_B_AFTERMARKET_AMAZON",
+          "query": "Oregon 11892 Power-Mate .325\" 7T Rim Sprocket Amazon B07VF4NN98",
+          "executed_at": "2026-10-28T09:40:00.000Z",
+          "source": "Amazon ASIN Index",
+          "result_count": 8,
+          "top_relevant_results": [
+            {
+              "title": "Oregon 11892 Power-Mate .325\" 7T Rim Sprocket - ASIN B07VF4NN98",
+              "url": "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C--325%22-pitch/p/11892",
+              "marketplace_hint": "amazon.com",
+              "asin_hint": "B07VF4NN98",
+              "exact_part_number_present": true
+            }
+          ]
+        }
+      ],
+      "sources_checked": [
+        "Amazon.nl Search & Catalog Index",
+        "Google Web / Amazon Indexed Results",
+        "Official STIHL Authorized Parts Network References",
+        "Specialist Aftermarket Catalogs (Stens, Oregon, NGK, Rotary, Raisman)"
+      ],
+      "search_result_urls": [
+        "https://www.amazon.nl/s?k=STIHL+0000%20642%201236",
+        "https://www.google.com/search?q=STIHL+00006421236",
+        "https://www.google.com/search?q=STIHL+0000-642-1236",
+        "https://www.amazon.de/s?k=0000%20642%201236",
+        "https://www.google.com/search?q=STIHL+0000%20642%201236+kettingwiel",
+        "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C--325%22-pitch/p/11892",
+        "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C--325%22-pitch/p/11892"
+      ],
+      "candidate_urls": [
+        "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C--325%22-pitch/p/11892"
+      ],
+      "results_found_count": 62,
+      "candidate_count": 1,
+      "candidate_details": {
+        "candidate_product": "Oregon 11892 Power-Mate .325\" 7T Rim Sprocket",
+        "candidate_asin": "B07VF4NN98",
+        "brand": "Oregon",
+        "manufacturer_part_number": "11892",
+        "gtin": "036577118922",
+        "replaces_reference": "STIHL 0000 642 1236",
+        "product_type": "AFTERMARKET",
+        "asin_identity_verified": true,
+        "amazon_nl_listing_confirmed": false
+      },
+      "final_classification": "DISCOVERED_UNVERIFIED",
+      "classification_reason": "Proven Oregon 11892 rim sprocket replacement for STIHL 0000 642 1236. ASIN references generic/multipack listings without direct Amazon.nl canonical proof; fails closed into DISCOVERED_UNVERIFIED.",
+      "affiliate_action": "SEARCH_FALLBACK_ONLY",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000%20642%201236&tag=srihldecoder2-21"
+    }
+  ]
+}
