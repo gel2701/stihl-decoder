@@ -147,17 +147,25 @@ export function importVerifiedOffers(options = {}) {
     }
 
     // 5. Strict Contract Check
+    const matchType = item.match_type || item.classification || MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT;
+    const isAftermarket = matchType === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE || matchType === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT;
+
     const candidateRecord = {
       part_number: normPart,
       asin: cleanAsin,
       marketplace: (item.marketplace || 'amazon.nl').trim().toLowerCase(),
-      match_type: item.match_type || MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT,
+      match_type: matchType,
       verification_status: item.verification_status || VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
       verification_method: item.verification_method || VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
       verified_at: item.verified_at || new Date().toISOString(),
-      evidence_source: item.evidence_source || '',
-      product_type: item.product_type || (item.match_type === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE ? PRODUCT_TYPES.AFTERMARKET : PRODUCT_TYPES.OEM),
-      aftermarket_brand: item.aftermarket_brand || null,
+      evidence_source: item.evidence_source || (Array.isArray(item.evidence_sources) && item.evidence_sources[0]?.url ? item.evidence_sources[0].url : ''),
+      evidence_sources: Array.isArray(item.evidence_sources) ? item.evidence_sources : (item.evidence_source ? [{ type: 'REFERENCE', url: item.evidence_source, retrieved_at: item.verified_at || new Date().toISOString() }] : []),
+      proof: item.proof || null,
+      product_type: item.product_type || (isAftermarket ? PRODUCT_TYPES.AFTERMARKET : PRODUCT_TYPES.OEM),
+      aftermarket_brand: item.aftermarket_brand || item.brand || null,
+      brand: item.brand || item.aftermarket_brand || null,
+      manufacturer_part_number: item.manufacturer_part_number || item.manufacturer_part || null,
+      gtin: item.gtin || item.gtin_if_known || item.ean || item.upc || null,
       price: null,
       in_stock: null,
       enabled: true

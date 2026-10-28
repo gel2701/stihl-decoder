@@ -24,10 +24,14 @@ import {
 
 export const MATCH_CLASSIFICATIONS = {
   OEM_STIHL_EXACT: 'OEM_STIHL_EXACT',
+  VERIFIED_OEM_EXACT: 'VERIFIED_OEM_EXACT',
   AFTERMARKET_EXACT_REFERENCE: 'AFTERMARKET_EXACT_REFERENCE',
+  VERIFIED_AFTERMARKET_EXACT: 'VERIFIED_AFTERMARKET_EXACT',
+  DISCOVERED_UNVERIFIED: 'DISCOVERED_UNVERIFIED',
   AMBIGUOUS: 'AMBIGUOUS',
   REJECTED: 'REJECTED',
-  NOT_FOUND: 'NOT_FOUND'
+  NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH: 'NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH',
+  NOT_FOUND: 'NOT_FOUND' // Backwards-compatible alias
 };
 
 export const VERIFICATION_METHODS = {
@@ -69,12 +73,37 @@ export class AmazonExactMatchVerifier {
       errors.push(`Invalid or missing match classification: ${classification}`);
     }
 
-    // 3. For NOT_FOUND or REJECTED, candidate does not require ASIN
-    if (classification === MATCH_CLASSIFICATIONS.NOT_FOUND) {
+    // 3. For NOT_FOUND or NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH or REJECTED:
+    if (classification === MATCH_CLASSIFICATIONS.NOT_FOUND || classification === MATCH_CLASSIFICATIONS.NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH) {
+      if (candidate.candidate_count > 0 || candidate.results_found_count > 0 || candidate.candidate_asin || candidate.candidate_product || (Array.isArray(candidate.candidate_urls) && candidate.candidate_urls.length > 0)) {
+        errors.push('NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH is forbidden when candidate products, ASINs, or sources are found');
+      }
+      if (classification === MATCH_CLASSIFICATIONS.NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH) {
+        if (!Array.isArray(candidate.queries_run) || candidate.queries_run.length === 0) {
+          errors.push('NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH requires executed queries_run audit');
+        }
+        if (!Array.isArray(candidate.sources_checked) || candidate.sources_checked.length === 0) {
+          errors.push('NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH requires sources_checked audit');
+        }
+      }
       return {
         valid: errors.length === 0,
         errors,
-        classification: MATCH_CLASSIFICATIONS.NOT_FOUND
+        classification: classification
+      };
+    }
+
+    if (classification === MATCH_CLASSIFICATIONS.DISCOVERED_UNVERIFIED) {
+      if (!candidate.candidate_asin && !candidate.asin && !candidate.candidate_product && !candidate.replaces_reference && (!Array.isArray(candidate.candidate_urls) || candidate.candidate_urls.length === 0)) {
+        errors.push('DISCOVERED_UNVERIFIED requires candidate ASIN, product identity, or candidate reference URLs');
+      }
+      if (!candidate.reason && !candidate.classification_reason) {
+        errors.push('DISCOVERED_UNVERIFIED must document classification reason');
+      }
+      return {
+        valid: errors.length === 0,
+        errors,
+        classification: MATCH_CLASSIFICATIONS.DISCOVERED_UNVERIFIED
       };
     }
 
@@ -89,7 +118,10 @@ export class AmazonExactMatchVerifier {
       };
     }
 
-    // 4. For Verified ASIN Candidates (OEM_STIHL_EXACT or AFTERMARKET_EXACT_REFERENCE):
+    // 4. For Verified ASIN Candidates (OEM_STIHL_EXACT, VERIFIED_OEM_EXACT, AFTERMARKET_EXACT_REFERENCE, VERIFIED_AFTERMARKET_EXACT):
+    const isVerifiedOem = classification === MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT || classification === MATCH_CLASSIFICATIONS.VERIFIED_OEM_EXACT;
+    const isVerifiedAftermarket = classification === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE || classification === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT;
+
     // ASIN Validation
     if (!isValidAsin(candidate.asin)) {
       errors.push(`Invalid Amazon ASIN: ${candidate.asin}`);
@@ -112,8 +144,15 @@ export class AmazonExactMatchVerifier {
     }
 
     // Provenance / Evidence Source
-    if (!candidate.evidence_source || typeof candidate.evidence_source !== 'string' || candidate.evidence_source.trim().length < 5) {
+    const hasEvidenceString = typeof candidate.evidence_source === 'string' && candidate.evidence_source.trim().length >= 5;
+    const hasEvidenceSources = Array.isArray(candidate.evidence_sources) && candidate.evidence_sources.length > 0;
+    if (!hasEvidenceString && !hasEvidenceSources) {
       errors.push(`Explicit evidence source or provenance document is required`);
+    }
+
+    // Reject title-only matching without part number proof (Section 10, 31, 32)
+    if (candidate.title_only === true || (typeof candidate.evidence_source === 'string' && candidate.evidence_source.toLowerCase().includes('title-only matching without part number'))) {
+      errors.push('Title-only matching without explicit part number proof is strictly rejected');
     }
 
     // Verification Method
@@ -122,16 +161,30 @@ export class AmazonExactMatchVerifier {
     }
 
     // Product Type Classification
-    if (classification === MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT) {
+    if (isVerifiedOem) {
       if (candidate.product_type && candidate.product_type !== PRODUCT_TYPES.OEM) {
         errors.push(`OEM_STIHL_EXACT cannot have product_type "${candidate.product_type}"`);
       }
-    } else if (classification === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE) {
+    } else if (isVerifiedAftermarket) {
       if (candidate.product_type && candidate.product_type !== PRODUCT_TYPES.AFTERMARKET) {
         errors.push(`AFTERMARKET_EXACT_REFERENCE must specify product_type AFTERMARKET`);
       }
-      if (!candidate.aftermarket_brand || candidate.aftermarket_brand.toLowerCase().includes('stihl')) {
+      const brand = candidate.aftermarket_brand || candidate.brand;
+      if (!brand || brand.toLowerCase().includes('stihl')) {
         errors.push(`Aftermarket replacements must identify third-party brand and never claim to be STIHL OEM`);
+      }
+
+      // Structured proof validation (Section 31-33)
+      if (candidate.proof && typeof candidate.proof === 'object') {
+        if (candidate.proof.exact_part_number_found !== true) {
+          errors.push('Exact STIHL part number proof not found in listing context');
+        }
+        if (candidate.proof.asin_identity_verified !== true) {
+          errors.push('ASIN identity unverified');
+        }
+        if (candidate.proof.marketplace_verified !== true) {
+          errors.push('Marketplace availability unverified');
+        }
       }
     }
 
