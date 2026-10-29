@@ -100,9 +100,11 @@ export function isValidStructuredProof(proof, isAftermarket = false) {
  * @returns {boolean} True if a known mismatch is detected
  */
 export function isKnownPartNumberMismatch(partNumber, asin, productOrTitle = '') {
+  if (typeof partNumber !== 'string') return false;
   const norm = PartNormalizer.normalizePartNumber(partNumber);
-  const cleanAsin = (asin || '').trim().toUpperCase();
-  const title = (productOrTitle || '').toLowerCase();
+  if (!norm) return false;
+  const cleanAsin = typeof asin === 'string' ? asin.trim().toUpperCase() : '';
+  const title = typeof productOrTitle === 'string' ? productOrTitle.toLowerCase() : '';
 
   // Mismatch: 0000 400 7000 is BPMR7A; CMR6H is 0000 400 7011
   if (norm === '00004007000') {
@@ -120,9 +122,10 @@ export function isKnownPartNumberMismatch(partNumber, asin, productOrTitle = '')
  * @returns {boolean}
  */
 export function isProductionVerifiedAmazonOffer(candidate) {
-  if (!candidate || typeof candidate !== 'object') return false;
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return false;
 
-  // 1. Part Number
+  // 1. Part Number (type-guarded: non-strings are rejected, never coerced)
+  if (typeof candidate.part_number !== 'string') return false;
   const normPart = PartNormalizer.normalizePartNumber(candidate.part_number);
   if (!normPart || normPart.length !== 11) return false;
 
@@ -130,35 +133,41 @@ export function isProductionVerifiedAmazonOffer(candidate) {
   const classification = candidate.classification || candidate.match_type;
   if (!isProductionVerifiedClassification(classification)) return false;
 
-  // 3. Known Mismatch Check
-  if (isKnownPartNumberMismatch(normPart, candidate.asin, candidate.product || candidate.title || candidate.candidate_product)) {
-    return false;
-  }
-
-  // 4. ASIN
+  // 3. ASIN (type + format) - validated before any string-derived semantic check
   if (!isValidAsin(candidate.asin)) return false;
 
-  // 5. Marketplace
-  const marketplace = (candidate.marketplace || '').trim().toLowerCase();
+  // 4. Marketplace (type + value)
+  if (typeof candidate.marketplace !== 'string') return false;
+  const marketplace = candidate.marketplace.trim().toLowerCase();
   if (!ALLOWED_AMAZON_MARKETPLACES.has(marketplace)) return false;
 
-  // 6. Verification Status & Timestamp & Method
+  // 5. Verification Status & Timestamp & Method
   if (candidate.verification_status !== 'VERIFIED_EXACT_MATCH') return false;
   if (!isValidIsoTimestamp(candidate.verified_at)) return false;
   if (!candidate.verification_method || typeof candidate.verification_method !== 'string') return false;
 
-  // 7. Structured Proof
+  // 6. Descriptive identity fields must be strings when present (malformed input rejected)
+  for (const key of ['title', 'product', 'candidate_product']) {
+    if (candidate[key] !== undefined && candidate[key] !== null && typeof candidate[key] !== 'string') return false;
+  }
+
+  // 7. Known Mismatch Check (runs only on safe, validated strings)
+  if (isKnownPartNumberMismatch(normPart, candidate.asin, candidate.product || candidate.title || candidate.candidate_product)) {
+    return false;
+  }
+
+  // 8. Structured Proof
   const isAftermarket = classification === 'VERIFIED_AFTERMARKET_EXACT' || classification === 'AFTERMARKET_EXACT_REFERENCE';
   if (!isValidStructuredProof(candidate.proof, isAftermarket)) return false;
 
-  // 8. Evidence Sources
+  // 9. Evidence Sources
   if (!Array.isArray(candidate.evidence_sources) || candidate.evidence_sources.length === 0) {
     return false;
   }
   const hasInvalidSource = candidate.evidence_sources.some(src => !isValidEvidenceSource(src));
   if (hasInvalidSource) return false;
 
-  // 9. Aftermarket Brand & MPN Constraint
+  // 10. Aftermarket Brand & MPN Constraint
   if (isAftermarket) {
     const brand = candidate.aftermarket_brand || candidate.brand;
     if (!brand || typeof brand !== 'string' || brand.toLowerCase().includes('stihl')) {
@@ -170,7 +179,7 @@ export function isProductionVerifiedAmazonOffer(candidate) {
     }
   }
 
-  // 10. Volatile Facts Disallowance
+  // 11. Volatile Facts Disallowance
   if (candidate.price !== null && candidate.price !== undefined) return false;
   if (candidate.in_stock !== null && candidate.in_stock !== undefined) return false;
 

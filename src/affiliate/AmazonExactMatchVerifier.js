@@ -163,7 +163,7 @@ export class AmazonExactMatchVerifier {
     }
 
     // Marketplace Validation
-    const marketplace = (candidate.marketplace || '').trim().toLowerCase();
+    const marketplace = typeof candidate.marketplace === 'string' ? candidate.marketplace.trim().toLowerCase() : '';
     if (!ALLOWED_AMAZON_MARKETPLACES.has(marketplace)) {
       errors.push(`Marketplace "${candidate.marketplace}" is not in allowed set (${Array.from(ALLOWED_AMAZON_MARKETPLACES).join(', ')})`);
     }
@@ -226,7 +226,7 @@ export class AmazonExactMatchVerifier {
         errors.push(`AFTERMARKET_EXACT_REFERENCE must specify product_type AFTERMARKET`);
       }
       const brand = candidate.aftermarket_brand || candidate.brand;
-      if (!brand || brand.toLowerCase().includes('stihl')) {
+      if (!brand || typeof brand !== 'string' || brand.toLowerCase().includes('stihl')) {
         errors.push(`Aftermarket replacements must identify third-party brand and never claim to be STIHL OEM`);
       }
       const mpn = candidate.manufacturer_part_number || candidate.manufacturer_part;
