@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "PHASE_57B",
+  "batch": 1,
+  "final_status": "PASS",
+  "baseline_main_sha": "b62dc9c429f7c963c3455e317e6adeebb5745844",
+  "expected_main_sha": "b62dc9c429f7c963c3455e317e6adeebb5745844",
+  "final_main_sha": "b62dc9c429f7c963c3455e317e6adeebb5745844",
+  "catalog_freeze": {
+    "canonical_parts": 17082,
+    "models": 956,
+    "attachments": 25,
+    "non_machine": 52,
+    "powered": 879,
+    "resolved_drive": 517,
+    "unknown_drive": 362,
+    "fitments": 175106,
+    "configurations": 766,
+    "evidence": 208412,
+    "contexts": 814,
+    "indexable": 843,
+    "sitemap_urls": 1024
+  },
+  "amazon": {
+    "marketplace_primary": "amazon.nl",
+    "amazon_api_available": false,
+    "amazon_api_used": false,
+    "associate_tag": "srihldecoder2-21",
+    "associates_tag_de_configured": false,
+    "amazon_de_links_allowed": false
+  },
+  "batch": {
+    "size_selected": 25,
+    "audited": 25,
+    "verified_oem_exact": 0,
+    "verified_aftermarket_exact": 0,
+    "discovered_unverified": 0,
+    "ambiguous": 0,
+    "rejected": 0,
+    "not_found_after_evidenced_search": 25,
+    "unaudited": 0,
+    "classification_sum": 25
+  },
+  "lane_a": {
+    "status": "UNVERIFIED_REMAIN",
+    "candidates": [
+      {
+        "part_number": "11411201600",
+        "part_number_display": "1141 120 1600",
+        "candidate_asin": "B01LXML5G0",
+        "brand": "Stens",
+        "manufacturer_part_number": "605-205",
+        "current_status": "DISCOVERED_UNVERIFIED",
+        "reason": "Amazon.nl marketplace presence not re-verified live during Batch 1 (automated access to Amazon blocked); prior evidence insufficient for promotion"
+      },
+      {
+        "part_number": "00006421236",
+        "part_number_display": "0000 642 1236",
+        "candidate_asin": "B07VF4NN98",
+        "brand": "Oregon",
+        "manufacturer_part_number": "11892",
+        "current_status": "DISCOVERED_UNVERIFIED",
+        "reason": "Amazon.nl marketplace presence not re-verified live during Batch 1; prior evidence insufficient for promotion"
+      }
+    ]
+  },
+  "verified_promotions": [],
+  "affiliate_state_before": {
+    "verified_direct_asin_mappings": 0,
+    "amazon_search_fallbacks": 17082,
+    "associate_tag": "srihldecoder2-21"
+  },
+  "affiliate_state_after": {
+    "verified_direct_asin_mappings": 0,
+    "amazon_search_fallbacks": 17082,
+    "associate_tag": "srihldecoder2-21"
+  }
+}
