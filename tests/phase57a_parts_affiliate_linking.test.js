@@ -73,6 +73,18 @@ test('Phase 57A Test 4: Valid OEM candidate passes contract', () => {
     verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
     verified_at: '2026-10-27T12:00:00Z',
     evidence_source: 'Official STIHL Packaging Proof with ASIN inspection',
+    evidence_sources: [{
+      type: 'OFFICIAL_CATALOG',
+      url: 'https://example.com/stihl/11231602050',
+      title: 'STIHL Packaging Proof',
+      claim: 'Part 1123 160 2050 verified packaging',
+      retrieved_at: '2026-10-27T12:00:00Z'
+    }],
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
     price: null,
     in_stock: null
   };
@@ -90,10 +102,24 @@ test('Phase 57A Test 5: Valid aftermarket candidate passes contract', () => {
     classification: MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE,
     product_type: PRODUCT_TYPES.AFTERMARKET,
     aftermarket_brand: 'Haishine Replacement Parts',
+    manufacturer_part_number: 'HSH-11231602050',
     verification_status: VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
     verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
     verified_at: '2026-10-27T12:00:00Z',
     evidence_source: 'Listing details explicitly reference STIHL OEM 1123 160 2050',
+    evidence_sources: [{
+      type: 'MANUFACTURER_CROSS_REF',
+      url: 'https://example.com/haishine/11231602050',
+      title: 'Haishine Cross Reference',
+      claim: 'Replaces STIHL OEM 1123 160 2050',
+      retrieved_at: '2026-10-27T12:00:00Z'
+    }],
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true,
+      replacement_reference_verified: true
+    },
     price: null,
     in_stock: null
   };
@@ -265,8 +291,22 @@ test('Phase 57A Test 16: Resolver returns direct verified offer when override ex
     asin: 'B001TESTAS',
     marketplace: 'amazon.nl',
     enabled: true,
+    classification: MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT,
     verification_status: VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
-    verified_at: '2026-10-27T12:00:00Z'
+    verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
+    verified_at: '2026-10-27T12:00:00Z',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl/11231602050',
+      title: 'Catalog',
+      claim: 'Part',
+      retrieved_at: '2026-10-27T12:00:00Z'
+    }]
   };
 
   const provider = new AmazonAffiliateProvider({
@@ -314,9 +354,22 @@ test('Phase 57A Test 18: OEM UI copy presents correct verified claims', () => {
         marketplace: 'amazon.nl',
         enabled: true,
         verification_status: VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
+        verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
         verified_at: '2026-10-27T12:00:00Z',
         match_type: MATCH_CLASSIFICATIONS.OEM_STIHL_EXACT,
-        product_type: PRODUCT_TYPES.OEM
+        product_type: PRODUCT_TYPES.OEM,
+        proof: {
+          exact_part_number_found: true,
+          asin_identity_verified: true,
+          marketplace_verified: true
+        },
+        evidence_sources: [{
+          type: 'CATALOG',
+          url: 'https://example.com/stihl/11231602050',
+          title: 'Catalog',
+          claim: 'Part',
+          retrieved_at: '2026-10-27T12:00:00Z'
+        }]
       }]
     };
     fs.writeFileSync(offersDocPath, JSON.stringify(mockOffers));
@@ -346,10 +399,25 @@ test('Phase 57A Test 19: Aftermarket UI copy presents transparent non-OEM badge'
     marketplace: 'amazon.nl',
     enabled: true,
     verification_status: VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
+    verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
     verified_at: '2026-10-27T12:00:00Z',
     match_type: MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE,
     product_type: PRODUCT_TYPES.AFTERMARKET,
-    aftermarket_brand: 'Haishine'
+    aftermarket_brand: 'Haishine',
+    manufacturer_part_number: 'HSH-11231602050',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true,
+      replacement_reference_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/haishine/11231602050',
+      title: 'Catalog',
+      claim: 'Part',
+      retrieved_at: '2026-10-27T12:00:00Z'
+    }]
   };
 
   const provider = new AmazonAffiliateProvider({

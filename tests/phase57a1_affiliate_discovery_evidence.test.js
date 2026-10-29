@@ -227,14 +227,23 @@ describe('Phase 57A.1 — Parts Affiliate Linking Evidence & Discovery Audit', (
       verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
       verified_at: '2026-10-28T09:00:00.000Z',
       evidence_source: 'https://www.tractorsupply.com/tsc/product/stens-air-filter-605-205',
+      evidence_sources: [{
+        type: 'MANUFACTURER_CROSS_REF',
+        url: 'https://www.tractorsupply.com/tsc/product/stens-air-filter-605-205',
+        title: 'Stens Air Filter 605-205',
+        claim: 'Replaces STIHL 1141 120 1600',
+        retrieved_at: '2026-10-28T09:00:00.000Z'
+      }],
       product_type: PRODUCT_TYPES.AFTERMARKET,
       aftermarket_brand: 'Stens',
+      manufacturer_part_number: '605-205',
       price: null,
       in_stock: null,
       proof: {
         exact_part_number_found: true,
         asin_identity_verified: true,
-        marketplace_verified: true
+        marketplace_verified: true,
+        replacement_reference_verified: true
       }
     };
     const validRes = AmazonExactMatchVerifier.validateCandidate(validCandidate);
@@ -342,9 +351,26 @@ describe('Phase 57A.1 — Parts Affiliate Linking Evidence & Discovery Audit', (
           part_number: '11411201600',
           asin: 'B01LXML5G0',
           marketplace: 'amazon.nl',
+          classification: 'VERIFIED_AFTERMARKET_EXACT',
           verification_status: 'VERIFIED_EXACT_MATCH',
+          verification_method: 'MANUAL_CATALOG_AUDIT',
           verified_at: '2026-10-28T09:00:00.000Z',
-          enabled: true
+          aftermarket_brand: 'Stens',
+          manufacturer_part_number: '605-205',
+          enabled: true,
+          proof: {
+            exact_part_number_found: true,
+            asin_identity_verified: true,
+            marketplace_verified: true,
+            replacement_reference_verified: true
+          },
+          evidence_sources: [{
+            type: 'MANUFACTURER_CROSS_REF',
+            url: 'https://www.tractorsupply.com/tsc/product/stens-air-filter-605-205',
+            title: 'Stens 605-205 Air Filter',
+            claim: 'Replaces STIHL 1141 120 1600',
+            retrieved_at: '2026-10-28T09:00:00.000Z'
+          }]
         }
       ]
     });

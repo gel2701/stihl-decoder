@@ -41,8 +41,22 @@ const validOverride = {
   asin: 'B07TEST123',
   marketplace: 'amazon.nl',
   enabled: true,
+  classification: 'OEM_STIHL_EXACT',
   verification_status: VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
-  verified_at: '2026-10-15T12:00:00Z'
+  verification_method: 'MANUAL_CATALOG_AUDIT',
+  verified_at: '2026-10-15T12:00:00Z',
+  proof: {
+    exact_part_number_found: true,
+    asin_identity_verified: true,
+    marketplace_verified: true
+  },
+  evidence_sources: [{
+    type: 'CATALOG',
+    url: 'https://example.com/stihl/11231602050',
+    title: 'STIHL Technical Catalog',
+    claim: 'Clutch for MS 250',
+    retrieved_at: '2026-10-15T12:00:00Z'
+  }]
 };
 assert.strictEqual(isValidManualAsinOverride(validOverride), true);
 

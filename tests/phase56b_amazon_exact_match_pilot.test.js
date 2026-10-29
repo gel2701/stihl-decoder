@@ -122,6 +122,18 @@ test('Phase 56B - Test 4: Strict Match Contract Validation (AmazonExactMatchVeri
     verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
     verified_at: '2026-10-22T00:00:00Z',
     evidence_source: 'STIHL Technical Catalog 2026 Page 144 / Verified OEM packaging',
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl/11231602050',
+      title: 'STIHL Technical Catalog 2026 Page 144',
+      claim: 'Verified OEM packaging for 1123 160 2050',
+      retrieved_at: '2026-10-22T00:00:00Z'
+    }],
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
     product_type: PRODUCT_TYPES.OEM,
     price: null,
     in_stock: null
@@ -140,8 +152,22 @@ test('Phase 56B - Test 4: Strict Match Contract Validation (AmazonExactMatchVeri
     verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
     verified_at: '2026-10-22T00:00:00Z',
     evidence_source: 'Sawzilla Parts Cross-Reference Catalog 2026',
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/sawzilla/11236403200',
+      title: 'Sawzilla Parts Cross-Reference Catalog 2026',
+      claim: 'Replaces STIHL 1123 640 3200',
+      retrieved_at: '2026-10-22T00:00:00Z'
+    }],
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true,
+      replacement_reference_verified: true
+    },
     product_type: PRODUCT_TYPES.AFTERMARKET,
     aftermarket_brand: 'Sawzilla Parts',
+    manufacturer_part_number: 'SZ-6403200',
     price: null,
     in_stock: null
   };
