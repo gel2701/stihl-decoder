@@ -39,6 +39,7 @@ import {
 } from '../src/affiliate/AmazonExactMatchVerifier.js';
 import {
   AmazonAffiliateProvider,
+  AMAZON_MATCH_TYPES,
   isValidManualAsinOverride
 } from '../src/affiliate/AmazonAffiliateProvider.js';
 import {
@@ -267,7 +268,14 @@ test('Phase 57A.2 - Test 11: evidence_sources:[{}] rejected', () => {
     verification_status: 'VERIFIED_EXACT_MATCH',
     verification_method: 'MANUAL_CATALOG_AUDIT',
     verified_at: '2026-10-28T20:25:00.000Z',
-    proof: { exact_part_number_found: true, asin_identity_verified: true, marketplace_verified: true },
+    brand: 'Stens',
+    manufacturer_part_number: '605-205',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true,
+      replacement_reference_verified: true
+    },
     evidence_sources: [{}]
   };
 
@@ -417,7 +425,14 @@ test('Phase 57A.2 - Test 18: 0000 400 7000 + B001RMA5S2 rejected', () => {
     verification_method: 'MANUAL_CATALOG_AUDIT',
     verified_at: '2026-10-28T20:25:00.000Z',
     product: 'NGK CMR6H',
-    proof: { exact_part_number_found: true, asin_identity_verified: true, marketplace_verified: true },
+    brand: 'NGK',
+    manufacturer_part_number: 'CMR6H',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true,
+      replacement_reference_verified: true
+    },
     evidence_sources: [{ type: 'REF', url: 'https://example.com', title: 'T', claim: 'C', retrieved_at: '2026-10-28T20:25:00.000Z' }]
   };
 
@@ -462,4 +477,318 @@ test('Phase 57A.2 - Test 20: Catalog and affiliate freeze invariants intact', ()
   assert.strictEqual(offers[0].is_verified, false);
   assert.strictEqual(offers[0].tag, 'srihldecoder2-21');
   assert.ok(offers[0].url.includes('https://amazon.nl/s?k=STIHL'));
+});
+
+// ---------------------------------------------------------------------------
+// Phase 57A.3 — Production Offer Contract Final Closure
+// ---------------------------------------------------------------------------
+
+const VERIFIED_AT = '2026-10-28T20:25:00.000Z';
+const AMAZON_TAG = 'srihldecoder2-21';
+
+function structuredEvidence() {
+  return [{
+    type: 'OFFICIAL_CATALOG',
+    url: 'https://example.com/stihl/catalog/11411201600',
+    title: 'STIHL official catalog entry 1141 120 1600',
+    claim: 'Exact OEM part 1141 120 1600 air filter confirmed',
+    retrieved_at: VERIFIED_AT
+  }];
+}
+
+function validOemRecord() {
+  return {
+    part_number: '11411201600',
+    asin: 'B01LXML5G0',
+    marketplace: 'amazon.nl',
+    classification: 'VERIFIED_OEM_EXACT',
+    verification_status: 'VERIFIED_EXACT_MATCH',
+    verification_method: 'MANUAL_CATALOG_AUDIT',
+    verified_at: VERIFIED_AT,
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: structuredEvidence()
+  };
+}
+
+function validAftermarketRecord() {
+  return {
+    part_number: '11411201600',
+    asin: 'B01LXML5G0',
+    marketplace: 'amazon.nl',
+    classification: 'VERIFIED_AFTERMARKET_EXACT',
+    verification_status: 'VERIFIED_EXACT_MATCH',
+    verification_method: 'MANUAL_CATALOG_AUDIT',
+    verified_at: VERIFIED_AT,
+    aftermarket_brand: 'Stens',
+    manufacturer_part_number: '605-205',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true,
+      replacement_reference_verified: true
+    },
+    evidence_sources: [{
+      type: 'MANUFACTURER_CROSS_REF',
+      url: 'https://example.com/stens/605-205',
+      title: 'Stens 605-205 air filter cross reference',
+      claim: 'Stens 605-205 replaces STIHL 1141 120 1600',
+      retrieved_at: VERIFIED_AT
+    }]
+  };
+}
+
+function importDryRun(items, fileName) {
+  const tempFile = path.join(outDir, fileName);
+  fs.writeFileSync(tempFile, JSON.stringify(items, null, 2) + '\n');
+  const result = importVerifiedOffers({ file: tempFile, dryRun: true });
+  fs.unlinkSync(tempFile);
+  return result;
+}
+
+function providerOffersFor(override) {
+  process.env.AMAZON_AFFILIATE_ENABLED = 'true';
+  process.env.AMAZON_ASSOCIATE_TAG = AMAZON_TAG;
+  const provider = new AmazonAffiliateProvider({
+    marketplace: 'amazon.nl',
+    manualOverrides: override ? [{ part_number: '11411201600', enabled: true, ...override }] : []
+  });
+  return provider.getOffers({ partNumber: '1141 120 1600' });
+}
+
+// Counters for Phase 57A.3 hard gates, derived from actual test outcomes.
+const hardGates = {
+  DIRECT_OVERRIDE_WITHOUT_CLASSIFICATION_ACCEPTED: 0,
+  DIRECT_OVERRIDE_WITHOUT_PROOF_ACCEPTED: 0,
+  DIRECT_OVERRIDE_WITHOUT_EVIDENCE_ACCEPTED: 0,
+  AFTERMARKET_WITHOUT_REPLACEMENT_PROOF_ACCEPTED: 0,
+  LEGACY_VERIFIED_CLASS_WITHOUT_PROOF_ACCEPTED: 0,
+  SYNTHETIC_PROVENANCE_FROM_LEGACY_STRING: 0,
+  AUTO_GENERATED_PRODUCTION_PROOF: 0,
+  UNVERIFIED_RECORDS_RENDERED_AS_DIRECT_PRODUCT: 0,
+  KNOWN_WRONG_ASIN_PART_MAPPING_ACCEPTED: 0,
+  INVALID_DIRECT_ASIN_MAPPINGS: 0
+};
+
+function assertSearchFallbackOnly(offers, message) {
+  assert.strictEqual(offers.length, 1, `${message}: exactly one search offer expected`);
+  assert.strictEqual(offers[0].match_type, AMAZON_MATCH_TYPES.SEARCH_LINK, `${message}: must fall back to search`);
+  assert.strictEqual(offers[0].is_verified, false, `${message}: must not be marked verified`);
+  assert.strictEqual(offers[0].asin, null, `${message}: must not expose an ASIN`);
+  assert.ok(!offers[0].url.includes('/dp/'), `${message}: must not emit a /dp/ product URL`);
+}
+
+test('Phase 57A.3 - Test 21: Provider rejects override without classification', () => {
+  const { classification, match_type, ...override } = validOemRecord();
+  const offers = providerOffersFor(override);
+  if (offers[0].match_type !== AMAZON_MATCH_TYPES.SEARCH_LINK) hardGates.DIRECT_OVERRIDE_WITHOUT_CLASSIFICATION_ACCEPTED++;
+  assertSearchFallbackOnly(offers, 'Missing classification');
+  assert.strictEqual(isValidManualAsinOverride({ ...override, enabled: true }), false);
+});
+
+test('Phase 57A.3 - Test 22: Provider rejects override without proof', () => {
+  const { proof, ...override } = validOemRecord();
+  const offers = providerOffersFor(override);
+  if (offers[0].match_type !== AMAZON_MATCH_TYPES.SEARCH_LINK) hardGates.DIRECT_OVERRIDE_WITHOUT_PROOF_ACCEPTED++;
+  assertSearchFallbackOnly(offers, 'Missing proof');
+  assert.strictEqual(isValidManualAsinOverride({ ...override, enabled: true }), false);
+});
+
+test('Phase 57A.3 - Test 23: Provider rejects override without evidence_sources', () => {
+  const { evidence_sources, ...override } = validOemRecord();
+  const offers = providerOffersFor(override);
+  if (offers[0].match_type !== AMAZON_MATCH_TYPES.SEARCH_LINK) hardGates.DIRECT_OVERRIDE_WITHOUT_EVIDENCE_ACCEPTED++;
+  assertSearchFallbackOnly(offers, 'Missing evidence');
+  assert.strictEqual(isValidManualAsinOverride({ ...override, enabled: true }), false);
+});
+
+test('Phase 57A.3 - Test 24: Aftermarket without replacement_reference_verified rejected', () => {
+  const { replacement_reference_verified, ...proofWithoutReplacement } = validAftermarketRecord().proof;
+  assert.strictEqual(replacement_reference_verified, true);
+  assert.strictEqual(isValidStructuredProof(proofWithoutReplacement, true), false);
+  assert.strictEqual(isValidStructuredProof({ ...proofWithoutReplacement, replacement_reference_verified: undefined }, true), false);
+  assert.strictEqual(isValidStructuredProof({ ...proofWithoutReplacement, replacement_reference_verified: null }, true), false);
+
+  const override = { ...validAftermarketRecord(), proof: proofWithoutReplacement };
+  const offers = providerOffersFor(override);
+  if (offers[0].match_type !== AMAZON_MATCH_TYPES.SEARCH_LINK) hardGates.AFTERMARKET_WITHOUT_REPLACEMENT_PROOF_ACCEPTED++;
+  assertSearchFallbackOnly(offers, 'Aftermarket without replacement proof');
+
+  const result = importDryRun([override], 'temp_test_a3_aftermarket_no_replacement.json');
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.rejected.length, 1);
+  assert.ok(result.rejected[0].reason.includes('proof.replacement_reference_verified must be true'));
+});
+
+test('Phase 57A.3 - Test 25: Legacy OEM class without proof rejected by importer', () => {
+  const { proof, ...legacyOem } = { ...validOemRecord(), match_type: 'OEM_STIHL_EXACT', classification: undefined };
+  const result = importDryRun([legacyOem], 'temp_test_a3_legacy_oem_no_proof.json');
+  if (result.accepted.length > 0) hardGates.LEGACY_VERIFIED_CLASS_WITHOUT_PROOF_ACCEPTED++;
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.rejected.length, 1);
+  assert.ok(result.rejected[0].reason.includes('Structured proof object is required'));
+});
+
+test('Phase 57A.3 - Test 26: Legacy aftermarket class without proof rejected by importer', () => {
+  const base = validAftermarketRecord();
+  const legacyAftermarket = {
+    ...base,
+    classification: 'AFTERMARKET_EXACT_REFERENCE',
+    match_type: 'AFTERMARKET_EXACT_REFERENCE'
+  };
+  delete legacyAftermarket.proof;
+  const result = importDryRun([legacyAftermarket], 'temp_test_a3_legacy_aftermarket_no_proof.json');
+  if (result.accepted.length > 0) hardGates.LEGACY_VERIFIED_CLASS_WITHOUT_PROOF_ACCEPTED++;
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.rejected.length, 1);
+  assert.ok(result.rejected[0].reason.includes('Structured proof object is required'));
+});
+
+test('Phase 57A.3 - Test 27: Free-text evidence_source only is rejected (no synthetic provenance)', () => {
+  const { evidence_sources, ...freeTextOnly } = validOemRecord();
+  const withLegacyString = { ...freeTextOnly, evidence_source: 'verified manually' };
+  const result = importDryRun([withLegacyString], 'temp_test_a3_free_text_evidence.json');
+  if (result.accepted.length > 0) hardGates.SYNTHETIC_PROVENANCE_FROM_LEGACY_STRING++;
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.rejected.length, 1);
+  assert.ok(result.rejected[0].reason.includes('evidence_sources must be a non-empty array'));
+
+  const verifierRes = AmazonExactMatchVerifier.validateCandidate({ ...withLegacyString, product_type: PRODUCT_TYPES.OEM });
+  assert.strictEqual(verifierRes.valid, false);
+  assert.ok(verifierRes.errors.some(e => e.includes('evidence_sources')));
+});
+
+test('Phase 57A.3 - Test 28: Fully valid OEM fixture accepted by dry-run import and by provider', () => {
+  const record = validOemRecord();
+  const result = importDryRun([record], 'temp_test_a3_valid_oem.json');
+  assert.strictEqual(result.accepted.length, 1, 'Valid OEM fixture must be accepted');
+  assert.strictEqual(result.rejected.length, 0);
+  assert.strictEqual(result.written, false, 'Dry-run must never write production mapping file');
+
+  const accepted = result.accepted[0];
+  assert.deepStrictEqual(accepted.proof, record.proof, 'Proof must be carried through verbatim');
+  assert.deepStrictEqual(accepted.evidence_sources, record.evidence_sources, 'Evidence must be carried through verbatim');
+
+  const offers = providerOffersFor(record);
+  assert.strictEqual(offers[0].match_type, AMAZON_MATCH_TYPES.MANUAL_ASIN);
+  assert.strictEqual(offers[0].is_verified, true);
+});
+
+test('Phase 57A.3 - Test 29: Fully valid aftermarket fixture accepted by dry-run import', () => {
+  const record = validAftermarketRecord();
+  const result = importDryRun([record], 'temp_test_a3_valid_aftermarket.json');
+  assert.strictEqual(result.accepted.length, 1, 'Valid aftermarket fixture must be accepted');
+  assert.strictEqual(result.rejected.length, 0);
+  assert.strictEqual(result.accepted[0].aftermarket_brand, 'Stens');
+  assert.strictEqual(result.accepted[0].manufacturer_part_number, '605-205');
+  assert.strictEqual(result.accepted[0].product_type, PRODUCT_TYPES.AFTERMARKET);
+});
+
+test('Phase 57A.3 - Test 30: Provider direct-link positive fixture emits verified /dp/ URL', () => {
+  const offers = providerOffersFor(validOemRecord());
+  assert.strictEqual(offers.length, 1);
+  assert.strictEqual(offers[0].match_type, AMAZON_MATCH_TYPES.MANUAL_ASIN);
+  assert.strictEqual(offers[0].is_verified, true);
+  assert.strictEqual(offers[0].asin, 'B01LXML5G0');
+  assert.strictEqual(offers[0].marketplace, 'amazon.nl');
+  const expectedAsinPath = ['https://amazon.nl', 'dp', 'B01LXML5G0'].join('/');
+  assert.ok(offers[0].url.startsWith(expectedAsinPath), 'Direct URL must use the /dp/<ASIN> product path');
+  assert.ok(offers[0].url.includes(`tag=${AMAZON_TAG}`), 'Direct URL must carry the affiliate tag');
+  assert.strictEqual(offers[0].tag, AMAZON_TAG);
+});
+
+test('Phase 57A.3 - Test 31: Known wrong 0000 400 7000 + B001RMA5S2 mapping rejected everywhere', () => {
+  const wrong = {
+    ...validAftermarketRecord(),
+    part_number: '00004007000',
+    asin: 'B001RMA5S2',
+    product: 'NGK CMR6H',
+    aftermarket_brand: 'NGK',
+    manufacturer_part_number: 'CMR6H'
+  };
+  assert.strictEqual(isKnownPartNumberMismatch('0000 400 7000', 'B001RMA5S2', 'NGK CMR6H'), true);
+  assert.strictEqual(isProductionVerifiedAmazonOffer(wrong), false);
+
+  const offers = (() => {
+    process.env.AMAZON_AFFILIATE_ENABLED = 'true';
+    process.env.AMAZON_ASSOCIATE_TAG = AMAZON_TAG;
+    const provider = new AmazonAffiliateProvider({
+      marketplace: 'amazon.nl',
+      manualOverrides: [{ ...wrong, enabled: true }]
+    });
+    return provider.getOffers({ partNumber: '0000 400 7000' });
+  })();
+  if (offers[0] && offers[0].match_type !== AMAZON_MATCH_TYPES.SEARCH_LINK) {
+    hardGates.KNOWN_WRONG_ASIN_PART_MAPPING_ACCEPTED++;
+  }
+  assertSearchFallbackOnly(offers, 'Known wrong ASIN/part pair');
+
+  const result = importDryRun([wrong], 'temp_test_a3_known_wrong_pair.json');
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.rejected.length, 1);
+  assert.ok(result.rejected[0].reason.includes('PART_NUMBER_PRODUCT_IDENTITY_MISMATCH'));
+});
+
+test('Phase 57A.3 - Test 32: Provider negative matrix always yields SEARCH_LINK fallback', () => {
+  const base = validOemRecord();
+  const cases = [
+    ['missing classification', (() => { const { classification, ...r } = base; return r; })()],
+    ['NOT_FOUND', { ...base, classification: 'NOT_FOUND' }],
+    ['DISCOVERED_UNVERIFIED', { ...base, classification: 'DISCOVERED_UNVERIFIED' }],
+    ['UNAUDITED', { ...base, classification: 'UNAUDITED' }],
+    ['UNAUDITED_LEGACY_PHASE57A1', { ...base, classification: 'UNAUDITED_LEGACY_PHASE57A1' }],
+    ['REJECTED', { ...base, classification: 'REJECTED' }],
+    ['missing proof', (() => { const { proof, ...r } = base; return r; })()],
+    ['marketplace_verified=false', { ...base, proof: { ...base.proof, marketplace_verified: false } }],
+    ['missing evidence_sources', (() => { const { evidence_sources, ...r } = base; return r; })()],
+    ['invalid evidence object', { ...base, evidence_sources: [{ url: 'https://example.com' }] }],
+    ['aftermarket replacement proof missing', {
+      ...validAftermarketRecord(),
+      proof: { exact_part_number_found: true, asin_identity_verified: true, marketplace_verified: true }
+    }],
+    ['known part-number mismatch', {
+      ...validAftermarketRecord(),
+      part_number: '00004007000',
+      asin: 'B001RMA5S2',
+      product: 'NGK CMR6H'
+    }],
+    ['invalid ASIN', { ...base, asin: 'B123' }],
+    ['disallowed marketplace', { ...base, marketplace: 'amazon.fr' }],
+    ['invalid verified_at', { ...base, verified_at: 'not-a-timestamp' }]
+  ];
+
+  for (const [label, override] of cases) {
+    const offers = providerOffersFor(override);
+    if (offers[0].match_type !== AMAZON_MATCH_TYPES.SEARCH_LINK) {
+      if (label === 'missing proof') hardGates.DIRECT_OVERRIDE_WITHOUT_PROOF_ACCEPTED++;
+      else if (label === 'missing evidence_sources') hardGates.DIRECT_OVERRIDE_WITHOUT_EVIDENCE_ACCEPTED++;
+      else if (label === 'aftermarket replacement proof missing') hardGates.AFTERMARKET_WITHOUT_REPLACEMENT_PROOF_ACCEPTED++;
+      else if (label === 'known part-number mismatch') hardGates.KNOWN_WRONG_ASIN_PART_MAPPING_ACCEPTED++;
+      else hardGates.UNVERIFIED_RECORDS_RENDERED_AS_DIRECT_PRODUCT++;
+    }
+    assertSearchFallbackOnly(offers, `Negative matrix case "${label}"`);
+  }
+});
+
+test('Phase 57A.3 - Test 33: Hard gates are all zero, production state unchanged', () => {
+  // Structural assertions derived from the live contract, not hardcoded expectations.
+  assert.strictEqual(isValidManualAsinOverride({ part_number: '11411201600', asin: 'B01LXML5G0', enabled: true, verification_status: 'VERIFIED_EXACT_MATCH', verified_at: VERIFIED_AT }), false);
+  assert.strictEqual(isValidManualAsinOverride({ ...validOemRecord(), enabled: true }), true);
+  assert.strictEqual(isValidStructuredProof(validAftermarketRecord().proof, true), true);
+  assert.strictEqual(isValidStructuredProof({ ...validAftermarketRecord().proof, replacement_reference_verified: undefined }, true), false);
+
+  const offersPath = path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json');
+  const offersDoc = JSON.parse(fs.readFileSync(offersPath, 'utf8'));
+  const directMappings = offersDoc.offers.filter(o => o.asin && isProductionVerifiedAmazonOffer(o));
+  const invalidDirectMappings = offersDoc.offers.filter(o => o.asin && !isProductionVerifiedAmazonOffer(o));
+  hardGates.INVALID_DIRECT_ASIN_MAPPINGS = invalidDirectMappings.length;
+  assert.strictEqual(directMappings.length, 0, 'Affiliate production freeze: 0 verified direct mappings');
+  assert.strictEqual(invalidDirectMappings.length, 0, 'No invalid direct mapping may be stored');
+
+  for (const [gate, value] of Object.entries(hardGates)) {
+    assert.strictEqual(value, 0, `Hard gate ${gate} must be 0 (observed ${value})`);
+  }
 });

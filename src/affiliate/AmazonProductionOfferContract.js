@@ -84,7 +84,7 @@ export function isValidStructuredProof(proof, isAftermarket = false) {
   if (proof.exact_part_number_found !== true) return false;
   if (proof.asin_identity_verified !== true) return false;
   if (proof.marketplace_verified !== true) return false;
-  if (isAftermarket && proof.replacement_reference_verified === false) {
+  if (isAftermarket && proof.replacement_reference_verified !== true) {
     return false;
   }
   return true;
@@ -158,10 +158,14 @@ export function isProductionVerifiedAmazonOffer(candidate) {
   const hasInvalidSource = candidate.evidence_sources.some(src => !isValidEvidenceSource(src));
   if (hasInvalidSource) return false;
 
-  // 9. Aftermarket Brand Constraint
+  // 9. Aftermarket Brand & MPN Constraint
   if (isAftermarket) {
     const brand = candidate.aftermarket_brand || candidate.brand;
     if (!brand || typeof brand !== 'string' || brand.toLowerCase().includes('stihl')) {
+      return false;
+    }
+    const mpn = candidate.manufacturer_part_number || candidate.manufacturer_part;
+    if (!mpn || typeof mpn !== 'string' || !mpn.trim()) {
       return false;
     }
   }

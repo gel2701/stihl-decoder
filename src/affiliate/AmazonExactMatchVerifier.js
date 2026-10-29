@@ -178,20 +178,14 @@ export class AmazonExactMatchVerifier {
       errors.push(`Invalid or missing ISO verification timestamp: ${candidate.verified_at}`);
     }
 
-    // Provenance / Evidence Source
-    if (Array.isArray(candidate.evidence_sources)) {
-      if (candidate.evidence_sources.length === 0) {
-        errors.push('Explicit evidence source or provenance document is required');
-      } else {
-        const invalidSources = candidate.evidence_sources.filter(s => !isValidEvidenceSource(s));
-        if (invalidSources.length > 0) {
-          errors.push('All evidence sources must be valid structured objects with type, url, title, claim, and retrieved_at');
-        }
+    // Provenance / Evidence Source (Section 12, 13, 14 - structured evidence required)
+    if (Array.isArray(candidate.evidence_sources) && candidate.evidence_sources.length > 0) {
+      const invalidSources = candidate.evidence_sources.filter(s => !isValidEvidenceSource(s));
+      if (invalidSources.length > 0) {
+        errors.push('All evidence sources must be valid structured objects with type, url, title, claim, and retrieved_at');
       }
-    } else if (typeof candidate.evidence_source === 'string' && candidate.evidence_source.trim().length >= 5) {
-      // Single string provenance allowed for legacy compatibility if non-empty
     } else {
-      errors.push('Explicit evidence source or provenance document is required');
+      errors.push('Explicit evidence_sources array is required for verified candidates');
     }
 
     // Reject title-only matching without part number proof (Section 10, 31, 32)
@@ -204,23 +198,22 @@ export class AmazonExactMatchVerifier {
       errors.push(`Valid verification method is required (got ${candidate.verification_method})`);
     }
 
-    // Structured proof validation (Section 22, 31-33)
-    if (candidate.proof !== undefined && candidate.proof !== null) {
-      if (typeof candidate.proof !== 'object' || Array.isArray(candidate.proof)) {
-        errors.push('Structured proof object is required for verified candidates');
-      } else {
-        if (candidate.proof.exact_part_number_found !== true) {
-          errors.push('Exact STIHL part number proof not found in listing context');
-        }
-        if (candidate.proof.asin_identity_verified !== true) {
-          errors.push('ASIN identity unverified');
-        }
-        if (candidate.proof.marketplace_verified !== true) {
-          errors.push('Marketplace availability unverified');
-        }
-      }
-    } else if (classification === MATCH_CLASSIFICATIONS.VERIFIED_OEM_EXACT || classification === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT) {
+    // Structured proof validation (Section 9, 10, 11 - required for all production classes)
+    if (!candidate.proof || typeof candidate.proof !== 'object' || Array.isArray(candidate.proof)) {
       errors.push('Structured proof object is required for verified candidates');
+    } else {
+      if (candidate.proof.exact_part_number_found !== true) {
+        errors.push('Exact STIHL part number proof not found in listing context');
+      }
+      if (candidate.proof.asin_identity_verified !== true) {
+        errors.push('ASIN identity unverified');
+      }
+      if (candidate.proof.marketplace_verified !== true) {
+        errors.push('Marketplace availability unverified');
+      }
+      if (isVerifiedAftermarket && candidate.proof.replacement_reference_verified !== true) {
+        errors.push('Aftermarket replacement reference proof is required (replacement_reference_verified must be true)');
+      }
     }
 
     // Product Type Classification
@@ -236,6 +229,10 @@ export class AmazonExactMatchVerifier {
       if (!brand || brand.toLowerCase().includes('stihl')) {
         errors.push(`Aftermarket replacements must identify third-party brand and never claim to be STIHL OEM`);
       }
+      const mpn = candidate.manufacturer_part_number || candidate.manufacturer_part;
+      if (!mpn || typeof mpn !== 'string' || !mpn.trim()) {
+        errors.push('Aftermarket replacements must identify manufacturer part number');
+      }
     }
 
     // Strict Disallowance of Static Price / Stock Claims
@@ -244,6 +241,11 @@ export class AmazonExactMatchVerifier {
     }
     if (candidate.in_stock !== null && candidate.in_stock !== undefined) {
       errors.push(`Stock availability must not be stored as static catalog facts (in_stock must be null)`);
+    }
+
+    // Central Contract Single Source of Truth Gate (Section 15, 16)
+    if (errors.length === 0 && !isProductionVerifiedAmazonOffer(candidate)) {
+      errors.push('Candidate failed central isProductionVerifiedAmazonOffer contract');
     }
 
     return {

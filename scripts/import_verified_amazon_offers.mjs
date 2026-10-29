@@ -36,7 +36,9 @@ import {
   PRODUCTION_VERIFIED_CLASSIFICATIONS,
   isProductionVerifiedClassification,
   isValidEvidenceSource,
-  isKnownPartNumberMismatch
+  isKnownPartNumberMismatch,
+  isValidStructuredProof,
+  isProductionVerifiedAmazonOffer
 } from '../src/affiliate/AmazonProductionOfferContract.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -178,60 +180,36 @@ export function importVerifiedOffers(options = {}) {
       continue;
     }
 
-    // 7. Structured Proof Required (Section 22, 31, 32)
-    if (item.proof === null || (item.proof && typeof item.proof !== 'object') || Array.isArray(item.proof)) {
-      report.rejected.push({ item, reason: 'Structured proof object is required (proof cannot be null or non-object)' });
+    // 7. Structured Proof Required (Section 16, 17) - Zero auto-generated proof for ANY production class
+    const isAftermarket = rawClassification === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE || rawClassification === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT;
+    if (!item.proof || typeof item.proof !== 'object' || Array.isArray(item.proof)) {
+      report.rejected.push({ item, reason: 'Structured proof object is required for all production-verified classifications (missing or invalid proof)' });
       continue;
     }
-    if (!item.proof) {
-      if (rawClassification === MATCH_CLASSIFICATIONS.VERIFIED_OEM_EXACT || rawClassification === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT) {
-        report.rejected.push({ item, reason: 'Structured proof object is required (proof cannot be null or non-object)' });
-        continue;
-      }
-    }
-    const proof = item.proof || {
-      exact_part_number_found: true,
-      asin_identity_verified: true,
-      marketplace_verified: true
-    };
-    if (proof.marketplace_verified !== true) {
-      report.rejected.push({ item, reason: 'proof.marketplace_verified must be true for production import' });
-      continue;
-    }
-    if (proof.exact_part_number_found !== true) {
-      report.rejected.push({ item, reason: 'proof.exact_part_number_found must be true' });
-      continue;
-    }
-    if (proof.asin_identity_verified !== true) {
-      report.rejected.push({ item, reason: 'proof.asin_identity_verified must be true' });
+    const proof = item.proof;
+    if (!isValidStructuredProof(proof, isAftermarket)) {
+      const reason = proof.exact_part_number_found !== true
+        ? 'proof.exact_part_number_found must be true for production import'
+        : proof.asin_identity_verified !== true
+          ? 'proof.asin_identity_verified must be true for production import'
+          : proof.marketplace_verified !== true
+            ? 'proof.marketplace_verified must be true for production import'
+            : 'proof.replacement_reference_verified must be true for aftermarket production import';
+      report.rejected.push({ item, reason });
       continue;
     }
 
-    // 8. Evidence Sources Required (Section 23, 24, 30)
-    let evidenceSources = null;
-    if (Array.isArray(item.evidence_sources)) {
-      if (item.evidence_sources.length === 0) {
-        report.rejected.push({ item, reason: 'evidence_sources must be a non-empty array' });
-        continue;
-      }
-      const hasInvalidEvidence = item.evidence_sources.some(s => !isValidEvidenceSource(s));
-      if (hasInvalidEvidence) {
-        report.rejected.push({ item, reason: 'evidence_sources contains empty or invalid evidence source objects' });
-        continue;
-      }
-      evidenceSources = item.evidence_sources;
-    } else if (typeof item.evidence_source === 'string' && item.evidence_source.trim().length >= 5) {
-      evidenceSources = [{
-        type: 'REFERENCE',
-        url: item.evidence_source.startsWith('http') ? item.evidence_source : 'https://www.stihl.com',
-        title: 'Catalog Reference',
-        claim: 'Exact part reference',
-        retrieved_at: item.verified_at || new Date().toISOString()
-      }];
-    } else {
-      report.rejected.push({ item, reason: 'evidence_sources must be a non-empty array or valid evidence_source string' });
+    // 8. Evidence Sources Required (Section 12, 13, 14) - Structured array only, zero synthetic conversion
+    if (!Array.isArray(item.evidence_sources) || item.evidence_sources.length === 0) {
+      report.rejected.push({ item, reason: 'evidence_sources must be a non-empty array of valid structured evidence source objects' });
       continue;
     }
+    const hasInvalidEvidence = item.evidence_sources.some(s => !isValidEvidenceSource(s));
+    if (hasInvalidEvidence) {
+      report.rejected.push({ item, reason: 'evidence_sources contains empty or invalid evidence source objects' });
+      continue;
+    }
+    const evidenceSources = item.evidence_sources;
 
     // 9. Known Part Number Identity Mismatch Check (Section 13, 33)
     if (isKnownPartNumberMismatch(normPart, cleanAsin, item.product || item.title || item.candidate_product)) {
@@ -241,17 +219,17 @@ export function importVerifiedOffers(options = {}) {
 
     // 10. Strict Contract Check & Candidate Record Construction
     const matchType = rawClassification;
-    const isAftermarket = matchType === MATCH_CLASSIFICATIONS.AFTERMARKET_EXACT_REFERENCE || matchType === MATCH_CLASSIFICATIONS.VERIFIED_AFTERMARKET_EXACT;
 
     const candidateRecord = {
       part_number: normPart,
       asin: cleanAsin,
       marketplace: (item.marketplace || 'amazon.nl').trim().toLowerCase(),
       match_type: matchType,
+      classification: matchType,
       verification_status: item.verification_status,
       verification_method: item.verification_method,
       verified_at: item.verified_at,
-      evidence_source: item.evidence_source || (evidenceSources && evidenceSources[0]?.url) || '',
+      evidence_source: (evidenceSources && evidenceSources[0]?.url) || '',
       evidence_sources: evidenceSources,
       proof: proof,
       product_type: item.product_type || (isAftermarket ? PRODUCT_TYPES.AFTERMARKET : PRODUCT_TYPES.OEM),
@@ -263,6 +241,11 @@ export function importVerifiedOffers(options = {}) {
       in_stock: null,
       enabled: true
     };
+
+    if (!isProductionVerifiedAmazonOffer(candidateRecord)) {
+      report.rejected.push({ item: candidateRecord, reason: 'Candidate record failed central isProductionVerifiedAmazonOffer contract' });
+      continue;
+    }
 
     const validation = AmazonExactMatchVerifier.validateCandidate(candidateRecord);
     if (!validation.valid) {

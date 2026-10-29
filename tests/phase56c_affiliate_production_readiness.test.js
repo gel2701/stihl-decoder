@@ -197,7 +197,19 @@ test('Phase 56C - Test 6: Manual Verified ASIN Intake Pipeline & Rejection Contr
     verification_status: VERIFICATION_STATUSES.VERIFIED_EXACT_MATCH,
     verification_method: VERIFICATION_METHODS.MANUAL_CATALOG_AUDIT,
     verified_at: '2026-10-22T00:00:00.000Z',
-    evidence_source: 'https://example.com/stihl-bulletin'
+    evidence_source: 'https://example.com/stihl-bulletin',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl-bulletin',
+      title: 'STIHL Service Bulletin',
+      claim: 'Exact part 1123 160 2050 verified',
+      retrieved_at: '2026-10-22T00:00:00.000Z'
+    }]
   };
 
   const tempBatchPath = path.join(rootDir, 'data', 'affiliate', 'temp_test_intake.json');

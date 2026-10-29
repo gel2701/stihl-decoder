@@ -136,16 +136,44 @@ const manualOverrides = [
     marketplace: 'amazon.nl',
     title: 'STIHL Koppeling Origineel MS 250',
     enabled: true,
+    classification: 'OEM_STIHL_EXACT',
     verification_status: 'VERIFIED_EXACT_MATCH',
-    verified_at: '2026-10-15T00:00:00Z'
+    verification_method: 'MANUAL_CATALOG_AUDIT',
+    verified_at: '2026-10-15T00:00:00Z',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl/11231602050',
+      title: 'STIHL Catalog',
+      claim: 'Part 1123 160 2050',
+      retrieved_at: '2026-10-15T00:00:00Z'
+    }]
   },
   {
     part_number: '11210071001',
     asin: 'B07DISABLE',
     marketplace: 'amazon.nl',
     enabled: false,
+    classification: 'OEM_STIHL_EXACT',
     verification_status: 'VERIFIED_EXACT_MATCH',
-    verified_at: '2026-10-15T00:00:00Z'
+    verification_method: 'MANUAL_CATALOG_AUDIT',
+    verified_at: '2026-10-15T00:00:00Z',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl/11210071001',
+      title: 'STIHL Catalog',
+      claim: 'Part 1121 007 1001',
+      retrieved_at: '2026-10-15T00:00:00Z'
+    }]
   },
   {
     part_number: '11271200650',
@@ -153,8 +181,22 @@ const manualOverrides = [
     marketplace: 'amazon.de',
     title: 'STIHL Vergaser MS 290',
     enabled: true,
+    classification: 'OEM_STIHL_EXACT',
     verification_status: 'VERIFIED_EXACT_MATCH',
-    verified_at: '2026-10-15T00:00:00Z'
+    verification_method: 'MANUAL_CATALOG_AUDIT',
+    verified_at: '2026-10-15T00:00:00Z',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl/11271200650',
+      title: 'STIHL Catalog',
+      claim: 'Part 1127 120 0650',
+      retrieved_at: '2026-10-15T00:00:00Z'
+    }]
   },
   {
     part_number: '11431200600',
@@ -163,8 +205,22 @@ const manualOverrides = [
     tag: 'custom-de-tag-21',
     title: 'STIHL Vergaser MS 251 Custom',
     enabled: true,
+    classification: 'OEM_STIHL_EXACT',
     verification_status: 'VERIFIED_EXACT_MATCH',
-    verified_at: '2026-10-15T00:00:00Z'
+    verification_method: 'MANUAL_CATALOG_AUDIT',
+    verified_at: '2026-10-15T00:00:00Z',
+    proof: {
+      exact_part_number_found: true,
+      asin_identity_verified: true,
+      marketplace_verified: true
+    },
+    evidence_sources: [{
+      type: 'CATALOG',
+      url: 'https://example.com/stihl/11431200600',
+      title: 'STIHL Catalog',
+      claim: 'Part 1143 120 0600',
+      retrieved_at: '2026-10-15T00:00:00Z'
+    }]
   }
 ];
 
