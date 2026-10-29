@@ -792,3 +792,226 @@ test('Phase 57A.3 - Test 33: Hard gates are all zero, production state unchanged
     assert.strictEqual(value, 0, `Hard gate ${gate} must be 0 (observed ${value})`);
   }
 });
+
+// ---------------------------------------------------------------------------
+// Phase 57A.4 — Malformed Input Fail-Closed Closure
+// ---------------------------------------------------------------------------
+
+const MALFORMED_VALUES = [null, undefined, true, false, 0, 1, '', [], {}];
+
+test('Phase 57A.4 - Test 34: Central contract never throws on JSON-compatible values', () => {
+  let uncaught = 0;
+  for (const value of MALFORMED_VALUES) {
+    try {
+      assert.strictEqual(isProductionVerifiedAmazonOffer(value), false, `Contract must reject ${JSON.stringify(value)}`);
+    } catch (err) {
+      uncaught++;
+    }
+  }
+
+  const base = validOemRecord();
+  const fieldCases = [
+    ['asin', 1234567890], ['asin', {}], ['asin', []], ['asin', true],
+    ['marketplace', 123], ['marketplace', {}], ['marketplace', []],
+    ['part_number', 12345678900], ['part_number', {}],
+    ['title', 123], ['product', {}], ['candidate_product', []],
+    ['classification', {}], ['verification_status', {}], ['verified_at', 123],
+    ['proof', []], ['proof', 'string'], ['evidence_sources', {}]
+  ];
+  for (const [field, value] of fieldCases) {
+    try {
+      assert.strictEqual(
+        isProductionVerifiedAmazonOffer({ ...base, [field]: value }),
+        false,
+        `Contract must reject malformed ${field}=${JSON.stringify(value)}`
+      );
+    } catch (err) {
+      uncaught++;
+    }
+  }
+
+  const CENTRAL_CONTRACT_UNCAUGHT_EXCEPTIONS = uncaught;
+  assert.strictEqual(CENTRAL_CONTRACT_UNCAUGHT_EXCEPTIONS, 0, 'Central contract must never throw');
+});
+
+test('Phase 57A.4 - Test 35: Known mismatch helper never throws on malformed input', () => {
+  let uncaught = 0;
+  const malformed = [null, undefined, true, false, 0, 1, '', [], {}, 1234567890];
+  for (const value of malformed) {
+    for (const args of [['00004007000', value, ''], ['00004007000', 'B001RMA5S2', value], [value, 'B001RMA5S2', ''], [value, value, value]]) {
+      try {
+        assert.strictEqual(typeof isKnownPartNumberMismatch(...args), 'boolean');
+      } catch (err) {
+        uncaught++;
+      }
+    }
+  }
+
+  // Known wrong pair must still be detected.
+  assert.strictEqual(isKnownPartNumberMismatch('0000 400 7000', 'B001RMA5S2', ''), true);
+  assert.strictEqual(isKnownPartNumberMismatch('00004007000', 'B001RMA5S2', 'NGK CMR6H'), true);
+  assert.strictEqual(isKnownPartNumberMismatch('11411201600', 'B01LXML5G0', 'OK'), false);
+
+  const KNOWN_MISMATCH_HELPER_UNCAUGHT_EXCEPTIONS = uncaught;
+  assert.strictEqual(KNOWN_MISMATCH_HELPER_UNCAUGHT_EXCEPTIONS, 0, 'Mismatch helper must never throw');
+});
+
+test('Phase 57A.4 - Test 36: Malformed ASIN types never produce a direct link', () => {
+  let directLinks = 0;
+  for (const asin of [1234567890, {}, [], true, null]) {
+    const override = { ...validOemRecord(), asin };
+    try {
+      assert.strictEqual(isValidManualAsinOverride({ ...override, enabled: true }), false);
+      const offers = providerOffersFor(override);
+      assertSearchFallbackOnly(offers, `Malformed ASIN ${JSON.stringify(asin)}`);
+      if (offers.some(o => o.url.includes('/dp/'))) directLinks++;
+    } catch (err) {
+      directLinks++;
+    }
+  }
+
+  const MALFORMED_OVERRIDE_DIRECT_LINKS = directLinks;
+  assert.strictEqual(MALFORMED_OVERRIDE_DIRECT_LINKS, 0);
+});
+
+test('Phase 57A.4 - Test 37: Malformed marketplace types never produce a direct link', () => {
+  let directLinks = 0;
+  for (const marketplace of [123, {}, [], true, null]) {
+    const override = { ...validOemRecord(), marketplace };
+    try {
+      assert.strictEqual(isValidManualAsinOverride({ ...override, enabled: true }), false);
+      assertSearchFallbackOnly(providerOffersFor(override), `Malformed marketplace ${JSON.stringify(marketplace)}`);
+    } catch (err) {
+      directLinks++;
+    }
+  }
+  assert.strictEqual(directLinks, 0);
+});
+
+test('Phase 57A.4 - Test 38: Malformed product/title/candidate_product types never produce a direct link', () => {
+  let directLinks = 0;
+  const fieldCases = [['product', 123], ['title', {}], ['candidate_product', []]];
+  for (const [field, value] of fieldCases) {
+    const override = { ...validOemRecord(), [field]: value };
+    try {
+      assert.strictEqual(isValidManualAsinOverride({ ...override, enabled: true }), false);
+      assertSearchFallbackOnly(providerOffersFor(override), `Malformed ${field}`);
+    } catch (err) {
+      directLinks++;
+    }
+  }
+  assert.strictEqual(directLinks, 0);
+});
+
+test('Phase 57A.4 - Test 39: Combined malformed record fails closed everywhere', () => {
+  const combined = {
+    ...validOemRecord(),
+    asin: { malformed: true },
+    marketplace: 123,
+    title: 456,
+    product: [],
+    candidate_product: {},
+    verified_at: 789
+  };
+
+  assert.strictEqual(isProductionVerifiedAmazonOffer(combined), false);
+  assert.strictEqual(isValidManualAsinOverride({ ...combined, enabled: true }), false);
+  assertSearchFallbackOnly(providerOffersFor(combined), 'Combined malformed override');
+
+  const result = importDryRun([combined], 'temp_test_a4_combined_malformed.json');
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.written, false);
+});
+
+test('Phase 57A.4 - Test 40: Importer rejects malformed records without crashing or partial writes', () => {
+  let crashes = 0;
+  let result = null;
+  try {
+    result = importDryRun([{ part_number: '11411201600', asin: 1234567890 }], 'temp_test_a4_malformed_asin.json');
+  } catch (err) {
+    crashes++;
+  }
+  assert.strictEqual(crashes, 0, 'Malformed ASIN record must not crash importer');
+  assert.strictEqual(result.accepted.length, 0);
+  assert.strictEqual(result.written, false);
+  assert.strictEqual(result.invalid.length + result.rejected.length, 1);
+
+  // Mixed batch: 1 malformed + 1 otherwise valid record -> fail closed, no partial write.
+  let mixed = null;
+  try {
+    mixed = importDryRun([
+      { part_number: '11411201600', asin: 1234567890 },
+      validOemRecord()
+    ], 'temp_test_a4_mixed_batch.json');
+  } catch (err) {
+    crashes++;
+  }
+  assert.strictEqual(crashes, 0, 'Mixed batch must not crash importer');
+  assert.strictEqual(mixed.accepted.length, 1, 'Valid record is still evaluated');
+  assert.strictEqual(mixed.invalid.length + mixed.rejected.length, 1, 'Malformed record is recorded');
+  assert.strictEqual(mixed.written, false, 'No partial write while a malformed record exists');
+
+  const MALFORMED_IMPORT_RECORD_CRASHES = crashes;
+  assert.strictEqual(MALFORMED_IMPORT_RECORD_CRASHES, 0);
+});
+
+test('Phase 57A.4 - Test 41: Verifier never throws on malformed candidate fields', () => {
+  const base = validOemRecord();
+  const fieldCases = [
+    ['asin', 1234567890], ['asin', {}], ['asin', []],
+    ['marketplace', 123], ['marketplace', {}],
+    ['product', 123], ['title', {}], ['candidate_product', []],
+    ['evidence_sources', [{}]],
+    ['proof', { exact_part_number_found: true, asin_identity_verified: true, marketplace_verified: 1 }]
+  ];
+  let uncaught = 0;
+  for (const [field, value] of fieldCases) {
+    try {
+      const res = AmazonExactMatchVerifier.validateCandidate({ ...base, [field]: value });
+      assert.strictEqual(res.valid, false, `Verifier must reject malformed ${field}`);
+    } catch (err) {
+      uncaught++;
+    }
+  }
+
+  // Aftermarket-specific malformed identity fields.
+  const aftermarketBase = validAftermarketRecord();
+  for (const [field, value] of [['aftermarket_brand', 123], ['manufacturer_part_number', {}]]) {
+    try {
+      const res = AmazonExactMatchVerifier.validateCandidate({ ...aftermarketBase, [field]: value });
+      assert.strictEqual(res.valid, false, `Verifier must reject malformed aftermarket ${field}`);
+    } catch (err) {
+      uncaught++;
+    }
+  }
+
+  assert.strictEqual(uncaught, 0, 'Verifier must never throw on malformed fields');
+});
+
+test('Phase 57A.4 - Test 42: Positive regressions and Phase 57A.3 gates remain intact', () => {
+  // Valid OEM + aftermarket accepted.
+  assert.strictEqual(isProductionVerifiedAmazonOffer(validOemRecord()), true);
+  assert.strictEqual(isProductionVerifiedAmazonOffer(validAftermarketRecord()), true);
+
+  // Known wrong pair still rejected at contract and importer level.
+  assert.strictEqual(isProductionVerifiedAmazonOffer({
+    ...validAftermarketRecord(),
+    part_number: '00004007000',
+    asin: 'B001RMA5S2',
+    product: 'NGK CMR6H'
+  }), false);
+
+  // Structural Phase 57A.3 assertions still hold.
+  const { classification, ...noClassification } = validOemRecord();
+  assert.strictEqual(classification, 'VERIFIED_OEM_EXACT');
+  assert.strictEqual(isValidManualAsinOverride({ ...noClassification, enabled: true }), false);
+  const { proof, ...noProof } = validOemRecord();
+  assert.strictEqual(isValidManualAsinOverride({ ...noProof, enabled: true }), false);
+  const { evidence_sources, ...noEvidence } = validOemRecord();
+  assert.strictEqual(isValidManualAsinOverride({ ...noEvidence, enabled: true }), false);
+  assert.strictEqual(isValidStructuredProof({ exact_part_number_found: true, asin_identity_verified: true, marketplace_verified: true }, true), false);
+
+  // Affiliate production freeze.
+  const offersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json'), 'utf8'));
+  assert.strictEqual(offersDoc.offers.filter(o => o.asin).length, 0, '0 verified direct mappings');
+});

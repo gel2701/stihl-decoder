@@ -119,18 +119,25 @@ export function importVerifiedOffers(options = {}) {
   const batchAsinSet = new Set();
 
   for (const item of rawItems) {
-    const normPart = PartNormalizer.normalizePartNumber(item.part_number);
-    const cleanAsin = (item.asin || '').trim().toUpperCase();
+    try {
+    const normPart = PartNormalizer.normalizePartNumber(item && item.part_number);
+    const cleanAsin = (item && typeof item.asin === 'string') ? item.asin.trim().toUpperCase() : '';
 
     // 1. Validate Part Existence in Catalog
     if (!normPart || !canonicalPartsSet.has(normPart)) {
-      report.invalid.push({ item, reason: `Part ${item.part_number} does not exist in canonical parts catalog` });
+      report.invalid.push({ item, reason: `Part ${item && item.part_number} does not exist in canonical parts catalog` });
       continue;
     }
 
-    // 2. Validate ASIN format
-    if (!isValidAsin(cleanAsin)) {
+    // 2. Validate ASIN type + format (type-guarded: non-strings rejected, never coerced)
+    if (typeof item.asin !== 'string' || !isValidAsin(cleanAsin)) {
       report.invalid.push({ item, reason: `Invalid ASIN format: ${item.asin}` });
+      continue;
+    }
+
+    // 2b. Validate marketplace type (non-string marketplace is malformed input)
+    if (item.marketplace !== undefined && item.marketplace !== null && typeof item.marketplace !== 'string') {
+      report.rejected.push({ item, reason: 'Marketplace must be a string (malformed input rejected)' });
       continue;
     }
 
@@ -223,7 +230,7 @@ export function importVerifiedOffers(options = {}) {
     const candidateRecord = {
       part_number: normPart,
       asin: cleanAsin,
-      marketplace: (item.marketplace || 'amazon.nl').trim().toLowerCase(),
+      marketplace: (typeof item.marketplace === 'string' && item.marketplace.trim() ? item.marketplace : 'amazon.nl').trim().toLowerCase(),
       match_type: matchType,
       classification: matchType,
       verification_status: item.verification_status,
@@ -260,6 +267,10 @@ export function importVerifiedOffers(options = {}) {
     batchPartSet.add(normPart);
     batchAsinSet.add(cleanAsin);
     report.accepted.push(candidateRecord);
+    } catch (err) {
+      // Fail closed: a malformed record must never abort batch processing.
+      report.invalid.push({ item, reason: `Malformed import record rejected: ${err && err.message ? err.message : 'unexpected error'}` });
+    }
   }
 
   // Fail-closed write decision:
