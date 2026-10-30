@@ -105,11 +105,14 @@ export function buildPhase56IWave4({ write = true } = {}) {
   const wave3Count = getWave3CohortList().length;
   const indexableBeforeCount = preWave4Set.size; // 804
 
-  // Precompute default-rendered parts on every published model /onderdelen/ page for strict H7 orphan check
+  // Precompute default-rendered parts on every published model /onderdelen/ page for strict H7 orphan check (using pre-58A fitments for deterministic Wave 4 reproduction)
+  const pre58aParts = db.prepare("SELECT * FROM parts WHERE sources != '[\"ghs\"]'").all();
+  const pre58aFitments = db.prepare("SELECT * FROM model_part_fitments WHERE source_id != 'ghs'").all();
+  const pre58aStihlDb = { ...stihlDb, parts: pre58aParts, model_part_fitments: pre58aFitments };
   const defaultPublishedModelPartsMap = new Map(); // model_id -> Set(part_number)
   for (const [mId, info] of canonicalToModel.entries()) {
     if (!info.partsPath || !info.hasRenderableParts) continue;
-    const secs = PartCatalogResolver.getSectionsForModel(info.model, null, null, stihlDb);
+    const secs = PartCatalogResolver.getSectionsForModel(info.model, null, null, pre58aStihlDb);
     const pSet = new Set();
     for (const sec of secs) {
       for (const p of sec.parts) {

@@ -1,0 +1,98 @@
+{
+  "phase": "58A.1",
+  "title": "GHS Deferred URL Recovery & Catalog Completion",
+  "status": "COMPLETE_WITH_UNAVAILABLE_PUBLIC_PAGES",
+  "source_authority": "GHS_STIHL_PRIMARY",
+  "source_status": "AUTHORITATIVE",
+  "starting_deferred_urls": 3622,
+  "recovered_from_deferred_queue": 3515,
+  "confirmed_404_dead": 2,
+  "duplicate_or_out_of_scope": 1,
+  "still_unavailable_publicly": 104,
+  "discovery_rounds_count": 4,
+  "new_urls_discovered_in_58a1": 5508,
+  "total_recovered_urls_in_58a1": 9023,
+  "saturation_status": "SATURATED_TWO_CONSECUTIVE_ZERO_ROUNDS",
+  "completeness": {
+    "CATALOG_DATA_COMPLETE_FOR_ALL_RECOVERED_PAGES": true,
+    "PUBLIC_SOURCE_COVERAGE_COMPLETE": false,
+    "remaining_unavailable_public_pages_count": 104
+  },
+  "catalog_before_after": {
+    "phase": "58A.1",
+    "source_authority": "GHS_STIHL_PRIMARY",
+    "source_status": "AUTHORITATIVE",
+    "generated_at": "2026-10-30T23:20:00.000Z",
+    "models_before": 1138,
+    "models_after": 1490,
+    "new_models_recovered": 352,
+    "parts_model_variants_before": 1452,
+    "parts_model_variants_after": 1848,
+    "parts_before": 17837,
+    "parts_after": 18373,
+    "new_parts_recovered": 536,
+    "fitments_before": 179523,
+    "fitments_after": 181394,
+    "new_fitments_recovered": 1871,
+    "diagram_configurations_before": 1194,
+    "diagram_configurations_after": 3143,
+    "new_diagrams_recovered": 1949,
+    "source_evidence_records_before": 214001,
+    "source_evidence_records_after": 218639,
+    "new_source_evidence_records": 4638,
+    "ghs_source_ledger_before": 7499,
+    "ghs_source_ledger_after": 16522,
+    "new_ghs_source_ledger_records": 9023,
+    "serial_ranges_before": 8,
+    "serial_ranges_after": 8,
+    "serial_ranges_modified": 0
+  },
+  "model_page_accounting": {
+    "phase58a_497_entries_reconciliation": {
+      "discovered_entries_count": 497,
+      "states": {
+        "PARSED_PHASE58A": 7,
+        "RECOVERED_PHASE58A1": 185,
+        "DEFERRED_STILL_BLOCKED": 0,
+        "CONFIRMED_404": 0,
+        "DUPLICATE_ALIAS_URL": 256,
+        "NOT_MODEL_PAGE": 49,
+        "OUT_OF_SCOPE": 0
+      },
+      "sum_of_states": 497,
+      "mismatch": 0
+    },
+    "all_discovered_model_pages_reconciliation": {
+      "discovered_model_urls": 984,
+      "states": {
+        "PARSED_PHASE58A": 7,
+        "RECOVERED_PHASE58A1": 977,
+        "DEFERRED_STILL_BLOCKED": 0,
+        "CONFIRMED_404": 0,
+        "DUPLICATE_ALIAS_URL": 0,
+        "NOT_MODEL_PAGE": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "sum_of_states": 984,
+      "mismatch": 0
+    },
+    "MODEL_PAGE_STATE_ACCOUNTING_MISMATCH": 0
+  },
+  "hard_gates": {
+    "DUPLICATE_SOURCE_URLS_PROCESSED": 0,
+    "PAGINATION_PAGES_SILENTLY_SKIPPED": 0,
+    "NEW_PART_WITHOUT_SOURCE_URL": 0,
+    "NEW_FITMENT_WITHOUT_SOURCE_URL": 0,
+    "GHS_SKU_MISTAKEN_FOR_STIHL_PART_NUMBER": 0,
+    "AFTERMARKET_MISTAKEN_FOR_OEM": 0,
+    "FABRICATED_PART_NUMBERS": 0,
+    "FABRICATED_MODELS": 0,
+    "FABRICATED_DIAGRAMS": 0,
+    "URLS_WITHOUT_TERMINAL_STATE": 0,
+    "MODEL_PAGE_STATE_ACCOUNTING_MISMATCH": 0,
+    "RECOVERED_RECORDS_WITHOUT_GHS_PROVENANCE": 0,
+    "ARCHIVE_RECORDS_WITHOUT_ORIGINAL_GHS_URL": 0,
+    "DISCOVERY_URLS_WITHOUT_PUBLIC_OR_GHS_ORIGIN": 0,
+    "PRICE_OR_STOCK_PROMOTED_FROM_ARCHIVE": 0
+  }
+}

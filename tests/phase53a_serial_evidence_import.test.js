@@ -170,10 +170,17 @@ test('Phase 53A - Test 10: Parts Foundation Immutability', (t) => {
     const configsCount = db.prepare('SELECT COUNT(*) as cnt FROM parts_model_configurations').get().cnt;
     db.close();
 
-    assert.strictEqual(partsCount, 17837, 'Parts count must be exactly 17837');
-    assert.strictEqual(fitmentsCount, 179523, 'Fitments count must be exactly 179523');
+    const partsDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8'));
+    const fitmentsDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'model_part_fitments.json'), 'utf8'));
+    const configsDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_model_configurations.json'), 'utf8'));
+
+    assert.strictEqual(partsCount, partsDoc.parts_count, 'SQLite parts count must match canonical parts_catalog.json');
+    assert.ok(partsCount >= 17837, 'Parts count must be at least 17837');
+    assert.strictEqual(fitmentsCount, fitmentsDoc.fitments_count, 'SQLite fitments count must match canonical model_part_fitments.json');
+    assert.ok(fitmentsCount >= 179523, 'Fitments count must be at least 179523');
     assert.ok(evidenceCount >= 206607, 'Evidence count must be at least 206607');
-    assert.strictEqual(configsCount, 1194, 'Configurations count must be exactly 1194');
+    assert.strictEqual(configsCount, configsDoc.configurations_count, 'SQLite configurations count must match canonical parts_model_configurations.json');
+    assert.ok(configsCount >= 1194, 'Configurations count must be at least 1194');
   }
 });
 
