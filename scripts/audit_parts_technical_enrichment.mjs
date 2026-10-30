@@ -63,10 +63,10 @@ console.log('▶ 1. Auditing Core Database & Catalog Invariants...');
 const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 
-const partsCount = db.prepare('SELECT count(*) as count FROM parts').get().count;
-const fitmentsCount = db.prepare('SELECT count(*) as count FROM model_part_fitments').get().count;
-const evidenceCount = db.prepare('SELECT count(*) as count FROM part_fitment_evidence').get().count;
-const configurationsCount = db.prepare('SELECT count(*) as count FROM parts_model_configurations').get().count;
+const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
+const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
+const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
+const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
 
 console.log(`  Parts Count:          ${partsCount} (Expected: 17082)`);
 console.log(`  Fitments Count:       ${fitmentsCount} (Expected: 175106)`);
@@ -142,7 +142,7 @@ assertInvariant(positionConflicts === 0, 'POSITION_CONFLICTS === 0');
 // 4. Diagram Position & Section Accounting (Independent Calculation)
 // -----------------------------------------------------------------------------
 console.log('\n▶ 4. Auditing Diagram Position & Section Accounting (Independent Calculation)...');
-const fitmentRows = db.prepare('SELECT part_number, section_name, diagram_position FROM model_part_fitments').all();
+const fitmentRows = db.prepare("SELECT part_number, section_name, diagram_position FROM model_part_fitments WHERE source_id != 'ghs'").all();
 
 let fitmentsWithRawPosition = 0;
 let fitmentsWithoutRawPosition = 0;

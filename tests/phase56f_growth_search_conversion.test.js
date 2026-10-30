@@ -38,10 +38,10 @@ const db = new Database(dbPath, { readonly: true });
 const database = JSON.parse(fs.readFileSync(path.resolve(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
 test('Phase 56F - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
-  const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const fitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const fitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
   assert.strictEqual(partsCount, 17082, 'Total canonical parts must remain exactly 17,082');

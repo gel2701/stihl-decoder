@@ -43,12 +43,12 @@ const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { reado
 const stihlDb = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
 test('Phase 56H Test 1: Frozen Canonical Database & SEO Invariants Intact', () => {
-  const partsCount = db.prepare('SELECT count(*) as c FROM parts').get().c;
-  const fitmentsCount = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-  const configsCount = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
+  const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const fitmentsCount = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configsCount = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const contextsCount = db.prepare('SELECT count(*) as c FROM model_part_fitment_section_contexts').get().c;
-  const scalarUnresolved = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE section_name = 'Unresolved Diagram Section'").get().c;
+  const scalarUnresolved = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs' AND section_name = 'Unresolved Diagram Section'").get().c;
 
   assert.strictEqual(partsCount, 17082, 'Canonical parts must remain 17,082');
   assert.strictEqual(fitmentsCount, 175106, 'Canonical fitments must remain 175,106');

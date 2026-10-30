@@ -70,10 +70,10 @@ const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT + WAVE4_COUNT;
 const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT + WAVE4_COUNT;
 
 test('Phase 56D - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
-  const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const fitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const fitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
   assert.strictEqual(partsCount, 17082, 'Total canonical parts must remain exactly 17,082');

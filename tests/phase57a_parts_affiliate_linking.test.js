@@ -27,11 +27,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-test('Phase 57A Test 1: Baseline accounting is exactly 17,082 canonical parts and 0 direct mappings', () => {
+test('Phase 57A Test 1: Baseline accounting preserves all 17,082 pre-58A canonical parts and 0 direct mappings', () => {
   const catalogDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8'));
   const offersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json'), 'utf8'));
   
-  assert.equal(catalogDoc.parts.length, 17082, 'Expected 17,082 canonical parts');
+  assert.equal(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs')).length, 17082, 'Expected 17,082 pre-58A canonical parts');
   assert.equal(Array.isArray(offersDoc.offers), true, 'Offers must be an array');
   assert.equal(offersDoc.offers.length, 0, 'Baseline direct offers must be 0');
 });

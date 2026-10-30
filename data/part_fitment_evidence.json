@@ -2,7 +2,7 @@
   "schema_version": "part-fitment-evidence-v1",
   "is_sharded": true,
   "storage_format": "jsonl.gz",
-  "observations_count": 206607,
+  "observations_count": 214001,
   "shard_count": 9,
   "shard_files": [
     "parts/evidence/part_fitment_evidence_shard_01.jsonl.gz",
@@ -20,75 +20,75 @@
       "shard_index": 1,
       "file_path": "parts/evidence/part_fitment_evidence_shard_01.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 24516614,
-      "compressed_bytes": 698835,
-      "sha256": "b5acb13f20979fcc9d676752d493186dd272e57d607c966103c8c238f78f4519"
+      "uncompressed_bytes": 23985862,
+      "compressed_bytes": 1673519,
+      "sha256": "f8d8b5f9f616b866a59b26fb33706725947d5ebd55bf89017434ee9fc1d0ef04"
     },
     {
       "shard_index": 2,
       "file_path": "parts/evidence/part_fitment_evidence_shard_02.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23307498,
-      "compressed_bytes": 680756,
-      "sha256": "c37ba882a46c450f88fcf3e25b0de99577836bc36448c4cef9602775ebfe6a2d"
+      "uncompressed_bytes": 23617016,
+      "compressed_bytes": 1306325,
+      "sha256": "f167065690e52d5670cbce0d026252dc78bf8a808621e85043762bd3ccef88ae"
     },
     {
       "shard_index": 3,
       "file_path": "parts/evidence/part_fitment_evidence_shard_03.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23687319,
-      "compressed_bytes": 686202,
-      "sha256": "bceb9af1fd4e3260bec43443ab4c85c74a0115e9bb27eb88549130bd985d795e"
+      "uncompressed_bytes": 23460486,
+      "compressed_bytes": 1156246,
+      "sha256": "8d7c55027aefaf676034e1131878bf4c58bd1836232b30a18caf4efe12d715eb"
     },
     {
       "shard_index": 4,
       "file_path": "parts/evidence/part_fitment_evidence_shard_04.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23242840,
-      "compressed_bytes": 702497,
-      "sha256": "b312287f64d2fb907138ff6f8633f2a65f602e332a0f35a575a4b7313e99b5db"
+      "uncompressed_bytes": 23435177,
+      "compressed_bytes": 1267857,
+      "sha256": "185de490e8cdaba6df830955254ed54bc5a81f2b34e9836bd31e52c5ab912165"
     },
     {
       "shard_index": 5,
       "file_path": "parts/evidence/part_fitment_evidence_shard_05.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23657294,
-      "compressed_bytes": 679701,
-      "sha256": "fd5da90e4bb5c4dac95cd9f44d068ea2089353b0ce19d31459db72b8c1eb3afb"
+      "uncompressed_bytes": 23400393,
+      "compressed_bytes": 996384,
+      "sha256": "221d891b4ac757d3d1a2f681679fdcf91aae8265cb6fc5f14df67610a6bc4c3d"
     },
     {
       "shard_index": 6,
       "file_path": "parts/evidence/part_fitment_evidence_shard_06.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23784792,
-      "compressed_bytes": 701464,
-      "sha256": "34bdd20263a71606c27ef59cf30f04c30f05f5faaf8b29b35b858645b2497a26"
+      "uncompressed_bytes": 22958836,
+      "compressed_bytes": 949994,
+      "sha256": "a8411895b1539e5804afd5c97e021b58a7a7bd7ca02f7622c45ef23db8c4d381"
     },
     {
       "shard_index": 7,
       "file_path": "parts/evidence/part_fitment_evidence_shard_07.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23309595,
-      "compressed_bytes": 631649,
-      "sha256": "397f1543cf8482cc842abe0503f72e3eaf9f87e4d4f3cd8147abe4e2dd31879f"
+      "uncompressed_bytes": 23791186,
+      "compressed_bytes": 1399518,
+      "sha256": "2130a949a0dbb5b5c4af8811e3eee86e236c54177d1803189d9650d70d2c2fe4"
     },
     {
       "shard_index": 8,
       "file_path": "parts/evidence/part_fitment_evidence_shard_08.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 23575700,
-      "compressed_bytes": 667000,
-      "sha256": "1b846ea6d2cb18379f82d57f30798772a645ea9b29d532cd227f0c82172c77e4"
+      "uncompressed_bytes": 23645985,
+      "compressed_bytes": 1465795,
+      "sha256": "1213ac4511380fcdac81723ccd78ec76ddc99b4696833e1448f4b3222b8d04ee"
     },
     {
       "shard_index": 9,
       "file_path": "parts/evidence/part_fitment_evidence_shard_09.jsonl.gz",
-      "records_count": 6607,
-      "uncompressed_bytes": 6175587,
-      "compressed_bytes": 176346,
-      "sha256": "1655629d95604fdde37af6ccba2be997b5d4c7dffa35acac2bb678f5238a7f63"
+      "records_count": 14001,
+      "uncompressed_bytes": 13514081,
+      "compressed_bytes": 956182,
+      "sha256": "e26412d8cac518f5f446831ea5957086789fb7dccd6844859a9412fa13e9186d"
     }
   ],
-  "total_uncompressed_bytes": 195257239,
-  "total_compressed_bytes": 5624450
+  "total_uncompressed_bytes": 201809022,
+  "total_compressed_bytes": 11171820
 }

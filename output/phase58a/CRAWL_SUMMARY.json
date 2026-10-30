@@ -1,0 +1,49 @@
+{
+  "phase": "58A",
+  "root_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns.html",
+  "discovery_method": "PUBLIC_SEARCH_INDEX",
+  "source_authority": "GHS_STIHL_PRIMARY",
+  "source_status": "AUTHORITATIVE",
+  "status": "COMPLETE_WITH_RETRYABLE_FAILURES",
+  "public_api_probe": {
+    "graphql_endpoint": "https://www.gardenhirespares.co.uk/graphql",
+    "rest_categories_endpoint": "https://www.gardenhirespares.co.uk/rest/V1/categories",
+    "rest_default_categories_endpoint": "https://www.gardenhirespares.co.uk/rest/default/V1/categories",
+    "result": "HTTP_403_CLOUDFLARE_MANAGED_CHALLENGE",
+    "fallback_activated": "SEARCH_INDEX_SEEDED_RECURSIVE_HARVEST"
+  },
+  "discovery_rounds": [],
+  "completeness_metrics": {
+    "categories_discovered": 90,
+    "subcategory_pages_discovered": 60,
+    "model_pages_discovered": 497,
+    "model_pages_successfully_parsed": 7,
+    "model_pages_failed_or_deferred": 303,
+    "diagram_links_discovered": 428,
+    "diagram_links_parsed": 343,
+    "product_pages_and_pagination_crawled": 615,
+    "unique_stihl_oem_part_numbers": 2637,
+    "unique_ghs_product_records": 2814,
+    "model_part_fitments": 7394,
+    "failed_or_retryable_urls": 3622
+  },
+  "diagram_coverage": {
+    "models_with_ghs_diagrams": 79,
+    "models_with_multiple_diagrams": 63,
+    "total_diagram_sections": 428,
+    "diagrams_with_image_urls": 428,
+    "parts_assigned_to_diagram_section": 1648,
+    "parts_with_only_model_level_association": 989
+  },
+  "hard_gates": {
+    "DUPLICATE_SOURCE_URLS_PROCESSED": 0,
+    "PAGINATION_PAGES_SILENTLY_SKIPPED": 0,
+    "NEW_PART_WITHOUT_SOURCE_URL": 0,
+    "NEW_FITMENT_WITHOUT_SOURCE_URL": 0,
+    "GHS_SKU_MISTAKEN_FOR_STIHL_PART_NUMBER": 0,
+    "AFTERMARKET_MISTAKEN_FOR_OEM": 0,
+    "FABRICATED_PART_NUMBERS": 0,
+    "FABRICATED_MODELS": 0,
+    "FABRICATED_DIAGRAMS": 0
+  }
+}

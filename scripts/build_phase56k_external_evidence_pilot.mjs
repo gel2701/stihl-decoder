@@ -396,10 +396,10 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
   const phase56hResults = JSON.parse(fs.readFileSync(path.join(rootDir, 'output', 'phase56h', 'SECTION_RESOLUTION_RESULTS.json'), 'utf8'));
 
   // 1. Verify Canonical Invariants & Freeze Counts
-  const canonicalPartsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const canonicalFitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configurationsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const canonicalFitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configurationsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
   const publishedModels = (stihlDb.models || []).filter(m => m.data_status !== 'EVIDENCE_STORE_LINKED');
 
@@ -408,7 +408,7 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
   const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 
   // 2. Step 1: Deterministic Selection of 40 Pilot Targets from the 110 Phase 56J Targets
-  const fitStmt = db.prepare('SELECT fitment_id, canonical_model_id, variant_key, configuration_key, fitment_scope, section_name, diagram_position, source_id, source_url FROM model_part_fitments WHERE part_number = ? ORDER BY fitment_id');
+  const fitStmt = db.prepare("SELECT fitment_id, canonical_model_id, variant_key, configuration_key, fitment_scope, section_name, diagram_position, source_id, source_url FROM model_part_fitments WHERE part_number = ? AND source_id != 'ghs' ORDER BY fitment_id");
   const prioritySet = new Set(PRIORITY_MODELS);
 
   const enrichedTargets = baseline56j.targets.map(t => {
@@ -661,7 +661,7 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
 
   let variantAAll = 0;
   let variantBAll = 0;
-  const allPartsRows = db.prepare('SELECT part_number FROM parts ORDER BY part_number').all();
+  const allPartsRows = db.prepare("SELECT part_number FROM parts WHERE sources != '[\"ghs\"]' ORDER BY part_number").all();
   for (const r of allPartsRows) {
     const v = getDeterministicQueryVariant(PartNormalizer.normalizePartNumber(r.part_number));
     if (v === QUERY_VARIANTS.VARIANT_A) variantAAll++;

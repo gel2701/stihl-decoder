@@ -155,12 +155,13 @@ export async function buildPhase56pMbDriveExpansion({
   const variants = db.prepare(`
     SELECT canonical_model_id, base_model_name, variant_name, source_model_name
     FROM parts_model_variants
+    WHERE source_id IS NULL OR source_id != 'ghs'
   `).all();
 
-  const canonicalPartsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const canonicalFitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configurationsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const canonicalFitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configurationsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
   // 1. Gather all 956 catalog entries

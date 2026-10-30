@@ -1,0 +1,23 @@
+{
+  "phase": "58A",
+  "status": "PASS",
+  "hard_gates": {
+    "DUPLICATE_SOURCE_URLS_PROCESSED": 0,
+    "PAGINATION_PAGES_SILENTLY_SKIPPED": 0,
+    "NEW_PART_WITHOUT_SOURCE_URL": 0,
+    "NEW_FITMENT_WITHOUT_SOURCE_URL": 0,
+    "GHS_SKU_MISTAKEN_FOR_STIHL_PART_NUMBER": 0,
+    "AFTERMARKET_MISTAKEN_FOR_OEM": 0,
+    "FABRICATED_PART_NUMBERS": 0,
+    "FABRICATED_MODELS": 0,
+    "FABRICATED_DIAGRAMS": 0
+  },
+  "invariants": {
+    "zero_duplicate_canonical_parts": true,
+    "zero_duplicate_canonical_fitments": true,
+    "zero_serial_ranges_modified": true,
+    "zero_volatile_price_or_stock_in_canonical": true,
+    "all_new_parts_have_valid_11_digit_stihl_number": true,
+    "all_new_parts_default_to_noindex": true
+  }
+}

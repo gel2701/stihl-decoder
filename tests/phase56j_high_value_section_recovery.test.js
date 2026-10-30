@@ -149,10 +149,10 @@ console.log('  ✅ SEO freeze tests passed (843 indexable parts, 1,024 sitemap U
 
 // 7. Catalog Invariant Tests
 const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { readonly: true });
-assert.equal(db.prepare('SELECT COUNT(*) as c FROM parts').get().c, 17082);
-assert.equal(db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c, 175106);
-assert.equal(db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c, 766);
-assert.equal(db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c, 208412);
+assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c, 17082);
+assert.equal(db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c, 175106);
+assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c, 766);
+assert.equal(db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c, 208412);
 assert.equal(db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c, 814);
 db.close();
 console.log('  ✅ Canonical SQLite database invariants verified (17,082 parts / 175,106 fitments / 766 configs / 208,412 evidence / 814 contexts)');

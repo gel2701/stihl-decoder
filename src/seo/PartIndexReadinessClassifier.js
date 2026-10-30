@@ -173,7 +173,7 @@ export class PartIndexReadinessClassifier {
         GROUP_CONCAT(f.diagram_position, '|') as raw_positions,
         MAX(CASE WHEN f.configuration_key IS NOT NULL AND f.configuration_key != '' THEN 1 ELSE 0 END) as has_config
       FROM parts p
-      JOIN model_part_fitments f ON p.part_number = f.part_number
+      LEFT JOIN model_part_fitments f ON p.part_number = f.part_number
       GROUP BY p.part_number
     `;
 

@@ -152,10 +152,10 @@ describe('Phase 54F-H — Final Backlog Consolidation & Phase 54F Closure Readin
   it('9. Catalog Invariant Verification: Database Counts Frozen', () => {
     const db = new Database(DB_PATH, { readonly: true });
     try {
-      const parts = db.prepare('SELECT count(*) as c FROM parts').get().c;
-      const fitments = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-      const configs = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
-      const evidence = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
+      const parts = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+      const fitments = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+      const configs = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+      const evidence = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
       const contexts = db.prepare('SELECT count(*) as c FROM model_part_fitment_section_contexts').get().c;
 
       assert.strictEqual(parts, 17082, 'Database parts count frozen at 17,082');

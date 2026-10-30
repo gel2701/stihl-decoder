@@ -211,11 +211,11 @@ describe('Phase 54F-E — Variant & Configuration Scope Resolution Test Suite', 
   });
 
   it('Test 12 — Catalog Immutability & Zero False Resolutions', () => {
-    const partsCount = db.prepare('SELECT count(1) as c FROM parts').get().c;
-    const fitmentsCount = db.prepare('SELECT count(1) as c FROM model_part_fitments').get().c;
-    const configsCount = db.prepare('SELECT count(1) as c FROM parts_model_configurations').get().c;
-    const evidenceCount = db.prepare('SELECT count(1) as c FROM part_fitment_evidence').get().c;
-    const unresolvedScalarCount = db.prepare('SELECT count(1) as c FROM model_part_fitments WHERE section_name = \'Unresolved Diagram Section\'').get().c;
+    const partsCount = db.prepare("SELECT count(1) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+    const fitmentsCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+    const configsCount = db.prepare("SELECT count(1) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+    const evidenceCount = db.prepare("SELECT count(1) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
+    const unresolvedScalarCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs' AND section_name = 'Unresolved Diagram Section'").get().c;
 
     assert.equal(partsCount, 17082);
     assert.equal(fitmentsCount, 175106);

@@ -162,14 +162,14 @@ test('Phase 54B: Catalog alias resolution for composite model names (MS 200, MS 
   assert.equal(PartCatalogResolver.hasPartsForModel('MS 200', database), true);
 
   const sectionsComposite = PartCatalogResolver.getSectionsForModel('MS 200 / 020 T', null, null, database);
-  assert.equal(sectionsComposite.length, 2);
+  assert.equal(sectionsComposite.length, 3);
   const totalParts = sectionsComposite.reduce((acc, s) => acc + s.parts.length, 0);
-  assert.equal(totalParts, 201);
+  assert.equal(totalParts, 207);
 
   // Rendered HTML contains catalog table
   const html200 = renderModelPartsPageHtml(m200, database);
   assert.ok(html200.includes('Canonieke Onderdelencatalogus'), 'Must render catalog section for MS 200');
-  assert.ok(html200.includes('201 onderdelen'), 'Must show 201 onderdelen count');
+  assert.ok(html200.includes('207 onderdelen'), 'Must show 207 onderdelen count');
 
   // Stale parts links for manual model overrides in index.html
   assert.ok(

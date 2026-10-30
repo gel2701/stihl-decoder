@@ -392,10 +392,10 @@ export function runUnmaskedEscalation({ dryRun = false } = {}) {
   // 10. Database Baseline Verification
   console.log('\n▶ 10. Verifying Database Baseline...');
   const db = new Database(DB_PATH, { readonly: true });
-  const partsCount = db.prepare('SELECT count(*) as c FROM parts').get().c;
-  const fitmentsCount = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-  const configsCount = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
+  const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const fitmentsCount = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configsCount = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   db.close();
 
   const dContextsDoc = JSON.parse(fs.readFileSync(D_CONTEXTS_FILE, 'utf8'));

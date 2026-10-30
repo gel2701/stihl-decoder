@@ -64,9 +64,9 @@ test('Phase 54F-B Test B — Missing Fitment Candidate Isolation', () => {
   // Check that all 311 have matching canonical parts in DB
   const db = new Database(DB_PATH, { readonly: true });
   for (const c of newFitmentCandidates) {
-    const part = db.prepare('SELECT part_number FROM parts WHERE part_number = ?').get(c.part_number);
+    const part = db.prepare("SELECT part_number FROM parts WHERE part_number = ? AND sources != '[\"ghs\"]'").get(c.part_number);
     assert.ok(part, `Candidate part ${c.part_number} must exist in canonical parts catalog`);
-    const fitment = db.prepare('SELECT fitment_id FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ?').get(c.canonical_model_id, c.part_number);
+    const fitment = db.prepare("SELECT fitment_id FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND source_id != 'ghs'").get(c.canonical_model_id, c.part_number);
     assert.strictEqual(fitment, undefined, `Candidate model-part ${c.canonical_model_id}::${c.part_number} must NOT exist in canonical fitments`);
   }
 });

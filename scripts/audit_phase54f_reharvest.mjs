@@ -196,10 +196,10 @@ assertInvariant(sampleFailures === 0, `Sample verification: 0 failures (${sample
 console.log('\n▶ 5. Auditing Database State & Invariants...');
 const db = new Database(DB_PATH, { readonly: true });
 
-const partsCount = db.prepare('SELECT count(*) as c FROM parts').get().c;
-const fitmentsCount = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-const evidenceCount = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
-const configsCount = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
+const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+const fitmentsCount = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+const evidenceCount = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
+const configsCount = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
 
 console.log(`  PARTS:          ${partsCount}`);
 console.log(`  FITMENTS:       ${fitmentsCount}`);
@@ -215,13 +215,13 @@ assertInvariant(evidenceCount >= 206607, 'EVIDENCE_AFTER >= 206607');
 const partsWithMeaningfulSection = db.prepare(`
   SELECT count(DISTINCT part_number) as c
   FROM model_part_fitments
-  WHERE section_name NOT IN ('Unresolved Diagram Section', 'General', 'Algemene sectie', 'Unknown', 'N/A')
+  WHERE source_id != 'ghs' AND section_name NOT IN ('Unresolved Diagram Section', 'General', 'Algemene sectie', 'Unknown', 'N/A')
 `).get().c;
 
 const fitmentsWithMeaningfulSection = db.prepare(`
   SELECT count(*) as c
   FROM model_part_fitments
-  WHERE section_name NOT IN ('Unresolved Diagram Section', 'General', 'Algemene sectie', 'Unknown', 'N/A')
+  WHERE source_id != 'ghs' AND section_name NOT IN ('Unresolved Diagram Section', 'General', 'Algemene sectie', 'Unknown', 'N/A')
 `).get().c;
 
 console.log(`  PARTS_WITH_MEANINGFUL_SECTION:    ${partsWithMeaningfulSection} (Baseline: 857)`);
@@ -231,7 +231,7 @@ assertInvariant(partsWithMeaningfulSection >= 857, 'PARTS_WITH_MEANINGFUL_SECTIO
 assertInvariant(fitmentsWithMeaningfulSection >= 2798, 'FITMENTS_WITH_MEANINGFUL_SECTION_AFTER >= 2798');
 
 // Position semantics: check meaningful positions preserved intact using PartNormalizer.isMeaningfulDiagramPosition
-const fitmentRows = db.prepare('SELECT part_number, diagram_position FROM model_part_fitments').all();
+const fitmentRows = db.prepare("SELECT part_number, diagram_position FROM model_part_fitments WHERE source_id != 'ghs'").all();
 let fitmentsWithMeaningfulPosition = 0;
 const partsWithMeaningfulPosition = new Set();
 for (const f of fitmentRows) {
@@ -357,7 +357,7 @@ assertInvariant(unknownFitmentInAccepted === 0, 'PROMOTED_EVIDENCE_WITH_UNKNOWN_
 
 // 9.5 Scope Validator & Leakage Elimination Check
 console.log('\n▶ 9.5 Auditing Scope Validator & Leakage Elimination (EnrichmentScopeValidator)...');
-const fitmentRowsAll = db.prepare('SELECT fitment_id, canonical_model_id, part_number, variant_key, configuration_key, fitment_scope FROM model_part_fitments').all();
+const fitmentRowsAll = db.prepare("SELECT fitment_id, canonical_model_id, part_number, variant_key, configuration_key, fitment_scope FROM model_part_fitments WHERE source_id != 'ghs'").all();
 const fitmentMapAll = new Map(fitmentRowsAll.map(f => [f.fitment_id, f]));
 const validationResult = EnrichmentScopeValidator.validateEnrichmentSet(enrichments, rawObsById, fitmentMapAll);
 

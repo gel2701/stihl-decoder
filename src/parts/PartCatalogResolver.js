@@ -820,10 +820,13 @@ export class PartCatalogResolver {
       if (database && Array.isArray(database.model_part_fitments)) {
         return database.model_part_fitments.some(f => f.canonical_model_id === key);
       }
+      if (RENDERABLE_CATALOG_MODELS.has(key)) {
+        return true;
+      }
       if (cachedFitmentsByModelMap) {
         return cachedFitmentsByModelMap.has(key);
       }
-      return RENDERABLE_CATALOG_MODELS.has(key);
+      return false;
     };
 
     if (typeof modelInput === 'object') {
@@ -899,14 +902,6 @@ export class PartCatalogResolver {
 
     // If an in-memory database with fitments or configurations is provided, verify against it directly
     if (database && (Array.isArray(database.model_part_fitments) || Array.isArray(database.parts_model_configurations))) {
-      const sections = PartCatalogResolver.getSectionsForModel(modelInput, null, null, database);
-      if (sections && sections.length > 0) return true;
-      const configs = PartCatalogResolver.getConfigurationsForModel(modelInput, database);
-      return Boolean(configs && configs.length > 0);
-    }
-
-    // If full catalog is already cached in memory, use it
-    if (cachedFitmentsByModelMap) {
       const sections = PartCatalogResolver.getSectionsForModel(modelInput, null, null, database);
       if (sections && sections.length > 0) return true;
       const configs = PartCatalogResolver.getConfigurationsForModel(modelInput, database);
