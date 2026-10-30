@@ -118,10 +118,10 @@ export function buildPhase56JEvidenceRecovery({ write = true } = {}) {
   const p54fFinalBacklog = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'final_backlog_registry.json'), 'utf8'));
 
   // 1. Verify Baseline & Database Invariants
-  const canonicalPartsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const canonicalFitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configurationsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const canonicalFitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configurationsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
   const publishedModels = (stihlDb.models || []).filter(m => m.data_status !== 'EVIDENCE_STORE_LINKED');
@@ -142,9 +142,9 @@ export function buildPhase56JEvidenceRecovery({ write = true } = {}) {
   const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 
   // 2. Reconstruct the exact 110 High-Value Single-Section Targets from Phase 56I WAVE5_PREFLIGHT criteria
-  const allPartsRows = db.prepare('SELECT part_number, part_name FROM parts ORDER BY part_number').all();
-  const fitStmt = db.prepare('SELECT * FROM model_part_fitments WHERE part_number = ? ORDER BY fitment_id');
-  const evStmt = db.prepare('SELECT * FROM part_fitment_evidence WHERE part_number = ? ORDER BY evidence_id');
+  const allPartsRows = db.prepare("SELECT part_number, part_name FROM parts WHERE sources != '[\"ghs\"]' ORDER BY part_number").all();
+  const fitStmt = db.prepare("SELECT * FROM model_part_fitments WHERE part_number = ? AND source_id != 'ghs' ORDER BY fitment_id");
+  const evStmt = db.prepare("SELECT * FROM part_fitment_evidence WHERE part_number = ? AND source_id != 'ghs' ORDER BY evidence_id");
 
   // Index Phase 54F & enrichment records by normalized part_number
   const obsByPart = new Map();
@@ -568,7 +568,7 @@ export function buildPhase56JEvidenceRecovery({ write = true } = {}) {
   }
 
   // 5. Step 16: Interactive Diagram Impact Check (MS 261, MS 170, FS 55)
-  const modelFitmentsStmt = db.prepare('SELECT * FROM model_part_fitments WHERE canonical_model_id = ? ORDER BY fitment_id');
+  const modelFitmentsStmt = db.prepare("SELECT * FROM model_part_fitments WHERE canonical_model_id = ? AND source_id != 'ghs' ORDER BY fitment_id");
   const partNameByNumber = new Map(allPartsRows.map(p => [PartNormalizer.normalizePartNumber(p.part_number), p.part_name]));
   const interactiveDiagramImpact = PILOT_MODELS.map(pm => {
     const modelFits = modelFitmentsStmt.all(pm.canonical_model_id);

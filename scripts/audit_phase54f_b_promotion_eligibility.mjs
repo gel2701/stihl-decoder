@@ -128,10 +128,10 @@ export function runAudit() {
   // 7. Audit Database State & Catalog Parity
   console.log('\n▶ 7. Auditing Database State & Catalog Parity...');
   const db = new Database(DB_PATH, { readonly: true });
-  const partsCount = db.prepare('SELECT count(*) as c FROM parts').get().c;
-  const fitmentsCount = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-  const evidenceCount = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
-  const configsCount = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
+  const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const fitmentsCount = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const evidenceCount = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
+  const configsCount = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
 
   assertInvariant(partsCount === 17082, 'PARTS === 17082 (17082 + 0 new parts)');
   assertInvariant(fitmentsCount === 175106, 'FITMENTS === 175106 (175106 + 0 new fitments)');

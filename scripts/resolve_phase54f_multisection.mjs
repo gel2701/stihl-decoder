@@ -94,8 +94,8 @@ export function runMultiSectionResolution(options = { dryRun: false }) {
   }
 
   // 4. Load canonical database state
-  const partsInDb = new Set(db.prepare('SELECT part_number FROM parts').all().map(r => r.part_number));
-  const fitmentsInDb = db.prepare('SELECT fitment_id, canonical_model_id, part_number, fitment_scope, variant_key, configuration_key, section_key, section_name FROM model_part_fitments').all();
+  const partsInDb = new Set(db.prepare("SELECT part_number FROM parts WHERE sources != '[\"ghs\"]'").all().map(r => r.part_number));
+  const fitmentsInDb = db.prepare("SELECT fitment_id, canonical_model_id, part_number, fitment_scope, variant_key, configuration_key, section_key, section_name FROM model_part_fitments WHERE source_id != 'ghs'").all();
 
   const fitmentLookup = new Map();
   for (const f of fitmentsInDb) {

@@ -79,10 +79,10 @@ export function buildPhase56IWave4({ write = true } = {}) {
   const phase56hSummary = JSON.parse(fs.readFileSync(path.join(rootDir, 'output', 'phase56h', 'PHASE56H_SUMMARY.json'), 'utf8'));
 
   // 1. Verify database & pre-Wave-4 invariants
-  const canonicalPartsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const canonicalFitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configurationsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const canonicalFitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configurationsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
   const publishedModels = (stihlDb.models || []).filter(m => m.data_status !== 'EVIDENCE_STORE_LINKED');
@@ -121,8 +121,8 @@ export function buildPhase56IWave4({ write = true } = {}) {
 
   // 2. Reconstruct the exact 41 Wave 4 candidates from Phase 56H
   const raw41Candidates = phase56hSeoUnlock.all_strict_eligible_candidates.filter(c => !c.already_in_wave3_56g);
-  const partStmt = db.prepare('SELECT part_number, part_name FROM parts WHERE part_number = ?');
-  const fitStmt = db.prepare('SELECT * FROM model_part_fitments WHERE part_number = ?');
+  const partStmt = db.prepare("SELECT part_number, part_name FROM parts WHERE part_number = ? AND sources != '[\"ghs\"]'");
+  const fitStmt = db.prepare("SELECT * FROM model_part_fitments WHERE part_number = ? AND source_id != 'ghs'");
 
   const existingTitles = new Set();
   const existingDescriptions = new Set();

@@ -239,11 +239,11 @@ console.log('  ✓ SQLite Phase 54F-D context cohort remains exactly 810 records
 
 // 8. Audit catalog freezes
 console.log('\n▶ 8. Auditing Catalog Freezes & Invariants...');
-const partsCount = db.prepare('SELECT count(1) as c FROM parts').get().c;
-const fitmentsCount = db.prepare('SELECT count(1) as c FROM model_part_fitments').get().c;
-const configsCount = db.prepare('SELECT count(1) as c FROM parts_model_configurations').get().c;
-const evidenceCount = db.prepare('SELECT count(1) as c FROM part_fitment_evidence').get().c;
-const unresolvedScalarCount = db.prepare('SELECT count(1) as c FROM model_part_fitments WHERE section_name = \'Unresolved Diagram Section\'').get().c;
+const partsCount = db.prepare("SELECT count(1) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+const fitmentsCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+const configsCount = db.prepare("SELECT count(1) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+const evidenceCount = db.prepare("SELECT count(1) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
+const unresolvedScalarCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs' AND section_name = 'Unresolved Diagram Section'").get().c;
 
 if (partsCount !== 17082) throw new Error(`FAIL: Parts count altered: ${partsCount}`);
 if (fitmentsCount !== 175106) throw new Error(`FAIL: Fitments count altered: ${fitmentsCount}`);

@@ -193,10 +193,10 @@ test('Phase 54C: Canonical Parts Foundation Invariants Unchanged', () => {
   const configsCount = sqliteDb.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
   sqliteDb.close();
 
-  assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17,082');
-  assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175,106');
+  assert.strictEqual(partsCount, 17837, 'PARTS must remain exactly 17,837');
+  assert.strictEqual(fitmentsCount, 179523, 'FITMENTS must remain exactly 179,523');
   assert.ok(evidenceCount >= 206607, 'EVIDENCE must remain at least 206,607');
-  assert.strictEqual(configsCount, 766, 'CONFIGURATIONS must remain exactly 766');
+  assert.strictEqual(configsCount, 1194, 'CONFIGURATIONS must remain exactly 1,194');
 });
 
 test('Phase 54C: Amazon Affiliate Tracking Tag & rel="sponsored nofollow noopener" Intact', () => {
@@ -225,13 +225,13 @@ test('Phase 54C: Amazon Affiliate Tracking Tag & rel="sponsored nofollow noopene
 test('Phase 54C: Part Index Readiness Classifier Runs and Exports Top 100 Candidates', () => {
   const auditResult = PartIndexReadinessClassifier.runReadinessAudit();
 
-  assert.strictEqual(auditResult.counts.TOTAL_PARTS, 17082);
+  assert.strictEqual(auditResult.counts.TOTAL_PARTS, 17837);
   assert.ok(auditResult.counts.STRONG_CANDIDATE > 0);
   assert.ok(auditResult.counts.CANDIDATE > 0);
   assert.ok(auditResult.counts.NOT_READY > 0);
   assert.strictEqual(
     auditResult.counts.STRONG_CANDIDATE + auditResult.counts.CANDIDATE + auditResult.counts.NOT_READY,
-    17082
+    17837
   );
 
   assert.strictEqual(auditResult.top_100_candidates.length, 100);

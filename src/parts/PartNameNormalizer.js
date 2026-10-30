@@ -182,6 +182,7 @@ export class PartNameNormalizer {
       const prev = clean;
       clean = clean.replace(/^(?:genuine\s+)?stihl\s+/i, '');
       clean = clean.replace(/^genuine\s+/i, '');
+      clean = clean.replace(/^ST\s*(?=\d{4})/i, '');
       if (partNumber) {
         const formattedPart = PartNormalizer.formatPartNumber(partNumber);
         clean = clean.replace(new RegExp(`^${partNumber}\\s*`, 'i'), '');

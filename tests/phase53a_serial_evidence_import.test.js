@@ -170,10 +170,10 @@ test('Phase 53A - Test 10: Parts Foundation Immutability', (t) => {
     const configsCount = db.prepare('SELECT COUNT(*) as cnt FROM parts_model_configurations').get().cnt;
     db.close();
 
-    assert.strictEqual(partsCount, 17082, 'Parts count must be exactly 17082');
-    assert.strictEqual(fitmentsCount, 175106, 'Fitments count must be exactly 175106');
+    assert.strictEqual(partsCount, 17837, 'Parts count must be exactly 17837');
+    assert.strictEqual(fitmentsCount, 179523, 'Fitments count must be exactly 179523');
     assert.ok(evidenceCount >= 206607, 'Evidence count must be at least 206607');
-    assert.strictEqual(configsCount, 766, 'Configurations count must be exactly 766');
+    assert.strictEqual(configsCount, 1194, 'Configurations count must be exactly 1194');
   }
 });
 

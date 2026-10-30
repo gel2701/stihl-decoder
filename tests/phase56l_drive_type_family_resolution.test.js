@@ -694,10 +694,10 @@ test('Phase 56L.4: Strict Schema.org Product / ProductModel JSON-LD type validat
 
 test('Phase 56L.4: Catalog & SEO Freeze Invariants', () => {
   const db = new Database(path.join(DATA_DIR, 'stihl_database.db'), { readonly: true });
-  const partsCount = db.prepare('SELECT COUNT(*) as c FROM parts').get().c;
-  const fitmentsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitments').get().c;
-  const configsCount = db.prepare('SELECT COUNT(*) as c FROM parts_model_configurations').get().c;
-  const evidenceCount = db.prepare('SELECT COUNT(*) as c FROM part_fitment_evidence').get().c;
+  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const fitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const configsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
+  const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
   assert.strictEqual(partsCount, 17082, 'Canonical parts count must be exactly 17,082');

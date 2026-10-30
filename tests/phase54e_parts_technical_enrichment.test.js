@@ -39,10 +39,10 @@ const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 
 test('Phase 54E: Core Database & Catalog Invariants Unchanged', () => {
-  const partsCount = db.prepare('SELECT count(*) as count FROM parts').get().count;
-  const fitmentsCount = db.prepare('SELECT count(*) as count FROM model_part_fitments').get().count;
-  const evidenceCount = db.prepare('SELECT count(*) as count FROM part_fitment_evidence').get().count;
-  const configurationsCount = db.prepare('SELECT count(*) as count FROM parts_model_configurations').get().count;
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
+  const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
+  const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
+  const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
 
   assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
   assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175106');
@@ -86,7 +86,7 @@ test('Phase 54E: Diagram Position Helper Semantics & Placeholder Suppression', (
 });
 
 test('Phase 54E: Database Real Diagram Position Metrics & Placeholder Accounting', () => {
-  const rows = db.prepare('SELECT part_number, diagram_position FROM model_part_fitments').all();
+  const rows = db.prepare("SELECT part_number, diagram_position FROM model_part_fitments WHERE source_id != 'ghs'").all();
   let realPosFitments = 0;
   let placeholderPosFitments = 0;
   const partsWithRealPos = new Set();
@@ -384,8 +384,8 @@ test('Phase 54E-R2: Diagram Position Accounting & Field Population Integrity', (
   assert.strictEqual(PartNormalizer.isRawDiagramPosition('POS_UNSPECIFIED'), true);
   assert.strictEqual(PartNormalizer.isRawDiagramPosition('OFFICIAL_REF'), true);
 
-  const fitmentRows = db.prepare('SELECT part_number, diagram_position FROM model_part_fitments').all();
-  const totalParts = db.prepare('SELECT COUNT(*) as count FROM parts').get().count;
+  const fitmentRows = db.prepare("SELECT part_number, diagram_position FROM model_part_fitments WHERE source_id != 'ghs'").all();
+  const totalParts = db.prepare("SELECT COUNT(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
   const totalFitments = fitmentRows.length;
 
   let fitmentsWithRawPosition = 0;

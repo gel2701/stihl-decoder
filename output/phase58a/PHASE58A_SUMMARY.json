@@ -1,0 +1,1832 @@
+{
+  "phase": "58A",
+  "title": "Complete Garden Hire Spares STIHL Catalog Harvest — Authoritative Source Import",
+  "status": "COMPLETE_WITH_RETRYABLE_FAILURES",
+  "root_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns.html",
+  "discovery_method": "PUBLIC_SEARCH_INDEX",
+  "source_authority": "GHS_STIHL_PRIMARY",
+  "source_status": "AUTHORITATIVE",
+  "catalog_before_after": {
+    "phase": "58A",
+    "source_authority": "GHS_STIHL_PRIMARY",
+    "source_status": "AUTHORITATIVE",
+    "generated_at": "2026-10-30T22:06:05.671Z",
+    "models_before": 956,
+    "models_after": 1138,
+    "new_models": 182,
+    "parts_model_variants_before": 1227,
+    "parts_model_variants_after": 1452,
+    "parts_before": 17082,
+    "parts_after": 17837,
+    "new_canonical_parts": 755,
+    "existing_parts_enriched": 1882,
+    "fitments_before": 175106,
+    "fitments_after": 179523,
+    "new_fitments": 4417,
+    "existing_fitments_confirmed": 2981,
+    "diagram_configurations_before": 766,
+    "diagram_configurations_after": 1194,
+    "new_diagram_configurations": 428,
+    "source_evidence_records_before": 206607,
+    "source_evidence_records_after": 214001,
+    "new_source_evidence_records": 7394,
+    "serial_ranges_before": 8,
+    "serial_ranges_after": 8,
+    "serial_ranges_modified": 0
+  },
+  "diagram_coverage": {
+    "models_with_ghs_diagrams": 79,
+    "models_with_multiple_diagrams": 63,
+    "total_diagram_sections": 428,
+    "diagrams_with_image_urls": 428,
+    "parts_assigned_to_diagram_section": 1648,
+    "parts_with_only_model_level_association": 989
+  },
+  "crawl_completeness": {
+    "categories_discovered": 90,
+    "subcategory_pages_discovered": 60,
+    "model_pages_discovered": 497,
+    "model_pages_successfully_parsed": 7,
+    "model_pages_failed_or_deferred": 303,
+    "diagram_links_discovered": 428,
+    "diagram_links_parsed": 343,
+    "product_pages_and_pagination_crawled": 615,
+    "unique_stihl_oem_part_numbers": 2637,
+    "unique_ghs_product_records": 2814,
+    "model_part_fitments": 7394,
+    "failed_or_retryable_urls": 3622
+  },
+  "conflicts_summary": {
+    "total_conflicts": 4536,
+    "by_type": {
+      "SAME_PART_NUMBER_DIFFERENT_DESCRIPTION": 1882,
+      "DIFFERENT_DIAGRAM_ASSIGNMENT": 2405,
+      "MODEL_ALIAS_NORMALIZATION": 249
+    }
+  },
+  "crawl_failures": {
+    "total_count": 3622,
+    "retryable_count": 3621,
+    "non_retryable_http_404_count": 1
+  },
+  "top_new_data": {
+    "top_50_new_models": [
+      {
+        "canonical_model_id": "010av",
+        "model_display_name": "010AV",
+        "category": "STIHL Machine",
+        "ghs_category": "010AV",
+        "model_page_url": "https://www.gardenhirespares.co.uk/7507-genuine-stihl-ts400-ts410-ts420-r-starter-clip.html"
+      },
+      {
+        "canonical_model_id": "011av",
+        "model_display_name": "011AV",
+        "category": "STIHL Machine",
+        "ghs_category": "011AV",
+        "model_page_url": "https://www.gardenhirespares.co.uk/7507-genuine-stihl-ts400-ts410-ts420-r-starter-clip.html"
+      },
+      {
+        "canonical_model_id": "032av",
+        "model_display_name": "032AV",
+        "category": "STIHL Machine",
+        "ghs_category": "032AV",
+        "model_page_url": "https://www.gardenhirespares.co.uk/7507-genuine-stihl-ts400-ts410-ts420-r-starter-clip.html"
+      },
+      {
+        "canonical_model_id": "08s",
+        "model_display_name": "08S",
+        "category": "STIHL Machine",
+        "ghs_category": "08S",
+        "model_page_url": "https://www.gardenhirespares.co.uk/7119-genuine-stihl-7-32-5-5mm-chainsaw-chain-sharpening-kit-08s-088-ms880.html"
+      },
+      {
+        "canonical_model_id": "bf",
+        "model_display_name": "BF",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/bf-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "bg_46",
+        "model_display_name": "BG 46",
+        "category": "STIHL Machine",
+        "ghs_category": "BG 46",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "bg_65",
+        "model_display_name": "BG 65",
+        "category": "STIHL Machine",
+        "ghs_category": "BG 65",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "br_106",
+        "model_display_name": "BR 106",
+        "category": "STIHL Machine",
+        "ghs_category": "BR 106",
+        "model_page_url": "https://www.gardenhirespares.co.uk/0000-405-0600-genuine-stihl-oem-ignition-lead-1-m-a-b-1-54-117-859-02-2002.html"
+      },
+      {
+        "canonical_model_id": "br_480",
+        "model_display_name": "BR 480",
+        "category": "STIHL Machine",
+        "ghs_category": "BR 480",
+        "model_page_url": "https://www.gardenhirespares.co.uk/st1120-036-8500-genuine-stihl-woodruff-key-pack-of-3.html"
+      },
+      {
+        "canonical_model_id": "bt_106",
+        "model_display_name": "BT 106",
+        "category": "STIHL Machine",
+        "ghs_category": "BT 106",
+        "model_page_url": "https://www.gardenhirespares.co.uk/0000-405-0600-genuine-stihl-oem-ignition-lead-1-m-a-b-1-54-117-859-02-2002.html"
+      },
+      {
+        "canonical_model_id": "bt_230_2_mix",
+        "model_display_name": "BT 230 2-MIX",
+        "category": "STIHL Machine",
+        "ghs_category": "BT 230 2-MIX",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "bt_230",
+        "model_display_name": "BT 230",
+        "category": "STIHL Machine",
+        "ghs_category": "BT 230",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fbd_km",
+        "model_display_name": "FBD-KM",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fbd-km-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fc_111",
+        "model_display_name": "FC 111",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 111",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      },
+      {
+        "canonical_model_id": "fc_70",
+        "model_display_name": "FC 70",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 70",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fc_75",
+        "model_display_name": "FC 75",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 75",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fc_83",
+        "model_display_name": "FC 83",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 83",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      },
+      {
+        "canonical_model_id": "fc_90",
+        "model_display_name": "FC 90",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 90",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fc_95",
+        "model_display_name": "FC 95",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 95",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fc_96",
+        "model_display_name": "FC 96",
+        "category": "STIHL Machine",
+        "ghs_category": "FC 96",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      },
+      {
+        "canonical_model_id": "fcb_km_4137",
+        "model_display_name": "FCB-KM 4137",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fcb-km-4137-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fcs_4137",
+        "model_display_name": "FCS-4137",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fcs-4137-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fcs_4180",
+        "model_display_name": "FCS-4180",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fcs-4180-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fcs_km_4137",
+        "model_display_name": "FCS-KM 4137",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fcs-km-4137-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fcs_km_4180",
+        "model_display_name": "FCS-KM 4180",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fcs-km-4180-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fh_km_135",
+        "model_display_name": "FH-KM 135",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fh-km-135-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fh_km_145",
+        "model_display_name": "FH-KM 145",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fh-km-145-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fr_220",
+        "model_display_name": "FR 220",
+        "category": "STIHL Machine",
+        "ghs_category": "FR 220",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4118-713-4105-genuine-stihl-oem-stihl-blade.html"
+      },
+      {
+        "canonical_model_id": "fr_230_2_mix",
+        "model_display_name": "FR 230 2-MIX",
+        "category": "STIHL Machine",
+        "ghs_category": "FR 230 2-MIX",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fr_230",
+        "model_display_name": "FR 230",
+        "category": "STIHL Machine",
+        "ghs_category": "FR 230",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fr_235",
+        "model_display_name": "FR 235",
+        "category": "STIHL Machine",
+        "ghs_category": "FR 235",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      },
+      {
+        "canonical_model_id": "fr_480",
+        "model_display_name": "FR 480",
+        "category": "STIHL Machine",
+        "ghs_category": "FR 480",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_110",
+        "model_display_name": "FS 110",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 110",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_120_2_mix",
+        "model_display_name": "FS 120 2-MIX",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 120 2-MIX",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_230_2_mix",
+        "model_display_name": "FS 230 2-MIX",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 230 2-MIX",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_230",
+        "model_display_name": "FS 230",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 230",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_235",
+        "model_display_name": "FS 235",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 235",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      },
+      {
+        "canonical_model_id": "fs_290",
+        "model_display_name": "FS 290",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 290",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_311",
+        "model_display_name": "FS 311",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 311",
+        "model_page_url": "https://www.gardenhirespares.co.uk/7507-genuine-stihl-ts400-ts410-ts420-r-starter-clip.html"
+      },
+      {
+        "canonical_model_id": "fs_38_2_mix",
+        "model_display_name": "FS 38 2-MIX",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 38 2-MIX",
+        "model_page_url": "https://www.gardenhirespares.co.uk/2992-genuine-stihl-fs45-hl45-on-off-switch.html"
+      },
+      {
+        "canonical_model_id": "fs_380",
+        "model_display_name": "FS 380",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 380",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_55_2_mix",
+        "model_display_name": "FS 55 2-MIX",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 55 2-MIX",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3005-genuine-stihl-bg45-fs85-hl75-km100-fuel-filter.html"
+      },
+      {
+        "canonical_model_id": "fs_83",
+        "model_display_name": "FS 83",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 83",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3954-genuine-stihl-fs120-fs220-strimmer-guard.html"
+      },
+      {
+        "canonical_model_id": "fs_89",
+        "model_display_name": "FS 89",
+        "category": "STIHL Machine",
+        "ghs_category": "FS 89",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      },
+      {
+        "canonical_model_id": "fs_km_4180",
+        "model_display_name": "FS-KM 4180",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fs-km-4180-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fs_mm",
+        "model_display_name": "FS-MM",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/multitools-parts/fs-mm-multitool-parts.html"
+      },
+      {
+        "canonical_model_id": "fs",
+        "model_display_name": "FS",
+        "category": "KombiSysteem",
+        "ghs_category": "Stihl Kombi Tool Parts",
+        "model_page_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-kombi-tool-parts-diagrams/kombitool-parts/fs-kombitools-parts.html"
+      },
+      {
+        "canonical_model_id": "fs94c_e",
+        "model_display_name": "FS94C-E",
+        "category": "STIHL Machine",
+        "ghs_category": "FS94C-E",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4118-713-4105-genuine-stihl-oem-stihl-blade.html"
+      },
+      {
+        "canonical_model_id": "fse_65",
+        "model_display_name": "FSE 65",
+        "category": "STIHL Machine",
+        "ghs_category": "FSE 65",
+        "model_page_url": "https://www.gardenhirespares.co.uk/3954-genuine-stihl-fs120-fs220-strimmer-guard.html"
+      },
+      {
+        "canonical_model_id": "hl_56",
+        "model_display_name": "HL 56",
+        "category": "STIHL Machine",
+        "ghs_category": "HL 56",
+        "model_page_url": "https://www.gardenhirespares.co.uk/4137-711-2101-genuine-stihl-oem-stihl-plug.html"
+      }
+    ],
+    "top_100_new_part_numbers": [
+      {
+        "part_number": "00003500525",
+        "part_number_display": "0000 350 0525",
+        "part_name": "FS87, FS87R, FS90 Fuel Tank Cap",
+        "canonical_model": "FS 87",
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/4629-genuine-stihl-fs87-fs87r-fs90-fuel-tank-cap.html"
+      },
+      {
+        "part_number": "00004050600",
+        "part_number_display": "0000 405 0600",
+        "part_name": "Ignition Lead 1M",
+        "canonical_model": "012",
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-405-0600-genuine-stihl-oem-ignition-lead-1-m-a-b-1-54-117-859-02-2002.html"
+      },
+      {
+        "part_number": "00007504300",
+        "part_number_display": "0000 750 4300",
+        "part_name": "2 In 1 Easy Chainsaw Chain Sharpening Tool (5.0mm/ .404\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-750-4300-genuine-stihl-2-in-1-easyfile-404-5-5mm.html"
+      },
+      {
+        "part_number": "00007929176",
+        "part_number_display": "0000 792 9176",
+        "part_name": "20\" - 22\" (50cm) Guide Bar Scabbard",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/4637-stihl-rope-rotor-1122-195-0400.html"
+      },
+      {
+        "part_number": "00008810205",
+        "part_number_display": "0000 881 0205",
+        "part_name": "20L Metal Canister",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-881-0205-genuine-stihl-metal-canister-20l.html"
+      },
+      {
+        "part_number": "00008810508",
+        "part_number_display": "0000 881 0508",
+        "part_name": "Chainsaw Bag",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/6515-genuine-stihl-chainsaw-bag.html"
+      },
+      {
+        "part_number": "00008814141",
+        "part_number_display": "0000 881 4141",
+        "part_name": "Pr 40 Ct Super Turbocut Telescopic Saw",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-881-4141-genuine-stihl-pr-40-ct-super-turbocut-telescopic-saw.html"
+      },
+      {
+        "part_number": "00008814500",
+        "part_number_display": "0000 881 4500",
+        "part_name": "4mm To 5.5mm File Handle",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chinese-chainsaw-acc-chainsaw-accessories/forestry-chain-sharpening-equipment-chain-sharpening-equipment/forestry-chain-sharpening-equipment-search-by-brand/forestry-stihl-sharpening-equipment.html"
+      },
+      {
+        "part_number": "00008814502",
+        "part_number_display": "0000 881 4502",
+        "part_name": "2 Part File Handle",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/3377-genuine-stihl-7-32-5-5mm-chainsaw-chain-file-single.html"
+      },
+      {
+        "part_number": "00008819400",
+        "part_number_display": "0000 881 9400",
+        "part_name": "Special Cleaner",
+        "canonical_model": "KM 100",
+        "diagram_code": "X",
+        "diagram_title": "Cleaning products",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-x-cleaning-products.html"
+      },
+      {
+        "part_number": "00008819411",
+        "part_number_display": "0000 881 9411",
+        "part_name": "Mixing Bottle",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/6595-genuine-stihl-mixing-bottle.html"
+      },
+      {
+        "part_number": "00008831509",
+        "part_number_display": "0000 883 1509",
+        "part_name": "Stihl Function Protect MS Chainsaw Gloves (Medium/ Size 9)",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-gloves-stihl.html"
+      },
+      {
+        "part_number": "00008840141",
+        "part_number_display": "0000 884 0141",
+        "part_name": "Function Basic Chainsaw Safety Helmet",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/7037-genuine-stihl-function-basic-chainsaw-safety-helmet.html"
+      },
+      {
+        "part_number": "00008840307",
+        "part_number_display": "0000 884 0307",
+        "part_name": "Safety Glasses (Not For Ar)",
+        "canonical_model": "FCB-KM 4137",
+        "diagram_code": "A",
+        "diagram_title": "FCB-KM Drive tube assembly",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fcb-km-4137-a-fcb-km-drive-tube-assembly.html"
+      },
+      {
+        "part_number": "00008840528",
+        "part_number_display": "0000 884 0528",
+        "part_name": "Concept 24 Ear Defenders",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/6873-genuine-stihl-concept-24-ear-defenders.html"
+      },
+      {
+        "part_number": "00008840539",
+        "part_number_display": "0000 884 0539",
+        "part_name": "Stihl Ear Defenders (Concept 23)",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advance-series-professional-ear-defenders.html"
+      },
+      {
+        "part_number": "00008840541",
+        "part_number_display": "0000 884 0541",
+        "part_name": "Stihl Ear Defenders (Concept 24)",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advance-series-professional-ear-defenders.html"
+      },
+      {
+        "part_number": "00008840543",
+        "part_number_display": "0000 884 0543",
+        "part_name": "Stihl Ear Defenders (Concept 28)",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advance-series-professional-ear-defenders.html"
+      },
+      {
+        "part_number": "00008841510",
+        "part_number_display": "0000 884 1510",
+        "part_name": "Chainsaw Trouser Braces (Clip On Type)",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-accessories-stihl.html"
+      },
+      {
+        "part_number": "00008841511",
+        "part_number_display": "0000 884 1511",
+        "part_name": "Chainsaw Trouser Braces (Button Type)",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-accessories-stihl.html"
+      },
+      {
+        "part_number": "00008880808",
+        "part_number_display": "0000 888 0808",
+        "part_name": "Dynamic Ergo Chainsaw Safety Helmet",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-helmets-visors-stihl.html"
+      },
+      {
+        "part_number": "00008880810",
+        "part_number_display": "0000 888 0810",
+        "part_name": "Function Basic Chainsaw Safety Helmet",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-helmets-visors-stihl.html"
+      },
+      {
+        "part_number": "00008934005",
+        "part_number_display": "0000 893 4005",
+        "part_name": "1/4\"P File Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4008-genuine-stihl-325-depth-gauge.html"
+      },
+      {
+        "part_number": "00008934006",
+        "part_number_display": "0000 893 4006",
+        "part_name": "1/4\" P Depth Limiter Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4008-genuine-stihl-325-depth-gauge.html"
+      },
+      {
+        "part_number": "00008934007",
+        "part_number_display": "0000 893 4007",
+        "part_name": "3/8\"P Depth Limiter Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4008-genuine-stihl-325-depth-gauge.html"
+      },
+      {
+        "part_number": "00008934008",
+        "part_number_display": "0000 893 4008",
+        "part_name": ".325\" Depth Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4008-genuine-stihl-325-depth-gauge.html"
+      },
+      {
+        "part_number": "00008934009",
+        "part_number_display": "0000 893 4009",
+        "part_name": "3/8\" Depth Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4008-genuine-stihl-325-depth-gauge.html"
+      },
+      {
+        "part_number": "00008934010",
+        "part_number_display": "0000 893 4010",
+        "part_name": ".404\" Depth Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4008-genuine-stihl-325-depth-gauge.html"
+      },
+      {
+        "part_number": "00008934105",
+        "part_number_display": "0000 893 4105",
+        "part_name": "Chain Pitch Size/ Type Check Gauge",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-893-4105-genuine-stihl-check-guage.html"
+      },
+      {
+        "part_number": "00009302569",
+        "part_number_display": "0000 930 2569",
+        "part_name": "Nylon Line 3.3mm X 591m",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-930-2569-genuine-stihl-nylon-line-3-3mm-x-591m.html"
+      },
+      {
+        "part_number": "00009302623",
+        "part_number_display": "0000 930 2623",
+        "part_name": "3.3mm Square Strimmer Line 235mtr",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-930-2623-genuine-stihl-3-3mm-square-strimmer-line-235mtr.html"
+      },
+      {
+        "part_number": "00009303302",
+        "part_number_display": "0000 930 3302",
+        "part_name": "Mowing Line, 2.7mm X 80 M",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-930-3302-genuine-stihl-mowing-line-2-7mm-x-80-m.html"
+      },
+      {
+        "part_number": "00009581030",
+        "part_number_display": "0000 958 1030",
+        "part_name": "Washer",
+        "canonical_model": "BG-KM",
+        "diagram_code": "A",
+        "diagram_title": "Fan housing, Drive tube assembly",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bg-km-a-fan-housing-drive-tube-assembly.html"
+      },
+      {
+        "part_number": "00009582208",
+        "part_number_display": "0000 958 2208",
+        "part_name": "Washer",
+        "canonical_model": "LSG 950",
+        "diagram_code": "B",
+        "diagram_title": "Helper's handle",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-lsg950-b-helper-s-handle.html"
+      },
+      {
+        "part_number": "00009673693",
+        "part_number_display": "0000 967 3693",
+        "part_name": "Warning Pictogram Filler Cap (Usa. Cdn)",
+        "canonical_model": "KM 85 R",
+        "diagram_code": "D",
+        "diagram_title": "Air filter, Fuel tank",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-r-d-air-filter-fuel-tank.html"
+      },
+      {
+        "part_number": "00009673702",
+        "part_number_display": "0000 967 3702",
+        "part_name": "Warning Pictogram Ts",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0000-967-3702-genuine-stihl-warning-pictogram-ts.html"
+      },
+      {
+        "part_number": "00009673705",
+        "part_number_display": "0000 967 3705",
+        "part_name": "Warning Pictogram Se",
+        "canonical_model": "SE 122",
+        "diagram_code": "A",
+        "diagram_title": "SE 122: Machine cover, Connecting cable",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se122-a-se-122-machine-cover-connecting-cable.html"
+      },
+      {
+        "part_number": "00009673901",
+        "part_number_display": "0000 967 3901",
+        "part_name": "Warning Pictogram Se",
+        "canonical_model": "SE 122 E",
+        "diagram_code": "B",
+        "diagram_title": "SE 122 E: Machine cover, Connecting cable",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se122-e-b-se-122-e-machine-cover-connecting-cable.html"
+      },
+      {
+        "part_number": "00009677282",
+        "part_number_display": "0000 967 7282",
+        "part_name": "Warning Pictogram Se",
+        "canonical_model": "SE 61 E",
+        "diagram_code": "D",
+        "diagram_title": "Tools, Extras",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se61-e-d-tools-extras.html"
+      },
+      {
+        "part_number": "00009972007",
+        "part_number_display": "0000 997 2007",
+        "part_name": "Compression Spring",
+        "canonical_model": "BG-KM",
+        "diagram_code": "A",
+        "diagram_title": "Fan housing, Drive tube assembly",
+        "source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bg-km-a-fan-housing-drive-tube-assembly.html"
+      },
+      {
+        "part_number": "00009981104",
+        "part_number_display": "0000 998 1104",
+        "part_name": "Pawl Spring",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/shop-by-product/two-stroke-engine-parts/two-stroke-recoil-starters-parts/two-stroke-recoil-pawls-fixings/two-stroke-stihl-recoil-pawls.html"
+      },
+      {
+        "part_number": "00021042100",
+        "part_number_display": "0002 104 2100",
+        "part_name": "Spring",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/0002-104-2100-genuine-stihl-spring.html"
+      },
+      {
+        "part_number": "00883350703",
+        "part_number_display": "0088 335 0703",
+        "part_name": "Stihl Function Universal Jacket (Small, Chest 36\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-jacket.html"
+      },
+      {
+        "part_number": "00883350704",
+        "part_number_display": "0088 335 0704",
+        "part_name": "Stihl Function Universal Jacket (Medium, Chest 39\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-jacket.html"
+      },
+      {
+        "part_number": "00883350705",
+        "part_number_display": "0088 335 0705",
+        "part_name": "Stihl Function Universal Jacket (Large, Chest 42\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-jacket.html"
+      },
+      {
+        "part_number": "00883350706",
+        "part_number_display": "0088 335 0706",
+        "part_name": "Stihl Function Universal Jacket (XL, Chest 46\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-jacket.html"
+      },
+      {
+        "part_number": "00883350707",
+        "part_number_display": "0088 335 0707",
+        "part_name": "Stihl Function Universal Jacket (XXL, Chest 49\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-jacket.html"
+      },
+      {
+        "part_number": "00883350802",
+        "part_number_display": "0088 335 0802",
+        "part_name": "Advance X-Treem Jacket (XS, Chest 33\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-treem-jacket.html"
+      },
+      {
+        "part_number": "00883350803",
+        "part_number_display": "0088 335 0803",
+        "part_name": "Advance X-Treem Jacket (S, Chest 36\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-treem-jacket.html"
+      },
+      {
+        "part_number": "00883350804",
+        "part_number_display": "0088 335 0804",
+        "part_name": "Advance X-Treem Jacket (M, Chest 39\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-treem-jacket.html"
+      },
+      {
+        "part_number": "00883350805",
+        "part_number_display": "0088 335 0805",
+        "part_name": "Advance X-Treem Jacket (L, Chest 42\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-treem-jacket.html"
+      },
+      {
+        "part_number": "00883350806",
+        "part_number_display": "0088 335 0806",
+        "part_name": "Advance X-Treem Jacket (XL, Chest 46\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-treem-jacket.html"
+      },
+      {
+        "part_number": "00883350807",
+        "part_number_display": "0088 335 0807",
+        "part_name": "Advance X-Treem Jacket (XXL, Chest 49\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-treem-jacket.html"
+      },
+      {
+        "part_number": "00883350903",
+        "part_number_display": "0088 335 0903",
+        "part_name": "Dynamic Jacket (Small, Chest 36\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-dynamic-series-forestry/forestry-dynamic-series-jacket.html"
+      },
+      {
+        "part_number": "00883350904",
+        "part_number_display": "0088 335 0904",
+        "part_name": "Dynamic Jacket (Medium, Chest 39\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-dynamic-series-forestry/forestry-dynamic-series-jacket.html"
+      },
+      {
+        "part_number": "00883350905",
+        "part_number_display": "0088 335 0905",
+        "part_name": "Dynamic Jacket (Large, Chest 42\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-dynamic-series-forestry/forestry-dynamic-series-jacket.html"
+      },
+      {
+        "part_number": "00883350906",
+        "part_number_display": "0088 335 0906",
+        "part_name": "Dynamic Jacket (XL, Chest 46\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-dynamic-series-forestry/forestry-dynamic-series-jacket.html"
+      },
+      {
+        "part_number": "00883350907",
+        "part_number_display": "0088 335 0907",
+        "part_name": "Dynamic Jacket (XXL, Chest 49\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-dynamic-series-forestry/forestry-dynamic-series-jacket.html"
+      },
+      {
+        "part_number": "00883351003",
+        "part_number_display": "0088 335 1003",
+        "part_name": "Advance X-Vent Jacket (Small, Chest 36\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-vent-jacket.html"
+      },
+      {
+        "part_number": "00883351004",
+        "part_number_display": "0088 335 1004",
+        "part_name": "Advance X-Vent Jacket (Medium, Chest 39\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-vent-jacket.html"
+      },
+      {
+        "part_number": "00883351005",
+        "part_number_display": "0088 335 1005",
+        "part_name": "Advance X-Vent Jacket (Large, Chest 42\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-vent-jacket.html"
+      },
+      {
+        "part_number": "00883351006",
+        "part_number_display": "0088 335 1006",
+        "part_name": "Advance X-Vent Jacket (XL, Chest 46\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-vent-jacket.html"
+      },
+      {
+        "part_number": "00883351007",
+        "part_number_display": "0088 335 1007",
+        "part_name": "Advance X-Vent Jacket (XXL, Chest 49\")",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-vent-jacket.html"
+      },
+      {
+        "part_number": "00883351103",
+        "part_number_display": "0088 335 1103",
+        "part_name": "Stihl Advance X-Shell Jacket (Small,Chest 36\") - Peat/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-peat-black.html"
+      },
+      {
+        "part_number": "00883351104",
+        "part_number_display": "0088 335 1104",
+        "part_name": "Stihl Advance X-Shell Jacket (Medium,Chest 39\") - Peat/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-peat-black.html"
+      },
+      {
+        "part_number": "00883351105",
+        "part_number_display": "0088 335 1105",
+        "part_name": "Stihl Advance X-Shell Jacket (Large,Chest 42\") - Peat/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-peat-black.html"
+      },
+      {
+        "part_number": "00883351106",
+        "part_number_display": "0088 335 1106",
+        "part_name": "Stihl Advance X-Shell Jacket (XL,Chest 46\") - Peat/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-peat-black.html"
+      },
+      {
+        "part_number": "00883351107",
+        "part_number_display": "0088 335 1107",
+        "part_name": "Stihl Advance X-Shell Jacket (XXL,Chest 49\") - Peat/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-peat-black.html"
+      },
+      {
+        "part_number": "00883351202",
+        "part_number_display": "0088 335 1202",
+        "part_name": "Stihl Advance X-Shell Jacket (XS, Chest 33\") - Orange/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-orange-black.html"
+      },
+      {
+        "part_number": "00883351203",
+        "part_number_display": "0088 335 1203",
+        "part_name": "Stihl Advance X-Shell Jacket (Small,Chest 36\") - Orange/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-orange-black.html"
+      },
+      {
+        "part_number": "00883351204",
+        "part_number_display": "0088 335 1204",
+        "part_name": "Stihl Advance X-Shell Jacket (Med, Chest 39\") - Orange/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-orange-black.html"
+      },
+      {
+        "part_number": "00883351205",
+        "part_number_display": "0088 335 1205",
+        "part_name": "Stihl Advance X-Shell Jacket (Large,Chest 42\") - Orange/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-orange-black.html"
+      },
+      {
+        "part_number": "00883351206",
+        "part_number_display": "0088 335 1206",
+        "part_name": "Stihl Advance X-Shell Jacket (XL, Chest 46\") - Orange/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-orange-black.html"
+      },
+      {
+        "part_number": "00883351207",
+        "part_number_display": "0088 335 1207",
+        "part_name": "Stihl Advance X-Shell Jacket (XXL, Chest 49\") - Orange/Black",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-shell-jackets/forestry-x-shell-jackets-orange-black.html"
+      },
+      {
+        "part_number": "00883421002",
+        "part_number_display": "0088 342 1002",
+        "part_name": "Stihl Function Ergo Trousers (Waist 25\"- 28\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-ergo-trousers.html"
+      },
+      {
+        "part_number": "00883421003",
+        "part_number_display": "0088 342 1003",
+        "part_name": "Stihl Function Ergo Trousers (Waist 28\"- 31\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-ergo-trousers.html"
+      },
+      {
+        "part_number": "00883421004",
+        "part_number_display": "0088 342 1004",
+        "part_name": "Stihl Function Ergo Trousers (Waist 31\"- 34\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-ergo-trousers.html"
+      },
+      {
+        "part_number": "00883421005",
+        "part_number_display": "0088 342 1005",
+        "part_name": "Stihl Function Ergo Trousers (Waist 34\"- 38\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-ergo-trousers.html"
+      },
+      {
+        "part_number": "00883421006",
+        "part_number_display": "0088 342 1006",
+        "part_name": "Stihl Function Ergo Trousers (Waist 38\"- 42\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-ergo-trousers.html"
+      },
+      {
+        "part_number": "00883421007",
+        "part_number_display": "0088 342 1007",
+        "part_name": "Stihl Function Ergo Trousers (Waist 42\"- 46\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-ergo-trousers.html"
+      },
+      {
+        "part_number": "00883421202",
+        "part_number_display": "0088 342 1202",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 25\" - 28\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421203",
+        "part_number_display": "0088 342 1203",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 28\" - 31\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421204",
+        "part_number_display": "0088 342 1204",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 31\" - 34\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421205",
+        "part_number_display": "0088 342 1205",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 34\" - 38\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421206",
+        "part_number_display": "0088 342 1206",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 38\" - 42\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421207",
+        "part_number_display": "0088 342 1207",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 42\" - 46\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421302",
+        "part_number_display": "0088 342 1302",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 25\" - 28\") - Design C",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-c.html"
+      },
+      {
+        "part_number": "00883421303",
+        "part_number_display": "0088 342 1303",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 28\" - 31\") - Design C",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-c.html"
+      },
+      {
+        "part_number": "00883421304",
+        "part_number_display": "0088 342 1304",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 31\" - 34\") - Design C",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-c.html"
+      },
+      {
+        "part_number": "00883421305",
+        "part_number_display": "0088 342 1305",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 34\" - 38\") - Design C",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-c.html"
+      },
+      {
+        "part_number": "00883421306",
+        "part_number_display": "0088 342 1306",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 38\" - 42\") - Design C",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-c.html"
+      },
+      {
+        "part_number": "00883421307",
+        "part_number_display": "0088 342 1307",
+        "part_name": "Stihl Advance X-Flex Trousers (Waist 42\" - 46\") - Design C",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-x-flex-trousers/forestry-x-flex-trousers-design-c.html"
+      },
+      {
+        "part_number": "00883421403",
+        "part_number_display": "0088 342 1403",
+        "part_name": "Stihl Advance X-Light Trousers (Waist 28\" - 31\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-light-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421404",
+        "part_number_display": "0088 342 1404",
+        "part_name": "Stihl Advance X-Light Trousers (Waist 31\" - 34\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-light-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421405",
+        "part_number_display": "0088 342 1405",
+        "part_name": "Stihl Advance X-Light Trousers (Waist 34\" - 38\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-light-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421406",
+        "part_number_display": "0088 342 1406",
+        "part_name": "Stihl Advance X-Light Trousers (Waist 38\" - 42\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-advanced-series-professional-advance-series-professional/forestry-advanced-series-professional-x-light-trousers-design-a.html"
+      },
+      {
+        "part_number": "00883421502",
+        "part_number_display": "0088 342 1502",
+        "part_name": "Stihl Function Universal Trousers (Waist 25\"- 28\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-trousers.html"
+      },
+      {
+        "part_number": "00883421503",
+        "part_number_display": "0088 342 1503",
+        "part_name": "Stihl Function Universal Trousers (Waist 28\"- 31\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-trousers.html"
+      },
+      {
+        "part_number": "00883421504",
+        "part_number_display": "0088 342 1504",
+        "part_name": "Stihl Function Universal Trousers (Waist 31\"- 34\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-trousers.html"
+      },
+      {
+        "part_number": "00883421505",
+        "part_number_display": "0088 342 1505",
+        "part_name": "Stihl Function Universal Trousers (Waist 34\"- 38\") - Design A",
+        "canonical_model": null,
+        "diagram_code": null,
+        "diagram_title": null,
+        "source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chainsaw-protective-clothing/forestry-stihl-safety-clothing/forestry-function-series-occasional-user/forestry-universal-trousers.html"
+      }
+    ],
+    "models_with_most_new_fitments": [
+      {
+        "canonical_model_id": "km_130_r",
+        "new_fitments_count": 180,
+        "total_ghs_fitments_count": 276
+      },
+      {
+        "canonical_model_id": "km_131_r",
+        "new_fitments_count": 180,
+        "total_ghs_fitments_count": 222
+      },
+      {
+        "canonical_model_id": "km_111_r",
+        "new_fitments_count": 178,
+        "total_ghs_fitments_count": 216
+      },
+      {
+        "canonical_model_id": "km_110_r",
+        "new_fitments_count": 165,
+        "total_ghs_fitments_count": 250
+      },
+      {
+        "canonical_model_id": "km_85_r",
+        "new_fitments_count": 159,
+        "total_ghs_fitments_count": 280
+      },
+      {
+        "canonical_model_id": "km_90_r",
+        "new_fitments_count": 159,
+        "total_ghs_fitments_count": 208
+      },
+      {
+        "canonical_model_id": "km_94_rc_e",
+        "new_fitments_count": 159,
+        "total_ghs_fitments_count": 173
+      },
+      {
+        "canonical_model_id": "kr_85",
+        "new_fitments_count": 144,
+        "total_ghs_fitments_count": 167
+      },
+      {
+        "canonical_model_id": "km_100_r",
+        "new_fitments_count": 133,
+        "total_ghs_fitments_count": 229
+      },
+      {
+        "canonical_model_id": "mm_55_z",
+        "new_fitments_count": 124,
+        "total_ghs_fitments_count": 150
+      },
+      {
+        "canonical_model_id": "km_56_rc_e",
+        "new_fitments_count": 119,
+        "total_ghs_fitments_count": 152
+      },
+      {
+        "canonical_model_id": "se_201",
+        "new_fitments_count": 116,
+        "total_ghs_fitments_count": 122
+      },
+      {
+        "canonical_model_id": "se_100",
+        "new_fitments_count": 109,
+        "total_ghs_fitments_count": 113
+      },
+      {
+        "canonical_model_id": "mm_55_c_e",
+        "new_fitments_count": 103,
+        "total_ghs_fitments_count": 106
+      },
+      {
+        "canonical_model_id": "se_120",
+        "new_fitments_count": 79,
+        "total_ghs_fitments_count": 81
+      },
+      {
+        "canonical_model_id": "se_122",
+        "new_fitments_count": 75,
+        "total_ghs_fitments_count": 81
+      },
+      {
+        "canonical_model_id": "se_120_e",
+        "new_fitments_count": 72,
+        "total_ghs_fitments_count": 74
+      },
+      {
+        "canonical_model_id": "se_121",
+        "new_fitments_count": 71,
+        "total_ghs_fitments_count": 72
+      },
+      {
+        "canonical_model_id": "se_202",
+        "new_fitments_count": 61,
+        "total_ghs_fitments_count": 61
+      },
+      {
+        "canonical_model_id": "se_80",
+        "new_fitments_count": 61,
+        "total_ghs_fitments_count": 67
+      },
+      {
+        "canonical_model_id": "hl_km_145",
+        "new_fitments_count": 56,
+        "total_ghs_fitments_count": 96
+      },
+      {
+        "canonical_model_id": "hl_km_0",
+        "new_fitments_count": 55,
+        "total_ghs_fitments_count": 77
+      },
+      {
+        "canonical_model_id": "se_200",
+        "new_fitments_count": 54,
+        "total_ghs_fitments_count": 58
+      },
+      {
+        "canonical_model_id": "fh_km_145",
+        "new_fitments_count": 52,
+        "total_ghs_fitments_count": 53
+      },
+      {
+        "canonical_model_id": "se_90",
+        "new_fitments_count": 52,
+        "total_ghs_fitments_count": 53
+      }
+    ],
+    "new_diagram_families": [
+      {
+        "canonical_model_id": "ht_131",
+        "model": "HT 131",
+        "diagrams_count": 24,
+        "sample_sections": [
+          "A - Engine Ø 43 mm",
+          "B - Rewind starter, Fuel tank",
+          "C - Muffler, Air filter",
+          "D - Ignition system",
+          "E - Carburetor"
+        ]
+      },
+      {
+        "canonical_model_id": "ts_410",
+        "model": "TS 410",
+        "diagrams_count": 17,
+        "sample_sections": [
+          "A - Crankcase Assembly",
+          "B - Cylinder, Muffler Assembly",
+          "C - Clutch, Handlebar Assembly",
+          "D - Rewind Starter Assembly",
+          "E - Tank Housing Assembly"
+        ]
+      },
+      {
+        "canonical_model_id": "ms_271_c_be",
+        "model": "MS 271 C-BE",
+        "diagrams_count": 16,
+        "sample_sections": [
+          "A - Motor housing",
+          "B - Cylinder",
+          "C - Muffler",
+          "D - Oil pump",
+          "E - Chain brake"
+        ]
+      },
+      {
+        "canonical_model_id": "km_100",
+        "model": "KM 100",
+        "diagrams_count": 13,
+        "sample_sections": [
+          "A - Cylinder, Engine pan",
+          "B - Valve timing gear",
+          "C - Rewind starter, Fuel tank",
+          "D - Muffler, Air filter",
+          "E - Ignition system"
+        ]
+      },
+      {
+        "canonical_model_id": "km_110_r",
+        "model": "KM 110 R",
+        "diagrams_count": 13,
+        "sample_sections": [
+          "A - Cylinder, Engine pan",
+          "B - Valve timing gear",
+          "E - Clutch, Fan housing",
+          "G - Carburetor C1Q-S110",
+          "H - Carburetor C1Q-S88"
+        ]
+      },
+      {
+        "canonical_model_id": "km_131",
+        "model": "KM 131",
+        "diagrams_count": 13,
+        "sample_sections": [
+          "A - Engine Ø 43 mm",
+          "B - Rewind starter, Fuel tank",
+          "C - Muffler, Air filter",
+          "D - Ignition system",
+          "E - Carburetor"
+        ]
+      },
+      {
+        "canonical_model_id": "km_85_r",
+        "model": "KM 85 R",
+        "diagrams_count": 13,
+        "sample_sections": [
+          "C - Ignition system, Clutch",
+          "D - Air filter, Fuel tank",
+          "E - Carburetor 4137/28",
+          "F - Carburetor 4137/22",
+          "H - Carburetor 4137/23 BR"
+        ]
+      },
+      {
+        "canonical_model_id": "km_85",
+        "model": "KM 85",
+        "diagrams_count": 13,
+        "sample_sections": [
+          "A - Crankcase, Cylinder",
+          "B - Rewind starter, Muffler",
+          "C - Ignition system, Clutch",
+          "E - Carburetor 4137/28",
+          "F - Carburetor 4137/22"
+        ]
+      },
+      {
+        "canonical_model_id": "km_111_r",
+        "model": "KM 111 R",
+        "diagrams_count": 12,
+        "sample_sections": [
+          "A - Engine Ø 40 mm",
+          "B - Rewind starter, Fuel tank",
+          "C - Muffler, Air filter",
+          "E - Carburetor",
+          "F - Clutch, Fan housing"
+        ]
+      },
+      {
+        "canonical_model_id": "km_130_r",
+        "model": "KM 130 R",
+        "diagrams_count": 12,
+        "sample_sections": [
+          "A - Cylinder, Engine pan",
+          "C - Rewind starter, Fuel tank",
+          "D - Muffler, Air filter",
+          "E - Ignition system",
+          "G - Carburetor C1Q-S173, C1Q-S130"
+        ]
+      },
+      {
+        "canonical_model_id": "km_131_r",
+        "model": "KM 131 R",
+        "diagrams_count": 12,
+        "sample_sections": [
+          "A - Engine Ø 43 mm",
+          "B - Rewind starter, Fuel tank",
+          "C - Muffler, Air filter",
+          "D - Ignition system",
+          "E - Carburetor"
+        ]
+      },
+      {
+        "canonical_model_id": "ms_310",
+        "model": "MS 310",
+        "diagrams_count": 12,
+        "sample_sections": [
+          "A - Cylinder",
+          "B - Motor housing",
+          "C - Oil pump, Clutch",
+          "D - Chain brake, Muffler",
+          "E - Ignition system"
+        ]
+      },
+      {
+        "canonical_model_id": "re_127_plus",
+        "model": "RE 127 PLUS",
+        "diagrams_count": 12,
+        "sample_sections": [
+          "A - Electric motor",
+          "B - Pump, valve block",
+          "C - Chassis, Connecting cable",
+          "D - Handle frame, Machine cover",
+          "E - Hose reel RE 127 PLUS"
+        ]
+      },
+      {
+        "canonical_model_id": "km_100_r",
+        "model": "KM 100 R",
+        "diagrams_count": 11,
+        "sample_sections": [
+          "A - Cylinder, Engine pan",
+          "B - Valve timing gear",
+          "J - Carburetor C1Q-S88",
+          "L - Carburetor C1Q-S72",
+          "M - Handle"
+        ]
+      },
+      {
+        "canonical_model_id": "km_130",
+        "model": "KM 130",
+        "diagrams_count": 10,
+        "sample_sections": [
+          "A - Cylinder, Engine pan",
+          "B - Valve timing gear",
+          "C - Rewind starter, Fuel tank",
+          "D - Muffler, Air filter",
+          "F - Clutch, Fan housing"
+        ]
+      },
+      {
+        "canonical_model_id": "km_56_rc_e",
+        "model": "KM 56 RC-E",
+        "diagrams_count": 9,
+        "sample_sections": [
+          "B - Rewind starter KM 56 C",
+          "D - Muffler",
+          "E - Ignition system, Clutch",
+          "J - Carburetor C1M-S267",
+          "K - Carburetor C1M-S226, C1M-S207, C1M-S145"
+        ]
+      },
+      {
+        "canonical_model_id": "km_90",
+        "model": "KM 90",
+        "diagrams_count": 9,
+        "sample_sections": [
+          "B - Valve timing gear",
+          "D - Muffler, Air filter",
+          "E - Ignition system",
+          "G - Carburetor C1Q-S174, C1Q-S131",
+          "H - Carburetor C1Q-S110"
+        ]
+      },
+      {
+        "canonical_model_id": "kr_85",
+        "model": "KR 85",
+        "diagrams_count": 9,
+        "sample_sections": [
+          "D - Air filter, Fuel tank",
+          "E - Carburetor 4137/29 BR",
+          "F - Carburetor 4137/23 BR",
+          "H - Fan housing",
+          "J - Support frame, Flexible shaft"
+        ]
+      },
+      {
+        "canonical_model_id": "km_90_r",
+        "model": "KM 90 R",
+        "diagrams_count": 8,
+        "sample_sections": [
+          "C - Rewind starter, Fuel tank",
+          "D - Muffler, Air filter",
+          "F - Clutch, Fan housing",
+          "G - Carburetor C1Q-S174, C1Q-S131",
+          "H - Carburetor C1Q-S110"
+        ]
+      },
+      {
+        "canonical_model_id": "km_94_rc_e",
+        "model": "KM 94 RC-E",
+        "diagrams_count": 8,
+        "sample_sections": [
+          "B - Engine up to serial number 514291126",
+          "C - Carburetor 4149/02 from Serial number 516674202",
+          "D - Carburetor RC2-S243 up to serial number 514291126",
+          "E - Control handle",
+          "F - Drive tube assembly"
+        ]
+      },
+      {
+        "canonical_model_id": "mm_55_z",
+        "model": "MM 55 Z",
+        "diagrams_count": 8,
+        "sample_sections": [
+          "B - Rewind starter, Muffler",
+          "E - Engine housing, Drive tube assembly",
+          "G - Carburetor C1Q-S202, C1Q-S93",
+          "H - Carburetor C1Q-S79",
+          "O - Gear head"
+        ]
+      },
+      {
+        "canonical_model_id": "ms_881",
+        "model": "MS 881",
+        "diagrams_count": 8,
+        "sample_sections": [
+          "A - Crankcase, Cylinder, Muffler, Shroud",
+          "B - Clutch, Oil pump, Chain brake",
+          "C - Rewind starter, Ignition system",
+          "D - Tank housing, Filter, AV system, Handlebar MS 881",
+          "F - Carburetor parts"
+        ]
+      },
+      {
+        "canonical_model_id": "msa_200_c_bq",
+        "model": "MSA 200 C-BQ",
+        "diagrams_count": 8,
+        "sample_sections": [
+          "A - Handle housing, Shroud",
+          "B - Electric motor",
+          "C - Hand guard, Chain brake",
+          "D - Chain Sprocket Cover",
+          "F - Tightening torques"
+        ]
+      },
+      {
+        "canonical_model_id": "se_100",
+        "model": "SE 100",
+        "diagrams_count": 8,
+        "sample_sections": [
+          "A - Machine cover, Motor housing",
+          "B - Panel, Switch",
+          "C - SE 100: Electric motor, Filter",
+          "D - SE 200, 201, 202: Electric motor, Filter",
+          "E - SE 100: Container"
+        ]
+      },
+      {
+        "canonical_model_id": "hl_km_0",
+        "model": "HL-KM 0",
+        "diagrams_count": 7,
+        "sample_sections": [
+          "D - Gear head 0°",
+          "E - Blade",
+          "F - Angle drive 0°",
+          "G - Blade drive gear 0°, 30°, 0° - 90° (24.2005)",
+          "H - Blade 0°, 30°, 0° - 90° (24.2005), (46.2000)"
+        ]
+      },
+      {
+        "canonical_model_id": "se_201",
+        "model": "SE 201",
+        "diagrams_count": 7,
+        "sample_sections": [
+          "A - Machine cover, Motor housing",
+          "B - Panel, Switch",
+          "D - SE 200, 201, 202: Electric motor, Filter",
+          "F - SE 200, 201: Container, Frame",
+          "H - Tools, Extras"
+        ]
+      },
+      {
+        "canonical_model_id": "ht_km",
+        "model": "HT-KM",
+        "diagrams_count": 6,
+        "sample_sections": [
+          "A - Drive tube assembly",
+          "B - Angle drive",
+          "G - Gear head (42.2005)",
+          "H - Gear head (38.2002)",
+          "J - Conversion kit Gear housing (22.2011)"
+        ]
+      },
+      {
+        "canonical_model_id": "mm_55_c_e",
+        "model": "MM 55 C-E",
+        "diagrams_count": 6,
+        "sample_sections": [
+          "E - Engine housing, Drive tube assembly",
+          "F - Air filter, Fuel tank",
+          "G - Carburetor C1Q-S202, C1Q-S93",
+          "L - Handlebar",
+          "R - Tools, Extras"
+        ]
+      },
+      {
+        "canonical_model_id": "se_122",
+        "model": "SE 122",
+        "diagrams_count": 5,
+        "sample_sections": [
+          "A - SE 122: Machine cover, Connecting cable",
+          "C - Motor Housing, Electric motor, Filter",
+          "D - Container, Tools",
+          "E - Extras",
+          "F - Extras"
+        ]
+      },
+      {
+        "canonical_model_id": "hl_km_30",
+        "model": "HL-KM 30",
+        "diagrams_count": 4,
+        "sample_sections": [
+          "A - Drive tube assembly",
+          "B - HL-KM Angle drive 30°",
+          "C - HL-KM Blade drive gear 0°, 30°, 0° - 90°",
+          "D - HL-KM Blade 0°, 30°, 0° - 90°"
+        ]
+      }
+    ]
+  },
+  "hard_gates": {
+    "DUPLICATE_SOURCE_URLS_PROCESSED": 0,
+    "PAGINATION_PAGES_SILENTLY_SKIPPED": 0,
+    "NEW_PART_WITHOUT_SOURCE_URL": 0,
+    "NEW_FITMENT_WITHOUT_SOURCE_URL": 0,
+    "GHS_SKU_MISTAKEN_FOR_STIHL_PART_NUMBER": 0,
+    "AFTERMARKET_MISTAKEN_FOR_OEM": 0,
+    "FABRICATED_PART_NUMBERS": 0,
+    "FABRICATED_MODELS": 0,
+    "FABRICATED_DIAGRAMS": 0
+  },
+  "seo_eligibility_summary": {
+    "total_newly_imported_parts": 755,
+    "automatically_indexed_count": 0,
+    "eligible_for_future_indexation_count": 0
+  }
+}

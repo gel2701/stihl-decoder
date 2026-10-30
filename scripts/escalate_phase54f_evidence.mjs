@@ -771,10 +771,10 @@ export async function runEvidenceEscalation(options = {}) {
 
   // 9. Database and Catalog Reconciliation
   const db = new Database(DB_PATH);
-  const dbPartsBefore = db.prepare('SELECT count(*) as c FROM parts').get().c;
-  const dbFitmentsBefore = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-  const dbEvidenceBefore = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
-  const dbConfigurationsBefore = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
+  const dbPartsBefore = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const dbFitmentsBefore = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const dbEvidenceBefore = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
+  const dbConfigurationsBefore = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
 
   console.log('▶ Pre-Promotion Database Counts:');
   console.log(`  PARTS:          ${dbPartsBefore}`);
@@ -794,10 +794,10 @@ export async function runEvidenceEscalation(options = {}) {
     console.log('Zero canonical writes executed (CONFIRMED = 0).');
   }
 
-  const dbPartsAfter = db.prepare('SELECT count(*) as c FROM parts').get().c;
-  const dbFitmentsAfter = db.prepare('SELECT count(*) as c FROM model_part_fitments').get().c;
-  const dbEvidenceAfter = db.prepare('SELECT count(*) as c FROM part_fitment_evidence').get().c;
-  const dbConfigurationsAfter = db.prepare('SELECT count(*) as c FROM parts_model_configurations').get().c;
+  const dbPartsAfter = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const dbFitmentsAfter = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
+  const dbEvidenceAfter = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
+  const dbConfigurationsAfter = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
 
   // 11. Staging Conservation
   const stagingBefore = 1872;

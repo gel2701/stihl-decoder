@@ -2,7 +2,7 @@
   "schema_version": "model-part-fitments-v1",
   "is_sharded": true,
   "storage_format": "jsonl.gz",
-  "fitments_count": 175106,
+  "fitments_count": 179523,
   "shard_count": 8,
   "shard_files": [
     "parts/fitments/model_part_fitments_shard_01.jsonl.gz",
@@ -19,67 +19,67 @@
       "shard_index": 1,
       "file_path": "parts/fitments/model_part_fitments_shard_01.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 16078920,
-      "compressed_bytes": 602498,
-      "sha256": "5688c9721d83448b5a0055ea3923e36e684bb96402b299d2cc680d380f1ce4e7"
+      "uncompressed_bytes": 16083720,
+      "compressed_bytes": 615759,
+      "sha256": "049efe26576c4bb3ea5f5746720c3ae9f1f0051e137a2fb4607e64ec47c3bbd0"
     },
     {
       "shard_index": 2,
       "file_path": "parts/fitments/model_part_fitments_shard_02.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 15799777,
-      "compressed_bytes": 487948,
-      "sha256": "4ec6e4fc3b3e0e0d719eda1cd91ff0142199ad5a03f6e69673627cf9ffd7de56"
+      "uncompressed_bytes": 15833618,
+      "compressed_bytes": 507196,
+      "sha256": "cf20f02312b7348104fc6776401692c787260e390d30254de90f12d153de10e5"
     },
     {
       "shard_index": 3,
       "file_path": "parts/fitments/model_part_fitments_shard_03.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 15770896,
-      "compressed_bytes": 474233,
-      "sha256": "87aceb0836168d991d01bd653f05f1f504d975105af51b5d134e3aac79d85dc1"
+      "uncompressed_bytes": 15759938,
+      "compressed_bytes": 502119,
+      "sha256": "c5eb73475054f3ef169d70b8a2b8dc223bd4b692888b0dd128d4f5561203b850"
     },
     {
       "shard_index": 4,
       "file_path": "parts/fitments/model_part_fitments_shard_04.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 15888109,
-      "compressed_bytes": 416240,
-      "sha256": "f6337804f350864cf1620af4dee22b53fbe9ffdc2652ccb2642c215b9d8c0c0c"
+      "uncompressed_bytes": 15904218,
+      "compressed_bytes": 452617,
+      "sha256": "39ea399db00c24793f8f82e241eaa3fca7a97d2b6225b517b64d49c8bd83ff26"
     },
     {
       "shard_index": 5,
       "file_path": "parts/fitments/model_part_fitments_shard_05.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 15817482,
-      "compressed_bytes": 368415,
-      "sha256": "ab488202e5d85f5722aa7b074ee7a570d367b6754641fc3dae94cc2fed2f26d9"
+      "uncompressed_bytes": 15871597,
+      "compressed_bytes": 375647,
+      "sha256": "57ac4c4f23b39c29017555dad5752be609ded05e65e991c31aceda9c408476c3"
     },
     {
       "shard_index": 6,
       "file_path": "parts/fitments/model_part_fitments_shard_06.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 16037475,
-      "compressed_bytes": 584410,
-      "sha256": "2ba832557c0c5bb7b7893ba5673998c1d5ecc0a4249e162a6bd53c6b211ad5fe"
+      "uncompressed_bytes": 15982147,
+      "compressed_bytes": 546288,
+      "sha256": "a1e7e0e3bb1c10f97f951e183d042153dd62e9bcf3634852110e253e668cfff1"
     },
     {
       "shard_index": 7,
       "file_path": "parts/fitments/model_part_fitments_shard_07.jsonl.gz",
       "records_count": 25000,
-      "uncompressed_bytes": 15981678,
-      "compressed_bytes": 654493,
-      "sha256": "4f7b2cd7f57e512c94e90e8202ed2e43abb109cc970cb8d7888576fd7f71f9dc"
+      "uncompressed_bytes": 15962535,
+      "compressed_bytes": 692221,
+      "sha256": "c16344a6aac4c8b6be6133ca45a7442f940470d3be1a43e9c196a40924b105a6"
     },
     {
       "shard_index": 8,
       "file_path": "parts/fitments/model_part_fitments_shard_08.jsonl.gz",
-      "records_count": 106,
-      "uncompressed_bytes": 67087,
-      "compressed_bytes": 3463,
-      "sha256": "4e45c2e91ebd0dbc3165de5bf2fb387d585b980c9cbe65b9e0504e4364ebd4f4"
+      "records_count": 4523,
+      "uncompressed_bytes": 2925453,
+      "compressed_bytes": 109136,
+      "sha256": "7da58cf176823b6c03f9cc0c225f1a2aa4f8e985aea4b0e64da93de97b9522a4"
     }
   ],
-  "total_uncompressed_bytes": 111441424,
-  "total_compressed_bytes": 3591700
+  "total_uncompressed_bytes": 114323226,
+  "total_compressed_bytes": 3800983
 }

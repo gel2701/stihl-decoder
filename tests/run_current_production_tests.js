@@ -91,7 +91,8 @@ export const currentProductionSuites = [
   'tests/phase56p_mb_drive_expansion.test.js',
   'tests/phase57a_parts_affiliate_linking.test.js',
   'tests/phase57a1_affiliate_discovery_evidence.test.js',
-  'tests/phase57a2_real_evidence_import_security.test.js'
+  'tests/phase57a2_real_evidence_import_security.test.js',
+  'tests/phase58a_ghs_catalog_harvest.test.js'
 ];
 
 console.log('===============================================================');

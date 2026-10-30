@@ -52,8 +52,8 @@ export function runEligibilityReview(options = { dryRun: false }) {
   // 1. Evaluate 311 New-Fitment Candidates Individually
   const fitmentEligibilityRecords = [];
   const modelBreakdown = new Map();
-  const canonicalPartStmt = db.prepare('SELECT part_number, part_name FROM parts WHERE part_number = ?');
-  const canonicalFitmentStmt = db.prepare('SELECT count(*) as c FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ?');
+  const canonicalPartStmt = db.prepare("SELECT part_number, part_name FROM parts WHERE part_number = ? AND sources != '[\"ghs\"]'");
+  const canonicalFitmentStmt = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE canonical_model_id = ? AND part_number = ? AND source_id != 'ghs'");
 
   let fitmentEligible = 0;
   let fitmentIneligible = 0;
@@ -158,7 +158,7 @@ export function runEligibilityReview(options = { dryRun: false }) {
   }
 
   const existingPartsCleaned = new Map();
-  const allDbParts = db.prepare('SELECT part_number FROM parts').all().map(r => r.part_number);
+  const allDbParts = db.prepare("SELECT part_number FROM parts WHERE sources != '[\"ghs\"]'").all().map(r => r.part_number);
   for (const p of allDbParts) {
     existingPartsCleaned.set(p.replace(/\D/g, ''), p);
   }

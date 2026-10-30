@@ -323,7 +323,9 @@ function recreateSqliteDatabase(database) {
         base_model_name VARCHAR(100) NOT NULL,
         variant_key VARCHAR(50) NOT NULL,
         variant_name VARCHAR(100) NOT NULL,
-        source_model_name VARCHAR(100)
+        source_model_name VARCHAR(100),
+        source_id VARCHAR(50),
+        source_url TEXT
       );
 
       CREATE TABLE IF NOT EXISTS parts_model_configurations (
@@ -586,10 +588,10 @@ function recreateSqliteDatabase(database) {
     if (fs.existsSync(variantsPath)) {
       const variantsData = JSON.parse(fs.readFileSync(variantsPath, 'utf8'));
       const variantsList = Array.isArray(variantsData.variants) ? variantsData.variants : [];
-      const varStmt = db.prepare(`INSERT INTO parts_model_variants (canonical_model_id, base_model_name, variant_key, variant_name, source_model_name) VALUES (?, ?, ?, ?, ?)`);
+      const varStmt = db.prepare(`INSERT INTO parts_model_variants (canonical_model_id, base_model_name, variant_key, variant_name, source_model_name, source_id, source_url) VALUES (?, ?, ?, ?, ?, ?, ?)`);
       const insertVariants = db.transaction(() => {
         for (const v of variantsList) {
-          varStmt.run(v.canonical_model_id, v.base_model_name, v.variant_key, v.variant_name, v.source_model_name || null);
+          varStmt.run(v.canonical_model_id, v.base_model_name, v.variant_key, v.variant_name, v.source_model_name || null, v.source_id || null, v.source_url || null);
         }
       });
       insertVariants();

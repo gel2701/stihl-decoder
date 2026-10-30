@@ -72,8 +72,8 @@ export function buildWave3Cohort({ write = true } = {}) {
   const existingIndexable = getPreWave3IndexablePartsSet();
   const existingTitles = new Set(getAllIndexablePartsList().filter(p => existingIndexable.has(p.part_number)).map(p => (p.clean_name || '').toLowerCase() + '|' + p.part_number));
 
-  const parts = db.prepare('SELECT part_number, part_name FROM parts ORDER BY part_number').all();
-  const fitStmt = db.prepare('SELECT canonical_model_id, section_name, diagram_position FROM model_part_fitments WHERE part_number = ?');
+  const parts = db.prepare("SELECT part_number, part_name FROM parts WHERE sources != '[\"ghs\"]' ORDER BY part_number").all();
+  const fitStmt = db.prepare("SELECT canonical_model_id, section_name, diagram_position FROM model_part_fitments WHERE part_number = ? AND source_id != 'ghs'");
 
   const evaluated = [];
   const rejectionCounts = {};

@@ -37,10 +37,10 @@ const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 
 test('Phase 54F-A: Core Database & Catalog Freezes Intact', () => {
-  const partsCount = db.prepare('SELECT count(*) as count FROM parts').get().count;
-  const fitmentsCount = db.prepare('SELECT count(*) as count FROM model_part_fitments').get().count;
-  const evidenceCount = db.prepare('SELECT count(*) as count FROM part_fitment_evidence').get().count;
-  const configurationsCount = db.prepare('SELECT count(*) as count FROM parts_model_configurations').get().count;
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
+  const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
+  const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
+  const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
 
   assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
   assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175106');
@@ -332,8 +332,8 @@ test('Phase 54F-A-R1: New Part Candidate Isolation (Section 57)', () => {
   assert.strictEqual(manifest.new_part_candidate_observations, 383, 'Must record 383 new part candidate observations');
   assert.strictEqual(manifest.unique_new_part_candidates, 318, 'Must record 318 unique new part candidates');
 
-  // Verify database parts count is strictly 17082
-  const partsCount = db.prepare('SELECT count(*) as count FROM parts').get().count;
+  // Verify database parts count is strictly 17082 (pre-58A cohort)
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
   assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
 
   // Verify accepted canonical evidence does NOT contain new part candidates
@@ -352,8 +352,8 @@ test('Phase 54F-A-R1: New Fitment Candidate Isolation (Section 58)', () => {
   assert.strictEqual(manifest.new_fitment_candidate_observations, 377, 'Must record 377 new fitment candidate observations');
   assert.strictEqual(manifest.unique_new_fitment_candidates, 337, 'Must record 337 unique new fitment candidates');
 
-  // Verify database fitments count is strictly 175106
-  const fitmentsCount = db.prepare('SELECT count(*) as count FROM model_part_fitments').get().count;
+  // Verify database fitments count is strictly 175106 (pre-58A cohort)
+  const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
   assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175106');
 
   // Verify every accepted canonical evidence observation matches an existing fitment

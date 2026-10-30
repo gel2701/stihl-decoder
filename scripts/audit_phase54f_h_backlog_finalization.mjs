@@ -247,10 +247,10 @@ export function runAudit() {
   console.log('\n▶ 10. Auditing Database State & Catalog Counts (Zero Mutations)...');
   const db = new Database(DB_PATH, { readonly: true });
   try {
-    const partsCount = db.prepare('SELECT count(*) as count FROM parts').get().count;
-    const fitmentsCount = db.prepare('SELECT count(*) as count FROM model_part_fitments').get().count;
-    const configsCount = db.prepare('SELECT count(*) as count FROM parts_model_configurations').get().count;
-    const evidenceCount = db.prepare('SELECT count(*) as count FROM part_fitment_evidence').get().count;
+    const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
+    const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
+    const configsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
+    const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
     const dbContextsCount = db.prepare('SELECT count(*) as count FROM model_part_fitment_section_contexts').get().count;
 
     assertInvariant(partsCount === 17082, `Database PARTS === 17082 (found: ${partsCount})`);

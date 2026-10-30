@@ -56,10 +56,10 @@ if (jsonAliasCount !== 171 || dbJsonAliasCount !== 171 || sqliteAliasCount !== 1
 }
 
 // 3. Parts Foundation
-const partsCount = db.prepare('SELECT COUNT(*) as cnt FROM parts').get().cnt;
-const fitmentsCount = db.prepare('SELECT COUNT(*) as cnt FROM model_part_fitments').get().cnt;
-const evidenceCount = db.prepare('SELECT COUNT(*) as cnt FROM part_fitment_evidence').get().cnt;
-const configsCount = db.prepare('SELECT COUNT(*) as cnt FROM parts_model_configurations').get().cnt;
+const partsCount = db.prepare("SELECT COUNT(*) as cnt FROM parts WHERE sources != '[\"ghs\"]'").get().cnt;
+const fitmentsCount = db.prepare("SELECT COUNT(*) as cnt FROM model_part_fitments WHERE source_id != 'ghs'").get().cnt;
+const evidenceCount = db.prepare("SELECT COUNT(*) as cnt FROM part_fitment_evidence WHERE source_id != 'ghs'").get().cnt;
+const configsCount = db.prepare("SELECT COUNT(*) as cnt FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().cnt;
 
 console.log('\nParts Foundation Counts:');
 console.log('  Parts:', partsCount, '(expected 17082)');

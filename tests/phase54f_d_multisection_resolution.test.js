@@ -76,7 +76,7 @@ describe('Phase 54F-D — Multi-Section Context Resolution Test Suite', () => {
     assert.notEqual(sampleContexts[0].section_key, sampleContexts[1].section_key);
 
     // Verify total fitments in DB remained 175,106 (zero duplication)
-    const fitmentsCount = db.prepare('SELECT count(1) as c FROM model_part_fitments').get().c;
+    const fitmentsCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
     assert.equal(fitmentsCount, 175106);
   });
 

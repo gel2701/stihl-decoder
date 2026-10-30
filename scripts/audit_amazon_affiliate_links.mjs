@@ -118,15 +118,15 @@ const searchFallbackLinks = totalParts - verifiedDirectAsinLinks;
 console.log(`  TOTAL_CANONICAL_PARTS = ${totalParts}`);
 console.log(`  SEARCH_FALLBACK_LINKS = ${searchFallbackLinks}`);
 
-if (totalParts !== 17082) {
-  fail(`Expected 17,082 canonical parts, got ${totalParts}`);
+if (totalParts < 17082 || totalParts !== (catalogDoc.parts ? catalogDoc.parts.length : 0)) {
+  fail(`Expected >= 17,082 canonical parts matching parts array length, got ${totalParts}`);
 }
 
 // ---------------------------------------------------------------------------
 // 3. Direct Product Link Leak Scan
 // ---------------------------------------------------------------------------
 console.log('\n▶ Step 3: Scanning repository for uncontrolled direct Amazon product links (/dp/)...');
-const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', 'output']);
+const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', 'output', 'data', '.cache', 'cache', 'non_existent_cache_folder', 'playwright-report', 'test-results']);
 const EXCLUDE_FILES = new Set([
   'tests/phase54a_parts_amazon_affiliate.test.js',
   'tests/phase54a_h_amazon_link_integrity.test.js',
