@@ -428,7 +428,6 @@ ${supersessionHtml}
             seo_tier: indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C'),
             commercial_tier: indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'
           });
-          const redirectUrl = `/api/affiliate/out?${redirectParams.toString()}`;
           const safePrimarySec = (primarySectionContext || '').replace(/'/g, "\\'");
           return `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
@@ -442,12 +441,17 @@ ${supersessionHtml}
               </div>
             </div>
             <a
-              href="${redirectUrl}"
+              href="${offer.url}"
               target="_blank"
               rel="sponsored nofollow noopener"
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
               aria-label="${ariaLabel}"
-              onclick="if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+              data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
+              data-tracking-url="/api/affiliate/track"
+              data-part-number="${resolved.part_number}"
+              data-marketplace="${offer.marketplace || 'amazon.nl'}"
+              data-offer-type="${offer.match_type || 'SEARCH_LINK'}"
+              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
               <span>${buttonText}</span>
               <span aria-hidden="true">↗</span>
@@ -455,7 +459,7 @@ ${supersessionHtml}
           </div>
         `;}).join('')}
       </div>
-      ${renderAffiliateDisclosureHtml()}
+      ${renderAffiliateDisclosureHtml({ className: 'mt-3' })}
     </section>
     `;})() : ''}
 
@@ -475,11 +479,56 @@ ${supersessionHtml}
   <footer class="border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500 mt-12">
     <div class="max-w-6xl mx-auto px-4 space-y-3">
       <p class="font-medium text-gray-400">STIHL Machine & Serienummer Decoder Tool</p>
+      <p class="text-2xs text-gray-400 max-w-2xl mx-auto">
+        As an Amazon Associate I earn from qualifying purchases. / Als Amazon-partner verdien ik aan kwalificerende aankopen.
+      </p>
+      <div class="flex items-center justify-center gap-4 text-2xs text-gray-400">
+        <a href="/privacy" class="text-orange-400 hover:text-orange-300 underline font-medium">Privacy- & Cookiebeleid</a>
+        <span>·</span>
+        <a href="/#kennisbank" class="text-gray-400 hover:text-gray-300 underline">Kennisbank</a>
+      </div>
       <p class="max-w-3xl mx-auto text-gray-500 text-2xs leading-relaxed">
         <strong>Disclaimer:</strong> STIHLDecoder.nl is een onafhankelijk informatief hulpmiddel. Niet gelieerd aan ANDREAS STIHL AG & Co. KG.
       </p>
     </div>
   </footer>
+
+  <script>
+    (function() {
+      window.handleAffiliateClick = function(el, ev, data) {
+        try {
+          var payload = JSON.stringify({
+            provider: data.provider || 'amazon',
+            marketplace: data.marketplace || 'amazon.nl',
+            part_number: data.part_number,
+            offer_type: data.offer_type || 'SEARCH_LINK',
+            match_type: data.offer_type || 'SEARCH_LINK',
+            asin_if_known: data.asin_if_known || null,
+            product_verified: Boolean(data.product_verified),
+            destination_url: el.href,
+            query_variant: data.query_variant || null,
+            section_context: data.section_context || null,
+            wave_identifier: data.wave_identifier || null,
+            seo_tier: data.seo_tier || null,
+            commercial_tier: data.commercial_tier || null,
+            page_path: window.location.pathname
+          });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon('/api/affiliate/track', new Blob([payload], { type: 'application/json' }));
+          } else if (window.fetch) {
+            window.fetch('/api/affiliate/track', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: payload,
+              keepalive: true
+            }).catch(function() {});
+          }
+        } catch (err) {
+          // Fail-open: tracking failure must never prevent navigation
+        }
+      };
+    })();
+  </script>
 </body>
 </html>`;
 }

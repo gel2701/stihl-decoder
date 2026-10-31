@@ -1,0 +1,61 @@
+{
+  "phase": "59B",
+  "comparison_basis": "Phase 59A Audit Baseline vs Phase 59B Compliance Implementation",
+  "timestamp_utc": "2026-10-31T08:35:17.333Z",
+  "metrics": {
+    "catalog_parts": {
+      "before": 18373,
+      "after": 18373,
+      "delta": 0,
+      "status": "PRESERVED"
+    },
+    "indexable_parts": {
+      "before": 843,
+      "after": 843,
+      "delta": 0,
+      "status": "PRESERVED"
+    },
+    "sitemap_urls": {
+      "before": 1024,
+      "after": 1024,
+      "delta": 0,
+      "status": "PRESERVED_NO_INFLATION"
+    },
+    "unverified_asin_offers": {
+      "before": 0,
+      "after": 0,
+      "delta": 0,
+      "status": "ZERO_UNVERIFIED_ASINS"
+    },
+    "cta_href_mechanism": {
+      "before": "/api/affiliate/out?part_number=... (302 redirect)",
+      "after": "https://amazon.nl/s?k=...&tag=srihldecoder2-21 (Direct Amazon URL)",
+      "impact": "Eliminates commission clawback risk under Amazon Operating Agreement Section 5"
+    },
+    "endpoint_affiliate_out": {
+      "before": "HTTP 302 Found redirect to Amazon",
+      "after": "HTTP 410 Gone (REDIRECT_DISABLED); no Location header",
+      "impact": "Prevents crawler trap and accidental cloaking"
+    },
+    "click_tracking": {
+      "before": "Synchronous blocking server redirect",
+      "after": "Asynchronous fail-open beacon via POST /api/affiliate/track",
+      "impact": "Navigation never blocked by tracking server"
+    },
+    "amazon_disclosure": {
+      "before": "Generic Dutch informal note (\"StihlDecoder kan een commissie ontvangen\")",
+      "after": "Verbatim required English: \"As an Amazon Associate I earn from qualifying purchases.\" + Dutch explanation",
+      "impact": "100% compliant with Amazon Associates Operating Agreement"
+    },
+    "oem_aftermarket_transparency": {
+      "before": "Unstated in affiliate disclosure",
+      "after": "Explicit notice detailing that search results may include aftermarket alternatives",
+      "impact": "Eliminates trademark confusion risk"
+    },
+    "privacy_policy_page": {
+      "before": "Non-existent (404 Not Found)",
+      "after": "Dedicated SSR /privacy route (HTTP 200, noindex, follow, cookie controls)",
+      "impact": "Full ePrivacy/GDPR transparency for analytics and affiliate links"
+    }
+  }
+}
