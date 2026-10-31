@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59A",
+  "read_only": true,
+  "generated_at_utc": "2026-10-31T00:00:00Z",
+  "scope": {
+    "site": "https://www.stihldecoder.nl",
+    "marketplace": "Amazon.nl",
+    "associate_tag_observed_live": "srihldecoder2-21",
+    "tag_storage": "Render environment variable AMAZON_ASSOCIATE_TAG; not hardcoded in tracked source",
+    "documents_verified": [
+      {
+        "title": "Amazon Associates Program Operating Agreement",
+        "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+        "last_updated": "October 15, 2025",
+        "retrieved": "2026-10-31",
+        "access": "PUBLIC_PAGE_RETRIEVED"
+      },
+      {
+        "title": "Amazon Associates Program Policies - Participation Requirements / Commission Income Statement / IP License",
+        "url": "https://partnernet.amazon.nl/help/operating/policies",
+        "last_updated": "April 14, 2026",
+        "retrieved": "2026-10-31",
+        "access": "PUBLIC_PAGE_RETRIEVED"
+      },
+      {
+        "title": "Amazon.nl Associates Program Operating Agreement (regional landing page)",
+        "url": "https://partnernet.amazon.nl/help/operating/agreement",
+        "retrieved": "2026-10-31",
+        "access": "PUBLIC_PAGE_RETRIEVED"
+      },
+      {
+        "title": "Amazon.co.uk Associates Program Operating Agreement (regional landing page)",
+        "url": "https://affiliate-program.amazon.co.uk/help/operating/agreement",
+        "retrieved": "2026-10-31",
+        "access": "PUBLIC_PAGE_RETRIEVED"
+      }
+    ],
+    "not_verified": [
+      "Associates Central account status, payout status, or individual commission ledger (requires account login; not accessed).",
+      "Whether Amazon has ever accepted or rejected this specific site (requires account login; not accessed).",
+      "Live product matching or availability (Amazon endpoints ACCESS_BLOCKED: HTTP 503 / CAPTCHA)."
+    ]
+  },
+  "summary": {
+    "verified_requirements_checked": 12,
+    "pass": 7,
+    "partial_or_risk": 1,
+    "fail": 2,
+    "not_applicable": 2,
+    "highest_severity": "HIGH",
+    "top_findings": [
+      "COMPLIANCE-01: required Amazon Associate disclosure sentence is absent; a generic Dutch affiliate note is shown instead.",
+      "COMPLIANCE-02: every affiliate click passes through an intermediate /api/affiliate/out 302 redirect with no affirmative action on the intermediate page. The current Commission Income Statement definition of a 'Redirecting Link' excludes such purchases from commission income.",
+      "COMPLIANCE-03: there is no dedicated privacy/cookie policy page and the consent banner discloses only the Google tag, not Amazon affiliate cookies set after a click."
+    ]
+  },
+  "requirements": [
+    {
+      "id": "COMPLIANCE-01",
+      "classification": "verified_requirement",
+      "area": "affiliate_disclosure",
+      "requirement": "You must clearly and prominently state the following, or any substantially similar statement previously allowed under this Agreement, on your Site or any other location where Amazon may authorize your display or other use of Program Content: \"As an Amazon Associate I earn from qualifying purchases.\"",
+      "source_url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "source_section": "5. Identifying Yourself as an Associate",
+      "source_updated": "October 15, 2025",
+      "site_status": "FAIL",
+      "severity": "HIGH",
+      "evidence": {
+        "file": "src/affiliate/AffiliateDisclosure.js",
+        "current_text": "Sommige links op deze pagina zijn affiliatelinks. Als je via zo'n link iets koopt, kan StihlDecoder een commissie ontvangen. Dit kost jou niets extra.",
+        "placement": "Rendered inside the commercial offers section of part detail pages via renderAffiliateDisclosureHtml().",
+        "observed_live": "https://www.stihldecoder.nl/onderdeelnummer/11231602050/"
+      },
+      "assessment": "The current sentence discloses that affiliate links exist and that a commission may be earned. It does not state the Amazon Associates relationship in the form required by the Operating Agreement. It is not the required sentence and is not clearly a 'substantially similar statement previously allowed'; no evidence was found that this Dutch wording was ever an Amazon-approved statement.",
+      "remediation": "Add the Dutch equivalent of the required statement, clearly and prominently, on every page that carries Amazon links, e.g. \"Als Amazon Associate verdien ik aan kwalificerende aankopen.\" Keep the existing explanation as secondary text. Place it before or directly at the commercial section, not only in a collapsed/footnote area.",
+      "effort": "S",
+      "blocking": true
+    },
+    {
+      "id": "COMPLIANCE-02",
+      "classification": "verified_requirement",
+      "area": "commission_eligibility_redirects",
+      "requirement": "Commission income excludes any Product purchased by a customer who is referred to an Amazon Site by a link that sends users indirectly to an Amazon Site via an intermediate site, without requiring the customer to click on a link or take some other affirmative action on that intermediate site (a \"Redirecting Link\").",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Commission Income Statement (excluded products/earnings)",
+      "source_updated": "April 14, 2026",
+      "site_status": "FAIL",
+      "severity": "HIGH",
+      "evidence": {
+        "file": "server.js",
+        "lines": "490-700",
+        "behavior": "Part page CTA href is /api/affiliate/out?url=<amazon search url>&...; endpoint returns HTTP 302 Location: <amazon url> with no intermediate page and no affirmative action.",
+        "link_render_file": "src/components/PartDetailPageTemplate.js",
+        "link_render_lines": "415-454",
+        "scope": "Applies to all 18,373 generated links."
+      },
+      "assessment": "The technical pattern matches the definition of a Redirecting Link: the visitor clicks on stihldecoder.nl, then is sent indirectly to Amazon through an intermediate URL without any affirmative action on that intermediate page. Under the current Commission Income Statement, purchases through such links are excluded from commission income. This is a commercial-eligibility defect, not merely a styling choice. It also creates avoidable risk under Participation Requirement 6(v) (cloaking/obscuring the URL of the site containing Special Links).",
+      "remediation": "Render the Amazon URL directly in the anchor href so the click goes straight from the part page to Amazon with the associate tag, and move click measurement to a non-blocking client beacon plus the existing GA4 event. If a redirect must be kept for measurement, the intermediate page must require an affirmative click through to Amazon; that is worse for conversion and should not be the default.",
+      "effort": "M",
+      "blocking": true
+    },
+    {
+      "id": "COMPLIANCE-03",
+      "classification": "verified_requirement",
+      "area": "privacy_and_cookie_disclosure",
+      "requirement": "You are solely responsible for ... disclosing on your Site accurately and adequately and otherwise satisfying applicable legal requirements, either through a privacy policy or otherwise, the use of cookies, pixels, and other technologies you and third parties and how you collect, use, store, and disclose data collected from visitors ... including, where applicable, that third parties (including us and other advertisers) may serve content and advertisements, collect information directly from visitors, and place or recognize cookies on visitors' browsers.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Participation Requirements, section 3 (responsibility for your Site)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PARTIAL",
+      "severity": "HIGH",
+      "evidence": {
+        "cookie_banner": "index.html lines 980-1000: mentions the Google tag and consent mode only.",
+        "privacy_page": "No dedicated /privacy, /privacybeleid, or /cookiebeleid route found in server.js route handling.",
+        "analytics": "src/components/SiteAnalyticsInjector.js applies GA4 consent mode; ad_storage, ad_user_data, ad_personalization are denied.",
+        "affiliate_cookie_note": "Clicking an Amazon link lets Amazon set its own cookies on amazon.nl; this is not disclosed anywhere on the site."
+      },
+      "assessment": "Consent handling for GA4 is comparatively careful, but there is no durable privacy/cookie policy page and no disclosure that Amazon may set cookies after an affiliate click. This is an explicit Amazon contractual responsibility and also a GDPR/ePrivacy transparency gap.",
+      "remediation": "Publish a privacy/cookie policy page that names Google Analytics and the Amazon Associates programme, explains the affiliate click cookie behavior and the lawful basis, and link it from the cookie banner and footer. Do not claim that no third-party cookies are used.",
+      "effort": "S",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-04",
+      "classification": "verified_requirement",
+      "area": "prices_and_availability",
+      "requirement": "Your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API and you comply with the requirements regarding use of Creators API and PA API in the License.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Participation Requirements (product claims, prices and availability)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "NONE",
+      "evidence": {
+        "render_file": "src/components/PartDetailPageTemplate.js",
+        "observed": "No price, no stock status, no delivery estimate, no rating and no review content is rendered. Section copy explicitly says availability and exact match are not confirmed in advance."
+      },
+      "assessment": "Compliant. The site makes no price or availability claims.",
+      "remediation": "None. If Phase 59B adds prices, they must come from Creators API/PA API with the required timestamp and disclaimers, or from an Amazon-served link.",
+      "effort": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-05",
+      "classification": "verified_requirement",
+      "area": "product_claims",
+      "requirement": "You must not make inaccurate, overbroad, deceptive or otherwise misleading claims about any Product, an Amazon Site, or any of our policies, promotions, or prices.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Participation Requirements (product claims)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "NONE",
+      "evidence": {
+        "heading_when_no_verified_offer": "Zoek dit onderdeel online",
+        "pill": "Online zoeken",
+        "intro": "Zoek op Amazon naar dit onderdeelnummer. Beschikbaarheid en exacte productmatch zijn niet vooraf bevestigd.",
+        "badge": "Amazon-zoekopdracht",
+        "cta": "Zoek op Amazon.nl",
+        "verified_branch_exists": "Heading 'Waar te koop' and CTA 'Bekijk product op Amazon.nl' only render when a MANUAL_ASIN/is_verified offer exists; zero such offers exist today."
+      },
+      "assessment": "Compliant. The UI does not claim a verified product, price, or stock status for search links, and the verified branch is unreachable with the current empty offer file.",
+      "remediation": "Preserve this separation when adding ASINs. Never let a search link inherit verified wording.",
+      "effort": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-06",
+      "classification": "verified_requirement",
+      "area": "tracking_tag",
+      "requirement": "You may not use any Associates tag parameter or Account Identifier assigned to anyone other than you or that we did not specifically assign to you.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - IP License and Usage Requirements, section 2(b)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "NONE",
+      "evidence": {
+        "tag_source": "process.env.AMAZON_ASSOCIATE_TAG (and regional AMAZON_ASSOCIATE_TAG_<SUFFIX>)",
+        "live_tag_observed": "srihldecoder2-21",
+        "hardcoded_tag_scan": "scripts/audit_amazon_affiliate_links.mjs: HARDCODED_TRACKING_TAGS = 0",
+        "server_validation": "server.js /api/affiliate/out rejects any destination whose tag does not equal the configured env tag (or a verified override tag)."
+      },
+      "assessment": "Compliant. One tag, environment-driven, validated on the redirect path, and absent from tracked source.",
+      "remediation": "Keep. When adding regional marketplaces, require an explicit AMAZON_ASSOCIATE_TAG_<SUFFIX>; never silently reuse the NL tag.",
+      "effort": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-07",
+      "classification": "verified_requirement",
+      "area": "link_clarity",
+      "requirement": "You will not use a link shortening service, button, hyperlink or other ad placement in a manner that makes it unclear that you are linking to an Amazon Site.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Participation Requirements, section 6(w)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "LOW",
+      "evidence": {
+        "badge": "Amazon-zoekopdracht",
+        "cta": "Zoek op Amazon.nl",
+        "provider_label": "amazon",
+        "aria_label": "Zoek op Amazon.nl voor STIHL onderdeel <part number>"
+      },
+      "assessment": "The visible wording makes the Amazon destination clear despite the href being an internal redirect URL. The redirect itself is addressed under COMPLIANCE-02.",
+      "remediation": "Once the href points directly at Amazon, the destination is also visible on hover/long-press, which is strictly better.",
+      "effort": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-08",
+      "classification": "verified_requirement",
+      "area": "trademark_and_logos",
+      "requirement": "You are allowed to use the Amazon Marks only by display on your Site with the purpose of advertising availability of products on an Amazon Site, with a corresponding Special Link to that site. You may not alter any Amazon Mark.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program Trademark Guidelines",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "NONE",
+      "evidence": {
+        "observed": "Only the textual string 'Amazon.nl' / 'Amazon' is used. No Amazon logo, no Amazon product images, no Program Content."
+      },
+      "assessment": "Compliant. Textual references only; no marks are modified or implied as endorsement.",
+      "remediation": "None.",
+      "effort": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-09",
+      "classification": "verified_requirement",
+      "area": "program_content_and_images",
+      "requirement": "You will not add to, delete from, or otherwise alter any Program Content ... You may store individual ASINs for an indefinite period ... You will not store or cache Product Advertising Content consisting of an image.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - IP License and Usage Requirements",
+      "source_updated": "April 14, 2026",
+      "site_status": "NOT_APPLICABLE",
+      "severity": "NONE",
+      "evidence": {
+        "observed": "No Amazon images, titles, prices, ratings, reviews, or API data are stored or rendered. data/affiliate/amazon_part_offers.json is an empty array."
+      },
+      "assessment": "Not applicable today. Becomes applicable the moment Phase 59B introduces PA API/Creators API content.",
+      "remediation": "If Phase 59B adds product data, implement 24-hour cache rules, no image caching, the required 'CERTAIN CONTENT THAT APPEARS ON THIS SITE COMES FROM AMAZON...' notice, and price timestamp/disclaimer rules.",
+      "effort": "M",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-10",
+      "classification": "verified_requirement",
+      "area": "paid_search_and_proprietary_terms",
+      "requirement": "You will not bid on or purchase keywords, search terms, or other identifiers, including the word 'Amazon', 'Kindle', or any other trademark of Amazon or its affiliates or variations or misspellings of these words ... if the resulting paid search advertisement is a Prohibited Paid Search Placement.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Participation Requirements, section 6(f)",
+      "source_updated": "April 14, 2026",
+      "site_status": "NOT_APPLICABLE",
+      "severity": "NONE",
+      "evidence": {
+        "observed": "Phase 59A scope covers the organic site only; no paid search activity was audited or found in the repository."
+      },
+      "assessment": "Not applicable to current organic setup. Must be re-checked before any paid acquisition.",
+      "remediation": "Add a negative-keyword guardrail for Amazon and STIHL trademark terms if paid search is ever used.",
+      "effort": "S",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-11",
+      "classification": "verified_requirement",
+      "area": "incentivized_clicks",
+      "requirement": "You will not offer any person or entity any consideration, reward, or incentive ... for using Special Links.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - Participation Requirements, section 6(g)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "NONE",
+      "evidence": {
+        "observed": "No rewards, cashback, points, coupons, or click incentives are implemented or referenced."
+      },
+      "assessment": "Compliant.",
+      "remediation": "None.",
+      "effort": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-12",
+      "classification": "verified_requirement",
+      "area": "automated_access_and_captcha",
+      "requirement": "Agents must not conceal or obfuscate that any access is from an Agent, such as by ... completing or circumventing CAPTCHAs or other measures intended to distinguish computers from humans.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Associates Program - IP License and Usage Requirements, section 4 (Agent Terms)",
+      "source_updated": "April 14, 2026",
+      "site_status": "PASS",
+      "severity": "NONE",
+      "evidence": {
+        "runtime_behavior": "The production site performs no runtime Amazon scraping or API calls. Links are constructed deterministically.",
+        "audit_behavior": "Phase 59A stopped at HTTP 503 and CAPTCHA. No challenge solving, header spoofing to mimic a human, or proxy rotation was attempted."
+      },
+      "assessment": "Compliant and audit-safe. The ACCESS_BLOCKED classifications are honest, not a workaround.",
+      "remediation": "If Phase 59B wants reliable product data, use Creators API/PA API credentials rather than scraping.",
+      "effort": "M",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-13",
+      "classification": "recommendation",
+      "area": "conversion_and_disclosure_placement",
+      "requirement": "Recommendation (not an Amazon requirement): put the affiliate disclosure immediately next to the first Amazon CTA, and keep it visible without scrolling on mobile.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Derived from the 'clearly and prominently' standard plus general CRO practice",
+      "source_updated": "April 14, 2026",
+      "site_status": "PARTIAL",
+      "severity": "MEDIUM",
+      "evidence": {
+        "current": "Disclosure block is rendered after the offer rows, inside the same section, in 2xs gray text with low contrast."
+      },
+      "assessment": "Legible but weak prominence. Risk that a reviewer or visitor does not see the Amazon relationship before clicking.",
+      "remediation": "Place the Amazon statement above the CTA row, raise contrast to at least WCAG AA for small text, and keep it out of collapsed content.",
+      "effort": "S",
+      "blocking": false
+    },
+    {
+      "id": "COMPLIANCE-14",
+      "classification": "recommendation",
+      "area": "measurement_without_violating_redirect_rules",
+      "requirement": "Recommendation (not an Amazon requirement): measure affiliate clicks server-side without routing the user through a redirect.",
+      "source_url": "https://partnernet.amazon.nl/help/operating/policies",
+      "source_section": "Derived from Commission Income Statement Redirecting Link definition",
+      "source_updated": "April 14, 2026",
+      "site_status": "FAIL",
+      "severity": "HIGH",
+      "evidence": {
+        "current": "Affiliate click logging happens inside /api/affiliate/out, so logging depends on the same redirect that creates the commission-eligibility risk."
+      },
+      "assessment": "The measurement design and the compliance defect are coupled. Fixing the href also requires moving the server-side logging trigger.",
+      "remediation": "Use navigator.sendBeacon to a same-origin logging endpoint (202, no redirect) plus the direct Amazon href. Server logs stay first-party and whitelisted.",
+      "effort": "M",
+      "blocking": false
+    }
+  ],
+  "verified_vs_recommendation": {
+    "verified_requirements": [
+      "COMPLIANCE-01",
+      "COMPLIANCE-02",
+      "COMPLIANCE-03",
+      "COMPLIANCE-04",
+      "COMPLIANCE-05",
+      "COMPLIANCE-06",
+      "COMPLIANCE-07",
+      "COMPLIANCE-08",
+      "COMPLIANCE-09",
+      "COMPLIANCE-10",
+      "COMPLIANCE-11",
+      "COMPLIANCE-12"
+    ],
+    "recommendations": [
+      "COMPLIANCE-13",
+      "COMPLIANCE-14"
+    ]
+  },
+  "open_questions_requiring_account_access": [
+    "Current Associates account status and whether the site has an approved traffic review.",
+    "Whether Amazon has flagged the redirect pattern in practice.",
+    "Actual click and commission data for the observed tag."
+  ]
+}
