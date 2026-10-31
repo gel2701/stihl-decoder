@@ -196,8 +196,9 @@ function scanForTag(dir) {
         scanForTag(fullPath);
       }
     } else if (entry.isFile()) {
-      // Exclude tests and audit scripts where tag is referenced as test env var or assertion
+      // Exclude tests, audit scripts, markdown docs, and phase audit reports where tag is referenced as test env var, inventory, or assertion
       if (relPath.startsWith('tests/') || relPath.startsWith('scripts/') || relPath.endsWith('.md')) continue;
+      if (/^PHASE\d+[A-Z0-9_]*\.json$/i.test(entry.name)) continue;
       if (!/\.(js|mjs|cjs|json)$/.test(entry.name)) continue;
 
       const content = fs.readFileSync(fullPath, 'utf8');
@@ -303,6 +304,48 @@ for (const partNo of allTestParts) {
   }
   if (!html.includes('rel="sponsored nofollow noopener"')) {
     fail(`Part ${partNo}: missing sponsored nofollow noopener rel attribute`);
+  }
+
+  // Phase 59B — Check 1: Zero CTA hrefs starting with /api/affiliate/out (direct outbound links required)
+  const hrefMatches = [...html.matchAll(/<a[^>]+href="([^"]+)"[^>]*>/g)].map(m => m[1]);
+  for (const href of hrefMatches) {
+    if (href.startsWith('/api/affiliate/out')) {
+      fail(`Part ${partNo}: CTA href unexpectedly uses redirecting link: ${href}`);
+      unverifiedProductClaims++;
+    }
+  }
+
+  // Phase 59B — Check 2: Direct CTA points to allowlisted Amazon domain and includes configured tag
+  const ctaLinks = [...html.matchAll(/<a[^>]+href="(https:\/\/[^"]+)"[^>]*rel="sponsored nofollow noopener"[^>]*>/g)].map(m => m[1]);
+  for (const ctaUrl of ctaLinks) {
+    try {
+      const parsed = new URL(ctaUrl);
+      if (!ALLOWED_AMAZON_MARKETPLACES.has(parsed.hostname.toLowerCase())) {
+        fail(`Part ${partNo}: CTA host ${parsed.hostname} not in ALLOWED_AMAZON_MARKETPLACES`);
+        unverifiedProductClaims++;
+      }
+      if (parsed.searchParams.get('tag') !== process.env.AMAZON_ASSOCIATE_TAG) {
+        fail(`Part ${partNo}: CTA tag ${parsed.searchParams.get('tag')} does not match configured tag`);
+        unverifiedProductClaims++;
+      }
+    } catch (e) {
+      fail(`Part ${partNo}: Malformed CTA URL ${ctaUrl}: ${e.message}`);
+      unverifiedProductClaims++;
+    }
+  }
+
+  // Phase 59B — Check 3: Required Amazon Associates Operating Agreement disclosures
+  if (!html.includes('As an Amazon Associate I earn from qualifying purchases.')) {
+    fail(`Part ${partNo}: missing required Amazon Associates English disclosure`);
+    unverifiedProductClaims++;
+  }
+  if (!html.includes('Als Amazon-partner verdien ik aan kwalificerende aankopen.')) {
+    fail(`Part ${partNo}: missing required Amazon Associates Dutch explanation`);
+    unverifiedProductClaims++;
+  }
+  if (!html.includes('/privacy')) {
+    fail(`Part ${partNo}: missing link to privacy- en cookiebeleid`);
+    unverifiedProductClaims++;
   }
 }
 

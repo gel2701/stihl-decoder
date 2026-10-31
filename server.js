@@ -15,6 +15,7 @@ import { renderComparisonPageHtml } from './src/components/ComparisonPageTemplat
 import { renderModelPartsPageHtml } from './src/components/ModelPartsPageTemplate.js';
 import { renderPartsDiscoveryPageHtml } from './src/components/PartsDiscoveryPageTemplate.js';
 import { renderPartDetailPageHtml } from './src/components/PartDetailPageTemplate.js';
+import { renderPrivacyPolicyHtml } from './src/components/PrivacyPolicyTemplate.js';
 import { PartCatalogResolver } from './src/parts/PartCatalogResolver.js';
 import { PartNormalizer } from './src/parts/PartNormalizer.js';
 import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
@@ -487,216 +488,135 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 5c. REST API: GET /api/affiliate/out (Phase 54A Safe Allowlist-Only Redirect Endpoint)
-  if (pathname === '/api/affiliate/out') {
-    if (req.method !== 'GET') {
-      res.writeHead(405, { 'Content-Type': 'application/json', 'Allow': 'GET' });
+  // 5a. Privacy Policy & Cookie Statement (Phase 59B Legal Compliance Route)
+  if (pathname === '/privacy' || pathname === '/privacy/' || pathname === '/cookiebeleid' || pathname === '/cookiebeleid/') {
+    const html = renderPrivacyPolicyHtml(PRIMARY_ORIGIN);
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=UTF-8',
+      'X-Robots-Tag': 'noindex, follow'
+    });
+    res.end(html);
+    return;
+  }
+
+  // 5b. REST API: POST /api/affiliate/track (Phase 59B Non-blocking Privacy-Conscious Click Tracking)
+  if (pathname === '/api/affiliate/track' || pathname === '/api/affiliate/click') {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, {
+        'Allow': 'POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      });
+      res.end();
+      return;
+    }
+
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json', 'Allow': 'POST' });
       res.end(JSON.stringify({ success: false, error: 'METHOD_NOT_ALLOWED' }));
       return;
     }
 
-    // 1. Feature flag check (fail-closed if affiliate is disabled)
-    const isAffiliateEnabled = (process.env.AMAZON_AFFILIATE_ENABLED === 'true' || process.env.AMAZON_AFFILIATE_ENABLED === '1') &&
-      process.env.AFFILIATE_ENABLED !== 'false' && process.env.AFFILIATE_ENABLED !== '0';
-
-    if (!isAffiliateEnabled) {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
-      return;
-    }
-
-    // 2. Rate limiting check
     if (checkAffiliateRateLimit(req)) {
       res.writeHead(429, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'RATE_LIMITED' }));
       return;
     }
 
-    const rawTarget = urlObj.searchParams.get('url');
-    if (!rawTarget || typeof rawTarget !== 'string') {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'MISSING_URL' }));
-      return;
-    }
+    let bodyStr = '';
+    req.on('data', chunk => {
+      bodyStr += chunk;
+      if (bodyStr.length > 8192) req.destroy();
+    });
 
-    let parsedTarget;
-    try {
-      parsedTarget = new URL(rawTarget);
-    } catch {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'INVALID_URL' }));
-      return;
-    }
-
-    if (parsedTarget.protocol !== 'https:') {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'UNSAFE_PROTOCOL' }));
-      return;
-    }
-
-    const ALLOWED_AFFILIATE_HOSTS = new Set([
-      'www.amazon.nl',
-      'amazon.nl',
-      'www.amazon.de',
-      'amazon.de',
-      'www.amazon.com',
-      'amazon.com'
-    ]);
-
-    const targetHostname = parsedTarget.hostname.toLowerCase();
-    if (!ALLOWED_AFFILIATE_HOSTS.has(targetHostname)) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'FORBIDDEN_DOMAIN' }));
-      return;
-    }
-
-    const partNo = urlObj.searchParams.get('part_number') || null;
-
-    // Verify the destination tag matches the configured regional tag or a verified manual override tag
-    const destinationUrlTag = parsedTarget.searchParams.get('tag')?.trim() || null;
-    const destSuffix = targetHostname.split('.').pop()?.toUpperCase();
-    const envTag = (destSuffix && process.env[`AMAZON_ASSOCIATE_TAG_${destSuffix}`]?.trim()) ||
-      (destSuffix === 'NL' ? process.env.AMAZON_ASSOCIATE_TAG?.trim() : null);
-
-    // Resolve verified offer if part_number was provided
-    let matchedOffer = null;
-    let validatedPartNumber = null;
-    if (partNo) {
-      const normPart = PartNormalizer.normalizePartNumber(partNo);
-      if (normPart) {
-        validatedPartNumber = normPart;
-        const offers = AffiliateOfferResolver.resolveOffers({ partNumber: normPart });
-        const targetHref = parsedTarget.href;
-        matchedOffer = offers.find(o => o.url === targetHref || o.affiliate_url === targetHref) || null;
-      }
-    }
-
-    let isAuthorizedTag = false;
-
-    // 1. Destination tag must match the configured regional/primary environment tag
-    if (envTag && destinationUrlTag === envTag) {
-      isAuthorizedTag = true;
-    }
-
-    // 2. Or match a verified manual override that explicitly configured an inline tag
-    if (!isAuthorizedTag && matchedOffer && matchedOffer.tag === destinationUrlTag) {
-      isAuthorizedTag = true;
-    }
-
-    if (!isAuthorizedTag) {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: 'AFFILIATE_DISABLED' }));
-      return;
-    }
-
-    // Derive analytics dimensions strictly from targetHostname, destination path, and verified offer
-    const provider = matchedOffer?.provider || 'amazon';
-    const marketplace = matchedOffer?.marketplace || targetHostname;
-    let offerType = 'SEARCH_LINK';
-    let asinIfKnown = null;
-
-    if (matchedOffer) {
-      offerType = matchedOffer.match_type || (matchedOffer.asin ? 'MANUAL_ASIN' : 'SEARCH_LINK');
-      asinIfKnown = matchedOffer.asin || null;
-    } else {
-      const dpMatch = parsedTarget.pathname.match(/\/dp\/([A-Za-z0-9]{10})/i);
-      if (dpMatch) {
-        offerType = 'MANUAL_ASIN';
-        asinIfKnown = dpMatch[1].toUpperCase();
-      } else if (parsedTarget.pathname.startsWith('/s')) {
-        offerType = 'SEARCH_LINK';
-      } else {
-        offerType = 'DIRECT_LINK';
-      }
-    }
-
-    // Derive part attribution strictly: matched offer for direct/product links,
-    // or canonical 'k' query parameter for search links.
-    let resolvedPartNumber = null;
-    if (matchedOffer && matchedOffer.part_number) {
-      resolvedPartNumber = matchedOffer.part_number;
-    } else if (parsedTarget.searchParams.has('k')) {
-      const kVal = parsedTarget.searchParams.get('k') || '';
-      const stripped = kVal.replace(/^STIHL\s+/i, '').trim();
-      const searchPart = PartNormalizer.normalizePartNumber(stripped);
-      if (searchPart) {
-        resolvedPartNumber = searchPart;
-      }
-    }
-
-    const TRUSTED_SITE_HOSTS = getTrustedDeploymentHosts();
-
-    let pagePath = '/';
-    if (req.headers.referer && isSameOriginRequest(req)) {
+    req.on('end', () => {
+      let data = {};
       try {
-        const refUrl = new URL(req.headers.referer);
-        const refHostname = refUrl.hostname.toLowerCase();
-        if (TRUSTED_SITE_HOSTS.has(refHostname)) {
-          pagePath = refUrl.pathname || '/';
-        }
+        if (bodyStr) data = JSON.parse(bodyStr);
       } catch {}
-    }
 
-    const productVerified = Boolean(matchedOffer && (matchedOffer.match_type === 'MANUAL_ASIN' || matchedOffer.is_verified === true));
-    const seoTierParam = urlObj.searchParams.get('seo_tier') || null;
-    const commercialTierParam = urlObj.searchParams.get('commercial_tier') || null;
-    const modelParam = urlObj.searchParams.get('model') || null;
-    const sectionContextParam = urlObj.searchParams.get('section_context') || null;
-    const waveIdentifierParam = urlObj.searchParams.get('wave_identifier') || null;
-    const matchTypeParam = urlObj.searchParams.get('match_type') || matchedOffer?.match_type || offerType || (productVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
-    const queryVariantParam = urlObj.searchParams.get('query_variant') || matchedOffer?.query_variant || null;
+      const ALLOWED_AFFILIATE_HOSTS = new Set([
+        'www.amazon.nl',
+        'amazon.nl',
+        'www.amazon.de',
+        'amazon.de',
+        'www.amazon.com',
+        'amazon.com'
+      ]);
 
-    // 1. General affiliate click event
-    logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
-      provider,
-      marketplace,
-      offer_type: offerType,
-      match_type: matchTypeParam,
-      asin_if_known: asinIfKnown,
-      product_verified: productVerified,
-      destination_url: parsedTarget.href,
-      part_number: resolvedPartNumber,
-      model: modelParam,
-      query_variant: queryVariantParam,
-      section_context: sectionContextParam,
-      wave_identifier: waveIdentifierParam,
-      page_path: pagePath,
-      source_page: pagePath,
-      seo_tier: seoTierParam,
-      commercial_tier: commercialTierParam
-    }, req.headers['user-agent']);
+      let destinationHost = 'amazon.nl';
+      if (typeof data.destination_url === 'string') {
+        try {
+          const destUrl = new URL(data.destination_url);
+          if (ALLOWED_AFFILIATE_HOSTS.has(destUrl.hostname.toLowerCase())) {
+            destinationHost = destUrl.hostname.toLowerCase();
+          }
+        } catch {}
+      }
 
-    // 2. Specific event distinguishing verified product vs search fallback for conversion measurement
-    if (provider === 'amazon') {
-      const specificEventType = productVerified
+      const normPart = PartNormalizer.normalizePartNumber(data.part_number);
+      const isProductVerified = Boolean(data.product_verified);
+      const offerType = data.offer_type || (isProductVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+
+      logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
+        provider: data.provider || 'amazon',
+        marketplace: data.marketplace || destinationHost,
+        offer_type: offerType,
+        match_type: data.match_type || offerType,
+        asin_if_known: data.asin_if_known || null,
+        product_verified: isProductVerified,
+        destination_url: data.destination_url || null,
+        part_number: normPart,
+        model: data.model || null,
+        query_variant: data.query_variant || null,
+        section_context: data.section_context || null,
+        wave_identifier: data.wave_identifier || null,
+        page_path: data.page_path || '/',
+        source_page: data.page_path || '/',
+        seo_tier: data.seo_tier || null,
+        commercial_tier: data.commercial_tier || null
+      }, req.headers['user-agent']);
+
+      const specificEventType = isProductVerified
         ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK
         : EVENT_TYPES.AMAZON_SEARCH_FALLBACK_CLICK;
 
       logStihlEvent(specificEventType, {
-        provider,
-        marketplace,
+        provider: data.provider || 'amazon',
+        marketplace: data.marketplace || destinationHost,
         offer_type: offerType,
-        match_type: matchTypeParam,
-        asin_if_known: asinIfKnown,
-        product_verified: productVerified,
-        destination_url: parsedTarget.href,
-        part_number: resolvedPartNumber,
-        model: modelParam,
-        query_variant: queryVariantParam,
-        section_context: sectionContextParam,
-        wave_identifier: waveIdentifierParam,
-        page_path: pagePath,
-        source_page: pagePath,
-        seo_tier: seoTierParam,
-        commercial_tier: commercialTierParam
+        match_type: data.match_type || offerType,
+        asin_if_known: data.asin_if_known || null,
+        product_verified: isProductVerified,
+        destination_url: data.destination_url || null,
+        part_number: normPart,
+        model: data.model || null,
+        query_variant: data.query_variant || null,
+        section_context: data.section_context || null,
+        wave_identifier: data.wave_identifier || null,
+        page_path: data.page_path || '/',
+        source_page: data.page_path || '/',
+        seo_tier: data.seo_tier || null,
+        commercial_tier: data.commercial_tier || null
       }, req.headers['user-agent']);
-    }
 
-    res.writeHead(302, {
-      'Location': parsedTarget.href,
+      res.writeHead(202, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, recorded: true }));
+    });
+    return;
+  }
+
+  // 5c. REST API: GET /api/affiliate/out (Phase 59B Disabled Redirect Behavior - Direct Links Enforced)
+  if (pathname === '/api/affiliate/out') {
+    res.writeHead(410, {
+      'Content-Type': 'application/json',
       'X-Robots-Tag': 'noindex, nofollow'
     });
-    res.end();
+    res.end(JSON.stringify({
+      success: false,
+      error: 'REDIRECT_DISABLED',
+      message: 'Intermediate affiliate redirecting is disabled for Amazon Associates compliance. Outbound affiliate navigation must use direct links.'
+    }));
     return;
   }
 

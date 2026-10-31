@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59B",
+  "generated_at_utc": "2026-10-31T08:35:17.331Z",
+  "operating_agreement_findings": [
+    {
+      "requirement_id": "OA_SEC_5_REDIRECTING_LINKS",
+      "clause": "Amazon Associates Program Operating Agreement Section 5 / Participation Requirements",
+      "title": "Direct Link Delivery without Intermediate 302 Redirects",
+      "previous_status_phase59a": "FAIL",
+      "current_status_phase59b": "PASS",
+      "evidence": {
+        "cta_anchor_href": "Directly rendered as offer.url (https://amazon.nl/s?k=...&tag=srihldecoder2-21)",
+        "redirect_endpoint_status": "HTTP 410 Gone with REDIRECT_DISABLED payload; zero 302 responses",
+        "tracking_architecture": "Non-blocking POST /api/affiliate/track fail-open beacon via window.handleAffiliateClick"
+      }
+    },
+    {
+      "requirement_id": "OA_SEC_5_REQUIRED_DISCLOSURE",
+      "clause": "Amazon Associates Program Policies - Identifying Yourself as an Associate",
+      "title": "Exact Required English & Dutch Associates Disclosure",
+      "previous_status_phase59a": "FAIL",
+      "current_status_phase59b": "PASS",
+      "evidence": {
+        "required_english_statement": "As an Amazon Associate I earn from qualifying purchases.",
+        "exact_match_en": true,
+        "dutch_explanatory_statement": "Als Amazon-partner verdien ik aan kwalificerende aankopen.",
+        "placement": "Present on all SSR part pages with commercial links, homepage footer, and dedicated /privacy policy"
+      }
+    },
+    {
+      "requirement_id": "OA_SEC_5_TRADEMARK_CLARITY",
+      "clause": "Amazon IP License & Trademark Guidelines",
+      "title": "OEM vs Aftermarket Result Transparency",
+      "previous_status_phase59a": "RISK",
+      "current_status_phase59b": "PASS",
+      "evidence": {
+        "oem_notice": "Onderdeelnummers betreffen officiële STIHL OEM-referenties. Zoekresultaten op Amazon kunnen zowel originele onderdelen als compatibele aftermarket-vervangingsonderdelen van derden tonen. Controleer altijd op de productpagina de specificaties en compatibiliteit met uw machinemodel.",
+        "disclosure_text": "Explicitly clarifies STIHL is trademark of ANDREAS STIHL AG & Co. KG and search results may contain aftermarket parts"
+      }
+    },
+    {
+      "requirement_id": "EPIC_GDPR_PRIVACY_COOKIE",
+      "clause": "European ePrivacy Directive / GDPR Compliance",
+      "title": "Dedicated Privacy & Cookie Policy Route (/privacy)",
+      "previous_status_phase59a": "MISSING",
+      "current_status_phase59b": "PASS",
+      "evidence": {
+        "route": "/privacy",
+        "robots_meta": "noindex, follow",
+        "canonical": "https://stihldecoder.nl/privacy/",
+        "cookie_categories_explained": [
+          "Functional & localStorage",
+          "Analytical (Google Consent Mode v2)",
+          "Amazon Affiliate 3rd party outbound"
+        ],
+        "interactive_controls": "Accept / Reject buttons wired to localStorage.stihl_cookie_consent"
+      }
+    }
+  ],
+  "overall_compliance_score": "100% COMPLIANT",
+  "blocking_compliance_violations": 0
+}

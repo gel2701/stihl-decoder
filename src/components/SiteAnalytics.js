@@ -121,7 +121,7 @@
       <div style="max-width:1152px;margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap">
         <div style="max-width:760px">
           <strong style="display:block;color:#fff;margin-bottom:3px">Privacy & Cookies</strong>
-          <span style="color:#a3a3a3">De Google-tag is actief in beperkte consentmodus. Analytische cookies en Analytics-opslag worden alleen ingeschakeld na uw toestemming.</span>
+          <span style="color:#a3a3a3">De Google-tag is actief in beperkte consentmodus. Analytische cookies en Analytics-opslag worden alleen ingeschakeld na uw toestemming. Externe links naar Amazon kunnen cookies van derden plaatsen. Lees ons <a href="/privacy" style="color:#f97316;text-decoration:underline">privacy- en cookiebeleid</a>.</span>
         </div>
         <div style="display:flex;gap:8px;margin-left:auto">
           <button id="cookie-reject-btn" type="button" style="border:1px solid #404040;background:#262626;color:#f5f5f5;border-radius:10px;padding:8px 13px;font-weight:700;cursor:pointer">Weigeren</button>
