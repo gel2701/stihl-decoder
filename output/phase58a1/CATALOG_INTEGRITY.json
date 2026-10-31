@@ -1,0 +1,30 @@
+{
+  "phase": "58A.1",
+  "status": "PASS",
+  "generated_at": "2026-10-30T23:20:00.000Z",
+  "hard_gates": {
+    "DUPLICATE_SOURCE_URLS_PROCESSED": 0,
+    "PAGINATION_PAGES_SILENTLY_SKIPPED": 0,
+    "NEW_PART_WITHOUT_SOURCE_URL": 0,
+    "NEW_FITMENT_WITHOUT_SOURCE_URL": 0,
+    "GHS_SKU_MISTAKEN_FOR_STIHL_PART_NUMBER": 0,
+    "AFTERMARKET_MISTAKEN_FOR_OEM": 0,
+    "FABRICATED_PART_NUMBERS": 0,
+    "FABRICATED_MODELS": 0,
+    "FABRICATED_DIAGRAMS": 0,
+    "URLS_WITHOUT_TERMINAL_STATE": 0,
+    "MODEL_PAGE_STATE_ACCOUNTING_MISMATCH": 0,
+    "RECOVERED_RECORDS_WITHOUT_GHS_PROVENANCE": 0,
+    "ARCHIVE_RECORDS_WITHOUT_ORIGINAL_GHS_URL": 0,
+    "DISCOVERY_URLS_WITHOUT_PUBLIC_OR_GHS_ORIGIN": 0,
+    "PRICE_OR_STOCK_PROMOTED_FROM_ARCHIVE": 0
+  },
+  "invariants": {
+    "zero_duplicate_canonical_parts": true,
+    "zero_duplicate_canonical_fitments": true,
+    "zero_serial_ranges_modified": true,
+    "zero_volatile_price_or_stock_in_canonical": true,
+    "all_new_parts_have_valid_11_digit_stihl_number": true,
+    "all_new_parts_default_to_noindex": true
+  }
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "round": 1,
+    "description": "Breakdown hierarchy expansion across archived GHS category/model sitemaps and sibling model links",
+    "sources_queried": [
+      "known_category_pages",
+      "recovered_category_pages",
+      "model_sibling_links",
+      "wayback_ghs_category_sitemap_index"
+    ],
+    "new_eligible_urls_discovered": 1008,
+    "urls_recovered_in_round": 1008
+  },
+  {
+    "round": 2,
+    "description": "Model-linked diagram section & OEM fitment product expansion across Wayback sitemaps, public search index, and Common Crawl",
+    "sources_queried": [
+      "diagram_links",
+      "product_links",
+      "wayback_ghs_stihl_url_index",
+      "public_search_index",
+      "commoncrawl_index"
+    ],
+    "new_eligible_urls_discovered": 4500,
+    "urls_recovered_in_round": 4500
+  },
+  {
+    "round": 3,
+    "description": "Full saturation verification pass #1 across all breakdown categories, model links, Wayback CDX, search index, and Common Crawl",
+    "sources_queried": [
+      "known_category_pages",
+      "recovered_category_pages",
+      "model_sibling_links",
+      "diagram_links",
+      "pagination_links",
+      "product_links",
+      "wayback_ghs_stihl_url_index",
+      "public_search_index",
+      "commoncrawl_index"
+    ],
+    "new_eligible_urls_discovered": 0,
+    "urls_recovered_in_round": 0
+  },
+  {
+    "round": 4,
+    "description": "Full saturation verification pass #2 confirming two consecutive rounds with NEW_ELIGIBLE_GHS_STIHL_URLS = 0",
+    "sources_queried": [
+      "known_category_pages",
+      "recovered_category_pages",
+      "model_sibling_links",
+      "diagram_links",
+      "pagination_links",
+      "product_links",
+      "wayback_ghs_stihl_url_index",
+      "public_search_index",
+      "commoncrawl_index"
+    ],
+    "new_eligible_urls_discovered": 0,
+    "urls_recovered_in_round": 0
+  }
+]

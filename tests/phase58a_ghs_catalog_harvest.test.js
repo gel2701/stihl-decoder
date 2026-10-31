@@ -314,8 +314,12 @@ test('Phase 58A — 14. All 17 Required Artifacts Present & Zero Serial Regressi
     const ghsSource = db.prepare("SELECT * FROM parts_sources WHERE source_id = 'ghs'").get();
 
     const beforeAfter = readJson(path.join(OUT_DIR, 'CATALOG_BEFORE_AFTER.json'));
-    assert.equal(partsCount, beforeAfter.parts_after, 'SQLite parts table must match parts_after');
-    assert.equal(fitmentsCount, beforeAfter.fitments_after, 'SQLite model_part_fitments table must match fitments_after');
+    const partsDoc = readJson(path.join(DATA_DIR, 'parts_catalog.json'));
+    const fitmentsDoc = readJson(path.join(DATA_DIR, 'model_part_fitments.json'));
+    assert.equal(partsCount, partsDoc.parts_count, 'SQLite parts table must match parts_catalog.json');
+    assert.ok(partsCount >= beforeAfter.parts_after, 'SQLite parts table must be >= Phase 58A parts_after');
+    assert.equal(fitmentsCount, fitmentsDoc.fitments_count, 'SQLite model_part_fitments table must match model_part_fitments.json');
+    assert.ok(fitmentsCount >= beforeAfter.fitments_after, 'SQLite model_part_fitments table must be >= Phase 58A fitments_after');
     assert.equal(rangesCount, 8, 'SQLite model_serial_ranges must remain 8');
     assert.equal(anchorsCount, 16878, 'SQLite official_serial_anchors must remain 16,878');
     assert.ok(ghsSource && ghsSource.authority_level === GHS_AUTHORITY);

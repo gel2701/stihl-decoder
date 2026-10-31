@@ -1009,3 +1009,450 @@ export function extractSuitableStihlModelsFromText(text) {
   }
   return results;
 }
+
+/**
+ * Phase 58A.1 — Allowed acquisition methods, URL terminal states, and model-page terminal states.
+ */
+export const GHS_ACQUISITION_METHODS = Object.freeze({
+  DIRECT_HTTP_FETCH: 'DIRECT_HTTP_FETCH',
+  WAYBACK_PUBLIC_SNAPSHOT: 'WAYBACK_PUBLIC_SNAPSHOT',
+  PUBLIC_SEARCH_INDEX: 'PUBLIC_SEARCH_INDEX',
+  COMMONCRAWL_PUBLIC_SNAPSHOT: 'COMMONCRAWL_PUBLIC_SNAPSHOT'
+});
+
+export const URL_TERMINAL_STATES = Object.freeze({
+  RECOVERED: 'RECOVERED',
+  ALREADY_PARSED_PHASE58A: 'ALREADY_PARSED_PHASE58A',
+  CONFIRMED_404: 'CONFIRMED_404',
+  DUPLICATE: 'DUPLICATE',
+  OUT_OF_SCOPE: 'OUT_OF_SCOPE',
+  STILL_UNAVAILABLE_PUBLICLY: 'STILL_UNAVAILABLE_PUBLICLY'
+});
+
+export const MODEL_PAGE_TERMINAL_STATES = Object.freeze({
+  PARSED_PHASE58A: 'PARSED_PHASE58A',
+  RECOVERED_PHASE58A1: 'RECOVERED_PHASE58A1',
+  DEFERRED_STILL_BLOCKED: 'DEFERRED_STILL_BLOCKED',
+  CONFIRMED_404: 'CONFIRMED_404',
+  DUPLICATE_ALIAS_URL: 'DUPLICATE_ALIAS_URL',
+  NOT_MODEL_PAGE: 'NOT_MODEL_PAGE',
+  OUT_OF_SCOPE: 'OUT_OF_SCOPE'
+});
+
+/**
+ * Classifies a GHS URL into the Phase 58A.1 priority page types:
+ *   MODEL_PAGE -> DIAGRAM_PAGE -> CATEGORY_SUBCATEGORY_PAGE -> PAGINATION_PAGE -> PRODUCT_PAGE -> AUXILIARY_PAGE
+ */
+export function classifyGhsPageType(rawUrl, rawTitle = '') {
+  const norm = normalizeGhsUrl(rawUrl) || String(rawUrl || '');
+  const low = norm.toLowerCase();
+
+  if (/[?&]p=\d+/i.test(low)) {
+    return 'PAGINATION_PAGE';
+  }
+
+  if (low.includes('/menu-parts-diagrams/stihl-parts-breakdowns')) {
+    const modelExtracted = extractModelFromGhsBreakdownUrl(norm, rawTitle);
+    if (modelExtracted) {
+      return 'MODEL_PAGE';
+    }
+    return 'CATEGORY_SUBCATEGORY_PAGE';
+  }
+
+  if (
+    /^https:\/\/www\.gardenhirespares\.co\.uk\/genuine-stihl-[a-z0-9-]+\.html$/i.test(low) &&
+    !/\d{4}-\d{3}-\d{4}/.test(low)
+  ) {
+    const diag = parseGhsDiagramLabel(rawTitle || slugToDiagramCandidateLabel(norm));
+    if (diag) {
+      return 'DIAGRAM_PAGE';
+    }
+  }
+
+  if (
+    low.includes('/shop-by-product/') ||
+    low.includes('/forestry-chainsaw-parts-accessories/') ||
+    low.includes('/lawn-garden-parts/') ||
+    low.includes('/construction-parts-construction-parts/')
+  ) {
+    return 'CATEGORY_SUBCATEGORY_PAGE';
+  }
+
+  if (
+    /\/(?:st)?\d{4}-\d{3}-\d{4}[-.]/.test(low) ||
+    /-\d{4}-\d{3}-\d{4}\.html$/.test(low) ||
+    /^https:\/\/www\.gardenhirespares\.co\.uk\/(?:\d+[-a-z0-9]*-)?(?:genuine-)?stihl-[a-z0-9-]+\.html$/i.test(low)
+  ) {
+    return 'PRODUCT_PAGE';
+  }
+
+  return 'AUXILIARY_PAGE';
+}
+
+/**
+ * Returns numeric priority rank (1 = highest priority) for Phase 58A.1 queue ordering:
+ *   MODEL_PAGE (1) -> DIAGRAM_PAGE (2) -> CATEGORY_SUBCATEGORY_PAGE (3) -> PAGINATION_PAGE (4) -> PRODUCT_PAGE (5) -> AUXILIARY_PAGE (6)
+ */
+export function getGhsRecoveryPriorityRank(pageType) {
+  switch (pageType) {
+    case 'MODEL_PAGE':
+    case 'MODEL':
+      return 1;
+    case 'DIAGRAM_PAGE':
+    case 'DIAGRAM':
+      return 2;
+    case 'CATEGORY_SUBCATEGORY_PAGE':
+    case 'CATEGORY':
+    case 'MODEL_OR_CATEGORY':
+      return 3;
+    case 'PAGINATION_PAGE':
+      return 4;
+    case 'PRODUCT_PAGE':
+    case 'PRODUCT':
+      return 5;
+    default:
+      return 6;
+  }
+}
+
+/**
+ * Extracts a canonical STIHL model record from a GHS breakdown URL path when the leaf segment
+ * represents a model page (e.g. `/menu-parts-diagrams/stihl-parts-breakdowns/.../ms271-c-be-chainsaw-parts.html`
+ * or `/menu-parts-diagrams/stihl-parts-breakdowns/.../ms-362-c-m-0.html`).
+ */
+export function extractModelFromGhsBreakdownUrl(rawUrl, fallbackTitle = '') {
+  const norm = normalizeGhsUrl(rawUrl);
+  if (!norm || !norm.includes('/menu-parts-diagrams/stihl-parts-breakdowns/')) return null;
+  if (/[?&]p=\d+/i.test(norm)) return null;
+
+  try {
+    const u = new URL(norm);
+    const segments = u.pathname.split('/').filter(Boolean);
+    if (segments.length < 4) return null; // Root + menu-parts-diagrams + stihl-parts-breakdowns + category is depth 3
+
+    const leaf = segments[segments.length - 1].replace(/\.html$/i, '');
+    const hierarchySlugs = segments.slice(2, -1).map(s => s.replace(/\.html$/i, '').replace(/-/g, ' '));
+
+    // Reject leaf segments that are category/series groupings rather than specific machine models
+    if (
+      /^(?:stihl-)?(?:petrol|battery|cordless|electric|new-models|old-models|kombi-?tool|kombi-?engine|multi-?tool|multi-?engine|strimmer|brushcutter|chainsaw|hedgetrimmer|long-reach|pole-pruner|disc-cutter|cut-off|blower|vacuum|shredder|cultivator|scarifier|auger|mistblower|sprayer|pressure-washer|water-pump|rotary-mower|robotic-mower|ride-on-mower|lawn-garden)/i.test(leaf) &&
+      !/^(?:stihl-)?(?:ms|msa|mse|fs|fsa|fse|fcb|fcs|fh|fsb|hs|hsa|hse|km|kma|kmb|ka|kb|kw|bf|bc|bg|bga|bge|br|bra|ts|tsa|ht|hta|hte|hl|hla|hle|sh|she|se|sea|re|rea|rm|rma|rme|rmi|rt|rl|rle|mb|ma|me|mi|mt|mr|mm|mh|bt|fr|fc|sp|spa|sg|sga|sr|fw|gs|gsa|lsg|mf|rg|wp|pw|rb|rz|0\d{2}|e\d{2}|p\d{2,3})[-0-9]/i.test(leaf)
+    ) {
+      return null;
+    }
+
+    // Convert leaf slug into a clean model candidate string
+    let candidate = leaf
+      .replace(/^stihl-/i, '')
+      .replace(/-(?:parts-list-breakdown(?:-ghs)?|chainsaw-parts|pole-pruner-parts|disc-cutter-parts|cut-off-machine-parts|strimmer-parts|brushcutter-parts|hedgetrimmer-parts|hedge-trimmer-parts|kombiengine-parts|kombitool-parts|kombi-tool-parts|multitool-parts|multisystem-parts|blower-parts|vacuum-shredder-parts|vacuum-cleaner-parts|shredder-parts|cultivator-parts|scarifier-parts|auger-parts|mistblower-parts|sprayer-parts|pressure-washer-parts|cold-water-pressure-cleaners-parts|hot-water-pressure-cleaners-parts|water-pump-parts|rotary-mower-parts|robotic-mower-parts|ride-on-mower-parts|parts-diagrams|parts-breakdowns|parts)$/i, '')
+      .replace(/-(?:0|1|2)$/i, (m, offset, str) => {
+        // Keep .0 / .1 / .2 on RM/RMA/RMI/RL/RT/RE/RB mower series, strip Magento duplicate URL suffix -0/-1 on chainsaws/trimmers
+        if (/^(?:rm|rma|rme|rmi|rt|rl|rle|re|rea|rb|mb|me|mi|mt|mr)/i.test(str)) {
+          return `.${m.slice(1)}`;
+        }
+        return '';
+      })
+      .replace(/-/g, ' ')
+      .trim();
+
+    // Restore hyphen for KM/MM attachments (e.g. "ht km", "hl km 145", "bc km", "fs km", "kw km", "bf km", "fc km", "fcb km", "fcs km", "fh km", "bg km", "sp km")
+    candidate = candidate
+      .replace(/\b(HT|HL|BC|FS|KW|BF|FC|FCB|FCS|FH|BG|SP|KB|JM|RG)\s+(KM|MM)\b/i, '$1-$2')
+      .replace(/\bC\s+BE\b/i, 'C-BE')
+      .replace(/\bC\s+BQ\b/i, 'C-BQ')
+      .replace(/\bC\s+M\b/i, 'C-M')
+      .replace(/\bC\s+E\b/i, 'C-E')
+      .replace(/\bC\s+B\b/i, 'C-B')
+      .replace(/\bTC\s+E\b/i, 'TC-E')
+      .replace(/\bRC\s+E\b/i, 'RC-E')
+      .replace(/\b2\s+MIX\b/i, '2-MIX');
+
+    const normMod = normalizeGhsModel(fallbackTitle || candidate) || normalizeGhsModel(candidate);
+    if (!normMod) return null;
+
+    const catMap = mapGhsCategoryToCanonical(hierarchySlugs[0] || '', hierarchySlugs);
+    return {
+      ...normMod,
+      category: catMap.category,
+      category_slug: catMap.category_slug,
+      ghs_category: catMap.ghs_category,
+      subcategory_hierarchy: hierarchySlugs,
+      model_page_url: norm
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Helper to convert a diagram URL slug like `genuine-stihl-ms271-c-be-a-motor-housing.html`
+ * or `genuine-stihl-026-a-crankcase.html` into a candidate label when XML `<image:title>` is absent.
+ */
+function slugToDiagramCandidateLabel(normUrl) {
+  try {
+    const u = new URL(normUrl);
+    const base = u.pathname.split('/').pop().replace(/\.html$/i, '');
+    if (!base.startsWith('genuine-stihl-')) return '';
+    const rest = base.replace(/^genuine-stihl-/, '');
+    // Match model prefix + single-letter diagram code (a-z) + section title
+    const m = rest.match(/^((?:ms|msa|mse|fs|fsa|fse|hs|hsa|hse|km|kma|bg|bga|bge|br|bra|ts|tsa|ht|hta|hte|hl|hla|hle|sh|she|se|sea|re|rea|rm|rma|rme|rmi|rt|rl|rle|mb|ma|me|mi|mt|mr|mm|mh|bt|fr|fc|sp|spa|sg|sga|sr|fw|gs|0\d{2}|e\d{2}|[a-z]{2}-(?:km|mm))(?:-(?:c-be|c-bq|c-m|c-e|c-b|tc-e|rc-e|2-mix|ave|plus|super|z|t|r|\d{1,3}))*)-([a-z])-([a-z0-9-]+)$/i);
+    if (!m) return '';
+    const modelPart = m[1].replace(/-/g, ' ').toUpperCase();
+    const codePart = m[2].toUpperCase();
+    const titlePart = m[3].replace(/-/g, ' ');
+    return `Genuine Stihl ${modelPart} / ${codePart} - ${titlePart}`;
+  } catch {
+    return '';
+  }
+}
+
+/**
+ * Parses an archived GHS XML sitemap entry (`category_sitemap_*.xml` / `products_sitemap_*.xml`)
+ * into structured model, diagram, part, and fitment records with full Wayback provenance.
+ * Strictly excludes any price, stock, or availability fields (`PRICE_OR_STOCK_PROMOTED_FROM_ARCHIVE = 0`).
+ */
+export function parseGhsSitemapXmlEntry(entry, { retrievedAt = new Date().toISOString() } = {}) {
+  if (!entry || !entry.loc) return null;
+  const originalUrl = normalizeGhsUrl(entry.loc);
+  if (!originalUrl) return null;
+
+  const rawTitle = entry.title ? stripHtml(entry.title) : '';
+  const imageLoc = entry.image_loc ? decodeHtmlEntities(entry.image_loc).trim() : null;
+  const snapshotUrl = entry.snapshot_url || null;
+  const snapshotTimestamp = entry.snapshot_timestamp || entry.lastmod || null;
+  const pageType = classifyGhsPageType(originalUrl, rawTitle);
+
+  const models = [];
+  const diagrams = [];
+  const parts = [];
+  const fitments = [];
+
+  // 1. Model page under /menu-parts-diagrams/stihl-parts-breakdowns/...
+  if (pageType === 'MODEL_PAGE') {
+    const mod = extractModelFromGhsBreakdownUrl(originalUrl, rawTitle);
+    if (mod) {
+      models.push({
+        source: 'GHS',
+        source_authority: GHS_AUTHORITY,
+        source_status: GHS_SOURCE_STATUS,
+        acquisition_method: GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT,
+        ...mod,
+        original_ghs_url: originalUrl,
+        archive_snapshot_url: snapshotUrl,
+        snapshot_timestamp: snapshotTimestamp,
+        retrieved_at: retrievedAt
+      });
+    }
+  }
+
+  // 2. Diagram page (`/genuine-stihl-...html`)
+  if (pageType === 'DIAGRAM_PAGE') {
+    // Normalize hyphenated `<image:title>` like "Genuine Stihl MS 362 C-M-A-group" or "Genuine Stihl 026-A-Crankcase"
+    let labelToParse = rawTitle || slugToDiagramCandidateLabel(originalUrl);
+    const hyphenDiagMatch = labelToParse.match(/^(Genuine\s+Stihl\s+.+?)-([A-Z])-([A-Za-z0-9\s,()/-]+)$/);
+    if (hyphenDiagMatch) {
+      labelToParse = `${hyphenDiagMatch[1]} / ${hyphenDiagMatch[2]} - ${hyphenDiagMatch[3]}`;
+    }
+    const parsedDiag = parseGhsDiagramLabel(labelToParse) || parseGhsDiagramLabel(slugToDiagramCandidateLabel(originalUrl));
+    if (parsedDiag) {
+      const catMap = mapGhsCategoryToCanonical(parsedDiag.model, []);
+      models.push({
+        source: 'GHS',
+        source_authority: GHS_AUTHORITY,
+        source_status: GHS_SOURCE_STATUS,
+        acquisition_method: GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT,
+        ...normalizeGhsModel(parsedDiag.model_raw || parsedDiag.model),
+        category: catMap.category,
+        category_slug: catMap.category_slug,
+        ghs_category: catMap.ghs_category,
+        subcategory_hierarchy: [],
+        model_page_url: originalUrl,
+        original_ghs_url: originalUrl,
+        archive_snapshot_url: snapshotUrl,
+        snapshot_timestamp: snapshotTimestamp,
+        retrieved_at: retrievedAt
+      });
+
+      const diagIdentifier = `${parsedDiag.canonical_model_id}__${parsedDiag.diagram_code.toLowerCase()}__${SectionNormalizer.normalizeSectionKey(parsedDiag.diagram_title)}`;
+      diagrams.push({
+        model: parsedDiag.model,
+        model_raw: parsedDiag.model_raw,
+        canonical_model_id: parsedDiag.canonical_model_id,
+        variant_key: parsedDiag.variant_key || 'base',
+        diagram_code: parsedDiag.diagram_code,
+        diagram_title: parsedDiag.diagram_title,
+        diagram_full_label: parsedDiag.diagram_full_label,
+        diagram_identifier: diagIdentifier,
+        diagram_page_url: originalUrl,
+        diagram_source_url: originalUrl,
+        diagram_image_url: imageLoc,
+        original_ghs_url: originalUrl,
+        archive_snapshot_url: snapshotUrl,
+        snapshot_timestamp: snapshotTimestamp,
+        acquisition_method: GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT,
+        source_authority: GHS_AUTHORITY,
+        retrieved_at: retrievedAt
+      });
+    }
+  }
+
+  // 3. Product page
+  if (pageType === 'PRODUCT_PAGE') {
+    const slug = new URL(originalUrl).pathname.split('/').pop().replace(/\.html$/i, '');
+    // Extract leading GHS SKU if slug starts with a short number (e.g. `2243-stihl-ts410...` or `3005-genuine-stihl-...`) and NOT an 11-digit part number
+    let slugGhsSku = null;
+    if (/^\d{3,5}(?:-\d{1,2})?-(?:genuine-)?stihl-/i.test(slug) && !/^\d{4}-\d{3}-\d{4}/.test(slug)) {
+      slugGhsSku = slug.match(/^(\d{3,5}(?:-\d{1,2})?)-/)[1];
+    } else if (/^st\d{4}-\d{3}-\d{4}/i.test(slug)) {
+      const m = slug.match(/^st(\d{4})-(\d{3})-(\d{4})/i);
+      slugGhsSku = `ST${m[1]} ${m[2]} ${m[3]}`;
+    }
+
+    const humanSlugTitle = slug
+      .replace(/^\d{3,5}(?:-\d{1,2})?-(?=(?:genuine-)?stihl-)/i, '')
+      .replace(/-/g, ' ')
+      .trim();
+
+    const effectiveTitle = rawTitle || humanSlugTitle;
+    const separated = separateGhsSkuAndStihlPartNumber(slugGhsSku, null, `${rawTitle} ${originalUrl}`);
+    const typeInfo = classifyGhsProductType({
+      title: effectiveTitle,
+      ghsSku: separated.ghs_part_number,
+      url: originalUrl
+    });
+
+    if (separated.part_number_normalized) {
+      let cleanDesc = effectiveTitle
+        .replace(/^(?:st\s*)?\d{4}[\s\-]?\d{3}[\s\-]?\d{4}\s*/i, '')
+        .replace(/\s*-\s*\d{4}[\s\-]?\d{3}[\s\-]?\d{4}$/i, '')
+        .replace(/^Genuine\s+Stihl\s+/i, '')
+        .trim() || effectiveTitle;
+
+      const extractedModels = extractSuitableStihlModelsFromText(`${rawTitle} ${humanSlugTitle}`);
+
+      parts.push({
+        part_number: separated.part_number_normalized,
+        part_number_raw: separated.part_number_raw,
+        part_number_display: separated.part_number_display,
+        description: cleanDesc,
+        raw_title: effectiveTitle,
+        manufacturer: typeInfo.manufacturer,
+        product_type: typeInfo.product_type,
+        ghs_part_number: separated.ghs_part_number,
+        product_url: originalUrl,
+        source_model: extractedModels[0]?.model_raw || null,
+        canonical_model: extractedModels[0]?.model_display_name || null,
+        canonical_model_id: extractedModels[0]?.canonical_model_id || null,
+        diagram_code: null,
+        diagram_title: null,
+        diagram_url: null,
+        position_number: null,
+        source_url: originalUrl,
+        original_ghs_url: originalUrl,
+        archive_snapshot_url: snapshotUrl,
+        snapshot_timestamp: snapshotTimestamp,
+        acquisition_method: GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT,
+        retrieved_at: retrievedAt,
+        source_authority: GHS_AUTHORITY,
+        source_status: GHS_SOURCE_STATUS
+      });
+
+      for (const em of extractedModels) {
+        fitments.push({
+          canonical_model: em.model_display_name,
+          canonical_model_id: em.canonical_model_id,
+          variant_key: em.variant_key || 'base',
+          source_model: em.model_raw,
+          part_number: separated.part_number_normalized,
+          part_number_display: separated.part_number_display,
+          description: cleanDesc,
+          product_type: typeInfo.product_type,
+          manufacturer: typeInfo.manufacturer,
+          ghs_part_number: separated.ghs_part_number,
+          diagram_code: null,
+          diagram_title: null,
+          position_number: null,
+          model_page_url: null,
+          diagram_page_url: null,
+          product_url: originalUrl,
+          source_url: originalUrl,
+          original_ghs_url: originalUrl,
+          archive_snapshot_url: snapshotUrl,
+          snapshot_timestamp: snapshotTimestamp,
+          acquisition_method: GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT,
+          source: 'GHS',
+          authority: GHS_AUTHORITY,
+          retrieved_at: retrievedAt
+        });
+      }
+    }
+  }
+
+  return {
+    original_ghs_url: originalUrl,
+    archive_snapshot_url: snapshotUrl,
+    snapshot_timestamp: snapshotTimestamp,
+    retrieved_at: retrievedAt,
+    acquisition_method: GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT,
+    authority: GHS_AUTHORITY,
+    page_type: pageType,
+    models,
+    diagrams,
+    parts,
+    fitments
+  };
+}
+
+/**
+ * Parses an archived HTML page snapshot (from Wayback Machine or Common Crawl),
+ * attaching full archive provenance (`original_ghs_url`, `archive_snapshot_url`,
+ * `snapshot_timestamp`, `retrieved_at`, `acquisition_method`, `authority = GHS_STIHL_PRIMARY`)
+ * and stripping any volatile archive price/stock/availability fields.
+ */
+export function parseGhsArchiveHtmlSnapshot(
+  html,
+  {
+    originalGhsUrl,
+    archiveSnapshotUrl,
+    snapshotTimestamp,
+    retrievedAt = new Date().toISOString(),
+    acquisitionMethod = GHS_ACQUISITION_METHODS.WAYBACK_PUBLIC_SNAPSHOT
+  } = {}
+) {
+  const normOrigUrl = normalizeGhsUrl(originalGhsUrl) || originalGhsUrl;
+  const baseParsed = parseGhsPage(html || '', normOrigUrl, retrievedAt);
+
+  const attachProvenance = (rec) => {
+    const cleaned = {
+      ...rec,
+      source_url: normOrigUrl,
+      original_ghs_url: normOrigUrl,
+      archive_snapshot_url: archiveSnapshotUrl || null,
+      snapshot_timestamp: snapshotTimestamp || null,
+      retrieved_at: retrievedAt,
+      acquisition_method: acquisitionMethod,
+      source_authority: GHS_AUTHORITY,
+      authority: GHS_AUTHORITY,
+      source_status: GHS_SOURCE_STATUS
+    };
+    delete cleaned.price;
+    delete cleaned.stock;
+    delete cleaned.availability;
+    delete cleaned.delivery_time;
+    return cleaned;
+  };
+
+  return {
+    ...baseParsed,
+    original_ghs_url: normOrigUrl,
+    archive_snapshot_url: archiveSnapshotUrl || null,
+    snapshot_timestamp: snapshotTimestamp || null,
+    retrieved_at: retrievedAt,
+    acquisition_method: acquisitionMethod,
+    authority: GHS_AUTHORITY,
+    models: (baseParsed.models || []).map(attachProvenance),
+    diagrams: (baseParsed.diagrams || []).map(attachProvenance),
+    parts: (baseParsed.parts || []).map(attachProvenance),
+    fitments: (baseParsed.fitments || []).map(attachProvenance)
+  };
+}

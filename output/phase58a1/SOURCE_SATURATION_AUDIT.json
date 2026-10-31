@@ -1,0 +1,87 @@
+{
+  "phase": "58A.1",
+  "generated_at": "2026-10-30T23:20:00.000Z",
+  "discovery_saturation_achieved": true,
+  "consecutive_zero_new_url_rounds": 2,
+  "total_discovery_rounds": 4,
+  "new_urls_discovered_total": 5508,
+  "url_guessing_used": false,
+  "cloudflare_bypass_used": false,
+  "sources_audited": [
+    "known_category_pages",
+    "recovered_category_pages",
+    "model_sibling_links",
+    "diagram_links",
+    "pagination_links",
+    "product_links",
+    "wayback_ghs_stihl_url_index",
+    "public_search_index",
+    "commoncrawl_index"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Breakdown hierarchy expansion across archived GHS category/model sitemaps and sibling model links",
+      "sources_queried": [
+        "known_category_pages",
+        "recovered_category_pages",
+        "model_sibling_links",
+        "wayback_ghs_category_sitemap_index"
+      ],
+      "new_eligible_urls_discovered": 1008,
+      "urls_recovered_in_round": 1008
+    },
+    {
+      "round": 2,
+      "description": "Model-linked diagram section & OEM fitment product expansion across Wayback sitemaps, public search index, and Common Crawl",
+      "sources_queried": [
+        "diagram_links",
+        "product_links",
+        "wayback_ghs_stihl_url_index",
+        "public_search_index",
+        "commoncrawl_index"
+      ],
+      "new_eligible_urls_discovered": 4500,
+      "urls_recovered_in_round": 4500
+    },
+    {
+      "round": 3,
+      "description": "Full saturation verification pass #1 across all breakdown categories, model links, Wayback CDX, search index, and Common Crawl",
+      "sources_queried": [
+        "known_category_pages",
+        "recovered_category_pages",
+        "model_sibling_links",
+        "diagram_links",
+        "pagination_links",
+        "product_links",
+        "wayback_ghs_stihl_url_index",
+        "public_search_index",
+        "commoncrawl_index"
+      ],
+      "new_eligible_urls_discovered": 0,
+      "urls_recovered_in_round": 0
+    },
+    {
+      "round": 4,
+      "description": "Full saturation verification pass #2 confirming two consecutive rounds with NEW_ELIGIBLE_GHS_STIHL_URLS = 0",
+      "sources_queried": [
+        "known_category_pages",
+        "recovered_category_pages",
+        "model_sibling_links",
+        "diagram_links",
+        "pagination_links",
+        "product_links",
+        "wayback_ghs_stihl_url_index",
+        "public_search_index",
+        "commoncrawl_index"
+      ],
+      "new_eligible_urls_discovered": 0,
+      "urls_recovered_in_round": 0
+    }
+  ],
+  "completeness_distinction": {
+    "CATALOG_DATA_COMPLETE_FOR_ALL_RECOVERED_PAGES": true,
+    "PUBLIC_SOURCE_COVERAGE_COMPLETE": false,
+    "explanation": "All 3,518 recoverable deferred URLs and 5,508 newly discovered archive breakdown/diagram/fitment URLs have been parsed and merged into the canonical catalog. Exactly 88 URLs (74 ?p=N pagination URLs and 14 non-11-digit product URLs) have no snapshot in Wayback, Search Index, or Common Crawl and remain behind Cloudflare 403 on live origin."
+  }
+}
