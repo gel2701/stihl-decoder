@@ -98,7 +98,8 @@ export const currentProductionSuites = [
   'tests/phase59c_amazon_product_matching_pilot.test.js',
   'tests/phase59d_verified_amazon_product_links.test.js',
   'tests/phase59d1_production_readiness_consistency.test.js',
-  'tests/phase59e_pilot_activation.test.js'
+  'tests/phase59e_pilot_activation.test.js',
+  'tests/phase59e1_live_pilot_simulation.test.js'
 ];
 
 console.log('===============================================================');

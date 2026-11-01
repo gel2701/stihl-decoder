@@ -1,0 +1,220 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59E.1",
+  "generated_at": "2026-11-01T22:10:01.178Z",
+  "policy": {
+    "pilot_name": "First Live Amazon ASIN Pilot (Controlled Launch)",
+    "production_activation_allowed": true,
+    "pilot_activated_parts": [
+      "11104007005",
+      "00004007000",
+      "00004007011"
+    ],
+    "max_active_offers_allowed": 3,
+    "default_marketplace": "amazon.nl",
+    "affiliate_tag": "srihldecoder2-21",
+    "fallback_rule": "Deterministic search fallback for all unverified, staged, or non-whitelisted parts",
+    "redirect_policy": "NO_REDIRECTS_DIRECT_AMAZON_ONLY",
+    "oem_badge_policy": "STRICT_SUPPLIER_EQUIVALENT_NO_MISLEADING_OEM_CLAIMS"
+  },
+  "metrics": {
+    "total_candidates_investigated": 3,
+    "verified_eligible": 3,
+    "active_in_production": 3,
+    "search_fallback_coverage": 18370
+  },
+  "offers": [
+    {
+      "part_number": "11104007005",
+      "part_number_formatted": "1110 400 7005",
+      "asin": "B0068M5NAG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "manufacturer_part_number": "0242240506",
+      "trade_number": "WSR6F",
+      "brand": "Bosch",
+      "product_title": "Bosch 0242240506 Spark Plug WSR6F",
+      "package_quantity": 1,
+      "package_type": "Single piece blister / folding box",
+      "ean_gtin": "3165141051063",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11104007005",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
+          "title": "Bosch Automotive Aftermarket",
+          "claim": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
+          "retrieved_at": "2026-11-01"
+        }
+      ],
+      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 1110 400 7005 (en 0000 400 7000 interchange) voor STIHL 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260.",
+      "asin_product_identity_proof": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
+      "independent_evidence_url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1110+400+7005&tag=srihldecoder2-21",
+      "verification_date": "2026-11-01",
+      "status": "ACTIVE",
+      "status_reason": "Explicit operator approval granted for Phase 59E.1 production pilot launch.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T17:15:00.000Z"
+    },
+    {
+      "part_number": "00004007000",
+      "part_number_formatted": "0000 400 7000",
+      "asin": "B001RM8J76",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "manufacturer_part_number": "BPMR7A / 6703",
+      "trade_number": "BPMR7A",
+      "brand": "NGK",
+      "product_title": "NGK 6703 BPMR7A Standard Spark Plug",
+      "package_quantity": 1,
+      "package_type": "Single piece box",
+      "ean_gtin": "0087295167038",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00004007000",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://amzchart.com/product-research/spark-plugs-15716421",
+          "title": "Niterra Co., Ltd. (NGK Spark Plugs)",
+          "claim": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
+          "retrieved_at": "2026-11-01"
+        }
+      ],
+      "compatibility_proof": "Bevestigt STIHL primaire Quick Reference Guide specificatie: 0000 400 7000 is de standaardfabrieksbougie van NGK voor STIHL TS 400, TS 410, TS 420 doorslijpers en MS 290, MS 310, MS 390, 029, 039 kettingzagen.",
+      "asin_product_identity_proof": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
+      "independent_evidence_url": "https://amzchart.com/product-research/spark-plugs-15716421",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7000&tag=srihldecoder2-21",
+      "verification_date": "2026-11-01",
+      "status": "ACTIVE",
+      "status_reason": "Explicit operator approval granted for Phase 59E.1 production pilot launch.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T17:15:00.000Z"
+    },
+    {
+      "part_number": "00004007011",
+      "part_number_formatted": "0000 400 7011",
+      "asin": "B001RMA5S2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "manufacturer_part_number": "CMR6H / 3365",
+      "trade_number": "CMR6H",
+      "brand": "NGK",
+      "product_title": "NGK (3365) CMR6H Standard Spark Plug",
+      "package_quantity": 1,
+      "package_type": "Single piece box",
+      "ean_gtin": "0087295133651",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00004007011",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck",
+          "title": "Niterra Co., Ltd. (NGK Spark Plugs)",
+          "claim": "NGK Zündkerze CMR6H (Herstellernummer / MPN: CMR6H, Bestellnummer / Stock No.: 3365, EAN: 0087295133651 / 87295133651). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN B001RMA5S2 als officiële NGK compactbougie.",
+          "retrieved_at": "2026-11-01"
+        }
+      ],
+      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 0000 400 7011 (00004007011) voor STIHL 4-MIX & 2-MIX motoren (o.a. MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130).",
+      "asin_product_identity_proof": "NGK Zündkerze CMR6H (Herstellernummer / MPN: CMR6H, Bestellnummer / Stock No.: 3365, EAN: 0087295133651 / 87295133651). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN B001RMA5S2 als officiële NGK compactbougie.",
+      "independent_evidence_url": "https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7011&tag=srihldecoder2-21",
+      "verification_date": "2026-11-01",
+      "status": "ACTIVE",
+      "status_reason": "Explicit operator approval granted for Phase 59E.1 production pilot launch.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T17:15:00.000Z"
+    }
+  ]
+}
