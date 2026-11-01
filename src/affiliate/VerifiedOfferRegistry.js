@@ -25,8 +25,8 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const candidateRegistryPaths = [
-  path.resolve(__dirname, '..', '..', 'PHASE59E_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'verified_amazon_registry.json'),
+  path.resolve(__dirname, '..', '..', 'PHASE59E_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59D_VERIFIED_OFFERS.json')
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];

@@ -24,6 +24,15 @@ import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
 import { renderBreadcrumbsHtml } from './src/components/Breadcrumbs.js';
 import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
+import { defaultVerifiedOfferRegistry } from './src/affiliate/VerifiedOfferRegistry.js';
+
+// Phase 59E.1: Controlled Amazon ASIN Live Pilot Launch (3 vetted spark plugs)
+if (process.env.AMAZON_DIRECT_ASIN_ENABLED !== 'false') {
+  defaultVerifiedOfferRegistry.productionActivationAllowed = true;
+  defaultVerifiedOfferRegistry.activeWhitelist = process.env.AMAZON_PILOT_ACTIVE_PARTS
+    ? new Set(process.env.AMAZON_PILOT_ACTIVE_PARTS.split(',').map(s => PartNormalizer.normalizePartNumber(s.trim())).filter(Boolean))
+    : new Set(['11104007005', '00004007000', '00004007011']);
+}
 import {
   getSafeCategorySlug,
   getSafeModelPath,
