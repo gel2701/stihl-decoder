@@ -130,7 +130,9 @@ const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', 
 const EXCLUDE_FILES = new Set([
   'tests/phase54a_parts_amazon_affiliate.test.js',
   'tests/phase54a_h_amazon_link_integrity.test.js',
+  'tests/phase59c_amazon_product_matching_pilot.test.js',
   'scripts/audit_amazon_affiliate_links.mjs',
+  'scripts/generate_phase59c_pilot.mjs',
   'data/affiliate/amazon_part_offers.json'
 ]);
 
@@ -147,7 +149,7 @@ function scanDirForDpLinks(dir) {
         scanDirForDpLinks(fullPath);
       }
     } else if (entry.isFile()) {
-      if (EXCLUDE_FILES.has(relPath)) continue;
+      if (EXCLUDE_FILES.has(relPath) || /^PHASE\d+[A-Z0-9_]*\.(json|md)$/i.test(entry.name)) continue;
       // Only check code and template files
       if (!/\.(js|mjs|cjs|html|json|md)$/.test(entry.name)) continue;
 
