@@ -80,7 +80,7 @@ De documentatie en data-artefacten met betrekking tot de 3 afgekeurde kandidaat-
 | Categorie | Aantal | Onderdelen | Classificatie | Status | Productie Impact |
 | :--- | :---: | :--- | :--- | :--- | :--- |
 | **Volledig Geverifieerd** | **3** | `1110 400 7005` (Bosch WSR6F), `0000 400 7000` (NGK BPMR7A), `0000 400 7011` (NGK CMR6H) | `VERIFIED` | `VERIFIED` (Staged) | Gereed voor latere activatie via `VerifiedOfferRegistry` (productielock actief) |
-| **Compatibel / Backlog** | **13** | `1129 120 0601`, `1130 120 0603`, `1123 120 0605`, `1121 120 0611`, `1127 120 0650`, `1141 120 1600`, `1130 140 2803`, `1130 149 0601`, `1123 149 0500`, `1121 149 0600`, `1127 149 0601`, `0000 350 3504`, `0000 350 3500` | `PART_COMPATIBILITY_VERIFIED` | `STAGED` | Blijven in backlog; veilige zoeklink fallback actief |
+| **Compatibel / Backlog** | **13** | `0000 350 3502`, `1117 640 3800`, `0000 642 1234`, `0000 642 1236`, `1118 195 3500`, `0000 195 8200`, `4282 141 0300`, `1123 640 7102`, `1123 120 1613`, `1130 124 0800`, `1123 640 3200`, `1141 120 1600`, `0000 400 7025` | `PART_COMPATIBILITY_VERIFIED` | `STAGED` | Blijven in backlog; veilige zoeklink fallback actief |
 | **Afgekeurd / Mismatch** | **3** | `0000 350 3518`, `1123 640 2074`, `4238 140 1800` | `INCORRECT_MATCH_CONFIRMED` | `SUSPENDED` | Permanent geblokkeerd; veilige zoeklink fallback actief |
 
 ---
