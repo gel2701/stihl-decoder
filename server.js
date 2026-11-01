@@ -557,12 +557,14 @@ const server = http.createServer(async (req, res) => {
       const normPart = PartNormalizer.normalizePartNumber(data.part_number);
       const isProductVerified = Boolean(data.product_verified);
       const offerType = data.offer_type || (isProductVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+      const linkType = data.link_type || (offerType === 'MANUAL_ASIN' ? 'DIRECT_ASIN' : 'SEARCH_FALLBACK');
 
       logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
         provider: data.provider || 'amazon',
         marketplace: data.marketplace || destinationHost,
         offer_type: offerType,
         match_type: data.match_type || offerType,
+        link_type: linkType,
         asin_if_known: data.asin_if_known || null,
         product_verified: isProductVerified,
         destination_url: data.destination_url || null,
@@ -586,6 +588,7 @@ const server = http.createServer(async (req, res) => {
         marketplace: data.marketplace || destinationHost,
         offer_type: offerType,
         match_type: data.match_type || offerType,
+        link_type: linkType,
         asin_if_known: data.asin_if_known || null,
         product_verified: isProductVerified,
         destination_url: data.destination_url || null,

@@ -95,7 +95,8 @@ export const currentProductionSuites = [
   'tests/phase58a_ghs_catalog_harvest.test.js',
   'tests/phase58a1_ghs_deferred_recovery.test.js',
   'tests/phase59b_amazon_affiliate_compliance.test.js',
-  'tests/phase59c_amazon_product_matching_pilot.test.js'
+  'tests/phase59c_amazon_product_matching_pilot.test.js',
+  'tests/phase59d_verified_amazon_product_links.test.js'
 ];
 
 console.log('===============================================================');

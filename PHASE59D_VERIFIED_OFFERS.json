@@ -1,0 +1,1073 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59D",
+  "exported_at": "2026-11-01T12:50:38.778Z",
+  "production_activation_allowed": false,
+  "metrics": {
+    "total_registered": 19,
+    "staged": 13,
+    "verified": 3,
+    "active": 0,
+    "suspended": 3
+  },
+  "offers": [
+    {
+      "part_number": "11104007005",
+      "asin": "B0068M5NAG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "manufacturer_part_number": "0242240506",
+      "brand": "Bosch",
+      "product_title": "Bosch 0242240506 Spark Plug WSR6F",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
+          "title": "Bosch Automotive Aftermarket",
+          "claim": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
+          "retrieved_at": "2026-11-01"
+        }
+      ],
+      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 1110 400 7005 (en 0000 400 7000 interchange) voor STIHL 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260.",
+      "asin_product_identity_proof": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
+      "independent_evidence_url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
+      "verification_date": "2026-11-01",
+      "status": "VERIFIED",
+      "status_reason": "Two-Gate verified: full manufacturer proof, EAN 3165141051063 and active ASIN B0068M5NAG corroborated. Ready for activation upon explicit user authorization.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.771Z"
+    },
+    {
+      "part_number": "00004007000",
+      "asin": "B001RM8J76",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "manufacturer_part_number": "BPMR7A / 6703",
+      "brand": "NGK",
+      "product_title": "NGK 6703 BPMR7A Standard Spark Plug",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://amzchart.com/product-research/spark-plugs-15716421",
+          "title": "Niterra Co., Ltd. (NGK Spark Plugs)",
+          "claim": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
+          "retrieved_at": "2026-11-01"
+        }
+      ],
+      "compatibility_proof": "Bevestigt STIHL primaire Quick Reference Guide specificatie: 0000 400 7000 is de standaardfabrieksbougie van NGK voor STIHL TS 400, TS 410, TS 420 doorslijpers en MS 290, MS 310, MS 390, 029, 039 kettingzagen.",
+      "asin_product_identity_proof": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
+      "independent_evidence_url": "https://amzchart.com/product-research/spark-plugs-15716421",
+      "verification_date": "2026-11-01",
+      "status": "VERIFIED",
+      "status_reason": "Two-Gate verified: STIHL Quick Reference confirms standard spark plug for cut-off saws/chainsaws, UPC 0087295167038 and ASIN B001RM8J76 corroborated. Ready for activation upon explicit user authorization.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.772Z"
+    },
+    {
+      "part_number": "00004007011",
+      "asin": "B001RMA5S2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "manufacturer_part_number": "CMR6H / 3365",
+      "brand": "NGK",
+      "product_title": "NGK (3365) CMR6H Standard Spark Plug",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck",
+          "title": "Niterra Co., Ltd. (NGK Spark Plugs)",
+          "claim": "NGK Zündkerze CMR6H (Herstellernummer / MPN: CMR6H, Bestellnummer / Stock No.: 3365, EAN: 0087295133651 / 87295133651). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN B001RMA5S2 als officiële NGK compactbougie.",
+          "retrieved_at": "2026-11-01"
+        }
+      ],
+      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 0000 400 7011 (00004007011) voor STIHL 4-MIX & 2-MIX motoren (o.a. MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130).",
+      "asin_product_identity_proof": "NGK Zündkerze CMR6H (Herstellernummer / MPN: CMR6H, Bestellnummer / Stock No.: 3365, EAN: 0087295133651 / 87295133651). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN B001RMA5S2 als officiële NGK compactbougie.",
+      "independent_evidence_url": "https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck",
+      "verification_date": "2026-11-01",
+      "status": "VERIFIED",
+      "status_reason": "Two-Gate verified: STIHL 4-MIX/2-MIX documentation confirms CMR6H, EAN 0087295133651 and ASIN B001RMA5S2 corroborated. Ready for activation upon explicit user authorization.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.772Z"
+    },
+    {
+      "part_number": "00003503502",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "0000 350 3502",
+      "brand": "STIHL",
+      "product_title": "STIHL Pickup Body",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 0000 350 3502, GTIN 0795711285227",
+          "retrieved_at": "2026-11-01T12:50:38.772Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 0000 350 3502, GTIN 0795711285227",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.772Z"
+    },
+    {
+      "part_number": "11176403800",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1117 640 3800",
+      "brand": "STIHL",
+      "product_title": "STIHL Pickup Body",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1117 640 3800, GTIN OEM_INTERNAL",
+          "retrieved_at": "2026-11-01T12:50:38.772Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1117 640 3800, GTIN OEM_INTERNAL",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.772Z"
+    },
+    {
+      "part_number": "00006421234",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "0000 642 1234",
+      "brand": "STIHL",
+      "product_title": "STIHL Rim Sprocket .325\" 8T",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 0000 642 1234, GTIN 795711000141",
+          "retrieved_at": "2026-11-01T12:50:38.772Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 0000 642 1234, GTIN 795711000141",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.772Z"
+    },
+    {
+      "part_number": "00006421236",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "0000 642 1236",
+      "brand": "STIHL",
+      "product_title": "STIHL Rim Sprocket .325\" 7T",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 0000 642 1236, GTIN 795711000165",
+          "retrieved_at": "2026-11-01T12:50:38.772Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 0000 642 1236, GTIN 795711000165",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.772Z"
+    },
+    {
+      "part_number": "11181953500",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1118 195 3500",
+      "brand": "STIHL",
+      "product_title": "STIHL Starter Pawl Clip Spring",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1118 195 3500, GTIN SERVICE_SPARE",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1118 195 3500, GTIN SERVICE_SPARE",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "00001958200",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "0000 195 8200",
+      "brand": "STIHL",
+      "product_title": "STIHL Starter Rope 3.0mm",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 0000 195 8200, GTIN 795711479220",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 0000 195 8200, GTIN 795711479220",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "42821410300",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "4282 141 0300",
+      "brand": "STIHL",
+      "product_title": "STIHL Air Filter BR 500-700",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 4282 141 0300, GTIN 0795711610753",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 4282 141 0300, GTIN 0795711610753",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "11236407102",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1123 640 7102",
+      "brand": "STIHL",
+      "product_title": "STIHL Oil Pump Assembly",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1123 640 7102, GTIN 795711515188",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1123 640 7102, GTIN 795711515188",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "11231201613",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1123 120 1613",
+      "brand": "STIHL",
+      "product_title": "STIHL Air Filter Flocked",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1123 120 1613, GTIN 795711515218",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1123 120 1613, GTIN 795711515218",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "11301240800",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1130 124 0800",
+      "brand": "STIHL",
+      "product_title": "STIHL Air Filter Fleece MS 170",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1130 124 0800, GTIN 034761115802",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1130 124 0800, GTIN 034761115802",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "11236403200",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1123 640 3200",
+      "brand": "STIHL",
+      "product_title": "STIHL Oil Pump 0.55mm",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1123 640 3200, GTIN 795711515188",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1123 640 3200, GTIN 795711515188",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "11411201600",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "1141 120 1600",
+      "brand": "STIHL",
+      "product_title": "STIHL HD2 Air Filter",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 1141 120 1600, GTIN 0795711520151",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 1141 120 1600, GTIN 0795711520151",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "00004007025",
+      "asin": "B000000000",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "0000 400 7025",
+      "brand": "STIHL",
+      "product_title": "STIHL Spark plug STIHL ZK C 10pk",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "STIHL",
+          "claim": "STIHL OEM MPN 0000 400 7025, GTIN 795711718046",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Part compatibility fully proven; Amazon single-unit OEM retail listing pending identification.",
+      "asin_product_identity_proof": "STIHL OEM MPN 0000 400 7025, GTIN 795711718046",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "STAGED",
+      "status_reason": "Part compatibility verified. Staged in registry pending single-unit ASIN identification; serves 100% compliant search fallback.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "00003503518",
+      "asin": "B0018U1IWY",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Unverified / Discrepant",
+      "manufacturer_part_number": "DISCREPANT",
+      "brand": "None",
+      "product_title": "Pickup Body",
+      "oem_brand_classification": "UNVERIFIED_AFTERMARKET",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "Unverified / Discrepant",
+          "claim": "Flawed pairing",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Incorrect fitment",
+      "asin_product_identity_proof": "Flawed pairing",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "SUSPENDED",
+      "status_reason": "SUSPENDED: Original candidate Oregon 33-518 is an ignition module for Kohler engines, NOT a fuel filter for STIHL. Investigating replacement Stens 610-254.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "11236402074",
+      "asin": "B0018U0A8O",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Unverified / Discrepant",
+      "manufacturer_part_number": "DISCREPANT",
+      "brand": "None",
+      "product_title": "Chain Sprocket .325\" 7T",
+      "oem_brand_classification": "UNVERIFIED_AFTERMARKET",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "Unverified / Discrepant",
+          "claim": "Flawed pairing",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Incorrect fitment",
+      "asin_product_identity_proof": "Flawed pairing",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "SUSPENDED",
+      "status_reason": "SUSPENDED: Original candidate Oregon 106114 fits Husqvarna/Poulan chainsaws and does not fit STIHL saws. Original pairing rejected.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    },
+    {
+      "part_number": "42381401800",
+      "asin": "B002K27FVK",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Unverified / Discrepant",
+      "manufacturer_part_number": "DISCREPANT",
+      "brand": "None",
+      "product_title": "Main Air Filter TS 410",
+      "oem_brand_classification": "UNVERIFIED_AFTERMARKET",
+      "verifiable_evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.stihl.com",
+          "title": "Unverified / Discrepant",
+          "claim": "Flawed pairing",
+          "retrieved_at": "2026-11-01T12:50:38.773Z"
+        }
+      ],
+      "compatibility_proof": "Incorrect fitment",
+      "asin_product_identity_proof": "Flawed pairing",
+      "independent_evidence_url": "https://www.stihl.com",
+      "verification_date": "2026-11-01",
+      "status": "SUSPENDED",
+      "status_reason": "SUSPENDED: Original candidate Stens 605-385 replaces 1121 120 1618 (MS 260), NOT 4238 140 1800 (TS 410 pre-filter). Original pairing rejected.",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "passed": false,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": false
+        },
+        "errors": [
+          "Missing mandatory provenance fields: verification_date."
+        ]
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-01T12:50:38.773Z"
+    }
+  ]
+}

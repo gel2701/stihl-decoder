@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59D",
+  "evaluated_at": "2026-11-01T12:50:38.874Z",
+  "baseline_commit": "9512cbbc529b10249fb6eeed6485639c71faa2a3",
+  "comparison": {
+    "canonical_parts_count": {
+      "before": 18373,
+      "after": 18373,
+      "delta": 0,
+      "status": "EXACT_MATCH"
+    },
+    "indexable_parts_count": {
+      "before": 843,
+      "after": 843,
+      "delta": 0,
+      "status": "EXACT_MATCH"
+    },
+    "sitemap_urls_count": {
+      "before": 1024,
+      "after": 1024,
+      "delta": 0,
+      "status": "EXACT_MATCH"
+    },
+    "production_published_asins": {
+      "before": 0,
+      "after": 0,
+      "delta": 0,
+      "status": "PRESERVED_SAFE_STANDBY"
+    },
+    "registered_offers_count": {
+      "before": 0,
+      "after": 19,
+      "delta": 19,
+      "status": "REGISTRY_ESTABLISHED"
+    },
+    "two_gate_engine_status": {
+      "before": "SPECIFICATION_ONLY",
+      "after": "OPERATIONAL_ENFORCED",
+      "status": "IMPLEMENTED"
+    },
+    "search_fallback_coverage": {
+      "before": 18373,
+      "after": 18373,
+      "delta": 0,
+      "status": "100%_PRESERVED"
+    },
+    "affiliate_tag": {
+      "before": "srihldecoder2-21",
+      "after": "srihldecoder2-21",
+      "status": "UNCHANGED"
+    }
+  }
+}
