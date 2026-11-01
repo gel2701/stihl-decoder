@@ -548,7 +548,7 @@ export async function verifyServiceKit51Evidence(options = {}) {
     if (!html && allowLiveFetch) {
       try {
         const res = await client.get(serviceKitUrl);
-        if (res && res.body) {
+        if (res && res.status === 200 && res.body) {
           html = res.body;
           storedSha = res.bodySha256 || null;
           retrievedAt = res.fetchedAt || new Date().toISOString();
