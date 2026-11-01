@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59D",
+  "generated_at": "2026-11-01T12:50:38.779Z",
+  "total_tests": 13,
+  "all_passed": true,
+  "results": [
+    {
+      "test_scenario": "DIRECT_ASIN_ACTIVE_SIMULATION",
+      "part_number": "11104007005",
+      "resolved_link_type": "DIRECT_ASIN",
+      "resolved_asin": "B0068M5NAG",
+      "resolved_url": "https://amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21",
+      "affiliate_tag_preserved": true,
+      "badge_label": "OEM-kwaliteit (Bosch)",
+      "price_omitted": true,
+      "in_stock_omitted": true,
+      "no_redirect_construction": true,
+      "non_blocking_tracking_ready": true,
+      "passed": true
+    },
+    {
+      "test_scenario": "DIRECT_ASIN_ACTIVE_SIMULATION",
+      "part_number": "00004007000",
+      "resolved_link_type": "DIRECT_ASIN",
+      "resolved_asin": "B001RM8J76",
+      "resolved_url": "https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21",
+      "affiliate_tag_preserved": true,
+      "badge_label": "OEM-kwaliteit (NGK)",
+      "price_omitted": true,
+      "in_stock_omitted": true,
+      "no_redirect_construction": true,
+      "non_blocking_tracking_ready": true,
+      "passed": true
+    },
+    {
+      "test_scenario": "DIRECT_ASIN_ACTIVE_SIMULATION",
+      "part_number": "00004007011",
+      "resolved_link_type": "DIRECT_ASIN",
+      "resolved_asin": "B001RMA5S2",
+      "resolved_url": "https://amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21",
+      "affiliate_tag_preserved": true,
+      "badge_label": "OEM-kwaliteit (NGK)",
+      "price_omitted": true,
+      "in_stock_omitted": true,
+      "no_redirect_construction": true,
+      "non_blocking_tracking_ready": true,
+      "passed": true
+    },
+    {
+      "test_scenario": "PRODUCTION_DEFAULT_VERIFIED_STANDBY_FALLBACK",
+      "part_number": "11104007005",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+1110+400+7005&tag=srihldecoder2-21",
+      "affiliate_tag_preserved": true,
+      "search_fallback_intact": true,
+      "passed": true
+    },
+    {
+      "test_scenario": "PRODUCTION_DEFAULT_VERIFIED_STANDBY_FALLBACK",
+      "part_number": "00004007000",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+0000+400+7000&tag=srihldecoder2-21",
+      "affiliate_tag_preserved": true,
+      "search_fallback_intact": true,
+      "passed": true
+    },
+    {
+      "test_scenario": "PRODUCTION_DEFAULT_VERIFIED_STANDBY_FALLBACK",
+      "part_number": "00004007011",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+0000+400+7011&tag=srihldecoder2-21",
+      "affiliate_tag_preserved": true,
+      "search_fallback_intact": true,
+      "passed": true
+    },
+    {
+      "test_scenario": "STAGED_PART_FAIL_CLOSED_FALLBACK",
+      "part_number": "00003503502",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+00003503502&tag=srihldecoder2-21",
+      "passed": true
+    },
+    {
+      "test_scenario": "STAGED_PART_FAIL_CLOSED_FALLBACK",
+      "part_number": "11176403800",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+1117+640+3800&tag=srihldecoder2-21",
+      "passed": true
+    },
+    {
+      "test_scenario": "STAGED_PART_FAIL_CLOSED_FALLBACK",
+      "part_number": "00006421234",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+00006421234&tag=srihldecoder2-21",
+      "passed": true
+    },
+    {
+      "test_scenario": "SUSPENDED_PART_FAIL_CLOSED_FALLBACK",
+      "part_number": "00003503518",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+0000+350+3518&tag=srihldecoder2-21",
+      "passed": true
+    },
+    {
+      "test_scenario": "SUSPENDED_PART_FAIL_CLOSED_FALLBACK",
+      "part_number": "11236402074",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+11236402074&tag=srihldecoder2-21",
+      "passed": true
+    },
+    {
+      "test_scenario": "SUSPENDED_PART_FAIL_CLOSED_FALLBACK",
+      "part_number": "42381401800",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+4238+140+1800&tag=srihldecoder2-21",
+      "passed": true
+    },
+    {
+      "test_scenario": "UNREGISTERED_PART_DEFAULT_SEARCH_FALLBACK",
+      "part_number": "11210071062",
+      "resolved_link_type": "SEARCH_FALLBACK",
+      "resolved_asin": null,
+      "resolved_url": "https://amazon.nl/s?k=STIHL+1121+007+1062&tag=srihldecoder2-21",
+      "passed": true
+    }
+  ]
+}

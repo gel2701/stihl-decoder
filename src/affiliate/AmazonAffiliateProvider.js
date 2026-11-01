@@ -78,14 +78,24 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
    * @param {Object} [options]
    * @param {string} [options.marketplace='amazon.nl']
    * @param {Map<string, Object>|Array<Object>} [options.manualOverrides]
+   * @param {Object} [options.verifiedRegistry]
    */
   constructor(options = {}) {
     super('amazon');
     this.marketplace = options.marketplace || 'amazon.nl';
+    this.verifiedRegistry = options.verifiedRegistry || null;
     this.manualOverrides = new Map();
     if (options.manualOverrides) {
       this.setManualOverrides(options.manualOverrides);
     }
+  }
+
+  /**
+   * Attaches a VerifiedOfferRegistry instance (Phase 59D).
+   * @param {Object} registry
+   */
+  setVerifiedRegistry(registry) {
+    this.verifiedRegistry = registry || null;
   }
 
   /**
@@ -222,6 +232,26 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
     const formattedPartNumber = PartNormalizer.formatPartNumber(canonicalPartNumber);
 
+    // 0. Check VerifiedOfferRegistry first (Phase 59D Controlled Activation)
+    if (this.verifiedRegistry && typeof this.verifiedRegistry.getActiveOffer === 'function') {
+      const activeOffer = this.verifiedRegistry.getActiveOffer(canonicalPartNumber);
+      if (activeOffer) {
+        const targetMarketplace = activeOffer.marketplace || this.marketplace;
+        const targetTag = this.getAssociateTag(targetMarketplace);
+        if (targetTag) {
+          const commercialOffer = this.verifiedRegistry.resolveCommercialOffer({
+            partNumber: canonicalPartNumber,
+            partName: params.partName,
+            tag: targetTag,
+            marketplace: targetMarketplace
+          });
+          if (commercialOffer) {
+            return [commercialOffer];
+          }
+        }
+      }
+    }
+
     // 1. Check for verified manual ASIN override
     const manualOverride = this.manualOverrides.get(canonicalPartNumber);
     if (manualOverride && isValidManualAsinOverride(manualOverride)) {
@@ -250,6 +280,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
           tag: overrideTag,
           url: asinUrl,
           affiliate_url: asinUrl,
+          link_type: 'DIRECT_ASIN',
           title: manualOverride.title || (params.partName ? `STIHL ${params.partName} (${formattedPartNumber})` : `STIHL ${formattedPartNumber}`),
           price: null,
           currency: 'EUR',
@@ -282,6 +313,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       tag: defaultTag,
       url: searchUrl,
       affiliate_url: searchUrl,
+      link_type: 'SEARCH_FALLBACK',
       query_variant: queryVariant,
       title: params.partName
         ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op ${displayMarketplace}`

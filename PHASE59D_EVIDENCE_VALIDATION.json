@@ -1,0 +1,465 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59D",
+  "generated_at": "2026-11-01T12:50:38.779Z",
+  "candidate_count": 3,
+  "two_gate_rules": {
+    "gate_1_technical": [
+      "asin_syntax",
+      "marketplace_valid",
+      "affiliate_tag_valid",
+      "part_number_canonical",
+      "catalog_grounded",
+      "provenance_fields_present"
+    ],
+    "gate_2_product": [
+      "oem_taxonomy_valid",
+      "manufacturer_mpn_proof",
+      "compatibility_proof",
+      "asin_product_identity_proof",
+      "known_mismatch_absent",
+      "volatile_facts_absent",
+      "independent_sources_corroborated"
+    ]
+  },
+  "reports": [
+    {
+      "part_number": "11104007005",
+      "part_name": "Bosch 0242240506 Spark Plug WSR6F",
+      "asin": "B0068M5NAG",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "mpn": "0242240506",
+      "classification": "OEM_SUPPLIER_EQUIVALENT",
+      "status": "VERIFIED",
+      "status_reason": "Two-Gate verified: full manufacturer proof, EAN 3165141051063 and active ASIN B0068M5NAG corroborated. Ready for activation upon explicit user authorization.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "overall_two_gate_status": "PASS",
+      "two_gate_passed": true,
+      "independent_evidence_url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
+      "confirmed_product_identity": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
+      "confirmed_stihl_compatibility": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 1110 400 7005 (en 0000 400 7000 interchange) voor STIHL 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260.",
+      "confirmed_marketplace_availability": "Actief en direct leverbaar op amazon.nl en amazon.de onder ASIN B0068M5NAG.",
+      "verification_date": "2026-11-01"
+    },
+    {
+      "part_number": "00004007000",
+      "part_name": "NGK 6703 BPMR7A Standard Spark Plug",
+      "asin": "B001RM8J76",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "mpn": "BPMR7A / 6703",
+      "classification": "OEM_SUPPLIER_EQUIVALENT",
+      "status": "VERIFIED",
+      "status_reason": "Two-Gate verified: STIHL Quick Reference confirms standard spark plug for cut-off saws/chainsaws, UPC 0087295167038 and ASIN B001RM8J76 corroborated. Ready for activation upon explicit user authorization.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "overall_two_gate_status": "PASS",
+      "two_gate_passed": true,
+      "independent_evidence_url": "https://amzchart.com/product-research/spark-plugs-15716421",
+      "confirmed_product_identity": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
+      "confirmed_stihl_compatibility": "Bevestigt STIHL primaire Quick Reference Guide specificatie: 0000 400 7000 is de standaardfabrieksbougie van NGK voor STIHL TS 400, TS 410, TS 420 doorslijpers en MS 290, MS 310, MS 390, 029, 039 kettingzagen.",
+      "confirmed_marketplace_availability": "Actief en continu verifieerbaar op amazon.nl en amazon.de met bewezen catalogusstabiliteit.",
+      "verification_date": "2026-11-01"
+    },
+    {
+      "part_number": "00004007011",
+      "part_name": "NGK (3365) CMR6H Standard Spark Plug",
+      "asin": "B001RMA5S2",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "mpn": "CMR6H / 3365",
+      "classification": "OEM_SUPPLIER_EQUIVALENT",
+      "status": "VERIFIED",
+      "status_reason": "Two-Gate verified: STIHL 4-MIX/2-MIX documentation confirms CMR6H, EAN 0087295133651 and ASIN B001RMA5S2 corroborated. Ready for activation upon explicit user authorization.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "overall_two_gate_status": "PASS",
+      "two_gate_passed": true,
+      "independent_evidence_url": "https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck",
+      "confirmed_product_identity": "NGK Zündkerze CMR6H (Herstellernummer / MPN: CMR6H, Bestellnummer / Stock No.: 3365, EAN: 0087295133651 / 87295133651). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN B001RMA5S2 als officiële NGK compactbougie.",
+      "confirmed_stihl_compatibility": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 0000 400 7011 (00004007011) voor STIHL 4-MIX & 2-MIX motoren (o.a. MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130).",
+      "confirmed_marketplace_availability": "Actief geregistreerd en continu leverbaar op amazon.nl en amazon.de.",
+      "verification_date": "2026-11-01"
+    }
+  ],
+  "enrichment_backlog": {
+    "total_candidates": 19,
+    "stage_summary": {
+      "stage_4_ready": 3,
+      "stage_3_asin_needed": 13,
+      "stage_2_gtin_needed": 0,
+      "stage_1_mpn_needed": 0,
+      "stage_rejected_replaced": 3
+    },
+    "dossiers": [
+      {
+        "part_number": "11104007005",
+        "part_name": "Bosch 0242240506 Spark Plug WSR6F",
+        "investigation_status": "VERIFIED_COMPLETE",
+        "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+        "current_stage": "STAGE_4_TWO_GATE_READY",
+        "readiness_score": 100,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": true,
+        "next_required_actions": [],
+        "candidate_replacements": [],
+        "preservation_notes": "Dossier fully corroborated across all 3 rounds. Two-Gate verified and ready for staging."
+      },
+      {
+        "part_number": "00004007000",
+        "part_name": "NGK 6703 BPMR7A Standard Spark Plug",
+        "investigation_status": "VERIFIED_COMPLETE",
+        "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+        "current_stage": "STAGE_4_TWO_GATE_READY",
+        "readiness_score": 100,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": true,
+        "next_required_actions": [],
+        "candidate_replacements": [],
+        "preservation_notes": "Dossier fully corroborated across all 3 rounds. Two-Gate verified and ready for staging."
+      },
+      {
+        "part_number": "00004007011",
+        "part_name": "NGK (3365) CMR6H Standard Spark Plug",
+        "investigation_status": "VERIFIED_COMPLETE",
+        "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+        "current_stage": "STAGE_4_TWO_GATE_READY",
+        "readiness_score": 100,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": true,
+        "next_required_actions": [],
+        "candidate_replacements": [],
+        "preservation_notes": "Dossier fully corroborated across all 3 rounds. Two-Gate verified and ready for staging."
+      },
+      {
+        "part_number": "00003503502",
+        "part_name": "Pickup Body",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11176403800",
+        "part_name": "Pickup Body",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "00006421234",
+        "part_name": "Rim Sprocket .325\" 8T",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "00006421236",
+        "part_name": "Rim Sprocket .325\" 7T",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11181953500",
+        "part_name": "Starter Pawl Clip Spring",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "00001958200",
+        "part_name": "Starter Rope 3.0mm",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "42821410300",
+        "part_name": "Air Filter BR 500-700",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11236407102",
+        "part_name": "Oil Pump Assembly",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11231201613",
+        "part_name": "Air Filter Flocked",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11301240800",
+        "part_name": "Air Filter Fleece MS 170",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11236403200",
+        "part_name": "Oil Pump 0.55mm",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "11411201600",
+        "part_name": "HD2 Air Filter",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "00004007025",
+        "part_name": "Spark plug STIHL ZK C 10pk",
+        "investigation_status": "PART_COMPATIBILITY_VERIFIED",
+        "oem_brand_classification": "GENUINE_STIHL",
+        "current_stage": "STAGE_3_ASIN_IDENTITY",
+        "readiness_score": 60,
+        "factor_a_compatibility_proven": true,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Audit Amazon.nl catalog via Creators API / SiteStripe for verified single-unit OEM retail listing.",
+          "Examine whether aftermarket brand (Stens/Sägenspezi/Rotary) provides stable blister ASIN."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Part compatibility 100% established via OEM parts manuals and GTIN barcodes. Lacks stable single-unit ASIN on Amazon.nl."
+      },
+      {
+        "part_number": "00003503518",
+        "part_name": "Pickup Body",
+        "investigation_status": "INCORRECT_MATCH_CONFIRMED",
+        "oem_brand_classification": "UNVERIFIED_AFTERMARKET",
+        "current_stage": "STAGE_REJECTED_REPLACED",
+        "readiness_score": 30,
+        "factor_a_compatibility_proven": false,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Locate verified ASIN for validated replacement MPN: Stens 610-254"
+        ],
+        "candidate_replacements": [
+          "Stens 610-254"
+        ],
+        "preservation_notes": "Original pairing confirmed technically incorrect (Original candidate Oregon 33-518 is an ignition module for Kohler engines, NOT a fuel filter for STIHL. Investigating replacement Stens 610-254.). Original pairing rejected; investigating replacement MPN."
+      },
+      {
+        "part_number": "11236402074",
+        "part_name": "Chain Sprocket .325\" 7T",
+        "investigation_status": "INCORRECT_MATCH_CONFIRMED",
+        "oem_brand_classification": "UNVERIFIED_AFTERMARKET",
+        "current_stage": "STAGE_REJECTED_REPLACED",
+        "readiness_score": 30,
+        "factor_a_compatibility_proven": false,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Identify correct OEM-compatible replacement MPN via authorized distributor cross-reference."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Original pairing confirmed technically incorrect (Original candidate Oregon 106114 fits Husqvarna/Poulan chainsaws and does not fit STIHL saws. Original pairing rejected.). Original pairing rejected; investigating replacement MPN."
+      },
+      {
+        "part_number": "42381401800",
+        "part_name": "Main Air Filter TS 410",
+        "investigation_status": "INCORRECT_MATCH_CONFIRMED",
+        "oem_brand_classification": "UNVERIFIED_AFTERMARKET",
+        "current_stage": "STAGE_REJECTED_REPLACED",
+        "readiness_score": 30,
+        "factor_a_compatibility_proven": false,
+        "factor_b_asin_proven": false,
+        "next_required_actions": [
+          "Identify correct OEM-compatible replacement MPN via authorized distributor cross-reference."
+        ],
+        "candidate_replacements": [],
+        "preservation_notes": "Original pairing confirmed technically incorrect (Original candidate Stens 605-385 replaces 1121 120 1618 (MS 260), NOT 4238 140 1800 (TS 410 pre-filter). Original pairing rejected.). Original pairing rejected; investigating replacement MPN."
+      }
+    ]
+  }
+}

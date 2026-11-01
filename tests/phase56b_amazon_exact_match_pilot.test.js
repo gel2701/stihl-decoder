@@ -317,8 +317,11 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'tests/phase54a_parts_amazon_affiliate.test.js',
     'tests/phase54a_h_amazon_link_integrity.test.js',
     'tests/phase56b_amazon_exact_match_pilot.test.js',
+    'tests/phase59d_verified_amazon_product_links.test.js',
     'scripts/audit_amazon_affiliate_links.mjs',
-    'data/affiliate/amazon_part_offers.json'
+    'scripts/generate_phase59d_activation.mjs',
+    'data/affiliate/amazon_part_offers.json',
+    'PHASE59D_LINK_TEST_RESULTS.json'
   ]);
 
   function scanDir(dir) {

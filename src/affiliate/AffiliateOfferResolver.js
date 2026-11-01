@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { AmazonAffiliateProvider, AMAZON_MATCH_TYPES } from './AmazonAffiliateProvider.js';
+import { VerifiedOfferRegistry, defaultVerifiedOfferRegistry } from './VerifiedOfferRegistry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,16 +19,33 @@ export class AffiliateOfferResolver {
   /**
    * @param {Object} [options]
    * @param {string} [options.overridesPath]
+   * @param {string} [options.registryPath]
+   * @param {Object} [options.verifiedRegistry]
    */
   constructor(options = {}) {
     this.overridesPath = options.overridesPath || defaultOverridesPath;
+    this.registryPath = options.registryPath || null;
+    this.verifiedRegistry = options.verifiedRegistry || defaultVerifiedOfferRegistry;
     this.providers = new Map();
     this.manualOverridesMap = new Map();
     this.loaded = false;
 
-    // Initialize default Amazon provider
-    this.amazonProvider = new AmazonAffiliateProvider();
+    // Initialize default Amazon provider with attached VerifiedOfferRegistry (Phase 59D)
+    this.amazonProvider = new AmazonAffiliateProvider({
+      verifiedRegistry: this.verifiedRegistry
+    });
     this.registerProvider(this.amazonProvider);
+  }
+
+  /**
+   * Sets or attaches a custom VerifiedOfferRegistry.
+   * @param {Object} registry
+   */
+  setVerifiedRegistry(registry) {
+    this.verifiedRegistry = registry;
+    if (this.amazonProvider) {
+      this.amazonProvider.setVerifiedRegistry(registry);
+    }
   }
 
   /**
