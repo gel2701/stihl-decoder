@@ -1,87 +1,57 @@
-# STIHLDECODER — PHASE 59C
-## Phase 59D Implementation Plan: Two-Tier Verified ASIN Promotion Architecture
+# PHASE 59C.1 — AMAZON MATCHING IMPLEMENTATION ROADMAP & TWO-GATE ARCHITECTURE
 
-- **Repository**: `gel2701/stihl-decoder`
-- **Phase**: 59C — Step 4 & 6 Strategic Proposal for Phase 59D
-- **Date**: 2026-11-01
-- **Status**: READY FOR PROMOTION REVIEW
-
----
-
-## 1. Overview & Objective
-
-Phase 59D will introduce a **zero-risk, two-tier promotion architecture** that allows StihlDecoder to safely publish verified direct ASIN product links for high-demand maintenance parts without risking commission loss, policy non-compliance, or wrong-fitment returns.
-
-**Core Principles**:
-1. **Never guess or scrape ASINs dynamically**.
-2. **Two-gate verification requirement** before any ASIN is loaded into `data/affiliate/amazon_part_offers.json`.
-3. **Fail-closed search fallback**: Any unverified, ambiguous, or discontinued part immediately defaults to the verified search fallback URL.
-4. **Full transparency**: Clear visual distinction between OEM and aftermarket on product cards.
+**Repository**: `gel2701/stihl-decoder`
+**Phase**: 59C.1 — Active Evidence Recovery & Creators API Correction
+**Target Milestone**: Phase 59D (Future Activation)
+**Authoritative Date**: 2026-11-01
 
 ---
 
-## 2. Two-Gate Verification Protocol
+## 1. Core Principle: Evidence Before Publication
 
-Before an ASIN is promoted from `CANDIDATE_UNVERIFIED` to `VERIFIED_OEM_EXACT` or `VERIFIED_AFTERMARKET_COMPATIBLE`:
+No direct ASIN offer will ever be added to `data/affiliate/amazon_part_offers.json` without satisfying both technical and independent evidence gates:
 
-```
-┌─────────────────────────────────┐
-│     Part Selection (Step 2)     │
-│   Top 50 High-Wear Maintenance  │
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│      Gate 1: Schema & MPN       │
-│  - Exact 10-char ASIN format    │
-│  - Valid manufacturer MPN       │
-│  - Amazon.nl or Amazon.de link  │
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│     Gate 2: Physical Evidence   │
-│  - OEM packaging proof OR       │
-│  - Certified cross-ref catalog  │
-│  - Explicit model compatibility │
-└────────────────┬────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────┐
-│   Cryptographic Staging Entry   │
-│ amazon_part_offers.json commit  │
-└─────────────────────────────────┘
+```mermaid
+flowchart TD
+    A["Part Nominated for ASIN Promotion"] --> Gate1{"Gate 1: Technical & API Validation"}
+    Gate1 -- Fails --> R1["REJECT: Keep as SEARCH_ONLY"]
+    Gate1 -- Passes --> Gate2{"Gate 2: Dual Evidence Verification"}
+    Gate2 -- Missing ASIN Proof --> R2["REJECT: Downgrade to CANDIDATE_UNVERIFIED"]
+    Gate2 -- Missing MPN Cross-Ref --> R3["REJECT: Downgrade to CANDIDATE_UNVERIFIED"]
+    Gate2 -- Full Proof Validated --> Pub["PROMOTED: Publish to amazon_part_offers.json"]
 ```
 
-### Gate 1: Technical & Schema Validation
-- `part_number` matches normalized 11-digit STIHL format.
-- `asin` passes `^[A-Z0-9]{10}$` regex.
-- `marketplace` belongs to `ALLOWED_AMAZON_MARKETPLACES` (`amazon.nl`, `amazon.de`).
-- Valid associate tag dynamically attached.
+---
 
-### Gate 2: Evidence & Compatibility Validation
-- **For OEM**: Documented packaging showing STIHL, Bosch, or NGK factory label with matching MPN.
-- **For Aftermarket**: Certified compatibility guide from recognized manufacturer (Oregon, Stens, Sägenspezi, Raisman).
-- Written evidence summary stored in audit records.
+## 2. Gate 1 — Technical & API Validation
+
+Before any ASIN is considered:
+1. **ASIN Syntax & Length**: Must be exactly 10 alphanumeric characters.
+2. **Marketplace Validation**: Must resolve to a supported regional Amazon marketplace (`amazon.nl`, `amazon.de`).
+3. **Creators API Verification (When Provisioned)**:
+   - Perform `GetItems` call with `itemIds: [ASIN]` using OAuth 2.0 Bearer token.
+   - Verify that item returns `Availability: InStock` and valid `ItemInfo.Title`.
+   - Verify brand and manufacturer fields match the expected supplier.
 
 ---
 
-## 3. Implementation Milestones for Phase 59D
+## 3. Gate 2 — Dual Evidence Verification
 
-| Milestone | Deliverable | Description | Safety Gate |
-|---|---|---|---|
-| **59D.1** | `scripts/verify_manual_asin_batch.mjs` | Automated offline validation tool for manual offer entries | Rejects any offer missing Gate 1/2 criteria |
-| **59D.2** | Staging of Initial 30 Verified ASINs | Populate `data/affiliate/amazon_part_offers.json` with audited Top 30 | 100% verified; zero candidates |
-| **59D.3** | UI Badge & Transparency Enhancement | Render "Geverifieerd Origineel" or "Geverifieerd Compatibel" | Distinguishes OEM from aftermarket |
-| **59D.4** | Telemetry & Conversion Attribution | Track CTR per match type via `/api/affiliate/track` | Monitors performance vs fallback |
-| **59D.5** | Emergency Rollback Protocol | Instant single-switch toggle to revert to 100% search links | Zero downtime risk |
+Before promotion, an audit record must prove BOTH:
+1. **Factor A — Part Compatibility Proof**:
+   - Official manufacturer cross-reference catalog or STIHL parts breakdown document identifier.
+   - Exact OEM MPN and supersession history.
+   - List of exact machine models confirmed compatible.
+2. **Factor B — Amazon ASIN Identity Proof**:
+   - Independent verification that the ASIN identifies the exact physical product intended.
+   - Distinction between `GENUINE_STIHL`, `OEM_SUPPLIER_EQUIVALENT`, and `MANUFACTURER_AFTERMARKET`.
+   - Explicit confirmation that the listing is NOT an unrelated variant (avoiding apparel or mismatched ASIN traps).
 
 ---
 
-## 4. Preserved Invariants & Boundary Constraints
+## 4. Interim Strategy Prior to Creators API Provisioning
 
-- Canonical parts catalog (`data/parts_catalog.json`) remains **strictly read-only** (18,373 parts).
-- Sitemap URL count remains **exactly 1,024 URLs** (zero inflation).
-- SEO indexable parts count remains **exactly 843 parts**.
-- Amazon Associates Tag remains `srihldecoder2-21`.
-- All required disclaimers and `/privacy` routing remain fully active.
+Because tag `srihldecoder2-21` is in the qualification phase without Creators API keys:
+1. Production runtime continues serving **100% compliant keyword search fallback URLs**.
+2. All candidate ASINs remain strictly quarantined in audit files (`PHASE59C_VERIFIED_MATCHES.json`).
+3. Runtime offers file `data/affiliate/amazon_part_offers.json` remains **strictly empty (`[]`)**.

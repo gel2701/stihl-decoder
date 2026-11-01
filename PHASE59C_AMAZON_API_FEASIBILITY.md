@@ -1,83 +1,100 @@
-# STIHLDECODER — PHASE 59C
-## Amazon Product Advertising API (PA-API 5.0) Feasibility & Alternative Sources Audit
+# PHASE 59C.1 — AMAZON CREATORS API FEASIBILITY & PA-API DEPRECATION REPORT
 
-- **Repository**: `gel2701/stihl-decoder`
-- **Phase**: 59C — Step 1 & 6 Product Sources Feasibility
-- **Date**: 2026-11-01
-- **Status**: AUDIT COMPLETE — POLICY & TECHNICAL SPECIFICATION
-
----
-
-## 1. Executive Summary
-
-This feasibility study investigates the official Amazon Associates product data sources, specifically the **Amazon Product Advertising API (PA-API 5.0)**, its operational prerequisites, rate limits, European regional support, and practical viability for StihlDecoder.nl.
-
-**Key Finding**:
-The current Amazon Associates account (`srihldecoder2-21`) is operating within initial qualification. Under Amazon's strict global developer policies, PA-API credentials are **only provisioned after an associate account achieves at least 3 qualifying referred sales within 180 days**. Furthermore, live scraping of Amazon search pages is strictly prohibited by Amazon's Conditions of Use and Operating Agreement Section 4.
-
-Consequently, StihlDecoder must adopt a resilient, compliant two-tier architecture:
-1. **Tier 1 (Immediate & Resilient)**: High-converting, search-fallback direct links (`https://amazon.nl/s?k=...&tag=srihldecoder2-21`) for all 18,373 parts.
-2. **Tier 2 (Curated & Verified ASINs)**: A cryptographic, human-curated override registry (`amazon_part_offers.json`) for verified wear parts backed by packaging and manufacturer cross-references.
-3. **Tier 3 (Post-Qualification Automation)**: Integration with PA-API 5.0 once the 3-sale qualification milestone is unlocked.
+**Repository**: `gel2701/stihl-decoder`
+**Phase**: 59C.1 — Active Evidence Recovery & Creators API Correction
+**Authoritative Date**: 2026-11-01
+**Affiliate Associate Tag**: `srihldecoder2-21`
+**Status**: ACTIVE EVIDENCE RECOVERY REPORT
 
 ---
 
-## 2. Amazon Product Advertising API (PA-API 5.0) Technical Analysis
+## 1. Executive Summary & Critical API Transition
 
-### 2.1 Access Requirements & Account Eligibility
-- **Operating Policy**: Amazon Associates Operating Agreement Section 4 & PA-API License Agreement.
-- **Qualification Rule**:
-  - Associates Central requires **at least 3 referred qualifying sales** before API access keys (Access Key ID and Secret Access Key) can be generated.
-  - Accounts without 3 sales receive an `AccountNotEligible` or `UnrecognizedClientException` error upon attempting PA-API key generation.
-  - If an account generates no sales for 30 consecutive days, PA-API calls are throttled to 1 request every 8,640 seconds (or suspended).
+> [!WARNING] PA-API 5.0 DEPRECATION NOTICE
+> **Amazon Product Advertising API (PA-API 5.0)** was officially deprecated and its endpoints retired on **May 15, 2026**.
+> The legacy AWS Signature Version 4 (SigV4) authentication mechanism has been discontinued. All programmatic catalog integrations for affiliates, creators, and publishers must use the **Amazon Creators API**.
 
-### 2.2 Searching by STIHL Part Number
-- **Operation**: `SearchItems`
-  - `Keywords`: `"STIHL 1123 160 2050"` or `"STIHL 11231602050"`
-  - `SearchIndex`: `ToolsAndHomeImprovement`, `LawnAndGarden`, or `All`
-  - `Resources`: `ItemInfo.Title`, `ItemInfo.ByLineInfo`, `ItemInfo.Manufacture`, `Offers.Listings.Price`, `Images.Primary.Large`
-- **Matching Limitation**:
-  - Amazon search algorithms are keyword-probabilistic, not deterministic catalog lookups.
-  - A search for `"STIHL 1123 160 2050"` frequently returns third-party replacement kits, universal chains, or adjacent parts (e.g. clutches from different models) ranked above the exact OEM part.
-  - **Critical Rule**: PA-API output alone cannot be treated as `VERIFIED` without comparing `ItemInfo.Manufacture.ItemPartNumber` or checking explicit cross-reference databases.
-
-### 2.3 Regional Endpoint Support
-PA-API 5.0 provides native European regional endpoints with Signature Version 4 authentication:
-| Marketplace | PA-API Host | AWS Region | Associate Tag Required |
-|---|---|---|---|
-| Amazon.nl | `webservices.amazon.nl` | `eu-west-1` | `srihldecoder2-21` |
-| Amazon.de | `webservices.amazon.de` | `eu-west-1` | `srihldecoder-de-21` (or regional tag) |
-| Amazon.com | `webservices.amazon.com` | `us-east-1` | Dedicated US tag |
-| Amazon.co.uk| `webservices.amazon.co.uk`| `eu-west-1` | Dedicated UK tag |
-
-### 2.4 Rate Limits, Quotas & Costs
-- **Cost**: 100% free of charge; zero billing per request.
-- **Baseline Rate Limit**: 1 transaction per second (TPS) and up to 8,640 requests/day for newly qualified accounts.
-- **Dynamic Quota Adjustment**: Maximum daily requests scale proportionally with revenue generated over trailing 30 days.
-- **Cache Invalidation Rule**:
-  - Amazon PA-API License Agreement explicitly mandates that cached product data (prices, availability) must not be retained longer than **24 hours**.
-  - Direct ASIN links and product titles may be cached longer only if price and stock indicators are refreshed or excluded.
+This feasibility audit evaluates the **Amazon Creators API** against StihlDecoder's canonical catalog (18,373 parts) and establishes:
+1. The technical structure, authentication protocols, and endpoints of the Amazon Creators API.
+2. The exact qualification milestones distinguishing standard Amazon Associates approval from Creators API credential eligibility.
+3. How to verify and reconstruct ASIN identities safely without violating anti-scraping rules or compromising user trust.
 
 ---
 
-## 3. Alternative Product Sources & Safety Assessment
+## 2. Amazon Creators API Architecture & Documentation
 
-| Source / Method | Feasibility | Policy Compliance | Operational Risk | Recommendation |
-|---|---|---|---|---|
-| **Amazon PA-API 5.0** | Blocked until 3 sales | 100% Authorized | Zero policy risk; rate limited | Target for post-qualification |
-| **Amazon SiteStripe** | High | 100% Authorized | Manual creation; slow at scale | Use for high-priority top 30 wear parts |
-| **Manufacturer Cross-Reference (Oregon, Stens, Sägenspezi)** | High | 100% Authorized | High accuracy; verifiable packaging | Primary source for `VERIFIED_AFTERMARKET` |
-| **Direct Search Fallback Links** | Immediate | 100% Authorized | Always fresh; zero stale prices | **Production baseline (18,373 parts)** |
-| **Automated HTML Scraping / Headless Chrome** | Blocked (HTTP 503 / Robot Check) | **STRICTLY FORBIDDEN** | Account termination, IP ban | **REJECTED (Never use)** |
-| **Third-Party Product Feeds** | Unreliable / Unlicensed | High Risk | Inaccurate MPN mappings | **REJECTED** |
+Based on the official Amazon Associates Creators API specifications (`affiliate-program.amazon.com/creatorsapi/docs`):
+
+### A. Base Endpoints & Protocol
+- **Catalog Base Endpoint**: `https://creatorsapi.amazon/catalog/v1/` (with localized routing)
+- **Protocol**: Standard HTTPS REST with JSON payloads.
+- **Required HTTP Headers**:
+  - `Authorization: Bearer <access_token>`
+  - `x-marketplace: <domain>` (e.g., `www.amazon.nl`, `www.amazon.de`, `www.amazon.com`)
+  - `Content-Type: application/json`
+
+### B. OAuth 2.0 Authentication
+- Unlike PA-API 5.0's SigV4 signing, the Creators API authenticates via **OAuth 2.0 Client Credentials Grant** using **Login with Amazon (LwA)**.
+- Partners exchange their **Credential ID (Client ID)** and **Client Secret** against the LwA token endpoint (`https://api.amazon.com/auth/o2/token`).
+- Generated bearer tokens have a time-to-live (TTL) of **3,600 seconds (1 hour)**.
+
+### C. Available Operations
+| Operation | Input Parameters | High-Level Resources | Catalog Coverage / Capabilities |
+| :--- | :--- | :--- | :--- |
+| **`SearchItems`** | `keywords`, `brand`, `title`, `partnerTag`, `marketplace` | `ItemInfo`, `OffersV2`, `Images`, `BrowseNodeInfo` | Returns up to 10 matching products per call. Filters by keyword or category. |
+| **`GetItems`** | `itemIds` (array of up to 10 ASINs), `itemIdType: "ASIN"`, `partnerTag` | `ItemInfo`, `OffersV2`, `Images` | Looks up detailed attributes, current price, availability, and images for known ASINs. |
+| **`GetVariations`** | `asin`, `partnerTag` | `VariationSummary`, `ItemInfo` | Retrieves size/color/pack variations of parent ASINs. |
+| **`GetBrowseNodes`** | `browseNodeIds`, `partnerTag` | `BrowseNodes` | Retrieves catalog taxonomy and category tree hierarchies. |
 
 ---
 
-## 4. Architectural Recommendation for Phase 59D
+## 3. Access Requirements & StihlDecoder Eligibility Status
 
-1. **Retain Resilient Search Links as Base Layer**:
-   - Maintain the Phase 59B direct search link mechanism for all 18,373 parts without interruption.
-2. **Curated ASIN Staging Queue**:
-   - Establish an offline staging and verification pipeline where ASINs for the top 50 wear items (Bosch/NGK spark plugs, Oregon/Stens maintenance kits) are manually verified and cryptographically checked against physical OEM packaging or manufacturer catalogs.
-3. **No Dynamic Scraping**:
-   - Enforce zero external scraping or CAPTCHA bypass in the codebase.
+Amazon imposes a clear distinction between **Initial Associates Account Approval** and **Creators API Eligibility**:
+
+```mermaid
+flowchart TD
+    A["Amazon Associates Application (Tag: srihldecoder2-21)"] --> B{"3 Qualifying Sales in 180 Days?"}
+    B -- No --> C["Application Withdrawn / Suspended"]
+    B -- Yes --> D["Full Associates Program Approval"]
+    D --> E{"Active High Referral Volume (e.g. 10+ Sales / 30 Days)?"}
+    E -- No --> F["Standard Associates Access Only
+(Search Links, SiteStripe, Manual Links)
+NO Creators API Provisioning"]
+    E -- Yes --> G["Eligible for Creators API
+Generate Client ID & Secret in Associates Central"]
+```
+
+### Status for Tag `srihldecoder2-21`:
+- **Current Qualification**: StihlDecoder is currently in the initial referral phase.
+- **Sales Threshold Met?**: **NO**. The account has not reached the sustained sales volume required to unlock API credential generation under *Tools > Creators API* in Associates Central.
+- **Account Evidence**: There are zero active API keys or OAuth credentials provisioned for this project.
+- **Conclusion**: The application cannot assume or claim Creators API access. Any implementation that relies on programmatic API calls is blocked until sales milestones are achieved.
+
+---
+
+## 4. Legitimate ASIN Discovery & Verification Without Scraping
+
+Until Creators API credentials are unlocked, ASIN discovery and verification must proceed through legitimate, non-scraping channels:
+
+1. **Amazon SiteStripe Manual Verification**: Associates Central's built-in SiteStripe tool allows human operators to look up products directly on Amazon, inspect the ASIN, verify seller legitimacy (e.g., "Dispatched from and sold by Amazon" or authorized dealers), and obtain authentic affiliate URLs.
+2. **EAN/GTIN Cross-Referencing**: Manufacturers (Bosch, NGK, Oregon, Stens) publish universal GTINs/EANs. These barcodes provide a definitive bridge to identify corresponding Amazon catalog entries via public marketplace catalogs without web scraping.
+3. **Primary Parts Documentation**: STIHL service manuals and quick reference guides establish the authoritative OEM part number, eliminating incorrect cross-references (such as mistaking a Kohler ignition coil for a STIHL fuel filter).
+
+---
+
+## 5. Prohibition on Scraping & Bot Bypasses
+
+Section 4 of the Amazon Associates Operating Agreement explicitly forbids:
+- Geotargeting evasion, proxy rotation, and automated bot scraping.
+- Bypassing CAPTCHA challenges or HTTP 503 bot mitigation barriers.
+- Storing or displaying outdated pricing or stock availability data.
+
+In StihlDecoder, probe anchor `11231602050` confirmed that automated requests immediately encounter Amazon's bot protection challenge. Under project invariants, **no scraping workaround will ever be implemented**.
+
+---
+
+## 6. Recommended Interim Architecture (Phase 59B/59C.1 Compliant)
+
+1. **100% Search Fallback URLs**: Maintain compliant, direct keyword search links (`https://www.amazon.nl/s?k=...&tag=srihldecoder2-21`) for all 18,373 catalog parts.
+2. **Dual-Gate ASIN Promotion**: Strictly forbid direct ASIN links in `data/affiliate/amazon_part_offers.json` until both technical MPN cross-referencing and independent Amazon ASIN identity verification are established.
