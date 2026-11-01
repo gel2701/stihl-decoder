@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59E",
+  "generated_at": "2026-11-01T17:20:00.000Z",
+  "summary": "Comparison of StihlDecoder affiliate architecture before and after Phase 59E pilot preparation",
+  "before_phase59e": {
+    "baseline_commit": "4bfcfdc34d89bbd692ae3c9cd444e88f2bfdae7d",
+    "total_canonical_parts": 18373,
+    "seo_indexable_parts": 843,
+    "sitemap_urls": 1024,
+    "runtime_active_asin_links": 0,
+    "runtime_search_fallback_links": 18373,
+    "production_activation_allowed": false,
+    "registry_pilot_whitelist_support": false,
+    "verified_candidates_staged": 3,
+    "compatibility_backlog_staged": 13,
+    "mismatches_suspended": 3,
+    "kill_switch_granularity": "Global only (productionActivationAllowed)",
+    "audit_status": {
+      "node_contract_test_suites": 76,
+      "playwright_browser_journeys": 19,
+      "broken_internal_links": 0,
+      "tag_leaks": 0
+    }
+  },
+  "after_phase59e": {
+    "target_branch": "feat/phase59e-first-verified-amazon-asin-pilot",
+    "total_canonical_parts": 18373,
+    "seo_indexable_parts": 843,
+    "sitemap_urls": 1024,
+    "runtime_active_asin_links": 0,
+    "runtime_search_fallback_links": 18373,
+    "production_activation_allowed": false,
+    "registry_pilot_whitelist_support": true,
+    "pilot_candidates_ready_for_activation": 3,
+    "pilot_candidates": [
+      {
+        "part_number": "11104007005",
+        "part_number_formatted": "1110 400 7005",
+        "product": "Bosch WSR6F",
+        "mpn": "0242240506",
+        "asin": "B0068M5NAG",
+        "marketplace": "amazon.nl",
+        "tag": "srihldecoder2-21",
+        "packaging_unit": "1 piece",
+        "classification": "OEM_SUPPLIER_EQUIVALENT",
+        "default_state": "VERIFIED (Disabled)",
+        "simulation_state": "ACTIVE (Direct ASIN)"
+      },
+      {
+        "part_number": "00004007000",
+        "part_number_formatted": "0000 400 7000",
+        "product": "NGK BPMR7A",
+        "mpn": "BPMR7A / 6703",
+        "asin": "B001RM8J76",
+        "marketplace": "amazon.nl",
+        "tag": "srihldecoder2-21",
+        "packaging_unit": "1 piece",
+        "classification": "OEM_SUPPLIER_EQUIVALENT",
+        "default_state": "VERIFIED (Disabled)",
+        "simulation_state": "ACTIVE (Direct ASIN)"
+      },
+      {
+        "part_number": "00004007011",
+        "part_number_formatted": "0000 400 7011",
+        "product": "NGK CMR6H",
+        "mpn": "CMR6H / 3365",
+        "asin": "B001RMA5S2",
+        "marketplace": "amazon.nl",
+        "tag": "srihldecoder2-21",
+        "packaging_unit": "1 piece",
+        "classification": "OEM_SUPPLIER_EQUIVALENT",
+        "default_state": "VERIFIED (Disabled)",
+        "simulation_state": "ACTIVE (Direct ASIN)"
+      }
+    ],
+    "kill_switch_granularity": "Multi-layer: Level 0 (runtime deactivate/suspend), Level 1 (per-part whitelist env), Level 2 (global disarm env), Level 3 (git config)",
+    "documentation_corrected": "Corrected the 13 staged parts list in PHASE59D2_CI_RECOVERY.md to perfectly match PHASE59D_VERIFIED_OFFERS.json",
+    "audit_status": {
+      "node_contract_test_suites": 77,
+      "playwright_browser_journeys": 19,
+      "broken_internal_links": 0,
+      "tag_leaks": 0
+    }
+  },
+  "invariants_confirmed": {
+    "catalog_unchanged": true,
+    "seo_unchanged": true,
+    "sitemap_unchanged": true,
+    "zero_real_clicks_simulated": true,
+    "production_activation_disabled_by_default": true,
+    "fail_closed_guaranteed": true
+  }
+}

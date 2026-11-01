@@ -25,10 +25,13 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const candidateRegistryPaths = [
+  path.resolve(__dirname, '..', '..', 'PHASE59E_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'verified_amazon_registry.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59D_VERIFIED_OFFERS.json')
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
+
+export const MAX_PILOT_ACTIVE_OFFERS = 3;
 
 export class VerifiedOfferRegistry {
   /**
@@ -36,11 +39,17 @@ export class VerifiedOfferRegistry {
    * @param {string} [options.registryPath]
    * @param {boolean} [options.productionActivationAllowed=false]
    * @param {string} [options.defaultMarketplace='amazon.nl']
+   * @param {Array<string>|Set<string>} [options.activeWhitelist]
    */
   constructor(options = {}) {
     this.registryPath = options.registryPath || defaultRegistryPath;
     this.productionActivationAllowed = options.productionActivationAllowed ?? false;
     this.defaultMarketplace = options.defaultMarketplace || 'amazon.nl';
+    this.activeWhitelist = options.activeWhitelist
+      ? new Set(Array.from(options.activeWhitelist).map(p => PartNormalizer.normalizePartNumber(p)).filter(Boolean))
+      : (process.env.AMAZON_PILOT_ACTIVE_PARTS
+          ? new Set(process.env.AMAZON_PILOT_ACTIVE_PARTS.split(',').map(s => PartNormalizer.normalizePartNumber(s.trim())).filter(Boolean))
+          : null);
     this.offers = new Map(); // key: canonical partNumber (11-digit)
   }
 
@@ -153,6 +162,13 @@ export class VerifiedOfferRegistry {
           errors: ['Cannot activate offer in production: productionActivationAllowed is FALSE. Individual explicit authorization required.']
         };
       }
+      const otherActive = this.listOffers({ status: 'ACTIVE' }).filter(o => o.part_number !== normPart);
+      if (otherActive.length >= MAX_PILOT_ACTIVE_OFFERS) {
+        return {
+          success: false,
+          errors: [`Cannot activate offer: Pilot limit of ${MAX_PILOT_ACTIVE_OFFERS} active offers reached.`]
+        };
+      }
     }
 
     offer.status = newStatus;
@@ -160,6 +176,38 @@ export class VerifiedOfferRegistry {
     offer.updated_at = new Date().toISOString();
 
     return { success: true, offer, errors: [] };
+  }
+
+  /**
+   * Immediately deactivates an active offer back to VERIFIED state (Rollback / Toggle).
+   *
+   * @param {string} partNumber
+   * @param {string} [reason]
+   * @returns {{ success: boolean, offer?: Object, errors: string[] }}
+   */
+  deactivateOffer(partNumber, reason = 'Deactivated by operator') {
+    return this.setOfferStatus(partNumber, 'VERIFIED', reason);
+  }
+
+  /**
+   * Immediately suspends an offer with explicit failure or quality reason.
+   *
+   * @param {string} partNumber
+   * @param {string} [reason]
+   * @returns {{ success: boolean, offer?: Object, errors: string[] }}
+   */
+  suspendOffer(partNumber, reason = 'Suspended by operator') {
+    return this.setOfferStatus(partNumber, 'SUSPENDED', reason);
+  }
+
+  /**
+   * Checks if an offer is currently active and eligible for direct linking.
+   *
+   * @param {string} partNumber
+   * @returns {boolean}
+   */
+  isOfferActive(partNumber) {
+    return this.getActiveOffer(partNumber) !== null;
   }
 
   /**
@@ -177,7 +225,8 @@ export class VerifiedOfferRegistry {
   /**
    * Retrieves an ACTIVE offer eligible for direct product linking.
    * Returns null if productionActivationAllowed is false, offer does not exist,
-   * status is not ACTIVE, or offer fails Two-Gate verification.
+   * status is not ACTIVE, part is not in activeWhitelist (if set),
+   * active count exceeds pilot limit, or offer fails Two-Gate verification.
    *
    * @param {string} partNumber
    * @returns {Object|null}
@@ -186,9 +235,24 @@ export class VerifiedOfferRegistry {
     if (!this.productionActivationAllowed) {
       return null;
     }
-    const offer = this.getOffer(partNumber);
+    const normPart = PartNormalizer.normalizePartNumber(partNumber);
+    if (!normPart) return null;
+
+    // Granular Per-Offer Whitelist check (Phase 59E)
+    if (this.activeWhitelist && !this.activeWhitelist.has(normPart)) {
+      return null;
+    }
+
+    const offer = this.getOffer(normPart);
     if (!offer) return null;
     if (offer.status !== 'ACTIVE') return null;
+
+    // Safety guard: Limit maximum active offers in pilot to MAX_PILOT_ACTIVE_OFFERS (3)
+    const activeOffersCount = this.listOffers({ status: 'ACTIVE' }).length;
+    if (activeOffersCount > MAX_PILOT_ACTIVE_OFFERS) {
+      console.warn(`[VerifiedOfferRegistry] Safety guard: ${activeOffersCount} active offers exceed pilot limit of ${MAX_PILOT_ACTIVE_OFFERS}. Failing closed to search fallback.`);
+      return null;
+    }
 
     // Runtime Safety Guard: Re-evaluate Two-Gate verification on resolution.
     // Incomplete, malformed, or stale records (>180d) fail closed and cannot be served.
