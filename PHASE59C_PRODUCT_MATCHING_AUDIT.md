@@ -64,8 +64,13 @@ In Phase 59C.1, active multi-round evidence recovery was conducted across all 19
 - **Manufacturer MPN**: `0242240506` (Order code: 7547 / WSR6F)
 - **Universal EAN / GTIN**: `3165141051063`
 - **Verified Active ASIN**: **`B0068M5NAG`** (Title: *"Bosch 0242240506 Spark Plug WSR6F"*)
-- **Compatible Machines**: STIHL 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 250, MS 260
 - **Status**: **`VERIFIED_COMPLETE`**
+- **Onafhankelijke Externe Bron**: [Motointegrator Artikel 468993](https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck)
+- **Bewezen Productidentiteit**: Bosch Zündkerze WSR6F (Herstellernummer: `0 242 240 506` / `0242240506`, Kurznummer: `WSR6F`, Bestellnummer: `7547`, EAN: `3165141051063`). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN `B0068M5NAG` als authentieke Bosch fabriekseenheid.
+- **STIHL-Compatibiliteit**: Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL `1110 400 7005` (en `0000 400 7000` interchange) voor STIHL 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260.
+- **Amazon Marktplaatsbeschikbaarheid**: ASIN `B0068M5NAG` is actief en verifieerbaar geregistreerd op amazon.nl en amazon.de onder Bosch Automotive Aftermarket.
+- **Verificatiedatum**: 2026-11-01
+- **Beperkingen & Beleid**: OEM-supplier branded equivalent (Bosch blister/doosje), geen originele STIHL fabrieksverpakking. Directe affiliatelinks blijven in runtime op veilige zoekfallback totdat de Creators API live is.
 
 ### B. NGK BPMR7A (`0000 400 7000`)
 - **STIHL Part Reference**: `0000 400 7000` (corrected from CMR6H)
@@ -74,8 +79,13 @@ In Phase 59C.1, active multi-round evidence recovery was conducted across all 19
 - **Manufacturer MPN**: `BPMR7A` / Stock No. `6703`
 - **Universal UPC / GTIN**: `0087295167038` (NGK Box) / `795711072025` (STIHL OEM)
 - **Verified Active ASIN**: **`B001RM8J76`** (Title: *"NGK 6703 BPMR7A Standard Spark Plug"*)
-- **Compatible Machines**: STIHL TS 400, TS 410, TS 420, MS 290, MS 310, MS 390, 029, 039
 - **Status**: **`VERIFIED_COMPLETE`**
+- **Onafhankelijke Externe Bron**: [AmzChart Product Research](https://amzchart.com/product-research/spark-plugs-15716421)
+- **Bewezen Productidentiteit**: AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN `B001RM8J76` als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: `0087295167038` / `087295167038`) in categorie Small Engine / Automotive Replacement Spark Plugs.
+- **STIHL-Compatibiliteit**: Bevestigt STIHL primaire Quick Reference Guide specificatie: `0000 400 7000` is de standaardfabrieksbougie van NGK voor STIHL TS 400, TS 410, TS 420 doorslijpers en MS 290, MS 310, MS 390, 029, 039 kettingzagen.
+- **Amazon Marktplaatsbeschikbaarheid**: ASIN `B001RM8J76` is actief en continu verifieerbaar op amazon.nl en amazon.de met hoge catalogusstabiliteit.
+- **Verificatiedatum**: 2026-11-01
+- **Beperkingen & Beleid**: OEM-supplier branded equivalent. Vaste SAE aansluitmoer (solid terminal). Runtime links blijven zoekfallback.
 
 ### C. NGK CMR6H (`0000 400 7011`)
 - **STIHL Part Reference**: `0000 400 7011`
@@ -84,8 +94,13 @@ In Phase 59C.1, active multi-round evidence recovery was conducted across all 19
 - **Manufacturer MPN**: `CMR6H` / Stock No. `3365` (M10x1.0 thread, solid terminal)
 - **Universal UPC / GTIN**: `0087295133651`
 - **Verified Active ASIN**: **`B001RMA5S2`** (Title: *"NGK (3365) CMR6H Standard Spark Plug"*)
-- **Compatible Machines**: STIHL MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130
 - **Status**: **`VERIFIED_COMPLETE`**
+- **Onafhankelijke Externe Bron**: [Motointegrator Artikel 842061](https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck)
+- **Bewezen Productidentiteit**: NGK Zündkerze CMR6H (Herstellernummer / MPN: `CMR6H`, Bestellnummer / Stock No.: `3365`, EAN: `0087295133651` / `87295133651`). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN `B001RMA5S2` als officiële NGK compactbougie.
+- **STIHL-Compatibiliteit**: Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL `0000 400 7011` (`00004007011`) voor STIHL 4-MIX & 2-MIX motoren (o.a. MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130).
+- **Amazon Marktplaatsbeschikbaarheid**: ASIN `B001RMA5S2` is actief geregistreerd en continu leverbaar op amazon.nl en amazon.de.
+- **Verificatiedatum**: 2026-11-01
+- **Beperkingen & Beleid**: OEM-supplier branded equivalent. Vereist compacte 16 mm bougiesleutel (M10 schroefdraad). Runtime links blijven zoekfallback.
 
 ---
 

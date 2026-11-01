@@ -123,6 +123,10 @@ test('Phase 59C.1 — 2. Active Evidence Recovery Schema & Multi-Round Investiga
   assert.equal(bosch.oem_brand_classification, 'OEM_SUPPLIER_EQUIVALENT');
   assert.equal(bosch.verified_replacement_asin, 'B0068M5NAG');
   assert.ok(bosch.evidence.manufacturer_mpn_evidence.includes('0242240506'));
+  assert.equal(bosch.evidence.independent_evidence_url, 'https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck');
+  assert.ok(bosch.evidence.confirmed_product_identity.includes('0242240506'));
+  assert.ok(bosch.evidence.confirmed_stihl_compatibility.includes('1110 400 7005'));
+  assert.ok(bosch.evidence.confirmed_marketplace_availability.includes('amazon.nl'));
 
   // 2. Check 0000 400 7000 -> NGK BPMR7A (Corrected from earlier CMR6H hallucination)
   const bpmr7a = matchMap.get('00004007000');
@@ -131,6 +135,10 @@ test('Phase 59C.1 — 2. Active Evidence Recovery Schema & Multi-Round Investiga
   assert.equal(bpmr7a.oem_brand_classification, 'OEM_SUPPLIER_EQUIVALENT');
   assert.equal(bpmr7a.verified_replacement_asin, 'B001RM8J76');
   assert.ok(bpmr7a.evidence.manufacturer_mpn_evidence.includes('BPMR7A') || bpmr7a.evidence.manufacturer_mpn_evidence.includes('6703'));
+  assert.equal(bpmr7a.evidence.independent_evidence_url, 'https://amzchart.com/product-research/spark-plugs-15716421');
+  assert.ok(bpmr7a.evidence.confirmed_product_identity.includes('B001RM8J76'));
+  assert.ok(bpmr7a.evidence.confirmed_stihl_compatibility.includes('0000 400 7000'));
+  assert.ok(bpmr7a.evidence.confirmed_marketplace_availability.includes('amazon.nl'));
 
   // 3. Check 0000 400 7011 -> NGK CMR6H
   const cmr6h = matchMap.get('00004007011');
@@ -138,6 +146,10 @@ test('Phase 59C.1 — 2. Active Evidence Recovery Schema & Multi-Round Investiga
   assert.equal(cmr6h.investigation_status, 'VERIFIED_COMPLETE');
   assert.equal(cmr6h.oem_brand_classification, 'OEM_SUPPLIER_EQUIVALENT');
   assert.equal(cmr6h.verified_replacement_asin, 'B001RMA5S2');
+  assert.equal(cmr6h.evidence.independent_evidence_url, 'https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck');
+  assert.ok(cmr6h.evidence.confirmed_product_identity.includes('3365'));
+  assert.ok(cmr6h.evidence.confirmed_stihl_compatibility.includes('0000 400 7011'));
+  assert.ok(cmr6h.evidence.confirmed_marketplace_availability.includes('amazon.nl'));
 
   // 4. Check incorrect pairings identified and rejected
   const fuelFilter = matchMap.get('00003503518');
@@ -231,6 +243,9 @@ test('Phase 59C.1 — 4. Amazon Creators API Feasibility & Deliverables Integrit
   assert.ok(auditContent.includes('B0068M5NAG'), 'Must document verified replacement ASIN B0068M5NAG');
   assert.ok(auditContent.includes('B001RM8J76'), 'Must document verified replacement ASIN B001RM8J76');
   assert.ok(auditContent.includes('B001RMA5S2'), 'Must document verified replacement ASIN B001RMA5S2');
+  assert.ok(auditContent.includes('https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck'), 'Must document Bosch independent URL');
+  assert.ok(auditContent.includes('https://amzchart.com/product-research/spark-plugs-15716421'), 'Must document NGK BPMR7A independent URL');
+  assert.ok(auditContent.includes('https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck'), 'Must document NGK CMR6H independent URL');
 
   const planContent = fs.readFileSync(planPath, 'utf8');
   assert.ok(/two-gate/i.test(planContent), 'Must document Two-Gate verification');
