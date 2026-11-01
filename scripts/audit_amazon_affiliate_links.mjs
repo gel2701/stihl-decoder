@@ -132,6 +132,7 @@ const EXCLUDE_FILES = new Set([
   'tests/phase54a_h_amazon_link_integrity.test.js',
   'tests/phase59c_amazon_product_matching_pilot.test.js',
   'tests/phase59d_verified_amazon_product_links.test.js',
+  'tests/phase59d1_production_readiness_consistency.test.js',
   'scripts/audit_amazon_affiliate_links.mjs',
   'scripts/generate_phase59c_pilot.mjs',
   'scripts/generate_phase59d_activation.mjs',

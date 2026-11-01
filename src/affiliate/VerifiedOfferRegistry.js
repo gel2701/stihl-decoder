@@ -24,7 +24,11 @@ import {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const defaultRegistryPath = path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'verified_amazon_registry.json');
+const candidateRegistryPaths = [
+  path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'verified_amazon_registry.json'),
+  path.resolve(__dirname, '..', '..', 'PHASE59D_VERIFIED_OFFERS.json')
+];
+const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
 export class VerifiedOfferRegistry {
   /**
@@ -172,15 +176,26 @@ export class VerifiedOfferRegistry {
 
   /**
    * Retrieves an ACTIVE offer eligible for direct product linking.
-   * Returns null if offer does not exist or status is not ACTIVE.
+   * Returns null if productionActivationAllowed is false, offer does not exist,
+   * status is not ACTIVE, or offer fails Two-Gate verification.
    *
    * @param {string} partNumber
    * @returns {Object|null}
    */
   getActiveOffer(partNumber) {
+    if (!this.productionActivationAllowed) {
+      return null;
+    }
     const offer = this.getOffer(partNumber);
     if (!offer) return null;
     if (offer.status !== 'ACTIVE') return null;
+
+    // Runtime Safety Guard: Re-evaluate Two-Gate verification on resolution.
+    // Incomplete, malformed, or stale records (>180d) fail closed and cannot be served.
+    const verification = TwoGateVerifier.verifyOffer(offer);
+    if (!verification.passed) {
+      return null;
+    }
     return offer;
   }
 

@@ -85,6 +85,15 @@ export class AffiliateOfferResolver {
     if (this.amazonProvider) {
       this.amazonProvider.setManualOverrides(this.manualOverridesMap);
     }
+
+    // Automatically load VerifiedOfferRegistry from file if available (Phase 59D.1)
+    if (this.verifiedRegistry && typeof this.verifiedRegistry.loadFromFile === 'function') {
+      const regPath = this.registryPath || this.verifiedRegistry.registryPath;
+      if (regPath && fs.existsSync(regPath)) {
+        this.verifiedRegistry.loadFromFile(regPath);
+      }
+    }
+
     this.loaded = true;
   }
 

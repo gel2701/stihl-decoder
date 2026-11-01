@@ -121,13 +121,25 @@ export class TwoGateVerifier {
       checks.catalog_grounded = true; // skipped if map not passed
     }
 
-    // 6. Mandatory Provenance Fields
+    // 6. Mandatory Provenance Fields & Freshness (max 180 days)
     const requiredFields = ['manufacturer', 'brand', 'oem_brand_classification', 'verification_date'];
     const missingFields = requiredFields.filter(f => !candidate[f] || typeof candidate[f] !== 'string');
-    if (missingFields.length === 0) {
-      checks.provenance_fields_present = true;
-    } else {
+    if (missingFields.length > 0) {
       errors.push(`Missing mandatory provenance fields: ${missingFields.join(', ')}.`);
+    } else {
+      const vDate = new Date(candidate.verification_date);
+      if (isNaN(vDate.getTime())) {
+        errors.push(`Invalid verification_date format: "${candidate.verification_date}". Must be a valid ISO date.`);
+      } else {
+        const maxAgeDays = context.maxEvidenceAgeDays || 180;
+        const ageMs = Date.now() - vDate.getTime();
+        const ageDays = ageMs / (1000 * 60 * 60 * 24);
+        if (ageDays > maxAgeDays) {
+          errors.push(`Stale evidence record: verification_date "${candidate.verification_date}" is older than ${maxAgeDays} days.`);
+        } else {
+          checks.provenance_fields_present = true;
+        }
+      }
     }
 
     const passed = errors.length === 0;
