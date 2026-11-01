@@ -54,6 +54,12 @@ export class HttpClient {
       try {
         const cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
         if (cached && cached.url === url && typeof cached.body === 'string') {
+          // In LIVE mode, purge any non-200 cached responses immediately
+          if (this.mode === 'LIVE' && cached.status !== 200) {
+            try { fs.unlinkSync(cachePath); } catch (e) {}
+            return null;
+          }
+
           const isBinary = Boolean(
             cached.is_binary ||
             cached.body_encoding === 'latin1' ||
@@ -118,6 +124,8 @@ export class HttpClient {
 
   writeToCache(url, status, body, headers = {}, finalUrl = null, options = {}) {
     if (!this.useCache) return;
+    // CRITICAL: Only cache successful HTTP 200 responses to prevent poisoning cache with transient errors
+    if (status !== 200) return;
     try {
       const cachePath = this.getCachePath(url);
       const isBinary = Boolean(
@@ -269,6 +277,18 @@ export class HttpClient {
 
         clearTimeout(timeout);
 
+        // Check for transient HTTP statuses: 429 (rate limit), 403 (challenge), 5xx (server error), 404 (transient CDN edge miss)
+        const isTransientStatus = response.status === 429 ||
+                                 response.status === 403 ||
+                                 (response.status >= 500 && response.status <= 599) ||
+                                 (response.status === 404 && attempts < maxAttempts);
+
+        if (isTransientStatus && attempts < maxAttempts) {
+          const delay = this.backoffMs * Math.pow(2, attempts - 1);
+          await new Promise(r => setTimeout(r, delay));
+          continue;
+        }
+
         const contentType = response.headers.get('content-type') || 'text/html';
         const isPdf = contentType.includes('application/pdf') || url.endsWith('.pdf') || Boolean(options.binary);
         let body;
@@ -285,13 +305,15 @@ export class HttpClient {
           : crypto.createHash('sha256').update(body || '', 'utf8').digest('hex');
         const finalUrl = response.url || url;
 
-        // Cache response in live cache directory
-        this.writeToCache(url, response.status, body, { 'content-type': contentType }, finalUrl, {
-          buffer,
-          bodySha256,
-          isBinary: Boolean(isPdf),
-          bodyEncoding: isPdf ? 'latin1' : 'utf8'
-        });
+        // Cache response in live cache directory ONLY if status === 200
+        if (response.status === 200) {
+          this.writeToCache(url, response.status, body, { 'content-type': contentType }, finalUrl, {
+            buffer,
+            bodySha256,
+            isBinary: Boolean(isPdf),
+            bodyEncoding: isPdf ? 'latin1' : 'utf8'
+          });
+        }
 
         return {
           url,
@@ -303,7 +325,7 @@ export class HttpClient {
           body,
           buffer,
           bodySha256,
-          cache_integrity: 'VERIFIED',
+          cache_integrity: response.status === 200 ? 'VERIFIED' : 'UNVERIFIED_STATUS',
           fromCache: false,
           fetchedAt: new Date().toISOString(),
           mode: 'LIVE'
