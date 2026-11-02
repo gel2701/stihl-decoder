@@ -135,6 +135,7 @@ const EXCLUDE_FILES = new Set([
   'tests/phase59d1_production_readiness_consistency.test.js',
   'tests/phase59e_pilot_activation.test.js',
   'tests/phase59e1_live_pilot_simulation.test.js',
+  'tests/phase59f_amazon_scaling.test.js',
   'scripts/audit_amazon_affiliate_links.mjs',
   'scripts/generate_phase59c_pilot.mjs',
   'scripts/generate_phase59d_activation.mjs',
