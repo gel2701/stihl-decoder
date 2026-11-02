@@ -26,6 +26,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const candidateRegistryPaths = [
   path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'verified_amazon_registry.json'),
+  path.resolve(__dirname, '..', '..', 'PHASE59F_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59E_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59D_VERIFIED_OFFERS.json')
 ];
@@ -39,12 +40,14 @@ export class VerifiedOfferRegistry {
    * @param {string} [options.registryPath]
    * @param {boolean} [options.productionActivationAllowed=false]
    * @param {string} [options.defaultMarketplace='amazon.nl']
+   * @param {number} [options.maxActiveOffersAllowed=3]
    * @param {Array<string>|Set<string>} [options.activeWhitelist]
    */
   constructor(options = {}) {
     this.registryPath = options.registryPath || defaultRegistryPath;
     this.productionActivationAllowed = options.productionActivationAllowed ?? false;
     this.defaultMarketplace = options.defaultMarketplace || 'amazon.nl';
+    this.maxActiveOffersAllowed = options.maxActiveOffersAllowed ?? MAX_PILOT_ACTIVE_OFFERS;
     this.activeWhitelist = options.activeWhitelist
       ? new Set(Array.from(options.activeWhitelist).map(p => PartNormalizer.normalizePartNumber(p)).filter(Boolean))
       : (process.env.AMAZON_PILOT_ACTIVE_PARTS
@@ -163,10 +166,10 @@ export class VerifiedOfferRegistry {
         };
       }
       const otherActive = this.listOffers({ status: 'ACTIVE' }).filter(o => o.part_number !== normPart);
-      if (otherActive.length >= MAX_PILOT_ACTIVE_OFFERS) {
+      if (otherActive.length >= this.maxActiveOffersAllowed) {
         return {
           success: false,
-          errors: [`Cannot activate offer: Pilot limit of ${MAX_PILOT_ACTIVE_OFFERS} active offers reached.`]
+          errors: [`Cannot activate offer: Limit of ${this.maxActiveOffersAllowed} active offers reached.`]
         };
       }
     }
@@ -247,10 +250,10 @@ export class VerifiedOfferRegistry {
     if (!offer) return null;
     if (offer.status !== 'ACTIVE') return null;
 
-    // Safety guard: Limit maximum active offers in pilot to MAX_PILOT_ACTIVE_OFFERS (3)
+    // Safety guard: Limit maximum active offers to maxActiveOffersAllowed
     const activeOffersCount = this.listOffers({ status: 'ACTIVE' }).length;
-    if (activeOffersCount > MAX_PILOT_ACTIVE_OFFERS) {
-      console.warn(`[VerifiedOfferRegistry] Safety guard: ${activeOffersCount} active offers exceed pilot limit of ${MAX_PILOT_ACTIVE_OFFERS}. Failing closed to search fallback.`);
+    if (activeOffersCount > this.maxActiveOffersAllowed) {
+      console.warn(`[VerifiedOfferRegistry] Safety guard: ${activeOffersCount} active offers exceed limit of ${this.maxActiveOffersAllowed}. Failing closed to search fallback.`);
       return null;
     }
 

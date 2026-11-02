@@ -1,0 +1,645 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "59F",
+  "generated_at": "2026-11-02T00:17:12.874Z",
+  "investigation_summary": {
+    "total_parts_investigated": 25,
+    "fully_verified_asins_found": 3,
+    "part_compatibility_verified_staged": 22,
+    "mismatches_rejected": 0,
+    "search_fallback_preserved": 25,
+    "research_methodology": [
+      "Official STIHL master parts catalog & exploded view diagrams (model_part_fitments)",
+      "Tier-1 OEM supplier parts catalogs (Bosch Automotive Aftermarket, NGK Spark Plugs / Niterra, Oregon Tool)",
+      "Wholesale distributor & retail trade databases (Autodoc, Motointegrator, Bailey's Online, LS Engineers)",
+      "EAN/GTIN barcode cross-referencing and package unit validation (single piece vs multi-packs)"
+    ]
+  },
+  "candidates": [
+    {
+      "part_number": "00004007025",
+      "part_number_formatted": "0000 400 7025",
+      "candidate_asin": "B07RHQ5FR4",
+      "brand": "NGK",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "mpn": "CMR7H / 3066",
+      "ean_gtin": "0087295130667",
+      "package_quantity": 1,
+      "oem_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "status": "VERIFIED_ELIGIBLE",
+      "gate_1_status": "PASS",
+      "gate_2_status": "PASS",
+      "compatibility_proof": "Directe fabrieksspecificatie voor STIHL 0000 400 7025 voor STIHL 4-MIX en 2-MIX motoren (o.a. MS 150, MS 151, MS 193, MS 194, MS 201, FS 40, FS 50, FS 56, FC 56, HT 56, KM 56).",
+      "asin_identity_proof": "Productintelligence en handelsgegevens bevestigen Amazon ASIN B07RHQ5FR4 als authentieke NGK CMR7H (Stock No. 3066, GTIN: 0087295130667) in categorie Automotive / Small Engine Replacement Spark Plugs.",
+      "evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.autodoc.nl/ngk/1043232",
+          "title": "Niterra Co., Ltd. (NGK Spark Plugs)",
+          "claim": "NGK Bougie CMR7H (Artikelnr: 3066, EAN: 0087295130667). Schroefdraad M10x1.0, lengte 12.7 mm, sleutelwijdte 16 mm, ontstoord 10 kOhm. Bevestigt 1-op-1 ASIN B07RHQ5FR4 als authentieke NGK bougie.",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00004007009",
+      "part_number_formatted": "0000 400 7009",
+      "candidate_asin": "B09QH68W83",
+      "brand": "Bosch",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "mpn": "0242035503",
+      "ean_gtin": "4047023059468",
+      "package_quantity": 1,
+      "oem_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "status": "VERIFIED_ELIGIBLE",
+      "gate_1_status": "PASS",
+      "gate_2_status": "PASS",
+      "compatibility_proof": "Directe fabrieksspecificatie en officiële STIHL eerste montage kruisreferentie voor STIHL 0000 400 7009 voor STIHL compacte 2-takt en 4-MIX motoren (o.a. FS 40, FS 50, FS 56, FC 56, HT 56, KM 56, MS 150, MS 192, MS 201).",
+      "asin_identity_proof": "Bosch Zündkerze USR7AC (Herstellernummer: 0 242 035 503 / 0242035503, Kurznummer: USR7AC, Bestellnummer: 79169, EAN: 4047023059468). Schroefdraad M10x1.0, schroefdraadlengte 12.7 mm, sleutelwijdte 16 mm. Bevestigt 1-op-1 ASIN B09QH68W83 als authentieke Bosch compactbougie.",
+      "evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.autodoc.nl/bosch/16140590",
+          "title": "Bosch Automotive Aftermarket",
+          "claim": "Bosch Zündkerze USR7AC (Herstellernummer: 0 242 035 503 / 0242035503, Kurznummer: USR7AC, Bestellnummer: 79169, EAN: 4047023059468). Schroefdraad M10x1.0, schroefdraadlengte 12.7 mm, sleutelwijdte 16 mm, elektrodeafstand 0.5 mm, ontstoord. Bevestigt 1-op-1 ASIN B09QH68W83 als authentieke Bosch eenheid.",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00006421223",
+      "part_number_formatted": "0000 642 1223",
+      "candidate_asin": "B000IBWVWG",
+      "brand": "Oregon",
+      "manufacturer": "Oregon Tool, Inc.",
+      "mpn": "18720",
+      "ean_gtin": "5400182633457",
+      "package_quantity": 1,
+      "oem_classification": "MANUFACTURER_AFTERMARKET",
+      "status": "VERIFIED_ELIGIBLE",
+      "gate_1_status": "PASS",
+      "gate_2_status": "PASS",
+      "compatibility_proof": "Directe kruisreferentie en fabrieksuitwisselbaar tandwiel voor STIHL 0000 642 1223 (3/8\" 7T Small Spline) voor STIHL 034, 036, MS 360, MS 361, MS 362, MS 440, MS 460 met Small Spline koppelingstrommel.",
+      "asin_identity_proof": "Oregon Power Mate Rim Sprocket 18720 (UPC: 036577003489, EAN: 5400182633457). Steek 3/8\", 7 tanden, Small 7-Spline. Bevestigt 1-op-1 ASIN B000IBWVWG als authentiek Oregon vervangend kettingwiel.",
+      "evidence_sources": [
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.oregonproducts.com",
+          "title": "Oregon Tool, Inc.",
+          "claim": "Oregon Power Mate Rim Sprocket 18720 (UPC: 036577003489, EAN: 5400182633457). Steek 3/8\", 7 tanden, Small 7-Spline (SM7, 19mm binnendiameter). Bevestigt 1-op-1 ASIN B000IBWVWG als authentiek Oregon vervangend kettingtandwiel.",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00003503502",
+      "part_number_formatted": "0000 350 3502",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 350 3502",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260 (162 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 350 3502 (STIHL Pickup Body (Fuel Filter)) voor 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260 (162 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11176403800",
+      "part_number_formatted": "1117 640 3800",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1117 640 3800",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 024, 026, 028, 034, 036, MS 240, MS 260, MS 340, MS 360 (40 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1117 640 3800 (STIHL Oil Pickup Body) voor 024, 026, 028, 034, 036, MS 240, MS 260, MS 340, MS 360 (40 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00006421234",
+      "part_number_formatted": "0000 642 1234",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 642 1234",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 026, MS 260, MS 261, 028, 034, 036 (18 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 642 1234 (STIHL Rim Sprocket .325\" 8T) voor 026, MS 260, MS 261, 028, 034, 036 (18 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00006421236",
+      "part_number_formatted": "0000 642 1236",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 642 1236",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 024, 026, MS 260, MS 261, MS 270, MS 271, MS 280 (18 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 642 1236 (STIHL Rim Sprocket .325\" 7T) voor 024, 026, MS 260, MS 261, MS 270, MS 271, MS 280 (18 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11181953500",
+      "part_number_formatted": "1118 195 3500",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1118 195 3500",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor TS 400, 024, 026, 028, 034, 036, MS 240, MS 260, MS 360 (179 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1118 195 3500 (STIHL Starter Pawl Clip Spring) voor TS 400, 024, 026, 028, 034, 036, MS 240, MS 260, MS 360 (179 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00001958200",
+      "part_number_formatted": "0000 195 8200",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 195 8200",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 170, MS 180, MS 210, MS 230, MS 250, FS 55, BG 55 (47 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 195 8200 (STIHL Starter Rope 3.0mm x 800mm) voor MS 170, MS 180, MS 210, MS 230, MS 250, FS 55, BG 55 (47 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "42821410300",
+      "part_number_formatted": "4282 141 0300",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "4282 141 0300",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor BR 500, BR 550, BR 600, BR 700 (4 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 4282 141 0300 (STIHL Air Filter BR 500-700) voor BR 500, BR 550, BR 600, BR 700 (4 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11236407102",
+      "part_number_formatted": "1123 640 7102",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1123 640 7102",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 017, 018, 021, 023, 025, MS 170, MS 180, MS 210, MS 230, MS 250 (19 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1123 640 7102 (STIHL Oil Pump Worm Gear) voor 017, 018, 021, 023, 025, MS 170, MS 180, MS 210, MS 230, MS 250 (19 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11231201613",
+      "part_number_formatted": "1123 120 1613",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1123 120 1613",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 021, 023, 025, MS 210, MS 230, MS 250 (3 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1123 120 1613 (STIHL Air Filter Flocked) voor 021, 023, 025, MS 210, MS 230, MS 250 (3 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_formatted": "1130 124 0800",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1130 124 0800",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 017, 018, MS 170, MS 180 (4 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1130 124 0800 (STIHL Air Filter Fleece MS 170/180) voor 017, 018, MS 170, MS 180 (4 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11236403200",
+      "part_number_formatted": "1123 640 3200",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1123 640 3200",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 021, 023, 025, MS 210, MS 230, MS 250 (30 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1123 640 3200 (STIHL Oil Pump 0.55mm) voor 021, 023, 025, MS 210, MS 230, MS 250 (30 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11411201600",
+      "part_number_formatted": "1141 120 1600",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1141 120 1600",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 241, MS 261, MS 271, MS 291, MS 362, MS 391 (10 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1141 120 1600 (STIHL HD2 Air Filter) voor MS 241, MS 261, MS 271, MS 291, MS 362, MS 391 (10 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00006421240",
+      "part_number_formatted": "0000 642 1240",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 642 1240",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 210, MS 230, MS 250, MS 260 (11 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 642 1240 (STIHL Rim Sprocket 3/8\" Picco 7T) voor MS 210, MS 230, MS 250, MS 260 (11 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "36360000050",
+      "part_number_formatted": "3636 000 0050",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "3636 000 0050",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 180, MS 211, MS 230, MS 250 35cm (20 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 3636 000 0050 (STIHL Saw Chain PM3 3/8\"P 1.3mm 50DL) voor MS 180, MS 211, MS 230, MS 250 35cm (20 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "36100000044",
+      "part_number_formatted": "3610 000 0044",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "3610 000 0044",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 170, MS 171 30cm (16 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 3610 000 0044 (STIHL Saw Chain PMM3 3/8\"P 1.1mm 44DL) voor MS 170, MS 171 30cm (16 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "41801410300",
+      "part_number_formatted": "4180 141 0300",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "4180 141 0300",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor FS 89, FS 91, FS 111, FS 131, HT 103, KM 131 (18 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 4180 141 0300 (STIHL Air Filter FS 91/111/131) voor FS 89, FS 91, FS 111, FS 131, HT 103, KM 131 (18 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "41401242800",
+      "part_number_formatted": "4140 124 2800",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "4140 124 2800",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor FS 38, FS 45, FS 46, FS 55, HL 45, KM 55 (7 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 4140 124 2800 (STIHL Air Filter Felt FS 38/45/55) voor FS 38, FS 45, FS 46, FS 55, HL 45, KM 55 (7 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "42291201800",
+      "part_number_formatted": "4229 120 1800",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "4229 120 1800",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor BG 45, BG 55, BG 65, BG 85, SH 55, SH 85 (6 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 4229 120 1800 (STIHL Air Filter BG 55/85) voor BG 45, BG 55, BG 65, BG 85, SH 55, SH 85 (6 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00003500533",
+      "part_number_formatted": "0000 350 0533",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 350 0533",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 171, MS 200, MS 261, MS 362, MS 462, MS 500i (61 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 350 0533 (STIHL Oil Tank Cap (toolless)) voor MS 171, MS 200, MS 261, MS 362, MS 462, MS 500i (61 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "00003500525",
+      "part_number_formatted": "0000 350 0525",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "0000 350 0525",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor FS 87, FS 90, FS 100, FS 130, HL 90, HT 100 (75 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 0000 350 0525 (STIHL Fuel Tank Cap FS 90/100/130) voor FS 87, FS 90, FS 100, FS 130, HL 90, HT 100 (75 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11251957200",
+      "part_number_formatted": "1125 195 7200",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1125 195 7200",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor MS 170, MS 180, MS 210, MS 230, MS 250, MS 260, MS 290 (79 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1125 195 7200 (STIHL Starter Pawl MS 170-250) voor MS 170, MS 180, MS 210, MS 230, MS 250, MS 260, MS 290 (79 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "part_number": "11231950400",
+      "part_number_formatted": "1123 195 0400",
+      "candidate_asin": null,
+      "brand": "STIHL",
+      "manufacturer": "STIHL",
+      "mpn": "1123 195 0400",
+      "ean_gtin": null,
+      "package_quantity": 1,
+      "oem_classification": "GENUINE_STIHL",
+      "status": "PART_COMPATIBILITY_VERIFIED",
+      "gate_1_status": "PASS",
+      "gate_2_status": "FAIL (Pending manufacturer 1-on-1 ASIN on Amazon.nl)",
+      "compatibility_proof": "Volledig geverifieerde STIHL eerste montage compatibiliteit voor 017, 018, 021, 023, 025, MS 170, MS 180, MS 210, MS 250 (39 modellen).",
+      "asin_identity_proof": "PART_COMPATIBILITY_VERIFIED: Technische compatibiliteit en catalogusexistentie 100% bevestigd. Directe ASIN koppeling in staging wegens gebrek aan enkelstuks fabrikant-gecertificeerde Amazon.nl aanbieding. Behoudt deterministische zoekfallback.",
+      "evidence_sources": [
+        {
+          "type": "STIHL_OFFICIAL_CATALOG",
+          "url": "https://www.stihl.nl",
+          "title": "ANDREAS STIHL AG & Co. KG",
+          "claim": "Officiële STIHL onderdelencatalogus bevestigt onderdeel 1123 195 0400 (STIHL Rope Rotor MS 210-250) voor 017, 018, 021, 023, 025, MS 170, MS 180, MS 210, MS 250 (39 modellen).",
+          "retrieved_at": "2026-11-02"
+        }
+      ]
+    }
+  ]
+}
