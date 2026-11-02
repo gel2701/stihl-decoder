@@ -26,6 +26,7 @@ import {
 import { buildSafeTechnicalPreview } from './SafeTechnicalPreviewResolver.js';
 import { resolvePlantRecord } from './plantResolver.js';
 import { PartCatalogResolver } from './parts/PartCatalogResolver.js';
+import { getDirectPartsForModel } from './parts/DirectPartsEngine.js';
 import { getSafeModelPath, getSafeModelPartsPath } from './publicationRules.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
@@ -349,6 +350,7 @@ export function analyzeModelQuery(modelStr, database) {
   const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
   const hasCatalogParts = canonicalModelObj ? PartCatalogResolver.hasPartsForModel(canonicalModelObj, database) : false;
   const canonicalPartsPath = (canonicalModelObj && hasCatalogParts) ? getSafeModelPartsPath(canonicalModelObj) : null;
+  const directParts = (canonicalModelObj && hasCatalogParts) ? getDirectPartsForModel(canonicalModelObj, {}, database) : null;
 
   return {
     success: true,
@@ -361,6 +363,7 @@ export function analyzeModelQuery(modelStr, database) {
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
     canonicalModelPath,
     canonicalPartsPath,
+    directParts,
     modelSlug: canonicalModelObj?.slug || null,
     categorySlug: canonicalModelObj?.category_slug || null,
     sourceStatus,
@@ -636,6 +639,9 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
   const anchorCanonicalPartsPath = (targetPartsModel && targetHasParts)
     ? getSafeModelPartsPath(targetPartsModel)
     : null;
+  const directParts = (targetPartsModel && targetHasParts)
+    ? getDirectPartsForModel(targetPartsModel, {}, database)
+    : null;
   const anchorCanonicalModelPath = anchorCanonicalModel
     ? getSafeModelPath(anchorCanonicalModel)
     : (confirmedModel ? getSafeModelPath(confirmedModel) : null);
@@ -658,6 +664,7 @@ export function analyzeSerialNumber(serialStr, database, counterfeitEvaluation, 
     exactModel,
     canonicalModelPath: anchorCanonicalModelPath,
     canonicalPartsPath: anchorCanonicalPartsPath,
+    directParts,
     identityStatus,
     identitySource,
     modelIdentityStatus: identityStatus,
