@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "phase": "59F",
+  "phase": "59F.1",
   "generated_at": "2026-11-02T00:17:12.874Z",
   "policy": {
     "pilot_name": "Phase 59F Amazon Affiliate Scaling (28-Offer Expansion Manifest)",
@@ -234,7 +234,7 @@
       "package_type": "Single piece box",
       "ean_gtin": "0087295130667",
       "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
-      "pilot_eligible": true,
+      "pilot_eligible": false,
       "pilot_active": false,
       "kill_switch_id": "KILL_CANDIDATE_00004007025",
       "verifiable_evidence_sources": [
@@ -247,16 +247,16 @@
         }
       ],
       "compatibility_proof": "Directe fabrieksspecificatie voor STIHL 0000 400 7025 voor STIHL 4-MIX en 2-MIX motoren (o.a. MS 150, MS 151, MS 193, MS 194, MS 201, FS 40, FS 50, FS 56, FC 56, HT 56, KM 56).",
-      "asin_product_identity_proof": "Productintelligence en handelsgegevens bevestigen Amazon ASIN B07RHQ5FR4 als authentieke NGK CMR7H (Stock No. 3066, GTIN: 0087295130667) in categorie Automotive / Small Engine Replacement Spark Plugs.",
+      "asin_product_identity_proof": "ASIN B07RHQ5FR4 is NGK CMR7H 1-piece. Incompatible with STIHL 0000 400 7025 (pack of 10 STIHL ZK C bougies).",
       "independent_evidence_url": "https://www.autodoc.nl/ngk/1043232",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07RHQ5FR4?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7025&tag=srihldecoder2-21",
       "verification_date": "2026-11-02",
-      "status": "VERIFIED",
-      "status_reason": "Two-Gate Verification PASSED (Gate 1 & Gate 2). Verified eligible; awaiting operator approval before production activation.",
+      "status": "SUSPENDED",
+      "status_reason": "INCORRECT MATCH CONFIRMED (Phase 59F.1): 0000 400 7025 is STIHL ZK C 10 (pack of 10), while B07RHQ5FR4 is 1-piece NGK CMR7H. Suspended from direct ASIN activation. Fail-closed search fallback preserved.",
       "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
+        "status": "FAIL",
+        "passed": false,
         "checks": {
           "asin_syntax": true,
           "marketplace_valid": true,
@@ -265,11 +265,13 @@
           "catalog_grounded": true,
           "provenance_fields_present": true
         },
-        "errors": []
+        "errors": [
+          "Quantity and model mismatch: STIHL ZK C 10 pack of 10 vs single piece CMR7H"
+        ]
       },
       "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
+        "status": "FAIL",
+        "passed": false,
         "checks": {
           "oem_taxonomy_valid": true,
           "manufacturer_mpn_proof": true,
@@ -279,7 +281,9 @@
           "volatile_facts_absent": true,
           "independent_sources_corroborated": true
         },
-        "errors": []
+        "errors": [
+          "Known mismatch confirmed: Quantity 10 vs 1, plug model ZK C vs CMR7H"
+        ]
       },
       "updated_at": "2026-11-02T00:17:12.874Z"
     },
@@ -362,7 +366,7 @@
       "package_type": "Single piece blister pack",
       "ean_gtin": "5400182633457",
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
-      "pilot_eligible": true,
+      "pilot_eligible": false,
       "pilot_active": false,
       "kill_switch_id": "KILL_CANDIDATE_00006421223",
       "verifiable_evidence_sources": [
@@ -375,16 +379,16 @@
         }
       ],
       "compatibility_proof": "Directe kruisreferentie en fabrieksuitwisselbaar tandwiel voor STIHL 0000 642 1223 (3/8\" 7T Small Spline) voor STIHL 034, 036, MS 360, MS 361, MS 362, MS 440, MS 460 met Small Spline koppelingstrommel.",
-      "asin_product_identity_proof": "Oregon Power Mate Rim Sprocket 18720 (UPC: 036577003489, EAN: 5400182633457). Steek 3/8\", 7 tanden, Small 7-Spline. Bevestigt 1-op-1 ASIN B000IBWVWG als authentiek Oregon vervangend kettingwiel.",
+      "asin_product_identity_proof": "ASIN B000IBWVWG is Oregon 18720 (Small 7-Spline). Incompatible with STIHL 0000 642 1223 (Standard Spline).",
       "independent_evidence_url": "https://www.oregonproducts.com",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B000IBWVWG?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+642+1223&tag=srihldecoder2-21",
       "verification_date": "2026-11-02",
-      "status": "VERIFIED",
-      "status_reason": "Two-Gate Verification PASSED (Gate 1 & Gate 2). Verified eligible; awaiting operator approval before production activation.",
+      "status": "SUSPENDED",
+      "status_reason": "INCORRECT MATCH CONFIRMED (Phase 59F.1): 0000 642 1223 is Standard 7-Spline (SD7, ~22mm), while B000IBWVWG (Oregon 18720) is Small 7-Spline (SM7, ~19mm). Suspended from direct ASIN activation. Fail-closed search fallback preserved.",
       "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
+        "status": "FAIL",
+        "passed": false,
         "checks": {
           "asin_syntax": true,
           "marketplace_valid": true,
@@ -393,11 +397,13 @@
           "catalog_grounded": true,
           "provenance_fields_present": true
         },
-        "errors": []
+        "errors": [
+          "Spline type mismatch: Standard 7-Spline SD7 vs Small 7-Spline SM7"
+        ]
       },
       "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
+        "status": "FAIL",
+        "passed": false,
         "checks": {
           "oem_taxonomy_valid": true,
           "manufacturer_mpn_proof": true,
@@ -407,7 +413,9 @@
           "volatile_facts_absent": true,
           "independent_sources_corroborated": true
         },
-        "errors": []
+        "errors": [
+          "Known mismatch confirmed: Oregon 18720 does not fit Standard Spline clutch drums. Correct replacement is Oregon 68210."
+        ]
       },
       "updated_at": "2026-11-02T00:17:12.874Z"
     },
@@ -1819,5 +1827,6 @@
       },
       "updated_at": "2026-11-02T00:17:12.874Z"
     }
-  ]
+  ],
+  "updated_at": "2026-11-02T02:08:11.786Z"
 }

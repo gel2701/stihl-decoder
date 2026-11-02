@@ -85,7 +85,7 @@ test('Phase 59F — 2. Manifest & Evidence Docket Integrity for 28-Offer Expansi
 
   const manifest = JSON.parse(fs.readFileSync(CANDIDATES_MANIFEST_PATH, 'utf8'));
   assert.strictEqual(manifest.schema_version, '1.0.0');
-  assert.strictEqual(manifest.phase, '59F');
+  assert.ok(manifest.phase.startsWith('59F'), 'Phase must be 59F or 59F.1');
   assert.strictEqual(manifest.policy.max_active_offers_allowed, 3, 'Pilot active cap must remain 3');
   assert.deepStrictEqual(manifest.policy.pilot_activated_parts, ['11104007005', '00004007000', '00004007011'], 'Only 3 parts allowed in active whitelist');
   assert.strictEqual(manifest.offers.length, 28, 'Must contain exactly 28 evaluated offers (3 pilot + 25 expansion)');
@@ -93,61 +93,50 @@ test('Phase 59F — 2. Manifest & Evidence Docket Integrity for 28-Offer Expansi
   const activeOffers = manifest.offers.filter(o => o.status === 'ACTIVE');
   const verifiedOffers = manifest.offers.filter(o => o.status === 'VERIFIED');
   const stagedOffers = manifest.offers.filter(o => o.status === 'STAGED');
+  const suspendedOffers = manifest.offers.filter(o => o.status === 'SUSPENDED');
 
   assert.strictEqual(activeOffers.length, 3, 'Must have exactly 3 ACTIVE offers');
-  assert.strictEqual(verifiedOffers.length, 3, 'Must have exactly 3 VERIFIED eligible offers ready for approval');
+  assert.strictEqual(verifiedOffers.length, 1, 'Must have exactly 1 VERIFIED eligible offer (Bosch USR7AC 00004007009)');
+  assert.strictEqual(suspendedOffers.length, 2, 'Must have exactly 2 SUSPENDED mismatch offers (00004007025, 00006421223)');
   assert.strictEqual(stagedOffers.length, 22, 'Must have exactly 22 STAGED compatibility-verified offers');
 
   const evidence = JSON.parse(fs.readFileSync(MATCH_EVIDENCE_PATH, 'utf8'));
   assert.strictEqual(evidence.investigation_summary.total_parts_investigated, 25);
   assert.strictEqual(evidence.candidates.length, 25);
+  assert.strictEqual(evidence.investigation_summary.fully_verified_asins_found, 1);
+  assert.strictEqual(evidence.investigation_summary.mismatches_rejected, 2);
 });
 
 test('Phase 59F — 3. Forensic Two-Gate Verification of Newly Vetted Candidates', () => {
   const manifest = JSON.parse(fs.readFileSync(CANDIDATES_MANIFEST_PATH, 'utf8'));
   const newVerified = manifest.offers.filter(o => o.status === 'VERIFIED');
 
-  const expectedNewVerified = [
-    {
-      part: '00004007025',
-      asin: 'B07RHQ5FR4',
-      brand: 'NGK',
-      mpn: 'CMR7H / 3066',
-      ean: '0087295130667',
-      qty: 1
-    },
-    {
-      part: '00004007009',
-      asin: 'B09QH68W83',
-      brand: 'Bosch',
-      mpn: '0242035503',
-      ean: '4047023059468',
-      qty: 1
-    },
-    {
-      part: '00006421223',
-      asin: 'B000IBWVWG',
-      brand: 'Oregon',
-      mpn: '18720',
-      ean: '5400182633457',
-      qty: 1
-    }
-  ];
+  assert.strictEqual(newVerified.length, 1, 'Only 1 candidate qualifies as VERIFIED');
+  const bosch = newVerified[0];
+  assert.strictEqual(bosch.part_number, '00004007009');
+  assert.strictEqual(bosch.asin, 'B09QH68W83');
+  assert.strictEqual(bosch.brand, 'Bosch');
+  assert.strictEqual(bosch.manufacturer_part_number, '0242035503');
+  assert.strictEqual(bosch.ean_gtin, '4047023059468');
+  assert.strictEqual(bosch.package_quantity, 1);
 
-  for (const exp of expectedNewVerified) {
-    const candidate = newVerified.find(o => o.part_number === exp.part);
-    assert.ok(candidate, `Candidate for ${exp.part} must exist in VERIFIED status`);
-    assert.strictEqual(candidate.asin, exp.asin);
-    assert.strictEqual(candidate.brand, exp.brand);
-    assert.ok(candidate.manufacturer_part_number.includes(exp.mpn));
-    assert.strictEqual(candidate.ean_gtin, exp.ean);
-    assert.strictEqual(candidate.package_quantity, exp.qty);
+  const verification = TwoGateVerifier.verifyOffer(bosch);
+  assert.strictEqual(verification.passed, true, `TwoGateVerifier must pass for 00004007009: ${verification.errors.join('; ')}`);
+  assert.strictEqual(verification.gate1.passed, true);
+  assert.strictEqual(verification.gate2.passed, true);
 
-    const verification = TwoGateVerifier.verifyOffer(candidate);
-    assert.strictEqual(verification.passed, true, `TwoGateVerifier must pass for ${exp.part}: ${verification.errors.join('; ')}`);
-    assert.strictEqual(verification.gate1.passed, true);
-    assert.strictEqual(verification.gate2.passed, true);
-  }
+  // Validate that mismatches are strictly suspended
+  const suspended = manifest.offers.filter(o => o.status === 'SUSPENDED');
+  assert.strictEqual(suspended.length, 2);
+  const part0025 = suspended.find(o => o.part_number === '00004007025');
+  assert.ok(part0025, '00004007025 must be suspended');
+  assert.strictEqual(part0025.gate_1_technical.passed, false);
+  assert.strictEqual(part0025.gate_2_product.passed, false);
+
+  const part1223 = suspended.find(o => o.part_number === '00006421223');
+  assert.ok(part1223, '00006421223 must be suspended');
+  assert.strictEqual(part1223.gate_1_technical.passed, false);
+  assert.strictEqual(part1223.gate_2_product.passed, false);
 });
 
 test('Phase 59F — 4. Production Lock: No New ASINs Activated in Production Without Approval', () => {
@@ -171,16 +160,15 @@ test('Phase 59F — 4. Production Lock: No New ASINs Activated in Production Wit
   }
 });
 
-test('Phase 59F — 5. Isolated Sandbox Activation Simulation of All 6 Verified Offers', () => {
+test('Phase 59F — 5. Isolated Sandbox Activation Simulation of Verified Offers', () => {
   const manifest = JSON.parse(fs.readFileSync(CANDIDATES_MANIFEST_PATH, 'utf8'));
 
-  // Sandboxed registry instance allowing 6 active offers
+  // Sandboxed registry instance allowing 4 active offers (3 pilot + 1 newly verified)
   const sandboxedRegistry = new VerifiedOfferRegistry({
     productionActivationAllowed: true,
-    maxActiveOffersAllowed: 6,
+    maxActiveOffersAllowed: 4,
     activeWhitelist: [
-      '11104007005', '00004007000', '00004007011',
-      '00004007025', '00004007009', '00006421223'
+      '11104007005', '00004007000', '00004007011', '00004007009'
     ]
   });
 
@@ -194,17 +182,15 @@ test('Phase 59F — 5. Isolated Sandbox Activation Simulation of All 6 Verified 
     }
   }
 
-  // All 6 verified offers must resolve to direct ASIN in sandboxed environment
-  const all6Verified = [
+  // All 4 verified offers must resolve to direct ASIN in sandboxed environment
+  const all4Verified = [
     { part: '11104007005', asin: 'B0068M5NAG' },
     { part: '00004007000', asin: 'B001RM8J76' },
     { part: '00004007011', asin: 'B001RMA5S2' },
-    { part: '00004007025', asin: 'B07RHQ5FR4' },
-    { part: '00004007009', asin: 'B09QH68W83' },
-    { part: '00006421223', asin: 'B000IBWVWG' }
+    { part: '00004007009', asin: 'B09QH68W83' }
   ];
 
-  for (const item of all6Verified) {
+  for (const item of all4Verified) {
     const offer = sandboxedRegistry.resolveCommercialOffer({ partNumber: item.part });
     assert.strictEqual(offer.link_type, 'DIRECT_ASIN', `Simulated offer ${item.part} must resolve to DIRECT_ASIN in sandbox`);
     assert.strictEqual(offer.asin, item.asin);
@@ -212,9 +198,9 @@ test('Phase 59F — 5. Isolated Sandbox Activation Simulation of All 6 Verified 
   }
 
   // Immediate rollback test: deactivating one drops it back to search fallback instantly
-  const deactRes = sandboxedRegistry.deactivateOffer('00004007025', 'Sandbox rollback test');
+  const deactRes = sandboxedRegistry.deactivateOffer('00004007009', 'Sandbox rollback test');
   assert.strictEqual(deactRes.success, true);
-  const rolledBackOffer = sandboxedRegistry.resolveCommercialOffer({ partNumber: '00004007025' });
+  const rolledBackOffer = sandboxedRegistry.resolveCommercialOffer({ partNumber: '00004007009' });
   assert.strictEqual(rolledBackOffer.link_type, 'SEARCH_FALLBACK', 'Deactivated offer must immediately drop to search fallback');
 });
 
