@@ -15,19 +15,19 @@ const database = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_da
 
 test('Phase 54B: Homepage Hero headline and subtext communicating 3 intents', () => {
   assert.ok(
-    indexHtml.includes('Zoek op serienummer, onderdeelnummer of model'),
-    'Hero headline must clearly state: Zoek op serienummer, onderdeelnummer of model'
+    indexHtml.includes('STIHL Decoder'),
+    'Hero headline must clearly state: STIHL Decoder'
   );
   assert.ok(
-    indexHtml.includes('Controleer een STIHL machine op serienummer, zoek een onderdeelnummer op of voer een model zoals MS 200 of FS 55 in om passende onderdelen te vinden.'),
-    'Hero subtext must explicitly mention model -> parts discovery'
+    indexHtml.includes('Vind jouw STIHL-machine, onderdelen en technische informatie.'),
+    'Hero subtext must state: Vind jouw STIHL-machine, onderdelen en technische informatie.'
   );
 });
 
 test('Phase 54B: Search placeholder and helper text', () => {
   assert.ok(
-    indexHtml.includes('placeholder="Bijv. MS 200, FS 55, 1123 020 1200 of 163130555"'),
-    'Placeholder must contain model, part number, and serial number examples'
+    indexHtml.includes('placeholder="Zoek model, onderdeelnummer of serienummer..."'),
+    'Placeholder must contain Zoek model, onderdeelnummer of serienummer...'
   );
   assert.ok(
     indexHtml.includes('id="search-helper-text"'),
@@ -49,9 +49,9 @@ test('Phase 54B: Search intent quick-action buttons control', () => {
 
 test('Phase 54B: Dynamic button text container and example buttons', () => {
   assert.ok(indexHtml.includes('id="search-btn-text"'), 'Search button text container must exist');
-  assert.ok(indexHtml.includes('data-code="MS 200"'), 'Example button for MS 200 must exist');
+  assert.ok(indexHtml.includes('data-code="MS 260"'), 'Example button for MS 260 must exist');
+  assert.ok(indexHtml.includes('data-code="FS 450"'), 'Example button for FS 450 must exist');
   assert.ok(indexHtml.includes('data-code="1121 021 0800"'), 'Example button for 1121 021 0800 must exist');
-  assert.ok(indexHtml.includes('data-code="163130555"'), 'Example button for 163130555 must exist');
 });
 
 test('Phase 54B: Dynamic CTA intent detection logic', () => {

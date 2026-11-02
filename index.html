@@ -124,45 +124,32 @@
   <!-- Main Content -->
   <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full space-y-10">
 
-    <!-- Search Section -->
+    <!-- Search Section (Phase 1 Modernized) -->
     <section id="decoder" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 stihl-orange-glow relative overflow-hidden">
-      <div class="max-w-2xl mx-auto text-center space-y-4 mb-6">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          Zoek op serienummer, onderdeelnummer of model
+      <div class="max-w-2xl mx-auto text-center space-y-3 mb-6">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          STIHL Decoder
         </h2>
-        <p class="text-sm text-gray-400">
-          Controleer een STIHL machine op serienummer, zoek een onderdeelnummer op of voer een model zoals MS 200 of FS 55 in om passende onderdelen te vinden. Bevestig gegevens altijd met het typeplaatje.
+        <p class="text-sm sm:text-base text-gray-300 font-medium">
+          Vind jouw STIHL-machine, onderdelen en technische informatie.
         </p>
       </div>
 
       <!-- Input Form -->
       <div class="max-w-xl mx-auto">
-        <!-- Search Intent Buttons (Non-mandatory quick actions) -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-3" role="group" aria-label="Snelle zoekintenties">
-          <button type="button" id="tab-intent-parts" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="parts" aria-pressed="false">
-            <span>⚙️ Onderdelen zoeken</span>
-          </button>
-          <button type="button" id="tab-intent-serial" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="serial" aria-pressed="false">
-            <span>🔍 Serienummer controleren</span>
-          </button>
-          <button type="button" id="tab-intent-partno" class="intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5" data-intent="partno" aria-pressed="false">
-            <span>📦 Onderdeelnummer opzoeken</span>
-          </button>
-        </div>
-
         <label for="code-input" class="sr-only">STIHL Serienummer, Model of Onderdeelnummer</label>
-        <div class="relative flex items-center bg-gray-950 border border-gray-700 rounded-xl p-2 transition">
+        <div class="relative flex items-center bg-gray-950 border border-gray-700 rounded-xl p-2 transition focus-within:border-orange-500/80 shadow-lg">
           <input
             type="text"
             id="code-input"
-            placeholder="Bijv. MS 200, FS 55, 1123 020 1200 of 163130555"
+            placeholder="Zoek model, onderdeelnummer of serienummer..."
             class="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg font-mono font-semibold text-white placeholder-gray-500 focus:outline-none"
             autocomplete="off"
           />
-          <button id="clear-btn" class="p-2 text-gray-400 hover:text-white transition" title="Wis invoer" aria-label="Wis invoer">
+          <button id="clear-btn" class="p-2 text-gray-400 hover:text-white transition cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center" title="Wis invoer" aria-label="Wis invoer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
-          <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30 cursor-pointer" aria-label="Zoeken">
+          <button id="search-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-orange-600/30 cursor-pointer min-h-[44px]" aria-label="Zoeken">
             <span id="search-btn-text">Zoeken</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </button>
@@ -174,11 +161,86 @@
         </p>
 
         <!-- Probeer Voorbeelden (Klikbaar) -->
-        <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
-          <span class="text-gray-400 font-medium mr-1">Probeer voorbeeld:</span>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30" data-code="MS 200">MS 200 (Model / Onderdelen)</button>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30" data-code="1121 021 0800">1121 021 0800 (Onderdeel)</button>
-          <button class="example-btn cursor-pointer px-2.5 py-1 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 font-mono transition border border-gray-700" data-code="163130555">163130555 (Serienummer)</button>
+        <div class="mt-3.5 flex flex-wrap items-center justify-center gap-2 text-xs">
+          <span class="text-gray-400 font-medium mr-1">Voorbeelden:</span>
+          <button type="button" class="example-btn cursor-pointer px-3 py-1.5 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 font-mono transition border border-orange-500/30 font-semibold min-h-[36px]" data-code="MS 260">MS 260</button>
+          <button type="button" class="example-btn cursor-pointer px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-mono transition border border-amber-500/30 font-semibold min-h-[36px]" data-code="FS 450">FS 450</button>
+          <button type="button" class="example-btn cursor-pointer px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 font-mono transition border border-gray-700 font-semibold min-h-[36px]" data-code="1121 021 0800">1121 021 0800</button>
+        </div>
+      </div>
+
+      <!-- Drie Hoofdfuncties (Modern Navigation Cards) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-8 max-w-3xl mx-auto" role="group" aria-label="Snelle zoekintenties">
+        <!-- 1. Onderdelen zoeken -->
+        <button type="button" id="tab-intent-parts" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-gray-800 bg-gray-950/80 hover:border-orange-500/50 hover:bg-orange-950/20 group flex flex-col justify-between min-h-[100px]" data-intent="parts" aria-pressed="false">
+          <div class="flex items-center gap-2.5">
+            <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 text-lg group-hover:scale-105 transition">⚙️</span>
+            <div>
+              <span class="text-sm font-bold text-white group-hover:text-orange-400 transition block">Onderdelen zoeken</span>
+              <span class="text-3xs text-orange-400/80 uppercase font-mono tracking-wider font-semibold">Catalogus & Pasvorm</span>
+            </div>
+          </div>
+          <p class="text-2xs text-gray-400 mt-2.5 leading-relaxed">
+            Vind direct passende onderdelen voor jouw model of controleer een 11-cijferig onderdeelnummer.
+          </p>
+        </button>
+
+        <!-- 2. Machine identificeren -->
+        <button type="button" id="tab-intent-serial" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-gray-800 bg-gray-950/80 hover:border-orange-500/50 hover:bg-orange-950/20 group flex flex-col justify-between min-h-[100px]" data-intent="serial" aria-pressed="false">
+          <div class="flex items-center gap-2.5">
+            <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 text-lg group-hover:scale-105 transition">🔍</span>
+            <div>
+              <span class="text-sm font-bold text-white group-hover:text-orange-400 transition block">Machine identificeren</span>
+              <span class="text-3xs text-orange-400/80 uppercase font-mono tracking-wider font-semibold">Model & Serienummer</span>
+            </div>
+          </div>
+          <p class="text-2xs text-gray-400 mt-2.5 leading-relaxed">
+            Achterhaal model, bouwjaarindicatie en productielocatie via modelnaam of 9-cijferig serienummer.
+          </p>
+        </button>
+
+        <!-- 3. Technische informatie -->
+        <a href="/gidsen/serienummer-locaties/" id="tab-intent-partno" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-gray-800 bg-gray-950/80 hover:border-orange-500/50 hover:bg-orange-950/20 group flex flex-col justify-between min-h-[100px]" data-intent="partno" aria-pressed="false">
+          <div class="flex items-center gap-2.5">
+            <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 text-lg group-hover:scale-105 transition">📖</span>
+            <div>
+              <span class="text-sm font-bold text-white group-hover:text-orange-400 transition block">Technische informatie</span>
+              <span class="text-3xs text-orange-400/80 uppercase font-mono tracking-wider font-semibold">Specificaties & Gidsen</span>
+            </div>
+          </div>
+          <p class="text-2xs text-gray-400 mt-2.5 leading-relaxed">
+            Toegang tot afstelwaarden, zaaguitrusting, handleidingen en serienummerlocaties.
+          </p>
+        </a>
+      </div>
+
+      <!-- Populaire Modellen Snelkeuze (Direct doorklikken) -->
+      <div class="mt-6 pt-5 border-t border-gray-800/80 max-w-3xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Populaire modellen direct bekijken:</span>
+          <a href="/kettingzagen/" class="text-2xs text-orange-400 hover:text-orange-300 font-semibold transition">Alle categorieën →</a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+          <a href="/kettingzagen/ms-260/" class="block bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 text-center hover:border-orange-500/40 hover:bg-orange-950/20 transition group min-h-[44px]">
+            <div class="font-bold text-white group-hover:text-orange-400 transition">MS 260</div>
+            <span class="text-3xs text-gray-400">Kettingzaag</span>
+          </a>
+          <a href="/kettingzagen/ms-261/" class="block bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 text-center hover:border-orange-500/40 hover:bg-orange-950/20 transition group min-h-[44px]">
+            <div class="font-bold text-white group-hover:text-orange-400 transition">MS 261</div>
+            <span class="text-3xs text-gray-400">Kettingzaag</span>
+          </a>
+          <a href="/bosmaaiers/fs-350/" class="block bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 text-center hover:border-orange-500/40 hover:bg-orange-950/20 transition group min-h-[44px]">
+            <div class="font-bold text-white group-hover:text-orange-400 transition">FS 350</div>
+            <span class="text-3xs text-gray-400">Bosmaaier</span>
+          </a>
+          <button type="button" class="example-btn block bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 text-center hover:border-orange-500/40 hover:bg-orange-950/20 transition group cursor-pointer w-full min-h-[44px]" data-code="FS 450">
+            <div class="font-bold text-white group-hover:text-orange-400 transition">FS 450</div>
+            <span class="text-3xs text-gray-400">Bosmaaier</span>
+          </button>
+          <a href="/bladblazers/br-600/" class="block bg-gray-950/90 border border-gray-800 rounded-xl p-2.5 text-center hover:border-orange-500/40 hover:bg-orange-950/20 transition group min-h-[44px]">
+            <div class="font-bold text-white group-hover:text-orange-400 transition">BR 600</div>
+            <span class="text-3xs text-gray-400">Bladblazer</span>
+          </a>
         </div>
       </div>
     </section>
@@ -211,408 +273,387 @@
         <p id="counterfeit-reason" class="text-sm text-red-200 leading-relaxed"></p>
       </div>
 
-      <!-- PART NUMBER WARNING CARD -->
-      <div id="warning-card" class="hidden bg-gradient-to-br from-amber-950/40 to-gray-900 border border-amber-500/40 rounded-2xl p-6 sm:p-8 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
+      <!-- PART NUMBER RESULT CARD (Phase 2 Modernized 3-Layer Hierarchy) -->
+      <div id="warning-card" class="hidden bg-gradient-to-br from-amber-950/40 via-gray-900 to-gray-900 border border-amber-500/40 rounded-2xl p-6 sm:p-8 space-y-6">
+        <!-- LAAG 1: DIRECT ZICHTBAAR (ONDERDEEL & DIRECTE ACTIES) -->
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-amber-500/20 pb-5">
+          <div class="flex items-start gap-3.5">
+            <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex-shrink-0 mt-0.5">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             </div>
             <div>
-              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">Onderdeelreeks / Familiecode Gedetecteerd</span>
-              <h3 id="warn-part-no" class="text-xl sm:text-2xl font-mono font-extrabold text-white">1121 021 0800</h3>
-              <p id="warn-part-name" class="text-sm font-semibold text-orange-400 hidden"></p>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">Onderdeelreeks Gedetecteerd</span>
+                <span class="px-2.5 py-0.5 text-2xs font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Geen uniek serienummer</span>
+              </div>
+              <h3 id="warn-part-no" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">1121 021 0800</h3>
+              <p id="warn-part-name" class="text-sm font-semibold text-orange-400 hidden mt-0.5"></p>
             </div>
           </div>
-          <span class="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 self-start sm:self-center">Geen uniek serienummer</span>
-        </div>
-
-        <div class="space-y-3">
-          <p id="warn-message" class="text-sm font-semibold text-amber-200 leading-relaxed"></p>
-          <div class="bg-gray-950/60 rounded-xl p-4 border border-amber-500/20 space-y-2">
-            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Bekende familie-identiteit / geschikte modellen:</div>
-            <div id="warn-model-group" class="text-lg font-bold text-orange-400">024 / 026 / MS 260 familie</div>
-            <div id="warn-models-list" class="flex flex-wrap gap-1.5 pt-1 hidden"></div>
-            <p id="warn-specs" class="text-xs text-gray-300">Familiecode en categorie zijn indicatief; technische specificaties horen niet automatisch bij dit onderdeelnummer.</p>
+          <div id="warn-part-detail-cta" class="hidden self-start sm:self-center">
+            <a id="warn-part-detail-link" href="#" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition shadow-md shadow-orange-600/30 min-h-[44px]">
+              <span>⚙️ Bekijk compatibiliteit & onderdelen →</span>
+            </a>
           </div>
         </div>
 
-        <div id="warn-part-detail-cta" class="hidden pt-1">
-          <a id="warn-part-detail-link" href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition">
-            Bekijk volledige onderdeelcompatibiliteit →
-          </a>
+        <!-- LAAG 2: ONDERSCHEID BEVESTIGDE COMPATIBILITEIT VS MODELGROEP -->
+        <div class="space-y-4">
+          <p id="warn-message" class="text-xs sm:text-sm font-medium text-amber-200/90 leading-relaxed"></p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- 1. Bevestigde compatibiliteit (bevestigde modellen) -->
+            <div class="bg-gray-950/80 rounded-xl p-4 border border-amber-500/20 space-y-2">
+              <div class="text-xs font-bold text-emerald-400 flex items-center gap-1.5 uppercase tracking-wider">
+                <span>✓ Bevestigde compatibiliteit</span>
+              </div>
+              <p class="text-2xs text-gray-400">Bevestigde compatibiliteit voor deze specifieke modellen:</p>
+              <div id="warn-models-list" class="flex flex-wrap gap-1.5 pt-1">
+                <span class="text-2xs text-gray-400 italic">Selecteer of voer model in voor pasvormbevestiging</span>
+              </div>
+            </div>
+
+            <!-- 2. Indicatieve modelgroep (familiecode) -->
+            <div class="bg-gray-950/80 rounded-xl p-4 border border-gray-800 space-y-2">
+              <div class="text-xs font-bold text-orange-400 flex items-center gap-1.5 uppercase tracking-wider">
+                <span>≈ Indicatieve modelserie</span>
+              </div>
+              <p class="text-2xs text-gray-400">Onderdeel hoort volgens de 4-cijferige familiecode bij:</p>
+              <div id="warn-model-group" class="text-base font-bold text-white">024 / 026 / MS 260 familie</div>
+              <p id="warn-specs" class="text-3xs text-gray-400">Familiecode is indicatief; technische gegevens horen niet automatisch bij dit onderdeel.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
-          <span class="font-bold text-orange-400">🔎 Hoe vindt u het echte serienummer?</span>
-          <p id="warn-advice"></p>
+        <!-- LAAG 3: SERIENUMMER ADVIES (INKLAPBAAR / TOELICHTING) -->
+        <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1.5">
+          <span class="font-bold text-orange-400 flex items-center gap-1.5">
+            <span>🔎 Zoek je het complete machine-serienummer?</span>
+          </span>
+          <p id="warn-advice" class="text-2xs text-gray-300 leading-relaxed"></p>
         </div>
       </div>
 
-      <!-- MODEL SPECIFICATIONS CARD -->
+      <!-- MODEL SPECIFICATIONS CARD (Phase 2 Modernized 3-Layer Hierarchy) -->
       <div id="model-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">STIHL Model Specificaties</span>
+        <!-- LAAG 1: DIRECT ZICHTBAAR (MODEL & PRIMAIRE ACTIES) -->
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-gray-800 pb-5">
+          <div class="space-y-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Gevonden STIHL Model</span>
               <span id="model-card-source-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">✓ Officiële STIHL-bron</span>
             </div>
             <h3 id="model-title-display" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">MS 261 C-M</h3>
             <span id="model-card-name" class="hidden"></span>
-            <p id="model-card-intent-notice" class="text-xs text-gray-300 mt-1.5">
+            <p id="model-card-intent-notice" class="text-xs text-gray-300 mt-1">
               Model gevonden: Bekijk passende onderdelen, technische gegevens en machine-informatie.
             </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <div>
-              <span class="text-xs text-gray-400">Aandrijving:</span>
-              <div id="model-card-fuel" class="text-sm font-bold text-orange-300 mt-0.5">Benzine (2-Takt)</div>
+            <div class="text-xs font-mono text-gray-400 pt-0.5">
+              <span>Aandrijving: <strong id="model-card-fuel" class="text-orange-300">Benzine (2-Takt)</strong></span>
             </div>
+          </div>
+
+          <!-- Primaire Actieknoppen Laag 1 (Minimaal 44x44px touch targets) -->
+          <div class="flex flex-wrap items-center gap-2.5 self-start sm:self-center">
             <!-- Primary CTA: Bekijk onderdelen -->
-            <a id="model-card-parts-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Bekijk onderdelen voor dit model">
+            <a id="model-card-parts-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer min-h-[44px]" aria-label="Bekijk onderdelen voor dit model">
               <span>⚙️ Bekijk onderdelen <span id="model-card-parts-btn-context" class="font-normal opacity-90">voor model</span></span>
             </a>
             <!-- Secondary CTA: Maak machinepaspoort -->
-            <button type="button" id="model-card-passport-btn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer self-start sm:self-center" aria-label="Maak machinepaspoort voor dit model">
+            <button type="button" id="model-card-passport-btn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer min-h-[44px]" aria-label="Maak machinepaspoort voor dit model">
               <span>📋 Maak machinepaspoort</span>
             </button>
             <!-- Tertiary CTA: Bewaar in Mijn machines -->
-            <button type="button" id="model-card-save-btn" class="px-3.5 py-2.5 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-medium text-xs rounded-xl flex items-center gap-1.5 transition cursor-pointer self-start sm:self-center" aria-label="Bewaar in Mijn machines">
+            <button type="button" id="model-card-save-btn" class="px-3.5 py-2.5 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-medium text-xs rounded-xl flex items-center gap-1.5 transition cursor-pointer min-h-[44px]" aria-label="Bewaar in Mijn machines">
               <span>💾 Bewaar in Mijn machines</span>
             </button>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Section 1: Motor -->
-          <div id="model-sec-motor" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
+        <!-- LAAG 2: SPECIFICATIES MET TELLER (SCHONER GETOOND) -->
+        <div class="space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-              Motor
+              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span>Specificaties & Afstelwaarden</span>
             </h4>
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div id="model-disp-box">
-                <span class="text-gray-400 block">Cilinderinhoud:</span>
-                <span id="model-spec-disp" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-power-box">
-                <span class="text-gray-400 block">Vermogen:</span>
-                <span id="model-spec-power" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-bore-stroke-box">
-                <span class="text-gray-400 block">Boring × Slag:</span>
-                <span id="model-spec-bore-stroke" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-rpm-box">
-                <span class="text-gray-400 block">Toerental (stat. / max):</span>
-                <span id="model-spec-rpm" class="font-semibold text-gray-200">-</span>
-              </div>
-            </div>
+            <span id="model-specs-count-badge" class="text-2xs font-semibold px-2.5 py-0.5 rounded-full bg-gray-950 text-gray-400 border border-gray-800 self-start sm:self-auto">
+              Specificaties beschikbaar
+            </span>
           </div>
 
-          <!-- Section 2: Brandstof & Onderhoud -->
-          <div id="model-sec-fuel" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Brandstof & Onderhoud
-            </h4>
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div id="model-spec-spark-box">
-                <span class="text-gray-400 block">Bougie:</span>
-                <span id="model-spec-spark-plug" class="font-mono text-orange-300 font-bold">-</span>
-              </div>
-              <div id="model-spec-gap-box">
-                <span class="text-gray-400 block">Elektrodenafstand:</span>
-                <span id="model-spec-electrode-gap" class="font-mono text-gray-200">-</span>
-              </div>
-              <div id="model-spec-tank-box">
-                <span class="text-gray-400 block">Brandstoftank:</span>
-                <span id="model-spec-fuel-tank" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-spec-oiltank-box">
-                <span class="text-gray-400 block">Kettingolietank:</span>
-                <span id="model-spec-oil-tank" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-spec-carb-h-box">
-                <span class="text-gray-400 block">Carburateur H:</span>
-                <span id="model-spec-carb-h" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-spec-carb-l-box">
-                <span class="text-gray-400 block">Carburateur L:</span>
-                <span id="model-spec-carb-l" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-spec-carb-la-box">
-                <span class="text-gray-400 block">Carburateur LA:</span>
-                <span id="model-spec-carb-la" class="font-semibold text-gray-200">-</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Section 1: Motor -->
+            <div id="model-sec-motor" class="bg-gray-950 rounded-xl p-4 sm:p-5 border border-gray-800 space-y-3">
+              <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                Motor
+              </h5>
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div id="model-disp-box">
+                  <span class="text-gray-400 block text-2xs">Cilinderinhoud:</span>
+                  <span id="model-spec-disp" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-power-box">
+                  <span class="text-gray-400 block text-2xs">Vermogen:</span>
+                  <span id="model-spec-power" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-bore-stroke-box">
+                  <span class="text-gray-400 block text-2xs">Boring × Slag:</span>
+                  <span id="model-spec-bore-stroke" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-rpm-box">
+                  <span class="text-gray-400 block text-2xs">Toerental (stat. / max):</span>
+                  <span id="model-spec-rpm" class="font-semibold text-gray-200">-</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Section 3: Machine -->
-          <div id="model-sec-machine" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Machine
-            </h4>
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div id="model-weight-box">
-                <span class="text-gray-400 block">Gewicht:</span>
-                <span id="model-spec-weight" class="font-semibold text-gray-200">-</span>
-              </div>
-              <div id="model-blowing-force-box">
-                <span class="text-gray-400 block">Blaaskracht:</span>
-                <span id="model-spec-blowing-force" class="font-semibold text-gray-200">-</span>
+            <!-- Section 2: Brandstof & Onderhoud -->
+            <div id="model-sec-fuel" class="bg-gray-950 rounded-xl p-4 sm:p-5 border border-gray-800 space-y-3">
+              <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Brandstof & Onderhoud
+              </h5>
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div id="model-spec-spark-box">
+                  <span class="text-gray-400 block text-2xs">Bougie:</span>
+                  <span id="model-spec-spark-plug" class="font-mono text-orange-300 font-bold">-</span>
+                </div>
+                <div id="model-spec-gap-box">
+                  <span class="text-gray-400 block text-2xs">Elektrodenafstand:</span>
+                  <span id="model-spec-electrode-gap" class="font-mono text-gray-200">-</span>
+                </div>
+                <div id="model-spec-tank-box">
+                  <span class="text-gray-400 block text-2xs">Brandstoftank:</span>
+                  <span id="model-spec-fuel-tank" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-spec-oiltank-box">
+                  <span class="text-gray-400 block text-2xs">Kettingolietank:</span>
+                  <span id="model-spec-oil-tank" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-spec-carb-h-box">
+                  <span class="text-gray-400 block text-2xs">Carburateur H:</span>
+                  <span id="model-spec-carb-h" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-spec-carb-l-box">
+                  <span class="text-gray-400 block text-2xs">Carburateur L:</span>
+                  <span id="model-spec-carb-l" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-spec-carb-la-box">
+                  <span class="text-gray-400 block text-2xs">Carburateur LA:</span>
+                  <span id="model-spec-carb-la" class="font-semibold text-gray-200">-</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Section 4: Zaaguitrusting -->
-          <div id="model-sec-chainsaw" class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-3">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.5 8.5"/></svg>
-              Zaaguitrusting
-            </h4>
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div id="model-spec-pitch-box">
-                <span class="text-gray-400 block">Kettingsteek:</span>
-                <span id="model-spec-pitch" class="font-semibold text-gray-200">-</span>
+            <!-- Section 3: Machine -->
+            <div id="model-sec-machine" class="bg-gray-950 rounded-xl p-4 sm:p-5 border border-gray-800 space-y-3">
+              <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Machine
+              </h5>
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div id="model-weight-box">
+                  <span class="text-gray-400 block text-2xs">Gewicht:</span>
+                  <span id="model-spec-weight" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-blowing-force-box">
+                  <span class="text-gray-400 block text-2xs">Blaaskracht:</span>
+                  <span id="model-spec-blowing-force" class="font-semibold text-gray-200">-</span>
+                </div>
               </div>
-              <div id="model-spec-gauge-box">
-                <span class="text-gray-400 block">Groefbreedte:</span>
-                <span id="model-spec-gauge" class="font-semibold text-gray-200">-</span>
+            </div>
+
+            <!-- Section 4: Zaaguitrusting -->
+            <div id="model-sec-chainsaw" class="bg-gray-950 rounded-xl p-4 sm:p-5 border border-gray-800 space-y-3">
+              <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.5 8.5"/></svg>
+                Zaaguitrusting
+              </h5>
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div id="model-spec-pitch-box">
+                  <span class="text-gray-400 block text-2xs">Kettingsteek:</span>
+                  <span id="model-spec-pitch" class="font-semibold text-gray-200">-</span>
+                </div>
+                <div id="model-spec-gauge-box">
+                  <span class="text-gray-400 block text-2xs">Groefbreedte:</span>
+                  <span id="model-spec-gauge" class="font-semibold text-gray-200">-</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Bottom Parts Banner -->
-        <div id="model-card-parts-banner" class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div class="space-y-1">
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-orange-400 flex items-center gap-1.5">
-                <span>⚙️ Passende STIHL Onderdelen</span>
-              </span>
-              <span class="text-3xs px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium">Onderdelencatalogus</span>
+        <!-- LAAG 3: ONDERDELEN BANNER & MACHINEPASPOORT BANNER -->
+        <div class="space-y-3 pt-2">
+          <!-- Bottom Parts Banner -->
+          <div id="model-card-parts-banner" class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-orange-400 flex items-center gap-1.5">
+                  <span>⚙️ Passende STIHL Onderdelen</span>
+                </span>
+                <span class="text-3xs px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium">Onderdelencatalogus</span>
+              </div>
+              <p id="model-card-parts-banner-desc" class="text-gray-300 text-2xs leading-relaxed">
+                Zoekt u vervangende onderdelen, zaagkettingen, filters of onderhoudssets voor dit model? Bekijk het complete overzicht van passende onderdelen.
+              </p>
             </div>
-            <p id="model-card-parts-banner-desc" class="text-gray-300 text-2xs leading-relaxed">
-              Zoekt u vervangende onderdelen, zaagkettingen, filters of onderhoudssets voor dit model? Bekijk het complete overzicht van passende onderdelen.
-            </p>
+            <a id="model-card-bottom-parts-btn" href="#" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition whitespace-nowrap self-start sm:self-center min-h-[44px] flex items-center">
+              Bekijk onderdelen →
+            </a>
           </div>
-          <a id="model-card-bottom-parts-btn" href="#" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition whitespace-nowrap self-start sm:self-center">
-            Bekijk onderdelen →
-          </a>
-        </div>
 
-        <div class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div class="space-y-1">
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-orange-400 flex items-center gap-1.5">
-                <span>📋 STIHL Machinepaspoort Maken</span>
-              </span>
-              <span class="text-3xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-medium">Model-only ondersteund</span>
+          <!-- Machinepaspoort Banner -->
+          <div class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-orange-400 flex items-center gap-1.5">
+                  <span>📋 STIHL Machinepaspoort Maken</span>
+                </span>
+                <span class="text-3xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-medium">Model-only ondersteund</span>
+              </div>
+              <p class="text-gray-300 text-2xs leading-relaxed">
+                Heeft u dit model in bezit? Maak direct een gratis digitaal machinepaspoort aan. Een serienummer is optioneel en kan nu of later worden toegevoegd.
+              </p>
             </div>
-            <p class="text-gray-300 text-2xs leading-relaxed">
-              Heeft u dit model in bezit? Maak direct een gratis digitaal machinepaspoort aan. Een serienummer is optioneel en kan nu of later worden toegevoegd.
-            </p>
+            <button type="button" id="model-card-banner-passport-btn" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition cursor-pointer whitespace-nowrap self-start sm:self-center min-h-[44px]">
+              Maak machinepaspoort →
+            </button>
           </div>
-          <button type="button" id="model-card-banner-passport-btn" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition cursor-pointer whitespace-nowrap self-start sm:self-center">
-            Maak machinepaspoort →
-          </button>
-        </div>
 
-        <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-xs text-gray-400">
-          <span class="font-bold text-orange-400 block mb-1">💡 Let op: U bekijkt een algemeen model datablad.</span>
-          Voer het serienummer in van uw specifieke machine om beschikbare herkomstinformatie, een hulpmiddel voor controle via StopHeling en een machine-identificatierapport op te vragen.
+          <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 text-2xs text-gray-400">
+            <span class="font-bold text-orange-400 block mb-0.5">💡 Let op: U bekijkt een algemeen model datablad.</span>
+            Voer het serienummer in van uw specifieke machine om beschikbare herkomstinformatie, een hulpmiddel voor controle via StopHeling en een machine-identificatierapport op te vragen.
+          </div>
         </div>
-      </div>
       </div>
 
       <!-- Serial Number Result Card (VALID 9-DIGIT SERIAL NUMBERS ONLY) -->
       <div id="result-card" class="hidden bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-        <!-- Top Info Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-6">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Serienummerformaat herkend</span>
-              <span id="res-confidence-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ FORMAAT GECONTROLEERD</span>
-            </div>
-            <h3 id="res-serial-display" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1">184592301</h3>
-          </div>
 
-          <div class="flex flex-wrap items-center gap-3 self-start sm:self-center">
-            <button id="res-save-dossier-btn" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition cursor-pointer" aria-label="Opslaan in Mijn Dossier">
-              <span>💾 Bewaar in Mijn Dossier</span>
-            </button>
-            <!-- Independent report download action button -->
-            <button id="download-passport-btn" class="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer" aria-label="Download onafhankelijk rapport als afbeelding">
-              <span>📷 Download onafhankelijk rapport als afbeelding</span>
-            </button>
+        <!-- ========================================== -->
+        <!-- LAAG 1: DIRECT ZICHTBAAR (HERO UITKOMST & ACTIES) -->
+        <!-- ========================================== -->
+        <div class="border-b border-gray-800/80 pb-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="res-model-label" class="text-xs font-mono font-bold text-orange-500 uppercase tracking-wider">Geïdentificeerd model:</span>
+                <span id="res-confidence-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">✓ FORMAAT GECONTROLEERD</span>
+              </div>
+              <h3 id="res-model" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">MS 261 C-M (M-Tronic)</h3>
+              <div class="text-xs font-mono text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-1 pt-0.5">
+                <span>Serienummer: <strong id="res-serial-display" class="text-gray-200">184592301</strong></span>
+                <span class="text-gray-600">·</span>
+                <span>Herkomst: <span id="res-country" class="text-gray-300 font-semibold">Niet vastgesteld</span></span>
+              </div>
+            </div>
+
+            <!-- Primaire Actieknoppen Laag 1 (Touch targets >= 44px) -->
+            <div class="flex flex-wrap items-center gap-2.5 self-start sm:self-center">
+              <!-- Bekijk Onderdelen (Primary CTA) -->
+              <div id="res-model-parts-cta" class="hidden">
+                <a id="res-model-parts-link" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 flex items-center gap-2 transition cursor-pointer min-h-[44px]">
+                  <span>⚙️ Bekijk onderdelen →</span>
+                </a>
+              </div>
+              <!-- Opslaan in Mijn machines -->
+              <button id="res-save-dossier-btn" class="px-4 py-2.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer min-h-[44px]" aria-label="Opslaan in Mijn Dossier">
+                <span>💾 Opslaan in Mijn machines</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Main Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- ========================================== -->
+        <!-- LAAG 2: AANVULLENDE INFORMATIE (SPECIFICATIES & VARIANTEN) -->
+        <!-- ========================================== -->
+        <div class="space-y-6">
 
-          <!-- Machine & Factory Details -->
-          <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-              Machine Gegevens
-            </h4>
-
-            <div>
-              <span id="res-model-label" class="text-xs text-gray-400">Geïdentificeerd model:</span>
-              <div id="res-model" class="text-xl font-extrabold text-orange-400 mt-0.5">MS 261 C-M (M-Tronic)</div>
-              <div id="res-model-parts-cta" class="mt-2 hidden">
-                <a id="res-model-parts-link" href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-600/20 hover:bg-orange-600/30 text-orange-400 border border-orange-500/30 text-xs font-semibold transition">
-                  <span>⚙️ Bekijk onderdelen voor dit model →</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- MODEL ASSIST BLOCK -->
-            <div id="model-assist-container" class="hidden bg-orange-950/30 border border-orange-500/40 rounded-xl p-3.5 space-y-2">
-              <span class="text-xs font-bold text-orange-300 block">
-                💡 Uw serienummer hoort bij de <span id="model-assist-series-name"></span>-reeks. Welke uitvoering heeft u?
+          <!-- MODEL ASSIST BLOCK (Disambiguation) -->
+          <div id="model-assist-container" class="hidden bg-orange-950/30 border border-orange-500/40 rounded-xl p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span class="text-xs sm:text-sm font-bold text-orange-300 block">
+                💡 Welke uitvoering heeft jouw machine? (Serie: <span id="model-assist-series-name"></span>)
               </span>
-              <div id="model-assist-buttons" class="flex flex-wrap gap-2 pt-1">
-                <!-- Dynamically populated candidate buttons -->
-              </div>
-              <div id="model-assist-not-listed-wrap" class="pt-2 border-t border-orange-500/20 flex items-center justify-between">
-                <button type="button" id="btn-model-not-listed" class="text-xs text-orange-400 hover:text-orange-300 font-medium underline flex items-center gap-1 cursor-pointer">
-                  <span>🔍 Mijn model staat er niet bij</span>
-                </button>
-              </div>
-              <div id="model-assist-confirmed-badge" class="hidden text-2xs text-emerald-400 font-semibold flex items-center justify-between pt-1 border-t border-orange-500/20">
-                <span>✓ Model geselecteerd: <span id="model-assist-confirmed-name" class="font-bold"></span> — specificaties ter referentie</span>
-                <button type="button" id="model-assist-reset-btn" class="text-xs text-gray-400 hover:text-white underline cursor-pointer">Kies ander model</button>
-              </div>
+              <span class="text-2xs text-gray-400 font-mono">Kies jouw variant voor exacte specificaties</span>
             </div>
-
-            <!-- MODEL MISMATCH WARNING (Known model outside predicted series) -->
-            <div id="model-mismatch-warning" class="hidden bg-amber-950/40 border border-amber-500/40 rounded-xl p-3.5 space-y-1.5">
-              <div class="flex items-center gap-2 text-amber-400 text-xs font-bold">
-                <span id="model-mismatch-title">⚠️ Model door gebruiker bevestigd: <span id="model-mismatch-name"></span></span>
-              </div>
-              <p class="text-2xs text-gray-300 leading-relaxed">
-                Dit model wijkt af van onze serienummerindicatie.
-              </p>
-              <p id="model-mismatch-subtext" class="text-2xs text-amber-300 font-medium">
-                Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.
-              </p>
+            <div id="model-assist-buttons" class="flex flex-wrap gap-2 pt-1">
+              <!-- Dynamically populated candidate buttons -->
             </div>
-
-            <!-- UNVERIFIED FREE-TEXT WARNING -->
-            <div id="model-unverified-warning" class="hidden bg-blue-950/40 border border-blue-500/40 rounded-xl p-3.5 space-y-2">
-              <div class="flex items-center gap-2 text-blue-400 text-xs font-bold">
-                <span>ℹ️ Model door gebruiker opgegeven: <span id="unverified-model-name"></span></span>
-              </div>
-              <p class="text-2xs text-gray-300 leading-relaxed">
-                Dit model wijkt af van onze serienummerindicatie.
-              </p>
-              <p class="text-2xs text-amber-300 font-medium">
-                Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.
-              </p>
+            <div id="model-assist-not-listed-wrap" class="pt-2 border-t border-orange-500/20 flex items-center justify-between">
+              <button type="button" id="btn-model-not-listed" class="text-xs text-orange-400 hover:text-orange-300 font-medium underline flex items-center gap-1 cursor-pointer min-h-[44px]">
+                <span>🔍 Weet ik niet — toon alle geschikte modellen</span>
+              </button>
             </div>
-
-            <!-- OPTIONAL FIELD OBSERVATION FEEDBACK CARD -->
-            <div id="field-observation-card" class="hidden bg-gray-900 border border-gray-700 rounded-xl p-4 space-y-3">
-              <div class="flex items-center justify-between">
-                <h5 class="text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>🔬 Help STIHLDecoder verbeteren (Vrijwillig)</span>
-                </h5>
-                <span class="text-2xs font-mono text-gray-400">Review Data</span>
-              </div>
-              <p class="text-2xs text-gray-300 leading-relaxed">
-                Als u dit deelt, slaan we het serienummer, uw opgegeven model, de huidige serienummerindicatie en de door u gekozen bron van het model privé op voor handmatige controle. Deze melding wijzigt de decoder niet automatisch.
-              </p>
-              <div class="space-y-2.5">
-                <div>
-                  <label for="obs-source-select" class="block text-2xs font-semibold text-gray-400 mb-1">Waar heb je het model afgelezen?</label>
-                  <select id="obs-source-select" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-gray-100">
-                    <option value="TYPEPLATE">Typeplaatje op de machine</option>
-                    <option value="MODEL_STICKER">Sticker of opdruk op de kap</option>
-                    <option value="OWNER_MANUAL">Handleiding van de machine</option>
-                    <option value="PURCHASE_DOCUMENT">Aankoopbewijs / factuur</option>
-                    <option value="OWNER_KNOWLEDGE">Eigen kennis / herinnering</option>
-                    <option value="OTHER">Anders</option>
-                  </select>
-                </div>
-                <div class="flex items-start gap-2 pt-1">
-                  <input type="checkbox" id="obs-consent-checkbox" class="mt-0.5 rounded border-gray-700 bg-gray-950 text-orange-500 focus:ring-orange-500">
-                  <label for="obs-consent-checkbox" class="text-2xs text-gray-300 leading-tight cursor-pointer">
-                    Ik wil deze modelcorrectie delen met STIHLDecoder om de serienummerherkenning te helpen verbeteren.
-                  </label>
-                </div>
-                <div class="pt-2 flex items-center gap-3">
-                  <button type="button" id="obs-submit-btn" class="px-3.5 py-1.5 bg-orange-600 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-500 text-white font-bold text-xs rounded-lg transition cursor-pointer">
-                    Verstuur veldobservatie
-                  </button>
-                  <span id="obs-feedback-status" class="text-2xs text-gray-400 font-medium"></span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <span class="text-xs text-gray-400">Aandrijvingstype:</span>
-              <div id="res-fuel-type" class="text-sm font-bold text-emerald-400 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
-              <div id="res-fuel-evidence" class="text-2xs text-gray-400 mt-1 hidden"></div>
-            </div>
-
-            <!-- PRECISE SERIAL BREAKPOINTS PRODUCTION PERIOD & GENERATION CARD -->
-            <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800 space-y-1.5">
-              <div class="flex justify-between items-center">
-                <span class="text-xs text-gray-400 font-medium">Productieperiode-indicatie & uitvoering:</span>
-                <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Breakpoint-gebaseerde indicatie</span>
-              </div>
-
-              <span id="res-years" class="text-xl font-extrabold text-orange-400 block font-mono">Niet vastgesteld</span>
-
-              <span id="res-generation" class="text-xs font-bold text-gray-100 block">
-                Niet vastgesteld
-              </span>
-
-              <div id="res-highlights-container" class="pt-2 mt-2 border-t border-gray-800/80">
-                <p id="res-highlights-text" class="text-xs text-gray-300 leading-relaxed">
-                  ℹ️ Serienummeranalyse wordt hier getoond zodra u een geldige invoer decodeert.
-                </p>
-              </div>
-            </div>
-
-            <!-- Bronstatus Indicator -->
-            <div id="res-source-status-box" class="bg-gray-900/90 p-3 rounded-xl border border-gray-800 flex justify-between items-center text-xs">
-              <span class="text-gray-400 font-medium">Bronstatus:</span>
-              <span id="res-source-status-text" class="text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Nog niet gekoppeld (Breakpoint Match)</span>
-            </div>
-
-            <div>
-              <span class="text-xs text-gray-400">Fabriek / Herkomst:</span>
-              <div id="res-country" class="text-sm font-bold text-white mt-0.5">Niet vastgesteld</div>
-            </div>
-
-            <div class="pt-3 border-t border-gray-800 grid grid-cols-2 gap-3 text-xs">
-              <div id="res-disp-box">
-                <span class="text-gray-400 block">Cilinderinhoud:</span>
-                <span id="spec-disp" class="font-semibold text-gray-200">Niet vastgesteld</span>
-              </div>
-              <div id="spec-power-box">
-                <span class="text-gray-400 block">Vermogen:</span>
-                <span id="spec-power" class="font-semibold text-gray-200">Niet vastgesteld</span>
-              </div>
+            <div id="model-assist-confirmed-badge" class="hidden text-2xs text-emerald-400 font-semibold flex items-center justify-between pt-1 border-t border-orange-500/20">
+              <span>✓ Model geselecteerd: <span id="model-assist-confirmed-name" class="font-bold"></span> — specificaties ter referentie</span>
+              <button type="button" id="model-assist-reset-btn" class="text-xs text-gray-400 hover:text-white underline cursor-pointer min-h-[44px]">Kies ander model</button>
             </div>
           </div>
 
-          <!-- FULL Technical Specs & Service Specifications Grid -->
+          <!-- MODEL MISMATCH & UNVERIFIED WARNINGS -->
+          <div id="model-mismatch-warning" class="hidden bg-amber-950/40 border border-amber-500/40 rounded-xl p-3.5 space-y-1.5">
+            <div class="flex items-center gap-2 text-amber-400 text-xs font-bold">
+              <span id="model-mismatch-title">⚠️ Model door gebruiker bevestigd: <span id="model-mismatch-name"></span></span>
+            </div>
+            <p class="text-2xs text-gray-300 leading-relaxed">
+              Dit model wijkt af van onze serienummerindicatie.
+            </p>
+            <p id="model-mismatch-subtext" class="text-2xs text-amber-300 font-medium">
+              Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.
+            </p>
+          </div>
+
+          <div id="model-unverified-warning" class="hidden bg-blue-950/40 border border-blue-500/40 rounded-xl p-3.5 space-y-2">
+            <div class="flex items-center gap-2 text-blue-400 text-xs font-bold">
+              <span>ℹ️ Model door gebruiker opgegeven: <span id="unverified-model-name"></span></span>
+            </div>
+            <p class="text-2xs text-gray-300 leading-relaxed">
+              Dit model wijkt af van onze serienummerindicatie.
+            </p>
+            <p class="text-2xs text-amber-300 font-medium">
+              Voor dit model hebben we nog onvoldoende gecontroleerde technische gegevens.
+            </p>
+          </div>
+
+          <!-- Specificaties & Kerngegevens (Schoner tonen) -->
           <div class="bg-gray-950 rounded-xl p-5 border border-gray-800 space-y-4">
-            <div class="flex items-center justify-between border-b border-gray-800/80 pb-3">
-              <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                <span id="serial-specs-heading">Service Specificaties & Aandrijving</span>
-              </h4>
-              <span id="serial-specs-badge" class="hidden text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"></span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800/80 pb-3">
+              <div class="flex items-center gap-2">
+                <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                  <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  <span id="serial-specs-heading">Technische Specificaties</span>
+                </h4>
+                <span id="serial-specs-badge" class="hidden text-2xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"></span>
+              </div>
+              <!-- Teller beschikbare specificaties -->
+              <span id="res-specs-count-badge" class="text-2xs font-semibold px-2.5 py-0.5 rounded-full bg-gray-900 text-gray-400 border border-gray-800">
+                Specificaties beschikbaar
+              </span>
             </div>
 
-            <div id="specs-grid-container" class="space-y-4">
+            <!-- Aandrijving & Cilinderinhoud hero strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs bg-gray-900/60 p-3.5 rounded-xl border border-gray-800/60">
+              <div>
+                <span class="text-gray-400 block text-2xs">Aandrijvingstype:</span>
+                <div id="res-fuel-type" class="text-sm font-bold text-emerald-400 mt-0.5">🔥 Benzine (2-Takt M-Tronic)</div>
+                <div id="res-fuel-evidence" class="text-3xs text-gray-500 mt-0.5 hidden"></div>
+              </div>
+              <div id="res-disp-box">
+                <span class="text-gray-400 block text-2xs">Cilinderinhoud:</span>
+                <span id="spec-disp" class="text-sm font-bold text-gray-100">Niet vastgesteld</span>
+              </div>
+              <div id="spec-power-box">
+                <span class="text-gray-400 block text-2xs">Vermogen:</span>
+                <span id="spec-power" class="text-sm font-bold text-gray-100">Niet vastgesteld</span>
+              </div>
+            </div>
+
+            <!-- Specs Grid (Groepeert Motor, Brandstof, Machine, Zaag) -->
+            <div id="specs-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- Section 1: Motor -->
               <div id="serial-sec-motor" class="bg-gray-900/80 rounded-xl p-4 border border-gray-800 space-y-2.5">
                 <span class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Motor</span>
@@ -657,15 +698,15 @@
                     <span id="serial-spec-oil-tank" class="font-semibold text-gray-200">-</span>
                   </div>
                   <div id="spec-carb-h-box">
-                    <span class="text-gray-400 block">Carburateur H-Schroef:</span>
+                    <span class="text-gray-400 block">Carburateur H:</span>
                     <span id="spec-carb-h" class="font-semibold text-gray-200">Niet vastgesteld</span>
                   </div>
                   <div id="spec-carb-l-box">
-                    <span class="text-gray-400 block">Carburateur L-Schroef:</span>
+                    <span class="text-gray-400 block">Carburateur L:</span>
                     <span id="spec-carb-l" class="font-semibold text-gray-200">Niet vastgesteld</span>
                   </div>
                   <div id="spec-carb-la-box">
-                    <span class="text-gray-400 block">Carburateur LA-Schroef:</span>
+                    <span class="text-gray-400 block">Carburateur LA:</span>
                     <span id="spec-carb-la" class="font-semibold text-gray-200">Niet vastgesteld</span>
                   </div>
                   <div id="spec-oil-box">
@@ -709,6 +750,7 @@
                 </div>
               </div>
             </div>
+
             <div id="serial-spec-summary" class="hidden rounded-xl border border-gray-800 bg-gray-900/70 p-3 text-xs text-gray-300">
               Technische specificaties worden pas getoond wanneer het exacte model voldoende is bevestigd.
             </div>
@@ -734,48 +776,126 @@
           </div>
         </div>
 
-        <!-- Stop Heling Police Check Banner -->
-        <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-5 space-y-4">
-          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div class="flex items-start gap-3">
-              <div class="p-2.5 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30 flex-shrink-0 mt-0.5">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <!-- ========================================== -->
+        <!-- LAAG 3: TECHNISCHE DETAILS & HERKOMST (INKLAPBAAR) -->
+        <!-- ========================================== -->
+        <details id="res-tech-details" class="bg-gray-950/90 border border-gray-800 rounded-xl p-5 text-xs group space-y-4">
+          <summary class="font-bold text-gray-300 flex items-center justify-between cursor-pointer min-h-[44px] list-none select-none">
+            <span class="flex items-center gap-2">
+              <span class="p-1.5 rounded-lg bg-gray-800 text-orange-400">🔧</span>
+              <span class="text-sm">Technische details, herkomst en StopHeling-verificatie</span>
+            </span>
+            <span class="text-orange-400 text-sm group-open:rotate-180 transition font-mono">▼</span>
+          </summary>
+
+          <div class="pt-4 border-t border-gray-800 space-y-4">
+            <!-- Productieperiode & Breakpoints -->
+            <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800 space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400 font-medium">Productieperiode-indicatie & uitvoering:</span>
+                <span id="res-range-match-tag" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">Breakpoint-gebaseerde indicatie</span>
               </div>
-              <div>
-                <h5 class="text-sm font-bold text-white flex items-center gap-2">
-                  Controleer op Gestolen Eigendom (StopHeling®)
-                  <span id="stopheling-badge-status" class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Externe StopHeling-check</span>
-                </h5>
-                <p class="text-xs text-gray-300 mt-1">
-                  Kopieer het serienummer om direct te zoeken in het landelijke StopHeling-register van de politie.
+              <span id="res-years" class="text-lg font-extrabold text-orange-400 block font-mono">Niet vastgesteld</span>
+              <span id="res-generation" class="text-xs font-bold text-gray-100 block">Niet vastgesteld</span>
+              <div id="res-highlights-container" class="pt-2 mt-2 border-t border-gray-800/80">
+                <p id="res-highlights-text" class="text-xs text-gray-300 leading-relaxed">
+                  ℹ️ Serienummeranalyse wordt hier getoond zodra u een geldige invoer decodeert.
                 </p>
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2.5 self-stretch md:self-center justify-end">
-              <button
-                id="stopheling-copy-btn"
-                class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-md shadow-blue-600/30 flex items-center gap-2 cursor-pointer"
-                aria-label="Kopieer serienummer naar klembord en open StopHeling.nl"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                <span>Kopieer serienummer & open StopHeling.nl</span>
+            <!-- Bronstatus Indicator -->
+            <div id="res-source-status-box" class="bg-gray-900/90 p-3 rounded-xl border border-gray-800 flex justify-between items-center text-xs">
+              <span class="text-gray-400 font-medium">Bronstatus:</span>
+              <span id="res-source-status-text" class="text-2xs font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Nog niet gekoppeld (Breakpoint Match)</span>
+            </div>
+
+            <!-- Stop Heling Police Check Banner -->
+            <div class="bg-blue-950/40 border border-blue-500/40 rounded-xl p-4 space-y-3">
+              <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="p-2 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30 flex-shrink-0 mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                  </div>
+                  <div>
+                    <h5 class="text-xs font-bold text-white flex items-center gap-2">
+                      Controleer op Gestolen Eigendom (StopHeling®)
+                      <span id="stopheling-badge-status" class="px-2 py-0.5 text-2xs font-mono font-bold rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">Externe StopHeling-check</span>
+                    </h5>
+                    <p class="text-2xs text-gray-300 mt-0.5">
+                      Kopieer het serienummer om direct te zoeken in het landelijke StopHeling-register van de politie.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  id="stopheling-copy-btn"
+                  class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2 rounded-xl transition shadow-md shadow-blue-600/30 flex items-center gap-2 cursor-pointer min-h-[44px] whitespace-nowrap"
+                  aria-label="Kopieer serienummer naar klembord en open StopHeling.nl"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                  <span>Kopieer & open StopHeling</span>
+                </button>
+              </div>
+
+              <!-- User Self-Check Checkbox & Note -->
+              <div class="border-t border-blue-500/20 pt-2.5 flex flex-col gap-2">
+                <label class="flex items-center gap-2 cursor-pointer text-2xs text-gray-200">
+                  <input type="checkbox" id="stopheling-user-checkbox" class="w-4 h-4 rounded border-gray-700 bg-gray-900 text-orange-500 focus:ring-orange-500" />
+                  <span>Ik heb dit serienummer zelf gecontroleerd op StopHeling.nl en geen diefstalmelding gevonden</span>
+                </label>
+                <div id="stopheling-self-reported-note" class="hidden bg-neutral-900 border border-neutral-700 rounded-lg p-2.5 text-2xs text-gray-400 flex items-center gap-2">
+                  <span class="text-amber-400 font-bold">Aantekening:</span>
+                  <span>Zelf gerapporteerd door bezoeker, niet geverifieerd door STIHL Decoder.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vrijwillige veldobservatie -->
+            <div id="field-observation-card" class="hidden bg-gray-900 border border-gray-700 rounded-xl p-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <h5 class="text-xs font-bold text-white flex items-center gap-1.5">
+                  <span>🔬 Help STIHLDecoder verbeteren (Vrijwillig)</span>
+                </h5>
+                <span class="text-2xs font-mono text-gray-400">Review Data</span>
+              </div>
+              <p class="text-2xs text-gray-300 leading-relaxed">
+                Als u dit deelt, slaan we het serienummer, uw opgegeven model, de huidige serienummerindicatie en de door u gekozen bron van het model privé op voor handmatige controle. Deze melding wijzigt de decoder niet automatisch.
+              </p>
+              <div class="space-y-2.5">
+                <div>
+                  <label for="obs-source-select" class="block text-2xs font-semibold text-gray-400 mb-1">Waar heb je het model afgelezen?</label>
+                  <select id="obs-source-select" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-gray-100">
+                    <option value="TYPEPLATE">Typeplaatje op de machine</option>
+                    <option value="MODEL_STICKER">Sticker of opdruk op de kap</option>
+                    <option value="OWNER_MANUAL">Handleiding van de machine</option>
+                    <option value="PURCHASE_DOCUMENT">Aankoopbewijs / factuur</option>
+                    <option value="OWNER_KNOWLEDGE">Eigen kennis / herinnering</option>
+                    <option value="OTHER">Anders</option>
+                  </select>
+                </div>
+                <div class="flex items-start gap-2 pt-1">
+                  <input type="checkbox" id="obs-consent-checkbox" class="mt-0.5 rounded border-gray-700 bg-gray-950 text-orange-500 focus:ring-orange-500">
+                  <label for="obs-consent-checkbox" class="text-2xs text-gray-300 leading-tight cursor-pointer">
+                    Ik wil deze modelcorrectie delen met STIHLDecoder om de serienummerherkenning te helpen verbeteren.
+                  </label>
+                </div>
+                <div class="pt-2 flex items-center gap-3">
+                  <button type="button" id="obs-submit-btn" class="px-3.5 py-2 bg-orange-600 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-500 text-white font-bold text-xs rounded-lg transition cursor-pointer min-h-[44px]">
+                    Verstuur veldobservatie
+                  </button>
+                  <span id="obs-feedback-status" class="text-2xs text-gray-400 font-medium"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Download onafhankelijk rapport -->
+            <div class="pt-2 flex justify-end">
+              <button id="download-passport-btn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer min-h-[44px]" aria-label="Download onafhankelijk rapport als afbeelding">
+                <span>📷 Download onafhankelijk rapport als afbeelding</span>
               </button>
             </div>
           </div>
-
-          <!-- User Self-Check Checkbox & Note -->
-          <div class="border-t border-blue-500/20 pt-3 flex flex-col gap-2">
-            <label class="flex items-center gap-2.5 cursor-pointer text-xs text-gray-200">
-              <input type="checkbox" id="stopheling-user-checkbox" class="w-4 h-4 rounded border-gray-700 bg-gray-900 text-orange-500 focus:ring-orange-500" />
-              <span>Ik heb dit serienummer zelf gecontroleerd op StopHeling.nl en geen diefstalmelding gevonden</span>
-            </label>
-            <div id="stopheling-self-reported-note" class="hidden bg-neutral-900 border border-neutral-700 rounded-lg p-3 text-2xs text-gray-400 flex items-center gap-2">
-              <span class="text-amber-400 font-bold">Aantekening:</span>
-              <span>Zelf gerapporteerd door bezoeker, niet geverifieerd door STIHL Decoder.</span>
-            </div>
-          </div>
-        </div>
+        </details>
       </div>
       </div>
     </section>
@@ -1408,7 +1528,8 @@
             }).join('');
             modelsListEl.classList.remove('hidden');
           } else {
-            modelsListEl.classList.add('hidden');
+            modelsListEl.innerHTML = '<span class="text-2xs text-gray-400 italic">Geen afzonderlijke modelbevestiging — zie modelreeks</span>';
+            modelsListEl.classList.remove('hidden');
           }
 
           if (res.catalogPart && res.catalogPart.part_number) {
@@ -1555,6 +1676,17 @@
           } else {
             if (partsBtn) partsBtn.classList.add('hidden');
             if (partsBanner) partsBanner.classList.add('hidden');
+          }
+
+          const totalModelSpecs = [
+            hasDisp, hasPower, hasBoreStroke, hasRpm,
+            hasSpark, hasGap, hasFuelTank, hasOilTank,
+            hasCarbH, hasCarbL, hasCarbLa,
+            hasWeight, hasBlowing, hasPitch || hasGauge
+          ].filter(Boolean).length;
+          const modelSpecsBadge = document.getElementById('model-specs-count-badge');
+          if (modelSpecsBadge) {
+            modelSpecsBadge.innerText = `${totalModelSpecs} van 14 specificaties beschikbaar`;
           }
 
           modelCard.classList.remove('hidden');
@@ -1940,9 +2072,43 @@
             if (safePreviewCard) safePreviewCard.classList.add('hidden');
             if (serialSpecSummary) serialSpecSummary.classList.remove('hidden');
           }
+          const resSpecsBadge = document.getElementById('res-specs-count-badge');
+          if (resSpecsBadge) {
+            resSpecsBadge.innerText = `${totalVisibleRows} van 16 specificaties beschikbaar`;
+          }
         }
         if (isBattery && serialSpecSummary) {
           serialSpecSummary.classList.toggle('hidden', hasExactModel);
+        }
+
+        // Trust Status Badge (Text + Color, never color alone)
+        const confBadge = document.getElementById('res-confidence-badge');
+        if (confBadge) {
+          if (res.sourceStatus === 'CANONICAL_VERIFIED' || res.modelIdentitySource === 'OFFICIAL_STIHL_LOOKUP' || res.modelIdentityStatus === 'EXACT_MODEL_IDENTIFIED') {
+            confBadge.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1';
+            confBadge.innerText = '✓ Geverifieerd';
+          } else if (res.modelIdentityStatus === 'USER_CONFIRMED_MODEL') {
+            confBadge.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1';
+            confBadge.innerText = '✓ Door gebruiker bevestigd';
+          } else if (res.modelIdentityStatus === 'PROBABLE_MODEL_SERIES' || (res.confidenceLabel && res.confidenceLabel.includes('Waarschijnlijk'))) {
+            confBadge.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1';
+            confBadge.innerText = '≈ Waarschijnlijk model';
+          } else {
+            confBadge.className = 'px-3 py-1 text-xs font-semibold rounded-full bg-gray-800 text-gray-300 border border-gray-700 flex items-center gap-1';
+            confBadge.innerText = '? Onbekend';
+          }
+        }
+
+        // Disambiguation Option: Weet ik niet — toon alle geschikte modellen
+        const btnModelNotListed = document.getElementById('btn-model-not-listed');
+        if (btnModelNotListed) {
+          btnModelNotListed.onclick = () => {
+            showToast('Alle onderdelen voor de complete modelreeks worden getoond.');
+            const resPartsLink = document.getElementById('res-model-parts-link');
+            if (resPartsLink && res.canonicalPartsPath) {
+              resPartsLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          };
         }
 
         const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
