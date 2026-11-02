@@ -26,6 +26,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const candidateRegistryPaths = [
   path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'verified_amazon_registry.json'),
+  path.resolve(__dirname, '..', '..', 'PHASE59F1_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59F_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59E_ACTIVATION_CANDIDATES.json'),
   path.resolve(__dirname, '..', '..', 'PHASE59D_VERIFIED_OFFERS.json')
@@ -179,6 +180,17 @@ export class VerifiedOfferRegistry {
     offer.updated_at = new Date().toISOString();
 
     return { success: true, offer, errors: [] };
+  }
+
+  /**
+   * Activates an eligible offer to ACTIVE state (subject to Two-Gate verification and limits).
+   *
+   * @param {string} partNumber
+   * @param {string} [reason]
+   * @returns {{ success: boolean, offer?: Object, errors: string[] }}
+   */
+  activateOffer(partNumber, reason = 'Activated by operator') {
+    return this.setOfferStatus(partNumber, 'ACTIVE', reason);
   }
 
   /**

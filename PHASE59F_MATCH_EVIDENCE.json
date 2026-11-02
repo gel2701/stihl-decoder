@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "phase": "59F",
+  "phase": "59F.1",
   "generated_at": "2026-11-02T00:17:12.874Z",
   "investigation_summary": {
     "total_parts_investigated": 25,
-    "fully_verified_asins_found": 3,
+    "fully_verified_asins_found": 1,
     "part_compatibility_verified_staged": 22,
-    "mismatches_rejected": 0,
+    "mismatches_rejected": 2,
     "search_fallback_preserved": 25,
     "research_methodology": [
       "Official STIHL master parts catalog & exploded view diagrams (model_part_fitments)",
@@ -26,11 +26,11 @@
       "ean_gtin": "0087295130667",
       "package_quantity": 1,
       "oem_classification": "OEM_SUPPLIER_EQUIVALENT",
-      "status": "VERIFIED_ELIGIBLE",
-      "gate_1_status": "PASS",
-      "gate_2_status": "PASS",
-      "compatibility_proof": "Directe fabrieksspecificatie voor STIHL 0000 400 7025 voor STIHL 4-MIX en 2-MIX motoren (o.a. MS 150, MS 151, MS 193, MS 194, MS 201, FS 40, FS 50, FS 56, FC 56, HT 56, KM 56).",
-      "asin_identity_proof": "Productintelligence en handelsgegevens bevestigen Amazon ASIN B07RHQ5FR4 als authentieke NGK CMR7H (Stock No. 3066, GTIN: 0087295130667) in categorie Automotive / Small Engine Replacement Spark Plugs.",
+      "status": "INCORRECT_MATCH_CONFIRMED",
+      "gate_1_status": "FAIL",
+      "gate_2_status": "FAIL",
+      "compatibility_proof": "AFGEWEZEN: Officiële STIHL onderdelenlijsten (o.a. BR 700 / BR 200, zie Sandbysmeden) identificeren 0000 400 7025 als STIHL ZK C 10 (verpakking van 10 stuks bougies, 1=10 Stk). ZK C correspondeert met hittegraad 6 (CMR6H equivalent), niet CMR7H.",
+      "asin_identity_proof": "ASIN B07RHQ5FR4 is een enkelstuks verpakking (1 pc) van NGK CMR7H (3066). Dit wijkt af op zowel verpakkingseenheid (10 vs 1) als bougiemodel (ZK C / CMR6H vs CMR7H). Match permanent afgewezen.",
       "evidence_sources": [
         {
           "type": "EXTERNAL_CATALOG",
@@ -39,7 +39,13 @@
           "claim": "NGK Bougie CMR7H (Artikelnr: 3066, EAN: 0087295130667). Schroefdraad M10x1.0, lengte 12.7 mm, sleutelwijdte 16 mm, ontstoord 10 kOhm. Bevestigt 1-op-1 ASIN B07RHQ5FR4 als authentieke NGK bougie.",
           "retrieved_at": "2026-11-02"
         }
-      ]
+      ],
+      "mismatch_details": {
+        "stihl_description": "STIHL ZK C 10 (pack of 10)",
+        "primary_source": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-BR-700.pdf",
+        "mismatch_type": "QUANTITY_AND_MODEL_MISMATCH",
+        "corrective_action": "Aanbieding gesuspendeerd van directe ASIN-activering. Zoekfallback actief. NGK CMR7H behouden in onderzoeksbacklog."
+      }
     },
     {
       "part_number": "00004007009",
@@ -76,11 +82,11 @@
       "ean_gtin": "5400182633457",
       "package_quantity": 1,
       "oem_classification": "MANUFACTURER_AFTERMARKET",
-      "status": "VERIFIED_ELIGIBLE",
-      "gate_1_status": "PASS",
-      "gate_2_status": "PASS",
-      "compatibility_proof": "Directe kruisreferentie en fabrieksuitwisselbaar tandwiel voor STIHL 0000 642 1223 (3/8\" 7T Small Spline) voor STIHL 034, 036, MS 360, MS 361, MS 362, MS 440, MS 460 met Small Spline koppelingstrommel.",
-      "asin_identity_proof": "Oregon Power Mate Rim Sprocket 18720 (UPC: 036577003489, EAN: 5400182633457). Steek 3/8\", 7 tanden, Small 7-Spline. Bevestigt 1-op-1 ASIN B000IBWVWG als authentiek Oregon vervangend kettingwiel.",
+      "status": "INCORRECT_MATCH_CONFIRMED",
+      "gate_1_status": "FAIL",
+      "gate_2_status": "FAIL",
+      "compatibility_proof": "AFGEWEZEN: STIHL 0000 642 1223 is een 3/8\" 7T Standard 7-Spline (SD7, ~22.2 mm binnendiameter) kettingwiel voor professionele zagen (034, 036, MS 360, MS 361, MS 440, MS 460, MS 660). Oregon 18720 is Small 7-Spline (SM7, ~19.0 mm binnendiameter). Het tandwiel past fysiek niet op koppelingstrommels van 0000 642 1223.",
+      "asin_identity_proof": "ASIN B000IBWVWG is Oregon 18720 (Small 7-Spline SM7). Het correcte Oregon equivalent voor STIHL 0000 642 1223 is Oregon 68210 (Standard 7-Spline SD7). Oregon 18720 hoort bij STIHL 0000 642 1249. Match afgewezen wegens fysieke spline-incompatibiliteit.",
       "evidence_sources": [
         {
           "type": "EXTERNAL_CATALOG",
@@ -89,7 +95,15 @@
           "claim": "Oregon Power Mate Rim Sprocket 18720 (UPC: 036577003489, EAN: 5400182633457). Steek 3/8\", 7 tanden, Small 7-Spline (SM7, 19mm binnendiameter). Bevestigt 1-op-1 ASIN B000IBWVWG als authentiek Oregon vervangend kettingtandwiel.",
           "retrieved_at": "2026-11-02"
         }
-      ]
+      ],
+      "mismatch_details": {
+        "stihl_spline_type": "Standard 7-Spline (SD7, ~22.2mm)",
+        "candidate_spline_type": "Small 7-Spline (SM7, ~19.0mm)",
+        "correct_oregon_replacement": "Oregon 68210",
+        "correct_stihl_for_oregon_18720": "0000 642 1249",
+        "mismatch_type": "SPLINE_TYPE_MISMATCH",
+        "corrective_action": "Aanbieding gesuspendeerd van directe ASIN-activering. Zoekfallback actief. Oregon 18720 behouden in onderzoeksbacklog voor STIHL 0000 642 1249."
+      }
     },
     {
       "part_number": "00003503502",
@@ -641,5 +655,6 @@
         }
       ]
     }
-  ]
+  ],
+  "updated_at": "2026-11-02T02:08:11.778Z"
 }
