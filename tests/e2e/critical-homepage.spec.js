@@ -137,4 +137,40 @@ test.describe('Critical Homepage User Journeys', () => {
     gates.assertClean('Model-Only Passport Creation Journey');
   });
 
+  test('G. Fase 3: Directe onderdelensectie toont direct bruikbare onderdelen voor gevonden model', async ({ page }) => {
+    const gates = attachIntegrityGates(page);
+    await page.goto('/');
+
+    const input = page.locator('#code-input');
+    const btn = page.locator('#search-btn');
+    const directPartsSection = page.locator('#model-direct-parts-section');
+    const directPartsTitle = page.locator('#model-direct-parts-title-model');
+    const directPartsGrid = page.locator('#model-direct-parts-grid');
+    const allPartsBtn = page.locator('#model-direct-parts-all-btn');
+
+    await input.fill('MS 260');
+    await btn.click();
+
+    await expect(directPartsSection).toBeVisible({ timeout: 5000 });
+    await expect(directPartsTitle).toContainText('MS 260');
+    await expect(directPartsGrid).toBeVisible();
+
+    // Must show compact parts cards
+    const cards = directPartsGrid.locator('> div');
+    const count = await cards.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+
+    // Check first card details
+    const firstCard = cards.first();
+    await expect(firstCard).toContainText('Bevestigde compatibiliteit');
+    await expect(firstCard).not.toContainText('Gegarandeerd passend');
+    await expect(firstCard.locator('a[href^="/onderdeelnummer/"]')).toBeVisible();
+
+    // Bottom CTA: Bekijk alle onderdelen voor MS 260
+    await expect(allPartsBtn).toBeVisible();
+    await expect(allPartsBtn).toHaveAttribute('href', '/kettingzagen/ms-260/onderdelen/');
+
+    gates.assertClean('Phase 3 Direct Parts Journey');
+  });
+
 });

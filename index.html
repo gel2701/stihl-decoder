@@ -485,9 +485,39 @@
           </div>
         </div>
 
-        <!-- LAAG 3: ONDERDELEN BANNER & MACHINEPASPOORT BANNER -->
-        <div class="space-y-3 pt-2">
-          <!-- Bottom Parts Banner -->
+        <!-- LAAG 3: DIRECTE ONDERDELENSECTIE & MACHINEPASPOORT BANNER -->
+        <div class="space-y-4 pt-2">
+          <!-- FASE 3: DIRECTE ONDERDELENSECTIE OP MODELRESULTAAT -->
+          <div id="model-direct-parts-section" class="hidden bg-gray-950/90 border border-orange-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                  <span>⚙️ Onderdelen voor jouw STIHL <span id="model-direct-parts-title-model" class="text-orange-400"></span></span>
+                </h4>
+                <p class="text-2xs text-gray-400 mt-0.5">Veelgezochte onderhouds- en slijtageonderdelen met gecontroleerde compatibiliteit.</p>
+              </div>
+              <span class="text-3xs font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 self-start sm:self-auto">
+                ✓ Bevestigde selectie
+              </span>
+            </div>
+
+            <!-- Compact Parts Cards Grid -->
+            <div id="model-direct-parts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Doorklik naar volledige onderdelencatalogus -->
+            <div class="pt-3 border-t border-gray-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p class="text-2xs text-gray-400">
+                Zoek je andere onderdelen, behuizingen of revisiesets voor deze machine?
+              </p>
+              <a id="model-direct-parts-all-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-md shadow-orange-600/20 transition flex items-center justify-center gap-2 min-h-[44px] whitespace-nowrap">
+                <span>Bekijk alle onderdelen voor <span id="model-direct-parts-btn-model"></span> →</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bottom Parts Banner (Fallback when no direct wear parts) -->
           <div id="model-card-parts-banner" class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <div class="space-y-1">
               <div class="flex items-center gap-2">
@@ -772,6 +802,35 @@
               <div class="pt-2 border-t border-blue-500/20 text-2xs text-gray-400">
                 ℹ️ Deze gegevens zijn veilig afgeleid van de waarschijnlijke modelreeks. Exacte technische uitvoering kan per variant verschillen.
               </div>
+            </div>
+          </div>
+          <!-- FASE 3: DIRECTE ONDERDELENSECTIE OP SERIENUMMERRESULTAAT -->
+          <div id="res-direct-parts-section" class="hidden bg-gray-950/90 border border-orange-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                  <span>⚙️ Onderdelen voor jouw STIHL <span id="res-direct-parts-title-model" class="text-orange-400"></span></span>
+                </h4>
+                <p class="text-2xs text-gray-400 mt-0.5">Veelgezochte onderhouds- en slijtageonderdelen met gecontroleerde compatibiliteit.</p>
+              </div>
+              <span class="text-3xs font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 self-start sm:self-auto">
+                ✓ Bevestigde selectie
+              </span>
+            </div>
+
+            <!-- Compact Parts Cards Grid -->
+            <div id="res-direct-parts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Doorklik naar volledige onderdelencatalogus -->
+            <div class="pt-3 border-t border-gray-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p class="text-2xs text-gray-400">
+                Zoek je andere onderdelen, behuizingen of revisiesets voor deze machine?
+              </p>
+              <a id="res-direct-parts-all-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-md shadow-orange-600/20 transition flex items-center justify-center gap-2 min-h-[44px] whitespace-nowrap">
+                <span>Bekijk alle onderdelen voor <span id="res-direct-parts-btn-model"></span> →</span>
+              </a>
             </div>
           </div>
         </div>
@@ -1425,6 +1484,105 @@
         }
       }
 
+      function escapeHtml(str) {
+        if (typeof str !== 'string') return '';
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function renderDirectPartCard(p, modelName) {
+        const safePartName = escapeHtml(p.part_name || 'Vervangingsonderdeel');
+        const safePartNo = escapeHtml(p.part_number_display || p.part_number || '');
+        const safeCategory = escapeHtml(p.category_label || p.wear_label || 'Onderdeel');
+        const safeDiagSection = p.diagram_section_name ? escapeHtml(p.diagram_section_name) : null;
+        const safeDiagPos = p.diagram_position ? escapeHtml(String(p.diagram_position)) : null;
+        const safePurchaseLabel = escapeHtml(p.purchase_label || 'Zoek op Amazon');
+        const safePurchaseUrl = p.purchase_url ? escapeHtml(p.purchase_url) : null;
+
+        return `
+          <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 flex flex-col justify-between space-y-3 hover:border-gray-700 transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-3xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-gray-950 text-orange-400 border border-gray-800">
+                  ${safeCategory}
+                </span>
+                <span class="text-3xs font-bold px-2 py-0.5 rounded-full ${p.compatibility_badge_class || 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}">
+                  ${escapeHtml(p.compatibility_badge_text || '✓ Bevestigde compatibiliteit')}
+                </span>
+              </div>
+
+              <div class="font-bold text-sm text-white line-clamp-2 mt-1">
+                ${safePartName}
+              </div>
+
+              <div class="flex flex-wrap items-center gap-1.5 text-2xs font-mono text-gray-400 pt-0.5">
+                <span>STIHL Nr:</span>
+                <span class="text-gray-200 font-semibold">${safePartNo}</span>
+                <span class="text-3xs px-1.5 py-0.2 rounded bg-gray-800 text-gray-300 font-sans">${escapeHtml(p.origin_type || 'OEM-referentie')}</span>
+              </div>
+
+              ${safeDiagSection ? `
+                <div class="text-3xs text-gray-400 flex items-center gap-1 pt-0.5">
+                  <span>📖 Sectie: ${safeDiagSection}</span>
+                  ${safeDiagPos ? `<span class="text-gray-500 font-mono">(Pos. ${safeDiagPos})</span>` : ''}
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Acties per onderdeel -->
+            <div class="pt-2.5 border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <a href="${p.part_detail_url}" class="text-2xs font-semibold text-orange-400 hover:text-orange-300 hover:underline flex items-center gap-1 min-h-[36px] py-1" aria-label="Details voor onderdeel ${safePartNo}">
+                  <span>Details & pasvorm →</span>
+                </a>
+
+                ${p.diagram_url ? `
+                  <a href="${p.diagram_url}" class="text-2xs text-gray-300 hover:text-white bg-gray-950 hover:bg-gray-800 px-2 py-1 rounded-lg border border-gray-800 transition min-h-[36px] flex items-center gap-1" aria-label="Bekijk in explosietekening voor sectie ${safeDiagSection}">
+                    <span>Bekijk in explosietekening</span>
+                  </a>
+                ` : ''}
+              </div>
+
+              ${safePurchaseUrl ? `
+                <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" class="text-2xs font-bold text-emerald-300 bg-emerald-950/70 hover:bg-emerald-900/80 px-2.5 py-1 rounded-lg border border-emerald-500/30 transition flex items-center gap-1 min-h-[36px] whitespace-nowrap" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
+                  <span>${safePurchaseLabel}</span>
+                </a>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }
+
+      function renderDirectParts(containerEl, directPartsData, modelName) {
+        if (!containerEl || !directPartsData || !directPartsData.available || !Array.isArray(directPartsData.parts) || directPartsData.parts.length === 0) {
+          if (containerEl) containerEl.classList.add('hidden');
+          return;
+        }
+
+        const prefix = containerEl.id.startsWith('res-') ? 'res-' : 'model-';
+        const titleModelEl = document.getElementById(`${prefix}direct-parts-title-model`);
+        const btnModelEl = document.getElementById(`${prefix}direct-parts-btn-model`);
+        const allBtnEl = document.getElementById(`${prefix}direct-parts-all-btn`);
+        const gridEl = document.getElementById(`${prefix}direct-parts-grid`);
+
+        const displayModel = modelName || directPartsData.model_name || '';
+        if (titleModelEl) titleModelEl.innerText = displayModel;
+        if (btnModelEl) btnModelEl.innerText = displayModel;
+        if (allBtnEl && directPartsData.canonical_parts_path) {
+          allBtnEl.href = directPartsData.canonical_parts_path;
+        }
+
+        if (gridEl) {
+          gridEl.innerHTML = directPartsData.parts.map(p => renderDirectPartCard(p, displayModel)).join('');
+        }
+
+        containerEl.classList.remove('hidden');
+      }
+
       async function handleDecode() {
         const val = inputEl.value.trim();
 
@@ -1435,6 +1593,10 @@
         modelCard.classList.add('hidden');
         emptyState.classList.add('hidden');
         if (safePreviewCard) safePreviewCard.classList.add('hidden');
+        const modelDirectPartsSec = document.getElementById('model-direct-parts-section');
+        const resDirectPartsSec = document.getElementById('res-direct-parts-section');
+        if (modelDirectPartsSec) modelDirectPartsSec.classList.add('hidden');
+        if (resDirectPartsSec) resDirectPartsSec.classList.add('hidden');
         currentDecodeResult = null;
         manualModelOverride = null;
         currentSelectedModelSlug = null;
@@ -1676,6 +1838,16 @@
           } else {
             if (partsBtn) partsBtn.classList.add('hidden');
             if (partsBanner) partsBanner.classList.add('hidden');
+          }
+
+          // FASE 3: Directe onderdelensectie voor gevonden model
+          const modelDirectPartsSec = document.getElementById('model-direct-parts-section');
+          if (res.directParts && res.directParts.available && res.directParts.parts && res.directParts.parts.length > 0) {
+            renderDirectParts(modelDirectPartsSec, res.directParts, modelName);
+            if (partsBanner) partsBanner.classList.add('hidden');
+          } else {
+            if (modelDirectPartsSec) modelDirectPartsSec.classList.add('hidden');
+            if (partsBanner && partsPath) partsBanner.classList.remove('hidden');
           }
 
           const totalModelSpecs = [
@@ -2113,6 +2285,14 @@
 
         const stopHelingBtnSerial = document.getElementById('stopheling-btn-serial');
         if (stopHelingBtnSerial) stopHelingBtnSerial.innerText = currentSerial;
+
+        // FASE 3: Directe onderdelensectie voor serienummer met bevestigd/exact model
+        const resDirectPartsSec = document.getElementById('res-direct-parts-section');
+        if (res.directParts && res.directParts.available && res.directParts.parts && res.directParts.parts.length > 0) {
+          renderDirectParts(resDirectPartsSec, res.directParts, currentModelName || res.model);
+        } else {
+          if (resDirectPartsSec) resDirectPartsSec.classList.add('hidden');
+        }
 
         resultCard.classList.remove('hidden');
       }

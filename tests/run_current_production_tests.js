@@ -102,7 +102,8 @@ export const currentProductionSuites = [
   'tests/phase59e1_live_pilot_simulation.test.js',
   'tests/phase59f_amazon_scaling.test.js',
   'tests/phase59f1_match_correction.test.js',
-  'tests/ux_modernization_fase1_2.test.js'
+  'tests/ux_modernization_fase1_2.test.js',
+  'tests/phase3_direct_parts_integration.test.js'
 ];
 
 console.log('===============================================================');
