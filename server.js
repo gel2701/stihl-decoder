@@ -8,6 +8,7 @@ import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive, get
 import { decodeStihlCode } from './src/decoder.js';
 import { buildSearchableIdentities, normalizeSearchQuery } from './src/globalModelSearch.js';
 import { getAutocompleteSuggestions } from './src/search/IntelligentSearchEngine.js';
+import { searchIntelligentParts } from './src/search/IntelligentPartsSearchEngine.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
 import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
@@ -371,6 +372,47 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // 5a-3. REST API: GET /api/parts-search (Phase 5 Intelligent Parts Search & Multi-Dimensional Catalog Filtering)
+  if (pathname === '/api/parts-search' && req.method === 'GET') {
+    const q = (urlObj.searchParams.get('q') || '').trim();
+    const machineType = urlObj.searchParams.get('machine_type') || 'all';
+    const model = urlObj.searchParams.get('model') || 'all';
+    const category = urlObj.searchParams.get('category') || 'all';
+    const compatibility = urlObj.searchParams.get('compatibility') || 'all';
+    const hasDirectLink = urlObj.searchParams.get('has_direct_link') === 'true';
+    const page = parseInt(urlObj.searchParams.get('page') || '1', 10) || 1;
+    const limit = Math.min(Math.max(parseInt(urlObj.searchParams.get('limit') || '30', 10) || 30, 1), 100);
+
+    const searchFilters = {
+      machine_type: machineType,
+      model: model,
+      category: category,
+      compatibility: compatibility,
+      has_direct_link: hasDirectLink
+    };
+
+    const searchResults = searchIntelligentParts(q, searchFilters, { database, page, limit });
+
+    if (q && q.length >= 2) {
+      if (searchResults.total_matches > 0) {
+        logStihlEvent(EVENT_TYPES.PARTS_SEARCH_RESULTS, {
+          query: q,
+          total_matches: searchResults.total_matches,
+          page,
+          is_exact_part_lookup: searchResults.is_exact_part_lookup
+        }, req.headers['user-agent']);
+      } else {
+        logStihlEvent(EVENT_TYPES.PARTS_SEARCH_NO_RESULTS, {
+          query: q
+        }, req.headers['user-agent']);
+      }
+    }
+
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify(searchResults));
+    return;
+  }
+
   // 5b. REST API: POST /api/field-observation (Phase 38C)
   if (pathname === '/api/field-observation') {
     if (req.method !== 'POST') {
@@ -691,7 +733,15 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       const q = urlObj.searchParams.get('q') || '';
-      const partsHtml = renderPartsDiscoveryPageHtml(q, database, PRIMARY_ORIGIN);
+      const partsOptions = {
+        category: urlObj.searchParams.get('category') || 'all',
+        machine_type: urlObj.searchParams.get('machine_type') || 'all',
+        model: urlObj.searchParams.get('model') || 'all',
+        compatibility: urlObj.searchParams.get('compatibility') || 'all',
+        has_direct_link: urlObj.searchParams.get('has_direct_link') === 'true',
+        page: parseInt(urlObj.searchParams.get('page') || '1', 10) || 1
+      };
+      const partsHtml = renderPartsDiscoveryPageHtml(q, database, PRIMARY_ORIGIN, partsOptions);
       if (q && q.trim().length >= 2) {
         const normNo = PartNormalizer.normalizePartNumber(q);
         const resolvedPart = normNo ? PartCatalogResolver.resolvePartNumber(normNo, database) : null;
