@@ -28,6 +28,12 @@ import { resolvePlantRecord } from './plantResolver.js';
 import { PartCatalogResolver } from './parts/PartCatalogResolver.js';
 import { getDirectPartsForModel } from './parts/DirectPartsEngine.js';
 import { getSafeModelPath, getSafeModelPartsPath } from './publicationRules.js';
+import {
+  searchIntelligentModels,
+  VERIFIED_AUXILIARY_MODELS,
+  SEARCH_INTENTS,
+  MATCH_TYPES
+} from './search/IntelligentSearchEngine.js';
 
 function buildTechnicalSpecsFromPublicEvidence(modelKey, database) {
   const fieldMap = buildPublicEvidenceFieldMap(modelKey, database);
@@ -182,19 +188,19 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
 
   const trimmed = inputStr.trim();
   const stripped = trimmed.replace(/^STIHL[\s_\-]+/i, '').trim();
-
-  // Model intent detection on stripped input
-  const isModelIntent = Boolean(
-    resolveModelRelationship(stripped) ||
-    findPublicEvidenceModel(stripped, database) ||
-    findModelInDatabase(stripped, database.models || [])
-  );
-  if (isModelIntent) {
-    return analyzeModelQuery(stripped, database);
-  }
-
   const cleaned = stripped.replace(/[^A-Za-z0-9]/g, '');
 
+  // 1. Strict Part Number check: 11 digits (with or without spaces/hyphens)
+  if (cleaned.length === 11 && /^\d+$/.test(cleaned)) {
+    return analyzePartNumber(cleaned, database);
+  }
+
+  // 2. Historical relationship models (026, 036, 044, 046, 066, 020 T)
+  if (resolveModelRelationship(stripped)) {
+    return analyzeModelQuery(stripped, database, options);
+  }
+
+  // 2. Strict Serial Number check: 9 digits (or 8-10 digit serial candidate)
   const isNumericSerialCandidate = /^\d{8,10}$/.test(cleaned);
   const officialAnchor = isNumericSerialCandidate
     ? OfficialSerialAnchorResolver.resolve(cleaned, database, options)
@@ -206,7 +212,7 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     ? OfficialSerialAnchorResolver.resolve(officialAlias.official_serial_number, database, options)
     : null;
 
-  // 1. Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers that are not official anchors)
+  // Counterfeit Rule Evaluation (Only applicable to 9-digit serial numbers that are not official anchors)
   let counterfeitEvaluation = null;
   if (!officialAnchor && !officialAlias && cleaned.length === 9 && database.counterfeit_rules && Array.isArray(database.counterfeit_rules)) {
     for (const rule of database.counterfeit_rules) {
@@ -222,7 +228,6 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     }
   }
 
-  // 2. Determine Input Type: 9-digit Serial Number vs 11-digit Part Number vs Model Query
   if (cleaned.length === 9 && counterfeitEvaluation && counterfeitEvaluation.isCounterfeit) {
     return {
       success: false,
@@ -245,8 +250,34 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     if (cleaned.length === 9 || ((cleaned.length === 8 || cleaned.length === 10) && (options.confirmedModel || options.userConfirmedModel || options.allowVariableLength))) {
       return analyzeSerialNumber(cleaned, database, counterfeitEvaluation, options);
     }
-    if (cleaned.length === 11) {
-      return analyzePartNumber(cleaned, database);
+    // Check if it's an ambiguous short numeric model query (like 260 or 261)
+    if (cleaned.length <= 4) {
+      const intelligent = searchIntelligentModels(cleaned, database, options);
+      if (intelligent.isAmbiguous && intelligent.candidates.length > 0) {
+        return {
+          success: true,
+          type: 'MODEL_DISAMBIGUATION',
+          input: inputStr,
+          query: inputStr,
+          message: intelligent.message,
+          candidates: intelligent.candidates.map(c => {
+            const dp = getDirectPartsForModel(c.model_name, {}, database);
+            return {
+              model_name: c.model_name,
+              category: c.category,
+              category_slug: c.category_slug,
+              slug: c.slug,
+              variant: c.variant,
+              match_type: c.match_type,
+              match_label: c.match_label,
+              explanation: c.explanation,
+              canonical_model_path: c.slug ? `/${c.category_slug || 'kettingzagen'}/${c.slug}/` : null,
+              canonical_parts_path: dp.available ? dp.canonical_parts_path : null,
+              has_direct_parts: Boolean(dp.available && dp.parts && dp.parts.length > 0)
+            };
+          })
+        };
+      }
     }
     return {
       success: false,
@@ -259,10 +290,67 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     return analyzeSerialNumber(cleaned.toUpperCase(), database, counterfeitEvaluation, { ...options, isAlphanumeric: true });
   }
 
-  return analyzeModelQuery(stripped, database);
+  // 3. Intelligent Model Search
+  const intelligent = searchIntelligentModels(stripped, database, options);
+
+  // If query is ambiguous (e.g. "MS 26") -> Return Disambiguation response
+  if (intelligent.isAmbiguous && intelligent.candidates.length > 0) {
+    return {
+      success: true,
+      type: 'MODEL_DISAMBIGUATION',
+      input: inputStr,
+      query: inputStr,
+      message: intelligent.message,
+      candidates: intelligent.candidates.map(c => {
+        const dp = getDirectPartsForModel(c.model_name, {}, database);
+        return {
+          model_name: c.model_name,
+          category: c.category,
+          category_slug: c.category_slug,
+          slug: c.slug,
+          variant: c.variant,
+          match_type: c.match_type,
+          match_label: c.match_label,
+          explanation: c.explanation,
+          canonical_model_path: c.slug ? `/${c.category_slug || 'kettingzagen'}/${c.slug}/` : null,
+          canonical_parts_path: dp.available ? dp.canonical_parts_path : null,
+          has_direct_parts: Boolean(dp.available && dp.parts && dp.parts.length > 0)
+        };
+      })
+    };
+  }
+
+  // If exact match found (including typo-recovered match like MS 26O -> MS 260)
+  if (intelligent.exactMatch) {
+    const decodeOptions = intelligent.typoNotice ? { ...options, typoNotice: intelligent.typoNotice } : options;
+    return analyzeModelQuery(intelligent.exactMatch.model_name, database, decodeOptions);
+  }
+
+  // If near suggestions exist (e.g. MS 2500 -> suggests MS 250)
+  if (intelligent.suggestions && intelligent.suggestions.length > 0) {
+    return {
+      success: false,
+      status: 'NOT_FOUND',
+      type: 'MODEL_DECODE',
+      input: inputStr,
+      error: intelligent.message || `Geen exact model gevonden voor "${inputStr}". Bedoelde je wellicht: ${intelligent.suggestions.map(s => s.model_name).join(', ')}?`,
+      suggestions: intelligent.suggestions.map(s => s.model_name),
+      suggestionDetails: intelligent.suggestions.map(s => ({
+        model_name: s.model_name,
+        category: s.category,
+        category_slug: s.category_slug,
+        slug: s.slug,
+        variant: s.variant,
+        explanation: s.explanation,
+        canonical_model_path: s.slug ? `/${s.category_slug || 'kettingzagen'}/${s.slug}/` : null
+      }))
+    };
+  }
+
+  return analyzeModelQuery(stripped, database, options);
 }
 
-export function analyzeModelQuery(modelStr, database) {
+export function analyzeModelQuery(modelStr, database, options = {}) {
   const norm = normalizeModelQuery(modelStr);
   const relationship = resolveModelRelationship(modelStr);
   const publicEvidenceMatch = findPublicEvidenceModel(norm.canonicalQuery || modelStr, database);
@@ -271,8 +359,51 @@ export function analyzeModelQuery(modelStr, database) {
   let matchedModelSpec = null;
   if (!relationship) {
     matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
-    if (matchedModelSpec && !isExactModelMatch(modelStr, matchedModelSpec)) {
+        if (matchedModelSpec && !isExactModelMatch(modelStr, matchedModelSpec)) {
       matchedModelSpec = null;
+    }
+  }
+
+  // Support verified auxiliary models (e.g. FS 450, MS 261 VW)
+  if (!relationship && !matchedModelSpec) {
+    const cleanQ = (norm.canonicalQuery || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+    const cleanBase = (norm.baseModel || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+    const aux = VERIFIED_AUXILIARY_MODELS.find(m => {
+      const mClean = m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+      return mClean === cleanQ || mClean === cleanBase;
+    });
+    if (aux) {
+      matchedModelSpec = {
+        model_name: aux.model_name,
+        slug: aux.slug,
+        category: aux.category,
+        category_slug: aux.category_slug,
+        series_code: aux.series_code,
+        fuel_type_label: aux.fuel_type_label,
+        data_status: 'EVIDENCE_STORE_LINKED',
+        basic_classification: {
+          brand: 'STIHL',
+          product_category: aux.category,
+          product_type: aux.category,
+          machine_form: aux.machine_form || 'HANDHELD',
+          power_source: aux.power_source || 'GASOLINE',
+          engine_type: aux.engine_type || 'COMBUSTION_2_STROKE',
+          fuel_type: 'PETROL_OIL_MIX',
+          primary_function: aux.category === 'Bosmaaier' ? 'MOWING_CLEARING' : 'SAWING',
+          evidence_status: {
+            product_category: 'EXISTING_CANONICAL_SUPPORTED',
+            product_type: 'PREFIX_HINT_ONLY',
+            machine_form: 'PRODUCT_KNOWLEDGE',
+            power_source: 'PRODUCT_KNOWLEDGE',
+            engine_type: 'PRODUCT_KNOWLEDGE',
+            fuel_type: 'PRODUCT_KNOWLEDGE',
+            primary_function: 'PREFIX_HINT_ONLY'
+          },
+          core5_completeness: 5,
+          deep_specs_available_for_later: false,
+          notes: aux.explanation
+        }
+      };
     }
   }
 
@@ -350,7 +481,10 @@ export function analyzeModelQuery(modelStr, database) {
   const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
   const hasCatalogParts = canonicalModelObj ? PartCatalogResolver.hasPartsForModel(canonicalModelObj, database) : false;
   const canonicalPartsPath = (canonicalModelObj && hasCatalogParts) ? getSafeModelPartsPath(canonicalModelObj) : null;
-  const directParts = (canonicalModelObj && hasCatalogParts) ? getDirectPartsForModel(canonicalModelObj, {}, database) : null;
+  const directPartsCandidate = getDirectPartsForModel(canonicalModelObj || resolvedModelName, {}, database);
+  const directParts = (directPartsCandidate && directPartsCandidate.available && directPartsCandidate.parts && directPartsCandidate.parts.length > 0)
+    ? directPartsCandidate
+    : null;
 
   return {
     success: true,
@@ -360,6 +494,7 @@ export function analyzeModelQuery(modelStr, database) {
     prefixMeaning: prefixMeaning || 'STIHL Machinetype Aanduiding',
     category,
     model: resolvedModelName,
+    normalized_model: resolvedModelName,
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
     canonicalModelPath,
     canonicalPartsPath,
@@ -386,7 +521,8 @@ export function analyzeModelQuery(modelStr, database) {
     } : null,
     technicalSpecs: overlaySpecs.technicalSpecs,
     safeTechnicalPreview: { available: false, mode: 'PROBABLE_SERIES_PREVIEW', fields: [] },
-    basic_classification: basicClassification
+    basic_classification: basicClassification,
+    typoNotice: options.typoNotice || null
   };
 }
 

@@ -7,6 +7,7 @@ import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl, getTrustedDe
 import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive, getDatabaseConnection } from './src/databaseConfig.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { buildSearchableIdentities, normalizeSearchQuery } from './src/globalModelSearch.js';
+import { getAutocompleteSuggestions } from './src/search/IntelligentSearchEngine.js';
 import { handleDecodeApiV1 } from './src/StihlDecoderController.js';
 import { renderModelPageHtml } from './src/components/ModelPageTemplate.js';
 import { renderIntentPageHtml } from './src/components/IntentPageTemplate.js';
@@ -358,6 +359,15 @@ const server = http.createServer(async (req, res) => {
     }));
     res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(identities));
+    return;
+  }
+
+  // 5a-2. REST API: GET /api/search-suggest?q=... (Phase 4 Intelligent Autocomplete)
+  if (pathname === '/api/search-suggest' && req.method === 'GET') {
+    const q = (urlObj.searchParams.get('q') || '').trim();
+    const suggestions = getAutocompleteSuggestions(q, database, { limit: 6 });
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    res.end(JSON.stringify({ query: q, suggestions }));
     return;
   }
 
