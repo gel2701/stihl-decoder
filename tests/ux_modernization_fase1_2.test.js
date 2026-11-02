@@ -138,3 +138,10 @@ test('UX Modernisering Fase 2: Invariants preserved (Affiliate, SEO, Privacy)', 
   // Cookie consent invariant
   assert.ok(indexHtml.includes('cookie-consent-banner'), 'Cookie consent banner must be preserved');
 });
+
+test('UX Modernisering Regression: Absolute fitment phrasing is strictly forbidden', () => {
+  // A confirmed link must not be presented as an absolute universal fitment guarantee
+  assert.ok(!indexHtml.includes('Gegarandeerd passend'), 'Must not claim "Gegarandeerd passend"');
+  assert.ok(!indexHtml.includes('Gegarandeerde compatibiliteit'), 'Must not claim "Gegarandeerde compatibiliteit"');
+  assert.ok(indexHtml.includes('Bevestigde compatibiliteit'), 'Must use "Bevestigde compatibiliteit"');
+});
