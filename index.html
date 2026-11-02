@@ -145,6 +145,8 @@
             placeholder="Zoek model, onderdeelnummer of serienummer..."
             class="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg font-mono font-semibold text-white placeholder-gray-500 focus:outline-none"
             autocomplete="off"
+            aria-autocomplete="list"
+            aria-controls="search-suggestions-dropdown"
           />
           <button id="clear-btn" class="p-2 text-gray-400 hover:text-white transition cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center" title="Wis invoer" aria-label="Wis invoer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -153,6 +155,16 @@
             <span id="search-btn-text">Zoeken</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </button>
+
+          <!-- Autocomplete Suggestions Dropdown (Phase 4) -->
+          <div
+            id="search-suggestions-dropdown"
+            role="listbox"
+            aria-label="Zoeksuggesties"
+            class="hidden absolute top-full left-0 right-0 mt-2 bg-gray-950/95 border border-gray-700 rounded-xl shadow-2xl z-50 overflow-hidden divide-y divide-gray-800/80 backdrop-blur-md"
+          >
+            <!-- Suggestions rendered dynamically -->
+          </div>
         </div>
 
         <!-- Helper text under search field -->
@@ -257,6 +269,11 @@
         <p class="text-sm text-gray-400 max-w-md mx-auto">
           Voer het serienummer in van uw STIHL machine, een 11-cijferig onderdeelnummer of een modelnaam om bronstatus, familie-identiteit en bekende modeldata te bekijken.
         </p>
+        <!-- Suggestions on near-match / typo (Phase 4) -->
+        <div id="empty-state-suggestions-container" class="hidden pt-3 space-y-2">
+          <p class="text-xs font-semibold text-gray-300">Bedoelde je een van deze bestaande modellen?</p>
+          <div id="empty-state-suggestions-pills" class="flex flex-wrap gap-2 justify-center"></div>
+        </div>
       </div>
 
       <!-- Counterfeit Alert Banner -->
@@ -271,6 +288,26 @@
           </div>
         </div>
         <p id="counterfeit-reason" class="text-sm text-red-200 leading-relaxed"></p>
+      </div>
+
+      <!-- MODEL DISAMBIGUATION CARD (Phase 4 Modernized Multi-Model Resolution) -->
+      <div id="model-disambiguation-card" class="hidden bg-gray-900 border border-orange-500/30 rounded-2xl p-6 sm:p-8 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-gray-800 pb-4">
+          <div class="space-y-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-2xs font-mono font-bold uppercase px-2.5 py-0.5 rounded bg-orange-500/20 text-orange-400 border border-orange-500/30">Keuzehulp: Meerdere modellen</span>
+              <span id="disambiguation-query-badge" class="px-2.5 py-0.5 text-2xs font-mono text-gray-300 bg-gray-800 rounded"></span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1">Selecteer jouw STIHL model</h3>
+            <p id="disambiguation-message" class="text-xs sm:text-sm text-gray-300">
+              Jouw zoekopdracht komt overeen met meerdere bekende modellen of uitvoeringen. Kies jouw model om direct de passende onderdelen en specificaties te openen:
+            </p>
+          </div>
+        </div>
+
+        <div id="disambiguation-candidates-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <!-- Dynamically populated candidate cards -->
+        </div>
       </div>
 
       <!-- PART NUMBER RESULT CARD (Phase 2 Modernized 3-Layer Hierarchy) -->
@@ -350,6 +387,11 @@
             </p>
             <div class="text-xs font-mono text-gray-400 pt-0.5">
               <span>Aandrijving: <strong id="model-card-fuel" class="text-orange-300">Benzine (2-Takt)</strong></span>
+            </div>
+            <!-- Typo notice banner (Phase 4) -->
+            <div id="model-typo-notice" class="hidden mt-2 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300 flex items-center gap-2">
+              <svg class="w-4 h-4 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span id="model-typo-notice-text"></span>
             </div>
           </div>
 
@@ -1384,6 +1426,10 @@
         if (digitsOnly.length === 9 && !/[a-zA-Z]/.test(val)) {
           return 'serial';
         }
+        // Short 2-3 digit queries (e.g. 260, 261, 026) -> Model intent
+        if (/^\d{2,3}$/.test(val)) {
+          return 'model';
+        }
         // Classic 3-digit models like 020, 024, 026, 044, 066, etc.
         if (/^0[0-9]{2}(\s*[a-zA-Z]+)?$/i.test(val)) {
           return 'model';
@@ -1604,6 +1650,17 @@
         currentModelName = 'Niet vastgesteld';
         currentYearsFormatted = 'Niet vastgesteld';
 
+        const disambiguationCard = document.getElementById('model-disambiguation-card');
+        if (disambiguationCard) disambiguationCard.classList.add('hidden');
+        const typoNoticeEl = document.getElementById('model-typo-notice');
+        if (typoNoticeEl) typoNoticeEl.classList.add('hidden');
+        const emptySuggestionsContainer = document.getElementById('empty-state-suggestions-container');
+        const emptySuggestionsPills = document.getElementById('empty-state-suggestions-pills');
+        if (emptySuggestionsContainer) emptySuggestionsContainer.classList.add('hidden');
+        if (emptySuggestionsPills) emptySuggestionsPills.innerHTML = '';
+        const searchSuggestionsDropdown = document.getElementById('search-suggestions-dropdown');
+        if (searchSuggestionsDropdown) searchSuggestionsDropdown.classList.add('hidden');
+
         const resModelEl = document.getElementById('res-model');
         if (resModelEl) resModelEl.innerText = 'Niet vastgesteld';
         const resSerialEl = document.getElementById('res-serial-display');
@@ -1664,6 +1721,58 @@
           return;
         }
 
+        // CASE 1B: Ambiguous Model Query -> DISAMBIGUATION CARDS (Phase 4)
+        if (res && res.type === 'MODEL_DISAMBIGUATION') {
+          currentDecodeResult = res;
+          const qBadge = document.getElementById('disambiguation-query-badge');
+          if (qBadge) qBadge.innerText = `Zoekterm: "${res.query || val}"`;
+          const msgEl = document.getElementById('disambiguation-message');
+          if (msgEl && res.message) msgEl.innerText = res.message;
+
+          const gridEl = document.getElementById('disambiguation-candidates-grid');
+          if (gridEl && Array.isArray(res.candidates)) {
+            gridEl.innerHTML = res.candidates.map(c => `
+              <div class="bg-gray-950/80 border border-gray-800 hover:border-orange-500/50 rounded-xl p-4 flex flex-col justify-between space-y-3 transition">
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-3xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-gray-900 text-orange-400 border border-gray-800">
+                      ${escapeHtml(c.category || 'STIHL Machine')}
+                    </span>
+                    <span class="text-3xs font-bold px-2 py-0.5 rounded-full ${c.match_badge_class || 'bg-blue-500/10 text-blue-400 border border-blue-500/20'}">
+                      ${escapeHtml(c.match_badge || 'Mogelijk model')}
+                    </span>
+                  </div>
+                  <div class="text-lg font-extrabold text-white">
+                    ${escapeHtml(c.model_name)}
+                  </div>
+                  ${c.explanation ? `
+                    <p class="text-2xs text-gray-400 leading-relaxed">${escapeHtml(c.explanation)}</p>
+                  ` : ''}
+                </div>
+                <div class="pt-2 border-t border-gray-800/80 flex items-center justify-between gap-2">
+                  <button type="button" class="disambiguation-select-btn px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition cursor-pointer min-h-[44px] flex items-center gap-1.5" data-model="${escapeHtml(c.model_name)}">
+                    <span>Bekijk model &amp; onderdelen →</span>
+                  </button>
+                </div>
+              </div>
+            `).join('');
+
+            gridEl.querySelectorAll('.disambiguation-select-btn').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const targetModel = btn.getAttribute('data-model');
+                if (targetModel && inputEl) {
+                  inputEl.value = targetModel;
+                  updateDynamicSearchButton();
+                  handleDecode();
+                }
+              });
+            });
+          }
+
+          if (disambiguationCard) disambiguationCard.classList.remove('hidden');
+          return;
+        }
+
         // CASE 2: Part Number / Gietnummer (11 digits or part family prefix)
         if (res && res.type === 'PART_NUMBER') {
           document.getElementById('warn-part-no').innerText = res.formattedPartNo || res.cleaned;
@@ -1706,11 +1815,20 @@
         }
 
         // CASE 3: Model Name Search (e.g. "MS 261 C-M")
-        if (res && res.type === 'MODEL_DECODE') {
+        if (res && res.type === 'MODEL_DECODE' && res.success) {
           currentDecodeResult = res;
           currentSerial = '';
-          const modelName = res.input.toUpperCase();
+          const modelName = (res.normalized_model || res.input || '').toUpperCase();
           currentModelName = modelName;
+
+          const typoNoticeEl = document.getElementById('model-typo-notice');
+          const typoNoticeText = document.getElementById('model-typo-notice-text');
+          if (res.typoNotice && typoNoticeEl && typoNoticeText) {
+            typoNoticeText.innerText = res.typoNotice;
+            typoNoticeEl.classList.remove('hidden');
+          } else if (typoNoticeEl) {
+            typoNoticeEl.classList.add('hidden');
+          }
 
           document.getElementById('model-title-display').innerText = modelName;
           const modelCardNameEl = document.getElementById('model-card-name');
@@ -1871,6 +1989,26 @@
           return;
         }
 
+        if (emptySuggestionsContainer && emptySuggestionsPills && res && res.suggestions && res.suggestions.length > 0) {
+          emptySuggestionsPills.innerHTML = res.suggestions.map(s => `
+            <button type="button" class="empty-suggestion-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-orange-600/20 hover:bg-orange-600/30 text-orange-300 border border-orange-500/40 transition cursor-pointer min-h-[36px] flex items-center gap-1" data-model="${escapeHtml(s)}">
+              <span>${escapeHtml(s)}</span>
+            </button>
+          `).join('');
+
+          emptySuggestionsPills.querySelectorAll('.empty-suggestion-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const targetModel = btn.getAttribute('data-model');
+              if (targetModel && inputEl) {
+                inputEl.value = targetModel;
+                updateDynamicSearchButton();
+                handleDecode();
+              }
+            });
+          });
+
+          emptySuggestionsContainer.classList.remove('hidden');
+        }
         emptyState.classList.remove('hidden');
       }
 
@@ -2379,6 +2517,14 @@
           warningCard.classList.add('hidden');
           counterfeitCard.classList.add('hidden');
           modelCard.classList.add('hidden');
+          const disambiguationCard = document.getElementById('model-disambiguation-card');
+          if (disambiguationCard) disambiguationCard.classList.add('hidden');
+          const typoNoticeEl = document.getElementById('model-typo-notice');
+          if (typoNoticeEl) typoNoticeEl.classList.add('hidden');
+          const emptySuggestionsContainer = document.getElementById('empty-state-suggestions-container');
+          if (emptySuggestionsContainer) emptySuggestionsContainer.classList.add('hidden');
+          const searchSuggestionsDropdown = document.getElementById('search-suggestions-dropdown');
+          if (searchSuggestionsDropdown) searchSuggestionsDropdown.classList.add('hidden');
           emptyState.classList.remove('hidden');
           if (safePreviewCard) safePreviewCard.classList.add('hidden');
           const assistContainer = document.getElementById('model-assist-container');
@@ -2489,6 +2635,146 @@
 
         updateGietklok();
       }
+
+      // Autocomplete Live Suggestions (Phase 4)
+      const suggestionsDropdown = document.getElementById('search-suggestions-dropdown');
+      let suggestDebounceTimer = null;
+      let activeSuggestionIndex = -1;
+      let currentSuggestions = [];
+
+      function hideSuggestions() {
+        if (suggestionsDropdown) {
+          suggestionsDropdown.classList.add('hidden');
+          suggestionsDropdown.innerHTML = '';
+        }
+        activeSuggestionIndex = -1;
+        currentSuggestions = [];
+      }
+
+      function renderSuggestions(suggestions) {
+        if (!suggestionsDropdown) return;
+        currentSuggestions = suggestions;
+        activeSuggestionIndex = -1;
+
+        if (!Array.isArray(suggestions) || suggestions.length === 0) {
+          hideSuggestions();
+          return;
+        }
+
+        suggestionsDropdown.innerHTML = suggestions.map((s, idx) => `
+          <div
+            class="suggestion-item px-4 py-3 hover:bg-gray-900 cursor-pointer flex items-center justify-between text-xs transition min-h-[44px]"
+            role="option"
+            data-index="${idx}"
+            data-model="${escapeHtml(s.model_name)}"
+          >
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-white">${escapeHtml(s.model_name)}</span>
+              <span class="text-3xs px-2 py-0.5 rounded bg-gray-900 text-gray-400 border border-gray-800">${escapeHtml(s.category)}</span>
+            </div>
+            <span class="text-3xs text-orange-400 font-semibold">${escapeHtml(s.badge || 'Bekijk')}</span>
+          </div>
+        `).join('');
+
+        suggestionsDropdown.querySelectorAll('.suggestion-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const modelName = item.getAttribute('data-model');
+            if (modelName && inputEl) {
+              inputEl.value = modelName;
+              hideSuggestions();
+              updateDynamicSearchButton();
+              handleDecode();
+            }
+          });
+        });
+
+        suggestionsDropdown.classList.remove('hidden');
+      }
+
+      function updateSuggestionHighlight() {
+        if (!suggestionsDropdown) return;
+        const items = suggestionsDropdown.querySelectorAll('.suggestion-item');
+        items.forEach((item, idx) => {
+          if (idx === activeSuggestionIndex) {
+            item.classList.add('bg-gray-800/90');
+          } else {
+            item.classList.remove('bg-gray-800/90');
+          }
+        });
+      }
+
+      async function fetchSuggestions(query) {
+        const trimmed = (query || '').trim();
+        const digitsOnly = trimmed.replace(/\D/g, '');
+        // Do not query autocomplete for exact 9-digit serials or 11-digit parts
+        if (trimmed.length < 2 || digitsOnly.length === 9 || digitsOnly.length === 11) {
+          hideSuggestions();
+          return;
+        }
+
+        try {
+          const resp = await fetch(`/api/search-suggest?q=${encodeURIComponent(trimmed)}`);
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.query === inputEl.value.trim()) {
+              renderSuggestions(data.suggestions || []);
+            }
+          } else {
+            hideSuggestions();
+          }
+        } catch (e) {
+          hideSuggestions();
+        }
+      }
+
+      if (inputEl) {
+        inputEl.addEventListener('input', () => {
+          if (suggestDebounceTimer) clearTimeout(suggestDebounceTimer);
+          suggestDebounceTimer = setTimeout(() => {
+            fetchSuggestions(inputEl.value);
+          }, 150);
+        });
+
+        inputEl.addEventListener('keydown', (e) => {
+          if (!suggestionsDropdown || suggestionsDropdown.classList.contains('hidden')) {
+            return;
+          }
+
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (currentSuggestions.length > 0) {
+              activeSuggestionIndex = (activeSuggestionIndex + 1) % currentSuggestions.length;
+              updateSuggestionHighlight();
+            }
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (currentSuggestions.length > 0) {
+              activeSuggestionIndex = activeSuggestionIndex <= 0 ? currentSuggestions.length - 1 : activeSuggestionIndex - 1;
+              updateSuggestionHighlight();
+            }
+          } else if (e.key === 'Enter') {
+            if (activeSuggestionIndex >= 0 && activeSuggestionIndex < currentSuggestions.length) {
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              const chosen = currentSuggestions[activeSuggestionIndex];
+              inputEl.value = chosen.model_name;
+              hideSuggestions();
+              updateDynamicSearchButton();
+              handleDecode();
+            }
+          } else if (e.key === 'Escape') {
+            e.preventDefault();
+            hideSuggestions();
+          }
+        });
+      }
+
+      document.addEventListener('click', (e) => {
+        if (!suggestionsDropdown || suggestionsDropdown.classList.contains('hidden')) return;
+        if (!suggestionsDropdown.contains(e.target) && e.target !== inputEl) {
+          hideSuggestions();
+        }
+      });
 
       // Download Passport Image button
       const downloadBtn = document.getElementById('download-passport-btn');

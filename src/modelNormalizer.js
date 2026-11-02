@@ -6,7 +6,7 @@
  * Does NOT rewrite historical model designations (026 is NOT rewritten to MS 260).
  */
 
-export const VARIANT_SUFFIXES = ['C-M', 'C-EM', 'TC-M', 'C-E', 'T', 'R', 'RX', 'MAGNUM'];
+export const VARIANT_SUFFIXES = ['C-M', 'C-EM', 'TC-M', 'C-E', 'VW', 'T', 'R', 'RX', 'MAGNUM'];
 
 /**
  * Normalizes input model spelling and formatting into canonical STIHL format
@@ -22,6 +22,15 @@ export function normalizeModelQuery(inputStr = '') {
   if (!inputStr || typeof inputStr !== 'string') return { baseModel: '', variant: '', canonicalQuery: '' };
 
   let raw = inputStr.trim().replace(/^STIHL[\s_\-]+/i, '').trim().toUpperCase();
+
+  // Typo recovery: letter 'O' instead of digit '0' in model numbers (e.g. MS 26O -> MS 260, FS45O -> FS 450)
+  raw = raw.replace(/^([A-Z]{1,4}[\s_\-]?\d+)[O](?=[\s_\-]|$)/i, '$10');
+
+  // Suffix spacing and punctuation normalization (e.g. "MS 261C M" -> "MS 261 C-M")
+  raw = raw.replace(/(\d+)\s*C[\s_-]?M\b/i, '$1 C-M')
+           .replace(/(\d+)\s*C[\s_-]?E[\s_-]?M\b/i, '$1 C-EM')
+           .replace(/(\d+)\s*TC[\s_-]?M\b/i, '$1 TC-M')
+           .replace(/(\d+)\s*V[\s_-]?W\b/i, '$1 VW');
 
   // Legacy numeric designations (e.g., 026, 036, 046, 044, 066, 020 T)
   const legacyMatch = raw.match(/^(0\d{2})[\s-]?([A-Z])?$/i);
@@ -40,8 +49,7 @@ export function normalizeModelQuery(inputStr = '') {
   }
 
   // Modern prefix + number + variant
-  // e.g. "BR600" -> "BR 600", "MS261CM" -> "MS 261 C-M", "FS460CEM" -> "FS 460 C-EM"
-  const match = raw.match(/^([A-Z]{1,3})[-_\s]?(\d{2,4})[-_\s]?(C-?M|C-?EM|TC-?M|C-?E|T|R|RX|MAGNUM)?$/i);
+  const match = raw.match(/^([A-Z]{1,4})[\s_\-]?(0\d{2}|\d{2,4})[\s_\-]?(C-?M|C-?EM|TC-?M|C-?E|VW|V-W|T|R|RX|MAGNUM)?$/i);
 
   if (match) {
     const prefix = match[1].toUpperCase();
@@ -53,6 +61,7 @@ export function normalizeModelQuery(inputStr = '') {
     if (suffix === 'CEM') suffix = 'C-EM';
     if (suffix === 'TCM') suffix = 'TC-M';
     if (suffix === 'CE') suffix = 'C-E';
+    if (suffix === 'V-W') suffix = 'VW';
 
     const baseModel = `${prefix} ${number}`;
     const canonicalQuery = suffix ? `${baseModel} ${suffix}` : baseModel;
