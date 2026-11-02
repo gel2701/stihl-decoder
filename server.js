@@ -23,6 +23,8 @@ import { PartNormalizer } from './src/parts/PartNormalizer.js';
 import { renderGuidePageHtml } from './src/components/GuidePageTemplate.js';
 import { generateSitemapXml, generateRobotsTxt } from './src/components/SitemapGenerator.js';
 import { generateSeoAuditReport } from './src/components/SeoAuditEngine.js';
+import { renderInternalQualityDashboardHtml } from './src/components/InternalQualityDashboardTemplate.js';
+import { measureCatalogCoverage } from './scripts/measure_catalog_coverage.mjs';
 import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js';
 import { renderBreadcrumbsHtml } from './src/components/Breadcrumbs.js';
 import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
@@ -814,6 +816,41 @@ const server = http.createServer(async (req, res) => {
       'Access-Control-Allow-Origin': '*'
     });
     res.end(JSON.stringify(auditReport, null, 2));
+    return;
+  }
+
+  // 9b. Non-Public Internal Quality Audit Dashboard: GET /intern/kwaliteit or /intern/catalogus-dekking/
+  if (pathname === '/intern/kwaliteit' || pathname === '/intern/kwaliteit/' || pathname === '/intern/catalogus-dekking' || pathname === '/intern/catalogus-dekking/') {
+    let reportData = null;
+    const reportPath = path.resolve(__dirname, 'data', 'catalog_coverage_report.json');
+    if (fs.existsSync(reportPath)) {
+      try {
+        reportData = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+      } catch (e) {
+        reportData = null;
+      }
+    }
+    if (!reportData) {
+      reportData = measureCatalogCoverage({ databasePath: getDatabasePath() });
+    }
+
+    if (req.headers['accept'] && req.headers['accept'].includes('application/json') && !req.headers['accept'].includes('text/html')) {
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Cache-Control': 'no-store, no-cache, must-revalidate'
+      });
+      res.end(JSON.stringify(reportData, null, 2));
+      return;
+    }
+
+    const html = renderInternalQualityDashboardHtml(reportData, PRIMARY_ORIGIN);
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=UTF-8',
+      'X-Robots-Tag': 'noindex, nofollow',
+      'Cache-Control': 'no-store, no-cache, must-revalidate'
+    });
+    res.end(html);
     return;
   }
 

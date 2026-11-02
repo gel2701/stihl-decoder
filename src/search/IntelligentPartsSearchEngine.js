@@ -78,6 +78,10 @@ export const MACHINE_TYPES = {
 export function classifyPartCategory(partName = '') {
   const name = String(partName || '').toLowerCase();
 
+  // Fasteners & hardware checked early so titles with "Chainsaw Parts - M5 Nut" or "Screw for guide bar" are classified as hardware
+  if (/schroef|screw|schraube|moer|nut|mutter|sluitring|washer|scheibe|borgring|circlip|sprengring|klem|clip|bout|bolt|tapeind|stud/i.test(name)) {
+    return PART_CATEGORIES.HARDWARE;
+  }
   if (/luchtfilter|air filter|luftfilter|brandstoffilter|fuel filter|kraftstofffilter|filterelement|filter element|filter|saugkopf|pickup body/i.test(name)) {
     return PART_CATEGORIES.FILTERS;
   }
@@ -87,7 +91,7 @@ export function classifyPartCategory(partName = '') {
   if (/carburateur|carburetor|carburettor|vergaser|membraan|diaphragm|pakking|gasket|dichtung|revisieset|carb set/i.test(name)) {
     return PART_CATEGORIES.CARBURETOR;
   }
-  if (/zaagketting|saw chain|sägekette|sagekette|ketting|chain|zaagblad|guide bar|schwert|spreader|kettingspanner|chain tensioner/i.test(name)) {
+  if (/zaagketting|saw chain|sägekette|sagekette|ketting(?!enzaag)|\bchain(?!saw)\b|zaagblad|guide bar|schwert|spreader|kettingspanner|chain tensioner/i.test(name)) {
     return PART_CATEGORIES.CUTTING_EQUIPMENT;
   }
   if (/maaikop|mowing head|autocut|trimmer|maaidraad|trimmer line|polycut|duocut|slagmes|mowing blade/i.test(name)) {
@@ -107,9 +111,6 @@ export function classifyPartCategory(partName = '') {
   }
   if (/handgreep|handle|griff|av-veer|veerelement|annular buffer|bumper spike|tandkam|behuizing|housing|kap|cover|haube/i.test(name)) {
     return PART_CATEGORIES.BODY;
-  }
-  if (/schroef|screw|schraube|moer|nut|mutter|sluitring|washer|scheibe|borgring|circlip|sprengring|klem|clip/i.test(name)) {
-    return PART_CATEGORIES.HARDWARE;
   }
 
   return PART_CATEGORIES.OTHER;
@@ -360,7 +361,12 @@ export function searchIntelligentParts(query = '', filters = {}, options = {}) {
     const hasPureModelQuery = modelExtraction && modelExtraction.canonical_model_id && !modelExtraction.component_query;
     const targetModelId = filters.model || (hasPureModelQuery ? modelExtraction.canonical_model_id : null);
 
-    if (targetModelId && PartCatalogResolver.hasPartsForModel(targetModelId, database) && (!modelExtraction || !modelExtraction.component_query)) {
+    const hasModelParts = Boolean(targetModelId && (
+      PartCatalogResolver.hasPartsForModel(targetModelId, database) ||
+      (PartCatalogResolver.getPartsForModel(targetModelId, null, null, database)?.length > 0)
+    ));
+
+    if (hasModelParts && (!modelExtraction || !modelExtraction.component_query)) {
       // Return parts for this model
       rawCandidates = PartCatalogResolver.getPartsForModel(targetModelId, null, null, database);
     } else {
