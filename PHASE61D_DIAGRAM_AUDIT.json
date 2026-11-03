@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "61D",
+  "generated_at_utc": "2026-11-03T21:05:15.495Z",
+  "read_only": true,
+  "catalog_parts": 18373,
+  "priority_models": [
+    {
+      "model_id": "fs_460",
+      "model_label": "FS 460 C-EM",
+      "present_in_catalog": true,
+      "sections": 9,
+      "fitments": 1067,
+      "unique_parts": 351,
+      "parts_with_position": 350,
+      "parts_without_position": 1,
+      "distinct_positions": 31,
+      "real_diagram_images": 0,
+      "configurations": 2,
+      "configurations_with_image": 0,
+      "image_hosts": {},
+      "configuration_sources": [
+        "unknown"
+      ],
+      "public_diagram_images": 0,
+      "parts_without_visual": 351
+    },
+    {
+      "model_id": "ms_440",
+      "model_label": "MS 440",
+      "present_in_catalog": true,
+      "sections": 5,
+      "fitments": 522,
+      "unique_parts": 277,
+      "parts_with_position": 256,
+      "parts_without_position": 21,
+      "distinct_positions": 39,
+      "real_diagram_images": 15,
+      "configurations": 16,
+      "configurations_with_image": 15,
+      "image_hosts": {
+        "www.gardenhirespares.co.uk": 15
+      },
+      "configuration_sources": [
+        "unknown",
+        "ghs"
+      ],
+      "public_diagram_images": 0,
+      "parts_without_visual": 277
+    },
+    {
+      "model_id": "ms_261",
+      "model_label": "MS 261",
+      "present_in_catalog": true,
+      "sections": 20,
+      "fitments": 1836,
+      "unique_parts": 358,
+      "parts_with_position": 349,
+      "parts_without_position": 9,
+      "distinct_positions": 42,
+      "real_diagram_images": 17,
+      "configurations": 20,
+      "configurations_with_image": 17,
+      "image_hosts": {
+        "www.gardenhirespares.co.uk": 17
+      },
+      "configuration_sources": [
+        "ghs",
+        "unknown"
+      ],
+      "public_diagram_images": 0,
+      "parts_without_visual": 358
+    },
+    {
+      "model_id": "ms_170",
+      "model_label": "MS 170",
+      "present_in_catalog": true,
+      "sections": 6,
+      "fitments": 710,
+      "unique_parts": 248,
+      "parts_with_position": 243,
+      "parts_without_position": 5,
+      "distinct_positions": 34,
+      "real_diagram_images": 14,
+      "configurations": 16,
+      "configurations_with_image": 14,
+      "image_hosts": {
+        "www.gardenhirespares.co.uk": 14
+      },
+      "configuration_sources": [
+        "unknown",
+        "ghs"
+      ],
+      "public_diagram_images": 0,
+      "parts_without_visual": 248
+    },
+    {
+      "model_id": "fs_350",
+      "model_label": "FS 350",
+      "present_in_catalog": true,
+      "sections": 6,
+      "fitments": 262,
+      "unique_parts": 262,
+      "parts_with_position": 254,
+      "parts_without_position": 8,
+      "distinct_positions": 41,
+      "real_diagram_images": 0,
+      "configurations": 0,
+      "configurations_with_image": 0,
+      "image_hosts": {},
+      "configuration_sources": [],
+      "public_diagram_images": 0,
+      "parts_without_visual": 262
+    }
+  ],
+  "totals": {
+    "models_audited": 5,
+    "models_with_sections": 5,
+    "models_with_real_images": 3,
+    "public_diagram_images": 0,
+    "parts_with_position": 1452,
+    "parts_without_visual": 1496
+  },
+  "source_audit": [
+    {
+      "source_id": "gardenhirespares",
+      "host": "www.gardenhirespares.co.uk",
+      "configurations_with_image": 2377,
+      "images_reachable": "HTTP_200",
+      "model_binding": "source model + configuration key recorded per row",
+      "position_binding": "section/diagram positions originate from the same catalog rows",
+      "reuse_rights": "NO_LICENSE_GRANT_FOUND",
+      "decision": "EXTERNAL_LINK_ONLY_NOT_EMBEDDED",
+      "rationale": "STIHL IPL artwork is copyright-protected; no reuse licence from the merchant was found. Images stay out of the public product.",
+      "probed_url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/0/009_a.jpg"
+    },
+    {
+      "source_id": "stihl_ipl",
+      "host": "stihl.com",
+      "configurations_with_image": 0,
+      "images_reachable": "NOT_AVAILABLE",
+      "reuse_rights": "COPYRIGHT_ANDREAS_STIHL",
+      "decision": "NOT_PUBLISHED",
+      "rationale": "No licensed STIHL exploded-view artwork is present in the repository or database."
+    }
+  ],
+  "conclusion": {
+    "real_diagrams_publicly_available": 0,
+    "legally_embeddable": 0,
+    "representation": "De publieke site toont onderdelenlijsten met tekeningposities, geen explosietekening-afbeeldingen."
+  }
+}

@@ -390,6 +390,8 @@ export function getDirectPartsForModel(modelInput, options = {}, database = null
         diagram_position: candidate.has_meaningful_position ? candidate.diagram_position : null,
         diagram_section_name: isMeaningfulSection ? candidate.section_name : null,
         diagram_url: diagramUrl,
+        diagram_kind: diagramUrl ? 'SECTION_ANCHOR' : null,
+        diagram_label: diagramUrl ? 'Onderdelenlijst met tekeningposities' : null,
         part_detail_url: `/onderdeelnummer/${candidate.part_number}/`,
         purchase_url: primaryOffer ? primaryOffer.url : null,
         purchase_label: primaryOffer ? (primaryOffer.link_type === 'DIRECT_ASIN' ? 'Bekijk product op Amazon' : 'Zoek op Amazon') : null,

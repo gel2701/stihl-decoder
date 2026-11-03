@@ -103,10 +103,10 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
 
   const pageTitle = searched
     ? `STIHL Onderdelen Zoeken: "${rawQuery}" | STIHLDecoder`
-    : `STIHL Onderdelen Zoeken & Explosietekeningen Catalogus | STIHLDecoder`;
+    : `STIHL Onderdelen Zoeken & Tekeningposities Catalogus | STIHLDecoder`;
 
   const metaDescription = searched
-    ? `Zoekresultaten voor STIHL onderdelen "${rawQuery}". Controleer onderdeelnummers, exploded views en compatibele STIHL modellen.`
+    ? `Zoekresultaten voor STIHL onderdelen "${rawQuery}". Controleer onderdeelnummers, tekeningposities en compatibele STIHL modellen.`
     : `Centrale onderdelenzoeker voor alle 17.082 STIHL onderdelen. Zoek direct op onderdeelnummer (compact of geformatteerd), model of diagramsectie.`;
 
   const jsonLdData = {
@@ -665,7 +665,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
             <span>⚙️ Onderdelen per STIHL Model</span>
           </h2>
-          <span class="text-2xs text-gray-400">Directe catalogustekeningen</span>
+          <span class="text-2xs text-gray-400">Directe catalogus met tekeningposities</span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
           ${popularModels.map(item => `

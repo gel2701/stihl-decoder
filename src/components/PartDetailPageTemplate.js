@@ -13,6 +13,7 @@ import { AffiliateOfferResolver } from '../affiliate/AffiliateOfferResolver.js';
 import { renderAffiliateDisclosureHtml } from '../affiliate/AffiliateDisclosure.js';
 import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { isPartIndexationPilotEnabled, getPartIndexationPilotEntry } from '../seo/PartIndexationPilot.js';
+import { renderDiagramAvailabilityNoticeHtml } from './DiagramAvailabilityNotice.js';
 
 export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = null, baseUrl = PRIMARY_ORIGIN) {
   const resolved = (rawPartNumberOrResolved && typeof rawPartNumberOrResolved === 'object' && rawPartNumberOrResolved.part_number)
@@ -363,7 +364,8 @@ ${supersessionHtml}
     ${sectionMap.size > 0 ? `
     <!-- Diagram Sections & Positions -->
     <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs">
-      <h3 class="text-base font-bold text-white">Montagelocatie & Diagramsecties</h3>
+      <h3 class="text-base font-bold text-white">Montagelocatie &amp; tekeningposities</h3>
+      ${renderDiagramAvailabilityNoticeHtml({ className: 'mb-3' })}
       <div class="space-y-4">
         ${Array.from(sectionMap.entries()).map(([secName, fList]) => `
           <div class="border-b border-gray-800/80 pb-3 last:border-b-0 space-y-1.5">

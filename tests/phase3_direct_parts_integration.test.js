@@ -186,7 +186,7 @@ test('Phase 3 - UI Template Invariants: Direct Parts Sections & All-Parts CTAs i
   // Wording invariants
   assert.ok(indexHtml.includes('Onderdelen voor jouw STIHL'), 'Must contain section title "Onderdelen voor jouw STIHL"');
   assert.ok(indexHtml.includes('Bekijk alle onderdelen voor'), 'Must contain CTA "Bekijk alle onderdelen voor"');
-  assert.ok(indexHtml.includes('Bekijk in explosietekening'), 'Must contain exploded diagram action "Bekijk in explosietekening"');
+  assert.ok(indexHtml.includes('Onderdelenlijst met tekeningposities'), 'Must label the section link honestly as a parts list with diagram positions');
 
   // Regression safety: absolute phrasing prohibition
   assert.ok(!indexHtml.includes('Gegarandeerd passend'), 'Must not contain "Gegarandeerd passend"');
