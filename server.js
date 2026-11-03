@@ -37,6 +37,9 @@ if (process.env.AMAZON_DIRECT_ASIN_ENABLED !== 'false') {
     ? new Set(process.env.AMAZON_PILOT_ACTIVE_PARTS.split(',').map(s => PartNormalizer.normalizePartNumber(s.trim())).filter(Boolean))
     : new Set(['11104007005', '00004007000', '00004007011']);
 }
+
+// Eager database initialization
+getDatabaseConnection();
 import {
   getSafeCategorySlug,
   getSafeModelPath,
@@ -622,6 +625,8 @@ const server = http.createServer(async (req, res) => {
       const offerType = data.offer_type || (isProductVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
       const linkType = data.link_type || (offerType === 'MANUAL_ASIN' ? 'DIRECT_ASIN' : 'SEARCH_FALLBACK');
 
+      const isTestClick = Boolean(data.is_test || (req.url && req.url.includes('test=1')));
+
       logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
         provider: data.provider || 'amazon',
         marketplace: data.marketplace || destinationHost,
@@ -639,8 +644,9 @@ const server = http.createServer(async (req, res) => {
         page_path: data.page_path || '/',
         source_page: data.page_path || '/',
         seo_tier: data.seo_tier || null,
-        commercial_tier: data.commercial_tier || null
-      }, req.headers['user-agent']);
+        commercial_tier: data.commercial_tier || null,
+        event_id: data.event_id || null
+      }, req.headers['user-agent'], isTestClick);
 
       const specificEventType = isProductVerified
         ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK
@@ -663,8 +669,9 @@ const server = http.createServer(async (req, res) => {
         page_path: data.page_path || '/',
         source_page: data.page_path || '/',
         seo_tier: data.seo_tier || null,
-        commercial_tier: data.commercial_tier || null
-      }, req.headers['user-agent']);
+        commercial_tier: data.commercial_tier || null,
+        event_id: data.event_id ? `${data.event_id}_spec` : null
+      }, req.headers['user-agent'], isTestClick);
 
       res.writeHead(202, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, recorded: true }));

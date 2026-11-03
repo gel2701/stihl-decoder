@@ -97,9 +97,9 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
     return;
   }
 
-  // 1. Bot Filtering
+  // 1. Bot Filtering (allow explicit test events with isTest=true to pass)
   const isBot = isBotUserAgent(reqUserAgent || metadata.userAgent || '');
-  if (isBot) {
+  if (isBot && !isTest) {
     console.log(`[EventTracked-BotFiltered] ${eventType} ignored`);
     return { status: 'BOT_FILTERED' };
   }
@@ -117,10 +117,9 @@ export function trackEvent(eventType, metadata = {}, reqUserAgent = '', isTest =
   const pagePath = cleanMetadata.source_page || cleanMetadata.page_path || '/';
   const metadataJson = JSON.stringify(cleanMetadata);
   const createdAt = new Date().toISOString();
-  const dbHealth = getDatabaseHealthSnapshot();
-
   const db = getDatabaseConnection();
-  if (!db || !dbHealth.analyticsSchemaReady) {
+  const dbHealth = getDatabaseHealthSnapshot();
+  if (!db || (!dbHealth.analyticsSchemaReady && !dbHealth.connected)) {
     console.warn('[AnalyticsTracker] SQLite analytics unavailable or schema not ready.');
     return {
       status: 'UNAVAILABLE',

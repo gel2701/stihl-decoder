@@ -166,7 +166,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-1">
         ${maintenanceParts.map(p => {
           const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-          const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, section_context: '${p.section_name}'});}` : '';
+          const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, model: '${(model.slug || model.model_name || '').replace(/'/g, "\\'")}', section_context: '${p.section_name}'});}` : '';
           return `
           <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition flex flex-col justify-between space-y-2">
             <div>
@@ -260,7 +260,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                     const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
                     const clickHandler = `if(window.trackStihlEvent){window.trackStihlEvent('model_to_part_click', {model: '${safeModelId}', part_number: '${p.part_number}', section_context: '${safeSectionCtx}', commercial_tier: '${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}', seo_tier: '${p.seo_tier || 'SEO_TIER_C'}', wave_identifier: '${p.wave_identifier || 'none'}', page_path: window.location.pathname});}`;
                     const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-                    const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, section_context: '${safeSectionCtx}'});}` : '';
+                    const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, model: '${safeModelId}', section_context: '${safeSectionCtx}'});}` : '';
                     return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
@@ -530,7 +530,17 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          if (el && el.dataset && el.dataset.clickedRecently === '1') {
+            return; // debounce rapid double clicks
+          }
+          if (el && el.dataset) {
+            el.dataset.clickedRecently = '1';
+            setTimeout(function() { el.dataset.clickedRecently = '0'; }, 1200);
+          }
+          var isTest = window.location.search.indexOf('test=1') !== -1 || Boolean(data && data.is_test);
+          var eventId = 'aff_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
           var payload = JSON.stringify({
+            event_id: eventId,
             provider: data.provider || 'amazon',
             marketplace: data.marketplace || 'amazon.nl',
             part_number: data.part_number,
@@ -538,10 +548,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             match_type: data.offer_type || 'SEARCH_LINK',
             asin_if_known: data.asin_if_known || null,
             product_verified: Boolean(data.product_verified),
-            destination_url: el.href,
+            destination_url: el ? el.href : null,
             query_variant: data.query_variant || null,
             section_context: data.section_context || null,
-            page_path: window.location.pathname
+            model: data.model || null,
+            page_path: window.location.pathname,
+            is_test: isTest ? 1 : 0
           });
           if (navigator.sendBeacon) {
             navigator.sendBeacon('/api/affiliate/track', new Blob([payload], { type: 'application/json' }));

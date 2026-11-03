@@ -391,7 +391,7 @@ Alle 50 kandidaten zijn geëvalueerd via de onafhankelijke \`TwoGateVerifier\`:
 - **Gate 1 (Technisch & Catalogus):** 50/50 PASSED (Canonieke onderdeelnummers, geldige ASIN syntax, veilige URLs).
 - **Gate 2 (Product & Compatibiliteit):** 50/50 PASSED (Merkidentiteit, multipack-validatie met expliciete verpakkingsgrootte, compatibiliteitsbewijs).
 - **Staging Isolatie:**
-  - 3 Actieve pilot ASINs: \`11104007005\` (WSR6F), \`00004007000\` (CMR6H), \`00004007011\` (CMR6H).
+  - 3 Actieve pilot ASINs: \`11104007005\` (WSR6F), \`00004007000\` (BPMR7A), \`00004007011\` (CMR6H).
   - 47 Staged kandidaten: Gereed voor operator review in \`PHASE60_AMAZON_MATCHING_CANDIDATES.json\`.
   - **Productie-bescherming:** Geen ongeautoriseerde activatie in productie uitgevoerd.
 
@@ -407,7 +407,7 @@ Alle 50 kandidaten zijn geëvalueerd via de onafhankelijke \`TwoGateVerifier\`:
 5. **FS 55** (Commerciële score: 88) — 263 onderdelen, 4 matching kandidaten.
 
 ### Top 5 Onderdelen (van de 20 gerangschikt)
-1. \`0000 400 7000\` — NGK CMR6H Bougie (Score: 74, Active Pilot)
+1. \`0000 400 7000\` — NGK BPMR7A Bougie (Score: 74, Active Pilot)
 2. \`0000 400 7011\` — STIHL / NGK CMR6H Bougie (Score: 74, Active Pilot)
 3. \`1110 400 7005\` — Bosch WSR6F Bougie (Score: 74, Active Pilot)
 4. \`1121 120 1617\` — STIHL Luchtfilter MS 260 (Score: 69, Staged Verified)

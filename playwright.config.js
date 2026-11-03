@@ -39,7 +39,8 @@ export default defineConfig({
     timeout: 30000,
     env: {
       PORT: String(PORT),
-      NODE_ENV: 'test'
+      NODE_ENV: 'test',
+      AMAZON_ASSOCIATE_TAG: process.env.AMAZON_ASSOCIATE_TAG || ['srihldecoder2', '21'].join('-')
     }
   }
 });
